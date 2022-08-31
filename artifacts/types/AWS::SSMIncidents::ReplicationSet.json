@@ -1,0 +1,123 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSMIncidents-ReplicationSet",
+  "type": "AWS::SSMIncidents::ReplicationSet",
+  "time": "2022-08-28T23:10:33.299Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "Arn": {
+        "description": "The ARN of the ReplicationSet.",
+        "maxLength": 1000,
+        "pattern": "^arn:aws(-(cn|us-gov|iso(-b)?))?:[a-z-]+:(([a-z]+-)+[0-9])?:([0-9]{12})?:[^.]+$",
+        "type": "string"
+      },
+      "DeletionProtected": {
+        "description": "Configures the ReplicationSet deletion protection.",
+        "type": "boolean"
+      },
+      "RegionConfiguration": {
+        "additionalProperties": false,
+        "description": "The ReplicationSet regional configuration.",
+        "properties": {
+          "SseKmsKeyId": {
+            "$ref": "#/definitions/Arn"
+          }
+        },
+        "required": [
+          "SseKmsKeyId"
+        ],
+        "type": "object"
+      },
+      "RegionList": {
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ReplicationRegion"
+        },
+        "maxItems": 3,
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "RegionName": {
+        "description": "The AWS region name.",
+        "maxLength": 20,
+        "type": "string"
+      },
+      "ReplicationRegion": {
+        "additionalProperties": false,
+        "description": "The ReplicationSet regional configuration.",
+        "properties": {
+          "RegionConfiguration": {
+            "$ref": "#/definitions/RegionConfiguration"
+          },
+          "RegionName": {
+            "$ref": "#/definitions/RegionName"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::SSMIncidents::ReplicationSet",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ssm-incidents:CreateReplicationSet",
+          "ssm-incidents:ListReplicationSets",
+          "ssm-incidents:UpdateDeletionProtection",
+          "iam:CreateServiceLinkedRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ssm-incidents:DeleteReplicationSet",
+          "ssm-incidents:GetReplicationSet"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ssm-incidents:ListReplicationSets"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ssm-incidents:ListReplicationSets",
+          "ssm-incidents:GetReplicationSet"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ssm-incidents:UpdateReplicationSet",
+          "ssm-incidents:UpdateDeletionProtection",
+          "ssm-incidents:GetReplicationSet"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "$ref": "#/definitions/Arn",
+        "additionalProperties": false,
+        "description": "The ARN of the ReplicationSet."
+      },
+      "DeletionProtected": {
+        "$ref": "#/definitions/DeletionProtected",
+        "default": false
+      },
+      "Regions": {
+        "$ref": "#/definitions/RegionList",
+        "description": "The ReplicationSet configuration."
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn"
+    ],
+    "required": [
+      "Regions"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ssm-incidents.git",
+    "taggable": false,
+    "typeName": "AWS::SSMIncidents::ReplicationSet"
+  }
+}

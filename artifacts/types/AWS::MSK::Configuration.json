@@ -1,0 +1,88 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MSK-Configuration",
+  "type": "AWS::MSK::Configuration",
+  "time": "2022-04-18T18:28:43.883Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/KafkaVersionsList",
+      "/properties/Name"
+    ],
+    "definitions": {
+      "KafkaVersionsList": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    "description": "Resource Type definition for AWS::MSK::Configuration",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "kafka:CreateConfiguration",
+          "Kafka:DescribeConfiguration"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "kafka:DeleteConfiguration",
+          "kafka:DescribeConfiguration"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "kafka:ListConfigurations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "kafka:DescribeConfiguration"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "kafka:UpdateConfiguration",
+          "kafka:DescribeConfiguration"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "type": "string"
+      },
+      "Description": {
+        "type": "string"
+      },
+      "KafkaVersionsList": {
+        "$ref": "#/definitions/KafkaVersionsList"
+      },
+      "Name": {
+        "type": "string"
+      },
+      "ServerProperties": {
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn"
+    ],
+    "required": [
+      "ServerProperties",
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
+    "typeName": "AWS::MSK::Configuration",
+    "writeOnlyProperties": [
+      "/properties/ServerProperties"
+    ]
+  }
+}

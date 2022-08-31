@@ -1,0 +1,68 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Logs-ResourcePolicy",
+  "type": "AWS::Logs::ResourcePolicy",
+  "time": "2022-07-21T15:17:03.26Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/PolicyName"
+    ],
+    "description": "The resource schema for AWSLogs ResourcePolicy",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "logs:PutResourcePolicy",
+          "logs:DescribeResourcePolicies"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "logs:DeleteResourcePolicy"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "logs:DescribeResourcePolicies"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "logs:DescribeResourcePolicies"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "logs:PutResourcePolicy",
+          "logs:DescribeResourcePolicies",
+          "logs:DeleteResourcePolicy"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/PolicyName"
+    ],
+    "properties": {
+      "PolicyDocument": {
+        "description": "The policy document",
+        "maxLength": 5120,
+        "minLength": 1,
+        "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+",
+        "type": "string"
+      },
+      "PolicyName": {
+        "description": "A name for resource policy",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^([^:*\\/]+\\/?)*[^:*\\/]+$",
+        "type": "string"
+      }
+    },
+    "required": [
+      "PolicyName",
+      "PolicyDocument"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-logs.git",
+    "taggable": false,
+    "typeName": "AWS::Logs::ResourcePolicy"
+  }
+}

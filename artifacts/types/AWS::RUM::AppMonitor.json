@@ -1,0 +1,262 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RUM-AppMonitor",
+  "type": "AWS::RUM::AppMonitor",
+  "time": "2022-08-27T08:04:44.258Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "definitions": {
+      "AppMonitorConfiguration": {
+        "additionalProperties": false,
+        "description": "AppMonitor configuration",
+        "properties": {
+          "AllowCookies": {
+            "description": "If you set this to true, the RUM web client sets two cookies, a session cookie and a user cookie. The cookies allow the RUM web client to collect data relating to the number of users an application has and the behavior of the application across a sequence of events. Cookies are stored in the top-level domain of the current page.",
+            "type": "boolean"
+          },
+          "EnableXRay": {
+            "description": "If you set this to true, RUM enables xray tracing for the user sessions that RUM samples. RUM adds an xray trace header to allowed HTTP requests. It also records an xray segment for allowed HTTP requests. You can see traces and segments from these user sessions in the xray console and the CW ServiceLens console.",
+            "type": "boolean"
+          },
+          "ExcludedPages": {
+            "$ref": "#/definitions/Pages",
+            "description": "A list of URLs in your website or application to exclude from RUM data collection. You can't include both ExcludedPages and IncludedPages in the same operation."
+          },
+          "FavoritePages": {
+            "$ref": "#/definitions/FavoritePages",
+            "description": "A list of pages in the RUM console that are to be displayed with a favorite icon."
+          },
+          "GuestRoleArn": {
+            "$ref": "#/definitions/Arn",
+            "description": "The ARN of the guest IAM role that is attached to the identity pool that is used to authorize the sending of data to RUM."
+          },
+          "IdentityPoolId": {
+            "description": "The ID of the identity pool that is used to authorize the sending of data to RUM.",
+            "maxLength": 55,
+            "minLength": 1,
+            "pattern": "[\\w-]+:[0-9a-f-]+",
+            "type": "string"
+          },
+          "IncludedPages": {
+            "$ref": "#/definitions/Pages",
+            "description": "If this app monitor is to collect data from only certain pages in your application, this structure lists those pages. You can't include both ExcludedPages and IncludedPages in the same operation."
+          },
+          "SessionSampleRate": {
+            "description": "Specifies the percentage of user sessions to use for RUM data collection. Choosing a higher percentage gives you more data but also incurs more costs. The number you specify is the percentage of user sessions that will be used. If you omit this parameter, the default of 10 is used.",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "Telemetries": {
+            "description": "An array that lists the types of telemetry data that this app monitor is to collect.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Telemetry"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "Arn": {
+        "description": "Resource ARN",
+        "pattern": "arn:[^:]*:[^:]*:[^:]*:[^:]*:.*",
+        "type": "string"
+      },
+      "FavoritePages": {
+        "description": "List of favorite pages",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 50,
+        "minItems": 0,
+        "type": "array"
+      },
+      "Pages": {
+        "description": "List of url pages",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Url"
+        },
+        "maxItems": 50,
+        "minItems": 0,
+        "type": "array"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. ",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^(?!aws:)[a-zA-Z+-=._:/]+$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. ",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      },
+      "TagDef": {
+        "description": "Assigns one or more tags (key-value pairs) to the app monitor. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values. Tags don't have any semantic meaning to AWS and are interpreted strictly as strings of characters.You can associate as many as 50 tags with an app monitor.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Telemetry": {
+        "enum": [
+          "errors",
+          "performance",
+          "http"
+        ],
+        "type": "string"
+      },
+      "Url": {
+        "description": "Page Url",
+        "maxLength": 1260,
+        "minLength": 1,
+        "pattern": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?\u0026//=]*)",
+        "type": "string"
+      }
+    },
+    "description": "Resource Type definition for AWS::RUM::AppMonitor",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "rum:CreateAppMonitor",
+          "dynamodb:GetItem",
+          "dynamodb:PutItem",
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:GetObjectAcl",
+          "s3:DoesObjectExist",
+          "logs:CreateLogDelivery",
+          "logs:CreateLogGroup",
+          "logs:GetLogDelivery",
+          "logs:UpdateLogDelivery",
+          "logs:PutResourcePolicy",
+          "logs:DescribeResourcePolicies",
+          "logs:DescribeLogGroups",
+          "logs:PutRetentionPolicy",
+          "rum:TagResource",
+          "cognito-identity:DescribeIdentityPool",
+          "iam:GetRole",
+          "iam:CreateServiceLinkedRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "rum:DeleteAppMonitor",
+          "dynamodb:DeleteItem",
+          "dynamodb:Query",
+          "logs:DeleteLogDelivery",
+          "s3:DeleteObject",
+          "s3:DoesObjectExist",
+          "rum:UntagResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "rum:ListAppMonitors",
+          "dynamodb:DescribeTable",
+          "rum:GetAppMonitor",
+          "dynamodb:GetItem",
+          "dynamodb:BatchGetItem",
+          "dynamodb:Query",
+          "s3:GetObject",
+          "s3:DoesObjectExist",
+          "s3:GetObjectAcl",
+          "logs:DescribeLogGroups",
+          "rum:ListTagsForResource"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "rum:GetAppMonitor",
+          "dynamodb:GetItem",
+          "s3:GetObject",
+          "s3:DoesObjectExist",
+          "s3:GetObjectAcl",
+          "rum:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "rum:UpdateAppMonitor",
+          "dynamodb:GetItem",
+          "dynamodb:PutItem",
+          "dynamodb:UpdateItem",
+          "dynamodb:Query",
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:GetObjectAcl",
+          "s3:DoesObjectExist",
+          "logs:CreateLogDelivery",
+          "logs:CreateLogGroup",
+          "logs:GetLogDelivery",
+          "logs:UpdateLogDelivery",
+          "logs:PutResourcePolicy",
+          "logs:DescribeResourcePolicies",
+          "logs:DescribeLogGroups",
+          "logs:PutRetentionPolicy",
+          "rum:TagResource",
+          "rum:UntagResource",
+          "rum:ListTagsForResource",
+          "iam:GetRole",
+          "iam:CreateServiceLinkedRole"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Name"
+    ],
+    "properties": {
+      "AppMonitorConfiguration": {
+        "$ref": "#/definitions/AppMonitorConfiguration"
+      },
+      "CwLogEnabled": {
+        "description": "Data collected by RUM is kept by RUM for 30 days and then deleted. This parameter specifies whether RUM sends a copy of this telemetry data to CWLlong in your account. This enables you to keep the telemetry data for more than 30 days, but it does incur CWLlong charges. If you omit this parameter, the default is false",
+        "type": "boolean"
+      },
+      "Domain": {
+        "description": "The top-level internet domain name for which your application has administrative authority.",
+        "maxLength": 253,
+        "minLength": 1,
+        "pattern": "^(localhost)|^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$|^(?![-.])([A-Za-z0-9-\\.\\-]{0,63})((?![-])([a-zA-Z0-9]{1}|^[a-zA-Z0-9]{0,1}))\\.(?![-])[A-Za-z-0-9]{1,63}((?![-])([a-zA-Z0-9]{1}|^[a-zA-Z0-9]{0,1}))|^(\\*\\.)(?![-.])([A-Za-z0-9-\\.\\-]{0,63})((?![-])([a-zA-Z0-9]{1}|^[a-zA-Z0-9]{0,1}))\\.(?![-])[A-Za-z-0-9]{1,63}((?![-])([a-zA-Z0-9]{1}|^[a-zA-Z0-9]{0,1}))",
+        "type": "string"
+      },
+      "Name": {
+        "description": "A name for the app monitor",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "[\\.\\-_/#A-Za-z0-9]+",
+        "type": "string"
+      },
+      "Tags": {
+        "$ref": "#/definitions/TagDef"
+      }
+    },
+    "required": [
+      "Name",
+      "Domain"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "taggable": true,
+    "typeName": "AWS::RUM::AppMonitor"
+  }
+}
