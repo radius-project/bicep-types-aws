@@ -1,0 +1,76 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Events-Archive",
+  "type": "AWS::Events::Archive",
+  "time": "2022-08-30T17:28:03.592Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ArchiveName",
+      "/properties/SourceArn"
+    ],
+    "description": "Resource Type definition for AWS::Events::Archive",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "events:DescribeArchive",
+          "events:CreateArchive"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "events:DescribeArchive",
+          "events:DeleteArchive"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "events:ListArchives"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "events:DescribeArchive"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "events:DescribeArchive",
+          "events:UpdateArchive"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ArchiveName"
+    ],
+    "properties": {
+      "ArchiveName": {
+        "maxLength": 48,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Arn": {
+        "type": "string"
+      },
+      "Description": {
+        "type": "string"
+      },
+      "EventPattern": {
+        "type": "object"
+      },
+      "RetentionDays": {
+        "type": "integer"
+      },
+      "SourceArn": {
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ArchiveName"
+    ],
+    "required": [
+      "SourceArn"
+    ],
+    "typeName": "AWS::Events::Archive"
+  }
+}

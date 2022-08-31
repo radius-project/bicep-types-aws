@@ -1,0 +1,108 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ApiGatewayV2-VpcLink",
+  "type": "AWS::ApiGatewayV2::VpcLink",
+  "time": "2022-08-17T20:06:16.374Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/SecurityGroupIds",
+      "/properties/SubnetIds"
+    ],
+    "description": "Resource Type definition for AWS::ApiGatewayV2::VpcLink",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "apigateway:createVpcLink",
+          "apigateway:getVpcLink",
+          "iam:CreateServiceLinkedRole",
+          "iam:DeleteServiceLinkedRole",
+          "iam:GetServiceLinkedRoleDeletionStatus"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "apigateway:deleteVpcLink",
+          "apigateway:getVpcLink",
+          "iam:CreateServiceLinkedRole",
+          "iam:DeleteServiceLinkedRole",
+          "iam:GetServiceLinkedRoleDeletionStatus"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "apigateway:getVpcLinks",
+          "iam:CreateServiceLinkedRole",
+          "iam:DeleteServiceLinkedRole",
+          "iam:GetServiceLinkedRoleDeletionStatus"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "apigateway:getVpcLink",
+          "iam:CreateServiceLinkedRole",
+          "iam:DeleteServiceLinkedRole",
+          "iam:GetServiceLinkedRoleDeletionStatus"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "apigateway:updateVpcLink",
+          "apigateway:getVpcLink",
+          "iam:CreateServiceLinkedRole",
+          "iam:DeleteServiceLinkedRole",
+          "iam:GetServiceLinkedRoleDeletionStatus"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/VpcLinkId"
+    ],
+    "properties": {
+      "Name": {
+        "type": "string"
+      },
+      "SecurityGroupIds": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "SubnetIds": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "Tags": {
+        "additionalProperties": false,
+        "description": "This resource type use map for Tags, suggest to use List of Tag",
+        "patternProperties": {
+          ".*": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "VpcLinkId": {
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/VpcLinkId"
+    ],
+    "required": [
+      "SubnetIds",
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::ApiGatewayV2::VpcLink"
+  }
+}

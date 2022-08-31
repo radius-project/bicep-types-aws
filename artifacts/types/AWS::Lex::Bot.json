@@ -1,0 +1,1672 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lex-Bot",
+  "type": "AWS::Lex::Bot",
+  "time": "2022-07-25T15:30:07.099Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "AdvancedRecognitionSetting": {
+        "additionalProperties": false,
+        "description": "Provides settings that enable advanced recognition settings for slot values.",
+        "properties": {
+          "AudioRecognitionStrategy": {
+            "$ref": "#/definitions/AudioRecognitionStrategy"
+          }
+        },
+        "type": "object"
+      },
+      "AttachmentTitle": {
+        "maxLength": 250,
+        "minLength": 1,
+        "type": "string"
+      },
+      "AttachmentUrl": {
+        "maxLength": 250,
+        "minLength": 1,
+        "type": "string"
+      },
+      "AudioLogDestination": {
+        "additionalProperties": false,
+        "description": "The location of audio log files collected when conversation logging is enabled for a bot.",
+        "properties": {
+          "S3Bucket": {
+            "$ref": "#/definitions/S3BucketLogDestination"
+          }
+        },
+        "required": [
+          "S3Bucket"
+        ],
+        "type": "object"
+      },
+      "AudioLogSetting": {
+        "additionalProperties": false,
+        "description": "Settings for logging audio of conversations between Amazon Lex and a user. You specify whether to log audio and the Amazon S3 bucket where the audio file is stored.",
+        "properties": {
+          "Destination": {
+            "$ref": "#/definitions/AudioLogDestination"
+          },
+          "Enabled": {
+            "description": "",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "Destination",
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "AudioLogSettings": {
+        "description": "List of audio log settings that pertain to the conversation log settings for the bot's TestBotAlias.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/AudioLogSetting"
+        },
+        "maxItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "AudioRecognitionStrategy": {
+        "description": "Enables using slot values as a custom vocabulary when recognizing user utterances.",
+        "enum": [
+          "UseSlotValuesAsCustomVocabulary"
+        ],
+        "type": "string"
+      },
+      "BotAliasLocaleSettings": {
+        "additionalProperties": false,
+        "description": "You can use this parameter to specify a specific Lambda function to run different functions in different locales.",
+        "properties": {
+          "CodeHookSpecification": {
+            "$ref": "#/definitions/CodeHookSpecification"
+          },
+          "Enabled": {
+            "description": "Whether the Lambda code hook is enabled",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "BotAliasLocaleSettingsItem": {
+        "additionalProperties": false,
+        "description": "A locale setting in alias",
+        "properties": {
+          "BotAliasLocaleSetting": {
+            "$ref": "#/definitions/BotAliasLocaleSettings"
+          },
+          "LocaleId": {
+            "description": "A string used to identify the locale",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "LocaleId",
+          "BotAliasLocaleSetting"
+        ],
+        "type": "object"
+      },
+      "BotAliasLocaleSettingsList": {
+        "description": "A list of bot alias locale settings to add to the bot alias.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/BotAliasLocaleSettingsItem"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "BotArn": {
+        "maxLength": 1011,
+        "minLength": 1,
+        "pattern": "^arn:aws[a-zA-Z-]*:lex:[a-z]+-[a-z]+-[0-9]:[0-9]{12}:bot/[0-9a-zA-Z]+$",
+        "type": "string"
+      },
+      "BotLocale": {
+        "additionalProperties": false,
+        "description": "A locale in the bot, which contains the intents and slot types that the bot uses in conversations with users in the specified language and locale.",
+        "properties": {
+          "CustomVocabulary": {
+            "$ref": "#/definitions/CustomVocabulary"
+          },
+          "Description": {
+            "$ref": "#/definitions/Description"
+          },
+          "Intents": {
+            "description": "List of intents",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Intent"
+            },
+            "maxItems": 1000,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "LocaleId": {
+            "$ref": "#/definitions/LocaleId"
+          },
+          "NluConfidenceThreshold": {
+            "$ref": "#/definitions/ConfidenceThreshold"
+          },
+          "SlotTypes": {
+            "description": "List of SlotTypes",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/SlotType"
+            },
+            "maxItems": 100,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "VoiceSettings": {
+            "$ref": "#/definitions/VoiceSettings"
+          }
+        },
+        "required": [
+          "LocaleId",
+          "NluConfidenceThreshold"
+        ],
+        "type": "object"
+      },
+      "Button": {
+        "additionalProperties": false,
+        "description": "A button to use on a response card used to gather slot values from a user.",
+        "properties": {
+          "Text": {
+            "description": "The text that appears on the button.",
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value returned to Amazon Lex when the user chooses this button.",
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Text",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "CloudWatchLogGroupLogDestination": {
+        "additionalProperties": false,
+        "properties": {
+          "CloudWatchLogGroupArn": {
+            "description": "A string used to identify the groupArn for the Cloudwatch Log Group",
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          },
+          "LogPrefix": {
+            "description": "A string containing the value for the Log Prefix",
+            "maxLength": 1024,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "CloudWatchLogGroupArn",
+          "LogPrefix"
+        ],
+        "type": "object"
+      },
+      "CodeHookSpecification": {
+        "additionalProperties": false,
+        "description": "Contains information about code hooks that Amazon Lex calls during a conversation.",
+        "properties": {
+          "LambdaCodeHook": {
+            "$ref": "#/definitions/LambdaCodeHook"
+          }
+        },
+        "required": [
+          "LambdaCodeHook"
+        ],
+        "type": "object"
+      },
+      "ConfidenceThreshold": {
+        "description": "The specified confidence threshold for inserting the AMAZON.FallbackIntent and AMAZON.KendraSearchIntent intents.",
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+      },
+      "ContextTimeToLiveInSeconds": {
+        "description": "The amount of time, in seconds, that the output context should remain active.",
+        "maximum": 86400,
+        "minimum": 5,
+        "type": "integer"
+      },
+      "ContextTurnsToLive": {
+        "description": "The number of conversation turns that the output context should remain active.",
+        "maximum": 20,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "ConversationLogSettings": {
+        "additionalProperties": false,
+        "description": "Contains information about code hooks that Amazon Lex calls during a conversation.",
+        "properties": {
+          "AudioLogSettings": {
+            "$ref": "#/definitions/AudioLogSettings"
+          },
+          "TextLogSettings": {
+            "$ref": "#/definitions/TextLogSettings"
+          }
+        },
+        "type": "object"
+      },
+      "CustomPayload": {
+        "additionalProperties": false,
+        "description": "A message in a custom format defined by the client application.",
+        "properties": {
+          "Value": {
+            "description": "The string that is sent to your application.",
+            "maxLength": 1000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value"
+        ],
+        "type": "object"
+      },
+      "CustomVocabulary": {
+        "additionalProperties": false,
+        "description": "A custom vocabulary is a list of specific phrases that you want Amazon Lex V2 to recognize in the audio input.",
+        "properties": {
+          "CustomVocabularyItems": {
+            "$ref": "#/definitions/CustomVocabularyItems"
+          }
+        },
+        "required": [
+          "CustomVocabularyItems"
+        ],
+        "type": "object"
+      },
+      "CustomVocabularyItem": {
+        "additionalProperties": false,
+        "description": "A custom vocabulary item that contains the phrase to recognize and a weight to give the boost.",
+        "properties": {
+          "Phrase": {
+            "description": "Phrase that should be recognized.",
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Weight": {
+            "description": "The degree to which the phrase recognition is boosted.",
+            "maximum": 3,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "Phrase"
+        ],
+        "type": "object"
+      },
+      "CustomVocabularyItems": {
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/CustomVocabularyItem"
+        },
+        "maxItems": 500,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "DataPrivacy": {
+        "additionalProperties": false,
+        "description": "Provides information on additional privacy protections Amazon Lex should use with the bot's data.",
+        "properties": {
+          "ChildDirected": {
+            "description": "Specify whether your use of Amazon Lex is related to application that is directed or targeted, in whole or in part, to children under age 13 and subject to the Children's Online Privacy Protection Act (COPPA).",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ChildDirected"
+        ],
+        "type": "object"
+      },
+      "Description": {
+        "description": "A description of the resource",
+        "maxLength": 200,
+        "type": "string"
+      },
+      "DialogCodeHookSetting": {
+        "additionalProperties": false,
+        "description": "Settings that determine the Lambda function that Amazon Lex uses for processing user responses.",
+        "properties": {
+          "Enabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "ExternalSourceSetting": {
+        "additionalProperties": false,
+        "description": "Provides information about the external source of the slot type's definition.",
+        "properties": {
+          "GrammarSlotTypeSetting": {
+            "$ref": "#/definitions/GrammarSlotTypeSetting"
+          }
+        },
+        "type": "object"
+      },
+      "FulfillmentCodeHookSetting": {
+        "additionalProperties": false,
+        "description": "Settings that determine if a Lambda function should be invoked to fulfill a specific intent.",
+        "properties": {
+          "Enabled": {
+            "type": "boolean"
+          },
+          "FulfillmentUpdatesSpecification": {
+            "$ref": "#/definitions/FulfillmentUpdatesSpecification"
+          },
+          "PostFulfillmentStatusSpecification": {
+            "$ref": "#/definitions/PostFulfillmentStatusSpecification"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "FulfillmentStartResponseSpecification": {
+        "additionalProperties": false,
+        "description": "Provides settings for a message that is sent to the user when a fulfillment Lambda function starts running.",
+        "properties": {
+          "AllowInterrupt": {
+            "description": "Determines whether the user can interrupt the start message while it is playing.",
+            "type": "boolean"
+          },
+          "DelayInSeconds": {
+            "description": "The delay between when the Lambda fulfillment function starts running and the start message is played. If the Lambda function returns before the delay is over, the start message isn't played.",
+            "maximum": 900,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MessageGroups": {
+            "$ref": "#/definitions/MessageGroupsList"
+          }
+        },
+        "required": [
+          "DelayInSeconds",
+          "MessageGroups"
+        ],
+        "type": "object"
+      },
+      "FulfillmentUpdateResponseSpecification": {
+        "additionalProperties": false,
+        "description": "Provides settings for a message that is sent periodically to the user while a fulfillment Lambda function is running.",
+        "properties": {
+          "AllowInterrupt": {
+            "description": "Determines whether the user can interrupt an update message while it is playing.",
+            "type": "boolean"
+          },
+          "FrequencyInSeconds": {
+            "description": "The frequency that a message is sent to the user. When the period ends, Amazon Lex chooses a message from the message groups and plays it to the user. If the fulfillment Lambda returns before the first period ends, an update message is not played to the user.",
+            "maximum": 900,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MessageGroups": {
+            "$ref": "#/definitions/MessageGroupsList"
+          }
+        },
+        "required": [
+          "FrequencyInSeconds",
+          "MessageGroups"
+        ],
+        "type": "object"
+      },
+      "FulfillmentUpdatesSpecification": {
+        "additionalProperties": false,
+        "description": "Provides information for updating the user on the progress of fulfilling an intent.",
+        "properties": {
+          "Active": {
+            "description": "Determines whether fulfillment updates are sent to the user. When this field is true, updates are sent.",
+            "type": "boolean"
+          },
+          "StartResponse": {
+            "$ref": "#/definitions/FulfillmentStartResponseSpecification"
+          },
+          "TimeoutInSeconds": {
+            "description": "The length of time that the fulfillment Lambda function should run before it times out.",
+            "maximum": 900,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "UpdateResponse": {
+            "$ref": "#/definitions/FulfillmentUpdateResponseSpecification"
+          }
+        },
+        "required": [
+          "Active"
+        ],
+        "type": "object"
+      },
+      "GrammarSlotTypeSetting": {
+        "additionalProperties": false,
+        "description": "Settings required for a slot type based on a grammar that you provide.",
+        "properties": {
+          "Source": {
+            "$ref": "#/definitions/GrammarSlotTypeSource"
+          }
+        },
+        "type": "object"
+      },
+      "GrammarSlotTypeSource": {
+        "additionalProperties": false,
+        "description": "Describes the Amazon S3 bucket name and location for the grammar that is the source for the slot type.",
+        "properties": {
+          "KmsKeyArn": {
+            "description": "The Amazon KMS key required to decrypt the contents of the grammar, if any.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^arn:[\\w\\-]+:kms:[\\w\\-]+:[\\d]{12}:(?:key\\/[\\w\\-]+|alias\\/[a-zA-Z0-9:\\/_\\-]{1,256})$",
+            "type": "string"
+          },
+          "S3BucketName": {
+            "$ref": "#/definitions/S3BucketName",
+            "description": "The name of the S3 bucket that contains the grammar source."
+          },
+          "S3ObjectKey": {
+            "$ref": "#/definitions/S3ObjectKey",
+            "description": "The path to the grammar in the S3 bucket."
+          }
+        },
+        "required": [
+          "S3BucketName",
+          "S3ObjectKey"
+        ],
+        "type": "object"
+      },
+      "Id": {
+        "description": "Unique ID of resource",
+        "maxLength": 10,
+        "minLength": 10,
+        "pattern": "^[0-9a-zA-Z]+$",
+        "type": "string"
+      },
+      "IdleSessionTTLInSeconds": {
+        "description": "The time, in seconds, that Amazon Lex should keep information about a user's conversation with the bot.",
+        "maximum": 86400,
+        "minimum": 60,
+        "type": "integer"
+      },
+      "ImageResponseCard": {
+        "additionalProperties": false,
+        "description": "A message that defines a response card that the client application can show to the user.",
+        "properties": {
+          "Buttons": {
+            "description": "A list of buttons that should be displayed on the response card.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Button"
+            },
+            "maxItems": 5,
+            "type": "array"
+          },
+          "ImageUrl": {
+            "$ref": "#/definitions/AttachmentUrl",
+            "description": "The URL of an image to display on the response card."
+          },
+          "Subtitle": {
+            "$ref": "#/definitions/AttachmentTitle",
+            "description": "The subtitle to display on the response card."
+          },
+          "Title": {
+            "$ref": "#/definitions/AttachmentTitle",
+            "description": "The title to display on the response card."
+          }
+        },
+        "required": [
+          "Title"
+        ],
+        "type": "object"
+      },
+      "InputContext": {
+        "additionalProperties": false,
+        "description": "InputContext specified for the intent.",
+        "properties": {
+          "Name": {
+            "$ref": "#/definitions/Name",
+            "description": "The name of the context."
+          }
+        },
+        "required": [
+          "Name"
+        ],
+        "type": "object"
+      },
+      "InputContextsList": {
+        "description": "The list of input contexts specified for the intent.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/InputContext"
+        },
+        "maxItems": 5,
+        "type": "array"
+      },
+      "Intent": {
+        "additionalProperties": false,
+        "description": "An intent represents an action that the user wants to perform. You create a bot to support one or more related intents.",
+        "properties": {
+          "Description": {
+            "$ref": "#/definitions/Description"
+          },
+          "DialogCodeHook": {
+            "$ref": "#/definitions/DialogCodeHookSetting"
+          },
+          "FulfillmentCodeHook": {
+            "$ref": "#/definitions/FulfillmentCodeHookSetting"
+          },
+          "InputContexts": {
+            "$ref": "#/definitions/InputContextsList"
+          },
+          "IntentClosingSetting": {
+            "$ref": "#/definitions/IntentClosingSetting"
+          },
+          "IntentConfirmationSetting": {
+            "$ref": "#/definitions/IntentConfirmationSetting"
+          },
+          "KendraConfiguration": {
+            "$ref": "#/definitions/KendraConfiguration"
+          },
+          "Name": {
+            "$ref": "#/definitions/Name"
+          },
+          "OutputContexts": {
+            "$ref": "#/definitions/OutputContextsList"
+          },
+          "ParentIntentSignature": {
+            "$ref": "#/definitions/ParentIntentSignature"
+          },
+          "SampleUtterances": {
+            "$ref": "#/definitions/SampleUtterancesList"
+          },
+          "SlotPriorities": {
+            "$ref": "#/definitions/SlotPrioritiesList"
+          },
+          "Slots": {
+            "description": "List of slots",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Slot"
+            },
+            "maxItems": 100,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "Name"
+        ],
+        "type": "object"
+      },
+      "IntentClosingSetting": {
+        "additionalProperties": false,
+        "description": "Response that Amazon Lex sends to the user when the intent is closed.",
+        "properties": {
+          "ClosingResponse": {
+            "$ref": "#/definitions/ResponseSpecification"
+          },
+          "IsActive": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ClosingResponse"
+        ],
+        "type": "object"
+      },
+      "IntentConfirmationSetting": {
+        "additionalProperties": false,
+        "description": "Prompts that Amazon Lex sends to the user to confirm the completion of an intent.",
+        "properties": {
+          "DeclinationResponse": {
+            "$ref": "#/definitions/ResponseSpecification"
+          },
+          "IsActive": {
+            "type": "boolean"
+          },
+          "PromptSpecification": {
+            "$ref": "#/definitions/PromptSpecification"
+          }
+        },
+        "required": [
+          "PromptSpecification",
+          "DeclinationResponse"
+        ],
+        "type": "object"
+      },
+      "KendraConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for searching a Amazon Kendra index specified for the intent.",
+        "properties": {
+          "KendraIndex": {
+            "$ref": "#/definitions/KendraIndexArn"
+          },
+          "QueryFilterString": {
+            "$ref": "#/definitions/QueryFilterString"
+          },
+          "QueryFilterStringEnabled": {
+            "description": "Determines whether the AMAZON.KendraSearchIntent intent uses a custom query string to query the Amazon Kendra index.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "KendraIndex"
+        ],
+        "type": "object"
+      },
+      "KendraIndexArn": {
+        "description": "The Amazon Resource Name (ARN) of the Amazon Kendra index that you want the AMAZON.KendraSearchIntent intent to search.",
+        "maxLength": 2048,
+        "minLength": 32,
+        "pattern": "^arn:aws[a-zA-Z-]*:kendra:[a-z]+-[a-z]+-[0-9]:[0-9]{12}:index/[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+        "type": "string"
+      },
+      "LambdaCodeHook": {
+        "additionalProperties": false,
+        "description": "Contains information about code hooks that Amazon Lex calls during a conversation.",
+        "properties": {
+          "CodeHookInterfaceVersion": {
+            "description": "The version of the request-response that you want Amazon Lex to use to invoke your Lambda function.",
+            "maxLength": 5,
+            "minLength": 1,
+            "type": "string"
+          },
+          "LambdaArn": {
+            "description": "The Amazon Resource Name (ARN) of the Lambda function.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "type": "string"
+          }
+        },
+        "required": [
+          "CodeHookInterfaceVersion",
+          "LambdaArn"
+        ],
+        "type": "object"
+      },
+      "LocaleId": {
+        "description": "The identifier of the language and locale that the bot will be used in.",
+        "type": "string"
+      },
+      "Message": {
+        "additionalProperties": false,
+        "description": "The primary message that Amazon Lex should send to the user.",
+        "properties": {
+          "CustomPayload": {
+            "$ref": "#/definitions/CustomPayload"
+          },
+          "ImageResponseCard": {
+            "$ref": "#/definitions/ImageResponseCard"
+          },
+          "PlainTextMessage": {
+            "$ref": "#/definitions/PlainTextMessage"
+          },
+          "SSMLMessage": {
+            "$ref": "#/definitions/SSMLMessage"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "MessageGroup": {
+        "additionalProperties": false,
+        "description": "One or more messages that Amazon Lex can send to the user.",
+        "properties": {
+          "Message": {
+            "$ref": "#/definitions/Message"
+          },
+          "Variations": {
+            "description": "Message variations to send to the user.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Message"
+            },
+            "maxItems": 2,
+            "type": "array"
+          }
+        },
+        "required": [
+          "Message"
+        ],
+        "type": "object"
+      },
+      "MessageGroupsList": {
+        "description": "One to 5 message groups that contain update messages. Amazon Lex chooses one of the messages to play to the user.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/MessageGroup"
+        },
+        "maxItems": 5,
+        "minItems": 1,
+        "type": "array"
+      },
+      "MessageSelectionStrategy": {
+        "description": "Indicates how a message is selected from a message group among retries.",
+        "enum": [
+          "Random",
+          "Ordered"
+        ],
+        "type": "string"
+      },
+      "MultipleValuesSetting": {
+        "additionalProperties": false,
+        "description": "Indicates whether a slot can return multiple values.",
+        "properties": {
+          "AllowMultipleValues": {
+            "type": "boolean"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "Name": {
+        "description": "Unique name for a resource.",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^([0-9a-zA-Z][_-]?)+$",
+        "type": "string"
+      },
+      "ObfuscationSetting": {
+        "additionalProperties": false,
+        "description": "Determines whether Amazon Lex obscures slot values in conversation logs.",
+        "properties": {
+          "ObfuscationSettingType": {
+            "description": "Value that determines whether Amazon Lex obscures slot values in conversation logs. The default is to obscure the values.",
+            "enum": [
+              "None",
+              "DefaultObfuscation"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "ObfuscationSettingType"
+        ],
+        "type": "object"
+      },
+      "OutputContext": {
+        "additionalProperties": false,
+        "description": "A session context that is activated when an intent is fulfilled.",
+        "properties": {
+          "Name": {
+            "$ref": "#/definitions/Name"
+          },
+          "TimeToLiveInSeconds": {
+            "$ref": "#/definitions/ContextTimeToLiveInSeconds"
+          },
+          "TurnsToLive": {
+            "$ref": "#/definitions/ContextTurnsToLive"
+          }
+        },
+        "required": [
+          "Name",
+          "TimeToLiveInSeconds",
+          "TurnsToLive"
+        ],
+        "type": "object"
+      },
+      "OutputContextsList": {
+        "description": "A list of contexts that the intent activates when it is fulfilled.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/OutputContext"
+        },
+        "maxItems": 10,
+        "type": "array"
+      },
+      "ParentIntentSignature": {
+        "description": "A unique identifier for the built-in intent to base this intent on.",
+        "type": "string"
+      },
+      "ParentSlotTypeSignature": {
+        "description": "The built-in slot type used as a parent of this slot type.",
+        "type": "string"
+      },
+      "PlainTextMessage": {
+        "additionalProperties": false,
+        "description": "A message in plain text format.",
+        "properties": {
+          "Value": {
+            "description": "The message to send to the user.",
+            "maxLength": 1000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value"
+        ],
+        "type": "object"
+      },
+      "PostFulfillmentStatusSpecification": {
+        "additionalProperties": false,
+        "description": "Provides information for updating the user on the progress of fulfilling an intent.",
+        "properties": {
+          "FailureResponse": {
+            "$ref": "#/definitions/ResponseSpecification"
+          },
+          "SuccessResponse": {
+            "$ref": "#/definitions/ResponseSpecification"
+          },
+          "TimeoutResponse": {
+            "$ref": "#/definitions/ResponseSpecification"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "PriorityValue": {
+        "description": "The priority that a slot should be elicited.",
+        "maximum": 100,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "PromptMaxRetries": {
+        "description": "The maximum number of times the bot tries to elicit a resonse from the user using this prompt.",
+        "maximum": 5,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "PromptSpecification": {
+        "additionalProperties": false,
+        "description": "Prompts the user to confirm the intent.",
+        "properties": {
+          "AllowInterrupt": {
+            "description": "Indicates whether the user can interrupt a speech prompt from the bot.",
+            "type": "boolean"
+          },
+          "MaxRetries": {
+            "$ref": "#/definitions/PromptMaxRetries"
+          },
+          "MessageGroupsList": {
+            "$ref": "#/definitions/MessageGroupsList"
+          },
+          "MessageSelectionStrategy": {
+            "$ref": "#/definitions/MessageSelectionStrategy"
+          }
+        },
+        "required": [
+          "MessageGroupsList",
+          "MaxRetries"
+        ],
+        "type": "object"
+      },
+      "QueryFilterString": {
+        "description": "A query filter that Amazon Lex sends to Amazon Kendra to filter the response from a query.",
+        "maxLength": 5000,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ResponseSpecification": {
+        "additionalProperties": false,
+        "description": "A list of message groups that Amazon Lex uses to respond the user input.",
+        "properties": {
+          "AllowInterrupt": {
+            "description": "Indicates whether the user can interrupt a speech prompt from the bot.",
+            "type": "boolean"
+          },
+          "MessageGroupsList": {
+            "$ref": "#/definitions/MessageGroupsList"
+          }
+        },
+        "required": [
+          "MessageGroupsList"
+        ],
+        "type": "object"
+      },
+      "RoleArn": {
+        "description": "The Amazon Resource Name (ARN) of an IAM role that has permission to access the bot.",
+        "maxLength": 2048,
+        "minLength": 32,
+        "pattern": "^arn:aws[a-zA-Z-]*:iam::[0-9]{12}:role/.*$",
+        "type": "string"
+      },
+      "S3BucketLogDestination": {
+        "additionalProperties": false,
+        "description": "Specifies an Amazon S3 bucket for logging audio conversations",
+        "properties": {
+          "KmsKeyArn": {
+            "description": "The Amazon Resource Name (ARN) of an AWS Key Management Service (KMS) key for encrypting audio log files stored in an S3 bucket.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^arn:[\\w\\-]+:kms:[\\w\\-]+:[\\d]{12}:(?:key\\/[\\w\\-]+|alias\\/[a-zA-Z0-9:\\/_\\-]{1,256})$",
+            "type": "string"
+          },
+          "LogPrefix": {
+            "description": "The Amazon S3 key of the deployment package.",
+            "maxLength": 1024,
+            "minLength": 0,
+            "type": "string"
+          },
+          "S3BucketArn": {
+            "description": "The Amazon Resource Name (ARN) of an Amazon S3 bucket where audio log files are stored.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^arn:[\\w\\-]+:s3:::[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "LogPrefix",
+          "S3BucketArn"
+        ],
+        "type": "object"
+      },
+      "S3BucketName": {
+        "maxLength": 63,
+        "minLength": 3,
+        "pattern": "^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$",
+        "type": "string"
+      },
+      "S3Location": {
+        "additionalProperties": false,
+        "description": "S3 location of bot definitions zip file, if it's not defined inline in CloudFormation.",
+        "properties": {
+          "S3Bucket": {
+            "$ref": "#/definitions/S3BucketName",
+            "description": "An Amazon S3 bucket in the same AWS Region as your function. The bucket can be in a different AWS account."
+          },
+          "S3ObjectKey": {
+            "$ref": "#/definitions/S3ObjectKey",
+            "description": "The Amazon S3 key of the deployment package."
+          },
+          "S3ObjectVersion": {
+            "description": "For versioned objects, the version of the deployment package object to use. If not specified, the current object version will be used.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Bucket",
+          "S3ObjectKey"
+        ],
+        "type": "object"
+      },
+      "S3ObjectKey": {
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "[\\.\\-\\!\\*\\_\\'\\(\\)a-zA-Z0-9][\\.\\-\\!\\*\\_\\'\\(\\)\\/a-zA-Z0-9]*$",
+        "type": "string"
+      },
+      "SSMLMessage": {
+        "additionalProperties": false,
+        "description": "A message in Speech Synthesis Markup Language (SSML).",
+        "properties": {
+          "Value": {
+            "description": "The SSML text that defines the prompt.",
+            "maxLength": 1000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value"
+        ],
+        "type": "object"
+      },
+      "SampleUtterance": {
+        "additionalProperties": false,
+        "description": "A sample utterance that invokes an intent or respond to a slot elicitation prompt.",
+        "properties": {
+          "Utterance": {
+            "$ref": "#/definitions/Utterance"
+          }
+        },
+        "required": [
+          "Utterance"
+        ],
+        "type": "object"
+      },
+      "SampleUtterancesList": {
+        "description": "An array of sample utterances",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/SampleUtterance"
+        },
+        "type": "array"
+      },
+      "SampleValue": {
+        "additionalProperties": false,
+        "description": "Defines one of the values for a slot type.",
+        "properties": {
+          "Value": {
+            "description": "The value that can be used for a slot type.",
+            "maxLength": 140,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value"
+        ],
+        "type": "object"
+      },
+      "Slot": {
+        "additionalProperties": false,
+        "description": "A slot is a variable needed to fulfill an intent, where an intent can require zero or more slots.",
+        "properties": {
+          "Description": {
+            "$ref": "#/definitions/Description"
+          },
+          "MultipleValuesSetting": {
+            "$ref": "#/definitions/MultipleValuesSetting"
+          },
+          "Name": {
+            "$ref": "#/definitions/Name"
+          },
+          "ObfuscationSetting": {
+            "$ref": "#/definitions/ObfuscationSetting"
+          },
+          "SlotTypeName": {
+            "$ref": "#/definitions/SlotTypeName"
+          },
+          "ValueElicitationSetting": {
+            "$ref": "#/definitions/SlotValueElicitationSetting"
+          }
+        },
+        "required": [
+          "Name",
+          "SlotTypeName",
+          "ValueElicitationSetting"
+        ],
+        "type": "object"
+      },
+      "SlotConstraint": {
+        "enum": [
+          "Required",
+          "Optional"
+        ],
+        "type": "string"
+      },
+      "SlotDefaultValue": {
+        "additionalProperties": false,
+        "description": "The default value to use when a user doesn't provide a value for a slot.",
+        "properties": {
+          "DefaultValue": {
+            "description": "The default value to use when a user doesn't provide a value for a slot.",
+            "maxLength": 202,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "DefaultValue"
+        ],
+        "type": "object"
+      },
+      "SlotDefaultValueSpecification": {
+        "additionalProperties": false,
+        "description": "A list of values that Amazon Lex should use as the default value for a slot.",
+        "properties": {
+          "DefaultValueList": {
+            "description": "A list of slot default values",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/SlotDefaultValue"
+            },
+            "maxItems": 10,
+            "type": "array"
+          }
+        },
+        "required": [
+          "DefaultValueList"
+        ],
+        "type": "object"
+      },
+      "SlotPrioritiesList": {
+        "description": "List for slot priorities",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/SlotPriority"
+        },
+        "type": "array"
+      },
+      "SlotPriority": {
+        "additionalProperties": false,
+        "description": "The priority that Amazon Lex should use when eliciting slot values from a user.",
+        "properties": {
+          "Priority": {
+            "$ref": "#/definitions/PriorityValue"
+          },
+          "SlotName": {
+            "$ref": "#/definitions/Name",
+            "description": "The name of the slot."
+          }
+        },
+        "required": [
+          "SlotName",
+          "Priority"
+        ],
+        "type": "object"
+      },
+      "SlotType": {
+        "additionalProperties": false,
+        "description": "A custom, extended built-in or a grammar slot type.",
+        "properties": {
+          "Description": {
+            "$ref": "#/definitions/Description"
+          },
+          "ExternalSourceSetting": {
+            "$ref": "#/definitions/ExternalSourceSetting"
+          },
+          "Name": {
+            "$ref": "#/definitions/Name"
+          },
+          "ParentSlotTypeSignature": {
+            "$ref": "#/definitions/ParentSlotTypeSignature"
+          },
+          "SlotTypeValues": {
+            "$ref": "#/definitions/SlotTypeValues"
+          },
+          "ValueSelectionSetting": {
+            "$ref": "#/definitions/SlotValueSelectionSetting"
+          }
+        },
+        "required": [
+          "Name"
+        ],
+        "type": "object"
+      },
+      "SlotTypeName": {
+        "description": "The slot type name that is used in the slot. Allows for custom and built-in slot type names",
+        "type": "string"
+      },
+      "SlotTypeValue": {
+        "additionalProperties": false,
+        "description": "Value that the slot type can take.",
+        "properties": {
+          "SampleValue": {
+            "$ref": "#/definitions/SampleValue"
+          },
+          "Synonyms": {
+            "$ref": "#/definitions/SynonymList"
+          }
+        },
+        "required": [
+          "SampleValue"
+        ],
+        "type": "object"
+      },
+      "SlotTypeValues": {
+        "description": "A List of slot type values",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/SlotTypeValue"
+        },
+        "maxItems": 10000,
+        "type": "array"
+      },
+      "SlotValueElicitationSetting": {
+        "additionalProperties": false,
+        "description": "Settings that you can use for eliciting a slot value.",
+        "properties": {
+          "DefaultValueSpecification": {
+            "$ref": "#/definitions/SlotDefaultValueSpecification",
+            "description": "A list of default values for a slot."
+          },
+          "PromptSpecification": {
+            "$ref": "#/definitions/PromptSpecification",
+            "description": "The prompt that Amazon Lex uses to elicit the slot value from the user."
+          },
+          "SampleUtterances": {
+            "$ref": "#/definitions/SampleUtterancesList",
+            "description": "If you know a specific pattern that users might respond to an Amazon Lex request for a slot value, you can provide those utterances to improve accuracy."
+          },
+          "SlotConstraint": {
+            "$ref": "#/definitions/SlotConstraint",
+            "description": "Specifies whether the slot is required or optional."
+          },
+          "WaitAndContinueSpecification": {
+            "$ref": "#/definitions/WaitAndContinueSpecification",
+            "description": "Specifies the prompts that Amazon Lex uses while a bot is waiting for customer input."
+          }
+        },
+        "required": [
+          "SlotConstraint"
+        ],
+        "type": "object"
+      },
+      "SlotValueRegexFilter": {
+        "additionalProperties": false,
+        "description": "A regular expression used to validate the value of a slot.",
+        "properties": {
+          "Pattern": {
+            "description": "Regex pattern",
+            "maxLength": 300,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Pattern"
+        ],
+        "type": "object"
+      },
+      "SlotValueResolutionStrategy": {
+        "enum": [
+          "ORIGINAL_VALUE",
+          "TOP_RESOLUTION"
+        ],
+        "type": "string"
+      },
+      "SlotValueSelectionSetting": {
+        "additionalProperties": false,
+        "description": "Contains settings used by Amazon Lex to select a slot value.",
+        "properties": {
+          "AdvancedRecognitionSetting": {
+            "$ref": "#/definitions/AdvancedRecognitionSetting"
+          },
+          "RegexFilter": {
+            "$ref": "#/definitions/SlotValueRegexFilter"
+          },
+          "ResolutionStrategy": {
+            "$ref": "#/definitions/SlotValueResolutionStrategy"
+          }
+        },
+        "required": [
+          "ResolutionStrategy"
+        ],
+        "type": "object"
+      },
+      "StillWaitingResponseFrequency": {
+        "description": "How often a message should be sent to the user in seconds.",
+        "maximum": 300,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "StillWaitingResponseSpecification": {
+        "additionalProperties": false,
+        "description": "StillWaitingResponseSpecification.",
+        "properties": {
+          "AllowInterrupt": {
+            "description": "Indicates whether the user can interrupt a speech prompt from the bot.",
+            "type": "boolean"
+          },
+          "FrequencyInSeconds": {
+            "$ref": "#/definitions/StillWaitingResponseFrequency"
+          },
+          "MessageGroupsList": {
+            "$ref": "#/definitions/MessageGroupsList"
+          },
+          "TimeoutInSeconds": {
+            "$ref": "#/definitions/StillWaitingResponseTimeout"
+          }
+        },
+        "required": [
+          "MessageGroupsList",
+          "FrequencyInSeconds",
+          "TimeoutInSeconds"
+        ],
+        "type": "object"
+      },
+      "StillWaitingResponseTimeout": {
+        "description": "If Amazon Lex waits longer than this length of time in seconds for a response, it will stop sending messages.",
+        "maximum": 900,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "SynonymList": {
+        "description": "Additional values related to the slot type entry.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/SampleValue"
+        },
+        "maxItems": 10000,
+        "type": "array"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair for tagging Lex resources",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "TestBotAliasSettings": {
+        "additionalProperties": false,
+        "description": "Configuring the test bot alias settings for a given bot",
+        "properties": {
+          "BotAliasLocaleSettings": {
+            "$ref": "#/definitions/BotAliasLocaleSettingsList"
+          },
+          "ConversationLogSettings": {
+            "$ref": "#/definitions/ConversationLogSettings"
+          },
+          "Description": {
+            "$ref": "#/definitions/Description"
+          },
+          "SentimentAnalysisSettings": {
+            "additionalProperties": false,
+            "description": "Determines whether Amazon Lex will use Amazon Comprehend to detect the sentiment of user utterances.",
+            "properties": {
+              "DetectSentiment": {
+                "description": "Enable to call Amazon Comprehend for Sentiment natively within Lex",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "DetectSentiment"
+            ],
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "TextLogDestination": {
+        "additionalProperties": false,
+        "description": "Defines the Amazon CloudWatch Logs destination log group for conversation text logs.",
+        "properties": {
+          "CloudWatch": {
+            "$ref": "#/definitions/CloudWatchLogGroupLogDestination"
+          }
+        },
+        "required": [
+          "CloudWatch"
+        ],
+        "type": "object"
+      },
+      "TextLogSetting": {
+        "additionalProperties": false,
+        "description": "Contains information about code hooks that Amazon Lex calls during a conversation.",
+        "properties": {
+          "Destination": {
+            "$ref": "#/definitions/TextLogDestination"
+          },
+          "Enabled": {
+            "description": "",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "Destination",
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "TextLogSettings": {
+        "description": "List of text log settings that pertain to the conversation log settings for the bot's TestBotAlias",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/TextLogSetting"
+        },
+        "maxItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Utterance": {
+        "description": "The sample utterance that Amazon Lex uses to build its machine-learning model to recognize intents/slots.",
+        "type": "string"
+      },
+      "VoiceSettings": {
+        "additionalProperties": false,
+        "description": "Settings for using an Amazon Polly voice to communicate with a user.",
+        "properties": {
+          "VoiceId": {
+            "description": "The Amazon Polly voice ID that Amazon Lex uses for voice interaction with the user.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "VoiceId"
+        ],
+        "type": "object"
+      },
+      "WaitAndContinueSpecification": {
+        "additionalProperties": false,
+        "description": "The prompts that Amazon Lex uses while a bot is waiting for customer input.",
+        "properties": {
+          "ContinueResponse": {
+            "$ref": "#/definitions/ResponseSpecification",
+            "description": "The response that Amazon Lex sends to indicate that the bot is ready to continue the conversation."
+          },
+          "IsActive": {
+            "description": "Specifies whether the bot will wait for a user to respond.",
+            "type": "boolean"
+          },
+          "StillWaitingResponse": {
+            "$ref": "#/definitions/StillWaitingResponseSpecification",
+            "description": "The response that Amazon Lex sends periodically to the user to indicate that the bot is still waiting for input from the user."
+          },
+          "WaitingResponse": {
+            "$ref": "#/definitions/ResponseSpecification",
+            "description": "The response that Amazon Lex sends to indicate that the bot is waiting for the conversation to continue."
+          }
+        },
+        "required": [
+          "WaitingResponse",
+          "ContinueResponse"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Amazon Lex conversational bot performing automated tasks such as ordering a pizza, booking a hotel, and so on.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "iam:PassRole",
+          "lex:DescribeBot",
+          "lex:CreateUploadUrl",
+          "lex:StartImport",
+          "lex:DescribeImport",
+          "lex:ListTagsForResource",
+          "lex:TagResource",
+          "lex:CreateBot",
+          "lex:CreateBotLocale",
+          "lex:CreateIntent",
+          "lex:CreateSlot",
+          "lex:CreateSlotType",
+          "lex:UpdateBot",
+          "lex:UpdateBotLocale",
+          "lex:UpdateIntent",
+          "lex:UpdateSlot",
+          "lex:UpdateSlotType",
+          "lex:DeleteBotLocale",
+          "lex:DeleteIntent",
+          "lex:DeleteSlot",
+          "lex:DeleteSlotType",
+          "lex:DescribeBotLocale",
+          "lex:BuildBotLocale",
+          "lex:ListBots",
+          "lex:ListBotLocales",
+          "lex:CreateCustomVocabulary",
+          "lex:UpdateCustomVocabulary",
+          "lex:DeleteCustomVocabulary",
+          "s3:GetObject",
+          "lex:UpdateBotAlias"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "lex:DeleteBot",
+          "lex:DescribeBot",
+          "lex:DeleteBotLocale",
+          "lex:DeleteIntent",
+          "lex:DeleteSlotType",
+          "lex:DeleteSlot",
+          "lex:DeleteBotVersion",
+          "lex:DeleteBotChannel",
+          "lex:DeleteBotAlias",
+          "lex:DeleteCustomVocabulary"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "lex:ListBots"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "lex:DescribeBot",
+          "lex:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "iam:PassRole",
+          "lex:DescribeBot",
+          "lex:CreateUploadUrl",
+          "lex:StartImport",
+          "lex:DescribeImport",
+          "lex:ListTagsForResource",
+          "lex:TagResource",
+          "lex:UntagResource",
+          "lex:CreateBot",
+          "lex:CreateBotLocale",
+          "lex:CreateIntent",
+          "lex:CreateSlot",
+          "lex:CreateSlotType",
+          "lex:UpdateBot",
+          "lex:UpdateBotLocale",
+          "lex:UpdateIntent",
+          "lex:UpdateSlot",
+          "lex:UpdateSlotType",
+          "lex:DeleteBotLocale",
+          "lex:DeleteIntent",
+          "lex:DeleteSlot",
+          "lex:DeleteSlotType",
+          "lex:DescribeBotLocale",
+          "lex:BuildBotLocale",
+          "lex:ListBots",
+          "lex:ListBotLocales",
+          "lex:CreateCustomVocabulary",
+          "lex:UpdateCustomVocabulary",
+          "lex:DeleteCustomVocabulary",
+          "s3:GetObject",
+          "lex:UpdateBotAlias"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Id"
+    ],
+    "properties": {
+      "Arn": {
+        "$ref": "#/definitions/BotArn"
+      },
+      "AutoBuildBotLocales": {
+        "description": "Specifies whether to build the bot locales after bot creation completes.",
+        "type": "boolean"
+      },
+      "BotFileS3Location": {
+        "$ref": "#/definitions/S3Location"
+      },
+      "BotLocales": {
+        "description": "List of bot locales",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/BotLocale"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "BotTags": {
+        "description": "A list of tags to add to the bot, which can only be added at bot creation.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "DataPrivacy": {
+        "additionalProperties": false,
+        "description": "Data privacy setting of the Bot.",
+        "properties": {
+          "ChildDirected": {
+            "description": "",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ChildDirected"
+        ],
+        "type": "object"
+      },
+      "Description": {
+        "$ref": "#/definitions/Description"
+      },
+      "Id": {
+        "$ref": "#/definitions/Id"
+      },
+      "IdleSessionTTLInSeconds": {
+        "description": "IdleSessionTTLInSeconds of the resource",
+        "maximum": 86400,
+        "minimum": 60,
+        "type": "integer"
+      },
+      "Name": {
+        "$ref": "#/definitions/Name"
+      },
+      "RoleArn": {
+        "$ref": "#/definitions/RoleArn"
+      },
+      "TestBotAliasSettings": {
+        "$ref": "#/definitions/TestBotAliasSettings"
+      },
+      "TestBotAliasTags": {
+        "description": "A list of tags to add to the test alias for a bot, , which can only be added at bot/bot alias creation.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Id",
+      "/properties/Arn"
+    ],
+    "required": [
+      "Name",
+      "RoleArn",
+      "DataPrivacy",
+      "IdleSessionTTLInSeconds"
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/lexv2/latest/dg/build-create.html",
+    "taggable": true,
+    "typeName": "AWS::Lex::Bot",
+    "writeOnlyProperties": [
+      "/properties/BotLocales",
+      "/properties/BotFileS3Location",
+      "/properties/AutoBuildBotLocales",
+      "/properties/BotTags",
+      "/properties/TestBotAliasTags"
+    ]
+  }
+}

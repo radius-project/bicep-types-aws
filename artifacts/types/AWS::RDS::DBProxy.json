@@ -1,0 +1,183 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBProxy",
+  "type": "AWS::RDS::DBProxy",
+  "time": "2021-12-14T03:25:10.349Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DBProxyName",
+      "/properties/EngineFamily",
+      "/properties/VpcSubnetIds"
+    ],
+    "definitions": {
+      "AuthFormat": {
+        "properties": {
+          "AuthScheme": {
+            "description": "The type of authentication that the proxy uses for connections from the proxy to the underlying database. ",
+            "enum": [
+              "SECRETS"
+            ],
+            "type": "string"
+          },
+          "Description": {
+            "description": "A user-specified description about the authentication used by a proxy to log in as a specific database user. ",
+            "type": "string"
+          },
+          "IAMAuth": {
+            "description": "Whether to require or disallow AWS Identity and Access Management (IAM) authentication for connections to the proxy. ",
+            "enum": [
+              "DISABLED",
+              "REQUIRED"
+            ],
+            "type": "string"
+          },
+          "SecretArn": {
+            "description": "The Amazon Resource Name (ARN) representing the secret that the proxy uses to authenticate to the RDS DB instance or Aurora DB cluster. These secrets are stored within Amazon Secrets Manager. ",
+            "type": "string"
+          },
+          "UserName": {
+            "description": "The name of the database user to which the proxy connects.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "TagFormat": {
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "pattern": "(\\w|\\d|\\s|\\\\|-|\\.:=+-)*",
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 128,
+            "pattern": "(\\w|\\d|\\s|\\\\|-|\\.:=+-)*",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS::RDS::DBProxy",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "rds:CreateDBProxy",
+          "rds:DescribeDBProxies",
+          "iam:PassRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "rds:DescribeDBProxies",
+          "rds:DeleteDBProxy"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "rds:DescribeDBProxies"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "rds:DescribeDBProxies"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "rds:ModifyDBProxy",
+          "rds:AddTagsToResource",
+          "rds:RemoveTagsFromResource",
+          "iam:PassRole"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DBProxyName"
+    ],
+    "properties": {
+      "Auth": {
+        "description": "The authorization mechanism that the proxy uses.",
+        "items": {
+          "$ref": "#/definitions/AuthFormat"
+        },
+        "minItems": 1,
+        "type": "array"
+      },
+      "DBProxyArn": {
+        "description": "The Amazon Resource Name (ARN) for the proxy.",
+        "type": "string"
+      },
+      "DBProxyName": {
+        "description": "The identifier for the proxy. This name must be unique for all proxies owned by your AWS account in the specified AWS Region.",
+        "maxLength": 64,
+        "pattern": "[0-z]*",
+        "type": "string"
+      },
+      "DebugLogging": {
+        "description": "Whether the proxy includes detailed information about SQL statements in its logs.",
+        "type": "boolean"
+      },
+      "Endpoint": {
+        "description": "The endpoint that you can use to connect to the proxy. You include the endpoint value in the connection string for a database client application.",
+        "type": "string"
+      },
+      "EngineFamily": {
+        "description": "The kinds of databases that the proxy can connect to.",
+        "enum": [
+          "MYSQL",
+          "POSTGRESQL"
+        ],
+        "type": "string"
+      },
+      "IdleClientTimeout": {
+        "description": "The number of seconds that a connection to the proxy can be inactive before the proxy disconnects it.",
+        "type": "integer"
+      },
+      "RequireTLS": {
+        "description": "A Boolean parameter that specifies whether Transport Layer Security (TLS) encryption is required for connections to the proxy.",
+        "type": "boolean"
+      },
+      "RoleArn": {
+        "description": "The Amazon Resource Name (ARN) of the IAM role that the proxy uses to access secrets in AWS Secrets Manager.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An optional set of key-value pairs to associate arbitrary data of your choosing with the proxy.",
+        "items": {
+          "$ref": "#/definitions/TagFormat"
+        },
+        "type": "array"
+      },
+      "VpcSecurityGroupIds": {
+        "description": "VPC security group IDs to associate with the new proxy.",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "type": "array"
+      },
+      "VpcSubnetIds": {
+        "description": "VPC subnet IDs to associate with the new proxy.",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 2,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DBProxyArn",
+      "/properties/Endpoint"
+    ],
+    "required": [
+      "Auth",
+      "DBProxyName",
+      "EngineFamily",
+      "RoleArn",
+      "VpcSubnetIds"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "typeName": "AWS::RDS::DBProxy"
+  }
+}
