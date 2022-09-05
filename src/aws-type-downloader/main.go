@@ -31,7 +31,7 @@ var Root = &cobra.Command{
 func init() {
 	Root.Flags().StringP("output", "o", "", "output directory")
 	Root.Flags().BoolP("clean", "c", false, "clean files for removed types")
-	Root.MarkFlagRequired("output")
+	_ = Root.MarkFlagRequired("output")
 }
 
 func run(cmd *cobra.Command, args []string) error {
