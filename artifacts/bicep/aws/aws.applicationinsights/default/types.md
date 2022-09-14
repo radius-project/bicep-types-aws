@@ -4,7 +4,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ApplicationInsights/ApplicationProperties](#awsapplicationinsightsapplicationproperties): properties of the resource
+* **properties**: [AWS.ApplicationInsights/ApplicationProperties](#awsapplicationinsightsapplicationproperties) (Required): properties of the resource
 
 ## AWS.ApplicationInsights/ApplicationProperties
 ### Properties
@@ -17,17 +17,17 @@
 * **LogPatternSets**: [LogPatternSet](#logpatternset)[]: The log pattern sets.
 * **OpsCenterEnabled**: bool: When set to true, creates opsItems for any problems detected on an application.
 * **OpsItemSNSTopicArn**: string: The SNS topic provided to Application Insights that is associated to the created opsItem.
-* **ResourceGroupName**: string: The name of the resource group.
+* **ResourceGroupName**: string (Required): The name of the resource group.
 * **Tags**: [Tag](#tag)[]: The tags of Application Insights application.
 
 ## ComponentMonitoringSetting
 ### Properties
 * **ComponentARN**: string: The ARN of the compnonent.
-* **ComponentConfigurationMode**: string: The component monitoring configuration mode.
+* **ComponentConfigurationMode**: string (Required): The component monitoring configuration mode.
 * **ComponentName**: string: The name of the component.
 * **CustomComponentConfiguration**: [ComponentConfiguration](#componentconfiguration): The monitoring configuration of the component.
 * **DefaultOverwriteComponentConfiguration**: [ComponentConfiguration](#componentconfiguration): The overwritten settings on default component monitoring configuration.
-* **Tier**: string: The tier of the application component.
+* **Tier**: string (Required): The tier of the application component.
 
 ## ComponentConfiguration
 ### Properties
@@ -46,11 +46,11 @@
 
 ## AlarmMetric
 ### Properties
-* **AlarmMetricName**: string: The name of the metric to be monitored for the component.
+* **AlarmMetricName**: string (Required): The name of the metric to be monitored for the component.
 
 ## Alarm
 ### Properties
-* **AlarmName**: string: The name of the CloudWatch alarm to be monitored for the component.
+* **AlarmName**: string (Required): The name of the CloudWatch alarm to be monitored for the component.
 * **Severity**: string: Indicates the degree of outage when the alarm goes off.
 
 ## HAClusterPrometheusExporter
@@ -59,13 +59,13 @@
 
 ## HANAPrometheusExporter
 ### Properties
-* **AgreeToInstallHANADBClient**: bool: A flag which indicates agreeing to install SAP HANA DB client.
-* **HANAPort**: string: The HANA DB port.
-* **HANASecretName**: string: The secret name which manages the HANA DB credentials e.g. {
+* **AgreeToInstallHANADBClient**: bool (Required): A flag which indicates agreeing to install SAP HANA DB client.
+* **HANAPort**: string (Required): The HANA DB port.
+* **HANASecretName**: string (Required): The secret name which manages the HANA DB credentials e.g. {
   "username": "<>",
   "password": "<>"
 }.
-* **HANASID**: string: HANA DB SID.
+* **HANASID**: string (Required): HANA DB SID.
 * **PrometheusPort**: string: Prometheus exporter port.
 
 ## JMXPrometheusExporter
@@ -79,14 +79,14 @@
 * **Encoding**: string: The type of encoding of the logs to be monitored.
 * **LogGroupName**: string: The CloudWatch log group name to be associated to the monitored log.
 * **LogPath**: string: The path of the logs to be monitored.
-* **LogType**: string: The log type decides the log patterns against which Application Insights analyzes the log.
+* **LogType**: string (Required): The log type decides the log patterns against which Application Insights analyzes the log.
 * **PatternSet**: string: The name of the log pattern set.
 
 ## WindowsEvent
 ### Properties
-* **EventLevels**: [EventLevel](#eventlevel)[]: The levels of event to log. 
-* **EventName**: string: The type of Windows Events to log.
-* **LogGroupName**: string: The CloudWatch log group name to be associated to the monitored log.
+* **EventLevels**: [EventLevel](#eventlevel)[] (Required): The levels of event to log. 
+* **EventName**: string (Required): The type of Windows Events to log.
+* **LogGroupName**: string (Required): The CloudWatch log group name to be associated to the monitored log.
 * **PatternSet**: string: The name of the log pattern set.
 
 ## EventLevel
@@ -94,8 +94,8 @@
 
 ## SubComponentTypeConfiguration
 ### Properties
-* **SubComponentConfigurationDetails**: [SubComponentConfigurationDetails](#subcomponentconfigurationdetails): The configuration settings of sub components.
-* **SubComponentType**: string: The sub component type.
+* **SubComponentConfigurationDetails**: [SubComponentConfigurationDetails](#subcomponentconfigurationdetails) (Required): The configuration settings of sub components.
+* **SubComponentType**: string (Required): The sub component type.
 
 ## SubComponentConfigurationDetails
 ### Properties
@@ -105,22 +105,22 @@
 
 ## CustomComponent
 ### Properties
-* **ComponentName**: string: The name of the component.
-* **ResourceList**: string[]: The list of resource ARNs that belong to the component.
+* **ComponentName**: string (Required): The name of the component.
+* **ResourceList**: string[] (Required): The list of resource ARNs that belong to the component.
 
 ## LogPatternSet
 ### Properties
-* **LogPatterns**: [LogPattern](#logpattern)[]: The log patterns of a set.
-* **PatternSetName**: string: The name of the log pattern set.
+* **LogPatterns**: [LogPattern](#logpattern)[] (Required): The log patterns of a set.
+* **PatternSetName**: string (Required): The name of the log pattern set.
 
 ## LogPattern
 ### Properties
-* **Pattern**: string: The log pattern.
-* **PatternName**: string: The name of the log pattern.
-* **Rank**: int: Rank of the log pattern.
+* **Pattern**: string (Required): The log pattern.
+* **PatternName**: string (Required): The name of the log pattern.
+* **Rank**: int (Required): Rank of the log pattern.
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string: The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 

@@ -10,13 +10,13 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ECR/RegistryPolicyProperties](#awsecrregistrypolicyproperties): properties of the resource
+* **properties**: [AWS.ECR/RegistryPolicyProperties](#awsecrregistrypolicyproperties) (Required): properties of the resource
 
 ## Resource AWS.ECR/ReplicationConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ECR/ReplicationConfigurationProperties](#awsecrreplicationconfigurationproperties): properties of the resource
+* **properties**: [AWS.ECR/ReplicationConfigurationProperties](#awsecrreplicationconfigurationproperties) (Required): properties of the resource
 
 ## Resource AWS.ECR/Repository@default
 * **Valid Scope(s)**: Unknown
@@ -31,7 +31,7 @@
 
 ## AWS.ECR/RegistryPolicyProperties
 ### Properties
-* **PolicyText**: [RegistryPolicy_PolicyText](#registrypolicypolicytext): The JSON policy text to apply to your registry. The policy text follows the same format as IAM policy text. For more information, see Registry permissions (https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html) in the Amazon Elastic Container Registry User Guide.
+* **PolicyText**: [RegistryPolicy_PolicyText](#registrypolicypolicytext) (Required): The JSON policy text to apply to your registry. The policy text follows the same format as IAM policy text. For more information, see Registry permissions (https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html) in the Amazon Elastic Container Registry User Guide.
 * **RegistryId**: [RegistryId](#registryid) (ReadOnly)
 
 ## RegistryPolicy_PolicyText
@@ -43,21 +43,21 @@
 ## AWS.ECR/ReplicationConfigurationProperties
 ### Properties
 * **RegistryId**: string (ReadOnly): The RegistryId associated with the aws account.
-* **ReplicationConfiguration**: [ReplicationConfiguration](#replicationconfiguration)
+* **ReplicationConfiguration**: [ReplicationConfiguration](#replicationconfiguration) (Required)
 
 ## ReplicationConfiguration
 ### Properties
-* **Rules**: [ReplicationRule](#replicationrule)[]: An array of objects representing the replication rules for a replication configuration. A replication configuration may contain a maximum of 10 rules.
+* **Rules**: [ReplicationRule](#replicationrule)[] (Required): An array of objects representing the replication rules for a replication configuration. A replication configuration may contain a maximum of 10 rules.
 
 ## ReplicationRule
 ### Properties
-* **Destinations**: [ReplicationDestination](#replicationdestination)[]: An array of objects representing the details of a replication destination.
+* **Destinations**: [ReplicationDestination](#replicationdestination)[] (Required): An array of objects representing the details of a replication destination.
 * **RepositoryFilters**: [RepositoryFilter](#repositoryfilter)[]: An array of objects representing the details of a repository filter.
 
 ## ReplicationDestination
 ### Properties
-* **Region**: [Region](#region)
-* **RegistryId**: [RegistryId](#registryid)
+* **Region**: [Region](#region) (Required)
+* **RegistryId**: [RegistryId](#registryid) (Required)
 
 ## Region
 ### Properties
@@ -67,8 +67,8 @@
 
 ## RepositoryFilter
 ### Properties
-* **Filter**: [Filter](#filter)
-* **FilterType**: [FilterType](#filtertype)
+* **Filter**: [Filter](#filter) (Required)
+* **FilterType**: [FilterType](#filtertype) (Required)
 
 ## Filter
 ### Properties
@@ -90,7 +90,7 @@
 
 ## EncryptionConfiguration
 ### Properties
-* **EncryptionType**: [EncryptionType](#encryptiontype)
+* **EncryptionType**: [EncryptionType](#encryptiontype) (Required)
 * **KmsKey**: [KmsKey](#kmskey)
 
 ## EncryptionType
@@ -119,6 +119,6 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string: The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 

@@ -120,8 +120,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The value of the tag.
-* **Value**: string: The key of the tag.
+* **Key**: string (Required): The value of the tag.
+* **Value**: string (Required): The key of the tag.
 
 ## VPCOptions
 ### Properties

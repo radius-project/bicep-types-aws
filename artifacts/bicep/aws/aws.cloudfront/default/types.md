@@ -4,107 +4,107 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.CloudFront/CachePolicyProperties](#awscloudfrontcachepolicyproperties): properties of the resource
+* **properties**: [AWS.CloudFront/CachePolicyProperties](#awscloudfrontcachepolicyproperties) (Required): properties of the resource
 
 ## Resource AWS.CloudFront/CloudFrontOriginAccessIdentity@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.CloudFront/CloudFrontOriginAccessIdentityProperties](#awscloudfrontcloudfrontoriginaccessidentityproperties): properties of the resource
+* **properties**: [AWS.CloudFront/CloudFrontOriginAccessIdentityProperties](#awscloudfrontcloudfrontoriginaccessidentityproperties) (Required): properties of the resource
 
 ## Resource AWS.CloudFront/Distribution@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.CloudFront/DistributionProperties](#awscloudfrontdistributionproperties): properties of the resource
+* **properties**: [AWS.CloudFront/DistributionProperties](#awscloudfrontdistributionproperties) (Required): properties of the resource
 
 ## Resource AWS.CloudFront/Function@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.CloudFront/FunctionProperties](#awscloudfrontfunctionproperties): properties of the resource
+* **properties**: [AWS.CloudFront/FunctionProperties](#awscloudfrontfunctionproperties) (Required): properties of the resource
 
 ## Resource AWS.CloudFront/KeyGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.CloudFront/KeyGroupProperties](#awscloudfrontkeygroupproperties): properties of the resource
+* **properties**: [AWS.CloudFront/KeyGroupProperties](#awscloudfrontkeygroupproperties) (Required): properties of the resource
 
 ## Resource AWS.CloudFront/OriginRequestPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.CloudFront/OriginRequestPolicyProperties](#awscloudfrontoriginrequestpolicyproperties): properties of the resource
+* **properties**: [AWS.CloudFront/OriginRequestPolicyProperties](#awscloudfrontoriginrequestpolicyproperties) (Required): properties of the resource
 
 ## Resource AWS.CloudFront/PublicKey@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.CloudFront/PublicKeyProperties](#awscloudfrontpublickeyproperties): properties of the resource
+* **properties**: [AWS.CloudFront/PublicKeyProperties](#awscloudfrontpublickeyproperties) (Required): properties of the resource
 
 ## Resource AWS.CloudFront/RealtimeLogConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.CloudFront/RealtimeLogConfigProperties](#awscloudfrontrealtimelogconfigproperties): properties of the resource
+* **properties**: [AWS.CloudFront/RealtimeLogConfigProperties](#awscloudfrontrealtimelogconfigproperties) (Required): properties of the resource
 
 ## Resource AWS.CloudFront/ResponseHeadersPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.CloudFront/ResponseHeadersPolicyProperties](#awscloudfrontresponseheaderspolicyproperties): properties of the resource
+* **properties**: [AWS.CloudFront/ResponseHeadersPolicyProperties](#awscloudfrontresponseheaderspolicyproperties) (Required): properties of the resource
 
 ## AWS.CloudFront/CachePolicyProperties
 ### Properties
-* **CachePolicyConfig**: [CachePolicyConfig](#cachepolicyconfig)
+* **CachePolicyConfig**: [CachePolicyConfig](#cachepolicyconfig) (Required)
 * **Id**: string (ReadOnly)
 * **LastModifiedTime**: string (ReadOnly)
 
 ## CachePolicyConfig
 ### Properties
 * **Comment**: string
-* **DefaultTTL**: int
-* **MaxTTL**: int
-* **MinTTL**: int
-* **Name**: string
-* **ParametersInCacheKeyAndForwardedToOrigin**: [ParametersInCacheKeyAndForwardedToOrigin](#parametersincachekeyandforwardedtoorigin)
+* **DefaultTTL**: int (Required)
+* **MaxTTL**: int (Required)
+* **MinTTL**: int (Required)
+* **Name**: string (Required)
+* **ParametersInCacheKeyAndForwardedToOrigin**: [ParametersInCacheKeyAndForwardedToOrigin](#parametersincachekeyandforwardedtoorigin) (Required)
 
 ## ParametersInCacheKeyAndForwardedToOrigin
 ### Properties
-* **CookiesConfig**: [CookiesConfig](#cookiesconfig)
+* **CookiesConfig**: [CookiesConfig](#cookiesconfig) (Required)
 * **EnableAcceptEncodingBrotli**: bool
-* **EnableAcceptEncodingGzip**: bool
-* **HeadersConfig**: [HeadersConfig](#headersconfig)
-* **QueryStringsConfig**: [QueryStringsConfig](#querystringsconfig)
+* **EnableAcceptEncodingGzip**: bool (Required)
+* **HeadersConfig**: [HeadersConfig](#headersconfig) (Required)
+* **QueryStringsConfig**: [QueryStringsConfig](#querystringsconfig) (Required)
 
 ## CookiesConfig
 ### Properties
-* **CookieBehavior**: string
+* **CookieBehavior**: string (Required)
 * **Cookies**: string[]
 
 ## HeadersConfig
 ### Properties
-* **HeaderBehavior**: string
+* **HeaderBehavior**: string (Required)
 * **Headers**: string[]
 
 ## QueryStringsConfig
 ### Properties
-* **QueryStringBehavior**: string
+* **QueryStringBehavior**: string (Required)
 * **QueryStrings**: string[]
 
 ## AWS.CloudFront/CloudFrontOriginAccessIdentityProperties
 ### Properties
-* **CloudFrontOriginAccessIdentityConfig**: [CloudFrontOriginAccessIdentityConfig](#cloudfrontoriginaccessidentityconfig)
+* **CloudFrontOriginAccessIdentityConfig**: [CloudFrontOriginAccessIdentityConfig](#cloudfrontoriginaccessidentityconfig) (Required)
 * **Id**: string (ReadOnly)
 * **S3CanonicalUserId**: string (ReadOnly)
 
 ## CloudFrontOriginAccessIdentityConfig
 ### Properties
-* **Comment**: string
+* **Comment**: string (Required)
 
 ## AWS.CloudFront/DistributionProperties
 ### Properties
-* **DistributionConfig**: [DistributionConfig](#distributionconfig)
+* **DistributionConfig**: [DistributionConfig](#distributionconfig) (Required)
 * **DomainName**: string (ReadOnly)
 * **Id**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]
@@ -117,9 +117,9 @@
 * **Comment**: string
 * **CustomErrorResponses**: [CustomErrorResponse](#customerrorresponse)[]
 * **CustomOrigin**: [LegacyCustomOrigin](#legacycustomorigin)
-* **DefaultCacheBehavior**: [DefaultCacheBehavior](#defaultcachebehavior)
+* **DefaultCacheBehavior**: [DefaultCacheBehavior](#defaultcachebehavior) (Required)
 * **DefaultRootObject**: string
-* **Enabled**: bool
+* **Enabled**: bool (Required)
 * **HttpVersion**: string
 * **IPV6Enabled**: bool
 * **Logging**: [Logging](#logging)
@@ -145,25 +145,25 @@
 * **MaxTTL**: int
 * **MinTTL**: int
 * **OriginRequestPolicyId**: string
-* **PathPattern**: string
+* **PathPattern**: string (Required)
 * **RealtimeLogConfigArn**: string
 * **ResponseHeadersPolicyId**: string
 * **SmoothStreaming**: bool
-* **TargetOriginId**: string
+* **TargetOriginId**: string (Required)
 * **TrustedKeyGroups**: string[]
 * **TrustedSigners**: string[]
-* **ViewerProtocolPolicy**: string
+* **ViewerProtocolPolicy**: string (Required)
 
 ## ForwardedValues
 ### Properties
 * **Cookies**: [Cookies](#cookies)
 * **Headers**: string[]
-* **QueryString**: bool
+* **QueryString**: bool (Required)
 * **QueryStringCacheKeys**: string[]
 
 ## Cookies
 ### Properties
-* **Forward**: string
+* **Forward**: string (Required)
 * **WhitelistedNames**: string[]
 
 ## FunctionAssociation
@@ -180,17 +180,17 @@
 ## CustomErrorResponse
 ### Properties
 * **ErrorCachingMinTTL**: int
-* **ErrorCode**: int
+* **ErrorCode**: int (Required)
 * **ResponseCode**: int
 * **ResponsePagePath**: string
 
 ## LegacyCustomOrigin
 ### Properties
-* **DNSName**: string
+* **DNSName**: string (Required)
 * **HTTPPort**: int
 * **HTTPSPort**: int
-* **OriginProtocolPolicy**: string
-* **OriginSSLProtocols**: string[]
+* **OriginProtocolPolicy**: string (Required)
+* **OriginSSLProtocols**: string[] (Required)
 
 ## DefaultCacheBehavior
 ### Properties
@@ -209,53 +209,53 @@
 * **RealtimeLogConfigArn**: string
 * **ResponseHeadersPolicyId**: string
 * **SmoothStreaming**: bool
-* **TargetOriginId**: string
+* **TargetOriginId**: string (Required)
 * **TrustedKeyGroups**: string[]
 * **TrustedSigners**: string[]
-* **ViewerProtocolPolicy**: string
+* **ViewerProtocolPolicy**: string (Required)
 
 ## Logging
 ### Properties
-* **Bucket**: string
+* **Bucket**: string (Required)
 * **IncludeCookies**: bool
 * **Prefix**: string
 
 ## OriginGroups
 ### Properties
 * **Items**: [OriginGroup](#origingroup)[]
-* **Quantity**: int
+* **Quantity**: int (Required)
 
 ## OriginGroup
 ### Properties
-* **FailoverCriteria**: [OriginGroupFailoverCriteria](#origingroupfailovercriteria)
-* **Id**: string
-* **Members**: [OriginGroupMembers](#origingroupmembers)
+* **FailoverCriteria**: [OriginGroupFailoverCriteria](#origingroupfailovercriteria) (Required)
+* **Id**: string (Required)
+* **Members**: [OriginGroupMembers](#origingroupmembers) (Required)
 
 ## OriginGroupFailoverCriteria
 ### Properties
-* **StatusCodes**: [StatusCodes](#statuscodes)
+* **StatusCodes**: [StatusCodes](#statuscodes) (Required)
 
 ## StatusCodes
 ### Properties
-* **Items**: int[]
-* **Quantity**: int
+* **Items**: int[] (Required)
+* **Quantity**: int (Required)
 
 ## OriginGroupMembers
 ### Properties
-* **Items**: [OriginGroupMember](#origingroupmember)[]
-* **Quantity**: int
+* **Items**: [OriginGroupMember](#origingroupmember)[] (Required)
+* **Quantity**: int (Required)
 
 ## OriginGroupMember
 ### Properties
-* **OriginId**: string
+* **OriginId**: string (Required)
 
 ## Origin
 ### Properties
 * **ConnectionAttempts**: int
 * **ConnectionTimeout**: int
 * **CustomOriginConfig**: [CustomOriginConfig](#customoriginconfig)
-* **DomainName**: string
-* **Id**: string
+* **DomainName**: string (Required)
+* **Id**: string (Required)
 * **OriginAccessControlId**: string
 * **OriginCustomHeaders**: [OriginCustomHeader](#origincustomheader)[]
 * **OriginPath**: string
@@ -267,14 +267,14 @@
 * **HTTPPort**: int
 * **HTTPSPort**: int
 * **OriginKeepaliveTimeout**: int
-* **OriginProtocolPolicy**: string
+* **OriginProtocolPolicy**: string (Required)
 * **OriginReadTimeout**: int
 * **OriginSSLProtocols**: string[]
 
 ## OriginCustomHeader
 ### Properties
-* **HeaderName**: string
-* **HeaderValue**: string
+* **HeaderName**: string (Required)
+* **HeaderValue**: string (Required)
 
 ## OriginShield
 ### Properties
@@ -287,16 +287,16 @@
 
 ## Restrictions
 ### Properties
-* **GeoRestriction**: [GeoRestriction](#georestriction)
+* **GeoRestriction**: [GeoRestriction](#georestriction) (Required)
 
 ## GeoRestriction
 ### Properties
 * **Locations**: string[]
-* **RestrictionType**: string
+* **RestrictionType**: string (Required)
 
 ## LegacyS3Origin
 ### Properties
-* **DNSName**: string
+* **DNSName**: string (Required)
 * **OriginAccessIdentity**: string
 
 ## ViewerCertificate
@@ -309,8 +309,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.CloudFront/FunctionProperties
 ### Properties
@@ -319,13 +319,13 @@
 * **FunctionCode**: string (WriteOnly)
 * **FunctionConfig**: [FunctionConfig](#functionconfig)
 * **FunctionMetadata**: [FunctionMetadata](#functionmetadata)
-* **Name**: string
+* **Name**: string (Required)
 * **Stage**: string (ReadOnly)
 
 ## FunctionConfig
 ### Properties
-* **Comment**: string
-* **Runtime**: string
+* **Comment**: string (Required)
+* **Runtime**: string (Required)
 
 ## FunctionMetadata
 ### Properties
@@ -334,125 +334,125 @@
 ## AWS.CloudFront/KeyGroupProperties
 ### Properties
 * **Id**: string (ReadOnly)
-* **KeyGroupConfig**: [KeyGroupConfig](#keygroupconfig)
+* **KeyGroupConfig**: [KeyGroupConfig](#keygroupconfig) (Required)
 * **LastModifiedTime**: string (ReadOnly)
 
 ## KeyGroupConfig
 ### Properties
 * **Comment**: string
-* **Items**: string[]
-* **Name**: string
+* **Items**: string[] (Required)
+* **Name**: string (Required)
 
 ## AWS.CloudFront/OriginRequestPolicyProperties
 ### Properties
 * **Id**: string (ReadOnly)
 * **LastModifiedTime**: string (ReadOnly)
-* **OriginRequestPolicyConfig**: [OriginRequestPolicyConfig](#originrequestpolicyconfig)
+* **OriginRequestPolicyConfig**: [OriginRequestPolicyConfig](#originrequestpolicyconfig) (Required)
 
 ## OriginRequestPolicyConfig
 ### Properties
 * **Comment**: string
-* **CookiesConfig**: [CookiesConfig](#cookiesconfig)
-* **HeadersConfig**: [HeadersConfig](#headersconfig)
-* **Name**: string
-* **QueryStringsConfig**: [QueryStringsConfig](#querystringsconfig)
+* **CookiesConfig**: [CookiesConfig](#cookiesconfig) (Required)
+* **HeadersConfig**: [HeadersConfig](#headersconfig) (Required)
+* **Name**: string (Required)
+* **QueryStringsConfig**: [QueryStringsConfig](#querystringsconfig) (Required)
 
 ## CookiesConfig
 ### Properties
-* **CookieBehavior**: string
+* **CookieBehavior**: string (Required)
 * **Cookies**: string[]
 
 ## HeadersConfig
 ### Properties
-* **HeaderBehavior**: string
+* **HeaderBehavior**: string (Required)
 * **Headers**: string[]
 
 ## QueryStringsConfig
 ### Properties
-* **QueryStringBehavior**: string
+* **QueryStringBehavior**: string (Required)
 * **QueryStrings**: string[]
 
 ## AWS.CloudFront/PublicKeyProperties
 ### Properties
 * **CreatedTime**: string (ReadOnly)
 * **Id**: string (ReadOnly)
-* **PublicKeyConfig**: [PublicKeyConfig](#publickeyconfig)
+* **PublicKeyConfig**: [PublicKeyConfig](#publickeyconfig) (Required)
 
 ## PublicKeyConfig
 ### Properties
-* **CallerReference**: string
+* **CallerReference**: string (Required)
 * **Comment**: string
-* **EncodedKey**: string
-* **Name**: string
+* **EncodedKey**: string (Required)
+* **Name**: string (Required)
 
 ## AWS.CloudFront/RealtimeLogConfigProperties
 ### Properties
 * **Arn**: string (ReadOnly)
-* **EndPoints**: [EndPoint](#endpoint)[]
-* **Fields**: string[]
-* **Name**: string
-* **SamplingRate**: int
+* **EndPoints**: [EndPoint](#endpoint)[] (Required)
+* **Fields**: string[] (Required)
+* **Name**: string (Required)
+* **SamplingRate**: int (Required)
 
 ## EndPoint
 ### Properties
-* **KinesisStreamConfig**: [KinesisStreamConfig](#kinesisstreamconfig)
-* **StreamType**: string
+* **KinesisStreamConfig**: [KinesisStreamConfig](#kinesisstreamconfig) (Required)
+* **StreamType**: string (Required)
 
 ## KinesisStreamConfig
 ### Properties
-* **RoleArn**: string
-* **StreamArn**: string
+* **RoleArn**: string (Required)
+* **StreamArn**: string (Required)
 
 ## AWS.CloudFront/ResponseHeadersPolicyProperties
 ### Properties
 * **Id**: string (ReadOnly)
 * **LastModifiedTime**: string (ReadOnly)
-* **ResponseHeadersPolicyConfig**: [ResponseHeadersPolicyConfig](#responseheaderspolicyconfig)
+* **ResponseHeadersPolicyConfig**: [ResponseHeadersPolicyConfig](#responseheaderspolicyconfig) (Required)
 
 ## ResponseHeadersPolicyConfig
 ### Properties
 * **Comment**: string
 * **CorsConfig**: [CorsConfig](#corsconfig)
 * **CustomHeadersConfig**: [CustomHeadersConfig](#customheadersconfig)
-* **Name**: string
+* **Name**: string (Required)
 * **SecurityHeadersConfig**: [SecurityHeadersConfig](#securityheadersconfig)
 * **ServerTimingHeadersConfig**: [ServerTimingHeadersConfig](#servertimingheadersconfig)
 
 ## CorsConfig
 ### Properties
-* **AccessControlAllowCredentials**: bool
-* **AccessControlAllowHeaders**: [AccessControlAllowHeaders](#accesscontrolallowheaders)
-* **AccessControlAllowMethods**: [AccessControlAllowMethods](#accesscontrolallowmethods)
-* **AccessControlAllowOrigins**: [AccessControlAllowOrigins](#accesscontrolalloworigins)
+* **AccessControlAllowCredentials**: bool (Required)
+* **AccessControlAllowHeaders**: [AccessControlAllowHeaders](#accesscontrolallowheaders) (Required)
+* **AccessControlAllowMethods**: [AccessControlAllowMethods](#accesscontrolallowmethods) (Required)
+* **AccessControlAllowOrigins**: [AccessControlAllowOrigins](#accesscontrolalloworigins) (Required)
 * **AccessControlExposeHeaders**: [AccessControlExposeHeaders](#accesscontrolexposeheaders)
 * **AccessControlMaxAgeSec**: int
-* **OriginOverride**: bool
+* **OriginOverride**: bool (Required)
 
 ## AccessControlAllowHeaders
 ### Properties
-* **Items**: string[]
+* **Items**: string[] (Required)
 
 ## AccessControlAllowMethods
 ### Properties
-* **Items**: string[]
+* **Items**: string[] (Required)
 
 ## AccessControlAllowOrigins
 ### Properties
-* **Items**: string[]
+* **Items**: string[] (Required)
 
 ## AccessControlExposeHeaders
 ### Properties
-* **Items**: string[]
+* **Items**: string[] (Required)
 
 ## CustomHeadersConfig
 ### Properties
-* **Items**: [CustomHeader](#customheader)[]
+* **Items**: [CustomHeader](#customheader)[] (Required)
 
 ## CustomHeader
 ### Properties
-* **Header**: string
-* **Override**: bool
-* **Value**: string
+* **Header**: string (Required)
+* **Override**: bool (Required)
+* **Value**: string (Required)
 
 ## SecurityHeadersConfig
 ### Properties
@@ -465,39 +465,39 @@
 
 ## ContentSecurityPolicy
 ### Properties
-* **ContentSecurityPolicy**: string
-* **Override**: bool
+* **ContentSecurityPolicy**: string (Required)
+* **Override**: bool (Required)
 
 ## ContentTypeOptions
 ### Properties
-* **Override**: bool
+* **Override**: bool (Required)
 
 ## FrameOptions
 ### Properties
-* **FrameOption**: string
-* **Override**: bool
+* **FrameOption**: string (Required)
+* **Override**: bool (Required)
 
 ## ReferrerPolicy
 ### Properties
-* **Override**: bool
-* **ReferrerPolicy**: string
+* **Override**: bool (Required)
+* **ReferrerPolicy**: string (Required)
 
 ## StrictTransportSecurity
 ### Properties
-* **AccessControlMaxAgeSec**: int
+* **AccessControlMaxAgeSec**: int (Required)
 * **IncludeSubdomains**: bool
-* **Override**: bool
+* **Override**: bool (Required)
 * **Preload**: bool
 
 ## XSSProtection
 ### Properties
 * **ModeBlock**: bool
-* **Override**: bool
-* **Protection**: bool
+* **Override**: bool (Required)
+* **Protection**: bool (Required)
 * **ReportUri**: string
 
 ## ServerTimingHeadersConfig
 ### Properties
-* **Enabled**: bool
+* **Enabled**: bool (Required)
 * **SamplingRate**: int
 

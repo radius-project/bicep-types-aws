@@ -4,19 +4,19 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Kendra/DataSourceProperties](#awskendradatasourceproperties): properties of the resource
+* **properties**: [AWS.Kendra/DataSourceProperties](#awskendradatasourceproperties) (Required): properties of the resource
 
 ## Resource AWS.Kendra/Faq@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Kendra/FaqProperties](#awskendrafaqproperties): properties of the resource
+* **properties**: [AWS.Kendra/FaqProperties](#awskendrafaqproperties) (Required): properties of the resource
 
 ## Resource AWS.Kendra/Index@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Kendra/IndexProperties](#awskendraindexproperties): properties of the resource
+* **properties**: [AWS.Kendra/IndexProperties](#awskendraindexproperties) (Required): properties of the resource
 
 ## AWS.Kendra/DataSourceProperties
 ### Properties
@@ -25,12 +25,12 @@
 * **DataSourceConfiguration**: [DataSourceConfiguration](#datasourceconfiguration)
 * **Description**: [Description](#description)
 * **Id**: [Id](#id) (ReadOnly)
-* **IndexId**: [IndexId](#indexid)
-* **Name**: [Name](#name)
+* **IndexId**: [IndexId](#indexid) (Required)
+* **Name**: [Name](#name) (Required)
 * **RoleArn**: [RoleArn](#rolearn)
 * **Schedule**: [Schedule](#schedule)
 * **Tags**: [TagList](#taglist): Tags for labeling the data source
-* **Type**: [Type](#type)
+* **Type**: [Type](#type) (Required)
 
 ## Arn
 ### Properties
@@ -48,14 +48,14 @@
 ## HookConfiguration
 ### Properties
 * **InvocationCondition**: [DocumentAttributeCondition](#documentattributecondition)
-* **LambdaArn**: [LambdaArn](#lambdaarn)
-* **S3Bucket**: [S3BucketName](#s3bucketname)
+* **LambdaArn**: [LambdaArn](#lambdaarn) (Required)
+* **S3Bucket**: [S3BucketName](#s3bucketname) (Required)
 
 ## DocumentAttributeCondition
 ### Properties
-* **ConditionDocumentAttributeKey**: [DocumentAttributeKey](#documentattributekey)
+* **ConditionDocumentAttributeKey**: [DocumentAttributeKey](#documentattributekey) (Required)
 * **ConditionOnValue**: [DocumentAttributeValue](#documentattributevalue)
-* **Operator**: [ConditionOperator](#conditionoperator)
+* **Operator**: [ConditionOperator](#conditionoperator) (Required)
 
 ## DocumentAttributeKey
 ### Properties
@@ -105,10 +105,10 @@
 * **ExclusionPatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
 * **InclusionPatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
 * **PageConfiguration**: [ConfluencePageConfiguration](#confluencepageconfiguration)
-* **SecretArn**: [SecretArn](#secretarn)
-* **ServerUrl**: [Url](#url)
+* **SecretArn**: [SecretArn](#secretarn) (Required)
+* **ServerUrl**: [Url](#url) (Required)
 * **SpaceConfiguration**: [ConfluenceSpaceConfiguration](#confluencespaceconfiguration)
-* **Version**: [ConfluenceVersion](#confluenceversion)
+* **Version**: [ConfluenceVersion](#confluenceversion) (Required)
 * **VpcConfiguration**: [DataSourceVpcConfiguration](#datasourcevpcconfiguration)
 
 ## ConfluenceAttachmentConfiguration
@@ -161,30 +161,30 @@
 
 ## DataSourceVpcConfiguration
 ### Properties
-* **SecurityGroupIds**: string[]
-* **SubnetIds**: string[]
+* **SecurityGroupIds**: string[] (Required)
+* **SubnetIds**: string[] (Required)
 
 ## DatabaseConfiguration
 ### Properties
 * **AclConfiguration**: [AclConfiguration](#aclconfiguration)
-* **ColumnConfiguration**: [ColumnConfiguration](#columnconfiguration)
-* **ConnectionConfiguration**: [ConnectionConfiguration](#connectionconfiguration)
-* **DatabaseEngineType**: [DatabaseEngineType](#databaseenginetype)
+* **ColumnConfiguration**: [ColumnConfiguration](#columnconfiguration) (Required)
+* **ConnectionConfiguration**: [ConnectionConfiguration](#connectionconfiguration) (Required)
+* **DatabaseEngineType**: [DatabaseEngineType](#databaseenginetype) (Required)
 * **SqlConfiguration**: [SqlConfiguration](#sqlconfiguration)
 * **VpcConfiguration**: [DataSourceVpcConfiguration](#datasourcevpcconfiguration)
 
 ## AclConfiguration
 ### Properties
-* **AllowedGroupsColumnName**: [ColumnName](#columnname)
+* **AllowedGroupsColumnName**: [ColumnName](#columnname) (Required)
 
 ## ColumnName
 ### Properties
 
 ## ColumnConfiguration
 ### Properties
-* **ChangeDetectingColumns**: [ChangeDetectingColumns](#changedetectingcolumns)
-* **DocumentDataColumnName**: [ColumnName](#columnname)
-* **DocumentIdColumnName**: [ColumnName](#columnname)
+* **ChangeDetectingColumns**: [ChangeDetectingColumns](#changedetectingcolumns) (Required)
+* **DocumentDataColumnName**: [ColumnName](#columnname) (Required)
+* **DocumentIdColumnName**: [ColumnName](#columnname) (Required)
 * **DocumentTitleColumnName**: [ColumnName](#columnname)
 * **FieldMappings**: [DataSourceToIndexFieldMappingList](#datasourcetoindexfieldmappinglist)
 
@@ -196,11 +196,11 @@
 
 ## ConnectionConfiguration
 ### Properties
-* **DatabaseHost**: [DatabaseHost](#databasehost)
-* **DatabaseName**: [DatabaseName](#databasename)
-* **DatabasePort**: [DatabasePort](#databaseport)
-* **SecretArn**: [SecretArn](#secretarn)
-* **TableName**: [TableName](#tablename)
+* **DatabaseHost**: [DatabaseHost](#databasehost) (Required)
+* **DatabaseName**: [DatabaseName](#databasename) (Required)
+* **DatabasePort**: [DatabasePort](#databaseport) (Required)
+* **SecretArn**: [SecretArn](#secretarn) (Required)
+* **TableName**: [TableName](#tablename) (Required)
 
 ## DatabaseHost
 ### Properties
@@ -232,7 +232,7 @@
 * **ExclusionPatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
 * **FieldMappings**: [DataSourceToIndexFieldMappingList](#datasourcetoindexfieldmappinglist)
 * **InclusionPatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
-* **SecretArn**: [SecretArn](#secretarn)
+* **SecretArn**: [SecretArn](#secretarn) (Required)
 
 ## ExcludeMimeTypesList
 ### Properties
@@ -249,9 +249,9 @@
 * **ExclusionPatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
 * **FieldMappings**: [DataSourceToIndexFieldMappingList](#datasourcetoindexfieldmappinglist)
 * **InclusionPatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
-* **OneDriveUsers**: [OneDriveUsers](#onedriveusers)
-* **SecretArn**: [SecretArn](#secretarn)
-* **TenantDomain**: [TenantDomain](#tenantdomain)
+* **OneDriveUsers**: [OneDriveUsers](#onedriveusers) (Required)
+* **SecretArn**: [SecretArn](#secretarn) (Required)
+* **TenantDomain**: [TenantDomain](#tenantdomain) (Required)
 
 ## DisableLocalGroups
 ### Properties
@@ -266,8 +266,8 @@
 
 ## S3Path
 ### Properties
-* **Bucket**: [S3BucketName](#s3bucketname)
-* **Key**: [S3ObjectKey](#s3objectkey)
+* **Bucket**: [S3BucketName](#s3bucketname) (Required)
+* **Key**: [S3ObjectKey](#s3objectkey) (Required)
 
 ## S3ObjectKey
 ### Properties
@@ -278,7 +278,7 @@
 ## S3DataSourceConfiguration
 ### Properties
 * **AccessControlListConfiguration**: [AccessControlListConfiguration](#accesscontrollistconfiguration)
-* **BucketName**: [S3BucketName](#s3bucketname)
+* **BucketName**: [S3BucketName](#s3bucketname) (Required)
 * **DocumentsMetadataConfiguration**: [DocumentsMetadataConfiguration](#documentsmetadataconfiguration)
 * **ExclusionPatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
 * **InclusionPatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
@@ -299,14 +299,14 @@
 * **ExcludeAttachmentFilePatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
 * **IncludeAttachmentFilePatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
 * **KnowledgeArticleConfiguration**: [SalesforceKnowledgeArticleConfiguration](#salesforceknowledgearticleconfiguration)
-* **SecretArn**: [SecretArn](#secretarn)
-* **ServerUrl**: [Url](#url)
+* **SecretArn**: [SecretArn](#secretarn) (Required)
+* **ServerUrl**: [Url](#url) (Required)
 * **StandardObjectAttachmentConfiguration**: [SalesforceStandardObjectAttachmentConfiguration](#salesforcestandardobjectattachmentconfiguration)
 * **StandardObjectConfigurations**: [SalesforceStandardObjectConfigurationList](#salesforcestandardobjectconfigurationlist)
 
 ## SalesforceChatterFeedConfiguration
 ### Properties
-* **DocumentDataFieldName**: [DataSourceFieldName](#datasourcefieldname)
+* **DocumentDataFieldName**: [DataSourceFieldName](#datasourcefieldname) (Required)
 * **DocumentTitleFieldName**: [DataSourceFieldName](#datasourcefieldname)
 * **FieldMappings**: [DataSourceToIndexFieldMappingList](#datasourcetoindexfieldmappinglist)
 * **IncludeFilterTypes**: [SalesforceChatterFeedIncludeFilterTypes](#salesforcechatterfeedincludefiltertypes)
@@ -320,7 +320,7 @@
 ## SalesforceKnowledgeArticleConfiguration
 ### Properties
 * **CustomKnowledgeArticleTypeConfigurations**: [SalesforceCustomKnowledgeArticleTypeConfigurationList](#salesforcecustomknowledgearticletypeconfigurationlist)
-* **IncludedStates**: [SalesforceKnowledgeArticleStateList](#salesforceknowledgearticlestatelist)
+* **IncludedStates**: [SalesforceKnowledgeArticleStateList](#salesforceknowledgearticlestatelist) (Required)
 * **StandardKnowledgeArticleTypeConfiguration**: [SalesforceStandardKnowledgeArticleTypeConfiguration](#salesforcestandardknowledgearticletypeconfiguration)
 
 ## SalesforceCustomKnowledgeArticleTypeConfigurationList
@@ -331,7 +331,7 @@
 
 ## SalesforceStandardKnowledgeArticleTypeConfiguration
 ### Properties
-* **DocumentDataFieldName**: [DataSourceFieldName](#datasourcefieldname)
+* **DocumentDataFieldName**: [DataSourceFieldName](#datasourcefieldname) (Required)
 * **DocumentTitleFieldName**: [DataSourceFieldName](#datasourcefieldname)
 * **FieldMappings**: [DataSourceToIndexFieldMappingList](#datasourcetoindexfieldmappinglist)
 
@@ -346,11 +346,11 @@
 ## ServiceNowConfiguration
 ### Properties
 * **AuthenticationType**: [ServiceNowAuthenticationType](#servicenowauthenticationtype)
-* **HostUrl**: [ServiceNowHostUrl](#servicenowhosturl)
+* **HostUrl**: [ServiceNowHostUrl](#servicenowhosturl) (Required)
 * **KnowledgeArticleConfiguration**: [ServiceNowKnowledgeArticleConfiguration](#servicenowknowledgearticleconfiguration)
-* **SecretArn**: [SecretArn](#secretarn)
+* **SecretArn**: [SecretArn](#secretarn) (Required)
 * **ServiceCatalogConfiguration**: [ServiceNowServiceCatalogConfiguration](#servicenowservicecatalogconfiguration)
-* **ServiceNowBuildVersion**: [ServiceNowBuildVersionType](#servicenowbuildversiontype)
+* **ServiceNowBuildVersion**: [ServiceNowBuildVersionType](#servicenowbuildversiontype) (Required)
 
 ## ServiceNowAuthenticationType
 ### Properties
@@ -361,7 +361,7 @@
 ## ServiceNowKnowledgeArticleConfiguration
 ### Properties
 * **CrawlAttachments**: bool
-* **DocumentDataFieldName**: [DataSourceFieldName](#datasourcefieldname)
+* **DocumentDataFieldName**: [DataSourceFieldName](#datasourcefieldname) (Required)
 * **DocumentTitleFieldName**: [DataSourceFieldName](#datasourcefieldname)
 * **ExcludeAttachmentFilePatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
 * **FieldMappings**: [DataSourceToIndexFieldMappingList](#datasourcetoindexfieldmappinglist)
@@ -374,7 +374,7 @@
 ## ServiceNowServiceCatalogConfiguration
 ### Properties
 * **CrawlAttachments**: bool
-* **DocumentDataFieldName**: [DataSourceFieldName](#datasourcefieldname)
+* **DocumentDataFieldName**: [DataSourceFieldName](#datasourcefieldname) (Required)
 * **DocumentTitleFieldName**: [DataSourceFieldName](#datasourcefieldname)
 * **ExcludeAttachmentFilePatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
 * **FieldMappings**: [DataSourceToIndexFieldMappingList](#datasourcetoindexfieldmappinglist)
@@ -391,10 +391,10 @@
 * **ExclusionPatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
 * **FieldMappings**: [DataSourceToIndexFieldMappingList](#datasourcetoindexfieldmappinglist)
 * **InclusionPatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
-* **SecretArn**: [SecretArn](#secretarn)
-* **SharePointVersion**: string
+* **SecretArn**: [SecretArn](#secretarn) (Required)
+* **SharePointVersion**: string (Required)
 * **SslCertificateS3Path**: [S3Path](#s3path)
-* **Urls**: [Url](#url)[]
+* **Urls**: [Url](#url)[] (Required)
 * **UseChangeLog**: bool
 * **VpcConfiguration**: [DataSourceVpcConfiguration](#datasourcevpcconfiguration)
 
@@ -408,7 +408,7 @@
 * **ProxyConfiguration**: [ProxyConfiguration](#proxyconfiguration)
 * **UrlExclusionPatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
 * **UrlInclusionPatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
-* **Urls**: [WebCrawlerUrls](#webcrawlerurls)
+* **Urls**: [WebCrawlerUrls](#webcrawlerurls) (Required)
 
 ## WebCrawlerAuthenticationConfiguration
 ### Properties
@@ -420,8 +420,8 @@
 ## ProxyConfiguration
 ### Properties
 * **Credentials**: [SecretArn](#secretarn)
-* **Host**: string
-* **Port**: int
+* **Host**: string (Required)
+* **Port**: int (Required)
 
 ## WebCrawlerUrls
 ### Properties
@@ -430,7 +430,7 @@
 
 ## WebCrawlerSeedUrlConfiguration
 ### Properties
-* **SeedUrls**: [WebCrawlerSeedUrlList](#webcrawlerseedurllist)
+* **SeedUrls**: [WebCrawlerSeedUrlList](#webcrawlerseedurllist) (Required)
 * **WebCrawlerMode**: string
 
 ## WebCrawlerSeedUrlList
@@ -438,7 +438,7 @@
 
 ## WebCrawlerSiteMapsConfiguration
 ### Properties
-* **SiteMaps**: [WebCrawlerSiteMaps](#webcrawlersitemaps)
+* **SiteMaps**: [WebCrawlerSiteMaps](#webcrawlersitemaps) (Required)
 
 ## WebCrawlerSiteMaps
 ### Properties
@@ -449,7 +449,7 @@
 * **ExclusionPatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
 * **FieldMappings**: [DataSourceToIndexFieldMappingList](#datasourcetoindexfieldmappinglist)
 * **InclusionPatterns**: [DataSourceInclusionsExclusionsStrings](#datasourceinclusionsexclusionsstrings)
-* **OrganizationId**: string
+* **OrganizationId**: string (Required)
 * **UseChangeLog**: bool
 
 ## Description
@@ -479,10 +479,10 @@
 * **Description**: [Description](#description): FAQ description
 * **FileFormat**: [FileFormat](#fileformat): FAQ file format
 * **Id**: [Id](#id) (ReadOnly)
-* **IndexId**: [IndexId](#indexid): Index ID
-* **Name**: [FaqName](#faqname): FAQ name
-* **RoleArn**: [RoleArn](#rolearn): FAQ role ARN
-* **S3Path**: [S3Path](#s3path): FAQ S3 path
+* **IndexId**: [IndexId](#indexid) (Required): Index ID
+* **Name**: [FaqName](#faqname) (Required): FAQ name
+* **RoleArn**: [RoleArn](#rolearn) (Required): FAQ role ARN
+* **S3Path**: [S3Path](#s3path) (Required): FAQ S3 path
 * **Tags**: [TagList](#taglist): Tags for labeling the FAQ
 
 ## Description
@@ -505,8 +505,8 @@
 
 ## S3Path
 ### Properties
-* **Bucket**: [S3BucketName](#s3bucketname)
-* **Key**: [S3ObjectKey](#s3objectkey)
+* **Bucket**: [S3BucketName](#s3bucketname) (Required)
+* **Key**: [S3ObjectKey](#s3objectkey) (Required)
 
 ## S3BucketName
 ### Properties
@@ -523,10 +523,10 @@
 * **CapacityUnits**: [CapacityUnitsConfiguration](#capacityunitsconfiguration): Capacity units
 * **Description**: [Description](#description): A description for the index
 * **DocumentMetadataConfigurations**: [DocumentMetadataConfigurationList](#documentmetadataconfigurationlist): Document metadata configurations
-* **Edition**: [Edition](#edition)
+* **Edition**: [Edition](#edition) (Required)
 * **Id**: [Id](#id) (ReadOnly)
-* **Name**: [Name](#name)
-* **RoleArn**: [RoleArn](#rolearn)
+* **Name**: [Name](#name) (Required)
+* **RoleArn**: [RoleArn](#rolearn) (Required)
 * **ServerSideEncryptionConfiguration**: [ServerSideEncryptionConfiguration](#serversideencryptionconfiguration): Server side encryption configuration
 * **Tags**: [TagList](#taglist): Tags for labeling the index
 * **UserContextPolicy**: [UserContextPolicy](#usercontextpolicy)
@@ -537,8 +537,8 @@
 
 ## CapacityUnitsConfiguration
 ### Properties
-* **QueryCapacityUnits**: [QueryCapacityUnits](#querycapacityunits)
-* **StorageCapacityUnits**: [StorageCapacityUnits](#storagecapacityunits)
+* **QueryCapacityUnits**: [QueryCapacityUnits](#querycapacityunits) (Required)
+* **StorageCapacityUnits**: [StorageCapacityUnits](#storagecapacityunits) (Required)
 
 ## QueryCapacityUnits
 ### Properties

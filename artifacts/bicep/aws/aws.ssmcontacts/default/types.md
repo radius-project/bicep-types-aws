@@ -4,7 +4,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.SSMContacts/ContactProperties](#awsssmcontactscontactproperties): properties of the resource
+* **properties**: [AWS.SSMContacts/ContactProperties](#awsssmcontactscontactproperties) (Required): properties of the resource
 
 ## Resource AWS.SSMContacts/ContactChannel@default
 * **Valid Scope(s)**: Unknown
@@ -14,15 +14,15 @@
 
 ## AWS.SSMContacts/ContactProperties
 ### Properties
-* **Alias**: string: Alias of the contact. String value with 20 to 256 characters. Only alphabetical, numeric characters, dash, or underscore allowed.
+* **Alias**: string (Required): Alias of the contact. String value with 20 to 256 characters. Only alphabetical, numeric characters, dash, or underscore allowed.
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the contact.
-* **DisplayName**: string: Name of the contact. String value with 3 to 256 characters. Only alphabetical, space, numeric characters, dash, or underscore allowed.
-* **Plan**: [Stage](#stage)[] (WriteOnly): The stages that an escalation plan or engagement plan engages contacts and contact methods in.
-* **Type**: string: Contact type, which specify type of contact. Currently supported values: ?PERSONAL?, ?SHARED?, ?OTHER?.
+* **DisplayName**: string (Required): Name of the contact. String value with 3 to 256 characters. Only alphabetical, space, numeric characters, dash, or underscore allowed.
+* **Plan**: [Stage](#stage)[] (Required, WriteOnly): The stages that an escalation plan or engagement plan engages contacts and contact methods in.
+* **Type**: string (Required): Contact type, which specify type of contact. Currently supported values: ?PERSONAL?, ?SHARED?, ?OTHER?.
 
 ## Stage
 ### Properties
-* **DurationInMinutes**: int: The time to wait until beginning the next stage.
+* **DurationInMinutes**: int (Required): The time to wait until beginning the next stage.
 * **Targets**: [Targets](#targets)[]: The contacts or contact methods that the escalation plan or engagement plan is engaging.
 
 ## Targets
@@ -32,13 +32,13 @@
 
 ## ChannelTargetInfo
 ### Properties
-* **ChannelId**: string: The Amazon Resource Name (ARN) of the contact channel.
-* **RetryIntervalInMinutes**: int: The number of minutes to wait to retry sending engagement in the case the engagement initially fails.
+* **ChannelId**: string (Required): The Amazon Resource Name (ARN) of the contact channel.
+* **RetryIntervalInMinutes**: int (Required): The number of minutes to wait to retry sending engagement in the case the engagement initially fails.
 
 ## ContactTargetInfo
 ### Properties
-* **ContactId**: string: The Amazon Resource Name (ARN) of the contact.
-* **IsEssential**: bool: A Boolean value determining if the contact's acknowledgement stops the progress of stages in the plan.
+* **ContactId**: string (Required): The Amazon Resource Name (ARN) of the contact.
+* **IsEssential**: bool (Required): A Boolean value determining if the contact's acknowledgement stops the progress of stages in the plan.
 
 ## AWS.SSMContacts/ContactChannelProperties
 ### Properties

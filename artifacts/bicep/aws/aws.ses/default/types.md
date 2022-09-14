@@ -10,7 +10,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.SES/ConfigurationSetEventDestinationProperties](#awssesconfigurationseteventdestinationproperties): properties of the resource
+* **properties**: [AWS.SES/ConfigurationSetEventDestinationProperties](#awssesconfigurationseteventdestinationproperties) (Required): properties of the resource
 
 ## Resource AWS.SES/ContactList@default
 * **Valid Scope(s)**: Unknown
@@ -22,7 +22,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.SES/EmailIdentityProperties](#awssesemailidentityproperties): properties of the resource
+* **properties**: [AWS.SES/EmailIdentityProperties](#awssesemailidentityproperties) (Required): properties of the resource
 
 ## Resource AWS.SES/Template@default
 * **Valid Scope(s)**: Unknown
@@ -62,8 +62,8 @@
 
 ## AWS.SES/ConfigurationSetEventDestinationProperties
 ### Properties
-* **ConfigurationSetName**: string: The name of the configuration set that contains the event destination.
-* **EventDestination**: [EventDestination](#eventdestination): The event destination object.
+* **ConfigurationSetName**: string (Required): The name of the configuration set that contains the event destination.
+* **EventDestination**: [EventDestination](#eventdestination) (Required): The event destination object.
 * **Id**: string (ReadOnly)
 
 ## EventDestination
@@ -71,7 +71,7 @@
 * **CloudWatchDestination**: [CloudWatchDestination](#cloudwatchdestination): An object that contains the names, default values, and sources of the dimensions associated with an Amazon CloudWatch event destination.
 * **Enabled**: bool: Sets whether Amazon SES publishes events to this destination when you send an email with the associated configuration set. Set to true to enable publishing to this destination; set to false to prevent publishing to this destination. The default value is false.   
 * **KinesisFirehoseDestination**: [KinesisFirehoseDestination](#kinesisfirehosedestination): An object that contains the delivery stream ARN and the IAM role ARN associated with an Amazon Kinesis Firehose event destination.
-* **MatchingEventTypes**: string[]: The type of email sending events, send, reject, bounce, complaint, delivery, open, click, renderingFailure.
+* **MatchingEventTypes**: string[] (Required): The type of email sending events, send, reject, bounce, complaint, delivery, open, click, renderingFailure.
 * **Name**: string: The name of the event destination set.
 * **SnsDestination**: [SnsDestination](#snsdestination): An object that contains SNS topic ARN associated event destination.
 
@@ -81,18 +81,18 @@
 
 ## DimensionConfiguration
 ### Properties
-* **DefaultDimensionValue**: string: The default value of the dimension that is published to Amazon CloudWatch if you do not provide the value of the dimension when you send an email.
-* **DimensionName**: string: The name of an Amazon CloudWatch dimension associated with an email sending metric.
-* **DimensionValueSource**: string: The place where Amazon SES finds the value of a dimension to publish to Amazon CloudWatch. To use the message tags that you specify using an X-SES-MESSAGE-TAGS header or a parameter to the SendEmail/SendRawEmail API, specify messageTag. To use your own email headers, specify emailHeader. To put a custom tag on any link included in your email, specify linkTag.
+* **DefaultDimensionValue**: string (Required): The default value of the dimension that is published to Amazon CloudWatch if you do not provide the value of the dimension when you send an email.
+* **DimensionName**: string (Required): The name of an Amazon CloudWatch dimension associated with an email sending metric.
+* **DimensionValueSource**: string (Required): The place where Amazon SES finds the value of a dimension to publish to Amazon CloudWatch. To use the message tags that you specify using an X-SES-MESSAGE-TAGS header or a parameter to the SendEmail/SendRawEmail API, specify messageTag. To use your own email headers, specify emailHeader. To put a custom tag on any link included in your email, specify linkTag.
 
 ## KinesisFirehoseDestination
 ### Properties
-* **DeliveryStreamARN**: string: The ARN of the Amazon Kinesis Firehose stream that email sending events should be published to.
-* **IAMRoleARN**: string: The ARN of the IAM role under which Amazon SES publishes email sending events to the Amazon Kinesis Firehose stream.
+* **DeliveryStreamARN**: string (Required): The ARN of the Amazon Kinesis Firehose stream that email sending events should be published to.
+* **IAMRoleARN**: string (Required): The ARN of the IAM role under which Amazon SES publishes email sending events to the Amazon Kinesis Firehose stream.
 
 ## SnsDestination
 ### Properties
-* **TopicARN**: string
+* **TopicARN**: string (Required)
 
 ## AWS.SES/ContactListProperties
 ### Properties
@@ -103,15 +103,15 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Topic
 ### Properties
-* **DefaultSubscriptionStatus**: string
+* **DefaultSubscriptionStatus**: string (Required)
 * **Description**: string: The description of the topic.
-* **DisplayName**: string: The display name of the topic.
-* **TopicName**: string: The name of the topic.
+* **DisplayName**: string (Required): The display name of the topic.
+* **TopicName**: string (Required): The name of the topic.
 
 ## AWS.SES/EmailIdentityProperties
 ### Properties
@@ -124,7 +124,7 @@
 * **DkimDNSTokenValue2**: string (ReadOnly)
 * **DkimDNSTokenValue3**: string (ReadOnly)
 * **DkimSigningAttributes**: [DkimSigningAttributes](#dkimsigningattributes) (WriteOnly)
-* **EmailIdentity**: string: The email address or domain to verify.
+* **EmailIdentity**: string (Required): The email address or domain to verify.
 * **FeedbackAttributes**: [FeedbackAttributes](#feedbackattributes)
 * **MailFromAttributes**: [MailFromAttributes](#mailfromattributes)
 
@@ -159,7 +159,7 @@
 ## Template
 ### Properties
 * **HtmlPart**: string: The HTML body of the email.
-* **SubjectPart**: string: The subject line of the email.
+* **SubjectPart**: string (Required): The subject line of the email.
 * **TemplateName**: string: The name of the template.
 * **TextPart**: string: The email body that is visible to recipients whose email clients do not display HTML content.
 

@@ -4,35 +4,35 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.MemoryDB/ACLProperties](#awsmemorydbaclproperties): properties of the resource
+* **properties**: [AWS.MemoryDB/ACLProperties](#awsmemorydbaclproperties) (Required): properties of the resource
 
 ## Resource AWS.MemoryDB/Cluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.MemoryDB/ClusterProperties](#awsmemorydbclusterproperties): properties of the resource
+* **properties**: [AWS.MemoryDB/ClusterProperties](#awsmemorydbclusterproperties) (Required): properties of the resource
 
 ## Resource AWS.MemoryDB/ParameterGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.MemoryDB/ParameterGroupProperties](#awsmemorydbparametergroupproperties): properties of the resource
+* **properties**: [AWS.MemoryDB/ParameterGroupProperties](#awsmemorydbparametergroupproperties) (Required): properties of the resource
 
 ## Resource AWS.MemoryDB/SubnetGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.MemoryDB/SubnetGroupProperties](#awsmemorydbsubnetgroupproperties): properties of the resource
+* **properties**: [AWS.MemoryDB/SubnetGroupProperties](#awsmemorydbsubnetgroupproperties) (Required): properties of the resource
 
 ## Resource AWS.MemoryDB/User@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.MemoryDB/UserProperties](#awsmemorydbuserproperties): properties of the resource
+* **properties**: [AWS.MemoryDB/UserProperties](#awsmemorydbuserproperties) (Required): properties of the resource
 
 ## AWS.MemoryDB/ACLProperties
 ### Properties
-* **ACLName**: string: The name of the acl.
+* **ACLName**: string (Required): The name of the acl.
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the acl.
 * **Status**: string (ReadOnly): Indicates acl status. Can be "creating", "active", "modifying", "deleting".
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this cluster.
@@ -40,24 +40,24 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws: or memorydb:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws: or memorydb:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws: or memorydb:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws: or memorydb:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.MemoryDB/ClusterProperties
 ### Properties
-* **ACLName**: string: The name of the Access Control List to associate with the cluster.
+* **ACLName**: string (Required): The name of the Access Control List to associate with the cluster.
 * **ARN**: string (ReadOnly): The Amazon Resource Name (ARN) of the cluster.
 * **AutoMinorVersionUpgrade**: bool: A flag that enables automatic minor version upgrade when set to true.
 
 You cannot modify the value of AutoMinorVersionUpgrade after the cluster is created. To enable AutoMinorVersionUpgrade on a cluster you must set AutoMinorVersionUpgrade to true when you create a cluster.
 * **ClusterEndpoint**: [Endpoint](#endpoint): The cluster endpoint.
-* **ClusterName**: string: The name of the cluster. This value must be unique as it also serves as the cluster identifier.
+* **ClusterName**: string (Required): The name of the cluster. This value must be unique as it also serves as the cluster identifier.
 * **Description**: string: An optional description of the cluster.
 * **EngineVersion**: string: The Redis engine version used by the cluster.
 * **FinalSnapshotName**: string: The user-supplied name of a final cluster snapshot. This is the unique name that identifies the snapshot. MemoryDB creates the snapshot, and then deletes the cluster immediately afterward.
 * **KmsKeyId**: string: The ID of the KMS key used to encrypt the cluster.
 * **MaintenanceWindow**: string: Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.
-* **NodeType**: string: The compute and memory capacity of the nodes in the cluster.
+* **NodeType**: string (Required): The compute and memory capacity of the nodes in the cluster.
 * **NumReplicasPerShard**: int: The number of replicas to apply to each shard. The limit is 5.
 * **NumShards**: int: The number of shards the cluster will contain.
 * **ParameterGroupName**: string: The name of the parameter group associated with the cluster.
@@ -84,15 +84,15 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 
 ## Tag
 ### Properties
-* **Key**: string: The key for the tag. May not be null.
-* **Value**: string: The tag's value. May be null.
+* **Key**: string (Required): The key for the tag. May not be null.
+* **Value**: string (Required): The tag's value. May be null.
 
 ## AWS.MemoryDB/ParameterGroupProperties
 ### Properties
 * **ARN**: string (ReadOnly): The Amazon Resource Name (ARN) of the parameter group.
 * **Description**: string: A description of the parameter group.
-* **Family**: string: The name of the parameter group family that this parameter group is compatible with.
-* **ParameterGroupName**: string: The name of the parameter group.
+* **Family**: string (Required): The name of the parameter group family that this parameter group is compatible with.
+* **ParameterGroupName**: string (Required): The name of the parameter group.
 * **Parameters**: [ParameterGroup_Parameters](#parametergroupparameters) (WriteOnly): An map of parameter names and values for the parameter update. You must supply at least one parameter name and value; subsequent arguments are optional.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this parameter group.
 
@@ -101,30 +101,30 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 
 ## Tag
 ### Properties
-* **Key**: string: The key for the tag. May not be null.
-* **Value**: string: The tag's value. May be null.
+* **Key**: string (Required): The key for the tag. May not be null.
+* **Value**: string (Required): The tag's value. May be null.
 
 ## AWS.MemoryDB/SubnetGroupProperties
 ### Properties
 * **ARN**: string (ReadOnly): The Amazon Resource Name (ARN) of the subnet group.
 * **Description**: string: An optional description of the subnet group.
-* **SubnetGroupName**: string: The name of the subnet group. This value must be unique as it also serves as the subnet group identifier.
-* **SubnetIds**: string[]: A list of VPC subnet IDs for the subnet group.
+* **SubnetGroupName**: string (Required): The name of the subnet group. This value must be unique as it also serves as the subnet group identifier.
+* **SubnetIds**: string[] (Required): A list of VPC subnet IDs for the subnet group.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this subnet group.
 
 ## Tag
 ### Properties
-* **Key**: string: The key for the tag. May not be null.
-* **Value**: string: The tag's value. May be null.
+* **Key**: string (Required): The key for the tag. May not be null.
+* **Value**: string (Required): The tag's value. May be null.
 
 ## AWS.MemoryDB/UserProperties
 ### Properties
-* **AccessString**: string (WriteOnly): Access permissions string used for this user account.
+* **AccessString**: string (Required, WriteOnly): Access permissions string used for this user account.
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the user account.
-* **AuthenticationMode**: [User_AuthenticationMode](#userauthenticationmode) (WriteOnly)
+* **AuthenticationMode**: [User_AuthenticationMode](#userauthenticationmode) (Required, WriteOnly)
 * **Status**: string (ReadOnly): Indicates the user status. Can be "active", "modifying" or "deleting".
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this user.
-* **UserName**: string: The name of the user.
+* **UserName**: string (Required): The name of the user.
 
 ## User_AuthenticationMode
 ### Properties
@@ -133,6 +133,6 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws: or memorydb:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws: or memorydb:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws: or memorydb:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws: or memorydb:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 

@@ -10,7 +10,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Cassandra/TableProperties](#awscassandratableproperties): properties of the resource
+* **properties**: [AWS.Cassandra/TableProperties](#awscassandratableproperties) (Required): properties of the resource
 
 ## AWS.Cassandra/KeyspaceProperties
 ### Properties
@@ -19,8 +19,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.Cassandra/TableProperties
 ### Properties
@@ -28,8 +28,8 @@
 * **ClusteringKeyColumns**: [ClusteringKeyColumn](#clusteringkeycolumn)[]: Clustering key columns of the table
 * **DefaultTimeToLive**: int: Default TTL (Time To Live) in seconds, where zero is disabled. If the value is greater than zero, TTL is enabled for the entire table and an expiration timestamp is added to each column.
 * **EncryptionSpecification**: [EncryptionSpecification](#encryptionspecification)
-* **KeyspaceName**: string: Name for Cassandra keyspace
-* **PartitionKeyColumns**: [Column](#column)[]: Partition key columns of the table
+* **KeyspaceName**: string (Required): Name for Cassandra keyspace
+* **PartitionKeyColumns**: [Column](#column)[] (Required): Partition key columns of the table
 * **PointInTimeRecoveryEnabled**: bool: Indicates whether point in time recovery is enabled (true) or disabled (false) on the table
 * **RegularColumns**: [Column](#column)[]: Non-key columns of the table
 * **TableName**: string: Name for Cassandra table
@@ -37,7 +37,7 @@
 
 ## BillingMode
 ### Properties
-* **Mode**: [Mode](#mode)
+* **Mode**: [Mode](#mode) (Required)
 * **ProvisionedThroughput**: [ProvisionedThroughput](#provisionedthroughput)
 
 ## Mode
@@ -45,22 +45,22 @@
 
 ## ProvisionedThroughput
 ### Properties
-* **ReadCapacityUnits**: int
-* **WriteCapacityUnits**: int
+* **ReadCapacityUnits**: int (Required)
+* **WriteCapacityUnits**: int (Required)
 
 ## ClusteringKeyColumn
 ### Properties
-* **Column**: [Column](#column)
+* **Column**: [Column](#column) (Required)
 * **OrderBy**: string
 
 ## Column
 ### Properties
-* **ColumnName**: string
-* **ColumnType**: string
+* **ColumnName**: string (Required)
+* **ColumnType**: string (Required)
 
 ## EncryptionSpecification
 ### Properties
-* **EncryptionType**: [EncryptionType](#encryptiontype)
+* **EncryptionType**: [EncryptionType](#encryptiontype) (Required)
 * **KmsKeyIdentifier**: [KmsKeyIdentifier](#kmskeyidentifier)
 
 ## EncryptionType
@@ -71,6 +71,6 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

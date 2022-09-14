@@ -4,33 +4,33 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Events/ApiDestinationProperties](#awseventsapidestinationproperties): properties of the resource
+* **properties**: [AWS.Events/ApiDestinationProperties](#awseventsapidestinationproperties) (Required): properties of the resource
 
 ## Resource AWS.Events/Archive@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Events/ArchiveProperties](#awseventsarchiveproperties): properties of the resource
+* **properties**: [AWS.Events/ArchiveProperties](#awseventsarchiveproperties) (Required): properties of the resource
 
 ## Resource AWS.Events/Connection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Events/ConnectionProperties](#awseventsconnectionproperties): properties of the resource
+* **properties**: [AWS.Events/ConnectionProperties](#awseventsconnectionproperties) (Required): properties of the resource
 
 ## Resource AWS.Events/Endpoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Events/EndpointProperties](#awseventsendpointproperties): properties of the resource
+* **properties**: [AWS.Events/EndpointProperties](#awseventsendpointproperties) (Required): properties of the resource
 
 ## AWS.Events/ApiDestinationProperties
 ### Properties
 * **Arn**: string (ReadOnly): The arn of the api destination.
-* **ConnectionArn**: string: The arn of the connection.
+* **ConnectionArn**: string (Required): The arn of the connection.
 * **Description**: string
-* **HttpMethod**: string
-* **InvocationEndpoint**: string: Url endpoint to invoke.
+* **HttpMethod**: string (Required)
+* **InvocationEndpoint**: string (Required): Url endpoint to invoke.
 * **InvocationRateLimitPerSecond**: int
 * **Name**: string: Name of the apiDestination.
 
@@ -41,7 +41,7 @@
 * **Description**: string
 * **EventPattern**: [Archive_EventPattern](#archiveeventpattern)
 * **RetentionDays**: int
-* **SourceArn**: string
+* **SourceArn**: string (Required)
 
 ## Archive_EventPattern
 ### Properties
@@ -49,8 +49,8 @@
 ## AWS.Events/ConnectionProperties
 ### Properties
 * **Arn**: string (ReadOnly): The arn of the connection resource.
-* **AuthorizationType**: string
-* **AuthParameters**: [AuthParameters](#authparameters) (WriteOnly)
+* **AuthorizationType**: string (Required)
+* **AuthParameters**: [AuthParameters](#authparameters) (Required, WriteOnly)
 * **Description**: string: Description of the connection.
 * **Name**: string: Name of the connection.
 * **SecretArn**: string (ReadOnly): The arn of the secrets manager secret created in the customer account.
@@ -64,13 +64,13 @@
 
 ## ApiKeyAuthParameters
 ### Properties
-* **ApiKeyName**: string
-* **ApiKeyValue**: string
+* **ApiKeyName**: string (Required)
+* **ApiKeyValue**: string (Required)
 
 ## BasicAuthParameters
 ### Properties
-* **Password**: string
-* **Username**: string
+* **Password**: string (Required)
+* **Username**: string (Required)
 
 ## ConnectionHttpParameters
 ### Properties
@@ -81,20 +81,20 @@
 ## Parameter
 ### Properties
 * **IsValueSecret**: bool
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## OAuthParameters
 ### Properties
-* **AuthorizationEndpoint**: string
-* **ClientParameters**: [ClientParameters](#clientparameters)
-* **HttpMethod**: string
+* **AuthorizationEndpoint**: string (Required)
+* **ClientParameters**: [ClientParameters](#clientparameters) (Required)
+* **HttpMethod**: string (Required)
 * **OAuthHttpParameters**: [ConnectionHttpParameters](#connectionhttpparameters)
 
 ## ClientParameters
 ### Properties
-* **ClientID**: string
-* **ClientSecret**: string
+* **ClientID**: string (Required)
+* **ClientSecret**: string (Required)
 
 ## AWS.Events/EndpointProperties
 ### Properties
@@ -102,11 +102,11 @@
 * **Description**: string
 * **EndpointId**: string (ReadOnly)
 * **EndpointUrl**: string (ReadOnly)
-* **EventBuses**: [EventBuses](#eventbuses)
-* **Name**: string
+* **EventBuses**: [EventBuses](#eventbuses) (Required)
+* **Name**: string (Required)
 * **ReplicationConfig**: [ReplicationConfig](#replicationconfig)
 * **RoleArn**: string
-* **RoutingConfig**: [RoutingConfig](#routingconfig)
+* **RoutingConfig**: [RoutingConfig](#routingconfig) (Required)
 * **State**: string (ReadOnly)
 * **StateReason**: string (ReadOnly)
 
@@ -115,30 +115,30 @@
 
 ## ReplicationConfig
 ### Properties
-* **State**: [ReplicationState](#replicationstate)
+* **State**: [ReplicationState](#replicationstate) (Required)
 
 ## ReplicationState
 ### Properties
 
 ## RoutingConfig
 ### Properties
-* **FailoverConfig**: [FailoverConfig](#failoverconfig)
+* **FailoverConfig**: [FailoverConfig](#failoverconfig) (Required)
 
 ## FailoverConfig
 ### Properties
-* **Primary**: [Primary](#primary)
-* **Secondary**: [Secondary](#secondary)
+* **Primary**: [Primary](#primary) (Required)
+* **Secondary**: [Secondary](#secondary) (Required)
 
 ## Primary
 ### Properties
-* **HealthCheck**: [HealthCheck](#healthcheck)
+* **HealthCheck**: [HealthCheck](#healthcheck) (Required)
 
 ## HealthCheck
 ### Properties
 
 ## Secondary
 ### Properties
-* **Route**: [Route](#route)
+* **Route**: [Route](#route) (Required)
 
 ## Route
 ### Properties

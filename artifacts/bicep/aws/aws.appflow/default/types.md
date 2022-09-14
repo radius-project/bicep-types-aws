@@ -4,28 +4,28 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.AppFlow/ConnectorProfileProperties](#awsappflowconnectorprofileproperties): properties of the resource
+* **properties**: [AWS.AppFlow/ConnectorProfileProperties](#awsappflowconnectorprofileproperties) (Required): properties of the resource
 
 ## Resource AWS.AppFlow/Flow@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.AppFlow/FlowProperties](#awsappflowflowproperties): properties of the resource
+* **properties**: [AWS.AppFlow/FlowProperties](#awsappflowflowproperties) (Required): properties of the resource
 
 ## AWS.AppFlow/ConnectorProfileProperties
 ### Properties
-* **ConnectionMode**: string: Mode in which data transfer should be enabled. Private connection mode is currently enabled for Salesforce, Snowflake, Trendmicro and Singular
+* **ConnectionMode**: string (Required): Mode in which data transfer should be enabled. Private connection mode is currently enabled for Salesforce, Snowflake, Trendmicro and Singular
 * **ConnectorLabel**: string: The label of the connector. The label is unique for each ConnectorRegistration in your AWS account. Only needed if calling for CUSTOMCONNECTOR connector type/.
 * **ConnectorProfileArn**: string (ReadOnly): Unique identifier for connector profile resources
 * **ConnectorProfileConfig**: [ConnectorProfileConfig](#connectorprofileconfig) (WriteOnly): Connector specific configurations needed to create connector profile
-* **ConnectorProfileName**: string: The maximum number of items to retrieve in a single batch.
-* **ConnectorType**: [ConnectorType](#connectortype): List of Saas providers that need connector profile to be created
+* **ConnectorProfileName**: string (Required): The maximum number of items to retrieve in a single batch.
+* **ConnectorType**: [ConnectorType](#connectortype) (Required): List of Saas providers that need connector profile to be created
 * **CredentialsArn**: string (ReadOnly): A unique Arn for Connector-Profile resource
 * **KMSArn**: string: The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables. If it's not provided, AWS Lambda uses a default service key.
 
 ## ConnectorProfileConfig
 ### Properties
-* **ConnectorProfileCredentials**: [ConnectorProfileCredentials](#connectorprofilecredentials)
+* **ConnectorProfileCredentials**: [ConnectorProfileCredentials](#connectorprofilecredentials) (Required)
 * **ConnectorProfileProperties**: [ConnectorProfileProperties](#connectorprofileproperties)
 
 ## ConnectorProfileCredentials
@@ -50,8 +50,8 @@
 
 ## AmplitudeConnectorProfileCredentials
 ### Properties
-* **ApiKey**: [ApiKey](#apikey): A unique alphanumeric identi?er used to authenticate a user, developer, or calling program to your API.
-* **SecretKey**: [SecretKey](#secretkey)
+* **ApiKey**: [ApiKey](#apikey) (Required): A unique alphanumeric identi?er used to authenticate a user, developer, or calling program to your API.
+* **SecretKey**: [SecretKey](#secretkey) (Required)
 
 ## ApiKey
 ### Properties
@@ -62,14 +62,14 @@
 ## CustomConnectorProfileCredentials
 ### Properties
 * **ApiKey**: [ApiKeyCredentials](#apikeycredentials)
-* **AuthenticationType**: [AuthenticationType](#authenticationtype)
+* **AuthenticationType**: [AuthenticationType](#authenticationtype) (Required)
 * **Basic**: [BasicAuthCredentials](#basicauthcredentials)
 * **Custom**: [CustomAuthCredentials](#customauthcredentials)
 * **Oauth2**: [OAuth2Credentials](#oauth2credentials)
 
 ## ApiKeyCredentials
 ### Properties
-* **ApiKey**: [ApiKey](#apikey)
+* **ApiKey**: [ApiKey](#apikey) (Required)
 * **ApiSecretKey**: [ApiSecretKey](#apisecretkey)
 
 ## ApiSecretKey
@@ -80,8 +80,8 @@
 
 ## BasicAuthCredentials
 ### Properties
-* **Password**: [Password](#password)
-* **Username**: [Username](#username)
+* **Password**: [Password](#password) (Required)
+* **Username**: [Username](#username) (Required)
 
 ## Password
 ### Properties
@@ -92,7 +92,7 @@
 ## CustomAuthCredentials
 ### Properties
 * **CredentialsMap**: [CredentialsMap](#credentialsmap)
-* **CustomAuthenticationType**: [CustomAuthenticationType](#customauthenticationtype)
+* **CustomAuthenticationType**: [CustomAuthenticationType](#customauthenticationtype) (Required)
 
 ## CredentialsMap
 ### Properties
@@ -128,15 +128,15 @@ granted.
 
 ## DatadogConnectorProfileCredentials
 ### Properties
-* **ApiKey**: [ApiKey](#apikey): A unique alphanumeric identi?er used to authenticate a user, developer, or calling program to your API.
-* **ApplicationKey**: [ApplicationKey](#applicationkey): Application keys, in conjunction with your API key, give you full access to Datadog?s programmatic API. Application keys are associated with the user account that created them. The application key is used to log all requests made to the API.
+* **ApiKey**: [ApiKey](#apikey) (Required): A unique alphanumeric identi?er used to authenticate a user, developer, or calling program to your API.
+* **ApplicationKey**: [ApplicationKey](#applicationkey) (Required): Application keys, in conjunction with your API key, give you full access to Datadog?s programmatic API. Application keys are associated with the user account that created them. The application key is used to log all requests made to the API.
 
 ## ApplicationKey
 ### Properties
 
 ## DynatraceConnectorProfileCredentials
 ### Properties
-* **ApiToken**: [ApiToken](#apitoken): The API tokens used by Dynatrace API to authenticate various API calls.
+* **ApiToken**: [ApiToken](#apitoken) (Required): The API tokens used by Dynatrace API to authenticate various API calls.
 
 ## ApiToken
 ### Properties
@@ -144,17 +144,17 @@ granted.
 ## GoogleAnalyticsConnectorProfileCredentials
 ### Properties
 * **AccessToken**: [AccessToken](#accesstoken): The credentials used to access protected resources.
-* **ClientId**: [ClientId](#clientid): The identi?er for the desired client.
-* **ClientSecret**: [ClientSecret](#clientsecret): The client secret used by the oauth client to authenticate to the authorization server.
+* **ClientId**: [ClientId](#clientid) (Required): The identi?er for the desired client.
+* **ClientSecret**: [ClientSecret](#clientsecret) (Required): The client secret used by the oauth client to authenticate to the authorization server.
 * **ConnectorOAuthRequest**: [ConnectorOAuthRequest](#connectoroauthrequest): The oauth needed to request security tokens from the connector endpoint.
 * **RefreshToken**: [RefreshToken](#refreshtoken): The credentials used to acquire new access tokens.
 
 ## InforNexusConnectorProfileCredentials
 ### Properties
-* **AccessKeyId**: [AccessKeyId](#accesskeyid): The Access Key portion of the credentials.
-* **Datakey**: [Key](#key): The encryption keys used to encrypt data.
-* **SecretAccessKey**: [Key](#key): The secret key used to sign requests.
-* **UserId**: [Username](#username): The identi?er for the user.
+* **AccessKeyId**: [AccessKeyId](#accesskeyid) (Required): The Access Key portion of the credentials.
+* **Datakey**: [Key](#key) (Required): The encryption keys used to encrypt data.
+* **SecretAccessKey**: [Key](#key) (Required): The secret key used to sign requests.
+* **UserId**: [Username](#username) (Required): The identi?er for the user.
 
 ## AccessKeyId
 ### Properties
@@ -165,14 +165,14 @@ granted.
 ## MarketoConnectorProfileCredentials
 ### Properties
 * **AccessToken**: [AccessToken](#accesstoken): The credentials used to access protected resources.
-* **ClientId**: [ClientId](#clientid): The identi?er for the desired client.
-* **ClientSecret**: [ClientSecret](#clientsecret): The client secret used by the oauth client to authenticate to the authorization server.
+* **ClientId**: [ClientId](#clientid) (Required): The identi?er for the desired client.
+* **ClientSecret**: [ClientSecret](#clientsecret) (Required): The client secret used by the oauth client to authenticate to the authorization server.
 * **ConnectorOAuthRequest**: [ConnectorOAuthRequest](#connectoroauthrequest): The oauth needed to request security tokens from the connector endpoint.
 
 ## RedshiftConnectorProfileCredentials
 ### Properties
-* **Password**: [Password](#password): The password that corresponds to the username.
-* **Username**: [Username](#username): The name of the user.
+* **Password**: [Password](#password) (Required): The password that corresponds to the username.
+* **Username**: [Username](#username) (Required): The name of the user.
 
 ## SalesforceConnectorProfileCredentials
 ### Properties
@@ -199,39 +199,39 @@ granted.
 
 ## ServiceNowConnectorProfileCredentials
 ### Properties
-* **Password**: [Password](#password): The password that corresponds to the username.
-* **Username**: [Username](#username): The name of the user.
+* **Password**: [Password](#password) (Required): The password that corresponds to the username.
+* **Username**: [Username](#username) (Required): The name of the user.
 
 ## SingularConnectorProfileCredentials
 ### Properties
-* **ApiKey**: [ApiKey](#apikey): A unique alphanumeric identi?er used to authenticate a user, developer, or calling program to your API.
+* **ApiKey**: [ApiKey](#apikey) (Required): A unique alphanumeric identi?er used to authenticate a user, developer, or calling program to your API.
 
 ## SlackConnectorProfileCredentials
 ### Properties
 * **AccessToken**: [AccessToken](#accesstoken): The credentials used to access protected resources.
-* **ClientId**: [ClientId](#clientid): The identi?er for the desired client.
-* **ClientSecret**: [ClientSecret](#clientsecret): The client secret used by the oauth client to authenticate to the authorization server.
+* **ClientId**: [ClientId](#clientid) (Required): The identi?er for the desired client.
+* **ClientSecret**: [ClientSecret](#clientsecret) (Required): The client secret used by the oauth client to authenticate to the authorization server.
 * **ConnectorOAuthRequest**: [ConnectorOAuthRequest](#connectoroauthrequest): The oauth needed to request security tokens from the connector endpoint.
 
 ## SnowflakeConnectorProfileCredentials
 ### Properties
-* **Password**: [Password](#password): The password that corresponds to the username.
-* **Username**: [Username](#username): The name of the user.
+* **Password**: [Password](#password) (Required): The password that corresponds to the username.
+* **Username**: [Username](#username) (Required): The name of the user.
 
 ## TrendmicroConnectorProfileCredentials
 ### Properties
-* **ApiSecretKey**: [ApiSecretKey](#apisecretkey): The Secret Access Key portion of the credentials.
+* **ApiSecretKey**: [ApiSecretKey](#apisecretkey) (Required): The Secret Access Key portion of the credentials.
 
 ## VeevaConnectorProfileCredentials
 ### Properties
-* **Password**: [Password](#password): The password that corresponds to the username.
-* **Username**: [Username](#username): The name of the user.
+* **Password**: [Password](#password) (Required): The password that corresponds to the username.
+* **Username**: [Username](#username) (Required): The name of the user.
 
 ## ZendeskConnectorProfileCredentials
 ### Properties
 * **AccessToken**: [AccessToken](#accesstoken): The credentials used to access protected resources.
-* **ClientId**: [ClientId](#clientid): The identi?er for the desired client.
-* **ClientSecret**: [ClientSecret](#clientsecret): The client secret used by the oauth client to authenticate to the authorization server.
+* **ClientId**: [ClientId](#clientid) (Required): The identi?er for the desired client.
+* **ClientSecret**: [ClientSecret](#clientsecret) (Required): The client secret used by the oauth client to authenticate to the authorization server.
 * **ConnectorOAuthRequest**: [ConnectorOAuthRequest](#connectoroauthrequest): The oauth needed to request security tokens from the connector endpoint.
 
 ## ConnectorProfileProperties
@@ -272,29 +272,29 @@ granted.
 
 ## DatadogConnectorProfileProperties
 ### Properties
-* **InstanceUrl**: [InstanceUrl](#instanceurl): The location of the Datadog resource
+* **InstanceUrl**: [InstanceUrl](#instanceurl) (Required): The location of the Datadog resource
 
 ## InstanceUrl
 ### Properties
 
 ## DynatraceConnectorProfileProperties
 ### Properties
-* **InstanceUrl**: [InstanceUrl](#instanceurl): The location of the Dynatrace resource
+* **InstanceUrl**: [InstanceUrl](#instanceurl) (Required): The location of the Dynatrace resource
 
 ## InforNexusConnectorProfileProperties
 ### Properties
-* **InstanceUrl**: [InstanceUrl](#instanceurl): The location of the InforNexus resource
+* **InstanceUrl**: [InstanceUrl](#instanceurl) (Required): The location of the InforNexus resource
 
 ## MarketoConnectorProfileProperties
 ### Properties
-* **InstanceUrl**: [InstanceUrl](#instanceurl): The location of the Marketo resource
+* **InstanceUrl**: [InstanceUrl](#instanceurl) (Required): The location of the Marketo resource
 
 ## RedshiftConnectorProfileProperties
 ### Properties
-* **BucketName**: [BucketName](#bucketname): The name of the Amazon S3 bucket associated with Redshift.
+* **BucketName**: [BucketName](#bucketname) (Required): The name of the Amazon S3 bucket associated with Redshift.
 * **BucketPrefix**: [BucketPrefix](#bucketprefix): The object key for the destination bucket in which Amazon AppFlow will place the ?les.
-* **DatabaseUrl**: [DatabaseUrl](#databaseurl): The JDBC URL of the Amazon Redshift cluster.
-* **RoleArn**: [RoleArn](#rolearn): The Amazon Resource Name (ARN) of the IAM role.
+* **DatabaseUrl**: [DatabaseUrl](#databaseurl) (Required): The JDBC URL of the Amazon Redshift cluster.
+* **RoleArn**: [RoleArn](#rolearn) (Required): The Amazon Resource Name (ARN) of the IAM role.
 
 ## BucketName
 ### Properties
@@ -349,22 +349,22 @@ granted.
 
 ## ServiceNowConnectorProfileProperties
 ### Properties
-* **InstanceUrl**: [InstanceUrl](#instanceurl): The location of the ServiceNow resource
+* **InstanceUrl**: [InstanceUrl](#instanceurl) (Required): The location of the ServiceNow resource
 
 ## SlackConnectorProfileProperties
 ### Properties
-* **InstanceUrl**: [InstanceUrl](#instanceurl): The location of the Slack resource
+* **InstanceUrl**: [InstanceUrl](#instanceurl) (Required): The location of the Slack resource
 
 ## SnowflakeConnectorProfileProperties
 ### Properties
 * **AccountName**: [AccountName](#accountname): The name of the account.
-* **BucketName**: [BucketName](#bucketname): The name of the Amazon S3 bucket associated with Snow?ake.
+* **BucketName**: [BucketName](#bucketname) (Required): The name of the Amazon S3 bucket associated with Snow?ake.
 * **BucketPrefix**: [BucketPrefix](#bucketprefix): The bucket prefix that refers to the Amazon S3 bucket associated with Snow?ake.
 * **PrivateLinkServiceName**: [PrivateLinkServiceName](#privatelinkservicename): The Snow?ake Private Link service name to be used for private data transfers.
 * **Region**: [Region](#region): The region of the Snow?ake account.
-* **Stage**: [Stage](#stage): The name of the Amazon S3 stage that was created while setting up an Amazon S3 stage in the
+* **Stage**: [Stage](#stage) (Required): The name of the Amazon S3 stage that was created while setting up an Amazon S3 stage in the
 Snow?ake account. This is written in the following format: < Database>< Schema><Stage Name>.
-* **Warehouse**: [Warehouse](#warehouse): The name of the Snow?ake warehouse.
+* **Warehouse**: [Warehouse](#warehouse) (Required): The name of the Snow?ake warehouse.
 
 ## AccountName
 ### Properties
@@ -380,11 +380,11 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 
 ## VeevaConnectorProfileProperties
 ### Properties
-* **InstanceUrl**: [InstanceUrl](#instanceurl): The location of the Veeva resource
+* **InstanceUrl**: [InstanceUrl](#instanceurl) (Required): The location of the Veeva resource
 
 ## ZendeskConnectorProfileProperties
 ### Properties
-* **InstanceUrl**: [InstanceUrl](#instanceurl): The location of the Zendesk resource
+* **InstanceUrl**: [InstanceUrl](#instanceurl) (Required): The location of the Zendesk resource
 
 ## ConnectorType
 ### Properties
@@ -392,21 +392,21 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 ## AWS.AppFlow/FlowProperties
 ### Properties
 * **Description**: string: Description of the flow.
-* **DestinationFlowConfigList**: [DestinationFlowConfig](#destinationflowconfig)[]: List of Destination connectors of the flow.
+* **DestinationFlowConfigList**: [DestinationFlowConfig](#destinationflowconfig)[] (Required): List of Destination connectors of the flow.
 * **FlowArn**: string (ReadOnly): ARN identifier of the flow.
-* **FlowName**: string: Name of the flow.
+* **FlowName**: string (Required): Name of the flow.
 * **KMSArn**: string: The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables. If it's not provided, AWS Lambda uses a default service key.
-* **SourceFlowConfig**: [SourceFlowConfig](#sourceflowconfig): Configurations of Source connector of the flow.
+* **SourceFlowConfig**: [SourceFlowConfig](#sourceflowconfig) (Required): Configurations of Source connector of the flow.
 * **Tags**: [Tag](#tag)[]: List of Tags.
-* **Tasks**: [Task](#task)[]: List of tasks for the flow.
-* **TriggerConfig**: [TriggerConfig](#triggerconfig): Trigger settings of the flow.
+* **Tasks**: [Task](#task)[] (Required): List of tasks for the flow.
+* **TriggerConfig**: [TriggerConfig](#triggerconfig) (Required): Trigger settings of the flow.
 
 ## DestinationFlowConfig
 ### Properties
 * **ApiVersion**: [ApiVersion](#apiversion): The API version that the destination connector uses.
 * **ConnectorProfileName**: [ConnectorProfileName](#connectorprofilename): Name of destination connector profile
-* **ConnectorType**: [ConnectorType](#connectortype): Destination connector type
-* **DestinationConnectorProperties**: [DestinationConnectorProperties](#destinationconnectorproperties): Destination connector details
+* **ConnectorType**: [ConnectorType](#connectortype) (Required): Destination connector type
+* **DestinationConnectorProperties**: [DestinationConnectorProperties](#destinationconnectorproperties) (Required): Destination connector details
 
 ## ApiVersion
 ### Properties
@@ -434,7 +434,7 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 ## CustomConnectorDestinationProperties
 ### Properties
 * **CustomProperties**: [CustomProperties](#customproperties)
-* **EntityName**: [EntityName](#entityname)
+* **EntityName**: [EntityName](#entityname) (Required)
 * **ErrorHandlingConfig**: [ErrorHandlingConfig](#errorhandlingconfig)
 * **IdFieldNames**: string[]: List of fields used as ID when performing a write operation.
 * **WriteOperationType**: [WriteOperationType](#writeoperationtype)
@@ -463,7 +463,7 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 ## EventBridgeDestinationProperties
 ### Properties
 * **ErrorHandlingConfig**: [ErrorHandlingConfig](#errorhandlingconfig)
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## Object
 ### Properties
@@ -475,18 +475,18 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 ## MarketoDestinationProperties
 ### Properties
 * **ErrorHandlingConfig**: [ErrorHandlingConfig](#errorhandlingconfig)
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## RedshiftDestinationProperties
 ### Properties
 * **BucketPrefix**: [BucketPrefix](#bucketprefix)
 * **ErrorHandlingConfig**: [ErrorHandlingConfig](#errorhandlingconfig)
-* **IntermediateBucketName**: [BucketName](#bucketname)
-* **Object**: [Object](#object)
+* **IntermediateBucketName**: [BucketName](#bucketname) (Required)
+* **Object**: [Object](#object) (Required)
 
 ## S3DestinationProperties
 ### Properties
-* **BucketName**: [BucketName](#bucketname)
+* **BucketName**: [BucketName](#bucketname) (Required)
 * **BucketPrefix**: [BucketPrefix](#bucketprefix)
 * **S3OutputFormatConfig**: [S3OutputFormatConfig](#s3outputformatconfig)
 
@@ -525,14 +525,14 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 ### Properties
 * **ErrorHandlingConfig**: [ErrorHandlingConfig](#errorhandlingconfig)
 * **IdFieldNames**: string[]: List of fields used as ID when performing a write operation.
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 * **WriteOperationType**: [WriteOperationType](#writeoperationtype)
 
 ## SAPODataDestinationProperties
 ### Properties
 * **ErrorHandlingConfig**: [ErrorHandlingConfig](#errorhandlingconfig)
 * **IdFieldNames**: string[]: List of fields used as ID when performing a write operation.
-* **ObjectPath**: [Object](#object)
+* **ObjectPath**: [Object](#object) (Required)
 * **SuccessResponseHandlingConfig**: [SuccessResponseHandlingConfig](#successresponsehandlingconfig)
 * **WriteOperationType**: [WriteOperationType](#writeoperationtype)
 
@@ -545,14 +545,14 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 ### Properties
 * **BucketPrefix**: [BucketPrefix](#bucketprefix)
 * **ErrorHandlingConfig**: [ErrorHandlingConfig](#errorhandlingconfig)
-* **IntermediateBucketName**: [BucketName](#bucketname)
-* **Object**: [Object](#object)
+* **IntermediateBucketName**: [BucketName](#bucketname) (Required)
+* **Object**: [Object](#object) (Required)
 
 ## UpsolverDestinationProperties
 ### Properties
-* **BucketName**: [UpsolverBucketName](#upsolverbucketname)
+* **BucketName**: [UpsolverBucketName](#upsolverbucketname) (Required)
 * **BucketPrefix**: [BucketPrefix](#bucketprefix)
-* **S3OutputFormatConfig**: [UpsolverS3OutputFormatConfig](#upsolvers3outputformatconfig)
+* **S3OutputFormatConfig**: [UpsolverS3OutputFormatConfig](#upsolvers3outputformatconfig) (Required)
 
 ## UpsolverBucketName
 ### Properties
@@ -561,22 +561,22 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 ### Properties
 * **AggregationConfig**: [AggregationConfig](#aggregationconfig)
 * **FileType**: [FileType](#filetype)
-* **PrefixConfig**: [PrefixConfig](#prefixconfig)
+* **PrefixConfig**: [PrefixConfig](#prefixconfig) (Required)
 
 ## ZendeskDestinationProperties
 ### Properties
 * **ErrorHandlingConfig**: [ErrorHandlingConfig](#errorhandlingconfig)
 * **IdFieldNames**: string[]: List of fields used as ID when performing a write operation.
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 * **WriteOperationType**: [WriteOperationType](#writeoperationtype)
 
 ## SourceFlowConfig
 ### Properties
 * **ApiVersion**: [ApiVersion](#apiversion): The API version that the destination connector uses.
 * **ConnectorProfileName**: [ConnectorProfileName](#connectorprofilename): Name of source connector profile
-* **ConnectorType**: [ConnectorType](#connectortype): Type of source connector
+* **ConnectorType**: [ConnectorType](#connectortype) (Required): Type of source connector
 * **IncrementalPullConfig**: [IncrementalPullConfig](#incrementalpullconfig): Configuration for scheduled incremental data pull
-* **SourceConnectorProperties**: [SourceConnectorProperties](#sourceconnectorproperties): Source connector details required to query a connector
+* **SourceConnectorProperties**: [SourceConnectorProperties](#sourceconnectorproperties) (Required): Source connector details required to query a connector
 
 ## IncrementalPullConfig
 ### Properties
@@ -606,37 +606,37 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 
 ## AmplitudeSourceProperties
 ### Properties
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## CustomConnectorSourceProperties
 ### Properties
 * **CustomProperties**: [CustomProperties](#customproperties)
-* **EntityName**: [EntityName](#entityname)
+* **EntityName**: [EntityName](#entityname) (Required)
 
 ## DatadogSourceProperties
 ### Properties
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## DynatraceSourceProperties
 ### Properties
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## GoogleAnalyticsSourceProperties
 ### Properties
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## InforNexusSourceProperties
 ### Properties
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## MarketoSourceProperties
 ### Properties
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## S3SourceProperties
 ### Properties
-* **BucketName**: [BucketName](#bucketname)
-* **BucketPrefix**: [BucketPrefix](#bucketprefix)
+* **BucketName**: [BucketName](#bucketname) (Required)
+* **BucketPrefix**: [BucketPrefix](#bucketprefix) (Required)
 * **S3InputFormatConfig**: [S3InputFormatConfig](#s3inputformatconfig)
 
 ## S3InputFormatConfig
@@ -647,7 +647,7 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 ### Properties
 * **EnableDynamicFieldUpdate**: [EnableDynamicFieldUpdate](#enabledynamicfieldupdate)
 * **IncludeDeletedRecords**: [IncludeDeletedRecords](#includedeletedrecords)
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## EnableDynamicFieldUpdate
 ### Properties
@@ -657,23 +657,23 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 
 ## SAPODataSourceProperties
 ### Properties
-* **ObjectPath**: [Object](#object)
+* **ObjectPath**: [Object](#object) (Required)
 
 ## ServiceNowSourceProperties
 ### Properties
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## SingularSourceProperties
 ### Properties
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## SlackSourceProperties
 ### Properties
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## TrendmicroSourceProperties
 ### Properties
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## VeevaSourceProperties
 ### Properties
@@ -681,7 +681,7 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 * **IncludeAllVersions**: [IncludeAllVersions](#includeallversions)
 * **IncludeRenditions**: [IncludeRenditions](#includerenditions)
 * **IncludeSourceFiles**: [IncludeSourceFiles](#includesourcefiles)
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## DocumentType
 ### Properties
@@ -697,20 +697,20 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 
 ## ZendeskSourceProperties
 ### Properties
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## Tag
 ### Properties
-* **Key**: string: A string used to identify this tag
-* **Value**: string: A string containing the value for the tag
+* **Key**: string (Required): A string used to identify this tag
+* **Value**: string (Required): A string containing the value for the tag
 
 ## Task
 ### Properties
 * **ConnectorOperator**: [ConnectorOperator](#connectoroperator): Operation to be performed on provided source fields
 * **DestinationField**: string: A field value on which source field should be validated
-* **SourceFields**: string[]: Source fields on which particular task will be applied
+* **SourceFields**: string[] (Required): Source fields on which particular task will be applied
 * **TaskProperties**: [TaskPropertiesObject](#taskpropertiesobject)[]: A Map used to store task related info
-* **TaskType**: [TaskType](#tasktype): Type of task
+* **TaskType**: [TaskType](#tasktype) (Required): Type of task
 
 ## ConnectorOperator
 ### Properties
@@ -781,8 +781,8 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 
 ## TaskPropertiesObject
 ### Properties
-* **Key**: [OperatorPropertiesKeys](#operatorpropertieskeys)
-* **Value**: string
+* **Key**: [OperatorPropertiesKeys](#operatorpropertieskeys) (Required)
+* **Value**: string (Required)
 
 ## OperatorPropertiesKeys
 ### Properties
@@ -793,7 +793,7 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 ## TriggerConfig
 ### Properties
 * **TriggerProperties**: [ScheduledTriggerProperties](#scheduledtriggerproperties): Details required based on the type of trigger
-* **TriggerType**: [TriggerType](#triggertype): Trigger type of the flow
+* **TriggerType**: [TriggerType](#triggertype) (Required): Trigger type of the flow
 
 ## ScheduledTriggerProperties
 ### Properties
@@ -801,7 +801,7 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 * **FirstExecutionFrom**: int
 * **FlowErrorDeactivationThreshold**: int
 * **ScheduleEndTime**: int
-* **ScheduleExpression**: string
+* **ScheduleExpression**: string (Required)
 * **ScheduleOffset**: int
 * **ScheduleStartTime**: int
 * **TimeZone**: string

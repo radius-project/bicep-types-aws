@@ -4,13 +4,13 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Route53/CidrCollectionProperties](#awsroute53cidrcollectionproperties): properties of the resource
+* **properties**: [AWS.Route53/CidrCollectionProperties](#awsroute53cidrcollectionproperties) (Required): properties of the resource
 
 ## Resource AWS.Route53/HealthCheck@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Route53/HealthCheckProperties](#awsroute53healthcheckproperties): properties of the resource
+* **properties**: [AWS.Route53/HealthCheckProperties](#awsroute53healthcheckproperties) (Required): properties of the resource
 
 ## Resource AWS.Route53/HostedZone@default
 * **Valid Scope(s)**: Unknown
@@ -22,23 +22,23 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Route53/KeySigningKeyProperties](#awsroute53keysigningkeyproperties): properties of the resource
+* **properties**: [AWS.Route53/KeySigningKeyProperties](#awsroute53keysigningkeyproperties) (Required): properties of the resource
 
 ## AWS.Route53/CidrCollectionProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon resource name (ARN) to uniquely identify the AWS resource.
 * **Id**: string (ReadOnly): UUID of the CIDR collection.
 * **Locations**: [Location](#location)[]: A complex type that contains information about the list of CIDR locations.
-* **Name**: string: A unique name for the CIDR collection.
+* **Name**: string (Required): A unique name for the CIDR collection.
 
 ## Location
 ### Properties
-* **CidrList**: string[]: A list of CIDR blocks.
-* **LocationName**: string: The name of the location that is associated with the CIDR collection.
+* **CidrList**: string[] (Required): A list of CIDR blocks.
+* **LocationName**: string (Required): The name of the location that is associated with the CIDR collection.
 
 ## AWS.Route53/HealthCheckProperties
 ### Properties
-* **HealthCheckConfig**: [HealthCheck_HealthCheckConfig](#healthcheckhealthcheckconfig): A complex type that contains information about the health check.
+* **HealthCheckConfig**: [HealthCheck_HealthCheckConfig](#healthcheckhealthcheckconfig) (Required): A complex type that contains information about the health check.
 * **HealthCheckId**: string (ReadOnly)
 * **HealthCheckTags**: [HealthCheckTag](#healthchecktag)[]: An array of key-value pairs to apply to this resource.
 
@@ -60,17 +60,17 @@
 * **ResourcePath**: string
 * **RoutingControlArn**: string
 * **SearchString**: string
-* **Type**: string
+* **Type**: string (Required)
 
 ## AlarmIdentifier
 ### Properties
-* **Name**: string: The name of the CloudWatch alarm that you want Amazon Route 53 health checkers to use to determine whether this health check is healthy.
-* **Region**: string: For the CloudWatch alarm that you want Route 53 health checkers to use to determine whether this health check is healthy, the region that the alarm was created in.
+* **Name**: string (Required): The name of the CloudWatch alarm that you want Amazon Route 53 health checkers to use to determine whether this health check is healthy.
+* **Region**: string (Required): For the CloudWatch alarm that you want Route 53 health checkers to use to determine whether this health check is healthy, the region that the alarm was created in.
 
 ## HealthCheckTag
 ### Properties
-* **Key**: string: The key name of the tag.
-* **Value**: string: The value for the tag.
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## AWS.Route53/HostedZoneProperties
 ### Properties
@@ -92,22 +92,22 @@ If you're creating a public hosted zone, this is the name you have registered wi
 
 ## HostedZoneTag
 ### Properties
-* **Key**: string: The key name of the tag.
-* **Value**: string: The value for the tag.
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## QueryLoggingConfig
 ### Properties
-* **CloudWatchLogsLogGroupArn**: string: The Amazon Resource Name (ARN) of the CloudWatch Logs log group that Amazon Route 53 is publishing logs to.
+* **CloudWatchLogsLogGroupArn**: string (Required): The Amazon Resource Name (ARN) of the CloudWatch Logs log group that Amazon Route 53 is publishing logs to.
 
 ## VPC
 ### Properties
-* **VPCId**: string: The ID of an Amazon VPC.
-* **VPCRegion**: string: The region that an Amazon VPC was created in. See https://docs.aws.amazon.com/general/latest/gr/rande.html for a list of up to date regions.
+* **VPCId**: string (Required): The ID of an Amazon VPC.
+* **VPCRegion**: string (Required): The region that an Amazon VPC was created in. See https://docs.aws.amazon.com/general/latest/gr/rande.html for a list of up to date regions.
 
 ## AWS.Route53/KeySigningKeyProperties
 ### Properties
-* **HostedZoneId**: string: The unique string (ID) used to identify a hosted zone.
-* **KeyManagementServiceArn**: string: The Amazon resource name (ARN) for a customer managed key (CMK) in AWS Key Management Service (KMS). The KeyManagementServiceArn must be unique for each key signing key (KSK) in a single hosted zone.
-* **Name**: string: An alphanumeric string used to identify a key signing key (KSK). Name must be unique for each key signing key in the same hosted zone.
-* **Status**: string: A string specifying the initial status of the key signing key (KSK). You can set the value to ACTIVE or INACTIVE.
+* **HostedZoneId**: string (Required): The unique string (ID) used to identify a hosted zone.
+* **KeyManagementServiceArn**: string (Required): The Amazon resource name (ARN) for a customer managed key (CMK) in AWS Key Management Service (KMS). The KeyManagementServiceArn must be unique for each key signing key (KSK) in a single hosted zone.
+* **Name**: string (Required): An alphanumeric string used to identify a key signing key (KSK). Name must be unique for each key signing key in the same hosted zone.
+* **Status**: string (Required): A string specifying the initial status of the key signing key (KSK). You can set the value to ACTIVE or INACTIVE.
 

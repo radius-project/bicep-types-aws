@@ -4,31 +4,31 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.AmplifyUIBuilder/ComponentProperties](#awsamplifyuibuildercomponentproperties): properties of the resource
+* **properties**: [AWS.AmplifyUIBuilder/ComponentProperties](#awsamplifyuibuildercomponentproperties) (Required): properties of the resource
 
 ## Resource AWS.AmplifyUIBuilder/Theme@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.AmplifyUIBuilder/ThemeProperties](#awsamplifyuibuilderthemeproperties): properties of the resource
+* **properties**: [AWS.AmplifyUIBuilder/ThemeProperties](#awsamplifyuibuilderthemeproperties) (Required): properties of the resource
 
 ## AWS.AmplifyUIBuilder/ComponentProperties
 ### Properties
 * **AppId**: string (ReadOnly)
-* **BindingProperties**: [ComponentBindingProperties](#componentbindingproperties)
+* **BindingProperties**: [ComponentBindingProperties](#componentbindingproperties) (Required)
 * **Children**: [ComponentChild](#componentchild)[]
 * **CollectionProperties**: [ComponentCollectionProperties](#componentcollectionproperties)
-* **ComponentType**: string
+* **ComponentType**: string (Required)
 * **EnvironmentName**: string (ReadOnly)
 * **Events**: [ComponentEvents](#componentevents)
 * **Id**: string (ReadOnly)
-* **Name**: string
-* **Overrides**: [ComponentOverrides](#componentoverrides)
-* **Properties**: [ComponentProperties](#componentproperties)
+* **Name**: string (Required)
+* **Overrides**: [ComponentOverrides](#componentoverrides) (Required)
+* **Properties**: [ComponentProperties](#componentproperties) (Required)
 * **SchemaVersion**: string
 * **SourceId**: string
 * **Tags**: [Tags](#tags)
-* **Variants**: [ComponentVariant](#componentvariant)[]
+* **Variants**: [ComponentVariant](#componentvariant)[] (Required)
 
 ## ComponentBindingProperties
 ### Properties
@@ -36,10 +36,10 @@
 ## ComponentChild
 ### Properties
 * **Children**: [ComponentChild](#componentchild)[]
-* **ComponentType**: string
+* **ComponentType**: string (Required)
 * **Events**: [ComponentEvents](#componentevents)
-* **Name**: string
-* **Properties**: [ComponentProperties](#componentproperties)
+* **Name**: string (Required)
+* **Properties**: [ComponentProperties](#componentproperties) (Required)
 
 ## ComponentEvents
 ### Properties
@@ -71,10 +71,10 @@
 * **EnvironmentName**: string (ReadOnly)
 * **Id**: string (ReadOnly)
 * **ModifiedAt**: string (ReadOnly)
-* **Name**: string
+* **Name**: string (Required)
 * **Overrides**: [ThemeValues](#themevalues)[]
 * **Tags**: [Tags](#tags)
-* **Values**: [ThemeValues](#themevalues)[]
+* **Values**: [ThemeValues](#themevalues)[] (Required)
 
 ## ThemeValues
 ### Properties

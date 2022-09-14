@@ -4,24 +4,24 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.RefactorSpaces/RouteProperties](#awsrefactorspacesrouteproperties): properties of the resource
+* **properties**: [AWS.RefactorSpaces/RouteProperties](#awsrefactorspacesrouteproperties) (Required): properties of the resource
 
 ## AWS.RefactorSpaces/RouteProperties
 ### Properties
-* **ApplicationIdentifier**: string
+* **ApplicationIdentifier**: string (Required)
 * **Arn**: string (ReadOnly)
 * **DefaultRoute**: [DefaultRouteInput](#defaultrouteinput) (WriteOnly)
-* **EnvironmentIdentifier**: string
+* **EnvironmentIdentifier**: string (Required)
 * **PathResourceToId**: string (ReadOnly)
 * **RouteIdentifier**: string (ReadOnly)
 * **RouteType**: [RouteType](#routetype) (WriteOnly)
-* **ServiceIdentifier**: string (WriteOnly)
+* **ServiceIdentifier**: string (Required, WriteOnly)
 * **Tags**: [Tag](#tag)[]: Metadata that you can assign to help organize the frameworks that you create. Each tag is a key-value pair.
 * **UriPathRoute**: [UriPathRouteInput](#uripathrouteinput) (WriteOnly)
 
 ## DefaultRouteInput
 ### Properties
-* **ActivationState**: [RouteActivationState](#routeactivationstate)
+* **ActivationState**: [RouteActivationState](#routeactivationstate) (Required)
 
 ## RouteActivationState
 ### Properties
@@ -31,12 +31,12 @@
 
 ## Tag
 ### Properties
-* **Key**: string: A string used to identify this tag
-* **Value**: string: A string containing the value for the tag
+* **Key**: string (Required): A string used to identify this tag
+* **Value**: string (Required): A string containing the value for the tag
 
 ## UriPathRouteInput
 ### Properties
-* **ActivationState**: [RouteActivationState](#routeactivationstate)
+* **ActivationState**: [RouteActivationState](#routeactivationstate) (Required)
 * **IncludeChildPaths**: bool
 * **Methods**: [Method](#method)[]
 * **SourcePath**: string

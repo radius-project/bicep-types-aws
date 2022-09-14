@@ -29,11 +29,11 @@ If you don't specify a name, AWS CloudFormation generates a unique physical ID a
 
 ## Subscription
 ### Properties
-* **Endpoint**: string
-* **Protocol**: string
+* **Endpoint**: string (Required)
+* **Protocol**: string (Required)
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, `_`, `.`, `/`, `=`, `+`, and `-`.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 characters in length.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, `_`, `.`, `/`, `=`, `+`, and `-`.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 characters in length.
 

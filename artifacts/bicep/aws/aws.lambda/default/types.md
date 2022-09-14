@@ -4,29 +4,29 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Lambda/CodeSigningConfigProperties](#awslambdacodesigningconfigproperties): properties of the resource
+* **properties**: [AWS.Lambda/CodeSigningConfigProperties](#awslambdacodesigningconfigproperties) (Required): properties of the resource
 
 ## Resource AWS.Lambda/EventSourceMapping@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Lambda/EventSourceMappingProperties](#awslambdaeventsourcemappingproperties): properties of the resource
+* **properties**: [AWS.Lambda/EventSourceMappingProperties](#awslambdaeventsourcemappingproperties) (Required): properties of the resource
 
 ## Resource AWS.Lambda/Function@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Lambda/FunctionProperties](#awslambdafunctionproperties): properties of the resource
+* **properties**: [AWS.Lambda/FunctionProperties](#awslambdafunctionproperties) (Required): properties of the resource
 
 ## Resource AWS.Lambda/Url@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Lambda/UrlProperties](#awslambdaurlproperties): properties of the resource
+* **properties**: [AWS.Lambda/UrlProperties](#awslambdaurlproperties) (Required): properties of the resource
 
 ## AWS.Lambda/CodeSigningConfigProperties
 ### Properties
-* **AllowedPublishers**: [AllowedPublishers](#allowedpublishers): When the CodeSigningConfig is later on attached to a function, the function code will be expected to be signed by profiles from this list
+* **AllowedPublishers**: [AllowedPublishers](#allowedpublishers) (Required): When the CodeSigningConfig is later on attached to a function, the function code will be expected to be signed by profiles from this list
 * **CodeSigningConfigArn**: string (ReadOnly): A unique Arn for CodeSigningConfig resource
 * **CodeSigningConfigId**: string (ReadOnly): A unique identifier for CodeSigningConfig resource
 * **CodeSigningPolicies**: [CodeSigningPolicies](#codesigningpolicies): Policies to control how to act if a signature is invalid
@@ -34,11 +34,11 @@
 
 ## AllowedPublishers
 ### Properties
-* **SigningProfileVersionArns**: string[]: List of Signing profile version Arns
+* **SigningProfileVersionArns**: string[] (Required): List of Signing profile version Arns
 
 ## CodeSigningPolicies
 ### Properties
-* **UntrustedArtifactOnDeployment**: string: Indicates how Lambda operations involve updating the code artifact will operate. Default to Warn if not provided
+* **UntrustedArtifactOnDeployment**: string (Required): Indicates how Lambda operations involve updating the code artifact will operate. Default to Warn if not provided
 
 ## AWS.Lambda/EventSourceMappingProperties
 ### Properties
@@ -49,7 +49,7 @@
 * **Enabled**: bool: Disables the event source mapping to pause polling and invocation.
 * **EventSourceArn**: string: The Amazon Resource Name (ARN) of the event source.
 * **FilterCriteria**: [FilterCriteria](#filtercriteria): The filter criteria to control event filtering.
-* **FunctionName**: string: The name of the Lambda function.
+* **FunctionName**: string (Required): The name of the Lambda function.
 * **FunctionResponseTypes**: string[]: (Streams) A list of response types supported by the function.
 * **Id**: string (ReadOnly): Event Source Mapping Identifier UUID.
 * **MaximumBatchingWindowInSeconds**: int: (Streams) The maximum amount of time to gather records before invoking the function, in seconds.
@@ -109,7 +109,7 @@
 ### Properties
 * **Architectures**: string[]
 * **Arn**: string (ReadOnly): Unique identifier for function resources
-* **Code**: [Code](#code) (WriteOnly): The code for the function.
+* **Code**: [Code](#code) (Required, WriteOnly): The code for the function.
 * **CodeSigningConfigArn**: string: A unique Arn for CodeSigningConfig resource
 * **DeadLetterConfig**: [DeadLetterConfig](#deadletterconfig): A dead letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing.
 * **Description**: string: A description of the function.
@@ -124,7 +124,7 @@
 * **MemorySize**: int: The amount of memory that your function has access to. Increasing the function's memory also increases its CPU allocation. The default value is 128 MB. The value must be a multiple of 64 MB.
 * **PackageType**: string: PackageType.
 * **ReservedConcurrentExecutions**: int: The number of simultaneous executions to reserve for the function.
-* **Role**: string: The Amazon Resource Name (ARN) of the function's execution role.
+* **Role**: string (Required): The Amazon Resource Name (ARN) of the function's execution role.
 * **Runtime**: string: The identifier of the function's runtime.
 * **Tags**: [Tag](#tag)[]: A list of tags to apply to the function.
 * **Timeout**: int: The amount of time that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds.
@@ -152,12 +152,12 @@
 
 ## EphemeralStorage
 ### Properties
-* **Size**: int: The amount of ephemeral storage that your function has access to.
+* **Size**: int (Required): The amount of ephemeral storage that your function has access to.
 
 ## FileSystemConfig
 ### Properties
-* **Arn**: string: The Amazon Resource Name (ARN) of the Amazon EFS access point that provides access to the file system.
-* **LocalMountPath**: string: The path where the function can access the file system, starting with /mnt/.
+* **Arn**: string (Required): The Amazon Resource Name (ARN) of the Amazon EFS access point that provides access to the file system.
+* **LocalMountPath**: string (Required): The path where the function can access the file system, starting with /mnt/.
 
 ## ImageConfig
 ### Properties
@@ -167,7 +167,7 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## TracingConfig
@@ -181,13 +181,13 @@
 
 ## AWS.Lambda/UrlProperties
 ### Properties
-* **AuthType**: string: Can be either AWS_IAM if the requests are authorized via IAM, or NONE if no authorization is configured on the Function URL.
+* **AuthType**: string (Required): Can be either AWS_IAM if the requests are authorized via IAM, or NONE if no authorization is configured on the Function URL.
 * **Cors**: [Cors](#cors)
 * **FunctionArn**: string (ReadOnly): The full Amazon Resource Name (ARN) of the function associated with the Function URL.
 * **FunctionUrl**: string (ReadOnly): The generated url for this resource.
 * **InvokeMode**: string: The invocation mode for the function?s URL. Set to BUFFERED if you want to buffer responses before returning them to the client. Set to RESPONSE_STREAM if you want to stream responses, allowing faster time to first byte and larger response payload sizes. If not set, defaults to BUFFERED.
 * **Qualifier**: string (WriteOnly): The alias qualifier for the target function. If TargetFunctionArn is unqualified then Qualifier must be passed.
-* **TargetFunctionArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the function associated with the Function URL.
+* **TargetFunctionArn**: string (Required, WriteOnly): The Amazon Resource Name (ARN) of the function associated with the Function URL.
 
 ## Cors
 ### Properties

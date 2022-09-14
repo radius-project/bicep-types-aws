@@ -10,19 +10,19 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IVS/PlaybackKeyPairProperties](#awsivsplaybackkeypairproperties): properties of the resource
+* **properties**: [AWS.IVS/PlaybackKeyPairProperties](#awsivsplaybackkeypairproperties) (Required): properties of the resource
 
 ## Resource AWS.IVS/RecordingConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IVS/RecordingConfigurationProperties](#awsivsrecordingconfigurationproperties): properties of the resource
+* **properties**: [AWS.IVS/RecordingConfigurationProperties](#awsivsrecordingconfigurationproperties) (Required): properties of the resource
 
 ## Resource AWS.IVS/StreamKey@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IVS/StreamKeyProperties](#awsivsstreamkeyproperties): properties of the resource
+* **properties**: [AWS.IVS/StreamKeyProperties](#awsivsstreamkeyproperties) (Required): properties of the resource
 
 ## AWS.IVS/ChannelProperties
 ### Properties
@@ -38,26 +38,26 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.IVS/PlaybackKeyPairProperties
 ### Properties
 * **Arn**: string (ReadOnly): Key-pair identifier.
 * **Fingerprint**: string (ReadOnly): Key-pair identifier.
 * **Name**: string: An arbitrary string (a nickname) assigned to a playback key pair that helps the customer identify that resource. The value does not need to be unique.
-* **PublicKeyMaterial**: string: The public portion of a customer-generated key pair.
+* **PublicKeyMaterial**: string (Required): The public portion of a customer-generated key pair.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.IVS/RecordingConfigurationProperties
 ### Properties
 * **Arn**: string (ReadOnly): Recording Configuration ARN is automatically generated on creation and assigned as the unique identifier.
-* **DestinationConfiguration**: [DestinationConfiguration](#destinationconfiguration)
+* **DestinationConfiguration**: [DestinationConfiguration](#destinationconfiguration) (Required)
 * **Name**: string: Recording Configuration Name.
 * **State**: string (ReadOnly): Recording Configuration State.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
@@ -65,31 +65,31 @@
 
 ## DestinationConfiguration
 ### Properties
-* **S3**: [S3DestinationConfiguration](#s3destinationconfiguration)
+* **S3**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
 
 ## S3DestinationConfiguration
 ### Properties
-* **BucketName**: string
+* **BucketName**: string (Required)
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## ThumbnailConfiguration
 ### Properties
-* **RecordingMode**: string: Thumbnail Recording Mode, which determines whether thumbnails are recorded at an interval or are disabled.
+* **RecordingMode**: string (Required): Thumbnail Recording Mode, which determines whether thumbnails are recorded at an interval or are disabled.
 * **TargetIntervalSeconds**: int: Thumbnail recording Target Interval Seconds defines the interval at which thumbnails are recorded. This field is required if RecordingMode is INTERVAL.
 
 ## AWS.IVS/StreamKeyProperties
 ### Properties
 * **Arn**: string (ReadOnly): Stream Key ARN is automatically generated on creation and assigned as the unique identifier.
-* **ChannelArn**: string: Channel ARN for the stream.
+* **ChannelArn**: string (Required): Channel ARN for the stream.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
 * **Value**: string (ReadOnly): Stream-key value.
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

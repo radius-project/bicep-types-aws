@@ -4,37 +4,37 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/AccountAuditConfigurationProperties](#awsiotaccountauditconfigurationproperties): properties of the resource
+* **properties**: [AWS.IoT/AccountAuditConfigurationProperties](#awsiotaccountauditconfigurationproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/Authorizer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/AuthorizerProperties](#awsiotauthorizerproperties): properties of the resource
+* **properties**: [AWS.IoT/AuthorizerProperties](#awsiotauthorizerproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/CACertificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/CACertificateProperties](#awsiotcacertificateproperties): properties of the resource
+* **properties**: [AWS.IoT/CACertificateProperties](#awsiotcacertificateproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/Certificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/CertificateProperties](#awsiotcertificateproperties): properties of the resource
+* **properties**: [AWS.IoT/CertificateProperties](#awsiotcertificateproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/CustomMetric@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/CustomMetricProperties](#awsiotcustommetricproperties): properties of the resource
+* **properties**: [AWS.IoT/CustomMetricProperties](#awsiotcustommetricproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/Dimension@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/DimensionProperties](#awsiotdimensionproperties): properties of the resource
+* **properties**: [AWS.IoT/DimensionProperties](#awsiotdimensionproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/DomainConfiguration@default
 * **Valid Scope(s)**: Unknown
@@ -46,49 +46,49 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/FleetMetricProperties](#awsiotfleetmetricproperties): properties of the resource
+* **properties**: [AWS.IoT/FleetMetricProperties](#awsiotfleetmetricproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/Logging@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/LoggingProperties](#awsiotloggingproperties): properties of the resource
+* **properties**: [AWS.IoT/LoggingProperties](#awsiotloggingproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/MitigationAction@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/MitigationActionProperties](#awsiotmitigationactionproperties): properties of the resource
+* **properties**: [AWS.IoT/MitigationActionProperties](#awsiotmitigationactionproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/Policy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/PolicyProperties](#awsiotpolicyproperties): properties of the resource
+* **properties**: [AWS.IoT/PolicyProperties](#awsiotpolicyproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/ProvisioningTemplate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/ProvisioningTemplateProperties](#awsiotprovisioningtemplateproperties): properties of the resource
+* **properties**: [AWS.IoT/ProvisioningTemplateProperties](#awsiotprovisioningtemplateproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/ResourceSpecificLogging@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/ResourceSpecificLoggingProperties](#awsiotresourcespecificloggingproperties): properties of the resource
+* **properties**: [AWS.IoT/ResourceSpecificLoggingProperties](#awsiotresourcespecificloggingproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/RoleAlias@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/RoleAliasProperties](#awsiotrolealiasproperties): properties of the resource
+* **properties**: [AWS.IoT/RoleAliasProperties](#awsiotrolealiasproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/ScheduledAudit@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/ScheduledAuditProperties](#awsiotscheduledauditproperties): properties of the resource
+* **properties**: [AWS.IoT/ScheduledAuditProperties](#awsiotscheduledauditproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/SecurityProfile@default
 * **Valid Scope(s)**: Unknown
@@ -100,7 +100,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoT/TopicRuleProperties](#awsiottopicruleproperties): properties of the resource
+* **properties**: [AWS.IoT/TopicRuleProperties](#awsiottopicruleproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/TopicRuleDestination@default
 * **Valid Scope(s)**: Unknown
@@ -110,10 +110,10 @@
 
 ## AWS.IoT/AccountAuditConfigurationProperties
 ### Properties
-* **AccountId**: string: Your 12-digit account ID (used as the primary identifier for the CloudFormation resource).
-* **AuditCheckConfigurations**: [AuditCheckConfigurations](#auditcheckconfigurations)
+* **AccountId**: string (Required): Your 12-digit account ID (used as the primary identifier for the CloudFormation resource).
+* **AuditCheckConfigurations**: [AuditCheckConfigurations](#auditcheckconfigurations) (Required)
 * **AuditNotificationTargetConfigurations**: [AuditNotificationTargetConfigurations](#auditnotificationtargetconfigurations)
-* **RoleArn**: string: The ARN of the role that grants permission to AWS IoT to access information about your devices, policies, certificates and other items as required when performing an audit.
+* **RoleArn**: string (Required): The ARN of the role that grants permission to AWS IoT to access information about your devices, policies, certificates and other items as required when performing an audit.
 
 ## AuditCheckConfigurations
 ### Properties
@@ -149,7 +149,7 @@
 ## AWS.IoT/AuthorizerProperties
 ### Properties
 * **Arn**: string (ReadOnly)
-* **AuthorizerFunctionArn**: string
+* **AuthorizerFunctionArn**: string (Required)
 * **AuthorizerName**: string
 * **EnableCachingForHttp**: bool
 * **SigningDisabled**: bool
@@ -160,8 +160,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Authorizer_TokenSigningPublicKeys
 ### Properties
@@ -170,11 +170,11 @@
 ### Properties
 * **Arn**: string (ReadOnly)
 * **AutoRegistrationStatus**: string
-* **CACertificatePem**: string
+* **CACertificatePem**: string (Required)
 * **CertificateMode**: string
 * **Id**: string (ReadOnly)
 * **RegistrationConfig**: [RegistrationConfig](#registrationconfig)
-* **Status**: string
+* **Status**: string (Required)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **VerificationCertificatePem**: string (WriteOnly): The private key verification certificate.
 
@@ -186,8 +186,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.IoT/CertificateProperties
 ### Properties
@@ -197,33 +197,33 @@
 * **CertificatePem**: string
 * **CertificateSigningRequest**: string (WriteOnly)
 * **Id**: string (ReadOnly)
-* **Status**: string
+* **Status**: string (Required)
 
 ## AWS.IoT/CustomMetricProperties
 ### Properties
 * **DisplayName**: string: Field represents a friendly name in the console for the custom metric; it doesn't have to be unique. Don't use this name as the metric identifier in the device metric report. Can be updated once defined.
 * **MetricArn**: string (ReadOnly): The Amazon Resource Number (ARN) of the custom metric.
 * **MetricName**: string: The name of the custom metric. This will be used in the metric report submitted from the device/thing. Shouldn't begin with aws: . Cannot be updated once defined.
-* **MetricType**: string: The type of the custom metric. Types include string-list, ip-address-list, number-list, and number.
+* **MetricType**: string (Required): The type of the custom metric. Types include string-list, ip-address-list, number-list, and number.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## Tag
 ### Properties
-* **Key**: string: The tag's key.
-* **Value**: string: The tag's value.
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
 
 ## AWS.IoT/DimensionProperties
 ### Properties
 * **Arn**: string (ReadOnly): The ARN (Amazon resource name) of the created dimension.
 * **Name**: string: A unique identifier for the dimension.
-* **StringValues**: string[]: Specifies the value or list of values for the dimension.
+* **StringValues**: string[] (Required): Specifies the value or list of values for the dimension.
 * **Tags**: [Tag](#tag)[]: Metadata that can be used to manage the dimension.
-* **Type**: string: Specifies the type of the dimension.
+* **Type**: string (Required): Specifies the type of the dimension.
 
 ## Tag
 ### Properties
-* **Key**: string: The tag's key.
-* **Value**: string: The tag's value.
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
 
 ## AWS.IoT/DomainConfigurationProperties
 ### Properties
@@ -252,8 +252,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.IoT/FleetMetricProperties
 ### Properties
@@ -264,7 +264,7 @@
 * **IndexName**: string: The index name of a fleet metric
 * **LastModifiedDate**: int (ReadOnly): The last modified date of a fleet metric
 * **MetricArn**: string (ReadOnly): The Amazon Resource Number (ARN) of a fleet metric metric
-* **MetricName**: string: The name of the fleet metric
+* **MetricName**: string (Required): The name of the fleet metric
 * **Period**: int: The period of metric emission in seconds
 * **QueryString**: string: The Fleet Indexing query used by a fleet metric
 * **QueryVersion**: string: The version of a Fleet Indexing query used by a fleet metric
@@ -274,27 +274,27 @@
 
 ## AggregationType
 ### Properties
-* **Name**: string: Fleet Indexing aggregation type names such as Statistics, Percentiles and Cardinality
-* **Values**: string[]: Fleet Indexing aggregation type values
+* **Name**: string (Required): Fleet Indexing aggregation type names such as Statistics, Percentiles and Cardinality
+* **Values**: string[] (Required): Fleet Indexing aggregation type values
 
 ## Tag
 ### Properties
-* **Key**: string: The tag's key
-* **Value**: string: The tag's value
+* **Key**: string (Required): The tag's key
+* **Value**: string (Required): The tag's value
 
 ## AWS.IoT/LoggingProperties
 ### Properties
-* **AccountId**: string: Your 12-digit account ID (used as the primary identifier for the CloudFormation resource).
-* **DefaultLogLevel**: string: The log level to use. Valid values are: ERROR, WARN, INFO, DEBUG, or DISABLED.
-* **RoleArn**: string: The ARN of the role that allows IoT to write to Cloudwatch logs.
+* **AccountId**: string (Required): Your 12-digit account ID (used as the primary identifier for the CloudFormation resource).
+* **DefaultLogLevel**: string (Required): The log level to use. Valid values are: ERROR, WARN, INFO, DEBUG, or DISABLED.
+* **RoleArn**: string (Required): The ARN of the role that allows IoT to write to Cloudwatch logs.
 
 ## AWS.IoT/MitigationActionProperties
 ### Properties
 * **ActionName**: string: A unique identifier for the mitigation action.
-* **ActionParams**: [ActionParams](#actionparams)
+* **ActionParams**: [ActionParams](#actionparams) (Required)
 * **MitigationActionArn**: string (ReadOnly)
 * **MitigationActionId**: string (ReadOnly)
-* **RoleArn**: string
+* **RoleArn**: string (Required)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## ActionParams
@@ -309,39 +309,39 @@
 ## AddThingsToThingGroupParams
 ### Properties
 * **OverrideDynamicGroups**: bool: Specifies if this mitigation action can move the things that triggered the mitigation action out of one or more dynamic thing groups.
-* **ThingGroupNames**: string[]: The list of groups to which you want to add the things that triggered the mitigation action.
+* **ThingGroupNames**: string[] (Required): The list of groups to which you want to add the things that triggered the mitigation action.
 
 ## EnableIoTLoggingParams
 ### Properties
-* **LogLevel**: string:  Specifies which types of information are logged.
-* **RoleArnForLogging**: string:  The ARN of the IAM role used for logging.
+* **LogLevel**: string (Required):  Specifies which types of information are logged.
+* **RoleArnForLogging**: string (Required):  The ARN of the IAM role used for logging.
 
 ## PublishFindingToSnsParams
 ### Properties
-* **TopicArn**: string: The ARN of the topic to which you want to publish the findings.
+* **TopicArn**: string (Required): The ARN of the topic to which you want to publish the findings.
 
 ## ReplaceDefaultPolicyVersionParams
 ### Properties
-* **TemplateName**: string
+* **TemplateName**: string (Required)
 
 ## UpdateCACertificateParams
 ### Properties
-* **Action**: string
+* **Action**: string (Required)
 
 ## UpdateDeviceCertificateParams
 ### Properties
-* **Action**: string
+* **Action**: string (Required)
 
 ## Tag
 ### Properties
-* **Key**: string: The tag's key.
-* **Value**: string: The tag's value.
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
 
 ## AWS.IoT/PolicyProperties
 ### Properties
 * **Arn**: string (ReadOnly)
 * **Id**: string (ReadOnly)
-* **PolicyDocument**: [Policy_PolicyDocument](#policypolicydocument)
+* **PolicyDocument**: [Policy_PolicyDocument](#policypolicydocument) (Required)
 * **PolicyName**: string
 
 ## Policy_PolicyDocument
@@ -352,10 +352,10 @@
 * **Description**: string
 * **Enabled**: bool
 * **PreProvisioningHook**: [ProvisioningHook](#provisioninghook)
-* **ProvisioningRoleArn**: string
+* **ProvisioningRoleArn**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **TemplateArn**: string (ReadOnly)
-* **TemplateBody**: string
+* **TemplateBody**: string (Required)
 * **TemplateName**: string
 * **TemplateType**: string
 
@@ -366,43 +366,43 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.IoT/ResourceSpecificLoggingProperties
 ### Properties
-* **LogLevel**: string: The log level for a specific target. Valid values are: ERROR, WARN, INFO, DEBUG, or DISABLED.
+* **LogLevel**: string (Required): The log level for a specific target. Valid values are: ERROR, WARN, INFO, DEBUG, or DISABLED.
 * **TargetId**: string (ReadOnly): Unique Id for a Target (TargetType:TargetName), this will be internally built to serve as primary identifier for a log target.
-* **TargetName**: string: The target name.
-* **TargetType**: string: The target type. Value must be THING_GROUP, CLIENT_ID, SOURCE_IP, PRINCIPAL_ID.
+* **TargetName**: string (Required): The target name.
+* **TargetType**: string (Required): The target type. Value must be THING_GROUP, CLIENT_ID, SOURCE_IP, PRINCIPAL_ID.
 
 ## AWS.IoT/RoleAliasProperties
 ### Properties
 * **CredentialDurationSeconds**: int
 * **RoleAlias**: string
 * **RoleAliasArn**: string (ReadOnly)
-* **RoleArn**: string
+* **RoleArn**: string (Required)
 * **Tags**: [Tag](#tag)[]
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.IoT/ScheduledAuditProperties
 ### Properties
 * **DayOfMonth**: string: The day of the month on which the scheduled audit takes place. Can be 1 through 31 or LAST. This field is required if the frequency parameter is set to MONTHLY.
 * **DayOfWeek**: string: The day of the week on which the scheduled audit takes place. Can be one of SUN, MON, TUE,WED, THU, FRI, or SAT. This field is required if the frequency parameter is set to WEEKLY or BIWEEKLY.
-* **Frequency**: string: How often the scheduled audit takes place. Can be one of DAILY, WEEKLY, BIWEEKLY, or MONTHLY.
+* **Frequency**: string (Required): How often the scheduled audit takes place. Can be one of DAILY, WEEKLY, BIWEEKLY, or MONTHLY.
 * **ScheduledAuditArn**: string (ReadOnly): The ARN (Amazon resource name) of the scheduled audit.
 * **ScheduledAuditName**: string: The name you want to give to the scheduled audit.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-* **TargetCheckNames**: string[]: Which checks are performed during the scheduled audit. Checks must be enabled for your account.
+* **TargetCheckNames**: string[] (Required): Which checks are performed during the scheduled audit. Checks must be enabled for your account.
 
 ## Tag
 ### Properties
-* **Key**: string: The tag's key.
-* **Value**: string: The tag's value.
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
 
 ## AWS.IoT/SecurityProfileProperties
 ### Properties
@@ -417,12 +417,12 @@
 
 ## MetricToRetain
 ### Properties
-* **Metric**: string: What is measured by the behavior.
+* **Metric**: string (Required): What is measured by the behavior.
 * **MetricDimension**: [MetricDimension](#metricdimension)
 
 ## MetricDimension
 ### Properties
-* **DimensionName**: string: A unique identifier for the dimension.
+* **DimensionName**: string (Required): A unique identifier for the dimension.
 * **Operator**: string: Defines how the dimensionValues of a dimension are interpreted.
 
 ## SecurityProfile_AlertTargets
@@ -433,7 +433,7 @@
 * **Criteria**: [BehaviorCriteria](#behaviorcriteria)
 * **Metric**: string: What is measured by the behavior.
 * **MetricDimension**: [MetricDimension](#metricdimension)
-* **Name**: string: The name for the behavior.
+* **Name**: string (Required): The name for the behavior.
 * **SuppressAlerts**: bool: Manage Detect alarm SNS notifications by setting behavior notification to on or suppressed. Detect will continue to performing device behavior evaluations. However, suppressed alarms wouldn't be forwarded for SNS notification.
 
 ## BehaviorCriteria
@@ -465,29 +465,29 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The tag's key.
-* **Value**: string: The tag's value.
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
 
 ## AWS.IoT/TopicRuleProperties
 ### Properties
 * **Arn**: string (ReadOnly)
 * **RuleName**: string
 * **Tags**: [Tag](#tag)[]
-* **TopicRulePayload**: [TopicRulePayload](#topicrulepayload)
+* **TopicRulePayload**: [TopicRulePayload](#topicrulepayload) (Required)
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## TopicRulePayload
 ### Properties
-* **Actions**: [Action](#action)[]
+* **Actions**: [Action](#action)[] (Required)
 * **AwsIotSqlVersion**: string
 * **Description**: string
 * **ErrorAction**: [Action](#action)
 * **RuleDisabled**: bool
-* **Sql**: string
+* **Sql**: string (Required)
 
 ## Action
 ### Properties
@@ -515,36 +515,36 @@
 
 ## CloudwatchAlarmAction
 ### Properties
-* **AlarmName**: string
-* **RoleArn**: string
-* **StateReason**: string
-* **StateValue**: string
+* **AlarmName**: string (Required)
+* **RoleArn**: string (Required)
+* **StateReason**: string (Required)
+* **StateValue**: string (Required)
 
 ## CloudwatchLogsAction
 ### Properties
-* **LogGroupName**: string
-* **RoleArn**: string
+* **LogGroupName**: string (Required)
+* **RoleArn**: string (Required)
 
 ## CloudwatchMetricAction
 ### Properties
-* **MetricName**: string
-* **MetricNamespace**: string
+* **MetricName**: string (Required)
+* **MetricNamespace**: string (Required)
 * **MetricTimestamp**: string
-* **MetricUnit**: string
-* **MetricValue**: string
-* **RoleArn**: string
+* **MetricUnit**: string (Required)
+* **MetricValue**: string (Required)
+* **RoleArn**: string (Required)
 
 ## DynamoDBAction
 ### Properties
-* **HashKeyField**: string
+* **HashKeyField**: string (Required)
 * **HashKeyType**: string
-* **HashKeyValue**: string
+* **HashKeyValue**: string (Required)
 * **PayloadField**: string
 * **RangeKeyField**: string
 * **RangeKeyType**: string
 * **RangeKeyValue**: string
-* **RoleArn**: string
-* **TableName**: string
+* **RoleArn**: string (Required)
+* **TableName**: string (Required)
 
 ## DynamoDBv2Action
 ### Properties
@@ -553,21 +553,21 @@
 
 ## PutItemInput
 ### Properties
-* **TableName**: string
+* **TableName**: string (Required)
 
 ## ElasticsearchAction
 ### Properties
-* **Endpoint**: string
-* **Id**: string
-* **Index**: string
-* **RoleArn**: string
-* **Type**: string
+* **Endpoint**: string (Required)
+* **Id**: string (Required)
+* **Index**: string (Required)
+* **RoleArn**: string (Required)
+* **Type**: string (Required)
 
 ## FirehoseAction
 ### Properties
 * **BatchMode**: bool
-* **DeliveryStreamName**: string
-* **RoleArn**: string
+* **DeliveryStreamName**: string (Required)
+* **RoleArn**: string (Required)
 * **Separator**: string
 
 ## HttpAction
@@ -575,7 +575,7 @@
 * **Auth**: [HttpAuthorization](#httpauthorization)
 * **ConfirmationUrl**: string
 * **Headers**: [HttpActionHeader](#httpactionheader)[]
-* **Url**: string
+* **Url**: string (Required)
 
 ## HttpAuthorization
 ### Properties
@@ -583,32 +583,32 @@
 
 ## SigV4Authorization
 ### Properties
-* **RoleArn**: string
-* **ServiceName**: string
-* **SigningRegion**: string
+* **RoleArn**: string (Required)
+* **ServiceName**: string (Required)
+* **SigningRegion**: string (Required)
 
 ## HttpActionHeader
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## IotAnalyticsAction
 ### Properties
 * **BatchMode**: bool
-* **ChannelName**: string
-* **RoleArn**: string
+* **ChannelName**: string (Required)
+* **RoleArn**: string (Required)
 
 ## IotEventsAction
 ### Properties
 * **BatchMode**: bool
-* **InputName**: string
+* **InputName**: string (Required)
 * **MessageId**: string
-* **RoleArn**: string
+* **RoleArn**: string (Required)
 
 ## IotSiteWiseAction
 ### Properties
-* **PutAssetPropertyValueEntries**: [PutAssetPropertyValueEntry](#putassetpropertyvalueentry)[]
-* **RoleArn**: string
+* **PutAssetPropertyValueEntries**: [PutAssetPropertyValueEntry](#putassetpropertyvalueentry)[] (Required)
+* **RoleArn**: string (Required)
 
 ## PutAssetPropertyValueEntry
 ### Properties
@@ -616,18 +616,18 @@
 * **EntryId**: string
 * **PropertyAlias**: string
 * **PropertyId**: string
-* **PropertyValues**: [AssetPropertyValue](#assetpropertyvalue)[]
+* **PropertyValues**: [AssetPropertyValue](#assetpropertyvalue)[] (Required)
 
 ## AssetPropertyValue
 ### Properties
 * **Quality**: string
-* **Timestamp**: [AssetPropertyTimestamp](#assetpropertytimestamp)
-* **Value**: [AssetPropertyVariant](#assetpropertyvariant)
+* **Timestamp**: [AssetPropertyTimestamp](#assetpropertytimestamp) (Required)
+* **Value**: [AssetPropertyVariant](#assetpropertyvariant) (Required)
 
 ## AssetPropertyTimestamp
 ### Properties
 * **OffsetInNanos**: string
-* **TimeInSeconds**: string
+* **TimeInSeconds**: string (Required)
 
 ## AssetPropertyVariant
 ### Properties
@@ -638,11 +638,11 @@
 
 ## KafkaAction
 ### Properties
-* **ClientProperties**: [TopicRule_ClientProperties](#topicruleclientproperties)
-* **DestinationArn**: string
+* **ClientProperties**: [TopicRule_ClientProperties](#topicruleclientproperties) (Required)
+* **DestinationArn**: string (Required)
 * **Key**: string
 * **Partition**: string
-* **Topic**: string
+* **Topic**: string (Required)
 
 ## TopicRule_ClientProperties
 ### Properties
@@ -650,8 +650,8 @@
 ## KinesisAction
 ### Properties
 * **PartitionKey**: string
-* **RoleArn**: string
-* **StreamName**: string
+* **RoleArn**: string (Required)
+* **StreamName**: string (Required)
 
 ## LambdaAction
 ### Properties
@@ -659,24 +659,24 @@
 
 ## OpenSearchAction
 ### Properties
-* **Endpoint**: string
-* **Id**: string
-* **Index**: string
-* **RoleArn**: string
-* **Type**: string
+* **Endpoint**: string (Required)
+* **Id**: string (Required)
+* **Index**: string (Required)
+* **RoleArn**: string (Required)
+* **Type**: string (Required)
 
 ## RepublishAction
 ### Properties
 * **Qos**: int
-* **RoleArn**: string
-* **Topic**: string
+* **RoleArn**: string (Required)
+* **Topic**: string (Required)
 
 ## S3Action
 ### Properties
-* **BucketName**: string
+* **BucketName**: string (Required)
 * **CannedAcl**: [CannedAccessControlList](#cannedaccesscontrollist)
-* **Key**: string
-* **RoleArn**: string
+* **Key**: string (Required)
+* **RoleArn**: string (Required)
 
 ## CannedAccessControlList
 ### Properties
@@ -684,27 +684,27 @@
 ## SnsAction
 ### Properties
 * **MessageFormat**: string
-* **RoleArn**: string
-* **TargetArn**: string
+* **RoleArn**: string (Required)
+* **TargetArn**: string (Required)
 
 ## SqsAction
 ### Properties
-* **QueueUrl**: string
-* **RoleArn**: string
+* **QueueUrl**: string (Required)
+* **RoleArn**: string (Required)
 * **UseBase64**: bool
 
 ## StepFunctionsAction
 ### Properties
 * **ExecutionNamePrefix**: string
-* **RoleArn**: string
-* **StateMachineName**: string
+* **RoleArn**: string (Required)
+* **StateMachineName**: string (Required)
 
 ## TimestreamAction
 ### Properties
-* **DatabaseName**: string
-* **Dimensions**: [TimestreamDimensionsList](#timestreamdimensionslist)
-* **RoleArn**: string
-* **TableName**: string
+* **DatabaseName**: string (Required)
+* **Dimensions**: [TimestreamDimensionsList](#timestreamdimensionslist) (Required)
+* **RoleArn**: string (Required)
+* **TableName**: string (Required)
 * **Timestamp**: [TimestreamTimestamp](#timestreamtimestamp)
 
 ## TimestreamDimensionsList
@@ -712,8 +712,8 @@
 
 ## TimestreamTimestamp
 ### Properties
-* **Unit**: string
-* **Value**: string
+* **Unit**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.IoT/TopicRuleDestinationProperties
 ### Properties

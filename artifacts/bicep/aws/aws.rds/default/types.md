@@ -10,7 +10,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.RDS/DBClusterParameterGroupProperties](#awsrdsdbclusterparametergroupproperties): properties of the resource
+* **properties**: [AWS.RDS/DBClusterParameterGroupProperties](#awsrdsdbclusterparametergroupproperties) (Required): properties of the resource
 
 ## Resource AWS.RDS/DBInstance@default
 * **Valid Scope(s)**: Unknown
@@ -22,37 +22,37 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.RDS/DBParameterGroupProperties](#awsrdsdbparametergroupproperties): properties of the resource
+* **properties**: [AWS.RDS/DBParameterGroupProperties](#awsrdsdbparametergroupproperties) (Required): properties of the resource
 
 ## Resource AWS.RDS/DBProxy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.RDS/DBProxyProperties](#awsrdsdbproxyproperties): properties of the resource
+* **properties**: [AWS.RDS/DBProxyProperties](#awsrdsdbproxyproperties) (Required): properties of the resource
 
 ## Resource AWS.RDS/DBProxyEndpoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.RDS/DBProxyEndpointProperties](#awsrdsdbproxyendpointproperties): properties of the resource
+* **properties**: [AWS.RDS/DBProxyEndpointProperties](#awsrdsdbproxyendpointproperties) (Required): properties of the resource
 
 ## Resource AWS.RDS/DBProxyTargetGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.RDS/DBProxyTargetGroupProperties](#awsrdsdbproxytargetgroupproperties): properties of the resource
+* **properties**: [AWS.RDS/DBProxyTargetGroupProperties](#awsrdsdbproxytargetgroupproperties) (Required): properties of the resource
 
 ## Resource AWS.RDS/DBSubnetGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.RDS/DBSubnetGroupProperties](#awsrdsdbsubnetgroupproperties): properties of the resource
+* **properties**: [AWS.RDS/DBSubnetGroupProperties](#awsrdsdbsubnetgroupproperties) (Required): properties of the resource
 
 ## Resource AWS.RDS/EventSubscription@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.RDS/EventSubscriptionProperties](#awsrdseventsubscriptionproperties): properties of the resource
+* **properties**: [AWS.RDS/EventSubscriptionProperties](#awsrdseventsubscriptionproperties) (Required): properties of the resource
 
 ## Resource AWS.RDS/GlobalCluster@default
 * **Valid Scope(s)**: Unknown
@@ -64,7 +64,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.RDS/OptionGroupProperties](#awsrdsoptiongroupproperties): properties of the resource
+* **properties**: [AWS.RDS/OptionGroupProperties](#awsrdsoptiongroupproperties) (Required): properties of the resource
 
 ## AWS.RDS/DBClusterProperties
 ### Properties
@@ -125,7 +125,7 @@ If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceI
 ## DBClusterRole
 ### Properties
 * **FeatureName**: string: The name of the feature associated with the AWS Identity and Access Management (IAM) role. For the list of supported feature names, see DBEngineVersion in the Amazon RDS API Reference.
-* **RoleArn**: string: The Amazon Resource Name (ARN) of the IAM role that is associated with the DB cluster.
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that is associated with the DB cluster.
 
 ## Endpoint
 ### Properties
@@ -151,15 +151,15 @@ The minimum capacity must be less than or equal to the maximum capacity.
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## AWS.RDS/DBClusterParameterGroupProperties
 ### Properties
 * **DBClusterParameterGroupName**: string (ReadOnly)
-* **Description**: string: A friendly description for this DB cluster parameter group.
-* **Family**: string: The DB cluster parameter group family name. A DB cluster parameter group can be associated with one and only one DB cluster parameter group family, and can be applied only to a DB cluster running a DB engine and engine version compatible with that DB cluster parameter group family.
-* **Parameters**: [DBClusterParameterGroup_Parameters](#dbclusterparametergroupparameters) (WriteOnly): An array of parameters to be modified. A maximum of 20 parameters can be modified in a single request.
+* **Description**: string (Required): A friendly description for this DB cluster parameter group.
+* **Family**: string (Required): The DB cluster parameter group family name. A DB cluster parameter group can be associated with one and only one DB cluster parameter group family, and can be applied only to a DB cluster running a DB engine and engine version compatible with that DB cluster parameter group family.
+* **Parameters**: [DBClusterParameterGroup_Parameters](#dbclusterparametergroupparameters) (Required, WriteOnly): An array of parameters to be modified. A maximum of 20 parameters can be modified in a single request.
 * **Tags**: [Tag](#tag)[]: The list of tags for the cluster parameter group.
 
 ## DBClusterParameterGroup_Parameters
@@ -167,7 +167,7 @@ The minimum capacity must be less than or equal to the maximum capacity.
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.RDS/DBInstanceProperties
@@ -230,8 +230,8 @@ The minimum capacity must be less than or equal to the maximum capacity.
 
 ## DBInstanceRole
 ### Properties
-* **FeatureName**: string: The name of the feature associated with the AWS Identity and Access Management (IAM) role. IAM roles that are associated with a DB instance grant permission for the DB instance to access other AWS services on your behalf.
-* **RoleArn**: string: The Amazon Resource Name (ARN) of the IAM role that is associated with the DB instance.
+* **FeatureName**: string (Required): The name of the feature associated with the AWS Identity and Access Management (IAM) role. IAM roles that are associated with a DB instance grant permission for the DB instance to access other AWS services on your behalf.
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that is associated with the DB instance.
 
 ## Endpoint
 ### Properties
@@ -246,14 +246,14 @@ The minimum capacity must be less than or equal to the maximum capacity.
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## AWS.RDS/DBParameterGroupProperties
 ### Properties
 * **DBParameterGroupName**: string (ReadOnly): Specifies the name of the DB parameter group
-* **Description**: string: Provides the customer-specified description for this DB parameter group.
-* **Family**: string: The DB parameter group family name.
+* **Description**: string (Required): Provides the customer-specified description for this DB parameter group.
+* **Family**: string (Required): The DB parameter group family name.
 * **Parameters**: [DBParameterGroup_Parameters](#dbparametergroupparameters) (WriteOnly): An array of parameter names and values for the parameter update.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
@@ -262,23 +262,23 @@ The minimum capacity must be less than or equal to the maximum capacity.
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.RDS/DBProxyProperties
 ### Properties
-* **Auth**: [AuthFormat](#authformat)[]: The authorization mechanism that the proxy uses.
+* **Auth**: [AuthFormat](#authformat)[] (Required): The authorization mechanism that the proxy uses.
 * **DBProxyArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the proxy.
-* **DBProxyName**: string: The identifier for the proxy. This name must be unique for all proxies owned by your AWS account in the specified AWS Region.
+* **DBProxyName**: string (Required): The identifier for the proxy. This name must be unique for all proxies owned by your AWS account in the specified AWS Region.
 * **DebugLogging**: bool: Whether the proxy includes detailed information about SQL statements in its logs.
 * **Endpoint**: string (ReadOnly): The endpoint that you can use to connect to the proxy. You include the endpoint value in the connection string for a database client application.
-* **EngineFamily**: string: The kinds of databases that the proxy can connect to.
+* **EngineFamily**: string (Required): The kinds of databases that the proxy can connect to.
 * **IdleClientTimeout**: int: The number of seconds that a connection to the proxy can be inactive before the proxy disconnects it.
 * **RequireTLS**: bool: A Boolean parameter that specifies whether Transport Layer Security (TLS) encryption is required for connections to the proxy.
-* **RoleArn**: string: The Amazon Resource Name (ARN) of the IAM role that the proxy uses to access secrets in AWS Secrets Manager.
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that the proxy uses to access secrets in AWS Secrets Manager.
 * **Tags**: [TagFormat](#tagformat)[]: An optional set of key-value pairs to associate arbitrary data of your choosing with the proxy.
 * **VpcSecurityGroupIds**: string[]: VPC security group IDs to associate with the new proxy.
-* **VpcSubnetIds**: string[]: VPC subnet IDs to associate with the new proxy.
+* **VpcSubnetIds**: string[] (Required): VPC subnet IDs to associate with the new proxy.
 
 ## AuthFormat
 ### Properties
@@ -296,15 +296,15 @@ The minimum capacity must be less than or equal to the maximum capacity.
 ## AWS.RDS/DBProxyEndpointProperties
 ### Properties
 * **DBProxyEndpointArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the DB proxy endpoint.
-* **DBProxyEndpointName**: string: The identifier for the DB proxy endpoint. This name must be unique for all DB proxy endpoints owned by your AWS account in the specified AWS Region.
-* **DBProxyName**: string: The identifier for the proxy. This name must be unique for all proxies owned by your AWS account in the specified AWS Region.
+* **DBProxyEndpointName**: string (Required): The identifier for the DB proxy endpoint. This name must be unique for all DB proxy endpoints owned by your AWS account in the specified AWS Region.
+* **DBProxyName**: string (Required): The identifier for the proxy. This name must be unique for all proxies owned by your AWS account in the specified AWS Region.
 * **Endpoint**: string (ReadOnly): The endpoint that you can use to connect to the DB proxy. You include the endpoint value in the connection string for a database client application.
 * **IsDefault**: bool (ReadOnly): A value that indicates whether this endpoint is the default endpoint for the associated DB proxy. Default DB proxy endpoints always have read/write capability. Other endpoints that you associate with the DB proxy can be either read/write or read-only.
 * **Tags**: [TagFormat](#tagformat)[]: An optional set of key-value pairs to associate arbitrary data of your choosing with the DB proxy endpoint.
 * **TargetRole**: string: A value that indicates whether the DB proxy endpoint can be used for read/write or read-only operations.
 * **VpcId**: string (ReadOnly): VPC ID to associate with the new DB proxy endpoint.
 * **VpcSecurityGroupIds**: string[]: VPC security group IDs to associate with the new DB proxy endpoint.
-* **VpcSubnetIds**: string[]: VPC subnet IDs to associate with the new DB proxy endpoint.
+* **VpcSubnetIds**: string[] (Required): VPC subnet IDs to associate with the new DB proxy endpoint.
 
 ## TagFormat
 ### Properties
@@ -316,9 +316,9 @@ The minimum capacity must be less than or equal to the maximum capacity.
 * **ConnectionPoolConfigurationInfo**: [ConnectionPoolConfigurationInfoFormat](#connectionpoolconfigurationinfoformat)
 * **DBClusterIdentifiers**: string[]
 * **DBInstanceIdentifiers**: string[]
-* **DBProxyName**: string: The identifier for the proxy.
+* **DBProxyName**: string (Required): The identifier for the proxy.
 * **TargetGroupArn**: string (ReadOnly): The Amazon Resource Name (ARN) representing the target group.
-* **TargetGroupName**: string: The identifier for the DBProxyTargetGroup
+* **TargetGroupName**: string (Required): The identifier for the DBProxyTargetGroup
 
 ## ConnectionPoolConfigurationInfoFormat
 ### Properties
@@ -330,21 +330,21 @@ The minimum capacity must be less than or equal to the maximum capacity.
 
 ## AWS.RDS/DBSubnetGroupProperties
 ### Properties
-* **DBSubnetGroupDescription**: string
+* **DBSubnetGroupDescription**: string (Required)
 * **DBSubnetGroupName**: string
-* **SubnetIds**: string[] (WriteOnly)
+* **SubnetIds**: string[] (Required, WriteOnly)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## AWS.RDS/EventSubscriptionProperties
 ### Properties
 * **Enabled**: bool: A Boolean value; set to true to activate the subscription, set to false to create the subscription but not active it.
 * **EventCategories**: string[]: A list of event categories for a SourceType that you want to subscribe to. You can see a list of the categories for a given SourceType in the Events topic in the Amazon RDS User Guide or by using the DescribeEventCategories action.
-* **SnsTopicArn**: string: The Amazon Resource Name (ARN) of the SNS topic created for event notification. The ARN is created by Amazon SNS when you create a topic and subscribe to it.
+* **SnsTopicArn**: string (Required): The Amazon Resource Name (ARN) of the SNS topic created for event notification. The ARN is created by Amazon SNS when you create a topic and subscribe to it.
 * **SourceIds**: string[]: The list of identifiers of the event sources for which events will be returned. If not specified, then all sources are included in the response. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it cannot end with a hyphen or contain two consecutive hyphens.
 * **SourceType**: string: The type of source that will be generating the events. For example, if you want to be notified of events generated by a DB instance, you would set this parameter to db-instance. if this value is not specified, all events are returned.
 * **SubscriptionName**: string: The name of the subscription.
@@ -352,7 +352,7 @@ The minimum capacity must be less than or equal to the maximum capacity.
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.RDS/GlobalClusterProperties
@@ -368,17 +368,17 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 
 ## AWS.RDS/OptionGroupProperties
 ### Properties
-* **EngineName**: string: Indicates the name of the engine that this option group can be applied to.
-* **MajorEngineVersion**: string: Indicates the major engine version associated with this option group.
+* **EngineName**: string (Required): Indicates the name of the engine that this option group can be applied to.
+* **MajorEngineVersion**: string (Required): Indicates the major engine version associated with this option group.
 * **OptionConfigurations**: [OptionConfiguration](#optionconfiguration)[]: Indicates what options are available in the option group.
-* **OptionGroupDescription**: string: Provides a description of the option group.
+* **OptionGroupDescription**: string (Required): Provides a description of the option group.
 * **OptionGroupName**: string (ReadOnly): Specifies the name of the option group.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## OptionConfiguration
 ### Properties
 * **DBSecurityGroupMemberships**: string[]: A list of DBSecurityGroupMembership name strings used for this option.
-* **OptionName**: string: The configuration of options to include in a group.
+* **OptionName**: string (Required): The configuration of options to include in a group.
 * **OptionSettings**: [OptionSetting](#optionsetting)[]: The option settings to include in an option group.
 * **OptionVersion**: string: The version for the option.
 * **Port**: int: The optional port for the option.
@@ -391,6 +391,6 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 

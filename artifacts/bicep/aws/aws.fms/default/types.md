@@ -4,18 +4,18 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.FMS/NotificationChannelProperties](#awsfmsnotificationchannelproperties): properties of the resource
+* **properties**: [AWS.FMS/NotificationChannelProperties](#awsfmsnotificationchannelproperties) (Required): properties of the resource
 
 ## Resource AWS.FMS/Policy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.FMS/PolicyProperties](#awsfmspolicyproperties): properties of the resource
+* **properties**: [AWS.FMS/PolicyProperties](#awsfmspolicyproperties) (Required): properties of the resource
 
 ## AWS.FMS/NotificationChannelProperties
 ### Properties
-* **SnsRoleName**: [ResourceArn](#resourcearn)
-* **SnsTopicArn**: [ResourceArn](#resourcearn)
+* **SnsRoleName**: [ResourceArn](#resourcearn) (Required)
+* **SnsTopicArn**: [ResourceArn](#resourcearn) (Required)
 
 ## ResourceArn
 ### Properties
@@ -25,16 +25,16 @@
 * **Arn**: [ResourceArn](#resourcearn) (ReadOnly)
 * **DeleteAllPolicyResources**: bool (WriteOnly)
 * **ExcludeMap**: [IEMap](#iemap)
-* **ExcludeResourceTags**: bool
+* **ExcludeResourceTags**: bool (Required)
 * **Id**: string (ReadOnly)
 * **IncludeMap**: [IEMap](#iemap)
-* **PolicyName**: string
-* **RemediationEnabled**: bool
+* **PolicyName**: string (Required)
+* **RemediationEnabled**: bool (Required)
 * **ResourcesCleanUp**: bool
 * **ResourceTags**: [ResourceTag](#resourcetag)[]
-* **ResourceType**: [ResourceType](#resourcetype)
+* **ResourceType**: [ResourceType](#resourcetype) (Required)
 * **ResourceTypeList**: [ResourceType](#resourcetype)[]
-* **SecurityServicePolicyData**: [SecurityServicePolicyData](#securityservicepolicydata)
+* **SecurityServicePolicyData**: [SecurityServicePolicyData](#securityservicepolicydata) (Required)
 * **Tags**: [PolicyTag](#policytag)[]
 
 ## ResourceArn
@@ -53,7 +53,7 @@
 
 ## ResourceTag
 ### Properties
-* **Key**: string
+* **Key**: string (Required)
 * **Value**: string
 
 ## ResourceType
@@ -63,7 +63,7 @@
 ### Properties
 * **ManagedServiceData**: [ManagedServiceData](#managedservicedata)
 * **PolicyOption**: [PolicyOption](#policyoption)
-* **Type**: [PolicyType](#policytype)
+* **Type**: [PolicyType](#policytype) (Required)
 
 ## ManagedServiceData
 ### Properties
@@ -75,20 +75,20 @@
 
 ## NetworkFirewallPolicy
 ### Properties
-* **FirewallDeploymentModel**: [FirewallDeploymentModel](#firewalldeploymentmodel)
+* **FirewallDeploymentModel**: [FirewallDeploymentModel](#firewalldeploymentmodel) (Required)
 
 ## FirewallDeploymentModel
 ### Properties
 
 ## ThirdPartyFirewallPolicy
 ### Properties
-* **FirewallDeploymentModel**: [FirewallDeploymentModel](#firewalldeploymentmodel)
+* **FirewallDeploymentModel**: [FirewallDeploymentModel](#firewalldeploymentmodel) (Required)
 
 ## PolicyType
 ### Properties
 
 ## PolicyTag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

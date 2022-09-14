@@ -10,7 +10,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoTAnalytics/DatasetProperties](#awsiotanalyticsdatasetproperties): properties of the resource
+* **properties**: [AWS.IoTAnalytics/DatasetProperties](#awsiotanalyticsdatasetproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTAnalytics/Datastore@default
 * **Valid Scope(s)**: Unknown
@@ -22,7 +22,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoTAnalytics/PipelineProperties](#awsiotanalyticspipelineproperties): properties of the resource
+* **properties**: [AWS.IoTAnalytics/PipelineProperties](#awsiotanalyticspipelineproperties) (Required): properties of the resource
 
 ## AWS.IoTAnalytics/ChannelProperties
 ### Properties
@@ -39,9 +39,9 @@
 
 ## CustomerManagedS3
 ### Properties
-* **Bucket**: string
+* **Bucket**: string (Required)
 * **KeyPrefix**: string
-* **RoleArn**: string
+* **RoleArn**: string (Required)
 
 ## ServiceManagedS3
 ### Properties
@@ -53,12 +53,12 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.IoTAnalytics/DatasetProperties
 ### Properties
-* **Actions**: [Action](#action)[]
+* **Actions**: [Action](#action)[] (Required)
 * **ContentDeliveryRules**: [DatasetContentDeliveryRule](#datasetcontentdeliveryrule)[]
 * **DatasetName**: string
 * **Id**: string (ReadOnly)
@@ -70,21 +70,21 @@
 
 ## Action
 ### Properties
-* **ActionName**: string
+* **ActionName**: string (Required)
 * **ContainerAction**: [ContainerAction](#containeraction)
 * **QueryAction**: [QueryAction](#queryaction)
 
 ## ContainerAction
 ### Properties
-* **ExecutionRoleArn**: string
-* **Image**: string
-* **ResourceConfiguration**: [ResourceConfiguration](#resourceconfiguration)
+* **ExecutionRoleArn**: string (Required)
+* **Image**: string (Required)
+* **ResourceConfiguration**: [ResourceConfiguration](#resourceconfiguration) (Required)
 * **Variables**: [Variable](#variable)[]
 
 ## ResourceConfiguration
 ### Properties
-* **ComputeType**: string
-* **VolumeSizeInGB**: int
+* **ComputeType**: string (Required)
+* **VolumeSizeInGB**: int (Required)
 
 ## Variable
 ### Properties
@@ -92,20 +92,20 @@
 * **DoubleValue**: int
 * **OutputFileUriValue**: [OutputFileUriValue](#outputfileurivalue)
 * **StringValue**: string
-* **VariableName**: string
+* **VariableName**: string (Required)
 
 ## DatasetContentVersionValue
 ### Properties
-* **DatasetName**: string
+* **DatasetName**: string (Required)
 
 ## OutputFileUriValue
 ### Properties
-* **FileName**: string
+* **FileName**: string (Required)
 
 ## QueryAction
 ### Properties
 * **Filters**: [Filter](#filter)[]
-* **SqlQuery**: string
+* **SqlQuery**: string (Required)
 
 ## Filter
 ### Properties
@@ -113,12 +113,12 @@
 
 ## DeltaTime
 ### Properties
-* **OffsetSeconds**: int
-* **TimeExpression**: string
+* **OffsetSeconds**: int (Required)
+* **TimeExpression**: string (Required)
 
 ## DatasetContentDeliveryRule
 ### Properties
-* **Destination**: [DatasetContentDeliveryRuleDestination](#datasetcontentdeliveryruledestination)
+* **Destination**: [DatasetContentDeliveryRuleDestination](#datasetcontentdeliveryruledestination) (Required)
 * **EntryName**: string
 
 ## DatasetContentDeliveryRuleDestination
@@ -128,24 +128,24 @@
 
 ## IotEventsDestinationConfiguration
 ### Properties
-* **InputName**: string
-* **RoleArn**: string
+* **InputName**: string (Required)
+* **RoleArn**: string (Required)
 
 ## S3DestinationConfiguration
 ### Properties
-* **Bucket**: string
+* **Bucket**: string (Required)
 * **GlueConfiguration**: [GlueConfiguration](#glueconfiguration)
-* **Key**: string
-* **RoleArn**: string
+* **Key**: string (Required)
+* **RoleArn**: string (Required)
 
 ## GlueConfiguration
 ### Properties
-* **DatabaseName**: string
-* **TableName**: string
+* **DatabaseName**: string (Required)
+* **TableName**: string (Required)
 
 ## LateDataRule
 ### Properties
-* **RuleConfiguration**: [LateDataRuleConfiguration](#latedataruleconfiguration)
+* **RuleConfiguration**: [LateDataRuleConfiguration](#latedataruleconfiguration) (Required)
 * **RuleName**: string
 
 ## LateDataRuleConfiguration
@@ -154,7 +154,7 @@
 
 ## DeltaTimeSessionWindowConfiguration
 ### Properties
-* **TimeoutInMinutes**: int
+* **TimeoutInMinutes**: int (Required)
 
 ## RetentionPeriod
 ### Properties
@@ -163,8 +163,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Trigger
 ### Properties
@@ -173,11 +173,11 @@
 
 ## Schedule
 ### Properties
-* **ScheduleExpression**: string
+* **ScheduleExpression**: string (Required)
 
 ## TriggeringDataset
 ### Properties
-* **DatasetName**: string
+* **DatasetName**: string (Required)
 
 ## VersioningConfiguration
 ### Properties
@@ -205,11 +205,11 @@
 
 ## Partition
 ### Properties
-* **AttributeName**: string
+* **AttributeName**: string (Required)
 
 ## TimestampPartition
 ### Properties
-* **AttributeName**: string
+* **AttributeName**: string (Required)
 * **TimestampFormat**: string
 
 ## DatastoreStorage
@@ -220,9 +220,9 @@
 
 ## CustomerManagedS3
 ### Properties
-* **Bucket**: string
+* **Bucket**: string (Required)
 * **KeyPrefix**: string
-* **RoleArn**: string
+* **RoleArn**: string (Required)
 
 ## IotSiteWiseMultiLayerStorage
 ### Properties
@@ -230,7 +230,7 @@
 
 ## CustomerManagedS3Storage
 ### Properties
-* **Bucket**: string
+* **Bucket**: string (Required)
 * **KeyPrefix**: string
 
 ## ServiceManagedS3
@@ -254,8 +254,8 @@
 
 ## Column
 ### Properties
-* **Name**: string
-* **Type**: string
+* **Name**: string (Required)
+* **Type**: string (Required)
 
 ## RetentionPeriod
 ### Properties
@@ -264,13 +264,13 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.IoTAnalytics/PipelineProperties
 ### Properties
 * **Id**: string (ReadOnly)
-* **PipelineActivities**: [Activity](#activity)[]
+* **PipelineActivities**: [Activity](#activity)[] (Required)
 * **PipelineName**: string
 * **Tags**: [Tag](#tag)[]
 
@@ -289,8 +289,8 @@
 
 ## AddAttributes
 ### Properties
-* **Attributes**: [Pipeline_Attributes](#pipelineattributes)
-* **Name**: string
+* **Attributes**: [Pipeline_Attributes](#pipelineattributes) (Required)
+* **Name**: string (Required)
 * **Next**: string
 
 ## Pipeline_Attributes
@@ -298,65 +298,65 @@
 
 ## Channel
 ### Properties
-* **ChannelName**: string
-* **Name**: string
+* **ChannelName**: string (Required)
+* **Name**: string (Required)
 * **Next**: string
 
 ## Datastore
 ### Properties
-* **DatastoreName**: string
-* **Name**: string
+* **DatastoreName**: string (Required)
+* **Name**: string (Required)
 
 ## DeviceRegistryEnrich
 ### Properties
-* **Attribute**: string
-* **Name**: string
+* **Attribute**: string (Required)
+* **Name**: string (Required)
 * **Next**: string
-* **RoleArn**: string
-* **ThingName**: string
+* **RoleArn**: string (Required)
+* **ThingName**: string (Required)
 
 ## DeviceShadowEnrich
 ### Properties
-* **Attribute**: string
-* **Name**: string
+* **Attribute**: string (Required)
+* **Name**: string (Required)
 * **Next**: string
-* **RoleArn**: string
-* **ThingName**: string
+* **RoleArn**: string (Required)
+* **ThingName**: string (Required)
 
 ## Filter
 ### Properties
-* **Filter**: string
-* **Name**: string
+* **Filter**: string (Required)
+* **Name**: string (Required)
 * **Next**: string
 
 ## Lambda
 ### Properties
-* **BatchSize**: int
-* **LambdaName**: string
-* **Name**: string
+* **BatchSize**: int (Required)
+* **LambdaName**: string (Required)
+* **Name**: string (Required)
 * **Next**: string
 
 ## Math
 ### Properties
-* **Attribute**: string
-* **Math**: string
-* **Name**: string
+* **Attribute**: string (Required)
+* **Math**: string (Required)
+* **Name**: string (Required)
 * **Next**: string
 
 ## RemoveAttributes
 ### Properties
-* **Attributes**: string[]
-* **Name**: string
+* **Attributes**: string[] (Required)
+* **Name**: string (Required)
 * **Next**: string
 
 ## SelectAttributes
 ### Properties
-* **Attributes**: string[]
-* **Name**: string
+* **Attributes**: string[] (Required)
+* **Name**: string (Required)
 * **Next**: string
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

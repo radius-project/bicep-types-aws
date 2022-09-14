@@ -4,16 +4,16 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Personalize/DatasetProperties](#awspersonalizedatasetproperties): properties of the resource
+* **properties**: [AWS.Personalize/DatasetProperties](#awspersonalizedatasetproperties) (Required): properties of the resource
 
 ## AWS.Personalize/DatasetProperties
 ### Properties
 * **DatasetArn**: string (ReadOnly): The ARN of the dataset
-* **DatasetGroupArn**: string: The Amazon Resource Name (ARN) of the dataset group to add the dataset to
+* **DatasetGroupArn**: string (Required): The Amazon Resource Name (ARN) of the dataset group to add the dataset to
 * **DatasetImportJob**: [DatasetImportJob](#datasetimportjob)
-* **DatasetType**: string: The type of dataset
-* **Name**: string: The name for the dataset
-* **SchemaArn**: string: The ARN of the schema to associate with the dataset. The schema defines the dataset fields.
+* **DatasetType**: string (Required): The type of dataset
+* **Name**: string (Required): The name for the dataset
+* **SchemaArn**: string (Required): The ARN of the schema to associate with the dataset. The schema defines the dataset fields.
 
 ## DatasetImportJob
 ### Properties

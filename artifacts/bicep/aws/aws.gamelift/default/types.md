@@ -4,7 +4,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.GameLift/AliasProperties](#awsgameliftaliasproperties): properties of the resource
+* **properties**: [AWS.GameLift/AliasProperties](#awsgameliftaliasproperties) (Required): properties of the resource
 
 ## Resource AWS.GameLift/Fleet@default
 * **Valid Scope(s)**: Unknown
@@ -16,20 +16,20 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.GameLift/GameServerGroupProperties](#awsgameliftgameservergroupproperties): properties of the resource
+* **properties**: [AWS.GameLift/GameServerGroupProperties](#awsgameliftgameservergroupproperties) (Required): properties of the resource
 
 ## AWS.GameLift/AliasProperties
 ### Properties
 * **AliasId**: string (ReadOnly): Unique alias ID
 * **Description**: string: A human-readable description of the alias.
-* **Name**: string: A descriptive label that is associated with an alias. Alias names do not need to be unique.
-* **RoutingStrategy**: [RoutingStrategy](#routingstrategy): A routing configuration that specifies where traffic is directed for this alias, such as to a fleet or to a message.
+* **Name**: string (Required): A descriptive label that is associated with an alias. Alias names do not need to be unique.
+* **RoutingStrategy**: [RoutingStrategy](#routingstrategy) (Required): A routing configuration that specifies where traffic is directed for this alias, such as to a fleet or to a message.
 
 ## RoutingStrategy
 ### Properties
 * **FleetId**: string: A unique identifier for a fleet that the alias points to. If you specify SIMPLE for the Type property, you must specify this property.
 * **Message**: string: The message text to be used with a terminal routing strategy. If you specify TERMINAL for the Type property, you must specify this property.
-* **Type**: string: Simple routing strategy. The alias resolves to one specific fleet. Use this type when routing to active fleets.
+* **Type**: string (Required): Simple routing strategy. The alias resolves to one specific fleet. Use this type when routing to active fleets.
 
 ## AWS.GameLift/FleetProperties
 ### Properties
@@ -63,18 +63,18 @@ Note: It is not currently possible to use the !Ref command to reference a script
 
 ## CertificateConfiguration
 ### Properties
-* **CertificateType**: string
+* **CertificateType**: string (Required)
 
 ## IpPermission
 ### Properties
-* **FromPort**: int: A starting value for a range of allowed port numbers.
-* **IpRange**: string: A range of allowed IP addresses. This value must be expressed in CIDR notation. Example: "000.000.000.000/[subnet mask]" or optionally the shortened version "0.0.0.0/[subnet mask]".
-* **Protocol**: string: The network communication protocol used by the fleet.
-* **ToPort**: int: An ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than FromPort.
+* **FromPort**: int (Required): A starting value for a range of allowed port numbers.
+* **IpRange**: string (Required): A range of allowed IP addresses. This value must be expressed in CIDR notation. Example: "000.000.000.000/[subnet mask]" or optionally the shortened version "0.0.0.0/[subnet mask]".
+* **Protocol**: string (Required): The network communication protocol used by the fleet.
+* **ToPort**: int (Required): An ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than FromPort.
 
 ## LocationConfiguration
 ### Properties
-* **Location**: [Location](#location)
+* **Location**: [Location](#location) (Required)
 * **LocationCapacity**: [LocationCapacity](#locationcapacity)
 
 ## Location
@@ -82,9 +82,9 @@ Note: It is not currently possible to use the !Ref command to reference a script
 
 ## LocationCapacity
 ### Properties
-* **DesiredEC2Instances**: int: The number of EC2 instances you want to maintain in the specified fleet location. This value must fall between the minimum and maximum size limits.
-* **MaxSize**: int: The maximum value that is allowed for the fleet's instance count for a location. When creating a new fleet, GameLift automatically sets this value to "1". Once the fleet is active, you can change this value.
-* **MinSize**: int: The minimum value allowed for the fleet's instance count for a location. When creating a new fleet, GameLift automatically sets this value to "0". After the fleet is active, you can change this value.
+* **DesiredEC2Instances**: int (Required): The number of EC2 instances you want to maintain in the specified fleet location. This value must fall between the minimum and maximum size limits.
+* **MaxSize**: int (Required): The maximum value that is allowed for the fleet's instance count for a location. When creating a new fleet, GameLift automatically sets this value to "1". Once the fleet is active, you can change this value.
+* **MinSize**: int (Required): The minimum value allowed for the fleet's instance count for a location. When creating a new fleet, GameLift automatically sets this value to "0". After the fleet is active, you can change this value.
 
 ## ResourceCreationLimitPolicy
 ### Properties
@@ -99,8 +99,8 @@ Note: It is not currently possible to use the !Ref command to reference a script
 
 ## ServerProcess
 ### Properties
-* **ConcurrentExecutions**: int: The number of server processes that use this configuration to run concurrently on an instance.
-* **LaunchPath**: string: The location of the server executable in a custom game build or the name of the Realtime script file that contains the Init() function. Game builds and Realtime scripts are installed on instances at the root:
+* **ConcurrentExecutions**: int (Required): The number of server processes that use this configuration to run concurrently on an instance.
+* **LaunchPath**: string (Required): The location of the server executable in a custom game build or the name of the Realtime script file that contains the Init() function. Game builds and Realtime scripts are installed on instances at the root:
 
 Windows (for custom game builds only): C:\game. Example: "C:\game\MyGame\server.exe"
 
@@ -114,13 +114,13 @@ Linux: /local/game. Examples: "/local/game/MyGame/server.exe" or "/local/game/My
 * **BalancingStrategy**: [BalancingStrategy](#balancingstrategy): The fallback balancing method to use for the game server group when Spot Instances in a Region become unavailable or are not viable for game hosting.
 * **DeleteOption**: [DeleteOption](#deleteoption) (WriteOnly): The type of delete to perform.
 * **GameServerGroupArn**: [GameServerGroupArn](#gameservergrouparn) (ReadOnly): A generated unique ID for the game server group.
-* **GameServerGroupName**: [GameServerGroupName](#gameservergroupname): An identifier for the new game server group.
+* **GameServerGroupName**: [GameServerGroupName](#gameservergroupname) (Required): An identifier for the new game server group.
 * **GameServerProtectionPolicy**: [GameServerProtectionPolicy](#gameserverprotectionpolicy): A flag that indicates whether instances in the game server group are protected from early termination.
-* **InstanceDefinitions**: [InstanceDefinitions](#instancedefinitions): A set of EC2 instance types to use when creating instances in the group.
-* **LaunchTemplate**: [LaunchTemplate](#launchtemplate): The EC2 launch template that contains configuration settings and game server code to be deployed to all instances in the game server group.
+* **InstanceDefinitions**: [InstanceDefinitions](#instancedefinitions) (Required): A set of EC2 instance types to use when creating instances in the group.
+* **LaunchTemplate**: [LaunchTemplate](#launchtemplate) (Required): The EC2 launch template that contains configuration settings and game server code to be deployed to all instances in the game server group.
 * **MaxSize**: [MaxSize](#maxsize): The maximum number of instances allowed in the EC2 Auto Scaling group.
 * **MinSize**: [MinSize](#minsize): The minimum number of instances allowed in the EC2 Auto Scaling group.
-* **RoleArn**: [RoleArn](#rolearn): The Amazon Resource Name (ARN) for an IAM role that allows Amazon GameLift to access your EC2 Auto Scaling groups.
+* **RoleArn**: [RoleArn](#rolearn) (Required): The Amazon Resource Name (ARN) for an IAM role that allows Amazon GameLift to access your EC2 Auto Scaling groups.
 * **Tags**: [Tags](#tags): A list of labels to assign to the new game server group resource.
 * **VpcSubnets**: [VpcSubnets](#vpcsubnets): A list of virtual private cloud (VPC) subnets to use with instances in the game server group.
 
@@ -130,14 +130,14 @@ Linux: /local/game. Examples: "/local/game/MyGame/server.exe" or "/local/game/My
 ## AutoScalingPolicy
 ### Properties
 * **EstimatedInstanceWarmup**: [EstimatedInstanceWarmup](#estimatedinstancewarmup)
-* **TargetTrackingConfiguration**: [TargetTrackingConfiguration](#targettrackingconfiguration)
+* **TargetTrackingConfiguration**: [TargetTrackingConfiguration](#targettrackingconfiguration) (Required)
 
 ## EstimatedInstanceWarmup
 ### Properties
 
 ## TargetTrackingConfiguration
 ### Properties
-* **TargetValue**: [TargetValue](#targetvalue)
+* **TargetValue**: [TargetValue](#targetvalue) (Required)
 
 ## TargetValue
 ### Properties

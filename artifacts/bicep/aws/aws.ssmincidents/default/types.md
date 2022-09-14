@@ -4,19 +4,19 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.SSMIncidents/ReplicationSetProperties](#awsssmincidentsreplicationsetproperties): properties of the resource
+* **properties**: [AWS.SSMIncidents/ReplicationSetProperties](#awsssmincidentsreplicationsetproperties) (Required): properties of the resource
 
 ## Resource AWS.SSMIncidents/ResponsePlan@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.SSMIncidents/ResponsePlanProperties](#awsssmincidentsresponseplanproperties): properties of the resource
+* **properties**: [AWS.SSMIncidents/ResponsePlanProperties](#awsssmincidentsresponseplanproperties) (Required): properties of the resource
 
 ## AWS.SSMIncidents/ReplicationSetProperties
 ### Properties
 * **Arn**: [Arn](#arn) (ReadOnly): The ARN of the ReplicationSet.
 * **DeletionProtected**: [DeletionProtected](#deletionprotected)
-* **Regions**: [RegionList](#regionlist): The ReplicationSet configuration.
+* **Regions**: [RegionList](#regionlist) (Required): The ReplicationSet configuration.
 
 ## Arn
 ### Properties
@@ -34,8 +34,8 @@
 * **ChatChannel**: [ChatChannel](#chatchannel)
 * **DisplayName**: string: The display name of the response plan.
 * **Engagements**: [SSMContact](#ssmcontact)[]: The list of engagements to use.
-* **IncidentTemplate**: [IncidentTemplate](#incidenttemplate)
-* **Name**: string: The name of the response plan.
+* **IncidentTemplate**: [IncidentTemplate](#incidenttemplate) (Required)
+* **Name**: string (Required): The name of the response plan.
 * **Tags**: [Tag](#tag)[]: The tags to apply to the response plan.
 
 ## Action
@@ -44,17 +44,17 @@
 
 ## SsmAutomation
 ### Properties
-* **DocumentName**: string: The document name to use when starting the SSM automation document.
+* **DocumentName**: string (Required): The document name to use when starting the SSM automation document.
 * **DocumentVersion**: string: The version of the document to use when starting the SSM automation document.
 * **DynamicParameters**: [DynamicSsmParameter](#dynamicssmparameter)[]: The parameters with dynamic values to set when starting the SSM automation document.
 * **Parameters**: [SsmParameter](#ssmparameter)[]: The parameters to set when starting the SSM automation document.
-* **RoleArn**: string: The role ARN to use when starting the SSM automation document.
+* **RoleArn**: string (Required): The role ARN to use when starting the SSM automation document.
 * **TargetAccount**: string: The account type to use when starting the SSM automation document.
 
 ## DynamicSsmParameter
 ### Properties
-* **Key**: string
-* **Value**: [DynamicSsmParameterValue](#dynamicssmparametervalue)
+* **Key**: string (Required)
+* **Value**: [DynamicSsmParameterValue](#dynamicssmparametervalue) (Required)
 
 ## DynamicSsmParameterValue
 ### Properties
@@ -65,8 +65,8 @@
 
 ## SsmParameter
 ### Properties
-* **Key**: string
-* **Values**: [SsmParameterValue](#ssmparametervalue)[]
+* **Key**: string (Required)
+* **Values**: [SsmParameterValue](#ssmparametervalue)[] (Required)
 
 ## SsmParameterValue
 ### Properties
@@ -84,16 +84,16 @@
 ## IncidentTemplate
 ### Properties
 * **DedupeString**: string: The deduplication string.
-* **Impact**: int: The impact value.
+* **Impact**: int (Required): The impact value.
 * **IncidentTags**: [Tag](#tag)[]: Tags that get applied to incidents created by the StartIncident API action.
 * **NotificationTargets**: [NotificationTargetItem](#notificationtargetitem)[]: The list of notification targets.
 * **Summary**: string: The summary string.
-* **Title**: string: The title string.
+* **Title**: string (Required): The title string.
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## NotificationTargetItem
 ### Properties

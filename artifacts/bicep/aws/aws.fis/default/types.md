@@ -4,18 +4,18 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.FIS/ExperimentTemplateProperties](#awsfisexperimenttemplateproperties): properties of the resource
+* **properties**: [AWS.FIS/ExperimentTemplateProperties](#awsfisexperimenttemplateproperties) (Required): properties of the resource
 
 ## AWS.FIS/ExperimentTemplateProperties
 ### Properties
 * **Actions**: [ExperimentTemplateActionMap](#experimenttemplateactionmap)
-* **Description**: [ExperimentTemplateDescription](#experimenttemplatedescription)
+* **Description**: [ExperimentTemplateDescription](#experimenttemplatedescription) (Required)
 * **Id**: [ExperimentTemplateId](#experimenttemplateid) (ReadOnly)
 * **LogConfiguration**: [ExperimentTemplateLogConfiguration](#experimenttemplatelogconfiguration)
-* **RoleArn**: [RoleArn](#rolearn)
-* **StopConditions**: [ExperimentTemplateStopConditionList](#experimenttemplatestopconditionlist)
-* **Tags**: [ExperimentTemplate_Tags](#experimenttemplatetags)
-* **Targets**: [ExperimentTemplateTargetMap](#experimenttemplatetargetmap)
+* **RoleArn**: [RoleArn](#rolearn) (Required)
+* **StopConditions**: [ExperimentTemplateStopConditionList](#experimenttemplatestopconditionlist) (Required)
+* **Tags**: [ExperimentTemplate_Tags](#experimenttemplatetags) (Required)
+* **Targets**: [ExperimentTemplateTargetMap](#experimenttemplatetargetmap) (Required)
 
 ## ExperimentTemplateActionMap
 ### Properties
@@ -29,16 +29,16 @@
 ## ExperimentTemplateLogConfiguration
 ### Properties
 * **CloudWatchLogsConfiguration**: [ExperimentTemplate_CloudWatchLogsConfiguration](#experimenttemplatecloudwatchlogsconfiguration)
-* **LogSchemaVersion**: int
+* **LogSchemaVersion**: int (Required)
 * **S3Configuration**: [ExperimentTemplate_S3Configuration](#experimenttemplates3configuration)
 
 ## ExperimentTemplate_CloudWatchLogsConfiguration
 ### Properties
-* **LogGroupArn**: string
+* **LogGroupArn**: string (Required)
 
 ## ExperimentTemplate_S3Configuration
 ### Properties
-* **BucketName**: string
+* **BucketName**: string (Required)
 * **Prefix**: string
 
 ## RoleArn

@@ -10,7 +10,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ServiceCatalog/ServiceActionProperties](#awsservicecatalogserviceactionproperties): properties of the resource
+* **properties**: [AWS.ServiceCatalog/ServiceActionProperties](#awsservicecatalogserviceactionproperties) (Required): properties of the resource
 
 ## AWS.ServiceCatalog/CloudFormationProvisionedProductProperties
 ### Properties
@@ -36,8 +36,8 @@
 
 ## ProvisioningParameter
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## ProvisioningPreferences
 ### Properties
@@ -51,20 +51,20 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.ServiceCatalog/ServiceActionProperties
 ### Properties
 * **AcceptLanguage**: string (WriteOnly)
-* **Definition**: [DefinitionParameter](#definitionparameter)[]
-* **DefinitionType**: string
+* **Definition**: [DefinitionParameter](#definitionparameter)[] (Required)
+* **DefinitionType**: string (Required)
 * **Description**: string
 * **Id**: string (ReadOnly)
-* **Name**: string
+* **Name**: string (Required)
 
 ## DefinitionParameter
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

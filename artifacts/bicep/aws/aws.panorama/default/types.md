@@ -4,19 +4,19 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Panorama/ApplicationInstanceProperties](#awspanoramaapplicationinstanceproperties): properties of the resource
+* **properties**: [AWS.Panorama/ApplicationInstanceProperties](#awspanoramaapplicationinstanceproperties) (Required): properties of the resource
 
 ## Resource AWS.Panorama/Package@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Panorama/PackageProperties](#awspanoramapackageproperties): properties of the resource
+* **properties**: [AWS.Panorama/PackageProperties](#awspanoramapackageproperties) (Required): properties of the resource
 
 ## Resource AWS.Panorama/PackageVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Panorama/PackageVersionProperties](#awspanoramapackageversionproperties): properties of the resource
+* **properties**: [AWS.Panorama/PackageVersionProperties](#awspanoramapackageversionproperties) (Required): properties of the resource
 
 ## AWS.Panorama/ApplicationInstanceProperties
 ### Properties
@@ -24,14 +24,14 @@
 * **ApplicationInstanceIdToReplace**: [ApplicationInstanceId](#applicationinstanceid)
 * **Arn**: [ApplicationInstanceArn](#applicationinstancearn) (ReadOnly)
 * **CreatedTime**: [Timestamp](#timestamp) (ReadOnly)
-* **DefaultRuntimeContextDevice**: [DefaultRuntimeContextDevice](#defaultruntimecontextdevice)
+* **DefaultRuntimeContextDevice**: [DefaultRuntimeContextDevice](#defaultruntimecontextdevice) (Required)
 * **DefaultRuntimeContextDeviceName**: [DeviceName](#devicename) (ReadOnly)
 * **Description**: [Description](#description)
 * **DeviceId**: [DeviceId](#deviceid)
 * **HealthStatus**: [ApplicationInstanceHealthStatus](#applicationinstancehealthstatus) (ReadOnly)
 * **LastUpdatedTime**: [Timestamp](#timestamp) (ReadOnly)
 * **ManifestOverridesPayload**: [ManifestOverridesPayload](#manifestoverridespayload)
-* **ManifestPayload**: [ManifestPayload](#manifestpayload)
+* **ManifestPayload**: [ManifestPayload](#manifestpayload) (Required)
 * **Name**: [Name](#name)
 * **RuntimeRoleArn**: [RuntimeRoleArn](#runtimerolearn)
 * **Status**: [ApplicationInstanceStatus](#applicationinstancestatus) (ReadOnly)
@@ -100,7 +100,7 @@
 * **Arn**: [NodePackageArn](#nodepackagearn) (ReadOnly)
 * **CreatedTime**: [CreatedTime](#createdtime) (ReadOnly)
 * **PackageId**: [NodePackageId](#nodepackageid) (ReadOnly)
-* **PackageName**: [NodePackageName](#nodepackagename)
+* **PackageName**: [NodePackageName](#nodepackagename) (Required)
 * **StorageLocation**: [StorageLocation](#storagelocation) (ReadOnly)
 * **Tags**: [TagList](#taglist)
 
@@ -133,10 +133,10 @@
 * **MarkLatest**: bool
 * **OwnerAccount**: [PackageOwnerAccount](#packageowneraccount)
 * **PackageArn**: [NodePackageArn](#nodepackagearn) (ReadOnly)
-* **PackageId**: [NodePackageId](#nodepackageid)
+* **PackageId**: [NodePackageId](#nodepackageid) (Required)
 * **PackageName**: [NodePackageName](#nodepackagename) (ReadOnly)
-* **PackageVersion**: [NodePackageVersion](#nodepackageversion)
-* **PatchVersion**: [NodePackagePatchVersion](#nodepackagepatchversion)
+* **PackageVersion**: [NodePackageVersion](#nodepackageversion) (Required)
+* **PatchVersion**: [NodePackagePatchVersion](#nodepackagepatchversion) (Required)
 * **RegisteredTime**: [TimeStamp](#timestamp) (ReadOnly)
 * **Status**: [PackageVersionStatus](#packageversionstatus) (ReadOnly)
 * **StatusDescription**: [PackageVersionStatusDescription](#packageversionstatusdescription) (ReadOnly)

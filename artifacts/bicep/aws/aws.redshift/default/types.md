@@ -4,31 +4,31 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Redshift/ClusterProperties](#awsredshiftclusterproperties): properties of the resource
+* **properties**: [AWS.Redshift/ClusterProperties](#awsredshiftclusterproperties) (Required): properties of the resource
 
 ## Resource AWS.Redshift/EndpointAccess@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Redshift/EndpointAccessProperties](#awsredshiftendpointaccessproperties): properties of the resource
+* **properties**: [AWS.Redshift/EndpointAccessProperties](#awsredshiftendpointaccessproperties) (Required): properties of the resource
 
 ## Resource AWS.Redshift/EndpointAuthorization@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Redshift/EndpointAuthorizationProperties](#awsredshiftendpointauthorizationproperties): properties of the resource
+* **properties**: [AWS.Redshift/EndpointAuthorizationProperties](#awsredshiftendpointauthorizationproperties) (Required): properties of the resource
 
 ## Resource AWS.Redshift/EventSubscription@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Redshift/EventSubscriptionProperties](#awsredshifteventsubscriptionproperties): properties of the resource
+* **properties**: [AWS.Redshift/EventSubscriptionProperties](#awsredshifteventsubscriptionproperties) (Required): properties of the resource
 
 ## Resource AWS.Redshift/ScheduledAction@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Redshift/ScheduledActionProperties](#awsredshiftscheduledactionproperties): properties of the resource
+* **properties**: [AWS.Redshift/ScheduledActionProperties](#awsredshiftscheduledactionproperties) (Required): properties of the resource
 
 ## AWS.Redshift/ClusterProperties
 ### Properties
@@ -48,9 +48,9 @@ auto - Amazon Redshift determines whether to use AQUA.
 * **ClusterParameterGroupName**: string: The name of the parameter group to be associated with this cluster.
 * **ClusterSecurityGroups**: string[]: A list of security groups to be associated with this cluster.
 * **ClusterSubnetGroupName**: string: The name of a cluster subnet group to be associated with this cluster.
-* **ClusterType**: string: The type of the cluster. When cluster type is specified as single-node, the NumberOfNodes parameter is not required and if multi-node, the NumberOfNodes parameter is required
+* **ClusterType**: string (Required): The type of the cluster. When cluster type is specified as single-node, the NumberOfNodes parameter is not required and if multi-node, the NumberOfNodes parameter is required
 * **ClusterVersion**: string: The version of the Amazon Redshift engine software that you want to deploy on the cluster.The version selected runs on all the nodes in the cluster.
-* **DBName**: string: The name of the first database to be created when the cluster is created. To create additional databases after the cluster is created, connect to the cluster with a SQL client and use SQL commands to create a database.
+* **DBName**: string (Required): The name of the first database to be created when the cluster is created. To create additional databases after the cluster is created, connect to the cluster with a SQL client and use SQL commands to create a database.
 * **DeferMaintenance**: bool: A boolean indicating whether to enable the deferred maintenance window.
 * **DeferMaintenanceDuration**: int: An integer indicating the duration of the maintenance window in days. If you specify a duration, you can't specify an end time. The duration must be 45 days or less.
 * **DeferMaintenanceEndTime**: string: A timestamp indicating end time for the deferred maintenance window. If you specify an end time, you can't specify a duration.
@@ -75,9 +75,9 @@ Default: false
 * **ManualSnapshotRetentionPeriod**: int: The number of days to retain newly copied snapshots in the destination AWS Region after they are copied from the source AWS Region. If the value is -1, the manual snapshot is retained indefinitely.
 
 The value must be either -1 or an integer between 1 and 3,653.
-* **MasterUsername**: string: The user name associated with the master user account for the cluster that is being created. The user name can't be PUBLIC and first character must be a letter.
-* **MasterUserPassword**: string (WriteOnly): The password associated with the master user account for the cluster that is being created. Password must be between 8 and 64 characters in length, should have at least one uppercase letter.Must contain at least one lowercase letter.Must contain one number.Can be any printable ASCII character.
-* **NodeType**: string: The node type to be provisioned for the cluster.Valid Values: ds2.xlarge | ds2.8xlarge | dc1.large | dc1.8xlarge | dc2.large | dc2.8xlarge | ra3.4xlarge | ra3.16xlarge
+* **MasterUsername**: string (Required): The user name associated with the master user account for the cluster that is being created. The user name can't be PUBLIC and first character must be a letter.
+* **MasterUserPassword**: string (Required, WriteOnly): The password associated with the master user account for the cluster that is being created. Password must be between 8 and 64 characters in length, should have at least one uppercase letter.Must contain at least one lowercase letter.Must contain one number.Can be any printable ASCII character.
+* **NodeType**: string (Required): The node type to be provisioned for the cluster.Valid Values: ds2.xlarge | ds2.8xlarge | dc1.large | dc1.8xlarge | dc2.large | dc2.8xlarge | ra3.4xlarge | ra3.16xlarge
 * **NumberOfNodes**: int: The number of compute nodes in the cluster. This parameter is required when the ClusterType parameter is specified as multi-node.
 * **OwnerAccount**: string
 * **Port**: int: The port number on which the cluster accepts incoming connections. The cluster is accessible only via the JDBC and ODBC connection strings
@@ -105,26 +105,26 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## LoggingProperties
 ### Properties
-* **BucketName**: string
+* **BucketName**: string (Required)
 * **S3KeyPrefix**: string
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.Redshift/EndpointAccessProperties
 ### Properties
 * **Address**: string (ReadOnly): The DNS address of the endpoint.
-* **ClusterIdentifier**: string: A unique identifier for the cluster. You use this identifier to refer to the cluster for any subsequent cluster operations such as deleting or modifying. All alphabetical characters must be lower case, no hypens at the end, no two consecutive hyphens. Cluster name should be unique for all clusters within an AWS account
+* **ClusterIdentifier**: string (Required): A unique identifier for the cluster. You use this identifier to refer to the cluster for any subsequent cluster operations such as deleting or modifying. All alphabetical characters must be lower case, no hypens at the end, no two consecutive hyphens. Cluster name should be unique for all clusters within an AWS account
 * **EndpointCreateTime**: string (ReadOnly): The time (UTC) that the endpoint was created.
-* **EndpointName**: string: The name of the endpoint.
+* **EndpointName**: string (Required): The name of the endpoint.
 * **EndpointStatus**: string (ReadOnly): The status of the endpoint.
 * **Port**: int (ReadOnly): The port number on which the cluster accepts incoming connections.
 * **ResourceOwner**: string: The AWS account ID of the owner of the cluster.
-* **SubnetGroupName**: string: The subnet group name where Amazon Redshift chooses to deploy the endpoint.
+* **SubnetGroupName**: string (Required): The subnet group name where Amazon Redshift chooses to deploy the endpoint.
 * **VpcEndpoint**: [EndpointAccess_VpcEndpoint](#endpointaccessvpcendpoint) (ReadOnly): The connection endpoint for connecting to an Amazon Redshift cluster through the proxy.
-* **VpcSecurityGroupIds**: string[]: A list of vpc security group ids to apply to the created endpoint access.
+* **VpcSecurityGroupIds**: string[] (Required): A list of vpc security group ids to apply to the created endpoint access.
 * **VpcSecurityGroups**: [VpcSecurityGroup](#vpcsecuritygroup)[] (ReadOnly): A list of Virtual Private Cloud (VPC) security groups to be associated with the endpoint.
 
 ## EndpointAccess_VpcEndpoint
@@ -147,11 +147,11 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## AWS.Redshift/EndpointAuthorizationProperties
 ### Properties
-* **Account**: [AwsAccount](#awsaccount): The target AWS account ID to grant or revoke access for.
+* **Account**: [AwsAccount](#awsaccount) (Required): The target AWS account ID to grant or revoke access for.
 * **AllowedAllVPCs**: bool (ReadOnly): Indicates whether all VPCs in the grantee account are allowed access to the cluster.
 * **AllowedVPCs**: [VpcId](#vpcid)[] (ReadOnly): The VPCs allowed access to the cluster.
 * **AuthorizeTime**: string (ReadOnly): The time (UTC) when the authorization was created.
-* **ClusterIdentifier**: string: The cluster identifier.
+* **ClusterIdentifier**: string (Required): The cluster identifier.
 * **ClusterStatus**: string (ReadOnly): The status of the cluster.
 * **EndpointCount**: int (ReadOnly): The number of Redshift-managed VPC endpoints created for the authorization.
 * **Force**: bool (WriteOnly):  Indicates whether to force the revoke action. If true, the Redshift-managed VPC endpoints associated with the endpoint authorization are also deleted.
@@ -180,13 +180,13 @@ The value must be either -1 or an integer between 1 and 3,653.
 * **SourceType**: string: The type of source that will be generating the events.
 * **Status**: string (ReadOnly): The status of the Amazon Redshift event notification subscription.
 * **SubscriptionCreationTime**: string (ReadOnly): The date and time the Amazon Redshift event notification subscription was created.
-* **SubscriptionName**: string: The name of the Amazon Redshift event notification subscription
+* **SubscriptionName**: string (Required): The name of the Amazon Redshift event notification subscription
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.Redshift/ScheduledActionProperties
 ### Properties
@@ -196,7 +196,7 @@ The value must be either -1 or an integer between 1 and 3,653.
 * **NextInvocations**: [timestamp](#timestamp)[] (ReadOnly): List of times when the scheduled action will run.
 * **Schedule**: string: The schedule in `at( )` or `cron( )` format.
 * **ScheduledActionDescription**: string: The description of the scheduled action.
-* **ScheduledActionName**: string: The name of the scheduled action. The name must be unique within an account.
+* **ScheduledActionName**: string (Required): The name of the scheduled action. The name must be unique within an account.
 * **StartTime**: [timestamp](#timestamp): The start time in UTC of the scheduled action. Before this time, the scheduled action does not trigger.
 * **State**: string (ReadOnly): The state of the scheduled action.
 * **TargetAction**: [ScheduledActionType](#scheduledactiontype): A JSON format string of the Amazon Redshift API operation with input parameters.

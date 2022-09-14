@@ -4,7 +4,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.MWAA/EnvironmentProperties](#awsmwaaenvironmentproperties): properties of the resource
+* **properties**: [AWS.MWAA/EnvironmentProperties](#awsmwaaenvironmentproperties) (Required): properties of the resource
 
 ## AWS.MWAA/EnvironmentProperties
 ### Properties
@@ -26,7 +26,7 @@
 * **LoggingConfiguration**: [LoggingConfiguration](#loggingconfiguration)
 * **MaxWorkers**: [MaxWorkers](#maxworkers)
 * **MinWorkers**: [MinWorkers](#minworkers)
-* **Name**: [EnvironmentName](#environmentname)
+* **Name**: [EnvironmentName](#environmentname) (Required)
 * **NetworkConfiguration**: [NetworkConfiguration](#networkconfiguration)
 * **PluginsS3ObjectVersion**: [S3ObjectVersion](#s3objectversion)
 * **PluginsS3Path**: [RelativePath](#relativepath)

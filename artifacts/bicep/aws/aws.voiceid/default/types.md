@@ -4,22 +4,22 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.VoiceID/DomainProperties](#awsvoiceiddomainproperties): properties of the resource
+* **properties**: [AWS.VoiceID/DomainProperties](#awsvoiceiddomainproperties) (Required): properties of the resource
 
 ## AWS.VoiceID/DomainProperties
 ### Properties
 * **Description**: string (WriteOnly)
 * **DomainId**: string (ReadOnly)
-* **Name**: string (WriteOnly)
-* **ServerSideEncryptionConfiguration**: [ServerSideEncryptionConfiguration](#serversideencryptionconfiguration) (WriteOnly)
+* **Name**: string (Required, WriteOnly)
+* **ServerSideEncryptionConfiguration**: [ServerSideEncryptionConfiguration](#serversideencryptionconfiguration) (Required, WriteOnly)
 * **Tags**: [Tag](#tag)[]
 
 ## ServerSideEncryptionConfiguration
 ### Properties
-* **KmsKeyId**: string
+* **KmsKeyId**: string (Required)
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

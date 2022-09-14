@@ -10,7 +10,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Detective/MemberInvitationProperties](#awsdetectivememberinvitationproperties): properties of the resource
+* **properties**: [AWS.Detective/MemberInvitationProperties](#awsdetectivememberinvitationproperties) (Required): properties of the resource
 
 ## AWS.Detective/GraphProperties
 ### Properties
@@ -25,8 +25,8 @@
 ## AWS.Detective/MemberInvitationProperties
 ### Properties
 * **DisableEmailNotification**: bool: When set to true, invitation emails are not sent to the member accounts. Member accounts must still accept the invitation before they are added to the behavior graph. Updating this field has no effect.
-* **GraphArn**: string: The ARN of the graph to which the member account will be invited
-* **MemberEmailAddress**: string: The root email address for the account to be invited, for validation. Updating this field has no effect.
-* **MemberId**: string: The AWS account ID to be invited to join the graph as a member
+* **GraphArn**: string (Required): The ARN of the graph to which the member account will be invited
+* **MemberEmailAddress**: string (Required): The root email address for the account to be invited, for validation. Updating this field has no effect.
+* **MemberId**: string (Required): The AWS account ID to be invited to join the graph as a member
 * **Message**: string: A message to be included in the email invitation sent to the invited account. Updating this field has no effect.
 

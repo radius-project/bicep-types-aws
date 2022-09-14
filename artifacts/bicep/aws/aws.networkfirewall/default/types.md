@@ -4,25 +4,25 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.NetworkFirewall/FirewallProperties](#awsnetworkfirewallfirewallproperties): properties of the resource
+* **properties**: [AWS.NetworkFirewall/FirewallProperties](#awsnetworkfirewallfirewallproperties) (Required): properties of the resource
 
 ## Resource AWS.NetworkFirewall/FirewallPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.NetworkFirewall/FirewallPolicyProperties](#awsnetworkfirewallfirewallpolicyproperties): properties of the resource
+* **properties**: [AWS.NetworkFirewall/FirewallPolicyProperties](#awsnetworkfirewallfirewallpolicyproperties) (Required): properties of the resource
 
 ## Resource AWS.NetworkFirewall/LoggingConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.NetworkFirewall/LoggingConfigurationProperties](#awsnetworkfirewallloggingconfigurationproperties): properties of the resource
+* **properties**: [AWS.NetworkFirewall/LoggingConfigurationProperties](#awsnetworkfirewallloggingconfigurationproperties) (Required): properties of the resource
 
 ## Resource AWS.NetworkFirewall/RuleGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.NetworkFirewall/RuleGroupProperties](#awsnetworkfirewallrulegroupproperties): properties of the resource
+* **properties**: [AWS.NetworkFirewall/RuleGroupProperties](#awsnetworkfirewallrulegroupproperties) (Required): properties of the resource
 
 ## AWS.NetworkFirewall/FirewallProperties
 ### Properties
@@ -31,13 +31,13 @@
 * **EndpointIds**: [EndpointId](#endpointid)[] (ReadOnly)
 * **FirewallArn**: [ResourceArn](#resourcearn) (ReadOnly)
 * **FirewallId**: string (ReadOnly)
-* **FirewallName**: string
-* **FirewallPolicyArn**: [ResourceArn](#resourcearn)
+* **FirewallName**: string (Required)
+* **FirewallPolicyArn**: [ResourceArn](#resourcearn) (Required)
 * **FirewallPolicyChangeProtection**: bool
 * **SubnetChangeProtection**: bool
-* **SubnetMappings**: [SubnetMapping](#subnetmapping)[]
+* **SubnetMappings**: [SubnetMapping](#subnetmapping)[] (Required)
 * **Tags**: [Tag](#tag)[]
-* **VpcId**: string
+* **VpcId**: string (Required)
 
 ## EndpointId
 ### Properties
@@ -47,20 +47,20 @@
 
 ## SubnetMapping
 ### Properties
-* **SubnetId**: string: A SubnetId.
+* **SubnetId**: string (Required): A SubnetId.
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.NetworkFirewall/FirewallPolicyProperties
 ### Properties
 * **Description**: string
-* **FirewallPolicy**: [FirewallPolicy](#firewallpolicy)
+* **FirewallPolicy**: [FirewallPolicy](#firewallpolicy) (Required)
 * **FirewallPolicyArn**: [ResourceArn](#resourcearn) (ReadOnly)
 * **FirewallPolicyId**: string (ReadOnly)
-* **FirewallPolicyName**: string
+* **FirewallPolicyName**: string (Required)
 * **Tags**: [Tag](#tag)[]
 
 ## FirewallPolicy
@@ -69,8 +69,8 @@
 * **StatefulEngineOptions**: [StatefulEngineOptions](#statefulengineoptions)
 * **StatefulRuleGroupReferences**: [StatefulRuleGroupReference](#statefulrulegroupreference)[]
 * **StatelessCustomActions**: [CustomAction](#customaction)[]
-* **StatelessDefaultActions**: string[]
-* **StatelessFragmentDefaultActions**: string[]
+* **StatelessDefaultActions**: string[] (Required)
+* **StatelessFragmentDefaultActions**: string[] (Required)
 * **StatelessRuleGroupReferences**: [StatelessRuleGroupReference](#statelessrulegroupreference)[]
 
 ## StatefulEngineOptions
@@ -83,7 +83,7 @@
 ## StatefulRuleGroupReference
 ### Properties
 * **Priority**: [Priority](#priority)
-* **ResourceArn**: [ResourceArn](#resourcearn)
+* **ResourceArn**: [ResourceArn](#resourcearn) (Required)
 
 ## Priority
 ### Properties
@@ -93,8 +93,8 @@
 
 ## CustomAction
 ### Properties
-* **ActionDefinition**: [ActionDefinition](#actiondefinition)
-* **ActionName**: string
+* **ActionDefinition**: [ActionDefinition](#actiondefinition) (Required)
+* **ActionName**: string (Required)
 
 ## ActionDefinition
 ### Properties
@@ -102,58 +102,58 @@
 
 ## PublishMetricAction
 ### Properties
-* **Dimensions**: [Dimension](#dimension)[]
+* **Dimensions**: [Dimension](#dimension)[] (Required)
 
 ## Dimension
 ### Properties
-* **Value**: string
+* **Value**: string (Required)
 
 ## StatelessRuleGroupReference
 ### Properties
-* **Priority**: [Priority](#priority)
-* **ResourceArn**: [ResourceArn](#resourcearn)
+* **Priority**: [Priority](#priority) (Required)
+* **ResourceArn**: [ResourceArn](#resourcearn) (Required)
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.NetworkFirewall/LoggingConfigurationProperties
 ### Properties
-* **FirewallArn**: [ResourceArn](#resourcearn)
+* **FirewallArn**: [ResourceArn](#resourcearn) (Required)
 * **FirewallName**: string
-* **LoggingConfiguration**: [LoggingConfiguration](#loggingconfiguration)
+* **LoggingConfiguration**: [LoggingConfiguration](#loggingconfiguration) (Required)
 
 ## ResourceArn
 ### Properties
 
 ## LoggingConfiguration
 ### Properties
-* **LogDestinationConfigs**: [LogDestinationConfig](#logdestinationconfig)[]
+* **LogDestinationConfigs**: [LogDestinationConfig](#logdestinationconfig)[] (Required)
 
 ## LogDestinationConfig
 ### Properties
-* **LogDestination**: [LoggingConfiguration_LogDestination](#loggingconfigurationlogdestination): A key-value pair to configure the logDestinations.
-* **LogDestinationType**: string
-* **LogType**: string
+* **LogDestination**: [LoggingConfiguration_LogDestination](#loggingconfigurationlogdestination) (Required): A key-value pair to configure the logDestinations.
+* **LogDestinationType**: string (Required)
+* **LogType**: string (Required)
 
 ## LoggingConfiguration_LogDestination
 ### Properties
 
 ## AWS.NetworkFirewall/RuleGroupProperties
 ### Properties
-* **Capacity**: int
+* **Capacity**: int (Required)
 * **Description**: string
 * **RuleGroup**: [RuleGroup](#rulegroup)
 * **RuleGroupArn**: [ResourceArn](#resourcearn) (ReadOnly)
 * **RuleGroupId**: string (ReadOnly)
-* **RuleGroupName**: string
+* **RuleGroupName**: string (Required)
 * **Tags**: [Tag](#tag)[]
-* **Type**: string
+* **Type**: string (Required)
 
 ## RuleGroup
 ### Properties
-* **RulesSource**: [RulesSource](#rulessource)
+* **RulesSource**: [RulesSource](#rulessource) (Required)
 * **RuleVariables**: [RuleVariables](#rulevariables)
 * **StatefulRuleOptions**: [StatefulRuleOptions](#statefulruleoptions)
 
@@ -166,9 +166,9 @@
 
 ## RulesSourceList
 ### Properties
-* **GeneratedRulesType**: [GeneratedRulesType](#generatedrulestype)
-* **Targets**: string[]
-* **TargetTypes**: [TargetType](#targettype)[]
+* **GeneratedRulesType**: [GeneratedRulesType](#generatedrulestype) (Required)
+* **Targets**: string[] (Required)
+* **TargetTypes**: [TargetType](#targettype)[] (Required)
 
 ## GeneratedRulesType
 ### Properties
@@ -181,25 +181,25 @@
 
 ## StatefulRule
 ### Properties
-* **Action**: string
-* **Header**: [Header](#header)
-* **RuleOptions**: [RuleOption](#ruleoption)[]
+* **Action**: string (Required)
+* **Header**: [Header](#header) (Required)
+* **RuleOptions**: [RuleOption](#ruleoption)[] (Required)
 
 ## Header
 ### Properties
-* **Destination**: string
-* **DestinationPort**: [Port](#port)
-* **Direction**: string
-* **Protocol**: string
-* **Source**: string
-* **SourcePort**: [Port](#port)
+* **Destination**: string (Required)
+* **DestinationPort**: [Port](#port) (Required)
+* **Direction**: string (Required)
+* **Protocol**: string (Required)
+* **Source**: string (Required)
+* **SourcePort**: [Port](#port) (Required)
 
 ## Port
 ### Properties
 
 ## RuleOption
 ### Properties
-* **Keyword**: string
+* **Keyword**: string (Required)
 * **Settings**: [Setting](#setting)[]
 
 ## Setting
@@ -208,12 +208,12 @@
 ## StatelessRulesAndCustomActions
 ### Properties
 * **CustomActions**: [CustomAction](#customaction)[]
-* **StatelessRules**: [StatelessRule](#statelessrule)[]
+* **StatelessRules**: [StatelessRule](#statelessrule)[] (Required)
 
 ## CustomAction
 ### Properties
-* **ActionDefinition**: [ActionDefinition](#actiondefinition)
-* **ActionName**: string
+* **ActionDefinition**: [ActionDefinition](#actiondefinition) (Required)
+* **ActionName**: string (Required)
 
 ## ActionDefinition
 ### Properties
@@ -221,21 +221,21 @@
 
 ## PublishMetricAction
 ### Properties
-* **Dimensions**: [Dimension](#dimension)[]
+* **Dimensions**: [Dimension](#dimension)[] (Required)
 
 ## Dimension
 ### Properties
-* **Value**: string
+* **Value**: string (Required)
 
 ## StatelessRule
 ### Properties
-* **Priority**: int
-* **RuleDefinition**: [RuleDefinition](#ruledefinition)
+* **Priority**: int (Required)
+* **RuleDefinition**: [RuleDefinition](#ruledefinition) (Required)
 
 ## RuleDefinition
 ### Properties
-* **Actions**: string[]
-* **MatchAttributes**: [MatchAttributes](#matchattributes)
+* **Actions**: string[] (Required)
+* **MatchAttributes**: [MatchAttributes](#matchattributes) (Required)
 
 ## MatchAttributes
 ### Properties
@@ -248,22 +248,22 @@
 
 ## PortRange
 ### Properties
-* **FromPort**: [PortRangeBound](#portrangebound)
-* **ToPort**: [PortRangeBound](#portrangebound)
+* **FromPort**: [PortRangeBound](#portrangebound) (Required)
+* **ToPort**: [PortRangeBound](#portrangebound) (Required)
 
 ## PortRangeBound
 ### Properties
 
 ## Address
 ### Properties
-* **AddressDefinition**: string
+* **AddressDefinition**: string (Required)
 
 ## ProtocolNumber
 ### Properties
 
 ## TCPFlagField
 ### Properties
-* **Flags**: [TCPFlag](#tcpflag)[]
+* **Flags**: [TCPFlag](#tcpflag)[] (Required)
 * **Masks**: [TCPFlag](#tcpflag)[]
 
 ## TCPFlag
@@ -292,6 +292,6 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

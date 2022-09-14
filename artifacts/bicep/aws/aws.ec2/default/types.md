@@ -4,7 +4,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/CapacityReservationProperties](#awsec2capacityreservationproperties): properties of the resource
+* **properties**: [AWS.EC2/CapacityReservationProperties](#awsec2capacityreservationproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/CapacityReservationFleet@default
 * **Valid Scope(s)**: Unknown
@@ -16,13 +16,13 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/CarrierGatewayProperties](#awsec2carriergatewayproperties): properties of the resource
+* **properties**: [AWS.EC2/CarrierGatewayProperties](#awsec2carriergatewayproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/CustomerGateway@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/CustomerGatewayProperties](#awsec2customergatewayproperties): properties of the resource
+* **properties**: [AWS.EC2/CustomerGatewayProperties](#awsec2customergatewayproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/DHCPOptions@default
 * **Valid Scope(s)**: Unknown
@@ -34,25 +34,25 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/EC2FleetProperties](#awsec2ec2fleetproperties): properties of the resource
+* **properties**: [AWS.EC2/EC2FleetProperties](#awsec2ec2fleetproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/FlowLog@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/FlowLogProperties](#awsec2flowlogproperties): properties of the resource
+* **properties**: [AWS.EC2/FlowLogProperties](#awsec2flowlogproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/GatewayRouteTableAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/GatewayRouteTableAssociationProperties](#awsec2gatewayroutetableassociationproperties): properties of the resource
+* **properties**: [AWS.EC2/GatewayRouteTableAssociationProperties](#awsec2gatewayroutetableassociationproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/Host@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/HostProperties](#awsec2hostproperties): properties of the resource
+* **properties**: [AWS.EC2/HostProperties](#awsec2hostproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/InternetGateway@default
 * **Valid Scope(s)**: Unknown
@@ -70,31 +70,31 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/IPAMPoolProperties](#awsec2ipampoolproperties): properties of the resource
+* **properties**: [AWS.EC2/IPAMPoolProperties](#awsec2ipampoolproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/IPAMScope@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/IPAMScopeProperties](#awsec2ipamscopeproperties): properties of the resource
+* **properties**: [AWS.EC2/IPAMScopeProperties](#awsec2ipamscopeproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/LocalGatewayRouteTableVPCAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/LocalGatewayRouteTableVPCAssociationProperties](#awsec2localgatewayroutetablevpcassociationproperties): properties of the resource
+* **properties**: [AWS.EC2/LocalGatewayRouteTableVPCAssociationProperties](#awsec2localgatewayroutetablevpcassociationproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/NatGateway@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/NatGatewayProperties](#awsec2natgatewayproperties): properties of the resource
+* **properties**: [AWS.EC2/NatGatewayProperties](#awsec2natgatewayproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/NetworkAcl@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/NetworkAclProperties](#awsec2networkaclproperties): properties of the resource
+* **properties**: [AWS.EC2/NetworkAclProperties](#awsec2networkaclproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/NetworkInsightsAccessScope@default
 * **Valid Scope(s)**: Unknown
@@ -106,49 +106,49 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/NetworkInsightsAccessScopeAnalysisProperties](#awsec2networkinsightsaccessscopeanalysisproperties): properties of the resource
+* **properties**: [AWS.EC2/NetworkInsightsAccessScopeAnalysisProperties](#awsec2networkinsightsaccessscopeanalysisproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/NetworkInsightsAnalysis@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/NetworkInsightsAnalysisProperties](#awsec2networkinsightsanalysisproperties): properties of the resource
+* **properties**: [AWS.EC2/NetworkInsightsAnalysisProperties](#awsec2networkinsightsanalysisproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/NetworkInsightsPath@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/NetworkInsightsPathProperties](#awsec2networkinsightspathproperties): properties of the resource
+* **properties**: [AWS.EC2/NetworkInsightsPathProperties](#awsec2networkinsightspathproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/NetworkInterface@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/NetworkInterfaceProperties](#awsec2networkinterfaceproperties): properties of the resource
+* **properties**: [AWS.EC2/NetworkInterfaceProperties](#awsec2networkinterfaceproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/PrefixList@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/PrefixListProperties](#awsec2prefixlistproperties): properties of the resource
+* **properties**: [AWS.EC2/PrefixListProperties](#awsec2prefixlistproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/RouteTable@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/RouteTableProperties](#awsec2routetableproperties): properties of the resource
+* **properties**: [AWS.EC2/RouteTableProperties](#awsec2routetableproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/SpotFleet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/SpotFleetProperties](#awsec2spotfleetproperties): properties of the resource
+* **properties**: [AWS.EC2/SpotFleetProperties](#awsec2spotfleetproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/Subnet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/SubnetProperties](#awsec2subnetproperties): properties of the resource
+* **properties**: [AWS.EC2/SubnetProperties](#awsec2subnetproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/TransitGateway@default
 * **Valid Scope(s)**: Unknown
@@ -160,31 +160,31 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/TransitGatewayAttachmentProperties](#awsec2transitgatewayattachmentproperties): properties of the resource
+* **properties**: [AWS.EC2/TransitGatewayAttachmentProperties](#awsec2transitgatewayattachmentproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/TransitGatewayConnect@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/TransitGatewayConnectProperties](#awsec2transitgatewayconnectproperties): properties of the resource
+* **properties**: [AWS.EC2/TransitGatewayConnectProperties](#awsec2transitgatewayconnectproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/TransitGatewayMulticastDomain@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/TransitGatewayMulticastDomainProperties](#awsec2transitgatewaymulticastdomainproperties): properties of the resource
+* **properties**: [AWS.EC2/TransitGatewayMulticastDomainProperties](#awsec2transitgatewaymulticastdomainproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/TransitGatewayPeeringAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/TransitGatewayPeeringAttachmentProperties](#awsec2transitgatewaypeeringattachmentproperties): properties of the resource
+* **properties**: [AWS.EC2/TransitGatewayPeeringAttachmentProperties](#awsec2transitgatewaypeeringattachmentproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/TransitGatewayVpcAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/TransitGatewayVpcAttachmentProperties](#awsec2transitgatewayvpcattachmentproperties): properties of the resource
+* **properties**: [AWS.EC2/TransitGatewayVpcAttachmentProperties](#awsec2transitgatewayvpcattachmentproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/VPC@default
 * **Valid Scope(s)**: Unknown
@@ -196,33 +196,33 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/VPCDHCPOptionsAssociationProperties](#awsec2vpcdhcpoptionsassociationproperties): properties of the resource
+* **properties**: [AWS.EC2/VPCDHCPOptionsAssociationProperties](#awsec2vpcdhcpoptionsassociationproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/VPCPeeringConnection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/VPCPeeringConnectionProperties](#awsec2vpcpeeringconnectionproperties): properties of the resource
+* **properties**: [AWS.EC2/VPCPeeringConnectionProperties](#awsec2vpcpeeringconnectionproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/VPNGateway@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EC2/VPNGatewayProperties](#awsec2vpngatewayproperties): properties of the resource
+* **properties**: [AWS.EC2/VPNGatewayProperties](#awsec2vpngatewayproperties) (Required): properties of the resource
 
 ## AWS.EC2/CapacityReservationProperties
 ### Properties
-* **AvailabilityZone**: string
+* **AvailabilityZone**: string (Required)
 * **AvailableInstanceCount**: int (ReadOnly)
 * **EbsOptimized**: bool
 * **EndDate**: string
 * **EndDateType**: string
 * **EphemeralStorage**: bool
 * **Id**: string (ReadOnly)
-* **InstanceCount**: int
+* **InstanceCount**: int (Required)
 * **InstanceMatchCriteria**: string
-* **InstancePlatform**: string
-* **InstanceType**: string
+* **InstancePlatform**: string (Required)
+* **InstanceType**: string (Required)
 * **OutPostArn**: string
 * **PlacementGroupArn**: string
 * **TagSpecifications**: [TagSpecification](#tagspecification)[]
@@ -236,8 +236,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/CapacityReservationFleetProperties
 ### Properties
@@ -269,8 +269,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/CarrierGatewayProperties
 ### Properties
@@ -278,23 +278,23 @@
 * **OwnerId**: string (ReadOnly): The ID of the owner.
 * **State**: string (ReadOnly): The state of the carrier gateway.
 * **Tags**: [Tags](#tags): The tags for the carrier gateway.
-* **VpcId**: string: The ID of the VPC.
+* **VpcId**: string (Required): The ID of the VPC.
 
 ## Tags
 ### Properties
 
 ## AWS.EC2/CustomerGatewayProperties
 ### Properties
-* **BgpAsn**: int: For devices that support BGP, the customer gateway's BGP ASN.
+* **BgpAsn**: int (Required): For devices that support BGP, the customer gateway's BGP ASN.
 * **CustomerGatewayId**: string (ReadOnly): CustomerGateway ID generated after customer gateway is created. Each customer gateway has a unique ID.
-* **IpAddress**: string: The internet-routable IP address for the customer gateway's outside interface. The address must be static.
+* **IpAddress**: string (Required): The internet-routable IP address for the customer gateway's outside interface. The address must be static.
 * **Tags**: [Tag](#tag)[]: One or more tags for the customer gateway.
-* **Type**: string: The type of VPN connection that this customer gateway supports.
+* **Type**: string (Required): The type of VPN connection that this customer gateway supports.
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/DHCPOptionsProperties
 ### Properties
@@ -308,20 +308,20 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/EC2FleetProperties
 ### Properties
 * **Context**: string
 * **ExcessCapacityTerminationPolicy**: string
 * **FleetId**: string (ReadOnly)
-* **LaunchTemplateConfigs**: [FleetLaunchTemplateConfigRequest](#fleetlaunchtemplateconfigrequest)[]
+* **LaunchTemplateConfigs**: [FleetLaunchTemplateConfigRequest](#fleetlaunchtemplateconfigrequest)[] (Required)
 * **OnDemandOptions**: [OnDemandOptionsRequest](#ondemandoptionsrequest)
 * **ReplaceUnhealthyInstances**: bool
 * **SpotOptions**: [SpotOptionsRequest](#spotoptionsrequest)
 * **TagSpecifications**: [TagSpecification](#tagspecification)[]
-* **TargetCapacitySpecification**: [TargetCapacitySpecificationRequest](#targetcapacityspecificationrequest)
+* **TargetCapacitySpecification**: [TargetCapacitySpecificationRequest](#targetcapacityspecificationrequest) (Required)
 * **TerminateInstancesWithExpiration**: bool
 * **Type**: string
 * **ValidFrom**: string
@@ -464,8 +464,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## TargetCapacitySpecificationRequest
 ### Properties
@@ -473,7 +473,7 @@
 * **OnDemandTargetCapacity**: int
 * **SpotTargetCapacity**: int
 * **TargetCapacityUnitType**: string
-* **TotalTargetCapacity**: int
+* **TotalTargetCapacity**: int (Required)
 
 ## AWS.EC2/FlowLogProperties
 ### Properties
@@ -485,32 +485,32 @@
 * **LogFormat**: string: The fields to include in the flow log record, in the order in which they should appear.
 * **LogGroupName**: string: The name of a new or existing CloudWatch Logs log group where Amazon EC2 publishes your flow logs. If you specify LogDestinationType as s3 or kinesis-data-firehose, do not specify DeliverLogsPermissionArn or LogGroupName.
 * **MaxAggregationInterval**: int: The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record. You can specify 60 seconds (1 minute) or 600 seconds (10 minutes).
-* **ResourceId**: string: The ID of the subnet, network interface, or VPC for which you want to create a flow log.
-* **ResourceType**: string: The type of resource for which to create the flow log. For example, if you specified a VPC ID for the ResourceId property, specify VPC for this property.
+* **ResourceId**: string (Required): The ID of the subnet, network interface, or VPC for which you want to create a flow log.
+* **ResourceType**: string (Required): The type of resource for which to create the flow log. For example, if you specified a VPC ID for the ResourceId property, specify VPC for this property.
 * **Tags**: [Tag](#tag)[]: The tags to apply to the flow logs.
-* **TrafficType**: string: The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic.
+* **TrafficType**: string (Required): The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic.
 
 ## FlowLog_DestinationOptions
 ### Properties
-* **FileFormat**: string
-* **HiveCompatiblePartitions**: bool
-* **PerHourPartition**: bool
+* **FileFormat**: string (Required)
+* **HiveCompatiblePartitions**: bool (Required)
+* **PerHourPartition**: bool (Required)
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/GatewayRouteTableAssociationProperties
 ### Properties
 * **AssociationId**: string (ReadOnly): The route table association ID.
-* **GatewayId**: string: The ID of the gateway.
-* **RouteTableId**: string: The ID of the route table.
+* **GatewayId**: string (Required): The ID of the gateway.
+* **RouteTableId**: string (Required): The ID of the route table.
 
 ## AWS.EC2/HostProperties
 ### Properties
 * **AutoPlacement**: string: Indicates whether the host accepts any untargeted instance launches that match its instance type configuration, or if it only accepts Host tenancy instance launches that specify its unique host ID.
-* **AvailabilityZone**: string: The Availability Zone in which to allocate the Dedicated Host.
+* **AvailabilityZone**: string (Required): The Availability Zone in which to allocate the Dedicated Host.
 * **HostId**: string (ReadOnly): Id of the host created.
 * **HostRecovery**: string: Indicates whether to enable or disable host recovery for the Dedicated Host. Host recovery is disabled by default.
 * **InstanceFamily**: string: Specifies the instance family to be supported by the Dedicated Hosts. If you specify an instance family, the Dedicated Hosts support multiple instance types within that instance family.
@@ -524,8 +524,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/IPAMProperties
 ### Properties
@@ -540,16 +540,16 @@
 
 ## IpamOperatingRegion
 ### Properties
-* **RegionName**: string: The name of the region.
+* **RegionName**: string (Required): The name of the region.
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.EC2/IPAMPoolProperties
 ### Properties
-* **AddressFamily**: string: The address family of the address space in this pool. Either IPv4 or IPv6.
+* **AddressFamily**: string (Required): The address family of the address space in this pool. Either IPv4 or IPv6.
 * **AllocationDefaultNetmaskLength**: int: The default netmask length for allocations made from this pool. This value is used when the netmask length of an allocation isn't specified.
 * **AllocationMaxNetmaskLength**: int: The maximum allowed netmask length for allocations made from this pool.
 * **AllocationMinNetmaskLength**: int: The minimum allowed netmask length for allocations made from this pool.
@@ -561,7 +561,7 @@
 * **IpamArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the IPAM this pool is a part of.
 * **IpamPoolId**: string (ReadOnly): Id of the IPAM Pool.
 * **IpamScopeArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the scope this pool is a part of.
-* **IpamScopeId**: string (WriteOnly): The Id of the scope this pool is a part of.
+* **IpamScopeId**: string (Required, WriteOnly): The Id of the scope this pool is a part of.
 * **IpamScopeType**: string (ReadOnly): Determines whether this scope contains publicly routable space or space for a private network
 * **Locale**: string: The region of this pool. If not set, this will default to "None" which will disable non-custom allocations. If the locale has been specified for the source pool, this value must match.
 * **PoolDepth**: int (ReadOnly): The depth of this pool in the source pool hierarchy.
@@ -574,12 +574,12 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## ProvisionedCidr
 ### Properties
-* **Cidr**: [Cidr](#cidr)
+* **Cidr**: [Cidr](#cidr) (Required)
 
 ## Cidr
 ### Properties
@@ -589,7 +589,7 @@
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the IPAM scope.
 * **Description**: string
 * **IpamArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the IPAM this scope is a part of.
-* **IpamId**: string (WriteOnly): The Id of the IPAM this scope is a part of.
+* **IpamId**: string (Required, WriteOnly): The Id of the IPAM this scope is a part of.
 * **IpamScopeId**: string (ReadOnly): Id of the IPAM scope.
 * **IpamScopeType**: string (ReadOnly): Determines whether this scope contains publicly routable space or space for a private network
 * **IsDefault**: bool (ReadOnly): Is this one of the default scopes created with the IPAM.
@@ -598,17 +598,17 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.EC2/LocalGatewayRouteTableVPCAssociationProperties
 ### Properties
 * **LocalGatewayId**: string (ReadOnly): The ID of the local gateway.
-* **LocalGatewayRouteTableId**: string: The ID of the local gateway route table.
+* **LocalGatewayRouteTableId**: string (Required): The ID of the local gateway route table.
 * **LocalGatewayRouteTableVpcAssociationId**: string (ReadOnly): The ID of the association.
 * **State**: string (ReadOnly): The state of the association.
 * **Tags**: [Tags](#tags): The tags for the association.
-* **VpcId**: string: The ID of the VPC.
+* **VpcId**: string (Required): The ID of the VPC.
 
 ## Tags
 ### Properties
@@ -619,24 +619,24 @@
 * **ConnectivityType**: string
 * **NatGatewayId**: string (ReadOnly)
 * **PrivateIpAddress**: string
-* **SubnetId**: string
+* **SubnetId**: string (Required)
 * **Tags**: [Tag](#tag)[]
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/NetworkAclProperties
 ### Properties
 * **Id**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]: The tags to assign to the network ACL.
-* **VpcId**: string: The ID of the VPC.
+* **VpcId**: string (Required): The ID of the VPC.
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/NetworkInsightsAccessScopeProperties
 ### Properties
@@ -683,7 +683,7 @@
 
 ## Tag
 ### Properties
-* **Key**: string
+* **Key**: string (Required)
 * **Value**: string
 
 ## AWS.EC2/NetworkInsightsAccessScopeAnalysisProperties
@@ -693,7 +693,7 @@
 * **FindingsFound**: string (ReadOnly)
 * **NetworkInsightsAccessScopeAnalysisArn**: string (ReadOnly)
 * **NetworkInsightsAccessScopeAnalysisId**: string (ReadOnly)
-* **NetworkInsightsAccessScopeId**: string
+* **NetworkInsightsAccessScopeId**: string (Required)
 * **StartDate**: string (ReadOnly)
 * **Status**: string (ReadOnly)
 * **StatusMessage**: string (ReadOnly)
@@ -701,7 +701,7 @@
 
 ## Tag
 ### Properties
-* **Key**: string
+* **Key**: string (Required)
 * **Value**: string
 
 ## AWS.EC2/NetworkInsightsAnalysisProperties
@@ -712,7 +712,7 @@
 * **ForwardPathComponents**: [PathComponent](#pathcomponent)[] (ReadOnly)
 * **NetworkInsightsAnalysisArn**: string (ReadOnly)
 * **NetworkInsightsAnalysisId**: string (ReadOnly)
-* **NetworkInsightsPathId**: string
+* **NetworkInsightsPathId**: string (Required)
 * **NetworkPathFound**: bool (ReadOnly)
 * **ReturnPathComponents**: [PathComponent](#pathcomponent)[] (ReadOnly)
 * **StartDate**: string (ReadOnly)
@@ -889,19 +889,19 @@
 
 ## Tag
 ### Properties
-* **Key**: string
+* **Key**: string (Required)
 * **Value**: string
 
 ## AWS.EC2/NetworkInsightsPathProperties
 ### Properties
 * **CreatedDate**: string (ReadOnly)
-* **Destination**: string
+* **Destination**: string (Required)
 * **DestinationIp**: [IpAddress](#ipaddress)
 * **DestinationPort**: [Port](#port)
 * **NetworkInsightsPathArn**: string (ReadOnly)
 * **NetworkInsightsPathId**: string (ReadOnly)
-* **Protocol**: [Protocol](#protocol)
-* **Source**: string
+* **Protocol**: [Protocol](#protocol) (Required)
+* **Source**: string (Required)
 * **SourceIp**: [IpAddress](#ipaddress)
 * **Tags**: [Tag](#tag)[]
 
@@ -916,7 +916,7 @@
 
 ## Tag
 ### Properties
-* **Key**: string
+* **Key**: string (Required)
 * **Value**: string
 
 ## AWS.EC2/NetworkInterfaceProperties
@@ -933,67 +933,67 @@
 * **SecondaryPrivateIpAddressCount**: int: The number of secondary private IPv4 addresses to assign to a network interface. When you specify a number of secondary IPv4 addresses, Amazon EC2 selects these IP addresses within the subnet's IPv4 CIDR range. You can't specify this option and specify more than one private IP address using privateIpAddresses
 * **SecondaryPrivateIpAddresses**: string[] (ReadOnly): Returns the secondary private IP addresses of the network interface.
 * **SourceDestCheck**: bool: Indicates whether traffic to or from the instance is validated.
-* **SubnetId**: string: The ID of the subnet to associate with the network interface.
+* **SubnetId**: string (Required): The ID of the subnet to associate with the network interface.
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this network interface.
 
 ## InstanceIpv6Address
 ### Properties
-* **Ipv6Address**: string
+* **Ipv6Address**: string (Required)
 
 ## PrivateIpAddressSpecification
 ### Properties
-* **Primary**: bool
-* **PrivateIpAddress**: string
+* **Primary**: bool (Required)
+* **PrivateIpAddress**: string (Required)
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/PrefixListProperties
 ### Properties
-* **AddressFamily**: string: Ip Version of Prefix List.
+* **AddressFamily**: string (Required): Ip Version of Prefix List.
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Prefix List.
 * **Entries**: [Entry](#entry)[]: Entries of Prefix List.
-* **MaxEntries**: int: Max Entries of Prefix List.
+* **MaxEntries**: int (Required): Max Entries of Prefix List.
 * **OwnerId**: string (ReadOnly): Owner Id of Prefix List.
 * **PrefixListId**: string (ReadOnly): Id of Prefix List.
-* **PrefixListName**: string: Name of Prefix List.
+* **PrefixListName**: string (Required): Name of Prefix List.
 * **Tags**: [Tag](#tag)[]: Tags for Prefix List
 * **Version**: int (ReadOnly): Version of Prefix List.
 
 ## Entry
 ### Properties
-* **Cidr**: string
+* **Cidr**: string (Required)
 * **Description**: string
 
 ## Tag
 ### Properties
-* **Key**: string
+* **Key**: string (Required)
 * **Value**: string
 
 ## AWS.EC2/RouteTableProperties
 ### Properties
 * **RouteTableId**: string (ReadOnly): The route table ID.
 * **Tags**: [Tag](#tag)[]: Any tags assigned to the route table.
-* **VpcId**: string: The ID of the VPC.
+* **VpcId**: string (Required): The ID of the VPC.
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/SpotFleetProperties
 ### Properties
 * **Id**: string (ReadOnly)
-* **SpotFleetRequestConfigData**: [SpotFleetRequestConfigData](#spotfleetrequestconfigdata)
+* **SpotFleetRequestConfigData**: [SpotFleetRequestConfigData](#spotfleetrequestconfigdata) (Required)
 
 ## SpotFleetRequestConfigData
 ### Properties
 * **AllocationStrategy**: string
 * **Context**: string
 * **ExcessCapacityTerminationPolicy**: string
-* **IamFleetRole**: string
+* **IamFleetRole**: string (Required)
 * **InstanceInterruptionBehavior**: string
 * **InstancePoolsToUseCount**: int
 * **LaunchSpecifications**: [SpotFleetLaunchSpecification](#spotfleetlaunchspecification)[]
@@ -1006,7 +1006,7 @@
 * **SpotMaintenanceStrategies**: [SpotMaintenanceStrategies](#spotmaintenancestrategies)
 * **SpotMaxTotalPrice**: string
 * **SpotPrice**: string
-* **TargetCapacity**: int
+* **TargetCapacity**: int (Required)
 * **TargetCapacityUnitType**: string
 * **TerminateInstancesWithExpiration**: bool
 * **Type**: string
@@ -1018,7 +1018,7 @@
 * **BlockDeviceMappings**: [BlockDeviceMapping](#blockdevicemapping)[]
 * **EbsOptimized**: bool
 * **IamInstanceProfile**: [IamInstanceProfileSpecification](#iaminstanceprofilespecification)
-* **ImageId**: string
+* **ImageId**: string (Required)
 * **InstanceRequirements**: [InstanceRequirementsRequest](#instancerequirementsrequest)
 * **InstanceType**: string
 * **KernelId**: string
@@ -1036,7 +1036,7 @@
 
 ## BlockDeviceMapping
 ### Properties
-* **DeviceName**: string
+* **DeviceName**: string (Required)
 * **Ebs**: [EbsBlockDevice](#ebsblockdevice)
 * **NoDevice**: string
 * **VirtualName**: string
@@ -1138,12 +1138,12 @@
 
 ## InstanceIpv6Address
 ### Properties
-* **Ipv6Address**: string
+* **Ipv6Address**: string (Required)
 
 ## PrivateIpAddressSpecification
 ### Properties
 * **Primary**: bool
-* **PrivateIpAddress**: string
+* **PrivateIpAddress**: string (Required)
 
 ## SpotPlacement
 ### Properties
@@ -1153,7 +1153,7 @@
 
 ## GroupIdentifier
 ### Properties
-* **GroupId**: string
+* **GroupId**: string (Required)
 
 ## SpotFleetTagSpecification
 ### Properties
@@ -1162,8 +1162,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## LaunchTemplateConfig
 ### Properties
@@ -1174,7 +1174,7 @@
 ### Properties
 * **LaunchTemplateId**: string
 * **LaunchTemplateName**: string
-* **Version**: string
+* **Version**: string (Required)
 
 ## LaunchTemplateOverrides
 ### Properties
@@ -1193,19 +1193,19 @@
 
 ## ClassicLoadBalancersConfig
 ### Properties
-* **ClassicLoadBalancers**: [ClassicLoadBalancer](#classicloadbalancer)[]
+* **ClassicLoadBalancers**: [ClassicLoadBalancer](#classicloadbalancer)[] (Required)
 
 ## ClassicLoadBalancer
 ### Properties
-* **Name**: string
+* **Name**: string (Required)
 
 ## TargetGroupsConfig
 ### Properties
-* **TargetGroups**: [TargetGroup](#targetgroup)[]
+* **TargetGroups**: [TargetGroup](#targetgroup)[] (Required)
 
 ## TargetGroup
 ### Properties
-* **Arn**: string
+* **Arn**: string (Required)
 
 ## SpotMaintenanceStrategies
 ### Properties
@@ -1232,7 +1232,7 @@
 * **PrivateDnsNameOptionsOnLaunch**: [Subnet_PrivateDnsNameOptionsOnLaunch](#subnetprivatednsnameoptionsonlaunch)
 * **SubnetId**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]
-* **VpcId**: string
+* **VpcId**: string (Required)
 
 ## Subnet_PrivateDnsNameOptionsOnLaunch
 ### Properties
@@ -1242,8 +1242,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/TransitGatewayProperties
 ### Properties
@@ -1263,17 +1263,17 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/TransitGatewayAttachmentProperties
 ### Properties
 * **Id**: string (ReadOnly)
 * **Options**: [TransitGatewayAttachment_Options](#transitgatewayattachmentoptions): The options for the transit gateway vpc attachment.
-* **SubnetIds**: string[]
+* **SubnetIds**: string[] (Required)
 * **Tags**: [Tag](#tag)[]
-* **TransitGatewayId**: string
-* **VpcId**: string
+* **TransitGatewayId**: string (Required)
+* **VpcId**: string (Required)
 
 ## TransitGatewayAttachment_Options
 ### Properties
@@ -1283,18 +1283,18 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/TransitGatewayConnectProperties
 ### Properties
 * **CreationTime**: string (ReadOnly): The creation time.
-* **Options**: [TransitGatewayConnectOptions](#transitgatewayconnectoptions): The Connect attachment options.
+* **Options**: [TransitGatewayConnectOptions](#transitgatewayconnectoptions) (Required): The Connect attachment options.
 * **State**: string (ReadOnly): The state of the attachment.
 * **Tags**: [Tag](#tag)[]: The tags for the attachment.
 * **TransitGatewayAttachmentId**: string (ReadOnly): The ID of the Connect attachment.
 * **TransitGatewayId**: string (ReadOnly): The ID of the transit gateway.
-* **TransportTransitGatewayAttachmentId**: string: The ID of the attachment from which the Connect attachment was created.
+* **TransportTransitGatewayAttachmentId**: string (Required): The ID of the attachment from which the Connect attachment was created.
 
 ## TransitGatewayConnectOptions
 ### Properties
@@ -1311,7 +1311,7 @@
 * **Options**: [TransitGatewayMulticastDomain_Options](#transitgatewaymulticastdomainoptions): The options for the transit gateway multicast domain.
 * **State**: string (ReadOnly): The state of the transit gateway multicast domain.
 * **Tags**: [Tag](#tag)[]: The tags for the transit gateway multicast domain.
-* **TransitGatewayId**: string: The ID of the transit gateway.
+* **TransitGatewayId**: string (Required): The ID of the transit gateway.
 * **TransitGatewayMulticastDomainArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the transit gateway multicast domain.
 * **TransitGatewayMulticastDomainId**: string (ReadOnly): The ID of the transit gateway multicast domain.
 
@@ -1329,14 +1329,14 @@
 ## AWS.EC2/TransitGatewayPeeringAttachmentProperties
 ### Properties
 * **CreationTime**: string (ReadOnly): The time the transit gateway peering attachment was created.
-* **PeerAccountId**: string: The ID of the peer account
-* **PeerRegion**: string: Peer Region
-* **PeerTransitGatewayId**: string: The ID of the peer transit gateway.
+* **PeerAccountId**: string (Required): The ID of the peer account
+* **PeerRegion**: string (Required): Peer Region
+* **PeerTransitGatewayId**: string (Required): The ID of the peer transit gateway.
 * **State**: string (ReadOnly): The state of the transit gateway peering attachment. Note that the initiating state has been deprecated.
 * **Status**: [PeeringAttachmentStatus](#peeringattachmentstatus) (ReadOnly): The status of the transit gateway peering attachment.
 * **Tags**: [Tag](#tag)[]: The tags for the transit gateway peering attachment.
 * **TransitGatewayAttachmentId**: string (ReadOnly): The ID of the transit gateway peering attachment.
-* **TransitGatewayId**: string: The ID of the transit gateway.
+* **TransitGatewayId**: string (Required): The ID of the transit gateway.
 
 ## PeeringAttachmentStatus
 ### Properties
@@ -1354,10 +1354,10 @@
 * **Id**: string (ReadOnly)
 * **Options**: [TransitGatewayVpcAttachment_Options](#transitgatewayvpcattachmentoptions): The options for the transit gateway vpc attachment.
 * **RemoveSubnetIds**: string[]
-* **SubnetIds**: string[]
+* **SubnetIds**: string[] (Required)
 * **Tags**: [Tag](#tag)[]
-* **TransitGatewayId**: string
-* **VpcId**: string
+* **TransitGatewayId**: string (Required)
+* **VpcId**: string (Required)
 
 ## TransitGatewayVpcAttachment_Options
 ### Properties
@@ -1367,8 +1367,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/VPCProperties
 ### Properties
@@ -1393,14 +1393,14 @@ Updating InstanceTenancy requires no replacement only if you are updating its va
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.EC2/VPCDHCPOptionsAssociationProperties
 ### Properties
-* **DhcpOptionsId**: string: The ID of the DHCP options set, or default to associate no DHCP options with the VPC.
+* **DhcpOptionsId**: string (Required): The ID of the DHCP options set, or default to associate no DHCP options with the VPC.
 * **Id**: string (ReadOnly): The ID of the VPC DHCPOptions Association.
-* **VpcId**: string: The ID of the VPC.
+* **VpcId**: string (Required): The ID of the VPC.
 
 ## AWS.EC2/VPCPeeringConnectionProperties
 ### Properties
@@ -1408,24 +1408,24 @@ Updating InstanceTenancy requires no replacement only if you are updating its va
 * **PeerOwnerId**: string: The AWS account ID of the owner of the accepter VPC.
 * **PeerRegion**: string: The Region code for the accepter VPC, if the accepter VPC is located in a Region other than the Region in which you make the request.
 * **PeerRoleArn**: string: The Amazon Resource Name (ARN) of the VPC peer role for the peering connection in another AWS account.
-* **PeerVpcId**: string: The ID of the VPC with which you are creating the VPC peering connection. You must specify this parameter in the request.
+* **PeerVpcId**: string (Required): The ID of the VPC with which you are creating the VPC peering connection. You must specify this parameter in the request.
 * **Tags**: [Tag](#tag)[]
-* **VpcId**: string: The ID of the VPC.
+* **VpcId**: string (Required): The ID of the VPC.
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.EC2/VPNGatewayProperties
 ### Properties
 * **AmazonSideAsn**: int: The private Autonomous System Number (ASN) for the Amazon side of a BGP session.
 * **Tags**: [Tag](#tag)[]: Any tags assigned to the virtual private gateway.
-* **Type**: string: The type of VPN connection the virtual private gateway supports.
+* **Type**: string (Required): The type of VPN connection the virtual private gateway supports.
 * **VPNGatewayId**: string (ReadOnly): VPN Gateway ID generated by service
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

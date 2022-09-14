@@ -4,44 +4,44 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DataBrew/DatasetProperties](#awsdatabrewdatasetproperties): properties of the resource
+* **properties**: [AWS.DataBrew/DatasetProperties](#awsdatabrewdatasetproperties) (Required): properties of the resource
 
 ## Resource AWS.DataBrew/Job@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DataBrew/JobProperties](#awsdatabrewjobproperties): properties of the resource
+* **properties**: [AWS.DataBrew/JobProperties](#awsdatabrewjobproperties) (Required): properties of the resource
 
 ## Resource AWS.DataBrew/Project@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DataBrew/ProjectProperties](#awsdatabrewprojectproperties): properties of the resource
+* **properties**: [AWS.DataBrew/ProjectProperties](#awsdatabrewprojectproperties) (Required): properties of the resource
 
 ## Resource AWS.DataBrew/Recipe@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DataBrew/RecipeProperties](#awsdatabrewrecipeproperties): properties of the resource
+* **properties**: [AWS.DataBrew/RecipeProperties](#awsdatabrewrecipeproperties) (Required): properties of the resource
 
 ## Resource AWS.DataBrew/Ruleset@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DataBrew/RulesetProperties](#awsdatabrewrulesetproperties): properties of the resource
+* **properties**: [AWS.DataBrew/RulesetProperties](#awsdatabrewrulesetproperties) (Required): properties of the resource
 
 ## Resource AWS.DataBrew/Schedule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DataBrew/ScheduleProperties](#awsdatabrewscheduleproperties): properties of the resource
+* **properties**: [AWS.DataBrew/ScheduleProperties](#awsdatabrewscheduleproperties) (Required): properties of the resource
 
 ## AWS.DataBrew/DatasetProperties
 ### Properties
 * **Format**: string: Dataset format
 * **FormatOptions**: [FormatOptions](#formatoptions): Format options for dataset
-* **Input**: [Input](#input): Input
-* **Name**: string: Dataset name
+* **Input**: [Input](#input) (Required): Input
+* **Name**: string (Required): Dataset name
 * **PathOptions**: [PathOptions](#pathoptions): PathOptions
 * **Tags**: [Tag](#tag)[]
 
@@ -76,13 +76,13 @@
 ## DatabaseInputDefinition
 ### Properties
 * **DatabaseTableName**: string: Database table name
-* **GlueConnectionName**: string: Glue connection name
+* **GlueConnectionName**: string (Required): Glue connection name
 * **QueryString**: string: Custom SQL to run against the provided AWS Glue connection. This SQL will be used as the input for DataBrew projects and jobs.
 * **TempDirectory**: [S3Location](#s3location)
 
 ## S3Location
 ### Properties
-* **Bucket**: string
+* **Bucket**: string (Required)
 * **Key**: string
 
 ## DataCatalogInputDefinition
@@ -104,36 +104,36 @@
 
 ## FilesLimit
 ### Properties
-* **MaxFiles**: int: Maximum number of files
+* **MaxFiles**: int (Required): Maximum number of files
 * **Order**: string: Order
 * **OrderedBy**: string: Ordered by
 
 ## FilterExpression
 ### Properties
-* **Expression**: string: Filtering expression for a parameter
-* **ValuesMap**: [FilterValue](#filtervalue)[]
+* **Expression**: string (Required): Filtering expression for a parameter
+* **ValuesMap**: [FilterValue](#filtervalue)[] (Required)
 
 ## FilterValue
 ### Properties
-* **Value**: string
-* **ValueReference**: string: Variable name
+* **Value**: string (Required)
+* **ValueReference**: string (Required): Variable name
 
 ## PathParameter
 ### Properties
-* **DatasetParameter**: [DatasetParameter](#datasetparameter)
-* **PathParameterName**: [PathParameterName](#pathparametername)
+* **DatasetParameter**: [DatasetParameter](#datasetparameter) (Required)
+* **PathParameterName**: [PathParameterName](#pathparametername) (Required)
 
 ## DatasetParameter
 ### Properties
 * **CreateColumn**: bool: Add the value of this parameter as a column in a dataset.
 * **DatetimeOptions**: [DatetimeOptions](#datetimeoptions)
 * **Filter**: [FilterExpression](#filterexpression)
-* **Name**: [PathParameterName](#pathparametername)
-* **Type**: string: Parameter type
+* **Name**: [PathParameterName](#pathparametername) (Required)
+* **Type**: string (Required): Parameter type
 
 ## DatetimeOptions
 ### Properties
-* **Format**: string: Date/time format of a date parameter
+* **Format**: string (Required): Date/time format of a date parameter
 * **LocaleCode**: string: Locale code for a date parameter
 * **TimezoneOffset**: string: Timezone offset
 
@@ -142,8 +142,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.DataBrew/JobProperties
 ### Properties
@@ -156,47 +156,47 @@
 * **LogSubscription**: string: Log subscription
 * **MaxCapacity**: int: Max capacity
 * **MaxRetries**: int: Max retries
-* **Name**: string: Job name
+* **Name**: string (Required): Job name
 * **OutputLocation**: [OutputLocation](#outputlocation): Output location
 * **Outputs**: [Output](#output)[]
 * **ProfileConfiguration**: [ProfileConfiguration](#profileconfiguration): Profile Job configuration
 * **ProjectName**: string: Project name
 * **Recipe**: [Recipe](#recipe)
-* **RoleArn**: string: Role arn
+* **RoleArn**: string (Required): Role arn
 * **Tags**: [Tag](#tag)[]
 * **Timeout**: int: Timeout
-* **Type**: string: Job type
+* **Type**: string (Required): Job type
 * **ValidationConfigurations**: [ValidationConfiguration](#validationconfiguration)[]: Data quality rules configuration
 
 ## DatabaseOutput
 ### Properties
-* **DatabaseOptions**: [DatabaseTableOutputOptions](#databasetableoutputoptions)
+* **DatabaseOptions**: [DatabaseTableOutputOptions](#databasetableoutputoptions) (Required)
 * **DatabaseOutputMode**: string: Database table name
-* **GlueConnectionName**: string: Glue connection name
+* **GlueConnectionName**: string (Required): Glue connection name
 
 ## DatabaseTableOutputOptions
 ### Properties
-* **TableName**: string
+* **TableName**: string (Required)
 * **TempDirectory**: [S3Location](#s3location)
 
 ## S3Location
 ### Properties
-* **Bucket**: string
+* **Bucket**: string (Required)
 * **BucketOwner**: string
 * **Key**: string
 
 ## DataCatalogOutput
 ### Properties
 * **CatalogId**: string
-* **DatabaseName**: string
+* **DatabaseName**: string (Required)
 * **DatabaseOptions**: [DatabaseTableOutputOptions](#databasetableoutputoptions)
 * **Overwrite**: bool
 * **S3Options**: [S3TableOutputOptions](#s3tableoutputoptions)
-* **TableName**: string
+* **TableName**: string (Required)
 
 ## S3TableOutputOptions
 ### Properties
-* **Location**: [S3Location](#s3location)
+* **Location**: [S3Location](#s3location) (Required)
 
 ## JobSample
 ### Properties
@@ -211,7 +211,7 @@
 
 ## OutputLocation
 ### Properties
-* **Bucket**: string
+* **Bucket**: string (Required)
 * **BucketOwner**: string
 * **Key**: string
 
@@ -220,7 +220,7 @@
 * **CompressionFormat**: string
 * **Format**: string
 * **FormatOptions**: [OutputFormatOptions](#outputformatoptions)
-* **Location**: [S3Location](#s3location)
+* **Location**: [S3Location](#s3location) (Required)
 * **MaxOutputFiles**: int
 * **Overwrite**: bool
 * **PartitionColumns**: string[]
@@ -243,7 +243,7 @@
 ## ColumnStatisticsConfiguration
 ### Properties
 * **Selectors**: [ColumnSelector](#columnselector)[]
-* **Statistics**: [StatisticsConfiguration](#statisticsconfiguration)
+* **Statistics**: [StatisticsConfiguration](#statisticsconfiguration) (Required)
 
 ## ColumnSelector
 ### Properties
@@ -260,8 +260,8 @@
 
 ## StatisticOverride
 ### Properties
-* **Parameters**: [ParameterMap](#parametermap)
-* **Statistic**: [Statistic](#statistic)
+* **Parameters**: [ParameterMap](#parametermap) (Required)
+* **Statistic**: [Statistic](#statistic) (Required)
 
 ## ParameterMap
 ### Properties
@@ -269,25 +269,25 @@
 ## EntityDetectorConfiguration
 ### Properties
 * **AllowedStatistics**: [AllowedStatistics](#allowedstatistics)
-* **EntityTypes**: string[]
+* **EntityTypes**: string[] (Required)
 
 ## AllowedStatistics
 ### Properties
-* **Statistics**: [Statistic](#statistic)[]
+* **Statistics**: [Statistic](#statistic)[] (Required)
 
 ## Recipe
 ### Properties
-* **Name**: string: Recipe name
+* **Name**: string (Required): Recipe name
 * **Version**: string: Recipe version
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## ValidationConfiguration
 ### Properties
-* **RulesetArn**: string: Arn of the Ruleset
+* **RulesetArn**: string (Required): Arn of the Ruleset
 * **ValidationMode**: [ValidationMode](#validationmode)
 
 ## ValidationMode
@@ -295,38 +295,38 @@
 
 ## AWS.DataBrew/ProjectProperties
 ### Properties
-* **DatasetName**: string: Dataset name
-* **Name**: string: Project name
-* **RecipeName**: string: Recipe name
-* **RoleArn**: string: Role arn
+* **DatasetName**: string (Required): Dataset name
+* **Name**: string (Required): Project name
+* **RecipeName**: string (Required): Recipe name
+* **RoleArn**: string (Required): Role arn
 * **Sample**: [Sample](#sample): Sample
 * **Tags**: [Tag](#tag)[]
 
 ## Sample
 ### Properties
 * **Size**: int: Sample size
-* **Type**: string: Sample type
+* **Type**: string (Required): Sample type
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.DataBrew/RecipeProperties
 ### Properties
 * **Description**: string: Description of the recipe
-* **Name**: string: Recipe name
-* **Steps**: [Recipe_RecipeStep](#reciperecipestep)[]
+* **Name**: string (Required): Recipe name
+* **Steps**: [Recipe_RecipeStep](#reciperecipestep)[] (Required)
 * **Tags**: [Tag](#tag)[]
 
 ## Recipe_RecipeStep
 ### Properties
-* **Action**: [Action](#action)
+* **Action**: [Action](#action) (Required)
 * **ConditionExpressions**: [ConditionExpression](#conditionexpression)[]: Condition expressions applied to the step action
 
 ## Action
 ### Properties
-* **Operation**: string: Step action operation
+* **Operation**: string (Required): Step action operation
 * **Parameters**: [Recipe_Parameters](#recipeparameters)
 
 ## Recipe_Parameters
@@ -334,29 +334,29 @@
 
 ## ConditionExpression
 ### Properties
-* **Condition**: string: Input condition to be applied to the target column
-* **TargetColumn**: string: Name of the target column
+* **Condition**: string (Required): Input condition to be applied to the target column
+* **TargetColumn**: string (Required): Name of the target column
 * **Value**: string: Value of the condition
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.DataBrew/RulesetProperties
 ### Properties
 * **Description**: string: Description of the Ruleset
-* **Name**: string: Name of the Ruleset
-* **Rules**: [Rule](#rule)[]: List of the data quality rules in the ruleset
+* **Name**: string (Required): Name of the Ruleset
+* **Rules**: [Rule](#rule)[] (Required): List of the data quality rules in the ruleset
 * **Tags**: [Tag](#tag)[]
-* **TargetArn**: string: Arn of the target resource (dataset) to apply the ruleset to
+* **TargetArn**: string (Required): Arn of the target resource (dataset) to apply the ruleset to
 
 ## Rule
 ### Properties
-* **CheckExpression**: [Expression](#expression)
+* **CheckExpression**: [Expression](#expression) (Required)
 * **ColumnSelectors**: [ColumnSelector](#columnselector)[]
 * **Disabled**: [Disabled](#disabled)
-* **Name**: string: Name of the rule
+* **Name**: string (Required): Name of the rule
 * **SubstitutionMap**: [ValuesMap](#valuesmap)
 * **Threshold**: [Threshold](#threshold)
 
@@ -378,7 +378,7 @@
 ### Properties
 * **Type**: [ThresholdType](#thresholdtype)
 * **Unit**: [ThresholdUnit](#thresholdunit)
-* **Value**: [ThresholdValue](#thresholdvalue)
+* **Value**: [ThresholdValue](#thresholdvalue) (Required)
 
 ## ThresholdType
 ### Properties
@@ -391,14 +391,14 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.DataBrew/ScheduleProperties
 ### Properties
-* **CronExpression**: string: Schedule cron
+* **CronExpression**: string (Required): Schedule cron
 * **JobNames**: [JobName](#jobname)[]
-* **Name**: string: Schedule Name
+* **Name**: string (Required): Schedule Name
 * **Tags**: [Tag](#tag)[]
 
 ## JobName
@@ -406,6 +406,6 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

@@ -16,13 +16,13 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.NetworkManager/CoreNetworkProperties](#awsnetworkmanagercorenetworkproperties): properties of the resource
+* **properties**: [AWS.NetworkManager/CoreNetworkProperties](#awsnetworkmanagercorenetworkproperties) (Required): properties of the resource
 
 ## Resource AWS.NetworkManager/Device@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.NetworkManager/DeviceProperties](#awsnetworkmanagerdeviceproperties): properties of the resource
+* **properties**: [AWS.NetworkManager/DeviceProperties](#awsnetworkmanagerdeviceproperties) (Required): properties of the resource
 
 ## Resource AWS.NetworkManager/GlobalNetwork@default
 * **Valid Scope(s)**: Unknown
@@ -34,13 +34,13 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.NetworkManager/LinkProperties](#awsnetworkmanagerlinkproperties): properties of the resource
+* **properties**: [AWS.NetworkManager/LinkProperties](#awsnetworkmanagerlinkproperties) (Required): properties of the resource
 
 ## Resource AWS.NetworkManager/Site@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.NetworkManager/SiteProperties](#awsnetworkmanagersiteproperties): properties of the resource
+* **properties**: [AWS.NetworkManager/SiteProperties](#awsnetworkmanagersiteproperties) (Required): properties of the resource
 
 ## Resource AWS.NetworkManager/SiteToSiteVpnAttachment@default
 * **Valid Scope(s)**: Unknown
@@ -85,8 +85,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.NetworkManager/ConnectPeerProperties
 ### Properties
@@ -127,8 +127,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.NetworkManager/CoreNetworkProperties
 ### Properties
@@ -137,7 +137,7 @@
 * **CreatedAt**: string (ReadOnly): The creation time of core network
 * **Description**: string: The description of core network
 * **Edges**: [CoreNetworkEdge](#corenetworkedge)[] (ReadOnly): The edges within a core network.
-* **GlobalNetworkId**: string: The ID of the global network that your core network is a part of.
+* **GlobalNetworkId**: string (Required): The ID of the global network that your core network is a part of.
 * **OwnerAccount**: string (ReadOnly): Owner of the core network
 * **PolicyDocument**: [CoreNetwork_PolicyDocument](#corenetworkpolicydocument): Live policy document for the core network, you must provide PolicyDocument in Json Format
 * **Segments**: [CoreNetworkSegment](#corenetworksegment)[] (ReadOnly): The segments within a core network.
@@ -161,15 +161,15 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.NetworkManager/DeviceProperties
 ### Properties
 * **Description**: string: The description of the device.
 * **DeviceArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the device.
 * **DeviceId**: string (ReadOnly): The ID of the device.
-* **GlobalNetworkId**: string: The ID of the global network.
+* **GlobalNetworkId**: string (Required): The ID of the global network.
 * **Location**: [Location](#location): The site location.
 * **Model**: string: The device model
 * **SerialNumber**: string: The device serial number.
@@ -203,13 +203,13 @@
 
 ## AWS.NetworkManager/LinkProperties
 ### Properties
-* **Bandwidth**: [Bandwidth](#bandwidth): The Bandwidth for the link.
+* **Bandwidth**: [Bandwidth](#bandwidth) (Required): The Bandwidth for the link.
 * **Description**: string: The description of the link.
-* **GlobalNetworkId**: string: The ID of the global network.
+* **GlobalNetworkId**: string (Required): The ID of the global network.
 * **LinkArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the link.
 * **LinkId**: string (ReadOnly): The ID of the link.
 * **Provider**: string: The provider of the link.
-* **SiteId**: string: The ID of the site
+* **SiteId**: string (Required): The ID of the site
 * **Tags**: [Tag](#tag)[]: The tags for the link.
 * **Type**: string: The type of the link.
 
@@ -226,7 +226,7 @@
 ## AWS.NetworkManager/SiteProperties
 ### Properties
 * **Description**: string: The description of the site.
-* **GlobalNetworkId**: string: The ID of the global network.
+* **GlobalNetworkId**: string (Required): The ID of the global network.
 * **Location**: [Location](#location): The location of the site.
 * **SiteArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the site.
 * **SiteId**: string (ReadOnly): The ID of the site.
@@ -269,8 +269,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.NetworkManager/VpcAttachmentProperties
 ### Properties
@@ -304,6 +304,6 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 

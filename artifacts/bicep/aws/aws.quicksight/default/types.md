@@ -4,13 +4,13 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.QuickSight/AnalysisProperties](#awsquicksightanalysisproperties): properties of the resource
+* **properties**: [AWS.QuickSight/AnalysisProperties](#awsquicksightanalysisproperties) (Required): properties of the resource
 
 ## Resource AWS.QuickSight/Dashboard@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.QuickSight/DashboardProperties](#awsquicksightdashboardproperties): properties of the resource
+* **properties**: [AWS.QuickSight/DashboardProperties](#awsquicksightdashboardproperties) (Required): properties of the resource
 
 ## Resource AWS.QuickSight/DataSet@default
 * **Valid Scope(s)**: Unknown
@@ -28,19 +28,19 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.QuickSight/TemplateProperties](#awsquicksighttemplateproperties): properties of the resource
+* **properties**: [AWS.QuickSight/TemplateProperties](#awsquicksighttemplateproperties) (Required): properties of the resource
 
 ## Resource AWS.QuickSight/Theme@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.QuickSight/ThemeProperties](#awsquicksightthemeproperties): properties of the resource
+* **properties**: [AWS.QuickSight/ThemeProperties](#awsquicksightthemeproperties) (Required): properties of the resource
 
 ## AWS.QuickSight/AnalysisProperties
 ### Properties
-* **AnalysisId**: string
+* **AnalysisId**: string (Required)
 * **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) of the analysis.</p>
-* **AwsAccountId**: string
+* **AwsAccountId**: string (Required)
 * **CreatedTime**: string (ReadOnly): <p>The time that the analysis was created.</p>
 * **DataSetArns**: string[] (ReadOnly): <p>The ARNs of the datasets of the analysis.</p>
 * **Errors**: [AnalysisError](#analysiserror)[]: <p>Errors associated with the analysis.</p>
@@ -54,7 +54,7 @@
 
         <p>To specify no permissions, omit <code>Permissions</code>.</p>
 * **Sheets**: [Sheet](#sheet)[] (ReadOnly, WriteOnly): <p>A list of the associated sheets with the unique identifier and name of each sheet.</p>
-* **SourceEntity**: [AnalysisSourceEntity](#analysissourceentity) (WriteOnly)
+* **SourceEntity**: [AnalysisSourceEntity](#analysissourceentity) (Required, WriteOnly)
 * **Status**: [ResourceStatus](#resourcestatus) (ReadOnly, WriteOnly)
 * **Tags**: [Tag](#tag)[]: <p>Contains a map of the key-value pairs for the resource tag or tags assigned to the
             analysis.</p>
@@ -77,28 +77,28 @@
 
 ## DateTimeParameter
 ### Properties
-* **Name**: string: <p>A display name for the date-time parameter.</p>
-* **Values**: string[]: <p>The values for the date-time parameter.</p>
+* **Name**: string (Required): <p>A display name for the date-time parameter.</p>
+* **Values**: string[] (Required): <p>The values for the date-time parameter.</p>
 
 ## DecimalParameter
 ### Properties
-* **Name**: string: <p>A display name for the decimal parameter.</p>
-* **Values**: int[]: <p>The values for the decimal parameter.</p>
+* **Name**: string (Required): <p>A display name for the decimal parameter.</p>
+* **Values**: int[] (Required): <p>The values for the decimal parameter.</p>
 
 ## IntegerParameter
 ### Properties
-* **Name**: string: <p>The name of the integer parameter.</p>
-* **Values**: int[]: <p>The values for the integer parameter.</p>
+* **Name**: string (Required): <p>The name of the integer parameter.</p>
+* **Values**: int[] (Required): <p>The values for the integer parameter.</p>
 
 ## StringParameter
 ### Properties
-* **Name**: string: <p>A display name for a string parameter.</p>
-* **Values**: string[]: <p>The values of a string parameter.</p>
+* **Name**: string (Required): <p>A display name for a string parameter.</p>
+* **Values**: string[] (Required): <p>The values of a string parameter.</p>
 
 ## ResourcePermission
 ### Properties
-* **Actions**: string[]: <p>The IAM action to grant or revoke permissions on.</p>
-* **Principal**: string: <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
+* **Actions**: string[] (Required): <p>The IAM action to grant or revoke permissions on.</p>
+* **Principal**: string (Required): <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
             following:</p>
         <ul>
             <li>
@@ -126,28 +126,28 @@
 
 ## AnalysisSourceTemplate
 ### Properties
-* **Arn**: string: <p>The Amazon Resource Name (ARN) of the source template of an analysis.</p>
-* **DataSetReferences**: [DataSetReference](#datasetreference)[]: <p>The dataset references of the source template of an analysis.</p>
+* **Arn**: string (Required): <p>The Amazon Resource Name (ARN) of the source template of an analysis.</p>
+* **DataSetReferences**: [DataSetReference](#datasetreference)[] (Required): <p>The dataset references of the source template of an analysis.</p>
 
 ## DataSetReference
 ### Properties
-* **DataSetArn**: string: <p>Dataset Amazon Resource Name (ARN).</p>
-* **DataSetPlaceholder**: string: <p>Dataset placeholder.</p>
+* **DataSetArn**: string (Required): <p>Dataset Amazon Resource Name (ARN).</p>
+* **DataSetPlaceholder**: string (Required): <p>Dataset placeholder.</p>
 
 ## ResourceStatus
 ### Properties
 
 ## Tag
 ### Properties
-* **Key**: string: <p>Tag key.</p>
-* **Value**: string: <p>Tag value.</p>
+* **Key**: string (Required): <p>Tag key.</p>
+* **Value**: string (Required): <p>Tag value.</p>
 
 ## AWS.QuickSight/DashboardProperties
 ### Properties
 * **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) of the resource.</p>
-* **AwsAccountId**: string
+* **AwsAccountId**: string (Required)
 * **CreatedTime**: string (ReadOnly, WriteOnly): <p>The time that this dataset was created.</p>
-* **DashboardId**: string
+* **DashboardId**: string (Required)
 * **DashboardPublishOptions**: [DashboardPublishOptions](#dashboardpublishoptions) (WriteOnly)
 * **LastPublishedTime**: string (ReadOnly): <p>The last time that this dataset was published.</p>
 * **LastUpdatedTime**: string (ReadOnly, WriteOnly): <p>The last time that this dataset was updated.</p>
@@ -158,7 +158,7 @@
             principal ARN. </p>
 
         <p>To specify no permissions, omit the permissions list.</p>
-* **SourceEntity**: [DashboardSourceEntity](#dashboardsourceentity) (WriteOnly)
+* **SourceEntity**: [DashboardSourceEntity](#dashboardsourceentity) (Required, WriteOnly)
 * **Tags**: [Tag](#tag)[]: <p>Contains a map of the key-value pairs for the resource tag or tags assigned to the
             dashboard.</p>
 * **ThemeArn**: string (WriteOnly): <p>The Amazon Resource Name (ARN) of the theme that is being used for this dashboard. If
@@ -201,28 +201,28 @@
 
 ## DateTimeParameter
 ### Properties
-* **Name**: string: <p>A display name for the date-time parameter.</p>
-* **Values**: string[]: <p>The values for the date-time parameter.</p>
+* **Name**: string (Required): <p>A display name for the date-time parameter.</p>
+* **Values**: string[] (Required): <p>The values for the date-time parameter.</p>
 
 ## DecimalParameter
 ### Properties
-* **Name**: string: <p>A display name for the decimal parameter.</p>
-* **Values**: int[]: <p>The values for the decimal parameter.</p>
+* **Name**: string (Required): <p>A display name for the decimal parameter.</p>
+* **Values**: int[] (Required): <p>The values for the decimal parameter.</p>
 
 ## IntegerParameter
 ### Properties
-* **Name**: string: <p>The name of the integer parameter.</p>
-* **Values**: int[]: <p>The values for the integer parameter.</p>
+* **Name**: string (Required): <p>The name of the integer parameter.</p>
+* **Values**: int[] (Required): <p>The values for the integer parameter.</p>
 
 ## StringParameter
 ### Properties
-* **Name**: string: <p>A display name for a string parameter.</p>
-* **Values**: string[]: <p>The values of a string parameter.</p>
+* **Name**: string (Required): <p>A display name for a string parameter.</p>
+* **Values**: string[] (Required): <p>The values of a string parameter.</p>
 
 ## ResourcePermission
 ### Properties
-* **Actions**: string[]: <p>The IAM action to grant or revoke permissions on.</p>
-* **Principal**: string: <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
+* **Actions**: string[] (Required): <p>The IAM action to grant or revoke permissions on.</p>
+* **Principal**: string (Required): <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
             following:</p>
         <ul>
             <li>
@@ -244,18 +244,18 @@
 
 ## DashboardSourceTemplate
 ### Properties
-* **Arn**: string: <p>The Amazon Resource Name (ARN) of the resource.</p>
-* **DataSetReferences**: [DataSetReference](#datasetreference)[]: <p>Dataset references.</p>
+* **Arn**: string (Required): <p>The Amazon Resource Name (ARN) of the resource.</p>
+* **DataSetReferences**: [DataSetReference](#datasetreference)[] (Required): <p>Dataset references.</p>
 
 ## DataSetReference
 ### Properties
-* **DataSetArn**: string: <p>Dataset Amazon Resource Name (ARN).</p>
-* **DataSetPlaceholder**: string: <p>Dataset placeholder.</p>
+* **DataSetArn**: string (Required): <p>Dataset Amazon Resource Name (ARN).</p>
+* **DataSetPlaceholder**: string (Required): <p>Dataset placeholder.</p>
 
 ## Tag
 ### Properties
-* **Key**: string: <p>Tag key.</p>
-* **Value**: string: <p>Tag value.</p>
+* **Key**: string (Required): <p>Tag key.</p>
+* **Value**: string (Required): <p>Tag value.</p>
 
 ## DashboardVersion
 ### Properties
@@ -318,9 +318,9 @@
 
 ## GeoSpatialColumnGroup
 ### Properties
-* **Columns**: string[]: <p>Columns in this hierarchy.</p>
+* **Columns**: string[] (Required): <p>Columns in this hierarchy.</p>
 * **CountryCode**: [GeoSpatialCountryCode](#geospatialcountrycode)
-* **Name**: string: <p>A display name for the hierarchy.</p>
+* **Name**: string (Required): <p>A display name for the hierarchy.</p>
 
 ## GeoSpatialCountryCode
 ### Properties
@@ -362,8 +362,8 @@
 
 ## ResourcePermission
 ### Properties
-* **Actions**: string[]: <p>The IAM action to grant or revoke permissions on.</p>
-* **Principal**: string: <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
+* **Actions**: string[] (Required): <p>The IAM action to grant or revoke permissions on.</p>
+* **Principal**: string (Required): <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
             following:</p>
         <ul>
             <li>
@@ -384,10 +384,10 @@
 
 ## RowLevelPermissionDataSet
 ### Properties
-* **Arn**: string: <p>The Amazon Resource Name (ARN) of the permission dataset.</p>
+* **Arn**: string (Required): <p>The Amazon Resource Name (ARN) of the permission dataset.</p>
 * **FormatVersion**: [RowLevelPermissionFormatVersion](#rowlevelpermissionformatversion)
 * **Namespace**: string: <p>The namespace associated with the row-level permissions dataset.</p>
-* **PermissionPolicy**: [RowLevelPermissionPolicy](#rowlevelpermissionpolicy)
+* **PermissionPolicy**: [RowLevelPermissionPolicy](#rowlevelpermissionpolicy) (Required)
 
 ## RowLevelPermissionFormatVersion
 ### Properties
@@ -397,8 +397,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string: <p>Tag key.</p>
-* **Value**: string: <p>Tag value.</p>
+* **Key**: string (Required): <p>Tag key.</p>
+* **Value**: string (Required): <p>Tag value.</p>
 
 ## AWS.QuickSight/DataSourceProperties
 ### Properties
@@ -449,11 +449,11 @@
 
 ## AmazonElasticsearchParameters
 ### Properties
-* **Domain**: string: <p>The Amazon Elasticsearch Service domain.</p>
+* **Domain**: string (Required): <p>The Amazon Elasticsearch Service domain.</p>
 
 ## AmazonOpenSearchParameters
 ### Properties
-* **Domain**: string: <p>The Amazon OpenSearch Service domain.</p>
+* **Domain**: string (Required): <p>The Amazon OpenSearch Service domain.</p>
 
 ## AthenaParameters
 ### Properties
@@ -461,90 +461,90 @@
 
 ## AuroraParameters
 ### Properties
-* **Database**: string: <p>Database.</p>
-* **Host**: string: <p>Host.</p>
-* **Port**: int: <p>Port.</p>
+* **Database**: string (Required): <p>Database.</p>
+* **Host**: string (Required): <p>Host.</p>
+* **Port**: int (Required): <p>Port.</p>
 
 ## AuroraPostgreSqlParameters
 ### Properties
-* **Database**: string: <p>Database.</p>
-* **Host**: string: <p>Host.</p>
-* **Port**: int: <p>Port.</p>
+* **Database**: string (Required): <p>Database.</p>
+* **Host**: string (Required): <p>Host.</p>
+* **Port**: int (Required): <p>Port.</p>
 
 ## MariaDbParameters
 ### Properties
-* **Database**: string: <p>Database.</p>
-* **Host**: string: <p>Host.</p>
-* **Port**: int: <p>Port.</p>
+* **Database**: string (Required): <p>Database.</p>
+* **Host**: string (Required): <p>Host.</p>
+* **Port**: int (Required): <p>Port.</p>
 
 ## MySqlParameters
 ### Properties
-* **Database**: string: <p>Database.</p>
-* **Host**: string: <p>Host.</p>
-* **Port**: int: <p>Port.</p>
+* **Database**: string (Required): <p>Database.</p>
+* **Host**: string (Required): <p>Host.</p>
+* **Port**: int (Required): <p>Port.</p>
 
 ## OracleParameters
 ### Properties
-* **Database**: string
-* **Host**: string
-* **Port**: int
+* **Database**: string (Required)
+* **Host**: string (Required)
+* **Port**: int (Required)
 
 ## PostgreSqlParameters
 ### Properties
-* **Database**: string: <p>Database.</p>
-* **Host**: string: <p>Host.</p>
-* **Port**: int: <p>Port.</p>
+* **Database**: string (Required): <p>Database.</p>
+* **Host**: string (Required): <p>Host.</p>
+* **Port**: int (Required): <p>Port.</p>
 
 ## PrestoParameters
 ### Properties
-* **Catalog**: string: <p>Catalog.</p>
-* **Host**: string: <p>Host.</p>
-* **Port**: int: <p>Port.</p>
+* **Catalog**: string (Required): <p>Catalog.</p>
+* **Host**: string (Required): <p>Host.</p>
+* **Port**: int (Required): <p>Port.</p>
 
 ## RdsParameters
 ### Properties
-* **Database**: string: <p>Database.</p>
-* **InstanceId**: string: <p>Instance ID.</p>
+* **Database**: string (Required): <p>Database.</p>
+* **InstanceId**: string (Required): <p>Instance ID.</p>
 
 ## RedshiftParameters
 ### Properties
 * **ClusterId**: string: <p>Cluster ID. This field can be blank if the <code>Host</code> and <code>Port</code> are
             provided.</p>
-* **Database**: string: <p>Database.</p>
+* **Database**: string (Required): <p>Database.</p>
 * **Host**: string: <p>Host. This field can be blank if <code>ClusterId</code> is provided.</p>
 * **Port**: int: <p>Port. This field can be blank if the <code>ClusterId</code> is provided.</p>
 
 ## S3Parameters
 ### Properties
-* **ManifestFileLocation**: [ManifestFileLocation](#manifestfilelocation)
+* **ManifestFileLocation**: [ManifestFileLocation](#manifestfilelocation) (Required)
 
 ## ManifestFileLocation
 ### Properties
-* **Bucket**: string: <p>Amazon S3 bucket.</p>
-* **Key**: string: <p>Amazon S3 key that identifies an object.</p>
+* **Bucket**: string (Required): <p>Amazon S3 bucket.</p>
+* **Key**: string (Required): <p>Amazon S3 key that identifies an object.</p>
 
 ## SnowflakeParameters
 ### Properties
-* **Database**: string: <p>Database.</p>
-* **Host**: string: <p>Host.</p>
-* **Warehouse**: string: <p>Warehouse.</p>
+* **Database**: string (Required): <p>Database.</p>
+* **Host**: string (Required): <p>Host.</p>
+* **Warehouse**: string (Required): <p>Warehouse.</p>
 
 ## SparkParameters
 ### Properties
-* **Host**: string: <p>Host.</p>
-* **Port**: int: <p>Port.</p>
+* **Host**: string (Required): <p>Host.</p>
+* **Port**: int (Required): <p>Port.</p>
 
 ## SqlServerParameters
 ### Properties
-* **Database**: string: <p>Database.</p>
-* **Host**: string: <p>Host.</p>
-* **Port**: int: <p>Port.</p>
+* **Database**: string (Required): <p>Database.</p>
+* **Host**: string (Required): <p>Host.</p>
+* **Port**: int (Required): <p>Port.</p>
 
 ## TeradataParameters
 ### Properties
-* **Database**: string: <p>Database.</p>
-* **Host**: string: <p>Host.</p>
-* **Port**: int: <p>Port.</p>
+* **Database**: string (Required): <p>Database.</p>
+* **Host**: string (Required): <p>Host.</p>
+* **Port**: int (Required): <p>Port.</p>
 
 ## DataSourceCredentials
 ### Properties
@@ -565,8 +565,8 @@
             the existing credentials. If the <code>AlternateDataSourceParameters</code> list is
             null, the <code>DataSourceParameters</code> originally used with these
                 <code>Credentials</code> is automatically allowed.</p>
-* **Password**: string: <p>Password.</p>
-* **Username**: string: <p>User name.</p>
+* **Password**: string (Required): <p>Password.</p>
+* **Username**: string (Required): <p>User name.</p>
 
 ## DataSourceErrorInfo
 ### Properties
@@ -578,8 +578,8 @@
 
 ## ResourcePermission
 ### Properties
-* **Actions**: string[]: <p>The IAM action to grant or revoke permissions on.</p>
-* **Principal**: string: <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
+* **Actions**: string[] (Required): <p>The IAM action to grant or revoke permissions on.</p>
+* **Principal**: string (Required): <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
             following:</p>
         <ul>
             <li>
@@ -604,27 +604,27 @@
 
 ## Tag
 ### Properties
-* **Key**: string: <p>Tag key.</p>
-* **Value**: string: <p>Tag value.</p>
+* **Key**: string (Required): <p>Tag key.</p>
+* **Value**: string (Required): <p>Tag value.</p>
 
 ## DataSourceType
 ### Properties
 
 ## VpcConnectionProperties
 ### Properties
-* **VpcConnectionArn**: string: <p>The Amazon Resource Name (ARN) for the VPC connection.</p>
+* **VpcConnectionArn**: string (Required): <p>The Amazon Resource Name (ARN) for the VPC connection.</p>
 
 ## AWS.QuickSight/TemplateProperties
 ### Properties
 * **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) of the template.</p>
-* **AwsAccountId**: string
+* **AwsAccountId**: string (Required)
 * **CreatedTime**: string (ReadOnly, WriteOnly): <p>Time when this was created.</p>
 * **LastUpdatedTime**: string (ReadOnly, WriteOnly): <p>Time when this was last updated.</p>
 * **Name**: string: <p>A display name for the template.</p>
 * **Permissions**: [ResourcePermission](#resourcepermission)[]: <p>A list of resource permissions to be set on the template. </p>
-* **SourceEntity**: [TemplateSourceEntity](#templatesourceentity) (WriteOnly)
+* **SourceEntity**: [TemplateSourceEntity](#templatesourceentity) (Required, WriteOnly)
 * **Tags**: [Tag](#tag)[]: <p>Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.</p>
-* **TemplateId**: string
+* **TemplateId**: string (Required)
 * **Version**: [TemplateVersion](#templateversion) (ReadOnly, WriteOnly)
 * **VersionDescription**: string (WriteOnly): <p>A description of the current template version being created. This API operation creates the
 			first version of the template. Every time <code>UpdateTemplate</code> is called, a new
@@ -633,8 +633,8 @@
 
 ## ResourcePermission
 ### Properties
-* **Actions**: string[]: <p>The IAM action to grant or revoke permissions on.</p>
-* **Principal**: string: <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
+* **Actions**: string[] (Required): <p>The IAM action to grant or revoke permissions on.</p>
+* **Principal**: string (Required): <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
             following:</p>
         <ul>
             <li>
@@ -657,23 +657,23 @@
 
 ## TemplateSourceAnalysis
 ### Properties
-* **Arn**: string: <p>The Amazon Resource Name (ARN) of the resource.</p>
-* **DataSetReferences**: [DataSetReference](#datasetreference)[]: <p>A structure containing information about the dataset references used as placeholders
+* **Arn**: string (Required): <p>The Amazon Resource Name (ARN) of the resource.</p>
+* **DataSetReferences**: [DataSetReference](#datasetreference)[] (Required): <p>A structure containing information about the dataset references used as placeholders
             in the template.</p>
 
 ## DataSetReference
 ### Properties
-* **DataSetArn**: string: <p>Dataset Amazon Resource Name (ARN).</p>
-* **DataSetPlaceholder**: string: <p>Dataset placeholder.</p>
+* **DataSetArn**: string (Required): <p>Dataset Amazon Resource Name (ARN).</p>
+* **DataSetPlaceholder**: string (Required): <p>Dataset placeholder.</p>
 
 ## TemplateSourceTemplate
 ### Properties
-* **Arn**: string: <p>The Amazon Resource Name (ARN) of the resource.</p>
+* **Arn**: string (Required): <p>The Amazon Resource Name (ARN) of the resource.</p>
 
 ## Tag
 ### Properties
-* **Key**: string: <p>Tag key.</p>
-* **Value**: string: <p>Tag value.</p>
+* **Key**: string (Required): <p>Tag key.</p>
+* **Value**: string (Required): <p>Tag value.</p>
 
 ## TemplateVersion
 ### Properties
@@ -735,7 +735,7 @@
 ## AWS.QuickSight/ThemeProperties
 ### Properties
 * **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) of the theme.</p>
-* **AwsAccountId**: string
+* **AwsAccountId**: string (Required)
 * **BaseThemeId**: string (WriteOnly): <p>The ID of the theme that a custom theme will inherit from. All themes inherit from one of
 			the starting themes defined by Amazon QuickSight. For a list of the starting themes, use
 				<code>ListThemes</code> or choose <b>Themes</b> from
@@ -748,7 +748,7 @@
 			</p>
 * **Tags**: [Tag](#tag)[]: <p>A map of the key-value pairs for the resource tag or tags that you want to add to the
 			resource.</p>
-* **ThemeId**: string
+* **ThemeId**: string (Required)
 * **Type**: [ThemeType](#themetype) (ReadOnly)
 * **Version**: [ThemeVersion](#themeversion) (ReadOnly)
 * **VersionDescription**: string (WriteOnly): <p>A description of the first version of the theme that you're creating. Every time
@@ -836,8 +836,8 @@
 
 ## ResourcePermission
 ### Properties
-* **Actions**: string[]: <p>The IAM action to grant or revoke permissions on.</p>
-* **Principal**: string: <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
+* **Actions**: string[] (Required): <p>The IAM action to grant or revoke permissions on.</p>
+* **Principal**: string (Required): <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
             following:</p>
         <ul>
             <li>
@@ -855,8 +855,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string: <p>Tag key.</p>
-* **Value**: string: <p>Tag value.</p>
+* **Key**: string (Required): <p>Tag key.</p>
+* **Value**: string (Required): <p>Tag value.</p>
 
 ## ThemeType
 ### Properties

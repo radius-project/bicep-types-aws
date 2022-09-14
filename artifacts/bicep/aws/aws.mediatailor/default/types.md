@@ -4,11 +4,11 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.MediaTailor/PlaybackConfigurationProperties](#awsmediatailorplaybackconfigurationproperties): properties of the resource
+* **properties**: [AWS.MediaTailor/PlaybackConfigurationProperties](#awsmediatailorplaybackconfigurationproperties) (Required): properties of the resource
 
 ## AWS.MediaTailor/PlaybackConfigurationProperties
 ### Properties
-* **AdDecisionServerUrl**: string: The URL for the ad decision server (ADS). This includes the specification of static parameters and placeholders for dynamic parameters. AWS Elemental MediaTailor substitutes player-specific and session-specific parameters as needed when calling the ADS. Alternately, for testing you can provide a static VAST URL. The maximum length is 25,000 characters.
+* **AdDecisionServerUrl**: string (Required): The URL for the ad decision server (ADS). This includes the specification of static parameters and placeholders for dynamic parameters. AWS Elemental MediaTailor substitutes player-specific and session-specific parameters as needed when calling the ADS. Alternately, for testing you can provide a static VAST URL. The maximum length is 25,000 characters.
 * **AvailSuppression**: [AvailSuppression](#availsuppression): The configuration for avail suppression, also known as ad suppression. For more information about ad suppression, see Ad Suppression (https://docs.aws.amazon.com/mediatailor/latest/ug/ad-behavior.html).
 * **Bumper**: [Bumper](#bumper): The configuration for bumpers. Bumpers are short audio or video clips that play at the start or before the end of an ad break. To learn more about bumpers, see Bumpers (https://docs.aws.amazon.com/mediatailor/latest/ug/bumpers.html).
 * **CdnConfiguration**: [CdnConfiguration](#cdnconfiguration): The configuration for using a content delivery network (CDN), like Amazon CloudFront, for content and ad segment management.
@@ -17,7 +17,7 @@
 * **HlsConfiguration**: [HlsConfiguration](#hlsconfiguration): The configuration for HLS content.
 * **LivePreRollConfiguration**: [LivePreRollConfiguration](#liveprerollconfiguration): The configuration for pre-roll ad insertion.
 * **ManifestProcessingRules**: [ManifestProcessingRules](#manifestprocessingrules): The configuration for manifest processing rules. Manifest processing rules enable customization of the personalized manifests created by MediaTailor.
-* **Name**: string: The identifier for the playback configuration.
+* **Name**: string (Required): The identifier for the playback configuration.
 * **PersonalizationThresholdSeconds**: int: Defines the maximum duration of underfilled ad time (in seconds) allowed in an ad break. If the duration of underfilled ad time exceeds the personalization threshold, then the personalization of the ad break is abandoned and the underlying content is shown. This feature applies to ad replacement in live and VOD streams, rather than ad insertion, because it relies on an underlying content stream. For more information about ad break behavior, including ad replacement and insertion, see Ad Behavior in AWS Elemental MediaTailor (https://docs.aws.amazon.com/mediatailor/latest/ug/ad-behavior.html).
 * **PlaybackConfigurationArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the playback configuration.
 * **PlaybackEndpointPrefix**: string (ReadOnly): The URL that the player accesses to get a manifest from MediaTailor. This session will use server-side reporting.
@@ -25,7 +25,7 @@
 * **SlateAdUrl**: string: The URL for a high-quality video asset to transcode and use to fill in time that's not used by ads. AWS Elemental MediaTailor shows the slate to fill in gaps in media content. Configuring the slate is optional for non-VPAID configurations. For VPAID, the slate is required because MediaTailor provides it in the slots that are designated for dynamic ad content. The slate must be a high-quality asset that contains both audio and video.
 * **Tags**: [Tag](#tag)[]: The tags to assign to the playback configuration.
 * **TranscodeProfileName**: string: The name that is used to associate this playback configuration with a custom transcode profile. This overrides the dynamic transcoding defaults of MediaTailor. Use this only if you have already set up custom profiles with the help of AWS Support.
-* **VideoContentSourceUrl**: string: The URL prefix for the parent manifest for the stream, minus the asset ID. The maximum length is 512 characters.
+* **VideoContentSourceUrl**: string (Required): The URL prefix for the parent manifest for the stream, minus the asset ID. The maximum length is 512 characters.
 
 ## AvailSuppression
 ### Properties
@@ -70,6 +70,6 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

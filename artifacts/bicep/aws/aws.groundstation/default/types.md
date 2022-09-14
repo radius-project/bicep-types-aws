@@ -4,20 +4,20 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.GroundStation/ConfigProperties](#awsgroundstationconfigproperties): properties of the resource
+* **properties**: [AWS.GroundStation/ConfigProperties](#awsgroundstationconfigproperties) (Required): properties of the resource
 
 ## Resource AWS.GroundStation/MissionProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.GroundStation/MissionProfileProperties](#awsgroundstationmissionprofileproperties): properties of the resource
+* **properties**: [AWS.GroundStation/MissionProfileProperties](#awsgroundstationmissionprofileproperties) (Required): properties of the resource
 
 ## AWS.GroundStation/ConfigProperties
 ### Properties
 * **Arn**: string (ReadOnly)
-* **ConfigData**: [ConfigData](#configdata)
+* **ConfigData**: [ConfigData](#configdata) (Required)
 * **Id**: string (ReadOnly)
-* **Name**: string
+* **Name**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **Type**: string (ReadOnly)
 
@@ -135,13 +135,13 @@
 * **Arn**: string (ReadOnly)
 * **ContactPostPassDurationSeconds**: int: Post-pass time needed after the contact.
 * **ContactPrePassDurationSeconds**: int: Pre-pass time needed before the contact.
-* **DataflowEdges**: [DataflowEdge](#dataflowedge)[]
+* **DataflowEdges**: [DataflowEdge](#dataflowedge)[] (Required)
 * **Id**: string (ReadOnly)
-* **MinimumViableContactDurationSeconds**: int: Visibilities with shorter duration than the specified minimum viable contact duration will be ignored when searching for available contacts.
-* **Name**: string: A name used to identify a mission profile.
+* **MinimumViableContactDurationSeconds**: int (Required): Visibilities with shorter duration than the specified minimum viable contact duration will be ignored when searching for available contacts.
+* **Name**: string (Required): A name used to identify a mission profile.
 * **Region**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]
-* **TrackingConfigArn**: string
+* **TrackingConfigArn**: string (Required)
 
 ## DataflowEdge
 ### Properties
