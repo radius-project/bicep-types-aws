@@ -4,13 +4,13 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Macie/CustomDataIdentifierProperties](#awsmaciecustomdataidentifierproperties): properties of the resource
+* **properties**: [AWS.Macie/CustomDataIdentifierProperties](#awsmaciecustomdataidentifierproperties) (Required): properties of the resource
 
 ## Resource AWS.Macie/FindingsFilter@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Macie/FindingsFilterProperties](#awsmaciefindingsfilterproperties): properties of the resource
+* **properties**: [AWS.Macie/FindingsFilterProperties](#awsmaciefindingsfilterproperties) (Required): properties of the resource
 
 ## Resource AWS.Macie/Session@default
 * **Valid Scope(s)**: Unknown
@@ -26,18 +26,18 @@
 * **IgnoreWords**: string[]: Words to be ignored.
 * **Keywords**: string[]: Keywords to be matched against.
 * **MaximumMatchDistance**: int: Maximum match distance.
-* **Name**: string: Name of custom data identifier.
-* **Regex**: string: Regular expression for custom data identifier.
+* **Name**: string (Required): Name of custom data identifier.
+* **Regex**: string (Required): Regular expression for custom data identifier.
 
 ## AWS.Macie/FindingsFilterProperties
 ### Properties
 * **Action**: [FindingFilterAction](#findingfilteraction): Findings filter action.
 * **Arn**: string (ReadOnly): Findings filter ARN.
 * **Description**: string: Findings filter description
-* **FindingCriteria**: [FindingCriteria](#findingcriteria): Findings filter criteria.
+* **FindingCriteria**: [FindingCriteria](#findingcriteria) (Required): Findings filter criteria.
 * **FindingsFilterListItems**: [FindingsFilterListItem](#findingsfilterlistitem)[] (ReadOnly): Findings filters list.
 * **Id**: string (ReadOnly): Findings filter ID.
-* **Name**: string: Findings filter name
+* **Name**: string (Required): Findings filter name
 * **Position**: int: Findings filter position.
 
 ## FindingFilterAction

@@ -4,7 +4,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.OpsWorksCM/ServerProperties](#awsopsworkscmserverproperties): properties of the resource
+* **properties**: [AWS.OpsWorksCM/ServerProperties](#awsopsworkscmserverproperties) (Required): properties of the resource
 
 ## AWS.OpsWorksCM/ServerProperties
 ### Properties
@@ -22,14 +22,14 @@
 * **EngineModel**: string
 * **EngineVersion**: string
 * **Id**: string (ReadOnly)
-* **InstanceProfileArn**: string
-* **InstanceType**: string
+* **InstanceProfileArn**: string (Required)
+* **InstanceType**: string (Required)
 * **KeyPair**: string
 * **PreferredBackupWindow**: string
 * **PreferredMaintenanceWindow**: string
 * **SecurityGroupIds**: string[]
 * **ServerName**: string
-* **ServiceRoleArn**: string
+* **ServiceRoleArn**: string (Required)
 * **SubnetIds**: string[]
 * **Tags**: [Tag](#tag)[]
 
@@ -40,6 +40,6 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

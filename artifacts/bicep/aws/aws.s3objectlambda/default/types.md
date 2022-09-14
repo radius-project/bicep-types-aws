@@ -4,20 +4,20 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.S3ObjectLambda/AccessPointProperties](#awss3objectlambdaaccesspointproperties): properties of the resource
+* **properties**: [AWS.S3ObjectLambda/AccessPointProperties](#awss3objectlambdaaccesspointproperties) (Required): properties of the resource
 
 ## Resource AWS.S3ObjectLambda/AccessPointPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.S3ObjectLambda/AccessPointPolicyProperties](#awss3objectlambdaaccesspointpolicyproperties): properties of the resource
+* **properties**: [AWS.S3ObjectLambda/AccessPointPolicyProperties](#awss3objectlambdaaccesspointpolicyproperties) (Required): properties of the resource
 
 ## AWS.S3ObjectLambda/AccessPointProperties
 ### Properties
 * **Arn**: string (ReadOnly)
 * **CreationDate**: string (ReadOnly): The date and time when the Object lambda Access Point was created.
 * **Name**: string: The name you want to assign to this Object lambda Access Point.
-* **ObjectLambdaConfiguration**: [ObjectLambdaConfiguration](#objectlambdaconfiguration): The Object lambda Access Point Configuration that configures transformations to be applied on the objects on specified S3 Actions
+* **ObjectLambdaConfiguration**: [ObjectLambdaConfiguration](#objectlambdaconfiguration) (Required): The Object lambda Access Point Configuration that configures transformations to be applied on the objects on specified S3 Actions
 * **PolicyStatus**: [AccessPoint_PolicyStatus](#accesspointpolicystatus) (ReadOnly)
 * **PublicAccessBlockConfiguration**: [PublicAccessBlockConfiguration](#publicaccessblockconfiguration) (ReadOnly): The PublicAccessBlock configuration that you want to apply to this Access Point. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status 'The Meaning of Public' in the Amazon Simple Storage Service Developer Guide.
 
@@ -25,13 +25,13 @@
 ### Properties
 * **AllowedFeatures**: string[]
 * **CloudWatchMetricsEnabled**: bool
-* **SupportingAccessPoint**: string
-* **TransformationConfigurations**: [TransformationConfiguration](#transformationconfiguration)[]
+* **SupportingAccessPoint**: string (Required)
+* **TransformationConfigurations**: [TransformationConfiguration](#transformationconfiguration)[] (Required)
 
 ## TransformationConfiguration
 ### Properties
-* **Actions**: [Action](#action)[]
-* **ContentTransformation**: [AccessPoint_ContentTransformation](#accesspointcontenttransformation)
+* **Actions**: [Action](#action)[] (Required)
+* **ContentTransformation**: [AccessPoint_ContentTransformation](#accesspointcontenttransformation) (Required)
 
 ## Action
 ### Properties
@@ -57,8 +57,8 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 
 ## AWS.S3ObjectLambda/AccessPointPolicyProperties
 ### Properties
-* **ObjectLambdaAccessPoint**: string: The name of the Amazon S3 ObjectLambdaAccessPoint to which the policy applies.
-* **PolicyDocument**: [AccessPointPolicy_PolicyDocument](#accesspointpolicypolicydocument): A policy document containing permissions to add to the specified ObjectLambdaAccessPoint. For more information, see Access Policy Language Overview (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-policy-language-overview.html) in the Amazon Simple Storage Service Developer Guide. 
+* **ObjectLambdaAccessPoint**: string (Required): The name of the Amazon S3 ObjectLambdaAccessPoint to which the policy applies.
+* **PolicyDocument**: [AccessPointPolicy_PolicyDocument](#accesspointpolicypolicydocument) (Required): A policy document containing permissions to add to the specified ObjectLambdaAccessPoint. For more information, see Access Policy Language Overview (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-policy-language-overview.html) in the Amazon Simple Storage Service Developer Guide. 
 
 ## AccessPointPolicy_PolicyDocument
 ### Properties

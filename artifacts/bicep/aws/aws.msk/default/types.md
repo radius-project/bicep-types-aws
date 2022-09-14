@@ -4,23 +4,23 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.MSK/BatchScramSecretProperties](#awsmskbatchscramsecretproperties): properties of the resource
+* **properties**: [AWS.MSK/BatchScramSecretProperties](#awsmskbatchscramsecretproperties) (Required): properties of the resource
 
 ## Resource AWS.MSK/Cluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.MSK/ClusterProperties](#awsmskclusterproperties): properties of the resource
+* **properties**: [AWS.MSK/ClusterProperties](#awsmskclusterproperties) (Required): properties of the resource
 
 ## Resource AWS.MSK/Configuration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.MSK/ConfigurationProperties](#awsmskconfigurationproperties): properties of the resource
+* **properties**: [AWS.MSK/ConfigurationProperties](#awsmskconfigurationproperties) (Required): properties of the resource
 
 ## AWS.MSK/BatchScramSecretProperties
 ### Properties
-* **ClusterArn**: string
+* **ClusterArn**: string (Required)
 * **SecretArnList**: [SecretArnList](#secretarnlist)
 
 ## SecretArnList
@@ -29,25 +29,25 @@
 ## AWS.MSK/ClusterProperties
 ### Properties
 * **Arn**: string (ReadOnly)
-* **BrokerNodeGroupInfo**: [BrokerNodeGroupInfo](#brokernodegroupinfo)
+* **BrokerNodeGroupInfo**: [BrokerNodeGroupInfo](#brokernodegroupinfo) (Required)
 * **ClientAuthentication**: [ClientAuthentication](#clientauthentication)
-* **ClusterName**: string
+* **ClusterName**: string (Required)
 * **ConfigurationInfo**: [ConfigurationInfo](#configurationinfo)
 * **CurrentVersion**: string: The current version of the MSK cluster
 * **EncryptionInfo**: [EncryptionInfo](#encryptioninfo)
 * **EnhancedMonitoring**: string
-* **KafkaVersion**: string
+* **KafkaVersion**: string (Required)
 * **LoggingInfo**: [LoggingInfo](#logginginfo)
-* **NumberOfBrokerNodes**: int
+* **NumberOfBrokerNodes**: int (Required)
 * **OpenMonitoring**: [OpenMonitoring](#openmonitoring)
 * **Tags**: [Cluster_Tags](#clustertags): A key-value pair to associate with a resource.
 
 ## BrokerNodeGroupInfo
 ### Properties
 * **BrokerAZDistribution**: string
-* **ClientSubnets**: string[]
+* **ClientSubnets**: string[] (Required)
 * **ConnectivityInfo**: [ConnectivityInfo](#connectivityinfo)
-* **InstanceType**: string
+* **InstanceType**: string (Required)
 * **SecurityGroups**: string[]
 * **StorageInfo**: [StorageInfo](#storageinfo)
 
@@ -86,11 +86,11 @@
 
 ## Iam
 ### Properties
-* **Enabled**: bool
+* **Enabled**: bool (Required)
 
 ## Scram
 ### Properties
-* **Enabled**: bool
+* **Enabled**: bool (Required)
 
 ## Tls
 ### Properties
@@ -99,12 +99,12 @@
 
 ## Unauthenticated
 ### Properties
-* **Enabled**: bool
+* **Enabled**: bool (Required)
 
 ## ConfigurationInfo
 ### Properties
-* **Arn**: string
-* **Revision**: int
+* **Arn**: string (Required)
+* **Revision**: int (Required)
 
 ## EncryptionInfo
 ### Properties
@@ -113,7 +113,7 @@
 
 ## EncryptionAtRest
 ### Properties
-* **DataVolumeKMSKeyId**: string
+* **DataVolumeKMSKeyId**: string (Required)
 
 ## EncryptionInTransit
 ### Properties
@@ -122,7 +122,7 @@
 
 ## LoggingInfo
 ### Properties
-* **BrokerLogs**: [BrokerLogs](#brokerlogs)
+* **BrokerLogs**: [BrokerLogs](#brokerlogs) (Required)
 
 ## BrokerLogs
 ### Properties
@@ -132,23 +132,23 @@
 
 ## CloudWatchLogs
 ### Properties
-* **Enabled**: bool
+* **Enabled**: bool (Required)
 * **LogGroup**: string
 
 ## Firehose
 ### Properties
 * **DeliveryStream**: string
-* **Enabled**: bool
+* **Enabled**: bool (Required)
 
 ## S3
 ### Properties
 * **Bucket**: string
-* **Enabled**: bool
+* **Enabled**: bool (Required)
 * **Prefix**: string
 
 ## OpenMonitoring
 ### Properties
-* **Prometheus**: [Prometheus](#prometheus)
+* **Prometheus**: [Prometheus](#prometheus) (Required)
 
 ## Prometheus
 ### Properties
@@ -157,11 +157,11 @@
 
 ## JmxExporter
 ### Properties
-* **EnabledInBroker**: bool
+* **EnabledInBroker**: bool (Required)
 
 ## NodeExporter
 ### Properties
-* **EnabledInBroker**: bool
+* **EnabledInBroker**: bool (Required)
 
 ## Cluster_Tags
 ### Properties
@@ -171,8 +171,8 @@
 * **Arn**: string (ReadOnly)
 * **Description**: string
 * **KafkaVersionsList**: [KafkaVersionsList](#kafkaversionslist)
-* **Name**: string
-* **ServerProperties**: string (WriteOnly)
+* **Name**: string (Required)
+* **ServerProperties**: string (Required, WriteOnly)
 
 ## KafkaVersionsList
 ### Properties

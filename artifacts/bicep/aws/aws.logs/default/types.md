@@ -10,19 +10,19 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Logs/MetricFilterProperties](#awslogsmetricfilterproperties): properties of the resource
+* **properties**: [AWS.Logs/MetricFilterProperties](#awslogsmetricfilterproperties) (Required): properties of the resource
 
 ## Resource AWS.Logs/QueryDefinition@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Logs/QueryDefinitionProperties](#awslogsquerydefinitionproperties): properties of the resource
+* **properties**: [AWS.Logs/QueryDefinitionProperties](#awslogsquerydefinitionproperties) (Required): properties of the resource
 
 ## Resource AWS.Logs/ResourcePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Logs/ResourcePolicyProperties](#awslogsresourcepolicyproperties): properties of the resource
+* **properties**: [AWS.Logs/ResourcePolicyProperties](#awslogsresourcepolicyproperties) (Required): properties of the resource
 
 ## AWS.Logs/LogGroupProperties
 ### Properties
@@ -34,42 +34,42 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., :, /, =, +, - and @.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., :, /, =, +, - and @.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., :, /, =, +, - and @.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., :, /, =, +, - and @.
 
 ## AWS.Logs/MetricFilterProperties
 ### Properties
 * **FilterName**: string: A name for the metric filter.
-* **FilterPattern**: string: Pattern that Logs follows to interpret each entry in a log.
-* **LogGroupName**: string: Existing log group that you want to associate with this filter.
-* **MetricTransformations**: [MetricTransformation](#metrictransformation)[]: A collection of information that defines how metric data gets emitted.
+* **FilterPattern**: string (Required): Pattern that Logs follows to interpret each entry in a log.
+* **LogGroupName**: string (Required): Existing log group that you want to associate with this filter.
+* **MetricTransformations**: [MetricTransformation](#metrictransformation)[] (Required): A collection of information that defines how metric data gets emitted.
 
 ## MetricTransformation
 ### Properties
 * **DefaultValue**: int: The value to emit when a filter pattern does not match a log event. This value can be null.
 * **Dimensions**: [Dimension](#dimension)[]: Dimensions are the key-value pairs that further define a metric
-* **MetricName**: string: The name of the CloudWatch metric. Metric name must be in ASCII format.
-* **MetricNamespace**: string: The namespace of the CloudWatch metric.
-* **MetricValue**: string: The value to publish to the CloudWatch metric when a filter pattern matches a log event.
+* **MetricName**: string (Required): The name of the CloudWatch metric. Metric name must be in ASCII format.
+* **MetricNamespace**: string (Required): The namespace of the CloudWatch metric.
+* **MetricValue**: string (Required): The value to publish to the CloudWatch metric when a filter pattern matches a log event.
 * **Unit**: string: The unit to assign to the metric. If you omit this, the unit is set as None.
 
 ## Dimension
 ### Properties
-* **Key**: string: The key of the dimension. Maximum length of 255.
-* **Value**: string: The value of the dimension. Maximum length of 255.
+* **Key**: string (Required): The key of the dimension. Maximum length of 255.
+* **Value**: string (Required): The value of the dimension. Maximum length of 255.
 
 ## AWS.Logs/QueryDefinitionProperties
 ### Properties
 * **LogGroupNames**: [LogGroup](#loggroup)[]: Optionally define specific log groups as part of your query definition
-* **Name**: string: A name for the saved query definition
+* **Name**: string (Required): A name for the saved query definition
 * **QueryDefinitionId**: string (ReadOnly): Unique identifier of a query definition
-* **QueryString**: string: The query string to use for this definition
+* **QueryString**: string (Required): The query string to use for this definition
 
 ## LogGroup
 ### Properties
 
 ## AWS.Logs/ResourcePolicyProperties
 ### Properties
-* **PolicyDocument**: string: The policy document
-* **PolicyName**: string: A name for resource policy
+* **PolicyDocument**: string (Required): The policy document
+* **PolicyName**: string (Required): A name for resource policy
 

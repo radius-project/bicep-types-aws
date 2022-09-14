@@ -4,27 +4,27 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.S3Outposts/AccessPointProperties](#awss3outpostsaccesspointproperties): properties of the resource
+* **properties**: [AWS.S3Outposts/AccessPointProperties](#awss3outpostsaccesspointproperties) (Required): properties of the resource
 
 ## Resource AWS.S3Outposts/Bucket@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.S3Outposts/BucketProperties](#awss3outpostsbucketproperties): properties of the resource
+* **properties**: [AWS.S3Outposts/BucketProperties](#awss3outpostsbucketproperties) (Required): properties of the resource
 
 ## Resource AWS.S3Outposts/BucketPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.S3Outposts/BucketPolicyProperties](#awss3outpostsbucketpolicyproperties): properties of the resource
+* **properties**: [AWS.S3Outposts/BucketPolicyProperties](#awss3outpostsbucketpolicyproperties) (Required): properties of the resource
 
 ## AWS.S3Outposts/AccessPointProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified AccessPoint.
-* **Bucket**: string: The Amazon Resource Name (ARN) of the bucket you want to associate this AccessPoint with.
-* **Name**: string: A name for the AccessPoint.
+* **Bucket**: string (Required): The Amazon Resource Name (ARN) of the bucket you want to associate this AccessPoint with.
+* **Name**: string (Required): A name for the AccessPoint.
 * **Policy**: [AccessPoint_Policy](#accesspointpolicy): The access point policy associated with this access point.
-* **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration): Virtual Private Cloud (VPC) from which requests can be made to the AccessPoint.
+* **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration) (Required): Virtual Private Cloud (VPC) from which requests can be made to the AccessPoint.
 
 ## AccessPoint_Policy
 ### Properties
@@ -36,14 +36,14 @@
 ## AWS.S3Outposts/BucketProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified bucket.
-* **BucketName**: string: A name for the bucket.
+* **BucketName**: string (Required): A name for the bucket.
 * **LifecycleConfiguration**: [LifecycleConfiguration](#lifecycleconfiguration): Rules that define how Amazon S3Outposts manages objects during their lifetime.
-* **OutpostId**: string: The id of the customer outpost on which the bucket resides.
+* **OutpostId**: string (Required): The id of the customer outpost on which the bucket resides.
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this S3Outposts bucket.
 
 ## LifecycleConfiguration
 ### Properties
-* **Rules**: [Rule](#rule)[]: A list of lifecycle rules for individual objects in an Amazon S3Outposts bucket.
+* **Rules**: [Rule](#rule)[] (Required): A list of lifecycle rules for individual objects in an Amazon S3Outposts bucket.
 
 ## Rule
 ### Properties
@@ -56,7 +56,7 @@
 
 ## AbortIncompleteMultipartUpload
 ### Properties
-* **DaysAfterInitiation**: int: Specifies the number of days after which Amazon S3Outposts aborts an incomplete multipart upload.
+* **DaysAfterInitiation**: int (Required): Specifies the number of days after which Amazon S3Outposts aborts an incomplete multipart upload.
 
 ## iso8601UTC
 ### Properties
@@ -75,18 +75,18 @@
 
 ## FilterTag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.S3Outposts/BucketPolicyProperties
 ### Properties
-* **Bucket**: string: The Amazon Resource Name (ARN) of the specified bucket.
-* **PolicyDocument**: [BucketPolicy_PolicyDocument](#bucketpolicypolicydocument): A policy document containing permissions to add to the specified bucket.
+* **Bucket**: string (Required): The Amazon Resource Name (ARN) of the specified bucket.
+* **PolicyDocument**: [BucketPolicy_PolicyDocument](#bucketpolicypolicydocument) (Required): A policy document containing permissions to add to the specified bucket.
 
 ## BucketPolicy_PolicyDocument
 ### Properties

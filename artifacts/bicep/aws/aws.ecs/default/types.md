@@ -4,7 +4,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ECS/CapacityProviderProperties](#awsecscapacityproviderproperties): properties of the resource
+* **properties**: [AWS.ECS/CapacityProviderProperties](#awsecscapacityproviderproperties) (Required): properties of the resource
 
 ## Resource AWS.ECS/Cluster@default
 * **Valid Scope(s)**: Unknown
@@ -16,13 +16,13 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ECS/ClusterCapacityProviderAssociationsProperties](#awsecsclustercapacityproviderassociationsproperties): properties of the resource
+* **properties**: [AWS.ECS/ClusterCapacityProviderAssociationsProperties](#awsecsclustercapacityproviderassociationsproperties) (Required): properties of the resource
 
 ## Resource AWS.ECS/PrimaryTaskSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ECS/PrimaryTaskSetProperties](#awsecsprimarytasksetproperties): properties of the resource
+* **properties**: [AWS.ECS/PrimaryTaskSetProperties](#awsecsprimarytasksetproperties) (Required): properties of the resource
 
 ## Resource AWS.ECS/Service@default
 * **Valid Scope(s)**: Unknown
@@ -40,17 +40,17 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ECS/TaskSetProperties](#awsecstasksetproperties): properties of the resource
+* **properties**: [AWS.ECS/TaskSetProperties](#awsecstasksetproperties) (Required): properties of the resource
 
 ## AWS.ECS/CapacityProviderProperties
 ### Properties
-* **AutoScalingGroupProvider**: [AutoScalingGroupProvider](#autoscalinggroupprovider)
+* **AutoScalingGroupProvider**: [AutoScalingGroupProvider](#autoscalinggroupprovider) (Required)
 * **Name**: string
 * **Tags**: [Tag](#tag)[]
 
 ## AutoScalingGroupProvider
 ### Properties
-* **AutoScalingGroupArn**: string
+* **AutoScalingGroupArn**: string (Required)
 * **ManagedScaling**: [ManagedScaling](#managedscaling)
 * **ManagedTerminationProtection**: string
 
@@ -113,9 +113,9 @@
 
 ## AWS.ECS/ClusterCapacityProviderAssociationsProperties
 ### Properties
-* **CapacityProviders**: [CapacityProviders](#capacityproviders)
-* **Cluster**: [Cluster](#cluster)
-* **DefaultCapacityProviderStrategy**: [DefaultCapacityProviderStrategy](#defaultcapacityproviderstrategy)
+* **CapacityProviders**: [CapacityProviders](#capacityproviders) (Required)
+* **Cluster**: [Cluster](#cluster) (Required)
+* **DefaultCapacityProviderStrategy**: [DefaultCapacityProviderStrategy](#defaultcapacityproviderstrategy) (Required)
 
 ## CapacityProviders
 ### Properties
@@ -128,9 +128,9 @@
 
 ## AWS.ECS/PrimaryTaskSetProperties
 ### Properties
-* **Cluster**: string: The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service to create the task set in.
-* **Service**: string: The short name or full Amazon Resource Name (ARN) of the service to create the task set in.
-* **TaskSetId**: string: The ID or full Amazon Resource Name (ARN) of the task set.
+* **Cluster**: string (Required): The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service to create the task set in.
+* **Service**: string (Required): The short name or full Amazon Resource Name (ARN) of the service to create the task set in.
+* **TaskSetId**: string (Required): The ID or full Amazon Resource Name (ARN) of the task set.
 
 ## AWS.ECS/ServiceProperties
 ### Properties
@@ -172,8 +172,8 @@
 
 ## DeploymentCircuitBreaker
 ### Properties
-* **Enable**: bool
-* **Rollback**: bool
+* **Enable**: bool (Required)
+* **Rollback**: bool (Required)
 
 ## DeploymentController
 ### Properties
@@ -199,12 +199,12 @@
 ## PlacementConstraint
 ### Properties
 * **Expression**: string
-* **Type**: string
+* **Type**: string (Required)
 
 ## PlacementStrategy
 ### Properties
 * **Field**: string
-* **Type**: string
+* **Type**: string (Required)
 
 ## ServiceRegistry
 ### Properties
@@ -257,7 +257,7 @@
 * **FirelensConfiguration**: [FirelensConfiguration](#firelensconfiguration)
 * **HealthCheck**: [HealthCheck](#healthcheck)
 * **Hostname**: string
-* **Image**: string: The image used to start a container. This string is passed directly to the Docker daemon.
+* **Image**: string (Required): The image used to start a container. This string is passed directly to the Docker daemon.
 * **Interactive**: bool
 * **Links**: string[]
 * **LinuxParameters**: [LinuxParameters](#linuxparameters)
@@ -265,7 +265,7 @@
 * **Memory**: int: The amount (in MiB) of memory to present to the container. If your container attempts to exceed the memory specified here, the container is killed.
 * **MemoryReservation**: int
 * **MountPoints**: [MountPoint](#mountpoint)[]
-* **Name**: string: The name of a container. Up to 255 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed
+* **Name**: string (Required): The name of a container. Up to 255 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed
 * **PortMappings**: [PortMapping](#portmapping)[]: Port mappings allow containers to access ports on the host container instance to send or receive traffic.
 * **Privileged**: bool
 * **PseudoTerminal**: bool
@@ -345,11 +345,11 @@
 ### Properties
 * **ContainerPath**: string
 * **MountOptions**: string[]
-* **Size**: int
+* **Size**: int (Required)
 
 ## LogConfiguration
 ### Properties
-* **LogDriver**: string
+* **LogDriver**: string (Required)
 * **Options**: [TaskDefinition_Options](#taskdefinitionoptions)
 * **SecretOptions**: [Secret](#secret)[]
 
@@ -358,8 +358,8 @@
 
 ## Secret
 ### Properties
-* **Name**: string
-* **ValueFrom**: string
+* **Name**: string (Required)
+* **ValueFrom**: string (Required)
 
 ## MountPoint
 ### Properties
@@ -379,8 +379,8 @@
 
 ## ResourceRequirement
 ### Properties
-* **Type**: string
-* **Value**: string
+* **Type**: string (Required)
+* **Value**: string (Required)
 
 ## SystemControl
 ### Properties
@@ -389,9 +389,9 @@
 
 ## Ulimit
 ### Properties
-* **HardLimit**: int
-* **Name**: string
-* **SoftLimit**: int
+* **HardLimit**: int (Required)
+* **Name**: string (Required)
+* **SoftLimit**: int (Required)
 
 ## VolumeFrom
 ### Properties
@@ -410,11 +410,11 @@
 ## TaskDefinitionPlacementConstraint
 ### Properties
 * **Expression**: string
-* **Type**: string
+* **Type**: string (Required)
 
 ## ProxyConfiguration
 ### Properties
-* **ContainerName**: string
+* **ContainerName**: string (Required)
 * **ProxyConfigurationProperties**: [KeyValuePair](#keyvaluepair)[]
 * **Type**: string
 
@@ -452,7 +452,7 @@
 ## EFSVolumeConfiguration
 ### Properties
 * **AuthorizationConfig**: [AuthorizationConfig](#authorizationconfig)
-* **FilesystemId**: string
+* **FilesystemId**: string (Required)
 * **RootDirectory**: string
 * **TransitEncryption**: string
 * **TransitEncryptionPort**: int
@@ -468,7 +468,7 @@
 
 ## AWS.ECS/TaskSetProperties
 ### Properties
-* **Cluster**: string: The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service to create the task set in.
+* **Cluster**: string (Required): The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service to create the task set in.
 * **ExternalId**: string: An optional non-unique tag that identifies this task set in external systems. If the task set is associated with a service discovery registry, the tasks in this task set will have the ECS_TASK_SET_EXTERNAL_ID AWS Cloud Map attribute set to the provided value. 
 * **Id**: string (ReadOnly): The ID of the task set.
 * **LaunchType**: string: The launch type that new tasks in the task set will use. For more information, see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html in the Amazon Elastic Container Service Developer Guide. 
@@ -476,9 +476,9 @@
 * **NetworkConfiguration**: [NetworkConfiguration](#networkconfiguration)
 * **PlatformVersion**: string: The platform version that the tasks in the task set should use. A platform version is specified only for tasks using the Fargate launch type. If one isn't specified, the LATEST platform version is used by default.
 * **Scale**: [Scale](#scale): A floating-point percentage of the desired number of tasks to place and keep running in the task set.
-* **Service**: string: The short name or full Amazon Resource Name (ARN) of the service to create the task set in.
+* **Service**: string (Required): The short name or full Amazon Resource Name (ARN) of the service to create the task set in.
 * **ServiceRegistries**: [ServiceRegistry](#serviceregistry)[]: The details of the service discovery registries to assign to this task set. For more information, see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html.
-* **TaskDefinition**: string: The short name or full Amazon Resource Name (ARN) of the task definition for the tasks in the task set to use.
+* **TaskDefinition**: string (Required): The short name or full Amazon Resource Name (ARN) of the task definition for the tasks in the task set to use.
 
 ## LoadBalancer
 ### Properties
@@ -495,7 +495,7 @@
 ### Properties
 * **AssignPublicIp**: string: Whether the task's elastic network interface receives a public IP address. The default value is DISABLED.
 * **SecurityGroups**: string[]: The security groups associated with the task or service. If you do not specify a security group, the default security group for the VPC is used. There is a limit of 5 security groups that can be specified per AwsVpcConfiguration.
-* **Subnets**: string[]: The subnets associated with the task or service. There is a limit of 16 subnets that can be specified per AwsVpcConfiguration.
+* **Subnets**: string[] (Required): The subnets associated with the task or service. There is a limit of 16 subnets that can be specified per AwsVpcConfiguration.
 
 ## Scale
 ### Properties

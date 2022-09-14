@@ -4,7 +4,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EFS/AccessPointProperties](#awsefsaccesspointproperties): properties of the resource
+* **properties**: [AWS.EFS/AccessPointProperties](#awsefsaccesspointproperties) (Required): properties of the resource
 
 ## Resource AWS.EFS/FileSystem@default
 * **Valid Scope(s)**: Unknown
@@ -16,7 +16,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EFS/MountTargetProperties](#awsefsmounttargetproperties): properties of the resource
+* **properties**: [AWS.EFS/MountTargetProperties](#awsefsmounttargetproperties) (Required): properties of the resource
 
 ## AWS.EFS/AccessPointProperties
 ### Properties
@@ -24,7 +24,7 @@
 * **AccessPointTags**: [AccessPointTag](#accesspointtag)[]
 * **Arn**: string (ReadOnly)
 * **ClientToken**: string: (optional) A string of up to 64 ASCII characters that Amazon EFS uses to ensure idempotent creation.
-* **FileSystemId**: string: The ID of the EFS file system that the access point provides access to.
+* **FileSystemId**: string (Required): The ID of the EFS file system that the access point provides access to.
 * **PosixUser**: [PosixUser](#posixuser): The operating system user and group applied to all file system requests made using the access point.
 * **RootDirectory**: [RootDirectory](#rootdirectory): Specifies the directory on the Amazon EFS file system that the access point exposes as the root directory of your file system to NFS clients using the access point. The clients using the access point can only access the root directory and below. If the RootDirectory>Path specified does not exist, EFS creates it and applies the CreationInfo settings when a client connects to an access point. When specifying a RootDirectory, you need to provide the Path, and the CreationInfo is optional.
 
@@ -35,9 +35,9 @@
 
 ## PosixUser
 ### Properties
-* **Gid**: string: The POSIX group ID used for all file system operations using this access point.
+* **Gid**: string (Required): The POSIX group ID used for all file system operations using this access point.
 * **SecondaryGids**: string[]: Secondary POSIX group IDs used for all file system operations using this access point.
-* **Uid**: string: The POSIX user ID used for all file system operations using this access point.
+* **Uid**: string (Required): The POSIX user ID used for all file system operations using this access point.
 
 ## RootDirectory
 ### Properties
@@ -46,9 +46,9 @@
 
 ## CreationInfo
 ### Properties
-* **OwnerGid**: string: Specifies the POSIX group ID to apply to the RootDirectory. Accepts values from 0 to 2^32 (4294967295).
-* **OwnerUid**: string: Specifies the POSIX user ID to apply to the RootDirectory. Accepts values from 0 to 2^32 (4294967295).
-* **Permissions**: string: Specifies the POSIX permissions to apply to the RootDirectory, in the format of an octal number representing the file's mode bits.
+* **OwnerGid**: string (Required): Specifies the POSIX group ID to apply to the RootDirectory. Accepts values from 0 to 2^32 (4294967295).
+* **OwnerUid**: string (Required): Specifies the POSIX user ID to apply to the RootDirectory. Accepts values from 0 to 2^32 (4294967295).
+* **Permissions**: string (Required): Specifies the POSIX permissions to apply to the RootDirectory, in the format of an octal number representing the file's mode bits.
 
 ## AWS.EFS/FileSystemProperties
 ### Properties
@@ -68,15 +68,15 @@
 
 ## BackupPolicy
 ### Properties
-* **Status**: string
+* **Status**: string (Required)
 
 ## FileSystem_FileSystemPolicy
 ### Properties
 
 ## ElasticFileSystemTag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## LifecyclePolicy
 ### Properties
@@ -85,9 +85,9 @@
 
 ## AWS.EFS/MountTargetProperties
 ### Properties
-* **FileSystemId**: string
+* **FileSystemId**: string (Required)
 * **Id**: string (ReadOnly)
 * **IpAddress**: string
-* **SecurityGroups**: string[]
-* **SubnetId**: string
+* **SecurityGroups**: string[] (Required)
+* **SubnetId**: string (Required)
 

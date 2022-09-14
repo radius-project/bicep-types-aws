@@ -4,7 +4,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.AppRunner/ServiceProperties](#awsapprunnerserviceproperties): properties of the resource
+* **properties**: [AWS.AppRunner/ServiceProperties](#awsapprunnerserviceproperties) (Required): properties of the resource
 
 ## AWS.AppRunner/ServiceProperties
 ### Properties
@@ -18,13 +18,13 @@
 * **ServiceId**: string (ReadOnly): The AppRunner Service Id
 * **ServiceName**: string: The AppRunner Service Name.
 * **ServiceUrl**: string (ReadOnly): The Service Url of the AppRunner Service.
-* **SourceConfiguration**: [SourceConfiguration](#sourceconfiguration)
+* **SourceConfiguration**: [SourceConfiguration](#sourceconfiguration) (Required)
 * **Status**: string (ReadOnly): AppRunner Service status.
 * **Tags**: [Tag](#tag)[] (WriteOnly)
 
 ## EncryptionConfiguration
 ### Properties
-* **KmsKey**: string: The KMS Key
+* **KmsKey**: string (Required): The KMS Key
 
 ## HealthCheckConfiguration
 ### Properties
@@ -46,17 +46,17 @@
 
 ## NetworkConfiguration
 ### Properties
-* **EgressConfiguration**: [EgressConfiguration](#egressconfiguration)
+* **EgressConfiguration**: [EgressConfiguration](#egressconfiguration) (Required)
 
 ## EgressConfiguration
 ### Properties
-* **EgressType**: string: Network egress type.
+* **EgressType**: string (Required): Network egress type.
 * **VpcConnectorArn**: string: The Amazon Resource Name (ARN) of the App Runner VpcConnector.
 
 ## ServiceObservabilityConfiguration
 ### Properties
 * **ObservabilityConfigurationArn**: string: The Amazon Resource Name (ARN) of the App Runner ObservabilityConfiguration.
-* **ObservabilityEnabled**: bool: Observability enabled
+* **ObservabilityEnabled**: bool (Required): Observability enabled
 
 ## SourceConfiguration
 ### Properties
@@ -73,19 +73,19 @@
 ## CodeRepository
 ### Properties
 * **CodeConfiguration**: [CodeConfiguration](#codeconfiguration)
-* **RepositoryUrl**: string: Repository Url
-* **SourceCodeVersion**: [SourceCodeVersion](#sourcecodeversion)
+* **RepositoryUrl**: string (Required): Repository Url
+* **SourceCodeVersion**: [SourceCodeVersion](#sourcecodeversion) (Required)
 
 ## CodeConfiguration
 ### Properties
 * **CodeConfigurationValues**: [CodeConfigurationValues](#codeconfigurationvalues)
-* **ConfigurationSource**: string: Configuration Source
+* **ConfigurationSource**: string (Required): Configuration Source
 
 ## CodeConfigurationValues
 ### Properties
 * **BuildCommand**: string: Build Command
 * **Port**: string: Port
-* **Runtime**: string: Runtime
+* **Runtime**: string (Required): Runtime
 * **RuntimeEnvironmentVariables**: [KeyValuePair](#keyvaluepair)[]
 * **StartCommand**: string: Start Command
 
@@ -96,14 +96,14 @@
 
 ## SourceCodeVersion
 ### Properties
-* **Type**: string: Source Code Version Type
-* **Value**: string: Source Code Version Value
+* **Type**: string (Required): Source Code Version Type
+* **Value**: string (Required): Source Code Version Value
 
 ## ImageRepository
 ### Properties
 * **ImageConfiguration**: [ImageConfiguration](#imageconfiguration)
-* **ImageIdentifier**: string: Image Identifier
-* **ImageRepositoryType**: string: Image Repository Type
+* **ImageIdentifier**: string (Required): Image Identifier
+* **ImageRepositoryType**: string (Required): Image Repository Type
 
 ## ImageConfiguration
 ### Properties

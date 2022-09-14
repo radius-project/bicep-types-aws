@@ -4,7 +4,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ImageBuilder/DistributionConfigurationProperties](#awsimagebuilderdistributionconfigurationproperties): properties of the resource
+* **properties**: [AWS.ImageBuilder/DistributionConfigurationProperties](#awsimagebuilderdistributionconfigurationproperties) (Required): properties of the resource
 
 ## Resource AWS.ImageBuilder/ImagePipeline@default
 * **Valid Scope(s)**: Unknown
@@ -16,14 +16,14 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ImageBuilder/InfrastructureConfigurationProperties](#awsimagebuilderinfrastructureconfigurationproperties): properties of the resource
+* **properties**: [AWS.ImageBuilder/InfrastructureConfigurationProperties](#awsimagebuilderinfrastructureconfigurationproperties) (Required): properties of the resource
 
 ## AWS.ImageBuilder/DistributionConfigurationProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the distribution configuration.
 * **Description**: string: The description of the distribution configuration.
-* **Distributions**: [Distribution](#distribution)[]: The distributions of the distribution configuration.
-* **Name**: string: The name of the distribution configuration.
+* **Distributions**: [Distribution](#distribution)[] (Required): The distributions of the distribution configuration.
+* **Name**: string (Required): The name of the distribution configuration.
 * **Tags**: [DistributionConfiguration_Tags](#distributionconfigurationtags): The tags associated with the component.
 
 ## Distribution
@@ -33,7 +33,7 @@
 * **FastLaunchConfigurations**: [FastLaunchConfiguration](#fastlaunchconfiguration)[]: The Windows faster-launching configurations to use for AMI distribution.
 * **LaunchTemplateConfigurations**: [LaunchTemplateConfiguration](#launchtemplateconfiguration)[]: A group of launchTemplateConfiguration settings that apply to image distribution.
 * **LicenseConfigurationArns**: [LicenseConfigurationArn](#licenseconfigurationarn)[]: The License Manager Configuration to associate with the AMI in the specified Region.
-* **Region**: string: region
+* **Region**: string (Required): region
 
 ## AmiDistributionConfiguration
 ### Properties
@@ -128,11 +128,11 @@
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the infrastructure configuration.
 * **Description**: string: The description of the infrastructure configuration.
 * **InstanceMetadataOptions**: [InstanceMetadataOptions](#instancemetadataoptions): The instance metadata option settings for the infrastructure configuration.
-* **InstanceProfileName**: string: The instance profile of the infrastructure configuration.
+* **InstanceProfileName**: string (Required): The instance profile of the infrastructure configuration.
 * **InstanceTypes**: string[]: The instance types of the infrastructure configuration.
 * **KeyPair**: string: The EC2 key pair of the infrastructure configuration..
 * **Logging**: [Logging](#logging): The logging configuration of the infrastructure configuration.
-* **Name**: string: The name of the infrastructure configuration.
+* **Name**: string (Required): The name of the infrastructure configuration.
 * **ResourceTags**: [InfrastructureConfiguration_ResourceTags](#infrastructureconfigurationresourcetags): The tags attached to the resource created by Image Builder.
 * **SecurityGroupIds**: string[]: The security group IDs of the infrastructure configuration.
 * **SnsTopicArn**: string: The SNS Topic Amazon Resource Name (ARN) of the infrastructure configuration.

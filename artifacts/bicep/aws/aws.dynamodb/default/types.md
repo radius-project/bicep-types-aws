@@ -4,23 +4,23 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DynamoDB/GlobalTableProperties](#awsdynamodbglobaltableproperties): properties of the resource
+* **properties**: [AWS.DynamoDB/GlobalTableProperties](#awsdynamodbglobaltableproperties) (Required): properties of the resource
 
 ## Resource AWS.DynamoDB/Table@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DynamoDB/TableProperties](#awsdynamodbtableproperties): properties of the resource
+* **properties**: [AWS.DynamoDB/TableProperties](#awsdynamodbtableproperties) (Required): properties of the resource
 
 ## AWS.DynamoDB/GlobalTableProperties
 ### Properties
 * **Arn**: string (ReadOnly)
-* **AttributeDefinitions**: [AttributeDefinition](#attributedefinition)[]
+* **AttributeDefinitions**: [AttributeDefinition](#attributedefinition)[] (Required)
 * **BillingMode**: string
 * **GlobalSecondaryIndexes**: [GlobalSecondaryIndex](#globalsecondaryindex)[]
-* **KeySchema**: [KeySchema](#keyschema)[]
+* **KeySchema**: [KeySchema](#keyschema)[] (Required)
 * **LocalSecondaryIndexes**: [LocalSecondaryIndex](#localsecondaryindex)[]
-* **Replicas**: [ReplicaSpecification](#replicaspecification)[]
+* **Replicas**: [ReplicaSpecification](#replicaspecification)[] (Required)
 * **SSESpecification**: [SSESpecification](#ssespecification)
 * **StreamArn**: string (ReadOnly)
 * **StreamSpecification**: [StreamSpecification](#streamspecification)
@@ -31,20 +31,20 @@
 
 ## AttributeDefinition
 ### Properties
-* **AttributeName**: string
-* **AttributeType**: string
+* **AttributeName**: string (Required)
+* **AttributeType**: string (Required)
 
 ## GlobalSecondaryIndex
 ### Properties
-* **IndexName**: string
-* **KeySchema**: [KeySchema](#keyschema)[]
-* **Projection**: [Projection](#projection)
+* **IndexName**: string (Required)
+* **KeySchema**: [KeySchema](#keyschema)[] (Required)
+* **Projection**: [Projection](#projection) (Required)
 * **WriteProvisionedThroughputSettings**: [WriteProvisionedThroughputSettings](#writeprovisionedthroughputsettings)
 
 ## KeySchema
 ### Properties
-* **AttributeName**: string
-* **KeyType**: string
+* **AttributeName**: string (Required)
+* **KeyType**: string (Required)
 
 ## Projection
 ### Properties
@@ -57,23 +57,23 @@
 
 ## CapacityAutoScalingSettings
 ### Properties
-* **MaxCapacity**: int
-* **MinCapacity**: int
+* **MaxCapacity**: int (Required)
+* **MinCapacity**: int (Required)
 * **SeedCapacity**: int
-* **TargetTrackingScalingPolicyConfiguration**: [TargetTrackingScalingPolicyConfiguration](#targettrackingscalingpolicyconfiguration)
+* **TargetTrackingScalingPolicyConfiguration**: [TargetTrackingScalingPolicyConfiguration](#targettrackingscalingpolicyconfiguration) (Required)
 
 ## TargetTrackingScalingPolicyConfiguration
 ### Properties
 * **DisableScaleIn**: bool
 * **ScaleInCooldown**: int
 * **ScaleOutCooldown**: int
-* **TargetValue**: int
+* **TargetValue**: int (Required)
 
 ## LocalSecondaryIndex
 ### Properties
-* **IndexName**: string
-* **KeySchema**: [KeySchema](#keyschema)[]
-* **Projection**: [Projection](#projection)
+* **IndexName**: string (Required)
+* **KeySchema**: [KeySchema](#keyschema)[] (Required)
+* **Projection**: [Projection](#projection) (Required)
 
 ## ReplicaSpecification
 ### Properties
@@ -81,19 +81,19 @@
 * **GlobalSecondaryIndexes**: [ReplicaGlobalSecondaryIndexSpecification](#replicaglobalsecondaryindexspecification)[]
 * **PointInTimeRecoverySpecification**: [PointInTimeRecoverySpecification](#pointintimerecoveryspecification)
 * **ReadProvisionedThroughputSettings**: [ReadProvisionedThroughputSettings](#readprovisionedthroughputsettings)
-* **Region**: string
+* **Region**: string (Required)
 * **SSESpecification**: [ReplicaSSESpecification](#replicassespecification)
 * **TableClass**: string
 * **Tags**: [Tag](#tag)[]
 
 ## ContributorInsightsSpecification
 ### Properties
-* **Enabled**: bool
+* **Enabled**: bool (Required)
 
 ## ReplicaGlobalSecondaryIndexSpecification
 ### Properties
 * **ContributorInsightsSpecification**: [ContributorInsightsSpecification](#contributorinsightsspecification)
-* **IndexName**: string
+* **IndexName**: string (Required)
 * **ReadProvisionedThroughputSettings**: [ReadProvisionedThroughputSettings](#readprovisionedthroughputsettings)
 
 ## ReadProvisionedThroughputSettings
@@ -107,26 +107,26 @@
 
 ## ReplicaSSESpecification
 ### Properties
-* **KMSMasterKeyId**: string
+* **KMSMasterKeyId**: string (Required)
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## SSESpecification
 ### Properties
-* **SSEEnabled**: bool
+* **SSEEnabled**: bool (Required)
 * **SSEType**: string
 
 ## StreamSpecification
 ### Properties
-* **StreamViewType**: string
+* **StreamViewType**: string (Required)
 
 ## TimeToLiveSpecification
 ### Properties
 * **AttributeName**: string
-* **Enabled**: bool
+* **Enabled**: bool (Required)
 
 ## AWS.DynamoDB/TableProperties
 ### Properties
@@ -136,7 +136,7 @@
 * **ContributorInsightsSpecification**: [ContributorInsightsSpecification](#contributorinsightsspecification)
 * **GlobalSecondaryIndexes**: [GlobalSecondaryIndex](#globalsecondaryindex)[]
 * **ImportSourceSpecification**: [ImportSourceSpecification](#importsourcespecification) (WriteOnly)
-* **KeySchema**: [Table_KeySchema](#tablekeyschema)
+* **KeySchema**: [Table_KeySchema](#tablekeyschema) (Required)
 * **KinesisStreamSpecification**: [KinesisStreamSpecification](#kinesisstreamspecification)
 * **LocalSecondaryIndexes**: [LocalSecondaryIndex](#localsecondaryindex)[]
 * **PointInTimeRecoverySpecification**: [PointInTimeRecoverySpecification](#pointintimerecoveryspecification)
@@ -151,25 +151,25 @@
 
 ## AttributeDefinition
 ### Properties
-* **AttributeName**: string
-* **AttributeType**: string
+* **AttributeName**: string (Required)
+* **AttributeType**: string (Required)
 
 ## ContributorInsightsSpecification
 ### Properties
-* **Enabled**: bool
+* **Enabled**: bool (Required)
 
 ## GlobalSecondaryIndex
 ### Properties
 * **ContributorInsightsSpecification**: [ContributorInsightsSpecification](#contributorinsightsspecification)
-* **IndexName**: string
-* **KeySchema**: [KeySchema](#keyschema)[]
-* **Projection**: [Projection](#projection)
+* **IndexName**: string (Required)
+* **KeySchema**: [KeySchema](#keyschema)[] (Required)
+* **Projection**: [Projection](#projection) (Required)
 * **ProvisionedThroughput**: [ProvisionedThroughput](#provisionedthroughput)
 
 ## KeySchema
 ### Properties
-* **AttributeName**: string
-* **KeyType**: string
+* **AttributeName**: string (Required)
+* **KeyType**: string (Required)
 
 ## Projection
 ### Properties
@@ -178,15 +178,15 @@
 
 ## ProvisionedThroughput
 ### Properties
-* **ReadCapacityUnits**: int
-* **WriteCapacityUnits**: int
+* **ReadCapacityUnits**: int (Required)
+* **WriteCapacityUnits**: int (Required)
 
 ## ImportSourceSpecification
 ### Properties
 * **InputCompressionType**: string
-* **InputFormat**: string
+* **InputFormat**: string (Required)
 * **InputFormatOptions**: [InputFormatOptions](#inputformatoptions)
-* **S3BucketSource**: [S3BucketSource](#s3bucketsource)
+* **S3BucketSource**: [S3BucketSource](#s3bucketsource) (Required)
 
 ## InputFormatOptions
 ### Properties
@@ -199,7 +199,7 @@
 
 ## S3BucketSource
 ### Properties
-* **S3Bucket**: string
+* **S3Bucket**: string (Required)
 * **S3BucketOwner**: string
 * **S3KeyPrefix**: string
 
@@ -208,13 +208,13 @@
 
 ## KinesisStreamSpecification
 ### Properties
-* **StreamArn**: string
+* **StreamArn**: string (Required)
 
 ## LocalSecondaryIndex
 ### Properties
-* **IndexName**: string
-* **KeySchema**: [KeySchema](#keyschema)[]
-* **Projection**: [Projection](#projection)
+* **IndexName**: string (Required)
+* **KeySchema**: [KeySchema](#keyschema)[] (Required)
+* **Projection**: [Projection](#projection) (Required)
 
 ## PointInTimeRecoverySpecification
 ### Properties
@@ -223,20 +223,20 @@
 ## SSESpecification
 ### Properties
 * **KMSMasterKeyId**: string
-* **SSEEnabled**: bool
+* **SSEEnabled**: bool (Required)
 * **SSEType**: string
 
 ## StreamSpecification
 ### Properties
-* **StreamViewType**: string
+* **StreamViewType**: string (Required)
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## TimeToLiveSpecification
 ### Properties
-* **AttributeName**: string
-* **Enabled**: bool
+* **AttributeName**: string (Required)
+* **Enabled**: bool (Required)
 

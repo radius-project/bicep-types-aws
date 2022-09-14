@@ -187,15 +187,15 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
         } else if (type === 'object') {
             const properties: Dictionary<ObjectProperty> = {}
             if (schema.properties) {
-                Object.entries(schema.properties).forEach(([name, schema], _) => {
-                    const type = visitSchema(context.push(name), factory, record, undefined, schema)
+                Object.entries(schema.properties).forEach(([name, propertySchema], _) => {
+                    const type = visitSchema(context.push(name), factory, record, undefined, propertySchema)
 
                     let flags = ObjectPropertyFlags.None
                     if (schema.required && schema.required.includes(name)) {
                         flags |= ObjectPropertyFlags.Required
                     }
                     
-                    properties[name] = new ObjectProperty(type, flags, schema.description)
+                    properties[name] = new ObjectProperty(type, flags, propertySchema.description)
                 })
             }
 

@@ -28,13 +28,13 @@
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **ClusterEndpoint**: string
 * **DomainARN**: string
-* **IndexName**: string
+* **IndexName**: string (Required)
 * **IndexRotationPeriod**: string
 * **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration)
 * **RetryOptions**: [AmazonopensearchserviceRetryOptions](#amazonopensearchserviceretryoptions)
-* **RoleARN**: string
+* **RoleARN**: string (Required)
 * **S3BackupMode**: string
-* **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration)
+* **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
 * **TypeName**: string
 * **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration)
 
@@ -57,12 +57,12 @@
 ## Processor
 ### Properties
 * **Parameters**: [ProcessorParameter](#processorparameter)[]
-* **Type**: string
+* **Type**: string (Required)
 
 ## ProcessorParameter
 ### Properties
-* **ParameterName**: string
-* **ParameterValue**: string
+* **ParameterName**: string (Required)
+* **ParameterValue**: string (Required)
 
 ## AmazonopensearchserviceRetryOptions
 ### Properties
@@ -70,14 +70,14 @@
 
 ## S3DestinationConfiguration
 ### Properties
-* **BucketARN**: string
+* **BucketARN**: string (Required)
 * **BufferingHints**: [BufferingHints](#bufferinghints)
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **CompressionFormat**: string
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
 * **ErrorOutputPrefix**: string
 * **Prefix**: string
-* **RoleARN**: string
+* **RoleARN**: string (Required)
 
 ## BufferingHints
 ### Properties
@@ -91,18 +91,18 @@
 
 ## KMSEncryptionConfig
 ### Properties
-* **AWSKMSKeyARN**: string
+* **AWSKMSKeyARN**: string (Required)
 
 ## VpcConfiguration
 ### Properties
-* **RoleARN**: string
-* **SecurityGroupIds**: string[]
-* **SubnetIds**: string[]
+* **RoleARN**: string (Required)
+* **SecurityGroupIds**: string[] (Required)
+* **SubnetIds**: string[] (Required)
 
 ## DeliveryStreamEncryptionConfigurationInput
 ### Properties
 * **KeyARN**: string
-* **KeyType**: string
+* **KeyType**: string (Required)
 
 ## ElasticsearchDestinationConfiguration
 ### Properties
@@ -110,13 +110,13 @@
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **ClusterEndpoint**: string
 * **DomainARN**: string
-* **IndexName**: string
+* **IndexName**: string (Required)
 * **IndexRotationPeriod**: string
 * **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration)
 * **RetryOptions**: [ElasticsearchRetryOptions](#elasticsearchretryoptions)
-* **RoleARN**: string
+* **RoleARN**: string (Required)
 * **S3BackupMode**: string
-* **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration)
+* **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
 * **TypeName**: string
 * **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration)
 
@@ -131,7 +131,7 @@
 
 ## ExtendedS3DestinationConfiguration
 ### Properties
-* **BucketARN**: string
+* **BucketARN**: string (Required)
 * **BufferingHints**: [BufferingHints](#bufferinghints)
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **CompressionFormat**: string
@@ -141,7 +141,7 @@
 * **ErrorOutputPrefix**: string
 * **Prefix**: string
 * **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration)
-* **RoleARN**: string
+* **RoleARN**: string (Required)
 * **S3BackupConfiguration**: [S3DestinationConfiguration](#s3destinationconfiguration)
 * **S3BackupMode**: string
 
@@ -227,19 +227,19 @@
 ### Properties
 * **BufferingHints**: [BufferingHints](#bufferinghints)
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
-* **EndpointConfiguration**: [HttpEndpointConfiguration](#httpendpointconfiguration)
+* **EndpointConfiguration**: [HttpEndpointConfiguration](#httpendpointconfiguration) (Required)
 * **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration)
 * **RequestConfiguration**: [HttpEndpointRequestConfiguration](#httpendpointrequestconfiguration)
 * **RetryOptions**: [RetryOptions](#retryoptions)
 * **RoleARN**: string
 * **S3BackupMode**: string
-* **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration)
+* **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
 
 ## HttpEndpointConfiguration
 ### Properties
 * **AccessKey**: string
 * **Name**: string
-* **Url**: string
+* **Url**: string (Required)
 
 ## HttpEndpointRequestConfiguration
 ### Properties
@@ -248,33 +248,33 @@
 
 ## HttpEndpointCommonAttribute
 ### Properties
-* **AttributeName**: string
-* **AttributeValue**: string
+* **AttributeName**: string (Required)
+* **AttributeValue**: string (Required)
 
 ## KinesisStreamSourceConfiguration
 ### Properties
-* **KinesisStreamARN**: string
-* **RoleARN**: string
+* **KinesisStreamARN**: string (Required)
+* **RoleARN**: string (Required)
 
 ## RedshiftDestinationConfiguration
 ### Properties
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
-* **ClusterJDBCURL**: string
-* **CopyCommand**: [CopyCommand](#copycommand)
-* **Password**: string
+* **ClusterJDBCURL**: string (Required)
+* **CopyCommand**: [CopyCommand](#copycommand) (Required)
+* **Password**: string (Required)
 * **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration)
 * **RetryOptions**: [RedshiftRetryOptions](#redshiftretryoptions)
-* **RoleARN**: string
+* **RoleARN**: string (Required)
 * **S3BackupConfiguration**: [S3DestinationConfiguration](#s3destinationconfiguration)
 * **S3BackupMode**: string
-* **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration)
-* **Username**: string
+* **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
+* **Username**: string (Required)
 
 ## CopyCommand
 ### Properties
 * **CopyOptions**: string
 * **DataTableColumns**: string
-* **DataTableName**: string
+* **DataTableName**: string (Required)
 
 ## RedshiftRetryOptions
 ### Properties
@@ -284,13 +284,13 @@
 ### Properties
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **HECAcknowledgmentTimeoutInSeconds**: int
-* **HECEndpoint**: string
-* **HECEndpointType**: string
-* **HECToken**: string
+* **HECEndpoint**: string (Required)
+* **HECEndpointType**: string (Required)
+* **HECToken**: string (Required)
 * **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration)
 * **RetryOptions**: [SplunkRetryOptions](#splunkretryoptions)
 * **S3BackupMode**: string
-* **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration)
+* **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
 
 ## SplunkRetryOptions
 ### Properties
@@ -298,6 +298,6 @@
 
 ## Tag
 ### Properties
-* **Key**: string
+* **Key**: string (Required)
 * **Value**: string
 

@@ -4,13 +4,13 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Batch/ComputeEnvironmentProperties](#awsbatchcomputeenvironmentproperties): properties of the resource
+* **properties**: [AWS.Batch/ComputeEnvironmentProperties](#awsbatchcomputeenvironmentproperties) (Required): properties of the resource
 
 ## Resource AWS.Batch/JobQueue@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Batch/JobQueueProperties](#awsbatchjobqueueproperties): properties of the resource
+* **properties**: [AWS.Batch/JobQueueProperties](#awsbatchjobqueueproperties) (Required): properties of the resource
 
 ## Resource AWS.Batch/SchedulingPolicy@default
 * **Valid Scope(s)**: Unknown
@@ -27,7 +27,7 @@
 * **ServiceRole**: string
 * **State**: string
 * **Tags**: [ComputeEnvironment_Tags](#computeenvironmenttags): A key-value pair to associate with a resource.
-* **Type**: string
+* **Type**: string (Required)
 * **UnmanagedvCpus**: int
 * **UpdatePolicy**: [UpdatePolicy](#updatepolicy)
 
@@ -42,20 +42,20 @@
 * **InstanceRole**: string
 * **InstanceTypes**: string[]
 * **LaunchTemplate**: [LaunchTemplateSpecification](#launchtemplatespecification)
-* **MaxvCpus**: int
+* **MaxvCpus**: int (Required)
 * **MinvCpus**: int
 * **PlacementGroup**: string
 * **SecurityGroupIds**: string[]
 * **SpotIamFleetRole**: string
-* **Subnets**: string[]
+* **Subnets**: string[] (Required)
 * **Tags**: [ComputeEnvironment_Tags](#computeenvironmenttags): A key-value pair to associate with a resource.
-* **Type**: string
+* **Type**: string (Required)
 * **UpdateToLatestImageVersion**: bool (WriteOnly)
 
 ## Ec2ConfigurationObject
 ### Properties
 * **ImageIdOverride**: string
-* **ImageType**: string
+* **ImageType**: string (Required)
 
 ## LaunchTemplateSpecification
 ### Properties
@@ -76,18 +76,18 @@
 
 ## AWS.Batch/JobQueueProperties
 ### Properties
-* **ComputeEnvironmentOrder**: [ComputeEnvironmentOrder](#computeenvironmentorder)[]
+* **ComputeEnvironmentOrder**: [ComputeEnvironmentOrder](#computeenvironmentorder)[] (Required)
 * **JobQueueArn**: [ResourceArn](#resourcearn) (ReadOnly)
 * **JobQueueName**: string
-* **Priority**: int
+* **Priority**: int (Required)
 * **SchedulingPolicyArn**: [ResourceArn](#resourcearn)
 * **State**: string
 * **Tags**: [JobQueue_Tags](#jobqueuetags): A key-value pair to associate with a resource.
 
 ## ComputeEnvironmentOrder
 ### Properties
-* **ComputeEnvironment**: string
-* **Order**: int
+* **ComputeEnvironment**: string (Required)
+* **Order**: int (Required)
 
 ## ResourceArn
 ### Properties

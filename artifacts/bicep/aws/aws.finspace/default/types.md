@@ -4,7 +4,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.FinSpace/EnvironmentProperties](#awsfinspaceenvironmentproperties): properties of the resource
+* **properties**: [AWS.FinSpace/EnvironmentProperties](#awsfinspaceenvironmentproperties) (Required): properties of the resource
 
 ## AWS.FinSpace/EnvironmentProperties
 ### Properties
@@ -18,7 +18,7 @@
 * **FederationMode**: string: Federation mode used with the Environment
 * **FederationParameters**: [FederationParameters](#federationparameters)
 * **KmsKeyId**: string: KMS key used to encrypt customer data within FinSpace Environment infrastructure
-* **Name**: string: Name of the Environment
+* **Name**: string (Required): Name of the Environment
 * **SageMakerStudioDomainUrl**: string (ReadOnly): SageMaker Studio Domain URL associated with the Environment
 * **Status**: string (ReadOnly): State of the Environment
 * **SuperuserParameters**: [SuperuserParameters](#superuserparameters)

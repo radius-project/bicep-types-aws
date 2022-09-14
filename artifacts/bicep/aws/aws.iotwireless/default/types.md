@@ -4,46 +4,46 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoTWireless/DestinationProperties](#awsiotwirelessdestinationproperties): properties of the resource
+* **properties**: [AWS.IoTWireless/DestinationProperties](#awsiotwirelessdestinationproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTWireless/FuotaTask@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoTWireless/FuotaTaskProperties](#awsiotwirelessfuotataskproperties): properties of the resource
+* **properties**: [AWS.IoTWireless/FuotaTaskProperties](#awsiotwirelessfuotataskproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTWireless/MulticastGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoTWireless/MulticastGroupProperties](#awsiotwirelessmulticastgroupproperties): properties of the resource
+* **properties**: [AWS.IoTWireless/MulticastGroupProperties](#awsiotwirelessmulticastgroupproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTWireless/NetworkAnalyzerConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoTWireless/NetworkAnalyzerConfigurationProperties](#awsiotwirelessnetworkanalyzerconfigurationproperties): properties of the resource
+* **properties**: [AWS.IoTWireless/NetworkAnalyzerConfigurationProperties](#awsiotwirelessnetworkanalyzerconfigurationproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTWireless/WirelessDevice@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoTWireless/WirelessDeviceProperties](#awsiotwirelesswirelessdeviceproperties): properties of the resource
+* **properties**: [AWS.IoTWireless/WirelessDeviceProperties](#awsiotwirelesswirelessdeviceproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTWireless/WirelessGateway@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.IoTWireless/WirelessGatewayProperties](#awsiotwirelesswirelessgatewayproperties): properties of the resource
+* **properties**: [AWS.IoTWireless/WirelessGatewayProperties](#awsiotwirelesswirelessgatewayproperties) (Required): properties of the resource
 
 ## AWS.IoTWireless/DestinationProperties
 ### Properties
 * **Arn**: string (ReadOnly): Destination arn. Returned after successful create.
 * **Description**: string: Destination description
-* **Expression**: string: Destination expression
-* **ExpressionType**: string: Must be RuleName
-* **Name**: string: Unique name of destination
-* **RoleArn**: string: AWS role ARN that grants access
+* **Expression**: string (Required): Destination expression
+* **ExpressionType**: string (Required): Must be RuleName
+* **Name**: string (Required): Unique name of destination
+* **RoleArn**: string (Required): AWS role ARN that grants access
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the destination.
 
 ## Tag
@@ -59,17 +59,17 @@
 * **Description**: string: FUOTA task description
 * **DisassociateMulticastGroup**: string: Multicast group to disassociate. Only for update request.
 * **DisassociateWirelessDevice**: string: Wireless device to disassociate. Only for update request.
-* **FirmwareUpdateImage**: string: FUOTA task firmware update image binary S3 link
-* **FirmwareUpdateRole**: string: FUOTA task firmware IAM role for reading S3
+* **FirmwareUpdateImage**: string (Required): FUOTA task firmware update image binary S3 link
+* **FirmwareUpdateRole**: string (Required): FUOTA task firmware IAM role for reading S3
 * **FuotaTaskStatus**: string (ReadOnly): FUOTA task status. Returned after successful read.
 * **Id**: string (ReadOnly): FUOTA task id. Returned after successful create.
-* **LoRaWAN**: [LoRaWAN](#lorawan): FUOTA task LoRaWAN
+* **LoRaWAN**: [LoRaWAN](#lorawan) (Required): FUOTA task LoRaWAN
 * **Name**: string: Name of FUOTA task
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the FUOTA task.
 
 ## LoRaWAN
 ### Properties
-* **RfRegion**: string: FUOTA task LoRaWAN RF region
+* **RfRegion**: string (Required): FUOTA task LoRaWAN RF region
 * **StartTime**: string (ReadOnly): FUOTA task LoRaWAN start time
 
 ## Tag
@@ -84,17 +84,17 @@
 * **Description**: string: Multicast group description
 * **DisassociateWirelessDevice**: string: Wireless device to disassociate. Only for update request.
 * **Id**: string (ReadOnly): Multicast group id. Returned after successful create.
-* **LoRaWAN**: [LoRaWAN](#lorawan): Multicast group LoRaWAN
+* **LoRaWAN**: [LoRaWAN](#lorawan) (Required): Multicast group LoRaWAN
 * **Name**: string: Name of Multicast group
 * **Status**: string (ReadOnly): Multicast group status. Returned after successful read.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the Multicast group.
 
 ## LoRaWAN
 ### Properties
-* **DlClass**: string: Multicast group LoRaWAN DL Class
+* **DlClass**: string (Required): Multicast group LoRaWAN DL Class
 * **NumberOfDevicesInGroup**: int (ReadOnly): Multicast group number of devices in group. Returned after successful read.
 * **NumberOfDevicesRequested**: int (ReadOnly): Multicast group number of devices requested. Returned after successful read.
-* **RfRegion**: string: Multicast group LoRaWAN RF region
+* **RfRegion**: string (Required): Multicast group LoRaWAN RF region
 
 ## Tag
 ### Properties
@@ -105,7 +105,7 @@
 ### Properties
 * **Arn**: string (ReadOnly): Arn for network analyzer configuration, Returned upon successful create.
 * **Description**: string: The description of the new resource
-* **Name**: string: Name of the network analyzer configuration
+* **Name**: string (Required): Name of the network analyzer configuration
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TraceContent**: [NetworkAnalyzerConfiguration_TraceContent](#networkanalyzerconfigurationtracecontent): Trace content for your wireless gateway and wireless device resources
 * **WirelessDevices**: string[]: List of wireless gateway resources that have been added to the network analyzer configuration
@@ -113,8 +113,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## NetworkAnalyzerConfiguration_TraceContent
 ### Properties
@@ -131,7 +131,7 @@
 ### Properties
 * **Arn**: string (ReadOnly): Wireless device arn. Returned after successful create.
 * **Description**: string: Wireless device description
-* **DestinationName**: string: Wireless device destination name
+* **DestinationName**: string (Required): Wireless device destination name
 * **Id**: string (ReadOnly): Wireless device Id. Returned after successful create.
 * **LastUplinkReceivedAt**: string: The date and time when the most recent uplink was received.
 * **LoRaWAN**: [LoRaWANDevice](#lorawandevice): The combination of Package, Station and Model which represents the version of the LoRaWAN Wireless Device.
@@ -139,7 +139,7 @@
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the device. Currently not supported, will not create if tags are passed.
 * **ThingArn**: string: Thing arn. Passed into update to associate Thing with Wireless device.
 * **ThingName**: string (ReadOnly): Thing Arn. If there is a Thing created, this can be returned with a Get call.
-* **Type**: string: Wireless device type, currently only Sidewalk and LoRa
+* **Type**: string (Required): Wireless device type, currently only Sidewalk and LoRa
 
 ## LoRaWANDevice
 ### Properties
@@ -153,36 +153,36 @@
 
 ## AbpV10x
 ### Properties
-* **DevAddr**: string
-* **SessionKeys**: [SessionKeysAbpV10x](#sessionkeysabpv10x)
+* **DevAddr**: string (Required)
+* **SessionKeys**: [SessionKeysAbpV10x](#sessionkeysabpv10x) (Required)
 
 ## SessionKeysAbpV10x
 ### Properties
-* **AppSKey**: string
-* **NwkSKey**: string
+* **AppSKey**: string (Required)
+* **NwkSKey**: string (Required)
 
 ## AbpV11
 ### Properties
-* **DevAddr**: string
-* **SessionKeys**: [SessionKeysAbpV11](#sessionkeysabpv11)
+* **DevAddr**: string (Required)
+* **SessionKeys**: [SessionKeysAbpV11](#sessionkeysabpv11) (Required)
 
 ## SessionKeysAbpV11
 ### Properties
-* **AppSKey**: string
-* **FNwkSIntKey**: string
-* **NwkSEncKey**: string
-* **SNwkSIntKey**: string
+* **AppSKey**: string (Required)
+* **FNwkSIntKey**: string (Required)
+* **NwkSEncKey**: string (Required)
+* **SNwkSIntKey**: string (Required)
 
 ## OtaaV10x
 ### Properties
-* **AppEui**: string
-* **AppKey**: string
+* **AppEui**: string (Required)
+* **AppKey**: string (Required)
 
 ## OtaaV11
 ### Properties
-* **AppKey**: string
-* **JoinEui**: string
-* **NwkKey**: string
+* **AppKey**: string (Required)
+* **JoinEui**: string (Required)
+* **NwkKey**: string (Required)
 
 ## Tag
 ### Properties
@@ -195,7 +195,7 @@
 * **Description**: string: Description of Wireless Gateway.
 * **Id**: string (ReadOnly): Id for Wireless Gateway. Returned upon successful create.
 * **LastUplinkReceivedAt**: string: The date and time when the most recent uplink was received.
-* **LoRaWAN**: [LoRaWANGateway](#lorawangateway): The combination of Package, Station and Model which represents the version of the LoRaWAN Wireless Gateway.
+* **LoRaWAN**: [LoRaWANGateway](#lorawangateway) (Required): The combination of Package, Station and Model which represents the version of the LoRaWAN Wireless Gateway.
 * **Name**: string: Name of Wireless Gateway.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the gateway.
 * **ThingArn**: string: Thing Arn. Passed into Update to associate a Thing with the Wireless Gateway.
@@ -203,8 +203,8 @@
 
 ## LoRaWANGateway
 ### Properties
-* **GatewayEui**: string
-* **RfRegion**: string
+* **GatewayEui**: string (Required)
+* **RfRegion**: string (Required)
 
 ## Tag
 ### Properties

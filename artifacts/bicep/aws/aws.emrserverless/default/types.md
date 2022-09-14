@@ -4,7 +4,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.EMRServerless/ApplicationProperties](#awsemrserverlessapplicationproperties): properties of the resource
+* **properties**: [AWS.EMRServerless/ApplicationProperties](#awsemrserverlessapplicationproperties) (Required): properties of the resource
 
 ## AWS.EMRServerless/ApplicationProperties
 ### Properties
@@ -16,9 +16,9 @@
 * **MaximumCapacity**: [MaximumAllowedResources](#maximumallowedresources): Maximum allowed cumulative resources for an Application. No new resources will be created once the limit is hit.
 * **Name**: string: User friendly Application name.
 * **NetworkConfiguration**: [NetworkConfiguration](#networkconfiguration): Network Configuration for customer VPC connectivity.
-* **ReleaseLabel**: string: EMR release label.
+* **ReleaseLabel**: string (Required): EMR release label.
 * **Tags**: [Tag](#tag)[]: Tag map with key and value
-* **Type**: string: The type of the application
+* **Type**: string (Required): The type of the application
 
 ## AutoStartConfiguration
 ### Properties
@@ -34,9 +34,9 @@
 
 ## MaximumAllowedResources
 ### Properties
-* **Cpu**: [CpuSize](#cpusize): Per worker CPU resource. vCPU is the only supported unit and specifying vCPU is optional.
+* **Cpu**: [CpuSize](#cpusize) (Required): Per worker CPU resource. vCPU is the only supported unit and specifying vCPU is optional.
 * **Disk**: [DiskSize](#disksize): Per worker Disk resource. GB is the only supported unit and specifying GB is optional
-* **Memory**: [MemorySize](#memorysize): Per worker memory resource. GB is the only supported unit and specifying GB is optional.
+* **Memory**: [MemorySize](#memorysize) (Required): Per worker memory resource. GB is the only supported unit and specifying GB is optional.
 
 ## CpuSize
 ### Properties
@@ -60,6 +60,6 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The value for the tag. You can specify a value that is 1 to 128 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Key**: string (Required): The value for the tag. You can specify a value that is 1 to 128 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 

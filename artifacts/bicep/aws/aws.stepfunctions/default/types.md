@@ -4,24 +4,24 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.StepFunctions/ActivityProperties](#awsstepfunctionsactivityproperties): properties of the resource
+* **properties**: [AWS.StepFunctions/ActivityProperties](#awsstepfunctionsactivityproperties) (Required): properties of the resource
 
 ## Resource AWS.StepFunctions/StateMachine@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.StepFunctions/StateMachineProperties](#awsstepfunctionsstatemachineproperties): properties of the resource
+* **properties**: [AWS.StepFunctions/StateMachineProperties](#awsstepfunctionsstatemachineproperties) (Required): properties of the resource
 
 ## AWS.StepFunctions/ActivityProperties
 ### Properties
 * **Arn**: string (ReadOnly)
-* **Name**: string
+* **Name**: string (Required)
 * **Tags**: [TagsEntry](#tagsentry)[]
 
 ## TagsEntry
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.StepFunctions/StateMachineProperties
 ### Properties
@@ -32,7 +32,7 @@
 * **DefinitionSubstitutions**: [DefinitionSubstitutions](#definitionsubstitutions) (WriteOnly)
 * **LoggingConfiguration**: [LoggingConfiguration](#loggingconfiguration)
 * **Name**: string (ReadOnly)
-* **RoleArn**: string
+* **RoleArn**: string (Required)
 * **StateMachineName**: string
 * **StateMachineType**: string
 * **Tags**: [TagsEntry](#tagsentry)[]
@@ -43,8 +43,8 @@
 
 ## S3Location
 ### Properties
-* **Bucket**: string
-* **Key**: string
+* **Bucket**: string (Required)
+* **Key**: string (Required)
 * **Version**: string
 
 ## DefinitionSubstitutions
@@ -66,8 +66,8 @@
 
 ## TagsEntry
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## TracingConfiguration
 ### Properties

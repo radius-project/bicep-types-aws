@@ -16,13 +16,13 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ApiGateway/AuthorizerProperties](#awsapigatewayauthorizerproperties): properties of the resource
+* **properties**: [AWS.ApiGateway/AuthorizerProperties](#awsapigatewayauthorizerproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/BasePathMapping@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ApiGateway/BasePathMappingProperties](#awsapigatewaybasepathmappingproperties): properties of the resource
+* **properties**: [AWS.ApiGateway/BasePathMappingProperties](#awsapigatewaybasepathmappingproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/ClientCertificate@default
 * **Valid Scope(s)**: Unknown
@@ -34,19 +34,19 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ApiGateway/DeploymentProperties](#awsapigatewaydeploymentproperties): properties of the resource
+* **properties**: [AWS.ApiGateway/DeploymentProperties](#awsapigatewaydeploymentproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/DocumentationPart@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ApiGateway/DocumentationPartProperties](#awsapigatewaydocumentationpartproperties): properties of the resource
+* **properties**: [AWS.ApiGateway/DocumentationPartProperties](#awsapigatewaydocumentationpartproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/DocumentationVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ApiGateway/DocumentationVersionProperties](#awsapigatewaydocumentationversionproperties): properties of the resource
+* **properties**: [AWS.ApiGateway/DocumentationVersionProperties](#awsapigatewaydocumentationversionproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/DomainName@default
 * **Valid Scope(s)**: Unknown
@@ -58,25 +58,25 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ApiGateway/MethodProperties](#awsapigatewaymethodproperties): properties of the resource
+* **properties**: [AWS.ApiGateway/MethodProperties](#awsapigatewaymethodproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/Model@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ApiGateway/ModelProperties](#awsapigatewaymodelproperties): properties of the resource
+* **properties**: [AWS.ApiGateway/ModelProperties](#awsapigatewaymodelproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/RequestValidator@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ApiGateway/RequestValidatorProperties](#awsapigatewayrequestvalidatorproperties): properties of the resource
+* **properties**: [AWS.ApiGateway/RequestValidatorProperties](#awsapigatewayrequestvalidatorproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/Stage@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ApiGateway/StageProperties](#awsapigatewaystageproperties): properties of the resource
+* **properties**: [AWS.ApiGateway/StageProperties](#awsapigatewaystageproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/UsagePlan@default
 * **Valid Scope(s)**: Unknown
@@ -108,8 +108,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## AWS.ApiGateway/AuthorizerProperties
 ### Properties
@@ -120,15 +120,15 @@
 * **AuthType**: string: Optional customer-defined field, used in OpenAPI imports and exports without functional impact.
 * **IdentitySource**: string: The identity source for which authorization is requested.
 * **IdentityValidationExpression**: string: A validation expression for the incoming identity token.
-* **Name**: string: The name of the authorizer.
+* **Name**: string (Required): The name of the authorizer.
 * **ProviderARNs**: string[]: A list of the Amazon Cognito user pool ARNs for the COGNITO_USER_POOLS authorizer.
-* **RestApiId**: string: The identifier of the API.
-* **Type**: string: The authorizer type.
+* **RestApiId**: string (Required): The identifier of the API.
+* **Type**: string (Required): The authorizer type.
 
 ## AWS.ApiGateway/BasePathMappingProperties
 ### Properties
 * **BasePath**: string: The base path name that callers of the API must provide in the URL after the domain name.
-* **DomainName**: string: The DomainName of an AWS::ApiGateway::DomainName resource.
+* **DomainName**: string (Required): The DomainName of an AWS::ApiGateway::DomainName resource.
 * **Id**: string
 * **RestApiId**: string: The ID of the API.
 * **Stage**: string: The name of the API's stage.
@@ -141,15 +141,15 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.ApiGateway/DeploymentProperties
 ### Properties
 * **DeploymentCanarySettings**: [DeploymentCanarySettings](#deploymentcanarysettings) (WriteOnly): Specifies settings for the canary deployment.
 * **DeploymentId**: string (ReadOnly): Primary Id for this resource
 * **Description**: string: A description of the purpose of the API Gateway deployment.
-* **RestApiId**: string: The ID of the RestApi resource to deploy. 
+* **RestApiId**: string (Required): The ID of the RestApi resource to deploy. 
 * **StageDescription**: [StageDescription](#stagedescription) (WriteOnly): Configures the stage that API Gateway creates with this deployment.
 * **StageName**: string (WriteOnly): A name for the stage that API Gateway creates with this deployment. Use only alphanumeric characters.
 
@@ -213,8 +213,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag
-* **Value**: string: The value for the tag
+* **Key**: string (Required): The key name of the tag
+* **Value**: string (Required): The value for the tag
 
 ## Deployment_Variables
 ### Properties
@@ -222,9 +222,9 @@
 ## AWS.ApiGateway/DocumentationPartProperties
 ### Properties
 * **DocumentationPartId**: string (ReadOnly): The identifier of the documentation Part.
-* **Location**: [Location](#location): The location of the API entity that the documentation applies to.
-* **Properties**: string: The documentation content map of the targeted API entity.
-* **RestApiId**: string: Identifier of the targeted API entity
+* **Location**: [Location](#location) (Required): The location of the API entity that the documentation applies to.
+* **Properties**: string (Required): The documentation content map of the targeted API entity.
+* **RestApiId**: string (Required): Identifier of the targeted API entity
 
 ## Location
 ### Properties
@@ -237,8 +237,8 @@
 ## AWS.ApiGateway/DocumentationVersionProperties
 ### Properties
 * **Description**: string: The description of the API documentation snapshot.
-* **DocumentationVersion**: string: The version identifier of the API documentation snapshot.
-* **RestApiId**: string: The identifier of the API.
+* **DocumentationVersion**: string (Required): The version identifier of the API documentation snapshot.
+* **RestApiId**: string (Required): The identifier of the API.
 
 ## AWS.ApiGateway/DomainNameProperties
 ### Properties
@@ -275,15 +275,15 @@
 * **AuthorizationScopes**: string[]: A list of authorization scopes configured on the method.
 * **AuthorizationType**: string: The method's authorization type.
 * **AuthorizerId**: string: The identifier of the authorizer to use on this method.
-* **HttpMethod**: string: The backend system that the method calls when it receives a request.
+* **HttpMethod**: string (Required): The backend system that the method calls when it receives a request.
 * **Integration**: [Integration](#integration): The backend system that the method calls when it receives a request.
 * **MethodResponses**: [MethodResponse](#methodresponse)[]: The responses that can be sent to the client who calls the method.
 * **OperationName**: string: A friendly operation name for the method.
 * **RequestModels**: [Method_RequestModels](#methodrequestmodels): The resources that are used for the request's content type. Specify request models as key-value pairs (string-to-string mapping), with a content type as the key and a Model resource name as the value.
 * **RequestParameters**: [Method_RequestParameters](#methodrequestparameters): The request parameters that API Gateway accepts. Specify request parameters as key-value pairs (string-to-Boolean mapping), with a source as the key and a Boolean as the value.
 * **RequestValidatorId**: string: The ID of the associated request validator.
-* **ResourceId**: string: The ID of an API Gateway resource.
-* **RestApiId**: string: The ID of the RestApi resource in which API Gateway creates the method.
+* **ResourceId**: string (Required): The ID of an API Gateway resource.
+* **RestApiId**: string (Required): The ID of the RestApi resource in which API Gateway creates the method.
 
 ## Integration
 ### Properties
@@ -299,7 +299,7 @@
 * **RequestParameters**: [Method_RequestParameters](#methodrequestparameters): The request parameters that API Gateway sends with the backend request.
 * **RequestTemplates**: [Method_RequestTemplates](#methodrequesttemplates): A map of Apache Velocity templates that are applied on the request payload.
 * **TimeoutInMillis**: int: Custom timeout between 50 and 29,000 milliseconds.
-* **Type**: string: The type of backend that your method is running.
+* **Type**: string (Required): The type of backend that your method is running.
 * **Uri**: string: The Uniform Resource Identifier (URI) for the integration.
 
 ## IntegrationResponse
@@ -308,7 +308,7 @@
 * **ResponseParameters**: [Method_ResponseParameters](#methodresponseparameters): The response parameters from the backend response that API Gateway sends to the method response.
 * **ResponseTemplates**: [Method_ResponseTemplates](#methodresponsetemplates): The templates that are used to transform the integration response body. Specify templates as key-value pairs (string-to-string mappings), with a content type as the key and a template as the value.
 * **SelectionPattern**: string: A regular expression that specifies which error strings or status codes from the backend map to the integration response.
-* **StatusCode**: string: The status code that API Gateway uses to map the integration response to a MethodResponse status code.
+* **StatusCode**: string (Required): The status code that API Gateway uses to map the integration response to a MethodResponse status code.
 
 ## Method_ResponseParameters
 ### Properties
@@ -326,7 +326,7 @@
 ### Properties
 * **ResponseModels**: [Method_ResponseModels](#methodresponsemodels): The resources used for the response's content type. Specify response models as key-value pairs (string-to-string maps), with a content type as the key and a Model resource name as the value.
 * **ResponseParameters**: [Method_ResponseParameters](#methodresponseparameters): Response parameters that API Gateway sends to the client that called a method. Specify response parameters as key-value pairs (string-to-Boolean maps), with a destination as the key and a Boolean as the value.
-* **StatusCode**: string: The method response's status code, which you map to an IntegrationResponse.
+* **StatusCode**: string (Required): The method response's status code, which you map to an IntegrationResponse.
 
 ## Method_ResponseModels
 ### Properties
@@ -345,14 +345,14 @@
 * **ContentType**: string: The content type for the model.
 * **Description**: string: A description that identifies this model.
 * **Name**: string: A name for the model. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name.
-* **RestApiId**: string: The ID of a REST API with which to associate this model.
+* **RestApiId**: string (Required): The ID of a REST API with which to associate this model.
 * **Schema**: [Model_Schema](#modelschema) | string: The schema to use to transform data to one or more output formats. Specify null ({}) if you don't want to specify a schema.
 
 ## AWS.ApiGateway/RequestValidatorProperties
 ### Properties
 * **Name**: string: Name of the request validator.
 * **RequestValidatorId**: string (ReadOnly): ID of the request validator.
-* **RestApiId**: string: The identifier of the targeted API entity.
+* **RestApiId**: string (Required): The identifier of the targeted API entity.
 * **ValidateRequestBody**: bool: Indicates whether to validate the request body according to the configured schema for the targeted API and method. 
 * **ValidateRequestParameters**: bool: Indicates whether to validate request parameters.
 
@@ -367,7 +367,7 @@
 * **Description**: string: A description of the stage.
 * **DocumentationVersion**: string: The version ID of the API documentation snapshot.
 * **MethodSettings**: [MethodSetting](#methodsetting)[]: Settings for all methods in the stage.
-* **RestApiId**: string: The ID of the RestApi resource that you're deploying with this stage.
+* **RestApiId**: string (Required): The ID of the RestApi resource that you're deploying with this stage.
 * **StageName**: string: The name of the stage, which API Gateway uses as the first path segment in the invoked Uniform Resource Identifier (URI).
 * **Tags**: [Tag](#tag)[]: An array of arbitrary tags (key-value pairs) to associate with the stage.
 * **TracingEnabled**: bool: Specifies whether active X-Ray tracing is enabled for this stage.
@@ -403,8 +403,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:.
 
 ## Stage_Variables
 ### Properties
@@ -436,8 +436,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## ThrottleSettings
 ### Properties

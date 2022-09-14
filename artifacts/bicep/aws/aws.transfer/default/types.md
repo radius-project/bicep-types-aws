@@ -4,14 +4,14 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Transfer/WorkflowProperties](#awstransferworkflowproperties): properties of the resource
+* **properties**: [AWS.Transfer/WorkflowProperties](#awstransferworkflowproperties) (Required): properties of the resource
 
 ## AWS.Transfer/WorkflowProperties
 ### Properties
 * **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the workflow.
 * **Description**: string: A textual description for the workflow.
 * **OnExceptionSteps**: [WorkflowStep](#workflowstep)[]: Specifies the steps (actions) to take if any errors are encountered during execution of the workflow.
-* **Steps**: [WorkflowStep](#workflowstep)[]: Specifies the details for the steps that are in the specified workflow.
+* **Steps**: [WorkflowStep](#workflowstep)[] (Required): Specifies the details for the steps that are in the specified workflow.
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for workflows. Tags are metadata attached to workflows for any purpose.
 * **WorkflowId**: string (ReadOnly): A unique identifier for the workflow.
 
@@ -59,11 +59,11 @@
 
 ## S3Tag
 ### Properties
-* **Key**: string: The name assigned to the tag that you create.
-* **Value**: string: The value that corresponds to the key.
+* **Key**: string (Required): The name assigned to the tag that you create.
+* **Value**: string (Required): The value that corresponds to the key.
 
 ## Tag
 ### Properties
-* **Key**: string: The name assigned to the tag that you create.
-* **Value**: string: Contains one or more values that you assigned to the key name you create.
+* **Key**: string (Required): The name assigned to the tag that you create.
+* **Value**: string (Required): Contains one or more values that you assigned to the key name you create.
 

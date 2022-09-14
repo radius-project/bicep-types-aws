@@ -4,19 +4,19 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.CustomerProfiles/DomainProperties](#awscustomerprofilesdomainproperties): properties of the resource
+* **properties**: [AWS.CustomerProfiles/DomainProperties](#awscustomerprofilesdomainproperties) (Required): properties of the resource
 
 ## Resource AWS.CustomerProfiles/Integration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.CustomerProfiles/IntegrationProperties](#awscustomerprofilesintegrationproperties): properties of the resource
+* **properties**: [AWS.CustomerProfiles/IntegrationProperties](#awscustomerprofilesintegrationproperties) (Required): properties of the resource
 
 ## Resource AWS.CustomerProfiles/ObjectType@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.CustomerProfiles/ObjectTypeProperties](#awscustomerprofilesobjecttypeproperties): properties of the resource
+* **properties**: [AWS.CustomerProfiles/ObjectTypeProperties](#awscustomerprofilesobjecttypeproperties) (Required): properties of the resource
 
 ## AWS.CustomerProfiles/DomainProperties
 ### Properties
@@ -24,19 +24,19 @@
 * **DeadLetterQueueUrl**: string: The URL of the SQS dead letter queue
 * **DefaultEncryptionKey**: string: The default encryption key
 * **DefaultExpirationDays**: int: The default number of days until the data within the domain expires.
-* **DomainName**: string: The unique name of the domain.
+* **DomainName**: string (Required): The unique name of the domain.
 * **LastUpdatedAt**: string (ReadOnly): The time of this integration got last updated at
 * **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the domain
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.CustomerProfiles/IntegrationProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly): The time of this integration got created
-* **DomainName**: string: The unique name of the domain.
+* **DomainName**: string (Required): The unique name of the domain.
 * **FlowDefinition**: [FlowDefinition](#flowdefinition) (WriteOnly)
 * **LastUpdatedAt**: string (ReadOnly): The time of this integration got last updated at
 * **ObjectTypeName**: string: The name of the ObjectType defined for the 3rd party data in Profile Service
@@ -47,18 +47,18 @@
 ## FlowDefinition
 ### Properties
 * **Description**: string
-* **FlowName**: string
-* **KmsArn**: string
-* **SourceFlowConfig**: [SourceFlowConfig](#sourceflowconfig)
-* **Tasks**: [Task](#task)[]
-* **TriggerConfig**: [TriggerConfig](#triggerconfig)
+* **FlowName**: string (Required)
+* **KmsArn**: string (Required)
+* **SourceFlowConfig**: [SourceFlowConfig](#sourceflowconfig) (Required)
+* **Tasks**: [Task](#task)[] (Required)
+* **TriggerConfig**: [TriggerConfig](#triggerconfig) (Required)
 
 ## SourceFlowConfig
 ### Properties
 * **ConnectorProfileName**: string
-* **ConnectorType**: [ConnectorType](#connectortype)
+* **ConnectorType**: [ConnectorType](#connectortype) (Required)
 * **IncrementalPullConfig**: [IncrementalPullConfig](#incrementalpullconfig)
-* **SourceConnectorProperties**: [SourceConnectorProperties](#sourceconnectorproperties)
+* **SourceConnectorProperties**: [SourceConnectorProperties](#sourceconnectorproperties) (Required)
 
 ## ConnectorType
 ### Properties
@@ -77,37 +77,37 @@
 
 ## MarketoSourceProperties
 ### Properties
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## Object
 ### Properties
 
 ## S3SourceProperties
 ### Properties
-* **BucketName**: string
+* **BucketName**: string (Required)
 * **BucketPrefix**: string
 
 ## SalesforceSourceProperties
 ### Properties
 * **EnableDynamicFieldUpdate**: bool
 * **IncludeDeletedRecords**: bool
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## ServiceNowSourceProperties
 ### Properties
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## ZendeskSourceProperties
 ### Properties
-* **Object**: [Object](#object)
+* **Object**: [Object](#object) (Required)
 
 ## Task
 ### Properties
 * **ConnectorOperator**: [ConnectorOperator](#connectoroperator)
 * **DestinationField**: [DestinationField](#destinationfield)
-* **SourceFields**: string[]
+* **SourceFields**: string[] (Required)
 * **TaskProperties**: [TaskPropertiesMap](#taskpropertiesmap)[]
-* **TaskType**: [TaskType](#tasktype)
+* **TaskType**: [TaskType](#tasktype) (Required)
 
 ## ConnectorOperator
 ### Properties
@@ -137,8 +137,8 @@
 
 ## TaskPropertiesMap
 ### Properties
-* **OperatorPropertyKey**: [OperatorPropertiesKeys](#operatorpropertieskeys)
-* **Property**: string
+* **OperatorPropertyKey**: [OperatorPropertiesKeys](#operatorpropertieskeys) (Required)
+* **Property**: string (Required)
 
 ## OperatorPropertiesKeys
 ### Properties
@@ -149,7 +149,7 @@
 ## TriggerConfig
 ### Properties
 * **TriggerProperties**: [TriggerProperties](#triggerproperties)
-* **TriggerType**: [TriggerType](#triggertype)
+* **TriggerType**: [TriggerType](#triggertype) (Required)
 
 ## TriggerProperties
 ### Properties
@@ -160,7 +160,7 @@
 * **DataPullMode**: string
 * **FirstExecutionFrom**: [Date](#date)
 * **ScheduleEndTime**: [Date](#date)
-* **ScheduleExpression**: string
+* **ScheduleExpression**: string (Required)
 * **ScheduleOffset**: int
 * **ScheduleStartTime**: [Date](#date)
 * **Timezone**: string
@@ -173,20 +173,20 @@
 
 ## ObjectTypeMapping
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.CustomerProfiles/ObjectTypeProperties
 ### Properties
 * **AllowProfileCreation**: bool: Indicates whether a profile should be created when data is received.
 * **CreatedAt**: string (ReadOnly): The time of this integration got created.
 * **Description**: string: Description of the profile object type.
-* **DomainName**: string: The unique name of the domain.
+* **DomainName**: string (Required): The unique name of the domain.
 * **EncryptionKey**: string: The default encryption key
 * **ExpirationDays**: int: The default number of days until the data within the domain expires.
 * **Fields**: [FieldMap](#fieldmap)[]: A list of the name and ObjectType field.
@@ -219,6 +219,6 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

@@ -4,19 +4,19 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.SSM/AssociationProperties](#awsssmassociationproperties): properties of the resource
+* **properties**: [AWS.SSM/AssociationProperties](#awsssmassociationproperties) (Required): properties of the resource
 
 ## Resource AWS.SSM/Document@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.SSM/DocumentProperties](#awsssmdocumentproperties): properties of the resource
+* **properties**: [AWS.SSM/DocumentProperties](#awsssmdocumentproperties) (Required): properties of the resource
 
 ## Resource AWS.SSM/ResourceDataSync@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.SSM/ResourceDataSyncProperties](#awsssmresourcedatasyncproperties): properties of the resource
+* **properties**: [AWS.SSM/ResourceDataSyncProperties](#awsssmresourcedatasyncproperties) (Required): properties of the resource
 
 ## AWS.SSM/AssociationProperties
 ### Properties
@@ -30,7 +30,7 @@
 * **InstanceId**: string: The ID of the instance that the SSM document is associated with.
 * **MaxConcurrency**: string
 * **MaxErrors**: string
-* **Name**: string: The name of the SSM document.
+* **Name**: string (Required): The name of the SSM document.
 * **OutputLocation**: [InstanceAssociationOutputLocation](#instanceassociationoutputlocation)
 * **Parameters**: [Association_Parameters](#associationparameters): Parameter values that the SSM document uses at runtime.
 * **ScheduleExpression**: string: A Cron or Rate expression that specifies when the association is applied to the target.
@@ -63,13 +63,13 @@
 
 ## Target
 ### Properties
-* **Key**: string
-* **Values**: string[]
+* **Key**: string (Required)
+* **Values**: string[] (Required)
 
 ## AWS.SSM/DocumentProperties
 ### Properties
 * **Attachments**: [AttachmentsSource](#attachmentssource)[]: A list of key and value pairs that describe attachments to a version of a document.
-* **Content**: [Document_Content](#documentcontent) | string: The content for the Systems Manager document in JSON, YAML or String format.
+* **Content**: [Document_Content](#documentcontent) | string (Required): The content for the Systems Manager document in JSON, YAML or String format.
 * **DocumentFormat**: string: Specify the document format for the request. The document format can be either JSON or YAML. JSON is the default format.
 * **DocumentType**: string: The type of document to create.
 * **Name**: string: A name for the Systems Manager document.
@@ -103,27 +103,27 @@
 * **KMSKeyArn**: string
 * **S3Destination**: [S3Destination](#s3destination)
 * **SyncFormat**: string
-* **SyncName**: string (ReadOnly)
+* **SyncName**: string (Required, ReadOnly)
 * **SyncSource**: [SyncSource](#syncsource)
 * **SyncType**: string
 
 ## S3Destination
 ### Properties
-* **BucketName**: string
+* **BucketName**: string (Required)
 * **BucketPrefix**: string
-* **BucketRegion**: string
+* **BucketRegion**: string (Required)
 * **KMSKeyArn**: string
-* **SyncFormat**: string
+* **SyncFormat**: string (Required)
 
 ## SyncSource
 ### Properties
 * **AwsOrganizationsSource**: [AwsOrganizationsSource](#awsorganizationssource)
 * **IncludeFutureRegions**: bool
-* **SourceRegions**: string[]
-* **SourceType**: string
+* **SourceRegions**: string[] (Required)
+* **SourceType**: string (Required)
 
 ## AwsOrganizationsSource
 ### Properties
 * **OrganizationalUnits**: string[]
-* **OrganizationSourceType**: string
+* **OrganizationSourceType**: string (Required)
 

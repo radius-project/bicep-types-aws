@@ -10,13 +10,13 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Timestream/ScheduledQueryProperties](#awstimestreamscheduledqueryproperties): properties of the resource
+* **properties**: [AWS.Timestream/ScheduledQueryProperties](#awstimestreamscheduledqueryproperties) (Required): properties of the resource
 
 ## Resource AWS.Timestream/Table@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.Timestream/TableProperties](#awstimestreamtableproperties): properties of the resource
+* **properties**: [AWS.Timestream/TableProperties](#awstimestreamtableproperties) (Required): properties of the resource
 
 ## AWS.Timestream/DatabaseProperties
 ### Properties
@@ -34,12 +34,12 @@
 ### Properties
 * **Arn**: [Arn](#arn) (ReadOnly)
 * **ClientToken**: [ClientToken](#clienttoken)
-* **ErrorReportConfiguration**: [ErrorReportConfiguration](#errorreportconfiguration)
+* **ErrorReportConfiguration**: [ErrorReportConfiguration](#errorreportconfiguration) (Required)
 * **KmsKeyId**: [KmsKeyId](#kmskeyid)
-* **NotificationConfiguration**: [NotificationConfiguration](#notificationconfiguration)
-* **QueryString**: [QueryString](#querystring)
-* **ScheduleConfiguration**: [ScheduleConfiguration](#scheduleconfiguration)
-* **ScheduledQueryExecutionRoleArn**: [ScheduledQueryExecutionRoleArn](#scheduledqueryexecutionrolearn)
+* **NotificationConfiguration**: [NotificationConfiguration](#notificationconfiguration) (Required)
+* **QueryString**: [QueryString](#querystring) (Required)
+* **ScheduleConfiguration**: [ScheduleConfiguration](#scheduleconfiguration) (Required)
+* **ScheduledQueryExecutionRoleArn**: [ScheduledQueryExecutionRoleArn](#scheduledqueryexecutionrolearn) (Required)
 * **ScheduledQueryName**: [ScheduledQueryName](#scheduledqueryname)
 * **SQErrorReportConfiguration**: string (ReadOnly): Configuration for error reporting. Error reports will be generated when a problem is encountered when writing the query results.
 * **SQKmsKeyId**: string (ReadOnly): The Amazon KMS key used to encrypt the scheduled query resource, at-rest. If the Amazon KMS key is not specified, the scheduled query resource will be encrypted with a Timestream owned Amazon KMS key. To specify a KMS key, use the key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix the name with alias/. If ErrorReportConfiguration uses SSE_KMS as encryption type, the same KmsKeyId is used to encrypt the error report at rest.
@@ -60,11 +60,11 @@
 
 ## ErrorReportConfiguration
 ### Properties
-* **S3Configuration**: [S3Configuration](#s3configuration)
+* **S3Configuration**: [S3Configuration](#s3configuration) (Required)
 
 ## S3Configuration
 ### Properties
-* **BucketName**: [BucketName](#bucketname)
+* **BucketName**: [BucketName](#bucketname) (Required)
 * **EncryptionOption**: [EncryptionOption](#encryptionoption)
 * **ObjectKeyPrefix**: [ObjectKeyPrefix](#objectkeyprefix)
 
@@ -82,11 +82,11 @@
 
 ## NotificationConfiguration
 ### Properties
-* **SnsConfiguration**: [SnsConfiguration](#snsconfiguration)
+* **SnsConfiguration**: [SnsConfiguration](#snsconfiguration) (Required)
 
 ## SnsConfiguration
 ### Properties
-* **TopicArn**: [TopicArn](#topicarn)
+* **TopicArn**: [TopicArn](#topicarn) (Required)
 
 ## TopicArn
 ### Properties
@@ -96,7 +96,7 @@
 
 ## ScheduleConfiguration
 ### Properties
-* **ScheduleExpression**: [ScheduleExpression](#scheduleexpression)
+* **ScheduleExpression**: [ScheduleExpression](#scheduleexpression) (Required)
 
 ## ScheduleExpression
 ### Properties
@@ -112,17 +112,17 @@
 
 ## TargetConfiguration
 ### Properties
-* **TimestreamConfiguration**: [TimestreamConfiguration](#timestreamconfiguration)
+* **TimestreamConfiguration**: [TimestreamConfiguration](#timestreamconfiguration) (Required)
 
 ## TimestreamConfiguration
 ### Properties
-* **DatabaseName**: [DatabaseName](#databasename)
-* **DimensionMappings**: [DimensionMappings](#dimensionmappings)
+* **DatabaseName**: [DatabaseName](#databasename) (Required)
+* **DimensionMappings**: [DimensionMappings](#dimensionmappings) (Required)
 * **MeasureNameColumn**: [MeasureNameColumn](#measurenamecolumn)
 * **MixedMeasureMappings**: [MixedMeasureMappings](#mixedmeasuremappings)
 * **MultiMeasureMappings**: [MultiMeasureMappings](#multimeasuremappings)
-* **TableName**: [TableName](#tablename)
-* **TimeColumn**: [TimeColumn](#timecolumn)
+* **TableName**: [TableName](#tablename) (Required)
+* **TimeColumn**: [TimeColumn](#timecolumn) (Required)
 
 ## DatabaseName
 ### Properties
@@ -138,7 +138,7 @@
 
 ## MultiMeasureMappings
 ### Properties
-* **MultiMeasureAttributeMappings**: [MultiMeasureAttributeMappingList](#multimeasureattributemappinglist)
+* **MultiMeasureAttributeMappings**: [MultiMeasureAttributeMappingList](#multimeasureattributemappinglist) (Required)
 * **TargetMultiMeasureName**: [TargetMultiMeasureName](#targetmultimeasurename)
 
 ## MultiMeasureAttributeMappingList
@@ -156,7 +156,7 @@
 ## AWS.Timestream/TableProperties
 ### Properties
 * **Arn**: string (ReadOnly)
-* **DatabaseName**: string: The name for the database which the table to be created belongs to.
+* **DatabaseName**: string (Required): The name for the database which the table to be created belongs to.
 * **MagneticStoreWriteProperties**: [Table_MagneticStoreWriteProperties](#tablemagneticstorewriteproperties): The properties that determine whether magnetic store writes are enabled.
 * **Name**: string (ReadOnly): The table name exposed as a read-only attribute.
 * **RetentionProperties**: [Table_RetentionProperties](#tableretentionproperties): The retention duration of the memory store and the magnetic store.
@@ -165,7 +165,7 @@
 
 ## Table_MagneticStoreWriteProperties
 ### Properties
-* **EnableMagneticStoreWrites**: bool: Boolean flag indicating whether magnetic store writes are enabled.
+* **EnableMagneticStoreWrites**: bool (Required): Boolean flag indicating whether magnetic store writes are enabled.
 * **MagneticStoreRejectedDataLocation**: [Table_MagneticStoreWriteProperties_MagneticStoreRejectedDataLocation](#tablemagneticstorewritepropertiesmagneticstorerejecteddatalocation): Location to store information about records that were asynchronously rejected during magnetic store writes.
 
 ## Table_MagneticStoreWriteProperties_MagneticStoreRejectedDataLocation
@@ -174,8 +174,8 @@
 
 ## Table_MagneticStoreWriteProperties_MagneticStoreRejectedDataLocation_S3Configuration
 ### Properties
-* **BucketName**: string: The bucket name used to store the data.
-* **EncryptionOption**: string: Either SSE_KMS or SSE_S3.
+* **BucketName**: string (Required): The bucket name used to store the data.
+* **EncryptionOption**: string (Required): Either SSE_KMS or SSE_S3.
 * **KmsKeyId**: string: Must be provided if SSE_KMS is specified as the encryption option
 * **ObjectKeyPrefix**: string: String used to prefix all data in the bucket.
 

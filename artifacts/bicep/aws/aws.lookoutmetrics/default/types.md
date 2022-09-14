@@ -4,20 +4,20 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.LookoutMetrics/AnomalyDetectorProperties](#awslookoutmetricsanomalydetectorproperties): properties of the resource
+* **properties**: [AWS.LookoutMetrics/AnomalyDetectorProperties](#awslookoutmetricsanomalydetectorproperties) (Required): properties of the resource
 
 ## AWS.LookoutMetrics/AnomalyDetectorProperties
 ### Properties
-* **AnomalyDetectorConfig**: [AnomalyDetectorConfig](#anomalydetectorconfig): Configuration options for the AnomalyDetector
+* **AnomalyDetectorConfig**: [AnomalyDetectorConfig](#anomalydetectorconfig) (Required): Configuration options for the AnomalyDetector
 * **AnomalyDetectorDescription**: string: A description for the AnomalyDetector.
 * **AnomalyDetectorName**: string: Name for the Amazon Lookout for Metrics Anomaly Detector
 * **Arn**: [Arn](#arn) (ReadOnly)
 * **KmsKeyArn**: string: KMS key used to encrypt the AnomalyDetector data
-* **MetricSetList**: [MetricSet](#metricset)[]: List of metric sets for anomaly detection
+* **MetricSetList**: [MetricSet](#metricset)[] (Required): List of metric sets for anomaly detection
 
 ## AnomalyDetectorConfig
 ### Properties
-* **AnomalyDetectorFrequency**: [AnomalyDetectorFrequency](#anomalydetectorfrequency): Frequency of anomaly detection
+* **AnomalyDetectorFrequency**: [AnomalyDetectorFrequency](#anomalydetectorfrequency) (Required): Frequency of anomaly detection
 
 ## AnomalyDetectorFrequency
 ### Properties
@@ -28,11 +28,11 @@
 ## MetricSet
 ### Properties
 * **DimensionList**: [ColumnName](#columnname)[]: Dimensions for this MetricSet.
-* **MetricList**: [Metric](#metric)[]: Metrics captured by this MetricSet.
+* **MetricList**: [Metric](#metric)[] (Required): Metrics captured by this MetricSet.
 * **MetricSetDescription**: string: A description for the MetricSet.
 * **MetricSetFrequency**: string: A frequency period to aggregate the data
-* **MetricSetName**: string: The name of the MetricSet.
-* **MetricSource**: [MetricSource](#metricsource)
+* **MetricSetName**: string (Required): The name of the MetricSet.
+* **MetricSource**: [MetricSource](#metricsource) (Required)
 * **Offset**: int: Offset, in seconds, between the frequency interval and the time at which the metrics are available.
 * **TimestampColumn**: [TimestampColumn](#timestampcolumn)
 * **Timezone**: string
@@ -42,8 +42,8 @@
 
 ## Metric
 ### Properties
-* **AggregationFunction**: string: Operator used to aggregate metric values
-* **MetricName**: [ColumnName](#columnname)
+* **AggregationFunction**: string (Required): Operator used to aggregate metric values
+* **MetricName**: [ColumnName](#columnname) (Required)
 * **Namespace**: string
 
 ## MetricSource
@@ -56,23 +56,23 @@
 
 ## AppFlowConfig
 ### Properties
-* **FlowName**: string
-* **RoleArn**: [Arn](#arn)
+* **FlowName**: string (Required)
+* **RoleArn**: [Arn](#arn) (Required)
 
 ## CloudwatchConfig
 ### Properties
-* **RoleArn**: [Arn](#arn)
+* **RoleArn**: [Arn](#arn) (Required)
 
 ## RDSSourceConfig
 ### Properties
-* **DatabaseHost**: [DatabaseHost](#databasehost)
-* **DatabaseName**: string
-* **DatabasePort**: [DatabasePort](#databaseport)
-* **DBInstanceIdentifier**: string
-* **RoleArn**: [Arn](#arn)
-* **SecretManagerArn**: [SecretManagerArn](#secretmanagerarn)
-* **TableName**: [TableName](#tablename)
-* **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration)
+* **DatabaseHost**: [DatabaseHost](#databasehost) (Required)
+* **DatabaseName**: string (Required)
+* **DatabasePort**: [DatabasePort](#databaseport) (Required)
+* **DBInstanceIdentifier**: string (Required)
+* **RoleArn**: [Arn](#arn) (Required)
+* **SecretManagerArn**: [SecretManagerArn](#secretmanagerarn) (Required)
+* **TableName**: [TableName](#tablename) (Required)
+* **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration) (Required)
 
 ## DatabaseHost
 ### Properties
@@ -88,8 +88,8 @@
 
 ## VpcConfiguration
 ### Properties
-* **SecurityGroupIdList**: [SecurityGroupIdList](#securitygroupidlist)
-* **SubnetIdList**: [SubnetIdList](#subnetidlist)
+* **SecurityGroupIdList**: [SecurityGroupIdList](#securitygroupidlist) (Required)
+* **SubnetIdList**: [SubnetIdList](#subnetidlist) (Required)
 
 ## SecurityGroupIdList
 ### Properties
@@ -99,20 +99,20 @@
 
 ## RedshiftSourceConfig
 ### Properties
-* **ClusterIdentifier**: string
-* **DatabaseHost**: [DatabaseHost](#databasehost)
-* **DatabaseName**: string
-* **DatabasePort**: [DatabasePort](#databaseport)
-* **RoleArn**: [Arn](#arn)
-* **SecretManagerArn**: [SecretManagerArn](#secretmanagerarn)
-* **TableName**: [TableName](#tablename)
-* **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration)
+* **ClusterIdentifier**: string (Required)
+* **DatabaseHost**: [DatabaseHost](#databasehost) (Required)
+* **DatabaseName**: string (Required)
+* **DatabasePort**: [DatabasePort](#databaseport) (Required)
+* **RoleArn**: [Arn](#arn) (Required)
+* **SecretManagerArn**: [SecretManagerArn](#secretmanagerarn) (Required)
+* **TableName**: [TableName](#tablename) (Required)
+* **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration) (Required)
 
 ## S3SourceConfig
 ### Properties
-* **FileFormatDescriptor**: [FileFormatDescriptor](#fileformatdescriptor)
+* **FileFormatDescriptor**: [FileFormatDescriptor](#fileformatdescriptor) (Required)
 * **HistoricalDataPathList**: string[]
-* **RoleArn**: [Arn](#arn)
+* **RoleArn**: [Arn](#arn) (Required)
 * **TemplatedPathList**: string[]
 
 ## FileFormatDescriptor

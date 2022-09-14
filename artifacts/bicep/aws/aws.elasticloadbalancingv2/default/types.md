@@ -4,21 +4,21 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ElasticLoadBalancingV2/ListenerProperties](#awselasticloadbalancingv2listenerproperties): properties of the resource
+* **properties**: [AWS.ElasticLoadBalancingV2/ListenerProperties](#awselasticloadbalancingv2listenerproperties) (Required): properties of the resource
 
 ## Resource AWS.ElasticLoadBalancingV2/ListenerRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.ElasticLoadBalancingV2/ListenerRuleProperties](#awselasticloadbalancingv2listenerruleproperties): properties of the resource
+* **properties**: [AWS.ElasticLoadBalancingV2/ListenerRuleProperties](#awselasticloadbalancingv2listenerruleproperties) (Required): properties of the resource
 
 ## AWS.ElasticLoadBalancingV2/ListenerProperties
 ### Properties
 * **AlpnPolicy**: string[]
 * **Certificates**: [Certificate](#certificate)[]
-* **DefaultActions**: [Action](#action)[] (WriteOnly)
+* **DefaultActions**: [Action](#action)[] (Required, WriteOnly)
 * **ListenerArn**: string (ReadOnly)
-* **LoadBalancerArn**: string
+* **LoadBalancerArn**: string (Required)
 * **Port**: int
 * **Protocol**: string
 * **SslPolicy**: string
@@ -36,7 +36,7 @@
 * **Order**: int
 * **RedirectConfig**: [RedirectConfig](#redirectconfig)
 * **TargetGroupArn**: string
-* **Type**: string
+* **Type**: string (Required)
 
 ## AuthenticateCognitoConfig
 ### Properties
@@ -45,9 +45,9 @@
 * **Scope**: string
 * **SessionCookieName**: string
 * **SessionTimeout**: string
-* **UserPoolArn**: string
-* **UserPoolClientId**: string
-* **UserPoolDomain**: string
+* **UserPoolArn**: string (Required)
+* **UserPoolClientId**: string (Required)
+* **UserPoolDomain**: string (Required)
 
 ## Listener_AuthenticationRequestExtraParams
 ### Properties
@@ -55,17 +55,17 @@
 ## AuthenticateOidcConfig
 ### Properties
 * **AuthenticationRequestExtraParams**: [Listener_AuthenticationRequestExtraParams](#listenerauthenticationrequestextraparams)
-* **AuthorizationEndpoint**: string
-* **ClientId**: string
+* **AuthorizationEndpoint**: string (Required)
+* **ClientId**: string (Required)
 * **ClientSecret**: string
-* **Issuer**: string
+* **Issuer**: string (Required)
 * **OnUnauthenticatedRequest**: string
 * **Scope**: string
 * **SessionCookieName**: string
 * **SessionTimeout**: string
-* **TokenEndpoint**: string
+* **TokenEndpoint**: string (Required)
 * **UseExistingClientSecret**: bool
-* **UserInfoEndpoint**: string
+* **UserInfoEndpoint**: string (Required)
 
 ## Listener_AuthenticationRequestExtraParams
 ### Properties
@@ -74,7 +74,7 @@
 ### Properties
 * **ContentType**: string
 * **MessageBody**: string
-* **StatusCode**: string
+* **StatusCode**: string (Required)
 
 ## ForwardConfig
 ### Properties
@@ -98,15 +98,15 @@
 * **Port**: string
 * **Protocol**: string
 * **Query**: string
-* **StatusCode**: string
+* **StatusCode**: string (Required)
 
 ## AWS.ElasticLoadBalancingV2/ListenerRuleProperties
 ### Properties
-* **Actions**: [Action](#action)[] (WriteOnly)
-* **Conditions**: [RuleCondition](#rulecondition)[]
+* **Actions**: [Action](#action)[] (Required, WriteOnly)
+* **Conditions**: [RuleCondition](#rulecondition)[] (Required)
 * **IsDefault**: bool (ReadOnly)
-* **ListenerArn**: string
-* **Priority**: int
+* **ListenerArn**: string (Required)
+* **Priority**: int (Required)
 * **RuleArn**: string (ReadOnly)
 
 ## Action
@@ -118,7 +118,7 @@
 * **Order**: int
 * **RedirectConfig**: [RedirectConfig](#redirectconfig)
 * **TargetGroupArn**: string
-* **Type**: string
+* **Type**: string (Required)
 
 ## AuthenticateCognitoConfig
 ### Properties
@@ -127,9 +127,9 @@
 * **Scope**: string
 * **SessionCookieName**: string
 * **SessionTimeout**: int
-* **UserPoolArn**: string
-* **UserPoolClientId**: string
-* **UserPoolDomain**: string
+* **UserPoolArn**: string (Required)
+* **UserPoolClientId**: string (Required)
+* **UserPoolDomain**: string (Required)
 
 ## ListenerRule_AuthenticationRequestExtraParams
 ### Properties
@@ -137,17 +137,17 @@
 ## AuthenticateOidcConfig
 ### Properties
 * **AuthenticationRequestExtraParams**: [ListenerRule_AuthenticationRequestExtraParams](#listenerruleauthenticationrequestextraparams)
-* **AuthorizationEndpoint**: string
-* **ClientId**: string
+* **AuthorizationEndpoint**: string (Required)
+* **ClientId**: string (Required)
 * **ClientSecret**: string
-* **Issuer**: string
+* **Issuer**: string (Required)
 * **OnUnauthenticatedRequest**: string
 * **Scope**: string
 * **SessionCookieName**: string
 * **SessionTimeout**: int
-* **TokenEndpoint**: string
+* **TokenEndpoint**: string (Required)
 * **UseExistingClientSecret**: bool
-* **UserInfoEndpoint**: string
+* **UserInfoEndpoint**: string (Required)
 
 ## ListenerRule_AuthenticationRequestExtraParams
 ### Properties
@@ -156,7 +156,7 @@
 ### Properties
 * **ContentType**: string
 * **MessageBody**: string
-* **StatusCode**: string
+* **StatusCode**: string (Required)
 
 ## ForwardConfig
 ### Properties
@@ -180,7 +180,7 @@
 * **Port**: string
 * **Protocol**: string
 * **Query**: string
-* **StatusCode**: string
+* **StatusCode**: string (Required)
 
 ## RuleCondition
 ### Properties

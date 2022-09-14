@@ -4,46 +4,46 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DeviceFarm/DevicePoolProperties](#awsdevicefarmdevicepoolproperties): properties of the resource
+* **properties**: [AWS.DeviceFarm/DevicePoolProperties](#awsdevicefarmdevicepoolproperties) (Required): properties of the resource
 
 ## Resource AWS.DeviceFarm/InstanceProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DeviceFarm/InstanceProfileProperties](#awsdevicefarminstanceprofileproperties): properties of the resource
+* **properties**: [AWS.DeviceFarm/InstanceProfileProperties](#awsdevicefarminstanceprofileproperties) (Required): properties of the resource
 
 ## Resource AWS.DeviceFarm/NetworkProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DeviceFarm/NetworkProfileProperties](#awsdevicefarmnetworkprofileproperties): properties of the resource
+* **properties**: [AWS.DeviceFarm/NetworkProfileProperties](#awsdevicefarmnetworkprofileproperties) (Required): properties of the resource
 
 ## Resource AWS.DeviceFarm/Project@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DeviceFarm/ProjectProperties](#awsdevicefarmprojectproperties): properties of the resource
+* **properties**: [AWS.DeviceFarm/ProjectProperties](#awsdevicefarmprojectproperties) (Required): properties of the resource
 
 ## Resource AWS.DeviceFarm/TestGridProject@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DeviceFarm/TestGridProjectProperties](#awsdevicefarmtestgridprojectproperties): properties of the resource
+* **properties**: [AWS.DeviceFarm/TestGridProjectProperties](#awsdevicefarmtestgridprojectproperties) (Required): properties of the resource
 
 ## Resource AWS.DeviceFarm/VPCEConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DeviceFarm/VPCEConfigurationProperties](#awsdevicefarmvpceconfigurationproperties): properties of the resource
+* **properties**: [AWS.DeviceFarm/VPCEConfigurationProperties](#awsdevicefarmvpceconfigurationproperties) (Required): properties of the resource
 
 ## AWS.DeviceFarm/DevicePoolProperties
 ### Properties
 * **Arn**: string (ReadOnly)
 * **Description**: string
 * **MaxDevices**: int
-* **Name**: string
-* **ProjectArn**: string
-* **Rules**: [Rule](#rule)[]
+* **Name**: string (Required)
+* **ProjectArn**: string (Required)
+* **Rules**: [Rule](#rule)[] (Required)
 * **Tags**: [Tag](#tag)[]
 
 ## Rule
@@ -54,23 +54,23 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.DeviceFarm/InstanceProfileProperties
 ### Properties
 * **Arn**: string (ReadOnly)
 * **Description**: string
 * **ExcludeAppPackagesFromCleanup**: string[]
-* **Name**: string
+* **Name**: string (Required)
 * **PackageCleanup**: bool
 * **RebootAfterUse**: bool
 * **Tags**: [Tag](#tag)[]
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.DeviceFarm/NetworkProfileProperties
 ### Properties
@@ -80,8 +80,8 @@
 * **DownlinkDelayMs**: int
 * **DownlinkJitterMs**: int
 * **DownlinkLossPercent**: int
-* **Name**: string
-* **ProjectArn**: string
+* **Name**: string (Required)
+* **ProjectArn**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **UplinkBandwidthBits**: int
 * **UplinkDelayMs**: int
@@ -90,51 +90,51 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.DeviceFarm/ProjectProperties
 ### Properties
 * **Arn**: string (ReadOnly)
 * **DefaultJobTimeoutMinutes**: int
-* **Name**: string
+* **Name**: string (Required)
 * **Tags**: [Tag](#tag)[]
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.DeviceFarm/TestGridProjectProperties
 ### Properties
 * **Arn**: string (ReadOnly)
 * **Description**: string
-* **Name**: string
+* **Name**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **VpcConfig**: [VpcConfig](#vpcconfig) (WriteOnly)
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## VpcConfig
 ### Properties
-* **SecurityGroupIds**: string[]: A list of VPC security group IDs in your Amazon VPC.
-* **SubnetIds**: string[]: A list of VPC subnet IDs in your Amazon VPC.
-* **VpcId**: string
+* **SecurityGroupIds**: string[] (Required): A list of VPC security group IDs in your Amazon VPC.
+* **SubnetIds**: string[] (Required): A list of VPC subnet IDs in your Amazon VPC.
+* **VpcId**: string (Required)
 
 ## AWS.DeviceFarm/VPCEConfigurationProperties
 ### Properties
 * **Arn**: string (ReadOnly)
-* **ServiceDnsName**: string
+* **ServiceDnsName**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **VpceConfigurationDescription**: string
-* **VpceConfigurationName**: string
-* **VpceServiceName**: string
+* **VpceConfigurationName**: string (Required)
+* **VpceServiceName**: string (Required)
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

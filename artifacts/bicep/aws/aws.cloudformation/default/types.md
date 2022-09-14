@@ -22,7 +22,7 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.CloudFormation/StackSetProperties](#awscloudformationstacksetproperties): properties of the resource
+* **properties**: [AWS.CloudFormation/StackSetProperties](#awscloudformationstacksetproperties) (Required): properties of the resource
 
 ## Resource AWS.CloudFormation/TypeActivation@default
 * **Valid Scope(s)**: Unknown
@@ -69,10 +69,10 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **ManagedExecution**: [StackSet_ManagedExecution](#stacksetmanagedexecution): Describes whether StackSets performs non-conflicting operations concurrently and queues conflicting operations.
 * **OperationPreferences**: [OperationPreferences](#operationpreferences) (WriteOnly)
 * **Parameters**: [Parameter](#parameter)[]: The input parameters for the stack set template.
-* **PermissionModel**: string: Describes how the IAM roles required for stack set operations are created. By default, SELF-MANAGED is specified.
+* **PermissionModel**: string (Required): Describes how the IAM roles required for stack set operations are created. By default, SELF-MANAGED is specified.
 * **StackInstancesGroup**: [StackInstances](#stackinstances)[]: A group of stack instances with parameters in some specific accounts and regions.
 * **StackSetId**: string (ReadOnly): The ID of the stack set that you're creating.
-* **StackSetName**: string: The name to associate with the stack set. The name must be unique in the Region where you create your stack set.
+* **StackSetName**: string (Required): The name to associate with the stack set. The name must be unique in the Region where you create your stack set.
 * **Tags**: [Tag](#tag)[]: The key-value pairs to associate with this stack set and the stacks created from it. AWS CloudFormation also propagates these tags to supported resources that are created in the stacks. A maximum number of 50 tags can be specified.
 * **TemplateBody**: string: The structure that contains the template body, with a minimum length of 1 byte and a maximum length of 51,200 bytes.
 * **TemplateURL**: string (WriteOnly): Location of file containing the template body. The URL must point to a template (max size: 460,800 bytes) that is located in an Amazon S3 bucket.
@@ -109,14 +109,14 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 
 ## Parameter
 ### Properties
-* **ParameterKey**: string: The key associated with the parameter. If you don't specify a key and value for a particular parameter, AWS CloudFormation uses the default value that is specified in your template.
-* **ParameterValue**: string: The input value associated with the parameter.
+* **ParameterKey**: string (Required): The key associated with the parameter. If you don't specify a key and value for a particular parameter, AWS CloudFormation uses the default value that is specified in your template.
+* **ParameterValue**: string (Required): The input value associated with the parameter.
 
 ## StackInstances
 ### Properties
-* **DeploymentTargets**: [DeploymentTargets](#deploymenttargets)
+* **DeploymentTargets**: [DeploymentTargets](#deploymenttargets) (Required)
 * **ParameterOverrides**: [Parameter](#parameter)[]: A list of stack set parameters whose values you want to override in the selected stack instances.
-* **Regions**: [Region](#region)[]: The names of one or more Regions where you want to create stack instances using the specified AWS account(s).
+* **Regions**: [Region](#region)[] (Required): The names of one or more Regions where you want to create stack instances using the specified AWS account(s).
 
 ## DeploymentTargets
 ### Properties
@@ -132,8 +132,8 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 
 ## Tag
 ### Properties
-* **Key**: string: A string used to identify this tag. You can specify a maximum of 127 characters for a tag key.
-* **Value**: string: A string containing the value for this tag. You can specify a maximum of 256 characters for a tag value.
+* **Key**: string (Required): A string used to identify this tag. You can specify a maximum of 127 characters for a tag key.
+* **Value**: string (Required): A string containing the value for this tag. You can specify a maximum of 256 characters for a tag value.
 
 ## AWS.CloudFormation/TypeActivationProperties
 ### Properties

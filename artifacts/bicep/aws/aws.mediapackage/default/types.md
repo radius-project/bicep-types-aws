@@ -4,19 +4,19 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.MediaPackage/ChannelProperties](#awsmediapackagechannelproperties): properties of the resource
+* **properties**: [AWS.MediaPackage/ChannelProperties](#awsmediapackagechannelproperties) (Required): properties of the resource
 
 ## Resource AWS.MediaPackage/OriginEndpoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.MediaPackage/OriginEndpointProperties](#awsmediapackageoriginendpointproperties): properties of the resource
+* **properties**: [AWS.MediaPackage/OriginEndpointProperties](#awsmediapackageoriginendpointproperties) (Required): properties of the resource
 
 ## Resource AWS.MediaPackage/PackagingGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.MediaPackage/PackagingGroupProperties](#awsmediapackagepackaginggroupproperties): properties of the resource
+* **properties**: [AWS.MediaPackage/PackagingGroupProperties](#awsmediapackagepackaginggroupproperties) (Required): properties of the resource
 
 ## AWS.MediaPackage/ChannelProperties
 ### Properties
@@ -24,7 +24,7 @@
 * **Description**: string: A short text description of the Channel.
 * **EgressAccessLogs**: [LogConfiguration](#logconfiguration): The configuration parameters for egress access logging.
 * **HlsIngest**: [HlsIngest](#hlsingest) (ReadOnly): A short text description of the Channel.
-* **Id**: string: The ID of the Channel.
+* **Id**: string (Required): The ID of the Channel.
 * **IngressAccessLogs**: [LogConfiguration](#logconfiguration): The configuration parameters for egress access logging.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
@@ -45,19 +45,19 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.MediaPackage/OriginEndpointProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) assigned to the OriginEndpoint.
 * **Authorization**: [Authorization](#authorization)
-* **ChannelId**: string: The ID of the Channel the OriginEndpoint is associated with.
+* **ChannelId**: string (Required): The ID of the Channel the OriginEndpoint is associated with.
 * **CmafPackage**: [CmafPackage](#cmafpackage)
 * **DashPackage**: [DashPackage](#dashpackage)
 * **Description**: string: A short text description of the OriginEndpoint.
 * **HlsPackage**: [HlsPackage](#hlspackage)
-* **Id**: string: The ID of the OriginEndpoint.
+* **Id**: string (Required): The ID of the OriginEndpoint.
 * **ManifestName**: string: A short string appended to the end of the OriginEndpoint URL.
 * **MssPackage**: [MssPackage](#msspackage)
 * **Origination**: string: Control whether origination of video is allowed for this OriginEndpoint. If set to ALLOW, the OriginEndpoint may by requested, pursuant to any other form of access control. If set to DENY, the OriginEndpoint may not be requested. This can be helpful for Live to VOD harvesting, or for temporarily disabling origination
@@ -69,8 +69,8 @@
 
 ## Authorization
 ### Properties
-* **CdnIdentifierSecret**: string: The Amazon Resource Name (ARN) for the secret in Secrets Manager that your Content Distribution Network (CDN) uses for authorization to access your endpoint.
-* **SecretsRoleArn**: string: The Amazon Resource Name (ARN) for the IAM role that allows MediaPackage to communicate with AWS Secrets Manager.
+* **CdnIdentifierSecret**: string (Required): The Amazon Resource Name (ARN) for the secret in Secrets Manager that your Content Distribution Network (CDN) uses for authorization to access your endpoint.
+* **SecretsRoleArn**: string (Required): The Amazon Resource Name (ARN) for the IAM role that allows MediaPackage to communicate with AWS Secrets Manager.
 
 ## CmafPackage
 ### Properties
@@ -84,28 +84,28 @@
 ### Properties
 * **ConstantInitializationVector**: string: An optional 128-bit, 16-byte hex value represented by a 32-character string, used in conjunction with the key for encrypting blocks. If you don't specify a value, then MediaPackage creates the constant initialization vector (IV).
 * **KeyRotationIntervalSeconds**: int: Time (in seconds) between each encryption key rotation.
-* **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider)
+* **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider) (Required)
 
 ## SpekeKeyProvider
 ### Properties
 * **CertificateArn**: string: An Amazon Resource Name (ARN) of a Certificate Manager certificate that MediaPackage will use for enforcing secure end-to-end data transfer with the key provider service.
 * **EncryptionContractConfiguration**: [EncryptionContractConfiguration](#encryptioncontractconfiguration)
-* **ResourceId**: string: The resource ID to include in key requests.
-* **RoleArn**: string: An Amazon Resource Name (ARN) of an IAM role that AWS Elemental MediaPackage will assume when accessing the key provider service.
-* **SystemIds**: string[]: The system IDs to include in key requests.
-* **Url**: string: The URL of the external key provider service.
+* **ResourceId**: string (Required): The resource ID to include in key requests.
+* **RoleArn**: string (Required): An Amazon Resource Name (ARN) of an IAM role that AWS Elemental MediaPackage will assume when accessing the key provider service.
+* **SystemIds**: string[] (Required): The system IDs to include in key requests.
+* **Url**: string (Required): The URL of the external key provider service.
 
 ## EncryptionContractConfiguration
 ### Properties
-* **PresetSpeke20Audio**: string: A collection of audio encryption presets.
-* **PresetSpeke20Video**: string: A collection of video encryption presets.
+* **PresetSpeke20Audio**: string (Required): A collection of audio encryption presets.
+* **PresetSpeke20Video**: string (Required): A collection of video encryption presets.
 
 ## HlsManifest
 ### Properties
 * **AdMarkers**: string: This setting controls how ad markers are included in the packaged OriginEndpoint. "NONE" will omit all SCTE-35 ad markers from the output. "PASSTHROUGH" causes the manifest to contain a copy of the SCTE-35 ad markers (comments) taken directly from the input HTTP Live Streaming (HLS) manifest. "SCTE35_ENHANCED" generates ad markers and blackout tags based on SCTE-35 messages in the input source. "DATERANGE" inserts EXT-X-DATERANGE tags to signal ad and program transition events in HLS and CMAF manifests. For this option, you must set a programDateTimeIntervalSeconds value that is greater than 0.
 * **AdsOnDeliveryRestrictions**: [AdsOnDeliveryRestrictions](#adsondeliveryrestrictions)
 * **AdTriggers**: string[]: A list of SCTE-35 message types that are treated as ad markers in the output.  If empty, no ad markers are output.  Specify multiple items to create ad markers for all of the included message types.
-* **Id**: string: The ID of the manifest. The ID must be unique within the OriginEndpoint and it cannot be changed after it is created.
+* **Id**: string (Required): The ID of the manifest. The ID must be unique within the OriginEndpoint and it cannot be changed after it is created.
 * **IncludeIframeOnlyStream**: bool: When enabled, an I-Frame only stream will be included in the output.
 * **ManifestName**: string: An optional short string appended to the end of the OriginEndpoint URL. If not specified, defaults to the manifestName for the OriginEndpoint.
 * **PlaylistType**: string: The HTTP Live Streaming (HLS) playlist type. When either "EVENT" or "VOD" is specified, a corresponding EXT-X-PLAYLIST-TYPE entry will be included in the media playlist.
@@ -144,7 +144,7 @@
 ## DashEncryption
 ### Properties
 * **KeyRotationIntervalSeconds**: int: Time (in seconds) between each encryption key rotation.
-* **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider)
+* **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider) (Required)
 
 ## HlsPackage
 ### Properties
@@ -166,7 +166,7 @@
 * **EncryptionMethod**: string: The encryption method to use.
 * **KeyRotationIntervalSeconds**: int: Interval (in seconds) between each encryption key rotation.
 * **RepeatExtXKey**: bool: When enabled, the EXT-X-KEY tag will be repeated in output manifests.
-* **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider)
+* **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider) (Required)
 
 ## MssPackage
 ### Properties
@@ -177,12 +177,12 @@
 
 ## MssEncryption
 ### Properties
-* **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider)
+* **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider) (Required)
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.MediaPackage/PackagingGroupProperties
 ### Properties
@@ -190,13 +190,13 @@
 * **Authorization**: [Authorization](#authorization): CDN Authorization
 * **DomainName**: string (ReadOnly): The fully qualified domain name for Assets in the PackagingGroup.
 * **EgressAccessLogs**: [LogConfiguration](#logconfiguration): The configuration parameters for egress access logging.
-* **Id**: string: The ID of the PackagingGroup.
+* **Id**: string (Required): The ID of the PackagingGroup.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
 ## Authorization
 ### Properties
-* **CdnIdentifierSecret**: string: The Amazon Resource Name (ARN) for the secret in AWS Secrets Manager that is used for CDN authorization.
-* **SecretsRoleArn**: string: The Amazon Resource Name (ARN) for the IAM role that allows MediaPackage to communicate with AWS Secrets Manager.
+* **CdnIdentifierSecret**: string (Required): The Amazon Resource Name (ARN) for the secret in AWS Secrets Manager that is used for CDN authorization.
+* **SecretsRoleArn**: string (Required): The Amazon Resource Name (ARN) for the IAM role that allows MediaPackage to communicate with AWS Secrets Manager.
 
 ## LogConfiguration
 ### Properties
@@ -204,6 +204,6 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

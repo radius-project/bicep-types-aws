@@ -4,11 +4,11 @@
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **name**: string (Required): the resource name
-* **properties**: [AWS.DevOpsGuru/ResourceCollectionProperties](#awsdevopsgururesourcecollectionproperties): properties of the resource
+* **properties**: [AWS.DevOpsGuru/ResourceCollectionProperties](#awsdevopsgururesourcecollectionproperties) (Required): properties of the resource
 
 ## AWS.DevOpsGuru/ResourceCollectionProperties
 ### Properties
-* **ResourceCollectionFilter**: [ResourceCollectionFilter](#resourcecollectionfilter)
+* **ResourceCollectionFilter**: [ResourceCollectionFilter](#resourcecollectionfilter) (Required)
 * **ResourceCollectionType**: string (ReadOnly): The type of ResourceCollection
 
 ## ResourceCollectionFilter
