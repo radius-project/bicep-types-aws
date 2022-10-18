@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBClusterParameterGroup",
   "type": "AWS::RDS::DBClusterParameterGroup",
-  "time": "2022-08-29T13:03:28.427Z",
+  "time": "2022-10-11T10:16:15.963Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -36,11 +36,15 @@
     "handlers": {
       "create": {
         "permissions": [
+          "rds:AddTagsToResource",
           "rds:CreateDBClusterParameterGroup",
+          "rds:DescribeDBClusterParameterGroups",
           "rds:DescribeDBClusterParameters",
           "rds:DescribeEngineDefaultClusterParameters",
+          "rds:ListTagsForResource",
           "rds:ModifyDBClusterParameterGroup"
-        ]
+        ],
+        "timeoutInMinutes": 180
       },
       "delete": {
         "permissions": [
@@ -60,15 +64,17 @@
       },
       "update": {
         "permissions": [
-          "rds:DescribeDBClusters",
+          "rds:AddTagsToResource",
+          "rds:DescribeDBClusterParameterGroups",
           "rds:DescribeDBClusterParameters",
+          "rds:DescribeDBClusters",
           "rds:DescribeEngineDefaultClusterParameters",
           "rds:ListTagsForResource",
-          "rds:AddTagsToResource",
+          "rds:ModifyDBClusterParameterGroup",
           "rds:RemoveTagsFromResource",
-          "rds:ResetDBClusterParameterGroup",
-          "rds:ModifyDBClusterParameterGroup"
-        ]
+          "rds:ResetDBClusterParameterGroup"
+        ],
+        "timeoutInMinutes": 180
       }
     },
     "primaryIdentifier": [

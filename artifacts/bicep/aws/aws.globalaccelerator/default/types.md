@@ -21,11 +21,13 @@
 ## AWS.GlobalAccelerator/AcceleratorProperties
 ### Properties
 * **AcceleratorArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the accelerator.
-* **DnsName**: string (ReadOnly): The Domain Name System (DNS) name that Global Accelerator creates that points to your accelerator's static IP addresses.
+* **DnsName**: string (ReadOnly): The Domain Name System (DNS) name that Global Accelerator creates that points to your accelerator's static IPv4 addresses.
+* **DualStackDnsName**: string (ReadOnly): The Domain Name System (DNS) name that Global Accelerator creates that points to your accelerator's static IPv4 and IPv6 addresses.
 * **Enabled**: bool: Indicates whether an accelerator is enabled. The value is true or false.
 * **IpAddresses**: [IpAddress](#ipaddress)[]: The IP addresses from BYOIP Prefix pool.
 * **IpAddressType**: string: IP Address type.
 * **Ipv4Addresses**: string[] (ReadOnly): The IPv4 addresses assigned to the accelerator.
+* **Ipv6Addresses**: string[] (ReadOnly): The IPv6 addresses assigned if the accelerator is dualstack
 * **Name**: string (Required): Name of accelerator.
 * **Tags**: [Tag](#tag)[]
 

@@ -199,7 +199,7 @@
 * **Name**: string: Name of Wireless Gateway.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the gateway.
 * **ThingArn**: string: Thing Arn. Passed into Update to associate a Thing with the Wireless Gateway.
-* **ThingName**: string (ReadOnly): Thing Arn. If there is a Thing created, this can be returned with a Get call.
+* **ThingName**: string: Thing Name. If there is a Thing created, this can be returned with a Get call.
 
 ## LoRaWANGateway
 ### Properties

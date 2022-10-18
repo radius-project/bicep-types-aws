@@ -1,10 +1,11 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-Cluster",
   "type": "AWS::EKS::Cluster",
-  "time": "2022-08-29T15:14:59.58Z",
+  "time": "2022-10-13T15:54:13.662Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
+      "/properties/OutpostConfig",
       "/properties/EncryptionConfig",
       "/properties/KubernetesNetworkConfig",
       "/properties/Name",
@@ -102,6 +103,30 @@
         },
         "type": "object"
       },
+      "OutpostConfig": {
+        "additionalProperties": false,
+        "description": "An object representing the Outpost configuration to use for AWS EKS outpost cluster.",
+        "properties": {
+          "ControlPlaneInstanceType": {
+            "description": "Specify the Instance type of the machines that should be used to create your cluster.",
+            "type": "string"
+          },
+          "OutpostArns": {
+            "description": "Specify one or more Arn(s) of Outpost(s) on which you would like to create your cluster.",
+            "insertionOrder": false,
+            "items": {
+              "minItems": 1,
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "OutpostArns",
+          "ControlPlaneInstanceType"
+        ],
+        "type": "object"
+      },
       "Provider": {
         "additionalProperties": false,
         "properties": {
@@ -189,6 +214,17 @@
           "eks:DescribeCluster",
           "eks:TagResource",
           "iam:PassRole",
+          "iam:GetRole",
+          "iam:ListAttachedRolePolicies",
+          "iam:CreateServiceLinkedRole",
+          "iam:CreateInstanceProfile",
+          "iam:TagInstanceProfile",
+          "iam:AddRoleToInstanceProfile",
+          "iam:GetInstanceProfile",
+          "iam:DeleteInstanceProfile",
+          "iam:RemoveRoleFromInstanceProfile",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVpcs",
           "kms:DescribeKey",
           "kms:CreateGrant"
         ]
@@ -254,6 +290,10 @@
         "description": "The endpoint for your Kubernetes API server, such as https://5E1D0CEXAMPLEA591B746AFC5AB30262.yl4.us-west-2.eks.amazonaws.com.",
         "type": "string"
       },
+      "Id": {
+        "description": "The unique ID given to your cluster.",
+        "type": "string"
+      },
       "KubernetesNetworkConfig": {
         "$ref": "#/definitions/KubernetesNetworkConfig"
       },
@@ -270,6 +310,9 @@
       "OpenIdConnectIssuerUrl": {
         "description": "The issuer URL for the cluster's OIDC identity provider, such as https://oidc.eks.us-west-2.amazonaws.com/id/EXAMPLED539D4633E53DE1B716D3041E. If you need to remove https:// from this output value, you can include the following code in your template.",
         "type": "string"
+      },
+      "OutpostConfig": {
+        "$ref": "#/definitions/OutpostConfig"
       },
       "ResourcesVpcConfig": {
         "$ref": "#/definitions/ResourcesVpcConfig"
@@ -294,6 +337,7 @@
       }
     },
     "readOnlyProperties": [
+      "/properties/Id",
       "/properties/Arn",
       "/properties/Endpoint",
       "/properties/CertificateAuthorityData",

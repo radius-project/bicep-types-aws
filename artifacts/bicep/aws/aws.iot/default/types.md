@@ -174,6 +174,7 @@
 * **CertificateMode**: string
 * **Id**: string (ReadOnly)
 * **RegistrationConfig**: [RegistrationConfig](#registrationconfig)
+* **RemoveAutoRegistration**: bool
 * **Status**: string (Required)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **VerificationCertificatePem**: string (WriteOnly): The private key verification certificate.
@@ -505,6 +506,7 @@
 * **Kafka**: [KafkaAction](#kafkaaction)
 * **Kinesis**: [KinesisAction](#kinesisaction)
 * **Lambda**: [LambdaAction](#lambdaaction)
+* **Location**: [LocationAction](#locationaction)
 * **OpenSearch**: [OpenSearchAction](#opensearchaction)
 * **Republish**: [RepublishAction](#republishaction)
 * **S3**: [S3Action](#s3action)
@@ -656,6 +658,20 @@
 ## LambdaAction
 ### Properties
 * **FunctionArn**: string
+
+## LocationAction
+### Properties
+* **DeviceId**: string (Required)
+* **Latitude**: string (Required)
+* **Longitude**: string (Required)
+* **RoleArn**: string (Required)
+* **Timestamp**: [Timestamp](#timestamp)
+* **TrackerName**: string (Required)
+
+## Timestamp
+### Properties
+* **Unit**: string
+* **Value**: string (Required)
 
 ## OpenSearchAction
 ### Properties

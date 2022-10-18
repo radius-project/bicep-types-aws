@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-SpotFleet",
   "type": "AWS::EC2::SpotFleet",
-  "time": "2022-08-09T15:29:58.97Z",
+  "time": "2022-10-13T23:45:43.811Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -19,6 +19,7 @@
       "/properties/SpotFleetRequestConfigData/SpotMaintenanceStrategies",
       "/properties/SpotFleetRequestConfigData/SpotMaxTotalPrice",
       "/properties/SpotFleetRequestConfigData/SpotPrice",
+      "/properties/SpotFleetRequestConfigData/TagSpecifications",
       "/properties/SpotFleetRequestConfigData/TerminateInstancesWithExpiration",
       "/properties/SpotFleetRequestConfigData/Type",
       "/properties/SpotFleetRequestConfigData/ValidFrom",
@@ -300,6 +301,16 @@
             "type": "array",
             "uniqueItems": false
           },
+          "AllowedInstanceTypes": {
+            "items": {
+              "maxLength": 30,
+              "minLength": 1,
+              "pattern": "[a-zA-Z0-9\\.\\*]+",
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
           "BareMetal": {
             "enum": [
               "included",
@@ -376,6 +387,9 @@
           },
           "MemoryMiB": {
             "$ref": "#/definitions/MemoryMiBRequest"
+          },
+          "NetworkBandwidthGbps": {
+            "$ref": "#/definitions/NetworkBandwidthGbpsRequest"
           },
           "NetworkInterfaceCount": {
             "$ref": "#/definitions/NetworkInterfaceCountRequest"
@@ -473,6 +487,18 @@
           },
           "Min": {
             "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "NetworkBandwidthGbpsRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "Max": {
+            "type": "number"
+          },
+          "Min": {
+            "type": "number"
           }
         },
         "type": "object"
@@ -685,6 +711,13 @@
           },
           "SpotPrice": {
             "type": "string"
+          },
+          "TagSpecifications": {
+            "items": {
+              "$ref": "#/definitions/SpotFleetTagSpecification"
+            },
+            "type": "array",
+            "uniqueItems": true
           },
           "TargetCapacity": {
             "type": "integer"

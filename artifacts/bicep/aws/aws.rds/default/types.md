@@ -79,8 +79,12 @@
 * **DBClusterIdentifier**: string: The DB cluster identifier. This parameter is stored as a lowercase string.
 * **DBClusterInstanceClass**: string: The compute and memory capacity of each DB instance in the Multi-AZ DB cluster, for example db.m6g.xlarge.
 * **DBClusterParameterGroupName**: string: The name of the DB cluster parameter group to associate with this DB cluster.
+* **DBClusterResourceId**: string (ReadOnly): The AWS Region-unique, immutable identifier for the DB cluster.
+* **DBInstanceParameterGroupName**: string (WriteOnly): The name of the DB parameter group to apply to all instances of the DB cluster.
 * **DBSubnetGroupName**: string: A DB subnet group that you want to associate with this DB cluster.
 * **DeletionProtection**: bool: A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled.
+* **Domain**: string: The Active Directory directory ID to create the DB cluster in.
+* **DomainIAMRoleName**: string: Specify the name of the IAM role to be used when making API calls to the Directory Service.
 * **EnableCloudwatchLogsExports**: string[]: The list of log types that need to be enabled for exporting to CloudWatch Logs. The values in the list depend on the DB engine being used. For more information, see Publishing Database Logs to Amazon CloudWatch Logs in the Amazon Aurora User Guide.
 * **EnableHttpEndpoint**: bool: A value that indicates whether to enable the HTTP endpoint for an Aurora Serverless DB cluster. By default, the HTTP endpoint is disabled.
 * **EnableIAMDatabaseAuthentication**: bool: A value that indicates whether to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts. By default, mapping is disabled.
@@ -97,6 +101,7 @@ If you aren't configuring a global database cluster, don't specify this property
 * **MasterUserPassword**: string (WriteOnly): The master password for the DB instance.
 * **MonitoringInterval**: int: The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB cluster. To turn off collecting Enhanced Monitoring metrics, specify 0. The default is 0.
 * **MonitoringRoleArn**: string: The Amazon Resource Name (ARN) for the IAM role that permits RDS to send Enhanced Monitoring metrics to Amazon CloudWatch Logs.
+* **NetworkType**: string: The network type of the DB cluster.
 * **PerformanceInsightsEnabled**: bool: A value that indicates whether to turn on Performance Insights for the DB cluster.
 * **PerformanceInsightsKmsKeyId**: string: The Amazon Web Services KMS key identifier for encryption of Performance Insights data.
 * **PerformanceInsightsRetentionPeriod**: int: The amount of time, in days, to retain Performance Insights data.
@@ -110,6 +115,7 @@ If you aren't configuring a global database cluster, don't specify this property
 full-copy - The new DB cluster is restored as a full copy of the source DB cluster.
 copy-on-write - The new DB cluster is restored as a clone of the source DB cluster.
 * **ScalingConfiguration**: [ScalingConfiguration](#scalingconfiguration): The ScalingConfiguration property type specifies the scaling configuration of an Aurora Serverless DB cluster.
+* **ServerlessV2ScalingConfiguration**: [ServerlessV2ScalingConfiguration](#serverlessv2scalingconfiguration): Contains the scaling configuration of an Aurora Serverless v2 DB cluster.
 * **SnapshotIdentifier**: string (WriteOnly): The identifier for the DB snapshot or DB cluster snapshot to restore from.
 You can use either the name or the Amazon Resource Name (ARN) to specify a DB cluster snapshot. However, you can use only the ARN to specify a DB snapshot.
 After you restore a DB cluster with a SnapshotIdentifier property, you must specify the same SnapshotIdentifier property for any future updates to the DB cluster. When you specify this property for an update, the DB cluster is not restored from the snapshot again, and the data in the database is not changed. However, if you don't specify the SnapshotIdentifier property, an empty DB cluster is created, and the original DB cluster is deleted. If you specify a property that is different from the previous snapshot restore property, the DB cluster is restored from the specified SnapshotIdentifier property, and the original DB cluster is deleted.
@@ -149,6 +155,11 @@ For Aurora PostgreSQL, valid capacity values are 2, 4, 8, 16, 32, 64, 192, and 3
 The minimum capacity must be less than or equal to the maximum capacity.
 * **SecondsUntilAutoPause**: int: The time, in seconds, before an Aurora DB cluster in serverless mode is paused.
 
+## ServerlessV2ScalingConfiguration
+### Properties
+* **MaxCapacity**: int: The maximum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 40, 40.5, 41, and so on. The largest value that you can use is 128.
+* **MinCapacity**: int: The minimum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 8, 8.5, 9, and so on. The smallest value that you can use is 0.5.
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
@@ -181,6 +192,13 @@ The minimum capacity must be less than or equal to the maximum capacity.
 * **CACertificateIdentifier**: string: The identifier of the CA certificate for this DB instance.
 * **CharacterSetName**: string: For supported engines, indicates that the DB instance should be associated with the specified character set.
 * **CopyTagsToSnapshot**: bool: A value that indicates whether to copy tags from the DB instance to snapshots of the DB instance. By default, tags are not copied.
+* **CustomIAMInstanceProfile**: string: The instance profile associated with the underlying Amazon EC2 instance of an RDS Custom DB instance. The instance profile must meet the following requirements:
+ * The profile must exist in your account.
+ * The profile must have an IAM role that Amazon EC2 has permissions to assume.
+ * The instance profile name and the associated IAM role name must start with the prefix AWSRDSCustom .
+For the list of permissions required for the IAM role, see Configure IAM and your VPC in the Amazon RDS User Guide .
+
+This setting is required for RDS Custom.
 * **DBClusterIdentifier**: string: The identifier of the DB cluster that the instance will belong to.
 * **DBInstanceClass**: string: The compute and memory capacity of the DB instance, for example, db.m4.large. Not all DB instance classes are available in all AWS Regions, or for all database engines.
 * **DBInstanceIdentifier**: string: A name for the DB instance. If you specify a name, AWS CloudFormation converts it to lowercase. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the DB instance.
@@ -208,6 +226,8 @@ The minimum capacity must be less than or equal to the maximum capacity.
 * **MonitoringInterval**: int: The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. The default is 0.
 * **MonitoringRoleArn**: string: The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to Amazon CloudWatch Logs.
 * **MultiAZ**: bool: Specifies whether the database instance is a multiple Availability Zone deployment.
+* **NcharCharacterSetName**: string: The name of the NCHAR character set for the Oracle DB instance. This parameter doesn't apply to RDS Custom.
+* **NetworkType**: string: The network type of the DB cluster.
 * **OptionGroupName**: string: Indicates that the DB instance should be associated with the specified option group.
 * **PerformanceInsightsKMSKeyId**: string: The AWS KMS key identifier for encryption of Performance Insights data. The KMS key ID is the Amazon Resource Name (ARN), KMS key identifier, or the KMS key alias for the KMS encryption key.
 * **PerformanceInsightsRetentionPeriod**: int: The amount of time, in days, to retain Performance Insights data. Valid values are 7 or 731 (2 years).
@@ -277,6 +297,7 @@ The minimum capacity must be less than or equal to the maximum capacity.
 * **RequireTLS**: bool: A Boolean parameter that specifies whether Transport Layer Security (TLS) encryption is required for connections to the proxy.
 * **RoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that the proxy uses to access secrets in AWS Secrets Manager.
 * **Tags**: [TagFormat](#tagformat)[]: An optional set of key-value pairs to associate arbitrary data of your choosing with the proxy.
+* **VpcId**: string (ReadOnly): VPC ID to associate with the new DB proxy.
 * **VpcSecurityGroupIds**: string[]: VPC security group IDs to associate with the new proxy.
 * **VpcSubnetIds**: string[] (Required): VPC subnet IDs to associate with the new proxy.
 
@@ -284,7 +305,7 @@ The minimum capacity must be less than or equal to the maximum capacity.
 ### Properties
 * **AuthScheme**: string: The type of authentication that the proxy uses for connections from the proxy to the underlying database. 
 * **Description**: string: A user-specified description about the authentication used by a proxy to log in as a specific database user. 
-* **IAMAuth**: string: Whether to require or disallow AWS Identity and Access Management (IAM) authentication for connections to the proxy. 
+* **IAMAuth**: string: Whether to require or disallow Amazon Web Services Identity and Access Management (IAM) authentication for connections to the proxy. The ENABLED value is valid only for proxies with RDS for Microsoft SQL Server.
 * **SecretArn**: string: The Amazon Resource Name (ARN) representing the secret that the proxy uses to authenticate to the RDS DB instance or Aurora DB cluster. These secrets are stored within Amazon Secrets Manager. 
 * **UserName**: string: The name of the database user to which the proxy connects.
 

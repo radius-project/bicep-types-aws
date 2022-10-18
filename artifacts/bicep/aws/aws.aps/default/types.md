@@ -30,9 +30,14 @@
 * **AlertManagerDefinition**: string: The AMP Workspace alert manager definition data
 * **Alias**: string: AMP Workspace alias.
 * **Arn**: string (ReadOnly): Workspace arn.
+* **LoggingConfiguration**: [LoggingConfiguration](#loggingconfiguration)
 * **PrometheusEndpoint**: string (ReadOnly): AMP Workspace prometheus endpoint
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **WorkspaceId**: string (ReadOnly): Required to identify a specific APS Workspace.
+
+## LoggingConfiguration
+### Properties
+* **LogGroupArn**: string: CloudWatch log group ARN
 
 ## Tag
 ### Properties

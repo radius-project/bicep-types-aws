@@ -102,6 +102,7 @@
 * **Alias**: string: The property alias that identifies the property.
 * **LogicalId**: string (Required): Customer provided ID for property.
 * **NotificationState**: string: The MQTT notification state (ENABLED or DISABLED) for this asset property.
+* **Unit**: string: The unit of measure (such as Newtons or RPM) of the asset property. If you don't specify a value for this parameter, the service uses the value of the assetModelProperty in the asset model.
 
 ## Tag
 ### Properties
@@ -111,12 +112,12 @@
 ## AWS.IoTSiteWise/AssetModelProperties
 ### Properties
 * **AssetModelArn**: string (ReadOnly): The ARN of the asset model, which has the following format.
-* **AssetModelCompositeModels**: [AssetModelCompositeModel](#assetmodelcompositemodel)[]: The composite asset models that are part of this asset model. Composite asset models are asset models that contain specific properties.
+* **AssetModelCompositeModels**: [AssetModelCompositeModel](#assetmodelcompositemodel)[] (WriteOnly): The composite asset models that are part of this asset model. Composite asset models are asset models that contain specific properties.
 * **AssetModelDescription**: string: A description for the asset model.
 * **AssetModelHierarchies**: [AssetModelHierarchy](#assetmodelhierarchy)[]: The hierarchy definitions of the asset model. Each hierarchy specifies an asset model whose assets can be children of any other assets created from this asset model. You can specify up to 10 hierarchies per asset model.
 * **AssetModelId**: string (ReadOnly): The ID of the asset model.
 * **AssetModelName**: string (Required): A unique, friendly name for the asset model.
-* **AssetModelProperties**: [AssetModelProperty](#assetmodelproperty)[]: The property definitions of the asset model. You can specify up to 200 properties per asset model.
+* **AssetModelProperties**: [AssetModelProperty](#assetmodelproperty)[] (WriteOnly): The property definitions of the asset model. You can specify up to 200 properties per asset model.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
 
 ## AssetModelCompositeModel

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-EC2Fleet",
   "type": "AWS::EC2::EC2Fleet",
-  "time": "2022-08-09T15:30:00.153Z",
+  "time": "2022-10-13T23:45:19.045Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -142,6 +142,9 @@
             "type": "string"
           }
         },
+        "required": [
+          "Version"
+        ],
         "type": "object"
       },
       "InstanceRequirementsRequest": {
@@ -191,6 +194,16 @@
                 "fpga",
                 "inference"
               ],
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "AllowedInstanceTypes": {
+            "items": {
+              "maxLength": 30,
+              "minLength": 1,
+              "pattern": "[a-zA-Z0-9\\.\\*]+",
               "type": "string"
             },
             "type": "array",
@@ -273,6 +286,9 @@
           "MemoryMiB": {
             "$ref": "#/definitions/MemoryMiBRequest"
           },
+          "NetworkBandwidthGbps": {
+            "$ref": "#/definitions/NetworkBandwidthGbpsRequest"
+          },
           "NetworkInterfaceCount": {
             "$ref": "#/definitions/NetworkInterfaceCountRequest"
           },
@@ -323,6 +339,18 @@
           },
           "Min": {
             "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "NetworkBandwidthGbpsRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "Max": {
+            "type": "number"
+          },
+          "Min": {
+            "type": "number"
           }
         },
         "type": "object"

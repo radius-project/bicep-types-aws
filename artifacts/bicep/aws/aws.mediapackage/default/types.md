@@ -83,6 +83,7 @@
 ## CmafEncryption
 ### Properties
 * **ConstantInitializationVector**: string: An optional 128-bit, 16-byte hex value represented by a 32-character string, used in conjunction with the key for encrypting blocks. If you don't specify a value, then MediaPackage creates the constant initialization vector (IV).
+* **EncryptionMethod**: string: The encryption method used
 * **KeyRotationIntervalSeconds**: int: Time (in seconds) between each encryption key rotation.
 * **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider) (Required)
 

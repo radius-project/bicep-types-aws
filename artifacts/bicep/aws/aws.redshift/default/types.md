@@ -6,6 +6,18 @@
 * **name**: string (Required): the resource name
 * **properties**: [AWS.Redshift/ClusterProperties](#awsredshiftclusterproperties) (Required): properties of the resource
 
+## Resource AWS.Redshift/ClusterParameterGroup@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **name**: string (Required): the resource name
+* **properties**: [AWS.Redshift/ClusterParameterGroupProperties](#awsredshiftclusterparametergroupproperties) (Required): properties of the resource
+
+## Resource AWS.Redshift/ClusterSubnetGroup@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **name**: string (Required): the resource name
+* **properties**: [AWS.Redshift/ClusterSubnetGroupProperties](#awsredshiftclustersubnetgroupproperties) (Required): properties of the resource
+
 ## Resource AWS.Redshift/EndpointAccess@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -113,6 +125,36 @@ The value must be either -1 or an integer between 1 and 3,653.
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
+## AWS.Redshift/ClusterParameterGroupProperties
+### Properties
+* **Description**: string (Required): A description of the parameter group.
+* **ParameterGroupFamily**: string (Required): The Amazon Redshift engine version to which the cluster parameter group applies. The cluster engine version determines the set of parameters.
+* **ParameterGroupName**: string (ReadOnly): The name of the cluster parameter group.
+* **Parameters**: [Parameter](#parameter)[]: An array of parameters to be modified. A maximum of 20 parameters can be modified in a single request.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## Parameter
+### Properties
+* **ParameterName**: string (Required): The name of the parameter.
+* **ParameterValue**: string (Required): The value of the parameter. If `ParameterName` is `wlm_json_configuration`, then the maximum size of `ParameterValue` is 8000 characters.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## AWS.Redshift/ClusterSubnetGroupProperties
+### Properties
+* **ClusterSubnetGroupName**: string (ReadOnly): This name must be unique for all subnet groups that are created by your AWS account. If costumer do not provide it, cloudformation will generate it. Must not be "Default". 
+* **Description**: string (Required): The description of the parameter group.
+* **SubnetIds**: string[] (Required): The list of VPC subnet IDs
+* **Tags**: [Tag](#tag)[]: The list of tags for the cluster parameter group.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
 ## AWS.Redshift/EndpointAccessProperties
 ### Properties
 * **Address**: string (ReadOnly): The DNS address of the endpoint.
@@ -123,15 +165,15 @@ The value must be either -1 or an integer between 1 and 3,653.
 * **Port**: int (ReadOnly): The port number on which the cluster accepts incoming connections.
 * **ResourceOwner**: string: The AWS account ID of the owner of the cluster.
 * **SubnetGroupName**: string (Required): The subnet group name where Amazon Redshift chooses to deploy the endpoint.
-* **VpcEndpoint**: [EndpointAccess_VpcEndpoint](#endpointaccessvpcendpoint) (ReadOnly): The connection endpoint for connecting to an Amazon Redshift cluster through the proxy.
+* **VpcEndpoint**: [EndpointAccess_VpcEndpoint](#endpointaccessvpcendpoint): The connection endpoint for connecting to an Amazon Redshift cluster through the proxy.
 * **VpcSecurityGroupIds**: string[] (Required): A list of vpc security group ids to apply to the created endpoint access.
 * **VpcSecurityGroups**: [VpcSecurityGroup](#vpcsecuritygroup)[] (ReadOnly): A list of Virtual Private Cloud (VPC) security groups to be associated with the endpoint.
 
 ## EndpointAccess_VpcEndpoint
 ### Properties
-* **NetworkInterfaces**: [NetworkInterface](#networkinterface)[]: One or more network interfaces of the endpoint. Also known as an interface endpoint.
-* **VpcEndpointId**: string: The connection endpoint ID for connecting an Amazon Redshift cluster through the proxy.
-* **VpcId**: string: The VPC identifier that the endpoint is associated.
+* **NetworkInterfaces**: [NetworkInterface](#networkinterface)[] (ReadOnly): One or more network interfaces of the endpoint. Also known as an interface endpoint.
+* **VpcEndpointId**: string (ReadOnly): The connection endpoint ID for connecting an Amazon Redshift cluster through the proxy.
+* **VpcId**: string (ReadOnly): The VPC identifier that the endpoint is associated.
 
 ## NetworkInterface
 ### Properties

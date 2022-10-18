@@ -6,6 +6,12 @@
 * **name**: string (Required): the resource name
 * **properties**: [AWS.GreengrassV2/ComponentVersionProperties](#awsgreengrassv2componentversionproperties): properties of the resource
 
+## Resource AWS.GreengrassV2/Deployment@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **name**: string (Required): the resource name
+* **properties**: [AWS.GreengrassV2/DeploymentProperties](#awsgreengrassv2deploymentproperties) (Required): properties of the resource
+
 ## AWS.GreengrassV2/ComponentVersionProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -92,5 +98,71 @@
 ### Properties
 
 ## ComponentVersion_Tags
+### Properties
+
+## AWS.GreengrassV2/DeploymentProperties
+### Properties
+* **Components**: [Deployment_Components](#deploymentcomponents)
+* **DeploymentId**: string (ReadOnly)
+* **DeploymentName**: string
+* **DeploymentPolicies**: [DeploymentPolicies](#deploymentpolicies)
+* **IotJobConfiguration**: [DeploymentIoTJobConfiguration](#deploymentiotjobconfiguration)
+* **Tags**: [Deployment_Tags](#deploymenttags)
+* **TargetArn**: string (Required)
+
+## Deployment_Components
+### Properties
+
+## DeploymentPolicies
+### Properties
+* **ComponentUpdatePolicy**: [DeploymentComponentUpdatePolicy](#deploymentcomponentupdatepolicy)
+* **ConfigurationValidationPolicy**: [DeploymentConfigurationValidationPolicy](#deploymentconfigurationvalidationpolicy)
+* **FailureHandlingPolicy**: string
+
+## DeploymentComponentUpdatePolicy
+### Properties
+* **Action**: string
+* **TimeoutInSeconds**: int
+
+## DeploymentConfigurationValidationPolicy
+### Properties
+* **TimeoutInSeconds**: int
+
+## DeploymentIoTJobConfiguration
+### Properties
+* **AbortConfig**: [IoTJobAbortConfig](#iotjobabortconfig)
+* **JobExecutionsRolloutConfig**: [IoTJobExecutionsRolloutConfig](#iotjobexecutionsrolloutconfig)
+* **TimeoutConfig**: [IoTJobTimeoutConfig](#iotjobtimeoutconfig)
+
+## IoTJobAbortConfig
+### Properties
+* **CriteriaList**: [IoTJobAbortCriteria](#iotjobabortcriteria)[] (Required)
+
+## IoTJobAbortCriteria
+### Properties
+* **Action**: string (Required)
+* **FailureType**: string (Required)
+* **MinNumberOfExecutedThings**: int (Required)
+* **ThresholdPercentage**: int (Required)
+
+## IoTJobExecutionsRolloutConfig
+### Properties
+* **ExponentialRate**: [IoTJobExponentialRolloutRate](#iotjobexponentialrolloutrate)
+* **MaximumPerMinute**: int
+
+## IoTJobExponentialRolloutRate
+### Properties
+* **BaseRatePerMinute**: int (Required)
+* **IncrementFactor**: int (Required)
+* **RateIncreaseCriteria**: [IoTJobRateIncreaseCriteria](#iotjobrateincreasecriteria) (Required)
+
+## IoTJobRateIncreaseCriteria
+### Properties
+
+## IoTJobTimeoutConfig
+### Properties
+* **InProgressTimeoutInMinutes**: int
+
+## Deployment_Tags
 ### Properties
 

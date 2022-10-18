@@ -1,5 +1,11 @@
 # AWS.Macie @ default
 
+## Resource AWS.Macie/AllowList@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **name**: string (Required): the resource name
+* **properties**: [AWS.Macie/AllowListProperties](#awsmacieallowlistproperties) (Required): properties of the resource
+
 ## Resource AWS.Macie/CustomDataIdentifier@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -17,6 +23,27 @@
 ### Properties
 * **name**: string (Required): the resource name
 * **properties**: [AWS.Macie/SessionProperties](#awsmaciesessionproperties): properties of the resource
+
+## AWS.Macie/AllowListProperties
+### Properties
+* **Arn**: string (ReadOnly): AllowList ARN.
+* **Criteria**: [Criteria](#criteria) (Required): AllowList criteria.
+* **Description**: string: Description of AllowList.
+* **Id**: string (ReadOnly): AllowList ID.
+* **Name**: string (Required): Name of AllowList.
+* **Status**: [Status](#status) (ReadOnly): AllowList status.
+* **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
+
+## Criteria
+### Properties
+
+## Status
+### Properties
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
 
 ## AWS.Macie/CustomDataIdentifierProperties
 ### Properties

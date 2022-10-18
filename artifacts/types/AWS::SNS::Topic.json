@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SNS-Topic",
   "type": "AWS::SNS::Topic",
-  "time": "2022-08-25T00:00:45.807Z",
+  "time": "2022-10-14T18:35:13.397Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -53,7 +53,9 @@
           "sns:Subscribe",
           "sns:GetTopicAttributes",
           "sns:ListTagsForResource",
-          "sns:ListSubscriptionsByTopic"
+          "sns:ListSubscriptionsByTopic",
+          "sns:GetDataProtectionPolicy",
+          "sns:PutDataProtectionPolicy"
         ]
       },
       "delete": {
@@ -72,7 +74,8 @@
         "permissions": [
           "sns:GetTopicAttributes",
           "sns:ListTagsForResource",
-          "sns:ListSubscriptionsByTopic"
+          "sns:ListSubscriptionsByTopic",
+          "sns:GetDataProtectionPolicy"
         ]
       },
       "update": {
@@ -84,7 +87,9 @@
           "sns:Unsubscribe",
           "sns:GetTopicAttributes",
           "sns:ListTagsForResource",
-          "sns:ListSubscriptionsByTopic"
+          "sns:ListSubscriptionsByTopic",
+          "sns:GetDataProtectionPolicy",
+          "sns:PutDataProtectionPolicy"
         ]
       }
     },
@@ -96,6 +101,10 @@
         "description": "Enables content-based deduplication for FIFO topics. By default, ContentBasedDeduplication is set to false. If you create a FIFO topic and this attribute is false, you must specify a value for the MessageDeduplicationId parameter for the Publish action.\n\nWhen you set ContentBasedDeduplication to true, Amazon SNS uses a SHA-256 hash to generate the MessageDeduplicationId using the body of the message (but not the attributes of the message).\n\n(Optional) To override the generated value, you can specify a value for the the MessageDeduplicationId parameter for the Publish action.\n\n",
         "type": "boolean"
       },
+      "DataProtectionPolicy": {
+        "description": "The body of the policy document you want to use for this topic.\n\nYou can only add one policy per topic.\n\nThe policy must be in JSON string format.\n\nLength Constraints: Maximum length of 30720",
+        "type": "object"
+      },
       "DisplayName": {
         "description": "The display name to use for an Amazon SNS topic with SMS subscriptions.",
         "type": "string"
@@ -106,6 +115,10 @@
       },
       "KmsMasterKeyId": {
         "description": "The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK. For more information, see Key Terms. For more examples, see KeyId in the AWS Key Management Service API Reference.\n\nThis property applies only to [server-side-encryption](https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html).",
+        "type": "string"
+      },
+      "SignatureVersion": {
+        "description": "Version of the Amazon SNS signature used. If the SignatureVersion is 1, Signature is a Base64-encoded SHA1withRSA signature of the Message, MessageId, Type, Timestamp, and TopicArn values. If the SignatureVersion is 2, Signature is a Base64-encoded SHA256withRSA signature of the Message, MessageId, Type, Timestamp, and TopicArn values.",
         "type": "string"
       },
       "Subscription": {

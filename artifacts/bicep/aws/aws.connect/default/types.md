@@ -235,7 +235,7 @@
 * **PhoneNumberArn**: string (ReadOnly): The phone number ARN
 * **Prefix**: string (WriteOnly): The phone number prefix.
 * **Tags**: [Tag](#tag)[]: One or more tags.
-* **TargetArn**: string (Required): The ARN of the Amazon Connect instance the phone number is claimed to.
+* **TargetArn**: string (Required): The ARN of the target the phone number is claimed to.
 * **Type**: string (Required): The phone number type, either TOLL_FREE or DID.
 
 ## Tag
@@ -377,6 +377,8 @@
 * **Email**: [Email](#email)
 * **FirstName**: [FirstName](#firstname)
 * **LastName**: [LastName](#lastname)
+* **Mobile**: [Mobile](#mobile)
+* **SecondaryEmail**: [SecondaryEmail](#secondaryemail)
 
 ## Email
 ### Properties
@@ -385,6 +387,12 @@
 ### Properties
 
 ## LastName
+### Properties
+
+## Mobile
+### Properties
+
+## SecondaryEmail
 ### Properties
 
 ## UserPhoneConfig
