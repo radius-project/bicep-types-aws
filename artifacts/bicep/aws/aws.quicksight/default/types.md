@@ -553,6 +553,7 @@
             data source in the ARN is used as the credentials for the
             <code>DataSourceCredentials</code> structure.</p>
 * **CredentialPair**: [CredentialPair](#credentialpair)
+* **SecretArn**: string: <p>The Amazon Resource Name (ARN) of the secret associated with the data source in Amazon Secrets Manager.</p>
 
 ## CredentialPair
 ### Properties

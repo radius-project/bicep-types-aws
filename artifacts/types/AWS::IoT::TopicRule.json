@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-TopicRule",
   "type": "AWS::IoT::TopicRule",
-  "time": "2022-10-18T15:24:14.575Z",
+  "time": "2022-10-27T22:06:55.362Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -591,6 +591,40 @@
       "RepublishAction": {
         "additionalProperties": false,
         "properties": {
+          "Headers": {
+            "additionalProperties": false,
+            "properties": {
+              "ContentType": {
+                "maxLength": 1024,
+                "minLength": 0,
+                "type": "string"
+              },
+              "CorrelationData": {
+                "maxLength": 1024,
+                "minLength": 0,
+                "type": "string"
+              },
+              "MessageExpiry": {
+                "maxLength": 1024,
+                "minLength": 0,
+                "type": "string"
+              },
+              "PayloadFormatIndicator": {
+                "maxLength": 1024,
+                "minLength": 0,
+                "type": "string"
+              },
+              "ResponseTopic": {
+                "maxLength": 1024,
+                "minLength": 0,
+                "type": "string"
+              },
+              "UserProperties": {
+                "$ref": "#/definitions/UserProperties"
+              }
+            },
+            "type": "object"
+          },
           "Qos": {
             "type": "integer"
           },
@@ -836,6 +870,34 @@
         "required": [
           "Actions",
           "Sql"
+        ],
+        "type": "object"
+      },
+      "UserProperties": {
+        "items": {
+          "$ref": "#/definitions/UserProperty"
+        },
+        "maxItems": 100,
+        "minItems": 1,
+        "type": "array"
+      },
+      "UserProperty": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 1024,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 1024,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
         ],
         "type": "object"
       }

@@ -153,6 +153,9 @@
 ### aws.autoscaling/scalingpolicy
 * [default](aws/aws.autoscaling/default/types.md#resource-awsautoscalingscalingpolicydefault)
 
+### aws.autoscaling/scheduledaction
+* [default](aws/aws.autoscaling/default/types.md#resource-awsautoscalingscheduledactiondefault)
+
 ### aws.autoscaling/warmpool
 * [default](aws/aws.autoscaling/default/types.md#resource-awsautoscalingwarmpooldefault)
 
@@ -537,6 +540,9 @@
 ### aws.ec2/transitgatewayvpcattachment
 * [default](aws/aws.ec2/default/types.md#resource-awsec2transitgatewayvpcattachmentdefault)
 
+### aws.ec2/volume
+* [default](aws/aws.ec2/default/types.md#resource-awsec2volumedefault)
+
 ### aws.ec2/vpc
 * [default](aws/aws.ec2/default/types.md#resource-awsec2vpcdefault)
 
@@ -722,6 +728,10 @@
 
 ### aws.frauddetector/variable
 * [default](aws/aws.frauddetector/default/types.md#resource-awsfrauddetectorvariabledefault)
+
+## aws.fsx
+### aws.fsx/datarepositoryassociation
+* [default](aws/aws.fsx/default/types.md#resource-awsfsxdatarepositoryassociationdefault)
 
 ## aws.gamelift
 ### aws.gamelift/alias

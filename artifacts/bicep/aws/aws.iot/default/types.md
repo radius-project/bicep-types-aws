@@ -683,9 +683,22 @@
 
 ## RepublishAction
 ### Properties
+* **Headers**: [TopicRule_Headers](#topicruleheaders)
 * **Qos**: int
 * **RoleArn**: string (Required)
 * **Topic**: string (Required)
+
+## TopicRule_Headers
+### Properties
+* **ContentType**: string
+* **CorrelationData**: string
+* **MessageExpiry**: string
+* **PayloadFormatIndicator**: string
+* **ResponseTopic**: string
+* **UserProperties**: [UserProperties](#userproperties)
+
+## UserProperties
+### Properties
 
 ## S3Action
 ### Properties
