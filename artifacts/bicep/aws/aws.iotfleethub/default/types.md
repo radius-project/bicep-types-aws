@@ -3,7 +3,6 @@
 ## Resource AWS.IoTFleetHub/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoTFleetHub/ApplicationProperties](#awsiotfleethubapplicationproperties) (Required): properties of the resource
 
 ## AWS.IoTFleetHub/ApplicationProperties

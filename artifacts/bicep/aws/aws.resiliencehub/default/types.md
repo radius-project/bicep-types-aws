@@ -3,13 +3,11 @@
 ## Resource AWS.ResilienceHub/App@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ResilienceHub/AppProperties](#awsresiliencehubappproperties) (Required): properties of the resource
 
 ## Resource AWS.ResilienceHub/ResiliencyPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ResilienceHub/ResiliencyPolicyProperties](#awsresiliencehubresiliencypolicyproperties) (Required): properties of the resource
 
 ## AWS.ResilienceHub/AppProperties

@@ -3,43 +3,36 @@
 ## Resource AWS.ECS/CapacityProvider@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ECS/CapacityProviderProperties](#awsecscapacityproviderproperties) (Required): properties of the resource
 
 ## Resource AWS.ECS/Cluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ECS/ClusterProperties](#awsecsclusterproperties): properties of the resource
 
 ## Resource AWS.ECS/ClusterCapacityProviderAssociations@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ECS/ClusterCapacityProviderAssociationsProperties](#awsecsclustercapacityproviderassociationsproperties) (Required): properties of the resource
 
 ## Resource AWS.ECS/PrimaryTaskSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ECS/PrimaryTaskSetProperties](#awsecsprimarytasksetproperties) (Required): properties of the resource
 
 ## Resource AWS.ECS/Service@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ECS/ServiceProperties](#awsecsserviceproperties): properties of the resource
 
 ## Resource AWS.ECS/TaskDefinition@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ECS/TaskDefinitionProperties](#awsecstaskdefinitionproperties): properties of the resource
 
 ## Resource AWS.ECS/TaskSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ECS/TaskSetProperties](#awsecstasksetproperties) (Required): properties of the resource
 
 ## AWS.ECS/CapacityProviderProperties

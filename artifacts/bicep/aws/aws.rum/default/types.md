@@ -3,7 +3,6 @@
 ## Resource AWS.RUM/AppMonitor@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.RUM/AppMonitorProperties](#awsrumappmonitorproperties) (Required): properties of the resource
 
 ## AWS.RUM/AppMonitorProperties

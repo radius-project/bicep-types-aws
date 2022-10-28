@@ -3,13 +3,11 @@
 ## Resource AWS.S3ObjectLambda/AccessPoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.S3ObjectLambda/AccessPointProperties](#awss3objectlambdaaccesspointproperties) (Required): properties of the resource
 
 ## Resource AWS.S3ObjectLambda/AccessPointPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.S3ObjectLambda/AccessPointPolicyProperties](#awss3objectlambdaaccesspointpolicyproperties) (Required): properties of the resource
 
 ## AWS.S3ObjectLambda/AccessPointProperties

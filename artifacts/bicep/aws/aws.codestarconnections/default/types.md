@@ -3,7 +3,6 @@
 ## Resource AWS.CodeStarConnections/Connection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.CodeStarConnections/ConnectionProperties](#awscodestarconnectionsconnectionproperties) (Required): properties of the resource
 
 ## AWS.CodeStarConnections/ConnectionProperties

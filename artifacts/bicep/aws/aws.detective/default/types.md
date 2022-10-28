@@ -3,13 +3,11 @@
 ## Resource AWS.Detective/Graph@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Detective/GraphProperties](#awsdetectivegraphproperties): properties of the resource
 
 ## Resource AWS.Detective/MemberInvitation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Detective/MemberInvitationProperties](#awsdetectivememberinvitationproperties) (Required): properties of the resource
 
 ## AWS.Detective/GraphProperties

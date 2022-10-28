@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSMIncidents-ResponsePlan",
   "type": "AWS::SSMIncidents::ResponsePlan",
-  "time": "2022-08-29T23:38:16.073Z",
+  "time": "2022-10-21T00:43:01.18Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -29,6 +29,7 @@
         "type": "object"
       },
       "ChatbotSns": {
+        "default": [],
         "insertionOrder": true,
         "items": {
           "$ref": "#/definitions/SnsArn"
@@ -93,6 +94,7 @@
             "uniqueItems": true
           },
           "NotificationTargets": {
+            "default": [],
             "description": "The list of notification targets.",
             "insertionOrder": false,
             "items": {
@@ -156,6 +158,7 @@
             "type": "string"
           },
           "DynamicParameters": {
+            "default": [],
             "description": "The parameters with dynamic values to set when starting the SSM automation document.",
             "insertionOrder": false,
             "items": {
@@ -166,12 +169,14 @@
             "uniqueItems": true
           },
           "Parameters": {
+            "default": [],
             "description": "The parameters to set when starting the SSM automation document.",
             "insertionOrder": false,
             "items": {
               "$ref": "#/definitions/SsmParameter"
             },
             "maxItems": 200,
+            "minItems": 1,
             "type": "array",
             "uniqueItems": true
           },
@@ -211,7 +216,6 @@
               "$ref": "#/definitions/SsmParameterValue"
             },
             "maxItems": 10,
-            "minItems": 1,
             "type": "array",
             "uniqueItems": true
           }
@@ -330,7 +334,6 @@
           "$ref": "#/definitions/SSMContact"
         },
         "maxItems": 5,
-        "minItems": 1,
         "type": "array",
         "uniqueItems": true
       },
@@ -352,7 +355,6 @@
           "$ref": "#/definitions/Tag"
         },
         "maxItems": 50,
-        "minItems": 1,
         "type": "array",
         "uniqueItems": true
       }

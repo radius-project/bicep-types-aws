@@ -3,13 +3,11 @@
 ## Resource AWS.StepFunctions/Activity@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.StepFunctions/ActivityProperties](#awsstepfunctionsactivityproperties) (Required): properties of the resource
 
 ## Resource AWS.StepFunctions/StateMachine@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.StepFunctions/StateMachineProperties](#awsstepfunctionsstatemachineproperties) (Required): properties of the resource
 
 ## AWS.StepFunctions/ActivityProperties

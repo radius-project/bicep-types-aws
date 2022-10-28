@@ -3,31 +3,26 @@
 ## Resource AWS.Config/AggregationAuthorization@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Config/AggregationAuthorizationProperties](#awsconfigaggregationauthorizationproperties) (Required): properties of the resource
 
 ## Resource AWS.Config/ConfigurationAggregator@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Config/ConfigurationAggregatorProperties](#awsconfigconfigurationaggregatorproperties): properties of the resource
 
 ## Resource AWS.Config/ConformancePack@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Config/ConformancePackProperties](#awsconfigconformancepackproperties) (Required): properties of the resource
 
 ## Resource AWS.Config/OrganizationConformancePack@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Config/OrganizationConformancePackProperties](#awsconfigorganizationconformancepackproperties) (Required): properties of the resource
 
 ## Resource AWS.Config/StoredQuery@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Config/StoredQueryProperties](#awsconfigstoredqueryproperties) (Required): properties of the resource
 
 ## AWS.Config/AggregationAuthorizationProperties

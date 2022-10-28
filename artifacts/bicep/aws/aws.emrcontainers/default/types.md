@@ -3,7 +3,6 @@
 ## Resource AWS.EMRContainers/VirtualCluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.EMRContainers/VirtualClusterProperties](#awsemrcontainersvirtualclusterproperties) (Required): properties of the resource
 
 ## AWS.EMRContainers/VirtualClusterProperties

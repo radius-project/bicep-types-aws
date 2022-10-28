@@ -3,31 +3,26 @@
 ## Resource AWS.MediaConnect/Flow@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.MediaConnect/FlowProperties](#awsmediaconnectflowproperties) (Required): properties of the resource
 
 ## Resource AWS.MediaConnect/FlowEntitlement@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.MediaConnect/FlowEntitlementProperties](#awsmediaconnectflowentitlementproperties) (Required): properties of the resource
 
 ## Resource AWS.MediaConnect/FlowOutput@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.MediaConnect/FlowOutputProperties](#awsmediaconnectflowoutputproperties) (Required): properties of the resource
 
 ## Resource AWS.MediaConnect/FlowSource@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.MediaConnect/FlowSourceProperties](#awsmediaconnectflowsourceproperties) (Required): properties of the resource
 
 ## Resource AWS.MediaConnect/FlowVpcInterface@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.MediaConnect/FlowVpcInterfaceProperties](#awsmediaconnectflowvpcinterfaceproperties) (Required): properties of the resource
 
 ## AWS.MediaConnect/FlowProperties

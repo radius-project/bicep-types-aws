@@ -3,7 +3,6 @@
 ## Resource AWS.HealthLake/FHIRDatastore@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.HealthLake/FHIRDatastoreProperties](#awshealthlakefhirdatastoreproperties) (Required): properties of the resource
 
 ## AWS.HealthLake/FHIRDatastoreProperties

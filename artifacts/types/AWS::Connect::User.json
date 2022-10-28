@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-User",
   "type": "AWS::Connect::User",
-  "time": "2022-08-15T21:19:05.301Z",
+  "time": "2022-10-13T21:11:38.076Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -30,12 +30,22 @@
         "description": "The last name. This is required if you are using Amazon Connect or SAML for identity management.",
         "type": "string"
       },
+      "Mobile": {
+        "description": "The mobile phone number.",
+        "pattern": "^\\+[1-9]\\d{1,14}$",
+        "type": "string"
+      },
       "PhoneType": {
         "description": "The phone type.",
         "enum": [
           "SOFT_PHONE",
           "DESK_PHONE"
         ],
+        "type": "string"
+      },
+      "SecondaryEmail": {
+        "description": "The secondary email address. If you provide a secondary email, the user receives email notifications -- other than password reset notifications -- to this email address instead of to their primary email address.",
+        "pattern": "(?=^.{0,265}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,63}",
         "type": "string"
       },
       "SecurityProfileArn": {
@@ -78,6 +88,12 @@
           },
           "LastName": {
             "$ref": "#/definitions/LastName"
+          },
+          "Mobile": {
+            "$ref": "#/definitions/Mobile"
+          },
+          "SecondaryEmail": {
+            "$ref": "#/definitions/SecondaryEmail"
           }
         },
         "type": "object"

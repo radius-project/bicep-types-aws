@@ -3,7 +3,6 @@
 ## Resource AWS.ApplicationInsights/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApplicationInsights/ApplicationProperties](#awsapplicationinsightsapplicationproperties) (Required): properties of the resource
 
 ## AWS.ApplicationInsights/ApplicationProperties

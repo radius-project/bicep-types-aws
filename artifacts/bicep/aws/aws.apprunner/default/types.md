@@ -3,7 +3,6 @@
 ## Resource AWS.AppRunner/Service@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.AppRunner/ServiceProperties](#awsapprunnerserviceproperties) (Required): properties of the resource
 
 ## AWS.AppRunner/ServiceProperties

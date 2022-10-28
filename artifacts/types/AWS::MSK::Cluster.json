@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MSK-Cluster",
   "type": "AWS::MSK::Cluster",
-  "time": "2022-04-18T18:28:49.867Z",
+  "time": "2022-10-13T15:44:17.946Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -423,6 +423,7 @@
           "kafka:UpdateBrokerType",
           "kafka:UpdateBrokerCount",
           "kafka:UpdateBrokerStorage",
+          "kafka:UpdateStorage",
           "kafka:UpdateSecurity",
           "kafka:UpdateConnectivity",
           "kafka:DescribeClusterOperation",
@@ -500,6 +501,15 @@
       },
       "OpenMonitoring": {
         "$ref": "#/definitions/OpenMonitoring"
+      },
+      "StorageMode": {
+        "enum": [
+          "LOCAL",
+          "TIERED"
+        ],
+        "maxLength": 6,
+        "minLength": 5,
+        "type": "string"
       },
       "Tags": {
         "additionalProperties": false,

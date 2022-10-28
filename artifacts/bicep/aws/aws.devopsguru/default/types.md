@@ -3,7 +3,6 @@
 ## Resource AWS.DevOpsGuru/ResourceCollection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.DevOpsGuru/ResourceCollectionProperties](#awsdevopsgururesourcecollectionproperties) (Required): properties of the resource
 
 ## AWS.DevOpsGuru/ResourceCollectionProperties

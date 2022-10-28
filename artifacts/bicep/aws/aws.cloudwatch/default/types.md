@@ -3,13 +3,11 @@
 ## Resource AWS.CloudWatch/CompositeAlarm@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.CloudWatch/CompositeAlarmProperties](#awscloudwatchcompositealarmproperties) (Required): properties of the resource
 
 ## Resource AWS.CloudWatch/MetricStream@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.CloudWatch/MetricStreamProperties](#awscloudwatchmetricstreamproperties) (Required): properties of the resource
 
 ## AWS.CloudWatch/CompositeAlarmProperties

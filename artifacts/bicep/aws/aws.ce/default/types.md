@@ -3,7 +3,6 @@
 ## Resource AWS.CE/CostCategory@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.CE/CostCategoryProperties](#awscecostcategoryproperties) (Required): properties of the resource
 
 ## AWS.CE/CostCategoryProperties

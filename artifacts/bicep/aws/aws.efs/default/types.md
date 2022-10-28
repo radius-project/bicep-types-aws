@@ -3,19 +3,16 @@
 ## Resource AWS.EFS/AccessPoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.EFS/AccessPointProperties](#awsefsaccesspointproperties) (Required): properties of the resource
 
 ## Resource AWS.EFS/FileSystem@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.EFS/FileSystemProperties](#awsefsfilesystemproperties): properties of the resource
 
 ## Resource AWS.EFS/MountTarget@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.EFS/MountTargetProperties](#awsefsmounttargetproperties) (Required): properties of the resource
 
 ## AWS.EFS/AccessPointProperties

@@ -3,7 +3,6 @@
 ## Resource AWS.KafkaConnect/Connector@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.KafkaConnect/ConnectorProperties](#awskafkaconnectconnectorproperties) (Required): properties of the resource
 
 ## AWS.KafkaConnect/ConnectorProperties

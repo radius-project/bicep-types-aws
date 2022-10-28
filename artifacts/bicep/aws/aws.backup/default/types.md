@@ -3,25 +3,21 @@
 ## Resource AWS.Backup/BackupPlan@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Backup/BackupPlanProperties](#awsbackupbackupplanproperties) (Required): properties of the resource
 
 ## Resource AWS.Backup/BackupVault@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Backup/BackupVaultProperties](#awsbackupbackupvaultproperties) (Required): properties of the resource
 
 ## Resource AWS.Backup/Framework@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Backup/FrameworkProperties](#awsbackupframeworkproperties) (Required): properties of the resource
 
 ## Resource AWS.Backup/ReportPlan@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Backup/ReportPlanProperties](#awsbackupreportplanproperties) (Required): properties of the resource
 
 ## AWS.Backup/BackupPlanProperties

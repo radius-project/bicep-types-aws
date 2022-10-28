@@ -3,109 +3,91 @@
 ## Resource AWS.IoT/AccountAuditConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/AccountAuditConfigurationProperties](#awsiotaccountauditconfigurationproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/Authorizer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/AuthorizerProperties](#awsiotauthorizerproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/CACertificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/CACertificateProperties](#awsiotcacertificateproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/Certificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/CertificateProperties](#awsiotcertificateproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/CustomMetric@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/CustomMetricProperties](#awsiotcustommetricproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/Dimension@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/DimensionProperties](#awsiotdimensionproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/DomainConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/DomainConfigurationProperties](#awsiotdomainconfigurationproperties): properties of the resource
 
 ## Resource AWS.IoT/FleetMetric@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/FleetMetricProperties](#awsiotfleetmetricproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/Logging@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/LoggingProperties](#awsiotloggingproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/MitigationAction@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/MitigationActionProperties](#awsiotmitigationactionproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/Policy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/PolicyProperties](#awsiotpolicyproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/ProvisioningTemplate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/ProvisioningTemplateProperties](#awsiotprovisioningtemplateproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/ResourceSpecificLogging@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/ResourceSpecificLoggingProperties](#awsiotresourcespecificloggingproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/RoleAlias@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/RoleAliasProperties](#awsiotrolealiasproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/ScheduledAudit@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/ScheduledAuditProperties](#awsiotscheduledauditproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/SecurityProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/SecurityProfileProperties](#awsiotsecurityprofileproperties): properties of the resource
 
 ## Resource AWS.IoT/TopicRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/TopicRuleProperties](#awsiottopicruleproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/TopicRuleDestination@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoT/TopicRuleDestinationProperties](#awsiottopicruledestinationproperties): properties of the resource
 
 ## AWS.IoT/AccountAuditConfigurationProperties

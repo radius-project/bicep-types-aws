@@ -3,25 +3,21 @@
 ## Resource AWS.Route53RecoveryReadiness/Cell@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Route53RecoveryReadiness/CellProperties](#awsroute53recoveryreadinesscellproperties) (Required): properties of the resource
 
 ## Resource AWS.Route53RecoveryReadiness/ReadinessCheck@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Route53RecoveryReadiness/ReadinessCheckProperties](#awsroute53recoveryreadinessreadinesscheckproperties) (Required): properties of the resource
 
 ## Resource AWS.Route53RecoveryReadiness/RecoveryGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Route53RecoveryReadiness/RecoveryGroupProperties](#awsroute53recoveryreadinessrecoverygroupproperties) (Required): properties of the resource
 
 ## Resource AWS.Route53RecoveryReadiness/ResourceSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Route53RecoveryReadiness/ResourceSetProperties](#awsroute53recoveryreadinessresourcesetproperties) (Required): properties of the resource
 
 ## AWS.Route53RecoveryReadiness/CellProperties

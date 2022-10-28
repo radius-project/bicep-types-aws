@@ -1,13 +1,31 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Evidently-Project",
   "type": "AWS::Evidently::Project",
-  "time": "2022-08-25T20:57:19.428Z",
+  "time": "2022-09-14T15:07:17.344Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name"
     ],
     "definitions": {
+      "AppConfigResourceObject": {
+        "additionalProperties": false,
+        "properties": {
+          "ApplicationId": {
+            "pattern": "[a-z0-9]{4,7}",
+            "type": "string"
+          },
+          "EnvironmentId": {
+            "pattern": "[a-z0-9]{4,7}",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ApplicationId",
+          "EnvironmentId"
+        ],
+        "type": "object"
+      },
       "DataDeliveryObject": {
         "additionalProperties": false,
         "description": "Destinations for data.",
@@ -93,7 +111,15 @@
           "logs:ListLogDeliveries",
           "s3:PutBucketPolicy",
           "s3:GetBucketPolicy",
-          "evidently:TagResource"
+          "evidently:TagResource",
+          "evidently:ExportProjectAsConfiguration",
+          "appconfig:GetEnvironment",
+          "appconfig:CreateConfigurationProfile",
+          "appconfig:CreateHostedConfigurationVersion",
+          "appconfig:CreateExtensionAssociation",
+          "appconfig:TagResource",
+          "iam:GetRole",
+          "iam:CreateServiceLinkedRole"
         ]
       },
       "delete": {
@@ -107,7 +133,10 @@
           "s3:GetBucketPolicy",
           "logs:DescribeResourcePolicies",
           "logs:DescribeLogGroups",
-          "evidently:UntagResource"
+          "evidently:UntagResource",
+          "appconfig:DeleteHostedConfigurationVersion",
+          "appconfig:DeleteExtensionAssociation",
+          "appconfig:DeleteConfigurationProfile"
         ]
       },
       "read": {
@@ -136,7 +165,15 @@
           "evidently:TagResource",
           "evidently:UntagResource",
           "evidently:ListTagsForResource",
-          "evidently:GetProject"
+          "evidently:GetProject",
+          "evidently:ExportProjectAsConfiguration",
+          "appconfig:GetEnvironment",
+          "appconfig:CreateConfigurationProfile",
+          "appconfig:CreateHostedConfigurationVersion",
+          "appconfig:CreateExtensionAssociation",
+          "appconfig:TagResource",
+          "iam:GetRole",
+          "iam:CreateServiceLinkedRole"
         ]
       }
     },
@@ -144,6 +181,9 @@
       "/properties/Arn"
     ],
     "properties": {
+      "AppConfigResource": {
+        "$ref": "#/definitions/AppConfigResourceObject"
+      },
       "Arn": {
         "maxLength": 2048,
         "minLength": 0,

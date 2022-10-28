@@ -3,7 +3,6 @@
 ## Resource AWS.LakeFormation/Tag@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.LakeFormation/TagProperties](#awslakeformationtagproperties) (Required): properties of the resource
 
 ## AWS.LakeFormation/TagProperties

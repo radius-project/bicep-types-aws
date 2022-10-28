@@ -3,13 +3,11 @@
 ## Resource AWS.XRay/Group@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.XRay/GroupProperties](#awsxraygroupproperties): properties of the resource
 
 ## Resource AWS.XRay/SamplingRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.XRay/SamplingRuleProperties](#awsxraysamplingruleproperties): properties of the resource
 
 ## AWS.XRay/GroupProperties

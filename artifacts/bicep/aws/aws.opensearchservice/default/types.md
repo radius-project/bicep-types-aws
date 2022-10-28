@@ -3,7 +3,6 @@
 ## Resource AWS.OpenSearchService/Domain@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.OpenSearchService/DomainProperties](#awsopensearchservicedomainproperties): properties of the resource
 
 ## AWS.OpenSearchService/DomainProperties

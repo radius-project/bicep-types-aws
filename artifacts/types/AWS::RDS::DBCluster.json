@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBCluster",
   "type": "AWS::RDS::DBCluster",
-  "time": "2022-08-29T12:53:59.386Z",
+  "time": "2022-10-11T09:50:49.405Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -90,6 +90,25 @@
         },
         "type": "object"
       },
+      "ServerlessV2ScalingConfiguration": {
+        "additionalProperties": false,
+        "description": "Contains the scaling configuration of an Aurora Serverless v2 DB cluster.",
+        "properties": {
+          "MaxCapacity": {
+            "description": "The maximum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 40, 40.5, 41, and so on. The largest value that you can use is 128.",
+            "maximum": 128,
+            "minimum": 0.5,
+            "type": "number"
+          },
+          "MinCapacity": {
+            "description": "The minimum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 8, 8.5, 9, and so on. The smallest value that you can use is 0.5.",
+            "maximum": 128,
+            "minimum": 0.5,
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "description": "A key-value pair to associate with a resource.",
@@ -134,6 +153,7 @@
           "rds:DeleteDBCluster",
           "rds:DeleteDBInstance",
           "rds:DescribeDBClusters",
+          "rds:DescribeGlobalClusters",
           "rds:RemoveFromGlobalCluster"
         ]
       },
@@ -155,6 +175,7 @@
           "rds:AddTagsToResource",
           "rds:DescribeDBClusters",
           "rds:DescribeDBSubnetGroups",
+          "rds:DescribeGlobalClusters",
           "rds:ModifyDBCluster",
           "rds:ModifyDBInstance",
           "rds:RemoveFromGlobalCluster",
@@ -224,6 +245,14 @@
         "description": "The name of the DB cluster parameter group to associate with this DB cluster.",
         "type": "string"
       },
+      "DBClusterResourceId": {
+        "description": "The AWS Region-unique, immutable identifier for the DB cluster.",
+        "type": "string"
+      },
+      "DBInstanceParameterGroupName": {
+        "description": "The name of the DB parameter group to apply to all instances of the DB cluster.",
+        "type": "string"
+      },
       "DBSubnetGroupName": {
         "description": "A DB subnet group that you want to associate with this DB cluster.",
         "type": "string"
@@ -235,6 +264,14 @@
       "DeletionProtection": {
         "description": "A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled.",
         "type": "boolean"
+      },
+      "Domain": {
+        "description": "The Active Directory directory ID to create the DB cluster in.",
+        "type": "string"
+      },
+      "DomainIAMRoleName": {
+        "description": "Specify the name of the IAM role to be used when making API calls to the Directory Service.",
+        "type": "string"
       },
       "EnableCloudwatchLogsExports": {
         "description": "The list of log types that need to be enabled for exporting to CloudWatch Logs. The values in the list depend on the DB engine being used. For more information, see Publishing Database Logs to Amazon CloudWatch Logs in the Amazon Aurora User Guide.",
@@ -301,6 +338,10 @@
         "description": "The Amazon Resource Name (ARN) for the IAM role that permits RDS to send Enhanced Monitoring metrics to Amazon CloudWatch Logs.",
         "type": "string"
       },
+      "NetworkType": {
+        "description": "The network type of the DB cluster.",
+        "type": "string"
+      },
       "PerformanceInsightsEnabled": {
         "description": "A value that indicates whether to turn on Performance Insights for the DB cluster.",
         "type": "boolean"
@@ -344,6 +385,10 @@
       "ScalingConfiguration": {
         "$ref": "#/definitions/ScalingConfiguration",
         "description": "The ScalingConfiguration property type specifies the scaling configuration of an Aurora Serverless DB cluster."
+      },
+      "ServerlessV2ScalingConfiguration": {
+        "$ref": "#/definitions/ServerlessV2ScalingConfiguration",
+        "description": "Contains the scaling configuration of an Aurora Serverless v2 DB cluster."
       },
       "SnapshotIdentifier": {
         "description": "The identifier for the DB snapshot or DB cluster snapshot to restore from.\nYou can use either the name or the Amazon Resource Name (ARN) to specify a DB cluster snapshot. However, you can use only the ARN to specify a DB snapshot.\nAfter you restore a DB cluster with a SnapshotIdentifier property, you must specify the same SnapshotIdentifier property for any future updates to the DB cluster. When you specify this property for an update, the DB cluster is not restored from the snapshot again, and the data in the database is not changed. However, if you don't specify the SnapshotIdentifier property, an empty DB cluster is created, and the original DB cluster is deleted. If you specify a property that is different from the previous snapshot restore property, the DB cluster is restored from the specified SnapshotIdentifier property, and the original DB cluster is deleted.",
@@ -396,6 +441,7 @@
       "/properties/SourceDBClusterIdentifier": "$lowercase(SourceDBClusterIdentifier)"
     },
     "readOnlyProperties": [
+      "/properties/DBClusterResourceId",
       "/properties/Endpoint",
       "/properties/Endpoint/Address",
       "/properties/Endpoint/Port",
@@ -405,6 +451,7 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-rds",
     "typeName": "AWS::RDS::DBCluster",
     "writeOnlyProperties": [
+      "/properties/DBInstanceParameterGroupName",
       "/properties/MasterUserPassword",
       "/properties/RestoreType",
       "/properties/SnapshotIdentifier",

@@ -3,7 +3,6 @@
 ## Resource AWS.VoiceID/Domain@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.VoiceID/DomainProperties](#awsvoiceiddomainproperties) (Required): properties of the resource
 
 ## AWS.VoiceID/DomainProperties

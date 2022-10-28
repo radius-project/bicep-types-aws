@@ -3,7 +3,6 @@
 ## Resource AWS.Transfer/Workflow@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Transfer/WorkflowProperties](#awstransferworkflowproperties) (Required): properties of the resource
 
 ## AWS.Transfer/WorkflowProperties

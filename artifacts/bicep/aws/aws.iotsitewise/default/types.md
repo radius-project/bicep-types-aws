@@ -3,43 +3,36 @@
 ## Resource AWS.IoTSiteWise/AccessPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoTSiteWise/AccessPolicyProperties](#awsiotsitewiseaccesspolicyproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTSiteWise/Asset@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoTSiteWise/AssetProperties](#awsiotsitewiseassetproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTSiteWise/AssetModel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoTSiteWise/AssetModelProperties](#awsiotsitewiseassetmodelproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTSiteWise/Dashboard@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoTSiteWise/DashboardProperties](#awsiotsitewisedashboardproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTSiteWise/Gateway@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoTSiteWise/GatewayProperties](#awsiotsitewisegatewayproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTSiteWise/Portal@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoTSiteWise/PortalProperties](#awsiotsitewiseportalproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTSiteWise/Project@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IoTSiteWise/ProjectProperties](#awsiotsitewiseprojectproperties) (Required): properties of the resource
 
 ## AWS.IoTSiteWise/AccessPolicyProperties

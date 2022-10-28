@@ -3,19 +3,16 @@
 ## Resource AWS.KMS/Alias@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.KMS/AliasProperties](#awskmsaliasproperties) (Required): properties of the resource
 
 ## Resource AWS.KMS/Key@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.KMS/KeyProperties](#awskmskeyproperties) (Required): properties of the resource
 
 ## Resource AWS.KMS/ReplicaKey@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.KMS/ReplicaKeyProperties](#awskmsreplicakeyproperties) (Required): properties of the resource
 
 ## AWS.KMS/AliasProperties

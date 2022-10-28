@@ -3,13 +3,11 @@
 ## Resource AWS.AppIntegrations/DataIntegration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.AppIntegrations/DataIntegrationProperties](#awsappintegrationsdataintegrationproperties) (Required): properties of the resource
 
 ## Resource AWS.AppIntegrations/EventIntegration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.AppIntegrations/EventIntegrationProperties](#awsappintegrationseventintegrationproperties) (Required): properties of the resource
 
 ## AWS.AppIntegrations/DataIntegrationProperties

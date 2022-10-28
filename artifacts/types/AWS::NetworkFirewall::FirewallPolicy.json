@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkFirewall-FirewallPolicy",
   "type": "AWS::NetworkFirewall::FirewallPolicy",
-  "time": "2022-03-28T15:45:21.583Z",
+  "time": "2022-10-19T15:03:44.807Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -112,6 +112,12 @@
         ],
         "type": "object"
       },
+      "OverrideAction": {
+        "enum": [
+          "DROP_TO_ALERT"
+        ],
+        "type": "string"
+      },
       "Priority": {
         "maximum": 65535,
         "minimum": 1,
@@ -157,9 +163,21 @@
         },
         "type": "object"
       },
+      "StatefulRuleGroupOverride": {
+        "additionalProperties": false,
+        "properties": {
+          "Action": {
+            "$ref": "#/definitions/OverrideAction"
+          }
+        },
+        "type": "object"
+      },
       "StatefulRuleGroupReference": {
         "additionalProperties": false,
         "properties": {
+          "Override": {
+            "$ref": "#/definitions/StatefulRuleGroupOverride"
+          },
           "Priority": {
             "$ref": "#/definitions/Priority"
           },

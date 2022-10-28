@@ -3,61 +3,51 @@
 ## Resource AWS.Lightsail/Alarm@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Lightsail/AlarmProperties](#awslightsailalarmproperties) (Required): properties of the resource
 
 ## Resource AWS.Lightsail/Bucket@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Lightsail/BucketProperties](#awslightsailbucketproperties) (Required): properties of the resource
 
 ## Resource AWS.Lightsail/Certificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Lightsail/CertificateProperties](#awslightsailcertificateproperties) (Required): properties of the resource
 
 ## Resource AWS.Lightsail/Container@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Lightsail/ContainerProperties](#awslightsailcontainerproperties) (Required): properties of the resource
 
 ## Resource AWS.Lightsail/Database@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Lightsail/DatabaseProperties](#awslightsaildatabaseproperties) (Required): properties of the resource
 
 ## Resource AWS.Lightsail/Disk@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Lightsail/DiskProperties](#awslightsaildiskproperties) (Required): properties of the resource
 
 ## Resource AWS.Lightsail/Instance@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Lightsail/InstanceProperties](#awslightsailinstanceproperties) (Required): properties of the resource
 
 ## Resource AWS.Lightsail/LoadBalancer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Lightsail/LoadBalancerProperties](#awslightsailloadbalancerproperties) (Required): properties of the resource
 
 ## Resource AWS.Lightsail/LoadBalancerTlsCertificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Lightsail/LoadBalancerTlsCertificateProperties](#awslightsailloadbalancertlscertificateproperties) (Required): properties of the resource
 
 ## Resource AWS.Lightsail/StaticIp@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Lightsail/StaticIpProperties](#awslightsailstaticipproperties) (Required): properties of the resource
 
 ## AWS.Lightsail/AlarmProperties

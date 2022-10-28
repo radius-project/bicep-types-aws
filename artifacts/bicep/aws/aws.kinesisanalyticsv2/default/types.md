@@ -3,7 +3,6 @@
 ## Resource AWS.KinesisAnalyticsV2/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.KinesisAnalyticsV2/ApplicationProperties](#awskinesisanalyticsv2applicationproperties) (Required): properties of the resource
 
 ## AWS.KinesisAnalyticsV2/ApplicationProperties

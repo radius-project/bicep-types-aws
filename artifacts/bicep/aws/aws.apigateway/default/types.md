@@ -3,85 +3,71 @@
 ## Resource AWS.ApiGateway/Account@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGateway/AccountProperties](#awsapigatewayaccountproperties): properties of the resource
 
 ## Resource AWS.ApiGateway/ApiKey@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGateway/ApiKeyProperties](#awsapigatewayapikeyproperties): properties of the resource
 
 ## Resource AWS.ApiGateway/Authorizer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGateway/AuthorizerProperties](#awsapigatewayauthorizerproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/BasePathMapping@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGateway/BasePathMappingProperties](#awsapigatewaybasepathmappingproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/ClientCertificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGateway/ClientCertificateProperties](#awsapigatewayclientcertificateproperties): properties of the resource
 
 ## Resource AWS.ApiGateway/Deployment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGateway/DeploymentProperties](#awsapigatewaydeploymentproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/DocumentationPart@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGateway/DocumentationPartProperties](#awsapigatewaydocumentationpartproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/DocumentationVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGateway/DocumentationVersionProperties](#awsapigatewaydocumentationversionproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/DomainName@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGateway/DomainNameProperties](#awsapigatewaydomainnameproperties): properties of the resource
 
 ## Resource AWS.ApiGateway/Method@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGateway/MethodProperties](#awsapigatewaymethodproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/Model@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGateway/ModelProperties](#awsapigatewaymodelproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/RequestValidator@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGateway/RequestValidatorProperties](#awsapigatewayrequestvalidatorproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/Stage@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGateway/StageProperties](#awsapigatewaystageproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGateway/UsagePlan@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGateway/UsagePlanProperties](#awsapigatewayusageplanproperties): properties of the resource
 
 ## AWS.ApiGateway/AccountProperties

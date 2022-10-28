@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-TopicRule",
   "type": "AWS::IoT::TopicRule",
-  "time": "2022-06-22T15:19:30.679Z",
+  "time": "2022-10-20T17:34:54.834Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -52,6 +52,9 @@
           },
           "Lambda": {
             "$ref": "#/definitions/LambdaAction"
+          },
+          "Location": {
+            "$ref": "#/definitions/LocationAction"
           },
           "OpenSearch": {
             "$ref": "#/definitions/OpenSearchAction"
@@ -486,6 +489,37 @@
         },
         "type": "object"
       },
+      "LocationAction": {
+        "additionalProperties": false,
+        "properties": {
+          "DeviceId": {
+            "type": "string"
+          },
+          "Latitude": {
+            "type": "string"
+          },
+          "Longitude": {
+            "type": "string"
+          },
+          "RoleArn": {
+            "type": "string"
+          },
+          "Timestamp": {
+            "$ref": "#/definitions/Timestamp"
+          },
+          "TrackerName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "RoleArn",
+          "TrackerName",
+          "DeviceId",
+          "Latitude",
+          "Longitude"
+        ],
+        "type": "object"
+      },
       "OpenSearchAction": {
         "additionalProperties": false,
         "properties": {
@@ -688,6 +722,21 @@
         },
         "required": [
           "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "Timestamp": {
+        "additionalProperties": false,
+        "properties": {
+          "Unit": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
           "Value"
         ],
         "type": "object"

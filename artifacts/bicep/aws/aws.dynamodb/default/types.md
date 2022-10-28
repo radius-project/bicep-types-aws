@@ -3,13 +3,11 @@
 ## Resource AWS.DynamoDB/GlobalTable@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.DynamoDB/GlobalTableProperties](#awsdynamodbglobaltableproperties) (Required): properties of the resource
 
 ## Resource AWS.DynamoDB/Table@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.DynamoDB/TableProperties](#awsdynamodbtableproperties) (Required): properties of the resource
 
 ## AWS.DynamoDB/GlobalTableProperties

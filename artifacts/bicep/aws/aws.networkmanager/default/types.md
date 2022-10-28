@@ -3,55 +3,46 @@
 ## Resource AWS.NetworkManager/ConnectAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.NetworkManager/ConnectAttachmentProperties](#awsnetworkmanagerconnectattachmentproperties): properties of the resource
 
 ## Resource AWS.NetworkManager/ConnectPeer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.NetworkManager/ConnectPeerProperties](#awsnetworkmanagerconnectpeerproperties): properties of the resource
 
 ## Resource AWS.NetworkManager/CoreNetwork@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.NetworkManager/CoreNetworkProperties](#awsnetworkmanagercorenetworkproperties) (Required): properties of the resource
 
 ## Resource AWS.NetworkManager/Device@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.NetworkManager/DeviceProperties](#awsnetworkmanagerdeviceproperties) (Required): properties of the resource
 
 ## Resource AWS.NetworkManager/GlobalNetwork@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.NetworkManager/GlobalNetworkProperties](#awsnetworkmanagerglobalnetworkproperties): properties of the resource
 
 ## Resource AWS.NetworkManager/Link@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.NetworkManager/LinkProperties](#awsnetworkmanagerlinkproperties) (Required): properties of the resource
 
 ## Resource AWS.NetworkManager/Site@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.NetworkManager/SiteProperties](#awsnetworkmanagersiteproperties) (Required): properties of the resource
 
 ## Resource AWS.NetworkManager/SiteToSiteVpnAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.NetworkManager/SiteToSiteVpnAttachmentProperties](#awsnetworkmanagersitetositevpnattachmentproperties): properties of the resource
 
 ## Resource AWS.NetworkManager/VpcAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.NetworkManager/VpcAttachmentProperties](#awsnetworkmanagervpcattachmentproperties): properties of the resource
 
 ## AWS.NetworkManager/ConnectAttachmentProperties

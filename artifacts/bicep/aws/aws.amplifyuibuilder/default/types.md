@@ -3,13 +3,11 @@
 ## Resource AWS.AmplifyUIBuilder/Component@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.AmplifyUIBuilder/ComponentProperties](#awsamplifyuibuildercomponentproperties) (Required): properties of the resource
 
 ## Resource AWS.AmplifyUIBuilder/Theme@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.AmplifyUIBuilder/ThemeProperties](#awsamplifyuibuilderthemeproperties) (Required): properties of the resource
 
 ## AWS.AmplifyUIBuilder/ComponentProperties

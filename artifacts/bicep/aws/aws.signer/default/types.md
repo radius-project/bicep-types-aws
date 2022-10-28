@@ -3,7 +3,6 @@
 ## Resource AWS.Signer/SigningProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Signer/SigningProfileProperties](#awssignersigningprofileproperties) (Required): properties of the resource
 
 ## AWS.Signer/SigningProfileProperties

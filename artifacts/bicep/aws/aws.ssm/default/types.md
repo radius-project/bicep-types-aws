@@ -3,19 +3,16 @@
 ## Resource AWS.SSM/Association@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.SSM/AssociationProperties](#awsssmassociationproperties) (Required): properties of the resource
 
 ## Resource AWS.SSM/Document@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.SSM/DocumentProperties](#awsssmdocumentproperties) (Required): properties of the resource
 
 ## Resource AWS.SSM/ResourceDataSync@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.SSM/ResourceDataSyncProperties](#awsssmresourcedatasyncproperties) (Required): properties of the resource
 
 ## AWS.SSM/AssociationProperties

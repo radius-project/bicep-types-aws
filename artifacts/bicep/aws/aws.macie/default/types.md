@@ -3,19 +3,16 @@
 ## Resource AWS.Macie/CustomDataIdentifier@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Macie/CustomDataIdentifierProperties](#awsmaciecustomdataidentifierproperties) (Required): properties of the resource
 
 ## Resource AWS.Macie/FindingsFilter@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Macie/FindingsFilterProperties](#awsmaciefindingsfilterproperties) (Required): properties of the resource
 
 ## Resource AWS.Macie/Session@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Macie/SessionProperties](#awsmaciesessionproperties): properties of the resource
 
 ## AWS.Macie/CustomDataIdentifierProperties

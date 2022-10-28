@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBProxy",
   "type": "AWS::RDS::DBProxy",
-  "time": "2021-12-14T03:25:10.349Z",
+  "time": "2022-09-30T17:07:40.465Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -11,6 +11,7 @@
     ],
     "definitions": {
       "AuthFormat": {
+        "additionalProperties": false,
         "properties": {
           "AuthScheme": {
             "description": "The type of authentication that the proxy uses for connections from the proxy to the underlying database. ",
@@ -24,10 +25,11 @@
             "type": "string"
           },
           "IAMAuth": {
-            "description": "Whether to require or disallow AWS Identity and Access Management (IAM) authentication for connections to the proxy. ",
+            "description": "Whether to require or disallow Amazon Web Services Identity and Access Management (IAM) authentication for connections to the proxy. The ENABLED value is valid only for proxies with RDS for Microsoft SQL Server.",
             "enum": [
               "DISABLED",
-              "REQUIRED"
+              "REQUIRED",
+              "ENABLED"
             ],
             "type": "string"
           },
@@ -43,6 +45,7 @@
         "type": "object"
       },
       "TagFormat": {
+        "additionalProperties": false,
         "properties": {
           "Key": {
             "maxLength": 128,
@@ -98,6 +101,7 @@
     "properties": {
       "Auth": {
         "description": "The authorization mechanism that the proxy uses.",
+        "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/AuthFormat"
         },
@@ -126,7 +130,8 @@
         "description": "The kinds of databases that the proxy can connect to.",
         "enum": [
           "MYSQL",
-          "POSTGRESQL"
+          "POSTGRESQL",
+          "SQLSERVER"
         ],
         "type": "string"
       },
@@ -144,13 +149,19 @@
       },
       "Tags": {
         "description": "An optional set of key-value pairs to associate arbitrary data of your choosing with the proxy.",
+        "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/TagFormat"
         },
         "type": "array"
       },
+      "VpcId": {
+        "description": "VPC ID to associate with the new DB proxy.",
+        "type": "string"
+      },
       "VpcSecurityGroupIds": {
         "description": "VPC security group IDs to associate with the new proxy.",
+        "insertionOrder": false,
         "items": {
           "type": "string"
         },
@@ -159,6 +170,7 @@
       },
       "VpcSubnetIds": {
         "description": "VPC subnet IDs to associate with the new proxy.",
+        "insertionOrder": false,
         "items": {
           "type": "string"
         },
@@ -168,7 +180,8 @@
     },
     "readOnlyProperties": [
       "/properties/DBProxyArn",
-      "/properties/Endpoint"
+      "/properties/Endpoint",
+      "/properties/VpcId"
     ],
     "required": [
       "Auth",

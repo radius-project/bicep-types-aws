@@ -1,10 +1,23 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-APS-Workspace",
   "type": "AWS::APS::Workspace",
-  "time": "2022-08-25T15:20:26.248Z",
+  "time": "2022-10-20T17:49:56.456Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
+      "LoggingConfiguration": {
+        "additionalProperties": false,
+        "description": "Logging configuration",
+        "properties": {
+          "LogGroupArn": {
+            "description": "CloudWatch log group ARN",
+            "maxLength": 512,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "description": "A key-value pair to associate with a resource.",
@@ -35,13 +48,16 @@
         "permissions": [
           "aps:CreateWorkspace",
           "aps:TagResource",
-          "aps:CreateAlertManagerDefinition"
+          "aps:CreateAlertManagerDefinition",
+          "aps:DescribeAlertManagerDefinition",
+          "aps:CreateLoggingConfiguration"
         ]
       },
       "delete": {
         "permissions": [
           "aps:DeleteWorkspace",
-          "aps:DeleteAlertManagerDefinition"
+          "aps:DeleteAlertManagerDefinition",
+          "aps:DeleteLoggingConfiguration"
         ]
       },
       "list": {
@@ -54,7 +70,8 @@
         "permissions": [
           "aps:DescribeWorkspace",
           "aps:ListTagsForResource",
-          "aps:DescribeAlertManagerDefinition"
+          "aps:DescribeAlertManagerDefinition",
+          "aps:DescribeLoggingConfiguration"
         ]
       },
       "update": {
@@ -63,7 +80,8 @@
           "aps:TagResource",
           "aps:UntagResource",
           "aps:ListTagsForResource",
-          "aps:PutAlertManagerDefinition"
+          "aps:PutAlertManagerDefinition",
+          "aps:UpdateLoggingConfiguration"
         ]
       }
     },
@@ -87,6 +105,9 @@
         "minLength": 1,
         "pattern": "^arn:\u0008(aws|aws-us-gov|aws-cn)\u0008:aps:[a-z0-9-]+:[0-9]+:workspace/[a-zA-Z0-9-]+$",
         "type": "string"
+      },
+      "LoggingConfiguration": {
+        "$ref": "#/definitions/LoggingConfiguration"
       },
       "PrometheusEndpoint": {
         "description": "AMP Workspace prometheus endpoint",

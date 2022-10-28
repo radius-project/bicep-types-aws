@@ -3,25 +3,21 @@
 ## Resource AWS.Route53Resolver/FirewallDomainList@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Route53Resolver/FirewallDomainListProperties](#awsroute53resolverfirewalldomainlistproperties): properties of the resource
 
 ## Resource AWS.Route53Resolver/FirewallRuleGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Route53Resolver/FirewallRuleGroupProperties](#awsroute53resolverfirewallrulegroupproperties): properties of the resource
 
 ## Resource AWS.Route53Resolver/FirewallRuleGroupAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Route53Resolver/FirewallRuleGroupAssociationProperties](#awsroute53resolverfirewallrulegroupassociationproperties) (Required): properties of the resource
 
 ## Resource AWS.Route53Resolver/ResolverRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Route53Resolver/ResolverRuleProperties](#awsroute53resolverresolverruleproperties) (Required): properties of the resource
 
 ## AWS.Route53Resolver/FirewallDomainListProperties

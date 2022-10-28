@@ -3,13 +3,11 @@
 ## Resource AWS.CodeArtifact/Domain@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.CodeArtifact/DomainProperties](#awscodeartifactdomainproperties) (Required): properties of the resource
 
 ## Resource AWS.CodeArtifact/Repository@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.CodeArtifact/RepositoryProperties](#awscodeartifactrepositoryproperties) (Required): properties of the resource
 
 ## AWS.CodeArtifact/DomainProperties

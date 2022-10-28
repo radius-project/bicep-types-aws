@@ -3,7 +3,6 @@
 ## Resource AWS.ApiGatewayV2/VpcLink@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ApiGatewayV2/VpcLinkProperties](#awsapigatewayv2vpclinkproperties) (Required): properties of the resource
 
 ## AWS.ApiGatewayV2/VpcLinkProperties

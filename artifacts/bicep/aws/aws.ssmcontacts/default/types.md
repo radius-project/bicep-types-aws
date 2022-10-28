@@ -3,13 +3,11 @@
 ## Resource AWS.SSMContacts/Contact@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.SSMContacts/ContactProperties](#awsssmcontactscontactproperties) (Required): properties of the resource
 
 ## Resource AWS.SSMContacts/ContactChannel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.SSMContacts/ContactChannelProperties](#awsssmcontactscontactchannelproperties): properties of the resource
 
 ## AWS.SSMContacts/ContactProperties

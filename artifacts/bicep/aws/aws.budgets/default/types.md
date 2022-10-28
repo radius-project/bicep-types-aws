@@ -3,7 +3,6 @@
 ## Resource AWS.Budgets/BudgetsAction@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Budgets/BudgetsActionProperties](#awsbudgetsbudgetsactionproperties) (Required): properties of the resource
 
 ## AWS.Budgets/BudgetsActionProperties

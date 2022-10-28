@@ -3,37 +3,31 @@
 ## Resource AWS.WAFv2/IPSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.WAFv2/IPSetProperties](#awswafv2ipsetproperties) (Required): properties of the resource
 
 ## Resource AWS.WAFv2/LoggingConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.WAFv2/LoggingConfigurationProperties](#awswafv2loggingconfigurationproperties) (Required): properties of the resource
 
 ## Resource AWS.WAFv2/RegexPatternSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.WAFv2/RegexPatternSetProperties](#awswafv2regexpatternsetproperties) (Required): properties of the resource
 
 ## Resource AWS.WAFv2/RuleGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.WAFv2/RuleGroupProperties](#awswafv2rulegroupproperties) (Required): properties of the resource
 
 ## Resource AWS.WAFv2/WebACL@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.WAFv2/WebACLProperties](#awswafv2webaclproperties) (Required): properties of the resource
 
 ## Resource AWS.WAFv2/WebACLAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.WAFv2/WebACLAssociationProperties](#awswafv2webaclassociationproperties) (Required): properties of the resource
 
 ## AWS.WAFv2/IPSetProperties

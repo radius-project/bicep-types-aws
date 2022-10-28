@@ -3,25 +3,21 @@
 ## Resource AWS.Logs/LogGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Logs/LogGroupProperties](#awslogsloggroupproperties): properties of the resource
 
 ## Resource AWS.Logs/MetricFilter@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Logs/MetricFilterProperties](#awslogsmetricfilterproperties) (Required): properties of the resource
 
 ## Resource AWS.Logs/QueryDefinition@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Logs/QueryDefinitionProperties](#awslogsquerydefinitionproperties) (Required): properties of the resource
 
 ## Resource AWS.Logs/ResourcePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.Logs/ResourcePolicyProperties](#awslogsresourcepolicyproperties) (Required): properties of the resource
 
 ## AWS.Logs/LogGroupProperties

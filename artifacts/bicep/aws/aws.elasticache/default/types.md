@@ -3,19 +3,16 @@
 ## Resource AWS.ElastiCache/GlobalReplicationGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ElastiCache/GlobalReplicationGroupProperties](#awselasticacheglobalreplicationgroupproperties) (Required): properties of the resource
 
 ## Resource AWS.ElastiCache/User@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ElastiCache/UserProperties](#awselasticacheuserproperties) (Required): properties of the resource
 
 ## Resource AWS.ElastiCache/UserGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ElastiCache/UserGroupProperties](#awselasticacheusergroupproperties) (Required): properties of the resource
 
 ## AWS.ElastiCache/GlobalReplicationGroupProperties

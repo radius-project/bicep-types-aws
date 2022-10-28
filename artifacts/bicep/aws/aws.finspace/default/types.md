@@ -3,7 +3,6 @@
 ## Resource AWS.FinSpace/Environment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.FinSpace/EnvironmentProperties](#awsfinspaceenvironmentproperties) (Required): properties of the resource
 
 ## AWS.FinSpace/EnvironmentProperties

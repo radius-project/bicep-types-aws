@@ -3,7 +3,6 @@
 ## Resource AWS.ConnectCampaigns/Campaign@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.ConnectCampaigns/CampaignProperties](#awsconnectcampaignscampaignproperties) (Required): properties of the resource
 
 ## AWS.ConnectCampaigns/CampaignProperties

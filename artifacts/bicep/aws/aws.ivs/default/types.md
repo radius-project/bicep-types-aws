@@ -3,25 +3,21 @@
 ## Resource AWS.IVS/Channel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IVS/ChannelProperties](#awsivschannelproperties): properties of the resource
 
 ## Resource AWS.IVS/PlaybackKeyPair@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IVS/PlaybackKeyPairProperties](#awsivsplaybackkeypairproperties) (Required): properties of the resource
 
 ## Resource AWS.IVS/RecordingConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IVS/RecordingConfigurationProperties](#awsivsrecordingconfigurationproperties) (Required): properties of the resource
 
 ## Resource AWS.IVS/StreamKey@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.IVS/StreamKeyProperties](#awsivsstreamkeyproperties) (Required): properties of the resource
 
 ## AWS.IVS/ChannelProperties

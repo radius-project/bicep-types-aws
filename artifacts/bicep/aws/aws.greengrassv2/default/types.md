@@ -3,7 +3,6 @@
 ## Resource AWS.GreengrassV2/ComponentVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
 * **properties**: [AWS.GreengrassV2/ComponentVersionProperties](#awsgreengrassv2componentversionproperties): properties of the resource
 
 ## AWS.GreengrassV2/ComponentVersionProperties
