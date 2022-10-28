@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lex-Bot",
   "type": "AWS::Lex::Bot",
-  "time": "2022-07-25T15:30:07.099Z",
+  "time": "2022-10-27T15:31:22.565Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -15,6 +15,25 @@
         },
         "type": "object"
       },
+      "AllowedInputTypes": {
+        "additionalProperties": false,
+        "description": "Specifies the allowed input types.",
+        "properties": {
+          "AllowAudioInput": {
+            "description": "Indicates whether audio input is allowed.",
+            "type": "boolean"
+          },
+          "AllowDTMFInput": {
+            "description": "Indicates whether DTMF input is allowed.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "AllowAudioInput",
+          "AllowDTMFInput"
+        ],
+        "type": "object"
+      },
       "AttachmentTitle": {
         "maxLength": 250,
         "minLength": 1,
@@ -24,6 +43,27 @@
         "maxLength": 250,
         "minLength": 1,
         "type": "string"
+      },
+      "AudioAndDTMFInputSpecification": {
+        "additionalProperties": false,
+        "description": "Specifies the audio and DTMF input specification.",
+        "properties": {
+          "AudioSpecification": {
+            "$ref": "#/definitions/AudioSpecification"
+          },
+          "DTMFSpecification": {
+            "$ref": "#/definitions/DTMFSpecification"
+          },
+          "StartTimeoutMs": {
+            "description": "Time for which a bot waits before assuming that the customer isn't going to speak or press a key. This timeout is shared between Audio and DTMF inputs.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "StartTimeoutMs"
+        ],
+        "type": "object"
       },
       "AudioLogDestination": {
         "additionalProperties": false,
@@ -72,6 +112,27 @@
           "UseSlotValuesAsCustomVocabulary"
         ],
         "type": "string"
+      },
+      "AudioSpecification": {
+        "additionalProperties": false,
+        "description": "Specifies the audio input specifications.",
+        "properties": {
+          "EndTimeoutMs": {
+            "description": "Time for which a bot waits after the customer stops speaking to assume the utterance is finished.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxLengthMs": {
+            "description": "Time for how long Amazon Lex waits before speech input is truncated and the speech is returned to application.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "EndTimeoutMs",
+          "MaxLengthMs"
+        ],
+        "type": "object"
       },
       "BotAliasLocaleSettings": {
         "additionalProperties": false,
@@ -320,6 +381,40 @@
         "maxItems": 500,
         "type": "array",
         "uniqueItems": true
+      },
+      "DTMFSpecification": {
+        "additionalProperties": false,
+        "description": "Specifies the settings on DTMF input.",
+        "properties": {
+          "DeletionCharacter": {
+            "description": "The DTMF character that clears the accumulated DTMF digits and immediately ends the input.",
+            "pattern": "^[A-D0-9#*]{1}$",
+            "type": "string"
+          },
+          "EndCharacter": {
+            "description": "The DTMF character that immediately ends input. If the user does not press this character, the input ends after the end timeout.",
+            "pattern": "^[A-D0-9#*]{1}$",
+            "type": "string"
+          },
+          "EndTimeoutMs": {
+            "description": "How long the bot should wait after the last DTMF character input before assuming that the input has concluded.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxLength": {
+            "description": "The maximum number of DTMF digits allowed in an utterance.",
+            "maximum": 1024,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "DeletionCharacter",
+          "EndCharacter",
+          "EndTimeoutMs",
+          "MaxLength"
+        ],
+        "type": "object"
       },
       "DataPrivacy": {
         "additionalProperties": false,
@@ -878,6 +973,29 @@
         "minimum": 0,
         "type": "integer"
       },
+      "PromptAttemptSpecification": {
+        "additionalProperties": false,
+        "description": "Specifies the settings on a prompt attempt.",
+        "properties": {
+          "AllowInterrupt": {
+            "description": "Indicates whether the user can interrupt a speech prompt attempt from the bot.",
+            "type": "boolean"
+          },
+          "AllowedInputTypes": {
+            "$ref": "#/definitions/AllowedInputTypes"
+          },
+          "AudioAndDTMFInputSpecification": {
+            "$ref": "#/definitions/AudioAndDTMFInputSpecification"
+          },
+          "TextInputSpecification": {
+            "$ref": "#/definitions/TextInputSpecification"
+          }
+        },
+        "required": [
+          "AllowedInputTypes"
+        ],
+        "type": "object"
+      },
       "PromptMaxRetries": {
         "description": "The maximum number of times the bot tries to elicit a resonse from the user using this prompt.",
         "maximum": 5,
@@ -900,6 +1018,16 @@
           },
           "MessageSelectionStrategy": {
             "$ref": "#/definitions/MessageSelectionStrategy"
+          },
+          "PromptAttemptsSpecification": {
+            "additionalProperties": false,
+            "description": "Specifies the advanced settings on each attempt of the prompt.",
+            "patternProperties": {
+              "^(Initial|Retry1|Retry2|Retry3|Retry4|Retry5)$": {
+                "$ref": "#/definitions/PromptAttemptSpecification"
+              }
+            },
+            "type": "object"
           }
         },
         "required": [
@@ -1385,6 +1513,21 @@
         },
         "type": "object"
       },
+      "TextInputSpecification": {
+        "additionalProperties": false,
+        "description": "Specifies the text input specifications.",
+        "properties": {
+          "StartTimeoutMs": {
+            "description": "Time for which a bot waits before re-prompting a customer for text input.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "StartTimeoutMs"
+        ],
+        "type": "object"
+      },
       "TextLogDestination": {
         "additionalProperties": false,
         "description": "Defines the Amazon CloudWatch Logs destination log group for conversation text logs.",
@@ -1434,6 +1577,14 @@
         "additionalProperties": false,
         "description": "Settings for using an Amazon Polly voice to communicate with a user.",
         "properties": {
+          "Engine": {
+            "description": "Indicates the type of Amazon Polly voice that Amazon Lex should use for voice interaction with the user. For more information, see the engine parameter of the SynthesizeSpeech operation in the Amazon Polly developer guide.",
+            "enum": [
+              "standard",
+              "neural"
+            ],
+            "type": "string"
+          },
           "VoiceId": {
             "description": "The Amazon Polly voice ID that Amazon Lex uses for voice interaction with the user.",
             "type": "string"

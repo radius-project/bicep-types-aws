@@ -148,11 +148,15 @@
 * **MaxRetries**: [PromptMaxRetries](#promptmaxretries) (Required)
 * **MessageGroupsList**: [MessageGroupsList](#messagegroupslist) (Required)
 * **MessageSelectionStrategy**: [MessageSelectionStrategy](#messageselectionstrategy)
+* **PromptAttemptsSpecification**: [Bot_PromptAttemptsSpecification](#botpromptattemptsspecification): Specifies the advanced settings on each attempt of the prompt.
 
 ## PromptMaxRetries
 ### Properties
 
 ## MessageSelectionStrategy
+### Properties
+
+## Bot_PromptAttemptsSpecification
 ### Properties
 
 ## KendraConfiguration
@@ -298,6 +302,7 @@
 
 ## VoiceSettings
 ### Properties
+* **Engine**: string: Indicates the type of Amazon Polly voice that Amazon Lex should use for voice interaction with the user. For more information, see the engine parameter of the SynthesizeSpeech operation in the Amazon Polly developer guide.
 * **VoiceId**: string (Required): The Amazon Polly voice ID that Amazon Lex uses for voice interaction with the user.
 
 ## Tag

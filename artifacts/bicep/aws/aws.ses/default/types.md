@@ -123,7 +123,7 @@
 * **DkimDNSTokenValue1**: string (ReadOnly)
 * **DkimDNSTokenValue2**: string (ReadOnly)
 * **DkimDNSTokenValue3**: string (ReadOnly)
-* **DkimSigningAttributes**: [DkimSigningAttributes](#dkimsigningattributes) (WriteOnly)
+* **DkimSigningAttributes**: [DkimSigningAttributes](#dkimsigningattributes)
 * **EmailIdentity**: string (Required): The email address or domain to verify.
 * **FeedbackAttributes**: [FeedbackAttributes](#feedbackattributes)
 * **MailFromAttributes**: [MailFromAttributes](#mailfromattributes)
@@ -138,8 +138,8 @@
 
 ## DkimSigningAttributes
 ### Properties
-* **DomainSigningPrivateKey**: string: [Bring Your Own DKIM] A private key that's used to generate a DKIM signature. The private key must use 1024 or 2048-bit RSA encryption, and must be encoded using base64 encoding.
-* **DomainSigningSelector**: string: [Bring Your Own DKIM] A string that's used to identify a public key in the DNS configuration for a domain.
+* **DomainSigningPrivateKey**: string (WriteOnly): [Bring Your Own DKIM] A private key that's used to generate a DKIM signature. The private key must use 1024 or 2048-bit RSA encryption, and must be encoded using base64 encoding.
+* **DomainSigningSelector**: string (WriteOnly): [Bring Your Own DKIM] A string that's used to identify a public key in the DNS configuration for a domain.
 * **NextSigningKeyLength**: string: [Easy DKIM] The key length of the future DKIM key pair to be generated. This can be changed at most once per day.
 
 ## FeedbackAttributes

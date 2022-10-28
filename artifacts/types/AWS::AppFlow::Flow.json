@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppFlow-Flow",
   "type": "AWS::AppFlow::Flow",
-  "time": "2022-08-15T15:09:38.489Z",
+  "time": "2022-10-19T15:14:12.001Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -201,6 +201,14 @@
         },
         "required": [],
         "type": "object"
+      },
+      "DataTransferApi": {
+        "enum": [
+          "AUTOMATIC",
+          "BULKV2",
+          "REST_SYNC"
+        ],
+        "type": "string"
       },
       "DatadogConnectorOperator": {
         "enum": [
@@ -569,7 +577,8 @@
           "MATH_OPERATION_FIELDS_ORDER",
           "CONCAT_FORMAT",
           "SUBFIELD_CATEGORY_MAP",
-          "EXCLUDE_SOURCE_FIELDS_LIST"
+          "EXCLUDE_SOURCE_FIELDS_LIST",
+          "INCLUDE_NEW_FIELDS"
         ],
         "type": "string"
       },
@@ -815,6 +824,9 @@
       "SalesforceDestinationProperties": {
         "additionalProperties": false,
         "properties": {
+          "DataTransferApi": {
+            "$ref": "#/definitions/DataTransferApi"
+          },
           "ErrorHandlingConfig": {
             "$ref": "#/definitions/ErrorHandlingConfig"
           },
@@ -840,6 +852,9 @@
       "SalesforceSourceProperties": {
         "additionalProperties": false,
         "properties": {
+          "DataTransferApi": {
+            "$ref": "#/definitions/DataTransferApi"
+          },
           "EnableDynamicFieldUpdate": {
             "$ref": "#/definitions/EnableDynamicFieldUpdate"
           },

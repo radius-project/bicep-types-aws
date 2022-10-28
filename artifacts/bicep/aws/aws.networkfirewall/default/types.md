@@ -82,8 +82,16 @@
 
 ## StatefulRuleGroupReference
 ### Properties
+* **Override**: [StatefulRuleGroupOverride](#statefulrulegroupoverride)
 * **Priority**: [Priority](#priority)
 * **ResourceArn**: [ResourceArn](#resourcearn) (Required)
+
+## StatefulRuleGroupOverride
+### Properties
+* **Action**: [OverrideAction](#overrideaction)
+
+## OverrideAction
+### Properties
 
 ## Priority
 ### Properties

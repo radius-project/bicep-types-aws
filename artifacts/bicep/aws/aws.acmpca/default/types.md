@@ -108,6 +108,7 @@
 * **Subject**: [Subject](#subject) (Required, WriteOnly): Structure that contains X.500 distinguished name information for your CA.
 * **Tags**: [Tag](#tag)[]
 * **Type**: string (Required): The type of the certificate authority.
+* **UsageMode**: string: Usage mode of the ceritificate authority.
 
 ## Arn
 ### Properties

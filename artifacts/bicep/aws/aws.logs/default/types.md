@@ -1,5 +1,11 @@
 # AWS.Logs @ default
 
+## Resource AWS.Logs/Destination@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **name**: string (Required): the resource name
+* **properties**: [AWS.Logs/DestinationProperties](#awslogsdestinationproperties) (Required): properties of the resource
+
 ## Resource AWS.Logs/LogGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -23,6 +29,14 @@
 ### Properties
 * **name**: string (Required): the resource name
 * **properties**: [AWS.Logs/ResourcePolicyProperties](#awslogsresourcepolicyproperties) (Required): properties of the resource
+
+## AWS.Logs/DestinationProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **DestinationName**: string (Required): The name of the destination resource
+* **DestinationPolicy**: string: An IAM policy document that governs which AWS accounts can create subscription filters against this destination.
+* **RoleArn**: string (Required): The ARN of an IAM role that permits CloudWatch Logs to send data to the specified AWS resource
+* **TargetArn**: string (Required): The ARN of the physical target where the log events are delivered (for example, a Kinesis stream)
 
 ## AWS.Logs/LogGroupProperties
 ### Properties

@@ -30,6 +30,12 @@
 * **name**: string (Required): the resource name
 * **properties**: [AWS.CloudFront/KeyGroupProperties](#awscloudfrontkeygroupproperties) (Required): properties of the resource
 
+## Resource AWS.CloudFront/OriginAccessControl@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **name**: string (Required): the resource name
+* **properties**: [AWS.CloudFront/OriginAccessControlProperties](#awscloudfrontoriginaccesscontrolproperties) (Required): properties of the resource
+
 ## Resource AWS.CloudFront/OriginRequestPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -342,6 +348,19 @@
 * **Comment**: string
 * **Items**: string[] (Required)
 * **Name**: string (Required)
+
+## AWS.CloudFront/OriginAccessControlProperties
+### Properties
+* **Id**: string (ReadOnly)
+* **OriginAccessControlConfig**: [OriginAccessControlConfig](#originaccesscontrolconfig) (Required)
+
+## OriginAccessControlConfig
+### Properties
+* **Description**: string
+* **Name**: string (Required)
+* **OriginAccessControlOriginType**: string (Required)
+* **SigningBehavior**: string (Required)
+* **SigningProtocol**: string (Required)
 
 ## AWS.CloudFront/OriginRequestPolicyProperties
 ### Properties

@@ -74,6 +74,12 @@
 * [default](aws/aws.apigateway/default/types.md#resource-awsapigatewayusageplandefault)
 
 ## aws.apigatewayv2
+### aws.apigatewayv2/api
+* [default](aws/aws.apigatewayv2/default/types.md#resource-awsapigatewayv2apidefault)
+
+### aws.apigatewayv2/model
+* [default](aws/aws.apigatewayv2/default/types.md#resource-awsapigatewayv2modeldefault)
+
 ### aws.apigatewayv2/vpclink
 * [default](aws/aws.apigatewayv2/default/types.md#resource-awsapigatewayv2vpclinkdefault)
 
@@ -146,6 +152,9 @@
 
 ### aws.autoscaling/scalingpolicy
 * [default](aws/aws.autoscaling/default/types.md#resource-awsautoscalingscalingpolicydefault)
+
+### aws.autoscaling/scheduledaction
+* [default](aws/aws.autoscaling/default/types.md#resource-awsautoscalingscheduledactiondefault)
 
 ### aws.autoscaling/warmpool
 * [default](aws/aws.autoscaling/default/types.md#resource-awsautoscalingwarmpooldefault)
@@ -228,6 +237,9 @@
 ### aws.cloudfront/keygroup
 * [default](aws/aws.cloudfront/default/types.md#resource-awscloudfrontkeygroupdefault)
 
+### aws.cloudfront/originaccesscontrol
+* [default](aws/aws.cloudfront/default/types.md#resource-awscloudfrontoriginaccesscontroldefault)
+
 ### aws.cloudfront/originrequestpolicy
 * [default](aws/aws.cloudfront/default/types.md#resource-awscloudfrontoriginrequestpolicydefault)
 
@@ -260,6 +272,10 @@
 
 ### aws.codeartifact/repository
 * [default](aws/aws.codeartifact/default/types.md#resource-awscodeartifactrepositorydefault)
+
+## aws.codedeploy
+### aws.codedeploy/application
+* [default](aws/aws.codedeploy/default/types.md#resource-awscodedeployapplicationdefault)
 
 ## aws.codeguruprofiler
 ### aws.codeguruprofiler/profilinggroup
@@ -446,6 +462,9 @@
 ### aws.ec2/ec2fleet
 * [default](aws/aws.ec2/default/types.md#resource-awsec2ec2fleetdefault)
 
+### aws.ec2/eip
+* [default](aws/aws.ec2/default/types.md#resource-awsec2eipdefault)
+
 ### aws.ec2/flowlog
 * [default](aws/aws.ec2/default/types.md#resource-awsec2flowlogdefault)
 
@@ -521,6 +540,9 @@
 ### aws.ec2/transitgatewayvpcattachment
 * [default](aws/aws.ec2/default/types.md#resource-awsec2transitgatewayvpcattachmentdefault)
 
+### aws.ec2/volume
+* [default](aws/aws.ec2/default/types.md#resource-awsec2volumedefault)
+
 ### aws.ec2/vpc
 * [default](aws/aws.ec2/default/types.md#resource-awsec2vpcdefault)
 
@@ -529,6 +551,9 @@
 
 ### aws.ec2/vpcpeeringconnection
 * [default](aws/aws.ec2/default/types.md#resource-awsec2vpcpeeringconnectiondefault)
+
+### aws.ec2/vpnconnection
+* [default](aws/aws.ec2/default/types.md#resource-awsec2vpnconnectiondefault)
 
 ### aws.ec2/vpngateway
 * [default](aws/aws.ec2/default/types.md#resource-awsec2vpngatewaydefault)
@@ -598,6 +623,9 @@
 ### aws.elasticache/globalreplicationgroup
 * [default](aws/aws.elasticache/default/types.md#resource-awselasticacheglobalreplicationgroupdefault)
 
+### aws.elasticache/subnetgroup
+* [default](aws/aws.elasticache/default/types.md#resource-awselasticachesubnetgroupdefault)
+
 ### aws.elasticache/user
 * [default](aws/aws.elasticache/default/types.md#resource-awselasticacheuserdefault)
 
@@ -607,6 +635,9 @@
 ## aws.elasticbeanstalk
 ### aws.elasticbeanstalk/application
 * [default](aws/aws.elasticbeanstalk/default/types.md#resource-awselasticbeanstalkapplicationdefault)
+
+### aws.elasticbeanstalk/applicationversion
+* [default](aws/aws.elasticbeanstalk/default/types.md#resource-awselasticbeanstalkapplicationversiondefault)
 
 ## aws.elasticloadbalancingv2
 ### aws.elasticloadbalancingv2/listener
@@ -698,6 +729,10 @@
 ### aws.frauddetector/variable
 * [default](aws/aws.frauddetector/default/types.md#resource-awsfrauddetectorvariabledefault)
 
+## aws.fsx
+### aws.fsx/datarepositoryassociation
+* [default](aws/aws.fsx/default/types.md#resource-awsfsxdatarepositoryassociationdefault)
+
 ## aws.gamelift
 ### aws.gamelift/alias
 * [default](aws/aws.gamelift/default/types.md#resource-awsgameliftaliasdefault)
@@ -729,6 +764,9 @@
 ### aws.greengrassv2/componentversion
 * [default](aws/aws.greengrassv2/default/types.md#resource-awsgreengrassv2componentversiondefault)
 
+### aws.greengrassv2/deployment
+* [default](aws/aws.greengrassv2/default/types.md#resource-awsgreengrassv2deploymentdefault)
+
 ## aws.groundstation
 ### aws.groundstation/config
 * [default](aws/aws.groundstation/default/types.md#resource-awsgroundstationconfigdefault)
@@ -758,6 +796,10 @@
 
 ### aws.iam/virtualmfadevice
 * [default](aws/aws.iam/default/types.md#resource-awsiamvirtualmfadevicedefault)
+
+## aws.identitystore
+### aws.identitystore/group
+* [default](aws/aws.identitystore/default/types.md#resource-awsidentitystoregroupdefault)
 
 ## aws.imagebuilder
 ### aws.imagebuilder/distributionconfiguration
@@ -1039,6 +1081,9 @@
 * [default](aws/aws.lightsail/default/types.md#resource-awslightsailstaticipdefault)
 
 ## aws.logs
+### aws.logs/destination
+* [default](aws/aws.logs/default/types.md#resource-awslogsdestinationdefault)
+
 ### aws.logs/loggroup
 * [default](aws/aws.logs/default/types.md#resource-awslogsloggroupdefault)
 
@@ -1059,7 +1104,17 @@
 ### aws.lookoutvision/project
 * [default](aws/aws.lookoutvision/default/types.md#resource-awslookoutvisionprojectdefault)
 
+## aws.m2
+### aws.m2/application
+* [default](aws/aws.m2/default/types.md#resource-awsm2applicationdefault)
+
+### aws.m2/environment
+* [default](aws/aws.m2/default/types.md#resource-awsm2environmentdefault)
+
 ## aws.macie
+### aws.macie/allowlist
+* [default](aws/aws.macie/default/types.md#resource-awsmacieallowlistdefault)
+
 ### aws.macie/customdataidentifier
 * [default](aws/aws.macie/default/types.md#resource-awsmaciecustomdataidentifierdefault)
 
@@ -1270,6 +1325,12 @@
 ### aws.redshift/cluster
 * [default](aws/aws.redshift/default/types.md#resource-awsredshiftclusterdefault)
 
+### aws.redshift/clusterparametergroup
+* [default](aws/aws.redshift/default/types.md#resource-awsredshiftclusterparametergroupdefault)
+
+### aws.redshift/clustersubnetgroup
+* [default](aws/aws.redshift/default/types.md#resource-awsredshiftclustersubnetgroupdefault)
+
 ### aws.redshift/endpointaccess
 * [default](aws/aws.redshift/default/types.md#resource-awsredshiftendpointaccessdefault)
 
@@ -1396,9 +1457,6 @@
 
 ### aws.s3/bucket
 * [default](aws/aws.s3/default/types.md#resource-awss3bucketdefault)
-
-### aws.s3/multiregionaccesspoint
-* [default](aws/aws.s3/default/types.md#resource-awss3multiregionaccesspointdefault)
 
 ### aws.s3/multiregionaccesspointpolicy
 * [default](aws/aws.s3/default/types.md#resource-awss3multiregionaccesspointpolicydefault)
@@ -1562,6 +1620,18 @@
 * [default](aws/aws.timestream/default/types.md#resource-awstimestreamtabledefault)
 
 ## aws.transfer
+### aws.transfer/agreement
+* [default](aws/aws.transfer/default/types.md#resource-awstransferagreementdefault)
+
+### aws.transfer/certificate
+* [default](aws/aws.transfer/default/types.md#resource-awstransfercertificatedefault)
+
+### aws.transfer/connector
+* [default](aws/aws.transfer/default/types.md#resource-awstransferconnectordefault)
+
+### aws.transfer/profile
+* [default](aws/aws.transfer/default/types.md#resource-awstransferprofiledefault)
+
 ### aws.transfer/workflow
 * [default](aws/aws.transfer/default/types.md#resource-awstransferworkflowdefault)
 

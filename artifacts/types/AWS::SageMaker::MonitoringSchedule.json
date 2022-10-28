@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-MonitoringSchedule",
   "type": "AWS::SageMaker::MonitoringSchedule",
-  "time": "2022-06-20T18:14:05.317Z",
+  "time": "2022-10-18T15:27:14.999Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -19,6 +19,49 @@
             "$ref": "#/definitions/StatisticsResource"
           }
         },
+        "type": "object"
+      },
+      "BatchTransformInput": {
+        "additionalProperties": false,
+        "description": "The batch transform input for a monitoring job.",
+        "properties": {
+          "DataCapturedDestinationS3Uri": {
+            "description": "A URI that identifies the Amazon S3 storage location where Batch Transform Job captures data.",
+            "maxLength": 512,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          },
+          "DatasetFormat": {
+            "$ref": "#/definitions/DatasetFormat"
+          },
+          "LocalPath": {
+            "description": "Path to the filesystem where the endpoint data is available to the container.",
+            "maxLength": 256,
+            "pattern": ".*",
+            "type": "string"
+          },
+          "S3DataDistributionType": {
+            "description": "Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defauts to FullyReplicated",
+            "enum": [
+              "FullyReplicated",
+              "ShardedByS3Key"
+            ],
+            "type": "string"
+          },
+          "S3InputMode": {
+            "description": "Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.",
+            "enum": [
+              "Pipe",
+              "File"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "DataCapturedDestinationS3Uri",
+          "DatasetFormat",
+          "LocalPath"
+        ],
         "type": "object"
       },
       "ClusterConfig": {
@@ -73,6 +116,31 @@
         "minLength": 1,
         "type": "string"
       },
+      "Csv": {
+        "description": "The CSV format",
+        "properties": {
+          "Header": {
+            "description": "A boolean flag indicating if given CSV has header",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "DatasetFormat": {
+        "description": "The dataset format of the data to monitor",
+        "properties": {
+          "Csv": {
+            "$ref": "#/definitions/Csv"
+          },
+          "Json": {
+            "$ref": "#/definitions/Json"
+          },
+          "Parquet": {
+            "$ref": "#/definitions/Parquet"
+          }
+        },
+        "type": "object"
+      },
       "EndpointInput": {
         "additionalProperties": false,
         "description": "The endpoint for a monitoring job.",
@@ -114,6 +182,16 @@
         "maxLength": 63,
         "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9])*",
         "type": "string"
+      },
+      "Json": {
+        "description": "The Json format",
+        "properties": {
+          "Line": {
+            "description": "A boolean flag indicating if it is JSON line format",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
       },
       "MonitoringAppSpecification": {
         "additionalProperties": false,
@@ -216,13 +294,13 @@
         "additionalProperties": false,
         "description": "The inputs for a monitoring job.",
         "properties": {
+          "BatchTransformInput": {
+            "$ref": "#/definitions/BatchTransformInput"
+          },
           "EndpointInput": {
             "$ref": "#/definitions/EndpointInput"
           }
         },
-        "required": [
-          "EndpointInput"
-        ],
         "type": "object"
       },
       "MonitoringInputs": {
@@ -399,6 +477,10 @@
           }
         },
         "type": "object"
+      },
+      "Parquet": {
+        "description": "A flag indicating if the dataset format is Parquet",
+        "type": "boolean"
       },
       "S3Output": {
         "additionalProperties": false,

@@ -46,7 +46,7 @@
 
 ## NetworkConfiguration
 ### Properties
-* **EgressConfiguration**: [EgressConfiguration](#egressconfiguration) (Required)
+* **EgressConfiguration**: [EgressConfiguration](#egressconfiguration)
 
 ## EgressConfiguration
 ### Properties

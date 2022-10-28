@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-TopicRule",
   "type": "AWS::IoT::TopicRule",
-  "time": "2022-06-22T15:19:30.679Z",
+  "time": "2022-10-27T22:06:55.362Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -52,6 +52,9 @@
           },
           "Lambda": {
             "$ref": "#/definitions/LambdaAction"
+          },
+          "Location": {
+            "$ref": "#/definitions/LocationAction"
           },
           "OpenSearch": {
             "$ref": "#/definitions/OpenSearchAction"
@@ -486,6 +489,37 @@
         },
         "type": "object"
       },
+      "LocationAction": {
+        "additionalProperties": false,
+        "properties": {
+          "DeviceId": {
+            "type": "string"
+          },
+          "Latitude": {
+            "type": "string"
+          },
+          "Longitude": {
+            "type": "string"
+          },
+          "RoleArn": {
+            "type": "string"
+          },
+          "Timestamp": {
+            "$ref": "#/definitions/Timestamp"
+          },
+          "TrackerName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "RoleArn",
+          "TrackerName",
+          "DeviceId",
+          "Latitude",
+          "Longitude"
+        ],
+        "type": "object"
+      },
       "OpenSearchAction": {
         "additionalProperties": false,
         "properties": {
@@ -557,6 +591,40 @@
       "RepublishAction": {
         "additionalProperties": false,
         "properties": {
+          "Headers": {
+            "additionalProperties": false,
+            "properties": {
+              "ContentType": {
+                "maxLength": 1024,
+                "minLength": 0,
+                "type": "string"
+              },
+              "CorrelationData": {
+                "maxLength": 1024,
+                "minLength": 0,
+                "type": "string"
+              },
+              "MessageExpiry": {
+                "maxLength": 1024,
+                "minLength": 0,
+                "type": "string"
+              },
+              "PayloadFormatIndicator": {
+                "maxLength": 1024,
+                "minLength": 0,
+                "type": "string"
+              },
+              "ResponseTopic": {
+                "maxLength": 1024,
+                "minLength": 0,
+                "type": "string"
+              },
+              "UserProperties": {
+                "$ref": "#/definitions/UserProperties"
+              }
+            },
+            "type": "object"
+          },
           "Qos": {
             "type": "integer"
           },
@@ -692,6 +760,21 @@
         ],
         "type": "object"
       },
+      "Timestamp": {
+        "additionalProperties": false,
+        "properties": {
+          "Unit": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value"
+        ],
+        "type": "object"
+      },
       "TimestreamAction": {
         "additionalProperties": false,
         "properties": {
@@ -787,6 +870,34 @@
         "required": [
           "Actions",
           "Sql"
+        ],
+        "type": "object"
+      },
+      "UserProperties": {
+        "items": {
+          "$ref": "#/definitions/UserProperty"
+        },
+        "maxItems": 100,
+        "minItems": 1,
+        "type": "array"
+      },
+      "UserProperty": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 1024,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 1024,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
         ],
         "type": "object"
       }

@@ -166,11 +166,17 @@
 
 ## AWS.Evidently/ProjectProperties
 ### Properties
+* **AppConfigResource**: [AppConfigResourceObject](#appconfigresourceobject)
 * **Arn**: string (ReadOnly)
 * **DataDelivery**: [DataDeliveryObject](#datadeliveryobject)
 * **Description**: string
 * **Name**: string (Required)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AppConfigResourceObject
+### Properties
+* **ApplicationId**: string (Required)
+* **EnvironmentId**: string (Required)
 
 ## DataDeliveryObject
 ### Properties

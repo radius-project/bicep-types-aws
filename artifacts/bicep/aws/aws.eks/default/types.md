@@ -53,10 +53,12 @@
 * **EncryptionConfig**: [EncryptionConfig](#encryptionconfig)[]
 * **EncryptionConfigKeyArn**: string (ReadOnly): Amazon Resource Name (ARN) or alias of the customer master key (CMK).
 * **Endpoint**: string (ReadOnly): The endpoint for your Kubernetes API server, such as https://5E1D0CEXAMPLEA591B746AFC5AB30262.yl4.us-west-2.eks.amazonaws.com.
+* **Id**: string (ReadOnly): The unique ID given to your cluster.
 * **KubernetesNetworkConfig**: [KubernetesNetworkConfig](#kubernetesnetworkconfig)
 * **Logging**: [Logging](#logging)
 * **Name**: string: The unique name to give to your cluster.
 * **OpenIdConnectIssuerUrl**: string (ReadOnly): The issuer URL for the cluster's OIDC identity provider, such as https://oidc.eks.us-west-2.amazonaws.com/id/EXAMPLED539D4633E53DE1B716D3041E. If you need to remove https:// from this output value, you can include the following code in your template.
+* **OutpostConfig**: [OutpostConfig](#outpostconfig)
 * **ResourcesVpcConfig**: [ResourcesVpcConfig](#resourcesvpcconfig) (Required)
 * **RoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
@@ -87,6 +89,11 @@
 
 ## EnabledTypes
 ### Properties
+
+## OutpostConfig
+### Properties
+* **ControlPlaneInstanceType**: string (Required): Specify the Instance type of the machines that should be used to create your cluster.
+* **OutpostArns**: string[] (Required): Specify one or more Arn(s) of Outpost(s) on which you would like to create your cluster.
 
 ## ResourcesVpcConfig
 ### Properties

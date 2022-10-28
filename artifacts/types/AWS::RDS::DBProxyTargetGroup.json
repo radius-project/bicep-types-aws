@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBProxyTargetGroup",
   "type": "AWS::RDS::DBProxyTargetGroup",
-  "time": "2021-12-14T03:25:09.903Z",
+  "time": "2022-09-30T17:08:12.737Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -10,6 +10,7 @@
     ],
     "definitions": {
       "ConnectionPoolConfigurationInfoFormat": {
+        "additionalProperties": false,
         "properties": {
           "ConnectionBorrowTimeout": {
             "description": "The number of seconds for a proxy to wait for a connection to become available in the connection pool.",
@@ -33,6 +34,7 @@
           },
           "SessionPinningFilters": {
             "description": "Each item in the list represents a class of SQL operations that normally cause all later statements in a session using a proxy to be pinned to the same underlying database connection.",
+            "insertionOrder": false,
             "items": {
               "type": "string"
             },
@@ -85,12 +87,14 @@
         "$ref": "#/definitions/ConnectionPoolConfigurationInfoFormat"
       },
       "DBClusterIdentifiers": {
+        "insertionOrder": false,
         "items": {
           "type": "string"
         },
         "type": "array"
       },
       "DBInstanceIdentifiers": {
+        "insertionOrder": false,
         "items": {
           "type": "string"
         },

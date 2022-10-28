@@ -40,6 +40,7 @@
 * **LoggingInfo**: [LoggingInfo](#logginginfo)
 * **NumberOfBrokerNodes**: int (Required)
 * **OpenMonitoring**: [OpenMonitoring](#openmonitoring)
+* **StorageMode**: string
 * **Tags**: [Cluster_Tags](#clustertags): A key-value pair to associate with a resource.
 
 ## BrokerNodeGroupInfo

@@ -523,10 +523,14 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 
 ## SalesforceDestinationProperties
 ### Properties
+* **DataTransferApi**: [DataTransferApi](#datatransferapi)
 * **ErrorHandlingConfig**: [ErrorHandlingConfig](#errorhandlingconfig)
 * **IdFieldNames**: string[]: List of fields used as ID when performing a write operation.
 * **Object**: [Object](#object) (Required)
 * **WriteOperationType**: [WriteOperationType](#writeoperationtype)
+
+## DataTransferApi
+### Properties
 
 ## SAPODataDestinationProperties
 ### Properties
@@ -645,6 +649,7 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 
 ## SalesforceSourceProperties
 ### Properties
+* **DataTransferApi**: [DataTransferApi](#datatransferapi)
 * **EnableDynamicFieldUpdate**: [EnableDynamicFieldUpdate](#enabledynamicfieldupdate)
 * **IncludeDeletedRecords**: [IncludeDeletedRecords](#includedeletedrecords)
 * **Object**: [Object](#object) (Required)
