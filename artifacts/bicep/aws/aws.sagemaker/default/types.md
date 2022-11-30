@@ -3,67 +3,67 @@
 ## Resource AWS.SageMaker/AppImageConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.SageMaker/AppImageConfigProperties](#awssagemakerappimageconfigproperties) (Required): properties of the resource
 
 ## Resource AWS.SageMaker/Device@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.SageMaker/DeviceProperties](#awssagemakerdeviceproperties) (Required): properties of the resource
 
 ## Resource AWS.SageMaker/DeviceFleet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.SageMaker/DeviceFleetProperties](#awssagemakerdevicefleetproperties) (Required): properties of the resource
 
 ## Resource AWS.SageMaker/Domain@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.SageMaker/DomainProperties](#awssagemakerdomainproperties) (Required): properties of the resource
 
 ## Resource AWS.SageMaker/Image@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ImageProperties](#awssagemakerimageproperties) (Required): properties of the resource
 
 ## Resource AWS.SageMaker/ModelPackage@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ModelPackageProperties](#awssagemakermodelpackageproperties): properties of the resource
 
 ## Resource AWS.SageMaker/ModelPackageGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ModelPackageGroupProperties](#awssagemakermodelpackagegroupproperties) (Required): properties of the resource
 
 ## Resource AWS.SageMaker/MonitoringSchedule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.SageMaker/MonitoringScheduleProperties](#awssagemakermonitoringscheduleproperties) (Required): properties of the resource
 
 ## Resource AWS.SageMaker/Pipeline@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.SageMaker/PipelineProperties](#awssagemakerpipelineproperties) (Required): properties of the resource
 
 ## Resource AWS.SageMaker/Project@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ProjectProperties](#awssagemakerprojectproperties) (Required): properties of the resource
 
 ## Resource AWS.SageMaker/UserProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.SageMaker/UserProfileProperties](#awssagemakeruserprofileproperties) (Required): properties of the resource
 
 ## AWS.SageMaker/AppImageConfigProperties

@@ -3,7 +3,7 @@
 ## Resource AWS.InspectorV2/Filter@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.InspectorV2/FilterProperties](#awsinspectorv2filterproperties) (Required): properties of the resource
 
 ## AWS.InspectorV2/FilterProperties

@@ -3,13 +3,13 @@
 ## Resource AWS.CloudTrail/EventDataStore@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.CloudTrail/EventDataStoreProperties](#awscloudtraileventdatastoreproperties): properties of the resource
 
 ## Resource AWS.CloudTrail/Trail@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.CloudTrail/TrailProperties](#awscloudtrailtrailproperties) (Required): properties of the resource
 
 ## AWS.CloudTrail/EventDataStoreProperties

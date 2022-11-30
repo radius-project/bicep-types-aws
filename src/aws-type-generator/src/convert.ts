@@ -64,7 +64,7 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
                     console.warn(`could not resolve property ${p}`)
                     return
                 }
-                
+
                 property = current.Properties[part]
                 if (!property) {
                     console.warn(`could not resolve property ${p}`)
@@ -90,9 +90,9 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
     })
 
     const body = factory.addType(new ObjectType(
-        typeName, 
-        { 
-            name: new ObjectProperty(factory.lookupBuiltInType(BuiltInTypeKind.String), ObjectPropertyFlags.Required, "the resource name"),
+        typeName,
+        {
+            name: new ObjectProperty(factory.lookupBuiltInType(BuiltInTypeKind.String), ObjectPropertyFlags.None, "the resource name"),
             properties: new ObjectProperty(properties, propertiesFlags, "properties of the resource")
         },
         undefined))
@@ -194,7 +194,6 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
                     if (schema.required && schema.required.includes(name)) {
                         flags |= ObjectPropertyFlags.Required
                     }
-                    
                     properties[name] = new ObjectProperty(type, flags, propertySchema.description)
                 })
             }

@@ -3,13 +3,13 @@
 ## Resource AWS.SSMIncidents/ReplicationSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.SSMIncidents/ReplicationSetProperties](#awsssmincidentsreplicationsetproperties) (Required): properties of the resource
 
 ## Resource AWS.SSMIncidents/ResponsePlan@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.SSMIncidents/ResponsePlanProperties](#awsssmincidentsresponseplanproperties) (Required): properties of the resource
 
 ## AWS.SSMIncidents/ReplicationSetProperties

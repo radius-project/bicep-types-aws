@@ -3,13 +3,13 @@
 ## Resource AWS.ElasticLoadBalancingV2/Listener@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.ElasticLoadBalancingV2/ListenerProperties](#awselasticloadbalancingv2listenerproperties) (Required): properties of the resource
 
 ## Resource AWS.ElasticLoadBalancingV2/ListenerRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.ElasticLoadBalancingV2/ListenerRuleProperties](#awselasticloadbalancingv2listenerruleproperties) (Required): properties of the resource
 
 ## AWS.ElasticLoadBalancingV2/ListenerProperties

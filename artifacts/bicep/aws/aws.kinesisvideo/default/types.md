@@ -3,13 +3,13 @@
 ## Resource AWS.KinesisVideo/SignalingChannel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.KinesisVideo/SignalingChannelProperties](#awskinesisvideosignalingchannelproperties): properties of the resource
 
 ## Resource AWS.KinesisVideo/Stream@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.KinesisVideo/StreamProperties](#awskinesisvideostreamproperties): properties of the resource
 
 ## AWS.KinesisVideo/SignalingChannelProperties

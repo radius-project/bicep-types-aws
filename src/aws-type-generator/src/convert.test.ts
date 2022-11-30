@@ -23,7 +23,7 @@ describe('convert', () => {
             {
                 "name": new ObjectProperty(
                     new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
-                    ObjectPropertyFlags.Required,
+                    ObjectPropertyFlags.None,
                     "the resource name"),
 
                 "properties": new ObjectProperty(

@@ -3,19 +3,19 @@
 ## Resource AWS.MediaPackage/Channel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.MediaPackage/ChannelProperties](#awsmediapackagechannelproperties) (Required): properties of the resource
 
 ## Resource AWS.MediaPackage/OriginEndpoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.MediaPackage/OriginEndpointProperties](#awsmediapackageoriginendpointproperties) (Required): properties of the resource
 
 ## Resource AWS.MediaPackage/PackagingGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.MediaPackage/PackagingGroupProperties](#awsmediapackagepackaginggroupproperties) (Required): properties of the resource
 
 ## AWS.MediaPackage/ChannelProperties

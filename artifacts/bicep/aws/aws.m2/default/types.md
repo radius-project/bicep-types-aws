@@ -3,13 +3,13 @@
 ## Resource AWS.M2/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.M2/ApplicationProperties](#awsm2applicationproperties) (Required): properties of the resource
 
 ## Resource AWS.M2/Environment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.M2/EnvironmentProperties](#awsm2environmentproperties) (Required): properties of the resource
 
 ## AWS.M2/ApplicationProperties

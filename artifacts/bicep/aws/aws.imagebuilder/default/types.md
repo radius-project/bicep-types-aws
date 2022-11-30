@@ -3,19 +3,19 @@
 ## Resource AWS.ImageBuilder/DistributionConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.ImageBuilder/DistributionConfigurationProperties](#awsimagebuilderdistributionconfigurationproperties) (Required): properties of the resource
 
 ## Resource AWS.ImageBuilder/ImagePipeline@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.ImageBuilder/ImagePipelineProperties](#awsimagebuilderimagepipelineproperties): properties of the resource
 
 ## Resource AWS.ImageBuilder/InfrastructureConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.ImageBuilder/InfrastructureConfigurationProperties](#awsimagebuilderinfrastructureconfigurationproperties) (Required): properties of the resource
 
 ## AWS.ImageBuilder/DistributionConfigurationProperties

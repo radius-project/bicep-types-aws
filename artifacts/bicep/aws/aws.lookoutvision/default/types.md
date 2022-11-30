@@ -3,7 +3,7 @@
 ## Resource AWS.LookoutVision/Project@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.LookoutVision/ProjectProperties](#awslookoutvisionprojectproperties) (Required): properties of the resource
 
 ## AWS.LookoutVision/ProjectProperties

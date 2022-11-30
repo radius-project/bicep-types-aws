@@ -3,13 +3,13 @@
 ## Resource AWS.ServiceCatalog/CloudFormationProvisionedProduct@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.ServiceCatalog/CloudFormationProvisionedProductProperties](#awsservicecatalogcloudformationprovisionedproductproperties): properties of the resource
 
 ## Resource AWS.ServiceCatalog/ServiceAction@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.ServiceCatalog/ServiceActionProperties](#awsservicecatalogserviceactionproperties) (Required): properties of the resource
 
 ## AWS.ServiceCatalog/CloudFormationProvisionedProductProperties

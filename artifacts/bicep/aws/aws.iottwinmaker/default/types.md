@@ -3,25 +3,25 @@
 ## Resource AWS.IoTTwinMaker/ComponentType@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.IoTTwinMaker/ComponentTypeProperties](#awsiottwinmakercomponenttypeproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTTwinMaker/Entity@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.IoTTwinMaker/EntityProperties](#awsiottwinmakerentityproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTTwinMaker/Scene@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.IoTTwinMaker/SceneProperties](#awsiottwinmakersceneproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTTwinMaker/Workspace@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.IoTTwinMaker/WorkspaceProperties](#awsiottwinmakerworkspaceproperties) (Required): properties of the resource
 
 ## AWS.IoTTwinMaker/ComponentTypeProperties

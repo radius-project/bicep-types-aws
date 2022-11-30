@@ -3,7 +3,7 @@
 ## Resource AWS.MWAA/Environment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.MWAA/EnvironmentProperties](#awsmwaaenvironmentproperties) (Required): properties of the resource
 
 ## AWS.MWAA/EnvironmentProperties

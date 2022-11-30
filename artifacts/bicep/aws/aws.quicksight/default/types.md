@@ -3,37 +3,37 @@
 ## Resource AWS.QuickSight/Analysis@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.QuickSight/AnalysisProperties](#awsquicksightanalysisproperties) (Required): properties of the resource
 
 ## Resource AWS.QuickSight/Dashboard@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.QuickSight/DashboardProperties](#awsquicksightdashboardproperties) (Required): properties of the resource
 
 ## Resource AWS.QuickSight/DataSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.QuickSight/DataSetProperties](#awsquicksightdatasetproperties): properties of the resource
 
 ## Resource AWS.QuickSight/DataSource@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.QuickSight/DataSourceProperties](#awsquicksightdatasourceproperties): properties of the resource
 
 ## Resource AWS.QuickSight/Template@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.QuickSight/TemplateProperties](#awsquicksighttemplateproperties) (Required): properties of the resource
 
 ## Resource AWS.QuickSight/Theme@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.QuickSight/ThemeProperties](#awsquicksightthemeproperties) (Required): properties of the resource
 
 ## AWS.QuickSight/AnalysisProperties

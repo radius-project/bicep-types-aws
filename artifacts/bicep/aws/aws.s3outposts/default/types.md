@@ -3,19 +3,19 @@
 ## Resource AWS.S3Outposts/AccessPoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.S3Outposts/AccessPointProperties](#awss3outpostsaccesspointproperties) (Required): properties of the resource
 
 ## Resource AWS.S3Outposts/Bucket@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.S3Outposts/BucketProperties](#awss3outpostsbucketproperties) (Required): properties of the resource
 
 ## Resource AWS.S3Outposts/BucketPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.S3Outposts/BucketPolicyProperties](#awss3outpostsbucketpolicyproperties) (Required): properties of the resource
 
 ## AWS.S3Outposts/AccessPointProperties

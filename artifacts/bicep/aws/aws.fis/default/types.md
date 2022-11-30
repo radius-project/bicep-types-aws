@@ -3,7 +3,7 @@
 ## Resource AWS.FIS/ExperimentTemplate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.FIS/ExperimentTemplateProperties](#awsfisexperimenttemplateproperties) (Required): properties of the resource
 
 ## AWS.FIS/ExperimentTemplateProperties

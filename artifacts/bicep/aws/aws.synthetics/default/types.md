@@ -3,13 +3,13 @@
 ## Resource AWS.Synthetics/Canary@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.Synthetics/CanaryProperties](#awssyntheticscanaryproperties) (Required): properties of the resource
 
 ## Resource AWS.Synthetics/Group@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.Synthetics/GroupProperties](#awssyntheticsgroupproperties) (Required): properties of the resource
 
 ## AWS.Synthetics/CanaryProperties

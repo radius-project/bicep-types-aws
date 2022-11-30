@@ -3,19 +3,19 @@
 ## Resource AWS.MSK/BatchScramSecret@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.MSK/BatchScramSecretProperties](#awsmskbatchscramsecretproperties) (Required): properties of the resource
 
 ## Resource AWS.MSK/Cluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.MSK/ClusterProperties](#awsmskclusterproperties) (Required): properties of the resource
 
 ## Resource AWS.MSK/Configuration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.MSK/ConfigurationProperties](#awsmskconfigurationproperties) (Required): properties of the resource
 
 ## AWS.MSK/BatchScramSecretProperties
