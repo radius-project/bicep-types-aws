@@ -3,7 +3,7 @@
 ## Resource AWS.Chatbot/SlackChannelConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.Chatbot/SlackChannelConfigurationProperties](#awschatbotslackchannelconfigurationproperties) (Required): properties of the resource
 
 ## AWS.Chatbot/SlackChannelConfigurationProperties

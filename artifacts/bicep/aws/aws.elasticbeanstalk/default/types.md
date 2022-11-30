@@ -3,13 +3,13 @@
 ## Resource AWS.ElasticBeanstalk/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.ElasticBeanstalk/ApplicationProperties](#awselasticbeanstalkapplicationproperties): properties of the resource
 
 ## Resource AWS.ElasticBeanstalk/ApplicationVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.ElasticBeanstalk/ApplicationVersionProperties](#awselasticbeanstalkapplicationversionproperties) (Required): properties of the resource
 
 ## AWS.ElasticBeanstalk/ApplicationProperties

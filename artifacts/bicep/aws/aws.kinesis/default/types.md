@@ -3,7 +3,7 @@
 ## Resource AWS.Kinesis/Stream@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.Kinesis/StreamProperties](#awskinesisstreamproperties): properties of the resource
 
 ## AWS.Kinesis/StreamProperties

@@ -3,19 +3,19 @@
 ## Resource AWS.Lex/Bot@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.Lex/BotProperties](#awslexbotproperties) (Required): properties of the resource
 
 ## Resource AWS.Lex/BotAlias@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.Lex/BotAliasProperties](#awslexbotaliasproperties) (Required): properties of the resource
 
 ## Resource AWS.Lex/ResourcePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.Lex/ResourcePolicyProperties](#awslexresourcepolicyproperties) (Required): properties of the resource
 
 ## AWS.Lex/BotProperties

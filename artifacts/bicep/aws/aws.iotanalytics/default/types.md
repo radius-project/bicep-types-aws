@@ -3,25 +3,25 @@
 ## Resource AWS.IoTAnalytics/Channel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.IoTAnalytics/ChannelProperties](#awsiotanalyticschannelproperties): properties of the resource
 
 ## Resource AWS.IoTAnalytics/Dataset@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.IoTAnalytics/DatasetProperties](#awsiotanalyticsdatasetproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTAnalytics/Datastore@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.IoTAnalytics/DatastoreProperties](#awsiotanalyticsdatastoreproperties): properties of the resource
 
 ## Resource AWS.IoTAnalytics/Pipeline@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.IoTAnalytics/PipelineProperties](#awsiotanalyticspipelineproperties) (Required): properties of the resource
 
 ## AWS.IoTAnalytics/ChannelProperties

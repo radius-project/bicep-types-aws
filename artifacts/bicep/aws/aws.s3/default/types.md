@@ -3,25 +3,25 @@
 ## Resource AWS.S3/AccessPoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.S3/AccessPointProperties](#awss3accesspointproperties) (Required): properties of the resource
 
 ## Resource AWS.S3/Bucket@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.S3/BucketProperties](#awss3bucketproperties): properties of the resource
 
 ## Resource AWS.S3/MultiRegionAccessPointPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.S3/MultiRegionAccessPointPolicyProperties](#awss3multiregionaccesspointpolicyproperties) (Required): properties of the resource
 
 ## Resource AWS.S3/StorageLens@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.S3/StorageLensProperties](#awss3storagelensproperties) (Required): properties of the resource
 
 ## AWS.S3/AccessPointProperties

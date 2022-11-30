@@ -3,7 +3,7 @@
 ## Resource AWS.MediaTailor/PlaybackConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.MediaTailor/PlaybackConfigurationProperties](#awsmediatailorplaybackconfigurationproperties) (Required): properties of the resource
 
 ## AWS.MediaTailor/PlaybackConfigurationProperties

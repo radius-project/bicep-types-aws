@@ -3,7 +3,7 @@
 ## Resource AWS.AuditManager/Assessment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.AuditManager/AssessmentProperties](#awsauditmanagerassessmentproperties): properties of the resource
 
 ## AWS.AuditManager/AssessmentProperties

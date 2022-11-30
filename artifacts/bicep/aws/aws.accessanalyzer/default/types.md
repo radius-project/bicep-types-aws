@@ -3,7 +3,7 @@
 ## Resource AWS.AccessAnalyzer/Analyzer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.AccessAnalyzer/AnalyzerProperties](#awsaccessanalyzeranalyzerproperties) (Required): properties of the resource
 
 ## AWS.AccessAnalyzer/AnalyzerProperties

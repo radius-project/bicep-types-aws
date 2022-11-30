@@ -3,37 +3,37 @@
 ## Resource AWS.IAM/InstanceProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.IAM/InstanceProfileProperties](#awsiaminstanceprofileproperties) (Required): properties of the resource
 
 ## Resource AWS.IAM/OIDCProvider@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.IAM/OIDCProviderProperties](#awsiamoidcproviderproperties) (Required): properties of the resource
 
 ## Resource AWS.IAM/Role@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.IAM/RoleProperties](#awsiamroleproperties) (Required): properties of the resource
 
 ## Resource AWS.IAM/SAMLProvider@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.IAM/SAMLProviderProperties](#awsiamsamlproviderproperties) (Required): properties of the resource
 
 ## Resource AWS.IAM/ServerCertificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.IAM/ServerCertificateProperties](#awsiamservercertificateproperties): properties of the resource
 
 ## Resource AWS.IAM/VirtualMFADevice@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.IAM/VirtualMFADeviceProperties](#awsiamvirtualmfadeviceproperties) (Required): properties of the resource
 
 ## AWS.IAM/InstanceProfileProperties

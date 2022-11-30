@@ -3,19 +3,19 @@
 ## Resource AWS.AppStream/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.AppStream/ApplicationProperties](#awsappstreamapplicationproperties) (Required): properties of the resource
 
 ## Resource AWS.AppStream/DirectoryConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.AppStream/DirectoryConfigProperties](#awsappstreamdirectoryconfigproperties) (Required): properties of the resource
 
 ## Resource AWS.AppStream/Entitlement@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.AppStream/EntitlementProperties](#awsappstreamentitlementproperties) (Required): properties of the resource
 
 ## AWS.AppStream/ApplicationProperties

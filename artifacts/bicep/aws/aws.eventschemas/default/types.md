@@ -3,7 +3,7 @@
 ## Resource AWS.EventSchemas/RegistryPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.EventSchemas/RegistryPolicyProperties](#awseventschemasregistrypolicyproperties) (Required): properties of the resource
 
 ## AWS.EventSchemas/RegistryPolicyProperties

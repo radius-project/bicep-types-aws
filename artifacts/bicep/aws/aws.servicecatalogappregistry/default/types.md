@@ -3,13 +3,13 @@
 ## Resource AWS.ServiceCatalogAppRegistry/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.ServiceCatalogAppRegistry/ApplicationProperties](#awsservicecatalogappregistryapplicationproperties) (Required): properties of the resource
 
 ## Resource AWS.ServiceCatalogAppRegistry/AttributeGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.ServiceCatalogAppRegistry/AttributeGroupProperties](#awsservicecatalogappregistryattributegroupproperties) (Required): properties of the resource
 
 ## AWS.ServiceCatalogAppRegistry/ApplicationProperties

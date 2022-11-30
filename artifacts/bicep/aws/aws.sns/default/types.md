@@ -3,7 +3,7 @@
 ## Resource AWS.SNS/Topic@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.SNS/TopicProperties](#awssnstopicproperties): properties of the resource
 
 ## AWS.SNS/TopicProperties

@@ -3,13 +3,13 @@
 ## Resource AWS.AppFlow/ConnectorProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.AppFlow/ConnectorProfileProperties](#awsappflowconnectorprofileproperties) (Required): properties of the resource
 
 ## Resource AWS.AppFlow/Flow@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.AppFlow/FlowProperties](#awsappflowflowproperties) (Required): properties of the resource
 
 ## AWS.AppFlow/ConnectorProfileProperties

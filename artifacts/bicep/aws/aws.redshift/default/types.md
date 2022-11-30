@@ -3,43 +3,43 @@
 ## Resource AWS.Redshift/Cluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.Redshift/ClusterProperties](#awsredshiftclusterproperties) (Required): properties of the resource
 
 ## Resource AWS.Redshift/ClusterParameterGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.Redshift/ClusterParameterGroupProperties](#awsredshiftclusterparametergroupproperties) (Required): properties of the resource
 
 ## Resource AWS.Redshift/ClusterSubnetGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.Redshift/ClusterSubnetGroupProperties](#awsredshiftclustersubnetgroupproperties) (Required): properties of the resource
 
 ## Resource AWS.Redshift/EndpointAccess@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.Redshift/EndpointAccessProperties](#awsredshiftendpointaccessproperties) (Required): properties of the resource
 
 ## Resource AWS.Redshift/EndpointAuthorization@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.Redshift/EndpointAuthorizationProperties](#awsredshiftendpointauthorizationproperties) (Required): properties of the resource
 
 ## Resource AWS.Redshift/EventSubscription@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.Redshift/EventSubscriptionProperties](#awsredshifteventsubscriptionproperties) (Required): properties of the resource
 
 ## Resource AWS.Redshift/ScheduledAction@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.Redshift/ScheduledActionProperties](#awsredshiftscheduledactionproperties) (Required): properties of the resource
 
 ## AWS.Redshift/ClusterProperties

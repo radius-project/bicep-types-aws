@@ -3,25 +3,25 @@
 ## Resource AWS.RoboMaker/Fleet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.RoboMaker/FleetProperties](#awsrobomakerfleetproperties): properties of the resource
 
 ## Resource AWS.RoboMaker/Robot@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.RoboMaker/RobotProperties](#awsrobomakerrobotproperties) (Required): properties of the resource
 
 ## Resource AWS.RoboMaker/RobotApplication@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.RoboMaker/RobotApplicationProperties](#awsrobomakerrobotapplicationproperties) (Required): properties of the resource
 
 ## Resource AWS.RoboMaker/SimulationApplication@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **name**: string (Required): the resource name
+* **name**: string: the resource name
 * **properties**: [AWS.RoboMaker/SimulationApplicationProperties](#awsrobomakersimulationapplicationproperties) (Required): properties of the resource
 
 ## AWS.RoboMaker/FleetProperties
