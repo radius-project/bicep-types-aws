@@ -5,7 +5,7 @@ import { groupBy, keys, orderBy, sortBy, Dictionary } from 'lodash';
 import { TypeBaseKind } from './types';
 
 interface TypeIndex {
-    Types: Dictionary<TypeIndexEntry>;
+    Resources: Dictionary<TypeIndexEntry>;
   }
   
   interface TypeIndexEntry {
@@ -28,7 +28,7 @@ export async function buildTypeIndex(baseDir: string) {
 function generateIndexMarkdown(index: TypeIndex) {
     let markdown = '# Bicep Types\n';
   
-    const byProvider = groupBy(keys(index.Types), x => x.split('/')[0].toLowerCase());
+    const byProvider = groupBy(keys(index.Resources), x => x.split('/')[0].toLowerCase());
     for (const namespace of sortBy(keys(byProvider), x => x.toLowerCase())) {
       markdown += `## ${namespace}\n`;
   
@@ -38,7 +38,7 @@ function generateIndexMarkdown(index: TypeIndex) {
   
         for (const typeString of sortBy(byResourceType[resourceType], x => x.toLowerCase())) {
           const version = typeString.split('@')[1];
-          const jsonPath = index.Types[typeString].RelativePath;
+          const jsonPath = index.Resources[typeString].RelativePath;
           const anchor = `resource-${typeString.replace(/[^a-zA-Z0-9-]/g, '').toLowerCase()}`
   
           markdown += `* [${version}](${path.dirname(jsonPath)}/types.md#${anchor})\n`;
@@ -84,7 +84,7 @@ async function buildIndex(baseDir: string): Promise<TypeIndex> {
     }
 
     return {
-        Types: typeDictionary,
+        Resources: typeDictionary,
     }
 }
 
