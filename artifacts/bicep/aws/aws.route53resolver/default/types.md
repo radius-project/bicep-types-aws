@@ -32,7 +32,7 @@
 * **DomainCount**: int (ReadOnly): Count
 * **DomainFileUrl**: string (WriteOnly): S3 URL to import domains from.
 * **Domains**: [Domains](#domains) (WriteOnly)
-* **Id**: string (ReadOnly): ResourceId
+* **Id**: string (ReadOnly, Identifier): ResourceId
 * **ManagedOwnerName**: string (ReadOnly): ServicePrincipal
 * **ModificationTime**: string (ReadOnly): Rfc3339TimeString
 * **Name**: string: FirewallDomainListName
@@ -54,7 +54,7 @@
 * **CreationTime**: string (ReadOnly): Rfc3339TimeString
 * **CreatorRequestId**: string (ReadOnly): The id of the creator request.
 * **FirewallRules**: [FirewallRule](#firewallrule)[]: FirewallRules
-* **Id**: string (ReadOnly): ResourceId
+* **Id**: string (ReadOnly, Identifier): ResourceId
 * **ModificationTime**: string (ReadOnly): Rfc3339TimeString
 * **Name**: string: FirewallRuleGroupName
 * **OwnerId**: string (ReadOnly): AccountId
@@ -85,7 +85,7 @@
 * **CreationTime**: string (ReadOnly): Rfc3339TimeString
 * **CreatorRequestId**: string (ReadOnly): The id of the creator request.
 * **FirewallRuleGroupId**: string (Required): FirewallRuleGroupId
-* **Id**: string (ReadOnly): Id
+* **Id**: string (ReadOnly, Identifier): Id
 * **ManagedOwnerName**: string (ReadOnly): ServicePrincipal
 * **ModificationTime**: string (ReadOnly): Rfc3339TimeString
 * **MutationProtection**: string: MutationProtectionStatus
@@ -107,7 +107,7 @@
 * **DomainName**: string (Required): DNS queries for this domain name are forwarded to the IP addresses that are specified in TargetIps
 * **Name**: string: The name for the Resolver rule
 * **ResolverEndpointId**: string: The ID of the endpoint that the rule is associated with.
-* **ResolverRuleId**: string (ReadOnly): The ID of the endpoint that the rule is associated with.
+* **ResolverRuleId**: string (ReadOnly, Identifier): The ID of the endpoint that the rule is associated with.
 * **RuleType**: string (Required): When you want to forward DNS queries for specified domain name to resolvers on your network, specify FORWARD. When you have a forwarding rule to forward DNS queries for a domain to your network and you want Resolver to process queries for a subdomain of that domain, specify SYSTEM.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TargetIps**: [TargetAddress](#targetaddress)[]: An array that contains the IP addresses and ports that an outbound endpoint forwards DNS queries to. Typically, these are the IP addresses of DNS resolvers on your network. Specify IPv4 addresses. IPv6 is not supported.

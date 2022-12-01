@@ -20,7 +20,7 @@
 
 ## AWS.GlobalAccelerator/AcceleratorProperties
 ### Properties
-* **AcceleratorArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the accelerator.
+* **AcceleratorArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the accelerator.
 * **DnsName**: string (ReadOnly): The Domain Name System (DNS) name that Global Accelerator creates that points to your accelerator's static IPv4 addresses.
 * **DualStackDnsName**: string (ReadOnly): The Domain Name System (DNS) name that Global Accelerator creates that points to your accelerator's static IPv4 and IPv6 addresses.
 * **Enabled**: bool: Indicates whether an accelerator is enabled. The value is true or false.
@@ -42,7 +42,7 @@
 ## AWS.GlobalAccelerator/EndpointGroupProperties
 ### Properties
 * **EndpointConfigurations**: [EndpointConfiguration](#endpointconfiguration)[]: The list of endpoint objects.
-* **EndpointGroupArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the endpoint group
+* **EndpointGroupArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the endpoint group
 * **EndpointGroupRegion**: string (Required): The name of the AWS Region where the endpoint group is located
 * **HealthCheckIntervalSeconds**: int: The time in seconds between each health check for an endpoint. Must be a value of 10 or 30
 * **HealthCheckPath**: string
@@ -71,7 +71,7 @@
 ### Properties
 * **AcceleratorArn**: string (Required): The Amazon Resource Name (ARN) of the accelerator.
 * **ClientAffinity**: string: Client affinity lets you direct all requests from a user to the same endpoint.
-* **ListenerArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the listener.
+* **ListenerArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the listener.
 * **PortRanges**: [PortRange](#portrange)[] (Required)
 * **Protocol**: string (Required): The protocol for the listener.
 

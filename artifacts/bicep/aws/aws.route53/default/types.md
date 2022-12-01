@@ -27,7 +27,7 @@
 ## AWS.Route53/CidrCollectionProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon resource name (ARN) to uniquely identify the AWS resource.
-* **Id**: string (ReadOnly): UUID of the CIDR collection.
+* **Id**: string (ReadOnly, Identifier): UUID of the CIDR collection.
 * **Locations**: [Location](#location)[]: A complex type that contains information about the list of CIDR locations.
 * **Name**: string (Required): A unique name for the CIDR collection.
 
@@ -39,7 +39,7 @@
 ## AWS.Route53/HealthCheckProperties
 ### Properties
 * **HealthCheckConfig**: [HealthCheck_HealthCheckConfig](#healthcheckhealthcheckconfig) (Required): A complex type that contains information about the health check.
-* **HealthCheckId**: string (ReadOnly)
+* **HealthCheckId**: string (ReadOnly, Identifier)
 * **HealthCheckTags**: [HealthCheckTag](#healthchecktag)[]: An array of key-value pairs to apply to this resource.
 
 ## HealthCheck_HealthCheckConfig
@@ -78,7 +78,7 @@
 * **HostedZoneTags**: [HostedZoneTag](#hostedzonetag)[]: Adds, edits, or deletes tags for a health check or a hosted zone.
 
 For information about using tags for cost allocation, see Using Cost Allocation Tags in the AWS Billing and Cost Management User Guide.
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **Name**: string: The name of the domain. Specify a fully qualified domain name, for example, www.example.com. The trailing dot is optional; Amazon Route 53 assumes that the domain name is fully qualified. This means that Route 53 treats www.example.com (without a trailing dot) and www.example.com. (with a trailing dot) as identical.
 
 If you're creating a public hosted zone, this is the name you have registered with your DNS registrar. If your domain name is registered with a registrar other than Route 53, change the name servers for your domain to the set of NameServers that are returned by the Fn::GetAtt intrinsic function.
@@ -106,8 +106,8 @@ If you're creating a public hosted zone, this is the name you have registered wi
 
 ## AWS.Route53/KeySigningKeyProperties
 ### Properties
-* **HostedZoneId**: string (Required): The unique string (ID) used to identify a hosted zone.
+* **HostedZoneId**: string (Required, Identifier): The unique string (ID) used to identify a hosted zone.
 * **KeyManagementServiceArn**: string (Required): The Amazon resource name (ARN) for a customer managed key (CMK) in AWS Key Management Service (KMS). The KeyManagementServiceArn must be unique for each key signing key (KSK) in a single hosted zone.
-* **Name**: string (Required): An alphanumeric string used to identify a key signing key (KSK). Name must be unique for each key signing key in the same hosted zone.
+* **Name**: string (Required, Identifier): An alphanumeric string used to identify a key signing key (KSK). Name must be unique for each key signing key in the same hosted zone.
 * **Status**: string (Required): A string specifying the initial status of the key signing key (KSK). You can set the value to ACTIVE or INACTIVE.
 

@@ -38,9 +38,9 @@
 
 ## AWS.QuickSight/AnalysisProperties
 ### Properties
-* **AnalysisId**: string (Required)
+* **AnalysisId**: string (Required, Identifier)
 * **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) of the analysis.</p>
-* **AwsAccountId**: string (Required)
+* **AwsAccountId**: string (Required, Identifier)
 * **CreatedTime**: string (ReadOnly): <p>The time that the analysis was created.</p>
 * **DataSetArns**: string[] (ReadOnly): <p>The ARNs of the datasets of the analysis.</p>
 * **Errors**: [AnalysisError](#analysiserror)[]: <p>Errors associated with the analysis.</p>
@@ -145,9 +145,9 @@
 ## AWS.QuickSight/DashboardProperties
 ### Properties
 * **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) of the resource.</p>
-* **AwsAccountId**: string (Required)
+* **AwsAccountId**: string (Required, Identifier)
 * **CreatedTime**: string (ReadOnly, WriteOnly): <p>The time that this dataset was created.</p>
-* **DashboardId**: string (Required)
+* **DashboardId**: string (Required, Identifier)
 * **DashboardPublishOptions**: [DashboardPublishOptions](#dashboardpublishoptions) (WriteOnly)
 * **LastPublishedTime**: string (ReadOnly): <p>The last time that this dataset was published.</p>
 * **LastUpdatedTime**: string (ReadOnly, WriteOnly): <p>The last time that this dataset was updated.</p>
@@ -291,13 +291,13 @@
 ## AWS.QuickSight/DataSetProperties
 ### Properties
 * **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) of the resource.</p>
-* **AwsAccountId**: string
+* **AwsAccountId**: string (Identifier)
 * **ColumnGroups**: [ColumnGroup](#columngroup)[]: <p>Groupings of columns that work together in certain QuickSight features. Currently, only geospatial hierarchy is supported.</p>
 * **ColumnLevelPermissionRules**: [ColumnLevelPermissionRule](#columnlevelpermissionrule)[]
 * **ConsumedSpiceCapacityInBytes**: int (ReadOnly): <p>The amount of SPICE capacity used by this dataset. This is 0 if the dataset isn't
             imported into SPICE.</p>
 * **CreatedTime**: string (ReadOnly): <p>The time that this dataset was created.</p>
-* **DataSetId**: string
+* **DataSetId**: string (Identifier)
 * **DataSetUsageConfiguration**: [DataSetUsageConfiguration](#datasetusageconfiguration)
 * **FieldFolders**: [FieldFolderMap](#fieldfoldermap) (WriteOnly)
 * **ImportMode**: [DataSetImportMode](#datasetimportmode)
@@ -412,10 +412,10 @@
             the <code>Credentials</code> originally used with this <code>DataSourceParameters</code>
             are automatically allowed.</p>
 * **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) of the data source.</p>
-* **AwsAccountId**: string
+* **AwsAccountId**: string (Identifier)
 * **CreatedTime**: string (ReadOnly): <p>The time that this data source was created.</p>
 * **Credentials**: [DataSourceCredentials](#datasourcecredentials) (WriteOnly)
-* **DataSourceId**: string
+* **DataSourceId**: string (Identifier)
 * **DataSourceParameters**: [DataSourceParameters](#datasourceparameters)
 * **ErrorInfo**: [DataSourceErrorInfo](#datasourceerrorinfo)
 * **LastUpdatedTime**: string (ReadOnly): <p>The last time that this data source was updated.</p>
@@ -618,14 +618,14 @@
 ## AWS.QuickSight/TemplateProperties
 ### Properties
 * **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) of the template.</p>
-* **AwsAccountId**: string (Required)
+* **AwsAccountId**: string (Required, Identifier)
 * **CreatedTime**: string (ReadOnly, WriteOnly): <p>Time when this was created.</p>
 * **LastUpdatedTime**: string (ReadOnly, WriteOnly): <p>Time when this was last updated.</p>
 * **Name**: string: <p>A display name for the template.</p>
 * **Permissions**: [ResourcePermission](#resourcepermission)[]: <p>A list of resource permissions to be set on the template. </p>
 * **SourceEntity**: [TemplateSourceEntity](#templatesourceentity) (Required, WriteOnly)
 * **Tags**: [Tag](#tag)[]: <p>Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.</p>
-* **TemplateId**: string (Required)
+* **TemplateId**: string (Required, Identifier)
 * **Version**: [TemplateVersion](#templateversion) (ReadOnly, WriteOnly)
 * **VersionDescription**: string (WriteOnly): <p>A description of the current template version being created. This API operation creates the
 			first version of the template. Every time <code>UpdateTemplate</code> is called, a new
@@ -736,7 +736,7 @@
 ## AWS.QuickSight/ThemeProperties
 ### Properties
 * **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) of the theme.</p>
-* **AwsAccountId**: string (Required)
+* **AwsAccountId**: string (Required, Identifier)
 * **BaseThemeId**: string (WriteOnly): <p>The ID of the theme that a custom theme will inherit from. All themes inherit from one of
 			the starting themes defined by Amazon QuickSight. For a list of the starting themes, use
 				<code>ListThemes</code> or choose <b>Themes</b> from
@@ -749,7 +749,7 @@
 			</p>
 * **Tags**: [Tag](#tag)[]: <p>A map of the key-value pairs for the resource tag or tags that you want to add to the
 			resource.</p>
-* **ThemeId**: string (Required)
+* **ThemeId**: string (Required, Identifier)
 * **Type**: [ThemeType](#themetype) (ReadOnly)
 * **Version**: [ThemeVersion](#themeversion) (ReadOnly)
 * **VersionDescription**: string (WriteOnly): <p>A description of the first version of the theme that you're creating. Every time

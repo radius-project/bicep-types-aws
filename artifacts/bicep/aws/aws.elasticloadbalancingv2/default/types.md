@@ -17,7 +17,7 @@
 * **AlpnPolicy**: string[]
 * **Certificates**: [Certificate](#certificate)[]
 * **DefaultActions**: [Action](#action)[] (Required, WriteOnly)
-* **ListenerArn**: string (ReadOnly)
+* **ListenerArn**: string (ReadOnly, Identifier)
 * **LoadBalancerArn**: string (Required)
 * **Port**: int
 * **Protocol**: string
@@ -107,7 +107,7 @@
 * **IsDefault**: bool (ReadOnly)
 * **ListenerArn**: string (Required)
 * **Priority**: int (Required)
-* **RuleArn**: string (ReadOnly)
+* **RuleArn**: string (ReadOnly, Identifier)
 
 ## Action
 ### Properties

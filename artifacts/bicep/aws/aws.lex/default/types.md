@@ -27,7 +27,7 @@
 * **BotTags**: [Tag](#tag)[] (WriteOnly): A list of tags to add to the bot, which can only be added at bot creation.
 * **DataPrivacy**: [Bot_DataPrivacy](#botdataprivacy) (Required): Data privacy setting of the Bot.
 * **Description**: [Description](#description)
-* **Id**: [Id](#id) (ReadOnly)
+* **Id**: [Id](#id) (ReadOnly, Identifier)
 * **IdleSessionTTLInSeconds**: int (Required): IdleSessionTTLInSeconds of the resource
 * **Name**: [Name](#name) (Required)
 * **RoleArn**: [RoleArn](#rolearn) (Required)
@@ -348,12 +348,12 @@
 ## AWS.Lex/BotAliasProperties
 ### Properties
 * **Arn**: [Arn](#arn) (ReadOnly)
-* **BotAliasId**: [Id](#id) (ReadOnly)
+* **BotAliasId**: [Id](#id) (ReadOnly, Identifier)
 * **BotAliasLocaleSettings**: [BotAliasLocaleSettingsList](#botaliaslocalesettingslist)
 * **BotAliasName**: [Name](#name) (Required)
 * **BotAliasStatus**: [BotAliasStatus](#botaliasstatus) (ReadOnly)
 * **BotAliasTags**: [Tag](#tag)[] (WriteOnly): A list of tags to add to the bot alias.
-* **BotId**: [Id](#id) (Required)
+* **BotId**: [Id](#id) (Required, Identifier)
 * **BotVersion**: [BotVersion](#botversion)
 * **ConversationLogSettings**: [ConversationLogSettings](#conversationlogsettings)
 * **Description**: [Description](#description)
@@ -402,7 +402,7 @@
 
 ## AWS.Lex/ResourcePolicyProperties
 ### Properties
-* **Id**: [PhysicalId](#physicalid) (ReadOnly)
+* **Id**: [PhysicalId](#physicalid) (ReadOnly, Identifier)
 * **Policy**: [Policy](#policy) (Required)
 * **ResourceArn**: [ResourceArn](#resourcearn) (Required)
 * **RevisionId**: [RevisionId](#revisionid) (ReadOnly)

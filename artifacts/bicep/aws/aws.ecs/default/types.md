@@ -45,7 +45,7 @@
 ## AWS.ECS/CapacityProviderProperties
 ### Properties
 * **AutoScalingGroupProvider**: [AutoScalingGroupProvider](#autoscalinggroupprovider) (Required)
-* **Name**: string
+* **Name**: string (Identifier)
 * **Tags**: [Tag](#tag)[]
 
 ## AutoScalingGroupProvider
@@ -71,7 +71,7 @@
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Amazon ECS cluster, such as arn:aws:ecs:us-east-2:123456789012:cluster/MyECSCluster.
 * **CapacityProviders**: string[]
-* **ClusterName**: string: A user-generated string that you use to identify your cluster. If you don't specify a name, AWS CloudFormation generates a unique physical ID for the name.
+* **ClusterName**: string (Identifier): A user-generated string that you use to identify your cluster. If you don't specify a name, AWS CloudFormation generates a unique physical ID for the name.
 * **ClusterSettings**: [ClusterSettings](#clustersettings)[]
 * **Configuration**: [ClusterConfiguration](#clusterconfiguration)
 * **DefaultCapacityProviderStrategy**: [CapacityProviderStrategyItem](#capacityproviderstrategyitem)[]
@@ -114,7 +114,7 @@
 ## AWS.ECS/ClusterCapacityProviderAssociationsProperties
 ### Properties
 * **CapacityProviders**: [CapacityProviders](#capacityproviders) (Required)
-* **Cluster**: [Cluster](#cluster) (Required)
+* **Cluster**: [Cluster](#cluster) (Required, Identifier)
 * **DefaultCapacityProviderStrategy**: [DefaultCapacityProviderStrategy](#defaultcapacityproviderstrategy) (Required)
 
 ## CapacityProviders
@@ -128,14 +128,14 @@
 
 ## AWS.ECS/PrimaryTaskSetProperties
 ### Properties
-* **Cluster**: string (Required): The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service to create the task set in.
-* **Service**: string (Required): The short name or full Amazon Resource Name (ARN) of the service to create the task set in.
+* **Cluster**: string (Required, Identifier): The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service to create the task set in.
+* **Service**: string (Required, Identifier): The short name or full Amazon Resource Name (ARN) of the service to create the task set in.
 * **TaskSetId**: string (Required): The ID or full Amazon Resource Name (ARN) of the task set.
 
 ## AWS.ECS/ServiceProperties
 ### Properties
 * **CapacityProviderStrategy**: [CapacityProviderStrategyItem](#capacityproviderstrategyitem)[]
-* **Cluster**: string
+* **Cluster**: string (Identifier)
 * **DeploymentConfiguration**: [DeploymentConfiguration](#deploymentconfiguration)
 * **DeploymentController**: [DeploymentController](#deploymentcontroller)
 * **DesiredCount**: int
@@ -152,7 +152,7 @@
 * **PropagateTags**: string
 * **Role**: string
 * **SchedulingStrategy**: string
-* **ServiceArn**: string (ReadOnly)
+* **ServiceArn**: string (ReadOnly, Identifier)
 * **ServiceName**: string
 * **ServiceRegistries**: [ServiceRegistry](#serviceregistry)[]
 * **Tags**: [Tag](#tag)[]
@@ -235,7 +235,7 @@
 * **RequiresCompatibilities**: string[]
 * **RuntimePlatform**: [RuntimePlatform](#runtimeplatform)
 * **Tags**: [Tag](#tag)[]
-* **TaskDefinitionArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Amazon ECS task definition
+* **TaskDefinitionArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Amazon ECS task definition
 * **TaskRoleArn**: string
 * **Volumes**: [Volume](#volume)[]
 
@@ -468,15 +468,15 @@
 
 ## AWS.ECS/TaskSetProperties
 ### Properties
-* **Cluster**: string (Required): The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service to create the task set in.
+* **Cluster**: string (Required, Identifier): The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service to create the task set in.
 * **ExternalId**: string: An optional non-unique tag that identifies this task set in external systems. If the task set is associated with a service discovery registry, the tasks in this task set will have the ECS_TASK_SET_EXTERNAL_ID AWS Cloud Map attribute set to the provided value. 
-* **Id**: string (ReadOnly): The ID of the task set.
+* **Id**: string (ReadOnly, Identifier): The ID of the task set.
 * **LaunchType**: string: The launch type that new tasks in the task set will use. For more information, see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html in the Amazon Elastic Container Service Developer Guide. 
 * **LoadBalancers**: [LoadBalancer](#loadbalancer)[]
 * **NetworkConfiguration**: [NetworkConfiguration](#networkconfiguration)
 * **PlatformVersion**: string: The platform version that the tasks in the task set should use. A platform version is specified only for tasks using the Fargate launch type. If one isn't specified, the LATEST platform version is used by default.
 * **Scale**: [Scale](#scale): A floating-point percentage of the desired number of tasks to place and keep running in the task set.
-* **Service**: string (Required): The short name or full Amazon Resource Name (ARN) of the service to create the task set in.
+* **Service**: string (Required, Identifier): The short name or full Amazon Resource Name (ARN) of the service to create the task set in.
 * **ServiceRegistries**: [ServiceRegistry](#serviceregistry)[]: The details of the service discovery registries to assign to this task set. For more information, see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html.
 * **TaskDefinition**: string (Required): The short name or full Amazon Resource Name (ARN) of the task definition for the tasks in the task set to use.
 

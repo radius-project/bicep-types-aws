@@ -18,7 +18,7 @@
 * **ConnectorLabel**: string: The label of the connector. The label is unique for each ConnectorRegistration in your AWS account. Only needed if calling for CUSTOMCONNECTOR connector type/.
 * **ConnectorProfileArn**: string (ReadOnly): Unique identifier for connector profile resources
 * **ConnectorProfileConfig**: [ConnectorProfileConfig](#connectorprofileconfig) (WriteOnly): Connector specific configurations needed to create connector profile
-* **ConnectorProfileName**: string (Required): The maximum number of items to retrieve in a single batch.
+* **ConnectorProfileName**: string (Required, Identifier): The maximum number of items to retrieve in a single batch.
 * **ConnectorType**: [ConnectorType](#connectortype) (Required): List of Saas providers that need connector profile to be created
 * **CredentialsArn**: string (ReadOnly): A unique Arn for Connector-Profile resource
 * **KMSArn**: string: The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables. If it's not provided, AWS Lambda uses a default service key.
@@ -394,7 +394,7 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 * **Description**: string: Description of the flow.
 * **DestinationFlowConfigList**: [DestinationFlowConfig](#destinationflowconfig)[] (Required): List of Destination connectors of the flow.
 * **FlowArn**: string (ReadOnly): ARN identifier of the flow.
-* **FlowName**: string (Required): Name of the flow.
+* **FlowName**: string (Required, Identifier): Name of the flow.
 * **KMSArn**: string: The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables. If it's not provided, AWS Lambda uses a default service key.
 * **SourceFlowConfig**: [SourceFlowConfig](#sourceflowconfig) (Required): Configurations of Source connector of the flow.
 * **Tags**: [Tag](#tag)[]: List of Tags.

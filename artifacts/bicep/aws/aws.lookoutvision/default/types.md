@@ -9,7 +9,7 @@
 ## AWS.LookoutVision/ProjectProperties
 ### Properties
 * **Arn**: [Arn](#arn) (ReadOnly)
-* **ProjectName**: [ProjectName](#projectname) (Required)
+* **ProjectName**: [ProjectName](#projectname) (Required, Identifier)
 
 ## Arn
 ### Properties

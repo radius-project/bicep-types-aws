@@ -24,7 +24,7 @@
 * **Description**: string: A short text description of the Channel.
 * **EgressAccessLogs**: [LogConfiguration](#logconfiguration): The configuration parameters for egress access logging.
 * **HlsIngest**: [HlsIngest](#hlsingest) (ReadOnly): A short text description of the Channel.
-* **Id**: string (Required): The ID of the Channel.
+* **Id**: string (Required, Identifier): The ID of the Channel.
 * **IngressAccessLogs**: [LogConfiguration](#logconfiguration): The configuration parameters for egress access logging.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
@@ -38,7 +38,7 @@
 
 ## IngestEndpoint
 ### Properties
-* **Id**: string: The system generated unique identifier for the IngestEndpoint
+* **Id**: string (Identifier): The system generated unique identifier for the IngestEndpoint
 * **Password**: string: The system generated password for ingest authentication.
 * **Url**: string: The ingest URL to which the source stream should be sent.
 * **Username**: string: The system generated username for ingest authentication.
@@ -57,7 +57,7 @@
 * **DashPackage**: [DashPackage](#dashpackage)
 * **Description**: string: A short text description of the OriginEndpoint.
 * **HlsPackage**: [HlsPackage](#hlspackage)
-* **Id**: string (Required): The ID of the OriginEndpoint.
+* **Id**: string (Required, Identifier): The ID of the OriginEndpoint.
 * **ManifestName**: string: A short string appended to the end of the OriginEndpoint URL.
 * **MssPackage**: [MssPackage](#msspackage)
 * **Origination**: string: Control whether origination of video is allowed for this OriginEndpoint. If set to ALLOW, the OriginEndpoint may by requested, pursuant to any other form of access control. If set to DENY, the OriginEndpoint may not be requested. This can be helpful for Live to VOD harvesting, or for temporarily disabling origination
@@ -106,7 +106,7 @@
 * **AdMarkers**: string: This setting controls how ad markers are included in the packaged OriginEndpoint. "NONE" will omit all SCTE-35 ad markers from the output. "PASSTHROUGH" causes the manifest to contain a copy of the SCTE-35 ad markers (comments) taken directly from the input HTTP Live Streaming (HLS) manifest. "SCTE35_ENHANCED" generates ad markers and blackout tags based on SCTE-35 messages in the input source. "DATERANGE" inserts EXT-X-DATERANGE tags to signal ad and program transition events in HLS and CMAF manifests. For this option, you must set a programDateTimeIntervalSeconds value that is greater than 0.
 * **AdsOnDeliveryRestrictions**: [AdsOnDeliveryRestrictions](#adsondeliveryrestrictions)
 * **AdTriggers**: string[]: A list of SCTE-35 message types that are treated as ad markers in the output.  If empty, no ad markers are output.  Specify multiple items to create ad markers for all of the included message types.
-* **Id**: string (Required): The ID of the manifest. The ID must be unique within the OriginEndpoint and it cannot be changed after it is created.
+* **Id**: string (Required, Identifier): The ID of the manifest. The ID must be unique within the OriginEndpoint and it cannot be changed after it is created.
 * **IncludeIframeOnlyStream**: bool: When enabled, an I-Frame only stream will be included in the output.
 * **ManifestName**: string: An optional short string appended to the end of the OriginEndpoint URL. If not specified, defaults to the manifestName for the OriginEndpoint.
 * **PlaylistType**: string: The HTTP Live Streaming (HLS) playlist type. When either "EVENT" or "VOD" is specified, a corresponding EXT-X-PLAYLIST-TYPE entry will be included in the media playlist.
@@ -191,7 +191,7 @@
 * **Authorization**: [Authorization](#authorization): CDN Authorization
 * **DomainName**: string (ReadOnly): The fully qualified domain name for Assets in the PackagingGroup.
 * **EgressAccessLogs**: [LogConfiguration](#logconfiguration): The configuration parameters for egress access logging.
-* **Id**: string (Required): The ID of the PackagingGroup.
+* **Id**: string (Required, Identifier): The ID of the PackagingGroup.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
 ## Authorization

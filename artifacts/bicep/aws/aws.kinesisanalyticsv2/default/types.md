@@ -12,7 +12,7 @@
 * **ApplicationDescription**: string: The description of the application.
 * **ApplicationMaintenanceConfiguration**: [ApplicationMaintenanceConfiguration](#applicationmaintenanceconfiguration): Used to configure start of maintenance window.
 * **ApplicationMode**: string: To create a Kinesis Data Analytics Studio notebook, you must set the mode to `INTERACTIVE`. However, for a Kinesis Data Analytics for Apache Flink application, the mode is optional.
-* **ApplicationName**: string: The name of the application.
+* **ApplicationName**: string (Identifier): The name of the application.
 * **RunConfiguration**: [RunConfiguration](#runconfiguration) (WriteOnly): Specifies run configuration (start parameters) of a Kinesis Data Analytics application. Evaluated on update for RUNNING applications an only.
 * **RuntimeEnvironment**: string (Required): The runtime environment for the application.
 * **ServiceExecutionRole**: [Arn](#arn) (Required): Specifies the IAM role that the application uses to access external resources.

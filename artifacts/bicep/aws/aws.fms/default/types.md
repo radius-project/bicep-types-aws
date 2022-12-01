@@ -15,7 +15,7 @@
 ## AWS.FMS/NotificationChannelProperties
 ### Properties
 * **SnsRoleName**: [ResourceArn](#resourcearn) (Required)
-* **SnsTopicArn**: [ResourceArn](#resourcearn) (Required)
+* **SnsTopicArn**: [ResourceArn](#resourcearn) (Required, Identifier)
 
 ## ResourceArn
 ### Properties
@@ -26,7 +26,7 @@
 * **DeleteAllPolicyResources**: bool (WriteOnly)
 * **ExcludeMap**: [IEMap](#iemap)
 * **ExcludeResourceTags**: bool (Required)
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **IncludeMap**: [IEMap](#iemap)
 * **PolicyName**: string (Required)
 * **RemediationEnabled**: bool (Required)

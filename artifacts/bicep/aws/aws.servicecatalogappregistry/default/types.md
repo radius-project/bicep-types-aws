@@ -16,7 +16,7 @@
 ### Properties
 * **Arn**: string (ReadOnly)
 * **Description**: string: The description of the application. 
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **Name**: string (Required): The name of the application. 
 * **Tags**: [Tags](#tags)
 
@@ -28,7 +28,7 @@
 * **Arn**: string (ReadOnly)
 * **Attributes**: [AttributeGroup_Attributes](#attributegroupattributes) (Required)
 * **Description**: string: The description of the attribute group. 
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **Name**: string (Required): The name of the attribute group. 
 * **Tags**: [Tags](#tags)
 

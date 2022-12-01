@@ -16,7 +16,7 @@
 ### Properties
 * **AdvancedEventSelectors**: [AdvancedEventSelector](#advancedeventselector)[]: The advanced event selectors that were used to select events for the data store.
 * **CreatedTimestamp**: [Timestamp](#timestamp) (ReadOnly): The timestamp of the event data store's creation.
-* **EventDataStoreArn**: string (ReadOnly): The ARN of the event data store.
+* **EventDataStoreArn**: string (ReadOnly, Identifier): The ARN of the event data store.
 * **MultiRegionEnabled**: bool: Indicates whether the event data store includes events from all regions, or only from the region in which it was created.
 * **Name**: string: The name of the event data store.
 * **OrganizationEnabled**: bool: Indicates that an event data store is collecting logged events for an organization.
@@ -67,7 +67,7 @@
 * **SnsTopicArn**: string (ReadOnly)
 * **SnsTopicName**: string: Specifies the name of the Amazon SNS topic defined for notification of log file delivery. The maximum length is 256 characters.
 * **Tags**: [Tag](#tag)[]
-* **TrailName**: string
+* **TrailName**: string (Identifier)
 
 ## EventSelector
 ### Properties

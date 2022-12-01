@@ -32,7 +32,7 @@
 
 ## AWS.CloudFormation/HookDefaultVersionProperties
 ### Properties
-* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the type. This is used to uniquely identify a HookDefaultVersion
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the type. This is used to uniquely identify a HookDefaultVersion
 * **TypeName**: string: The name of the type being registered.
 
 We recommend that type names adhere to the following pattern: company_or_organization::service::type.
@@ -43,7 +43,7 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 ### Properties
 * **Configuration**: string: The configuration data for the extension, in this account and region.
 * **ConfigurationAlias**: string: An alias by which to refer to this extension configuration data.
-* **ConfigurationArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the configuration data, in this account and region.
+* **ConfigurationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the configuration data, in this account and region.
 * **TypeArn**: string: The Amazon Resource Name (ARN) of the type without version number.
 * **TypeName**: string: The name of the type being registered.
 
@@ -51,7 +51,7 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 
 ## AWS.CloudFormation/ResourceDefaultVersionProperties
 ### Properties
-* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the type. This is used to uniquely identify a ResourceDefaultVersion
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the type. This is used to uniquely identify a ResourceDefaultVersion
 * **TypeName**: string: The name of the type being registered.
 
 We recommend that type names adhere to the following pattern: company_or_organization::service::type.
@@ -71,7 +71,7 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **Parameters**: [Parameter](#parameter)[]: The input parameters for the stack set template.
 * **PermissionModel**: string (Required): Describes how the IAM roles required for stack set operations are created. By default, SELF-MANAGED is specified.
 * **StackInstancesGroup**: [StackInstances](#stackinstances)[]: A group of stack instances with parameters in some specific accounts and regions.
-* **StackSetId**: string (ReadOnly): The ID of the stack set that you're creating.
+* **StackSetId**: string (ReadOnly, Identifier): The ID of the stack set that you're creating.
 * **StackSetName**: string (Required): The name to associate with the stack set. The name must be unique in the Region where you create your stack set.
 * **Tags**: [Tag](#tag)[]: The key-value pairs to associate with this stack set and the stacks created from it. AWS CloudFormation also propagates these tags to supported resources that are created in the stacks. A maximum number of 50 tags can be specified.
 * **TemplateBody**: string: The structure that contains the template body, with a minimum length of 1 byte and a maximum length of 51,200 bytes.
@@ -137,7 +137,7 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 
 ## AWS.CloudFormation/TypeActivationProperties
 ### Properties
-* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the extension.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the extension.
 * **AutoUpdate**: bool: Whether to automatically update the extension in this account and region when a new minor version is published by the extension publisher. Major versions released by the publisher must be manually updated.
 * **ExecutionRoleArn**: string: The Amazon Resource Name (ARN) of the IAM execution role to use to register the type. If your resource type calls AWS APIs in any of its handlers, you must create an IAM execution role that includes the necessary permissions to call those AWS APIs, and provision that execution role in your account. CloudFormation then assumes that execution role to provide your resource type with the appropriate credentials.
 * **LoggingConfig**: [LoggingConfig](#loggingconfig): Specifies logging configuration information for a type.

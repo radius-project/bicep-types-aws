@@ -38,7 +38,7 @@
 
 ## AWS.FraudDetector/DetectorProperties
 ### Properties
-* **Arn**: string (ReadOnly): The ARN of the detector.
+* **Arn**: string (ReadOnly, Identifier): The ARN of the detector.
 * **AssociatedModels**: [Model](#model)[] (ReadOnly): The models to associate with this detector.
 * **CreatedTime**: string (ReadOnly): The time when the detector was created.
 * **Description**: string: The description of the detector.
@@ -53,11 +53,11 @@
 
 ## Model
 ### Properties
-* **Arn**: string
+* **Arn**: string (Identifier)
 
 ## EventType
 ### Properties
-* **Arn**: string (ReadOnly): The ARN of the event type.
+* **Arn**: string (ReadOnly, Identifier): The ARN of the event type.
 * **CreatedTime**: string (ReadOnly): The time when the event type was created.
 * **Description**: string: The description of the event type.
 * **EntityTypes**: [EntityType](#entitytype)[] (ReadOnly)
@@ -70,7 +70,7 @@
 
 ## EntityType
 ### Properties
-* **Arn**: string
+* **Arn**: string (Identifier)
 * **CreatedTime**: string: The time when the entity type was created.
 * **Description**: string: The description.
 * **Inline**: bool
@@ -85,7 +85,7 @@
 
 ## EventVariable
 ### Properties
-* **Arn**: string
+* **Arn**: string (Identifier)
 * **CreatedTime**: string: The time when the event variable was created.
 * **DataSource**: string
 * **DataType**: string
@@ -99,7 +99,7 @@
 
 ## Label
 ### Properties
-* **Arn**: string
+* **Arn**: string (Identifier)
 * **CreatedTime**: string: The time when the label was created.
 * **Description**: string: The description.
 * **Inline**: bool
@@ -109,7 +109,7 @@
 
 ## Rule
 ### Properties
-* **Arn**: string
+* **Arn**: string (Identifier)
 * **CreatedTime**: string: The time when the event type was created.
 * **Description**: string: The description.
 * **DetectorId**: string
@@ -123,7 +123,7 @@
 
 ## Outcome
 ### Properties
-* **Arn**: string
+* **Arn**: string (Identifier)
 * **CreatedTime**: string: The time when the outcome was created.
 * **Description**: string: The description.
 * **Inline**: bool
@@ -133,7 +133,7 @@
 
 ## AWS.FraudDetector/EntityTypeProperties
 ### Properties
-* **Arn**: string (ReadOnly): The entity type ARN.
+* **Arn**: string (ReadOnly, Identifier): The entity type ARN.
 * **CreatedTime**: string (ReadOnly): The timestamp when the entity type was created.
 * **Description**: string: The entity type description.
 * **LastUpdatedTime**: string (ReadOnly): The timestamp when the entity type was last updated.
@@ -147,7 +147,7 @@
 
 ## AWS.FraudDetector/EventTypeProperties
 ### Properties
-* **Arn**: string (ReadOnly): The ARN of the event type.
+* **Arn**: string (ReadOnly, Identifier): The ARN of the event type.
 * **CreatedTime**: string (ReadOnly): The time when the event type was created.
 * **Description**: string: The description of the event type.
 * **EntityTypes**: [EntityType](#entitytype)[] (Required, ReadOnly)
@@ -159,7 +159,7 @@
 
 ## EntityType
 ### Properties
-* **Arn**: string
+* **Arn**: string (Identifier)
 * **CreatedTime**: string: The time when the event type was created.
 * **Description**: string: The description.
 * **Inline**: bool
@@ -174,7 +174,7 @@
 
 ## EventVariable
 ### Properties
-* **Arn**: string
+* **Arn**: string (Identifier)
 * **CreatedTime**: string: The time when the event type was created.
 * **DataSource**: string
 * **DataType**: string
@@ -188,7 +188,7 @@
 
 ## Label
 ### Properties
-* **Arn**: string
+* **Arn**: string (Identifier)
 * **CreatedTime**: string: The time when the event type was created.
 * **Description**: string: The description.
 * **Inline**: bool
@@ -198,7 +198,7 @@
 
 ## AWS.FraudDetector/LabelProperties
 ### Properties
-* **Arn**: string (ReadOnly): The label ARN.
+* **Arn**: string (ReadOnly, Identifier): The label ARN.
 * **CreatedTime**: string (ReadOnly): The timestamp when the label was created.
 * **Description**: string: The label description.
 * **LastUpdatedTime**: string (ReadOnly): The timestamp when the label was last updated.
@@ -212,7 +212,7 @@
 
 ## AWS.FraudDetector/OutcomeProperties
 ### Properties
-* **Arn**: string (ReadOnly): The outcome ARN.
+* **Arn**: string (ReadOnly, Identifier): The outcome ARN.
 * **CreatedTime**: string (ReadOnly): The timestamp when the outcome was created.
 * **Description**: string: The outcome description.
 * **LastUpdatedTime**: string (ReadOnly): The timestamp when the outcome was last updated.
@@ -226,7 +226,7 @@
 
 ## AWS.FraudDetector/VariableProperties
 ### Properties
-* **Arn**: string (ReadOnly): The ARN of the variable.
+* **Arn**: string (ReadOnly, Identifier): The ARN of the variable.
 * **CreatedTime**: string (ReadOnly): The time when the variable was created.
 * **DataSource**: string (Required): The source of the data.
 * **DataType**: string (Required): The data type.

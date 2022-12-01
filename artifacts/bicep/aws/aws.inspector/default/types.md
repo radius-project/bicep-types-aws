@@ -8,7 +8,7 @@
 
 ## AWS.Inspector/AssessmentTargetProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **AssessmentTargetName**: string
 * **ResourceGroupArn**: string
 

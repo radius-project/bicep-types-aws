@@ -14,7 +14,7 @@
 
 ## AWS.ResilienceHub/AppProperties
 ### Properties
-* **AppArn**: string (ReadOnly): Amazon Resource Name (ARN) of the App.
+* **AppArn**: string (ReadOnly, Identifier): Amazon Resource Name (ARN) of the App.
 * **AppAssessmentSchedule**: string: Assessment execution schedule.
 * **AppTemplateBody**: string (Required): A string containing full ResilienceHub app template body.
 * **Description**: string: App description.
@@ -45,7 +45,7 @@
 ### Properties
 * **DataLocationConstraint**: string: Data Location Constraint of the Policy.
 * **Policy**: [PolicyMap](#policymap) (Required)
-* **PolicyArn**: string (ReadOnly): Amazon Resource Name (ARN) of the Resiliency Policy.
+* **PolicyArn**: string (ReadOnly, Identifier): Amazon Resource Name (ARN) of the Resiliency Policy.
 * **PolicyDescription**: string: Description of Resiliency Policy.
 * **PolicyName**: string (Required): Name of Resiliency Policy.
 * **Tags**: [TagMap](#tagmap)

@@ -14,7 +14,7 @@
 
 ## AWS.Glue/RegistryProperties
 ### Properties
-* **Arn**: string (ReadOnly): Amazon Resource Name for the created Registry.
+* **Arn**: string (ReadOnly, Identifier): Amazon Resource Name for the created Registry.
 * **Description**: string: A description of the registry. If description is not provided, there will not be any default value for this.
 * **Name**: string (Required): Name of the registry to be created of max length of 255, and may only contain letters, numbers, hyphen, underscore, dollar sign, or hash mark.  No whitespace.
 * **Tags**: [Tag](#tag)[]: List of tags to tag the Registry
@@ -26,7 +26,7 @@
 
 ## AWS.Glue/SchemaProperties
 ### Properties
-* **Arn**: string (ReadOnly): Amazon Resource Name for the Schema.
+* **Arn**: string (ReadOnly, Identifier): Amazon Resource Name for the Schema.
 * **CheckpointVersion**: [SchemaVersion](#schemaversion)
 * **Compatibility**: string (Required): Compatibility setting for the schema.
 * **DataFormat**: string (Required): Data format name to use for the schema. Accepted values: 'AVRO', 'JSON', 'PROTOBUF'
@@ -44,7 +44,7 @@
 
 ## Registry
 ### Properties
-* **Arn**: string: Amazon Resource Name for the Registry.
+* **Arn**: string (Identifier): Amazon Resource Name for the Registry.
 * **Name**: string: Name of the registry in which the schema will be created.
 
 ## Tag

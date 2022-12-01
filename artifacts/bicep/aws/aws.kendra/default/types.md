@@ -24,8 +24,8 @@
 * **CustomDocumentEnrichmentConfiguration**: [CustomDocumentEnrichmentConfiguration](#customdocumentenrichmentconfiguration)
 * **DataSourceConfiguration**: [DataSourceConfiguration](#datasourceconfiguration)
 * **Description**: [Description](#description)
-* **Id**: [Id](#id) (ReadOnly)
-* **IndexId**: [IndexId](#indexid) (Required)
+* **Id**: [Id](#id) (ReadOnly, Identifier)
+* **IndexId**: [IndexId](#indexid) (Required, Identifier)
 * **Name**: [Name](#name) (Required)
 * **RoleArn**: [RoleArn](#rolearn)
 * **Schedule**: [Schedule](#schedule)
@@ -478,8 +478,8 @@
 * **Arn**: string (ReadOnly)
 * **Description**: [Description](#description): FAQ description
 * **FileFormat**: [FileFormat](#fileformat): FAQ file format
-* **Id**: [Id](#id) (ReadOnly)
-* **IndexId**: [IndexId](#indexid) (Required): Index ID
+* **Id**: [Id](#id) (ReadOnly, Identifier)
+* **IndexId**: [IndexId](#indexid) (Required, Identifier): Index ID
 * **Name**: [FaqName](#faqname) (Required): FAQ name
 * **RoleArn**: [RoleArn](#rolearn) (Required): FAQ role ARN
 * **S3Path**: [S3Path](#s3path) (Required): FAQ S3 path
@@ -524,7 +524,7 @@
 * **Description**: [Description](#description): A description for the index
 * **DocumentMetadataConfigurations**: [DocumentMetadataConfigurationList](#documentmetadataconfigurationlist): Document metadata configurations
 * **Edition**: [Edition](#edition) (Required)
-* **Id**: [Id](#id) (ReadOnly)
+* **Id**: [Id](#id) (ReadOnly, Identifier)
 * **Name**: [Name](#name) (Required)
 * **RoleArn**: [RoleArn](#rolearn) (Required)
 * **ServerSideEncryptionConfiguration**: [ServerSideEncryptionConfiguration](#serversideencryptionconfiguration): Server side encryption configuration

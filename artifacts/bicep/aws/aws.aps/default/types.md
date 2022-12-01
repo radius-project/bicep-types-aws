@@ -14,7 +14,7 @@
 
 ## AWS.APS/RuleGroupsNamespaceProperties
 ### Properties
-* **Arn**: string (ReadOnly): The RuleGroupsNamespace ARN.
+* **Arn**: string (ReadOnly, Identifier): The RuleGroupsNamespace ARN.
 * **Data**: string (Required): The RuleGroupsNamespace data.
 * **Name**: string (Required): The RuleGroupsNamespace name.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
@@ -29,7 +29,7 @@
 ### Properties
 * **AlertManagerDefinition**: string: The AMP Workspace alert manager definition data
 * **Alias**: string: AMP Workspace alias.
-* **Arn**: string (ReadOnly): Workspace arn.
+* **Arn**: string (ReadOnly, Identifier): Workspace arn.
 * **LoggingConfiguration**: [LoggingConfiguration](#loggingconfiguration)
 * **PrometheusEndpoint**: string (ReadOnly): AMP Workspace prometheus endpoint
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.

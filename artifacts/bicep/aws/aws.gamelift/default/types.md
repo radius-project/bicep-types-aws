@@ -20,7 +20,7 @@
 
 ## AWS.GameLift/AliasProperties
 ### Properties
-* **AliasId**: string (ReadOnly): Unique alias ID
+* **AliasId**: string (ReadOnly, Identifier): Unique alias ID
 * **Description**: string: A human-readable description of the alias.
 * **Name**: string (Required): A descriptive label that is associated with an alias. Alias names do not need to be unique.
 * **RoutingStrategy**: [RoutingStrategy](#routingstrategy) (Required): A routing configuration that specifies where traffic is directed for this alias, such as to a fleet or to a message.
@@ -39,7 +39,7 @@
 * **DesiredEC2Instances**: int: [DEPRECATED] The number of EC2 instances that you want this fleet to host. When creating a new fleet, GameLift automatically sets this value to "1" and initiates a single instance. Once the fleet is active, update this value to trigger GameLift to add or remove instances from the fleet.
 * **EC2InboundPermissions**: [IpPermission](#ippermission)[]: A range of IP addresses and port settings that allow inbound traffic to connect to server processes on an Amazon GameLift server.
 * **EC2InstanceType**: string: The name of an EC2 instance type that is supported in Amazon GameLift. A fleet instance type determines the computing resources of each instance in the fleet, including CPU, memory, storage, and networking capacity. Amazon GameLift supports the following EC2 instance types. See Amazon EC2 Instance Types for detailed descriptions.
-* **FleetId**: string (ReadOnly): Unique fleet ID
+* **FleetId**: string (ReadOnly, Identifier): Unique fleet ID
 * **FleetType**: string: Indicates whether to use On-Demand instances or Spot instances for this fleet. If empty, the default is ON_DEMAND. Both categories of instances use identical hardware and configurations based on the instance type selected for this fleet.
 * **InstanceRoleARN**: string: A unique identifier for an AWS IAM role that manages access to your AWS services. With an instance role ARN set, any application that runs on an instance in this fleet can assume the role, including install scripts, server processes, and daemons (background processes). Create a role or look up a role's ARN from the IAM dashboard in the AWS Management Console.
 * **Locations**: [LocationConfiguration](#locationconfiguration)[]
@@ -113,7 +113,7 @@ Linux: /local/game. Examples: "/local/game/MyGame/server.exe" or "/local/game/My
 * **AutoScalingPolicy**: [AutoScalingPolicy](#autoscalingpolicy): Configuration settings to define a scaling policy for the Auto Scaling group that is optimized for game hosting
 * **BalancingStrategy**: [BalancingStrategy](#balancingstrategy): The fallback balancing method to use for the game server group when Spot Instances in a Region become unavailable or are not viable for game hosting.
 * **DeleteOption**: [DeleteOption](#deleteoption) (WriteOnly): The type of delete to perform.
-* **GameServerGroupArn**: [GameServerGroupArn](#gameservergrouparn) (ReadOnly): A generated unique ID for the game server group.
+* **GameServerGroupArn**: [GameServerGroupArn](#gameservergrouparn) (ReadOnly, Identifier): A generated unique ID for the game server group.
 * **GameServerGroupName**: [GameServerGroupName](#gameservergroupname) (Required): An identifier for the new game server group.
 * **GameServerProtectionPolicy**: [GameServerProtectionPolicy](#gameserverprotectionpolicy): A flag that indicates whether instances in the game server group are protected from early termination.
 * **InstanceDefinitions**: [InstanceDefinitions](#instancedefinitions) (Required): A set of EC2 instance types to use when creating instances in the group.

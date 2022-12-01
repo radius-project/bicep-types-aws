@@ -11,7 +11,7 @@
 * **AnomalyDetectorConfig**: [AnomalyDetectorConfig](#anomalydetectorconfig) (Required): Configuration options for the AnomalyDetector
 * **AnomalyDetectorDescription**: string: A description for the AnomalyDetector.
 * **AnomalyDetectorName**: string: Name for the Amazon Lookout for Metrics Anomaly Detector
-* **Arn**: [Arn](#arn) (ReadOnly)
+* **Arn**: [Arn](#arn) (ReadOnly, Identifier)
 * **KmsKeyArn**: string: KMS key used to encrypt the AnomalyDetector data
 * **MetricSetList**: [MetricSet](#metricset)[] (Required): List of metric sets for anomaly detection
 

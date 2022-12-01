@@ -8,7 +8,7 @@
 
 ## AWS.CertificateManager/AccountProperties
 ### Properties
-* **AccountId**: [AccountId](#accountid) (ReadOnly)
+* **AccountId**: [AccountId](#accountid) (ReadOnly, Identifier)
 * **ExpiryEventsConfiguration**: [ExpiryEventsConfiguration](#expiryeventsconfiguration) (Required)
 
 ## AccountId

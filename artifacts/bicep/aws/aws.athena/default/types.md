@@ -27,7 +27,7 @@
 ## AWS.Athena/DataCatalogProperties
 ### Properties
 * **Description**: string: A description of the data catalog to be created. 
-* **Name**: string (Required): The name of the data catalog to create. The catalog name must be unique for the AWS account and can use a maximum of 128 alphanumeric, underscore, at sign, or hyphen characters. 
+* **Name**: string (Required, Identifier): The name of the data catalog to create. The catalog name must be unique for the AWS account and can use a maximum of 128 alphanumeric, underscore, at sign, or hyphen characters. 
 * **Parameters**: [DataCatalog_Parameters](#datacatalogparameters): Specifies the Lambda function or functions to use for creating the data catalog. This is a mapping whose values depend on the catalog type. 
 * **Tags**: [Tags](#tags): A list of comma separated tags to add to the data catalog that is created. 
 * **Type**: string (Required): The type of data catalog to create: LAMBDA for a federated catalog, GLUE for AWS Glue Catalog, or HIVE for an external hive metastore. 
@@ -43,7 +43,7 @@
 * **Database**: string (Required): The database to which the query belongs.
 * **Description**: string: The query description.
 * **Name**: string: The query name.
-* **NamedQueryId**: string (ReadOnly): The unique ID of the query.
+* **NamedQueryId**: string (ReadOnly, Identifier): The unique ID of the query.
 * **QueryString**: string (Required): The contents of the query with all query statements.
 * **WorkGroup**: string: The name of the workgroup that contains the named query.
 
@@ -51,14 +51,14 @@
 ### Properties
 * **Description**: string: The description of the prepared statement.
 * **QueryStatement**: string (Required): The query string for the prepared statement.
-* **StatementName**: string (Required): The name of the prepared statement.
-* **WorkGroup**: string (Required): The name of the workgroup to which the prepared statement belongs.
+* **StatementName**: string (Required, Identifier): The name of the prepared statement.
+* **WorkGroup**: string (Required, Identifier): The name of the workgroup to which the prepared statement belongs.
 
 ## AWS.Athena/WorkGroupProperties
 ### Properties
 * **CreationTime**: string (ReadOnly): The date and time the workgroup was created.
 * **Description**: string: The workgroup description.
-* **Name**: string (Required): The workGroup name.
+* **Name**: string (Required, Identifier): The workGroup name.
 * **RecursiveDeleteOption**: bool: The option to delete the workgroup and its contents even if the workgroup contains any named queries.
 * **State**: string: The state of the workgroup: ENABLED or DISABLED.
 * **Tags**: [Tags](#tags): One or more tags, separated by commas, that you want to attach to the workgroup as you create it

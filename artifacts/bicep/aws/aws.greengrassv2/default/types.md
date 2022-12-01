@@ -14,7 +14,7 @@
 
 ## AWS.GreengrassV2/ComponentVersionProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **ComponentName**: string (ReadOnly)
 * **ComponentVersion**: string (ReadOnly)
 * **InlineRecipe**: string (WriteOnly)
@@ -103,7 +103,7 @@
 ## AWS.GreengrassV2/DeploymentProperties
 ### Properties
 * **Components**: [Deployment_Components](#deploymentcomponents)
-* **DeploymentId**: string (ReadOnly)
+* **DeploymentId**: string (ReadOnly, Identifier)
 * **DeploymentName**: string
 * **DeploymentPolicies**: [DeploymentPolicies](#deploymentpolicies)
 * **IotJobConfiguration**: [DeploymentIoTJobConfiguration](#deploymentiotjobconfiguration)

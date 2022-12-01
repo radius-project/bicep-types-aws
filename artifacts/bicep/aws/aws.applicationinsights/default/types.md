@@ -8,7 +8,7 @@
 
 ## AWS.ApplicationInsights/ApplicationProperties
 ### Properties
-* **ApplicationARN**: string (ReadOnly): The ARN of the ApplicationInsights application.
+* **ApplicationARN**: string (ReadOnly, Identifier): The ARN of the ApplicationInsights application.
 * **AutoConfigurationEnabled**: bool: If set to true, application will be configured with recommended monitoring configuration.
 * **ComponentMonitoringSettings**: [ComponentMonitoringSetting](#componentmonitoringsetting)[]: The monitoring settings of the components.
 * **CustomComponents**: [CustomComponent](#customcomponent)[]: The custom grouped components.

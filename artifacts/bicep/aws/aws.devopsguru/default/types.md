@@ -9,7 +9,7 @@
 ## AWS.DevOpsGuru/ResourceCollectionProperties
 ### Properties
 * **ResourceCollectionFilter**: [ResourceCollectionFilter](#resourcecollectionfilter) (Required)
-* **ResourceCollectionType**: string (ReadOnly): The type of ResourceCollection
+* **ResourceCollectionType**: string (ReadOnly, Identifier): The type of ResourceCollection
 
 ## ResourceCollectionFilter
 ### Properties

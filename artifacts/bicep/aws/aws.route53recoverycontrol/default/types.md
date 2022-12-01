@@ -21,7 +21,7 @@
 ## AWS.Route53RecoveryControl/ControlPanelProperties
 ### Properties
 * **ClusterArn**: string: Cluster to associate with the Control Panel
-* **ControlPanelArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the cluster.
+* **ControlPanelArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the cluster.
 * **DefaultControlPanel**: bool (ReadOnly): A flag that Amazon Route 53 Application Recovery Controller sets to true to designate the default control panel for a cluster. When you create a cluster, Amazon Route 53 Application Recovery Controller creates a control panel, and sets this flag for that control panel. If you create a control panel yourself, this flag is set to false.
 * **Name**: string (Required): The name of the control panel. You can use any non-white space character in the name.
 * **RoutingControlCount**: int (ReadOnly): Count of associated routing controls
@@ -38,7 +38,7 @@
 * **ClusterArn**: string (WriteOnly): Arn associated with Control Panel
 * **ControlPanelArn**: string: The Amazon Resource Name (ARN) of the control panel.
 * **Name**: string (Required): The name of the routing control. You can use any non-white space character in the name.
-* **RoutingControlArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the routing control.
+* **RoutingControlArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the routing control.
 * **Status**: string (ReadOnly): The deployment status of the routing control. Status can be one of the following: PENDING, DEPLOYED, PENDING_DELETION.
 
 ## AWS.Route53RecoveryControl/SafetyRuleProperties
@@ -48,7 +48,7 @@
 * **GatingRule**: [GatingRule](#gatingrule)
 * **Name**: [SafetyRuleName](#safetyrulename)
 * **RuleConfig**: [RuleConfig](#ruleconfig)
-* **SafetyRuleArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the safety rule.
+* **SafetyRuleArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the safety rule.
 * **Status**: string (ReadOnly): The deployment status of the routing control. Status can be one of the following: PENDING, DEPLOYED, PENDING_DELETION.
 * **Tags**: [Tag](#tag)[] (WriteOnly): A collection of tags associated with a resource
 

@@ -26,7 +26,7 @@
 
 ## AWS.IoTAnalytics/ChannelProperties
 ### Properties
-* **ChannelName**: string
+* **ChannelName**: string (Identifier)
 * **ChannelStorage**: [ChannelStorage](#channelstorage)
 * **Id**: string (ReadOnly)
 * **RetentionPeriod**: [RetentionPeriod](#retentionperiod)
@@ -60,7 +60,7 @@
 ### Properties
 * **Actions**: [Action](#action)[] (Required)
 * **ContentDeliveryRules**: [DatasetContentDeliveryRule](#datasetcontentdeliveryrule)[]
-* **DatasetName**: string
+* **DatasetName**: string (Identifier)
 * **Id**: string (ReadOnly)
 * **LateDataRules**: [LateDataRule](#latedatarule)[]
 * **RetentionPeriod**: [RetentionPeriod](#retentionperiod)
@@ -96,7 +96,7 @@
 
 ## DatasetContentVersionValue
 ### Properties
-* **DatasetName**: string (Required)
+* **DatasetName**: string (Required, Identifier)
 
 ## OutputFileUriValue
 ### Properties
@@ -177,7 +177,7 @@
 
 ## TriggeringDataset
 ### Properties
-* **DatasetName**: string (Required)
+* **DatasetName**: string (Required, Identifier)
 
 ## VersioningConfiguration
 ### Properties
@@ -186,7 +186,7 @@
 
 ## AWS.IoTAnalytics/DatastoreProperties
 ### Properties
-* **DatastoreName**: string
+* **DatastoreName**: string (Identifier)
 * **DatastorePartitions**: [DatastorePartitions](#datastorepartitions)
 * **DatastoreStorage**: [DatastoreStorage](#datastorestorage)
 * **FileFormatConfiguration**: [FileFormatConfiguration](#fileformatconfiguration)
@@ -271,7 +271,7 @@
 ### Properties
 * **Id**: string (ReadOnly)
 * **PipelineActivities**: [Activity](#activity)[] (Required)
-* **PipelineName**: string
+* **PipelineName**: string (Identifier)
 * **Tags**: [Tag](#tag)[]
 
 ## Activity

@@ -26,7 +26,7 @@
 * **LoggingConfiguration**: [LoggingConfiguration](#loggingconfiguration)
 * **MaxWorkers**: [MaxWorkers](#maxworkers)
 * **MinWorkers**: [MinWorkers](#minworkers)
-* **Name**: [EnvironmentName](#environmentname) (Required)
+* **Name**: [EnvironmentName](#environmentname) (Required, Identifier)
 * **NetworkConfiguration**: [NetworkConfiguration](#networkconfiguration)
 * **PluginsS3ObjectVersion**: [S3ObjectVersion](#s3objectversion)
 * **PluginsS3Path**: [RelativePath](#relativepath)
