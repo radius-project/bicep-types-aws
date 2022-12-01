@@ -42,7 +42,7 @@ describe('convert', () => {
                     "The Amazon resource name (ARN) of the Kinesis stream"),
                 "Name": new ObjectProperty(
                     new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
-                    ObjectPropertyFlags.None,
+                    ObjectPropertyFlags.Identifier,
                     "The name of the Kinesis stream."),
                 "RetentionPeriodHours": new ObjectProperty(
                     new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.Int)),
@@ -115,7 +115,7 @@ describe('convert', () => {
 
         const aclNameProperty = propertiesType?.Properties["ACLName"]
         expect(aclNameProperty).not.toBeUndefined();
-        expect(aclNameProperty?.Flags).toEqual(ObjectPropertyFlags.Required);
+        expect(aclNameProperty?.Flags).toEqual(ObjectPropertyFlags.Required|ObjectPropertyFlags.Identifier);
     });
 });
 
