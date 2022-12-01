@@ -38,7 +38,7 @@
 
 ## AWS.DeviceFarm/DevicePoolProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **Description**: string
 * **MaxDevices**: int
 * **Name**: string (Required)
@@ -59,7 +59,7 @@
 
 ## AWS.DeviceFarm/InstanceProfileProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **Description**: string
 * **ExcludeAppPackagesFromCleanup**: string[]
 * **Name**: string (Required)
@@ -74,7 +74,7 @@
 
 ## AWS.DeviceFarm/NetworkProfileProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **Description**: string
 * **DownlinkBandwidthBits**: int
 * **DownlinkDelayMs**: int
@@ -95,7 +95,7 @@
 
 ## AWS.DeviceFarm/ProjectProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **DefaultJobTimeoutMinutes**: int
 * **Name**: string (Required)
 * **Tags**: [Tag](#tag)[]
@@ -107,7 +107,7 @@
 
 ## AWS.DeviceFarm/TestGridProjectProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **Description**: string
 * **Name**: string (Required)
 * **Tags**: [Tag](#tag)[]
@@ -126,7 +126,7 @@
 
 ## AWS.DeviceFarm/VPCEConfigurationProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **ServiceDnsName**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **VpceConfigurationDescription**: string

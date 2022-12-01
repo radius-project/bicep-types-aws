@@ -20,7 +20,7 @@
 
 ## AWS.MSK/BatchScramSecretProperties
 ### Properties
-* **ClusterArn**: string (Required)
+* **ClusterArn**: string (Required, Identifier)
 * **SecretArnList**: [SecretArnList](#secretarnlist)
 
 ## SecretArnList
@@ -28,7 +28,7 @@
 
 ## AWS.MSK/ClusterProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **BrokerNodeGroupInfo**: [BrokerNodeGroupInfo](#brokernodegroupinfo) (Required)
 * **ClientAuthentication**: [ClientAuthentication](#clientauthentication)
 * **ClusterName**: string (Required)
@@ -104,7 +104,7 @@
 
 ## ConfigurationInfo
 ### Properties
-* **Arn**: string (Required)
+* **Arn**: string (Required, Identifier)
 * **Revision**: int (Required)
 
 ## EncryptionInfo
@@ -169,7 +169,7 @@
 
 ## AWS.MSK/ConfigurationProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **Description**: string
 * **KafkaVersionsList**: [KafkaVersionsList](#kafkaversionslist)
 * **Name**: string (Required)

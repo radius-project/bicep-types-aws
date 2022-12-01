@@ -8,7 +8,7 @@
 
 ## AWS.CE/CostCategoryProperties
 ### Properties
-* **Arn**: string (ReadOnly): Cost category ARN
+* **Arn**: string (ReadOnly, Identifier): Cost category ARN
 * **DefaultValue**: string: The default value for the cost category
 * **EffectiveStart**: [ZonedDateTime](#zoneddatetime) (ReadOnly)
 * **Name**: string (Required)

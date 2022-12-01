@@ -1,12 +1,13 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-S3-AccessPoint",
   "type": "AWS::S3::AccessPoint",
-  "time": "2022-10-13T15:32:46.198Z",
+  "time": "2022-11-18T03:31:49.506Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name",
       "/properties/Bucket",
+      "/properties/BucketAccountId",
       "/properties/VpcConfiguration",
       "/properties/PublicAccessBlockConfiguration"
     ],
@@ -106,6 +107,12 @@
         "description": "The name of the bucket that you want to associate this Access Point with.",
         "maxLength": 255,
         "minLength": 3,
+        "type": "string"
+      },
+      "BucketAccountId": {
+        "description": "The AWS account ID associated with the S3 bucket associated with this access point.",
+        "maxLength": 64,
+        "pattern": "^\\d{12}$",
         "type": "string"
       },
       "Name": {

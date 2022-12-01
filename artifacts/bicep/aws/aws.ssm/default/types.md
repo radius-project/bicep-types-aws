@@ -18,10 +18,16 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SSM/ResourceDataSyncProperties](#awsssmresourcedatasyncproperties) (Required): properties of the resource
 
+## Resource AWS.SSM/ResourcePolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **name**: string: the resource name
+* **properties**: [AWS.SSM/ResourcePolicyProperties](#awsssmresourcepolicyproperties) (Required): properties of the resource
+
 ## AWS.SSM/AssociationProperties
 ### Properties
 * **ApplyOnlyAtCronInterval**: bool
-* **AssociationId**: string (ReadOnly): Unique identifier of the association.
+* **AssociationId**: string (ReadOnly, Identifier): Unique identifier of the association.
 * **AssociationName**: string: The name of the association.
 * **AutomationTargetParameterName**: string
 * **CalendarNames**: string[]
@@ -72,7 +78,7 @@
 * **Content**: [Document_Content](#documentcontent) | string (Required): The content for the Systems Manager document in JSON, YAML or String format.
 * **DocumentFormat**: string: Specify the document format for the request. The document format can be either JSON or YAML. JSON is the default format.
 * **DocumentType**: string: The type of document to create.
-* **Name**: string: A name for the Systems Manager document.
+* **Name**: string (Identifier): A name for the Systems Manager document.
 * **Requires**: [DocumentRequires](#documentrequires)[]: A list of SSM documents required by a document. For example, an ApplicationConfiguration document requires an ApplicationConfigurationSchema document.
 * **Tags**: [Tag](#tag)[]: Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment.
 * **TargetType**: string: Specify a target type to define the kinds of resources the document can run on.
@@ -82,12 +88,12 @@
 ## AttachmentsSource
 ### Properties
 * **Key**: string: The key of a key-value pair that identifies the location of an attachment to a document.
-* **Name**: string: The name of the document attachment file.
+* **Name**: string (Identifier): The name of the document attachment file.
 * **Values**: string[]: The value of a key-value pair that identifies the location of an attachment to a document. The format for Value depends on the type of key you specify.
 
 ## DocumentRequires
 ### Properties
-* **Name**: string: The name of the required SSM document. The name can be an Amazon Resource Name (ARN).
+* **Name**: string (Identifier): The name of the required SSM document. The name can be an Amazon Resource Name (ARN).
 * **Version**: string: The document version required by the current document.
 
 ## Tag
@@ -103,7 +109,7 @@
 * **KMSKeyArn**: string
 * **S3Destination**: [S3Destination](#s3destination)
 * **SyncFormat**: string
-* **SyncName**: string (Required, ReadOnly)
+* **SyncName**: string (Required, ReadOnly, Identifier)
 * **SyncSource**: [SyncSource](#syncsource)
 * **SyncType**: string
 
@@ -126,4 +132,11 @@
 ### Properties
 * **OrganizationalUnits**: string[]
 * **OrganizationSourceType**: string (Required)
+
+## AWS.SSM/ResourcePolicyProperties
+### Properties
+* **Policy**: [ResourcePolicy_Policy](#resourcepolicypolicy) | string (Required): Actual policy statement.
+* **PolicyHash**: string (ReadOnly): A snapshot identifier for the policy over time.
+* **PolicyId**: string (ReadOnly, Identifier): An unique identifier within the policies of a resource. 
+* **ResourceArn**: string (Required, Identifier): Arn of OpsItemGroup etc.
 

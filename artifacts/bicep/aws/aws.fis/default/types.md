@@ -10,7 +10,7 @@
 ### Properties
 * **Actions**: [ExperimentTemplateActionMap](#experimenttemplateactionmap)
 * **Description**: [ExperimentTemplateDescription](#experimenttemplatedescription) (Required)
-* **Id**: [ExperimentTemplateId](#experimenttemplateid) (ReadOnly)
+* **Id**: [ExperimentTemplateId](#experimenttemplateid) (ReadOnly, Identifier)
 * **LogConfiguration**: [ExperimentTemplateLogConfiguration](#experimenttemplatelogconfiguration)
 * **RoleArn**: [RoleArn](#rolearn) (Required)
 * **StopConditions**: [ExperimentTemplateStopConditionList](#experimenttemplatestopconditionlist) (Required)

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppRunner-Service",
   "type": "AWS::AppRunner::Service",
-  "time": "2022-10-27T06:46:04.615Z",
+  "time": "2022-11-01T01:20:08.714Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -69,7 +69,11 @@
               "NODEJS_14",
               "CORRETTO_8",
               "CORRETTO_11",
-              "NODEJS_16"
+              "NODEJS_16",
+              "GO_1",
+              "DOTNET_6",
+              "PHP_81",
+              "RUBY_31"
             ],
             "type": "string"
           },
@@ -243,6 +247,20 @@
         ],
         "type": "object"
       },
+      "IngressConfiguration": {
+        "additionalProperties": false,
+        "description": "Network ingress configuration",
+        "properties": {
+          "IsPubliclyAccessible": {
+            "description": "It's set to true if the Apprunner service is publicly accessible. It's set to false otherwise.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "IsPubliclyAccessible"
+        ],
+        "type": "object"
+      },
       "InstanceConfiguration": {
         "additionalProperties": false,
         "description": "Instance Configuration",
@@ -286,6 +304,9 @@
         "properties": {
           "EgressConfiguration": {
             "$ref": "#/definitions/EgressConfiguration"
+          },
+          "IngressConfiguration": {
+            "$ref": "#/definitions/IngressConfiguration"
           }
         },
         "type": "object"

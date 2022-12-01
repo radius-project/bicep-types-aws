@@ -20,9 +20,10 @@
 
 ## AWS.Batch/ComputeEnvironmentProperties
 ### Properties
-* **ComputeEnvironmentArn**: string (ReadOnly)
+* **ComputeEnvironmentArn**: string (ReadOnly, Identifier)
 * **ComputeEnvironmentName**: string
 * **ComputeResources**: [ComputeResources](#computeresources)
+* **EksConfiguration**: [EksConfiguration](#eksconfiguration)
 * **ReplaceComputeEnvironment**: bool (WriteOnly)
 * **ServiceRole**: string
 * **State**: string
@@ -55,6 +56,7 @@
 ## Ec2ConfigurationObject
 ### Properties
 * **ImageIdOverride**: string
+* **ImageKubernetesVersion**: string
 * **ImageType**: string (Required)
 
 ## LaunchTemplateSpecification
@@ -65,6 +67,11 @@
 
 ## ComputeEnvironment_Tags
 ### Properties
+
+## EksConfiguration
+### Properties
+* **EksClusterArn**: string (Required)
+* **KubernetesNamespace**: string (Required)
 
 ## ComputeEnvironment_Tags
 ### Properties
@@ -77,7 +84,7 @@
 ## AWS.Batch/JobQueueProperties
 ### Properties
 * **ComputeEnvironmentOrder**: [ComputeEnvironmentOrder](#computeenvironmentorder)[] (Required)
-* **JobQueueArn**: [ResourceArn](#resourcearn) (ReadOnly)
+* **JobQueueArn**: [ResourceArn](#resourcearn) (ReadOnly, Identifier)
 * **JobQueueName**: string
 * **Priority**: int (Required)
 * **SchedulingPolicyArn**: [ResourceArn](#resourcearn)
@@ -97,7 +104,7 @@
 
 ## AWS.Batch/SchedulingPolicyProperties
 ### Properties
-* **Arn**: [ResourceArn](#resourcearn) (ReadOnly)
+* **Arn**: [ResourceArn](#resourcearn) (ReadOnly, Identifier)
 * **FairsharePolicy**: [FairsharePolicy](#fairsharepolicy)
 * **Name**: string: Name of Scheduling Policy.
 * **Tags**: [SchedulingPolicy_Tags](#schedulingpolicytags): A key-value pair to associate with a resource.

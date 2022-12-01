@@ -18,14 +18,14 @@
 * **ConnectorLabel**: string: The label of the connector. The label is unique for each ConnectorRegistration in your AWS account. Only needed if calling for CUSTOMCONNECTOR connector type/.
 * **ConnectorProfileArn**: string (ReadOnly): Unique identifier for connector profile resources
 * **ConnectorProfileConfig**: [ConnectorProfileConfig](#connectorprofileconfig) (WriteOnly): Connector specific configurations needed to create connector profile
-* **ConnectorProfileName**: string (Required): The maximum number of items to retrieve in a single batch.
+* **ConnectorProfileName**: string (Required, Identifier): The maximum number of items to retrieve in a single batch.
 * **ConnectorType**: [ConnectorType](#connectortype) (Required): List of Saas providers that need connector profile to be created
 * **CredentialsArn**: string (ReadOnly): A unique Arn for Connector-Profile resource
 * **KMSArn**: string: The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables. If it's not provided, AWS Lambda uses a default service key.
 
 ## ConnectorProfileConfig
 ### Properties
-* **ConnectorProfileCredentials**: [ConnectorProfileCredentials](#connectorprofilecredentials) (Required)
+* **ConnectorProfileCredentials**: [ConnectorProfileCredentials](#connectorprofilecredentials)
 * **ConnectorProfileProperties**: [ConnectorProfileProperties](#connectorprofileproperties)
 
 ## ConnectorProfileCredentials
@@ -171,8 +171,8 @@ granted.
 
 ## RedshiftConnectorProfileCredentials
 ### Properties
-* **Password**: [Password](#password) (Required): The password that corresponds to the username.
-* **Username**: [Username](#username) (Required): The name of the user.
+* **Password**: [Password](#password): The password that corresponds to the username.
+* **Username**: [Username](#username): The name of the user.
 
 ## SalesforceConnectorProfileCredentials
 ### Properties
@@ -293,8 +293,13 @@ granted.
 ### Properties
 * **BucketName**: [BucketName](#bucketname) (Required): The name of the Amazon S3 bucket associated with Redshift.
 * **BucketPrefix**: [BucketPrefix](#bucketprefix): The object key for the destination bucket in which Amazon AppFlow will place the ?les.
-* **DatabaseUrl**: [DatabaseUrl](#databaseurl) (Required): The JDBC URL of the Amazon Redshift cluster.
+* **ClusterIdentifier**: [ClusterIdentifier](#clusteridentifier): The unique identifier of the Amazon Redshift cluster.
+* **DataApiRoleArn**: [DataApiRoleArn](#dataapirolearn): The Amazon Resource Name (ARN) of the IAM role that grants Amazon AppFlow access to the data through the Amazon Redshift Data API.
+* **DatabaseName**: [DatabaseName](#databasename): The name of the Amazon Redshift database that will store the transferred data.
+* **DatabaseUrl**: [DatabaseUrl](#databaseurl): The JDBC URL of the Amazon Redshift cluster.
+* **IsRedshiftServerless**: bool: If Amazon AppFlow will connect to Amazon Redshift Serverless or Amazon Redshift cluster.
 * **RoleArn**: [RoleArn](#rolearn) (Required): The Amazon Resource Name (ARN) of the IAM role.
+* **WorkgroupName**: [WorkgroupName](#workgroupname): The name of the Amazon Redshift serverless workgroup
 
 ## BucketName
 ### Properties
@@ -302,10 +307,22 @@ granted.
 ## BucketPrefix
 ### Properties
 
+## ClusterIdentifier
+### Properties
+
+## DataApiRoleArn
+### Properties
+
+## DatabaseName
+### Properties
+
 ## DatabaseUrl
 ### Properties
 
 ## RoleArn
+### Properties
+
+## WorkgroupName
 ### Properties
 
 ## SalesforceConnectorProfileProperties
@@ -394,8 +411,9 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 * **Description**: string: Description of the flow.
 * **DestinationFlowConfigList**: [DestinationFlowConfig](#destinationflowconfig)[] (Required): List of Destination connectors of the flow.
 * **FlowArn**: string (ReadOnly): ARN identifier of the flow.
-* **FlowName**: string (Required): Name of the flow.
+* **FlowName**: string (Required, Identifier): Name of the flow.
 * **KMSArn**: string: The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables. If it's not provided, AWS Lambda uses a default service key.
+* **MetadataCatalogConfig**: [MetadataCatalogConfig](#metadatacatalogconfig): Configurations of metadata catalog of the flow.
 * **SourceFlowConfig**: [SourceFlowConfig](#sourceflowconfig) (Required): Configurations of Source connector of the flow.
 * **Tags**: [Tag](#tag)[]: List of Tags.
 * **Tasks**: [Task](#task)[] (Required): List of tasks for the flow.
@@ -500,8 +518,12 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 ## AggregationConfig
 ### Properties
 * **AggregationType**: [AggregationType](#aggregationtype)
+* **TargetFileSize**: [TargetFileSize](#targetfilesize)
 
 ## AggregationType
+### Properties
+
+## TargetFileSize
 ### Properties
 
 ## FileType
@@ -509,8 +531,12 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 
 ## PrefixConfig
 ### Properties
+* **PathPrefixHierarchy**: [PathPrefixHierarchy](#pathprefixhierarchy)
 * **PrefixFormat**: [PrefixFormat](#prefixformat)
 * **PrefixType**: [PrefixType](#prefixtype)
+
+## PathPrefixHierarchy
+### Properties
 
 ## PrefixFormat
 ### Properties
@@ -573,6 +599,16 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 * **IdFieldNames**: string[]: List of fields used as ID when performing a write operation.
 * **Object**: [Object](#object) (Required)
 * **WriteOperationType**: [WriteOperationType](#writeoperationtype)
+
+## MetadataCatalogConfig
+### Properties
+* **GlueDataCatalog**: [GlueDataCatalog](#gluedatacatalog): Configurations of glue data catalog of the flow.
+
+## GlueDataCatalog
+### Properties
+* **DatabaseName**: string (Required): A string containing the value for the tag
+* **RoleArn**: string (Required): A string containing the value for the tag
+* **TablePrefix**: string (Required): A string containing the value for the tag
 
 ## SourceFlowConfig
 ### Properties

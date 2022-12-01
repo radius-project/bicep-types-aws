@@ -8,7 +8,7 @@
 
 ## AWS.CodeStarConnections/ConnectionProperties
 ### Properties
-* **ConnectionArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the  connection. The ARN is used as the connection reference when the connection is shared between AWS services.
+* **ConnectionArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the  connection. The ARN is used as the connection reference when the connection is shared between AWS services.
 * **ConnectionName**: string (Required): The name of the connection. Connection names must be unique in an AWS user account.
 * **ConnectionStatus**: string (ReadOnly): The current status of the connection.
 * **HostArn**: string: The host arn configured to represent the infrastructure where your third-party provider is installed. You must specify either a ProviderType or a HostArn.

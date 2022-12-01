@@ -14,7 +14,7 @@
 
 ## AWS.SSMIncidents/ReplicationSetProperties
 ### Properties
-* **Arn**: [Arn](#arn) (ReadOnly): The ARN of the ReplicationSet.
+* **Arn**: [Arn](#arn) (ReadOnly, Identifier): The ARN of the ReplicationSet.
 * **DeletionProtected**: [DeletionProtected](#deletionprotected)
 * **Regions**: [RegionList](#regionlist) (Required): The ReplicationSet configuration.
 
@@ -30,7 +30,7 @@
 ## AWS.SSMIncidents/ResponsePlanProperties
 ### Properties
 * **Actions**: [Action](#action)[]: The list of actions.
-* **Arn**: string (ReadOnly): The ARN of the response plan.
+* **Arn**: string (ReadOnly, Identifier): The ARN of the response plan.
 * **ChatChannel**: [ChatChannel](#chatchannel)
 * **DisplayName**: string: The display name of the response plan.
 * **Engagements**: [SSMContact](#ssmcontact)[]: The list of engagements to use.

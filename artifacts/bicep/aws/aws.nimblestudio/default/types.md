@@ -29,14 +29,14 @@
 * **Description**: string: <p>The description.</p>
 * **Ec2SubnetIds**: string[] (Required): <p>Specifies the IDs of the EC2 subnets where streaming sessions will be accessible from.
             These subnets must support the specified instance types. </p>
-* **LaunchProfileId**: string (ReadOnly)
+* **LaunchProfileId**: string (ReadOnly, Identifier)
 * **LaunchProfileProtocolVersions**: string[] (Required): <p>The version number of the protocol that is used by the launch profile. The only valid
             version is "2021-03-31".</p>
 * **Name**: string (Required): <p>The name for the launch profile.</p>
 * **StreamConfiguration**: [StreamConfiguration](#streamconfiguration) (Required)
 * **StudioComponentIds**: string[] (Required): <p>Unique identifiers for a collection of studio components that can be used with this
             launch profile.</p>
-* **StudioId**: string (Required): <p>The studio ID. </p>
+* **StudioId**: string (Required, Identifier): <p>The studio ID. </p>
 * **Tags**: [Tags](#tags)
 
 ## StreamConfiguration
@@ -95,8 +95,8 @@
 * **Name**: string (Required): <p>A friendly name for a streaming image resource.</p>
 * **Owner**: string (ReadOnly): <p>The owner of the streaming image, either the studioId that contains the streaming image, or 'amazon' for images that are provided by Amazon Nimble Studio.</p>
 * **Platform**: string (ReadOnly): <p>The platform of the streaming image, either WINDOWS or LINUX.</p>
-* **StreamingImageId**: string (ReadOnly)
-* **StudioId**: string (Required): <p>The studioId. </p>
+* **StreamingImageId**: string (ReadOnly, Identifier)
+* **StudioId**: string (Required, Identifier): <p>The studioId. </p>
 * **Tags**: [Tags](#tags)
 
 ## StreamingImageEncryptionConfiguration
@@ -117,7 +117,7 @@
 * **HomeRegion**: string (ReadOnly): <p>The Amazon Web Services Region where the studio resource is located.</p>
 * **SsoClientId**: string (ReadOnly): <p>The Amazon Web Services SSO application client ID used to integrate with Amazon Web Services SSO to enable Amazon Web Services SSO users to log in to Nimble Studio portal.</p>
 * **StudioEncryptionConfiguration**: [StudioEncryptionConfiguration](#studioencryptionconfiguration)
-* **StudioId**: string (ReadOnly)
+* **StudioId**: string (ReadOnly, Identifier)
 * **StudioName**: string (Required): <p>The studio name that is used in the URL of the Nimble Studio portal when accessed by Nimble Studio users.</p>
 * **StudioUrl**: string (ReadOnly): <p>The address of the web page for the studio.</p>
 * **Tags**: [Tags](#tags)
@@ -144,8 +144,8 @@
 * **RuntimeRoleArn**: string
 * **ScriptParameters**: [ScriptParameterKeyValue](#scriptparameterkeyvalue)[]: <p>Parameters for the studio component scripts.</p>
 * **SecureInitializationRoleArn**: string
-* **StudioComponentId**: string (ReadOnly)
-* **StudioId**: string (Required): <p>The studio ID. </p>
+* **StudioComponentId**: string (ReadOnly, Identifier)
+* **StudioId**: string (Required, Identifier): <p>The studio ID. </p>
 * **Subtype**: [StudioComponentSubtype](#studiocomponentsubtype)
 * **Tags**: [Tags](#tags)
 * **Type**: [StudioComponentType](#studiocomponenttype) (Required)

@@ -10,10 +10,10 @@
 ### Properties
 * **Arn**: [Arn](#arn) (ReadOnly)
 * **ExclusiveEndTime**: string
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **InclusiveStartTime**: string (Required)
 * **KinesisConfiguration**: [KinesisConfiguration](#kinesisconfiguration) (Required)
-* **LedgerName**: string (Required)
+* **LedgerName**: string (Required, Identifier)
 * **RoleArn**: [Arn](#arn) (Required)
 * **StreamName**: string (Required)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.

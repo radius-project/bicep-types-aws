@@ -6,6 +6,12 @@
 * **name**: string: the resource name
 * **properties**: [AWS.AppRunner/ServiceProperties](#awsapprunnerserviceproperties) (Required): properties of the resource
 
+## Resource AWS.AppRunner/VpcIngressConnection@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **name**: string: the resource name
+* **properties**: [AWS.AppRunner/VpcIngressConnectionProperties](#awsapprunnervpcingressconnectionproperties) (Required): properties of the resource
+
 ## AWS.AppRunner/ServiceProperties
 ### Properties
 * **AutoScalingConfigurationArn**: string (WriteOnly): Autoscaling configuration ARN
@@ -14,7 +20,7 @@
 * **InstanceConfiguration**: [InstanceConfiguration](#instanceconfiguration)
 * **NetworkConfiguration**: [NetworkConfiguration](#networkconfiguration)
 * **ObservabilityConfiguration**: [ServiceObservabilityConfiguration](#serviceobservabilityconfiguration)
-* **ServiceArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the AppRunner Service.
+* **ServiceArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the AppRunner Service.
 * **ServiceId**: string (ReadOnly): The AppRunner Service Id
 * **ServiceName**: string: The AppRunner Service Name.
 * **ServiceUrl**: string (ReadOnly): The Service Url of the AppRunner Service.
@@ -47,11 +53,16 @@
 ## NetworkConfiguration
 ### Properties
 * **EgressConfiguration**: [EgressConfiguration](#egressconfiguration)
+* **IngressConfiguration**: [IngressConfiguration](#ingressconfiguration)
 
 ## EgressConfiguration
 ### Properties
 * **EgressType**: string (Required): Network egress type.
 * **VpcConnectorArn**: string: The Amazon Resource Name (ARN) of the App Runner VpcConnector.
+
+## IngressConfiguration
+### Properties
+* **IsPubliclyAccessible**: bool (Required): It's set to true if the Apprunner service is publicly accessible. It's set to false otherwise.
 
 ## ServiceObservabilityConfiguration
 ### Properties
@@ -110,6 +121,26 @@
 * **Port**: string: Port
 * **RuntimeEnvironmentVariables**: [KeyValuePair](#keyvaluepair)[]
 * **StartCommand**: string: Start Command
+
+## Tag
+### Properties
+* **Key**: string
+* **Value**: string
+
+## AWS.AppRunner/VpcIngressConnectionProperties
+### Properties
+* **DomainName**: string (ReadOnly): The Domain name associated with the VPC Ingress Connection.
+* **IngressVpcConfiguration**: [IngressVpcConfiguration](#ingressvpcconfiguration) (Required)
+* **ServiceArn**: string (Required): The Amazon Resource Name (ARN) of the service.
+* **Status**: string (ReadOnly): The current status of the VpcIngressConnection.
+* **Tags**: [Tag](#tag)[] (WriteOnly)
+* **VpcIngressConnectionArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the VpcIngressConnection.
+* **VpcIngressConnectionName**: string: The customer-provided Vpc Ingress Connection name.
+
+## IngressVpcConfiguration
+### Properties
+* **VpcEndpointId**: string (Required): The ID of the VPC endpoint that your App Runner service connects to.
+* **VpcId**: string (Required): The ID of the VPC that the VPC endpoint is used in.
 
 ## Tag
 ### Properties

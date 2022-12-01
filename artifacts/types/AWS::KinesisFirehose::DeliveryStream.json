@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-KinesisFirehose-DeliveryStream",
   "type": "AWS::KinesisFirehose::DeliveryStream",
-  "time": "2022-07-05T16:58:00.178Z",
+  "time": "2022-11-17T18:44:15.319Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,9 +9,84 @@
       "/properties/DeliveryStreamType",
       "/properties/ElasticsearchDestinationConfiguration/VpcConfiguration",
       "/properties/AmazonopensearchserviceDestinationConfiguration/VpcConfiguration",
+      "/properties/AmazonOpenSearchServerlessDestinationConfiguration/VpcConfiguration",
       "/properties/KinesisStreamSourceConfiguration"
     ],
     "definitions": {
+      "AmazonOpenSearchServerlessBufferingHints": {
+        "additionalProperties": false,
+        "properties": {
+          "IntervalInSeconds": {
+            "type": "integer"
+          },
+          "SizeInMBs": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "AmazonOpenSearchServerlessDestinationConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "BufferingHints": {
+            "$ref": "#/definitions/AmazonOpenSearchServerlessBufferingHints"
+          },
+          "CloudWatchLoggingOptions": {
+            "$ref": "#/definitions/CloudWatchLoggingOptions"
+          },
+          "CollectionEndpoint": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "https:.*",
+            "type": "string"
+          },
+          "IndexName": {
+            "maxLength": 80,
+            "minLength": 1,
+            "type": "string"
+          },
+          "ProcessingConfiguration": {
+            "$ref": "#/definitions/ProcessingConfiguration"
+          },
+          "RetryOptions": {
+            "$ref": "#/definitions/AmazonOpenSearchServerlessRetryOptions"
+          },
+          "RoleARN": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "arn:.*",
+            "type": "string"
+          },
+          "S3BackupMode": {
+            "enum": [
+              "FailedDocumentsOnly",
+              "AllDocuments"
+            ],
+            "type": "string"
+          },
+          "S3Configuration": {
+            "$ref": "#/definitions/S3DestinationConfiguration"
+          },
+          "VpcConfiguration": {
+            "$ref": "#/definitions/VpcConfiguration"
+          }
+        },
+        "required": [
+          "IndexName",
+          "S3Configuration",
+          "RoleARN"
+        ],
+        "type": "object"
+      },
+      "AmazonOpenSearchServerlessRetryOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DurationInSeconds": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "AmazonopensearchserviceBufferingHints": {
         "additionalProperties": false,
         "properties": {
@@ -1050,6 +1125,9 @@
       "/properties/DeliveryStreamName"
     ],
     "properties": {
+      "AmazonOpenSearchServerlessDestinationConfiguration": {
+        "$ref": "#/definitions/AmazonOpenSearchServerlessDestinationConfiguration"
+      },
       "AmazonopensearchserviceDestinationConfiguration": {
         "$ref": "#/definitions/AmazonopensearchserviceDestinationConfiguration"
       },

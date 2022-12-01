@@ -10,13 +10,13 @@
 ### Properties
 * **Arn**: string (ReadOnly)
 * **ContainerProvider**: [ContainerProvider](#containerprovider) (Required): Container provider of the virtual cluster.
-* **Id**: string (ReadOnly): Id of the virtual cluster.
+* **Id**: string (ReadOnly, Identifier): Id of the virtual cluster.
 * **Name**: string (Required): Name of the virtual cluster.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this virtual cluster.
 
 ## ContainerProvider
 ### Properties
-* **Id**: string (Required): The ID of the container cluster
+* **Id**: string (Required, Identifier): The ID of the container cluster
 * **Info**: [ContainerInfo](#containerinfo) (Required)
 * **Type**: string (Required): The type of the container provider
 

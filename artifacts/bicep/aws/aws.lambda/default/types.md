@@ -27,7 +27,7 @@
 ## AWS.Lambda/CodeSigningConfigProperties
 ### Properties
 * **AllowedPublishers**: [AllowedPublishers](#allowedpublishers) (Required): When the CodeSigningConfig is later on attached to a function, the function code will be expected to be signed by profiles from this list
-* **CodeSigningConfigArn**: string (ReadOnly): A unique Arn for CodeSigningConfig resource
+* **CodeSigningConfigArn**: string (ReadOnly, Identifier): A unique Arn for CodeSigningConfig resource
 * **CodeSigningConfigId**: string (ReadOnly): A unique identifier for CodeSigningConfig resource
 * **CodeSigningPolicies**: [CodeSigningPolicies](#codesigningpolicies): Policies to control how to act if a signature is invalid
 * **Description**: string: A description of the CodeSigningConfig
@@ -51,7 +51,7 @@
 * **FilterCriteria**: [FilterCriteria](#filtercriteria): The filter criteria to control event filtering.
 * **FunctionName**: string (Required): The name of the Lambda function.
 * **FunctionResponseTypes**: string[]: (Streams) A list of response types supported by the function.
-* **Id**: string (ReadOnly): Event Source Mapping Identifier UUID.
+* **Id**: string (ReadOnly, Identifier): Event Source Mapping Identifier UUID.
 * **MaximumBatchingWindowInSeconds**: int: (Streams) The maximum amount of time to gather records before invoking the function, in seconds.
 * **MaximumRecordAgeInSeconds**: int: (Streams) The maximum age of a record that Lambda sends to a function for processing.
 * **MaximumRetryAttempts**: int: (Streams) The maximum number of times to retry when the function returns an error.
@@ -116,7 +116,7 @@
 * **Environment**: [Environment](#environment): Environment variables that are accessible from function code during execution.
 * **EphemeralStorage**: [EphemeralStorage](#ephemeralstorage): A function's ephemeral storage settings.
 * **FileSystemConfigs**: [FileSystemConfig](#filesystemconfig)[]: Connection settings for an Amazon EFS file system. To connect a function to a file system, a mount target must be available in every Availability Zone that your function connects to. If your template contains an AWS::EFS::MountTarget resource, you must also specify a DependsOn attribute to ensure that the mount target is created or updated before the function.
-* **FunctionName**: string: The name of the Lambda function, up to 64 characters in length. If you don't specify a name, AWS CloudFormation generates one.
+* **FunctionName**: string (Identifier): The name of the Lambda function, up to 64 characters in length. If you don't specify a name, AWS CloudFormation generates one.
 * **Handler**: string: The name of the method within your code that Lambda calls to execute your function. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime
 * **ImageConfig**: [ImageConfig](#imageconfig): ImageConfig
 * **KmsKeyArn**: string: The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables. If it's not provided, AWS Lambda uses a default service key.
@@ -126,6 +126,8 @@
 * **ReservedConcurrentExecutions**: int: The number of simultaneous executions to reserve for the function.
 * **Role**: string (Required): The Amazon Resource Name (ARN) of the function's execution role.
 * **Runtime**: string: The identifier of the function's runtime.
+* **SnapStart**: [SnapStart](#snapstart): The SnapStart setting of your function
+* **SnapStartResponse**: [SnapStartResponse](#snapstartresponse) (ReadOnly): The SnapStart response of your function
 * **Tags**: [Tag](#tag)[]: A list of tags to apply to the function.
 * **Timeout**: int: The amount of time that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds.
 * **TracingConfig**: [TracingConfig](#tracingconfig): Set Mode to Active to sample and trace a subset of incoming requests with AWS X-Ray.
@@ -165,6 +167,15 @@
 * **EntryPoint**: string[]: EntryPoint.
 * **WorkingDirectory**: string: WorkingDirectory.
 
+## SnapStart
+### Properties
+* **ApplyOn**: string (Required): Applying SnapStart setting on function resource type.
+
+## SnapStartResponse
+### Properties
+* **ApplyOn**: string (ReadOnly): Applying SnapStart setting on function resource type.
+* **OptimizationStatus**: string (ReadOnly): Indicates whether SnapStart is activated for the specified function version.
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
@@ -183,7 +194,7 @@
 ### Properties
 * **AuthType**: string (Required): Can be either AWS_IAM if the requests are authorized via IAM, or NONE if no authorization is configured on the Function URL.
 * **Cors**: [Cors](#cors)
-* **FunctionArn**: string (ReadOnly): The full Amazon Resource Name (ARN) of the function associated with the Function URL.
+* **FunctionArn**: string (ReadOnly, Identifier): The full Amazon Resource Name (ARN) of the function associated with the Function URL.
 * **FunctionUrl**: string (ReadOnly): The generated url for this resource.
 * **InvokeMode**: string: The invocation mode for the function?s URL. Set to BUFFERED if you want to buffer responses before returning them to the client. Set to RESPONSE_STREAM if you want to stream responses, allowing faster time to first byte and larger response payload sizes. If not set, defaults to BUFFERED.
 * **Qualifier**: string (WriteOnly): The alias qualifier for the target function. If TargetFunctionArn is unqualified then Qualifier must be passed.

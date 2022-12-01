@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-Cluster",
   "type": "AWS::EKS::Cluster",
-  "time": "2022-10-26T16:04:24.289Z",
+  "time": "2022-11-15T16:37:33.705Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -20,6 +20,17 @@
         "properties": {
           "EnabledTypes": {
             "$ref": "#/definitions/EnabledTypes"
+          }
+        },
+        "type": "object"
+      },
+      "ControlPlanePlacement": {
+        "additionalProperties": false,
+        "description": "Specify the placement group of the control plane machines for your cluster.",
+        "properties": {
+          "GroupName": {
+            "description": "Specify the placement group name of the control place machines for your cluster.",
+            "type": "string"
           }
         },
         "type": "object"
@@ -110,6 +121,10 @@
           "ControlPlaneInstanceType": {
             "description": "Specify the Instance type of the machines that should be used to create your cluster.",
             "type": "string"
+          },
+          "ControlPlanePlacement": {
+            "$ref": "#/definitions/ControlPlanePlacement",
+            "description": "Specify the placement group of the control plane machines for your cluster."
           },
           "OutpostArns": {
             "description": "Specify one or more Arn(s) of Outpost(s) on which you would like to create your cluster.",

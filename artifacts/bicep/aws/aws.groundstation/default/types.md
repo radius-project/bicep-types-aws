@@ -14,7 +14,7 @@
 
 ## AWS.GroundStation/ConfigProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **ConfigData**: [ConfigData](#configdata) (Required)
 * **Id**: string (ReadOnly)
 * **Name**: string (Required)
@@ -132,11 +132,11 @@
 
 ## AWS.GroundStation/MissionProfileProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **ContactPostPassDurationSeconds**: int: Post-pass time needed after the contact.
 * **ContactPrePassDurationSeconds**: int: Pre-pass time needed before the contact.
 * **DataflowEdges**: [DataflowEdge](#dataflowedge)[] (Required)
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **MinimumViableContactDurationSeconds**: int (Required): Visibilities with shorter duration than the specified minimum viable contact duration will be ignored when searching for available contacts.
 * **Name**: string (Required): A name used to identify a mission profile.
 * **Region**: string (ReadOnly)

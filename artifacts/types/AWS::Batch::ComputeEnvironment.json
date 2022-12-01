@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Batch-ComputeEnvironment",
   "type": "AWS::Batch::ComputeEnvironment",
-  "time": "2022-08-25T16:14:27.011Z",
+  "time": "2022-11-16T16:38:00.814Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -23,7 +23,8 @@
       "/properties/ComputeResources/SpotIamFleetRole",
       "/properties/ComputeEnvironmentName",
       "/properties/Tags",
-      "/properties/Type"
+      "/properties/Type",
+      "/properties/EksConfiguration"
     ],
     "definitions": {
       "ComputeResources": {
@@ -125,12 +126,33 @@
           "ImageIdOverride": {
             "type": "string"
           },
+          "ImageKubernetesVersion": {
+            "type": "string"
+          },
           "ImageType": {
             "type": "string"
           }
         },
         "required": [
           "ImageType"
+        ],
+        "type": "object"
+      },
+      "EksConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "EksClusterArn": {
+            "default": false,
+            "type": "string"
+          },
+          "KubernetesNamespace": {
+            "default": false,
+            "type": "string"
+          }
+        },
+        "required": [
+          "EksClusterArn",
+          "KubernetesNamespace"
         ],
         "type": "object"
       },
@@ -172,7 +194,8 @@
           "Batch:TagResource",
           "Batch:DescribeComputeEnvironments",
           "iam:CreateServiceLinkedRole",
-          "Iam:PassRole"
+          "Iam:PassRole",
+          "Eks:DescribeCluster"
         ]
       },
       "delete": {
@@ -210,6 +233,9 @@
       },
       "ComputeResources": {
         "$ref": "#/definitions/ComputeResources"
+      },
+      "EksConfiguration": {
+        "$ref": "#/definitions/EksConfiguration"
       },
       "ReplaceComputeEnvironment": {
         "default": true,

@@ -1,19 +1,20 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBInstance",
   "type": "AWS::RDS::DBInstance",
-  "time": "2022-10-27T16:48:47.67Z",
+  "time": "2022-11-15T11:30:27.164Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
+      "/properties/DBSnapshotIdentifier",
       "/properties/AutoMinorVersionUpgrade",
       "/properties/AvailabilityZone",
       "/properties/BackupRetentionPeriod",
       "/properties/DBParameterGroupName",
       "/properties/Engine",
-      "/properties/MonitoringInterval",
       "/properties/MultiAZ",
       "/properties/PerformanceInsightsKMSKeyId",
       "/properties/PreferredMaintenanceWindow",
+      "/properties/SourceDBInstanceIdentifier",
       "/properties/StorageType"
     ],
     "createOnlyProperties": [
@@ -22,14 +23,11 @@
       "/properties/DBClusterIdentifier",
       "/properties/DBInstanceIdentifier",
       "/properties/DBName",
-      "/properties/DBSnapshotIdentifier",
       "/properties/DBSubnetGroupName",
       "/properties/KmsKeyId",
       "/properties/MasterUsername",
       "/properties/NcharCharacterSetName",
       "/properties/Port",
-      "/properties/PubliclyAccessible",
-      "/properties/SourceDBInstanceIdentifier",
       "/properties/SourceRegion",
       "/properties/StorageEncrypted",
       "/properties/Timezone"
@@ -191,6 +189,7 @@
           "rds:DescribeDBInstances",
           "rds:DescribeDBParameterGroups",
           "rds:ModifyDBInstance",
+          "rds:PromoteReadReplica",
           "rds:RebootDBInstance",
           "rds:RemoveRoleFromDBInstance",
           "rds:RemoveTagsFromResource"
@@ -252,6 +251,10 @@
         "description": "The identifier of the DB cluster that the instance will belong to.",
         "type": "string"
       },
+      "DBInstanceArn": {
+        "description": "The Amazon Resource Name (ARN) for the DB instance.",
+        "type": "string"
+      },
       "DBInstanceClass": {
         "description": "The compute and memory capacity of the DB instance, for example, db.m4.large. Not all DB instance classes are available in all AWS Regions, or for all database engines.",
         "type": "string"
@@ -286,6 +289,10 @@
       },
       "DBSubnetGroupName": {
         "description": "A DB subnet group to associate with the DB instance. If you update this value, the new subnet group must be a subnet group in a new VPC.",
+        "type": "string"
+      },
+      "DbiResourceId": {
+        "description": "The AWS Region-unique, immutable identifier for the DB instance. This identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for the DB instance is accessed.",
         "type": "string"
       },
       "DeleteAutomatedBackups": {
@@ -421,6 +428,10 @@
         "description": "Indicates whether the DB instance is an internet-facing instance. If you specify true, AWS CloudFormation creates an instance with a publicly resolvable DNS name, which resolves to a public IP address. If you specify false, AWS CloudFormation creates an internal instance with a DNS name that resolves to a private IP address.",
         "type": "boolean"
       },
+      "ReplicaMode": {
+        "description": "The open mode of an Oracle read replica. The default is open-read-only.",
+        "type": "string"
+      },
       "SourceDBInstanceIdentifier": {
         "description": "If you want to create a Read Replica DB instance, specify the ID of the source DB instance. Each DB instance can have a limited number of Read Replicas.",
         "type": "string"
@@ -432,6 +443,10 @@
       "StorageEncrypted": {
         "description": "A value that indicates whether the DB instance is encrypted. By default, it isn't encrypted.",
         "type": "boolean"
+      },
+      "StorageThroughput": {
+        "description": "Specifies the storage throughput for the DB instance.",
+        "type": "integer"
       },
       "StorageType": {
         "description": "Specifies the storage type to be associated with the DB instance.",
@@ -483,7 +498,9 @@
     "readOnlyProperties": [
       "/properties/Endpoint/Address",
       "/properties/Endpoint/Port",
-      "/properties/Endpoint/HostedZoneId"
+      "/properties/Endpoint/HostedZoneId",
+      "/properties/DbiResourceId",
+      "/properties/DBInstanceArn"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "typeName": "AWS::RDS::DBInstance",

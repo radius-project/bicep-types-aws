@@ -39,13 +39,13 @@
 ## AWS.IAM/InstanceProfileProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the instance profile.
-* **InstanceProfileName**: string: The name of the instance profile to create.
+* **InstanceProfileName**: string (Identifier): The name of the instance profile to create.
 * **Path**: string: The path to the instance profile.
 * **Roles**: string[] (Required): The name of the role to associate with the instance profile. Only one role can be assigned to an EC2 instance at a time, and all applications on the instance share the same role and permissions.
 
 ## AWS.IAM/OIDCProviderProperties
 ### Properties
-* **Arn**: string (ReadOnly): Amazon Resource Name (ARN) of the OIDC provider
+* **Arn**: string (ReadOnly, Identifier): Amazon Resource Name (ARN) of the OIDC provider
 * **ClientIdList**: string[]
 * **Tags**: [Tag](#tag)[]
 * **ThumbprintList**: string[] (Required)
@@ -67,7 +67,7 @@
 * **PermissionsBoundary**: string: The ARN of the policy used to set the permissions boundary for the role.
 * **Policies**: [Policy](#policy)[]: Adds or updates an inline policy document that is embedded in the specified IAM role. 
 * **RoleId**: string (ReadOnly): The stable and unique string identifying the role.
-* **RoleName**: string: A name for the IAM role, up to 64 characters in length.
+* **RoleName**: string (Identifier): A name for the IAM role, up to 64 characters in length.
 * **Tags**: [Tag](#tag)[]: A list of tags that are attached to the role.
 
 ## Policy
@@ -82,7 +82,7 @@
 
 ## AWS.IAM/SAMLProviderProperties
 ### Properties
-* **Arn**: string (ReadOnly): Amazon Resource Name (ARN) of the SAML provider
+* **Arn**: string (ReadOnly, Identifier): Amazon Resource Name (ARN) of the SAML provider
 * **Name**: string
 * **SamlMetadataDocument**: string (Required)
 * **Tags**: [Tag](#tag)[]
@@ -99,7 +99,7 @@
 * **CertificateChain**: string (WriteOnly)
 * **Path**: string
 * **PrivateKey**: string (WriteOnly)
-* **ServerCertificateName**: string
+* **ServerCertificateName**: string (Identifier)
 * **Tags**: [Tag](#tag)[]
 
 ## Tag
@@ -110,7 +110,7 @@
 ## AWS.IAM/VirtualMFADeviceProperties
 ### Properties
 * **Path**: string
-* **SerialNumber**: string (ReadOnly)
+* **SerialNumber**: string (ReadOnly, Identifier)
 * **Tags**: [Tag](#tag)[]
 * **Users**: string[] (Required)
 * **VirtualMfaDeviceName**: string

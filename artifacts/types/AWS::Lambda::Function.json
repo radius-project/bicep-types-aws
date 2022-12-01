@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lambda-Function",
   "type": "AWS::Lambda::Function",
-  "time": "2022-10-27T18:07:18.171Z",
+  "time": "2022-11-29T08:02:19.431Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -131,6 +131,47 @@
           },
           "WorkingDirectory": {
             "description": "WorkingDirectory.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SnapStart": {
+        "additionalProperties": false,
+        "description": "The function's SnapStart setting. When set to PublishedVersions, Lambda creates a snapshot of the execution environment when you publish a function version.",
+        "properties": {
+          "ApplyOn": {
+            "description": "Applying SnapStart setting on function resource type.",
+            "enum": [
+              "PublishedVersions",
+              "None"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "ApplyOn"
+        ],
+        "type": "object"
+      },
+      "SnapStartResponse": {
+        "additionalProperties": false,
+        "description": "The function's SnapStart Response. When set to PublishedVersions, Lambda creates a snapshot of the execution environment when you publish a function version.",
+        "properties": {
+          "ApplyOn": {
+            "description": "Applying SnapStart setting on function resource type.",
+            "enum": [
+              "PublishedVersions",
+              "None"
+            ],
+            "type": "string"
+          },
+          "OptimizationStatus": {
+            "description": "Indicates whether SnapStart is activated for the specified function version.",
+            "enum": [
+              "On",
+              "Off"
+            ],
             "type": "string"
           }
         },
@@ -366,6 +407,14 @@
         "description": "The identifier of the function's runtime.",
         "type": "string"
       },
+      "SnapStart": {
+        "$ref": "#/definitions/SnapStart",
+        "description": "The SnapStart setting of your function"
+      },
+      "SnapStartResponse": {
+        "$ref": "#/definitions/SnapStartResponse",
+        "description": "The SnapStart response of your function"
+      },
       "Tags": {
         "description": "A list of tags to apply to the function.",
         "insertionOrder": false,
@@ -390,7 +439,10 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/Arn"
+      "/properties/Arn",
+      "/properties/SnapStartResponse",
+      "/properties/SnapStartResponse/ApplyOn",
+      "/properties/SnapStartResponse/OptimizationStatus"
     ],
     "required": [
       "Code",

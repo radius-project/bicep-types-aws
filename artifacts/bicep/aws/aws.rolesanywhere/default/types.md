@@ -21,7 +21,7 @@
 ## AWS.RolesAnywhere/CRLProperties
 ### Properties
 * **CrlData**: string
-* **CrlId**: string (ReadOnly)
+* **CrlId**: string (ReadOnly, Identifier)
 * **Enabled**: bool
 * **Name**: string
 * **Tags**: [Tag](#tag)[]
@@ -39,7 +39,7 @@
 * **ManagedPolicyArns**: string[]
 * **Name**: string
 * **ProfileArn**: string (ReadOnly)
-* **ProfileId**: string (ReadOnly)
+* **ProfileId**: string (ReadOnly, Identifier)
 * **RequireInstanceProperties**: bool
 * **RoleArns**: string[]
 * **SessionPolicy**: string
@@ -57,7 +57,7 @@
 * **Source**: [Source](#source)
 * **Tags**: [Tag](#tag)[]
 * **TrustAnchorArn**: string (ReadOnly)
-* **TrustAnchorId**: string (ReadOnly)
+* **TrustAnchorId**: string (ReadOnly, Identifier)
 
 ## Source
 ### Properties

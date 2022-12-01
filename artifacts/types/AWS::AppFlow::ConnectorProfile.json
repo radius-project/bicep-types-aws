@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppFlow-ConnectorProfile",
   "type": "AWS::AppFlow::ConnectorProfile",
-  "time": "2022-10-19T15:14:10.114Z",
+  "time": "2022-11-25T04:34:14.689Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -147,6 +147,11 @@
         "pattern": "\\S+",
         "type": "string"
       },
+      "ClusterIdentifier": {
+        "maxLength": 512,
+        "pattern": "\\S+",
+        "type": "string"
+      },
       "ConnectorOAuthRequest": {
         "properties": {
           "AuthCode": {
@@ -170,9 +175,6 @@
             "$ref": "#/definitions/ConnectorProfileProperties"
           }
         },
-        "required": [
-          "ConnectorProfileCredentials"
-        ],
         "type": "object"
       },
       "ConnectorProfileCredentials": {
@@ -369,6 +371,16 @@
           }
         },
         "type": "object"
+      },
+      "DataApiRoleArn": {
+        "maxLength": 512,
+        "pattern": "arn:aws:iam:.*:[0-9]+:.*",
+        "type": "string"
+      },
+      "DatabaseName": {
+        "maxLength": 512,
+        "pattern": "\\S+",
+        "type": "string"
       },
       "DatabaseUrl": {
         "maxLength": 512,
@@ -659,10 +671,6 @@
             "description": "The name of the user."
           }
         },
-        "required": [
-          "Username",
-          "Password"
-        ],
         "type": "object"
       },
       "RedshiftConnectorProfileProperties": {
@@ -675,17 +683,36 @@
             "$ref": "#/definitions/BucketPrefix",
             "description": "The object key for the destination bucket in which Amazon AppFlow will place the ?les."
           },
+          "ClusterIdentifier": {
+            "$ref": "#/definitions/ClusterIdentifier",
+            "description": "The unique identifier of the Amazon Redshift cluster."
+          },
+          "DataApiRoleArn": {
+            "$ref": "#/definitions/DataApiRoleArn",
+            "description": "The Amazon Resource Name (ARN) of the IAM role that grants Amazon AppFlow access to the data through the Amazon Redshift Data API."
+          },
+          "DatabaseName": {
+            "$ref": "#/definitions/DatabaseName",
+            "description": "The name of the Amazon Redshift database that will store the transferred data."
+          },
           "DatabaseUrl": {
             "$ref": "#/definitions/DatabaseUrl",
             "description": "The JDBC URL of the Amazon Redshift cluster."
           },
+          "IsRedshiftServerless": {
+            "description": "If Amazon AppFlow will connect to Amazon Redshift Serverless or Amazon Redshift cluster.",
+            "type": "boolean"
+          },
           "RoleArn": {
             "$ref": "#/definitions/RoleArn",
             "description": "The Amazon Resource Name (ARN) of the IAM role."
+          },
+          "WorkgroupName": {
+            "$ref": "#/definitions/WorkgroupName",
+            "description": "The name of the Amazon Redshift serverless workgroup"
           }
         },
         "required": [
-          "DatabaseUrl",
           "BucketName",
           "RoleArn"
         ],
@@ -1000,6 +1027,11 @@
       "Warehouse": {
         "maxLength": 512,
         "pattern": "[\\s\\w/!@#+=.-]*",
+        "type": "string"
+      },
+      "WorkgroupName": {
+        "maxLength": 512,
+        "pattern": "\\S+",
         "type": "string"
       },
       "ZendeskConnectorProfileCredentials": {

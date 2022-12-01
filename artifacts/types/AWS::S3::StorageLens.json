@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-S3-StorageLens",
   "type": "AWS::S3::StorageLens",
-  "time": "2022-09-07T15:15:31.033Z",
+  "time": "2022-11-15T23:41:52.182Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -15,8 +15,17 @@
           "ActivityMetrics": {
             "$ref": "#/definitions/ActivityMetrics"
           },
+          "AdvancedCostOptimizationMetrics": {
+            "$ref": "#/definitions/AdvancedCostOptimizationMetrics"
+          },
+          "AdvancedDataProtectionMetrics": {
+            "$ref": "#/definitions/AdvancedDataProtectionMetrics"
+          },
           "BucketLevel": {
             "$ref": "#/definitions/BucketLevel"
+          },
+          "DetailedStatusCodesMetrics": {
+            "$ref": "#/definitions/DetailedStatusCodesMetrics"
           }
         },
         "required": [
@@ -30,6 +39,28 @@
         "properties": {
           "IsEnabled": {
             "description": "Specifies whether activity metrics are enabled or disabled.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "AdvancedCostOptimizationMetrics": {
+        "additionalProperties": false,
+        "description": "Enables advanced cost optimization metrics.",
+        "properties": {
+          "IsEnabled": {
+            "description": "Specifies whether advanced cost optimization metrics are enabled or disabled.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "AdvancedDataProtectionMetrics": {
+        "additionalProperties": false,
+        "description": "Enables advanced data protection metrics.",
+        "properties": {
+          "IsEnabled": {
+            "description": "Specifies whether advanced data protection metrics are enabled or disabled.",
             "type": "boolean"
           }
         },
@@ -58,6 +89,15 @@
         "properties": {
           "ActivityMetrics": {
             "$ref": "#/definitions/ActivityMetrics"
+          },
+          "AdvancedCostOptimizationMetrics": {
+            "$ref": "#/definitions/AdvancedCostOptimizationMetrics"
+          },
+          "AdvancedDataProtectionMetrics": {
+            "$ref": "#/definitions/AdvancedDataProtectionMetrics"
+          },
+          "DetailedStatusCodesMetrics": {
+            "$ref": "#/definitions/DetailedStatusCodesMetrics"
           },
           "PrefixLevel": {
             "$ref": "#/definitions/PrefixLevel"
@@ -112,6 +152,17 @@
           },
           "S3BucketDestination": {
             "$ref": "#/definitions/S3BucketDestination"
+          }
+        },
+        "type": "object"
+      },
+      "DetailedStatusCodesMetrics": {
+        "additionalProperties": false,
+        "description": "Enables detailed status codes metrics.",
+        "properties": {
+          "IsEnabled": {
+            "description": "Specifies whether detailed status codes metrics are enabled or disabled.",
+            "type": "boolean"
           }
         },
         "type": "object"

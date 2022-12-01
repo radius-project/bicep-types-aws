@@ -20,7 +20,7 @@
 
 ## AWS.Panorama/ApplicationInstanceProperties
 ### Properties
-* **ApplicationInstanceId**: [ApplicationInstanceId](#applicationinstanceid) (ReadOnly)
+* **ApplicationInstanceId**: [ApplicationInstanceId](#applicationinstanceid) (ReadOnly, Identifier)
 * **ApplicationInstanceIdToReplace**: [ApplicationInstanceId](#applicationinstanceid)
 * **Arn**: [ApplicationInstanceArn](#applicationinstancearn) (ReadOnly)
 * **CreatedTime**: [Timestamp](#timestamp) (ReadOnly)
@@ -98,16 +98,16 @@
 ## AWS.Panorama/PackageProperties
 ### Properties
 * **Arn**: [NodePackageArn](#nodepackagearn) (ReadOnly)
-* **CreatedTime**: [CreatedTime](#createdtime) (ReadOnly)
-* **PackageId**: [NodePackageId](#nodepackageid) (ReadOnly)
+* **CreatedTime**: [Timestamp](#timestamp) (ReadOnly)
+* **PackageId**: [NodePackageId](#nodepackageid) (ReadOnly, Identifier)
 * **PackageName**: [NodePackageName](#nodepackagename) (Required)
-* **StorageLocation**: [StorageLocation](#storagelocation) (ReadOnly)
+* **StorageLocation**: [StorageLocation](#storagelocation)
 * **Tags**: [TagList](#taglist)
 
 ## NodePackageArn
 ### Properties
 
-## CreatedTime
+## Timestamp
 ### Properties
 
 ## NodePackageId
@@ -133,10 +133,10 @@
 * **MarkLatest**: bool
 * **OwnerAccount**: [PackageOwnerAccount](#packageowneraccount)
 * **PackageArn**: [NodePackageArn](#nodepackagearn) (ReadOnly)
-* **PackageId**: [NodePackageId](#nodepackageid) (Required)
+* **PackageId**: [NodePackageId](#nodepackageid) (Required, Identifier)
 * **PackageName**: [NodePackageName](#nodepackagename) (ReadOnly)
-* **PackageVersion**: [NodePackageVersion](#nodepackageversion) (Required)
-* **PatchVersion**: [NodePackagePatchVersion](#nodepackagepatchversion) (Required)
+* **PackageVersion**: [NodePackageVersion](#nodepackageversion) (Required, Identifier)
+* **PatchVersion**: [NodePackagePatchVersion](#nodepackagepatchversion) (Required, Identifier)
 * **RegisteredTime**: [TimeStamp](#timestamp) (ReadOnly)
 * **Status**: [PackageVersionStatus](#packageversionstatus) (ReadOnly)
 * **StatusDescription**: [PackageVersionStatusDescription](#packageversionstatusdescription) (ReadOnly)

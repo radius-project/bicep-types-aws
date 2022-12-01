@@ -9,7 +9,7 @@
 ## AWS.LakeFormation/TagProperties
 ### Properties
 * **CatalogId**: [CatalogIdString](#catalogidstring): The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your Lake Formation environment.
-* **TagKey**: [LFTagKey](#lftagkey) (Required): The key-name for the LF-tag.
+* **TagKey**: [LFTagKey](#lftagkey) (Required, Identifier): The key-name for the LF-tag.
 * **TagValues**: [TagValueList](#tagvaluelist) (Required): A list of possible values an attribute can take.
 
 ## CatalogIdString

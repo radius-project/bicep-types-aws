@@ -75,7 +75,7 @@
 ## AWS.DataSync/AgentProperties
 ### Properties
 * **ActivationKey**: string (Required, WriteOnly): Activation key of the Agent.
-* **AgentArn**: string (ReadOnly): The DataSync Agent ARN.
+* **AgentArn**: string (ReadOnly, Identifier): The DataSync Agent ARN.
 * **AgentName**: string: The name configured for the agent. Text reference used to identify the agent in the console.
 * **EndpointType**: string (ReadOnly): The service endpoints that the agent will connect to.
 * **SecurityGroupArns**: string[]: The ARNs of the security group used to protect your data transfer task subnets.
@@ -95,7 +95,7 @@
 * **EfsFilesystemArn**: string (Required, WriteOnly): The Amazon Resource Name (ARN) for the Amazon EFS file system.
 * **FileSystemAccessRoleArn**: string: The Amazon Resource Name (ARN) of the AWS IAM role that the DataSync will assume when mounting the EFS file system.
 * **InTransitEncryption**: string: Protocol that is used for encrypting the traffic exchanged between the DataSync Agent and the EFS file system.
-* **LocationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Amazon EFS file system location that is created.
+* **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Amazon EFS file system location that is created.
 * **LocationUri**: string (ReadOnly): The URL of the EFS location that was described.
 * **Subdirectory**: string (WriteOnly): A subdirectory in the location's path. This subdirectory in the EFS file system is used to read data from the EFS source location or write data to the EFS destination.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
@@ -113,7 +113,7 @@
 ## AWS.DataSync/LocationFSxLustreProperties
 ### Properties
 * **FsxFilesystemArn**: string (Required, WriteOnly): The Amazon Resource Name (ARN) for the FSx for Lustre file system.
-* **LocationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Amazon FSx for Lustre file system location that is created.
+* **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Amazon FSx for Lustre file system location that is created.
 * **LocationUri**: string (ReadOnly): The URL of the FSx for Lustre location that was described.
 * **SecurityGroupArns**: string[] (Required): The ARNs of the security groups that are to use to configure the FSx for Lustre file system.
 * **Subdirectory**: string (WriteOnly): A subdirectory in the location's path.
@@ -127,7 +127,7 @@
 ## AWS.DataSync/LocationFSxONTAPProperties
 ### Properties
 * **FsxFilesystemArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the FSx ONAP file system.
-* **LocationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Amazon FSx ONTAP file system location that is created.
+* **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Amazon FSx ONTAP file system location that is created.
 * **LocationUri**: string (ReadOnly): The URL of the FSx ONTAP file system that was described.
 * **Protocol**: [Protocol](#protocol) (Required)
 * **SecurityGroupArns**: string[] (Required): The ARNs of the security groups that are to use to configure the FSx ONTAP file system.
@@ -167,7 +167,7 @@
 ## AWS.DataSync/LocationFSxOpenZFSProperties
 ### Properties
 * **FsxFilesystemArn**: string (Required, WriteOnly): The Amazon Resource Name (ARN) for the FSx OpenZFS file system.
-* **LocationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Amazon FSx OpenZFS file system location that is created.
+* **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Amazon FSx OpenZFS file system location that is created.
 * **LocationUri**: string (ReadOnly): The URL of the FSx OpenZFS that was described.
 * **Protocol**: [Protocol](#protocol) (Required)
 * **SecurityGroupArns**: string[] (Required): The ARNs of the security groups that are to use to configure the FSx OpenZFS file system.
@@ -195,7 +195,7 @@
 ### Properties
 * **Domain**: string: The name of the Windows domain that the FSx for Windows server belongs to.
 * **FsxFilesystemArn**: string (Required, WriteOnly): The Amazon Resource Name (ARN) for the FSx for Windows file system.
-* **LocationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Amazon FSx for Windows file system location that is created.
+* **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Amazon FSx for Windows file system location that is created.
 * **LocationUri**: string (ReadOnly): The URL of the FSx for Windows location that was described.
 * **Password**: string (Required, WriteOnly): The password of the user who has the permissions to access files and folders in the FSx for Windows file system.
 * **SecurityGroupArns**: string[] (Required): The ARNs of the security groups that are to use to configure the FSx for Windows file system.
@@ -217,7 +217,7 @@
 * **KerberosKrb5Conf**: string (WriteOnly): The string representation of the Krb5Conf file, or the presigned URL to access the Krb5.conf file within an S3 bucket.
 * **KerberosPrincipal**: string: The unique identity, or principal, to which Kerberos can assign tickets.
 * **KmsKeyProviderUri**: string: The identifier for the Key Management Server where the encryption keys that encrypt data inside HDFS clusters are stored.
-* **LocationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the HDFS location.
+* **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the HDFS location.
 * **LocationUri**: string (ReadOnly): The URL of the HDFS location that was described.
 * **NameNodes**: [NameNode](#namenode)[] (Required): An array of Name Node(s) of the HDFS location.
 * **QopConfiguration**: [QopConfiguration](#qopconfiguration)
@@ -243,7 +243,7 @@
 
 ## AWS.DataSync/LocationNFSProperties
 ### Properties
-* **LocationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the NFS location.
+* **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the NFS location.
 * **LocationUri**: string (ReadOnly): The URL of the NFS location that was described.
 * **MountOptions**: [MountOptions](#mountoptions)
 * **OnPremConfig**: [OnPremConfig](#onpremconfig) (Required)
@@ -269,7 +269,7 @@
 * **AccessKey**: string: Optional. The access key is used if credentials are required to access the self-managed object storage server.
 * **AgentArns**: string[] (Required): The Amazon Resource Name (ARN) of the agents associated with the self-managed object storage server location.
 * **BucketName**: string (Required, WriteOnly): The name of the bucket on the self-managed object storage server.
-* **LocationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the location that is created.
+* **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the location that is created.
 * **LocationUri**: string (ReadOnly): The URL of the object storage location that was described.
 * **SecretKey**: string (WriteOnly): Optional. The secret key is used if credentials are required to access the self-managed object storage server.
 * **ServerHostname**: string (Required, WriteOnly): The name of the self-managed object storage server. This value is the IP address or Domain Name Service (DNS) name of the object storage server.
@@ -285,7 +285,7 @@
 
 ## AWS.DataSync/LocationS3Properties
 ### Properties
-* **LocationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Amazon S3 bucket location.
+* **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Amazon S3 bucket location.
 * **LocationUri**: string (ReadOnly): The URL of the S3 location that was described.
 * **S3BucketArn**: string (Required, WriteOnly): The Amazon Resource Name (ARN) of the Amazon S3 bucket.
 * **S3Config**: [S3Config](#s3config) (Required)
@@ -306,7 +306,7 @@
 ### Properties
 * **AgentArns**: string[] (Required): The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block (SMB) location.
 * **Domain**: string: The name of the Windows domain that the SMB server belongs to.
-* **LocationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the SMB location that is created.
+* **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the SMB location that is created.
 * **LocationUri**: string (ReadOnly): The URL of the SMB location that was described.
 * **MountOptions**: [MountOptions](#mountoptions)
 * **Password**: string (Required, WriteOnly): The password of the user who can mount the share and has the permissions to access files and folders in the SMB share.
@@ -340,7 +340,7 @@
 * **SourceNetworkInterfaceArns**: [SourceNetworkInterfaceArns](#sourcenetworkinterfacearns) (ReadOnly)
 * **Status**: string (ReadOnly): The status of the task that was described.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-* **TaskArn**: string (ReadOnly): The ARN of the task.
+* **TaskArn**: string (ReadOnly, Identifier): The ARN of the task.
 
 ## DestinationNetworkInterfaceArns
 ### Properties

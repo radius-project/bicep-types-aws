@@ -8,7 +8,7 @@
 
 ## AWS.CodeStarNotifications/NotificationRuleProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **CreatedBy**: string
 * **DetailType**: string (Required)
 * **EventTypeId**: string (WriteOnly)

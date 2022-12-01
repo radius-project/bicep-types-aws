@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBCluster",
   "type": "AWS::RDS::DBCluster",
-  "time": "2022-10-27T15:43:04.426Z",
+  "time": "2022-11-15T10:23:46.959Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -86,6 +86,10 @@
           "SecondsUntilAutoPause": {
             "description": "The time, in seconds, before an Aurora DB cluster in serverless mode is paused.",
             "type": "integer"
+          },
+          "TimeoutAction": {
+            "description": "The action to take when the timeout is reached, either ForceApplyCapacityChange or RollbackCapacityChange.\nForceApplyCapacityChange sets the capacity to the specified value as soon as possible.\nRollbackCapacityChange, the default, ignores the capacity change if a scaling point isn't found in the timeout period.\n\nFor more information, see Autoscaling for Aurora Serverless v1 in the Amazon Aurora User Guide.",
+            "type": "string"
           }
         },
         "type": "object"
@@ -228,6 +232,10 @@
       "CopyTagsToSnapshot": {
         "description": "A value that indicates whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.",
         "type": "boolean"
+      },
+      "DBClusterArn": {
+        "description": "The Amazon Resource Name (ARN) for the DB cluster.",
+        "type": "string"
       },
       "DBClusterIdentifier": {
         "description": "The DB cluster identifier. This parameter is stored as a lowercase string.",
@@ -441,6 +449,7 @@
       "/properties/SourceDBClusterIdentifier": "$lowercase(SourceDBClusterIdentifier)"
     },
     "readOnlyProperties": [
+      "/properties/DBClusterArn",
       "/properties/DBClusterResourceId",
       "/properties/Endpoint",
       "/properties/Endpoint/Address",

@@ -17,12 +17,12 @@
 * **AppSyncDomainName**: string (ReadOnly)
 * **CertificateArn**: string (Required)
 * **Description**: string
-* **DomainName**: string (Required, ReadOnly)
+* **DomainName**: string (Required, ReadOnly, Identifier)
 * **HostedZoneId**: string (ReadOnly)
 
 ## AWS.AppSync/DomainNameApiAssociationProperties
 ### Properties
-* **ApiAssociationIdentifier**: string (ReadOnly)
+* **ApiAssociationIdentifier**: string (ReadOnly, Identifier)
 * **ApiId**: string (Required)
 * **DomainName**: string (Required)
 

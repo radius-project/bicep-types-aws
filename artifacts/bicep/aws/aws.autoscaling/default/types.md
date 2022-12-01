@@ -26,10 +26,10 @@
 
 ## AWS.AutoScaling/LifecycleHookProperties
 ### Properties
-* **AutoScalingGroupName**: string (Required): The name of the Auto Scaling group for the lifecycle hook.
+* **AutoScalingGroupName**: string (Required, Identifier): The name of the Auto Scaling group for the lifecycle hook.
 * **DefaultResult**: string: The action the Auto Scaling group takes when the lifecycle hook timeout elapses or if an unexpected failure occurs. The valid values are CONTINUE and ABANDON (default).
 * **HeartbeatTimeout**: int: The maximum time, in seconds, that can elapse before the lifecycle hook times out. The range is from 30 to 7200 seconds. The default value is 3600 seconds (1 hour). If the lifecycle hook times out, Amazon EC2 Auto Scaling performs the action that you specified in the DefaultResult property.
-* **LifecycleHookName**: string: The name of the lifecycle hook.
+* **LifecycleHookName**: string (Identifier): The name of the lifecycle hook.
 * **LifecycleTransition**: string (Required): The instance state to which you want to attach the lifecycle hook.
 * **NotificationMetadata**: string: Additional information that is included any time Amazon EC2 Auto Scaling sends a message to the notification target.
 * **NotificationTargetARN**: string: The Amazon Resource Name (ARN) of the notification target that Amazon EC2 Auto Scaling uses to notify you when an instance is in the transition state for the lifecycle hook. You can specify an Amazon SQS queue or an Amazon SNS topic. The notification message includes the following information: lifecycle action token, user account ID, Auto Scaling group name, lifecycle hook name, instance ID, lifecycle transition, and notification metadata.
@@ -38,7 +38,7 @@
 ## AWS.AutoScaling/ScalingPolicyProperties
 ### Properties
 * **AdjustmentType**: string: Specifies how the scaling adjustment is interpreted. The valid values are ChangeInCapacity, ExactCapacity, and PercentChangeInCapacity.
-* **Arn**: string (ReadOnly): The ARN of the AutoScaling scaling policy
+* **Arn**: string (ReadOnly, Identifier): The ARN of the AutoScaling scaling policy
 * **AutoScalingGroupName**: string (Required): The name of the Auto Scaling group.
 * **Cooldown**: string: The duration of the policy's cooldown period, in seconds. When a cooldown period is specified here, it overrides the default cooldown period defined for the Auto Scaling group.
 * **EstimatedInstanceWarmup**: int: The estimated time, in seconds, until a newly launched instance can contribute to the CloudWatch metrics. If not provided, the default is to use the value from the default cooldown period for the Auto Scaling group. Valid only if the policy type is TargetTrackingScaling or StepScaling.
@@ -149,19 +149,19 @@
 
 ## AWS.AutoScaling/ScheduledActionProperties
 ### Properties
-* **AutoScalingGroupName**: string (Required): The name of the Auto Scaling group.
+* **AutoScalingGroupName**: string (Required, Identifier): The name of the Auto Scaling group.
 * **DesiredCapacity**: int: The desired capacity is the initial capacity of the Auto Scaling group after the scheduled action runs and the capacity it attempts to maintain.
 * **EndTime**: string: The latest scheduled start time to return. If scheduled action names are provided, this parameter is ignored.
 * **MaxSize**: int: The minimum size of the Auto Scaling group.
 * **MinSize**: int: The minimum size of the Auto Scaling group.
 * **Recurrence**: string: The recurring schedule for the action, in Unix cron syntax format. When StartTime and EndTime are specified with Recurrence , they form the boundaries of when the recurring action starts and stops.
-* **ScheduledActionName**: string (ReadOnly): Auto-generated unique identifier
+* **ScheduledActionName**: string (ReadOnly, Identifier): Auto-generated unique identifier
 * **StartTime**: string: The earliest scheduled start time to return. If scheduled action names are provided, this parameter is ignored.
 * **TimeZone**: string: The time zone for the cron expression.
 
 ## AWS.AutoScaling/WarmPoolProperties
 ### Properties
-* **AutoScalingGroupName**: string (Required)
+* **AutoScalingGroupName**: string (Required, Identifier)
 * **InstanceReusePolicy**: [InstanceReusePolicy](#instancereusepolicy)
 * **MaxGroupPreparedCapacity**: int
 * **MinSize**: int

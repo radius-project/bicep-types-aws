@@ -20,7 +20,7 @@
 
 ## AWS.S3Outposts/AccessPointProperties
 ### Properties
-* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified AccessPoint.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the specified AccessPoint.
 * **Bucket**: string (Required): The Amazon Resource Name (ARN) of the bucket you want to associate this AccessPoint with.
 * **Name**: string (Required): A name for the AccessPoint.
 * **Policy**: [AccessPoint_Policy](#accesspointpolicy): The access point policy associated with this access point.
@@ -35,7 +35,7 @@
 
 ## AWS.S3Outposts/BucketProperties
 ### Properties
-* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified bucket.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the specified bucket.
 * **BucketName**: string (Required): A name for the bucket.
 * **LifecycleConfiguration**: [LifecycleConfiguration](#lifecycleconfiguration): Rules that define how Amazon S3Outposts manages objects during their lifetime.
 * **OutpostId**: string (Required): The id of the customer outpost on which the bucket resides.
@@ -85,7 +85,7 @@
 
 ## AWS.S3Outposts/BucketPolicyProperties
 ### Properties
-* **Bucket**: string (Required): The Amazon Resource Name (ARN) of the specified bucket.
+* **Bucket**: string (Required, Identifier): The Amazon Resource Name (ARN) of the specified bucket.
 * **PolicyDocument**: [BucketPolicy_PolicyDocument](#bucketpolicypolicydocument) (Required): A policy document containing permissions to add to the specified bucket.
 
 ## BucketPolicy_PolicyDocument

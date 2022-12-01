@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppFlow-Flow",
   "type": "AWS::AppFlow::Flow",
-  "time": "2022-10-19T15:14:12.001Z",
+  "time": "2022-11-25T04:34:11.866Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -13,6 +13,9 @@
         "properties": {
           "AggregationType": {
             "$ref": "#/definitions/AggregationType"
+          },
+          "TargetFileSize": {
+            "$ref": "#/definitions/TargetFileSize"
           }
         },
         "type": "object"
@@ -396,6 +399,39 @@
         ],
         "type": "string"
       },
+      "GlueDataCatalog": {
+        "additionalProperties": false,
+        "description": "Trigger settings of the flow.",
+        "properties": {
+          "DatabaseName": {
+            "description": "A string containing the value for the tag",
+            "maxLength": 255,
+            "minLength": 0,
+            "pattern": "[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*",
+            "type": "string"
+          },
+          "RoleArn": {
+            "description": "A string containing the value for the tag",
+            "maxLength": 512,
+            "minLength": 0,
+            "pattern": "arn:aws:iam:.*:[0-9]+:.*",
+            "type": "string"
+          },
+          "TablePrefix": {
+            "description": "A string containing the value for the tag",
+            "maxLength": 128,
+            "minLength": 0,
+            "pattern": "[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*",
+            "type": "string"
+          }
+        },
+        "required": [
+          "RoleArn",
+          "DatabaseName",
+          "TablePrefix"
+        ],
+        "type": "object"
+      },
       "GoogleAnalyticsConnectorOperator": {
         "enum": [
           "PROJECTION",
@@ -525,6 +561,17 @@
         ],
         "type": "object"
       },
+      "MetadataCatalogConfig": {
+        "additionalProperties": false,
+        "description": "Configurations of metadata catalog of the flow.",
+        "properties": {
+          "GlueDataCatalog": {
+            "$ref": "#/definitions/GlueDataCatalog",
+            "description": "Configurations of glue data catalog of the flow."
+          }
+        },
+        "type": "object"
+      },
       "Name": {
         "maxLength": 128,
         "pattern": "\\S+",
@@ -578,13 +625,30 @@
           "CONCAT_FORMAT",
           "SUBFIELD_CATEGORY_MAP",
           "EXCLUDE_SOURCE_FIELDS_LIST",
-          "INCLUDE_NEW_FIELDS"
+          "INCLUDE_NEW_FIELDS",
+          "ORDERED_PARTITION_KEYS_LIST"
         ],
         "type": "string"
+      },
+      "PathPrefix": {
+        "enum": [
+          "EXECUTION_ID",
+          "SCHEMA_VERSION"
+        ],
+        "type": "string"
+      },
+      "PathPrefixHierarchy": {
+        "items": {
+          "$ref": "#/definitions/PathPrefix"
+        },
+        "type": "array"
       },
       "PrefixConfig": {
         "additionalProperties": false,
         "properties": {
+          "PathPrefixHierarchy": {
+            "$ref": "#/definitions/PathPrefixHierarchy"
+          },
           "PrefixFormat": {
             "$ref": "#/definitions/PrefixFormat"
           },
@@ -1167,6 +1231,9 @@
         ],
         "type": "object"
       },
+      "TargetFileSize": {
+        "type": "integer"
+      },
       "Task": {
         "additionalProperties": false,
         "properties": {
@@ -1234,7 +1301,8 @@
           "Merge",
           "Passthrough",
           "Truncate",
-          "Validate"
+          "Validate",
+          "Partition"
         ],
         "type": "string"
       },
@@ -1542,6 +1610,10 @@
         "minLength": 20,
         "pattern": "arn:aws:kms:.*:[0-9]+:.*",
         "type": "string"
+      },
+      "MetadataCatalogConfig": {
+        "$ref": "#/definitions/MetadataCatalogConfig",
+        "description": "Configurations of metadata catalog of the flow."
       },
       "SourceFlowConfig": {
         "$ref": "#/definitions/SourceFlowConfig",

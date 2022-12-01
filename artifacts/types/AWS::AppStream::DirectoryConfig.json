@@ -1,13 +1,25 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppStream-DirectoryConfig",
   "type": "AWS::AppStream::DirectoryConfig",
-  "time": "2022-09-09T01:14:16.801Z",
+  "time": "2022-11-07T17:42:46.572Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/DirectoryName"
     ],
     "definitions": {
+      "CertificateBasedAuthProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "CertificateAuthorityArn": {
+            "type": "string"
+          },
+          "Status": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "ServiceAccountCredentials": {
         "additionalProperties": false,
         "properties": {
@@ -87,6 +99,9 @@
       "/properties/DirectoryName"
     ],
     "properties": {
+      "CertificateBasedAuthProperties": {
+        "$ref": "#/definitions/CertificateBasedAuthProperties"
+      },
       "DirectoryName": {
         "type": "string"
       },

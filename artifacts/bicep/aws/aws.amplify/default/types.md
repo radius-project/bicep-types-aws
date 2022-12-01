@@ -23,7 +23,7 @@
 * **AccessToken**: string (WriteOnly)
 * **AppId**: string (ReadOnly)
 * **AppName**: string (ReadOnly)
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **AutoBranchCreationConfig**: [AutoBranchCreationConfig](#autobranchcreationconfig) (WriteOnly)
 * **BasicAuthConfig**: [BasicAuthConfig](#basicauthconfig) (WriteOnly)
 * **BuildSpec**: string
@@ -36,6 +36,7 @@
 * **IAMServiceRole**: string
 * **Name**: string (Required)
 * **OauthToken**: string (WriteOnly)
+* **Platform**: string
 * **Repository**: string
 * **Tags**: [Tag](#tag)[]
 
@@ -49,6 +50,7 @@
 * **EnablePerformanceMode**: bool
 * **EnablePullRequestPreview**: bool
 * **EnvironmentVariables**: [EnvironmentVariable](#environmentvariable)[]
+* **Framework**: string
 * **PullRequestEnvironmentName**: string
 * **Stage**: string
 
@@ -78,7 +80,7 @@
 ## AWS.Amplify/BranchProperties
 ### Properties
 * **AppId**: string (Required)
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **BasicAuthConfig**: [BasicAuthConfig](#basicauthconfig) (WriteOnly)
 * **BranchName**: string (Required)
 * **BuildSpec**: string
@@ -87,6 +89,7 @@
 * **EnablePerformanceMode**: bool
 * **EnablePullRequestPreview**: bool
 * **EnvironmentVariables**: [EnvironmentVariable](#environmentvariable)[]
+* **Framework**: string
 * **PullRequestEnvironmentName**: string
 * **Stage**: string
 * **Tags**: [Tag](#tag)[]
@@ -110,7 +113,7 @@
 ## AWS.Amplify/DomainProperties
 ### Properties
 * **AppId**: string (Required)
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **AutoSubDomainCreationPatterns**: string[]
 * **AutoSubDomainIAMRole**: string
 * **CertificateRecord**: string (ReadOnly)

@@ -27,6 +27,9 @@
 ### aws.amplifyuibuilder/component
 * [default](aws/aws.amplifyuibuilder/default/types.md#resource-awsamplifyuibuildercomponentdefault)
 
+### aws.amplifyuibuilder/form
+* [default](aws/aws.amplifyuibuilder/default/types.md#resource-awsamplifyuibuilderformdefault)
+
 ### aws.amplifyuibuilder/theme
 * [default](aws/aws.amplifyuibuilder/default/types.md#resource-awsamplifyuibuilderthemedefault)
 
@@ -77,6 +80,12 @@
 ### aws.apigatewayv2/api
 * [default](aws/aws.apigatewayv2/default/types.md#resource-awsapigatewayv2apidefault)
 
+### aws.apigatewayv2/authorizer
+* [default](aws/aws.apigatewayv2/default/types.md#resource-awsapigatewayv2authorizerdefault)
+
+### aws.apigatewayv2/deployment
+* [default](aws/aws.apigatewayv2/default/types.md#resource-awsapigatewayv2deploymentdefault)
+
 ### aws.apigatewayv2/model
 * [default](aws/aws.apigatewayv2/default/types.md#resource-awsapigatewayv2modeldefault)
 
@@ -104,6 +113,9 @@
 ## aws.apprunner
 ### aws.apprunner/service
 * [default](aws/aws.apprunner/default/types.md#resource-awsapprunnerservicedefault)
+
+### aws.apprunner/vpcingressconnection
+* [default](aws/aws.apprunner/default/types.md#resource-awsapprunnervpcingressconnectiondefault)
 
 ## aws.appstream
 ### aws.appstream/application
@@ -227,6 +239,9 @@
 
 ### aws.cloudfront/cloudfrontoriginaccessidentity
 * [default](aws/aws.cloudfront/default/types.md#resource-awscloudfrontcloudfrontoriginaccessidentitydefault)
+
+### aws.cloudfront/continuousdeploymentpolicy
+* [default](aws/aws.cloudfront/default/types.md#resource-awscloudfrontcontinuousdeploymentpolicydefault)
 
 ### aws.cloudfront/distribution
 * [default](aws/aws.cloudfront/default/types.md#resource-awscloudfrontdistributiondefault)
@@ -369,6 +384,10 @@
 ### aws.databrew/schedule
 * [default](aws/aws.databrew/default/types.md#resource-awsdatabrewscheduledefault)
 
+## aws.datapipeline
+### aws.datapipeline/pipeline
+* [default](aws/aws.datapipeline/default/types.md#resource-awsdatapipelinepipelinedefault)
+
 ## aws.datasync
 ### aws.datasync/agent
 * [default](aws/aws.datasync/default/types.md#resource-awsdatasyncagentdefault)
@@ -486,6 +505,9 @@
 ### aws.ec2/ipamscope
 * [default](aws/aws.ec2/default/types.md#resource-awsec2ipamscopedefault)
 
+### aws.ec2/localgatewayroute
+* [default](aws/aws.ec2/default/types.md#resource-awsec2localgatewayroutedefault)
+
 ### aws.ec2/localgatewayroutetablevpcassociation
 * [default](aws/aws.ec2/default/types.md#resource-awsec2localgatewayroutetablevpcassociationdefault)
 
@@ -539,9 +561,6 @@
 
 ### aws.ec2/transitgatewayvpcattachment
 * [default](aws/aws.ec2/default/types.md#resource-awsec2transitgatewayvpcattachmentdefault)
-
-### aws.ec2/volume
-* [default](aws/aws.ec2/default/types.md#resource-awsec2volumedefault)
 
 ### aws.ec2/vpc
 * [default](aws/aws.ec2/default/types.md#resource-awsec2vpcdefault)
@@ -638,6 +657,9 @@
 
 ### aws.elasticbeanstalk/applicationversion
 * [default](aws/aws.elasticbeanstalk/default/types.md#resource-awselasticbeanstalkapplicationversiondefault)
+
+### aws.elasticbeanstalk/environment
+* [default](aws/aws.elasticbeanstalk/default/types.md#resource-awselasticbeanstalkenvironmentdefault)
 
 ## aws.elasticloadbalancingv2
 ### aws.elasticloadbalancingv2/listener
@@ -742,6 +764,9 @@
 
 ### aws.gamelift/gameservergroup
 * [default](aws/aws.gamelift/default/types.md#resource-awsgameliftgameservergroupdefault)
+
+### aws.gamelift/location
+* [default](aws/aws.gamelift/default/types.md#resource-awsgameliftlocationdefault)
 
 ## aws.globalaccelerator
 ### aws.globalaccelerator/accelerator
@@ -1238,6 +1263,13 @@
 ### aws.nimblestudio/studiocomponent
 * [default](aws/aws.nimblestudio/default/types.md#resource-awsnimblestudiostudiocomponentdefault)
 
+## aws.oam
+### aws.oam/link
+* [default](aws/aws.oam/default/types.md#resource-awsoamlinkdefault)
+
+### aws.oam/sink
+* [default](aws/aws.oam/default/types.md#resource-awsoamsinkdefault)
+
 ## aws.opensearchservice
 ### aws.opensearchservice/domain
 * [default](aws/aws.opensearchservice/default/types.md#resource-awsopensearchservicedomaindefault)
@@ -1245,6 +1277,16 @@
 ## aws.opsworkscm
 ### aws.opsworkscm/server
 * [default](aws/aws.opsworkscm/default/types.md#resource-awsopsworkscmserverdefault)
+
+## aws.organizations
+### aws.organizations/account
+* [default](aws/aws.organizations/default/types.md#resource-awsorganizationsaccountdefault)
+
+### aws.organizations/organizationalunit
+* [default](aws/aws.organizations/default/types.md#resource-awsorganizationsorganizationalunitdefault)
+
+### aws.organizations/policy
+* [default](aws/aws.organizations/default/types.md#resource-awsorganizationspolicydefault)
 
 ## aws.panorama
 ### aws.panorama/applicationinstance
@@ -1371,6 +1413,16 @@
 ### aws.resiliencehub/resiliencypolicy
 * [default](aws/aws.resiliencehub/default/types.md#resource-awsresiliencehubresiliencypolicydefault)
 
+## aws.resourceexplorer2
+### aws.resourceexplorer2/defaultviewassociation
+* [default](aws/aws.resourceexplorer2/default/types.md#resource-awsresourceexplorer2defaultviewassociationdefault)
+
+### aws.resourceexplorer2/index
+* [default](aws/aws.resourceexplorer2/default/types.md#resource-awsresourceexplorer2indexdefault)
+
+### aws.resourceexplorer2/view
+* [default](aws/aws.resourceexplorer2/default/types.md#resource-awsresourceexplorer2viewdefault)
+
 ## aws.resourcegroups
 ### aws.resourcegroups/group
 * [default](aws/aws.resourcegroups/default/types.md#resource-awsresourcegroupsgroupdefault)
@@ -1494,6 +1546,9 @@
 ### aws.sagemaker/domain
 * [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerdomaindefault)
 
+### aws.sagemaker/featuregroup
+* [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerfeaturegroupdefault)
+
 ### aws.sagemaker/image
 * [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerimagedefault)
 
@@ -1514,6 +1569,13 @@
 
 ### aws.sagemaker/userprofile
 * [default](aws/aws.sagemaker/default/types.md#resource-awssagemakeruserprofiledefault)
+
+## aws.scheduler
+### aws.scheduler/schedule
+* [default](aws/aws.scheduler/default/types.md#resource-awsschedulerscheduledefault)
+
+### aws.scheduler/schedulegroup
+* [default](aws/aws.scheduler/default/types.md#resource-awsschedulerschedulegroupdefault)
 
 ## aws.servicecatalog
 ### aws.servicecatalog/cloudformationprovisionedproduct
@@ -1545,6 +1607,9 @@
 ### aws.ses/template
 * [default](aws/aws.ses/default/types.md#resource-awssestemplatedefault)
 
+### aws.ses/vdmattributes
+* [default](aws/aws.ses/default/types.md#resource-awssesvdmattributesdefault)
+
 ## aws.signer
 ### aws.signer/signingprofile
 * [default](aws/aws.signer/default/types.md#resource-awssignersigningprofiledefault)
@@ -1566,6 +1631,9 @@
 
 ### aws.ssm/resourcedatasync
 * [default](aws/aws.ssm/default/types.md#resource-awsssmresourcedatasyncdefault)
+
+### aws.ssm/resourcepolicy
+* [default](aws/aws.ssm/default/types.md#resource-awsssmresourcepolicydefault)
 
 ## aws.ssmcontacts
 ### aws.ssmcontacts/contact
@@ -1601,6 +1669,9 @@
 
 ### aws.supportapp/slackchannelconfiguration
 * [default](aws/aws.supportapp/default/types.md#resource-awssupportappslackchannelconfigurationdefault)
+
+### aws.supportapp/slackworkspaceconfiguration
+* [default](aws/aws.supportapp/default/types.md#resource-awssupportappslackworkspaceconfigurationdefault)
 
 ## aws.synthetics
 ### aws.synthetics/canary
@@ -1661,6 +1732,9 @@
 ## aws.xray
 ### aws.xray/group
 * [default](aws/aws.xray/default/types.md#resource-awsxraygroupdefault)
+
+### aws.xray/resourcepolicy
+* [default](aws/aws.xray/default/types.md#resource-awsxrayresourcepolicydefault)
 
 ### aws.xray/samplingrule
 * [default](aws/aws.xray/default/types.md#resource-awsxraysamplingruledefault)

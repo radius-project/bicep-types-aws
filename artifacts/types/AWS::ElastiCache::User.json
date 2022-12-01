@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ElastiCache-User",
   "type": "AWS::ElastiCache::User",
-  "time": "2022-06-28T16:21:06.302Z",
+  "time": "2022-11-21T05:55:15.619Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -52,6 +52,34 @@
         "description": "The Amazon Resource Name (ARN) of the user account.",
         "type": "string"
       },
+      "AuthenticationMode": {
+        "additionalProperties": false,
+        "properties": {
+          "Passwords": {
+            "$comment": "List of passwords.",
+            "description": "Passwords used for this user account. You can create up to two passwords for each user.",
+            "insertionOrder": true,
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "Type": {
+            "description": "Authentication Type",
+            "enum": [
+              "password",
+              "no-password-required",
+              "iam"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
       "Engine": {
         "description": "Must be redis.",
         "enum": [
@@ -101,7 +129,8 @@
     "writeOnlyProperties": [
       "/properties/Passwords",
       "/properties/NoPasswordRequired",
-      "/properties/AccessString"
+      "/properties/AccessString",
+      "/properties/AuthenticationMode"
     ]
   }
 }

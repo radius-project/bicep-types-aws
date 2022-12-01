@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTTwinMaker-Entity",
   "type": "AWS::IoTTwinMaker::Entity",
-  "time": "2022-04-21T15:23:48.916Z",
+  "time": "2022-11-17T20:16:59.385Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -44,6 +44,16 @@
             "patternProperties": {
               "[a-zA-Z_\\-0-9]+": {
                 "$ref": "#/definitions/Property"
+              }
+            },
+            "type": "object"
+          },
+          "PropertyGroups": {
+            "additionalProperties": false,
+            "description": "An object that maps strings to the property groups to set in the component type. Each string in the mapping must be unique to this object.",
+            "patternProperties": {
+              "[a-zA-Z_\\-0-9]+": {
+                "$ref": "#/definitions/PropertyGroup"
               }
             },
             "type": "object"
@@ -252,6 +262,35 @@
           }
         },
         "type": "object"
+      },
+      "PropertyGroup": {
+        "additionalProperties": false,
+        "description": "An object that specifies information about a property group.",
+        "properties": {
+          "GroupType": {
+            "description": "The type of property group.",
+            "enum": [
+              "TABULAR"
+            ],
+            "type": "string"
+          },
+          "PropertyNames": {
+            "description": "The list of property names in the property group.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/PropertyName"
+            },
+            "maxItems": 256,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "type": "object"
+      },
+      "PropertyName": {
+        "pattern": "[a-zA-Z_\\-0-9]+",
+        "type": "string"
       },
       "Relationship": {
         "additionalProperties": false,

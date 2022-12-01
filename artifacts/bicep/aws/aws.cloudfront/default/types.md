@@ -12,6 +12,12 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/CloudFrontOriginAccessIdentityProperties](#awscloudfrontcloudfrontoriginaccessidentityproperties) (Required): properties of the resource
 
+## Resource AWS.CloudFront/ContinuousDeploymentPolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFront/ContinuousDeploymentPolicyProperties](#awscloudfrontcontinuousdeploymentpolicyproperties) (Required): properties of the resource
+
 ## Resource AWS.CloudFront/Distribution@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -63,7 +69,7 @@
 ## AWS.CloudFront/CachePolicyProperties
 ### Properties
 * **CachePolicyConfig**: [CachePolicyConfig](#cachepolicyconfig) (Required)
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **LastModifiedTime**: string (ReadOnly)
 
 ## CachePolicyConfig
@@ -101,18 +107,51 @@
 ## AWS.CloudFront/CloudFrontOriginAccessIdentityProperties
 ### Properties
 * **CloudFrontOriginAccessIdentityConfig**: [CloudFrontOriginAccessIdentityConfig](#cloudfrontoriginaccessidentityconfig) (Required)
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **S3CanonicalUserId**: string (ReadOnly)
 
 ## CloudFrontOriginAccessIdentityConfig
 ### Properties
 * **Comment**: string (Required)
 
+## AWS.CloudFront/ContinuousDeploymentPolicyProperties
+### Properties
+* **ContinuousDeploymentPolicyConfig**: [ContinuousDeploymentPolicyConfig](#continuousdeploymentpolicyconfig) (Required)
+* **Id**: string (ReadOnly, Identifier)
+* **LastModifiedTime**: string (ReadOnly)
+
+## ContinuousDeploymentPolicyConfig
+### Properties
+* **Enabled**: bool (Required)
+* **StagingDistributionDnsNames**: string[] (Required)
+* **TrafficConfig**: [TrafficConfig](#trafficconfig)
+
+## TrafficConfig
+### Properties
+* **SingleHeaderConfig**: [SingleHeaderConfig](#singleheaderconfig)
+* **SingleWeightConfig**: [SingleWeightConfig](#singleweightconfig)
+* **Type**: string (Required)
+
+## SingleHeaderConfig
+### Properties
+* **Header**: string (Required)
+* **Value**: string (Required)
+
+## SingleWeightConfig
+### Properties
+* **SessionStickinessConfig**: [SessionStickinessConfig](#sessionstickinessconfig)
+* **Weight**: int (Required)
+
+## SessionStickinessConfig
+### Properties
+* **IdleTTL**: int (Required)
+* **MaximumTTL**: int (Required)
+
 ## AWS.CloudFront/DistributionProperties
 ### Properties
 * **DistributionConfig**: [DistributionConfig](#distributionconfig) (Required)
 * **DomainName**: string (ReadOnly)
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **Tags**: [Tag](#tag)[]
 
 ## DistributionConfig
@@ -121,6 +160,7 @@
 * **CacheBehaviors**: [CacheBehavior](#cachebehavior)[]
 * **CNAMEs**: string[]
 * **Comment**: string
+* **ContinuousDeploymentPolicyId**: string
 * **CustomErrorResponses**: [CustomErrorResponse](#customerrorresponse)[]
 * **CustomOrigin**: [LegacyCustomOrigin](#legacycustomorigin)
 * **DefaultCacheBehavior**: [DefaultCacheBehavior](#defaultcachebehavior) (Required)
@@ -134,6 +174,7 @@
 * **PriceClass**: string
 * **Restrictions**: [Restrictions](#restrictions)
 * **S3Origin**: [LegacyS3Origin](#legacys3origin)
+* **Staging**: bool
 * **ViewerCertificate**: [ViewerCertificate](#viewercertificate)
 * **WebACLId**: string
 
@@ -234,7 +275,7 @@
 ## OriginGroup
 ### Properties
 * **FailoverCriteria**: [OriginGroupFailoverCriteria](#origingroupfailovercriteria) (Required)
-* **Id**: string (Required)
+* **Id**: string (Required, Identifier)
 * **Members**: [OriginGroupMembers](#origingroupmembers) (Required)
 
 ## OriginGroupFailoverCriteria
@@ -261,7 +302,7 @@
 * **ConnectionTimeout**: int
 * **CustomOriginConfig**: [CustomOriginConfig](#customoriginconfig)
 * **DomainName**: string (Required)
-* **Id**: string (Required)
+* **Id**: string (Required, Identifier)
 * **OriginAccessControlId**: string
 * **OriginCustomHeaders**: [OriginCustomHeader](#origincustomheader)[]
 * **OriginPath**: string
@@ -321,7 +362,7 @@
 ## AWS.CloudFront/FunctionProperties
 ### Properties
 * **AutoPublish**: bool (WriteOnly)
-* **FunctionARN**: string (ReadOnly)
+* **FunctionARN**: string (ReadOnly, Identifier)
 * **FunctionCode**: string (WriteOnly)
 * **FunctionConfig**: [FunctionConfig](#functionconfig)
 * **FunctionMetadata**: [FunctionMetadata](#functionmetadata)
@@ -335,11 +376,11 @@
 
 ## FunctionMetadata
 ### Properties
-* **FunctionARN**: string (ReadOnly)
+* **FunctionARN**: string (ReadOnly, Identifier)
 
 ## AWS.CloudFront/KeyGroupProperties
 ### Properties
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **KeyGroupConfig**: [KeyGroupConfig](#keygroupconfig) (Required)
 * **LastModifiedTime**: string (ReadOnly)
 
@@ -351,7 +392,7 @@
 
 ## AWS.CloudFront/OriginAccessControlProperties
 ### Properties
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **OriginAccessControlConfig**: [OriginAccessControlConfig](#originaccesscontrolconfig) (Required)
 
 ## OriginAccessControlConfig
@@ -364,7 +405,7 @@
 
 ## AWS.CloudFront/OriginRequestPolicyProperties
 ### Properties
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **LastModifiedTime**: string (ReadOnly)
 * **OriginRequestPolicyConfig**: [OriginRequestPolicyConfig](#originrequestpolicyconfig) (Required)
 
@@ -394,7 +435,7 @@
 ## AWS.CloudFront/PublicKeyProperties
 ### Properties
 * **CreatedTime**: string (ReadOnly)
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **PublicKeyConfig**: [PublicKeyConfig](#publickeyconfig) (Required)
 
 ## PublicKeyConfig
@@ -406,7 +447,7 @@
 
 ## AWS.CloudFront/RealtimeLogConfigProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **EndPoints**: [EndPoint](#endpoint)[] (Required)
 * **Fields**: string[] (Required)
 * **Name**: string (Required)
@@ -424,7 +465,7 @@
 
 ## AWS.CloudFront/ResponseHeadersPolicyProperties
 ### Properties
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **LastModifiedTime**: string (ReadOnly)
 * **ResponseHeadersPolicyConfig**: [ResponseHeadersPolicyConfig](#responseheaderspolicyconfig) (Required)
 
