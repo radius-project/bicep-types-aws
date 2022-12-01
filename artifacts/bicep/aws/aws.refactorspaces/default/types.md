@@ -8,12 +8,12 @@
 
 ## AWS.RefactorSpaces/RouteProperties
 ### Properties
-* **ApplicationIdentifier**: string (Required)
+* **ApplicationIdentifier**: string (Required, Identifier)
 * **Arn**: string (ReadOnly)
 * **DefaultRoute**: [DefaultRouteInput](#defaultrouteinput) (WriteOnly)
-* **EnvironmentIdentifier**: string (Required)
+* **EnvironmentIdentifier**: string (Required, Identifier)
 * **PathResourceToId**: string (ReadOnly)
-* **RouteIdentifier**: string (ReadOnly)
+* **RouteIdentifier**: string (ReadOnly, Identifier)
 * **RouteType**: [RouteType](#routetype) (WriteOnly)
 * **ServiceIdentifier**: string (Required, WriteOnly)
 * **Tags**: [Tag](#tag)[]: Metadata that you can assign to help organize the frameworks that you create. Each tag is a key-value pair.

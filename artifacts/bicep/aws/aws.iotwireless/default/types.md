@@ -42,7 +42,7 @@
 * **Description**: string: Destination description
 * **Expression**: string (Required): Destination expression
 * **ExpressionType**: string (Required): Must be RuleName
-* **Name**: string (Required): Unique name of destination
+* **Name**: string (Required, Identifier): Unique name of destination
 * **RoleArn**: string (Required): AWS role ARN that grants access
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the destination.
 
@@ -62,7 +62,7 @@
 * **FirmwareUpdateImage**: string (Required): FUOTA task firmware update image binary S3 link
 * **FirmwareUpdateRole**: string (Required): FUOTA task firmware IAM role for reading S3
 * **FuotaTaskStatus**: string (ReadOnly): FUOTA task status. Returned after successful read.
-* **Id**: string (ReadOnly): FUOTA task id. Returned after successful create.
+* **Id**: string (ReadOnly, Identifier): FUOTA task id. Returned after successful create.
 * **LoRaWAN**: [LoRaWAN](#lorawan) (Required): FUOTA task LoRaWAN
 * **Name**: string: Name of FUOTA task
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the FUOTA task.
@@ -83,7 +83,7 @@
 * **AssociateWirelessDevice**: string: Wireless device to associate. Only for update request.
 * **Description**: string: Multicast group description
 * **DisassociateWirelessDevice**: string: Wireless device to disassociate. Only for update request.
-* **Id**: string (ReadOnly): Multicast group id. Returned after successful create.
+* **Id**: string (ReadOnly, Identifier): Multicast group id. Returned after successful create.
 * **LoRaWAN**: [LoRaWAN](#lorawan) (Required): Multicast group LoRaWAN
 * **Name**: string: Name of Multicast group
 * **Status**: string (ReadOnly): Multicast group status. Returned after successful read.
@@ -105,7 +105,7 @@
 ### Properties
 * **Arn**: string (ReadOnly): Arn for network analyzer configuration, Returned upon successful create.
 * **Description**: string: The description of the new resource
-* **Name**: string (Required): Name of the network analyzer configuration
+* **Name**: string (Required, Identifier): Name of the network analyzer configuration
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TraceContent**: [NetworkAnalyzerConfiguration_TraceContent](#networkanalyzerconfigurationtracecontent): Trace content for your wireless gateway and wireless device resources
 * **WirelessDevices**: string[]: List of wireless gateway resources that have been added to the network analyzer configuration
@@ -132,7 +132,7 @@
 * **Arn**: string (ReadOnly): Wireless device arn. Returned after successful create.
 * **Description**: string: Wireless device description
 * **DestinationName**: string (Required): Wireless device destination name
-* **Id**: string (ReadOnly): Wireless device Id. Returned after successful create.
+* **Id**: string (ReadOnly, Identifier): Wireless device Id. Returned after successful create.
 * **LastUplinkReceivedAt**: string: The date and time when the most recent uplink was received.
 * **LoRaWAN**: [LoRaWANDevice](#lorawandevice): The combination of Package, Station and Model which represents the version of the LoRaWAN Wireless Device.
 * **Name**: string: Wireless device name
@@ -193,7 +193,7 @@
 ### Properties
 * **Arn**: string (ReadOnly): Arn for Wireless Gateway. Returned upon successful create.
 * **Description**: string: Description of Wireless Gateway.
-* **Id**: string (ReadOnly): Id for Wireless Gateway. Returned upon successful create.
+* **Id**: string (ReadOnly, Identifier): Id for Wireless Gateway. Returned upon successful create.
 * **LastUplinkReceivedAt**: string: The date and time when the most recent uplink was received.
 * **LoRaWAN**: [LoRaWANGateway](#lorawangateway) (Required): The combination of Package, Station and Model which represents the version of the LoRaWAN Wireless Gateway.
 * **Name**: string: Name of Wireless Gateway.

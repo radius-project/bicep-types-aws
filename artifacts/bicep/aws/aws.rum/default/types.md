@@ -11,7 +11,7 @@
 * **AppMonitorConfiguration**: [AppMonitorConfiguration](#appmonitorconfiguration)
 * **CwLogEnabled**: bool: Data collected by RUM is kept by RUM for 30 days and then deleted. This parameter specifies whether RUM sends a copy of this telemetry data to CWLlong in your account. This enables you to keep the telemetry data for more than 30 days, but it does incur CWLlong charges. If you omit this parameter, the default is false
 * **Domain**: string (Required): The top-level internet domain name for which your application has administrative authority.
-* **Name**: string (Required): A name for the app monitor
+* **Name**: string (Required, Identifier): A name for the app monitor
 * **Tags**: [TagDef](#tagdef)
 
 ## AppMonitorConfiguration
@@ -77,7 +77,7 @@ Example event patterns:
 '{ "event_type": ["com.amazon.rum.performance_navigation_event"], "metadata": { "browserName": [ "Chrome", "Safari" ], "countryCode": [ "US" ] }, "event_details": { "duration": [{ "numeric": [ ">=", 2000, "<", 8000 ] }] } }'
 
 If the metrics destination' is CloudWatch and the event also matches a value in DimensionKeys, then the metric is published with the specified dimensions.
-* **Name**: string (Required): The name for the metric that is defined in this structure. Valid values are the following:
+* **Name**: string (Required, Identifier): The name for the metric that is defined in this structure. Valid values are the following:
 
 PerformanceNavigationDuration
 

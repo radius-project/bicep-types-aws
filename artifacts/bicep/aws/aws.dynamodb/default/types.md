@@ -25,7 +25,7 @@
 * **StreamArn**: string (ReadOnly)
 * **StreamSpecification**: [StreamSpecification](#streamspecification)
 * **TableId**: string (ReadOnly)
-* **TableName**: string
+* **TableName**: string (Identifier)
 * **TimeToLiveSpecification**: [TimeToLiveSpecification](#timetolivespecification)
 * **WriteProvisionedThroughputSettings**: [WriteProvisionedThroughputSettings](#writeprovisionedthroughputsettings)
 
@@ -145,7 +145,7 @@
 * **StreamArn**: string (ReadOnly)
 * **StreamSpecification**: [StreamSpecification](#streamspecification)
 * **TableClass**: string
-* **TableName**: string
+* **TableName**: string (Identifier)
 * **Tags**: [Tag](#tag)[]
 * **TimeToLiveSpecification**: [TimeToLiveSpecification](#timetolivespecification)
 

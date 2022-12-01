@@ -26,7 +26,7 @@
 
 ## AWS.Evidently/ExperimentProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **Description**: string
 * **MetricGoals**: [MetricGoalObject](#metricgoalobject)[] (Required)
 * **Name**: string (Required)
@@ -80,7 +80,7 @@
 
 ## AWS.Evidently/FeatureProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **DefaultVariation**: string
 * **Description**: string
 * **EntityOverrides**: [EntityOverride](#entityoverride)[]
@@ -110,7 +110,7 @@
 
 ## AWS.Evidently/LaunchProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **Description**: string
 * **ExecutionStatus**: [ExecutionStatusObject](#executionstatusobject): Start or Stop Launch Launch. Default is not started.
 * **Groups**: [LaunchGroupObject](#launchgroupobject)[] (Required)
@@ -167,7 +167,7 @@
 ## AWS.Evidently/ProjectProperties
 ### Properties
 * **AppConfigResource**: [AppConfigResourceObject](#appconfigresourceobject)
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **DataDelivery**: [DataDeliveryObject](#datadeliveryobject)
 * **Description**: string
 * **Name**: string (Required)

@@ -33,13 +33,13 @@
 ## AWS.Transfer/AgreementProperties
 ### Properties
 * **AccessRole**: string (Required): Specifies the access role for the agreement.
-* **AgreementId**: string (ReadOnly): A unique identifier for the agreement.
+* **AgreementId**: string (ReadOnly, Identifier): A unique identifier for the agreement.
 * **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the agreement.
 * **BaseDirectory**: string (Required): Specifies the base directory for the agreement.
 * **Description**: string: A textual description for the agreement.
 * **LocalProfileId**: string (Required): A unique identifier for the local profile.
 * **PartnerProfileId**: string (Required): A unique identifier for the partner profile.
-* **ServerId**: string (Required): A unique identifier for the server.
+* **ServerId**: string (Required, Identifier): A unique identifier for the server.
 * **Status**: string: Specifies the status of the agreement.
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for agreements. Tags are metadata attached to agreements for any purpose.
 
@@ -54,7 +54,7 @@
 * **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the agreement.
 * **Certificate**: string (Required): Specifies the certificate body to be imported.
 * **CertificateChain**: string: Specifies the certificate chain to be imported.
-* **CertificateId**: string (ReadOnly): A unique identifier for the certificate.
+* **CertificateId**: string (ReadOnly, Identifier): A unique identifier for the certificate.
 * **Description**: string: A textual description for the certificate.
 * **InactiveDate**: string: Specifies the inactive date for the certificate.
 * **NotAfterDate**: string (ReadOnly): Specifies the not after date for the certificate.
@@ -76,7 +76,7 @@
 * **AccessRole**: string (Required): Specifies the access role for the connector.
 * **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the workflow.
 * **As2Config**: [Connector_As2Config](#connectoras2config) (Required): Configuration for an AS2 connector.
-* **ConnectorId**: string (ReadOnly): A unique identifier for the connector.
+* **ConnectorId**: string (ReadOnly, Identifier): A unique identifier for the connector.
 * **LoggingRole**: string: Specifies the logging role for the connector.
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for workflows. Tags are metadata attached to workflows for any purpose.
 * **Url**: string (Required): URL for Connector
@@ -102,7 +102,7 @@
 * **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the profile.
 * **As2Id**: string (Required): AS2 identifier agreed with a trading partner.
 * **CertificateIds**: [CertificateId](#certificateid)[]: List of the certificate IDs associated with this profile to be used for encryption and signing of AS2 messages.
-* **ProfileId**: string (ReadOnly): A unique identifier for the profile
+* **ProfileId**: string (ReadOnly, Identifier): A unique identifier for the profile
 * **ProfileType**: string (Required): Enum specifying whether the profile is local or associated with a trading partner.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
@@ -121,7 +121,7 @@
 * **OnExceptionSteps**: [WorkflowStep](#workflowstep)[]: Specifies the steps (actions) to take if any errors are encountered during execution of the workflow.
 * **Steps**: [WorkflowStep](#workflowstep)[] (Required): Specifies the details for the steps that are in the specified workflow.
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for workflows. Tags are metadata attached to workflows for any purpose.
-* **WorkflowId**: string (ReadOnly): A unique identifier for the workflow.
+* **WorkflowId**: string (ReadOnly, Identifier): A unique identifier for the workflow.
 
 ## WorkflowStep
 ### Properties

@@ -14,7 +14,7 @@
 * **InstanceConfiguration**: [InstanceConfiguration](#instanceconfiguration)
 * **NetworkConfiguration**: [NetworkConfiguration](#networkconfiguration)
 * **ObservabilityConfiguration**: [ServiceObservabilityConfiguration](#serviceobservabilityconfiguration)
-* **ServiceArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the AppRunner Service.
+* **ServiceArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the AppRunner Service.
 * **ServiceId**: string (ReadOnly): The AppRunner Service Id
 * **ServiceName**: string: The AppRunner Service Name.
 * **ServiceUrl**: string (ReadOnly): The Service Url of the AppRunner Service.

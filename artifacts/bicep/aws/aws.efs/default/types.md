@@ -20,7 +20,7 @@
 
 ## AWS.EFS/AccessPointProperties
 ### Properties
-* **AccessPointId**: string (ReadOnly)
+* **AccessPointId**: string (ReadOnly, Identifier)
 * **AccessPointTags**: [AccessPointTag](#accesspointtag)[]
 * **Arn**: string (ReadOnly)
 * **ClientToken**: string: (optional) A string of up to 64 ASCII characters that Amazon EFS uses to ensure idempotent creation.
@@ -57,7 +57,7 @@
 * **BackupPolicy**: [BackupPolicy](#backuppolicy)
 * **BypassPolicyLockoutSafetyCheck**: bool (WriteOnly): Whether to bypass the FileSystemPolicy lockout safety check. The policy lockout safety check determines whether the policy in the request will prevent the principal making the request to be locked out from making future PutFileSystemPolicy requests on the file system. Set BypassPolicyLockoutSafetyCheck to True only when you intend to prevent the principal that is making the request from making a subsequent PutFileSystemPolicy request on the file system. Defaults to false
 * **Encrypted**: bool
-* **FileSystemId**: string (ReadOnly)
+* **FileSystemId**: string (ReadOnly, Identifier)
 * **FileSystemPolicy**: [FileSystem_FileSystemPolicy](#filesystemfilesystempolicy)
 * **FileSystemTags**: [ElasticFileSystemTag](#elasticfilesystemtag)[]
 * **KmsKeyId**: string
@@ -86,7 +86,7 @@
 ## AWS.EFS/MountTargetProperties
 ### Properties
 * **FileSystemId**: string (Required)
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **IpAddress**: string
 * **SecurityGroups**: string[] (Required)
 * **SubnetId**: string (Required)

@@ -14,7 +14,7 @@
 
 ## AWS.ElasticBeanstalk/ApplicationProperties
 ### Properties
-* **ApplicationName**: string: A name for the Elastic Beanstalk application. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the application name.
+* **ApplicationName**: string (Identifier): A name for the Elastic Beanstalk application. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the application name.
 * **Description**: string: Your description of the application.
 * **ResourceLifecycleConfig**: [ApplicationResourceLifecycleConfig](#applicationresourcelifecycleconfig): Specifies an application resource lifecycle configuration to prevent your application from accumulating too many versions.
 
@@ -42,9 +42,9 @@
 
 ## AWS.ElasticBeanstalk/ApplicationVersionProperties
 ### Properties
-* **ApplicationName**: string (Required): The name of the Elastic Beanstalk application that is associated with this application version. 
+* **ApplicationName**: string (Required, Identifier): The name of the Elastic Beanstalk application that is associated with this application version. 
 * **Description**: string: A description of this application version.
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **SourceBundle**: [SourceBundle](#sourcebundle) (Required): The Amazon S3 bucket and key that identify the location of the source bundle for this version. 
 
 ## SourceBundle

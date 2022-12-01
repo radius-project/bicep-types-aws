@@ -14,7 +14,7 @@
 
 ## AWS.StepFunctions/ActivityProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **Name**: string (Required)
 * **Tags**: [TagsEntry](#tagsentry)[]
 
@@ -25,7 +25,7 @@
 
 ## AWS.StepFunctions/StateMachineProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **Definition**: [Definition](#definition) (WriteOnly)
 * **DefinitionS3Location**: [S3Location](#s3location) (WriteOnly)
 * **DefinitionString**: string

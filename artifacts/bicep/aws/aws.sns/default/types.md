@@ -30,7 +30,7 @@ This property applies only to [server-side-encryption](https://docs.aws.amazon.c
 * **SignatureVersion**: string: Version of the Amazon SNS signature used. If the SignatureVersion is 1, Signature is a Base64-encoded SHA1withRSA signature of the Message, MessageId, Type, Timestamp, and TopicArn values. If the SignatureVersion is 2, Signature is a Base64-encoded SHA256withRSA signature of the Message, MessageId, Type, Timestamp, and TopicArn values.
 * **Subscription**: [Subscription](#subscription)[]: The SNS subscriptions (endpoints) for this topic.
 * **Tags**: [Tag](#tag)[]
-* **TopicArn**: string (ReadOnly)
+* **TopicArn**: string (ReadOnly, Identifier)
 * **TopicName**: string: The name of the topic you want to create. Topic names must include only uppercase and lowercase ASCII letters, numbers, underscores, and hyphens, and must be between 1 and 256 characters long. FIFO topic names must end with .fifo.
 
 If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the topic name. For more information, see Name Type.

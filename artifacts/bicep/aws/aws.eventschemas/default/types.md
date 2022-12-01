@@ -8,7 +8,7 @@
 
 ## AWS.EventSchemas/RegistryPolicyProperties
 ### Properties
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **Policy**: [RegistryPolicy_Policy](#registrypolicypolicy) (Required)
 * **RegistryName**: string (Required)
 * **RevisionId**: string

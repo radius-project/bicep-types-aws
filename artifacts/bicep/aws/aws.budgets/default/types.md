@@ -8,11 +8,11 @@
 
 ## AWS.Budgets/BudgetsActionProperties
 ### Properties
-* **ActionId**: string (ReadOnly)
+* **ActionId**: string (ReadOnly, Identifier)
 * **ActionThreshold**: [ActionThreshold](#actionthreshold) (Required)
 * **ActionType**: string (Required)
 * **ApprovalModel**: string
-* **BudgetName**: string (Required)
+* **BudgetName**: string (Required, Identifier)
 * **Definition**: [Definition](#definition) (Required)
 * **ExecutionRoleArn**: string (Required)
 * **NotificationType**: string (Required)

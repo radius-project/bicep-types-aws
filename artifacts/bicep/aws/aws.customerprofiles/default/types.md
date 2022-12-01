@@ -24,7 +24,7 @@
 * **DeadLetterQueueUrl**: string: The URL of the SQS dead letter queue
 * **DefaultEncryptionKey**: string: The default encryption key
 * **DefaultExpirationDays**: int: The default number of days until the data within the domain expires.
-* **DomainName**: string (Required): The unique name of the domain.
+* **DomainName**: string (Required, Identifier): The unique name of the domain.
 * **LastUpdatedAt**: string (ReadOnly): The time of this integration got last updated at
 * **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the domain
 
@@ -36,13 +36,13 @@
 ## AWS.CustomerProfiles/IntegrationProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly): The time of this integration got created
-* **DomainName**: string (Required): The unique name of the domain.
+* **DomainName**: string (Required, Identifier): The unique name of the domain.
 * **FlowDefinition**: [FlowDefinition](#flowdefinition) (WriteOnly)
 * **LastUpdatedAt**: string (ReadOnly): The time of this integration got last updated at
 * **ObjectTypeName**: string: The name of the ObjectType defined for the 3rd party data in Profile Service
 * **ObjectTypeNames**: [ObjectTypeMapping](#objecttypemapping)[]: The mapping between 3rd party event types and ObjectType names
 * **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the integration
-* **Uri**: string: The URI of the S3 bucket or any other type of data source.
+* **Uri**: string (Identifier): The URI of the S3 bucket or any other type of data source.
 
 ## FlowDefinition
 ### Properties
@@ -186,13 +186,13 @@
 * **AllowProfileCreation**: bool: Indicates whether a profile should be created when data is received.
 * **CreatedAt**: string (ReadOnly): The time of this integration got created.
 * **Description**: string: Description of the profile object type.
-* **DomainName**: string (Required): The unique name of the domain.
+* **DomainName**: string (Required, Identifier): The unique name of the domain.
 * **EncryptionKey**: string: The default encryption key
 * **ExpirationDays**: int: The default number of days until the data within the domain expires.
 * **Fields**: [FieldMap](#fieldmap)[]: A list of the name and ObjectType field.
 * **Keys**: [KeyMap](#keymap)[]: A list of unique keys that can be used to map data to the profile.
 * **LastUpdatedAt**: string (ReadOnly): The time of this integration got last updated at.
-* **ObjectTypeName**: string: The name of the profile object type.
+* **ObjectTypeName**: string (Identifier): The name of the profile object type.
 * **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the integration.
 * **TemplateId**: string: A unique identifier for the object template.
 

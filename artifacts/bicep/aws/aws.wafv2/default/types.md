@@ -41,10 +41,10 @@
 * **Addresses**: [IPAddress](#ipaddress)[] (Required): List of IPAddresses.
 * **Arn**: [ResourceArn](#resourcearn) (ReadOnly)
 * **Description**: [EntityDescription](#entitydescription)
-* **Id**: [EntityId](#entityid) (ReadOnly)
+* **Id**: [EntityId](#entityid) (ReadOnly, Identifier)
 * **IPAddressVersion**: [IPAddressVersion](#ipaddressversion) (Required)
-* **Name**: [EntityName](#entityname)
-* **Scope**: [Scope](#scope) (Required)
+* **Name**: [EntityName](#entityname) (Identifier)
+* **Scope**: [Scope](#scope) (Required, Identifier)
 * **Tags**: [Tag](#tag)[]
 
 ## IPAddress
@@ -79,7 +79,7 @@
 * **LoggingFilter**: [LoggingConfiguration_LoggingFilter](#loggingconfigurationloggingfilter): Filtering that specifies which web requests are kept in the logs and which are dropped. You can filter on the rule action and on the web request labels that were applied by matching rules during web ACL evaluation.
 * **ManagedByFirewallManager**: bool (ReadOnly): Indicates whether the logging configuration was created by AWS Firewall Manager, as part of an AWS WAF policy configuration. If true, only Firewall Manager can modify or delete the configuration.
 * **RedactedFields**: [FieldToMatch](#fieldtomatch)[]: The parts of the request that you want to keep out of the logs. For example, if you redact the HEADER field, the HEADER field in the firehose will be xxx.
-* **ResourceArn**: string (Required): The Amazon Resource Name (ARN) of the web ACL that you want to associate with LogDestinationConfigs.
+* **ResourceArn**: string (Required, Identifier): The Amazon Resource Name (ARN) of the web ACL that you want to associate with LogDestinationConfigs.
 
 ## LoggingConfiguration_LoggingFilter
 ### Properties
@@ -144,10 +144,10 @@
 ### Properties
 * **Arn**: string (ReadOnly): ARN of the WAF entity.
 * **Description**: string: Description of the entity.
-* **Id**: string (ReadOnly): Id of the RegexPatternSet
-* **Name**: string: Name of the RegexPatternSet.
+* **Id**: string (ReadOnly, Identifier): Id of the RegexPatternSet
+* **Name**: string (Identifier): Name of the RegexPatternSet.
 * **RegularExpressionList**: string[] (Required)
-* **Scope**: string (Required): Use CLOUDFRONT for CloudFront RegexPatternSet, use REGIONAL for Application Load Balancer and API Gateway.
+* **Scope**: string (Required, Identifier): Use CLOUDFRONT for CloudFront RegexPatternSet, use REGIONAL for Application Load Balancer and API Gateway.
 * **Tags**: [Tag](#tag)[]
 
 ## Tag
@@ -163,11 +163,11 @@
 * **ConsumedLabels**: [LabelSummary](#labelsummary)[] (ReadOnly): Collection of Consumed Labels.
 * **CustomResponseBodies**: [CustomResponseBodies](#customresponsebodies)
 * **Description**: [EntityDescription](#entitydescription)
-* **Id**: [EntityId](#entityid) (ReadOnly)
+* **Id**: [EntityId](#entityid) (ReadOnly, Identifier)
 * **LabelNamespace**: [LabelName](#labelname) (ReadOnly)
-* **Name**: [EntityName](#entityname)
+* **Name**: [EntityName](#entityname) (Identifier)
 * **Rules**: [Rule](#rule)[]: Collection of Rules.
-* **Scope**: [Scope](#scope) (Required)
+* **Scope**: [Scope](#scope) (Required, Identifier)
 * **Tags**: [Tag](#tag)[]
 * **VisibilityConfig**: [VisibilityConfig](#visibilityconfig) (Required)
 
@@ -176,7 +176,7 @@
 
 ## LabelSummary
 ### Properties
-* **Name**: [LabelName](#labelname)
+* **Name**: [LabelName](#labelname) (Identifier)
 
 ## LabelName
 ### Properties
@@ -197,7 +197,7 @@
 ### Properties
 * **Action**: [RuleAction](#ruleaction)
 * **CaptchaConfig**: [CaptchaConfig](#captchaconfig)
-* **Name**: [EntityName](#entityname) (Required)
+* **Name**: [EntityName](#entityname) (Required, Identifier)
 * **Priority**: [RulePriority](#rulepriority) (Required)
 * **RuleLabels**: [Label](#label)[]: Collection of Rule Labels.
 * **Statement**: [Statement](#statement) (Required)
@@ -220,7 +220,7 @@
 
 ## CustomHTTPHeader
 ### Properties
-* **Name**: [CustomHTTPHeaderName](#customhttpheadername) (Required)
+* **Name**: [CustomHTTPHeaderName](#customhttpheadername) (Required, Identifier)
 * **Value**: [CustomHTTPHeaderValue](#customhttpheadervalue) (Required)
 
 ## CustomHTTPHeaderName
@@ -263,7 +263,7 @@
 
 ## Label
 ### Properties
-* **Name**: [LabelName](#labelname) (Required)
+* **Name**: [LabelName](#labelname) (Required, Identifier)
 
 ## Statement
 ### Properties
@@ -381,11 +381,11 @@
 
 ## RuleGroup_SingleHeader
 ### Properties
-* **Name**: string (Required)
+* **Name**: string (Required, Identifier)
 
 ## RuleGroup_SingleQueryArgument
 ### Properties
-* **Name**: string (Required)
+* **Name**: string (Required, Identifier)
 
 ## RuleGroup_UriPath
 ### Properties
@@ -434,7 +434,7 @@
 ## LabelMatchStatement
 ### Properties
 * **Key**: [LabelMatchKey](#labelmatchkey) (Required)
-* **Scope**: [LabelMatchScope](#labelmatchscope) (Required)
+* **Scope**: [LabelMatchScope](#labelmatchscope) (Required, Identifier)
 
 ## LabelMatchKey
 ### Properties
@@ -515,11 +515,11 @@
 * **CustomResponseBodies**: [CustomResponseBodies](#customresponsebodies)
 * **DefaultAction**: [DefaultAction](#defaultaction) (Required)
 * **Description**: [EntityDescription](#entitydescription)
-* **Id**: [EntityId](#entityid) (ReadOnly)
+* **Id**: [EntityId](#entityid) (ReadOnly, Identifier)
 * **LabelNamespace**: [LabelName](#labelname) (ReadOnly)
-* **Name**: [EntityName](#entityname)
+* **Name**: [EntityName](#entityname) (Identifier)
 * **Rules**: [Rule](#rule)[]: Collection of Rules.
-* **Scope**: [Scope](#scope) (Required)
+* **Scope**: [Scope](#scope) (Required, Identifier)
 * **Tags**: [Tag](#tag)[]
 * **VisibilityConfig**: [VisibilityConfig](#visibilityconfig) (Required)
 
@@ -552,7 +552,7 @@
 
 ## CustomHTTPHeader
 ### Properties
-* **Name**: [CustomHTTPHeaderName](#customhttpheadername) (Required)
+* **Name**: [CustomHTTPHeaderName](#customhttpheadername) (Required, Identifier)
 * **Value**: [CustomHTTPHeaderValue](#customhttpheadervalue) (Required)
 
 ## CustomHTTPHeaderName
@@ -590,7 +590,7 @@
 ### Properties
 * **Action**: [RuleAction](#ruleaction)
 * **CaptchaConfig**: [CaptchaConfig](#captchaconfig)
-* **Name**: [EntityName](#entityname) (Required)
+* **Name**: [EntityName](#entityname) (Required, Identifier)
 * **OverrideAction**: [OverrideAction](#overrideaction)
 * **Priority**: [RulePriority](#rulepriority) (Required)
 * **RuleLabels**: [Label](#label)[]: Collection of Rule Labels.
@@ -628,7 +628,7 @@
 
 ## Label
 ### Properties
-* **Name**: [LabelName](#labelname) (Required)
+* **Name**: [LabelName](#labelname) (Required, Identifier)
 
 ## Statement
 ### Properties
@@ -748,11 +748,11 @@
 
 ## WebACL_SingleHeader
 ### Properties
-* **Name**: string (Required)
+* **Name**: string (Required, Identifier)
 
 ## WebACL_SingleQueryArgument
 ### Properties
-* **Name**: string (Required)
+* **Name**: string (Required, Identifier)
 
 ## WebACL_UriPath
 ### Properties
@@ -801,7 +801,7 @@
 ## LabelMatchStatement
 ### Properties
 * **Key**: [LabelMatchKey](#labelmatchkey) (Required)
-* **Scope**: [LabelMatchScope](#labelmatchscope) (Required)
+* **Scope**: [LabelMatchScope](#labelmatchscope) (Required, Identifier)
 
 ## LabelMatchKey
 ### Properties
@@ -813,14 +813,14 @@
 ### Properties
 * **ExcludedRules**: [ExcludedRule](#excludedrule)[]
 * **ManagedRuleGroupConfigs**: [ManagedRuleGroupConfig](#managedrulegroupconfig)[]: Collection of ManagedRuleGroupConfig.
-* **Name**: [EntityName](#entityname) (Required)
+* **Name**: [EntityName](#entityname) (Required, Identifier)
 * **ScopeDownStatement**: [Statement](#statement)
 * **VendorName**: string (Required)
 * **Version**: string
 
 ## ExcludedRule
 ### Properties
-* **Name**: [EntityName](#entityname) (Required)
+* **Name**: [EntityName](#entityname) (Required, Identifier)
 
 ## ManagedRuleGroupConfig
 ### Properties
@@ -905,8 +905,8 @@
 
 ## AWS.WAFv2/WebACLAssociationProperties
 ### Properties
-* **ResourceArn**: [ResourceArn](#resourcearn) (Required)
-* **WebACLArn**: [ResourceArn](#resourcearn) (Required)
+* **ResourceArn**: [ResourceArn](#resourcearn) (Required, Identifier)
+* **WebACLArn**: [ResourceArn](#resourcearn) (Required, Identifier)
 
 ## ResourceArn
 ### Properties

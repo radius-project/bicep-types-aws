@@ -8,7 +8,7 @@
 
 ## AWS.InspectorV2/FilterProperties
 ### Properties
-* **Arn**: string (ReadOnly): Findings filter ARN.
+* **Arn**: string (ReadOnly, Identifier): Findings filter ARN.
 * **Description**: string: Findings filter description.
 * **FilterAction**: [FilterAction](#filteraction) (Required): Findings filter action.
 * **FilterCriteria**: [FilterCriteria](#filtercriteria) (Required): Findings filter criteria.

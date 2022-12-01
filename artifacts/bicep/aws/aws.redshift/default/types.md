@@ -56,7 +56,7 @@ auto - Amazon Redshift determines whether to use AQUA.
 * **AvailabilityZoneRelocation**: bool: The option to enable relocation for an Amazon Redshift cluster between Availability Zones after the cluster modification is complete.
 * **AvailabilityZoneRelocationStatus**: string: The availability zone relocation status of the cluster
 * **Classic**: bool: A boolean value indicating whether the resize operation is using the classic resize process. If you don't provide this parameter or set the value to false , the resize type is elastic.
-* **ClusterIdentifier**: string: A unique identifier for the cluster. You use this identifier to refer to the cluster for any subsequent cluster operations such as deleting or modifying. All alphabetical characters must be lower case, no hypens at the end, no two consecutive hyphens. Cluster name should be unique for all clusters within an AWS account
+* **ClusterIdentifier**: string (Identifier): A unique identifier for the cluster. You use this identifier to refer to the cluster for any subsequent cluster operations such as deleting or modifying. All alphabetical characters must be lower case, no hypens at the end, no two consecutive hyphens. Cluster name should be unique for all clusters within an AWS account
 * **ClusterParameterGroupName**: string: The name of the parameter group to be associated with this cluster.
 * **ClusterSecurityGroups**: string[]: A list of security groups to be associated with this cluster.
 * **ClusterSubnetGroupName**: string: The name of a cluster subnet group to be associated with this cluster.
@@ -129,7 +129,7 @@ The value must be either -1 or an integer between 1 and 3,653.
 ### Properties
 * **Description**: string (Required): A description of the parameter group.
 * **ParameterGroupFamily**: string (Required): The Amazon Redshift engine version to which the cluster parameter group applies. The cluster engine version determines the set of parameters.
-* **ParameterGroupName**: string (ReadOnly): The name of the cluster parameter group.
+* **ParameterGroupName**: string (ReadOnly, Identifier): The name of the cluster parameter group.
 * **Parameters**: [Parameter](#parameter)[]: An array of parameters to be modified. A maximum of 20 parameters can be modified in a single request.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
@@ -145,7 +145,7 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## AWS.Redshift/ClusterSubnetGroupProperties
 ### Properties
-* **ClusterSubnetGroupName**: string (ReadOnly): This name must be unique for all subnet groups that are created by your AWS account. If costumer do not provide it, cloudformation will generate it. Must not be "Default". 
+* **ClusterSubnetGroupName**: string (ReadOnly, Identifier): This name must be unique for all subnet groups that are created by your AWS account. If costumer do not provide it, cloudformation will generate it. Must not be "Default". 
 * **Description**: string (Required): The description of the parameter group.
 * **SubnetIds**: string[] (Required): The list of VPC subnet IDs
 * **Tags**: [Tag](#tag)[]: The list of tags for the cluster parameter group.
@@ -160,7 +160,7 @@ The value must be either -1 or an integer between 1 and 3,653.
 * **Address**: string (ReadOnly): The DNS address of the endpoint.
 * **ClusterIdentifier**: string (Required): A unique identifier for the cluster. You use this identifier to refer to the cluster for any subsequent cluster operations such as deleting or modifying. All alphabetical characters must be lower case, no hypens at the end, no two consecutive hyphens. Cluster name should be unique for all clusters within an AWS account
 * **EndpointCreateTime**: string (ReadOnly): The time (UTC) that the endpoint was created.
-* **EndpointName**: string (Required): The name of the endpoint.
+* **EndpointName**: string (Required, Identifier): The name of the endpoint.
 * **EndpointStatus**: string (ReadOnly): The status of the endpoint.
 * **Port**: int (ReadOnly): The port number on which the cluster accepts incoming connections.
 * **ResourceOwner**: string: The AWS account ID of the owner of the cluster.
@@ -189,11 +189,11 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## AWS.Redshift/EndpointAuthorizationProperties
 ### Properties
-* **Account**: [AwsAccount](#awsaccount) (Required): The target AWS account ID to grant or revoke access for.
+* **Account**: [AwsAccount](#awsaccount) (Required, Identifier): The target AWS account ID to grant or revoke access for.
 * **AllowedAllVPCs**: bool (ReadOnly): Indicates whether all VPCs in the grantee account are allowed access to the cluster.
 * **AllowedVPCs**: [VpcId](#vpcid)[] (ReadOnly): The VPCs allowed access to the cluster.
 * **AuthorizeTime**: string (ReadOnly): The time (UTC) when the authorization was created.
-* **ClusterIdentifier**: string (Required): The cluster identifier.
+* **ClusterIdentifier**: string (Required, Identifier): The cluster identifier.
 * **ClusterStatus**: string (ReadOnly): The status of the cluster.
 * **EndpointCount**: int (ReadOnly): The number of Redshift-managed VPC endpoints created for the authorization.
 * **Force**: bool (WriteOnly):  Indicates whether to force the revoke action. If true, the Redshift-managed VPC endpoints associated with the endpoint authorization are also deleted.
@@ -222,7 +222,7 @@ The value must be either -1 or an integer between 1 and 3,653.
 * **SourceType**: string: The type of source that will be generating the events.
 * **Status**: string (ReadOnly): The status of the Amazon Redshift event notification subscription.
 * **SubscriptionCreationTime**: string (ReadOnly): The date and time the Amazon Redshift event notification subscription was created.
-* **SubscriptionName**: string (Required): The name of the Amazon Redshift event notification subscription
+* **SubscriptionName**: string (Required, Identifier): The name of the Amazon Redshift event notification subscription
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## Tag
@@ -238,7 +238,7 @@ The value must be either -1 or an integer between 1 and 3,653.
 * **NextInvocations**: [timestamp](#timestamp)[] (ReadOnly): List of times when the scheduled action will run.
 * **Schedule**: string: The schedule in `at( )` or `cron( )` format.
 * **ScheduledActionDescription**: string: The description of the scheduled action.
-* **ScheduledActionName**: string (Required): The name of the scheduled action. The name must be unique within an account.
+* **ScheduledActionName**: string (Required, Identifier): The name of the scheduled action. The name must be unique within an account.
 * **StartTime**: [timestamp](#timestamp): The start time in UTC of the scheduled action. Before this time, the scheduled action does not trigger.
 * **State**: string (ReadOnly): The state of the scheduled action.
 * **TargetAction**: [ScheduledActionType](#scheduledactiontype): A JSON format string of the Amazon Redshift API operation with input parameters.

@@ -26,7 +26,7 @@
 
 ## AWS.IVS/ChannelProperties
 ### Properties
-* **Arn**: string (ReadOnly): Channel ARN is automatically generated on creation and assigned as the unique identifier.
+* **Arn**: string (ReadOnly, Identifier): Channel ARN is automatically generated on creation and assigned as the unique identifier.
 * **Authorized**: bool: Whether the channel is authorized.
 * **IngestEndpoint**: string (ReadOnly): Channel ingest endpoint, part of the definition of an ingest server, used when you set up streaming software.
 * **LatencyMode**: string: Channel latency mode.
@@ -43,7 +43,7 @@
 
 ## AWS.IVS/PlaybackKeyPairProperties
 ### Properties
-* **Arn**: string (ReadOnly): Key-pair identifier.
+* **Arn**: string (ReadOnly, Identifier): Key-pair identifier.
 * **Fingerprint**: string (ReadOnly): Key-pair identifier.
 * **Name**: string: An arbitrary string (a nickname) assigned to a playback key pair that helps the customer identify that resource. The value does not need to be unique.
 * **PublicKeyMaterial**: string (Required): The public portion of a customer-generated key pair.
@@ -56,7 +56,7 @@
 
 ## AWS.IVS/RecordingConfigurationProperties
 ### Properties
-* **Arn**: string (ReadOnly): Recording Configuration ARN is automatically generated on creation and assigned as the unique identifier.
+* **Arn**: string (ReadOnly, Identifier): Recording Configuration ARN is automatically generated on creation and assigned as the unique identifier.
 * **DestinationConfiguration**: [DestinationConfiguration](#destinationconfiguration) (Required)
 * **Name**: string: Recording Configuration Name.
 * **State**: string (ReadOnly): Recording Configuration State.
@@ -83,7 +83,7 @@
 
 ## AWS.IVS/StreamKeyProperties
 ### Properties
-* **Arn**: string (ReadOnly): Stream Key ARN is automatically generated on creation and assigned as the unique identifier.
+* **Arn**: string (ReadOnly, Identifier): Stream Key ARN is automatically generated on creation and assigned as the unique identifier.
 * **ChannelArn**: string (Required): Channel ARN for the stream.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
 * **Value**: string (ReadOnly): Stream-key value.

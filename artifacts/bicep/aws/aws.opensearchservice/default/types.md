@@ -18,7 +18,7 @@
 * **DomainEndpoint**: string (ReadOnly)
 * **DomainEndpointOptions**: [DomainEndpointOptions](#domainendpointoptions)
 * **DomainEndpoints**: [Domain_DomainEndpoints](#domaindomainendpoints) (ReadOnly)
-* **DomainName**: string
+* **DomainName**: string (Identifier)
 * **EBSOptions**: [EBSOptions](#ebsoptions)
 * **EncryptionAtRestOptions**: [EncryptionAtRestOptions](#encryptionatrestoptions)
 * **EngineVersion**: string

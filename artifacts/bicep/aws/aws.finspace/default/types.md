@@ -13,7 +13,7 @@
 * **DedicatedServiceAccountId**: string (ReadOnly): ID for FinSpace created account used to store Environment artifacts
 * **Description**: string: Description of the Environment
 * **EnvironmentArn**: string (ReadOnly): ARN of the Environment
-* **EnvironmentId**: string (ReadOnly): Unique identifier for representing FinSpace Environment
+* **EnvironmentId**: string (ReadOnly, Identifier): Unique identifier for representing FinSpace Environment
 * **EnvironmentUrl**: string (ReadOnly): URL used to login to the Environment
 * **FederationMode**: string: Federation mode used with the Environment
 * **FederationParameters**: [FederationParameters](#federationparameters)

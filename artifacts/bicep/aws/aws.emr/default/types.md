@@ -23,7 +23,7 @@
 * **IdpRelayStateParameterName**: string: The name of relay state parameter for external Identity Provider.
 * **Name**: string (Required): A descriptive name for the Amazon EMR Studio.
 * **ServiceRole**: [Arn](#arn) (Required): The IAM role that will be assumed by the Amazon EMR Studio. The service role provides a way for Amazon EMR Studio to interoperate with other AWS services.
-* **StudioId**: string (ReadOnly): The ID of the EMR Studio.
+* **StudioId**: string (ReadOnly, Identifier): The ID of the EMR Studio.
 * **SubnetIds**: [SubnetId](#subnetid)[] (Required): A list of up to 5 subnet IDs to associate with the Studio. The subnets must belong to the VPC specified by VpcId. Studio users can create a Workspace in any of the specified subnets.
 * **Tags**: [Tags](#tags): A list of tags to associate with the Studio. Tags are user-defined key-value pairs that consist of a required key string with a maximum of 128 characters, and an optional value string with a maximum of 256 characters.
 * **Url**: string (ReadOnly): The unique Studio access URL.
@@ -42,10 +42,10 @@
 
 ## AWS.EMR/StudioSessionMappingProperties
 ### Properties
-* **IdentityName**: string (Required): The name of the user or group. For more information, see UserName and DisplayName in the AWS SSO Identity Store API Reference. Either IdentityName or IdentityId must be specified.
-* **IdentityType**: string (Required): Specifies whether the identity to map to the Studio is a user or a group.
+* **IdentityName**: string (Required, Identifier): The name of the user or group. For more information, see UserName and DisplayName in the AWS SSO Identity Store API Reference. Either IdentityName or IdentityId must be specified.
+* **IdentityType**: string (Required, Identifier): Specifies whether the identity to map to the Studio is a user or a group.
 * **SessionPolicyArn**: [IamPolicyArn](#iampolicyarn) (Required): The Amazon Resource Name (ARN) for the session policy that will be applied to the user or group. Session policies refine Studio user permissions without the need to use multiple IAM user roles.
-* **StudioId**: string (Required): The ID of the Amazon EMR Studio to which the user or group will be mapped.
+* **StudioId**: string (Required, Identifier): The ID of the Amazon EMR Studio to which the user or group will be mapped.
 
 ## IamPolicyArn
 ### Properties

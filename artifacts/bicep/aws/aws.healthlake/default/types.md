@@ -11,7 +11,7 @@
 * **CreatedAt**: [CreatedAt](#createdat) (ReadOnly)
 * **DatastoreArn**: [DatastoreArn](#datastorearn) (ReadOnly)
 * **DatastoreEndpoint**: [DatastoreEndpoint](#datastoreendpoint) (ReadOnly)
-* **DatastoreId**: [DatastoreId](#datastoreid) (ReadOnly)
+* **DatastoreId**: [DatastoreId](#datastoreid) (ReadOnly, Identifier)
 * **DatastoreName**: [DatastoreName](#datastorename)
 * **DatastoreStatus**: [DatastoreStatus](#datastorestatus) (ReadOnly)
 * **DatastoreTypeVersion**: [DatastoreTypeVersion](#datastoretypeversion) (Required)

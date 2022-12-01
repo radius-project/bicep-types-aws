@@ -21,7 +21,7 @@
 ## AWS.ApiGatewayV2/ApiProperties
 ### Properties
 * **ApiEndpoint**: string (ReadOnly)
-* **ApiId**: string (ReadOnly)
+* **ApiId**: string (ReadOnly, Identifier)
 * **ApiKeySelectionExpression**: string
 * **BasePath**: string (WriteOnly)
 * **Body**: [Api_Body](#apibody) (WriteOnly)
@@ -64,10 +64,10 @@
 
 ## AWS.ApiGatewayV2/ModelProperties
 ### Properties
-* **ApiId**: string (Required)
+* **ApiId**: string (Required, Identifier)
 * **ContentType**: string
 * **Description**: string
-* **ModelId**: string (ReadOnly)
+* **ModelId**: string (ReadOnly, Identifier)
 * **Name**: string (Required)
 * **Schema**: [Model_Schema](#modelschema) (Required)
 
@@ -80,7 +80,7 @@
 * **SecurityGroupIds**: string[]
 * **SubnetIds**: string[] (Required)
 * **Tags**: [VpcLink_Tags](#vpclinktags): This resource type use map for Tags, suggest to use List of Tag
-* **VpcLinkId**: string (ReadOnly)
+* **VpcLinkId**: string (ReadOnly, Identifier)
 
 ## VpcLink_Tags
 ### Properties

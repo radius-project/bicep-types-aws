@@ -8,7 +8,7 @@
 
 ## AWS.FSx/DataRepositoryAssociationProperties
 ### Properties
-* **AssociationId**: string (ReadOnly): The system-generated, unique ID of the data repository association.
+* **AssociationId**: string (ReadOnly, Identifier): The system-generated, unique ID of the data repository association.
 * **BatchImportMetaDataOnCreate**: bool: A boolean flag indicating whether an import data repository task to import metadata should run after the data repository association is created. The task runs if this flag is set to true.
 * **DataRepositoryPath**: string (Required): The path to the Amazon S3 data repository that will be linked to the file system. The path can be an S3 bucket or prefix in the format s3://myBucket/myPrefix/ . This path specifies where in the S3 data repository files will be imported from or exported to.
 * **FileSystemId**: string (Required): The globally unique ID of the file system, assigned by Amazon FSx.

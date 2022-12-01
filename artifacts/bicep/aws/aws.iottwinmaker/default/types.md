@@ -27,7 +27,7 @@
 ## AWS.IoTTwinMaker/ComponentTypeProperties
 ### Properties
 * **Arn**: string (ReadOnly): The ARN of the component type.
-* **ComponentTypeId**: string (Required): The ID of the component type.
+* **ComponentTypeId**: string (Required, Identifier): The ID of the component type.
 * **CreationDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The date and time when the component type was created.
 * **Description**: string: The description of the component type.
 * **ExtendsFrom**: [ParentComponentType](#parentcomponenttype)[]: Specifies the parent component type to extend.
@@ -41,7 +41,7 @@
 * **Status**: [Status](#status) (ReadOnly): The current status of the component type.
 * **Tags**: [ComponentType_Tags](#componenttypetags): A map of key-value pairs to associate with a resource.
 * **UpdateDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The last date and time when the component type was updated.
-* **WorkspaceId**: string (Required): The ID of the workspace that contains the component type.
+* **WorkspaceId**: string (Required, Identifier): The ID of the workspace that contains the component type.
 
 ## DateTimeFormat
 ### Properties
@@ -74,14 +74,14 @@
 * **Components**: [Entity_Components](#entitycomponents): A map that sets information about a component type.
 * **CreationDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The date and time when the entity was created.
 * **Description**: string: The description of the entity.
-* **EntityId**: string: The ID of the entity.
+* **EntityId**: string (Identifier): The ID of the entity.
 * **EntityName**: string (Required): The name of the entity.
 * **HasChildEntities**: bool (ReadOnly): A Boolean value that specifies whether the entity has child entities or not.
 * **ParentEntityId**: string: The ID of the parent entity.
 * **Status**: [Status](#status) (ReadOnly): The current status of the entity.
 * **Tags**: [Entity_Tags](#entitytags): A key-value pair to associate with a resource.
 * **UpdateDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The last date and time when the entity was updated.
-* **WorkspaceId**: string (Required): The ID of the workspace.
+* **WorkspaceId**: string (Required, Identifier): The ID of the workspace.
 
 ## Entity_Components
 ### Properties
@@ -109,10 +109,10 @@
 * **ContentLocation**: string (Required): The relative path that specifies the location of the content definition file.
 * **CreationDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The date and time when the scene was created.
 * **Description**: string: The description of the scene.
-* **SceneId**: string (Required): The ID of the scene.
+* **SceneId**: string (Required, Identifier): The ID of the scene.
 * **Tags**: [Scene_Tags](#scenetags): A key-value pair to associate with a resource.
 * **UpdateDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The date and time of the current update.
-* **WorkspaceId**: string (Required): The ID of the scene.
+* **WorkspaceId**: string (Required, Identifier): The ID of the scene.
 
 ## DateTimeFormat
 ### Properties
@@ -129,7 +129,7 @@
 * **S3Location**: string (Required): The ARN of the S3 bucket where resources associated with the workspace are stored.
 * **Tags**: [Workspace_Tags](#workspacetags): A map of key-value pairs to associate with a resource.
 * **UpdateDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The date and time of the current update.
-* **WorkspaceId**: string (Required): The ID of the workspace.
+* **WorkspaceId**: string (Required, Identifier): The ID of the workspace.
 
 ## DateTimeFormat
 ### Properties

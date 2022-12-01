@@ -8,7 +8,7 @@
 
 ## AWS.Personalize/DatasetProperties
 ### Properties
-* **DatasetArn**: string (ReadOnly): The ARN of the dataset
+* **DatasetArn**: string (ReadOnly, Identifier): The ARN of the dataset
 * **DatasetGroupArn**: string (Required): The Amazon Resource Name (ARN) of the dataset group to add the dataset to
 * **DatasetImportJob**: [DatasetImportJob](#datasetimportjob)
 * **DatasetType**: string (Required): The type of dataset
@@ -17,7 +17,7 @@
 
 ## DatasetImportJob
 ### Properties
-* **DatasetArn**: string: The ARN of the dataset that receives the imported data
+* **DatasetArn**: string (Identifier): The ARN of the dataset that receives the imported data
 * **DatasetImportJobArn**: string: The ARN of the dataset import job
 * **DataSource**: [Dataset_DataSource](#datasetdatasource): The Amazon S3 bucket that contains the training data to import.
 * **JobName**: string: The name for the dataset import job.

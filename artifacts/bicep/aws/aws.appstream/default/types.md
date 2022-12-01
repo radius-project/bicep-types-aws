@@ -21,7 +21,7 @@
 ## AWS.AppStream/ApplicationProperties
 ### Properties
 * **AppBlockArn**: [Arn](#arn) (Required)
-* **Arn**: [Arn](#arn) (ReadOnly)
+* **Arn**: [Arn](#arn) (ReadOnly, Identifier)
 * **AttributesToDelete**: [ApplicationAttribute](#applicationattribute)[]
 * **CreatedTime**: string (ReadOnly)
 * **Description**: string
@@ -56,7 +56,7 @@
 
 ## AWS.AppStream/DirectoryConfigProperties
 ### Properties
-* **DirectoryName**: string (Required)
+* **DirectoryName**: string (Required, Identifier)
 * **OrganizationalUnitDistinguishedNames**: string[] (Required)
 * **ServiceAccountCredentials**: [ServiceAccountCredentials](#serviceaccountcredentials) (Required)
 
@@ -72,11 +72,11 @@
 * **CreatedTime**: string (ReadOnly)
 * **Description**: string
 * **LastModifiedTime**: string (ReadOnly)
-* **Name**: string (Required)
-* **StackName**: string (Required)
+* **Name**: string (Required, Identifier)
+* **StackName**: string (Required, Identifier)
 
 ## Attribute
 ### Properties
-* **Name**: string (Required)
+* **Name**: string (Required, Identifier)
 * **Value**: string (Required)
 

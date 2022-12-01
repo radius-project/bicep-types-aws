@@ -14,7 +14,7 @@
 
 ## AWS.M2/ApplicationProperties
 ### Properties
-* **ApplicationArn**: string (ReadOnly)
+* **ApplicationArn**: string (ReadOnly, Identifier)
 * **ApplicationId**: string (ReadOnly)
 * **Definition**: [Definition](#definition) (Required, WriteOnly)
 * **Description**: string
@@ -36,7 +36,7 @@
 * **Description**: string: The description of the environment.
 * **EngineType**: [EngineType](#enginetype) (Required)
 * **EngineVersion**: string: The version of the runtime engine for the environment.
-* **EnvironmentArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the runtime environment.
+* **EnvironmentArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the runtime environment.
 * **EnvironmentId**: string (ReadOnly): The unique identifier of the environment.
 * **HighAvailabilityConfig**: [HighAvailabilityConfig](#highavailabilityconfig)
 * **InstanceType**: string (Required): The type of instance underlying the environment.

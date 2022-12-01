@@ -28,7 +28,7 @@
 * **PreferredBackupWindow**: string
 * **PreferredMaintenanceWindow**: string
 * **SecurityGroupIds**: string[]
-* **ServerName**: string
+* **ServerName**: string (Identifier)
 * **ServiceRoleArn**: string (Required)
 * **SubnetIds**: string[]
 * **Tags**: [Tag](#tag)[]

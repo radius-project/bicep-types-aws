@@ -63,7 +63,7 @@
 ## AWS.CloudFront/CachePolicyProperties
 ### Properties
 * **CachePolicyConfig**: [CachePolicyConfig](#cachepolicyconfig) (Required)
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **LastModifiedTime**: string (ReadOnly)
 
 ## CachePolicyConfig
@@ -101,7 +101,7 @@
 ## AWS.CloudFront/CloudFrontOriginAccessIdentityProperties
 ### Properties
 * **CloudFrontOriginAccessIdentityConfig**: [CloudFrontOriginAccessIdentityConfig](#cloudfrontoriginaccessidentityconfig) (Required)
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **S3CanonicalUserId**: string (ReadOnly)
 
 ## CloudFrontOriginAccessIdentityConfig
@@ -112,7 +112,7 @@
 ### Properties
 * **DistributionConfig**: [DistributionConfig](#distributionconfig) (Required)
 * **DomainName**: string (ReadOnly)
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **Tags**: [Tag](#tag)[]
 
 ## DistributionConfig
@@ -234,7 +234,7 @@
 ## OriginGroup
 ### Properties
 * **FailoverCriteria**: [OriginGroupFailoverCriteria](#origingroupfailovercriteria) (Required)
-* **Id**: string (Required)
+* **Id**: string (Required, Identifier)
 * **Members**: [OriginGroupMembers](#origingroupmembers) (Required)
 
 ## OriginGroupFailoverCriteria
@@ -261,7 +261,7 @@
 * **ConnectionTimeout**: int
 * **CustomOriginConfig**: [CustomOriginConfig](#customoriginconfig)
 * **DomainName**: string (Required)
-* **Id**: string (Required)
+* **Id**: string (Required, Identifier)
 * **OriginAccessControlId**: string
 * **OriginCustomHeaders**: [OriginCustomHeader](#origincustomheader)[]
 * **OriginPath**: string
@@ -321,7 +321,7 @@
 ## AWS.CloudFront/FunctionProperties
 ### Properties
 * **AutoPublish**: bool (WriteOnly)
-* **FunctionARN**: string (ReadOnly)
+* **FunctionARN**: string (ReadOnly, Identifier)
 * **FunctionCode**: string (WriteOnly)
 * **FunctionConfig**: [FunctionConfig](#functionconfig)
 * **FunctionMetadata**: [FunctionMetadata](#functionmetadata)
@@ -335,11 +335,11 @@
 
 ## FunctionMetadata
 ### Properties
-* **FunctionARN**: string (ReadOnly)
+* **FunctionARN**: string (ReadOnly, Identifier)
 
 ## AWS.CloudFront/KeyGroupProperties
 ### Properties
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **KeyGroupConfig**: [KeyGroupConfig](#keygroupconfig) (Required)
 * **LastModifiedTime**: string (ReadOnly)
 
@@ -351,7 +351,7 @@
 
 ## AWS.CloudFront/OriginAccessControlProperties
 ### Properties
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **OriginAccessControlConfig**: [OriginAccessControlConfig](#originaccesscontrolconfig) (Required)
 
 ## OriginAccessControlConfig
@@ -364,7 +364,7 @@
 
 ## AWS.CloudFront/OriginRequestPolicyProperties
 ### Properties
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **LastModifiedTime**: string (ReadOnly)
 * **OriginRequestPolicyConfig**: [OriginRequestPolicyConfig](#originrequestpolicyconfig) (Required)
 
@@ -394,7 +394,7 @@
 ## AWS.CloudFront/PublicKeyProperties
 ### Properties
 * **CreatedTime**: string (ReadOnly)
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **PublicKeyConfig**: [PublicKeyConfig](#publickeyconfig) (Required)
 
 ## PublicKeyConfig
@@ -406,7 +406,7 @@
 
 ## AWS.CloudFront/RealtimeLogConfigProperties
 ### Properties
-* **Arn**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
 * **EndPoints**: [EndPoint](#endpoint)[] (Required)
 * **Fields**: string[] (Required)
 * **Name**: string (Required)
@@ -424,7 +424,7 @@
 
 ## AWS.CloudFront/ResponseHeadersPolicyProperties
 ### Properties
-* **Id**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
 * **LastModifiedTime**: string (ReadOnly)
 * **ResponseHeadersPolicyConfig**: [ResponseHeadersPolicyConfig](#responseheaderspolicyconfig) (Required)
 

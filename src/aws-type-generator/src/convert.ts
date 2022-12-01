@@ -194,6 +194,12 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
                     if (schema.required && schema.required.includes(name)) {
                         flags |= ObjectPropertyFlags.Required
                     }
+
+                    let primaryIdentifiers = record.schema.primaryIdentifier
+                    if (primaryIdentifiers && primaryIdentifiers.includes(`/properties/${name}`)) {
+                        flags |= ObjectPropertyFlags.Identifier
+                    }
+                    
                     properties[name] = new ObjectProperty(type, flags, propertySchema.description)
                 })
             }

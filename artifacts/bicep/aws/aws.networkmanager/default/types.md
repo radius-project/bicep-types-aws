@@ -56,7 +56,7 @@
 
 ## AWS.NetworkManager/ConnectAttachmentProperties
 ### Properties
-* **AttachmentId**: string (ReadOnly): The ID of the attachment.
+* **AttachmentId**: string (ReadOnly, Identifier): The ID of the attachment.
 * **AttachmentPolicyRuleNumber**: int (ReadOnly): The policy rule number associated with the attachment.
 * **AttachmentType**: string (ReadOnly): The type of attachment.
 * **CoreNetworkArn**: string (ReadOnly): The ARN of a core network for the VPC attachment.
@@ -93,7 +93,7 @@
 * **BgpOptions**: [BgpOptions](#bgpoptions) (WriteOnly): Bgp options for connect peer.
 * **Configuration**: [ConnectPeerConfiguration](#connectpeerconfiguration) (ReadOnly): Configuration of the connect peer.
 * **ConnectAttachmentId**: string: The ID of the attachment to connect.
-* **ConnectPeerId**: string (ReadOnly): The ID of the Connect peer.
+* **ConnectPeerId**: string (ReadOnly, Identifier): The ID of the Connect peer.
 * **CoreNetworkAddress**: string (WriteOnly): The IP address of a core network.
 * **CoreNetworkId**: string (ReadOnly): The ID of the core network.
 * **CreatedAt**: string (ReadOnly): Connect peer creation time.
@@ -133,7 +133,7 @@
 ## AWS.NetworkManager/CoreNetworkProperties
 ### Properties
 * **CoreNetworkArn**: string (ReadOnly): The ARN (Amazon resource name) of core network
-* **CoreNetworkId**: string (ReadOnly): The Id of core network
+* **CoreNetworkId**: string (ReadOnly, Identifier): The Id of core network
 * **CreatedAt**: string (ReadOnly): The creation time of core network
 * **Description**: string: The description of core network
 * **Edges**: [CoreNetworkEdge](#corenetworkedge)[] (ReadOnly): The edges within a core network.
@@ -168,8 +168,8 @@
 ### Properties
 * **Description**: string: The description of the device.
 * **DeviceArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the device.
-* **DeviceId**: string (ReadOnly): The ID of the device.
-* **GlobalNetworkId**: string (Required): The ID of the global network.
+* **DeviceId**: string (ReadOnly, Identifier): The ID of the device.
+* **GlobalNetworkId**: string (Required, Identifier): The ID of the global network.
 * **Location**: [Location](#location): The site location.
 * **Model**: string: The device model
 * **SerialNumber**: string: The device serial number.
@@ -193,7 +193,7 @@
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the global network.
 * **Description**: string: The description of the global network.
-* **Id**: string (ReadOnly): The ID of the global network.
+* **Id**: string (ReadOnly, Identifier): The ID of the global network.
 * **Tags**: [Tag](#tag)[]: The tags for the global network.
 
 ## Tag
@@ -205,9 +205,9 @@
 ### Properties
 * **Bandwidth**: [Bandwidth](#bandwidth) (Required): The Bandwidth for the link.
 * **Description**: string: The description of the link.
-* **GlobalNetworkId**: string (Required): The ID of the global network.
+* **GlobalNetworkId**: string (Required, Identifier): The ID of the global network.
 * **LinkArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the link.
-* **LinkId**: string (ReadOnly): The ID of the link.
+* **LinkId**: string (ReadOnly, Identifier): The ID of the link.
 * **Provider**: string: The provider of the link.
 * **SiteId**: string (Required): The ID of the site
 * **Tags**: [Tag](#tag)[]: The tags for the link.
@@ -226,10 +226,10 @@
 ## AWS.NetworkManager/SiteProperties
 ### Properties
 * **Description**: string: The description of the site.
-* **GlobalNetworkId**: string (Required): The ID of the global network.
+* **GlobalNetworkId**: string (Required, Identifier): The ID of the global network.
 * **Location**: [Location](#location): The location of the site.
 * **SiteArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the site.
-* **SiteId**: string (ReadOnly): The ID of the site.
+* **SiteId**: string (ReadOnly, Identifier): The ID of the site.
 * **Tags**: [Tag](#tag)[]: The tags for the site.
 
 ## Location
@@ -245,7 +245,7 @@
 
 ## AWS.NetworkManager/SiteToSiteVpnAttachmentProperties
 ### Properties
-* **AttachmentId**: string (ReadOnly): The ID of the attachment.
+* **AttachmentId**: string (ReadOnly, Identifier): The ID of the attachment.
 * **AttachmentPolicyRuleNumber**: int (ReadOnly): The policy rule number associated with the attachment.
 * **AttachmentType**: string (ReadOnly): The type of attachment.
 * **CoreNetworkArn**: string (ReadOnly): The ARN of a core network for the VPC attachment.
@@ -274,7 +274,7 @@
 
 ## AWS.NetworkManager/VpcAttachmentProperties
 ### Properties
-* **AttachmentId**: string (ReadOnly): Id of the attachment.
+* **AttachmentId**: string (ReadOnly, Identifier): Id of the attachment.
 * **AttachmentPolicyRuleNumber**: int (ReadOnly): The policy rule number associated with the attachment.
 * **AttachmentType**: string (ReadOnly): Attachment type.
 * **CoreNetworkArn**: string (ReadOnly): The ARN of a core network for the VPC attachment.

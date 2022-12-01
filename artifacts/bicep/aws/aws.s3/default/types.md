@@ -29,7 +29,7 @@
 * **Alias**: string (ReadOnly): The alias of this Access Point. This alias can be used for compatibility purposes with other AWS services and third-party applications.
 * **Arn**: [Arn](#arn) (ReadOnly): The Amazon Resource Name (ARN) of the specified accesspoint.
 * **Bucket**: string (Required): The name of the bucket that you want to associate this Access Point with.
-* **Name**: string (ReadOnly): The name you want to assign to this Access Point. If you don't specify a name, AWS CloudFormation generates a unique ID and uses that ID for the access point name.
+* **Name**: string (ReadOnly, Identifier): The name you want to assign to this Access Point. If you don't specify a name, AWS CloudFormation generates a unique ID and uses that ID for the access point name.
 * **NetworkOrigin**: string (ReadOnly): Indicates whether this Access Point allows access from the public Internet. If VpcConfiguration is specified for this Access Point, then NetworkOrigin is VPC, and the Access Point doesn't allow access from the public Internet. Otherwise, NetworkOrigin is Internet, and the Access Point allows access from the public Internet, subject to the Access Point and bucket access policies.
 * **Policy**: [AccessPoint_Policy](#accesspointpolicy): The Access Point Policy you want to apply to this access point.
 * **PolicyStatus**: [AccessPoint_PolicyStatus](#accesspointpolicystatus)
@@ -69,7 +69,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 * **AnalyticsConfigurations**: [AnalyticsConfiguration](#analyticsconfiguration)[]: The configuration and any analyses for the analytics filter of an Amazon S3 bucket.
 * **Arn**: [Arn](#arn) (ReadOnly): The Amazon Resource Name (ARN) of the specified bucket.
 * **BucketEncryption**: [BucketEncryption](#bucketencryption)
-* **BucketName**: string: A name for the bucket. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the bucket name.
+* **BucketName**: string (Identifier): A name for the bucket. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the bucket name.
 * **CorsConfiguration**: [CorsConfiguration](#corsconfiguration): Rules that define cross-origin resource sharing of objects in this bucket.
 * **DomainName**: string (ReadOnly): The IPv4 DNS name of the specified bucket.
 * **DualStackDomainName**: string (ReadOnly): The IPv6 DNS name of the specified bucket. For more information about dual-stack endpoints, see [Using Amazon S3 Dual-Stack Endpoints](https://docs.aws.amazon.com/AmazonS3/latest/dev/dual-stack-endpoints.html).
@@ -429,7 +429,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 
 ## AWS.S3/MultiRegionAccessPointPolicyProperties
 ### Properties
-* **MrapName**: string (Required): The name of the Multi Region Access Point to apply policy
+* **MrapName**: string (Required, Identifier): The name of the Multi Region Access Point to apply policy
 * **Policy**: [MultiRegionAccessPointPolicy_Policy](#multiregionaccesspointpolicypolicy) (Required): Policy document to apply to a Multi Region Access Point
 * **PolicyStatus**: [MultiRegionAccessPointPolicy_PolicyStatus](#multiregionaccesspointpolicypolicystatus) (ReadOnly): The Policy Status associated with this Multi Region Access Point
 

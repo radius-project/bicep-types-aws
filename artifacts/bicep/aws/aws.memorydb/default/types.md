@@ -32,7 +32,7 @@
 
 ## AWS.MemoryDB/ACLProperties
 ### Properties
-* **ACLName**: string (Required): The name of the acl.
+* **ACLName**: string (Required, Identifier): The name of the acl.
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the acl.
 * **Status**: string (ReadOnly): Indicates acl status. Can be "creating", "active", "modifying", "deleting".
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this cluster.
@@ -51,7 +51,7 @@
 
 You cannot modify the value of AutoMinorVersionUpgrade after the cluster is created. To enable AutoMinorVersionUpgrade on a cluster you must set AutoMinorVersionUpgrade to true when you create a cluster.
 * **ClusterEndpoint**: [Endpoint](#endpoint): The cluster endpoint.
-* **ClusterName**: string (Required): The name of the cluster. This value must be unique as it also serves as the cluster identifier.
+* **ClusterName**: string (Required, Identifier): The name of the cluster. This value must be unique as it also serves as the cluster identifier.
 * **Description**: string: An optional description of the cluster.
 * **EngineVersion**: string: The Redis engine version used by the cluster.
 * **FinalSnapshotName**: string: The user-supplied name of a final cluster snapshot. This is the unique name that identifies the snapshot. MemoryDB creates the snapshot, and then deletes the cluster immediately afterward.
@@ -92,7 +92,7 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 * **ARN**: string (ReadOnly): The Amazon Resource Name (ARN) of the parameter group.
 * **Description**: string: A description of the parameter group.
 * **Family**: string (Required): The name of the parameter group family that this parameter group is compatible with.
-* **ParameterGroupName**: string (Required): The name of the parameter group.
+* **ParameterGroupName**: string (Required, Identifier): The name of the parameter group.
 * **Parameters**: [ParameterGroup_Parameters](#parametergroupparameters) (WriteOnly): An map of parameter names and values for the parameter update. You must supply at least one parameter name and value; subsequent arguments are optional.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this parameter group.
 
@@ -108,7 +108,7 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 ### Properties
 * **ARN**: string (ReadOnly): The Amazon Resource Name (ARN) of the subnet group.
 * **Description**: string: An optional description of the subnet group.
-* **SubnetGroupName**: string (Required): The name of the subnet group. This value must be unique as it also serves as the subnet group identifier.
+* **SubnetGroupName**: string (Required, Identifier): The name of the subnet group. This value must be unique as it also serves as the subnet group identifier.
 * **SubnetIds**: string[] (Required): A list of VPC subnet IDs for the subnet group.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this subnet group.
 
@@ -124,7 +124,7 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 * **AuthenticationMode**: [User_AuthenticationMode](#userauthenticationmode) (Required, WriteOnly)
 * **Status**: string (ReadOnly): Indicates the user status. Can be "active", "modifying" or "deleting".
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this user.
-* **UserName**: string (Required): The name of the user.
+* **UserName**: string (Required, Identifier): The name of the user.
 
 ## User_AuthenticationMode
 ### Properties

@@ -11,7 +11,7 @@
 * **ApplicationArn**: string (ReadOnly): The ARN of the application.
 * **ApplicationCreationDate**: int (ReadOnly): When the Application was created
 * **ApplicationDescription**: string: Application Description, should be between 1 and 2048 characters.
-* **ApplicationId**: string (ReadOnly): The ID of the application.
+* **ApplicationId**: string (ReadOnly, Identifier): The ID of the application.
 * **ApplicationLastUpdateDate**: int (ReadOnly): When the Application was last updated
 * **ApplicationName**: string (Required): Application Name, should be between 1 and 256 characters.
 * **ApplicationState**: string (ReadOnly): The current state of the application.

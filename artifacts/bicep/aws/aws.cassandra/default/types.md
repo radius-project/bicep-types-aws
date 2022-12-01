@@ -14,7 +14,7 @@
 
 ## AWS.Cassandra/KeyspaceProperties
 ### Properties
-* **KeyspaceName**: string: Name for Cassandra keyspace
+* **KeyspaceName**: string (Identifier): Name for Cassandra keyspace
 * **Tags**: [Tag](#tag)[]
 
 ## Tag
@@ -28,11 +28,11 @@
 * **ClusteringKeyColumns**: [ClusteringKeyColumn](#clusteringkeycolumn)[]: Clustering key columns of the table
 * **DefaultTimeToLive**: int: Default TTL (Time To Live) in seconds, where zero is disabled. If the value is greater than zero, TTL is enabled for the entire table and an expiration timestamp is added to each column.
 * **EncryptionSpecification**: [EncryptionSpecification](#encryptionspecification)
-* **KeyspaceName**: string (Required): Name for Cassandra keyspace
+* **KeyspaceName**: string (Required, Identifier): Name for Cassandra keyspace
 * **PartitionKeyColumns**: [Column](#column)[] (Required): Partition key columns of the table
 * **PointInTimeRecoveryEnabled**: bool: Indicates whether point in time recovery is enabled (true) or disabled (false) on the table
 * **RegularColumns**: [Column](#column)[]: Non-key columns of the table
-* **TableName**: string: Name for Cassandra table
+* **TableName**: string (Identifier): Name for Cassandra table
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource
 
 ## BillingMode

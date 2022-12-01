@@ -15,7 +15,7 @@
 ## AWS.LicenseManager/GrantProperties
 ### Properties
 * **AllowedOperations**: string[] (WriteOnly)
-* **GrantArn**: [Arn](#arn) (ReadOnly): Arn of the grant.
+* **GrantArn**: [Arn](#arn) (ReadOnly, Identifier): Arn of the grant.
 * **GrantName**: string: Name for the created Grant.
 * **HomeRegion**: string: Home region for the created grant.
 * **LicenseArn**: [Arn](#arn): License Arn for the grant.
@@ -33,7 +33,7 @@
 * **Entitlements**: [Entitlement](#entitlement)[] (Required)
 * **HomeRegion**: string (Required): Home region for the created license.
 * **Issuer**: [IssuerData](#issuerdata) (Required)
-* **LicenseArn**: [Arn](#arn) (ReadOnly): Amazon Resource Name is a unique name for each resource.
+* **LicenseArn**: [Arn](#arn) (ReadOnly, Identifier): Amazon Resource Name is a unique name for each resource.
 * **LicenseMetadata**: [Metadata](#metadata)[]
 * **LicenseName**: string (Required): Name for the created license.
 * **ProductName**: string (Required): Product name for the created license.

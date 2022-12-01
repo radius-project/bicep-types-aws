@@ -10,7 +10,7 @@
 ### Properties
 * **SuiteDefinitionArn**: string (ReadOnly): The Amazon Resource name for the suite definition.
 * **SuiteDefinitionConfiguration**: [SuiteDefinition_SuiteDefinitionConfiguration](#suitedefinitionsuitedefinitionconfiguration) (Required)
-* **SuiteDefinitionId**: string (ReadOnly): The unique identifier for the suite definition.
+* **SuiteDefinitionId**: string (ReadOnly, Identifier): The unique identifier for the suite definition.
 * **SuiteDefinitionVersion**: string (ReadOnly): The suite definition version of a test suite.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 

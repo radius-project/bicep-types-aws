@@ -14,7 +14,7 @@
 
 ## AWS.CodeArtifact/DomainProperties
 ### Properties
-* **Arn**: string (ReadOnly): The ARN of the domain.
+* **Arn**: string (ReadOnly, Identifier): The ARN of the domain.
 * **DomainName**: string (Required): The name of the domain.
 * **EncryptionKey**: string (ReadOnly): The ARN of an AWS Key Management Service (AWS KMS) key associated with a domain.
 * **Name**: string (ReadOnly): The name of the domain. This field is used for GetAtt
@@ -32,7 +32,7 @@
 
 ## AWS.CodeArtifact/RepositoryProperties
 ### Properties
-* **Arn**: string (ReadOnly): The ARN of the repository.
+* **Arn**: string (ReadOnly, Identifier): The ARN of the repository.
 * **Description**: string: A text description of the repository.
 * **DomainName**: string (Required, ReadOnly): The name of the domain that contains the repository.
 * **DomainOwner**: string (ReadOnly): The 12-digit account ID of the AWS account that owns the domain.

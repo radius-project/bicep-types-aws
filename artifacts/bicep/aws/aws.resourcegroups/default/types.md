@@ -11,7 +11,7 @@
 * **Arn**: string (ReadOnly): The Resource Group ARN.
 * **Configuration**: [Configuration](#configuration)
 * **Description**: string: The description of the resource group
-* **Name**: string (Required): The name of the resource group
+* **Name**: string (Required, Identifier): The name of the resource group
 * **ResourceQuery**: [ResourceQuery](#resourcequery)
 * **Resources**: string[]
 * **Tags**: [Tag](#tag)[]
