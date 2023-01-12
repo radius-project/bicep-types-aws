@@ -314,22 +314,13 @@
 * **AccessDirection**: string: Access Direction for Protocol of the Instance(inbound/outbound).
 * **AccessFrom**: string: Access From Protocol of the Instance.
 * **AccessType**: string: Access Type Protocol of the Instance.
-* **CidrListAliases**: [cidrListAliases](#cidrlistaliases)
-* **Cidrs**: [cidrs](#cidrs)
+* **CidrListAliases**: string[]
+* **Cidrs**: string[]
 * **CommonName**: string: CommonName for Protocol of the Instance.
 * **FromPort**: int: From Port of the Instance.
-* **Ipv6Cidrs**: [ipv6Cidrs](#ipv6cidrs)
+* **Ipv6Cidrs**: string[]
 * **Protocol**: string: Port Protocol of the Instance.
 * **ToPort**: int: To Port of the Instance.
-
-## cidrListAliases
-### Properties
-
-## cidrs
-### Properties
-
-## ipv6Cidrs
-### Properties
 
 ## State
 ### Properties

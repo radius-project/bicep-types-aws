@@ -26,12 +26,9 @@
 
 ## AWS.RoboMaker/FleetProperties
 ### Properties
-* **Arn**: [Arn](#arn) (ReadOnly, Identifier)
+* **Arn**: string (ReadOnly, Identifier)
 * **Name**: string: The name of the fleet.
 * **Tags**: [Tags](#tags)
-
-## Arn
-### Properties
 
 ## Tags
 ### Properties
@@ -39,30 +36,24 @@
 ## AWS.RoboMaker/RobotProperties
 ### Properties
 * **Architecture**: string (Required): The target architecture of the robot.
-* **Arn**: [Arn](#arn) (ReadOnly, Identifier)
+* **Arn**: string (ReadOnly, Identifier)
 * **Fleet**: string: The Amazon Resource Name (ARN) of the fleet.
 * **GreengrassGroupId**: string (Required): The Greengrass group id.
 * **Name**: string: The name for the robot.
 * **Tags**: [Tags](#tags)
-
-## Arn
-### Properties
 
 ## Tags
 ### Properties
 
 ## AWS.RoboMaker/RobotApplicationProperties
 ### Properties
-* **Arn**: [Arn](#arn) (ReadOnly, Identifier)
+* **Arn**: string (ReadOnly, Identifier)
 * **CurrentRevisionId**: string: The revision ID of robot application.
 * **Environment**: string: The URI of the Docker image for the robot application.
 * **Name**: string: The name of the robot application.
 * **RobotSoftwareSuite**: [RobotSoftwareSuite](#robotsoftwaresuite) (Required)
 * **Sources**: [SourceConfig](#sourceconfig)[]: The sources of the robot application.
 * **Tags**: [Tags](#tags)
-
-## Arn
-### Properties
 
 ## RobotSoftwareSuite
 ### Properties
@@ -80,7 +71,7 @@
 
 ## AWS.RoboMaker/SimulationApplicationProperties
 ### Properties
-* **Arn**: [Arn](#arn) (ReadOnly, Identifier)
+* **Arn**: string (ReadOnly, Identifier)
 * **CurrentRevisionId**: string: The current revision id.
 * **Environment**: string: The URI of the Docker image for the robot application.
 * **Name**: string: The name of the simulation application.
@@ -89,9 +80,6 @@
 * **SimulationSoftwareSuite**: [SimulationSoftwareSuite](#simulationsoftwaresuite) (Required): The simulation software suite used by the simulation application.
 * **Sources**: [SourceConfig](#sourceconfig)[]: The sources of the simulation application.
 * **Tags**: [Tags](#tags)
-
-## Arn
-### Properties
 
 ## RenderingEngine
 ### Properties

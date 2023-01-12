@@ -129,25 +129,19 @@
 
 ## AssetModelProperty
 ### Properties
-* **DataType**: [DataType](#datatype) (Required): The data type of the asset model property.
-* **DataTypeSpec**: [DataTypeSpec](#datatypespec): The data type of the structure for this property.
+* **DataType**: string (Required): The data type of the asset model property.
+* **DataTypeSpec**: string: The data type of the structure for this property.
 * **LogicalId**: string (Required): Customer provided ID for property.
 * **Name**: string (Required): The name of the asset model property.
 * **Type**: [PropertyType](#propertytype) (Required): The property type
 * **Unit**: string: The unit of the asset model property, such as Newtons or RPM.
-
-## DataType
-### Properties
-
-## DataTypeSpec
-### Properties
 
 ## PropertyType
 ### Properties
 * **Attribute**: [Attribute](#attribute)
 * **Metric**: [Metric](#metric)
 * **Transform**: [Transform](#transform)
-* **TypeName**: [TypeName](#typename) (Required)
+* **TypeName**: string (Required)
 
 ## Attribute
 ### Properties
@@ -175,22 +169,13 @@
 
 ## TumblingWindow
 ### Properties
-* **Interval**: [Interval](#interval) (Required)
-* **Offset**: [Offset](#offset)
-
-## Interval
-### Properties
-
-## Offset
-### Properties
+* **Interval**: string (Required)
+* **Offset**: string
 
 ## Transform
 ### Properties
 * **Expression**: string (Required): The mathematical expression that defines the transformation function. You can specify up to 10 functions per expression.
 * **Variables**: [ExpressionVariable](#expressionvariable)[] (Required): The list of variables used in the expression.
-
-## TypeName
-### Properties
 
 ## AssetModelHierarchy
 ### Properties
@@ -228,14 +213,8 @@
 
 ## GatewayCapabilitySummary
 ### Properties
-* **CapabilityConfiguration**: [CapabilityConfiguration](#capabilityconfiguration)
-* **CapabilityNamespace**: [CapabilityNamespace](#capabilitynamespace) (Required)
-
-## CapabilityConfiguration
-### Properties
-
-## CapabilityNamespace
-### Properties
+* **CapabilityConfiguration**: string
+* **CapabilityNamespace**: string (Required)
 
 ## GatewayPlatform
 ### Properties
@@ -282,16 +261,13 @@
 
 ## AWS.IoTSiteWise/ProjectProperties
 ### Properties
-* **AssetIds**: [AssetId](#assetid)[]: The IDs of the assets to be associated to the project.
+* **AssetIds**: string[]: The IDs of the assets to be associated to the project.
 * **PortalId**: string (Required): The ID of the portal in which to create the project.
 * **ProjectArn**: string (ReadOnly): The ARN of the project.
 * **ProjectDescription**: string: A description for the project.
 * **ProjectId**: string (ReadOnly, Identifier): The ID of the project.
 * **ProjectName**: string (Required): A friendly name for the project.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the project.
-
-## AssetId
-### Properties
 
 ## Tag
 ### Properties

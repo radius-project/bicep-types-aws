@@ -46,7 +46,7 @@
 * **AssertionRule**: [AssertionRule](#assertionrule)
 * **ControlPanelArn**: string: The Amazon Resource Name (ARN) of the control panel.
 * **GatingRule**: [GatingRule](#gatingrule)
-* **Name**: [SafetyRuleName](#safetyrulename)
+* **Name**: string
 * **RuleConfig**: [RuleConfig](#ruleconfig)
 * **SafetyRuleArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the safety rule.
 * **Status**: string (ReadOnly): The deployment status of the routing control. Status can be one of the following: PENDING, DEPLOYED, PENDING_DELETION.
@@ -64,17 +64,11 @@
 In other words, your ability to change the routing controls that you have specified as TargetControls is gated by the rule that you set for the routing controls in GatingControls.
 * **WaitPeriodMs**: int (Required): An evaluation period, in milliseconds (ms), during which any request against the target routing controls will fail. This helps prevent "flapping" of state. The wait period is 5000 ms by default, but you can choose a custom value.
 
-## SafetyRuleName
-### Properties
-
 ## RuleConfig
 ### Properties
 * **Inverted**: bool (Required): Logical negation of the rule. If the rule would usually evaluate true, it's evaluated as false, and vice versa.
 * **Threshold**: int (Required): The value of N, when you specify an ATLEAST rule type. That is, Threshold is the number of controls that must be set when you specify an ATLEAST type.
-* **Type**: [RuleType](#ruletype) (Required)
-
-## RuleType
-### Properties
+* **Type**: string (Required)
 
 ## Tag
 ### Properties

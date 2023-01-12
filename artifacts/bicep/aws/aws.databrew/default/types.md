@@ -121,14 +121,14 @@
 ## PathParameter
 ### Properties
 * **DatasetParameter**: [DatasetParameter](#datasetparameter) (Required)
-* **PathParameterName**: [PathParameterName](#pathparametername) (Required)
+* **PathParameterName**: string (Required)
 
 ## DatasetParameter
 ### Properties
 * **CreateColumn**: bool: Add the value of this parameter as a column in a dataset.
 * **DatetimeOptions**: [DatetimeOptions](#datetimeoptions)
 * **Filter**: [FilterExpression](#filterexpression)
-* **Name**: [PathParameterName](#pathparametername) (Required, Identifier)
+* **Name**: string (Required, Identifier)
 * **Type**: string (Required): Parameter type
 
 ## DatetimeOptions
@@ -136,9 +136,6 @@
 * **Format**: string (Required): Date/time format of a date parameter
 * **LocaleCode**: string: Locale code for a date parameter
 * **TimezoneOffset**: string: Timezone offset
-
-## PathParameterName
-### Properties
 
 ## Tag
 ### Properties
@@ -200,14 +197,8 @@
 
 ## JobSample
 ### Properties
-* **Mode**: [SampleMode](#samplemode)
-* **Size**: [JobSize](#jobsize)
-
-## SampleMode
-### Properties
-
-## JobSize
-### Properties
+* **Mode**: string
+* **Size**: int
 
 ## OutputLocation
 ### Properties
@@ -252,16 +243,13 @@
 
 ## StatisticsConfiguration
 ### Properties
-* **IncludedStatistics**: [Statistic](#statistic)[]
+* **IncludedStatistics**: string[]
 * **Overrides**: [StatisticOverride](#statisticoverride)[]
-
-## Statistic
-### Properties
 
 ## StatisticOverride
 ### Properties
 * **Parameters**: [ParameterMap](#parametermap) (Required)
-* **Statistic**: [Statistic](#statistic) (Required)
+* **Statistic**: string (Required)
 
 ## ParameterMap
 ### Properties
@@ -273,7 +261,7 @@
 
 ## AllowedStatistics
 ### Properties
-* **Statistics**: [Statistic](#statistic)[] (Required)
+* **Statistics**: string[] (Required)
 
 ## Recipe
 ### Properties
@@ -288,10 +276,7 @@
 ## ValidationConfiguration
 ### Properties
 * **RulesetArn**: string (Required): Arn of the Ruleset
-* **ValidationMode**: [ValidationMode](#validationmode)
-
-## ValidationMode
-### Properties
+* **ValidationMode**: string
 
 ## AWS.DataBrew/ProjectProperties
 ### Properties
@@ -353,41 +338,28 @@
 
 ## Rule
 ### Properties
-* **CheckExpression**: [Expression](#expression) (Required)
+* **CheckExpression**: string (Required)
 * **ColumnSelectors**: [ColumnSelector](#columnselector)[]
-* **Disabled**: [Disabled](#disabled)
+* **Disabled**: bool
 * **Name**: string (Required, Identifier): Name of the rule
-* **SubstitutionMap**: [ValuesMap](#valuesmap)
+* **SubstitutionMap**: [SubstitutionValue](#substitutionvalue)[]
 * **Threshold**: [Threshold](#threshold)
-
-## Expression
-### Properties
 
 ## ColumnSelector
 ### Properties
 * **Name**: string (Identifier): The name of a column from a dataset
 * **Regex**: string: A regular expression for selecting a column from a dataset
 
-## Disabled
+## SubstitutionValue
 ### Properties
-
-## ValuesMap
-### Properties
+* **Value**: string (Required): Value or column name
+* **ValueReference**: string (Required): Variable name
 
 ## Threshold
 ### Properties
-* **Type**: [ThresholdType](#thresholdtype)
-* **Unit**: [ThresholdUnit](#thresholdunit)
-* **Value**: [ThresholdValue](#thresholdvalue) (Required)
-
-## ThresholdType
-### Properties
-
-## ThresholdUnit
-### Properties
-
-## ThresholdValue
-### Properties
+* **Type**: string
+* **Unit**: string
+* **Value**: int (Required)
 
 ## Tag
 ### Properties
@@ -397,12 +369,9 @@
 ## AWS.DataBrew/ScheduleProperties
 ### Properties
 * **CronExpression**: string (Required): Schedule cron
-* **JobNames**: [JobName](#jobname)[]
+* **JobNames**: string[]
 * **Name**: string (Required, Identifier): Schedule Name
 * **Tags**: [Tag](#tag)[]
-
-## JobName
-### Properties
 
 ## Tag
 ### Properties

@@ -17,47 +17,29 @@
     Would be represented as
 
     "core.dags_folder": "{AIRFLOW_HOME}/dags"
-* **AirflowVersion**: [AirflowVersion](#airflowversion)
-* **Arn**: [EnvironmentArn](#environmentarn) (ReadOnly)
-* **DagS3Path**: [RelativePath](#relativepath)
-* **EnvironmentClass**: [EnvironmentClass](#environmentclass)
-* **ExecutionRoleArn**: [ExecutionRoleArn](#executionrolearn)
-* **KmsKey**: [KmsKey](#kmskey)
+* **AirflowVersion**: string
+* **Arn**: string (ReadOnly)
+* **DagS3Path**: string
+* **EnvironmentClass**: string
+* **ExecutionRoleArn**: string
+* **KmsKey**: string
 * **LoggingConfiguration**: [LoggingConfiguration](#loggingconfiguration)
-* **MaxWorkers**: [MaxWorkers](#maxworkers)
-* **MinWorkers**: [MinWorkers](#minworkers)
-* **Name**: [EnvironmentName](#environmentname) (Required, Identifier)
+* **MaxWorkers**: int
+* **MinWorkers**: int
+* **Name**: string (Required, Identifier)
 * **NetworkConfiguration**: [NetworkConfiguration](#networkconfiguration)
-* **PluginsS3ObjectVersion**: [S3ObjectVersion](#s3objectversion)
-* **PluginsS3Path**: [RelativePath](#relativepath)
-* **RequirementsS3ObjectVersion**: [S3ObjectVersion](#s3objectversion)
-* **RequirementsS3Path**: [RelativePath](#relativepath)
-* **Schedulers**: [Schedulers](#schedulers)
-* **SourceBucketArn**: [S3BucketArn](#s3bucketarn)
+* **PluginsS3ObjectVersion**: string
+* **PluginsS3Path**: string
+* **RequirementsS3ObjectVersion**: string
+* **RequirementsS3Path**: string
+* **Schedulers**: int
+* **SourceBucketArn**: string
 * **Tags**: [Environment_Tags](#environmenttags): A map of tags for the environment.
-* **WebserverAccessMode**: [WebserverAccessMode](#webserveraccessmode)
-* **WebserverUrl**: [WebserverUrl](#webserverurl) (ReadOnly)
-* **WeeklyMaintenanceWindowStart**: [WeeklyMaintenanceWindowStart](#weeklymaintenancewindowstart)
+* **WebserverAccessMode**: string
+* **WebserverUrl**: string (ReadOnly)
+* **WeeklyMaintenanceWindowStart**: string
 
 ## Environment_AirflowConfigurationOptions
-### Properties
-
-## AirflowVersion
-### Properties
-
-## EnvironmentArn
-### Properties
-
-## RelativePath
-### Properties
-
-## EnvironmentClass
-### Properties
-
-## ExecutionRoleArn
-### Properties
-
-## KmsKey
 ### Properties
 
 ## LoggingConfiguration
@@ -70,57 +52,15 @@
 
 ## ModuleLoggingConfiguration
 ### Properties
-* **CloudWatchLogGroupArn**: [CloudWatchLogGroupArn](#cloudwatchloggrouparn) (ReadOnly)
-* **Enabled**: [LoggingEnabled](#loggingenabled)
-* **LogLevel**: [LoggingLevel](#logginglevel)
-
-## CloudWatchLogGroupArn
-### Properties
-
-## LoggingEnabled
-### Properties
-
-## LoggingLevel
-### Properties
-
-## MaxWorkers
-### Properties
-
-## MinWorkers
-### Properties
-
-## EnvironmentName
-### Properties
+* **CloudWatchLogGroupArn**: string (ReadOnly)
+* **Enabled**: bool
+* **LogLevel**: string
 
 ## NetworkConfiguration
 ### Properties
-* **SecurityGroupIds**: [SecurityGroupId](#securitygroupid)[]: A list of security groups to use for the environment.
-* **SubnetIds**: [SubnetId](#subnetid)[]: A list of subnets to use for the environment. These must be private subnets, in the same VPC, in two different availability zones.
-
-## SecurityGroupId
-### Properties
-
-## SubnetId
-### Properties
-
-## S3ObjectVersion
-### Properties
-
-## Schedulers
-### Properties
-
-## S3BucketArn
-### Properties
+* **SecurityGroupIds**: string[]: A list of security groups to use for the environment.
+* **SubnetIds**: string[]: A list of subnets to use for the environment. These must be private subnets, in the same VPC, in two different availability zones.
 
 ## Environment_Tags
-### Properties
-
-## WebserverAccessMode
-### Properties
-
-## WebserverUrl
-### Properties
-
-## WeeklyMaintenanceWindowStart
 ### Properties
 

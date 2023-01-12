@@ -295,11 +295,13 @@
 * **CarrierGatewayId**: string (ReadOnly, Identifier): The ID of the carrier gateway.
 * **OwnerId**: string (ReadOnly): The ID of the owner.
 * **State**: string (ReadOnly): The state of the carrier gateway.
-* **Tags**: [Tags](#tags): The tags for the carrier gateway.
+* **Tags**: [Tag](#tag)[]: The tags for the carrier gateway.
 * **VpcId**: string (Required): The ID of the VPC.
 
-## Tags
+## Tag
 ### Properties
+* **Key**: string
+* **Value**: string
 
 ## AWS.EC2/CustomerGatewayProperties
 ### Properties
@@ -620,10 +622,7 @@
 
 ## ProvisionedCidr
 ### Properties
-* **Cidr**: [Cidr](#cidr) (Required)
-
-## Cidr
-### Properties
+* **Cidr**: string (Required)
 
 ## AWS.EC2/IPAMScopeProperties
 ### Properties
@@ -648,11 +647,13 @@
 * **LocalGatewayRouteTableId**: string (Required): The ID of the local gateway route table.
 * **LocalGatewayRouteTableVpcAssociationId**: string (ReadOnly, Identifier): The ID of the association.
 * **State**: string (ReadOnly): The state of the association.
-* **Tags**: [Tags](#tags): The tags for the association.
+* **Tags**: [Tag](#tag)[]: The tags for the association.
 * **VpcId**: string (Required): The ID of the VPC.
 
-## Tags
+## Tag
 ### Properties
+* **Key**: string
+* **Value**: string
 
 ## AWS.EC2/NatGatewayProperties
 ### Properties
@@ -704,13 +705,10 @@
 * **DestinationAddresses**: string[]
 * **DestinationPorts**: string[]
 * **DestinationPrefixLists**: string[]
-* **Protocols**: [Protocol](#protocol)[]
+* **Protocols**: string[]
 * **SourceAddresses**: string[]
 * **SourcePorts**: string[]
 * **SourcePrefixLists**: string[]
-
-## Protocol
-### Properties
 
 ## ResourceStatementRequest
 ### Properties
@@ -748,7 +746,7 @@
 ### Properties
 * **AlternatePathHints**: [AlternatePathHint](#alternatepathhint)[] (ReadOnly)
 * **Explanations**: [Explanation](#explanation)[] (ReadOnly)
-* **FilterInArns**: [ResourceArn](#resourcearn)[]
+* **FilterInArns**: string[]
 * **ForwardPathComponents**: [PathComponent](#pathcomponent)[] (ReadOnly)
 * **NetworkInsightsAnalysisArn**: string (ReadOnly)
 * **NetworkInsightsAnalysisId**: string (ReadOnly, Identifier)
@@ -769,8 +767,8 @@
 ### Properties
 * **Acl**: [AnalysisComponent](#analysiscomponent)
 * **AclRule**: [AnalysisAclRule](#analysisaclrule)
-* **Address**: [IpAddress](#ipaddress)
-* **Addresses**: [IpAddress](#ipaddress)[]
+* **Address**: string
+* **Addresses**: string[]
 * **AttachedTo**: [AnalysisComponent](#analysiscomponent)
 * **AvailabilityZones**: string[]
 * **Cidrs**: string[]
@@ -786,20 +784,20 @@
 * **ExplanationCode**: string
 * **IngressRouteTable**: [AnalysisComponent](#analysiscomponent)
 * **InternetGateway**: [AnalysisComponent](#analysiscomponent)
-* **LoadBalancerArn**: [ResourceArn](#resourcearn)
-* **LoadBalancerListenerPort**: [Port](#port)
+* **LoadBalancerArn**: string
+* **LoadBalancerListenerPort**: int
 * **LoadBalancerTarget**: [AnalysisLoadBalancerTarget](#analysisloadbalancertarget)
 * **LoadBalancerTargetGroup**: [AnalysisComponent](#analysiscomponent)
 * **LoadBalancerTargetGroups**: [AnalysisComponent](#analysiscomponent)[]
-* **LoadBalancerTargetPort**: [Port](#port)
+* **LoadBalancerTargetPort**: int
 * **MissingComponent**: string
 * **NatGateway**: [AnalysisComponent](#analysiscomponent)
 * **NetworkInterface**: [AnalysisComponent](#analysiscomponent)
 * **PacketField**: string
-* **Port**: [Port](#port)
+* **Port**: int
 * **PortRanges**: [PortRange](#portrange)[]
 * **PrefixList**: [AnalysisComponent](#analysiscomponent)
-* **Protocols**: [Protocol](#protocol)[]
+* **Protocols**: string[]
 * **RouteTable**: [AnalysisComponent](#analysiscomponent)
 * **RouteTableRoute**: [AnalysisRouteTableRoute](#analysisroutetableroute)
 * **SecurityGroup**: [AnalysisComponent](#analysiscomponent)
@@ -829,7 +827,7 @@
 * **Cidr**: string
 * **Egress**: bool
 * **PortRange**: [PortRange](#portrange)
-* **Protocol**: [Protocol](#protocol)
+* **Protocol**: string
 * **RuleAction**: string
 * **RuleNumber**: int
 
@@ -838,29 +836,17 @@
 * **From**: int
 * **To**: int
 
-## Protocol
-### Properties
-
-## IpAddress
-### Properties
-
 ## AnalysisLoadBalancerListener
 ### Properties
-* **InstancePort**: [Port](#port)
-* **LoadBalancerPort**: [Port](#port)
-
-## Port
-### Properties
-
-## ResourceArn
-### Properties
+* **InstancePort**: int
+* **LoadBalancerPort**: int
 
 ## AnalysisLoadBalancerTarget
 ### Properties
-* **Address**: [IpAddress](#ipaddress)
+* **Address**: string
 * **AvailabilityZone**: string
 * **Instance**: [AnalysisComponent](#analysiscomponent)
-* **Port**: [Port](#port)
+* **Port**: int
 
 ## AnalysisRouteTableRoute
 ### Properties
@@ -882,7 +868,7 @@
 * **Direction**: string
 * **PortRange**: [PortRange](#portrange)
 * **PrefixListId**: string
-* **Protocol**: [Protocol](#protocol)
+* **Protocol**: string
 * **SecurityGroupId**: string
 
 ## TransitGatewayRouteTableRoute
@@ -921,10 +907,10 @@
 
 ## AnalysisPacketHeader
 ### Properties
-* **DestinationAddresses**: [IpAddress](#ipaddress)[]
+* **DestinationAddresses**: string[]
 * **DestinationPortRanges**: [PortRange](#portrange)[]
-* **Protocol**: [Protocol](#protocol)
-* **SourceAddresses**: [IpAddress](#ipaddress)[]
+* **Protocol**: string
+* **SourceAddresses**: string[]
 * **SourcePortRanges**: [PortRange](#portrange)[]
 
 ## Tag
@@ -936,23 +922,14 @@
 ### Properties
 * **CreatedDate**: string (ReadOnly)
 * **Destination**: string (Required)
-* **DestinationIp**: [IpAddress](#ipaddress)
-* **DestinationPort**: [Port](#port)
+* **DestinationIp**: string
+* **DestinationPort**: int
 * **NetworkInsightsPathArn**: string (ReadOnly)
 * **NetworkInsightsPathId**: string (ReadOnly, Identifier)
-* **Protocol**: [Protocol](#protocol) (Required)
+* **Protocol**: string (Required)
 * **Source**: string (Required)
-* **SourceIp**: [IpAddress](#ipaddress)
+* **SourceIp**: string
 * **Tags**: [Tag](#tag)[]
-
-## IpAddress
-### Properties
-
-## Port
-### Properties
-
-## Protocol
-### Properties
 
 ## Tag
 ### Properties

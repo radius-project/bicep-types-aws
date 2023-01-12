@@ -14,12 +14,14 @@
 ## ResourceCollectionFilter
 ### Properties
 * **CloudFormation**: [CloudFormationCollectionFilter](#cloudformationcollectionfilter)
-* **Tags**: [TagCollections](#tagcollections)
+* **Tags**: [TagCollection](#tagcollection)[]
 
 ## CloudFormationCollectionFilter
 ### Properties
 * **StackNames**: string[]: An array of CloudFormation stack names.
 
-## TagCollections
+## TagCollection
 ### Properties
+* **AppBoundaryKey**: string: A Tag key for DevOps Guru app boundary.
+* **TagValues**: string[]: Tag values of DevOps Guru app boundary.
 

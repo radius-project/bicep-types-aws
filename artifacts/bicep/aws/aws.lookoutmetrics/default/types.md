@@ -11,23 +11,17 @@
 * **AnomalyDetectorConfig**: [AnomalyDetectorConfig](#anomalydetectorconfig) (Required): Configuration options for the AnomalyDetector
 * **AnomalyDetectorDescription**: string: A description for the AnomalyDetector.
 * **AnomalyDetectorName**: string: Name for the Amazon Lookout for Metrics Anomaly Detector
-* **Arn**: [Arn](#arn) (ReadOnly, Identifier)
+* **Arn**: string (ReadOnly, Identifier)
 * **KmsKeyArn**: string: KMS key used to encrypt the AnomalyDetector data
 * **MetricSetList**: [MetricSet](#metricset)[] (Required): List of metric sets for anomaly detection
 
 ## AnomalyDetectorConfig
 ### Properties
-* **AnomalyDetectorFrequency**: [AnomalyDetectorFrequency](#anomalydetectorfrequency) (Required): Frequency of anomaly detection
-
-## AnomalyDetectorFrequency
-### Properties
-
-## Arn
-### Properties
+* **AnomalyDetectorFrequency**: string (Required): Frequency of anomaly detection
 
 ## MetricSet
 ### Properties
-* **DimensionList**: [ColumnName](#columnname)[]: Dimensions for this MetricSet.
+* **DimensionList**: string[]: Dimensions for this MetricSet.
 * **MetricList**: [Metric](#metric)[] (Required): Metrics captured by this MetricSet.
 * **MetricSetDescription**: string: A description for the MetricSet.
 * **MetricSetFrequency**: string: A frequency period to aggregate the data
@@ -37,13 +31,10 @@
 * **TimestampColumn**: [TimestampColumn](#timestampcolumn)
 * **Timezone**: string
 
-## ColumnName
-### Properties
-
 ## Metric
 ### Properties
 * **AggregationFunction**: string (Required): Operator used to aggregate metric values
-* **MetricName**: [ColumnName](#columnname) (Required)
+* **MetricName**: string (Required)
 * **Namespace**: string
 
 ## MetricSource
@@ -57,62 +48,44 @@
 ## AppFlowConfig
 ### Properties
 * **FlowName**: string (Required)
-* **RoleArn**: [Arn](#arn) (Required)
+* **RoleArn**: string (Required)
 
 ## CloudwatchConfig
 ### Properties
-* **RoleArn**: [Arn](#arn) (Required)
+* **RoleArn**: string (Required)
 
 ## RDSSourceConfig
 ### Properties
-* **DatabaseHost**: [DatabaseHost](#databasehost) (Required)
+* **DatabaseHost**: string (Required)
 * **DatabaseName**: string (Required)
-* **DatabasePort**: [DatabasePort](#databaseport) (Required)
+* **DatabasePort**: int (Required)
 * **DBInstanceIdentifier**: string (Required)
-* **RoleArn**: [Arn](#arn) (Required)
-* **SecretManagerArn**: [SecretManagerArn](#secretmanagerarn) (Required)
-* **TableName**: [TableName](#tablename) (Required)
+* **RoleArn**: string (Required)
+* **SecretManagerArn**: string (Required)
+* **TableName**: string (Required)
 * **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration) (Required)
-
-## DatabaseHost
-### Properties
-
-## DatabasePort
-### Properties
-
-## SecretManagerArn
-### Properties
-
-## TableName
-### Properties
 
 ## VpcConfiguration
 ### Properties
-* **SecurityGroupIdList**: [SecurityGroupIdList](#securitygroupidlist) (Required)
-* **SubnetIdList**: [SubnetIdList](#subnetidlist) (Required)
-
-## SecurityGroupIdList
-### Properties
-
-## SubnetIdList
-### Properties
+* **SecurityGroupIdList**: string[] (Required)
+* **SubnetIdList**: string[] (Required)
 
 ## RedshiftSourceConfig
 ### Properties
 * **ClusterIdentifier**: string (Required)
-* **DatabaseHost**: [DatabaseHost](#databasehost) (Required)
+* **DatabaseHost**: string (Required)
 * **DatabaseName**: string (Required)
-* **DatabasePort**: [DatabasePort](#databaseport) (Required)
-* **RoleArn**: [Arn](#arn) (Required)
-* **SecretManagerArn**: [SecretManagerArn](#secretmanagerarn) (Required)
-* **TableName**: [TableName](#tablename) (Required)
+* **DatabasePort**: int (Required)
+* **RoleArn**: string (Required)
+* **SecretManagerArn**: string (Required)
+* **TableName**: string (Required)
 * **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration) (Required)
 
 ## S3SourceConfig
 ### Properties
 * **FileFormatDescriptor**: [FileFormatDescriptor](#fileformatdescriptor) (Required)
 * **HistoricalDataPathList**: string[]
-* **RoleArn**: [Arn](#arn) (Required)
+* **RoleArn**: string (Required)
 * **TemplatedPathList**: string[]
 
 ## FileFormatDescriptor
@@ -122,23 +95,20 @@
 
 ## CsvFormatDescriptor
 ### Properties
-* **Charset**: [Charset](#charset)
+* **Charset**: string
 * **ContainsHeader**: bool
 * **Delimiter**: string
 * **FileCompression**: string
-* **HeaderList**: [ColumnName](#columnname)[]
+* **HeaderList**: string[]
 * **QuoteSymbol**: string
-
-## Charset
-### Properties
 
 ## JsonFormatDescriptor
 ### Properties
-* **Charset**: [Charset](#charset)
+* **Charset**: string
 * **FileCompression**: string
 
 ## TimestampColumn
 ### Properties
 * **ColumnFormat**: string: A timestamp format for the timestamps in the dataset
-* **ColumnName**: [ColumnName](#columnname)
+* **ColumnName**: string
 

@@ -32,7 +32,7 @@
 * **ContainerDistributionConfiguration**: [ContainerDistributionConfiguration](#containerdistributionconfiguration)
 * **FastLaunchConfigurations**: [FastLaunchConfiguration](#fastlaunchconfiguration)[]: The Windows faster-launching configurations to use for AMI distribution.
 * **LaunchTemplateConfigurations**: [LaunchTemplateConfiguration](#launchtemplateconfiguration)[]: A group of launchTemplateConfiguration settings that apply to image distribution.
-* **LicenseConfigurationArns**: [LicenseConfigurationArn](#licenseconfigurationarn)[]: The License Manager Configuration to associate with the AMI in the specified Region.
+* **LicenseConfigurationArns**: string[]: The License Manager Configuration to associate with the AMI in the specified Region.
 * **Region**: string (Required): region
 
 ## AmiDistributionConfiguration
@@ -88,9 +88,6 @@
 * **AccountId**: string: The account ID that this configuration applies to.
 * **LaunchTemplateId**: string: Identifies the EC2 launch template to use.
 * **SetDefaultVersion**: bool: Set the specified EC2 launch template as the default launch template for the specified account.
-
-## LicenseConfigurationArn
-### Properties
 
 ## DistributionConfiguration_Tags
 ### Properties

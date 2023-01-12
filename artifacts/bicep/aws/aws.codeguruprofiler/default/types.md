@@ -10,31 +10,19 @@
 ### Properties
 * **AgentPermissions**: [ProfilingGroup_AgentPermissions](#profilinggroupagentpermissions): The agent permissions attached to this profiling group.
 * **AnomalyDetectionNotificationConfiguration**: [Channel](#channel)[]: Configuration for Notification Channels for Anomaly Detection feature in CodeGuru Profiler which enables customers to detect anomalies in the application profile for those methods that represent the highest proportion of CPU time or latency
-* **Arn**: [ProfilingGroupArn](#profilinggrouparn) (ReadOnly): The Amazon Resource Name (ARN) of the specified profiling group.
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified profiling group.
 * **ComputePlatform**: string: The compute platform of the profiling group.
 * **ProfilingGroupName**: string (Required, Identifier): The name of the profiling group.
 * **Tags**: [Tag](#tag)[]: The tags associated with a profiling group.
 
 ## ProfilingGroup_AgentPermissions
 ### Properties
-* **Principals**: [IamArn](#iamarn)[] (Required): The principals for the agent permissions.
-
-## IamArn
-### Properties
+* **Principals**: string[] (Required): The principals for the agent permissions.
 
 ## Channel
 ### Properties
-* **channelId**: [ChannelId](#channelid)
-* **channelUri**: [ChannelUri](#channeluri) (Required)
-
-## ChannelId
-### Properties
-
-## ChannelUri
-### Properties
-
-## ProfilingGroupArn
-### Properties
+* **channelId**: string
+* **channelUri**: string (Required)
 
 ## Tag
 ### Properties

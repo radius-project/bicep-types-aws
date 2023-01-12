@@ -27,7 +27,7 @@
 ## AWS.S3/AccessPointProperties
 ### Properties
 * **Alias**: string (ReadOnly): The alias of this Access Point. This alias can be used for compatibility purposes with other AWS services and third-party applications.
-* **Arn**: [Arn](#arn) (ReadOnly): The Amazon Resource Name (ARN) of the specified accesspoint.
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified accesspoint.
 * **Bucket**: string (Required): The name of the bucket that you want to associate this Access Point with.
 * **Name**: string (ReadOnly, Identifier): The name you want to assign to this Access Point. If you don't specify a name, AWS CloudFormation generates a unique ID and uses that ID for the access point name.
 * **NetworkOrigin**: string (ReadOnly): Indicates whether this Access Point allows access from the public Internet. If VpcConfiguration is specified for this Access Point, then NetworkOrigin is VPC, and the Access Point doesn't allow access from the public Internet. Otherwise, NetworkOrigin is Internet, and the Access Point allows access from the public Internet, subject to the Access Point and bucket access policies.
@@ -35,9 +35,6 @@
 * **PolicyStatus**: [AccessPoint_PolicyStatus](#accesspointpolicystatus)
 * **PublicAccessBlockConfiguration**: [PublicAccessBlockConfiguration](#publicaccessblockconfiguration): The PublicAccessBlock configuration that you want to apply to this Access Point. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status 'The Meaning of Public' in the Amazon Simple Storage Service Developer Guide.
 * **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration): If you include this field, Amazon S3 restricts access to this Access Point to requests from the specified Virtual Private Cloud (VPC).
-
-## Arn
-### Properties
 
 ## AccessPoint_Policy
 ### Properties
@@ -67,7 +64,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 * **AccelerateConfiguration**: [AccelerateConfiguration](#accelerateconfiguration): Configuration for the transfer acceleration state.
 * **AccessControl**: string: A canned access control list (ACL) that grants predefined permissions to the bucket.
 * **AnalyticsConfigurations**: [AnalyticsConfiguration](#analyticsconfiguration)[]: The configuration and any analyses for the analytics filter of an Amazon S3 bucket.
-* **Arn**: [Arn](#arn) (ReadOnly): The Amazon Resource Name (ARN) of the specified bucket.
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified bucket.
 * **BucketEncryption**: [BucketEncryption](#bucketencryption)
 * **BucketName**: string (Identifier): A name for the bucket. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the bucket name.
 * **CorsConfiguration**: [CorsConfiguration](#corsconfiguration): Rules that define cross-origin resource sharing of objects in this bucket.
@@ -121,9 +118,6 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
-
-## Arn
-### Properties
 
 ## BucketEncryption
 ### Properties
@@ -182,7 +176,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ## Rule
 ### Properties
 * **AbortIncompleteMultipartUpload**: [AbortIncompleteMultipartUpload](#abortincompletemultipartupload)
-* **ExpirationDate**: [iso8601UTC](#iso8601utc)
+* **ExpirationDate**: string
 * **ExpirationInDays**: int
 * **ExpiredObjectDeleteMarker**: bool
 * **Id**: string
@@ -202,9 +196,6 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ### Properties
 * **DaysAfterInitiation**: int (Required): Specifies the number of days after which Amazon S3 aborts an incomplete multipart upload.
 
-## iso8601UTC
-### Properties
-
 ## NoncurrentVersionExpiration
 ### Properties
 * **NewerNoncurrentVersions**: int: Specified the number of newer noncurrent and current versions that must exists before performing the associated action
@@ -219,7 +210,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ## Transition
 ### Properties
 * **StorageClass**: string (Required)
-* **TransitionDate**: [iso8601UTC](#iso8601utc)
+* **TransitionDate**: string
 * **TransitionInDays**: int
 
 ## LoggingConfiguration
@@ -451,7 +442,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 * **AwsOrg**: [AwsOrg](#awsorg)
 * **DataExport**: [DataExport](#dataexport)
 * **Exclude**: [BucketsAndRegions](#bucketsandregions)
-* **Id**: [Id](#id) (Required)
+* **Id**: string (Required)
 * **Include**: [BucketsAndRegions](#bucketsandregions)
 * **IsEnabled**: bool (Required): Specifies whether the Amazon S3 Storage Lens configuration is enabled or disabled.
 * **StorageLensArn**: string (ReadOnly): The ARN for the Amazon S3 Storage Lens configuration.
@@ -487,10 +478,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 
 ## AwsOrg
 ### Properties
-* **Arn**: [Arn](#arn) (Required)
-
-## Arn
-### Properties
+* **Arn**: string (Required)
 
 ## DataExport
 ### Properties
@@ -515,11 +503,8 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 
 ## BucketsAndRegions
 ### Properties
-* **Buckets**: [Arn](#arn)[]
+* **Buckets**: string[]
 * **Regions**: string[]
-
-## Id
-### Properties
 
 ## Tag
 ### Properties

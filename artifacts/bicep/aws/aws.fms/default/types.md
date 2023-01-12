@@ -14,15 +14,12 @@
 
 ## AWS.FMS/NotificationChannelProperties
 ### Properties
-* **SnsRoleName**: [ResourceArn](#resourcearn) (Required)
-* **SnsTopicArn**: [ResourceArn](#resourcearn) (Required, Identifier)
-
-## ResourceArn
-### Properties
+* **SnsRoleName**: string (Required)
+* **SnsTopicArn**: string (Required, Identifier)
 
 ## AWS.FMS/PolicyProperties
 ### Properties
-* **Arn**: [ResourceArn](#resourcearn) (ReadOnly)
+* **Arn**: string (ReadOnly)
 * **DeleteAllPolicyResources**: bool (WriteOnly)
 * **ExcludeMap**: [IEMap](#iemap)
 * **ExcludeResourceTags**: bool (Required)
@@ -32,41 +29,26 @@
 * **RemediationEnabled**: bool (Required)
 * **ResourcesCleanUp**: bool
 * **ResourceTags**: [ResourceTag](#resourcetag)[]
-* **ResourceType**: [ResourceType](#resourcetype) (Required)
-* **ResourceTypeList**: [ResourceType](#resourcetype)[]
+* **ResourceType**: string (Required)
+* **ResourceTypeList**: string[]
 * **SecurityServicePolicyData**: [SecurityServicePolicyData](#securityservicepolicydata) (Required)
 * **Tags**: [PolicyTag](#policytag)[]
 
-## ResourceArn
-### Properties
-
 ## IEMap
 ### Properties
-* **ACCOUNT**: [AccountId](#accountid)[]
-* **ORGUNIT**: [OrganizationalUnitId](#organizationalunitid)[]
-
-## AccountId
-### Properties
-
-## OrganizationalUnitId
-### Properties
+* **ACCOUNT**: string[]
+* **ORGUNIT**: string[]
 
 ## ResourceTag
 ### Properties
 * **Key**: string (Required)
 * **Value**: string
 
-## ResourceType
-### Properties
-
 ## SecurityServicePolicyData
 ### Properties
-* **ManagedServiceData**: [ManagedServiceData](#managedservicedata)
+* **ManagedServiceData**: string
 * **PolicyOption**: [PolicyOption](#policyoption)
-* **Type**: [PolicyType](#policytype) (Required)
-
-## ManagedServiceData
-### Properties
+* **Type**: string (Required)
 
 ## PolicyOption
 ### Properties
@@ -75,17 +57,11 @@
 
 ## NetworkFirewallPolicy
 ### Properties
-* **FirewallDeploymentModel**: [FirewallDeploymentModel](#firewalldeploymentmodel) (Required)
-
-## FirewallDeploymentModel
-### Properties
+* **FirewallDeploymentModel**: string (Required)
 
 ## ThirdPartyFirewallPolicy
 ### Properties
-* **FirewallDeploymentModel**: [FirewallDeploymentModel](#firewalldeploymentmodel) (Required)
-
-## PolicyType
-### Properties
+* **FirewallDeploymentModel**: string (Required)
 
 ## PolicyTag
 ### Properties

@@ -78,14 +78,11 @@
 ### Properties
 * **AccessPolicy**: [BackupVault_AccessPolicy](#backupvaultaccesspolicy) | string
 * **BackupVaultArn**: string (ReadOnly)
-* **BackupVaultName**: [BackupVaultNamePattern](#backupvaultnamepattern) (Required, Identifier)
+* **BackupVaultName**: string (Required, Identifier)
 * **BackupVaultTags**: [BackupVault_BackupVaultTags](#backupvaultbackupvaulttags)
 * **EncryptionKeyArn**: string
 * **LockConfiguration**: [LockConfigurationType](#lockconfigurationtype)
 * **Notifications**: [NotificationObjectType](#notificationobjecttype)
-
-## BackupVaultNamePattern
-### Properties
 
 ## BackupVault_BackupVaultTags
 ### Properties

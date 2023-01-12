@@ -21,10 +21,7 @@
 ## AWS.MSK/BatchScramSecretProperties
 ### Properties
 * **ClusterArn**: string (Required, Identifier)
-* **SecretArnList**: [SecretArnList](#secretarnlist)
-
-## SecretArnList
-### Properties
+* **SecretArnList**: string[]
 
 ## AWS.MSK/ClusterProperties
 ### Properties
@@ -171,10 +168,7 @@
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
 * **Description**: string
-* **KafkaVersionsList**: [KafkaVersionsList](#kafkaversionslist)
+* **KafkaVersionsList**: string[]
 * **Name**: string (Required)
 * **ServerProperties**: string (Required, WriteOnly)
-
-## KafkaVersionsList
-### Properties
 

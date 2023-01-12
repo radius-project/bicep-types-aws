@@ -8,14 +8,11 @@
 
 ## AWS.Forecast/DatasetGroupProperties
 ### Properties
-* **DatasetArns**: [Arn](#arn)[]: An array of Amazon Resource Names (ARNs) of the datasets that you want to include in the dataset group.
+* **DatasetArns**: string[]: An array of Amazon Resource Names (ARNs) of the datasets that you want to include in the dataset group.
 * **DatasetGroupArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the dataset group to delete.
 * **DatasetGroupName**: string (Required): A name for the dataset group.
 * **Domain**: string (Required): The domain associated with the dataset group. When you add a dataset to a dataset group, this value and the value specified for the Domain parameter of the CreateDataset operation must match.
 * **Tags**: [Tag](#tag)[]: The tags of Application Insights application.
-
-## Arn
-### Properties
 
 ## Tag
 ### Properties

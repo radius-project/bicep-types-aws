@@ -27,16 +27,13 @@
 
 ## BodyConfig
 ### Properties
-* **Alignment**: [Alignment](#alignment)
+* **Alignment**: string
 * **Body**: string
 * **TextColor**: string
 
-## Alignment
-### Properties
-
 ## HeaderConfig
 ### Properties
-* **Alignment**: [Alignment](#alignment)
+* **Alignment**: string
 * **Header**: string
 * **TextColor**: string
 
@@ -49,17 +46,14 @@
 
 ## OverrideButtonConfiguration
 ### Properties
-* **ButtonAction**: [ButtonAction](#buttonaction)
+* **ButtonAction**: string
 * **Link**: string
-
-## ButtonAction
-### Properties
 
 ## DefaultButtonConfiguration
 ### Properties
 * **BackgroundColor**: string
 * **BorderRadius**: int
-* **ButtonAction**: [ButtonAction](#buttonaction)
+* **ButtonAction**: string
 * **Link**: string
 * **Text**: string
 * **TextColor**: string

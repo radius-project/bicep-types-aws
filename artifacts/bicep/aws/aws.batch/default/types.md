@@ -77,10 +77,10 @@
 ## AWS.Batch/JobQueueProperties
 ### Properties
 * **ComputeEnvironmentOrder**: [ComputeEnvironmentOrder](#computeenvironmentorder)[] (Required)
-* **JobQueueArn**: [ResourceArn](#resourcearn) (ReadOnly, Identifier)
+* **JobQueueArn**: string (ReadOnly, Identifier)
 * **JobQueueName**: string
 * **Priority**: int (Required)
-* **SchedulingPolicyArn**: [ResourceArn](#resourcearn)
+* **SchedulingPolicyArn**: string
 * **State**: string
 * **Tags**: [JobQueue_Tags](#jobqueuetags): A key-value pair to associate with a resource.
 
@@ -89,21 +89,15 @@
 * **ComputeEnvironment**: string (Required)
 * **Order**: int (Required)
 
-## ResourceArn
-### Properties
-
 ## JobQueue_Tags
 ### Properties
 
 ## AWS.Batch/SchedulingPolicyProperties
 ### Properties
-* **Arn**: [ResourceArn](#resourcearn) (ReadOnly, Identifier)
+* **Arn**: string (ReadOnly, Identifier)
 * **FairsharePolicy**: [FairsharePolicy](#fairsharepolicy)
 * **Name**: string: Name of Scheduling Policy.
 * **Tags**: [SchedulingPolicy_Tags](#schedulingpolicytags): A key-value pair to associate with a resource.
-
-## ResourceArn
-### Properties
 
 ## FairsharePolicy
 ### Properties

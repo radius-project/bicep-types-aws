@@ -31,13 +31,10 @@
 * **Description**: string: Description of AllowList.
 * **Id**: string (ReadOnly, Identifier): AllowList ID.
 * **Name**: string (Required): Name of AllowList.
-* **Status**: [Status](#status) (ReadOnly): AllowList status.
+* **Status**: string (ReadOnly): AllowList status.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
 ## Criteria
-### Properties
-
-## Status
 ### Properties
 
 ## Tag
@@ -58,7 +55,7 @@
 
 ## AWS.Macie/FindingsFilterProperties
 ### Properties
-* **Action**: [FindingFilterAction](#findingfilteraction): Findings filter action.
+* **Action**: string: Findings filter action.
 * **Arn**: string (ReadOnly): Findings filter ARN.
 * **Description**: string: Findings filter description
 * **FindingCriteria**: [FindingCriteria](#findingcriteria) (Required): Findings filter criteria.
@@ -66,9 +63,6 @@
 * **Id**: string (ReadOnly, Identifier): Findings filter ID.
 * **Name**: string (Required): Findings filter name
 * **Position**: int: Findings filter position.
-
-## FindingFilterAction
-### Properties
 
 ## FindingCriteria
 ### Properties

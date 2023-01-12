@@ -15,16 +15,13 @@
 ## AWS.LicenseManager/GrantProperties
 ### Properties
 * **AllowedOperations**: string[] (WriteOnly)
-* **GrantArn**: [Arn](#arn) (ReadOnly, Identifier): Arn of the grant.
+* **GrantArn**: string (ReadOnly, Identifier): Arn of the grant.
 * **GrantName**: string: Name for the created Grant.
 * **HomeRegion**: string: Home region for the created grant.
-* **LicenseArn**: [Arn](#arn): License Arn for the grant.
-* **Principals**: [Arn](#arn)[] (WriteOnly)
+* **LicenseArn**: string: License Arn for the grant.
+* **Principals**: string[] (WriteOnly)
 * **Status**: string
 * **Version**: string (ReadOnly): The version of the grant.
-
-## Arn
-### Properties
 
 ## AWS.LicenseManager/LicenseProperties
 ### Properties
@@ -33,12 +30,12 @@
 * **Entitlements**: [Entitlement](#entitlement)[] (Required)
 * **HomeRegion**: string (Required): Home region for the created license.
 * **Issuer**: [IssuerData](#issuerdata) (Required)
-* **LicenseArn**: [Arn](#arn) (ReadOnly, Identifier): Amazon Resource Name is a unique name for each resource.
+* **LicenseArn**: string (ReadOnly, Identifier): Amazon Resource Name is a unique name for each resource.
 * **LicenseMetadata**: [Metadata](#metadata)[]
 * **LicenseName**: string (Required): Name for the created license.
 * **ProductName**: string (Required): Product name for the created license.
 * **ProductSKU**: string: ProductSKU of the license.
-* **Status**: [LicenseStatus](#licensestatus) (WriteOnly)
+* **Status**: string (WriteOnly)
 * **Validity**: [ValidityDateFormat](#validitydateformat) (Required)
 * **Version**: string (ReadOnly): The version of the license.
 
@@ -71,16 +68,10 @@
 * **Name**: string (Required)
 * **SignKey**: string
 
-## Arn
-### Properties
-
 ## Metadata
 ### Properties
 * **Name**: string (Required)
 * **Value**: string (Required)
-
-## LicenseStatus
-### Properties
 
 ## ValidityDateFormat
 ### Properties

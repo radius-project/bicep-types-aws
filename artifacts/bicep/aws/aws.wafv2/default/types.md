@@ -38,35 +38,14 @@
 
 ## AWS.WAFv2/IPSetProperties
 ### Properties
-* **Addresses**: [IPAddress](#ipaddress)[] (Required): List of IPAddresses.
-* **Arn**: [ResourceArn](#resourcearn) (ReadOnly)
-* **Description**: [EntityDescription](#entitydescription)
-* **Id**: [EntityId](#entityid) (ReadOnly, Identifier)
-* **IPAddressVersion**: [IPAddressVersion](#ipaddressversion) (Required)
-* **Name**: [EntityName](#entityname) (Identifier)
-* **Scope**: [Scope](#scope) (Required, Identifier)
+* **Addresses**: string[] (Required): List of IPAddresses.
+* **Arn**: string (ReadOnly)
+* **Description**: string
+* **Id**: string (ReadOnly, Identifier)
+* **IPAddressVersion**: string (Required)
+* **Name**: string (Identifier)
+* **Scope**: string (Required, Identifier)
 * **Tags**: [Tag](#tag)[]
-
-## IPAddress
-### Properties
-
-## ResourceArn
-### Properties
-
-## EntityDescription
-### Properties
-
-## EntityId
-### Properties
-
-## IPAddressVersion
-### Properties
-
-## EntityName
-### Properties
-
-## Scope
-### Properties
 
 ## Tag
 ### Properties
@@ -157,48 +136,33 @@
 
 ## AWS.WAFv2/RuleGroupProperties
 ### Properties
-* **Arn**: [ResourceArn](#resourcearn) (ReadOnly)
+* **Arn**: string (ReadOnly)
 * **AvailableLabels**: [LabelSummary](#labelsummary)[] (ReadOnly): Collection of Available Labels.
 * **Capacity**: int (Required)
 * **ConsumedLabels**: [LabelSummary](#labelsummary)[] (ReadOnly): Collection of Consumed Labels.
 * **CustomResponseBodies**: [CustomResponseBodies](#customresponsebodies)
-* **Description**: [EntityDescription](#entitydescription)
-* **Id**: [EntityId](#entityid) (ReadOnly, Identifier)
-* **LabelNamespace**: [LabelName](#labelname) (ReadOnly)
-* **Name**: [EntityName](#entityname) (Identifier)
+* **Description**: string
+* **Id**: string (ReadOnly, Identifier)
+* **LabelNamespace**: string (ReadOnly)
+* **Name**: string (Identifier)
 * **Rules**: [Rule](#rule)[]: Collection of Rules.
-* **Scope**: [Scope](#scope) (Required, Identifier)
+* **Scope**: string (Required, Identifier)
 * **Tags**: [Tag](#tag)[]
 * **VisibilityConfig**: [VisibilityConfig](#visibilityconfig) (Required)
 
-## ResourceArn
-### Properties
-
 ## LabelSummary
 ### Properties
-* **Name**: [LabelName](#labelname) (Identifier)
-
-## LabelName
-### Properties
+* **Name**: string (Identifier)
 
 ## CustomResponseBodies
-### Properties
-
-## EntityDescription
-### Properties
-
-## EntityId
-### Properties
-
-## EntityName
 ### Properties
 
 ## Rule
 ### Properties
 * **Action**: [RuleAction](#ruleaction)
 * **CaptchaConfig**: [CaptchaConfig](#captchaconfig)
-* **Name**: [EntityName](#entityname) (Required, Identifier)
-* **Priority**: [RulePriority](#rulepriority) (Required)
+* **Name**: string (Required, Identifier)
+* **Priority**: int (Required)
 * **RuleLabels**: [Label](#label)[]: Collection of Rule Labels.
 * **Statement**: [Statement](#statement) (Required)
 * **VisibilityConfig**: [VisibilityConfig](#visibilityconfig) (Required)
@@ -220,14 +184,8 @@
 
 ## CustomHTTPHeader
 ### Properties
-* **Name**: [CustomHTTPHeaderName](#customhttpheadername) (Required, Identifier)
-* **Value**: [CustomHTTPHeaderValue](#customhttpheadervalue) (Required)
-
-## CustomHTTPHeaderName
-### Properties
-
-## CustomHTTPHeaderValue
-### Properties
+* **Name**: string (Required, Identifier)
+* **Value**: string (Required)
 
 ## RuleGroup_Block
 ### Properties
@@ -236,11 +194,8 @@
 ## CustomResponse
 ### Properties
 * **CustomResponseBodyKey**: string: Custom response body key.
-* **ResponseCode**: [ResponseStatusCode](#responsestatuscode) (Required)
+* **ResponseCode**: int (Required)
 * **ResponseHeaders**: [CustomHTTPHeader](#customhttpheader)[]: Collection of HTTP headers.
-
-## ResponseStatusCode
-### Properties
 
 ## RuleGroup_Captcha
 ### Properties
@@ -258,12 +213,9 @@
 ### Properties
 * **ImmunityTime**: int (Required)
 
-## RulePriority
-### Properties
-
 ## Label
 ### Properties
-* **Name**: [LabelName](#labelname) (Required, Identifier)
+* **Name**: string (Required, Identifier)
 
 ## Statement
 ### Properties
@@ -288,9 +240,9 @@
 ## ByteMatchStatement
 ### Properties
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
-* **PositionalConstraint**: [PositionalConstraint](#positionalconstraint) (Required)
-* **SearchString**: [SearchString](#searchstring)
-* **SearchStringBase64**: [SearchStringBase64](#searchstringbase64)
+* **PositionalConstraint**: string (Required)
+* **SearchString**: string
+* **SearchStringBase64**: string
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
 ## FieldToMatch
@@ -311,16 +263,13 @@
 
 ## Body
 ### Properties
-* **OversizeHandling**: [OversizeHandling](#oversizehandling)
-
-## OversizeHandling
-### Properties
+* **OversizeHandling**: string
 
 ## Cookies
 ### Properties
 * **MatchPattern**: [CookieMatchPattern](#cookiematchpattern) (Required)
-* **MatchScope**: [MapMatchScope](#mapmatchscope) (Required)
-* **OversizeHandling**: [OversizeHandling](#oversizehandling) (Required)
+* **MatchScope**: string (Required)
+* **OversizeHandling**: string (Required)
 
 ## CookieMatchPattern
 ### Properties
@@ -331,14 +280,11 @@
 ## RuleGroup_All
 ### Properties
 
-## MapMatchScope
-### Properties
-
 ## Headers
 ### Properties
 * **MatchPattern**: [HeaderMatchPattern](#headermatchpattern) (Required)
-* **MatchScope**: [MapMatchScope](#mapmatchscope) (Required)
-* **OversizeHandling**: [OversizeHandling](#oversizehandling) (Required)
+* **MatchScope**: string (Required)
+* **OversizeHandling**: string (Required)
 
 ## HeaderMatchPattern
 ### Properties
@@ -351,26 +297,17 @@
 
 ## JsonBody
 ### Properties
-* **InvalidFallbackBehavior**: [BodyParsingFallbackBehavior](#bodyparsingfallbackbehavior)
+* **InvalidFallbackBehavior**: string
 * **MatchPattern**: [JsonMatchPattern](#jsonmatchpattern) (Required)
-* **MatchScope**: [JsonMatchScope](#jsonmatchscope) (Required)
-* **OversizeHandling**: [OversizeHandling](#oversizehandling)
-
-## BodyParsingFallbackBehavior
-### Properties
+* **MatchScope**: string (Required)
+* **OversizeHandling**: string
 
 ## JsonMatchPattern
 ### Properties
 * **All**: [RuleGroup_All](#rulegroupall): Inspect all parts of the web request's JSON body.
-* **IncludedPaths**: [JsonPointerPath](#jsonpointerpath)[]
+* **IncludedPaths**: string[]
 
 ## RuleGroup_All
-### Properties
-
-## JsonPointerPath
-### Properties
-
-## JsonMatchScope
 ### Properties
 
 ## RuleGroup_Method
@@ -390,25 +327,10 @@
 ## RuleGroup_UriPath
 ### Properties
 
-## PositionalConstraint
-### Properties
-
-## SearchString
-### Properties
-
-## SearchStringBase64
-### Properties
-
 ## TextTransformation
 ### Properties
-* **Priority**: [TextTransformationPriority](#texttransformationpriority) (Required)
-* **Type**: [TextTransformationType](#texttransformationtype) (Required)
-
-## TextTransformationPriority
-### Properties
-
-## TextTransformationType
-### Properties
+* **Priority**: int (Required)
+* **Type**: string (Required)
 
 ## GeoMatchStatement
 ### Properties
@@ -422,7 +344,7 @@
 
 ## IPSetReferenceStatement
 ### Properties
-* **Arn**: [ResourceArn](#resourcearn) (Required)
+* **Arn**: string (Required)
 * **IPSetForwardedIPConfig**: [IPSetForwardedIPConfiguration](#ipsetforwardedipconfiguration)
 
 ## IPSetForwardedIPConfiguration
@@ -433,14 +355,8 @@
 
 ## LabelMatchStatement
 ### Properties
-* **Key**: [LabelMatchKey](#labelmatchkey) (Required)
-* **Scope**: [LabelMatchScope](#labelmatchscope) (Required, Identifier)
-
-## LabelMatchKey
-### Properties
-
-## LabelMatchScope
-### Properties
+* **Key**: string (Required)
+* **Scope**: string (Required, Identifier)
 
 ## NotStatement
 ### Properties
@@ -454,11 +370,8 @@
 ### Properties
 * **AggregateKeyType**: string (Required)
 * **ForwardedIPConfig**: [ForwardedIPConfiguration](#forwardedipconfiguration)
-* **Limit**: [RateLimit](#ratelimit) (Required)
+* **Limit**: int (Required)
 * **ScopeDownStatement**: [Statement](#statement)
-
-## RateLimit
-### Properties
 
 ## RegexMatchStatement
 ### Properties
@@ -468,7 +381,7 @@
 
 ## RegexPatternSetReferenceStatement
 ### Properties
-* **Arn**: [ResourceArn](#resourcearn) (Required)
+* **Arn**: string (Required)
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
@@ -482,11 +395,8 @@
 ## SqliMatchStatement
 ### Properties
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
-* **SensitivityLevel**: [SensitivityLevel](#sensitivitylevel)
+* **SensitivityLevel**: string
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
-
-## SensitivityLevel
-### Properties
 
 ## XssMatchStatement
 ### Properties
@@ -499,9 +409,6 @@
 * **MetricName**: string (Required)
 * **SampledRequestsEnabled**: bool (Required)
 
-## Scope
-### Properties
-
 ## Tag
 ### Properties
 * **Key**: string
@@ -509,22 +416,19 @@
 
 ## AWS.WAFv2/WebACLProperties
 ### Properties
-* **Arn**: [ResourceArn](#resourcearn) (ReadOnly)
+* **Arn**: string (ReadOnly)
 * **Capacity**: int (ReadOnly)
 * **CaptchaConfig**: [CaptchaConfig](#captchaconfig)
 * **CustomResponseBodies**: [CustomResponseBodies](#customresponsebodies)
 * **DefaultAction**: [DefaultAction](#defaultaction) (Required)
-* **Description**: [EntityDescription](#entitydescription)
-* **Id**: [EntityId](#entityid) (ReadOnly, Identifier)
-* **LabelNamespace**: [LabelName](#labelname) (ReadOnly)
-* **Name**: [EntityName](#entityname) (Identifier)
+* **Description**: string
+* **Id**: string (ReadOnly, Identifier)
+* **LabelNamespace**: string (ReadOnly)
+* **Name**: string (Identifier)
 * **Rules**: [Rule](#rule)[]: Collection of Rules.
-* **Scope**: [Scope](#scope) (Required, Identifier)
+* **Scope**: string (Required, Identifier)
 * **Tags**: [Tag](#tag)[]
 * **VisibilityConfig**: [VisibilityConfig](#visibilityconfig) (Required)
-
-## ResourceArn
-### Properties
 
 ## CaptchaConfig
 ### Properties
@@ -552,14 +456,8 @@
 
 ## CustomHTTPHeader
 ### Properties
-* **Name**: [CustomHTTPHeaderName](#customhttpheadername) (Required, Identifier)
-* **Value**: [CustomHTTPHeaderValue](#customhttpheadervalue) (Required)
-
-## CustomHTTPHeaderName
-### Properties
-
-## CustomHTTPHeaderValue
-### Properties
+* **Name**: string (Required, Identifier)
+* **Value**: string (Required)
 
 ## BlockAction
 ### Properties
@@ -568,31 +466,16 @@
 ## CustomResponse
 ### Properties
 * **CustomResponseBodyKey**: string: Custom response body key.
-* **ResponseCode**: [ResponseStatusCode](#responsestatuscode) (Required)
+* **ResponseCode**: int (Required)
 * **ResponseHeaders**: [CustomHTTPHeader](#customhttpheader)[]: Collection of HTTP headers.
-
-## ResponseStatusCode
-### Properties
-
-## EntityDescription
-### Properties
-
-## EntityId
-### Properties
-
-## LabelName
-### Properties
-
-## EntityName
-### Properties
 
 ## Rule
 ### Properties
 * **Action**: [RuleAction](#ruleaction)
 * **CaptchaConfig**: [CaptchaConfig](#captchaconfig)
-* **Name**: [EntityName](#entityname) (Required, Identifier)
+* **Name**: string (Required, Identifier)
 * **OverrideAction**: [OverrideAction](#overrideaction)
-* **Priority**: [RulePriority](#rulepriority) (Required)
+* **Priority**: int (Required)
 * **RuleLabels**: [Label](#label)[]: Collection of Rule Labels.
 * **Statement**: [Statement](#statement) (Required)
 * **VisibilityConfig**: [VisibilityConfig](#visibilityconfig) (Required)
@@ -623,12 +506,9 @@
 ## WebACL_None
 ### Properties
 
-## RulePriority
-### Properties
-
 ## Label
 ### Properties
-* **Name**: [LabelName](#labelname) (Required, Identifier)
+* **Name**: string (Required, Identifier)
 
 ## Statement
 ### Properties
@@ -655,9 +535,9 @@
 ## ByteMatchStatement
 ### Properties
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
-* **PositionalConstraint**: [PositionalConstraint](#positionalconstraint) (Required)
-* **SearchString**: [SearchString](#searchstring)
-* **SearchStringBase64**: [SearchStringBase64](#searchstringbase64)
+* **PositionalConstraint**: string (Required)
+* **SearchString**: string
+* **SearchStringBase64**: string
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
 ## FieldToMatch
@@ -678,16 +558,13 @@
 
 ## Body
 ### Properties
-* **OversizeHandling**: [OversizeHandling](#oversizehandling)
-
-## OversizeHandling
-### Properties
+* **OversizeHandling**: string
 
 ## Cookies
 ### Properties
 * **MatchPattern**: [CookieMatchPattern](#cookiematchpattern) (Required)
-* **MatchScope**: [MapMatchScope](#mapmatchscope) (Required)
-* **OversizeHandling**: [OversizeHandling](#oversizehandling) (Required)
+* **MatchScope**: string (Required)
+* **OversizeHandling**: string (Required)
 
 ## CookieMatchPattern
 ### Properties
@@ -698,14 +575,11 @@
 ## WebACL_All
 ### Properties
 
-## MapMatchScope
-### Properties
-
 ## Headers
 ### Properties
 * **MatchPattern**: [HeaderMatchPattern](#headermatchpattern) (Required)
-* **MatchScope**: [MapMatchScope](#mapmatchscope) (Required)
-* **OversizeHandling**: [OversizeHandling](#oversizehandling) (Required)
+* **MatchScope**: string (Required)
+* **OversizeHandling**: string (Required)
 
 ## HeaderMatchPattern
 ### Properties
@@ -718,26 +592,17 @@
 
 ## JsonBody
 ### Properties
-* **InvalidFallbackBehavior**: [BodyParsingFallbackBehavior](#bodyparsingfallbackbehavior)
+* **InvalidFallbackBehavior**: string
 * **MatchPattern**: [JsonMatchPattern](#jsonmatchpattern) (Required)
-* **MatchScope**: [JsonMatchScope](#jsonmatchscope) (Required)
-* **OversizeHandling**: [OversizeHandling](#oversizehandling)
-
-## BodyParsingFallbackBehavior
-### Properties
+* **MatchScope**: string (Required)
+* **OversizeHandling**: string
 
 ## JsonMatchPattern
 ### Properties
 * **All**: [WebACL_All](#webaclall): Inspect all parts of the web request's JSON body.
-* **IncludedPaths**: [JsonPointerPath](#jsonpointerpath)[]
+* **IncludedPaths**: string[]
 
 ## WebACL_All
-### Properties
-
-## JsonPointerPath
-### Properties
-
-## JsonMatchScope
 ### Properties
 
 ## WebACL_Method
@@ -757,25 +622,10 @@
 ## WebACL_UriPath
 ### Properties
 
-## PositionalConstraint
-### Properties
-
-## SearchString
-### Properties
-
-## SearchStringBase64
-### Properties
-
 ## TextTransformation
 ### Properties
-* **Priority**: [TextTransformationPriority](#texttransformationpriority) (Required)
-* **Type**: [TextTransformationType](#texttransformationtype) (Required)
-
-## TextTransformationPriority
-### Properties
-
-## TextTransformationType
-### Properties
+* **Priority**: int (Required)
+* **Type**: string (Required)
 
 ## GeoMatchStatement
 ### Properties
@@ -789,7 +639,7 @@
 
 ## IPSetReferenceStatement
 ### Properties
-* **Arn**: [ResourceArn](#resourcearn) (Required)
+* **Arn**: string (Required)
 * **IPSetForwardedIPConfig**: [IPSetForwardedIPConfiguration](#ipsetforwardedipconfiguration)
 
 ## IPSetForwardedIPConfiguration
@@ -800,27 +650,21 @@
 
 ## LabelMatchStatement
 ### Properties
-* **Key**: [LabelMatchKey](#labelmatchkey) (Required)
-* **Scope**: [LabelMatchScope](#labelmatchscope) (Required, Identifier)
-
-## LabelMatchKey
-### Properties
-
-## LabelMatchScope
-### Properties
+* **Key**: string (Required)
+* **Scope**: string (Required, Identifier)
 
 ## ManagedRuleGroupStatement
 ### Properties
 * **ExcludedRules**: [ExcludedRule](#excludedrule)[]
 * **ManagedRuleGroupConfigs**: [ManagedRuleGroupConfig](#managedrulegroupconfig)[]: Collection of ManagedRuleGroupConfig.
-* **Name**: [EntityName](#entityname) (Required, Identifier)
+* **Name**: string (Required, Identifier)
 * **ScopeDownStatement**: [Statement](#statement)
 * **VendorName**: string (Required)
 * **Version**: string
 
 ## ExcludedRule
 ### Properties
-* **Name**: [EntityName](#entityname) (Required, Identifier)
+* **Name**: string (Required, Identifier)
 
 ## ManagedRuleGroupConfig
 ### Properties
@@ -845,11 +689,8 @@
 ### Properties
 * **AggregateKeyType**: string (Required)
 * **ForwardedIPConfig**: [ForwardedIPConfiguration](#forwardedipconfiguration)
-* **Limit**: [RateLimit](#ratelimit) (Required)
+* **Limit**: int (Required)
 * **ScopeDownStatement**: [Statement](#statement)
-
-## RateLimit
-### Properties
 
 ## RegexMatchStatement
 ### Properties
@@ -859,13 +700,13 @@
 
 ## RegexPatternSetReferenceStatement
 ### Properties
-* **Arn**: [ResourceArn](#resourcearn) (Required)
+* **Arn**: string (Required)
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
 ## RuleGroupReferenceStatement
 ### Properties
-* **Arn**: [ResourceArn](#resourcearn) (Required)
+* **Arn**: string (Required)
 * **ExcludedRules**: [ExcludedRule](#excludedrule)[]
 
 ## SizeConstraintStatement
@@ -878,11 +719,8 @@
 ## SqliMatchStatement
 ### Properties
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
-* **SensitivityLevel**: [SensitivityLevel](#sensitivitylevel)
+* **SensitivityLevel**: string
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
-
-## SensitivityLevel
-### Properties
 
 ## XssMatchStatement
 ### Properties
@@ -895,9 +733,6 @@
 * **MetricName**: string (Required)
 * **SampledRequestsEnabled**: bool (Required)
 
-## Scope
-### Properties
-
 ## Tag
 ### Properties
 * **Key**: string
@@ -905,9 +740,6 @@
 
 ## AWS.WAFv2/WebACLAssociationProperties
 ### Properties
-* **ResourceArn**: [ResourceArn](#resourcearn) (Required, Identifier)
-* **WebACLArn**: [ResourceArn](#resourcearn) (Required, Identifier)
-
-## ResourceArn
-### Properties
+* **ResourceArn**: string (Required, Identifier)
+* **WebACLArn**: string (Required, Identifier)
 

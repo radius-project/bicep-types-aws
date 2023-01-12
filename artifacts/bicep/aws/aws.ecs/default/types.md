@@ -113,18 +113,15 @@
 
 ## AWS.ECS/ClusterCapacityProviderAssociationsProperties
 ### Properties
-* **CapacityProviders**: [CapacityProviders](#capacityproviders) (Required)
-* **Cluster**: [Cluster](#cluster) (Required, Identifier)
-* **DefaultCapacityProviderStrategy**: [DefaultCapacityProviderStrategy](#defaultcapacityproviderstrategy) (Required)
+* **CapacityProviders**: string[] (Required)
+* **Cluster**: string (Required, Identifier)
+* **DefaultCapacityProviderStrategy**: [CapacityProviderStrategy](#capacityproviderstrategy)[] (Required)
 
-## CapacityProviders
+## CapacityProviderStrategy
 ### Properties
-
-## Cluster
-### Properties
-
-## DefaultCapacityProviderStrategy
-### Properties
+* **Base**: int
+* **CapacityProvider**: string (Required)
+* **Weight**: int
 
 ## AWS.ECS/PrimaryTaskSetProperties
 ### Properties

@@ -15,7 +15,7 @@
 ## AWS.CloudTrail/EventDataStoreProperties
 ### Properties
 * **AdvancedEventSelectors**: [AdvancedEventSelector](#advancedeventselector)[]: The advanced event selectors that were used to select events for the data store.
-* **CreatedTimestamp**: [Timestamp](#timestamp) (ReadOnly): The timestamp of the event data store's creation.
+* **CreatedTimestamp**: string (ReadOnly): The timestamp of the event data store's creation.
 * **EventDataStoreArn**: string (ReadOnly, Identifier): The ARN of the event data store.
 * **MultiRegionEnabled**: bool: Indicates whether the event data store includes events from all regions, or only from the region in which it was created.
 * **Name**: string: The name of the event data store.
@@ -24,7 +24,7 @@
 * **Status**: string (ReadOnly): The status of an event data store. Values are ENABLED and PENDING_DELETION.
 * **Tags**: [Tag](#tag)[]
 * **TerminationProtectionEnabled**: bool: Indicates whether the event data store is protected from termination.
-* **UpdatedTimestamp**: [Timestamp](#timestamp) (ReadOnly): The timestamp showing when an event data store was updated, if applicable. UpdatedTimestamp is always either the same or newer than the time shown in CreatedTimestamp.
+* **UpdatedTimestamp**: string (ReadOnly): The timestamp showing when an event data store was updated, if applicable. UpdatedTimestamp is always either the same or newer than the time shown in CreatedTimestamp.
 
 ## AdvancedEventSelector
 ### Properties
@@ -40,9 +40,6 @@
 * **NotEquals**: string[]: An operator that excludes events that match the exact value of the event record field specified as the value of Field.
 * **NotStartsWith**: string[]: An operator that excludes events that match the first few characters of the event record field specified as the value of Field.
 * **StartsWith**: string[]: An operator that includes events that match the first few characters of the event record field specified as the value of Field.
-
-## Timestamp
-### Properties
 
 ## Tag
 ### Properties

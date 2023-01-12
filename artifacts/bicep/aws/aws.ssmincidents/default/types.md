@@ -14,18 +14,18 @@
 
 ## AWS.SSMIncidents/ReplicationSetProperties
 ### Properties
-* **Arn**: [Arn](#arn) (ReadOnly, Identifier): The ARN of the ReplicationSet.
-* **DeletionProtected**: [DeletionProtected](#deletionprotected)
-* **Regions**: [RegionList](#regionlist) (Required): The ReplicationSet configuration.
+* **Arn**: string (ReadOnly, Identifier): The ARN of the ReplicationSet.
+* **DeletionProtected**: bool
+* **Regions**: [ReplicationRegion](#replicationregion)[] (Required): The ReplicationSet configuration.
 
-## Arn
+## ReplicationRegion
 ### Properties
+* **RegionConfiguration**: [RegionConfiguration](#regionconfiguration)
+* **RegionName**: string
 
-## DeletionProtected
+## RegionConfiguration
 ### Properties
-
-## RegionList
-### Properties
+* **SseKmsKeyId**: string (Required)
 
 ## AWS.SSMIncidents/ResponsePlanProperties
 ### Properties
@@ -33,7 +33,7 @@
 * **Arn**: string (ReadOnly, Identifier): The ARN of the response plan.
 * **ChatChannel**: [ChatChannel](#chatchannel)
 * **DisplayName**: string: The display name of the response plan.
-* **Engagements**: [SSMContact](#ssmcontact)[]: The list of engagements to use.
+* **Engagements**: string[]: The list of engagements to use.
 * **IncidentTemplate**: [IncidentTemplate](#incidenttemplate) (Required)
 * **Name**: string (Required): The name of the response plan.
 * **Tags**: [Tag](#tag)[]: The tags to apply to the response plan.
@@ -58,28 +58,16 @@
 
 ## DynamicSsmParameterValue
 ### Properties
-* **Variable**: [VariableType](#variabletype)
-
-## VariableType
-### Properties
+* **Variable**: string
 
 ## SsmParameter
 ### Properties
 * **Key**: string (Required)
-* **Values**: [SsmParameterValue](#ssmparametervalue)[] (Required)
-
-## SsmParameterValue
-### Properties
+* **Values**: string[] (Required)
 
 ## ChatChannel
 ### Properties
-* **ChatbotSns**: [ChatbotSns](#chatbotsns)
-
-## ChatbotSns
-### Properties
-
-## SSMContact
-### Properties
+* **ChatbotSns**: string[]
 
 ## IncidentTemplate
 ### Properties
@@ -97,8 +85,5 @@
 
 ## NotificationTargetItem
 ### Properties
-* **SnsTopicArn**: [SnsArn](#snsarn)
-
-## SnsArn
-### Properties
+* **SnsTopicArn**: string
 

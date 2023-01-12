@@ -102,7 +102,7 @@
 * **Description**: string
 * **EndpointId**: string (ReadOnly)
 * **EndpointUrl**: string (ReadOnly)
-* **EventBuses**: [EventBuses](#eventbuses) (Required)
+* **EventBuses**: [EndpointEventBus](#endpointeventbus)[] (Required)
 * **Name**: string (Required, Identifier)
 * **ReplicationConfig**: [ReplicationConfig](#replicationconfig)
 * **RoleArn**: string
@@ -110,15 +110,13 @@
 * **State**: string (ReadOnly)
 * **StateReason**: string (ReadOnly)
 
-## EventBuses
+## EndpointEventBus
 ### Properties
+* **EventBusArn**: string (Required)
 
 ## ReplicationConfig
 ### Properties
-* **State**: [ReplicationState](#replicationstate) (Required)
-
-## ReplicationState
-### Properties
+* **State**: string (Required)
 
 ## RoutingConfig
 ### Properties
@@ -131,15 +129,9 @@
 
 ## Primary
 ### Properties
-* **HealthCheck**: [HealthCheck](#healthcheck) (Required)
-
-## HealthCheck
-### Properties
+* **HealthCheck**: string (Required)
 
 ## Secondary
 ### Properties
-* **Route**: [Route](#route) (Required)
-
-## Route
-### Properties
+* **Route**: string (Required)
 

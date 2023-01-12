@@ -25,14 +25,11 @@
 
 ## AutoExportPolicy
 ### Properties
-* **Events**: [EventTypes](#eventtypes) (Required)
-
-## EventTypes
-### Properties
+* **Events**: string[] (Required)
 
 ## AutoImportPolicy
 ### Properties
-* **Events**: [EventTypes](#eventtypes) (Required)
+* **Events**: string[] (Required)
 
 ## Tag
 ### Properties

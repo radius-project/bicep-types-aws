@@ -8,100 +8,49 @@
 
 ## AWS.AuditManager/AssessmentProperties
 ### Properties
-* **Arn**: [AssessmentArn](#assessmentarn) (ReadOnly)
-* **AssessmentId**: [UUID](#uuid) (ReadOnly, Identifier)
+* **Arn**: string (ReadOnly)
+* **AssessmentId**: string (ReadOnly, Identifier)
 * **AssessmentReportsDestination**: [AssessmentReportsDestination](#assessmentreportsdestination)
 * **AwsAccount**: [AWSAccount](#awsaccount)
-* **CreationTime**: [Timestamp](#timestamp) (ReadOnly)
+* **CreationTime**: int (ReadOnly)
 * **Delegations**: [Delegation](#delegation)[] (ReadOnly): The list of delegations.
-* **Description**: [AssessmentDescription](#assessmentdescription) (WriteOnly)
-* **FrameworkId**: [FrameworkId](#frameworkid)
-* **Name**: [AssessmentName](#assessmentname) (WriteOnly)
+* **Description**: string (WriteOnly)
+* **FrameworkId**: string
+* **Name**: string (WriteOnly)
 * **Roles**: [Role](#role)[]: The list of roles for the specified assessment.
 * **Scope**: [Scope](#scope)
-* **Status**: [AssessmentStatus](#assessmentstatus)
+* **Status**: string
 * **Tags**: [Tag](#tag)[]: The tags associated with the assessment.
-
-## AssessmentArn
-### Properties
-
-## UUID
-### Properties
 
 ## AssessmentReportsDestination
 ### Properties
-* **Destination**: [S3Url](#s3url)
-* **DestinationType**: [AssessmentReportDestinationType](#assessmentreportdestinationtype)
-
-## S3Url
-### Properties
-
-## AssessmentReportDestinationType
-### Properties
+* **Destination**: string
+* **DestinationType**: string
 
 ## AWSAccount
 ### Properties
-* **EmailAddress**: [EmailAddress](#emailaddress)
-* **Id**: [AccountId](#accountid)
-* **Name**: [AccountName](#accountname)
-
-## EmailAddress
-### Properties
-
-## AccountId
-### Properties
-
-## AccountName
-### Properties
-
-## Timestamp
-### Properties
+* **EmailAddress**: string
+* **Id**: string
+* **Name**: string
 
 ## Delegation
 ### Properties
-* **AssessmentId**: [UUID](#uuid) (Identifier)
-* **AssessmentName**: [AssessmentName](#assessmentname)
-* **Comment**: [DelegationComment](#delegationcomment)
-* **ControlSetId**: [ControlSetId](#controlsetid)
-* **CreatedBy**: [CreatedBy](#createdby)
-* **CreationTime**: [Timestamp](#timestamp)
-* **Id**: [UUID](#uuid)
-* **LastUpdated**: [Timestamp](#timestamp)
-* **RoleArn**: [IamArn](#iamarn)
-* **RoleType**: [RoleType](#roletype)
-* **Status**: [DelegationStatus](#delegationstatus)
-
-## AssessmentName
-### Properties
-
-## DelegationComment
-### Properties
-
-## ControlSetId
-### Properties
-
-## CreatedBy
-### Properties
-
-## IamArn
-### Properties
-
-## RoleType
-### Properties
-
-## DelegationStatus
-### Properties
-
-## AssessmentDescription
-### Properties
-
-## FrameworkId
-### Properties
+* **AssessmentId**: string (Identifier)
+* **AssessmentName**: string
+* **Comment**: string
+* **ControlSetId**: string
+* **CreatedBy**: string
+* **CreationTime**: int
+* **Id**: string
+* **LastUpdated**: int
+* **RoleArn**: string
+* **RoleType**: string
+* **Status**: string
 
 ## Role
 ### Properties
-* **RoleArn**: [IamArn](#iamarn)
-* **RoleType**: [RoleType](#roletype)
+* **RoleArn**: string
+* **RoleType**: string
 
 ## Scope
 ### Properties
@@ -110,13 +59,7 @@
 
 ## AWSService
 ### Properties
-* **ServiceName**: [AWSServiceName](#awsservicename)
-
-## AWSServiceName
-### Properties
-
-## AssessmentStatus
-### Properties
+* **ServiceName**: string
 
 ## Tag
 ### Properties

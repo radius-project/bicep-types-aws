@@ -113,7 +113,7 @@
 * **CoreNetworkAddress**: string
 * **InsideCidrBlocks**: string[]
 * **PeerAddress**: string
-* **Protocol**: [TunnelProtocol](#tunnelprotocol)
+* **Protocol**: string
 
 ## ConnectPeerBgpConfiguration
 ### Properties
@@ -121,9 +121,6 @@
 * **CoreNetworkAsn**: int
 * **PeerAddress**: string
 * **PeerAsn**: int
-
-## TunnelProtocol
-### Properties
 
 ## Tag
 ### Properties

@@ -9,15 +9,22 @@
 ## AWS.ResourceGroups/GroupProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Resource Group ARN.
-* **Configuration**: [Configuration](#configuration)
+* **Configuration**: [ConfigurationItem](#configurationitem)[]
 * **Description**: string: The description of the resource group
 * **Name**: string (Required, Identifier): The name of the resource group
 * **ResourceQuery**: [ResourceQuery](#resourcequery)
 * **Resources**: string[]
 * **Tags**: [Tag](#tag)[]
 
-## Configuration
+## ConfigurationItem
 ### Properties
+* **Parameters**: [ConfigurationParameter](#configurationparameter)[]
+* **Type**: string
+
+## ConfigurationParameter
+### Properties
+* **Name**: string (Identifier)
+* **Values**: string[]
 
 ## ResourceQuery
 ### Properties

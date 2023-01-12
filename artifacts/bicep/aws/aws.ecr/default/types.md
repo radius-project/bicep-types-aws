@@ -32,12 +32,9 @@
 ## AWS.ECR/RegistryPolicyProperties
 ### Properties
 * **PolicyText**: [RegistryPolicy_PolicyText](#registrypolicypolicytext) (Required): The JSON policy text to apply to your registry. The policy text follows the same format as IAM policy text. For more information, see Registry permissions (https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html) in the Amazon Elastic Container Registry User Guide.
-* **RegistryId**: [RegistryId](#registryid) (ReadOnly, Identifier)
+* **RegistryId**: string (ReadOnly, Identifier)
 
 ## RegistryPolicy_PolicyText
-### Properties
-
-## RegistryId
 ### Properties
 
 ## AWS.ECR/ReplicationConfigurationProperties
@@ -56,25 +53,13 @@
 
 ## ReplicationDestination
 ### Properties
-* **Region**: [Region](#region) (Required)
-* **RegistryId**: [RegistryId](#registryid) (Required, Identifier)
-
-## Region
-### Properties
-
-## RegistryId
-### Properties
+* **Region**: string (Required)
+* **RegistryId**: string (Required, Identifier)
 
 ## RepositoryFilter
 ### Properties
-* **Filter**: [Filter](#filter) (Required)
-* **FilterType**: [FilterType](#filtertype) (Required)
-
-## Filter
-### Properties
-
-## FilterType
-### Properties
+* **Filter**: string (Required)
+* **FilterType**: string (Required)
 
 ## AWS.ECR/RepositoryProperties
 ### Properties
@@ -90,32 +75,17 @@
 
 ## EncryptionConfiguration
 ### Properties
-* **EncryptionType**: [EncryptionType](#encryptiontype) (Required)
-* **KmsKey**: [KmsKey](#kmskey)
-
-## EncryptionType
-### Properties
-
-## KmsKey
-### Properties
+* **EncryptionType**: string (Required)
+* **KmsKey**: string
 
 ## ImageScanningConfiguration
 ### Properties
-* **ScanOnPush**: [ScanOnPush](#scanonpush)
-
-## ScanOnPush
-### Properties
+* **ScanOnPush**: bool
 
 ## LifecyclePolicy
 ### Properties
-* **LifecyclePolicyText**: [LifecyclePolicyText](#lifecyclepolicytext)
-* **RegistryId**: [RegistryId](#registryid)
-
-## LifecyclePolicyText
-### Properties
-
-## RegistryId
-### Properties
+* **LifecyclePolicyText**: string
+* **RegistryId**: string
 
 ## Tag
 ### Properties

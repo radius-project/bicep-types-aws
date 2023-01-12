@@ -31,7 +31,7 @@
 * **CreatorRequestId**: string (ReadOnly): The id of the creator request.
 * **DomainCount**: int (ReadOnly): Count
 * **DomainFileUrl**: string (WriteOnly): S3 URL to import domains from.
-* **Domains**: [Domains](#domains) (WriteOnly)
+* **Domains**: string[] (WriteOnly)
 * **Id**: string (ReadOnly, Identifier): ResourceId
 * **ManagedOwnerName**: string (ReadOnly): ServicePrincipal
 * **ModificationTime**: string (ReadOnly): Rfc3339TimeString
@@ -39,9 +39,6 @@
 * **Status**: string (ReadOnly): ResolverFirewallDomainList, possible values are COMPLETE, DELETING, UPDATING, COMPLETE_IMPORT_FAILED, IMPORTING, and INACTIVE_OWNER_ACCOUNT_CLOSED.
 * **StatusMessage**: string (ReadOnly): FirewallDomainListAssociationStatus
 * **Tags**: [Tag](#tag)[]: Tags
-
-## Domains
-### Properties
 
 ## Tag
 ### Properties

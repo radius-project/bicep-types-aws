@@ -9,12 +9,12 @@
 ## AWS.HealthLake/FHIRDatastoreProperties
 ### Properties
 * **CreatedAt**: [CreatedAt](#createdat) (ReadOnly)
-* **DatastoreArn**: [DatastoreArn](#datastorearn) (ReadOnly)
-* **DatastoreEndpoint**: [DatastoreEndpoint](#datastoreendpoint) (ReadOnly)
-* **DatastoreId**: [DatastoreId](#datastoreid) (ReadOnly, Identifier)
-* **DatastoreName**: [DatastoreName](#datastorename)
-* **DatastoreStatus**: [DatastoreStatus](#datastorestatus) (ReadOnly)
-* **DatastoreTypeVersion**: [DatastoreTypeVersion](#datastoretypeversion) (Required)
+* **DatastoreArn**: string (ReadOnly)
+* **DatastoreEndpoint**: string (ReadOnly)
+* **DatastoreId**: string (ReadOnly, Identifier)
+* **DatastoreName**: string
+* **DatastoreStatus**: string (ReadOnly)
+* **DatastoreTypeVersion**: string (Required)
 * **PreloadDataConfig**: [PreloadDataConfig](#preloaddataconfig)
 * **SseConfiguration**: [SseConfiguration](#sseconfiguration)
 * **Tags**: [Tag](#tag)[]
@@ -23,24 +23,6 @@
 ### Properties
 * **Nanos**: int (Required): Nanoseconds.
 * **Seconds**: string (Required): Seconds since epoch.
-
-## DatastoreArn
-### Properties
-
-## DatastoreEndpoint
-### Properties
-
-## DatastoreId
-### Properties
-
-## DatastoreName
-### Properties
-
-## DatastoreStatus
-### Properties
-
-## DatastoreTypeVersion
-### Properties
 
 ## PreloadDataConfig
 ### Properties

@@ -20,9 +20,9 @@
 
 ## AWS.AppStream/ApplicationProperties
 ### Properties
-* **AppBlockArn**: [Arn](#arn) (Required)
-* **Arn**: [Arn](#arn) (ReadOnly, Identifier)
-* **AttributesToDelete**: [ApplicationAttribute](#applicationattribute)[]
+* **AppBlockArn**: string (Required)
+* **Arn**: string (ReadOnly, Identifier)
+* **AttributesToDelete**: string[]
 * **CreatedTime**: string (ReadOnly)
 * **Description**: string
 * **DisplayName**: string
@@ -31,23 +31,14 @@
 * **LaunchParameters**: string
 * **LaunchPath**: string (Required)
 * **Name**: string (Required)
-* **Platforms**: [PlatformType](#platformtype)[] (Required)
+* **Platforms**: string[] (Required)
 * **Tags**: [Tag](#tag)[] (WriteOnly)
 * **WorkingDirectory**: string
-
-## Arn
-### Properties
-
-## ApplicationAttribute
-### Properties
 
 ## S3Location
 ### Properties
 * **S3Bucket**: string (Required)
 * **S3Key**: string (Required)
-
-## PlatformType
-### Properties
 
 ## Tag
 ### Properties

@@ -21,12 +21,12 @@
 ## AWS.ACMPCA/CertificateProperties
 ### Properties
 * **ApiPassthrough**: [ApiPassthrough](#apipassthrough) (WriteOnly): These are fields to be overridden in a certificate at the time of issuance. These requires an API_Passthrough template be used or they will be ignored.
-* **Arn**: [Arn](#arn) (ReadOnly, Identifier): The ARN of the issued certificate.
+* **Arn**: string (ReadOnly, Identifier): The ARN of the issued certificate.
 * **Certificate**: string (ReadOnly): The issued certificate in base 64 PEM-encoded format.
-* **CertificateAuthorityArn**: [Arn](#arn) (Required, Identifier): The Amazon Resource Name (ARN) for the private CA to issue the certificate.
+* **CertificateAuthorityArn**: string (Required, Identifier): The Amazon Resource Name (ARN) for the private CA to issue the certificate.
 * **CertificateSigningRequest**: string (Required, WriteOnly): The certificate signing request (CSR) for the Certificate.
 * **SigningAlgorithm**: string (Required): The name of the algorithm that will be used to sign the Certificate.
-* **TemplateArn**: [Arn](#arn): Specifies a custom configuration template to use when issuing a certificate. If this parameter is not provided, ACM Private CA defaults to the EndEntityCertificate/V1 template.
+* **TemplateArn**: string: Specifies a custom configuration template to use when issuing a certificate. If this parameter is not provided, ACM Private CA defaults to the EndEntityCertificate/V1 template.
 * **Validity**: [Validity](#validity) (Required): The time before which the Certificate will be valid.
 * **ValidityNotBefore**: [Validity](#validity): The time after which the Certificate will be valid.
 
@@ -37,20 +37,36 @@
 
 ## Extensions
 ### Properties
-* **CertificatePolicies**: [CertificatePolicyList](#certificatepolicylist)
-* **CustomExtensions**: [CustomExtensionList](#customextensionlist)
-* **ExtendedKeyUsage**: [ExtendedKeyUsageList](#extendedkeyusagelist)
+* **CertificatePolicies**: [PolicyInformation](#policyinformation)[]
+* **CustomExtensions**: [CustomExtension](#customextension)[]
+* **ExtendedKeyUsage**: [ExtendedKeyUsage](#extendedkeyusage)[]
 * **KeyUsage**: [KeyUsage](#keyusage)
-* **SubjectAlternativeNames**: [GeneralNameList](#generalnamelist)
+* **SubjectAlternativeNames**: [GeneralName](#generalname)[]
 
-## CertificatePolicyList
+## PolicyInformation
 ### Properties
+* **CertPolicyId**: string (Required)
+* **PolicyQualifiers**: [PolicyQualifierInfo](#policyqualifierinfo)[]
 
-## CustomExtensionList
+## PolicyQualifierInfo
 ### Properties
+* **PolicyQualifierId**: string (Required)
+* **Qualifier**: [Qualifier](#qualifier) (Required)
 
-## ExtendedKeyUsageList
+## Qualifier
 ### Properties
+* **CpsUri**: string (Required)
+
+## CustomExtension
+### Properties
+* **Critical**: bool
+* **ObjectIdentifier**: string (Required)
+* **Value**: string (Required)
+
+## ExtendedKeyUsage
+### Properties
+* **ExtendedKeyUsageObjectIdentifier**: string
+* **ExtendedKeyUsageType**: string
 
 ## KeyUsage
 ### Properties
@@ -64,14 +80,22 @@
 * **KeyEncipherment**: bool
 * **NonRepudiation**: bool
 
-## GeneralNameList
+## GeneralName
 ### Properties
+* **DirectoryName**: [Subject](#subject)
+* **DnsName**: string
+* **EdiPartyName**: [EdiPartyName](#edipartyname)
+* **IpAddress**: string
+* **OtherName**: [OtherName](#othername)
+* **RegisteredId**: string
+* **Rfc822Name**: string
+* **UniformResourceIdentifier**: string
 
 ## Subject
 ### Properties
 * **CommonName**: string
 * **Country**: string
-* **CustomAttributes**: [CustomAttributeList](#customattributelist)
+* **CustomAttributes**: [CustomAttribute](#customattribute)[]
 * **DistinguishedNameQualifier**: string
 * **GenerationQualifier**: string
 * **GivenName**: string
@@ -85,11 +109,20 @@
 * **Surname**: string
 * **Title**: string
 
-## CustomAttributeList
+## CustomAttribute
 ### Properties
+* **ObjectIdentifier**: string (Required)
+* **Value**: string (Required)
 
-## Arn
+## EdiPartyName
 ### Properties
+* **NameAssigner**: string (Required)
+* **PartyName**: string (Required)
+
+## OtherName
+### Properties
+* **TypeId**: string (Required)
+* **Value**: string (Required)
 
 ## Validity
 ### Properties
@@ -98,7 +131,7 @@
 
 ## AWS.ACMPCA/CertificateAuthorityProperties
 ### Properties
-* **Arn**: [Arn](#arn) (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the certificate authority.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the certificate authority.
 * **CertificateSigningRequest**: string (ReadOnly): The base64 PEM-encoded certificate signing request (CSR) for your certificate authority certificate.
 * **CsrExtensions**: [CsrExtensions](#csrextensions): Structure that contains CSR pass through extension information used by the CreateCertificateAuthority action.
 * **KeyAlgorithm**: string (Required): Public key algorithm and size, in bits, of the key pair that your CA creates when it issues a certificate.
@@ -110,13 +143,10 @@
 * **Type**: string (Required): The type of the certificate authority.
 * **UsageMode**: string: Usage mode of the ceritificate authority.
 
-## Arn
-### Properties
-
 ## CsrExtensions
 ### Properties
 * **KeyUsage**: [KeyUsage](#keyusage)
-* **SubjectInformationAccess**: [SubjectInformationAccess](#subjectinformationaccess)
+* **SubjectInformationAccess**: [AccessDescription](#accessdescription)[]
 
 ## KeyUsage
 ### Properties
@@ -130,8 +160,59 @@
 * **KeyEncipherment**: bool
 * **NonRepudiation**: bool
 
-## SubjectInformationAccess
+## AccessDescription
 ### Properties
+* **AccessLocation**: [GeneralName](#generalname) (Required)
+* **AccessMethod**: [AccessMethod](#accessmethod) (Required)
+
+## GeneralName
+### Properties
+* **DirectoryName**: [Subject](#subject)
+* **DnsName**: string
+* **EdiPartyName**: [EdiPartyName](#edipartyname)
+* **IpAddress**: string
+* **OtherName**: [OtherName](#othername)
+* **RegisteredId**: string
+* **Rfc822Name**: string
+* **UniformResourceIdentifier**: string
+
+## Subject
+### Properties
+* **CommonName**: string
+* **Country**: string
+* **CustomAttributes**: [CustomAttribute](#customattribute)[]
+* **DistinguishedNameQualifier**: string
+* **GenerationQualifier**: string
+* **GivenName**: string
+* **Initials**: string
+* **Locality**: string
+* **Organization**: string
+* **OrganizationalUnit**: string
+* **Pseudonym**: string
+* **SerialNumber**: string
+* **State**: string
+* **Surname**: string
+* **Title**: string
+
+## CustomAttribute
+### Properties
+* **ObjectIdentifier**: string (Required)
+* **Value**: string (Required)
+
+## EdiPartyName
+### Properties
+* **NameAssigner**: string (Required)
+* **PartyName**: string (Required)
+
+## OtherName
+### Properties
+* **TypeId**: string (Required)
+* **Value**: string (Required)
+
+## AccessMethod
+### Properties
+* **AccessMethodType**: string
+* **CustomObjectIdentifier**: string
 
 ## RevocationConfiguration
 ### Properties
@@ -150,27 +231,6 @@
 ### Properties
 * **Enabled**: bool
 * **OcspCustomCname**: string
-
-## Subject
-### Properties
-* **CommonName**: string
-* **Country**: string
-* **CustomAttributes**: [CustomAttributeList](#customattributelist)
-* **DistinguishedNameQualifier**: string
-* **GenerationQualifier**: string
-* **GivenName**: string
-* **Initials**: string
-* **Locality**: string
-* **Organization**: string
-* **OrganizationalUnit**: string
-* **Pseudonym**: string
-* **SerialNumber**: string
-* **State**: string
-* **Surname**: string
-* **Title**: string
-
-## CustomAttributeList
-### Properties
 
 ## Tag
 ### Properties

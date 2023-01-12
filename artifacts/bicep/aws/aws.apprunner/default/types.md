@@ -38,11 +38,8 @@
 ## InstanceConfiguration
 ### Properties
 * **Cpu**: string: CPU
-* **InstanceRoleArn**: [RoleArn](#rolearn): Instance Role Arn
+* **InstanceRoleArn**: string: Instance Role Arn
 * **Memory**: string: Memory
-
-## RoleArn
-### Properties
 
 ## NetworkConfiguration
 ### Properties
@@ -67,7 +64,7 @@
 
 ## AuthenticationConfiguration
 ### Properties
-* **AccessRoleArn**: [RoleArn](#rolearn): Access Role Arn
+* **AccessRoleArn**: string: Access Role Arn
 * **ConnectionArn**: string: Connection Arn
 
 ## CodeRepository

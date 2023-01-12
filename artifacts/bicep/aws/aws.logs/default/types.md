@@ -74,13 +74,10 @@
 
 ## AWS.Logs/QueryDefinitionProperties
 ### Properties
-* **LogGroupNames**: [LogGroup](#loggroup)[]: Optionally define specific log groups as part of your query definition
+* **LogGroupNames**: string[]: Optionally define specific log groups as part of your query definition
 * **Name**: string (Required): A name for the saved query definition
 * **QueryDefinitionId**: string (ReadOnly, Identifier): Unique identifier of a query definition
 * **QueryString**: string (Required): The query string to use for this definition
-
-## LogGroup
-### Properties
 
 ## AWS.Logs/ResourcePolicyProperties
 ### Properties

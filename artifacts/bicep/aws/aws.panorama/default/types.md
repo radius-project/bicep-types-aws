@@ -20,101 +20,46 @@
 
 ## AWS.Panorama/ApplicationInstanceProperties
 ### Properties
-* **ApplicationInstanceId**: [ApplicationInstanceId](#applicationinstanceid) (ReadOnly, Identifier)
-* **ApplicationInstanceIdToReplace**: [ApplicationInstanceId](#applicationinstanceid)
-* **Arn**: [ApplicationInstanceArn](#applicationinstancearn) (ReadOnly)
-* **CreatedTime**: [Timestamp](#timestamp) (ReadOnly)
-* **DefaultRuntimeContextDevice**: [DefaultRuntimeContextDevice](#defaultruntimecontextdevice) (Required)
-* **DefaultRuntimeContextDeviceName**: [DeviceName](#devicename) (ReadOnly)
-* **Description**: [Description](#description)
-* **DeviceId**: [DeviceId](#deviceid)
-* **HealthStatus**: [ApplicationInstanceHealthStatus](#applicationinstancehealthstatus) (ReadOnly)
-* **LastUpdatedTime**: [Timestamp](#timestamp) (ReadOnly)
+* **ApplicationInstanceId**: string (ReadOnly, Identifier)
+* **ApplicationInstanceIdToReplace**: string
+* **Arn**: string (ReadOnly)
+* **CreatedTime**: int (ReadOnly)
+* **DefaultRuntimeContextDevice**: string (Required)
+* **DefaultRuntimeContextDeviceName**: string (ReadOnly)
+* **Description**: string
+* **DeviceId**: string
+* **HealthStatus**: string (ReadOnly)
+* **LastUpdatedTime**: int (ReadOnly)
 * **ManifestOverridesPayload**: [ManifestOverridesPayload](#manifestoverridespayload)
 * **ManifestPayload**: [ManifestPayload](#manifestpayload) (Required)
-* **Name**: [Name](#name)
-* **RuntimeRoleArn**: [RuntimeRoleArn](#runtimerolearn)
-* **Status**: [ApplicationInstanceStatus](#applicationinstancestatus) (ReadOnly)
-* **StatusDescription**: [ApplicationInstanceStatusDescription](#applicationinstancestatusdescription) (ReadOnly)
-* **StatusFilter**: [StatusFilter](#statusfilter)
-* **Tags**: [TagList](#taglist)
-
-## ApplicationInstanceId
-### Properties
-
-## ApplicationInstanceArn
-### Properties
-
-## Timestamp
-### Properties
-
-## DefaultRuntimeContextDevice
-### Properties
-
-## DeviceName
-### Properties
-
-## Description
-### Properties
-
-## DeviceId
-### Properties
-
-## ApplicationInstanceHealthStatus
-### Properties
+* **Name**: string
+* **RuntimeRoleArn**: string
+* **Status**: string (ReadOnly)
+* **StatusDescription**: string (ReadOnly)
+* **StatusFilter**: string
+* **Tags**: [Tag](#tag)[]
 
 ## ManifestOverridesPayload
 ### Properties
-* **PayloadData**: [ManifestOverridesPayloadData](#manifestoverridespayloaddata)
-
-## ManifestOverridesPayloadData
-### Properties
+* **PayloadData**: string
 
 ## ManifestPayload
 ### Properties
-* **PayloadData**: [ManifestPayloadData](#manifestpayloaddata)
+* **PayloadData**: string
 
-## ManifestPayloadData
+## Tag
 ### Properties
-
-## Name
-### Properties
-
-## RuntimeRoleArn
-### Properties
-
-## ApplicationInstanceStatus
-### Properties
-
-## ApplicationInstanceStatusDescription
-### Properties
-
-## StatusFilter
-### Properties
-
-## TagList
-### Properties
+* **Key**: string (Required): A string used to identify this tag
+* **Value**: string (Required): A string containing the value for the tag
 
 ## AWS.Panorama/PackageProperties
 ### Properties
-* **Arn**: [NodePackageArn](#nodepackagearn) (ReadOnly)
-* **CreatedTime**: [CreatedTime](#createdtime) (ReadOnly)
-* **PackageId**: [NodePackageId](#nodepackageid) (ReadOnly, Identifier)
-* **PackageName**: [NodePackageName](#nodepackagename) (Required)
+* **Arn**: string (ReadOnly)
+* **CreatedTime**: int (ReadOnly)
+* **PackageId**: string (ReadOnly, Identifier)
+* **PackageName**: string (Required)
 * **StorageLocation**: [StorageLocation](#storagelocation) (ReadOnly)
-* **Tags**: [TagList](#taglist)
-
-## NodePackageArn
-### Properties
-
-## CreatedTime
-### Properties
-
-## NodePackageId
-### Properties
-
-## NodePackageName
-### Properties
+* **Tags**: [Tag](#tag)[]
 
 ## StorageLocation
 ### Properties
@@ -124,48 +69,23 @@
 * **ManifestPrefixLocation**: string (ReadOnly)
 * **RepoPrefixLocation**: string (ReadOnly)
 
-## TagList
+## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.Panorama/PackageVersionProperties
 ### Properties
 * **IsLatestPatch**: bool (ReadOnly)
 * **MarkLatest**: bool
-* **OwnerAccount**: [PackageOwnerAccount](#packageowneraccount)
-* **PackageArn**: [NodePackageArn](#nodepackagearn) (ReadOnly)
-* **PackageId**: [NodePackageId](#nodepackageid) (Required, Identifier)
-* **PackageName**: [NodePackageName](#nodepackagename) (ReadOnly)
-* **PackageVersion**: [NodePackageVersion](#nodepackageversion) (Required, Identifier)
-* **PatchVersion**: [NodePackagePatchVersion](#nodepackagepatchversion) (Required, Identifier)
-* **RegisteredTime**: [TimeStamp](#timestamp) (ReadOnly)
-* **Status**: [PackageVersionStatus](#packageversionstatus) (ReadOnly)
-* **StatusDescription**: [PackageVersionStatusDescription](#packageversionstatusdescription) (ReadOnly)
-* **UpdatedLatestPatchVersion**: [NodePackagePatchVersion](#nodepackagepatchversion)
-
-## PackageOwnerAccount
-### Properties
-
-## NodePackageArn
-### Properties
-
-## NodePackageId
-### Properties
-
-## NodePackageName
-### Properties
-
-## NodePackageVersion
-### Properties
-
-## NodePackagePatchVersion
-### Properties
-
-## TimeStamp
-### Properties
-
-## PackageVersionStatus
-### Properties
-
-## PackageVersionStatusDescription
-### Properties
+* **OwnerAccount**: string
+* **PackageArn**: string (ReadOnly)
+* **PackageId**: string (Required, Identifier)
+* **PackageName**: string (ReadOnly)
+* **PackageVersion**: string (Required, Identifier)
+* **PatchVersion**: string (Required, Identifier)
+* **RegisteredTime**: int (ReadOnly)
+* **Status**: string (ReadOnly)
+* **StatusDescription**: string (ReadOnly)
+* **UpdatedLatestPatchVersion**: string
 
