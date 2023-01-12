@@ -117,6 +117,25 @@ describe('convert', () => {
         expect(aclNameProperty).not.toBeUndefined();
         expect(aclNameProperty?.Flags).toEqual(ObjectPropertyFlags.Required|ObjectPropertyFlags.Identifier);
     });
+
+    test('Can convert string definitions properly (project-radius/radius#4823)', () => {
+        const file = fs.readFileSync(path.resolve('./testdata/AWS::Redshift::EndpointAuthorization.json'), { encoding: 'utf8' });
+        const schemaRecord: SchemaRecord = JSON.parse(file);
+        const types = convertSchemaRecordToTypes([schemaRecord]);
+
+        const propertiesType = lookupObjectType(types, "AWS.Redshift/EndpointAuthorizationProperties");
+        expect(propertiesType).not.toBeUndefined();
+
+        // In the CF resource type schema, 'Account' property
+        // is of type 'AwsAccount', which is a string with some special
+        // regex constraints. Here we assert that the type generator
+        // converts this to a string type instead.
+        const accountProperty = propertiesType?.Properties["Account"]
+        expect(accountProperty).not.toBeUndefined();
+        const accountPropertyType = accountProperty?.Type
+        const stringPropertyType = new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String));
+        expect(accountPropertyType).toStrictEqual(stringPropertyType)
+    });
 });
 
 function lookupBuiltInTypeIndex(types: TypeBase[], kind: BuiltInTypeKind): number {
