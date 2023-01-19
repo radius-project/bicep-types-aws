@@ -20,15 +20,9 @@
 
 ## AWS.Rekognition/CollectionProperties
 ### Properties
-* **Arn**: [Arn](#arn) (ReadOnly)
-* **CollectionId**: [CollectionId](#collectionid) (Required, Identifier)
+* **Arn**: string (ReadOnly)
+* **CollectionId**: string (Required, Identifier)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## Arn
-### Properties
-
-## CollectionId
-### Properties
 
 ## Tag
 ### Properties
@@ -37,18 +31,12 @@
 
 ## AWS.Rekognition/ProjectProperties
 ### Properties
-* **Arn**: [Arn](#arn) (ReadOnly)
-* **ProjectName**: [ProjectName](#projectname) (Required, Identifier)
-
-## Arn
-### Properties
-
-## ProjectName
-### Properties
+* **Arn**: string (ReadOnly)
+* **ProjectName**: string (Required, Identifier)
 
 ## AWS.Rekognition/StreamProcessorProperties
 ### Properties
-* **Arn**: [Arn](#arn) (ReadOnly)
+* **Arn**: string (ReadOnly)
 * **BoundingBoxRegionsOfInterest**: [BoundingBox](#boundingbox)[]: The BoundingBoxRegionsOfInterest specifies an array of bounding boxes of interest in the video frames to analyze, as part of connected home feature. If an object is partially in a region of interest, Rekognition will tag it as detected if the overlap of the object with the region-of-interest is greater than 20%.
 * **ConnectedHomeSettings**: [ConnectedHomeSettings](#connectedhomesettings)
 * **DataSharingPreference**: [DataSharingPreference](#datasharingpreference)
@@ -58,15 +46,12 @@
 * **KmsKeyId**: string: The KMS key that is used by Rekognition to encrypt any intermediate customer metadata and store in the customer's S3 bucket.
 * **Name**: string (Identifier): Name of the stream processor. It's an identifier you assign to the stream processor. You can use it to manage the stream processor.
 * **NotificationChannel**: [NotificationChannel](#notificationchannel)
-* **PolygonRegionsOfInterest**: [Polygon](#polygon)[]: The PolygonRegionsOfInterest specifies a set of polygon areas of interest in the video frames to analyze, as part of connected home feature. Each polygon is in turn, an ordered list of Point
+* **PolygonRegionsOfInterest**: [Point](#point)[][]: The PolygonRegionsOfInterest specifies a set of polygon areas of interest in the video frames to analyze, as part of connected home feature. Each polygon is in turn, an ordered list of Point
 * **RoleArn**: string (Required): ARN of the IAM role that allows access to the stream processor, and provides Rekognition read permissions for KVS stream and write permissions to S3 bucket and SNS topic.
 * **S3Destination**: [S3Destination](#s3destination)
 * **Status**: string (ReadOnly): Current status of the stream processor.
 * **StatusMessage**: string (ReadOnly): Detailed status message about the stream processor.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## Arn
-### Properties
 
 ## BoundingBox
 ### Properties
@@ -77,11 +62,8 @@
 
 ## ConnectedHomeSettings
 ### Properties
-* **Labels**: [Labels](#labels) (Required)
+* **Labels**: string[] (Required)
 * **MinConfidence**: int: Minimum object class match confidence score that must be met to return a result for a recognized object.
-
-## Labels
-### Properties
 
 ## DataSharingPreference
 ### Properties
@@ -104,8 +86,10 @@
 ### Properties
 * **Arn**: string (Required): ARN of the SNS topic.
 
-## Polygon
+## Point
 ### Properties
+* **X**: int (Required): The X coordinate of the point.
+* **Y**: int (Required): The Y coordinate of the point.
 
 ## S3Destination
 ### Properties

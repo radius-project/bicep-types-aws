@@ -10,12 +10,9 @@
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): Cost category ARN
 * **DefaultValue**: string: The default value for the cost category
-* **EffectiveStart**: [ZonedDateTime](#zoneddatetime) (ReadOnly)
+* **EffectiveStart**: string (ReadOnly)
 * **Name**: string (Required)
 * **Rules**: string (Required): JSON array format of Expression in Billing and Cost Management API
 * **RuleVersion**: string (Required)
 * **SplitChargeRules**: string: Json array format of CostCategorySplitChargeRule in Billing and Cost Management API
-
-## ZonedDateTime
-### Properties
 

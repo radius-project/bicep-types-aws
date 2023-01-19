@@ -30,11 +30,8 @@
 
 ## TransformationConfiguration
 ### Properties
-* **Actions**: [Action](#action)[] (Required)
+* **Actions**: string[] (Required)
 * **ContentTransformation**: [AccessPoint_ContentTransformation](#accesspointcontenttransformation) (Required)
-
-## Action
-### Properties
 
 ## AccessPoint_ContentTransformation
 ### Properties

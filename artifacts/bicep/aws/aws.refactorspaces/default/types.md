@@ -14,20 +14,14 @@
 * **EnvironmentIdentifier**: string (Required, Identifier)
 * **PathResourceToId**: string (ReadOnly)
 * **RouteIdentifier**: string (ReadOnly, Identifier)
-* **RouteType**: [RouteType](#routetype) (WriteOnly)
+* **RouteType**: string (WriteOnly)
 * **ServiceIdentifier**: string (Required, WriteOnly)
 * **Tags**: [Tag](#tag)[]: Metadata that you can assign to help organize the frameworks that you create. Each tag is a key-value pair.
 * **UriPathRoute**: [UriPathRouteInput](#uripathrouteinput) (WriteOnly)
 
 ## DefaultRouteInput
 ### Properties
-* **ActivationState**: [RouteActivationState](#routeactivationstate) (Required)
-
-## RouteActivationState
-### Properties
-
-## RouteType
-### Properties
+* **ActivationState**: string (Required)
 
 ## Tag
 ### Properties
@@ -36,11 +30,8 @@
 
 ## UriPathRouteInput
 ### Properties
-* **ActivationState**: [RouteActivationState](#routeactivationstate) (Required)
+* **ActivationState**: string (Required)
 * **IncludeChildPaths**: bool
-* **Methods**: [Method](#method)[]
+* **Methods**: string[]
 * **SourcePath**: string
-
-## Method
-### Properties
 

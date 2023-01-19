@@ -9,21 +9,15 @@
 ## AWS.FIS/ExperimentTemplateProperties
 ### Properties
 * **Actions**: [ExperimentTemplateActionMap](#experimenttemplateactionmap)
-* **Description**: [ExperimentTemplateDescription](#experimenttemplatedescription) (Required)
-* **Id**: [ExperimentTemplateId](#experimenttemplateid) (ReadOnly, Identifier)
+* **Description**: string (Required)
+* **Id**: string (ReadOnly, Identifier)
 * **LogConfiguration**: [ExperimentTemplateLogConfiguration](#experimenttemplatelogconfiguration)
-* **RoleArn**: [RoleArn](#rolearn) (Required)
-* **StopConditions**: [ExperimentTemplateStopConditionList](#experimenttemplatestopconditionlist) (Required)
+* **RoleArn**: string (Required)
+* **StopConditions**: [ExperimentTemplateStopCondition](#experimenttemplatestopcondition)[] (Required)
 * **Tags**: [ExperimentTemplate_Tags](#experimenttemplatetags) (Required)
 * **Targets**: [ExperimentTemplateTargetMap](#experimenttemplatetargetmap) (Required)
 
 ## ExperimentTemplateActionMap
-### Properties
-
-## ExperimentTemplateDescription
-### Properties
-
-## ExperimentTemplateId
 ### Properties
 
 ## ExperimentTemplateLogConfiguration
@@ -41,11 +35,10 @@
 * **BucketName**: string (Required)
 * **Prefix**: string
 
-## RoleArn
+## ExperimentTemplateStopCondition
 ### Properties
-
-## ExperimentTemplateStopConditionList
-### Properties
+* **Source**: string (Required)
+* **Value**: string
 
 ## ExperimentTemplate_Tags
 ### Properties

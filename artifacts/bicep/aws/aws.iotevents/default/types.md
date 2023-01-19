@@ -51,10 +51,122 @@ For more information, see [Tag](https://docs.aws.amazon.com/AWSCloudFormation/la
 
 ## AlarmEventActions
 ### Properties
-* **AlarmActions**: [AlarmActions](#alarmactions)
+* **AlarmActions**: [AlarmAction](#alarmaction)[]
 
-## AlarmActions
+## AlarmAction
 ### Properties
+* **DynamoDB**: [DynamoDB](#dynamodb)
+* **DynamoDBv2**: [DynamoDBv2](#dynamodbv2)
+* **Firehose**: [Firehose](#firehose)
+* **IotEvents**: [IotEvents](#iotevents)
+* **IotSiteWise**: [IotSiteWise](#iotsitewise)
+* **IotTopicPublish**: [IotTopicPublish](#iottopicpublish)
+* **Lambda**: [Lambda](#lambda)
+* **Sns**: [Sns](#sns)
+* **Sqs**: [Sqs](#sqs)
+
+## DynamoDB
+### Properties
+* **HashKeyField**: string (Required): The name of the hash key (also called the partition key).
+* **HashKeyType**: string: The data type for the hash key (also called the partition key). You can specify the following values:
+
+* `STRING` - The hash key is a string.
+
+* `NUMBER` - The hash key is a number.
+
+If you don't specify `hashKeyType`, the default value is `STRING`.
+* **HashKeyValue**: string (Required): The value of the hash key (also called the partition key).
+* **Operation**: string: The type of operation to perform. You can specify the following values:
+
+* `INSERT` - Insert data as a new item into the DynamoDB table. This item uses the specified hash key as a partition key. If you specified a range key, the item uses the range key as a sort key.
+
+* `UPDATE` - Update an existing item of the DynamoDB table with new data. This item's partition key must match the specified hash key. If you specified a range key, the range key must match the item's sort key.
+
+* `DELETE` - Delete an existing item of the DynamoDB table. This item's partition key must match the specified hash key. If you specified a range key, the range key must match the item's sort key.
+
+If you don't specify this parameter, AWS IoT Events triggers the `INSERT` operation.
+* **Payload**: [Payload](#payload)
+* **PayloadField**: string: The name of the DynamoDB column that receives the action payload.
+
+If you don't specify this parameter, the name of the DynamoDB column is `payload`.
+* **RangeKeyField**: string: The name of the range key (also called the sort key).
+* **RangeKeyType**: string: The data type for the range key (also called the sort key), You can specify the following values:
+
+* `STRING` - The range key is a string.
+
+* `NUMBER` - The range key is number.
+
+If you don't specify `rangeKeyField`, the default value is `STRING`.
+* **RangeKeyValue**: string: The value of the range key (also called the sort key).
+* **TableName**: string (Required): The name of the DynamoDB table.
+
+## Payload
+### Properties
+* **ContentExpression**: string (Required): The content of the payload. You can use a string expression that includes quoted strings (`'<string>'`), variables (`$variable.<variable-name>`), input values (`$input.<input-name>.<path-to-datum>`), string concatenations, and quoted strings that contain `${}` as the content. The recommended maximum size of a content expression is 1 KB.
+* **Type**: string (Required): The value of the payload type can be either `STRING` or `JSON`.
+
+## DynamoDBv2
+### Properties
+* **Payload**: [Payload](#payload)
+* **TableName**: string (Required): The name of the DynamoDB table.
+
+## Firehose
+### Properties
+* **DeliveryStreamName**: string (Required): The name of the Kinesis Data Firehose delivery stream where the data is written.
+* **Payload**: [Payload](#payload)
+* **Separator**: string: A character separator that is used to separate records written to the Kinesis Data Firehose delivery stream. Valid values are: '\n' (newline), '\t' (tab), '\r\n' (Windows newline), ',' (comma).
+
+## IotEvents
+### Properties
+* **InputName**: string (Required): The name of the AWS IoT Events input where the data is sent.
+* **Payload**: [Payload](#payload)
+
+## IotSiteWise
+### Properties
+* **AssetId**: string: The ID of the asset that has the specified property. You can specify an expression.
+* **EntryId**: string: A unique identifier for this entry. You can use the entry ID to track which data entry causes an error in case of failure. The default is a new unique identifier. You can also specify an expression.
+* **PropertyAlias**: string: The alias of the asset property. You can also specify an expression.
+* **PropertyId**: string: The ID of the asset property. You can specify an expression.
+* **PropertyValue**: [AssetPropertyValue](#assetpropertyvalue)
+
+## AssetPropertyValue
+### Properties
+* **Quality**: string: The quality of the asset property value. The value must be `GOOD`, `BAD`, or `UNCERTAIN`. You can also specify an expression.
+* **Timestamp**: [AssetPropertyTimestamp](#assetpropertytimestamp)
+* **Value**: [AssetPropertyVariant](#assetpropertyvariant) (Required)
+
+## AssetPropertyTimestamp
+### Properties
+* **OffsetInNanos**: string: The timestamp, in seconds, in the Unix epoch format. The valid range is between `1-31556889864403199`. You can also specify an expression.
+* **TimeInSeconds**: string (Required): The nanosecond offset converted from `timeInSeconds`. The valid range is between `0-999999999`. You can also specify an expression.
+
+## AssetPropertyVariant
+### Properties
+* **BooleanValue**: string: The asset property value is a Boolean value that must be `TRUE` or `FALSE`. You can also specify an expression. If you use an expression, the evaluated result should be a Boolean value.
+* **DoubleValue**: string: The asset property value is a double. You can also specify an expression. If you use an expression, the evaluated result should be a double.
+* **IntegerValue**: string: The asset property value is an integer. You can also specify an expression. If you use an expression, the evaluated result should be an integer.
+* **StringValue**: string: The asset property value is a string. You can also specify an expression. If you use an expression, the evaluated result should be a string.
+
+## IotTopicPublish
+### Properties
+* **MqttTopic**: string (Required): The MQTT topic of the message. You can use a string expression that includes variables (`$variable.<variable-name>`) and input values (`$input.<input-name>.<path-to-datum>`) as the topic string.
+* **Payload**: [Payload](#payload)
+
+## Lambda
+### Properties
+* **FunctionArn**: string (Required): The ARN of the Lambda function that is executed.
+* **Payload**: [Payload](#payload)
+
+## Sns
+### Properties
+* **Payload**: [Payload](#payload)
+* **TargetArn**: string (Required): The ARN of the Amazon SNS target where the message is sent.
+
+## Sqs
+### Properties
+* **Payload**: [Payload](#payload)
+* **QueueUrl**: string (Required): The URL of the SQS queue where the data is written.
+* **UseBase64**: bool: Set this to `TRUE` if you want the data to be base-64 encoded before it is written to the queue. Otherwise, set this to `FALSE`.
 
 ## AlarmRule
 ### Properties

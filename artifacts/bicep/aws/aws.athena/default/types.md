@@ -29,14 +29,16 @@
 * **Description**: string: A description of the data catalog to be created. 
 * **Name**: string (Required, Identifier): The name of the data catalog to create. The catalog name must be unique for the AWS account and can use a maximum of 128 alphanumeric, underscore, at sign, or hyphen characters. 
 * **Parameters**: [DataCatalog_Parameters](#datacatalogparameters): Specifies the Lambda function or functions to use for creating the data catalog. This is a mapping whose values depend on the catalog type. 
-* **Tags**: [Tags](#tags): A list of comma separated tags to add to the data catalog that is created. 
+* **Tags**: [Tag](#tag)[]: A list of comma separated tags to add to the data catalog that is created. 
 * **Type**: string (Required): The type of data catalog to create: LAMBDA for a federated catalog, GLUE for AWS Glue Catalog, or HIVE for an external hive metastore. 
 
 ## DataCatalog_Parameters
 ### Properties
 
-## Tags
+## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.Athena/NamedQueryProperties
 ### Properties
@@ -61,87 +63,53 @@
 * **Name**: string (Required, Identifier): The workGroup name.
 * **RecursiveDeleteOption**: bool: The option to delete the workgroup and its contents even if the workgroup contains any named queries.
 * **State**: string: The state of the workgroup: ENABLED or DISABLED.
-* **Tags**: [Tags](#tags): One or more tags, separated by commas, that you want to attach to the workgroup as you create it
+* **Tags**: [Tag](#tag)[]: One or more tags, separated by commas, that you want to attach to the workgroup as you create it
 * **WorkGroupConfiguration**: [WorkGroupConfiguration](#workgroupconfiguration): The workgroup configuration
 * **WorkGroupConfigurationUpdates**: [WorkGroupConfigurationUpdates](#workgroupconfigurationupdates) (WriteOnly): The workgroup configuration update object
 
-## Tags
+## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## WorkGroupConfiguration
 ### Properties
-* **BytesScannedCutoffPerQuery**: [BytesScannedCutoffPerQuery](#bytesscannedcutoffperquery)
-* **EnforceWorkGroupConfiguration**: [EnforceWorkGroupConfiguration](#enforceworkgroupconfiguration)
+* **BytesScannedCutoffPerQuery**: int
+* **EnforceWorkGroupConfiguration**: bool
 * **EngineVersion**: [EngineVersion](#engineversion)
-* **PublishCloudWatchMetricsEnabled**: [PublishCloudWatchMetricsEnabled](#publishcloudwatchmetricsenabled)
-* **RequesterPaysEnabled**: [RequesterPaysEnabled](#requesterpaysenabled)
+* **PublishCloudWatchMetricsEnabled**: bool
+* **RequesterPaysEnabled**: bool
 * **ResultConfiguration**: [ResultConfiguration](#resultconfiguration)
-
-## BytesScannedCutoffPerQuery
-### Properties
-
-## EnforceWorkGroupConfiguration
-### Properties
 
 ## EngineVersion
 ### Properties
-* **EffectiveEngineVersion**: [EffectiveEngineVersion](#effectiveengineversion) (ReadOnly)
-* **SelectedEngineVersion**: [SelectedEngineVersion](#selectedengineversion)
-
-## EffectiveEngineVersion
-### Properties
-
-## SelectedEngineVersion
-### Properties
-
-## PublishCloudWatchMetricsEnabled
-### Properties
-
-## RequesterPaysEnabled
-### Properties
+* **EffectiveEngineVersion**: string (ReadOnly)
+* **SelectedEngineVersion**: string
 
 ## ResultConfiguration
 ### Properties
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
-* **OutputLocation**: [OutputLocation](#outputlocation)
+* **OutputLocation**: string
 
 ## EncryptionConfiguration
 ### Properties
-* **EncryptionOption**: [EncryptionOption](#encryptionoption) (Required)
-* **KmsKey**: [KmsKey](#kmskey)
-
-## EncryptionOption
-### Properties
-
-## KmsKey
-### Properties
-
-## OutputLocation
-### Properties
+* **EncryptionOption**: string (Required)
+* **KmsKey**: string
 
 ## WorkGroupConfigurationUpdates
 ### Properties
-* **BytesScannedCutoffPerQuery**: [BytesScannedCutoffPerQuery](#bytesscannedcutoffperquery)
-* **EnforceWorkGroupConfiguration**: [EnforceWorkGroupConfiguration](#enforceworkgroupconfiguration)
+* **BytesScannedCutoffPerQuery**: int
+* **EnforceWorkGroupConfiguration**: bool
 * **EngineVersion**: [EngineVersion](#engineversion)
-* **PublishCloudWatchMetricsEnabled**: [PublishCloudWatchMetricsEnabled](#publishcloudwatchmetricsenabled)
-* **RemoveBytesScannedCutoffPerQuery**: [RemoveBytesScannedCutoffPerQuery](#removebytesscannedcutoffperquery)
-* **RequesterPaysEnabled**: [RequesterPaysEnabled](#requesterpaysenabled)
+* **PublishCloudWatchMetricsEnabled**: bool
+* **RemoveBytesScannedCutoffPerQuery**: bool
+* **RequesterPaysEnabled**: bool
 * **ResultConfigurationUpdates**: [ResultConfigurationUpdates](#resultconfigurationupdates)
-
-## RemoveBytesScannedCutoffPerQuery
-### Properties
 
 ## ResultConfigurationUpdates
 ### Properties
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
-* **OutputLocation**: [OutputLocation](#outputlocation)
-* **RemoveEncryptionConfiguration**: [RemoveEncryptionConfiguration](#removeencryptionconfiguration)
-* **RemoveOutputLocation**: [RemoveOutputLocation](#removeoutputlocation)
-
-## RemoveEncryptionConfiguration
-### Properties
-
-## RemoveOutputLocation
-### Properties
+* **OutputLocation**: string
+* **RemoveEncryptionConfiguration**: bool
+* **RemoveOutputLocation**: bool
 

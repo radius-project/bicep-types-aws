@@ -132,100 +132,49 @@
 
 ## Attributes
 ### Properties
-* **AutoResolveBestVoices**: [AutoResolveBestVoices](#autoresolvebestvoices)
-* **ContactflowLogs**: [ContactflowLogs](#contactflowlogs)
-* **ContactLens**: [ContactLens](#contactlens)
-* **EarlyMedia**: [EarlyMedia](#earlymedia)
-* **InboundCalls**: [InboundCalls](#inboundcalls) (Required)
-* **OutboundCalls**: [OutboundCalls](#outboundcalls) (Required)
-* **UseCustomTTSVoices**: [UseCustomTTSVoices](#usecustomttsvoices)
-
-## AutoResolveBestVoices
-### Properties
-
-## ContactflowLogs
-### Properties
-
-## ContactLens
-### Properties
-
-## EarlyMedia
-### Properties
-
-## InboundCalls
-### Properties
-
-## OutboundCalls
-### Properties
-
-## UseCustomTTSVoices
-### Properties
+* **AutoResolveBestVoices**: bool
+* **ContactflowLogs**: bool
+* **ContactLens**: bool
+* **EarlyMedia**: bool
+* **InboundCalls**: bool (Required)
+* **OutboundCalls**: bool (Required)
+* **UseCustomTTSVoices**: bool
 
 ## AWS.Connect/InstanceStorageConfigProperties
 ### Properties
-* **AssociationId**: [AssociationId](#associationid) (ReadOnly, Identifier)
+* **AssociationId**: string (ReadOnly, Identifier)
 * **InstanceArn**: string (Required, Identifier): Connect Instance ID with which the storage config will be associated
 * **KinesisFirehoseConfig**: [KinesisFirehoseConfig](#kinesisfirehoseconfig)
 * **KinesisStreamConfig**: [KinesisStreamConfig](#kinesisstreamconfig)
 * **KinesisVideoStreamConfig**: [KinesisVideoStreamConfig](#kinesisvideostreamconfig)
-* **ResourceType**: [InstanceStorageResourceType](#instancestorageresourcetype) (Required, Identifier)
+* **ResourceType**: string (Required, Identifier)
 * **S3Config**: [S3Config](#s3config)
-* **StorageType**: [StorageType](#storagetype) (Required)
-
-## AssociationId
-### Properties
+* **StorageType**: string (Required)
 
 ## KinesisFirehoseConfig
 ### Properties
-* **FirehoseArn**: [FirehoseDeliveryStreamArn](#firehosedeliverystreamarn) (Required)
-
-## FirehoseDeliveryStreamArn
-### Properties
+* **FirehoseArn**: string (Required)
 
 ## KinesisStreamConfig
 ### Properties
-* **StreamArn**: [KinesisStreamArn](#kinesisstreamarn) (Required)
-
-## KinesisStreamArn
-### Properties
+* **StreamArn**: string (Required)
 
 ## KinesisVideoStreamConfig
 ### Properties
 * **EncryptionConfig**: [EncryptionConfig](#encryptionconfig)
-* **Prefix**: [Prefix](#prefix) (Required)
-* **RetentionPeriodHours**: [Hours](#hours) (Required)
+* **Prefix**: string (Required)
+* **RetentionPeriodHours**: int (Required)
 
 ## EncryptionConfig
 ### Properties
-* **EncryptionType**: [EncryptionType](#encryptiontype) (Required)
-* **KeyId**: [KeyId](#keyid) (Required)
-
-## EncryptionType
-### Properties
-
-## KeyId
-### Properties
-
-## Prefix
-### Properties
-
-## Hours
-### Properties
-
-## InstanceStorageResourceType
-### Properties
+* **EncryptionType**: string (Required)
+* **KeyId**: string (Required)
 
 ## S3Config
 ### Properties
-* **BucketName**: [BucketName](#bucketname) (Required)
-* **BucketPrefix**: [Prefix](#prefix) (Required)
+* **BucketName**: string (Required)
+* **BucketPrefix**: string (Required)
 * **EncryptionConfig**: [EncryptionConfig](#encryptionconfig)
-
-## BucketName
-### Properties
-
-## StorageType
-### Properties
 
 ## AWS.Connect/PhoneNumberProperties
 ### Properties
@@ -256,37 +205,22 @@
 ### Properties
 * **PhoneConfig**: [PhoneNumberQuickConnectConfig](#phonenumberquickconnectconfig)
 * **QueueConfig**: [QueueQuickConnectConfig](#queuequickconnectconfig)
-* **QuickConnectType**: [QuickConnectType](#quickconnecttype) (Required)
+* **QuickConnectType**: string (Required)
 * **UserConfig**: [UserQuickConnectConfig](#userquickconnectconfig)
 
 ## PhoneNumberQuickConnectConfig
 ### Properties
-* **PhoneNumber**: [PhoneNumber](#phonenumber) (Required)
-
-## PhoneNumber
-### Properties
+* **PhoneNumber**: string (Required)
 
 ## QueueQuickConnectConfig
 ### Properties
-* **ContactFlowArn**: [ContactFlowArn](#contactflowarn) (Required)
-* **QueueArn**: [QueueArn](#queuearn) (Required)
-
-## ContactFlowArn
-### Properties
-
-## QueueArn
-### Properties
-
-## QuickConnectType
-### Properties
+* **ContactFlowArn**: string (Required)
+* **QueueArn**: string (Required)
 
 ## UserQuickConnectConfig
 ### Properties
-* **ContactFlowArn**: [ContactFlowArn](#contactflowarn) (Required)
-* **UserArn**: [UserArn](#userarn) (Required)
-
-## UserArn
-### Properties
+* **ContactFlowArn**: string (Required)
+* **UserArn**: string (Required)
 
 ## Tag
 ### Properties
@@ -296,7 +230,7 @@
 ## AWS.Connect/TaskTemplateProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The identifier (arn) of the task template.
-* **ClientToken**: [ClientToken](#clienttoken)
+* **ClientToken**: string
 * **Constraints**: [TaskTemplate_Constraints](#tasktemplateconstraints): The constraints for the task template
 * **ContactFlowArn**: string: The identifier of the contact flow.
 * **Defaults**: [DefaultFieldValue](#defaultfieldvalue)[]
@@ -304,54 +238,42 @@
 * **Fields**: [Field](#field)[]: The list of task template's fields
 * **InstanceArn**: string (Required): The identifier (arn) of the instance.
 * **Name**: string: The name of the task template.
-* **Status**: [Status](#status)
+* **Status**: string
 * **Tags**: [Tag](#tag)[]: One or more tags.
-
-## ClientToken
-### Properties
 
 ## TaskTemplate_Constraints
 ### Properties
-* **InvisibleFields**: [InvisibleTaskTemplateFields](#invisibletasktemplatefields)
-* **ReadOnlyFields**: [ReadOnlyTaskTemplateFields](#readonlytasktemplatefields)
-* **RequiredFields**: [RequiredTaskTemplateFields](#requiredtasktemplatefields)
+* **InvisibleFields**: [InvisibleFieldInfo](#invisiblefieldinfo)[]
+* **ReadOnlyFields**: [ReadOnlyFieldInfo](#readonlyfieldinfo)[]
+* **RequiredFields**: [RequiredFieldInfo](#requiredfieldinfo)[]
 
-## InvisibleTaskTemplateFields
+## InvisibleFieldInfo
 ### Properties
-
-## ReadOnlyTaskTemplateFields
-### Properties
-
-## RequiredTaskTemplateFields
-### Properties
-
-## DefaultFieldValue
-### Properties
-* **DefaultValue**: [FieldValue](#fieldvalue) (Required)
 * **Id**: [FieldIdentifier](#fieldidentifier) (Required)
-
-## FieldValue
-### Properties
 
 ## FieldIdentifier
 ### Properties
 * **Name**: string (Required): The name of the task template field
 
+## ReadOnlyFieldInfo
+### Properties
+* **Id**: [FieldIdentifier](#fieldidentifier) (Required)
+
+## RequiredFieldInfo
+### Properties
+* **Id**: [FieldIdentifier](#fieldidentifier) (Required)
+
+## DefaultFieldValue
+### Properties
+* **DefaultValue**: string (Required)
+* **Id**: [FieldIdentifier](#fieldidentifier) (Required)
+
 ## Field
 ### Properties
 * **Description**: string: The description of the task template's field
 * **Id**: [FieldIdentifier](#fieldidentifier) (Required)
-* **SingleSelectOptions**: [FieldOption](#fieldoption)[]: list of field options to be used with single select
-* **Type**: [FieldType](#fieldtype) (Required)
-
-## FieldOption
-### Properties
-
-## FieldType
-### Properties
-
-## Status
-### Properties
+* **SingleSelectOptions**: string[]: list of field options to be used with single select
+* **Type**: string (Required)
 
 ## Tag
 ### Properties
@@ -367,55 +289,25 @@
 * **Password**: string (WriteOnly): The password for the user account. A password is required if you are using Amazon Connect for identity management. Otherwise, it is an error to include a password.
 * **PhoneConfig**: [UserPhoneConfig](#userphoneconfig) (Required): The phone settings for the user.
 * **RoutingProfileArn**: string (Required): The identifier of the routing profile for the user.
-* **SecurityProfileArns**: [SecurityProfileArn](#securityprofilearn)[] (Required): One or more security profile arns for the user
+* **SecurityProfileArns**: string[] (Required): One or more security profile arns for the user
 * **Tags**: [Tag](#tag)[]: One or more tags.
 * **UserArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the user.
 * **Username**: string (Required): The user name for the account.
 
 ## UserIdentityInfo
 ### Properties
-* **Email**: [Email](#email)
-* **FirstName**: [FirstName](#firstname)
-* **LastName**: [LastName](#lastname)
-* **Mobile**: [Mobile](#mobile)
-* **SecondaryEmail**: [SecondaryEmail](#secondaryemail)
-
-## Email
-### Properties
-
-## FirstName
-### Properties
-
-## LastName
-### Properties
-
-## Mobile
-### Properties
-
-## SecondaryEmail
-### Properties
+* **Email**: string
+* **FirstName**: string
+* **LastName**: string
+* **Mobile**: string
+* **SecondaryEmail**: string
 
 ## UserPhoneConfig
 ### Properties
-* **AfterContactWorkTimeLimit**: [AfterContactWorkTimeLimit](#aftercontactworktimelimit)
-* **AutoAccept**: [AutoAccept](#autoaccept)
-* **DeskPhoneNumber**: [DeskPhoneNumber](#deskphonenumber)
-* **PhoneType**: [PhoneType](#phonetype) (Required)
-
-## AfterContactWorkTimeLimit
-### Properties
-
-## AutoAccept
-### Properties
-
-## DeskPhoneNumber
-### Properties
-
-## PhoneType
-### Properties
-
-## SecurityProfileArn
-### Properties
+* **AfterContactWorkTimeLimit**: int
+* **AutoAccept**: bool
+* **DeskPhoneNumber**: string
+* **PhoneType**: string (Required)
 
 ## Tag
 ### Properties
@@ -426,9 +318,6 @@
 ### Properties
 * **InstanceArn**: string (Required): The identifier of the Amazon Connect instance.
 * **Name**: string (Required): The name of the user hierarchy group.
-* **ParentGroupArn**: [UserHierarchyGroupArn](#userhierarchygrouparn): The Amazon Resource Name (ARN) for the parent user hierarchy group.
-* **UserHierarchyGroupArn**: [UserHierarchyGroupArn](#userhierarchygrouparn) (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the user hierarchy group.
-
-## UserHierarchyGroupArn
-### Properties
+* **ParentGroupArn**: string: The Amazon Resource Name (ARN) for the parent user hierarchy group.
+* **UserHierarchyGroupArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the user hierarchy group.
 

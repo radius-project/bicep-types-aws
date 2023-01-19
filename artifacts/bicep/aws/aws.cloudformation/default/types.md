@@ -63,7 +63,7 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **AdministrationRoleARN**: string: The Amazon Resource Number (ARN) of the IAM role to use to create this stack set. Specify an IAM role only if you are using customized administrator roles to control which users or groups can manage specific stack sets within the same administrator account.
 * **AutoDeployment**: [AutoDeployment](#autodeployment): Describes whether StackSets automatically deploys to AWS Organizations accounts that are added to the target organization or organizational unit (OU). Specify only if PermissionModel is SERVICE_MANAGED.
 * **CallAs**: string (WriteOnly): Specifies the AWS account that you are acting from. By default, SELF is specified. For self-managed permissions, specify SELF; for service-managed permissions, if you are signed in to the organization's management account, specify SELF. If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN.
-* **Capabilities**: [Capability](#capability)[]: In some cases, you must explicitly acknowledge that your stack set template contains certain capabilities in order for AWS CloudFormation to create the stack set and related stack instances.
+* **Capabilities**: string[]: In some cases, you must explicitly acknowledge that your stack set template contains certain capabilities in order for AWS CloudFormation to create the stack set and related stack instances.
 * **Description**: string: A description of the stack set. You can use the description to identify the stack set's purpose or other important information.
 * **ExecutionRoleName**: string: The name of the IAM execution role to use to create the stack set. If you do not specify an execution role, AWS CloudFormation uses the AWSCloudFormationStackSetExecutionRole role for the stack set operation.
 * **ManagedExecution**: [StackSet_ManagedExecution](#stacksetmanagedexecution): Describes whether StackSets performs non-conflicting operations concurrently and queues conflicting operations.
@@ -82,15 +82,9 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **Enabled**: bool: If set to true, StackSets automatically deploys additional stack instances to AWS Organizations accounts that are added to a target organization or organizational unit (OU) in the specified Regions. If an account is removed from a target organization or OU, StackSets deletes stack instances from the account in the specified Regions.
 * **RetainStacksOnAccountRemoval**: bool: If set to true, stack resources are retained when an account is removed from a target organization or OU. If set to false, stack resources are deleted. Specify only if Enabled is set to True.
 
-## Capability
-### Properties
-
 ## StackSet_ManagedExecution
 ### Properties
-* **Active**: [Active](#active)
-
-## Active
-### Properties
+* **Active**: bool
 
 ## OperationPreferences
 ### Properties
@@ -98,14 +92,8 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **FailureTolerancePercentage**: int
 * **MaxConcurrentCount**: int
 * **MaxConcurrentPercentage**: int
-* **RegionConcurrencyType**: [RegionConcurrencyType](#regionconcurrencytype)
-* **RegionOrder**: [Region](#region)[]
-
-## RegionConcurrencyType
-### Properties
-
-## Region
-### Properties
+* **RegionConcurrencyType**: string
+* **RegionOrder**: string[]
 
 ## Parameter
 ### Properties
@@ -116,19 +104,13 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 ### Properties
 * **DeploymentTargets**: [DeploymentTargets](#deploymenttargets) (Required)
 * **ParameterOverrides**: [Parameter](#parameter)[]: A list of stack set parameters whose values you want to override in the selected stack instances.
-* **Regions**: [Region](#region)[] (Required): The names of one or more Regions where you want to create stack instances using the specified AWS account(s).
+* **Regions**: string[] (Required): The names of one or more Regions where you want to create stack instances using the specified AWS account(s).
 
 ## DeploymentTargets
 ### Properties
 * **AccountFilterType**: string: The filter type you want to apply on organizational units and accounts.
-* **Accounts**: [Account](#account)[]: AWS accounts that you want to create stack instances in the specified Region(s) for.
-* **OrganizationalUnitIds**: [OrganizationalUnitId](#organizationalunitid)[]: The organization root ID or organizational unit (OU) IDs to which StackSets deploys.
-
-## Account
-### Properties
-
-## OrganizationalUnitId
-### Properties
+* **Accounts**: string[]: AWS accounts that you want to create stack instances in the specified Region(s) for.
+* **OrganizationalUnitIds**: string[]: The organization root ID or organizational unit (OU) IDs to which StackSets deploys.
 
 ## Tag
 ### Properties

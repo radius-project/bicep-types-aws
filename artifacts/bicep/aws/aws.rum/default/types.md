@@ -12,29 +12,20 @@
 * **CwLogEnabled**: bool: Data collected by RUM is kept by RUM for 30 days and then deleted. This parameter specifies whether RUM sends a copy of this telemetry data to CWLlong in your account. This enables you to keep the telemetry data for more than 30 days, but it does incur CWLlong charges. If you omit this parameter, the default is false
 * **Domain**: string (Required): The top-level internet domain name for which your application has administrative authority.
 * **Name**: string (Required, Identifier): A name for the app monitor
-* **Tags**: [TagDef](#tagdef)
+* **Tags**: [Tag](#tag)[]
 
 ## AppMonitorConfiguration
 ### Properties
 * **AllowCookies**: bool: If you set this to true, the RUM web client sets two cookies, a session cookie and a user cookie. The cookies allow the RUM web client to collect data relating to the number of users an application has and the behavior of the application across a sequence of events. Cookies are stored in the top-level domain of the current page.
 * **EnableXRay**: bool: If you set this to true, RUM enables xray tracing for the user sessions that RUM samples. RUM adds an xray trace header to allowed HTTP requests. It also records an xray segment for allowed HTTP requests. You can see traces and segments from these user sessions in the xray console and the CW ServiceLens console.
-* **ExcludedPages**: [Pages](#pages): A list of URLs in your website or application to exclude from RUM data collection. You can't include both ExcludedPages and IncludedPages in the same operation.
-* **FavoritePages**: [FavoritePages](#favoritepages): A list of pages in the RUM console that are to be displayed with a favorite icon.
-* **GuestRoleArn**: [Arn](#arn): The ARN of the guest IAM role that is attached to the identity pool that is used to authorize the sending of data to RUM.
+* **ExcludedPages**: string[]: A list of URLs in your website or application to exclude from RUM data collection. You can't include both ExcludedPages and IncludedPages in the same operation.
+* **FavoritePages**: string[]: A list of pages in the RUM console that are to be displayed with a favorite icon.
+* **GuestRoleArn**: string: The ARN of the guest IAM role that is attached to the identity pool that is used to authorize the sending of data to RUM.
 * **IdentityPoolId**: string: The ID of the identity pool that is used to authorize the sending of data to RUM.
-* **IncludedPages**: [Pages](#pages): If this app monitor is to collect data from only certain pages in your application, this structure lists those pages. You can't include both ExcludedPages and IncludedPages in the same operation.
+* **IncludedPages**: string[]: If this app monitor is to collect data from only certain pages in your application, this structure lists those pages. You can't include both ExcludedPages and IncludedPages in the same operation.
 * **MetricDestinations**: [MetricDestination](#metricdestination)[]: An array of structures which define the destinations and the metrics that you want to send.
 * **SessionSampleRate**: int: Specifies the percentage of user sessions to use for RUM data collection. Choosing a higher percentage gives you more data but also incurs more costs. The number you specify is the percentage of user sessions that will be used. If you omit this parameter, the default of 10 is used.
-* **Telemetries**: [Telemetry](#telemetry)[]: An array that lists the types of telemetry data that this app monitor is to collect.
-
-## Pages
-### Properties
-
-## FavoritePages
-### Properties
-
-## Arn
-### Properties
+* **Telemetries**: string[]: An array that lists the types of telemetry data that this app monitor is to collect.
 
 ## MetricDestination
 ### Properties
@@ -110,9 +101,8 @@ If this metric is sent to Evidently, this field will be passed to Evidently raw 
 ## AppMonitor_DimensionKeys
 ### Properties
 
-## Telemetry
+## Tag
 ### Properties
-
-## TagDef
-### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 

@@ -45,18 +45,9 @@
 
 ## S3OutputLocation
 ### Properties
-* **OutputS3BucketName**: [S3BucketName](#s3bucketname)
-* **OutputS3KeyPrefix**: [S3KeyPrefix](#s3keyprefix)
-* **OutputS3Region**: [S3Region](#s3region)
-
-## S3BucketName
-### Properties
-
-## S3KeyPrefix
-### Properties
-
-## S3Region
-### Properties
+* **OutputS3BucketName**: string
+* **OutputS3KeyPrefix**: string
+* **OutputS3Region**: string
 
 ## Association_Parameters
 ### Properties

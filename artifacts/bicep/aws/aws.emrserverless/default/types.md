@@ -12,7 +12,7 @@
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the EMR Serverless Application.
 * **AutoStartConfiguration**: [AutoStartConfiguration](#autostartconfiguration): Configuration for Auto Start of Application.
 * **AutoStopConfiguration**: [AutoStopConfiguration](#autostopconfiguration): Configuration for Auto Stop of Application.
-* **InitialCapacity**: [InitialCapacityConfigMap](#initialcapacityconfigmap): Initial capacity initialized when an Application is started.
+* **InitialCapacity**: [InitialCapacityConfigKeyValuePair](#initialcapacityconfigkeyvaluepair)[]: Initial capacity initialized when an Application is started.
 * **MaximumCapacity**: [MaximumAllowedResources](#maximumallowedresources): Maximum allowed cumulative resources for an Application. No new resources will be created once the limit is hit.
 * **Name**: string: User friendly Application name.
 * **NetworkConfiguration**: [NetworkConfiguration](#networkconfiguration): Network Configuration for customer VPC connectivity.
@@ -29,34 +29,32 @@
 * **Enabled**: bool: If set to true, the Application will automatically stop after being idle. Defaults to true.
 * **IdleTimeoutMinutes**: int: The amount of time [in minutes] to wait before auto stopping the Application when idle. Defaults to 15 minutes.
 
-## InitialCapacityConfigMap
+## InitialCapacityConfigKeyValuePair
 ### Properties
+* **Key**: string (Required): Worker type for an analytics framework.
+* **Value**: [InitialCapacityConfig](#initialcapacityconfig) (Required)
+
+## InitialCapacityConfig
+### Properties
+* **WorkerConfiguration**: [WorkerConfiguration](#workerconfiguration) (Required)
+* **WorkerCount**: int (Required): Initial count of workers to be initialized when an Application is started. This count will be continued to be maintained until the Application is stopped
+
+## WorkerConfiguration
+### Properties
+* **Cpu**: string (Required): Per worker CPU resource. vCPU is the only supported unit and specifying vCPU is optional.
+* **Disk**: string: Per worker Disk resource. GB is the only supported unit and specifying GB is optional
+* **Memory**: string (Required): Per worker memory resource. GB is the only supported unit and specifying GB is optional.
 
 ## MaximumAllowedResources
 ### Properties
-* **Cpu**: [CpuSize](#cpusize) (Required): Per worker CPU resource. vCPU is the only supported unit and specifying vCPU is optional.
-* **Disk**: [DiskSize](#disksize): Per worker Disk resource. GB is the only supported unit and specifying GB is optional
-* **Memory**: [MemorySize](#memorysize) (Required): Per worker memory resource. GB is the only supported unit and specifying GB is optional.
-
-## CpuSize
-### Properties
-
-## DiskSize
-### Properties
-
-## MemorySize
-### Properties
+* **Cpu**: string (Required): Per worker CPU resource. vCPU is the only supported unit and specifying vCPU is optional.
+* **Disk**: string: Per worker Disk resource. GB is the only supported unit and specifying GB is optional
+* **Memory**: string (Required): Per worker memory resource. GB is the only supported unit and specifying GB is optional.
 
 ## NetworkConfiguration
 ### Properties
-* **SecurityGroupIds**: [SecurityGroupId](#securitygroupid)[]: The ID of the security groups in the VPC to which you want to connect your job or application.
-* **SubnetIds**: [SubnetId](#subnetid)[]: The ID of the subnets in the VPC to which you want to connect your job or application.
-
-## SecurityGroupId
-### Properties
-
-## SubnetId
-### Properties
+* **SecurityGroupIds**: string[]: The ID of the security groups in the VPC to which you want to connect your job or application.
+* **SubnetIds**: string[]: The ID of the subnets in the VPC to which you want to connect your job or application.
 
 ## Tag
 ### Properties

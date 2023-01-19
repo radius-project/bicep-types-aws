@@ -101,13 +101,10 @@
 ### Properties
 * **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the profile.
 * **As2Id**: string (Required): AS2 identifier agreed with a trading partner.
-* **CertificateIds**: [CertificateId](#certificateid)[]: List of the certificate IDs associated with this profile to be used for encryption and signing of AS2 messages.
+* **CertificateIds**: string[]: List of the certificate IDs associated with this profile to be used for encryption and signing of AS2 messages.
 * **ProfileId**: string (ReadOnly, Identifier): A unique identifier for the profile
 * **ProfileType**: string (Required): Enum specifying whether the profile is local or associated with a trading partner.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## CertificateId
-### Properties
 
 ## Tag
 ### Properties

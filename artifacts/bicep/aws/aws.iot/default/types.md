@@ -695,20 +695,19 @@
 * **MessageExpiry**: string
 * **PayloadFormatIndicator**: string
 * **ResponseTopic**: string
-* **UserProperties**: [UserProperties](#userproperties)
+* **UserProperties**: [UserProperty](#userproperty)[]
 
-## UserProperties
+## UserProperty
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## S3Action
 ### Properties
 * **BucketName**: string (Required)
-* **CannedAcl**: [CannedAccessControlList](#cannedaccesscontrollist)
+* **CannedAcl**: string
 * **Key**: string (Required)
 * **RoleArn**: string (Required)
-
-## CannedAccessControlList
-### Properties
 
 ## SnsAction
 ### Properties
@@ -731,13 +730,15 @@
 ## TimestreamAction
 ### Properties
 * **DatabaseName**: string (Required)
-* **Dimensions**: [TimestreamDimensionsList](#timestreamdimensionslist) (Required)
+* **Dimensions**: [TimestreamDimension](#timestreamdimension)[] (Required)
 * **RoleArn**: string (Required)
 * **TableName**: string (Required)
 * **Timestamp**: [TimestreamTimestamp](#timestreamtimestamp)
 
-## TimestreamDimensionsList
+## TimestreamDimension
 ### Properties
+* **Name**: string (Required)
+* **Value**: string (Required)
 
 ## TimestreamTimestamp
 ### Properties
@@ -748,16 +749,13 @@
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): Amazon Resource Name (ARN).
 * **HttpUrlProperties**: [HttpUrlDestinationSummary](#httpurldestinationsummary): HTTP URL destination properties.
-* **Status**: [TopicRuleDestinationStatus](#topicruledestinationstatus): The status of the TopicRuleDestination.
+* **Status**: string: The status of the TopicRuleDestination.
 * **StatusReason**: string (ReadOnly): The reasoning for the current status of the TopicRuleDestination.
 * **VpcProperties**: [VpcDestinationProperties](#vpcdestinationproperties): VPC destination properties.
 
 ## HttpUrlDestinationSummary
 ### Properties
 * **ConfirmationUrl**: string
-
-## TopicRuleDestinationStatus
-### Properties
 
 ## VpcDestinationProperties
 ### Properties

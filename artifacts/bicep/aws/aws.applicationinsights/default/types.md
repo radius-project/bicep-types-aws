@@ -84,13 +84,10 @@
 
 ## WindowsEvent
 ### Properties
-* **EventLevels**: [EventLevel](#eventlevel)[] (Required): The levels of event to log. 
+* **EventLevels**: string[] (Required): The levels of event to log. 
 * **EventName**: string (Required): The type of Windows Events to log.
 * **LogGroupName**: string (Required): The CloudWatch log group name to be associated to the monitored log.
 * **PatternSet**: string: The name of the log pattern set.
-
-## EventLevel
-### Properties
 
 ## SubComponentTypeConfiguration
 ### Properties

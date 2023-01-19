@@ -189,24 +189,18 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## AWS.Redshift/EndpointAuthorizationProperties
 ### Properties
-* **Account**: [AwsAccount](#awsaccount) (Required, Identifier): The target AWS account ID to grant or revoke access for.
+* **Account**: string (Required, Identifier): The target AWS account ID to grant or revoke access for.
 * **AllowedAllVPCs**: bool (ReadOnly): Indicates whether all VPCs in the grantee account are allowed access to the cluster.
-* **AllowedVPCs**: [VpcId](#vpcid)[] (ReadOnly): The VPCs allowed access to the cluster.
+* **AllowedVPCs**: string[] (ReadOnly): The VPCs allowed access to the cluster.
 * **AuthorizeTime**: string (ReadOnly): The time (UTC) when the authorization was created.
 * **ClusterIdentifier**: string (Required, Identifier): The cluster identifier.
 * **ClusterStatus**: string (ReadOnly): The status of the cluster.
 * **EndpointCount**: int (ReadOnly): The number of Redshift-managed VPC endpoints created for the authorization.
 * **Force**: bool (WriteOnly):  Indicates whether to force the revoke action. If true, the Redshift-managed VPC endpoints associated with the endpoint authorization are also deleted.
-* **Grantee**: [AwsAccount](#awsaccount) (ReadOnly): The AWS account ID of the grantee of the cluster.
-* **Grantor**: [AwsAccount](#awsaccount) (ReadOnly): The AWS account ID of the cluster owner.
+* **Grantee**: string (ReadOnly): The AWS account ID of the grantee of the cluster.
+* **Grantor**: string (ReadOnly): The AWS account ID of the cluster owner.
 * **Status**: string (ReadOnly): The status of the authorization action.
-* **VpcIds**: [VpcId](#vpcid)[]: The virtual private cloud (VPC) identifiers to grant or revoke access to.
-
-## AwsAccount
-### Properties
-
-## VpcId
-### Properties
+* **VpcIds**: string[]: The virtual private cloud (VPC) identifiers to grant or revoke access to.
 
 ## AWS.Redshift/EventSubscriptionProperties
 ### Properties
@@ -233,18 +227,15 @@ The value must be either -1 or an integer between 1 and 3,653.
 ## AWS.Redshift/ScheduledActionProperties
 ### Properties
 * **Enable**: bool: If true, the schedule is enabled. If false, the scheduled action does not trigger.
-* **EndTime**: [timestamp](#timestamp): The end time in UTC of the scheduled action. After this time, the scheduled action does not trigger.
+* **EndTime**: string: The end time in UTC of the scheduled action. After this time, the scheduled action does not trigger.
 * **IamRole**: string: The IAM role to assume to run the target action.
-* **NextInvocations**: [timestamp](#timestamp)[] (ReadOnly): List of times when the scheduled action will run.
+* **NextInvocations**: string[] (ReadOnly): List of times when the scheduled action will run.
 * **Schedule**: string: The schedule in `at( )` or `cron( )` format.
 * **ScheduledActionDescription**: string: The description of the scheduled action.
 * **ScheduledActionName**: string (Required, Identifier): The name of the scheduled action. The name must be unique within an account.
-* **StartTime**: [timestamp](#timestamp): The start time in UTC of the scheduled action. Before this time, the scheduled action does not trigger.
+* **StartTime**: string: The start time in UTC of the scheduled action. Before this time, the scheduled action does not trigger.
 * **State**: string (ReadOnly): The state of the scheduled action.
 * **TargetAction**: [ScheduledActionType](#scheduledactiontype): A JSON format string of the Amazon Redshift API operation with input parameters.
-
-## timestamp
-### Properties
 
 ## ScheduledActionType
 ### Properties

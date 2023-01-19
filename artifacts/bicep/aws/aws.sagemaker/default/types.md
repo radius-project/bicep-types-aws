@@ -215,27 +215,12 @@
 
 ## AWS.SageMaker/ImageProperties
 ### Properties
-* **ImageArn**: [ImageArn](#imagearn) (ReadOnly, Identifier)
-* **ImageDescription**: [ImageDescription](#imagedescription)
-* **ImageDisplayName**: [ImageDisplayName](#imagedisplayname)
-* **ImageName**: [ImageName](#imagename) (Required)
-* **ImageRoleArn**: [ImageRoleArn](#imagerolearn) (Required)
+* **ImageArn**: string (ReadOnly, Identifier)
+* **ImageDescription**: string
+* **ImageDisplayName**: string
+* **ImageName**: string (Required)
+* **ImageRoleArn**: string (Required)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## ImageArn
-### Properties
-
-## ImageDescription
-### Properties
-
-## ImageDisplayName
-### Properties
-
-## ImageName
-### Properties
-
-## ImageRoleArn
-### Properties
 
 ## Tag
 ### Properties
@@ -245,36 +230,36 @@
 ## AWS.SageMaker/ModelPackageProperties
 ### Properties
 * **AdditionalInferenceSpecificationDefinition**: [AdditionalInferenceSpecificationDefinition](#additionalinferencespecificationdefinition)
-* **AdditionalInferenceSpecifications**: [AdditionalInferenceSpecifications](#additionalinferencespecifications)
-* **AdditionalInferenceSpecificationsToAdd**: [AdditionalInferenceSpecifications](#additionalinferencespecifications)
-* **ApprovalDescription**: [ApprovalDescription](#approvaldescription)
-* **CertifyForMarketplace**: [CertifyForMarketplace](#certifyformarketplace)
-* **ClientToken**: [ClientToken](#clienttoken)
-* **CreatedBy**: [CreatedBy](#createdby)
-* **CreationTime**: [CreationTime](#creationtime) (ReadOnly)
+* **AdditionalInferenceSpecifications**: [AdditionalInferenceSpecificationDefinition](#additionalinferencespecificationdefinition)[]
+* **AdditionalInferenceSpecificationsToAdd**: [AdditionalInferenceSpecificationDefinition](#additionalinferencespecificationdefinition)[]
+* **ApprovalDescription**: string
+* **CertifyForMarketplace**: bool
+* **ClientToken**: string
+* **CreatedBy**: [ModelPackage_CreatedBy](#modelpackagecreatedby)
+* **CreationTime**: string (ReadOnly)
 * **CustomerMetadataProperties**: [CustomerMetadataProperties](#customermetadataproperties)
-* **Domain**: [Domain](#domain)
+* **Domain**: string
 * **DriftCheckBaselines**: [DriftCheckBaselines](#driftcheckbaselines)
 * **Environment**: [Environment](#environment)
 * **InferenceSpecification**: [InferenceSpecification](#inferencespecification)
-* **LastModifiedBy**: [LastModifiedBy](#lastmodifiedby)
-* **LastModifiedTime**: [LastModifiedTime](#lastmodifiedtime)
+* **LastModifiedBy**: [ModelPackage_LastModifiedBy](#modelpackagelastmodifiedby)
+* **LastModifiedTime**: string
 * **MetadataProperties**: [MetadataProperties](#metadataproperties)
-* **ModelApprovalStatus**: [ModelApprovalStatus](#modelapprovalstatus)
+* **ModelApprovalStatus**: string
 * **ModelMetrics**: [ModelMetrics](#modelmetrics)
-* **ModelPackageArn**: [ModelPackageArn](#modelpackagearn) (ReadOnly, Identifier)
-* **ModelPackageDescription**: [ModelPackageDescription](#modelpackagedescription)
-* **ModelPackageGroupName**: [ModelPackageGroupName](#modelpackagegroupname)
-* **ModelPackageName**: [ModelPackageName](#modelpackagename)
-* **ModelPackageStatus**: [ModelPackageStatus](#modelpackagestatus) (ReadOnly)
+* **ModelPackageArn**: string (ReadOnly, Identifier)
+* **ModelPackageDescription**: string
+* **ModelPackageGroupName**: string
+* **ModelPackageName**: string
+* **ModelPackageStatus**: string (ReadOnly)
 * **ModelPackageStatusDetails**: [ModelPackageStatusDetails](#modelpackagestatusdetails)
 * **ModelPackageStatusItem**: [ModelPackageStatusItem](#modelpackagestatusitem)
-* **ModelPackageVersion**: [ModelPackageVersion](#modelpackageversion)
-* **SamplePayloadUrl**: [SamplePayloadUrl](#samplepayloadurl)
+* **ModelPackageVersion**: int
+* **SamplePayloadUrl**: string
 * **SourceAlgorithmSpecification**: [SourceAlgorithmSpecification](#sourcealgorithmspecification)
 * **Tag**: [Tag](#tag)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-* **Task**: [Task](#task)
+* **Task**: string
 * **ValidationSpecification**: [ValidationSpecification](#validationspecification)
 
 ## AdditionalInferenceSpecificationDefinition
@@ -282,10 +267,10 @@
 * **Containers**: [ModelPackageContainerDefinition](#modelpackagecontainerdefinition)[] (Required): The Amazon ECR registry path of the Docker image that contains the inference code.
 * **Description**: string: A description of the additional Inference specification.
 * **Name**: string (Required): A unique name to identify the additional inference specification. The name must be unique within the list of your additional inference specifications for a particular model package.
-* **SupportedContentTypes**: [ContentType](#contenttype)[]: The supported MIME types for the input data.
-* **SupportedRealtimeInferenceInstanceTypes**: [InferenceInstanceType](#inferenceinstancetype)[]: A list of the instance types that are used to generate inferences in real-time
-* **SupportedResponseMIMETypes**: [ResponseMIMEType](#responsemimetype)[]: The supported MIME types for the output data.
-* **SupportedTransformInstanceTypes**: [TransformInstanceType](#transforminstancetype)[]: A list of the instance types on which a transformation job can be run or on which an endpoint can be deployed.
+* **SupportedContentTypes**: string[]: The supported MIME types for the input data.
+* **SupportedRealtimeInferenceInstanceTypes**: string[]: A list of the instance types that are used to generate inferences in real-time
+* **SupportedResponseMIMETypes**: string[]: The supported MIME types for the output data.
+* **SupportedTransformInstanceTypes**: string[]: A list of the instance types on which a transformation job can be run or on which an endpoint can be deployed.
 
 ## ModelPackageContainerDefinition
 ### Properties
@@ -307,40 +292,10 @@
 ### Properties
 * **DataInputConfig**: string (Required): The input configuration object for the model.
 
-## ContentType
-### Properties
-
-## InferenceInstanceType
-### Properties
-
-## ResponseMIMEType
-### Properties
-
-## TransformInstanceType
-### Properties
-
-## AdditionalInferenceSpecifications
-### Properties
-
-## ApprovalDescription
-### Properties
-
-## CertifyForMarketplace
-### Properties
-
-## ClientToken
-### Properties
-
-## CreatedBy
-### Properties
-
-## CreationTime
+## ModelPackage_CreatedBy
 ### Properties
 
 ## CustomerMetadataProperties
-### Properties
-
-## Domain
 ### Properties
 
 ## DriftCheckBaselines
@@ -386,15 +341,12 @@
 ## InferenceSpecification
 ### Properties
 * **Containers**: [ModelPackageContainerDefinition](#modelpackagecontainerdefinition)[] (Required): The Amazon ECR registry path of the Docker image that contains the inference code.
-* **SupportedContentTypes**: [ContentType](#contenttype)[] (Required): The supported MIME types for the input data.
-* **SupportedRealtimeInferenceInstanceTypes**: [InferenceInstanceType](#inferenceinstancetype)[]: A list of the instance types that are used to generate inferences in real-time
-* **SupportedResponseMIMETypes**: [ResponseMIMEType](#responsemimetype)[] (Required): The supported MIME types for the output data.
-* **SupportedTransformInstanceTypes**: [TransformInstanceType](#transforminstancetype)[]: A list of the instance types on which a transformation job can be run or on which an endpoint can be deployed.
+* **SupportedContentTypes**: string[] (Required): The supported MIME types for the input data.
+* **SupportedRealtimeInferenceInstanceTypes**: string[]: A list of the instance types that are used to generate inferences in real-time
+* **SupportedResponseMIMETypes**: string[] (Required): The supported MIME types for the output data.
+* **SupportedTransformInstanceTypes**: string[]: A list of the instance types on which a transformation job can be run or on which an endpoint can be deployed.
 
-## LastModifiedBy
-### Properties
-
-## LastModifiedTime
+## ModelPackage_LastModifiedBy
 ### Properties
 
 ## MetadataProperties
@@ -403,9 +355,6 @@
 * **GeneratedBy**: string: The entity this entity was generated by.
 * **ProjectId**: string: The project ID metadata.
 * **Repository**: string: The repository metadata.
-
-## ModelApprovalStatus
-### Properties
 
 ## ModelMetrics
 ### Properties
@@ -434,21 +383,6 @@
 * **Constraints**: [MetricsSource](#metricssource)
 * **Statistics**: [MetricsSource](#metricssource)
 
-## ModelPackageArn
-### Properties
-
-## ModelPackageDescription
-### Properties
-
-## ModelPackageGroupName
-### Properties
-
-## ModelPackageName
-### Properties
-
-## ModelPackageStatus
-### Properties
-
 ## ModelPackageStatusDetails
 ### Properties
 * **ImageScanStatuses**: [ModelPackageStatusItem](#modelpackagestatusitem)[]
@@ -459,12 +393,6 @@
 * **FailureReason**: string: If the overall status is Failed, the reason for the failure.
 * **Name**: string (Required): The name of the model package for which the overall status is being reported.
 * **Status**: string (Required): The current status.
-
-## ModelPackageVersion
-### Properties
-
-## SamplePayloadUrl
-### Properties
 
 ## SourceAlgorithmSpecification
 ### Properties
@@ -479,9 +407,6 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
-## Task
-### Properties
 
 ## ValidationSpecification
 ### Properties
@@ -535,21 +460,12 @@
 ## AWS.SageMaker/ModelPackageGroupProperties
 ### Properties
 * **CreationTime**: string (ReadOnly): The time at which the model package group was created.
-* **ModelPackageGroupArn**: [ModelPackageGroupArn](#modelpackagegrouparn) (ReadOnly, Identifier)
-* **ModelPackageGroupDescription**: [ModelPackageGroupDescription](#modelpackagegroupdescription)
-* **ModelPackageGroupName**: [ModelPackageGroupName](#modelpackagegroupname) (Required)
+* **ModelPackageGroupArn**: string (ReadOnly, Identifier)
+* **ModelPackageGroupDescription**: string
+* **ModelPackageGroupName**: string (Required)
 * **ModelPackageGroupPolicy**: [ModelPackageGroup_ModelPackageGroupPolicy](#modelpackagegroupmodelpackagegrouppolicy) | string
 * **ModelPackageGroupStatus**: string (ReadOnly): The status of a modelpackage group job.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## ModelPackageGroupArn
-### Properties
-
-## ModelPackageGroupDescription
-### Properties
-
-## ModelPackageGroupName
-### Properties
 
 ## Tag
 ### Properties
@@ -559,38 +475,32 @@
 ## AWS.SageMaker/MonitoringScheduleProperties
 ### Properties
 * **CreationTime**: string (ReadOnly): The time at which the schedule was created.
-* **EndpointName**: [EndpointName](#endpointname)
+* **EndpointName**: string
 * **FailureReason**: string: Contains the reason a monitoring job failed, if it failed.
 * **LastModifiedTime**: string (ReadOnly): A timestamp that indicates the last time the monitoring job was modified.
 * **LastMonitoringExecutionSummary**: [MonitoringExecutionSummary](#monitoringexecutionsummary): Describes metadata on the last execution to run, if there was one.
 * **MonitoringScheduleArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the monitoring schedule.
 * **MonitoringScheduleConfig**: [MonitoringScheduleConfig](#monitoringscheduleconfig) (Required)
-* **MonitoringScheduleName**: [MonitoringScheduleName](#monitoringschedulename) (Required)
+* **MonitoringScheduleName**: string (Required)
 * **MonitoringScheduleStatus**: string: The status of a schedule job.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## EndpointName
-### Properties
 
 ## MonitoringExecutionSummary
 ### Properties
 * **CreationTime**: string (Required): The time at which the monitoring job was created.
-* **EndpointName**: [EndpointName](#endpointname)
+* **EndpointName**: string
 * **FailureReason**: string: Contains the reason a monitoring job failed, if it failed.
 * **LastModifiedTime**: string (Required): A timestamp that indicates the last time the monitoring job was modified.
 * **MonitoringExecutionStatus**: string (Required): The status of the monitoring job.
-* **MonitoringScheduleName**: [MonitoringScheduleName](#monitoringschedulename) (Required)
+* **MonitoringScheduleName**: string (Required)
 * **ProcessingJobArn**: string: The Amazon Resource Name (ARN) of the monitoring job.
 * **ScheduledTime**: string (Required): The time the monitoring job was scheduled.
-
-## MonitoringScheduleName
-### Properties
 
 ## MonitoringScheduleConfig
 ### Properties
 * **MonitoringJobDefinition**: [MonitoringJobDefinition](#monitoringjobdefinition)
 * **MonitoringJobDefinitionName**: string: Name of the job definition
-* **MonitoringType**: [MonitoringType](#monitoringtype)
+* **MonitoringType**: string
 * **ScheduleConfig**: [ScheduleConfig](#scheduleconfig)
 
 ## MonitoringJobDefinition
@@ -598,7 +508,7 @@
 * **BaselineConfig**: [BaselineConfig](#baselineconfig)
 * **Environment**: [MonitoringSchedule_Environment](#monitoringscheduleenvironment): Sets the environment variables in the Docker container
 * **MonitoringAppSpecification**: [MonitoringAppSpecification](#monitoringappspecification) (Required)
-* **MonitoringInputs**: [MonitoringInputs](#monitoringinputs) (Required)
+* **MonitoringInputs**: [MonitoringInput](#monitoringinput)[] (Required)
 * **MonitoringOutputConfig**: [MonitoringOutputConfig](#monitoringoutputconfig) (Required)
 * **MonitoringResources**: [MonitoringResources](#monitoringresources) (Required)
 * **NetworkConfig**: [NetworkConfig](#networkconfig)
@@ -612,31 +522,56 @@
 
 ## ConstraintsResource
 ### Properties
-* **S3Uri**: [S3Uri](#s3uri): The Amazon S3 URI for baseline constraint file in Amazon S3 that the current monitoring job should validated against.
-
-## S3Uri
-### Properties
+* **S3Uri**: string: The Amazon S3 URI for baseline constraint file in Amazon S3 that the current monitoring job should validated against.
 
 ## StatisticsResource
 ### Properties
-* **S3Uri**: [S3Uri](#s3uri): The Amazon S3 URI for the baseline statistics file in Amazon S3 that the current monitoring job should be validated against.
+* **S3Uri**: string: The Amazon S3 URI for the baseline statistics file in Amazon S3 that the current monitoring job should be validated against.
 
 ## MonitoringSchedule_Environment
 ### Properties
 
 ## MonitoringAppSpecification
 ### Properties
-* **ContainerArguments**: [ContainerArgument](#containerargument)[]: An array of arguments for the container used to run the monitoring job.
+* **ContainerArguments**: string[]: An array of arguments for the container used to run the monitoring job.
 * **ContainerEntrypoint**: string[]: Specifies the entrypoint for a container used to run the monitoring job.
 * **ImageUri**: string (Required): The container image to be run by the monitoring job.
-* **PostAnalyticsProcessorSourceUri**: [S3Uri](#s3uri): An Amazon S3 URI to a script that is called after analysis has been performed. Applicable only for the built-in (first party) containers.
-* **RecordPreprocessorSourceUri**: [S3Uri](#s3uri): An Amazon S3 URI to a script that is called per row prior to running analysis. It can base64 decode the payload and convert it into a flatted json so that the built-in container can use the converted data. Applicable only for the built-in (first party) containers
+* **PostAnalyticsProcessorSourceUri**: string: An Amazon S3 URI to a script that is called after analysis has been performed. Applicable only for the built-in (first party) containers.
+* **RecordPreprocessorSourceUri**: string: An Amazon S3 URI to a script that is called per row prior to running analysis. It can base64 decode the payload and convert it into a flatted json so that the built-in container can use the converted data. Applicable only for the built-in (first party) containers
 
-## ContainerArgument
+## MonitoringInput
 ### Properties
+* **BatchTransformInput**: [BatchTransformInput](#batchtransforminput)
+* **EndpointInput**: [EndpointInput](#endpointinput)
 
-## MonitoringInputs
+## BatchTransformInput
 ### Properties
+* **DataCapturedDestinationS3Uri**: string (Required): A URI that identifies the Amazon S3 storage location where Batch Transform Job captures data.
+* **DatasetFormat**: [DatasetFormat](#datasetformat) (Required)
+* **LocalPath**: string (Required): Path to the filesystem where the endpoint data is available to the container.
+* **S3DataDistributionType**: string: Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defauts to FullyReplicated
+* **S3InputMode**: string: Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.
+
+## DatasetFormat
+### Properties
+* **Csv**: [Csv](#csv)
+* **Json**: [Json](#json)
+* **Parquet**: bool
+
+## Csv
+### Properties
+* **Header**: bool: A boolean flag indicating if given CSV has header
+
+## Json
+### Properties
+* **Line**: bool: A boolean flag indicating if it is JSON line format
+
+## EndpointInput
+### Properties
+* **EndpointName**: string (Required)
+* **LocalPath**: string (Required): Path to the filesystem where the endpoint data is available to the container.
+* **S3DataDistributionType**: string: Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defauts to FullyReplicated
+* **S3InputMode**: string: Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.
 
 ## MonitoringOutputConfig
 ### Properties
@@ -679,9 +614,6 @@
 ### Properties
 * **MaxRuntimeInSeconds**: int (Required): The maximum runtime allowed in seconds.
 
-## MonitoringType
-### Properties
-
 ## ScheduleConfig
 ### Properties
 * **ScheduleExpression**: string (Required): A cron expression that describes details about the monitoring schedule.
@@ -716,50 +648,26 @@
 ## AWS.SageMaker/ProjectProperties
 ### Properties
 * **CreationTime**: string (ReadOnly): The time at which the project was created.
-* **ProjectArn**: [ProjectArn](#projectarn) (ReadOnly, Identifier)
-* **ProjectDescription**: [ProjectDescription](#projectdescription)
-* **ProjectId**: [ProjectId](#projectid) (ReadOnly)
-* **ProjectName**: [ProjectName](#projectname) (Required)
+* **ProjectArn**: string (ReadOnly, Identifier)
+* **ProjectDescription**: string
+* **ProjectId**: string (ReadOnly)
+* **ProjectName**: string (Required)
 * **ProjectStatus**: string (ReadOnly): The status of a project.
 * **ServiceCatalogProvisionedProductDetails**: [Project_ServiceCatalogProvisionedProductDetails](#projectservicecatalogprovisionedproductdetails) (ReadOnly): Provisioned ServiceCatalog  Details
 * **ServiceCatalogProvisioningDetails**: [Project_ServiceCatalogProvisioningDetails](#projectservicecatalogprovisioningdetails) (Required): Input ServiceCatalog Provisioning Details
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## ProjectArn
-### Properties
-
-## ProjectDescription
-### Properties
-
-## ProjectId
-### Properties
-
-## ProjectName
-### Properties
-
 ## Project_ServiceCatalogProvisionedProductDetails
 ### Properties
-* **ProvisionedProductId**: [ProvisioningArtifactId](#provisioningartifactid)
-* **ProvisionedProductStatusMessage**: [ProvisionedProductStatusMessage](#provisionedproductstatusmessage)
-
-## ProvisioningArtifactId
-### Properties
-
-## ProvisionedProductStatusMessage
-### Properties
+* **ProvisionedProductId**: string
+* **ProvisionedProductStatusMessage**: string
 
 ## Project_ServiceCatalogProvisioningDetails
 ### Properties
-* **PathId**: [PathId](#pathid)
-* **ProductId**: [ProductId](#productid) (Required)
-* **ProvisioningArtifactId**: [ProvisioningArtifactId](#provisioningartifactid)
+* **PathId**: string
+* **ProductId**: string (Required)
+* **ProvisioningArtifactId**: string
 * **ProvisioningParameters**: [ProvisioningParameter](#provisioningparameter)[]: Parameters specified by the administrator that are required for provisioning the product.
-
-## PathId
-### Properties
-
-## ProductId
-### Properties
 
 ## ProvisioningParameter
 ### Properties

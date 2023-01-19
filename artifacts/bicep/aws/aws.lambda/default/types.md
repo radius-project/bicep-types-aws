@@ -67,10 +67,7 @@
 
 ## AmazonManagedKafkaEventSourceConfig
 ### Properties
-* **ConsumerGroupId**: [ConsumerGroupId](#consumergroupid): The identifier for the Kafka Consumer Group to join.
-
-## ConsumerGroupId
-### Properties
+* **ConsumerGroupId**: string: The identifier for the Kafka Consumer Group to join.
 
 ## DestinationConfig
 ### Properties
@@ -98,7 +95,7 @@
 
 ## SelfManagedKafkaEventSourceConfig
 ### Properties
-* **ConsumerGroupId**: [ConsumerGroupId](#consumergroupid): The identifier for the Kafka Consumer Group to join.
+* **ConsumerGroupId**: string: The identifier for the Kafka Consumer Group to join.
 
 ## SourceAccessConfiguration
 ### Properties
@@ -192,21 +189,9 @@
 ## Cors
 ### Properties
 * **AllowCredentials**: bool: Specifies whether credentials are included in the CORS request.
-* **AllowHeaders**: [AllowHeaders](#allowheaders): Represents a collection of allowed headers.
-* **AllowMethods**: [AllowMethods](#allowmethods): Represents a collection of allowed HTTP methods.
-* **AllowOrigins**: [AllowOrigins](#alloworigins): Represents a collection of allowed origins.
-* **ExposeHeaders**: [ExposeHeaders](#exposeheaders): Represents a collection of exposed headers.
+* **AllowHeaders**: string[]: Represents a collection of allowed headers.
+* **AllowMethods**: string[]: Represents a collection of allowed HTTP methods.
+* **AllowOrigins**: string[]: Represents a collection of allowed origins.
+* **ExposeHeaders**: string[]: Represents a collection of exposed headers.
 * **MaxAge**: int
-
-## AllowHeaders
-### Properties
-
-## AllowMethods
-### Properties
-
-## AllowOrigins
-### Properties
-
-## ExposeHeaders
-### Properties
 

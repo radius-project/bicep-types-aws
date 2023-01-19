@@ -61,13 +61,10 @@
 
 ## Source
 ### Properties
-* **SourceData**: [SourceData](#sourcedata)
-* **SourceType**: [TrustAnchorType](#trustanchortype)
+* **SourceData**: [TrustAnchor_SourceData](#trustanchorsourcedata)
+* **SourceType**: string
 
-## SourceData
-### Properties
-
-## TrustAnchorType
+## TrustAnchor_SourceData
 ### Properties
 
 ## Tag

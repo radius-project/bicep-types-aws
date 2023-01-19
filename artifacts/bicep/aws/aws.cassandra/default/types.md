@@ -37,11 +37,8 @@
 
 ## BillingMode
 ### Properties
-* **Mode**: [Mode](#mode) (Required)
+* **Mode**: string (Required)
 * **ProvisionedThroughput**: [ProvisionedThroughput](#provisionedthroughput)
-
-## Mode
-### Properties
 
 ## ProvisionedThroughput
 ### Properties
@@ -60,14 +57,8 @@
 
 ## EncryptionSpecification
 ### Properties
-* **EncryptionType**: [EncryptionType](#encryptiontype) (Required)
-* **KmsKeyIdentifier**: [KmsKeyIdentifier](#kmskeyidentifier)
-
-## EncryptionType
-### Properties
-
-## KmsKeyIdentifier
-### Properties
+* **EncryptionType**: string (Required)
+* **KmsKeyIdentifier**: string
 
 ## Tag
 ### Properties

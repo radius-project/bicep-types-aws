@@ -39,26 +39,17 @@
 ### Properties
 * **Bandwidth**: [FrequencyBandwidth](#frequencybandwidth)
 * **CenterFrequency**: [Frequency](#frequency)
-* **Polarization**: [Polarization](#polarization)
+* **Polarization**: string
 
 ## FrequencyBandwidth
 ### Properties
-* **Units**: [BandwidthUnits](#bandwidthunits)
+* **Units**: string
 * **Value**: int
-
-## BandwidthUnits
-### Properties
 
 ## Frequency
 ### Properties
-* **Units**: [FrequencyUnits](#frequencyunits)
+* **Units**: string
 * **Value**: int
-
-## FrequencyUnits
-### Properties
-
-## Polarization
-### Properties
 
 ## AntennaDownlinkDemodDecodeConfig
 ### Properties
@@ -68,14 +59,11 @@
 
 ## DecodeConfig
 ### Properties
-* **UnvalidatedJSON**: [JsonString](#jsonstring)
-
-## JsonString
-### Properties
+* **UnvalidatedJSON**: string
 
 ## DemodulationConfig
 ### Properties
-* **UnvalidatedJSON**: [JsonString](#jsonstring)
+* **UnvalidatedJSON**: string
 
 ## AntennaUplinkConfig
 ### Properties
@@ -86,15 +74,12 @@
 ## UplinkSpectrumConfig
 ### Properties
 * **CenterFrequency**: [Frequency](#frequency)
-* **Polarization**: [Polarization](#polarization)
+* **Polarization**: string
 
 ## Eirp
 ### Properties
-* **Units**: [EirpUnits](#eirpunits)
+* **Units**: string
 * **Value**: int
-
-## EirpUnits
-### Properties
 
 ## DataflowEndpointConfig
 ### Properties
@@ -103,18 +88,9 @@
 
 ## S3RecordingConfig
 ### Properties
-* **BucketArn**: [BucketArn](#bucketarn)
-* **Prefix**: [S3KeyPrefix](#s3keyprefix)
-* **RoleArn**: [RoleArn](#rolearn)
-
-## BucketArn
-### Properties
-
-## S3KeyPrefix
-### Properties
-
-## RoleArn
-### Properties
+* **BucketArn**: string
+* **Prefix**: string
+* **RoleArn**: string
 
 ## TrackingConfig
 ### Properties

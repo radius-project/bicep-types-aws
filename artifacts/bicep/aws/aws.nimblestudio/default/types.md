@@ -41,8 +41,8 @@
 
 ## StreamConfiguration
 ### Properties
-* **ClipboardMode**: [StreamingClipboardMode](#streamingclipboardmode) (Required)
-* **Ec2InstanceTypes**: [StreamingInstanceType](#streaminginstancetype)[] (Required): <p>The EC2 instance types that users can select from when launching a streaming session
+* **ClipboardMode**: string (Required)
+* **Ec2InstanceTypes**: string[] (Required): <p>The EC2 instance types that users can select from when launching a streaming session
             with this launch profile.</p>
 * **MaxSessionLengthInMinutes**: int: <p>The length of time, in minutes, that a streaming session can be active before it is
             stopped or terminated. After this point, Nimble Studio automatically terminates or
@@ -63,20 +63,11 @@
 * **StreamingImageIds**: string[] (Required): <p>The streaming images that users can select from when launching a streaming session
             with this launch profile.</p>
 
-## StreamingClipboardMode
-### Properties
-
-## StreamingInstanceType
-### Properties
-
 ## StreamConfigurationSessionStorage
 ### Properties
-* **Mode**: [StreamingSessionStorageMode](#streamingsessionstoragemode)[] (Required): <p>Allows artists to upload files to their workstations. The only valid option is
+* **Mode**: string[] (Required): <p>Allows artists to upload files to their workstations. The only valid option is
                 <code>UPLOAD</code>.</p>
 * **Root**: [StreamingSessionStorageRoot](#streamingsessionstorageroot)
-
-## StreamingSessionStorageMode
-### Properties
 
 ## StreamingSessionStorageRoot
 ### Properties
@@ -102,10 +93,7 @@
 ## StreamingImageEncryptionConfiguration
 ### Properties
 * **KeyArn**: string: <p>The ARN for a KMS key that is used to encrypt studio data.</p>
-* **KeyType**: [StreamingImageEncryptionConfigurationKeyType](#streamingimageencryptionconfigurationkeytype) (Required)
-
-## StreamingImageEncryptionConfigurationKeyType
-### Properties
+* **KeyType**: string (Required)
 
 ## Tags
 ### Properties
@@ -126,10 +114,7 @@
 ## StudioEncryptionConfiguration
 ### Properties
 * **KeyArn**: string: <p>The ARN for a KMS key that is used to encrypt studio data.</p>
-* **KeyType**: [StudioEncryptionConfigurationKeyType](#studioencryptionconfigurationkeytype) (Required)
-
-## StudioEncryptionConfigurationKeyType
-### Properties
+* **KeyType**: string (Required)
 
 ## Tags
 ### Properties
@@ -146,9 +131,9 @@
 * **SecureInitializationRoleArn**: string
 * **StudioComponentId**: string (ReadOnly, Identifier)
 * **StudioId**: string (Required, Identifier): <p>The studio ID. </p>
-* **Subtype**: [StudioComponentSubtype](#studiocomponentsubtype)
+* **Subtype**: string
 * **Tags**: [Tags](#tags)
-* **Type**: [StudioComponentType](#studiocomponenttype) (Required)
+* **Type**: string (Required)
 
 ## StudioComponentConfiguration
 ### Properties
@@ -157,27 +142,15 @@
 ### Properties
 * **LaunchProfileProtocolVersion**: string: <p>The version number of the protocol that is used by the launch profile. The only valid
             version is "2021-03-31".</p>
-* **Platform**: [LaunchProfilePlatform](#launchprofileplatform)
-* **RunContext**: [StudioComponentInitializationScriptRunContext](#studiocomponentinitializationscriptruncontext)
+* **Platform**: string
+* **RunContext**: string
 * **Script**: string: <p>The initialization script.</p>
-
-## LaunchProfilePlatform
-### Properties
-
-## StudioComponentInitializationScriptRunContext
-### Properties
 
 ## ScriptParameterKeyValue
 ### Properties
 * **Key**: string: <p>A script parameter key.</p>
 * **Value**: string: <p>A script parameter value.</p>
 
-## StudioComponentSubtype
-### Properties
-
 ## Tags
-### Properties
-
-## StudioComponentType
 ### Properties
 

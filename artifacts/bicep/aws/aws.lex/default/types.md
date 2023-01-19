@@ -20,69 +20,59 @@
 
 ## AWS.Lex/BotProperties
 ### Properties
-* **Arn**: [BotArn](#botarn) (ReadOnly)
+* **Arn**: string (ReadOnly)
 * **AutoBuildBotLocales**: bool (WriteOnly): Specifies whether to build the bot locales after bot creation completes.
 * **BotFileS3Location**: [S3Location](#s3location) (WriteOnly)
 * **BotLocales**: [BotLocale](#botlocale)[] (WriteOnly): List of bot locales
 * **BotTags**: [Tag](#tag)[] (WriteOnly): A list of tags to add to the bot, which can only be added at bot creation.
 * **DataPrivacy**: [Bot_DataPrivacy](#botdataprivacy) (Required): Data privacy setting of the Bot.
-* **Description**: [Description](#description)
-* **Id**: [Id](#id) (ReadOnly, Identifier)
+* **Description**: string
+* **Id**: string (ReadOnly, Identifier)
 * **IdleSessionTTLInSeconds**: int (Required): IdleSessionTTLInSeconds of the resource
-* **Name**: [Name](#name) (Required)
-* **RoleArn**: [RoleArn](#rolearn) (Required)
+* **Name**: string (Required)
+* **RoleArn**: string (Required)
 * **TestBotAliasSettings**: [TestBotAliasSettings](#testbotaliassettings)
 * **TestBotAliasTags**: [Tag](#tag)[] (WriteOnly): A list of tags to add to the test alias for a bot, , which can only be added at bot/bot alias creation.
 
-## BotArn
-### Properties
-
 ## S3Location
 ### Properties
-* **S3Bucket**: [S3BucketName](#s3bucketname) (Required): An Amazon S3 bucket in the same AWS Region as your function. The bucket can be in a different AWS account.
-* **S3ObjectKey**: [S3ObjectKey](#s3objectkey) (Required): The Amazon S3 key of the deployment package.
+* **S3Bucket**: string (Required): An Amazon S3 bucket in the same AWS Region as your function. The bucket can be in a different AWS account.
+* **S3ObjectKey**: string (Required): The Amazon S3 key of the deployment package.
 * **S3ObjectVersion**: string: For versioned objects, the version of the deployment package object to use. If not specified, the current object version will be used.
-
-## S3BucketName
-### Properties
-
-## S3ObjectKey
-### Properties
 
 ## BotLocale
 ### Properties
 * **CustomVocabulary**: [CustomVocabulary](#customvocabulary)
-* **Description**: [Description](#description)
+* **Description**: string
 * **Intents**: [Intent](#intent)[]: List of intents
-* **LocaleId**: [LocaleId](#localeid) (Required)
-* **NluConfidenceThreshold**: [ConfidenceThreshold](#confidencethreshold) (Required)
+* **LocaleId**: string (Required)
+* **NluConfidenceThreshold**: int (Required)
 * **SlotTypes**: [SlotType](#slottype)[]: List of SlotTypes
 * **VoiceSettings**: [VoiceSettings](#voicesettings)
 
 ## CustomVocabulary
 ### Properties
-* **CustomVocabularyItems**: [CustomVocabularyItems](#customvocabularyitems) (Required)
+* **CustomVocabularyItems**: [CustomVocabularyItem](#customvocabularyitem)[] (Required)
 
-## CustomVocabularyItems
+## CustomVocabularyItem
 ### Properties
-
-## Description
-### Properties
+* **Phrase**: string (Required): Phrase that should be recognized.
+* **Weight**: int: The degree to which the phrase recognition is boosted.
 
 ## Intent
 ### Properties
-* **Description**: [Description](#description)
+* **Description**: string
 * **DialogCodeHook**: [DialogCodeHookSetting](#dialogcodehooksetting)
 * **FulfillmentCodeHook**: [FulfillmentCodeHookSetting](#fulfillmentcodehooksetting)
-* **InputContexts**: [InputContextsList](#inputcontextslist)
+* **InputContexts**: [InputContext](#inputcontext)[]
 * **IntentClosingSetting**: [IntentClosingSetting](#intentclosingsetting)
 * **IntentConfirmationSetting**: [IntentConfirmationSetting](#intentconfirmationsetting)
 * **KendraConfiguration**: [KendraConfiguration](#kendraconfiguration)
-* **Name**: [Name](#name) (Required)
-* **OutputContexts**: [OutputContextsList](#outputcontextslist)
-* **ParentIntentSignature**: [ParentIntentSignature](#parentintentsignature)
-* **SampleUtterances**: [SampleUtterancesList](#sampleutteranceslist)
-* **SlotPriorities**: [SlotPrioritiesList](#slotprioritieslist)
+* **Name**: string (Required)
+* **OutputContexts**: [OutputContext](#outputcontext)[]
+* **ParentIntentSignature**: string
+* **SampleUtterances**: [SampleUtterance](#sampleutterance)[]
+* **SlotPriorities**: [SlotPriority](#slotpriority)[]
 * **Slots**: [Slot](#slot)[]: List of slots
 
 ## DialogCodeHookSetting
@@ -106,16 +96,49 @@
 ### Properties
 * **AllowInterrupt**: bool: Determines whether the user can interrupt the start message while it is playing.
 * **DelayInSeconds**: int (Required): The delay between when the Lambda fulfillment function starts running and the start message is played. If the Lambda function returns before the delay is over, the start message isn't played.
-* **MessageGroups**: [MessageGroupsList](#messagegroupslist) (Required)
+* **MessageGroups**: [MessageGroup](#messagegroup)[] (Required)
 
-## MessageGroupsList
+## MessageGroup
 ### Properties
+* **Message**: [Message](#message) (Required)
+* **Variations**: [Message](#message)[]: Message variations to send to the user.
+
+## Message
+### Properties
+* **CustomPayload**: [CustomPayload](#custompayload)
+* **ImageResponseCard**: [ImageResponseCard](#imageresponsecard)
+* **PlainTextMessage**: [PlainTextMessage](#plaintextmessage)
+* **SSMLMessage**: [SSMLMessage](#ssmlmessage)
+
+## CustomPayload
+### Properties
+* **Value**: string (Required): The string that is sent to your application.
+
+## ImageResponseCard
+### Properties
+* **Buttons**: [Button](#button)[]: A list of buttons that should be displayed on the response card.
+* **ImageUrl**: string: The URL of an image to display on the response card.
+* **Subtitle**: string: The subtitle to display on the response card.
+* **Title**: string (Required): The title to display on the response card.
+
+## Button
+### Properties
+* **Text**: string (Required): The text that appears on the button.
+* **Value**: string (Required): The value returned to Amazon Lex when the user chooses this button.
+
+## PlainTextMessage
+### Properties
+* **Value**: string (Required): The message to send to the user.
+
+## SSMLMessage
+### Properties
+* **Value**: string (Required): The SSML text that defines the prompt.
 
 ## FulfillmentUpdateResponseSpecification
 ### Properties
 * **AllowInterrupt**: bool: Determines whether the user can interrupt an update message while it is playing.
 * **FrequencyInSeconds**: int (Required): The frequency that a message is sent to the user. When the period ends, Amazon Lex chooses a message from the message groups and plays it to the user. If the fulfillment Lambda returns before the first period ends, an update message is not played to the user.
-* **MessageGroups**: [MessageGroupsList](#messagegroupslist) (Required)
+* **MessageGroups**: [MessageGroup](#messagegroup)[] (Required)
 
 ## PostFulfillmentStatusSpecification
 ### Properties
@@ -126,10 +149,11 @@
 ## ResponseSpecification
 ### Properties
 * **AllowInterrupt**: bool: Indicates whether the user can interrupt a speech prompt from the bot.
-* **MessageGroupsList**: [MessageGroupsList](#messagegroupslist) (Required)
+* **MessageGroupsList**: [MessageGroup](#messagegroup)[] (Required)
 
-## InputContextsList
+## InputContext
 ### Properties
+* **Name**: string (Required): The name of the context.
 
 ## IntentClosingSetting
 ### Properties
@@ -145,54 +169,42 @@
 ## PromptSpecification
 ### Properties
 * **AllowInterrupt**: bool: Indicates whether the user can interrupt a speech prompt from the bot.
-* **MaxRetries**: [PromptMaxRetries](#promptmaxretries) (Required)
-* **MessageGroupsList**: [MessageGroupsList](#messagegroupslist) (Required)
-* **MessageSelectionStrategy**: [MessageSelectionStrategy](#messageselectionstrategy)
+* **MaxRetries**: int (Required)
+* **MessageGroupsList**: [MessageGroup](#messagegroup)[] (Required)
+* **MessageSelectionStrategy**: string
 * **PromptAttemptsSpecification**: [Bot_PromptAttemptsSpecification](#botpromptattemptsspecification): Specifies the advanced settings on each attempt of the prompt.
-
-## PromptMaxRetries
-### Properties
-
-## MessageSelectionStrategy
-### Properties
 
 ## Bot_PromptAttemptsSpecification
 ### Properties
 
 ## KendraConfiguration
 ### Properties
-* **KendraIndex**: [KendraIndexArn](#kendraindexarn) (Required)
-* **QueryFilterString**: [QueryFilterString](#queryfilterstring)
+* **KendraIndex**: string (Required)
+* **QueryFilterString**: string
 * **QueryFilterStringEnabled**: bool: Determines whether the AMAZON.KendraSearchIntent intent uses a custom query string to query the Amazon Kendra index.
 
-## KendraIndexArn
+## OutputContext
 ### Properties
+* **Name**: string (Required)
+* **TimeToLiveInSeconds**: int (Required)
+* **TurnsToLive**: int (Required)
 
-## QueryFilterString
+## SampleUtterance
 ### Properties
+* **Utterance**: string (Required)
 
-## Name
+## SlotPriority
 ### Properties
-
-## OutputContextsList
-### Properties
-
-## ParentIntentSignature
-### Properties
-
-## SampleUtterancesList
-### Properties
-
-## SlotPrioritiesList
-### Properties
+* **Priority**: int (Required)
+* **SlotName**: string (Required): The name of the slot.
 
 ## Slot
 ### Properties
-* **Description**: [Description](#description)
+* **Description**: string
 * **MultipleValuesSetting**: [MultipleValuesSetting](#multiplevaluessetting)
-* **Name**: [Name](#name) (Required)
+* **Name**: string (Required)
 * **ObfuscationSetting**: [ObfuscationSetting](#obfuscationsetting)
-* **SlotTypeName**: [SlotTypeName](#slottypename) (Required)
+* **SlotTypeName**: string (Required)
 * **ValueElicitationSetting**: [SlotValueElicitationSetting](#slotvalueelicitationsetting) (Required)
 
 ## MultipleValuesSetting
@@ -203,15 +215,12 @@
 ### Properties
 * **ObfuscationSettingType**: string (Required): Value that determines whether Amazon Lex obscures slot values in conversation logs. The default is to obscure the values.
 
-## SlotTypeName
-### Properties
-
 ## SlotValueElicitationSetting
 ### Properties
 * **DefaultValueSpecification**: [SlotDefaultValueSpecification](#slotdefaultvaluespecification): A list of default values for a slot.
 * **PromptSpecification**: [PromptSpecification](#promptspecification): The prompt that Amazon Lex uses to elicit the slot value from the user.
-* **SampleUtterances**: [SampleUtterancesList](#sampleutteranceslist): If you know a specific pattern that users might respond to an Amazon Lex request for a slot value, you can provide those utterances to improve accuracy.
-* **SlotConstraint**: [SlotConstraint](#slotconstraint) (Required): Specifies whether the slot is required or optional.
+* **SampleUtterances**: [SampleUtterance](#sampleutterance)[]: If you know a specific pattern that users might respond to an Amazon Lex request for a slot value, you can provide those utterances to improve accuracy.
+* **SlotConstraint**: string (Required): Specifies whether the slot is required or optional.
 * **WaitAndContinueSpecification**: [WaitAndContinueSpecification](#waitandcontinuespecification): Specifies the prompts that Amazon Lex uses while a bot is waiting for customer input.
 
 ## SlotDefaultValueSpecification
@@ -221,9 +230,6 @@
 ## SlotDefaultValue
 ### Properties
 * **DefaultValue**: string (Required): The default value to use when a user doesn't provide a value for a slot.
-
-## SlotConstraint
-### Properties
 
 ## WaitAndContinueSpecification
 ### Properties
@@ -235,29 +241,17 @@
 ## StillWaitingResponseSpecification
 ### Properties
 * **AllowInterrupt**: bool: Indicates whether the user can interrupt a speech prompt from the bot.
-* **FrequencyInSeconds**: [StillWaitingResponseFrequency](#stillwaitingresponsefrequency) (Required)
-* **MessageGroupsList**: [MessageGroupsList](#messagegroupslist) (Required)
-* **TimeoutInSeconds**: [StillWaitingResponseTimeout](#stillwaitingresponsetimeout) (Required)
-
-## StillWaitingResponseFrequency
-### Properties
-
-## StillWaitingResponseTimeout
-### Properties
-
-## LocaleId
-### Properties
-
-## ConfidenceThreshold
-### Properties
+* **FrequencyInSeconds**: int (Required)
+* **MessageGroupsList**: [MessageGroup](#messagegroup)[] (Required)
+* **TimeoutInSeconds**: int (Required)
 
 ## SlotType
 ### Properties
-* **Description**: [Description](#description)
+* **Description**: string
 * **ExternalSourceSetting**: [ExternalSourceSetting](#externalsourcesetting)
-* **Name**: [Name](#name) (Required)
-* **ParentSlotTypeSignature**: [ParentSlotTypeSignature](#parentslottypesignature)
-* **SlotTypeValues**: [SlotTypeValues](#slottypevalues)
+* **Name**: string (Required)
+* **ParentSlotTypeSignature**: string
+* **SlotTypeValues**: [SlotTypeValue](#slottypevalue)[]
 * **ValueSelectionSetting**: [SlotValueSelectionSetting](#slotvalueselectionsetting)
 
 ## ExternalSourceSetting
@@ -271,34 +265,31 @@
 ## GrammarSlotTypeSource
 ### Properties
 * **KmsKeyArn**: string: The Amazon KMS key required to decrypt the contents of the grammar, if any.
-* **S3BucketName**: [S3BucketName](#s3bucketname) (Required): The name of the S3 bucket that contains the grammar source.
-* **S3ObjectKey**: [S3ObjectKey](#s3objectkey) (Required): The path to the grammar in the S3 bucket.
+* **S3BucketName**: string (Required): The name of the S3 bucket that contains the grammar source.
+* **S3ObjectKey**: string (Required): The path to the grammar in the S3 bucket.
 
-## ParentSlotTypeSignature
+## SlotTypeValue
 ### Properties
+* **SampleValue**: [SampleValue](#samplevalue) (Required)
+* **Synonyms**: [SampleValue](#samplevalue)[]
 
-## SlotTypeValues
+## SampleValue
 ### Properties
+* **Value**: string (Required): The value that can be used for a slot type.
 
 ## SlotValueSelectionSetting
 ### Properties
 * **AdvancedRecognitionSetting**: [AdvancedRecognitionSetting](#advancedrecognitionsetting)
 * **RegexFilter**: [SlotValueRegexFilter](#slotvalueregexfilter)
-* **ResolutionStrategy**: [SlotValueResolutionStrategy](#slotvalueresolutionstrategy) (Required)
+* **ResolutionStrategy**: string (Required)
 
 ## AdvancedRecognitionSetting
 ### Properties
-* **AudioRecognitionStrategy**: [AudioRecognitionStrategy](#audiorecognitionstrategy)
-
-## AudioRecognitionStrategy
-### Properties
+* **AudioRecognitionStrategy**: string
 
 ## SlotValueRegexFilter
 ### Properties
 * **Pattern**: string (Required): Regex pattern
-
-## SlotValueResolutionStrategy
-### Properties
 
 ## VoiceSettings
 ### Properties
@@ -314,32 +305,65 @@
 ### Properties
 * **ChildDirected**: bool (Required)
 
-## Id
-### Properties
-
-## RoleArn
-### Properties
-
 ## TestBotAliasSettings
 ### Properties
-* **BotAliasLocaleSettings**: [BotAliasLocaleSettingsList](#botaliaslocalesettingslist)
+* **BotAliasLocaleSettings**: [BotAliasLocaleSettingsItem](#botaliaslocalesettingsitem)[]
 * **ConversationLogSettings**: [ConversationLogSettings](#conversationlogsettings)
-* **Description**: [Description](#description)
+* **Description**: string
 * **SentimentAnalysisSettings**: [Bot_SentimentAnalysisSettings](#botsentimentanalysissettings): Determines whether Amazon Lex will use Amazon Comprehend to detect the sentiment of user utterances.
 
-## BotAliasLocaleSettingsList
+## BotAliasLocaleSettingsItem
 ### Properties
+* **BotAliasLocaleSetting**: [BotAliasLocaleSettings](#botaliaslocalesettings) (Required)
+* **LocaleId**: string (Required): A string used to identify the locale
+
+## BotAliasLocaleSettings
+### Properties
+* **CodeHookSpecification**: [CodeHookSpecification](#codehookspecification)
+* **Enabled**: bool (Required): Whether the Lambda code hook is enabled
+
+## CodeHookSpecification
+### Properties
+* **LambdaCodeHook**: [LambdaCodeHook](#lambdacodehook) (Required)
+
+## LambdaCodeHook
+### Properties
+* **CodeHookInterfaceVersion**: string (Required): The version of the request-response that you want Amazon Lex to use to invoke your Lambda function.
+* **LambdaArn**: string (Required): The Amazon Resource Name (ARN) of the Lambda function.
 
 ## ConversationLogSettings
 ### Properties
-* **AudioLogSettings**: [AudioLogSettings](#audiologsettings)
-* **TextLogSettings**: [TextLogSettings](#textlogsettings)
+* **AudioLogSettings**: [AudioLogSetting](#audiologsetting)[]
+* **TextLogSettings**: [TextLogSetting](#textlogsetting)[]
 
-## AudioLogSettings
+## AudioLogSetting
 ### Properties
+* **Destination**: [AudioLogDestination](#audiologdestination) (Required)
+* **Enabled**: bool (Required)
 
-## TextLogSettings
+## AudioLogDestination
 ### Properties
+* **S3Bucket**: [S3BucketLogDestination](#s3bucketlogdestination) (Required)
+
+## S3BucketLogDestination
+### Properties
+* **KmsKeyArn**: string: The Amazon Resource Name (ARN) of an AWS Key Management Service (KMS) key for encrypting audio log files stored in an S3 bucket.
+* **LogPrefix**: string (Required): The Amazon S3 key of the deployment package.
+* **S3BucketArn**: string (Required): The Amazon Resource Name (ARN) of an Amazon S3 bucket where audio log files are stored.
+
+## TextLogSetting
+### Properties
+* **Destination**: [TextLogDestination](#textlogdestination) (Required)
+* **Enabled**: bool (Required)
+
+## TextLogDestination
+### Properties
+* **CloudWatch**: [CloudWatchLogGroupLogDestination](#cloudwatchloggrouplogdestination) (Required)
+
+## CloudWatchLogGroupLogDestination
+### Properties
+* **CloudWatchLogGroupArn**: string (Required): A string used to identify the groupArn for the Cloudwatch Log Group
+* **LogPrefix**: string (Required): A string containing the value for the Log Prefix
 
 ## Bot_SentimentAnalysisSettings
 ### Properties
@@ -347,54 +371,75 @@
 
 ## AWS.Lex/BotAliasProperties
 ### Properties
-* **Arn**: [Arn](#arn) (ReadOnly)
-* **BotAliasId**: [Id](#id) (ReadOnly, Identifier)
-* **BotAliasLocaleSettings**: [BotAliasLocaleSettingsList](#botaliaslocalesettingslist)
-* **BotAliasName**: [Name](#name) (Required)
-* **BotAliasStatus**: [BotAliasStatus](#botaliasstatus) (ReadOnly)
+* **Arn**: string (ReadOnly)
+* **BotAliasId**: string (ReadOnly, Identifier)
+* **BotAliasLocaleSettings**: [BotAliasLocaleSettingsItem](#botaliaslocalesettingsitem)[]
+* **BotAliasName**: string (Required)
+* **BotAliasStatus**: string (ReadOnly)
 * **BotAliasTags**: [Tag](#tag)[] (WriteOnly): A list of tags to add to the bot alias.
-* **BotId**: [Id](#id) (Required, Identifier)
-* **BotVersion**: [BotVersion](#botversion)
+* **BotId**: string (Required, Identifier)
+* **BotVersion**: string
 * **ConversationLogSettings**: [ConversationLogSettings](#conversationlogsettings)
-* **Description**: [Description](#description)
+* **Description**: string
 * **SentimentAnalysisSettings**: [BotAlias_SentimentAnalysisSettings](#botaliassentimentanalysissettings): Determines whether Amazon Lex will use Amazon Comprehend to detect the sentiment of user utterances.
 
-## Arn
+## BotAliasLocaleSettingsItem
 ### Properties
+* **BotAliasLocaleSetting**: [BotAliasLocaleSettings](#botaliaslocalesettings) (Required)
+* **LocaleId**: string (Required): A string used to identify the locale
 
-## Id
+## BotAliasLocaleSettings
 ### Properties
+* **CodeHookSpecification**: [CodeHookSpecification](#codehookspecification)
+* **Enabled**: bool (Required): Whether the Lambda code hook is enabled
 
-## BotAliasLocaleSettingsList
+## CodeHookSpecification
 ### Properties
+* **LambdaCodeHook**: [LambdaCodeHook](#lambdacodehook) (Required)
 
-## Name
+## LambdaCodeHook
 ### Properties
-
-## BotAliasStatus
-### Properties
+* **CodeHookInterfaceVersion**: string (Required): The version of the request-response that you want Amazon Lex to use to invoke your Lambda function.
+* **LambdaArn**: string (Required): The Amazon Resource Name (ARN) of the Lambda function.
 
 ## Tag
 ### Properties
 * **Key**: string (Required): A string used to identify this tag
 * **Value**: string (Required): A string containing the value for the tag
 
-## BotVersion
-### Properties
-
 ## ConversationLogSettings
 ### Properties
-* **AudioLogSettings**: [AudioLogSettings](#audiologsettings)
-* **TextLogSettings**: [TextLogSettings](#textlogsettings)
+* **AudioLogSettings**: [AudioLogSetting](#audiologsetting)[]
+* **TextLogSettings**: [TextLogSetting](#textlogsetting)[]
 
-## AudioLogSettings
+## AudioLogSetting
 ### Properties
+* **Destination**: [AudioLogDestination](#audiologdestination) (Required)
+* **Enabled**: bool (Required)
 
-## TextLogSettings
+## AudioLogDestination
 ### Properties
+* **S3Bucket**: [S3BucketLogDestination](#s3bucketlogdestination) (Required)
 
-## Description
+## S3BucketLogDestination
 ### Properties
+* **KmsKeyArn**: string: The Amazon Resource Name (ARN) of an AWS Key Management Service (KMS) key for encrypting audio log files stored in an S3 bucket.
+* **LogPrefix**: string (Required): The Amazon S3 key of the deployment package.
+* **S3BucketArn**: string (Required): The Amazon Resource Name (ARN) of an Amazon S3 bucket where audio log files are stored.
+
+## TextLogSetting
+### Properties
+* **Destination**: [TextLogDestination](#textlogdestination) (Required)
+* **Enabled**: bool (Required)
+
+## TextLogDestination
+### Properties
+* **CloudWatch**: [CloudWatchLogGroupLogDestination](#cloudwatchloggrouplogdestination) (Required)
+
+## CloudWatchLogGroupLogDestination
+### Properties
+* **CloudWatchLogGroupArn**: string (Required): A string used to identify the groupArn for the Cloudwatch Log Group
+* **LogPrefix**: string (Required): A string containing the value for the Log Prefix
 
 ## BotAlias_SentimentAnalysisSettings
 ### Properties
@@ -402,20 +447,11 @@
 
 ## AWS.Lex/ResourcePolicyProperties
 ### Properties
-* **Id**: [PhysicalId](#physicalid) (ReadOnly, Identifier)
+* **Id**: string (ReadOnly, Identifier)
 * **Policy**: [Policy](#policy) (Required)
-* **ResourceArn**: [ResourceArn](#resourcearn) (Required)
-* **RevisionId**: [RevisionId](#revisionid) (ReadOnly)
-
-## PhysicalId
-### Properties
+* **ResourceArn**: string (Required)
+* **RevisionId**: string (ReadOnly)
 
 ## Policy
-### Properties
-
-## ResourceArn
-### Properties
-
-## RevisionId
 ### Properties
 

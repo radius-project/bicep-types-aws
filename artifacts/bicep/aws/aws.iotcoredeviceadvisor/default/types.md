@@ -16,26 +16,16 @@
 
 ## SuiteDefinition_SuiteDefinitionConfiguration
 ### Properties
-* **DevicePermissionRoleArn**: [DevicePermissionRoleArn](#devicepermissionrolearn) (Required)
-* **Devices**: [Devices](#devices)
-* **IntendedForQualification**: [IntendedForQualification](#intendedforqualification)
-* **RootGroup**: [RootGroup](#rootgroup) (Required)
-* **SuiteDefinitionName**: [SuiteDefinitionName](#suitedefinitionname)
+* **DevicePermissionRoleArn**: string (Required)
+* **Devices**: [DeviceUnderTest](#deviceundertest)[]
+* **IntendedForQualification**: bool
+* **RootGroup**: string (Required)
+* **SuiteDefinitionName**: string
 
-## DevicePermissionRoleArn
+## DeviceUnderTest
 ### Properties
-
-## Devices
-### Properties
-
-## IntendedForQualification
-### Properties
-
-## RootGroup
-### Properties
-
-## SuiteDefinitionName
-### Properties
+* **CertificateArn**: string
+* **ThingArn**: string
 
 ## Tag
 ### Properties

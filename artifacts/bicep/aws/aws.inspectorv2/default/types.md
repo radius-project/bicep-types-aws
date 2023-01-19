@@ -10,62 +10,76 @@
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): Findings filter ARN.
 * **Description**: string: Findings filter description.
-* **FilterAction**: [FilterAction](#filteraction) (Required): Findings filter action.
+* **FilterAction**: string (Required): Findings filter action.
 * **FilterCriteria**: [FilterCriteria](#filtercriteria) (Required): Findings filter criteria.
 * **Name**: string (Required): Findings filter name.
 
-## FilterAction
-### Properties
-
 ## FilterCriteria
 ### Properties
-* **AwsAccountId**: [StringFilterList](#stringfilterlist)
-* **ComponentId**: [StringFilterList](#stringfilterlist)
-* **ComponentType**: [StringFilterList](#stringfilterlist)
-* **Ec2InstanceImageId**: [StringFilterList](#stringfilterlist)
-* **Ec2InstanceSubnetId**: [StringFilterList](#stringfilterlist)
-* **Ec2InstanceVpcId**: [StringFilterList](#stringfilterlist)
-* **EcrImageArchitecture**: [StringFilterList](#stringfilterlist)
-* **EcrImageHash**: [StringFilterList](#stringfilterlist)
-* **EcrImagePushedAt**: [DateFilterList](#datefilterlist)
-* **EcrImageRegistry**: [StringFilterList](#stringfilterlist)
-* **EcrImageRepositoryName**: [StringFilterList](#stringfilterlist)
-* **EcrImageTags**: [StringFilterList](#stringfilterlist)
-* **FindingArn**: [StringFilterList](#stringfilterlist)
-* **FindingStatus**: [StringFilterList](#stringfilterlist)
-* **FindingType**: [StringFilterList](#stringfilterlist)
-* **FirstObservedAt**: [DateFilterList](#datefilterlist)
-* **InspectorScore**: [NumberFilterList](#numberfilterlist)
-* **LastObservedAt**: [DateFilterList](#datefilterlist)
-* **NetworkProtocol**: [StringFilterList](#stringfilterlist)
-* **PortRange**: [PortRangeFilterList](#portrangefilterlist)
-* **RelatedVulnerabilities**: [StringFilterList](#stringfilterlist)
-* **ResourceId**: [StringFilterList](#stringfilterlist)
-* **ResourceTags**: [MapFilterList](#mapfilterlist)
-* **ResourceType**: [StringFilterList](#stringfilterlist)
-* **Severity**: [StringFilterList](#stringfilterlist)
-* **Title**: [StringFilterList](#stringfilterlist)
-* **UpdatedAt**: [DateFilterList](#datefilterlist)
-* **VendorSeverity**: [StringFilterList](#stringfilterlist)
-* **VulnerabilityId**: [StringFilterList](#stringfilterlist)
-* **VulnerabilitySource**: [StringFilterList](#stringfilterlist)
-* **VulnerablePackages**: [PackageFilterList](#packagefilterlist)
+* **AwsAccountId**: [StringFilter](#stringfilter)[]
+* **ComponentId**: [StringFilter](#stringfilter)[]
+* **ComponentType**: [StringFilter](#stringfilter)[]
+* **Ec2InstanceImageId**: [StringFilter](#stringfilter)[]
+* **Ec2InstanceSubnetId**: [StringFilter](#stringfilter)[]
+* **Ec2InstanceVpcId**: [StringFilter](#stringfilter)[]
+* **EcrImageArchitecture**: [StringFilter](#stringfilter)[]
+* **EcrImageHash**: [StringFilter](#stringfilter)[]
+* **EcrImagePushedAt**: [DateFilter](#datefilter)[]
+* **EcrImageRegistry**: [StringFilter](#stringfilter)[]
+* **EcrImageRepositoryName**: [StringFilter](#stringfilter)[]
+* **EcrImageTags**: [StringFilter](#stringfilter)[]
+* **FindingArn**: [StringFilter](#stringfilter)[]
+* **FindingStatus**: [StringFilter](#stringfilter)[]
+* **FindingType**: [StringFilter](#stringfilter)[]
+* **FirstObservedAt**: [DateFilter](#datefilter)[]
+* **InspectorScore**: [NumberFilter](#numberfilter)[]
+* **LastObservedAt**: [DateFilter](#datefilter)[]
+* **NetworkProtocol**: [StringFilter](#stringfilter)[]
+* **PortRange**: [PortRangeFilter](#portrangefilter)[]
+* **RelatedVulnerabilities**: [StringFilter](#stringfilter)[]
+* **ResourceId**: [StringFilter](#stringfilter)[]
+* **ResourceTags**: [MapFilter](#mapfilter)[]
+* **ResourceType**: [StringFilter](#stringfilter)[]
+* **Severity**: [StringFilter](#stringfilter)[]
+* **Title**: [StringFilter](#stringfilter)[]
+* **UpdatedAt**: [DateFilter](#datefilter)[]
+* **VendorSeverity**: [StringFilter](#stringfilter)[]
+* **VulnerabilityId**: [StringFilter](#stringfilter)[]
+* **VulnerabilitySource**: [StringFilter](#stringfilter)[]
+* **VulnerablePackages**: [PackageFilter](#packagefilter)[]
 
-## StringFilterList
+## StringFilter
 ### Properties
+* **Comparison**: string (Required)
+* **Value**: string (Required)
 
-## DateFilterList
+## DateFilter
 ### Properties
+* **EndInclusive**: int
+* **StartInclusive**: int
 
-## NumberFilterList
+## NumberFilter
 ### Properties
+* **LowerInclusive**: int
+* **UpperInclusive**: int
 
-## PortRangeFilterList
+## PortRangeFilter
 ### Properties
+* **BeginInclusive**: int
+* **EndInclusive**: int
 
-## MapFilterList
+## MapFilter
 ### Properties
+* **Comparison**: string (Required)
+* **Key**: string
+* **Value**: string
 
-## PackageFilterList
+## PackageFilter
 ### Properties
+* **Architecture**: [StringFilter](#stringfilter)
+* **Epoch**: [NumberFilter](#numberfilter)
+* **Name**: [StringFilter](#stringfilter)
+* **Release**: [StringFilter](#stringfilter)
+* **SourceLayerHash**: [StringFilter](#stringfilter)
+* **Version**: [StringFilter](#stringfilter)
 

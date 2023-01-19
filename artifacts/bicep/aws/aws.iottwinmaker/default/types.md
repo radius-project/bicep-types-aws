@@ -28,9 +28,9 @@
 ### Properties
 * **Arn**: string (ReadOnly): The ARN of the component type.
 * **ComponentTypeId**: string (Required, Identifier): The ID of the component type.
-* **CreationDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The date and time when the component type was created.
+* **CreationDateTime**: string (ReadOnly): The date and time when the component type was created.
 * **Description**: string: The description of the component type.
-* **ExtendsFrom**: [ParentComponentType](#parentcomponenttype)[]: Specifies the parent component type to extend.
+* **ExtendsFrom**: string[]: Specifies the parent component type to extend.
 * **Functions**: [ComponentType_Functions](#componenttypefunctions): a Map of functions in the component type. Each function's key must be unique to this map.
 * **IsAbstract**: bool (ReadOnly): A Boolean value that specifies whether the component type is abstract.
 * **IsSchemaInitialized**: bool (ReadOnly): A Boolean value that specifies whether the component type has a schema initializer and that the schema initializer has run.
@@ -40,14 +40,8 @@
 * **PropertyDefinitions**: [ComponentType_PropertyDefinitions](#componenttypepropertydefinitions): An map of the property definitions in the component type. Each property definition's key must be unique to this map.
 * **Status**: [Status](#status) (ReadOnly): The current status of the component type.
 * **Tags**: [ComponentType_Tags](#componenttypetags): A map of key-value pairs to associate with a resource.
-* **UpdateDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The last date and time when the component type was updated.
+* **UpdateDateTime**: string (ReadOnly): The last date and time when the component type was updated.
 * **WorkspaceId**: string (Required, Identifier): The ID of the workspace that contains the component type.
-
-## DateTimeFormat
-### Properties
-
-## ParentComponentType
-### Properties
 
 ## ComponentType_Functions
 ### Properties
@@ -72,7 +66,7 @@
 ### Properties
 * **Arn**: string (ReadOnly): The ARN of the entity.
 * **Components**: [Entity_Components](#entitycomponents): A map that sets information about a component type.
-* **CreationDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The date and time when the entity was created.
+* **CreationDateTime**: string (ReadOnly): The date and time when the entity was created.
 * **Description**: string: The description of the entity.
 * **EntityId**: string (Identifier): The ID of the entity.
 * **EntityName**: string (Required): The name of the entity.
@@ -80,13 +74,10 @@
 * **ParentEntityId**: string: The ID of the parent entity.
 * **Status**: [Status](#status) (ReadOnly): The current status of the entity.
 * **Tags**: [Entity_Tags](#entitytags): A key-value pair to associate with a resource.
-* **UpdateDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The last date and time when the entity was updated.
+* **UpdateDateTime**: string (ReadOnly): The last date and time when the entity was updated.
 * **WorkspaceId**: string (Required, Identifier): The ID of the workspace.
 
 ## Entity_Components
-### Properties
-
-## DateTimeFormat
 ### Properties
 
 ## Status
@@ -107,15 +98,12 @@
 * **Arn**: string (ReadOnly): The ARN of the scene.
 * **Capabilities**: string[]: A list of capabilities that the scene uses to render.
 * **ContentLocation**: string (Required): The relative path that specifies the location of the content definition file.
-* **CreationDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The date and time when the scene was created.
+* **CreationDateTime**: string (ReadOnly): The date and time when the scene was created.
 * **Description**: string: The description of the scene.
 * **SceneId**: string (Required, Identifier): The ID of the scene.
 * **Tags**: [Scene_Tags](#scenetags): A key-value pair to associate with a resource.
-* **UpdateDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The date and time of the current update.
+* **UpdateDateTime**: string (ReadOnly): The date and time of the current update.
 * **WorkspaceId**: string (Required, Identifier): The ID of the scene.
-
-## DateTimeFormat
-### Properties
 
 ## Scene_Tags
 ### Properties
@@ -123,16 +111,13 @@
 ## AWS.IoTTwinMaker/WorkspaceProperties
 ### Properties
 * **Arn**: string (ReadOnly): The ARN of the workspace.
-* **CreationDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The date and time when the workspace was created.
+* **CreationDateTime**: string (ReadOnly): The date and time when the workspace was created.
 * **Description**: string: The description of the workspace.
 * **Role**: string (Required): The ARN of the execution role associated with the workspace.
 * **S3Location**: string (Required): The ARN of the S3 bucket where resources associated with the workspace are stored.
 * **Tags**: [Workspace_Tags](#workspacetags): A map of key-value pairs to associate with a resource.
-* **UpdateDateTime**: [DateTimeFormat](#datetimeformat) (ReadOnly): The date and time of the current update.
+* **UpdateDateTime**: string (ReadOnly): The date and time of the current update.
 * **WorkspaceId**: string (Required, Identifier): The ID of the workspace.
-
-## DateTimeFormat
-### Properties
 
 ## Workspace_Tags
 ### Properties

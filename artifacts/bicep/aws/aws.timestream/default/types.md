@@ -32,15 +32,15 @@
 
 ## AWS.Timestream/ScheduledQueryProperties
 ### Properties
-* **Arn**: [Arn](#arn) (ReadOnly, Identifier)
-* **ClientToken**: [ClientToken](#clienttoken)
+* **Arn**: string (ReadOnly, Identifier)
+* **ClientToken**: string
 * **ErrorReportConfiguration**: [ErrorReportConfiguration](#errorreportconfiguration) (Required)
-* **KmsKeyId**: [KmsKeyId](#kmskeyid)
+* **KmsKeyId**: string
 * **NotificationConfiguration**: [NotificationConfiguration](#notificationconfiguration) (Required)
-* **QueryString**: [QueryString](#querystring) (Required)
+* **QueryString**: string (Required)
 * **ScheduleConfiguration**: [ScheduleConfiguration](#scheduleconfiguration) (Required)
-* **ScheduledQueryExecutionRoleArn**: [ScheduledQueryExecutionRoleArn](#scheduledqueryexecutionrolearn) (Required)
-* **ScheduledQueryName**: [ScheduledQueryName](#scheduledqueryname)
+* **ScheduledQueryExecutionRoleArn**: string (Required)
+* **ScheduledQueryName**: string
 * **SQErrorReportConfiguration**: string (ReadOnly): Configuration for error reporting. Error reports will be generated when a problem is encountered when writing the query results.
 * **SQKmsKeyId**: string (ReadOnly): The Amazon KMS key used to encrypt the scheduled query resource, at-rest. If the Amazon KMS key is not specified, the scheduled query resource will be encrypted with a Timestream owned Amazon KMS key. To specify a KMS key, use the key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix the name with alias/. If ErrorReportConfiguration uses SSE_KMS as encryption type, the same KmsKeyId is used to encrypt the error report at rest.
 * **SQName**: string (ReadOnly): The name of the scheduled query. Scheduled query names must be unique within each Region.
@@ -49,14 +49,8 @@
 * **SQScheduleConfiguration**: string (ReadOnly): Configuration for when the scheduled query is executed.
 * **SQScheduledQueryExecutionRoleArn**: string (ReadOnly): The ARN for the IAM role that Timestream will assume when running the scheduled query.
 * **SQTargetConfiguration**: string (ReadOnly): Configuration of target store where scheduled query results are written to.
-* **Tags**: [Tags](#tags)
+* **Tags**: [Tag](#tag)[]
 * **TargetConfiguration**: [TargetConfiguration](#targetconfiguration)
-
-## Arn
-### Properties
-
-## ClientToken
-### Properties
 
 ## ErrorReportConfiguration
 ### Properties
@@ -64,21 +58,9 @@
 
 ## S3Configuration
 ### Properties
-* **BucketName**: [BucketName](#bucketname) (Required)
-* **EncryptionOption**: [EncryptionOption](#encryptionoption)
-* **ObjectKeyPrefix**: [ObjectKeyPrefix](#objectkeyprefix)
-
-## BucketName
-### Properties
-
-## EncryptionOption
-### Properties
-
-## ObjectKeyPrefix
-### Properties
-
-## KmsKeyId
-### Properties
+* **BucketName**: string (Required)
+* **EncryptionOption**: string
+* **ObjectKeyPrefix**: string
 
 ## NotificationConfiguration
 ### Properties
@@ -86,29 +68,16 @@
 
 ## SnsConfiguration
 ### Properties
-* **TopicArn**: [TopicArn](#topicarn) (Required)
-
-## TopicArn
-### Properties
-
-## QueryString
-### Properties
+* **TopicArn**: string (Required)
 
 ## ScheduleConfiguration
 ### Properties
-* **ScheduleExpression**: [ScheduleExpression](#scheduleexpression) (Required)
+* **ScheduleExpression**: string (Required)
 
-## ScheduleExpression
+## Tag
 ### Properties
-
-## ScheduledQueryExecutionRoleArn
-### Properties
-
-## ScheduledQueryName
-### Properties
-
-## Tags
-### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## TargetConfiguration
 ### Properties
@@ -116,42 +85,37 @@
 
 ## TimestreamConfiguration
 ### Properties
-* **DatabaseName**: [DatabaseName](#databasename) (Required)
-* **DimensionMappings**: [DimensionMappings](#dimensionmappings) (Required)
-* **MeasureNameColumn**: [MeasureNameColumn](#measurenamecolumn)
-* **MixedMeasureMappings**: [MixedMeasureMappings](#mixedmeasuremappings)
+* **DatabaseName**: string (Required)
+* **DimensionMappings**: [DimensionMapping](#dimensionmapping)[] (Required)
+* **MeasureNameColumn**: string
+* **MixedMeasureMappings**: [MixedMeasureMapping](#mixedmeasuremapping)[]
 * **MultiMeasureMappings**: [MultiMeasureMappings](#multimeasuremappings)
-* **TableName**: [TableName](#tablename) (Required)
-* **TimeColumn**: [TimeColumn](#timecolumn) (Required)
+* **TableName**: string (Required)
+* **TimeColumn**: string (Required)
 
-## DatabaseName
+## DimensionMapping
 ### Properties
+* **DimensionValueType**: string (Required)
+* **Name**: string (Required)
 
-## DimensionMappings
+## MixedMeasureMapping
 ### Properties
+* **MeasureName**: string
+* **MeasureValueType**: string (Required)
+* **MultiMeasureAttributeMappings**: [MultiMeasureAttributeMapping](#multimeasureattributemapping)[]
+* **SourceColumn**: string
+* **TargetMeasureName**: string
 
-## MeasureNameColumn
+## MultiMeasureAttributeMapping
 ### Properties
-
-## MixedMeasureMappings
-### Properties
+* **MeasureValueType**: string (Required)
+* **SourceColumn**: string (Required)
+* **TargetMultiMeasureAttributeName**: string
 
 ## MultiMeasureMappings
 ### Properties
-* **MultiMeasureAttributeMappings**: [MultiMeasureAttributeMappingList](#multimeasureattributemappinglist) (Required)
-* **TargetMultiMeasureName**: [TargetMultiMeasureName](#targetmultimeasurename)
-
-## MultiMeasureAttributeMappingList
-### Properties
-
-## TargetMultiMeasureName
-### Properties
-
-## TableName
-### Properties
-
-## TimeColumn
-### Properties
+* **MultiMeasureAttributeMappings**: [MultiMeasureAttributeMapping](#multimeasureattributemapping)[] (Required)
+* **TargetMultiMeasureName**: string
 
 ## AWS.Timestream/TableProperties
 ### Properties

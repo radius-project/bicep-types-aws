@@ -131,19 +131,21 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
             parts.shift()
         }
 
-        if (!schema.additionalProperties && !schema.items && !schema.properties && !schema.required && !schema.type) {
-            // Type is already defined
-            const reference = factory.getNamedType(parts[0])
-            if (!reference) {
-                throw new Error(`type ${parts[0]} is missing`)
-            }
-
-            return reference
-        }
-
         const definition = record.schema.definitions?.[parts[0]];
         if (!definition) {
             throw new Error(`could not find definition ${schema.$ref} in ${context}`)
+        }
+
+        if (!schema.additionalProperties && !schema.items && !schema.properties && !schema.required && !schema.type) {
+            // Object type is already defined
+            if (definition.type === 'object') {
+                const reference = factory.getNamedType(parts[0])
+                if (!reference) {
+                    throw new Error(`type ${parts[0]} is missing`)
+                }
+
+                return reference
+            }
         }
 
         // Replace the context to refer to the definition

@@ -328,7 +328,7 @@
 ### Properties
 * **CloudWatchLogGroupArn**: string: The ARN of the Amazon CloudWatch log group that is used to monitor and log events in the task.
 * **DestinationLocationArn**: string (Required): The ARN of an AWS storage resource's location.
-* **DestinationNetworkInterfaceArns**: [DestinationNetworkInterfaceArns](#destinationnetworkinterfacearns) (ReadOnly)
+* **DestinationNetworkInterfaceArns**: string[] (ReadOnly)
 * **ErrorCode**: string (ReadOnly): Errors that AWS DataSync encountered during execution of the task. You can use this error code to help troubleshoot issues.
 * **ErrorDetail**: string (ReadOnly): Detailed description of an error that was encountered during the task execution.
 * **Excludes**: [FilterRule](#filterrule)[]
@@ -337,13 +337,10 @@
 * **Options**: [Options](#options)
 * **Schedule**: [TaskSchedule](#taskschedule)
 * **SourceLocationArn**: string (Required): The ARN of the source location for the task.
-* **SourceNetworkInterfaceArns**: [SourceNetworkInterfaceArns](#sourcenetworkinterfacearns) (ReadOnly)
+* **SourceNetworkInterfaceArns**: string[] (ReadOnly)
 * **Status**: string (ReadOnly): The status of the task that was described.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TaskArn**: string (ReadOnly, Identifier): The ARN of the task.
-
-## DestinationNetworkInterfaceArns
-### Properties
 
 ## FilterRule
 ### Properties
@@ -371,9 +368,6 @@
 ## TaskSchedule
 ### Properties
 * **ScheduleExpression**: string (Required): A cron expression that specifies when AWS DataSync initiates a scheduled transfer from a source to a destination location
-
-## SourceNetworkInterfaceArns
-### Properties
 
 ## Tag
 ### Properties

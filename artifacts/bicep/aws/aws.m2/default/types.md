@@ -18,14 +18,11 @@
 * **ApplicationId**: string (ReadOnly)
 * **Definition**: [Definition](#definition) (Required, WriteOnly)
 * **Description**: string
-* **EngineType**: [EngineType](#enginetype) (Required)
+* **EngineType**: string (Required)
 * **Name**: string (Required)
 * **Tags**: [TagMap](#tagmap)
 
 ## Definition
-### Properties
-
-## EngineType
 ### Properties
 
 ## TagMap
@@ -34,7 +31,7 @@
 ## AWS.M2/EnvironmentProperties
 ### Properties
 * **Description**: string: The description of the environment.
-* **EngineType**: [EngineType](#enginetype) (Required)
+* **EngineType**: string (Required)
 * **EngineVersion**: string: The version of the runtime engine for the environment.
 * **EnvironmentArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the runtime environment.
 * **EnvironmentId**: string (ReadOnly): The unique identifier of the environment.
@@ -47,9 +44,6 @@
 * **StorageConfigurations**: [StorageConfiguration](#storageconfiguration)[]: The storage configurations defined for the runtime environment.
 * **SubnetIds**: string[]: The unique identifiers of the subnets assigned to this runtime environment.
 * **Tags**: [TagMap](#tagmap): Tags associated to this environment.
-
-## EngineType
-### Properties
 
 ## HighAvailabilityConfig
 ### Properties

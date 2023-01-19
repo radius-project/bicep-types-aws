@@ -67,17 +67,11 @@
 
 ## KafkaClusterClientAuthentication
 ### Properties
-* **AuthenticationType**: [KafkaClusterClientAuthenticationType](#kafkaclusterclientauthenticationtype) (Required)
-
-## KafkaClusterClientAuthenticationType
-### Properties
+* **AuthenticationType**: string (Required)
 
 ## KafkaClusterEncryptionInTransit
 ### Properties
-* **EncryptionType**: [KafkaClusterEncryptionInTransitType](#kafkaclusterencryptionintransittype) (Required)
-
-## KafkaClusterEncryptionInTransitType
-### Properties
+* **EncryptionType**: string (Required)
 
 ## LogDelivery
 ### Properties

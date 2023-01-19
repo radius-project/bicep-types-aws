@@ -85,10 +85,11 @@
 
 ## ClusterLogging
 ### Properties
-* **EnabledTypes**: [EnabledTypes](#enabledtypes)
+* **EnabledTypes**: [LoggingTypeConfig](#loggingtypeconfig)[]
 
-## EnabledTypes
+## LoggingTypeConfig
 ### Properties
+* **Type**: string: name of the log type
 
 ## OutpostConfig
 ### Properties

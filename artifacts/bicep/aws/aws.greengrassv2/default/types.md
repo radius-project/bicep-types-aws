@@ -69,25 +69,16 @@
 
 ## LambdaDeviceMount
 ### Properties
-* **AddGroupOwner**: [LambdaAddGroupOwnerBoolean](#lambdaaddgroupownerboolean)
-* **Path**: [FilesystemPath](#filesystempath)
-* **Permission**: [LambdaFilesystemPermission](#lambdafilesystempermission)
-
-## LambdaAddGroupOwnerBoolean
-### Properties
-
-## FilesystemPath
-### Properties
-
-## LambdaFilesystemPermission
-### Properties
+* **AddGroupOwner**: bool
+* **Path**: string
+* **Permission**: string
 
 ## LambdaVolumeMount
 ### Properties
-* **AddGroupOwner**: [LambdaAddGroupOwnerBoolean](#lambdaaddgroupownerboolean)
-* **DestinationPath**: [FilesystemPath](#filesystempath)
-* **Permission**: [LambdaFilesystemPermission](#lambdafilesystempermission)
-* **SourcePath**: [FilesystemPath](#filesystempath)
+* **AddGroupOwner**: bool
+* **DestinationPath**: string
+* **Permission**: string
+* **SourcePath**: string
 
 ## ComponentPlatform
 ### Properties

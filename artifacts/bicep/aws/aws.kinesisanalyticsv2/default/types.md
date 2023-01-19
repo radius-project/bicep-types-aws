@@ -15,7 +15,7 @@
 * **ApplicationName**: string (Identifier): The name of the application.
 * **RunConfiguration**: [RunConfiguration](#runconfiguration) (WriteOnly): Specifies run configuration (start parameters) of a Kinesis Data Analytics application. Evaluated on update for RUNNING applications an only.
 * **RuntimeEnvironment**: string (Required): The runtime environment for the application.
-* **ServiceExecutionRole**: [Arn](#arn) (Required): Specifies the IAM role that the application uses to access external resources.
+* **ServiceExecutionRole**: string (Required): Specifies the IAM role that the application uses to access external resources.
 * **Tags**: [Tag](#tag)[]: A list of one or more tags to assign to the application. A tag is a key-value pair that identifies an application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50.
 
 ## ApplicationConfiguration
@@ -25,7 +25,7 @@
 * **EnvironmentProperties**: [EnvironmentProperties](#environmentproperties) (WriteOnly): Describes execution properties for a Flink-based Kinesis Data Analytics application.
 * **FlinkApplicationConfiguration**: [FlinkApplicationConfiguration](#flinkapplicationconfiguration): The creation and update parameters for a Flink-based Kinesis Data Analytics application.
 * **SqlApplicationConfiguration**: [SqlApplicationConfiguration](#sqlapplicationconfiguration): The creation and update parameters for a SQL-based Kinesis Data Analytics application.
-* **VpcConfigurations**: [VpcConfigurations](#vpcconfigurations): The array of descriptions of VPC configurations available to the application.
+* **VpcConfigurations**: [VpcConfiguration](#vpcconfiguration)[]: The array of descriptions of VPC configurations available to the application.
 * **ZeppelinApplicationConfiguration**: [ZeppelinApplicationConfiguration](#zeppelinapplicationconfiguration): The configuration parameters for a Kinesis Data Analytics Studio notebook.
 
 ## ApplicationCodeConfiguration
@@ -41,12 +41,9 @@
 
 ## S3ContentLocation
 ### Properties
-* **BucketARN**: [Arn](#arn) (Required): The Amazon Resource Name (ARN) for the S3 bucket containing the application code.
+* **BucketARN**: string (Required): The Amazon Resource Name (ARN) for the S3 bucket containing the application code.
 * **FileKey**: string (Required): The file key for the object containing the application code.
 * **ObjectVersion**: string: The version of the object containing the application code.
-
-## Arn
-### Properties
 
 ## ApplicationSnapshotConfiguration
 ### Properties
@@ -113,7 +110,7 @@
 
 ## InputLambdaProcessor
 ### Properties
-* **ResourceARN**: [Arn](#arn) (Required): The ARN of the Amazon Lambda function that operates on records in the stream.
+* **ResourceARN**: string (Required): The ARN of the Amazon Lambda function that operates on records in the stream.
 
 ## InputSchema
 ### Properties
@@ -148,19 +145,21 @@
 
 ## KinesisFirehoseInput
 ### Properties
-* **ResourceARN**: [Arn](#arn) (Required): The Amazon Resource Name (ARN) of the delivery stream.
+* **ResourceARN**: string (Required): The Amazon Resource Name (ARN) of the delivery stream.
 
 ## KinesisStreamsInput
 ### Properties
-* **ResourceARN**: [Arn](#arn) (Required): The ARN of the input Kinesis data stream to read.
+* **ResourceARN**: string (Required): The ARN of the input Kinesis data stream to read.
 
-## VpcConfigurations
+## VpcConfiguration
 ### Properties
+* **SecurityGroupIds**: string[] (Required): The array of SecurityGroup IDs used by the VPC configuration.
+* **SubnetIds**: string[] (Required): The array of Subnet IDs used by the VPC configuration.
 
 ## ZeppelinApplicationConfiguration
 ### Properties
 * **CatalogConfiguration**: [CatalogConfiguration](#catalogconfiguration): The Amazon Glue Data Catalog that you use in queries in a Kinesis Data Analytics Studio notebook.
-* **CustomArtifactsConfiguration**: [CustomArtifactsConfiguration](#customartifactsconfiguration): A list of CustomArtifactConfiguration objects.
+* **CustomArtifactsConfiguration**: [CustomArtifactConfiguration](#customartifactconfiguration)[]: A list of CustomArtifactConfiguration objects.
 * **DeployAsApplicationConfiguration**: [DeployAsApplicationConfiguration](#deployasapplicationconfiguration): The information required to deploy a Kinesis Data Analytics Studio notebook as an application with durable state.
 * **MonitoringConfiguration**: [ZeppelinMonitoringConfiguration](#zeppelinmonitoringconfiguration): The monitoring configuration of a Kinesis Data Analytics Studio notebook.
 
@@ -170,10 +169,19 @@
 
 ## GlueDataCatalogConfiguration
 ### Properties
-* **DatabaseARN**: [Arn](#arn): The Amazon Resource Name (ARN) of the database.
+* **DatabaseARN**: string: The Amazon Resource Name (ARN) of the database.
 
-## CustomArtifactsConfiguration
+## CustomArtifactConfiguration
 ### Properties
+* **ArtifactType**: string (Required): Set this to either `UDF` or `DEPENDENCY_JAR`. `UDF` stands for user-defined functions. This type of artifact must be in an S3 bucket. A `DEPENDENCY_JAR` can be in either Maven or an S3 bucket.
+* **MavenReference**: [MavenReference](#mavenreference): The parameters required to fully specify a Maven reference.
+* **S3ContentLocation**: [S3ContentLocation](#s3contentlocation): The location of the custom artifacts.
+
+## MavenReference
+### Properties
+* **ArtifactId**: string (Required): The artifact ID of the Maven reference.
+* **GroupId**: string (Required): The group ID of the Maven reference.
+* **Version**: string (Required): The version of the Maven reference.
 
 ## DeployAsApplicationConfiguration
 ### Properties
@@ -182,7 +190,7 @@
 ## S3ContentBaseLocation
 ### Properties
 * **BasePath**: string: The base path for the S3 bucket.
-* **BucketARN**: [Arn](#arn) (Required): The Amazon Resource Name (ARN) of the S3 bucket.
+* **BucketARN**: string (Required): The Amazon Resource Name (ARN) of the S3 bucket.
 
 ## ZeppelinMonitoringConfiguration
 ### Properties

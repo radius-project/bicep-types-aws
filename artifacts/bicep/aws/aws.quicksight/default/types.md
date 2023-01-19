@@ -55,7 +55,7 @@
         <p>To specify no permissions, omit <code>Permissions</code>.</p>
 * **Sheets**: [Sheet](#sheet)[] (ReadOnly, WriteOnly): <p>A list of the associated sheets with the unique identifier and name of each sheet.</p>
 * **SourceEntity**: [AnalysisSourceEntity](#analysissourceentity) (Required, WriteOnly)
-* **Status**: [ResourceStatus](#resourcestatus) (ReadOnly, WriteOnly)
+* **Status**: string (ReadOnly, WriteOnly)
 * **Tags**: [Tag](#tag)[]: <p>Contains a map of the key-value pairs for the resource tag or tags assigned to the
             analysis.</p>
 * **ThemeArn**: string: <p>The ARN of the theme of the analysis.</p>
@@ -63,10 +63,7 @@
 ## AnalysisError
 ### Properties
 * **Message**: string: <p>The message associated with the analysis error.</p>
-* **Type**: [AnalysisErrorType](#analysiserrortype)
-
-## AnalysisErrorType
-### Properties
+* **Type**: string
 
 ## Parameters
 ### Properties
@@ -134,9 +131,6 @@
 * **DataSetArn**: string (Required): <p>Dataset Amazon Resource Name (ARN).</p>
 * **DataSetPlaceholder**: string (Required): <p>Dataset placeholder.</p>
 
-## ResourceStatus
-### Properties
-
 ## Tag
 ### Properties
 * **Key**: string (Required): <p>Tag key.</p>
@@ -176,21 +170,15 @@
 
 ## AdHocFilteringOption
 ### Properties
-* **AvailabilityStatus**: [DashboardBehavior](#dashboardbehavior)
-
-## DashboardBehavior
-### Properties
+* **AvailabilityStatus**: string
 
 ## ExportToCSVOption
 ### Properties
-* **AvailabilityStatus**: [DashboardBehavior](#dashboardbehavior)
+* **AvailabilityStatus**: string
 
 ## SheetControlsOption
 ### Properties
-* **VisibilityState**: [DashboardUIState](#dashboarduistate)
-
-## DashboardUIState
-### Properties
+* **VisibilityState**: string
 
 ## Parameters
 ### Properties
@@ -267,26 +255,20 @@
 * **Errors**: [DashboardError](#dashboarderror)[]: <p>Errors associated with this dashboard version.</p>
 * **Sheets**: [Sheet](#sheet)[]: <p>A list of the associated sheets with the unique identifier and name of each sheet.</p>
 * **SourceEntityArn**: string: <p>Source entity ARN.</p>
-* **Status**: [ResourceStatus](#resourcestatus)
+* **Status**: string
 * **ThemeArn**: string: <p>The ARN of the theme associated with a version of the dashboard.</p>
 * **VersionNumber**: int: <p>Version number for this version of the dashboard.</p>
 
 ## DashboardError
 ### Properties
 * **Message**: string: <p>Message.</p>
-* **Type**: [DashboardErrorType](#dashboarderrortype)
-
-## DashboardErrorType
-### Properties
+* **Type**: string
 
 ## Sheet
 ### Properties
 * **Name**: string: <p>The name of a sheet. This name is displayed on the sheet's tab in the QuickSight
             console.</p>
 * **SheetId**: string: <p>The unique identifier associated with a sheet.</p>
-
-## ResourceStatus
-### Properties
 
 ## AWS.QuickSight/DataSetProperties
 ### Properties
@@ -300,7 +282,7 @@
 * **DataSetId**: string (Identifier)
 * **DataSetUsageConfiguration**: [DataSetUsageConfiguration](#datasetusageconfiguration)
 * **FieldFolders**: [FieldFolderMap](#fieldfoldermap) (WriteOnly)
-* **ImportMode**: [DataSetImportMode](#datasetimportmode)
+* **ImportMode**: string
 * **IngestionWaitPolicy**: [IngestionWaitPolicy](#ingestionwaitpolicy) (WriteOnly)
 * **LastUpdatedTime**: string (ReadOnly): <p>The last time that this dataset was updated.</p>
 * **LogicalTableMap**: [LogicalTableMap](#logicaltablemap)
@@ -319,11 +301,8 @@
 ## GeoSpatialColumnGroup
 ### Properties
 * **Columns**: string[] (Required): <p>Columns in this hierarchy.</p>
-* **CountryCode**: [GeoSpatialCountryCode](#geospatialcountrycode)
+* **CountryCode**: string
 * **Name**: string (Required): <p>A display name for the hierarchy.</p>
-
-## GeoSpatialCountryCode
-### Properties
 
 ## ColumnLevelPermissionRule
 ### Properties
@@ -336,9 +315,6 @@
 * **DisableUseAsImportedSource**: bool
 
 ## FieldFolderMap
-### Properties
-
-## DataSetImportMode
 ### Properties
 
 ## IngestionWaitPolicy
@@ -355,10 +331,7 @@
 ### Properties
 * **Description**: string: <p>A description for a column.</p>
 * **Name**: string: <p>A display name for the dataset.</p>
-* **Type**: [ColumnDataType](#columndatatype)
-
-## ColumnDataType
-### Properties
+* **Type**: string
 
 ## ResourcePermission
 ### Properties
@@ -385,15 +358,9 @@
 ## RowLevelPermissionDataSet
 ### Properties
 * **Arn**: string (Required): <p>The Amazon Resource Name (ARN) of the permission dataset.</p>
-* **FormatVersion**: [RowLevelPermissionFormatVersion](#rowlevelpermissionformatversion)
+* **FormatVersion**: string
 * **Namespace**: string: <p>The namespace associated with the row-level permissions dataset.</p>
-* **PermissionPolicy**: [RowLevelPermissionPolicy](#rowlevelpermissionpolicy) (Required)
-
-## RowLevelPermissionFormatVersion
-### Properties
-
-## RowLevelPermissionPolicy
-### Properties
+* **PermissionPolicy**: string (Required)
 
 ## Tag
 ### Properties
@@ -422,9 +389,9 @@
 * **Name**: string: <p>A display name for the data source.</p>
 * **Permissions**: [ResourcePermission](#resourcepermission)[]: <p>A list of resource permissions on the data source.</p>
 * **SslProperties**: [SslProperties](#sslproperties)
-* **Status**: [ResourceStatus](#resourcestatus) (ReadOnly)
+* **Status**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]: <p>Contains a map of the key-value pairs for the resource tag or tags assigned to the data source.</p>
-* **Type**: [DataSourceType](#datasourcetype)
+* **Type**: string
 * **VpcConnectionProperties**: [VpcConnectionProperties](#vpcconnectionproperties)
 
 ## DataSourceParameters
@@ -572,10 +539,7 @@
 ## DataSourceErrorInfo
 ### Properties
 * **Message**: string: <p>Error message.</p>
-* **Type**: [DataSourceErrorInfoType](#datasourceerrorinfotype)
-
-## DataSourceErrorInfoType
-### Properties
+* **Type**: string
 
 ## ResourcePermission
 ### Properties
@@ -600,16 +564,10 @@
 ### Properties
 * **DisableSsl**: bool: <p>A Boolean option to control whether SSL should be disabled.</p>
 
-## ResourceStatus
-### Properties
-
 ## Tag
 ### Properties
 * **Key**: string (Required): <p>Tag key.</p>
 * **Value**: string (Required): <p>Tag value.</p>
-
-## DataSourceType
-### Properties
 
 ## VpcConnectionProperties
 ### Properties
@@ -687,7 +645,7 @@
 * **Sheets**: [Sheet](#sheet)[]: <p>A list of the associated sheets with the unique identifier and name of each sheet.</p>
 * **SourceEntityArn**: string: <p>The Amazon Resource Name (ARN) of an analysis or template that was used to create this
             template.</p>
-* **Status**: [ResourceStatus](#resourcestatus)
+* **Status**: string
 * **ThemeArn**: string: <p>The ARN of the theme associated with this version of the template.</p>
 * **VersionNumber**: int: <p>The version number of the template version.</p>
 
@@ -719,19 +677,13 @@
 ## TemplateError
 ### Properties
 * **Message**: string: <p>Description of the error type.</p>
-* **Type**: [TemplateErrorType](#templateerrortype)
-
-## TemplateErrorType
-### Properties
+* **Type**: string
 
 ## Sheet
 ### Properties
 * **Name**: string: <p>The name of a sheet. This name is displayed on the sheet's tab in the QuickSight
             console.</p>
 * **SheetId**: string: <p>The unique identifier associated with a sheet.</p>
-
-## ResourceStatus
-### Properties
 
 ## AWS.QuickSight/ThemeProperties
 ### Properties
@@ -750,7 +702,7 @@
 * **Tags**: [Tag](#tag)[]: <p>A map of the key-value pairs for the resource tag or tags that you want to add to the
 			resource.</p>
 * **ThemeId**: string (Required, Identifier)
-* **Type**: [ThemeType](#themetype) (ReadOnly)
+* **Type**: string (ReadOnly)
 * **Version**: [ThemeVersion](#themeversion) (ReadOnly)
 * **VersionDescription**: string (WriteOnly): <p>A description of the first version of the theme that you're creating. Every time
 				<code>UpdateTheme</code> is called, a new version is created. Each version of the
@@ -859,9 +811,6 @@
 * **Key**: string (Required): <p>Tag key.</p>
 * **Value**: string (Required): <p>Tag value.</p>
 
-## ThemeType
-### Properties
-
 ## ThemeVersion
 ### Properties
 * **Arn**: string: <p>The Amazon Resource Name (ARN) of the resource.</p>
@@ -871,17 +820,11 @@
 * **CreatedTime**: string: <p>The date and time that this theme version was created.</p>
 * **Description**: string: <p>The description of the theme.</p>
 * **Errors**: [ThemeError](#themeerror)[]: <p>Errors associated with the theme.</p>
-* **Status**: [ResourceStatus](#resourcestatus)
+* **Status**: string
 * **VersionNumber**: int: <p>The version number of the theme.</p>
 
 ## ThemeError
 ### Properties
 * **Message**: string: <p>The error message.</p>
-* **Type**: [ThemeErrorType](#themeerrortype)
-
-## ThemeErrorType
-### Properties
-
-## ResourceStatus
-### Properties
+* **Type**: string
 

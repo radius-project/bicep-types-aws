@@ -79,14 +79,8 @@
 
 ## ConformancePackInputParameter
 ### Properties
-* **ParameterName**: [ParameterName](#parametername) (Required)
-* **ParameterValue**: [ParameterValue](#parametervalue) (Required)
-
-## ParameterName
-### Properties
-
-## ParameterValue
-### Properties
+* **ParameterName**: string (Required)
+* **ParameterValue**: string (Required)
 
 ## ConformancePack_TemplateSSMDocumentDetails
 ### Properties
@@ -98,24 +92,15 @@
 * **ConformancePackInputParameters**: [ConformancePackInputParameter](#conformancepackinputparameter)[]: A list of ConformancePackInputParameter objects.
 * **DeliveryS3Bucket**: string: AWS Config stores intermediate files while processing conformance pack template.
 * **DeliveryS3KeyPrefix**: string: The prefix for the delivery S3 bucket.
-* **ExcludedAccounts**: [AccountId](#accountid)[]: A list of AWS accounts to be excluded from an organization conformance pack while deploying a conformance pack.
+* **ExcludedAccounts**: string[]: A list of AWS accounts to be excluded from an organization conformance pack while deploying a conformance pack.
 * **OrganizationConformancePackName**: string (Required, Identifier): The name of the organization conformance pack.
 * **TemplateBody**: string (WriteOnly): A string containing full conformance pack template body.
 * **TemplateS3Uri**: string (WriteOnly): Location of file containing the template body.
 
 ## ConformancePackInputParameter
 ### Properties
-* **ParameterName**: [ParameterName](#parametername) (Required)
-* **ParameterValue**: [ParameterValue](#parametervalue) (Required)
-
-## ParameterName
-### Properties
-
-## ParameterValue
-### Properties
-
-## AccountId
-### Properties
+* **ParameterName**: string (Required)
+* **ParameterValue**: string (Required)
 
 ## AWS.Config/StoredQueryProperties
 ### Properties

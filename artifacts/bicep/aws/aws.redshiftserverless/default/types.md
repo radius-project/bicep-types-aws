@@ -22,13 +22,10 @@
 * **FinalSnapshotRetentionPeriod**: int: The number of days to retain automated snapshot in the destination region after they are copied from the source region. If the value is -1, the manual snapshot is retained indefinitely. The value must be either -1 or an integer between 1 and 3,653.
 * **IamRoles**: string[]: A list of AWS Identity and Access Management (IAM) roles that can be used by the namespace to access other AWS services. You must supply the IAM roles in their Amazon Resource Name (ARN) format. The Default role limit for each request is 10.
 * **KmsKeyId**: string: The AWS Key Management Service (KMS) key ID of the encryption key that you want to use to encrypt data in the namespace.
-* **LogExports**: [LogExport](#logexport)[]: The collection of log types to be exported provided by the customer. Should only be one of the three supported log types: userlog, useractivitylog and connectionlog
+* **LogExports**: string[]: The collection of log types to be exported provided by the customer. Should only be one of the three supported log types: userlog, useractivitylog and connectionlog
 * **Namespace**: [Namespace](#namespace) (ReadOnly)
 * **NamespaceName**: string (Required, Identifier): A unique identifier for the namespace. You use this identifier to refer to the namespace for any subsequent namespace operations such as deleting or modifying. All alphabetical characters must be lower case. Namespace name should be unique for all namespaces within an AWS account.
 * **Tags**: [Tag](#tag)[] (WriteOnly): The list of tags for the namespace.
-
-## LogExport
-### Properties
 
 ## Namespace
 ### Properties
@@ -38,14 +35,11 @@
 * **DefaultIamRoleArn**: string
 * **IamRoles**: string[]
 * **KmsKeyId**: string
-* **LogExports**: [LogExport](#logexport)[]
+* **LogExports**: string[]
 * **NamespaceArn**: string
 * **NamespaceId**: string
 * **NamespaceName**: string (Identifier)
-* **Status**: [NamespaceStatus](#namespacestatus)
-
-## NamespaceStatus
-### Properties
+* **Status**: string
 
 ## Tag
 ### Properties
@@ -85,7 +79,7 @@
 * **NamespaceName**: string
 * **PubliclyAccessible**: bool
 * **SecurityGroupIds**: string[]
-* **Status**: [WorkgroupStatus](#workgroupstatus)
+* **Status**: string
 * **SubnetIds**: string[]
 * **WorkgroupArn**: string
 * **WorkgroupId**: string
@@ -109,7 +103,4 @@
 * **NetworkInterfaceId**: string
 * **PrivateIpAddress**: string
 * **SubnetId**: string
-
-## WorkgroupStatus
-### Properties
 

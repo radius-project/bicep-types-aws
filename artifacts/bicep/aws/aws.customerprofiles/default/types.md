@@ -56,12 +56,9 @@
 ## SourceFlowConfig
 ### Properties
 * **ConnectorProfileName**: string
-* **ConnectorType**: [ConnectorType](#connectortype) (Required)
+* **ConnectorType**: string (Required)
 * **IncrementalPullConfig**: [IncrementalPullConfig](#incrementalpullconfig)
 * **SourceConnectorProperties**: [SourceConnectorProperties](#sourceconnectorproperties) (Required)
-
-## ConnectorType
-### Properties
 
 ## IncrementalPullConfig
 ### Properties
@@ -77,10 +74,7 @@
 
 ## MarketoSourceProperties
 ### Properties
-* **Object**: [Object](#object) (Required)
-
-## Object
-### Properties
+* **Object**: string (Required)
 
 ## S3SourceProperties
 ### Properties
@@ -91,65 +85,41 @@
 ### Properties
 * **EnableDynamicFieldUpdate**: bool
 * **IncludeDeletedRecords**: bool
-* **Object**: [Object](#object) (Required)
+* **Object**: string (Required)
 
 ## ServiceNowSourceProperties
 ### Properties
-* **Object**: [Object](#object) (Required)
+* **Object**: string (Required)
 
 ## ZendeskSourceProperties
 ### Properties
-* **Object**: [Object](#object) (Required)
+* **Object**: string (Required)
 
 ## Task
 ### Properties
 * **ConnectorOperator**: [ConnectorOperator](#connectoroperator)
-* **DestinationField**: [DestinationField](#destinationfield)
+* **DestinationField**: string
 * **SourceFields**: string[] (Required)
 * **TaskProperties**: [TaskPropertiesMap](#taskpropertiesmap)[]
-* **TaskType**: [TaskType](#tasktype) (Required)
+* **TaskType**: string (Required)
 
 ## ConnectorOperator
 ### Properties
-* **Marketo**: [MarketoConnectorOperator](#marketoconnectoroperator)
-* **S3**: [S3ConnectorOperator](#s3connectoroperator)
-* **Salesforce**: [SalesforceConnectorOperator](#salesforceconnectoroperator)
-* **ServiceNow**: [ServiceNowConnectorOperator](#servicenowconnectoroperator)
-* **Zendesk**: [ZendeskConnectorOperator](#zendeskconnectoroperator)
-
-## MarketoConnectorOperator
-### Properties
-
-## S3ConnectorOperator
-### Properties
-
-## SalesforceConnectorOperator
-### Properties
-
-## ServiceNowConnectorOperator
-### Properties
-
-## ZendeskConnectorOperator
-### Properties
-
-## DestinationField
-### Properties
+* **Marketo**: string
+* **S3**: string
+* **Salesforce**: string
+* **ServiceNow**: string
+* **Zendesk**: string
 
 ## TaskPropertiesMap
 ### Properties
-* **OperatorPropertyKey**: [OperatorPropertiesKeys](#operatorpropertieskeys) (Required)
+* **OperatorPropertyKey**: string (Required)
 * **Property**: string (Required)
-
-## OperatorPropertiesKeys
-### Properties
-
-## TaskType
-### Properties
 
 ## TriggerConfig
 ### Properties
 * **TriggerProperties**: [TriggerProperties](#triggerproperties)
-* **TriggerType**: [TriggerType](#triggertype) (Required)
+* **TriggerType**: string (Required)
 
 ## TriggerProperties
 ### Properties
@@ -158,18 +128,12 @@
 ## ScheduledTriggerProperties
 ### Properties
 * **DataPullMode**: string
-* **FirstExecutionFrom**: [Date](#date)
-* **ScheduleEndTime**: [Date](#date)
+* **FirstExecutionFrom**: int
+* **ScheduleEndTime**: int
 * **ScheduleExpression**: string (Required)
 * **ScheduleOffset**: int
-* **ScheduleStartTime**: [Date](#date)
+* **ScheduleStartTime**: int
 * **Timezone**: string
-
-## Date
-### Properties
-
-## TriggerType
-### Properties
 
 ## ObjectTypeMapping
 ### Properties

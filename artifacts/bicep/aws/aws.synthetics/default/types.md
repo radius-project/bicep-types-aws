@@ -89,11 +89,8 @@
 ### Properties
 * **Id**: string (ReadOnly): Id of the group.
 * **Name**: string (Required, Identifier): Name of the group.
-* **ResourceArns**: [ResourceArn](#resourcearn)[]
+* **ResourceArns**: string[]
 * **Tags**: [Tag](#tag)[]
-
-## ResourceArn
-### Properties
 
 ## Tag
 ### Properties

@@ -118,14 +118,8 @@
 
 ## NetworkAnalyzerConfiguration_TraceContent
 ### Properties
-* **LogLevel**: [LogLevel](#loglevel)
-* **WirelessDeviceFrameInfo**: [WirelessDeviceFrameInfo](#wirelessdeviceframeinfo)
-
-## LogLevel
-### Properties
-
-## WirelessDeviceFrameInfo
-### Properties
+* **LogLevel**: string
+* **WirelessDeviceFrameInfo**: string
 
 ## AWS.IoTWireless/WirelessDeviceProperties
 ### Properties

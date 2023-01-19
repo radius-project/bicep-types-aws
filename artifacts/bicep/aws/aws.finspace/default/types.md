@@ -9,7 +9,7 @@
 ## AWS.FinSpace/EnvironmentProperties
 ### Properties
 * **AwsAccountId**: string (ReadOnly): AWS account ID associated with the Environment
-* **DataBundles**: [DataBundleArn](#databundlearn)[]: ARNs of FinSpace Data Bundles to install
+* **DataBundles**: string[]: ARNs of FinSpace Data Bundles to install
 * **DedicatedServiceAccountId**: string (ReadOnly): ID for FinSpace created account used to store Environment artifacts
 * **Description**: string: Description of the Environment
 * **EnvironmentArn**: string (ReadOnly): ARN of the Environment
@@ -22,9 +22,6 @@
 * **SageMakerStudioDomainUrl**: string (ReadOnly): SageMaker Studio Domain URL associated with the Environment
 * **Status**: string (ReadOnly): State of the Environment
 * **SuperuserParameters**: [SuperuserParameters](#superuserparameters)
-
-## DataBundleArn
-### Properties
 
 ## FederationParameters
 ### Properties
