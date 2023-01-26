@@ -120,6 +120,9 @@ function visitDefinitions(context: Context, factory: TypeFactory, record: Schema
 
 function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecord, typeName: string | undefined, schema: SchemaDefinition): TypeReference {
     // Normalize the schema if $ref is set
+    if (typeName === 'ScheduledActionType') {
+        console.log('test')
+    }
     if (schema.$ref) {
         // Note: we don't handle references to external files/schemas (intentionally).
         const parts = schema.$ref.split('/')
@@ -203,6 +206,12 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
                     }
                     
                     properties[name] = new ObjectProperty(type, flags, propertySchema.description)
+                })
+            }
+            if (schema.oneOf) {
+                console.log('test');
+                Object.entries(schema.oneOf).forEach(([name, propertySchema], _) => {
+                    
                 })
             }
 

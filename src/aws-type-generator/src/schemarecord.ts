@@ -30,6 +30,7 @@ export interface SchemaDefinition {
     '$ref'?: string
     required?: string[]
     type?: TypeName | TypeName[]
+    oneOf: SchemaDefinition[]
 }
 
 export type TypeName = 'boolean' | 'number' | 'integer' | 'string' | 'object' | 'array' | 'null'
