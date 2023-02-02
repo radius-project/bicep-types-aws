@@ -3,7 +3,7 @@ import path from "path";
 import { describe, expect, test } from '@jest/globals';
 import { convertSchemaRecordToTypes } from './convert'
 import { SchemaRecord } from "./schemarecord";
-import { ArrayType, BuiltInType, BuiltInTypeKind, ObjectProperty, ObjectPropertyFlags, ObjectType, ResourceType, ScopeType, TypeBase, TypeReference } from "./lib/types";
+import { ArrayType, BuiltInType, BuiltInTypeKind, ObjectProperty, ObjectPropertyFlags, ObjectType, ResourceType, ScopeType, StringLiteralType, TypeBase, TypeReference } from "./lib/types";
 
 describe('convert', () => {
     test('AWS::Kinesis::Stream', () => {
@@ -25,6 +25,11 @@ describe('convert', () => {
                     new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
                     ObjectPropertyFlags.None,
                     "the resource name"),
+                
+                "alias": new ObjectProperty(
+                        new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                        ObjectPropertyFlags.Required,
+                        "the resource alias"),
 
                 "properties": new ObjectProperty(
                     new TypeReference(lookupObjectTypeIndex(types, "AWS.Kinesis/StreamProperties")),
