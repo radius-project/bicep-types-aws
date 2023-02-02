@@ -3,6 +3,7 @@
 ## Resource AWS.SQS/Queue@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SQS/QueueProperties](#awssqsqueueproperties): properties of the resource
 

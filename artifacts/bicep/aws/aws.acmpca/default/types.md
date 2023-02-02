@@ -3,18 +3,21 @@
 ## Resource AWS.ACMPCA/Certificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ACMPCA/CertificateProperties](#awsacmpcacertificateproperties) (Required): properties of the resource
 
 ## Resource AWS.ACMPCA/CertificateAuthority@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ACMPCA/CertificateAuthorityProperties](#awsacmpcacertificateauthorityproperties) (Required): properties of the resource
 
 ## Resource AWS.ACMPCA/CertificateAuthorityActivation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ACMPCA/CertificateAuthorityActivationProperties](#awsacmpcacertificateauthorityactivationproperties) (Required): properties of the resource
 

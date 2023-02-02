@@ -3,24 +3,28 @@
 ## Resource AWS.Events/ApiDestination@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Events/ApiDestinationProperties](#awseventsapidestinationproperties) (Required): properties of the resource
 
 ## Resource AWS.Events/Archive@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Events/ArchiveProperties](#awseventsarchiveproperties) (Required): properties of the resource
 
 ## Resource AWS.Events/Connection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Events/ConnectionProperties](#awseventsconnectionproperties) (Required): properties of the resource
 
 ## Resource AWS.Events/Endpoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Events/EndpointProperties](#awseventsendpointproperties) (Required): properties of the resource
 

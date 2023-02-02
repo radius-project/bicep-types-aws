@@ -3,6 +3,7 @@
 ## Resource AWS.ResourceGroups/Group@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ResourceGroups/GroupProperties](#awsresourcegroupsgroupproperties) (Required): properties of the resource
 

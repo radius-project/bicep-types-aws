@@ -3,18 +3,21 @@
 ## Resource AWS.GameLift/Alias@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GameLift/AliasProperties](#awsgameliftaliasproperties) (Required): properties of the resource
 
 ## Resource AWS.GameLift/Fleet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GameLift/FleetProperties](#awsgameliftfleetproperties): properties of the resource
 
 ## Resource AWS.GameLift/GameServerGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GameLift/GameServerGroupProperties](#awsgameliftgameservergroupproperties) (Required): properties of the resource
 

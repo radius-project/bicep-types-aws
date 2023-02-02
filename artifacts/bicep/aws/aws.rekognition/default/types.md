@@ -3,18 +3,21 @@
 ## Resource AWS.Rekognition/Collection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Rekognition/CollectionProperties](#awsrekognitioncollectionproperties) (Required): properties of the resource
 
 ## Resource AWS.Rekognition/Project@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Rekognition/ProjectProperties](#awsrekognitionprojectproperties) (Required): properties of the resource
 
 ## Resource AWS.Rekognition/StreamProcessor@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Rekognition/StreamProcessorProperties](#awsrekognitionstreamprocessorproperties) (Required): properties of the resource
 

@@ -3,12 +3,14 @@
 ## Resource AWS.SSO/InstanceAccessControlAttributeConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SSO/InstanceAccessControlAttributeConfigurationProperties](#awsssoinstanceaccesscontrolattributeconfigurationproperties) (Required): properties of the resource
 
 ## Resource AWS.SSO/PermissionSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SSO/PermissionSetProperties](#awsssopermissionsetproperties) (Required): properties of the resource
 

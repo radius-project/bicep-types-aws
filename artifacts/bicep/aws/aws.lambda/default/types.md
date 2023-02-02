@@ -3,24 +3,28 @@
 ## Resource AWS.Lambda/CodeSigningConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lambda/CodeSigningConfigProperties](#awslambdacodesigningconfigproperties) (Required): properties of the resource
 
 ## Resource AWS.Lambda/EventSourceMapping@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lambda/EventSourceMappingProperties](#awslambdaeventsourcemappingproperties) (Required): properties of the resource
 
 ## Resource AWS.Lambda/Function@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lambda/FunctionProperties](#awslambdafunctionproperties) (Required): properties of the resource
 
 ## Resource AWS.Lambda/Url@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lambda/UrlProperties](#awslambdaurlproperties) (Required): properties of the resource
 

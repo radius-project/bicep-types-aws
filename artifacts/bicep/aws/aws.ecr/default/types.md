@@ -3,24 +3,28 @@
 ## Resource AWS.ECR/PullThroughCacheRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ECR/PullThroughCacheRuleProperties](#awsecrpullthroughcacheruleproperties): properties of the resource
 
 ## Resource AWS.ECR/RegistryPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ECR/RegistryPolicyProperties](#awsecrregistrypolicyproperties) (Required): properties of the resource
 
 ## Resource AWS.ECR/ReplicationConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ECR/ReplicationConfigurationProperties](#awsecrreplicationconfigurationproperties) (Required): properties of the resource
 
 ## Resource AWS.ECR/Repository@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ECR/RepositoryProperties](#awsecrrepositoryproperties): properties of the resource
 

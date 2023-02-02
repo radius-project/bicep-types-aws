@@ -3,228 +3,266 @@
 ## Resource AWS.EC2/CapacityReservation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/CapacityReservationProperties](#awsec2capacityreservationproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/CapacityReservationFleet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/CapacityReservationFleetProperties](#awsec2capacityreservationfleetproperties): properties of the resource
 
 ## Resource AWS.EC2/CarrierGateway@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/CarrierGatewayProperties](#awsec2carriergatewayproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/CustomerGateway@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/CustomerGatewayProperties](#awsec2customergatewayproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/DHCPOptions@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/DHCPOptionsProperties](#awsec2dhcpoptionsproperties): properties of the resource
 
 ## Resource AWS.EC2/EC2Fleet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/EC2FleetProperties](#awsec2ec2fleetproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/EIP@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/EIPProperties](#awsec2eipproperties): properties of the resource
 
 ## Resource AWS.EC2/FlowLog@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/FlowLogProperties](#awsec2flowlogproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/GatewayRouteTableAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/GatewayRouteTableAssociationProperties](#awsec2gatewayroutetableassociationproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/Host@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/HostProperties](#awsec2hostproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/InternetGateway@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/InternetGatewayProperties](#awsec2internetgatewayproperties): properties of the resource
 
 ## Resource AWS.EC2/IPAM@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/IPAMProperties](#awsec2ipamproperties): properties of the resource
 
 ## Resource AWS.EC2/IPAMPool@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/IPAMPoolProperties](#awsec2ipampoolproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/IPAMScope@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/IPAMScopeProperties](#awsec2ipamscopeproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/LocalGatewayRouteTableVPCAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/LocalGatewayRouteTableVPCAssociationProperties](#awsec2localgatewayroutetablevpcassociationproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/NatGateway@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NatGatewayProperties](#awsec2natgatewayproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/NetworkAcl@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkAclProperties](#awsec2networkaclproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/NetworkInsightsAccessScope@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkInsightsAccessScopeProperties](#awsec2networkinsightsaccessscopeproperties): properties of the resource
 
 ## Resource AWS.EC2/NetworkInsightsAccessScopeAnalysis@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkInsightsAccessScopeAnalysisProperties](#awsec2networkinsightsaccessscopeanalysisproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/NetworkInsightsAnalysis@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkInsightsAnalysisProperties](#awsec2networkinsightsanalysisproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/NetworkInsightsPath@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkInsightsPathProperties](#awsec2networkinsightspathproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/NetworkInterface@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkInterfaceProperties](#awsec2networkinterfaceproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/PrefixList@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/PrefixListProperties](#awsec2prefixlistproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/RouteTable@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/RouteTableProperties](#awsec2routetableproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/SpotFleet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/SpotFleetProperties](#awsec2spotfleetproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/Subnet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/SubnetProperties](#awsec2subnetproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/TransitGateway@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayProperties](#awsec2transitgatewayproperties): properties of the resource
 
 ## Resource AWS.EC2/TransitGatewayAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayAttachmentProperties](#awsec2transitgatewayattachmentproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/TransitGatewayConnect@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayConnectProperties](#awsec2transitgatewayconnectproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/TransitGatewayMulticastDomain@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayMulticastDomainProperties](#awsec2transitgatewaymulticastdomainproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/TransitGatewayPeeringAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayPeeringAttachmentProperties](#awsec2transitgatewaypeeringattachmentproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/TransitGatewayVpcAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayVpcAttachmentProperties](#awsec2transitgatewayvpcattachmentproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/Volume@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VolumeProperties](#awsec2volumeproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/VPC@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCProperties](#awsec2vpcproperties): properties of the resource
 
 ## Resource AWS.EC2/VPCDHCPOptionsAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCDHCPOptionsAssociationProperties](#awsec2vpcdhcpoptionsassociationproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/VPCPeeringConnection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCPeeringConnectionProperties](#awsec2vpcpeeringconnectionproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/VPNConnection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPNConnectionProperties](#awsec2vpnconnectionproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/VPNGateway@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPNGatewayProperties](#awsec2vpngatewayproperties) (Required): properties of the resource
 

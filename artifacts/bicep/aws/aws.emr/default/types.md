@@ -3,12 +3,14 @@
 ## Resource AWS.EMR/Studio@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EMR/StudioProperties](#awsemrstudioproperties) (Required): properties of the resource
 
 ## Resource AWS.EMR/StudioSessionMapping@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EMR/StudioSessionMappingProperties](#awsemrstudiosessionmappingproperties) (Required): properties of the resource
 

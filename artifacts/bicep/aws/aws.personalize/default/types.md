@@ -3,6 +3,7 @@
 ## Resource AWS.Personalize/Dataset@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Personalize/DatasetProperties](#awspersonalizedatasetproperties) (Required): properties of the resource
 

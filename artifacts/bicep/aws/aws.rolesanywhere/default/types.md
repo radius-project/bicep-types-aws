@@ -3,18 +3,21 @@
 ## Resource AWS.RolesAnywhere/CRL@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.RolesAnywhere/CRLProperties](#awsrolesanywherecrlproperties): properties of the resource
 
 ## Resource AWS.RolesAnywhere/Profile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.RolesAnywhere/ProfileProperties](#awsrolesanywhereprofileproperties): properties of the resource
 
 ## Resource AWS.RolesAnywhere/TrustAnchor@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.RolesAnywhere/TrustAnchorProperties](#awsrolesanywheretrustanchorproperties): properties of the resource
 
