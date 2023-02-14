@@ -3,24 +3,28 @@
 ## Resource AWS.NimbleStudio/LaunchProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.NimbleStudio/LaunchProfileProperties](#awsnimblestudiolaunchprofileproperties) (Required): properties of the resource
 
 ## Resource AWS.NimbleStudio/StreamingImage@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.NimbleStudio/StreamingImageProperties](#awsnimblestudiostreamingimageproperties) (Required): properties of the resource
 
 ## Resource AWS.NimbleStudio/Studio@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.NimbleStudio/StudioProperties](#awsnimblestudiostudioproperties) (Required): properties of the resource
 
 ## Resource AWS.NimbleStudio/StudioComponent@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.NimbleStudio/StudioComponentProperties](#awsnimblestudiostudiocomponentproperties) (Required): properties of the resource
 

@@ -3,24 +3,28 @@
 ## Resource AWS.AutoScaling/LifecycleHook@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AutoScaling/LifecycleHookProperties](#awsautoscalinglifecyclehookproperties) (Required): properties of the resource
 
 ## Resource AWS.AutoScaling/ScalingPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AutoScaling/ScalingPolicyProperties](#awsautoscalingscalingpolicyproperties) (Required): properties of the resource
 
 ## Resource AWS.AutoScaling/ScheduledAction@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AutoScaling/ScheduledActionProperties](#awsautoscalingscheduledactionproperties) (Required): properties of the resource
 
 ## Resource AWS.AutoScaling/WarmPool@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AutoScaling/WarmPoolProperties](#awsautoscalingwarmpoolproperties) (Required): properties of the resource
 

@@ -3,12 +3,14 @@
 ## Resource AWS.GreengrassV2/ComponentVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GreengrassV2/ComponentVersionProperties](#awsgreengrassv2componentversionproperties): properties of the resource
 
 ## Resource AWS.GreengrassV2/Deployment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GreengrassV2/DeploymentProperties](#awsgreengrassv2deploymentproperties) (Required): properties of the resource
 

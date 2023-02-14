@@ -3,12 +3,14 @@
 ## Resource AWS.Glue/Registry@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Glue/RegistryProperties](#awsglueregistryproperties) (Required): properties of the resource
 
 ## Resource AWS.Glue/Schema@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Glue/SchemaProperties](#awsglueschemaproperties) (Required): properties of the resource
 

@@ -3,30 +3,35 @@
 ## Resource AWS.SES/ConfigurationSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SES/ConfigurationSetProperties](#awssesconfigurationsetproperties): properties of the resource
 
 ## Resource AWS.SES/ConfigurationSetEventDestination@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SES/ConfigurationSetEventDestinationProperties](#awssesconfigurationseteventdestinationproperties) (Required): properties of the resource
 
 ## Resource AWS.SES/ContactList@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SES/ContactListProperties](#awssescontactlistproperties): properties of the resource
 
 ## Resource AWS.SES/EmailIdentity@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SES/EmailIdentityProperties](#awssesemailidentityproperties) (Required): properties of the resource
 
 ## Resource AWS.SES/Template@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SES/TemplateProperties](#awssestemplateproperties): properties of the resource
 

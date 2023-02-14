@@ -3,6 +3,7 @@
 ## Resource AWS.FSx/DataRepositoryAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.FSx/DataRepositoryAssociationProperties](#awsfsxdatarepositoryassociationproperties) (Required): properties of the resource
 

@@ -3,6 +3,7 @@
 ## Resource AWS.RefactorSpaces/Route@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.RefactorSpaces/RouteProperties](#awsrefactorspacesrouteproperties) (Required): properties of the resource
 

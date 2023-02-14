@@ -3,30 +3,35 @@
 ## Resource AWS.CloudFormation/HookDefaultVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/HookDefaultVersionProperties](#awscloudformationhookdefaultversionproperties): properties of the resource
 
 ## Resource AWS.CloudFormation/HookTypeConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/HookTypeConfigProperties](#awscloudformationhooktypeconfigproperties): properties of the resource
 
 ## Resource AWS.CloudFormation/ResourceDefaultVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/ResourceDefaultVersionProperties](#awscloudformationresourcedefaultversionproperties): properties of the resource
 
 ## Resource AWS.CloudFormation/StackSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/StackSetProperties](#awscloudformationstacksetproperties) (Required): properties of the resource
 
 ## Resource AWS.CloudFormation/TypeActivation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/TypeActivationProperties](#awscloudformationtypeactivationproperties): properties of the resource
 

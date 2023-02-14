@@ -3,36 +3,42 @@
 ## Resource AWS.FraudDetector/Detector@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.FraudDetector/DetectorProperties](#awsfrauddetectordetectorproperties) (Required): properties of the resource
 
 ## Resource AWS.FraudDetector/EntityType@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.FraudDetector/EntityTypeProperties](#awsfrauddetectorentitytypeproperties) (Required): properties of the resource
 
 ## Resource AWS.FraudDetector/EventType@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.FraudDetector/EventTypeProperties](#awsfrauddetectoreventtypeproperties) (Required): properties of the resource
 
 ## Resource AWS.FraudDetector/Label@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.FraudDetector/LabelProperties](#awsfrauddetectorlabelproperties) (Required): properties of the resource
 
 ## Resource AWS.FraudDetector/Outcome@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.FraudDetector/OutcomeProperties](#awsfrauddetectoroutcomeproperties) (Required): properties of the resource
 
 ## Resource AWS.FraudDetector/Variable@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.FraudDetector/VariableProperties](#awsfrauddetectorvariableproperties) (Required): properties of the resource
 

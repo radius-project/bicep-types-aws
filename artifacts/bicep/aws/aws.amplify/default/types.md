@@ -3,18 +3,21 @@
 ## Resource AWS.Amplify/App@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Amplify/AppProperties](#awsamplifyappproperties) (Required): properties of the resource
 
 ## Resource AWS.Amplify/Branch@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Amplify/BranchProperties](#awsamplifybranchproperties) (Required): properties of the resource
 
 ## Resource AWS.Amplify/Domain@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Amplify/DomainProperties](#awsamplifydomainproperties) (Required): properties of the resource
 

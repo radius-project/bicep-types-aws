@@ -3,18 +3,21 @@
 ## Resource AWS.GlobalAccelerator/Accelerator@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GlobalAccelerator/AcceleratorProperties](#awsglobalacceleratoracceleratorproperties) (Required): properties of the resource
 
 ## Resource AWS.GlobalAccelerator/EndpointGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GlobalAccelerator/EndpointGroupProperties](#awsglobalacceleratorendpointgroupproperties) (Required): properties of the resource
 
 ## Resource AWS.GlobalAccelerator/Listener@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GlobalAccelerator/ListenerProperties](#awsglobalacceleratorlistenerproperties) (Required): properties of the resource
 

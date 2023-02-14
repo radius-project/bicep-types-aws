@@ -3,72 +3,84 @@
 ## Resource AWS.DataSync/Agent@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/AgentProperties](#awsdatasyncagentproperties) (Required): properties of the resource
 
 ## Resource AWS.DataSync/LocationEFS@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationEFSProperties](#awsdatasynclocationefsproperties) (Required): properties of the resource
 
 ## Resource AWS.DataSync/LocationFSxLustre@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationFSxLustreProperties](#awsdatasynclocationfsxlustreproperties) (Required): properties of the resource
 
 ## Resource AWS.DataSync/LocationFSxONTAP@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationFSxONTAPProperties](#awsdatasynclocationfsxontapproperties) (Required): properties of the resource
 
 ## Resource AWS.DataSync/LocationFSxOpenZFS@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationFSxOpenZFSProperties](#awsdatasynclocationfsxopenzfsproperties) (Required): properties of the resource
 
 ## Resource AWS.DataSync/LocationFSxWindows@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationFSxWindowsProperties](#awsdatasynclocationfsxwindowsproperties) (Required): properties of the resource
 
 ## Resource AWS.DataSync/LocationHDFS@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationHDFSProperties](#awsdatasynclocationhdfsproperties) (Required): properties of the resource
 
 ## Resource AWS.DataSync/LocationNFS@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationNFSProperties](#awsdatasynclocationnfsproperties) (Required): properties of the resource
 
 ## Resource AWS.DataSync/LocationObjectStorage@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationObjectStorageProperties](#awsdatasynclocationobjectstorageproperties) (Required): properties of the resource
 
 ## Resource AWS.DataSync/LocationS3@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationS3Properties](#awsdatasynclocations3properties) (Required): properties of the resource
 
 ## Resource AWS.DataSync/LocationSMB@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationSMBProperties](#awsdatasynclocationsmbproperties) (Required): properties of the resource
 
 ## Resource AWS.DataSync/Task@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/TaskProperties](#awsdatasynctaskproperties) (Required): properties of the resource
 

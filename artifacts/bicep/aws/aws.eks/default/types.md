@@ -3,30 +3,35 @@
 ## Resource AWS.EKS/Addon@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EKS/AddonProperties](#awseksaddonproperties) (Required): properties of the resource
 
 ## Resource AWS.EKS/Cluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EKS/ClusterProperties](#awseksclusterproperties) (Required): properties of the resource
 
 ## Resource AWS.EKS/FargateProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EKS/FargateProfileProperties](#awseksfargateprofileproperties) (Required): properties of the resource
 
 ## Resource AWS.EKS/IdentityProviderConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EKS/IdentityProviderConfigProperties](#awseksidentityproviderconfigproperties) (Required): properties of the resource
 
 ## Resource AWS.EKS/Nodegroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EKS/NodegroupProperties](#awseksnodegroupproperties) (Required): properties of the resource
 

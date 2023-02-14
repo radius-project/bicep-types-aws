@@ -3,18 +3,21 @@
 ## Resource AWS.IoTEvents/AlarmModel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTEvents/AlarmModelProperties](#awsioteventsalarmmodelproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTEvents/DetectorModel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTEvents/DetectorModelProperties](#awsioteventsdetectormodelproperties) (Required): properties of the resource
 
 ## Resource AWS.IoTEvents/Input@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTEvents/InputProperties](#awsioteventsinputproperties) (Required): properties of the resource
 

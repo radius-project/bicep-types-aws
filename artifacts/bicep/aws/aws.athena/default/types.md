@@ -3,24 +3,28 @@
 ## Resource AWS.Athena/DataCatalog@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Athena/DataCatalogProperties](#awsathenadatacatalogproperties) (Required): properties of the resource
 
 ## Resource AWS.Athena/NamedQuery@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Athena/NamedQueryProperties](#awsathenanamedqueryproperties) (Required): properties of the resource
 
 ## Resource AWS.Athena/PreparedStatement@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Athena/PreparedStatementProperties](#awsathenapreparedstatementproperties) (Required): properties of the resource
 
 ## Resource AWS.Athena/WorkGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
+* **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Athena/WorkGroupProperties](#awsathenaworkgroupproperties) (Required): properties of the resource
 

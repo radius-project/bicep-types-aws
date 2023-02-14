@@ -93,6 +93,7 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
         typeName,
         {
             name: new ObjectProperty(factory.lookupBuiltInType(BuiltInTypeKind.String), ObjectPropertyFlags.None, "the resource name"),
+            alias: new ObjectProperty(factory.lookupBuiltInType(BuiltInTypeKind.String), ObjectPropertyFlags.Required, "the resource alias"),
             properties: new ObjectProperty(properties, propertiesFlags, "properties of the resource")
         },
         undefined))
