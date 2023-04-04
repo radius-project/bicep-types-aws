@@ -17,7 +17,7 @@ export interface Schema extends SchemaDefinition {
     createOnlyProperties?: string[]
     readOnlyProperties?: string[]
     writeOnlyProperties?: string[]
-
+    oneOf?: SchemaDefinition[] 
 }
 
 export interface SchemaDefinition {
@@ -30,6 +30,7 @@ export interface SchemaDefinition {
     '$ref'?: string
     required?: string[]
     type?: TypeName | TypeName[]
+    oneOf?: SchemaDefinition[]
 }
 
 export type TypeName = 'boolean' | 'number' | 'integer' | 'string' | 'object' | 'array' | 'null'

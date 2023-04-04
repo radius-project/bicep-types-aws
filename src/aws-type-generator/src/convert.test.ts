@@ -8,6 +8,7 @@ import { ArrayType, BuiltInType, BuiltInTypeKind, ObjectProperty, ObjectProperty
 describe('convert', () => {
     test('AWS::Kinesis::Stream', () => {
         const file = fs.readFileSync(path.resolve('./testdata/AWS::Kinesis::Stream.json'), { encoding: 'utf8' });
+
         const schemaRecord: SchemaRecord = JSON.parse(file);
         const types = convertSchemaRecordToTypes([schemaRecord]);
 
@@ -25,7 +26,7 @@ describe('convert', () => {
                     new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
                     ObjectPropertyFlags.None,
                     "the resource name"),
-                
+
                 "alias": new ObjectProperty(
                         new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
                         ObjectPropertyFlags.Required,
@@ -107,6 +108,177 @@ describe('convert', () => {
                     new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
                     ObjectPropertyFlags.Required,
                     "The value for the tag. You can specify a value that is 0 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."),
+            }));
+    });
+
+    test('AWS::Redshift::ScheduledAction', () => {
+        const file = fs.readFileSync(path.resolve('./testdata/AWS::Redshift::ScheduledAction.json'), { encoding: 'utf8' });
+
+        const schemaRecord: SchemaRecord = JSON.parse(file);
+        const types = convertSchemaRecordToTypes([schemaRecord]);
+
+        const resourceType = lookupResourceType(types, "AWS.Redshift/ScheduledAction@default");
+        expect(resourceType).toStrictEqual(new ResourceType(
+            "AWS.Redshift/ScheduledAction@default",
+            ScopeType.Unknown,
+            new TypeReference(lookupObjectTypeIndex(types, "AWS.Redshift/ScheduledAction"))));
+
+        const bodyType = lookupObjectType(types, "AWS.Redshift/ScheduledAction");
+        expect(bodyType).toStrictEqual(new ObjectType(
+            "AWS.Redshift/ScheduledAction",
+            {
+                "name": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.None,
+                    "the resource name"),
+
+                "alias": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.Required,
+                    "the resource alias"),
+
+                "properties": new ObjectProperty(
+                    new TypeReference(lookupObjectTypeIndex(types, "AWS.Redshift/ScheduledActionProperties")),
+                    ObjectPropertyFlags.Required,
+                    "properties of the resource")
+            }));
+
+        const propertiesType = lookupObjectType(types, "AWS.Redshift/ScheduledActionProperties");
+
+        expect(propertiesType).toStrictEqual(new ObjectType(
+            "AWS.Redshift/ScheduledActionProperties",
+            {
+                "Enable": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.Bool)),
+                    ObjectPropertyFlags.None,
+                    "If true, the schedule is enabled. If false, the scheduled action does not trigger."),
+                "EndTime": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.None,
+                    "The end time in UTC of the scheduled action. After this time, the scheduled action does not trigger."),
+                "IamRole": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.None,
+                    "The IAM role to assume to run the target action."),
+                "NextInvocations": new ObjectProperty(
+                    new TypeReference(lookupArrayTypeIndex(types, new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)))),
+                    ObjectPropertyFlags.ReadOnly,
+                    "List of times when the scheduled action will run."),
+                "Schedule": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.None,
+                    "The schedule in `at( )` or `cron( )` format."),
+                "ScheduledActionDescription": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.None,
+                    "The description of the scheduled action."),
+                "ScheduledActionName": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.Required | ObjectPropertyFlags.Identifier,
+                    "The name of the scheduled action. The name must be unique within an account."),
+                "StartTime": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.None,
+                    "The start time in UTC of the scheduled action. Before this time, the scheduled action does not trigger."),
+                "State": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.ReadOnly,
+                    "The state of the scheduled action."),
+                "TargetAction": new ObjectProperty(
+                    new TypeReference(lookupObjectTypeIndex(types, "ScheduledActionType")),
+                    ObjectPropertyFlags.None,
+                    "A JSON format string of the Amazon Redshift API operation with input parameters."),
+            }));
+
+        const scheduledActionType = lookupObjectType(types, "ScheduledActionType");
+        expect(scheduledActionType).toStrictEqual(new ObjectType(
+            "ScheduledActionType",
+            {
+                "ResizeCluster": new ObjectProperty(
+                    new TypeReference(lookupObjectTypeIndex(types, "ResizeClusterMessage")),
+                    ObjectPropertyFlags.None,
+                    undefined),
+                "PauseCluster": new ObjectProperty(
+                    new TypeReference(lookupObjectTypeIndex(types, "PauseClusterMessage")),
+                    ObjectPropertyFlags.None,
+                    undefined),
+                "ResumeCluster": new ObjectProperty(
+                    new TypeReference(lookupObjectTypeIndex(types, "ResumeClusterMessage")),
+                    ObjectPropertyFlags.None,
+                    undefined),
+        }));
+    });
+
+
+    test('AWS::Route53RecoveryControl::SafetyRule', () => {
+        const file = fs.readFileSync(path.resolve('./testdata/AWS::Route53RecoveryControl::SafetyRule.json'), { encoding: 'utf8' });
+
+        const schemaRecord: SchemaRecord = JSON.parse(file);
+        const types = convertSchemaRecordToTypes([schemaRecord]);
+
+        const resourceType = lookupResourceType(types, "AWS.Route53RecoveryControl/SafetyRule@default");
+        expect(resourceType).toStrictEqual(new ResourceType(
+            "AWS.Route53RecoveryControl/SafetyRule@default",
+            ScopeType.Unknown,
+            new TypeReference(lookupObjectTypeIndex(types, "AWS.Route53RecoveryControl/SafetyRule"))));
+
+        const bodyType = lookupObjectType(types, "AWS.Route53RecoveryControl/SafetyRule");
+        expect(bodyType).toStrictEqual(new ObjectType(
+            "AWS.Route53RecoveryControl/SafetyRule",
+            {
+                "name": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.None,
+                    "the resource name"),
+
+                "alias": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.Required,
+                    "the resource alias"),
+
+                "properties": new ObjectProperty(
+                    new TypeReference(lookupObjectTypeIndex(types, "AWS.Route53RecoveryControl/SafetyRuleProperties")),
+                    ObjectPropertyFlags.Required,
+                    "properties of the resource")
+            }));
+
+        const propertiesType = lookupObjectType(types, "AWS.Route53RecoveryControl/SafetyRuleProperties");
+
+        expect(propertiesType).toStrictEqual(new ObjectType(
+            "AWS.Route53RecoveryControl/SafetyRuleProperties",
+            {
+                "AssertionRule": new ObjectProperty(
+                    new TypeReference(lookupObjectTypeIndex(types, "AssertionRule")),
+                    ObjectPropertyFlags.None,
+                    undefined),
+                "ControlPanelArn": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.Required,
+                    "The Amazon Resource Name (ARN) of the control panel."),
+                "GatingRule": new ObjectProperty(
+                    new TypeReference(lookupObjectTypeIndex(types, "GatingRule")),
+                    ObjectPropertyFlags.None,
+                    undefined),
+                "Name": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.Required,
+                    undefined),
+                "RuleConfig": new ObjectProperty(
+                    new TypeReference(lookupObjectTypeIndex(types, "RuleConfig")),
+                    ObjectPropertyFlags.Required,
+                    undefined),
+                "SafetyRuleArn": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.ReadOnly | ObjectPropertyFlags.Identifier,
+                    "The Amazon Resource Name (ARN) of the safety rule."),
+                "Status": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.ReadOnly,
+                    "The deployment status of the routing control. Status can be one of the following: PENDING, DEPLOYED, PENDING_DELETION."),
+                "Tags": new ObjectProperty(
+                    new TypeReference(lookupArrayTypeIndex(types, new TypeReference(lookupObjectTypeIndex(types, "Tag")))),
+                    ObjectPropertyFlags.WriteOnly,
+                    "A collection of tags associated with a resource"),
             }));
     });
 
