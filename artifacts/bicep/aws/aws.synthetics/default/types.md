@@ -45,11 +45,6 @@
 
 ## Code
 ### Properties
-* **Handler**: string (Required)
-* **S3Bucket**: string (WriteOnly)
-* **S3Key**: string (WriteOnly)
-* **S3ObjectVersion**: string (WriteOnly)
-* **Script**: string (WriteOnly)
 
 ## RunConfig
 ### Properties

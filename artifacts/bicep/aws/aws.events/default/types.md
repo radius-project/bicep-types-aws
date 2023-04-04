@@ -61,44 +61,6 @@
 
 ## AuthParameters
 ### Properties
-* **ApiKeyAuthParameters**: [ApiKeyAuthParameters](#apikeyauthparameters)
-* **BasicAuthParameters**: [BasicAuthParameters](#basicauthparameters)
-* **InvocationHttpParameters**: [ConnectionHttpParameters](#connectionhttpparameters)
-* **OAuthParameters**: [OAuthParameters](#oauthparameters)
-
-## ApiKeyAuthParameters
-### Properties
-* **ApiKeyName**: string (Required)
-* **ApiKeyValue**: string (Required)
-
-## BasicAuthParameters
-### Properties
-* **Password**: string (Required)
-* **Username**: string (Required)
-
-## ConnectionHttpParameters
-### Properties
-* **BodyParameters**: [Parameter](#parameter)[]
-* **HeaderParameters**: [Parameter](#parameter)[]
-* **QueryStringParameters**: [Parameter](#parameter)[]
-
-## Parameter
-### Properties
-* **IsValueSecret**: bool
-* **Key**: string (Required)
-* **Value**: string (Required)
-
-## OAuthParameters
-### Properties
-* **AuthorizationEndpoint**: string (Required)
-* **ClientParameters**: [ClientParameters](#clientparameters) (Required)
-* **HttpMethod**: string (Required)
-* **OAuthHttpParameters**: [ConnectionHttpParameters](#connectionhttpparameters)
-
-## ClientParameters
-### Properties
-* **ClientID**: string (Required)
-* **ClientSecret**: string (Required)
 
 ## AWS.Events/EndpointProperties
 ### Properties

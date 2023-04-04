@@ -54,16 +54,6 @@
 
 ## PolicyOption
 ### Properties
-* **NetworkFirewallPolicy**: [NetworkFirewallPolicy](#networkfirewallpolicy)
-* **ThirdPartyFirewallPolicy**: [ThirdPartyFirewallPolicy](#thirdpartyfirewallpolicy)
-
-## NetworkFirewallPolicy
-### Properties
-* **FirewallDeploymentModel**: string (Required)
-
-## ThirdPartyFirewallPolicy
-### Properties
-* **FirewallDeploymentModel**: string (Required)
 
 ## PolicyTag
 ### Properties

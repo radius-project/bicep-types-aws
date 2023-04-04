@@ -19,7 +19,7 @@
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Route53RecoveryControl/SafetyRuleProperties](#awsroute53recoverycontrolsafetyruleproperties): properties of the resource
+* **properties**: [AWS.Route53RecoveryControl/SafetyRuleProperties](#awsroute53recoverycontrolsafetyruleproperties) (Required): properties of the resource
 
 ## AWS.Route53RecoveryControl/ControlPanelProperties
 ### Properties
@@ -47,10 +47,10 @@
 ## AWS.Route53RecoveryControl/SafetyRuleProperties
 ### Properties
 * **AssertionRule**: [AssertionRule](#assertionrule)
-* **ControlPanelArn**: string: The Amazon Resource Name (ARN) of the control panel.
+* **ControlPanelArn**: string (Required): The Amazon Resource Name (ARN) of the control panel.
 * **GatingRule**: [GatingRule](#gatingrule)
-* **Name**: string
-* **RuleConfig**: [RuleConfig](#ruleconfig)
+* **Name**: string (Required)
+* **RuleConfig**: [RuleConfig](#ruleconfig) (Required)
 * **SafetyRuleArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the safety rule.
 * **Status**: string (ReadOnly): The deployment status of the routing control. Status can be one of the following: PENDING, DEPLOYED, PENDING_DELETION.
 * **Tags**: [Tag](#tag)[] (WriteOnly): A collection of tags associated with a resource

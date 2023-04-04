@@ -25,29 +25,6 @@
 
 ## Capacity
 ### Properties
-* **AutoScaling**: [AutoScaling](#autoscaling)
-* **ProvisionedCapacity**: [ProvisionedCapacity](#provisionedcapacity)
-
-## AutoScaling
-### Properties
-* **MaxWorkerCount**: int (Required): The maximum number of workers for a connector.
-* **McuCount**: int (Required): Specifies how many MSK Connect Units (MCU) as the minimum scaling unit.
-* **MinWorkerCount**: int (Required): The minimum number of workers for a connector.
-* **ScaleInPolicy**: [ScaleInPolicy](#scaleinpolicy) (Required)
-* **ScaleOutPolicy**: [ScaleOutPolicy](#scaleoutpolicy) (Required)
-
-## ScaleInPolicy
-### Properties
-* **CpuUtilizationPercentage**: int (Required): Specifies the CPU utilization percentage threshold at which connector scale in should trigger.
-
-## ScaleOutPolicy
-### Properties
-* **CpuUtilizationPercentage**: int (Required): Specifies the CPU utilization percentage threshold at which connector scale out should trigger.
-
-## ProvisionedCapacity
-### Properties
-* **McuCount**: int: Specifies how many MSK Connect Units (MCU) are allocated to the connector.
-* **WorkerCount**: int (Required): Number of workers for a connector.
 
 ## Connector_ConnectorConfiguration
 ### Properties

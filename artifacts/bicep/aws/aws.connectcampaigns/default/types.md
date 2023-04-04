@@ -18,6 +18,16 @@
 
 ## DialerConfig
 ### Properties
+* **PredictiveDialerConfig**: [PredictiveDialerConfig](#predictivedialerconfig)
+* **ProgressiveDialerConfig**: [ProgressiveDialerConfig](#progressivedialerconfig)
+
+## PredictiveDialerConfig
+### Properties
+* **BandwidthAllocation**: int (Required): The bandwidth allocation of a queue resource.
+
+## ProgressiveDialerConfig
+### Properties
+* **BandwidthAllocation**: int (Required): The bandwidth allocation of a queue resource.
 
 ## OutboundCallConfig
 ### Properties

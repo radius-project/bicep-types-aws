@@ -225,16 +225,6 @@
 
 ## GatewayPlatform
 ### Properties
-* **Greengrass**: [Greengrass](#greengrass): A gateway that runs on AWS IoT Greengrass V1.
-* **GreengrassV2**: [GreengrassV2](#greengrassv2): A gateway that runs on AWS IoT Greengrass V2.
-
-## Greengrass
-### Properties
-* **GroupArn**: string (Required): The ARN of the Greengrass group.
-
-## GreengrassV2
-### Properties
-* **CoreDeviceThingName**: string (Required): The name of the CoreDevice in GreenGrass V2.
 
 ## Tag
 ### Properties

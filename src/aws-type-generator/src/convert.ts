@@ -183,10 +183,9 @@ function visitDefinitions(context: Context, factory: TypeFactory, record: Schema
             // Delete oneOf from schema
             delete schema["oneOf"]
 
-            if (record.schema.definitions) {
-                // Update the schema in the definitions
-                visitSchema(context, factory, record, name, record.schema.definitions[name])
-            }
+            // Visit the schema again to create the type
+            visitSchema(context, factory, record, name, schema)
+
         }
     })
 }

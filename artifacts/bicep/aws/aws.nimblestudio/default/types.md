@@ -141,6 +141,44 @@
 
 ## StudioComponentConfiguration
 ### Properties
+* **ActiveDirectoryConfiguration**: [ActiveDirectoryConfiguration](#activedirectoryconfiguration)
+* **ComputeFarmConfiguration**: [ComputeFarmConfiguration](#computefarmconfiguration)
+* **LicenseServiceConfiguration**: [LicenseServiceConfiguration](#licenseserviceconfiguration)
+* **SharedFileSystemConfiguration**: [SharedFileSystemConfiguration](#sharedfilesystemconfiguration)
+
+## ActiveDirectoryConfiguration
+### Properties
+* **ComputerAttributes**: [ActiveDirectoryComputerAttribute](#activedirectorycomputerattribute)[]: <p>A collection of custom attributes for an Active Directory computer.</p>
+* **DirectoryId**: string: <p>The directory ID of the Directory Service for Microsoft Active Directory to access
+            using this studio component.</p>
+* **OrganizationalUnitDistinguishedName**: string: <p>The distinguished name (DN) and organizational unit (OU) of an Active Directory
+            computer.</p>
+
+## ActiveDirectoryComputerAttribute
+### Properties
+* **Name**: string: <p>The name for the LDAP attribute.</p>
+* **Value**: string: <p>The value for the LDAP attribute.</p>
+
+## ComputeFarmConfiguration
+### Properties
+* **ActiveDirectoryUser**: string: <p>The name of an Active Directory user that is used on ComputeFarm worker
+            instances.</p>
+* **Endpoint**: string: <p>The endpoint of the ComputeFarm that is accessed by the studio component
+            resource.</p>
+
+## LicenseServiceConfiguration
+### Properties
+* **Endpoint**: string: <p>The endpoint of the license service that is accessed by the studio component
+            resource.</p>
+
+## SharedFileSystemConfiguration
+### Properties
+* **Endpoint**: string: <p>The endpoint of the shared file system that is accessed by the studio component
+            resource.</p>
+* **FileSystemId**: string: <p>The unique identifier for a file system.</p>
+* **LinuxMountPoint**: string: <p>The mount location for a shared file system on a Linux virtual workstation.</p>
+* **ShareName**: string: <p>The name of the file share.</p>
+* **WindowsMountDrive**: string: <p>The mount location for a shared file system on a Windows virtual workstation.</p>
 
 ## StudioComponentInitializationScript
 ### Properties

@@ -69,6 +69,8 @@
 
 ## FilterAndOperator
 ### Properties
+* **Prefix**: string: Prefix identifies one or more objects to which the rule applies.
+* **Tags**: [FilterTag](#filtertag)[]: All of these tags must exist in the object's tag set in order for the rule to apply.
 
 ## FilterTag
 ### Properties

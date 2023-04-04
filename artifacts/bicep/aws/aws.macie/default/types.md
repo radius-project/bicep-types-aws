@@ -40,6 +40,13 @@
 
 ## Criteria
 ### Properties
+* **Regex**: string: The S3 object key for the AllowList.
+* **S3WordsList**: [S3WordsList](#s3wordslist): The S3 location for the AllowList.
+
+## S3WordsList
+### Properties
+* **BucketName**: string (Required)
+* **ObjectKey**: string (Required)
 
 ## Tag
 ### Properties

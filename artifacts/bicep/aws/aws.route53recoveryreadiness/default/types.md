@@ -92,17 +92,6 @@ AWS: :AutoScaling: :AutoScalingGroup, AWS: :CloudWatch: :Alarm, AWS: :EC2: :Cust
 
 ## TargetResource
 ### Properties
-* **NLBResource**: [NLBResource](#nlbresource)
-* **R53Resource**: [R53ResourceRecord](#r53resourcerecord)
-
-## NLBResource
-### Properties
-* **Arn**: string: A Network Load Balancer resource Amazon Resource Name (ARN).
-
-## R53ResourceRecord
-### Properties
-* **DomainName**: string: The DNS target domain name.
-* **RecordSetId**: string: The Resource Record set id.
 
 ## Tag
 ### Properties
