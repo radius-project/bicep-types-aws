@@ -1,11 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GreengrassV2-Deployment",
   "type": "AWS::GreengrassV2::Deployment",
-  "time": "2022-10-04T17:36:52.734Z",
+  "time": "2023-02-28T16:29:09.569Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/TargetArn",
+      "/properties/ParentTargetArn",
       "/properties/DeploymentName",
       "/properties/Components",
       "/properties/IotJobConfiguration",
@@ -353,6 +354,10 @@
       },
       "IotJobConfiguration": {
         "$ref": "#/definitions/DeploymentIoTJobConfiguration"
+      },
+      "ParentTargetArn": {
+        "pattern": "arn:[^:]*:iot:[^:]*:[0-9]+:thinggroup/.+",
+        "type": "string"
       },
       "Tags": {
         "additionalProperties": false,

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WAFv2-RuleGroup",
   "type": "AWS::WAFv2::RuleGroup",
-  "time": "2022-08-17T15:39:54.155Z",
+  "time": "2023-04-04T15:46:44.473Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,16 @@
       "/properties/Scope"
     ],
     "definitions": {
+      "AllowAction": {
+        "additionalProperties": false,
+        "description": "Allow traffic towards application.",
+        "properties": {
+          "CustomRequestHandling": {
+            "$ref": "#/definitions/CustomRequestHandling"
+          }
+        },
+        "type": "object"
+      },
       "AndStatement": {
         "additionalProperties": false,
         "properties": {
@@ -22,6 +32,16 @@
         "required": [
           "Statements"
         ],
+        "type": "object"
+      },
+      "BlockAction": {
+        "additionalProperties": false,
+        "description": "Block traffic towards application.",
+        "properties": {
+          "CustomResponse": {
+            "$ref": "#/definitions/CustomResponse"
+          }
+        },
         "type": "object"
       },
       "Body": {
@@ -73,7 +93,36 @@
         ],
         "type": "object"
       },
+      "CaptchaAction": {
+        "additionalProperties": false,
+        "description": "Checks valid token exists with request.",
+        "properties": {
+          "CustomRequestHandling": {
+            "$ref": "#/definitions/CustomRequestHandling"
+          }
+        },
+        "type": "object"
+      },
       "CaptchaConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "ImmunityTimeProperty": {
+            "$ref": "#/definitions/ImmunityTimeProperty"
+          }
+        },
+        "type": "object"
+      },
+      "ChallengeAction": {
+        "additionalProperties": false,
+        "description": "Checks that the request has a valid token with an unexpired challenge timestamp and, if not, returns a browser challenge to the client.",
+        "properties": {
+          "CustomRequestHandling": {
+            "$ref": "#/definitions/CustomRequestHandling"
+          }
+        },
+        "type": "object"
+      },
+      "ChallengeConfig": {
         "additionalProperties": false,
         "properties": {
           "ImmunityTimeProperty": {
@@ -134,6 +183,16 @@
           "MatchScope",
           "OversizeHandling"
         ],
+        "type": "object"
+      },
+      "CountAction": {
+        "additionalProperties": false,
+        "description": "Count traffic towards application.",
+        "properties": {
+          "CustomRequestHandling": {
+            "$ref": "#/definitions/CustomRequestHandling"
+          }
+        },
         "type": "object"
       },
       "CustomHTTPHeader": {
@@ -742,6 +801,9 @@
           "CaptchaConfig": {
             "$ref": "#/definitions/CaptchaConfig"
           },
+          "ChallengeConfig": {
+            "$ref": "#/definitions/ChallengeConfig"
+          },
           "Name": {
             "$ref": "#/definitions/EntityName"
           },
@@ -775,44 +837,19 @@
         "description": "Action taken when Rule matches its condition.",
         "properties": {
           "Allow": {
-            "additionalProperties": false,
-            "description": "Allow traffic towards application.",
-            "properties": {
-              "CustomRequestHandling": {
-                "$ref": "#/definitions/CustomRequestHandling"
-              }
-            },
-            "type": "object"
+            "$ref": "#/definitions/AllowAction"
           },
           "Block": {
-            "additionalProperties": false,
-            "description": "Block traffic towards application.",
-            "properties": {
-              "CustomResponse": {
-                "$ref": "#/definitions/CustomResponse"
-              }
-            },
-            "type": "object"
+            "$ref": "#/definitions/BlockAction"
           },
           "Captcha": {
-            "additionalProperties": false,
-            "description": "Checks valid token exists with request.",
-            "properties": {
-              "CustomRequestHandling": {
-                "$ref": "#/definitions/CustomRequestHandling"
-              }
-            },
-            "type": "object"
+            "$ref": "#/definitions/CaptchaAction"
+          },
+          "Challenge": {
+            "$ref": "#/definitions/ChallengeAction"
           },
           "Count": {
-            "additionalProperties": false,
-            "description": "Count traffic towards application.",
-            "properties": {
-              "CustomRequestHandling": {
-                "$ref": "#/definitions/CustomRequestHandling"
-              }
-            },
-            "type": "object"
+            "$ref": "#/definitions/CountAction"
           }
         },
         "type": "object"
@@ -1195,8 +1232,8 @@
       "/properties/Arn",
       "/properties/Id",
       "/properties/LabelNamespace",
-      "/properties/AvailableLabels",
-      "/properties/ConsumedLabels"
+      "/properties/AvailableLabels/*/Name",
+      "/properties/ConsumedLabels/*/Name"
     ],
     "required": [
       "Capacity",

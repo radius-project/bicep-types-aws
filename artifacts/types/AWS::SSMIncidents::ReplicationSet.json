@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSMIncidents-ReplicationSet",
   "type": "AWS::SSMIncidents::ReplicationSet",
-  "time": "2022-10-21T03:28:04.336Z",
+  "time": "2023-03-10T05:05:44.977Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -55,6 +55,28 @@
           }
         },
         "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to tag a resource.",
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^(?!aws:)[a-zA-Z+-=._:/]+$",
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
       }
     },
     "description": "Resource type definition for AWS::SSMIncidents::ReplicationSet",
@@ -81,14 +103,18 @@
       "read": {
         "permissions": [
           "ssm-incidents:ListReplicationSets",
-          "ssm-incidents:GetReplicationSet"
+          "ssm-incidents:GetReplicationSet",
+          "ssm-incidents:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "ssm-incidents:UpdateReplicationSet",
           "ssm-incidents:UpdateDeletionProtection",
-          "ssm-incidents:GetReplicationSet"
+          "ssm-incidents:GetReplicationSet",
+          "ssm-incidents:TagResource",
+          "ssm-incidents:UntagResource",
+          "ssm-incidents:ListTagsForResource"
         ]
       }
     },
@@ -108,6 +134,17 @@
       "Regions": {
         "$ref": "#/definitions/RegionList",
         "description": "The ReplicationSet configuration."
+      },
+      "Tags": {
+        "default": [],
+        "description": "The tags to apply to the replication set.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
       }
     },
     "readOnlyProperties": [
@@ -117,7 +154,7 @@
       "Regions"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ssm-incidents.git",
-    "taggable": false,
+    "taggable": true,
     "typeName": "AWS::SSMIncidents::ReplicationSet"
   }
 }

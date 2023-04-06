@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudWatch-MetricStream",
   "type": "AWS::CloudWatch::MetricStream",
-  "time": "2022-06-25T22:09:34.266Z",
+  "time": "2023-03-27T23:17:24.434Z",
   "schema": {
     "additionalProperties": false,
     "anyOf": [
@@ -174,8 +174,15 @@
         "type": "string"
       },
       "CreationDate": {
+        "anyOf": [
+          {
+            "format": "date-time"
+          },
+          {
+            "format": "timestamp"
+          }
+        ],
         "description": "The date of creation of the metric stream.",
-        "format": "date-time",
         "type": "string"
       },
       "ExcludeFilters": {
@@ -202,9 +209,20 @@
         "type": "array",
         "uniqueItems": true
       },
+      "IncludeLinkedAccountsMetrics": {
+        "description": "If you are creating a metric stream in a monitoring account, specify true to include metrics from source accounts that are linked to this monitoring account, in the metric stream. The default is false.",
+        "type": "boolean"
+      },
       "LastUpdateDate": {
+        "anyOf": [
+          {
+            "format": "date-time"
+          },
+          {
+            "format": "timestamp"
+          }
+        ],
         "description": "The date of the last update of the metric stream.",
-        "format": "date-time",
         "type": "string"
       },
       "Name": {

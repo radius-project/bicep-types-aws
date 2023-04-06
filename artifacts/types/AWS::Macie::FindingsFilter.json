@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Macie-FindingsFilter",
   "type": "AWS::Macie::FindingsFilter",
-  "time": "2022-10-26T15:10:36.665Z",
+  "time": "2023-04-06T15:58:06.053Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -14,6 +14,7 @@
     "additionalProperties": false,
     "definitions": {
       "Criterion": {
+        "additionalProperties": false,
         "description": "Map of filter criteria.",
         "patternProperties": {
           "\\w": {
@@ -23,6 +24,7 @@
         "type": "object"
       },
       "CriterionAdditionalProperties": {
+        "additionalProperties": false,
         "properties": {
           "eq": {
             "items": {
@@ -56,6 +58,7 @@
         "type": "object"
       },
       "FindingCriteria": {
+        "additionalProperties": false,
         "properties": {
           "Criterion": {
             "$ref": "#/definitions/Criterion"
@@ -133,13 +136,6 @@
         "$ref": "#/definitions/FindingCriteria",
         "description": "Findings filter criteria."
       },
-      "FindingsFilterListItems": {
-        "description": "Findings filters list.",
-        "items": {
-          "$ref": "#/definitions/FindingsFilterListItem"
-        },
-        "type": "array"
-      },
       "Id": {
         "description": "Findings filter ID.",
         "type": "string"
@@ -155,8 +151,7 @@
     },
     "readOnlyProperties": [
       "/properties/Id",
-      "/properties/Arn",
-      "/properties/FindingsFilterListItems"
+      "/properties/Arn"
     ],
     "required": [
       "Name",

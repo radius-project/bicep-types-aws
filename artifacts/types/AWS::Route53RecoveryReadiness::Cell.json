@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53RecoveryReadiness-Cell",
   "type": "AWS::Route53RecoveryReadiness::Cell",
-  "time": "2022-10-04T16:34:38.302Z",
+  "time": "2023-04-03T15:26:10.281Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -30,7 +30,9 @@
       "create": {
         "permissions": [
           "route53-recovery-readiness:CreateCell",
-          "route53-recovery-readiness:GetCell"
+          "route53-recovery-readiness:GetCell",
+          "route53-recovery-readiness:ListTagsForResources",
+          "route53-recovery-readiness:TagResource"
         ]
       },
       "delete": {
@@ -46,13 +48,17 @@
       },
       "read": {
         "permissions": [
-          "route53-recovery-readiness:GetCell"
+          "route53-recovery-readiness:GetCell",
+          "route53-recovery-readiness:ListTagsForResources"
         ]
       },
       "update": {
         "permissions": [
-          "route53-recovery-readiness:UpdateCell",
-          "route53-recovery-readiness:GetCell"
+          "route53-recovery-readiness:GetCell",
+          "route53-recovery-readiness:ListTagsForResources",
+          "route53-recovery-readiness:TagResource",
+          "route53-recovery-readiness:UntagResource",
+          "route53-recovery-readiness:UpdateCell"
         ]
       }
     },

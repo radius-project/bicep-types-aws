@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IVS-RecordingConfiguration",
   "type": "AWS::IVS::RecordingConfiguration",
-  "time": "2022-08-23T15:38:13.013Z",
+  "time": "2023-03-21T15:44:47.417Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,7 @@
       "/properties/DestinationConfiguration",
       "/properties/DestinationConfiguration/S3",
       "/properties/DestinationConfiguration/S3/BucketName",
+      "/properties/RecordingReconnectWindowSeconds",
       "/properties/ThumbnailConfiguration",
       "/properties/ThumbnailConfiguration/RecordingMode",
       "/properties/ThumbnailConfiguration/TargetIntervalSeconds"
@@ -147,6 +148,13 @@
         "minLength": 0,
         "pattern": "^[a-zA-Z0-9-_]*$",
         "type": "string"
+      },
+      "RecordingReconnectWindowSeconds": {
+        "default": 0,
+        "description": "Recording Reconnect Window Seconds. (0 means disabled)",
+        "maximum": 300,
+        "minimum": 0,
+        "type": "integer"
       },
       "State": {
         "description": "Recording Configuration State.",

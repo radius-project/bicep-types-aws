@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppRunner-Service",
   "type": "AWS::AppRunner::Service",
-  "time": "2022-10-27T06:46:04.615Z",
+  "time": "2023-04-04T20:06:15.623Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -69,9 +69,20 @@
               "NODEJS_14",
               "CORRETTO_8",
               "CORRETTO_11",
-              "NODEJS_16"
+              "NODEJS_16",
+              "GO_1",
+              "DOTNET_6",
+              "PHP_81",
+              "RUBY_31"
             ],
             "type": "string"
+          },
+          "RuntimeEnvironmentSecrets": {
+            "description": "The secrets and parameters that get referenced by your service as environment variables",
+            "items": {
+              "$ref": "#/definitions/KeyValuePair"
+            },
+            "type": "array"
           },
           "RuntimeEnvironmentVariables": {
             "items": {
@@ -201,6 +212,13 @@
             "description": "Port",
             "type": "string"
           },
+          "RuntimeEnvironmentSecrets": {
+            "description": "The secrets and parameters that get referenced by your service as environment variables",
+            "items": {
+              "$ref": "#/definitions/KeyValuePair"
+            },
+            "type": "array"
+          },
           "RuntimeEnvironmentVariables": {
             "items": {
               "$ref": "#/definitions/KeyValuePair"
@@ -243,15 +261,29 @@
         ],
         "type": "object"
       },
+      "IngressConfiguration": {
+        "additionalProperties": false,
+        "description": "Network ingress configuration",
+        "properties": {
+          "IsPubliclyAccessible": {
+            "description": "It's set to true if the Apprunner service is publicly accessible. It's set to false otherwise.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "IsPubliclyAccessible"
+        ],
+        "type": "object"
+      },
       "InstanceConfiguration": {
         "additionalProperties": false,
         "description": "Instance Configuration",
         "properties": {
           "Cpu": {
             "description": "CPU",
-            "maxLength": 6,
-            "minLength": 4,
-            "pattern": "1024|2048|(1|2) vCPU",
+            "maxLength": 9,
+            "minLength": 3,
+            "pattern": "256|512|1024|2048|4096|(0.25|0.5|1|2|4) vCPU",
             "type": "string"
           },
           "InstanceRoleArn": {
@@ -260,9 +292,9 @@
           },
           "Memory": {
             "description": "Memory",
-            "maxLength": 4,
-            "minLength": 4,
-            "pattern": "2048|3072|4096|(2|3|4) GB",
+            "maxLength": 6,
+            "minLength": 3,
+            "pattern": "512|1024|2048|3072|4096|6144|8192|10240|12288|(0.5|1|2|3|4|6|8|10|12) GB",
             "type": "string"
           }
         },
@@ -286,12 +318,15 @@
         "properties": {
           "EgressConfiguration": {
             "$ref": "#/definitions/EgressConfiguration"
+          },
+          "IngressConfiguration": {
+            "$ref": "#/definitions/IngressConfiguration"
           }
         },
         "type": "object"
       },
       "RoleArn": {
-        "maxLength": 102,
+        "maxLength": 1024,
         "minLength": 29,
         "pattern": "arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):iam::[0-9]{12}:role/[\\w+=,.@-]{1,64}",
         "type": "string"

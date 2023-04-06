@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-IPAMPool",
   "type": "AWS::EC2::IPAMPool",
-  "time": "2022-10-18T16:28:20.666Z",
+  "time": "2023-03-21T16:03:31.459Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -10,6 +10,7 @@
       "/properties/Locale",
       "/properties/AddressFamily",
       "/properties/PubliclyAdvertisable",
+      "/properties/PublicIpSource",
       "/properties/AwsService"
     ],
     "definitions": {
@@ -184,6 +185,14 @@
         },
         "type": "array",
         "uniqueItems": true
+      },
+      "PublicIpSource": {
+        "description": "The IP address source for pools in the public scope. Only used for provisioning IP address CIDRs to pools in the public scope. Default is `byoip`.",
+        "enum": [
+          "byoip",
+          "amazon"
+        ],
+        "type": "string"
       },
       "PubliclyAdvertisable": {
         "description": "Determines whether or not address space from this pool is publicly advertised. Must be set if and only if the pool is IPv6.",

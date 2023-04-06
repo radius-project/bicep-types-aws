@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53RecoveryControl-SafetyRule",
   "type": "AWS::Route53RecoveryControl::SafetyRule",
-  "time": "2022-10-03T18:51:36.357Z",
+  "time": "2023-03-20T15:48:22.018Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -128,7 +128,9 @@
         "permissions": [
           "route53-recovery-control-config:CreateSafetyRule",
           "route53-recovery-control-config:DescribeControlPanel",
-          "route53-recovery-control-config:DescribeRoutingControl"
+          "route53-recovery-control-config:DescribeRoutingControl",
+          "route53-recovery-control-config:ListTagsForResource",
+          "route53-recovery-control-config:TagResource"
         ]
       },
       "delete": {
@@ -143,12 +145,16 @@
       },
       "read": {
         "permissions": [
-          "route53-recovery-control-config:DescribeSafetyRule"
+          "route53-recovery-control-config:DescribeSafetyRule",
+          "route53-recovery-control-config:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
-          "route53-recovery-control-config:UpdateSafetyRule"
+          "route53-recovery-control-config:UpdateSafetyRule",
+          "route53-recovery-control-config:ListTagsForResource",
+          "route53-recovery-control-config:TagResource",
+          "route53-recovery-control-config:UntagResource"
         ]
       }
     },

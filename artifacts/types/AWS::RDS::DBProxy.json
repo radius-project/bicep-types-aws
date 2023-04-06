@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBProxy",
   "type": "AWS::RDS::DBProxy",
-  "time": "2022-09-30T17:07:40.465Z",
+  "time": "2023-02-28T17:11:06.735Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -20,6 +20,16 @@
             ],
             "type": "string"
           },
+          "ClientPasswordAuthType": {
+            "description": "The type of authentication the proxy uses for connections from clients.",
+            "enum": [
+              "MYSQL_NATIVE_PASSWORD",
+              "POSTGRES_SCRAM_SHA_256",
+              "POSTGRES_MD5",
+              "SQL_SERVER_AUTHENTICATION"
+            ],
+            "type": "string"
+          },
           "Description": {
             "description": "A user-specified description about the authentication used by a proxy to log in as a specific database user. ",
             "type": "string"
@@ -35,10 +45,6 @@
           },
           "SecretArn": {
             "description": "The Amazon Resource Name (ARN) representing the secret that the proxy uses to authenticate to the RDS DB instance or Aurora DB cluster. These secrets are stored within Amazon Secrets Manager. ",
-            "type": "string"
-          },
-          "UserName": {
-            "description": "The name of the database user to which the proxy connects.",
             "type": "string"
           }
         },

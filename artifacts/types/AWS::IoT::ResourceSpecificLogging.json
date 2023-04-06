@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-ResourceSpecificLogging",
   "type": "AWS::IoT::ResourceSpecificLogging",
-  "time": "2022-10-25T15:21:56.266Z",
+  "time": "2023-04-04T15:29:55.073Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -60,23 +60,24 @@
         "description": "Unique Id for a Target (TargetType:TargetName), this will be internally built to serve as primary identifier for a log target.",
         "maxLength": 140,
         "minLength": 13,
-        "pattern": "[a-zA-Z0-9.:_-]+",
+        "pattern": "[a-zA-Z0-9.:\\s_\\-]+",
         "type": "string"
       },
       "TargetName": {
         "description": "The target name.",
         "maxLength": 128,
         "minLength": 1,
-        "pattern": "[a-zA-Z0-9.:_-]+",
+        "pattern": "[a-zA-Z0-9.:\\s_\\-]+",
         "type": "string"
       },
       "TargetType": {
-        "description": "The target type. Value must be THING_GROUP, CLIENT_ID, SOURCE_IP, PRINCIPAL_ID.",
+        "description": "The target type. Value must be THING_GROUP, CLIENT_ID, SOURCE_IP, PRINCIPAL_ID, or EVENT_TYPE.",
         "enum": [
           "THING_GROUP",
           "CLIENT_ID",
           "SOURCE_IP",
-          "PRINCIPAL_ID"
+          "PRINCIPAL_ID",
+          "EVENT_TYPE"
         ],
         "type": "string"
       }

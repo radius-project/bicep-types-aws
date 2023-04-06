@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkManager-VpcAttachment",
   "type": "AWS::NetworkManager::VpcAttachment",
-  "time": "2022-10-22T19:32:53.308Z",
+  "time": "2023-04-04T19:15:52.135Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -56,6 +56,11 @@
         "additionalProperties": false,
         "description": "Vpc options of the attachment.",
         "properties": {
+          "ApplianceModeSupport": {
+            "default": false,
+            "description": "Indicates whether to enable ApplianceModeSupport Support for Vpc Attachment. Valid Values: true | false",
+            "type": "boolean"
+          },
           "Ipv6Support": {
             "default": false,
             "description": "Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable | disable",
@@ -203,6 +208,11 @@
       "/properties/SegmentName",
       "/properties/ResourceArn"
     ],
+    "required": [
+      "CoreNetworkId",
+      "VpcArn",
+      "SubnetArns"
+    ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-networkmanager/aws-networkmanager-vpcattachment",
     "tagging": {
       "cloudFormationSystemTags": false,
@@ -210,9 +220,6 @@
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::NetworkManager::VpcAttachment",
-    "writeOnlyProperties": [
-      "/properties/VpcArn"
-    ]
+    "typeName": "AWS::NetworkManager::VpcAttachment"
   }
 }

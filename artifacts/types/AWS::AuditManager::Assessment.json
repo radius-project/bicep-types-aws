@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AuditManager-Assessment",
   "type": "AWS::AuditManager::Assessment",
-  "time": "2022-05-16T15:17:28.224Z",
+  "time": "2023-03-16T15:28:03.644Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -108,9 +108,9 @@
       },
       "CreatedBy": {
         "description": "The IAM user or role that performed the action.",
-        "maxLength": 100,
-        "minLength": 1,
-        "pattern": "^[a-zA-Z0-9-_()\\[\\]\\s]+$",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:.*:*:.*",
         "type": "string"
       },
       "Delegation": {
@@ -276,6 +276,7 @@
           "auditmanager:CreateAssessment",
           "auditmanager:TagResource",
           "auditmanager:ListTagsForResource",
+          "auditmanager:BatchCreateDelegationByAssessment",
           "iam:PassRole"
         ]
       },
@@ -297,7 +298,9 @@
       "update": {
         "permissions": [
           "auditmanager:UpdateAssessment",
-          "auditmanager:UpdateAssessmentStatus"
+          "auditmanager:UpdateAssessmentStatus",
+          "auditmanager:BatchCreateDelegationByAssessment",
+          "auditmanager:BatchDeleteDelegationByAssessment"
         ]
       }
     },
@@ -360,8 +363,7 @@
     "readOnlyProperties": [
       "/properties/AssessmentId",
       "/properties/Arn",
-      "/properties/CreationTime",
-      "/properties/Delegations"
+      "/properties/CreationTime"
     ],
     "required": [],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",

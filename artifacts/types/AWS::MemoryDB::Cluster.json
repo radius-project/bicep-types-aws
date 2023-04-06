@@ -1,18 +1,26 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MemoryDB-Cluster",
   "type": "AWS::MemoryDB::Cluster",
-  "time": "2021-12-13T02:26:40.992Z",
+  "time": "2022-11-07T22:48:34.081Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/ClusterName",
       "/properties/TLSEnabled",
+      "/properties/DataTiering",
       "/properties/KmsKeyId",
       "/properties/Port",
       "/properties/SnapshotArns",
       "/properties/SnapshotName"
     ],
     "definitions": {
+      "DataTieringStatus": {
+        "enum": [
+          "true",
+          "false"
+        ],
+        "type": "string"
+      },
       "Endpoint": {
         "additionalProperties": false,
         "properties": {
@@ -114,6 +122,11 @@
         "description": "The name of the cluster. This value must be unique as it also serves as the cluster identifier.",
         "pattern": "[a-z][a-z0-9\\-]*",
         "type": "string"
+      },
+      "DataTiering": {
+        "$ref": "#/definitions/DataTieringStatus",
+        "description": "Enables data tiering. Data tiering is only supported for clusters using the r6gd node type. This parameter must be set when using r6gd nodes.",
+        "type": "object"
       },
       "Description": {
         "description": "An optional description of the cluster.",

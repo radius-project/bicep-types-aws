@@ -1,13 +1,28 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SES-ConfigurationSet",
   "type": "AWS::SES::ConfigurationSet",
-  "time": "2022-10-27T09:11:44.152Z",
+  "time": "2023-04-06T08:44:17.978Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name"
     ],
     "definitions": {
+      "DashboardOptions": {
+        "additionalProperties": false,
+        "description": "Preferences regarding the Dashboard feature.",
+        "properties": {
+          "EngagementMetrics": {
+            "description": "Whether emails sent with this configuration set have engagement tracking enabled.",
+            "pattern": "ENABLED|DISABLED",
+            "type": "string"
+          }
+        },
+        "required": [
+          "EngagementMetrics"
+        ],
+        "type": "object"
+      },
       "DeliveryOptions": {
         "additionalProperties": false,
         "description": "An object that defines the dedicated IP pool that is used to send emails that you send using the configuration set.",
@@ -22,6 +37,21 @@
             "type": "string"
           }
         },
+        "type": "object"
+      },
+      "GuardianOptions": {
+        "additionalProperties": false,
+        "description": "Preferences regarding the Guardian feature.",
+        "properties": {
+          "OptimizedSharedDelivery": {
+            "description": "Whether emails sent with this configuration set have optimized delivery algorithm enabled.",
+            "pattern": "ENABLED|DISABLED",
+            "type": "string"
+          }
+        },
+        "required": [
+          "OptimizedSharedDelivery"
+        ],
         "type": "object"
       },
       "ReputationOptions": {
@@ -75,6 +105,19 @@
           }
         },
         "type": "object"
+      },
+      "VdmOptions": {
+        "additionalProperties": false,
+        "description": "An object that contains Virtual Deliverability Manager (VDM) settings for this configuration set.",
+        "properties": {
+          "DashboardOptions": {
+            "$ref": "#/definitions/DashboardOptions"
+          },
+          "GuardianOptions": {
+            "$ref": "#/definitions/GuardianOptions"
+          }
+        },
+        "type": "object"
       }
     },
     "description": "Resource schema for AWS::SES::ConfigurationSet.",
@@ -106,7 +149,8 @@
           "ses:PutConfigurationSetDeliveryOptions",
           "ses:PutConfigurationSetReputationOptions",
           "ses:PutConfigurationSetSendingOptions",
-          "ses:PutConfigurationSetSuppressionOptions"
+          "ses:PutConfigurationSetSuppressionOptions",
+          "ses:PutConfigurationSetVdmOptions"
         ]
       }
     },
@@ -133,6 +177,9 @@
       },
       "TrackingOptions": {
         "$ref": "#/definitions/TrackingOptions"
+      },
+      "VdmOptions": {
+        "$ref": "#/definitions/VdmOptions"
       }
     },
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ses.git",

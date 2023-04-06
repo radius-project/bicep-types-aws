@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-S3ObjectLambda-AccessPoint",
   "type": "AWS::S3ObjectLambda::AccessPoint",
-  "time": "2022-10-19T09:29:53.302Z",
+  "time": "2023-03-20T10:15:41.368Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -157,6 +157,22 @@
       "/properties/Name"
     ],
     "properties": {
+      "Alias": {
+        "additionalProperties": false,
+        "properties": {
+          "Status": {
+            "description": "The status of the Object Lambda alias.",
+            "pattern": "^[A-Z]*$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the Object Lambda alias.",
+            "pattern": "^[a-z0-9\\-]*$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "Arn": {
         "pattern": "arn:[^:]+:s3-object-lambda:[^:]*:\\d{12}:accesspoint/.*",
         "type": "string"
@@ -193,6 +209,7 @@
     },
     "readOnlyProperties": [
       "/properties/Arn",
+      "/properties/Alias",
       "/properties/CreationDate",
       "/properties/PolicyStatus",
       "/properties/PublicAccessBlockConfiguration"

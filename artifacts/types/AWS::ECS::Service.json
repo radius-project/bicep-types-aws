@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECS-Service",
   "type": "AWS::ECS::Service",
-  "time": "2022-10-13T15:11:49.157Z",
+  "time": "2023-04-05T15:15:36.945Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -53,6 +53,29 @@
         },
         "type": "object"
       },
+      "DeploymentAlarms": {
+        "additionalProperties": false,
+        "properties": {
+          "AlarmNames": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "Enable": {
+            "type": "boolean"
+          },
+          "Rollback": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "AlarmNames",
+          "Rollback",
+          "Enable"
+        ],
+        "type": "object"
+      },
       "DeploymentCircuitBreaker": {
         "additionalProperties": false,
         "properties": {
@@ -72,6 +95,9 @@
       "DeploymentConfiguration": {
         "additionalProperties": false,
         "properties": {
+          "Alarms": {
+            "$ref": "#/definitions/DeploymentAlarms"
+          },
           "DeploymentCircuitBreaker": {
             "$ref": "#/definitions/DeploymentCircuitBreaker"
           },
@@ -427,6 +453,9 @@
       "ServiceArn": {
         "type": "string"
       },
+      "ServiceConnectConfiguration": {
+        "$ref": "#/definitions/ServiceConnectConfiguration"
+      },
       "ServiceName": {
         "type": "string"
       },
@@ -451,6 +480,8 @@
       "/properties/Name"
     ],
     "typeName": "AWS::ECS::Service",
-    "writeOnlyProperties": []
+    "writeOnlyProperties": [
+      "/properties/ServiceConnectConfiguration"
+    ]
   }
 }

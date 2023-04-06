@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WAFv2-WebACLAssociation",
   "type": "AWS::WAFv2::WebACLAssociation",
-  "time": "2022-08-17T15:39:17.746Z",
+  "time": "2023-04-04T15:35:32.445Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -23,7 +23,8 @@
           "elasticloadbalancing:SetWebACL",
           "apigateway:SetWebACL",
           "appsync:SetWebACL",
-          "cognito-idp:AssociateWebACL"
+          "cognito-idp:AssociateWebACL",
+          "apprunner:AssociateWebAcl"
         ]
       },
       "delete": {
@@ -35,14 +36,17 @@
           "apigateway:SetWebACL",
           "appsync:SetWebACL",
           "cognito-idp:DisassociateWebACL",
-          "cognito-idp:GetWebACLForResource"
+          "cognito-idp:GetWebACLForResource",
+          "apprunner:DisassociateWebAcl",
+          "apprunner:DescribeWebAclForService"
         ]
       },
       "read": {
         "permissions": [
           "wafv2:GetWebACLForResource",
           "wafv2:GetWebACL",
-          "cognito-idp:GetWebACLForResource"
+          "cognito-idp:GetWebACLForResource",
+          "apprunner:DescribeWebAclForService"
         ]
       },
       "update": {

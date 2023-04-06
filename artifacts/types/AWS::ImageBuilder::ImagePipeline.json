@@ -1,13 +1,47 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ImageBuilder-ImagePipeline",
   "type": "AWS::ImageBuilder::ImagePipeline",
-  "time": "2022-09-28T02:08:38.118Z",
+  "time": "2023-04-04T15:12:33.393Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name"
     ],
     "definitions": {
+      "EcrConfiguration": {
+        "additionalProperties": false,
+        "description": "Settings for Image Builder to configure the ECR repository and output container images that are scanned.",
+        "properties": {
+          "ContainerTags": {
+            "description": "Tags for Image Builder to apply the output container image that is scanned. Tags can help you identify and manage your scanned images.",
+            "insertionOrder": true,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "RepositoryName": {
+            "description": "The name of the container repository that Amazon Inspector scans to identify findings for your container images. The name includes the path for the repository location. If you don?t provide this information, Image Builder creates a repository in your account named image-builder-image-scanning-repository to use for vulnerability scans for your output container images.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ImageScanningConfiguration": {
+        "additionalProperties": false,
+        "description": "Determines if tests should run after building the image. Image Builder defaults to enable tests to run following the image build, before image distribution.",
+        "properties": {
+          "EcrConfiguration": {
+            "$ref": "#/definitions/EcrConfiguration",
+            "description": "Contains ECR settings for vulnerability scans."
+          },
+          "ImageScanningEnabled": {
+            "description": "This sets whether Image Builder keeps a snapshot of the vulnerability scans that Amazon Inspector runs against the build instance when you create a new image.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
       "ImageTestsConfiguration": {
         "additionalProperties": false,
         "description": "Image tests configuration.",
@@ -49,6 +83,7 @@
     "handlers": {
       "create": {
         "permissions": [
+          "ecr:BatchGetRepositoryScanningConfiguration",
           "iam:GetRole",
           "iam:CreateServiceLinkedRole",
           "imagebuilder:TagResource",
@@ -56,7 +91,8 @@
           "imagebuilder:GetImageRecipe",
           "imagebuilder:GetInfrastructureConfiguration",
           "imagebuilder:GetDistributionConfiguration",
-          "imagebuilder:CreateImagePipeline"
+          "imagebuilder:CreateImagePipeline",
+          "inspector2:BatchGetAccountStatus"
         ]
       },
       "delete": {
@@ -126,6 +162,10 @@
       "ImageRecipeArn": {
         "description": "The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested, and assessed.",
         "type": "string"
+      },
+      "ImageScanningConfiguration": {
+        "$ref": "#/definitions/ImageScanningConfiguration",
+        "description": "Contains settings for vulnerability scans."
       },
       "ImageTestsConfiguration": {
         "$ref": "#/definitions/ImageTestsConfiguration",

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaPackage-Channel",
   "type": "AWS::MediaPackage::Channel",
-  "time": "2022-10-25T19:16:37.092Z",
+  "time": "2023-03-21T18:29:11.58Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -44,6 +44,12 @@
             "type": "string"
           }
         },
+        "required": [
+          "Id",
+          "Username",
+          "Password",
+          "Url"
+        ],
         "type": "object"
       },
       "LogConfiguration": {
@@ -127,7 +133,7 @@
       },
       "HlsIngest": {
         "$ref": "#/definitions/HlsIngest",
-        "description": "A short text description of the Channel."
+        "description": "An HTTP Live Streaming (HLS) ingest resource configuration."
       },
       "Id": {
         "description": "The ID of the Channel.",
@@ -151,7 +157,10 @@
     },
     "readOnlyProperties": [
       "/properties/Arn",
-      "/properties/HlsIngest"
+      "/properties/HlsIngest/ingestEndpoints/*/Id",
+      "/properties/HlsIngest/ingestEndpoints/*/Username",
+      "/properties/HlsIngest/ingestEndpoints/*/Password",
+      "/properties/HlsIngest/ingestEndpoints/*/Url"
     ],
     "required": [
       "Id"

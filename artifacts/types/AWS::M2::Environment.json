@@ -1,12 +1,13 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-M2-Environment",
   "type": "AWS::M2::Environment",
-  "time": "2022-10-28T11:49:46.307Z",
+  "time": "2023-04-05T19:11:02.525Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Description",
       "/properties/EngineType",
+      "/properties/KmsKeyId",
       "/properties/Name",
       "/properties/PubliclyAccessible",
       "/properties/SecurityGroupIds",
@@ -205,6 +206,11 @@
       "InstanceType": {
         "description": "The type of instance underlying the environment.",
         "pattern": "^\\S{1,20}$",
+        "type": "string"
+      },
+      "KmsKeyId": {
+        "description": "The ID or the Amazon Resource Name (ARN) of the customer managed KMS Key used for encrypting environment-related resources.",
+        "maxLength": 2048,
         "type": "string"
       },
       "Name": {

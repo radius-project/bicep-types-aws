@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-Authorizer",
   "type": "AWS::IoT::Authorizer",
-  "time": "2022-09-12T15:23:38.092Z",
+  "time": "2023-03-21T15:28:30.801Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -30,12 +30,16 @@
     "handlers": {
       "create": {
         "permissions": [
-          "iot:CreateAuthorizer"
+          "iot:CreateAuthorizer",
+          "iot:DescribeAuthorizer",
+          "iot:ListTagsForResource"
         ]
       },
       "delete": {
         "permissions": [
-          "iot:DeleteAuthorizer"
+          "iot:UpdateAuthorizer",
+          "iot:DeleteAuthorizer",
+          "iot:DescribeAuthorizer"
         ]
       },
       "list": {
@@ -45,12 +49,17 @@
       },
       "read": {
         "permissions": [
-          "iot:DescribeAuthorizer"
+          "iot:DescribeAuthorizer",
+          "iot:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
-          "iot:UpdateAuthorizer"
+          "iot:UpdateAuthorizer",
+          "iot:DescribeAuthorizer",
+          "iot:TagResource",
+          "iot:UntagResource",
+          "iot:ListTagsForResource"
         ]
       }
     },
@@ -84,6 +93,7 @@
         "type": "string"
       },
       "Tags": {
+        "insertionOrder": true,
         "items": {
           "$ref": "#/definitions/Tag"
         },
@@ -110,7 +120,13 @@
       "AuthorizerFunctionArn"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::IoT::Authorizer"
   }
 }
