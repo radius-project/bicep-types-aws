@@ -209,6 +209,119 @@ describe('convert', () => {
         }));
     });
 
+    test('AWS::Evidently::Experiment', () => {
+        const file = fs.readFileSync(path.resolve('./testdata/AWS::Evidently::Experiment.json'), { encoding: 'utf8' });
+
+        const schemaRecord: SchemaRecord = JSON.parse(file);
+        const types = convertSchemaRecordToTypes([schemaRecord]);
+
+        const resourceType = lookupResourceType(types, "AWS.Evidently/Experiment@default");
+        expect(resourceType).toStrictEqual(new ResourceType(
+            "AWS.Evidently/Experiment@default",
+            ScopeType.Unknown,
+            new TypeReference(lookupObjectTypeIndex(types, "AWS.Evidently/Experiment"))));
+
+        const bodyType = lookupObjectType(types, "AWS.Evidently/Experiment");
+        expect(bodyType).toStrictEqual(new ObjectType(
+            "AWS.Evidently/Experiment",
+            {
+                "name": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.None,
+                    "the resource name"),
+
+                "alias": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.Required,
+                    "the resource alias"),
+
+                "properties": new ObjectProperty(
+                    new TypeReference(lookupObjectTypeIndex(types, "AWS.Evidently/ExperimentProperties")),
+                    ObjectPropertyFlags.Required,
+                    "properties of the resource")
+            }));
+
+        const propertiesType = lookupObjectType(types, "AWS.Evidently/ExperimentProperties");
+
+        expect(propertiesType).toStrictEqual(new ObjectType(
+            "AWS.Evidently/ExperimentProperties",
+            {
+                "Arn": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.ReadOnly | ObjectPropertyFlags.Identifier,
+                    undefined),
+                "Description": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.None,
+                    undefined),
+                "MetricGoals": new ObjectProperty(
+                    new TypeReference(lookupArrayTypeIndex(types, new TypeReference(lookupObjectTypeIndex(types, "MetricGoalObject")))),
+                    ObjectPropertyFlags.Required,
+                    undefined),
+                "Name": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.Required,
+                    undefined),
+                "OnlineAbConfig": new ObjectProperty(
+                    new TypeReference(lookupObjectTypeIndex(types, "OnlineAbConfigObject")),
+                    ObjectPropertyFlags.Required,
+                    undefined),
+                "Project": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.Required,
+                    undefined),
+                "RandomizationSalt": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.None,
+                    undefined),
+                "RemoveSegment": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.Bool)),
+                    ObjectPropertyFlags.None,
+                    undefined),
+                "RunningStatus": new ObjectProperty(
+                    new TypeReference(lookupObjectTypeIndex(types, "RunningStatusObject")),
+                    ObjectPropertyFlags.None,
+                    "Start Experiment. Default is False"),
+                "SamplingRate": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.Int)),
+                    ObjectPropertyFlags.None,
+                    undefined),
+                "Segment": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.None,
+                    undefined),
+                "Tags": new ObjectProperty(
+                    new TypeReference(lookupArrayTypeIndex(types, new TypeReference(lookupObjectTypeIndex(types, "Tag")))),
+                    ObjectPropertyFlags.None,
+                    "An array of key-value pairs to apply to this resource."),
+                "Treatments": new ObjectProperty(
+                    new TypeReference(lookupArrayTypeIndex(types, new TypeReference(lookupObjectTypeIndex(types, "TreatmentObject")))),
+                    ObjectPropertyFlags.Required,
+                    undefined),
+            }));
+
+        const runningStatusObject = lookupObjectType(types, "RunningStatusObject");
+        expect(runningStatusObject).toStrictEqual(new ObjectType(
+            "RunningStatusObject",
+            {
+                "Status": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.Required,
+                    "Provide START or STOP action to apply on an experiment"),
+                "AnalysisCompleteTime": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.None,
+                    "Provide the analysis Completion time for an experiment"),
+                "Reason": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.None,
+                    "Reason is a required input for stopping the experiment"),
+                "DesiredState": new ObjectProperty(
+                    new TypeReference(lookupBuiltInTypeIndex(types, BuiltInTypeKind.String)),
+                    ObjectPropertyFlags.None,
+                    "Provide CANCELLED or COMPLETED desired state when stopping an experiment"),
+        }));
+    });
 
     test('AWS::Route53RecoveryControl::SafetyRule', () => {
         const file = fs.readFileSync(path.resolve('./testdata/AWS::Route53RecoveryControl::SafetyRule.json'), { encoding: 'utf8' });

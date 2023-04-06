@@ -2,6 +2,8 @@ import { Dictionary, property } from "lodash";
 import { boolean } from "yargs";
 import { Context, SchemaDefinition, SchemaRecord } from "./schemarecord";
 import { ArrayType, BuiltInType, BuiltInTypeKind, DiscriminatedObjectType, ObjectProperty, ObjectPropertyFlags, ObjectType, ResourceType, ScopeType, TypeBase, TypeFactory, TypeReference, UnionType } from "./lib/types";
+import { type } from "os";
+import { json } from "stream/consumers";
 
 export function convertSchemaRecordToTypes(records: SchemaRecord[]): TypeBase[] {
     const factory = new TypeFactory()
@@ -80,45 +82,9 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
         })
     }
 
-
     if (record.schema.oneOf) {
-        const oneOfProperties: Record<string, boolean> = {};
-        for (const oneOfObj of record.schema.oneOf) {
-            // This is handling the case where oneOf is used to define a set of properties that are required
-            if (oneOfObj.required) {
-                // Create an array of arrays of required properties
-                let allRequiredSet: string[][] = [];
-                record.schema.oneOf.forEach((currentRequiredSet => {
-                    if (currentRequiredSet.required) {
-                        allRequiredSet.push(currentRequiredSet.required)
-                    }
-                }))
-
-                // compute the intersection of all the required properties
-                let intersection = allRequiredSet[0];
-                allRequiredSet.slice(1).forEach(currentArray => {
-                    intersection = arrayIntersection(intersection, currentArray);
-                });
-                if (record.schema.properties) {
-                    for (const key in record.schema.properties) {
-                        let property: ObjectProperty | undefined
-                        let current = factory.lookupType(properties) as ObjectType
-                        property = current.Properties[key]
-                        // If property is present in the intersection, mark it as required
-                        // Mark all other properties as not required
-                        if (property) {
-                            if (intersection.includes(key)) {
-                                property.Flags |= ObjectPropertyFlags.Required;
-                            } else {
-                                property.Flags &= ~ObjectPropertyFlags.Required;
-                            }
-                        }
-                    }
-                }
-            } else {
-                console.error("Found a new case of oneOf which is not handled!!")
-            }
-        }
+        // Handling the "oneOf" case where oneOf is present under the properties block
+        convertOneOfPropertiesToUnion(context, factory, record, properties, typeName, false)
     }
 
     // properties is required if anything inside it is required
@@ -145,6 +111,55 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
     return resourceType
 }
 
+function convertOneOfPropertiesToUnion(context: Context, factory: TypeFactory, record: SchemaRecord, properties: TypeReference, typeName: string, oneofInDefinitions: boolean) {
+    let oneOfRecord: SchemaDefinition[] | undefined;
+    if (oneofInDefinitions && record.schema.definitions) {
+        oneOfRecord = record.schema.definitions[typeName].oneOf;
+    } else {
+        oneOfRecord = record.schema.oneOf
+    }
+    if (!oneOfRecord) {
+        return
+    }
+
+    for (const oneOfObj of oneOfRecord) {
+        // This is handling the case where oneOf is used to define a set of properties that are required
+        if (oneOfObj.required) {
+            // Create an array of arrays of required properties
+            let allRequiredSet: string[][] = [];
+            oneOfRecord.forEach((currentRequiredSet => {
+                if (currentRequiredSet.required) {
+                    allRequiredSet.push(currentRequiredSet.required)
+                }
+            }))
+
+            // compute the intersection of all the required properties
+            let intersection = allRequiredSet[0];
+            allRequiredSet.slice(1).forEach(currentArray => {
+                intersection = arrayIntersection(intersection, currentArray);
+            });
+
+            // Lookup each property in the intersection and mark it as required
+            for (const [_, key] of oneOfObj.required.entries()) {
+                let property: ObjectProperty | undefined
+                let current = factory.lookupType(properties) as ObjectType
+                property = current.Properties[key]
+                // If property is present in the intersection, mark it as required
+                // Mark all other properties as not required
+                if (property) {
+                    if (intersection.includes(key)) {
+                        property.Flags |= ObjectPropertyFlags.Required;
+                    } else {
+                        property.Flags &= ~ObjectPropertyFlags.Required;
+                    }
+                }
+            }
+        } else {
+            console.error("Found a new case of oneOf which is not handled!!")
+        }
+    }
+}
+
 function arrayIntersection(...arrays: string[][]): any[] {
     if (arrays.length === 0) {
         return [];
@@ -169,23 +184,30 @@ function visitDefinitions(context: Context, factory: TypeFactory, record: Schema
         visitSchema(context, factory, record, name, schema)
         // This is handling the case where oneOf is used to define a set of properties in an object
         if (schema.oneOf) {
-            schema.properties = {}
+            if (!schema.properties) {
+                schema.properties = {}
+            }
 
             // Merge all oneOf properties into the schema and move it one level up
             for (const oneOfObj of schema.oneOf) {
+                if (oneOfObj.required) {
+                    let typeName = factory.getNamedType(name)
+                    if (typeName) {
+                        convertOneOfPropertiesToUnion(context, factory, record, typeName, name, true)
+                    }
+                    break
+                }
                 if (oneOfObj.properties) {
                     for (const [oneofName, oneofProperty] of Object.entries(oneOfObj.properties)) {
                         schema.properties[oneofName] = oneofProperty
                     }
+                    // Delete oneOf from schema
+                    delete schema["oneOf"]
+
+                    // Visit the schema again to create the type
+                    visitSchema(context, factory, record, name, schema)
                 }
             }
-
-            // Delete oneOf from schema
-            delete schema["oneOf"]
-
-            // Visit the schema again to create the type
-            visitSchema(context, factory, record, name, schema)
-
         }
     })
 }
