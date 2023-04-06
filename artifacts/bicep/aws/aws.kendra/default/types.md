@@ -75,6 +75,309 @@
 
 ## DataSourceConfiguration
 ### Properties
+* **ConfluenceConfiguration**: [ConfluenceConfiguration](#confluenceconfiguration)
+* **DatabaseConfiguration**: [DatabaseConfiguration](#databaseconfiguration)
+* **GoogleDriveConfiguration**: [GoogleDriveConfiguration](#googledriveconfiguration)
+* **OneDriveConfiguration**: [OneDriveConfiguration](#onedriveconfiguration)
+* **S3Configuration**: [S3DataSourceConfiguration](#s3datasourceconfiguration)
+* **SalesforceConfiguration**: [SalesforceConfiguration](#salesforceconfiguration)
+* **ServiceNowConfiguration**: [ServiceNowConfiguration](#servicenowconfiguration)
+* **SharePointConfiguration**: [SharePointConfiguration](#sharepointconfiguration)
+* **WebCrawlerConfiguration**: [WebCrawlerConfiguration](#webcrawlerconfiguration)
+* **WorkDocsConfiguration**: [WorkDocsConfiguration](#workdocsconfiguration)
+
+## ConfluenceConfiguration
+### Properties
+* **AttachmentConfiguration**: [ConfluenceAttachmentConfiguration](#confluenceattachmentconfiguration)
+* **BlogConfiguration**: [ConfluenceBlogConfiguration](#confluenceblogconfiguration)
+* **ExclusionPatterns**: string[]
+* **InclusionPatterns**: string[]
+* **PageConfiguration**: [ConfluencePageConfiguration](#confluencepageconfiguration)
+* **SecretArn**: string (Required)
+* **ServerUrl**: string (Required)
+* **SpaceConfiguration**: [ConfluenceSpaceConfiguration](#confluencespaceconfiguration)
+* **Version**: string (Required)
+* **VpcConfiguration**: [DataSourceVpcConfiguration](#datasourcevpcconfiguration)
+
+## ConfluenceAttachmentConfiguration
+### Properties
+* **AttachmentFieldMappings**: [ConfluenceAttachmentToIndexFieldMapping](#confluenceattachmenttoindexfieldmapping)[]
+* **CrawlAttachments**: bool
+
+## ConfluenceAttachmentToIndexFieldMapping
+### Properties
+* **DataSourceFieldName**: string (Required)
+* **DateFieldFormat**: string
+* **IndexFieldName**: string (Required)
+
+## ConfluenceBlogConfiguration
+### Properties
+* **BlogFieldMappings**: [ConfluenceBlogToIndexFieldMapping](#confluenceblogtoindexfieldmapping)[]
+
+## ConfluenceBlogToIndexFieldMapping
+### Properties
+* **DataSourceFieldName**: string (Required)
+* **DateFieldFormat**: string
+* **IndexFieldName**: string (Required)
+
+## ConfluencePageConfiguration
+### Properties
+* **PageFieldMappings**: [ConfluencePageToIndexFieldMapping](#confluencepagetoindexfieldmapping)[]
+
+## ConfluencePageToIndexFieldMapping
+### Properties
+* **DataSourceFieldName**: string (Required)
+* **DateFieldFormat**: string
+* **IndexFieldName**: string (Required)
+
+## ConfluenceSpaceConfiguration
+### Properties
+* **CrawlArchivedSpaces**: bool
+* **CrawlPersonalSpaces**: bool
+* **ExcludeSpaces**: string[]
+* **IncludeSpaces**: string[]
+* **SpaceFieldMappings**: [ConfluenceSpaceToIndexFieldMapping](#confluencespacetoindexfieldmapping)[]
+
+## ConfluenceSpaceToIndexFieldMapping
+### Properties
+* **DataSourceFieldName**: string (Required)
+* **DateFieldFormat**: string
+* **IndexFieldName**: string (Required)
+
+## DataSourceVpcConfiguration
+### Properties
+* **SecurityGroupIds**: string[] (Required)
+* **SubnetIds**: string[] (Required)
+
+## DatabaseConfiguration
+### Properties
+* **AclConfiguration**: [AclConfiguration](#aclconfiguration)
+* **ColumnConfiguration**: [ColumnConfiguration](#columnconfiguration) (Required)
+* **ConnectionConfiguration**: [ConnectionConfiguration](#connectionconfiguration) (Required)
+* **DatabaseEngineType**: string (Required)
+* **SqlConfiguration**: [SqlConfiguration](#sqlconfiguration)
+* **VpcConfiguration**: [DataSourceVpcConfiguration](#datasourcevpcconfiguration)
+
+## AclConfiguration
+### Properties
+* **AllowedGroupsColumnName**: string (Required)
+
+## ColumnConfiguration
+### Properties
+* **ChangeDetectingColumns**: string[] (Required)
+* **DocumentDataColumnName**: string (Required)
+* **DocumentIdColumnName**: string (Required)
+* **DocumentTitleColumnName**: string
+* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
+
+## DataSourceToIndexFieldMapping
+### Properties
+* **DataSourceFieldName**: string (Required)
+* **DateFieldFormat**: string
+* **IndexFieldName**: string (Required)
+
+## ConnectionConfiguration
+### Properties
+* **DatabaseHost**: string (Required)
+* **DatabaseName**: string (Required)
+* **DatabasePort**: int (Required)
+* **SecretArn**: string (Required)
+* **TableName**: string (Required)
+
+## SqlConfiguration
+### Properties
+* **QueryIdentifiersEnclosingOption**: string
+
+## GoogleDriveConfiguration
+### Properties
+* **ExcludeMimeTypes**: string[]
+* **ExcludeSharedDrives**: string[]
+* **ExcludeUserAccounts**: string[]
+* **ExclusionPatterns**: string[]
+* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
+* **InclusionPatterns**: string[]
+* **SecretArn**: string (Required)
+
+## OneDriveConfiguration
+### Properties
+* **DisableLocalGroups**: bool
+* **ExclusionPatterns**: string[]
+* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
+* **InclusionPatterns**: string[]
+* **OneDriveUsers**: [OneDriveUsers](#onedriveusers) (Required)
+* **SecretArn**: string (Required)
+* **TenantDomain**: string (Required)
+
+## OneDriveUsers
+### Properties
+* **OneDriveUserList**: string[]
+* **OneDriveUserS3Path**: [S3Path](#s3path)
+
+## S3Path
+### Properties
+* **Bucket**: string (Required)
+* **Key**: string (Required)
+
+## S3DataSourceConfiguration
+### Properties
+* **AccessControlListConfiguration**: [AccessControlListConfiguration](#accesscontrollistconfiguration)
+* **BucketName**: string (Required)
+* **DocumentsMetadataConfiguration**: [DocumentsMetadataConfiguration](#documentsmetadataconfiguration)
+* **ExclusionPatterns**: string[]
+* **InclusionPatterns**: string[]
+* **InclusionPrefixes**: string[]
+
+## AccessControlListConfiguration
+### Properties
+* **KeyPath**: string
+
+## DocumentsMetadataConfiguration
+### Properties
+* **S3Prefix**: string
+
+## SalesforceConfiguration
+### Properties
+* **ChatterFeedConfiguration**: [SalesforceChatterFeedConfiguration](#salesforcechatterfeedconfiguration)
+* **CrawlAttachments**: bool
+* **ExcludeAttachmentFilePatterns**: string[]
+* **IncludeAttachmentFilePatterns**: string[]
+* **KnowledgeArticleConfiguration**: [SalesforceKnowledgeArticleConfiguration](#salesforceknowledgearticleconfiguration)
+* **SecretArn**: string (Required)
+* **ServerUrl**: string (Required)
+* **StandardObjectAttachmentConfiguration**: [SalesforceStandardObjectAttachmentConfiguration](#salesforcestandardobjectattachmentconfiguration)
+* **StandardObjectConfigurations**: [SalesforceStandardObjectConfiguration](#salesforcestandardobjectconfiguration)[]
+
+## SalesforceChatterFeedConfiguration
+### Properties
+* **DocumentDataFieldName**: string (Required)
+* **DocumentTitleFieldName**: string
+* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
+* **IncludeFilterTypes**: string[]
+
+## SalesforceKnowledgeArticleConfiguration
+### Properties
+* **CustomKnowledgeArticleTypeConfigurations**: [SalesforceCustomKnowledgeArticleTypeConfiguration](#salesforcecustomknowledgearticletypeconfiguration)[]
+* **IncludedStates**: string[] (Required)
+* **StandardKnowledgeArticleTypeConfiguration**: [SalesforceStandardKnowledgeArticleTypeConfiguration](#salesforcestandardknowledgearticletypeconfiguration)
+
+## SalesforceCustomKnowledgeArticleTypeConfiguration
+### Properties
+* **DocumentDataFieldName**: string (Required)
+* **DocumentTitleFieldName**: string
+* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
+* **Name**: string (Required)
+
+## SalesforceStandardKnowledgeArticleTypeConfiguration
+### Properties
+* **DocumentDataFieldName**: string (Required)
+* **DocumentTitleFieldName**: string
+* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
+
+## SalesforceStandardObjectAttachmentConfiguration
+### Properties
+* **DocumentTitleFieldName**: string
+* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
+
+## SalesforceStandardObjectConfiguration
+### Properties
+* **DocumentDataFieldName**: string (Required)
+* **DocumentTitleFieldName**: string
+* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
+* **Name**: string (Required)
+
+## ServiceNowConfiguration
+### Properties
+* **AuthenticationType**: string
+* **HostUrl**: string (Required)
+* **KnowledgeArticleConfiguration**: [ServiceNowKnowledgeArticleConfiguration](#servicenowknowledgearticleconfiguration)
+* **SecretArn**: string (Required)
+* **ServiceCatalogConfiguration**: [ServiceNowServiceCatalogConfiguration](#servicenowservicecatalogconfiguration)
+* **ServiceNowBuildVersion**: string (Required)
+
+## ServiceNowKnowledgeArticleConfiguration
+### Properties
+* **CrawlAttachments**: bool
+* **DocumentDataFieldName**: string (Required)
+* **DocumentTitleFieldName**: string
+* **ExcludeAttachmentFilePatterns**: string[]
+* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
+* **FilterQuery**: string
+* **IncludeAttachmentFilePatterns**: string[]
+
+## ServiceNowServiceCatalogConfiguration
+### Properties
+* **CrawlAttachments**: bool
+* **DocumentDataFieldName**: string (Required)
+* **DocumentTitleFieldName**: string
+* **ExcludeAttachmentFilePatterns**: string[]
+* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
+* **IncludeAttachmentFilePatterns**: string[]
+
+## SharePointConfiguration
+### Properties
+* **CrawlAttachments**: bool
+* **DisableLocalGroups**: bool
+* **DocumentTitleFieldName**: string
+* **ExclusionPatterns**: string[]
+* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
+* **InclusionPatterns**: string[]
+* **SecretArn**: string (Required)
+* **SharePointVersion**: string (Required)
+* **SslCertificateS3Path**: [S3Path](#s3path)
+* **Urls**: string[] (Required)
+* **UseChangeLog**: bool
+* **VpcConfiguration**: [DataSourceVpcConfiguration](#datasourcevpcconfiguration)
+
+## WebCrawlerConfiguration
+### Properties
+* **AuthenticationConfiguration**: [WebCrawlerAuthenticationConfiguration](#webcrawlerauthenticationconfiguration)
+* **CrawlDepth**: int
+* **MaxContentSizePerPageInMegaBytes**: int
+* **MaxLinksPerPage**: int
+* **MaxUrlsPerMinuteCrawlRate**: int
+* **ProxyConfiguration**: [ProxyConfiguration](#proxyconfiguration)
+* **UrlExclusionPatterns**: string[]
+* **UrlInclusionPatterns**: string[]
+* **Urls**: [WebCrawlerUrls](#webcrawlerurls) (Required)
+
+## WebCrawlerAuthenticationConfiguration
+### Properties
+* **BasicAuthentication**: [WebCrawlerBasicAuthentication](#webcrawlerbasicauthentication)[]
+
+## WebCrawlerBasicAuthentication
+### Properties
+* **Credentials**: string (Required)
+* **Host**: string (Required)
+* **Port**: int (Required)
+
+## ProxyConfiguration
+### Properties
+* **Credentials**: string
+* **Host**: string (Required)
+* **Port**: int (Required)
+
+## WebCrawlerUrls
+### Properties
+* **SeedUrlConfiguration**: [WebCrawlerSeedUrlConfiguration](#webcrawlerseedurlconfiguration)
+* **SiteMapsConfiguration**: [WebCrawlerSiteMapsConfiguration](#webcrawlersitemapsconfiguration)
+
+## WebCrawlerSeedUrlConfiguration
+### Properties
+* **SeedUrls**: string[] (Required)
+* **WebCrawlerMode**: string
+
+## WebCrawlerSiteMapsConfiguration
+### Properties
+* **SiteMaps**: string[] (Required)
+
+## WorkDocsConfiguration
+### Properties
+* **CrawlComments**: bool
+* **ExclusionPatterns**: string[]
+* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
+* **InclusionPatterns**: string[]
+* **OrganizationId**: string (Required)
+* **UseChangeLog**: bool
 
 ## Tag
 ### Properties

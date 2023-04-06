@@ -504,15 +504,6 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 
 ## Encryption
 ### Properties
-* **SSEKMS**: [SSEKMS](#ssekms)
-* **SSES3**: [StorageLens_SSES3](#storagelenssses3): S3 default server-side encryption.
-
-## SSEKMS
-### Properties
-* **KeyId**: string (Required): The ARN of the KMS key to use for encryption.
-
-## StorageLens_SSES3
-### Properties
 
 ## BucketsAndRegions
 ### Properties

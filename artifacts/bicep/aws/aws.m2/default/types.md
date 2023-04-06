@@ -26,8 +26,6 @@
 
 ## Definition
 ### Properties
-* **Content**: string
-* **S3Location**: string
 
 ## TagMap
 ### Properties
@@ -55,18 +53,6 @@
 
 ## StorageConfiguration
 ### Properties
-* **Efs**: [EfsStorageConfiguration](#efsstorageconfiguration)
-* **Fsx**: [FsxStorageConfiguration](#fsxstorageconfiguration)
-
-## EfsStorageConfiguration
-### Properties
-* **FileSystemId**: string (Required): The file system identifier.
-* **MountPoint**: string (Required): The mount point for the file system.
-
-## FsxStorageConfiguration
-### Properties
-* **FileSystemId**: string (Required): The file system identifier.
-* **MountPoint**: string (Required): The mount point for the file system.
 
 ## TagMap
 ### Properties

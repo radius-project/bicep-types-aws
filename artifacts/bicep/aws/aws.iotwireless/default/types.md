@@ -143,6 +143,46 @@
 
 ## LoRaWANDevice
 ### Properties
+* **AbpV10x**: [AbpV10x](#abpv10x)
+* **AbpV11**: [AbpV11](#abpv11)
+* **DevEui**: string
+* **DeviceProfileId**: string
+* **OtaaV10x**: [OtaaV10x](#otaav10x)
+* **OtaaV11**: [OtaaV11](#otaav11)
+* **ServiceProfileId**: string
+
+## AbpV10x
+### Properties
+* **DevAddr**: string (Required)
+* **SessionKeys**: [SessionKeysAbpV10x](#sessionkeysabpv10x) (Required)
+
+## SessionKeysAbpV10x
+### Properties
+* **AppSKey**: string (Required)
+* **NwkSKey**: string (Required)
+
+## AbpV11
+### Properties
+* **DevAddr**: string (Required)
+* **SessionKeys**: [SessionKeysAbpV11](#sessionkeysabpv11) (Required)
+
+## SessionKeysAbpV11
+### Properties
+* **AppSKey**: string (Required)
+* **FNwkSIntKey**: string (Required)
+* **NwkSEncKey**: string (Required)
+* **SNwkSIntKey**: string (Required)
+
+## OtaaV10x
+### Properties
+* **AppEui**: string (Required)
+* **AppKey**: string (Required)
+
+## OtaaV11
+### Properties
+* **AppKey**: string (Required)
+* **JoinEui**: string (Required)
+* **NwkKey**: string (Required)
 
 ## Tag
 ### Properties

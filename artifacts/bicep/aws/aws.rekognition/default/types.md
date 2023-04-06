@@ -19,7 +19,7 @@
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Rekognition/StreamProcessorProperties](#awsrekognitionstreamprocessorproperties): properties of the resource
+* **properties**: [AWS.Rekognition/StreamProcessorProperties](#awsrekognitionstreamprocessorproperties) (Required): properties of the resource
 
 ## AWS.Rekognition/CollectionProperties
 ### Properties
@@ -45,12 +45,12 @@
 * **DataSharingPreference**: [DataSharingPreference](#datasharingpreference)
 * **FaceSearchSettings**: [FaceSearchSettings](#facesearchsettings)
 * **KinesisDataStream**: [KinesisDataStream](#kinesisdatastream)
-* **KinesisVideoStream**: [KinesisVideoStream](#kinesisvideostream)
+* **KinesisVideoStream**: [KinesisVideoStream](#kinesisvideostream) (Required)
 * **KmsKeyId**: string: The KMS key that is used by Rekognition to encrypt any intermediate customer metadata and store in the customer's S3 bucket.
 * **Name**: string (Identifier): Name of the stream processor. It's an identifier you assign to the stream processor. You can use it to manage the stream processor.
 * **NotificationChannel**: [NotificationChannel](#notificationchannel)
 * **PolygonRegionsOfInterest**: [Point](#point)[][]: The PolygonRegionsOfInterest specifies a set of polygon areas of interest in the video frames to analyze, as part of connected home feature. Each polygon is in turn, an ordered list of Point
-* **RoleArn**: string: ARN of the IAM role that allows access to the stream processor, and provides Rekognition read permissions for KVS stream and write permissions to S3 bucket and SNS topic.
+* **RoleArn**: string (Required): ARN of the IAM role that allows access to the stream processor, and provides Rekognition read permissions for KVS stream and write permissions to S3 bucket and SNS topic.
 * **S3Destination**: [S3Destination](#s3destination)
 * **Status**: string (ReadOnly): Current status of the stream processor.
 * **StatusMessage**: string (ReadOnly): Detailed status message about the stream processor.

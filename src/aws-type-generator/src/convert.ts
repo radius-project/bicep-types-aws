@@ -122,30 +122,29 @@ function convertOneOfPropertiesToUnion(context: Context, factory: TypeFactory, r
         return
     }
 
-    for (const oneOfObj of oneOfRecord) {
-        // This is handling the case where oneOf is used to define a set of properties that are required
+    // Create a union of all the oneOf objects
+    let allRequiredSet: string[][] = [];
+    oneOfRecord.forEach((oneOfObj) => {
         if (oneOfObj.required) {
-            // Create an array of arrays of required properties
-            let allRequiredSet: string[][] = [];
-            oneOfRecord.forEach((currentRequiredSet => {
-                if (currentRequiredSet.required) {
-                    allRequiredSet.push(currentRequiredSet.required)
-                }
-            }))
+            allRequiredSet.push(oneOfObj.required)
+        }
+    })
 
-            // compute the intersection of all the required properties
-            let intersection = allRequiredSet[0];
-            allRequiredSet.slice(1).forEach(currentArray => {
-                intersection = arrayIntersection(intersection, currentArray);
-            });
+    // compute the intersection of all the required properties
+    let intersection = allRequiredSet[0];
+    allRequiredSet.slice(1).forEach(currentArray => {
+        intersection = arrayIntersection(intersection, currentArray);
+    });
 
-            // Lookup each property in the intersection and mark it as required
+
+    for (const oneOfObj of oneOfRecord) {
+        if (oneOfObj.required) {
+            // Lookup each property in the intersection and if it is, mark it as required
+            // Else clear the required flag on the property
             for (const [_, key] of oneOfObj.required.entries()) {
                 let property: ObjectProperty | undefined
                 let current = factory.lookupType(properties) as ObjectType
                 property = current.Properties[key]
-                // If property is present in the intersection, mark it as required
-                // Mark all other properties as not required
                 if (property) {
                     if (intersection.includes(key)) {
                         property.Flags |= ObjectPropertyFlags.Required;

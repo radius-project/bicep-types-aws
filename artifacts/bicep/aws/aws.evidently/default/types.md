@@ -65,6 +65,10 @@
 
 ## RunningStatusObject
 ### Properties
+* **AnalysisCompleteTime**: string: Provide the analysis Completion time for an experiment
+* **DesiredState**: string: Provide CANCELLED or COMPLETED desired state when stopping an experiment
+* **Reason**: string: Reason is a required input for stopping the experiment
+* **Status**: string (Required): Provide START or STOP action to apply on an experiment
 
 ## Tag
 ### Properties
@@ -102,6 +106,11 @@
 
 ## VariationObject
 ### Properties
+* **BooleanValue**: bool
+* **DoubleValue**: int
+* **LongValue**: int
+* **StringValue**: string
+* **VariationName**: string (Required)
 
 ## AWS.Evidently/LaunchProperties
 ### Properties
@@ -175,6 +184,13 @@
 
 ## DataDeliveryObject
 ### Properties
+* **LogGroup**: string
+* **S3**: [S3Destination](#s3destination)
+
+## S3Destination
+### Properties
+* **BucketName**: string (Required)
+* **Prefix**: string
 
 ## Tag
 ### Properties

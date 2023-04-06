@@ -29,6 +29,18 @@
 
 ## Targets
 ### Properties
+* **ChannelTargetInfo**: [ChannelTargetInfo](#channeltargetinfo)
+* **ContactTargetInfo**: [ContactTargetInfo](#contacttargetinfo)
+
+## ChannelTargetInfo
+### Properties
+* **ChannelId**: string (Required): The Amazon Resource Name (ARN) of the contact channel.
+* **RetryIntervalInMinutes**: int (Required): The number of minutes to wait to retry sending engagement in the case the engagement initially fails.
+
+## ContactTargetInfo
+### Properties
+* **ContactId**: string (Required): The Amazon Resource Name (ARN) of the contact.
+* **IsEssential**: bool (Required): A Boolean value determining if the contact's acknowledgement stops the progress of stages in the plan.
 
 ## AWS.SSMContacts/ContactChannelProperties
 ### Properties

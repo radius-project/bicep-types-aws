@@ -64,6 +64,9 @@
 
 ## ExcelOptions
 ### Properties
+* **HeaderRow**: bool
+* **SheetIndexes**: int[]
+* **SheetNames**: string[]
 
 ## JsonOptions
 ### Properties
