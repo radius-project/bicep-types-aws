@@ -145,6 +145,7 @@ function convertOneOfPropertiesToUnion(context: Context, factory: TypeFactory, r
                 let property: ObjectProperty | undefined
                 let current = factory.lookupType(properties) as ObjectType
                 property = current.Properties[key]
+                // Mark all other properties as not required
                 if (property) {
                     if (intersection.includes(key)) {
                         property.Flags |= ObjectPropertyFlags.Required;
