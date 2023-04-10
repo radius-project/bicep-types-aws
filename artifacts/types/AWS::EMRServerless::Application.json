@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EMRServerless-Application",
   "type": "AWS::EMRServerless::Application",
-  "time": "2022-09-29T19:26:51.009Z",
+  "time": "2023-03-21T16:06:15.28Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -10,6 +10,14 @@
       "/properties/Type"
     ],
     "definitions": {
+      "Architecture": {
+        "description": "The cpu architecture of an application.",
+        "enum": [
+          "ARM64",
+          "X86_64"
+        ],
+        "type": "string"
+      },
       "AutoStartConfiguration": {
         "additionalProperties": false,
         "description": "Configuration for Auto Start of Application",
@@ -53,6 +61,20 @@
         "minLength": 1,
         "pattern": "^[1-9][0-9]*(\\s)?(GB|gb|gB|Gb)$",
         "type": "string"
+      },
+      "ImageConfigurationInput": {
+        "additionalProperties": false,
+        "description": "The image configuration.",
+        "properties": {
+          "ImageUri": {
+            "description": "The URI of an image in the Amazon ECR registry. This field is required when you create a new application. If you leave this field blank in an update, Amazon EMR will remove the image configuration.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^([a-z0-9]+[a-z0-9-.]*)\\/((?:[a-z0-9]+(?:[._-][a-z0-9]+)*\\/)*[a-z0-9]+(?:[._-][a-z0-9]+)*)(?:\\:([a-zA-Z0-9_][a-zA-Z0-9-._]{0,299})|@(sha256:[0-9a-f]{64}))$",
+            "type": "string"
+          }
+        },
+        "type": "object"
       },
       "InitialCapacityConfig": {
         "additionalProperties": false,
@@ -220,6 +242,25 @@
           "Memory"
         ],
         "type": "object"
+      },
+      "WorkerTypeSpecificationInput": {
+        "additionalProperties": false,
+        "description": "The specifications for a worker type.",
+        "properties": {
+          "ImageConfiguration": {
+            "$ref": "#/definitions/ImageConfigurationInput"
+          }
+        },
+        "type": "object"
+      },
+      "WorkerTypeSpecificationInputMap": {
+        "additionalProperties": false,
+        "patternProperties": {
+          "^[a-zA-Z]+[-_]*[a-zA-Z]+$": {
+            "$ref": "#/definitions/WorkerTypeSpecificationInput"
+          }
+        },
+        "type": "object"
       }
     },
     "description": "Resource schema for AWS::EMRServerless::Application Type",
@@ -267,6 +308,9 @@
         "minLength": 1,
         "type": "string"
       },
+      "Architecture": {
+        "$ref": "#/definitions/Architecture"
+      },
       "Arn": {
         "description": "The Amazon Resource Name (ARN) of the EMR Serverless Application.",
         "type": "string"
@@ -278,6 +322,9 @@
       "AutoStopConfiguration": {
         "$ref": "#/definitions/AutoStopConfiguration",
         "description": "Configuration for Auto Stop of Application."
+      },
+      "ImageConfiguration": {
+        "$ref": "#/definitions/ImageConfigurationInput"
       },
       "InitialCapacity": {
         "$ref": "#/definitions/InitialCapacityConfigMap",
@@ -317,6 +364,9 @@
       "Type": {
         "description": "The type of the application",
         "type": "string"
+      },
+      "WorkerTypeSpecifications": {
+        "$ref": "#/definitions/WorkerTypeSpecificationInputMap"
       }
     },
     "readOnlyProperties": [

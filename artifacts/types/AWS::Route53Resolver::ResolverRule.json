@@ -1,11 +1,13 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53Resolver-ResolverRule",
   "type": "AWS::Route53Resolver::ResolverRule",
-  "time": "2021-12-13T21:50:26.274Z",
+  "time": "2023-02-03T21:11:54.895Z",
   "schema": {
     "additionalProperties": false,
+    "conditionalCreateOnlyProperties": [
+      "/properties/DomainName"
+    ],
     "createOnlyProperties": [
-      "/properties/DomainName",
       "/properties/RuleType"
     ],
     "definitions": {
@@ -38,6 +40,10 @@
             "description": "One IP address that you want to forward DNS queries to. You can specify only IPv4 addresses. ",
             "type": "string"
           },
+          "Ipv6": {
+            "description": "One IPv6 address that you want to forward DNS queries to. You can specify only IPv6 addresses. ",
+            "type": "string"
+          },
           "Port": {
             "description": "The port at Ip that you want to forward DNS queries to. ",
             "maxLength": 65535,
@@ -45,9 +51,6 @@
             "type": "string"
           }
         },
-        "required": [
-          "Ip"
-        ],
         "type": "object"
       }
     },
@@ -57,7 +60,8 @@
         "permissions": [
           "route53resolver:CreateResolverRule",
           "route53resolver:GetResolverRule",
-          "route53resolver:ListTagsForResource"
+          "route53resolver:ListTagsForResource",
+          "route53resolver:TagResource"
         ]
       },
       "delete": {
@@ -81,7 +85,9 @@
         "permissions": [
           "route53resolver:UpdateResolverRule",
           "route53resolver:GetResolverRule",
-          "route53resolver:ListTagsForResource"
+          "route53resolver:ListTagsForResource",
+          "route53resolver:TagResource",
+          "route53resolver:UntagResource"
         ]
       }
     },
@@ -143,6 +149,9 @@
         "uniqueItems": false
       }
     },
+    "propertyTransform": {
+      "/properties/DomainName": "$join([DomainName, \".\"]) $OR DomainName"
+    },
     "readOnlyProperties": [
       "/properties/Arn",
       "/properties/ResolverRuleId"
@@ -152,7 +161,13 @@
       "RuleType"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-route53resolver.git",
-    "taggable": false,
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Route53Resolver::ResolverRule"
   }
 }

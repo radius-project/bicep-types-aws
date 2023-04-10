@@ -1,10 +1,11 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBParameterGroup",
   "type": "AWS::RDS::DBParameterGroup",
-  "time": "2022-10-27T16:00:22.47Z",
+  "time": "2023-04-05T11:13:12.694Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
+      "/properties/DBParameterGroupName",
       "/properties/Description",
       "/properties/Family"
     ],
@@ -39,9 +40,10 @@
           "rds:AddTagsToResource",
           "rds:CreateDBParameterGroup",
           "rds:DescribeDBParameterGroups",
+          "rds:DescribeDBParameters",
           "rds:DescribeEngineDefaultParameters",
-          "rds:ModifyDBParameterGroup",
-          "rds:ListTagsForResource"
+          "rds:ListTagsForResource",
+          "rds:ModifyDBParameterGroup"
         ]
       },
       "delete": {
@@ -57,6 +59,8 @@
       "read": {
         "permissions": [
           "rds:DescribeDBParameterGroups",
+          "rds:DescribeDBParameters",
+          "rds:DescribeEngineDefaultParameters",
           "rds:ListTagsForResource"
         ]
       },
@@ -108,17 +112,11 @@
     "propertyTransform": {
       "/properties/DBParameterGroupName": "$lowercase(DBParameterGroupName)"
     },
-    "readOnlyProperties": [
-      "/properties/DBParameterGroupName"
-    ],
     "required": [
       "Family",
       "Description"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-rds",
-    "typeName": "AWS::RDS::DBParameterGroup",
-    "writeOnlyProperties": [
-      "/properties/Parameters"
-    ]
+    "typeName": "AWS::RDS::DBParameterGroup"
   }
 }

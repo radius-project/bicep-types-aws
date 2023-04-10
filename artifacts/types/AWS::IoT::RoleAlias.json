@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-RoleAlias",
   "type": "AWS::IoT::RoleAlias",
-  "time": "2022-09-12T15:21:30.968Z",
+  "time": "2023-03-21T15:28:37.814Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -40,12 +40,15 @@
         "permissions": [
           "iam:GetRole",
           "iam:PassRole",
-          "iot:CreateRoleAlias"
+          "iot:CreateRoleAlias",
+          "iot:DescribeRoleAlias",
+          "iot:ListTagsForResource"
         ]
       },
       "delete": {
         "permissions": [
-          "iot:DeleteRoleAlias"
+          "iot:DeleteRoleAlias",
+          "iot:DescribeRoleAlias"
         ]
       },
       "list": {
@@ -57,14 +60,19 @@
         "permissions": [
           "iam:GetRole",
           "iam:PassRole",
-          "iot:DescribeRoleAlias"
+          "iot:DescribeRoleAlias",
+          "iot:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "iam:GetRole",
           "iam:PassRole",
-          "iot:UpdateRoleAlias"
+          "iot:UpdateRoleAlias",
+          "iot:DescribeRoleAlias",
+          "iot:TagResource",
+          "iot:UntagResource",
+          "iot:ListTagsForResource"
         ]
       }
     },
@@ -97,6 +105,7 @@
         "type": "string"
       },
       "Tags": {
+        "insertionOrder": true,
         "items": {
           "$ref": "#/definitions/Tag"
         },
@@ -110,7 +119,13 @@
       "RoleArn"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::IoT::RoleAlias"
   }
 }

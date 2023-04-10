@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSMIncidents-ResponsePlan",
   "type": "AWS::SSMIncidents::ResponsePlan",
-  "time": "2022-10-27T22:11:58.754Z",
+  "time": "2023-04-05T23:35:51.036Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -121,6 +121,22 @@
         ],
         "type": "object"
       },
+      "Integration": {
+        "additionalProperties": false,
+        "oneOf": [
+          {
+            "required": [
+              "PagerDutyConfiguration"
+            ]
+          }
+        ],
+        "properties": {
+          "PagerDutyConfiguration": {
+            "$ref": "#/definitions/PagerDutyConfiguration"
+          }
+        },
+        "type": "object"
+      },
       "NotificationTargetItem": {
         "additionalProperties": false,
         "description": "A notification target.",
@@ -129,6 +145,49 @@
             "$ref": "#/definitions/SnsArn"
           }
         },
+        "type": "object"
+      },
+      "PagerDutyConfiguration": {
+        "additionalProperties": false,
+        "description": "The pagerDuty configuration to use when starting the incident.",
+        "properties": {
+          "Name": {
+            "description": "The name of the pagerDuty configuration.",
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "PagerDutyIncidentConfiguration": {
+            "$ref": "#/definitions/PagerDutyIncidentConfiguration"
+          },
+          "SecretId": {
+            "description": "The AWS secrets manager secretId storing the pagerDuty token.",
+            "maxLength": 512,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "SecretId",
+          "PagerDutyIncidentConfiguration"
+        ],
+        "type": "object"
+      },
+      "PagerDutyIncidentConfiguration": {
+        "additionalProperties": false,
+        "description": "The pagerDuty incident configuration.",
+        "properties": {
+          "ServiceId": {
+            "description": "The pagerDuty serviceId.",
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "ServiceId"
+        ],
         "type": "object"
       },
       "SSMContact": {
@@ -267,7 +326,10 @@
       "create": {
         "permissions": [
           "ssm-incidents:CreateResponsePlan",
-          "iam:PassRole"
+          "iam:PassRole",
+          "secretsmanager:GetSecretValue",
+          "kms:Decrypt",
+          "kms:GenerateDataKey*"
         ]
       },
       "delete": {
@@ -292,7 +354,10 @@
           "iam:PassRole",
           "ssm-incidents:TagResource",
           "ssm-incidents:UntagResource",
-          "ssm-incidents:ListTagsForResource"
+          "ssm-incidents:ListTagsForResource",
+          "secretsmanager:GetSecretValue",
+          "kms:Decrypt",
+          "kms:GenerateDataKey*"
         ]
       }
     },
@@ -339,6 +404,17 @@
       },
       "IncidentTemplate": {
         "$ref": "#/definitions/IncidentTemplate"
+      },
+      "Integrations": {
+        "default": [],
+        "description": "The list of integrations.",
+        "insertionOrder": true,
+        "items": {
+          "$ref": "#/definitions/Integration"
+        },
+        "maxItems": 1,
+        "type": "array",
+        "uniqueItems": true
       },
       "Name": {
         "description": "The name of the response plan.",

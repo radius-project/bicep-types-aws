@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-StepFunctions-StateMachine",
   "type": "AWS::StepFunctions::StateMachine",
-  "time": "2022-10-04T15:05:50.559Z",
+  "time": "2023-04-05T16:27:25.026Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -29,7 +29,7 @@
         "minProperties": 1,
         "patternProperties": {
           ".*": {
-            "oneOf": [
+            "anyOf": [
               {
                 "type": "string"
               },
@@ -143,6 +143,11 @@
           "states:DescribeStateMachine"
         ]
       },
+      "list": {
+        "permissions": [
+          "states:ListStateMachines"
+        ]
+      },
       "read": {
         "permissions": [
           "states:DescribeStateMachine",
@@ -200,6 +205,11 @@
         "minLength": 1,
         "type": "string"
       },
+      "StateMachineRevisionId": {
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
       "StateMachineType": {
         "enum": [
           "STANDARD",
@@ -221,7 +231,8 @@
     },
     "readOnlyProperties": [
       "/properties/Arn",
-      "/properties/Name"
+      "/properties/Name",
+      "/properties/StateMachineRevisionId"
     ],
     "required": [
       "RoleArn"

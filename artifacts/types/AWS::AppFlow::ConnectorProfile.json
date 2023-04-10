@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppFlow-ConnectorProfile",
   "type": "AWS::AppFlow::ConnectorProfile",
-  "time": "2022-10-19T15:14:10.114Z",
+  "time": "2023-03-29T19:43:38.831Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -126,6 +126,11 @@
         "maxLength": 128,
         "type": "string"
       },
+      "BusinessUnitId": {
+        "maxLength": 18,
+        "pattern": "\\S+",
+        "type": "string"
+      },
       "ClientCredentialsArn": {
         "maxLength": 2048,
         "pattern": "arn:aws:secretsmanager:.*:[0-9]+:.*",
@@ -143,6 +148,11 @@
         "type": "string"
       },
       "ClientSecret": {
+        "maxLength": 512,
+        "pattern": "\\S+",
+        "type": "string"
+      },
+      "ClusterIdentifier": {
         "maxLength": 512,
         "pattern": "\\S+",
         "type": "string"
@@ -170,9 +180,6 @@
             "$ref": "#/definitions/ConnectorProfileProperties"
           }
         },
-        "required": [
-          "ConnectorProfileCredentials"
-        ],
         "type": "object"
       },
       "ConnectorProfileCredentials": {
@@ -198,6 +205,9 @@
           },
           "Marketo": {
             "$ref": "#/definitions/MarketoConnectorProfileCredentials"
+          },
+          "Pardot": {
+            "$ref": "#/definitions/PardotConnectorProfileCredentials"
           },
           "Redshift": {
             "$ref": "#/definitions/RedshiftConnectorProfileCredentials"
@@ -250,6 +260,9 @@
           "Marketo": {
             "$ref": "#/definitions/MarketoConnectorProfileProperties"
           },
+          "Pardot": {
+            "$ref": "#/definitions/PardotConnectorProfileProperties"
+          },
           "Redshift": {
             "$ref": "#/definitions/RedshiftConnectorProfileProperties"
           },
@@ -280,6 +293,7 @@
       "ConnectorType": {
         "enum": [
           "Salesforce",
+          "Pardot",
           "Singular",
           "Slack",
           "Redshift",
@@ -369,6 +383,16 @@
           }
         },
         "type": "object"
+      },
+      "DataApiRoleArn": {
+        "maxLength": 512,
+        "pattern": "arn:aws:iam:.*:[0-9]+:.*",
+        "type": "string"
+      },
+      "DatabaseName": {
+        "maxLength": 512,
+        "pattern": "\\S+",
+        "type": "string"
       },
       "DatabaseUrl": {
         "maxLength": 512,
@@ -618,6 +642,47 @@
         },
         "type": "object"
       },
+      "PardotConnectorProfileCredentials": {
+        "properties": {
+          "AccessToken": {
+            "$ref": "#/definitions/AccessToken",
+            "description": "The credentials used to access protected resources."
+          },
+          "ClientCredentialsArn": {
+            "$ref": "#/definitions/ClientCredentialsArn",
+            "description": "The client credentials to fetch access token and refresh token."
+          },
+          "ConnectorOAuthRequest": {
+            "$ref": "#/definitions/ConnectorOAuthRequest",
+            "description": "The oauth needed to request security tokens from the connector endpoint."
+          },
+          "RefreshToken": {
+            "$ref": "#/definitions/RefreshToken",
+            "description": "The credentials used to acquire new access tokens."
+          }
+        },
+        "type": "object"
+      },
+      "PardotConnectorProfileProperties": {
+        "properties": {
+          "BusinessUnitId": {
+            "$ref": "#/definitions/BusinessUnitId",
+            "description": "The Business unit id of Salesforce Pardot instance to be connected"
+          },
+          "InstanceUrl": {
+            "$ref": "#/definitions/InstanceUrl",
+            "description": "The location of the Salesforce Pardot resource"
+          },
+          "IsSandboxEnvironment": {
+            "description": "Indicates whether the connector profile applies to a demo or production environment",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "BusinessUnitId"
+        ],
+        "type": "object"
+      },
       "Password": {
         "maxLength": 512,
         "pattern": "\\S+",
@@ -659,10 +724,6 @@
             "description": "The name of the user."
           }
         },
-        "required": [
-          "Username",
-          "Password"
-        ],
         "type": "object"
       },
       "RedshiftConnectorProfileProperties": {
@@ -675,17 +736,36 @@
             "$ref": "#/definitions/BucketPrefix",
             "description": "The object key for the destination bucket in which Amazon AppFlow will place the ?les."
           },
+          "ClusterIdentifier": {
+            "$ref": "#/definitions/ClusterIdentifier",
+            "description": "The unique identifier of the Amazon Redshift cluster."
+          },
+          "DataApiRoleArn": {
+            "$ref": "#/definitions/DataApiRoleArn",
+            "description": "The Amazon Resource Name (ARN) of the IAM role that grants Amazon AppFlow access to the data through the Amazon Redshift Data API."
+          },
+          "DatabaseName": {
+            "$ref": "#/definitions/DatabaseName",
+            "description": "The name of the Amazon Redshift database that will store the transferred data."
+          },
           "DatabaseUrl": {
             "$ref": "#/definitions/DatabaseUrl",
             "description": "The JDBC URL of the Amazon Redshift cluster."
           },
+          "IsRedshiftServerless": {
+            "description": "If Amazon AppFlow will connect to Amazon Redshift Serverless or Amazon Redshift cluster.",
+            "type": "boolean"
+          },
           "RoleArn": {
             "$ref": "#/definitions/RoleArn",
             "description": "The Amazon Resource Name (ARN) of the IAM role."
+          },
+          "WorkgroupName": {
+            "$ref": "#/definitions/WorkgroupName",
+            "description": "The name of the Amazon Redshift serverless workgroup"
           }
         },
         "required": [
-          "DatabaseUrl",
           "BucketName",
           "RoleArn"
         ],
@@ -788,6 +868,11 @@
             "description": "The location of the Salesforce resource"
           },
           "isSandboxEnvironment": {
+            "description": "Indicates whether the connector profile applies to a sandbox or production environment",
+            "type": "boolean"
+          },
+          "usePrivateLinkForMetadataAndAuthorization": {
+            "description": "Indicates whether to make Metadata And Authorization calls over Pivate Network",
             "type": "boolean"
           }
         },
@@ -1000,6 +1085,11 @@
       "Warehouse": {
         "maxLength": 512,
         "pattern": "[\\s\\w/!@#+=.-]*",
+        "type": "string"
+      },
+      "WorkgroupName": {
+        "maxLength": 512,
+        "pattern": "\\S+",
         "type": "string"
       },
       "ZendeskConnectorProfileCredentials": {

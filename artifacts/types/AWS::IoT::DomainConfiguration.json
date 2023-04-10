@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-DomainConfiguration",
   "type": "AWS::IoT::DomainConfiguration",
-  "time": "2022-09-12T15:30:12.128Z",
+  "time": "2023-03-21T15:16:55.016Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -72,7 +72,8 @@
         "permissions": [
           "iot:CreateDomainConfiguration",
           "iot:UpdateDomainConfiguration",
-          "iot:DescribeDomainConfiguration"
+          "iot:DescribeDomainConfiguration",
+          "iot:ListTagsForResource"
         ]
       },
       "delete": {
@@ -88,13 +89,17 @@
       },
       "read": {
         "permissions": [
-          "iot:DescribeDomainConfiguration"
+          "iot:DescribeDomainConfiguration",
+          "iot:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "iot:UpdateDomainConfiguration",
-          "iot:DescribeDomainConfiguration"
+          "iot:DescribeDomainConfiguration",
+          "iot:ListTagsForResource",
+          "iot:TagResource",
+          "iot:UntagResource"
         ]
       }
     },
@@ -135,6 +140,7 @@
         "type": "string"
       },
       "ServerCertificateArns": {
+        "insertionOrder": true,
         "items": {
           "maxLength": 2048,
           "minLength": 1,
@@ -146,6 +152,7 @@
         "type": "array"
       },
       "ServerCertificates": {
+        "insertionOrder": true,
         "items": {
           "$ref": "#/definitions/ServerCertificateSummary"
         },
@@ -160,6 +167,7 @@
         "type": "string"
       },
       "Tags": {
+        "insertionOrder": true,
         "items": {
           "$ref": "#/definitions/Tag"
         },
@@ -177,9 +185,16 @@
     ],
     "required": [],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::IoT::DomainConfiguration",
     "writeOnlyProperties": [
+      "/properties/ValidationCertificateArn",
       "/properties/ServerCertificateArns"
     ]
   }

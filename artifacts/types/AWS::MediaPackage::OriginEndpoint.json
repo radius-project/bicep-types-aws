@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaPackage-OriginEndpoint",
   "type": "AWS::MediaPackage::OriginEndpoint",
-  "time": "2022-10-25T19:16:37.452Z",
+  "time": "2023-03-21T18:48:53.006Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -403,6 +403,10 @@
           "Encryption": {
             "$ref": "#/definitions/HlsEncryption"
           },
+          "IncludeDvbSubtitles": {
+            "description": "When enabled, MediaPackage passes through digital video broadcasting (DVB) subtitles into the output.",
+            "type": "boolean"
+          },
           "IncludeIframeOnlyStream": {
             "description": "When enabled, an I-Frame only stream will be included in the output.",
             "type": "boolean"
@@ -552,6 +556,13 @@
         "type": "object"
       }
     },
+    "deprecatedProperties": [
+      "/properties/HlsPackage/Encryption/SpekeKeyProvider/EncryptionContractConfiguration/PresetSpeke20Audio",
+      "/properties/HlsPackage/Encryption/SpekeKeyProvider/EncryptionContractConfiguration/PresetSpeke20Video",
+      "/properties/MssPackage/Encryption/SpekeKeyProvider/EncryptionContractConfiguration/PresetSpeke20Audio",
+      "/properties/MssPackage/Encryption/SpekeKeyProvider/EncryptionContractConfiguration/PresetSpeke20Video",
+      "/properties/CmafPackage/HlsManifests/*/Url"
+    ],
     "description": "Resource schema for AWS::MediaPackage::OriginEndpoint",
     "handlers": {
       "create": {
@@ -584,6 +595,28 @@
         ]
       }
     },
+    "oneOf": [
+      {
+        "required": [
+          "HlsPackage"
+        ]
+      },
+      {
+        "required": [
+          "DashPackage"
+        ]
+      },
+      {
+        "required": [
+          "MssPackage"
+        ]
+      },
+      {
+        "required": [
+          "CmafPackage"
+        ]
+      }
+    ],
     "primaryIdentifier": [
       "/properties/Id"
     ],

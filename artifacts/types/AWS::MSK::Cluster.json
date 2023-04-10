@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MSK-Cluster",
   "type": "AWS::MSK::Cluster",
-  "time": "2022-10-13T15:44:17.946Z",
+  "time": "2023-03-06T16:13:56.796Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -122,6 +122,9 @@
         "properties": {
           "PublicAccess": {
             "$ref": "#/definitions/PublicAccess"
+          },
+          "VpcConnectivity": {
+            "$ref": "#/definitions/VpcConnectivity"
           }
         },
         "type": "object"
@@ -360,6 +363,75 @@
         "type": "object"
       },
       "Unauthenticated": {
+        "additionalProperties": false,
+        "properties": {
+          "Enabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "VpcConnectivity": {
+        "additionalProperties": false,
+        "properties": {
+          "ClientAuthentication": {
+            "$ref": "#/definitions/VpcConnectivityClientAuthentication"
+          }
+        },
+        "type": "object"
+      },
+      "VpcConnectivityClientAuthentication": {
+        "additionalProperties": false,
+        "properties": {
+          "Sasl": {
+            "$ref": "#/definitions/VpcConnectivitySasl"
+          },
+          "Tls": {
+            "$ref": "#/definitions/VpcConnectivityTls"
+          }
+        },
+        "type": "object"
+      },
+      "VpcConnectivityIam": {
+        "additionalProperties": false,
+        "properties": {
+          "Enabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "VpcConnectivitySasl": {
+        "additionalProperties": false,
+        "properties": {
+          "Iam": {
+            "$ref": "#/definitions/VpcConnectivityIam"
+          },
+          "Scram": {
+            "$ref": "#/definitions/VpcConnectivityScram"
+          }
+        },
+        "type": "object"
+      },
+      "VpcConnectivityScram": {
+        "additionalProperties": false,
+        "properties": {
+          "Enabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "VpcConnectivityTls": {
         "additionalProperties": false,
         "properties": {
           "Enabled": {

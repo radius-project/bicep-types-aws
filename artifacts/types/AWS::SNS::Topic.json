@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SNS-Topic",
   "type": "AWS::SNS::Topic",
-  "time": "2022-10-14T18:35:13.397Z",
+  "time": "2023-03-22T22:11:53.463Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -52,17 +52,12 @@
           "sns:TagResource",
           "sns:Subscribe",
           "sns:GetTopicAttributes",
-          "sns:ListTagsForResource",
-          "sns:ListSubscriptionsByTopic",
-          "sns:GetDataProtectionPolicy",
           "sns:PutDataProtectionPolicy"
         ]
       },
       "delete": {
         "permissions": [
-          "sns:DeleteTopic",
-          "sns:ListSubscriptionsByTopic",
-          "sns:Unsubscribe"
+          "sns:DeleteTopic"
         ]
       },
       "list": {
@@ -143,6 +138,10 @@
       },
       "TopicName": {
         "description": "The name of the topic you want to create. Topic names must include only uppercase and lowercase ASCII letters, numbers, underscores, and hyphens, and must be between 1 and 256 characters long. FIFO topic names must end with .fifo.\n\nIf you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the topic name. For more information, see Name Type.",
+        "type": "string"
+      },
+      "TracingConfig": {
+        "description": "Tracing mode of an Amazon SNS topic. By default TracingConfig is set to PassThrough, and the topic passes through the tracing header it receives from an SNS publisher to its subscriptions. If set to Active, SNS will vend X-Ray segment data to topic owner account if the sampled flag in the tracing header is true. Only supported on standard topics.",
         "type": "string"
       }
     },

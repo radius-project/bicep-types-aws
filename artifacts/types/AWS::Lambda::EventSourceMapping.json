@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lambda-EventSourceMapping",
   "type": "AWS::Lambda::EventSourceMapping",
-  "time": "2022-08-15T23:39:41.458Z",
+  "time": "2023-02-22T18:43:20.833Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -38,6 +38,33 @@
           "OnFailure": {
             "$ref": "#/definitions/OnFailure",
             "description": "The destination configuration for failed invocations."
+          }
+        },
+        "type": "object"
+      },
+      "DocumentDBEventSourceConfig": {
+        "additionalProperties": false,
+        "description": "Document db event source config.",
+        "properties": {
+          "CollectionName": {
+            "description": "The collection name to connect to.",
+            "maxLength": 57,
+            "minLength": 1,
+            "type": "string"
+          },
+          "DatabaseName": {
+            "description": "The database name to connect to.",
+            "maxLength": 63,
+            "minLength": 1,
+            "type": "string"
+          },
+          "FullDocument": {
+            "description": "Include full document in change stream response. The default option will only send the changes made to documents to Lambda. If you want the complete document sent to Lambda, set this to UpdateLookup.",
+            "enum": [
+              "UpdateLookup",
+              "Default"
+            ],
+            "type": "string"
           }
         },
         "type": "object"
@@ -94,6 +121,12 @@
         },
         "type": "object"
       },
+      "MaximumConcurrency": {
+        "description": "The maximum number of concurrent functions that an event source can invoke.",
+        "maximum": 1000,
+        "minimum": 2,
+        "type": "integer"
+      },
       "OnFailure": {
         "additionalProperties": false,
         "description": "A destination for events that failed processing.",
@@ -104,6 +137,17 @@
             "minLength": 12,
             "pattern": "arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\\-])+:([a-z]{2}(-gov)?-[a-z]+-\\d{1})?:(\\d{12})?:(.*)",
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ScalingConfig": {
+        "additionalProperties": false,
+        "description": "The scaling configuration for the event source.",
+        "properties": {
+          "MaximumConcurrency": {
+            "$ref": "#/definitions/MaximumConcurrency",
+            "description": "The maximum number of concurrent functions that the event source can invoke."
           }
         },
         "type": "object"
@@ -212,6 +256,10 @@
         "$ref": "#/definitions/DestinationConfig",
         "description": "(Streams) An Amazon SQS queue or Amazon SNS topic destination for discarded records."
       },
+      "DocumentDBEventSourceConfig": {
+        "$ref": "#/definitions/DocumentDBEventSourceConfig",
+        "description": "Document db event source config."
+      },
       "Enabled": {
         "description": "Disables the event source mapping to pause polling and invocation.",
         "type": "boolean"
@@ -290,6 +338,10 @@
         "minItems": 1,
         "type": "array",
         "uniqueItems": true
+      },
+      "ScalingConfig": {
+        "$ref": "#/definitions/ScalingConfig",
+        "description": "The scaling configuration for the event source."
       },
       "SelfManagedEventSource": {
         "$ref": "#/definitions/SelfManagedEventSource",

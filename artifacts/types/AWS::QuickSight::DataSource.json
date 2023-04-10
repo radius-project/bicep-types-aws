@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-DataSource",
   "type": "AWS::QuickSight::DataSource",
-  "time": "2022-10-27T15:23:07.584Z",
+  "time": "2023-03-28T15:23:43.134Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -221,6 +221,9 @@
           "AuroraPostgreSqlParameters": {
             "$ref": "#/definitions/AuroraPostgreSqlParameters"
           },
+          "DatabricksParameters": {
+            "$ref": "#/definitions/DatabricksParameters"
+          },
           "MariaDbParameters": {
             "$ref": "#/definitions/MariaDbParameters"
           },
@@ -269,6 +272,7 @@
           "AURORA",
           "AURORA_POSTGRESQL",
           "AWS_IOT_ANALYTICS",
+          "DATABRICKS",
           "GITHUB",
           "JIRA",
           "MARIADB",
@@ -288,6 +292,35 @@
           "TIMESTREAM"
         ],
         "type": "string"
+      },
+      "DatabricksParameters": {
+        "description": "\u003cp\u003eDatabricks parameters.\u003c/p\u003e",
+        "properties": {
+          "Host": {
+            "description": "\u003cp\u003eHost.\u003c/p\u003e",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Port": {
+            "description": "\u003cp\u003ePort.\u003c/p\u003e",
+            "maximum": 65535,
+            "minimum": 1,
+            "type": "number"
+          },
+          "SqlEndpointPath": {
+            "description": "\u003cp\u003eThe HTTP Path of the Databricks data source.\u003c/p\u003e",
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Host",
+          "Port",
+          "SqlEndpointPath"
+        ],
+        "type": "object"
       },
       "ManifestFileLocation": {
         "description": "\u003cp\u003eAmazon S3 manifest file location.\u003c/p\u003e",

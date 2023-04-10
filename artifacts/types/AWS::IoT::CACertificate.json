@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-CACertificate",
   "type": "AWS::IoT::CACertificate",
-  "time": "2022-09-12T15:23:14.127Z",
+  "time": "2023-03-21T15:36:31.145Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -42,14 +42,12 @@
             "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.",
             "maxLength": 127,
             "minLength": 1,
-            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
             "type": "string"
           },
           "Value": {
             "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.",
             "maxLength": 255,
             "minLength": 1,
-            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
             "type": "string"
           }
         },
@@ -66,13 +64,16 @@
         "permissions": [
           "iam:GetRole",
           "iam:PassRole",
-          "iot:RegisterCACertificate"
+          "iot:RegisterCACertificate",
+          "iot:DescribeCACertificate",
+          "iot:ListTagsForResource"
         ]
       },
       "delete": {
         "permissions": [
           "iot:UpdateCACertificate",
-          "iot:DeleteCACertificate"
+          "iot:DeleteCACertificate",
+          "iot:DescribeCACertificate"
         ]
       },
       "list": {
@@ -82,14 +83,19 @@
       },
       "read": {
         "permissions": [
-          "iot:DescribeCACertificate"
+          "iot:DescribeCACertificate",
+          "iot:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "iam:GetRole",
           "iam:PassRole",
-          "iot:UpdateCACertificate"
+          "iot:UpdateCACertificate",
+          "iot:DescribeCACertificate",
+          "iot:TagResource",
+          "iot:UntagResource",
+          "iot:ListTagsForResource"
         ]
       }
     },
@@ -142,8 +148,7 @@
         "items": {
           "$ref": "#/definitions/Tag"
         },
-        "type": "array",
-        "uniqueItems": true
+        "type": "array"
       },
       "VerificationCertificatePem": {
         "description": "The private key verification certificate.",
@@ -164,13 +169,15 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
       "cloudFormationSystemTags": true,
-      "tagOnCreate": false,
-      "tagUpdatable": false,
-      "taggable": false
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
     },
     "typeName": "AWS::IoT::CACertificate",
     "writeOnlyProperties": [
-      "/properties/VerificationCertificatePem"
+      "/properties/VerificationCertificatePem",
+      "/properties/RemoveAutoRegistration"
     ]
   }
 }

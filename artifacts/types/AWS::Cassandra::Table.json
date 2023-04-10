@@ -1,14 +1,15 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Cassandra-Table",
   "type": "AWS::Cassandra::Table",
-  "time": "2022-10-07T23:01:07.875Z",
+  "time": "2023-03-22T16:46:27.233Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/KeyspaceName",
       "/properties/TableName",
       "/properties/PartitionKeyColumns",
-      "/properties/ClusteringKeyColumns"
+      "/properties/ClusteringKeyColumns",
+      "/properties/ClientSideTimestampsEnabled"
     ],
     "definitions": {
       "BillingMode": {
@@ -191,6 +192,10 @@
     "properties": {
       "BillingMode": {
         "$ref": "#/definitions/BillingMode"
+      },
+      "ClientSideTimestampsEnabled": {
+        "description": "Indicates whether client side timestamps are enabled (true) or disabled (false) on the table. False by default, once it is enabled it cannot be disabled again.",
+        "type": "boolean"
       },
       "ClusteringKeyColumns": {
         "description": "Clustering key columns of the table",

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-Addon",
   "type": "AWS::EKS::Addon",
-  "time": "2022-10-27T15:37:53.425Z",
+  "time": "2023-04-06T15:55:16.05Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -95,6 +95,15 @@
         "minLength": 1,
         "type": "string"
       },
+      "ConfigurationValues": {
+        "description": "The configuration values to use with the add-on",
+        "minLength": 1,
+        "type": "string"
+      },
+      "PreserveOnDelete": {
+        "description": "PreserveOnDelete parameter value",
+        "type": "boolean"
+      },
       "ResolveConflicts": {
         "description": "Resolve parameter value conflicts",
         "enum": [
@@ -128,9 +137,17 @@
       "AddonName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-eks.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::EKS::Addon",
     "writeOnlyProperties": [
-      "/properties/ResolveConflicts"
+      "/properties/ResolveConflicts",
+      "/properties/PreserveOnDelete"
     ]
   }
 }

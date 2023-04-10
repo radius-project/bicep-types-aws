@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkFirewall-Firewall",
   "type": "AWS::NetworkFirewall::Firewall",
-  "time": "2022-10-19T15:04:00.431Z",
+  "time": "2023-03-22T20:49:39.89Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -23,6 +23,10 @@
       "SubnetMapping": {
         "additionalProperties": false,
         "properties": {
+          "IPAddressType": {
+            "description": "A IPAddressType",
+            "type": "string"
+          },
           "SubnetId": {
             "description": "A SubnetId.",
             "type": "string"
@@ -62,6 +66,7 @@
           "ec2:DescribeVpcEndpoints",
           "ec2:DescribeSubnets",
           "ec2:DescribeVpcs",
+          "iam:CreateServiceLinkedRole",
           "network-firewall:CreateFirewall",
           "network-firewall:DescribeFirewallPolicy",
           "network-firewall:DescribeRuleGroup",
@@ -71,6 +76,7 @@
       "delete": {
         "permissions": [
           "ec2:DeleteVpcEndpoints",
+          "ec2:DescribeRouteTables",
           "logs:DescribeLogGroups",
           "logs:DescribeResourcePolicies",
           "logs:GetLogDelivery",

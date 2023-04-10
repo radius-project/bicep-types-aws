@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaConnect-Flow",
   "type": "AWS::MediaConnect::Flow",
-  "time": "2021-12-12T05:51:41.537Z",
+  "time": "2023-03-02T17:06:10.902Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -71,9 +71,31 @@
         "additionalProperties": false,
         "description": "The settings for source failover",
         "properties": {
+          "FailoverMode": {
+            "description": "The type of failover you choose for this flow. MERGE combines the source streams into a single stream, allowing graceful recovery from any single-source loss. FAILOVER allows switching between different streams.",
+            "enum": [
+              "MERGE",
+              "FAILOVER"
+            ],
+            "type": "string"
+          },
           "RecoveryWindow": {
             "description": "Search window time to look for dash-7 packets",
             "type": "integer"
+          },
+          "SourcePriority": {
+            "additionalProperties": false,
+            "description": "The priority you want to assign to a source. You can have a primary stream and a backup stream or two equally prioritized streams.",
+            "properties": {
+              "PrimarySource": {
+                "description": "The name of the source you choose as the primary source for this flow.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "PrimarySource"
+            ],
+            "type": "object"
           },
           "State": {
             "enum": [
@@ -128,14 +150,24 @@
             "type": "string"
           },
           "Protocol": {
-            "description": "The protocol that is used by the source or output.",
+            "description": "The protocol that is used by the source.",
             "enum": [
               "zixi-push",
               "rtp-fec",
               "rtp",
               "rist",
-              "srt-listener"
+              "fujitsu-qos",
+              "srt-listener",
+              "srt-caller"
             ],
+            "type": "string"
+          },
+          "SenderControlPort": {
+            "description": "The port that the flow uses to send outbound requests to initiate connection with the sender for fujitsu-qos protocol.",
+            "type": "integer"
+          },
+          "SenderIpAddress": {
+            "description": "The IP address that the flow communicates with to initiate connection with the sender for fujitsu-qos protocol.",
             "type": "string"
           },
           "SourceArn": {
@@ -145,6 +177,14 @@
           "SourceIngestPort": {
             "description": "The port that the flow will be listening on for incoming content.(ReadOnly)",
             "type": "string"
+          },
+          "SourceListenerAddress": {
+            "description": "Source IP or domain name for SRT-caller protocol.",
+            "type": "string"
+          },
+          "SourceListenerPort": {
+            "description": "Source port for SRT-caller protocol.",
+            "type": "integer"
           },
           "StreamId": {
             "description": "The stream ID that you want to use for this transport. This parameter applies only to Zixi-based streams.",

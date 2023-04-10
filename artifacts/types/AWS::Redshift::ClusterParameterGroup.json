@@ -1,10 +1,11 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Redshift-ClusterParameterGroup",
   "type": "AWS::Redshift::ClusterParameterGroup",
-  "time": "2022-10-21T06:46:16.576Z",
+  "time": "2023-02-22T16:33:07.59Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
+      "/properties/ParameterGroupName",
       "/properties/ParameterGroupFamily",
       "/properties/Description"
     ],
@@ -134,9 +135,6 @@
         "type": "array"
       }
     },
-    "readOnlyProperties": [
-      "/properties/ParameterGroupName"
-    ],
     "required": [
       "Description",
       "ParameterGroupFamily"
@@ -144,6 +142,11 @@
     "tagging": {
       "taggable": true
     },
-    "typeName": "AWS::Redshift::ClusterParameterGroup"
+    "typeName": "AWS::Redshift::ClusterParameterGroup",
+    "writeOnlyProperties": [
+      "/properties/Tags",
+      "/properties/Tags/*/Key",
+      "/properties/Tags/*/Value"
+    ]
   }
 }

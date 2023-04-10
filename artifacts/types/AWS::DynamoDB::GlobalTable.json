@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DynamoDB-GlobalTable",
   "type": "AWS::DynamoDB::GlobalTable",
-  "time": "2022-10-28T15:28:26.41Z",
+  "time": "2023-03-30T15:16:42.207Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -123,6 +123,18 @@
         ],
         "type": "object"
       },
+      "KinesisStreamSpecification": {
+        "additionalProperties": false,
+        "properties": {
+          "StreamArn": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "StreamArn"
+        ],
+        "type": "object"
+      },
       "LocalSecondaryIndex": {
         "additionalProperties": false,
         "properties": {
@@ -228,6 +240,9 @@
           "ContributorInsightsSpecification": {
             "$ref": "#/definitions/ContributorInsightsSpecification"
           },
+          "DeletionProtectionEnabled": {
+            "type": "boolean"
+          },
           "GlobalSecondaryIndexes": {
             "insertionOrder": false,
             "items": {
@@ -235,6 +250,9 @@
             },
             "type": "array",
             "uniqueItems": true
+          },
+          "KinesisStreamSpecification": {
+            "$ref": "#/definitions/KinesisStreamSpecification"
           },
           "PointInTimeRecoverySpecification": {
             "$ref": "#/definitions/PointInTimeRecoverySpecification"
@@ -378,6 +396,7 @@
           "dynamodb:TagResource",
           "dynamodb:EnableKinesisStreamingDestination",
           "dynamodb:DisableKinesisStreamingDestination",
+          "dynamodb:DescribeKinesisStreamingDestination",
           "dynamodb:DescribeTableReplicaAutoScaling",
           "dynamodb:UpdateTableReplicaAutoScaling",
           "dynamodb:TagResource",
@@ -388,6 +407,9 @@
           "application-autoscaling:PutScalingPolicy",
           "application-autoscaling:PutScheduledAction",
           "application-autoscaling:RegisterScalableTarget",
+          "kinesis:ListStreams",
+          "kinesis:DescribeStream",
+          "kinesis:PutRecords",
           "kms:CreateGrant",
           "kms:Describe*",
           "kms:Get*",
@@ -444,6 +466,7 @@
           "dynamodb:UntagResource",
           "dynamodb:EnableKinesisStreamingDestination",
           "dynamodb:DisableKinesisStreamingDestination",
+          "dynamodb:DescribeKinesisStreamingDestination",
           "dynamodb:DescribeTableReplicaAutoScaling",
           "dynamodb:UpdateTableReplicaAutoScaling",
           "application-autoscaling:DeleteScalingPolicy",
@@ -453,6 +476,9 @@
           "application-autoscaling:PutScalingPolicy",
           "application-autoscaling:PutScheduledAction",
           "application-autoscaling:RegisterScalableTarget",
+          "kinesis:ListStreams",
+          "kinesis:DescribeStream",
+          "kinesis:PutRecords",
           "kms:CreateGrant",
           "kms:Describe*",
           "kms:Get*",

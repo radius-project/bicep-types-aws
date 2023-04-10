@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ResilienceHub-App",
   "type": "AWS::ResilienceHub::App",
-  "time": "2022-10-03T15:03:19.164Z",
+  "time": "2023-04-05T15:46:53.963Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -85,11 +85,20 @@
           "cloudformation:ListStackResources",
           "s3:GetBucketLocation",
           "s3:GetObject",
-          "resiliencehub:CreateApp",
-          "resiliencehub:TagResource",
-          "resiliencehub:PutDraftAppVersionTemplate",
-          "resiliencehub:AddDraftAppVersionResourceMappings",
-          "resiliencehub:PublishAppVersion"
+          "s3:ListAllMyBuckets",
+          "autoscaling:DescribeAutoScalingGroups",
+          "apigateway:GET",
+          "ec2:Describe*",
+          "ecs:DescribeServices",
+          "elasticfilesystem:DescribeFileSystems",
+          "elasticloadbalancing:DescribeLoadBalancers",
+          "lambda:GetFunction",
+          "rds:Describe*",
+          "dynamodb:Describe*",
+          "sqs:GetQueueAttributes",
+          "sns:GetTopicAttributes",
+          "route53:List*",
+          "resiliencehub:*"
         ]
       },
       "delete": {
@@ -118,14 +127,20 @@
           "cloudformation:ListStackResources",
           "s3:GetBucketLocation",
           "s3:GetObject",
-          "resiliencehub:UpdateApp",
-          "resiliencehub:PutDraftAppVersionTemplate",
-          "resiliencehub:AddDraftAppVersionResourceMappings",
-          "resiliencehub:RemoveDraftAppVersionResourceMappings",
-          "resiliencehub:PublishAppVersion",
-          "resiliencehub:TagResource",
-          "resiliencehub:UntagResource",
-          "resiliencehub:ListTagsForResource"
+          "s3:ListAllMyBuckets",
+          "autoscaling:DescribeAutoScalingGroups",
+          "apigateway:GET",
+          "ec2:Describe*",
+          "ecs:DescribeServices",
+          "elasticfilesystem:DescribeFileSystems",
+          "elasticloadbalancing:DescribeLoadBalancers",
+          "lambda:GetFunction",
+          "rds:Describe*",
+          "dynamodb:Describe*",
+          "sqs:GetQueueAttributes",
+          "sns:GetTopicAttributes",
+          "route53:List*",
+          "resiliencehub:*"
         ]
       }
     },

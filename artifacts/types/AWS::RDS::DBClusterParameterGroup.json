@@ -1,10 +1,11 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBClusterParameterGroup",
   "type": "AWS::RDS::DBClusterParameterGroup",
-  "time": "2022-10-27T16:03:28.261Z",
+  "time": "2023-04-05T11:16:13.924Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
+      "/properties/DBClusterParameterGroupName",
       "/properties/Description",
       "/properties/Family"
     ],
@@ -40,6 +41,7 @@
           "rds:CreateDBClusterParameterGroup",
           "rds:DescribeDBClusterParameterGroups",
           "rds:DescribeDBClusterParameters",
+          "rds:DescribeDBClusters",
           "rds:DescribeEngineDefaultClusterParameters",
           "rds:ListTagsForResource",
           "rds:ModifyDBClusterParameterGroup"
@@ -59,6 +61,8 @@
       "read": {
         "permissions": [
           "rds:DescribeDBClusterParameterGroups",
+          "rds:DescribeDBClusterParameters",
+          "rds:DescribeEngineDefaultClusterParameters",
           "rds:ListTagsForResource"
         ]
       },
@@ -110,18 +114,12 @@
     "propertyTransform": {
       "/properties/DBClusterParameterGroupName": "$lowercase(DBClusterParameterGroupName)"
     },
-    "readOnlyProperties": [
-      "/properties/DBClusterParameterGroupName"
-    ],
     "required": [
       "Description",
       "Family",
       "Parameters"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-rds",
-    "typeName": "AWS::RDS::DBClusterParameterGroup",
-    "writeOnlyProperties": [
-      "/properties/Parameters"
-    ]
+    "typeName": "AWS::RDS::DBClusterParameterGroup"
   }
 }

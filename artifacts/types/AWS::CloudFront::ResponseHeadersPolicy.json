@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFront-ResponseHeadersPolicy",
   "type": "AWS::CloudFront::ResponseHeadersPolicy",
-  "time": "2022-10-04T21:08:39.214Z",
+  "time": "2023-02-22T21:21:54.345Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -202,6 +202,35 @@
         ],
         "type": "object"
       },
+      "RemoveHeader": {
+        "additionalProperties": false,
+        "properties": {
+          "Header": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Header"
+        ],
+        "type": "object"
+      },
+      "RemoveHeadersConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "Items": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/RemoveHeader"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "Items"
+        ],
+        "type": "object"
+      },
       "ResponseHeadersPolicyConfig": {
         "additionalProperties": false,
         "properties": {
@@ -216,6 +245,9 @@
           },
           "Name": {
             "type": "string"
+          },
+          "RemoveHeadersConfig": {
+            "$ref": "#/definitions/RemoveHeadersConfig"
           },
           "SecurityHeadersConfig": {
             "$ref": "#/definitions/SecurityHeadersConfig"

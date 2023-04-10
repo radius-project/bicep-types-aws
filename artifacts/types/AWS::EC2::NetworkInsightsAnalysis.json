@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-NetworkInsightsAnalysis",
   "type": "AWS::EC2::NetworkInsightsAnalysis",
-  "time": "2022-10-19T15:52:11.23Z",
+  "time": "2023-03-15T15:15:10.885Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -22,6 +22,17 @@
           },
           "Component": {
             "$ref": "#/definitions/AnalysisComponent"
+          },
+          "LoadBalancers": {
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/AnalysisComponent"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "ServiceName": {
+            "type": "string"
           }
         },
         "type": "object"
@@ -108,31 +119,39 @@
         "additionalProperties": false,
         "properties": {
           "DestinationAddresses": {
+            "insertionOrder": true,
             "items": {
               "$ref": "#/definitions/IpAddress"
             },
-            "type": "array"
+            "type": "array",
+            "uniqueItems": false
           },
           "DestinationPortRanges": {
+            "insertionOrder": true,
             "items": {
               "$ref": "#/definitions/PortRange"
             },
-            "type": "array"
+            "type": "array",
+            "uniqueItems": false
           },
           "Protocol": {
             "$ref": "#/definitions/Protocol"
           },
           "SourceAddresses": {
+            "insertionOrder": true,
             "items": {
               "$ref": "#/definitions/IpAddress"
             },
-            "type": "array"
+            "type": "array",
+            "uniqueItems": false
           },
           "SourcePortRanges": {
+            "insertionOrder": true,
             "items": {
               "$ref": "#/definitions/PortRange"
             },
-            "type": "array"
+            "type": "array",
+            "uniqueItems": false
           }
         },
         "type": "object"
@@ -213,25 +232,31 @@
             "$ref": "#/definitions/IpAddress"
           },
           "Addresses": {
+            "insertionOrder": true,
             "items": {
               "$ref": "#/definitions/IpAddress"
             },
-            "type": "array"
+            "type": "array",
+            "uniqueItems": false
           },
           "AttachedTo": {
             "$ref": "#/definitions/AnalysisComponent"
           },
           "AvailabilityZones": {
+            "insertionOrder": true,
             "items": {
               "type": "string"
             },
-            "type": "array"
+            "type": "array",
+            "uniqueItems": false
           },
           "Cidrs": {
+            "insertionOrder": true,
             "items": {
               "type": "string"
             },
-            "type": "array"
+            "type": "array",
+            "uniqueItems": false
           },
           "ClassicLoadBalancerListener": {
             "$ref": "#/definitions/AnalysisLoadBalancerListener"
@@ -282,10 +307,12 @@
             "$ref": "#/definitions/AnalysisComponent"
           },
           "LoadBalancerTargetGroups": {
+            "insertionOrder": true,
             "items": {
               "$ref": "#/definitions/AnalysisComponent"
             },
-            "type": "array"
+            "type": "array",
+            "uniqueItems": false
           },
           "LoadBalancerTargetPort": {
             "$ref": "#/definitions/Port"
@@ -306,19 +333,23 @@
             "$ref": "#/definitions/Port"
           },
           "PortRanges": {
+            "insertionOrder": true,
             "items": {
               "$ref": "#/definitions/PortRange"
             },
-            "type": "array"
+            "type": "array",
+            "uniqueItems": false
           },
           "PrefixList": {
             "$ref": "#/definitions/AnalysisComponent"
           },
           "Protocols": {
+            "insertionOrder": true,
             "items": {
               "$ref": "#/definitions/Protocol"
             },
-            "type": "array"
+            "type": "array",
+            "uniqueItems": false
           },
           "RouteTable": {
             "$ref": "#/definitions/AnalysisComponent"
@@ -333,10 +364,12 @@
             "$ref": "#/definitions/AnalysisSecurityGroupRule"
           },
           "SecurityGroups": {
+            "insertionOrder": true,
             "items": {
               "$ref": "#/definitions/AnalysisComponent"
             },
-            "type": "array"
+            "type": "array",
+            "uniqueItems": false
           },
           "SourceVpc": {
             "$ref": "#/definitions/AnalysisComponent"
@@ -390,10 +423,12 @@
             "$ref": "#/definitions/AnalysisAclRule"
           },
           "AdditionalDetails": {
+            "insertionOrder": true,
             "items": {
               "$ref": "#/definitions/AdditionalDetail"
             },
-            "type": "array"
+            "type": "array",
+            "uniqueItems": false
           },
           "Component": {
             "$ref": "#/definitions/AnalysisComponent"
@@ -405,10 +440,12 @@
             "$ref": "#/definitions/AnalysisComponent"
           },
           "Explanations": {
+            "insertionOrder": true,
             "items": {
               "$ref": "#/definitions/Explanation"
             },
-            "type": "array"
+            "type": "array",
+            "uniqueItems": false
           },
           "InboundHeader": {
             "$ref": "#/definitions/AnalysisPacketHeader"
@@ -424,6 +461,9 @@
           },
           "SequenceNumber": {
             "type": "integer"
+          },
+          "ServiceName": {
+            "type": "string"
           },
           "SourceVpc": {
             "$ref": "#/definitions/AnalysisComponent"
@@ -520,45 +560,11 @@
         "permissions": [
           "ec2:StartNetworkInsightsAnalysis",
           "ec2:GetTransitGatewayRouteTablePropagations",
-          "ec2:DescribeTransitGatewayPeeringAttachments",
           "ec2:SearchTransitGatewayRoutes",
-          "ec2:DescribeTransitGatewayRouteTables",
-          "ec2:DescribeTransitGatewayVpcAttachments",
-          "ec2:DescribeTransitGatewayAttachments",
-          "ec2:DescribeTransitGateways",
+          "ec2:Describe*",
           "ec2:GetManagedPrefixListEntries",
-          "ec2:DescribeManagedPrefixLists",
-          "ec2:DescribeAvailabilityZones",
-          "ec2:DescribeCustomerGateways",
-          "ec2:DescribeInstances",
-          "ec2:DescribeInternetGateways",
-          "ec2:DescribeNatGateways",
-          "ec2:DescribeNetworkAcls",
-          "ec2:DescribeNetworkInterfaces",
-          "ec2:DescribePrefixLists",
-          "ec2:DescribeRegions",
-          "ec2:DescribeRouteTables",
-          "ec2:DescribeSecurityGroups",
-          "ec2:DescribeSubnets",
-          "ec2:DescribeVpcEndpoints",
-          "ec2:DescribeVpcPeeringConnections",
-          "ec2:DescribeVpcs",
-          "ec2:DescribeVpnConnections",
-          "ec2:DescribeVpnGateways",
-          "ec2:DescribeVpcEndpointServiceConfigurations",
-          "elasticloadbalancing:DescribeListeners",
-          "elasticloadbalancing:DescribeLoadBalancers",
-          "elasticloadbalancing:DescribeLoadBalancerAttributes",
-          "elasticloadbalancing:DescribeRules",
-          "elasticloadbalancing:DescribeTags",
-          "elasticloadbalancing:DescribeTargetGroups",
-          "elasticloadbalancing:DescribeTargetHealth",
-          "directconnect:DescribeConnections",
-          "directconnect:DescribeDirectConnectGateways",
-          "directconnect:DescribeDirectConnectGatewayAssociations",
-          "directconnect:DescribeDirectConnectGatewayAttachments",
-          "directconnect:DescribeVirtualGateways",
-          "directconnect:DescribeVirtualInterfaces",
+          "elasticloadbalancing:Describe*",
+          "directconnect:Describe*",
           "tiros:CreateQuery",
           "tiros:GetQueryAnswer",
           "tiros:GetQueryExplanation"
@@ -571,18 +577,18 @@
       },
       "list": {
         "permissions": [
-          "ec2:DescribeNetworkInsightsAnalyses"
+          "ec2:Describe*"
         ]
       },
       "read": {
         "permissions": [
-          "ec2:DescribeNetworkInsightsAnalyses"
+          "ec2:Describe*"
         ]
       },
       "update": {
         "permissions": [
           "ec2:CreateTags",
-          "ec2:DescribeNetworkInsightsAnalyses",
+          "ec2:Describe*",
           "ec2:DeleteTags"
         ]
       }
@@ -591,29 +597,45 @@
       "/properties/NetworkInsightsAnalysisId"
     ],
     "properties": {
+      "AdditionalAccounts": {
+        "insertionOrder": true,
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
       "AlternatePathHints": {
+        "insertionOrder": true,
         "items": {
           "$ref": "#/definitions/AlternatePathHint"
         },
-        "type": "array"
+        "type": "array",
+        "uniqueItems": false
       },
       "Explanations": {
+        "insertionOrder": true,
         "items": {
           "$ref": "#/definitions/Explanation"
         },
-        "type": "array"
+        "type": "array",
+        "uniqueItems": false
       },
       "FilterInArns": {
+        "insertionOrder": true,
         "items": {
           "$ref": "#/definitions/ResourceArn"
         },
-        "type": "array"
+        "type": "array",
+        "uniqueItems": false
       },
       "ForwardPathComponents": {
+        "insertionOrder": true,
         "items": {
           "$ref": "#/definitions/PathComponent"
         },
-        "type": "array"
+        "type": "array",
+        "uniqueItems": false
       },
       "NetworkInsightsAnalysisArn": {
         "type": "string"
@@ -628,10 +650,12 @@
         "type": "boolean"
       },
       "ReturnPathComponents": {
+        "insertionOrder": true,
         "items": {
           "$ref": "#/definitions/PathComponent"
         },
-        "type": "array"
+        "type": "array",
+        "uniqueItems": false
       },
       "StartDate": {
         "type": "string"
@@ -647,11 +671,20 @@
       "StatusMessage": {
         "type": "string"
       },
+      "SuggestedAccounts": {
+        "insertionOrder": true,
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
       "Tags": {
         "items": {
           "$ref": "#/definitions/Tag"
         },
-        "type": "array"
+        "type": "array",
+        "uniqueItems": true
       }
     },
     "readOnlyProperties": [
@@ -666,7 +699,8 @@
       "/properties/ForwardPathComponents",
       "/properties/ReturnPathComponents",
       "/properties/Explanations",
-      "/properties/AlternatePathHints"
+      "/properties/AlternatePathHints",
+      "/properties/SuggestedAccounts"
     ],
     "required": [
       "NetworkInsightsPathId"

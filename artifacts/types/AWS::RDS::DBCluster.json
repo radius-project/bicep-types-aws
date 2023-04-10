@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBCluster",
   "type": "AWS::RDS::DBCluster",
-  "time": "2022-10-27T15:43:04.426Z",
+  "time": "2023-04-05T10:46:12.759Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -13,10 +13,12 @@
       "/properties/AvailabilityZones",
       "/properties/DBClusterIdentifier",
       "/properties/DBSubnetGroupName",
+      "/properties/DBSystemId",
       "/properties/DatabaseName",
       "/properties/EngineMode",
       "/properties/KmsKeyId",
       "/properties/PubliclyAccessible",
+      "/properties/RestoreToTime",
       "/properties/RestoreType",
       "/properties/SnapshotIdentifier",
       "/properties/SourceDBClusterIdentifier",
@@ -57,6 +59,20 @@
         },
         "type": "object"
       },
+      "MasterUserSecret": {
+        "additionalProperties": false,
+        "properties": {
+          "KmsKeyId": {
+            "description": "The AWS KMS key identifier that is used to encrypt the secret.",
+            "type": "string"
+          },
+          "SecretArn": {
+            "description": "The Amazon Resource Name (ARN) of the secret.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "ReadEndpoint": {
         "additionalProperties": false,
         "properties": {
@@ -83,9 +99,17 @@
             "description": "The minimum capacity for an Aurora DB cluster in serverless DB engine mode.\nFor Aurora MySQL, valid capacity values are 1, 2, 4, 8, 16, 32, 64, 128, and 256.\nFor Aurora PostgreSQL, valid capacity values are 2, 4, 8, 16, 32, 64, 192, and 384.\nThe minimum capacity must be less than or equal to the maximum capacity.",
             "type": "integer"
           },
+          "SecondsBeforeTimeout": {
+            "description": "The amount of time, in seconds, that Aurora Serverless v1 tries to find a scaling point to perform seamless scaling before enforcing the timeout action.\nThe default is 300.",
+            "type": "integer"
+          },
           "SecondsUntilAutoPause": {
             "description": "The time, in seconds, before an Aurora DB cluster in serverless mode is paused.",
             "type": "integer"
+          },
+          "TimeoutAction": {
+            "description": "The action to take when the timeout is reached, either ForceApplyCapacityChange or RollbackCapacityChange.\nForceApplyCapacityChange sets the capacity to the specified value as soon as possible.\nRollbackCapacityChange, the default, ignores the capacity change if a scaling point isn't found in the timeout period.\n\nFor more information, see Autoscaling for Aurora Serverless v1 in the Amazon Aurora User Guide.",
+            "type": "string"
           }
         },
         "type": "object"
@@ -142,9 +166,12 @@
           "rds:CreateDBCluster",
           "rds:CreateDBInstance",
           "rds:DescribeDBClusters",
+          "rds:DescribeEvents",
           "rds:ModifyDBCluster",
           "rds:RestoreDBClusterFromSnapshot",
-          "rds:RestoreDBClusterToPointInTime"
+          "rds:RestoreDBClusterToPointInTime",
+          "secretsmanager:CreateSecret",
+          "secretsmanager:TagResource"
         ],
         "timeoutInMinutes": 2160
       },
@@ -175,12 +202,15 @@
           "rds:AddTagsToResource",
           "rds:DescribeDBClusters",
           "rds:DescribeDBSubnetGroups",
+          "rds:DescribeEvents",
           "rds:DescribeGlobalClusters",
           "rds:ModifyDBCluster",
           "rds:ModifyDBInstance",
           "rds:RemoveFromGlobalCluster",
           "rds:RemoveRoleFromDBCluster",
-          "rds:RemoveTagsFromResource"
+          "rds:RemoveTagsFromResource",
+          "secretsmanager:CreateSecret",
+          "secretsmanager:TagResource"
         ],
         "timeoutInMinutes": 2160
       }
@@ -229,6 +259,10 @@
         "description": "A value that indicates whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.",
         "type": "boolean"
       },
+      "DBClusterArn": {
+        "description": "The Amazon Resource Name (ARN) for the DB cluster.",
+        "type": "string"
+      },
       "DBClusterIdentifier": {
         "description": "The DB cluster identifier. This parameter is stored as a lowercase string.",
         "maxLength": 63,
@@ -255,6 +289,10 @@
       },
       "DBSubnetGroupName": {
         "description": "A DB subnet group that you want to associate with this DB cluster.",
+        "type": "string"
+      },
+      "DBSystemId": {
+        "description": "Reserved for future use.",
         "type": "string"
       },
       "DatabaseName": {
@@ -319,9 +357,17 @@
         "description": "The Amazon Resource Name (ARN) of the AWS Key Management Service master key that is used to encrypt the database instances in the DB cluster, such as arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef. If you enable the StorageEncrypted property but don't specify this property, the default master key is used. If you specify this property, you must set the StorageEncrypted property to true.",
         "type": "string"
       },
+      "ManageMasterUserPassword": {
+        "description": "A value that indicates whether to manage the master user password with AWS Secrets Manager.",
+        "type": "boolean"
+      },
       "MasterUserPassword": {
         "description": "The master password for the DB instance.",
         "type": "string"
+      },
+      "MasterUserSecret": {
+        "$ref": "#/definitions/MasterUserSecret",
+        "description": "Contains the secret managed by RDS in AWS Secrets Manager for the master user password."
       },
       "MasterUsername": {
         "description": "The name of the master user for the DB cluster. You must specify MasterUsername, unless you specify SnapshotIdentifier. In that case, don't specify MasterUsername.",
@@ -375,6 +421,10 @@
       },
       "ReplicationSourceIdentifier": {
         "description": "The Amazon Resource Name (ARN) of the source DB instance or DB cluster if this DB cluster is created as a Read Replica.",
+        "type": "string"
+      },
+      "RestoreToTime": {
+        "description": "The date and time to restore the DB cluster to. Value must be a time in Universal Coordinated Time (UTC) format. An example: 2015-03-07T23:45:00Z",
         "type": "string"
       },
       "RestoreType": {
@@ -437,22 +487,32 @@
       "/properties/DBClusterIdentifier": "$lowercase(DBClusterIdentifier)",
       "/properties/DBClusterParameterGroupName": "$lowercase(DBClusterParameterGroupName)",
       "/properties/DBSubnetGroupName": "$lowercase(DBSubnetGroupName)",
+      "/properties/EnableHttpEndpoint": "$lowercase($string(EngineMode)) = 'serverless' ? EnableHttpEndpoint : false",
+      "/properties/Engine": "$lowercase(Engine)",
+      "/properties/EngineVersion": "$join([$string(EngineVersion), \".*\"])",
+      "/properties/KmsKeyId": "$join([\"arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-3]{1}:[0-9]{12}[:]{1}key\\/\", KmsKeyId])",
+      "/properties/MasterUserSecret/KmsKeyId": "$join([\"arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-3]{1}:[0-9]{12}[:]{1}key\\/\", MasterUserSecret.KmsKeyId])",
+      "/properties/PerformanceInsightsKmsKeyId": "$join([\"arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-3]{1}:[0-9]{12}[:]{1}key\\/\", PerformanceInsightsKmsKeyId])",
+      "/properties/PreferredMaintenanceWindow": "$lowercase(PreferredMaintenanceWindow)",
       "/properties/SnapshotIdentifier": "$lowercase(SnapshotIdentifier)",
       "/properties/SourceDBClusterIdentifier": "$lowercase(SourceDBClusterIdentifier)"
     },
     "readOnlyProperties": [
+      "/properties/DBClusterArn",
       "/properties/DBClusterResourceId",
       "/properties/Endpoint",
       "/properties/Endpoint/Address",
       "/properties/Endpoint/Port",
       "/properties/ReadEndpoint/Port",
-      "/properties/ReadEndpoint/Address"
+      "/properties/ReadEndpoint/Address",
+      "/properties/MasterUserSecret/SecretArn"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-rds",
     "typeName": "AWS::RDS::DBCluster",
     "writeOnlyProperties": [
       "/properties/DBInstanceParameterGroupName",
       "/properties/MasterUserPassword",
+      "/properties/RestoreToTime",
       "/properties/RestoreType",
       "/properties/SnapshotIdentifier",
       "/properties/SourceDBClusterIdentifier",
