@@ -57,6 +57,7 @@
 You cannot modify the value of AutoMinorVersionUpgrade after the cluster is created. To enable AutoMinorVersionUpgrade on a cluster you must set AutoMinorVersionUpgrade to true when you create a cluster.
 * **ClusterEndpoint**: [Endpoint](#endpoint): The cluster endpoint.
 * **ClusterName**: string (Required, Identifier): The name of the cluster. This value must be unique as it also serves as the cluster identifier.
+* **DataTiering**: [Cluster_DataTieringStatus](#clusterdatatieringstatus): Enables data tiering. Data tiering is only supported for clusters using the r6gd node type. This parameter must be set when using r6gd nodes.
 * **Description**: string: An optional description of the cluster.
 * **EngineVersion**: string: The Redis engine version used by the cluster.
 * **FinalSnapshotName**: string: The user-supplied name of a final cluster snapshot. This is the unique name that identifies the snapshot. MemoryDB creates the snapshot, and then deletes the cluster immediately afterward.
@@ -86,6 +87,9 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 ### Properties
 * **Address**: string (ReadOnly): The DNS address of the primary read-write node.
 * **Port**: int (ReadOnly): The port number that the engine is listening on. 
+
+## Cluster_DataTieringStatus
+### Properties
 
 ## Tag
 ### Properties

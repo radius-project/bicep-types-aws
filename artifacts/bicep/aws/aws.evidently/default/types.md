@@ -48,7 +48,7 @@
 ### Properties
 * **DesiredChange**: string (Required)
 * **EntityIdKey**: string (Required): The JSON path to reference the entity id in the event.
-* **EventPattern**: string (Required): Event patterns have the same structure as the events they match. Rules use event patterns to select events. An event pattern either matches an event or it doesn't.
+* **EventPattern**: string: Event patterns have the same structure as the events they match. Rules use event patterns to select events. An event pattern either matches an event or it doesn't.
 * **MetricName**: string (Required)
 * **UnitLabel**: string
 * **ValueKey**: string (Required): The JSON path to reference the numerical metric value in the event.
@@ -141,7 +141,7 @@
 ## MetricDefinitionObject
 ### Properties
 * **EntityIdKey**: string (Required): The JSON path to reference the entity id in the event.
-* **EventPattern**: string (Required): Event patterns have the same structure as the events they match. Rules use event patterns to select events. An event pattern either matches an event or it doesn't.
+* **EventPattern**: string: Event patterns have the same structure as the events they match. Rules use event patterns to select events. An event pattern either matches an event or it doesn't.
 * **MetricName**: string (Required)
 * **UnitLabel**: string
 * **ValueKey**: string (Required): The JSON path to reference the numerical metric value in the event.

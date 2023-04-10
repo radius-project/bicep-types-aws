@@ -129,24 +129,25 @@
 ### Properties
 * **CopyStepDetails**: [Workflow_CopyStepDetails](#workflowcopystepdetails): Details for a step that performs a file copy.
 * **CustomStepDetails**: [Workflow_CustomStepDetails](#workflowcustomstepdetails): Details for a step that invokes a lambda function.
+* **DecryptStepDetails**: [Workflow_DecryptStepDetails](#workflowdecryptstepdetails): Details for a step that performs a file decryption.
 * **DeleteStepDetails**: [Workflow_DeleteStepDetails](#workflowdeletestepdetails): Details for a step that deletes the file.
 * **TagStepDetails**: [Workflow_TagStepDetails](#workflowtagstepdetails): Details for a step that creates one or more tags.
 * **Type**: string
 
 ## Workflow_CopyStepDetails
 ### Properties
-* **DestinationFileLocation**: [InputFileLocation](#inputfilelocation)
+* **DestinationFileLocation**: [S3FileLocation](#s3filelocation)
 * **Name**: string: The name of the step, used as an identifier.
 * **OverwriteExisting**: string: A flag that indicates whether or not to overwrite an existing file of the same name. The default is FALSE.
 * **SourceFileLocation**: string: Specifies which file to use as input to the workflow step.
 
-## InputFileLocation
+## S3FileLocation
 ### Properties
 * **S3FileLocation**: [S3InputFileLocation](#s3inputfilelocation)
 
 ## S3InputFileLocation
 ### Properties
-* **Bucket**: string: Specifies the S3 bucket that contains the file being copied.
+* **Bucket**: string: Specifies the S3 bucket that contains the file.
 * **Key**: string: The name assigned to the file when it was created in S3. You use the object key to retrieve the object.
 
 ## Workflow_CustomStepDetails
@@ -155,6 +156,24 @@
 * **SourceFileLocation**: string: Specifies which file to use as input to the workflow step.
 * **Target**: string: The ARN for the lambda function that is being called.
 * **TimeoutSeconds**: int: Timeout, in seconds, for the step.
+
+## Workflow_DecryptStepDetails
+### Properties
+* **DestinationFileLocation**: [InputFileLocation](#inputfilelocation)
+* **Name**: string: The name of the step, used as an identifier.
+* **OverwriteExisting**: string: A flag that indicates whether or not to overwrite an existing file of the same name. The default is FALSE.
+* **SourceFileLocation**: string: Specifies which file to use as input to the workflow step.
+* **Type**: string: Specifies which encryption method to use.
+
+## InputFileLocation
+### Properties
+* **EfsFileLocation**: [EfsInputFileLocation](#efsinputfilelocation)
+* **S3FileLocation**: [S3InputFileLocation](#s3inputfilelocation)
+
+## EfsInputFileLocation
+### Properties
+* **FileSystemId**: string: Specifies the EFS filesystem that contains the file.
+* **Path**: string: The name assigned to the file when it was created in EFS. You use the object path to retrieve the object.
 
 ## Workflow_DeleteStepDetails
 ### Properties

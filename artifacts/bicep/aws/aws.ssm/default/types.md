@@ -21,6 +21,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SSM/ResourceDataSyncProperties](#awsssmresourcedatasyncproperties) (Required): properties of the resource
 
+## Resource AWS.SSM/ResourcePolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SSM/ResourcePolicyProperties](#awsssmresourcepolicyproperties) (Required): properties of the resource
+
 ## AWS.SSM/AssociationProperties
 ### Properties
 * **ApplyOnlyAtCronInterval**: bool
@@ -120,4 +127,11 @@
 ### Properties
 * **OrganizationalUnits**: string[]
 * **OrganizationSourceType**: string (Required)
+
+## AWS.SSM/ResourcePolicyProperties
+### Properties
+* **Policy**: [ResourcePolicy_Policy](#resourcepolicypolicy) | string (Required): Actual policy statement.
+* **PolicyHash**: string (ReadOnly): A snapshot identifier for the policy over time.
+* **PolicyId**: string (ReadOnly, Identifier): An unique identifier within the policies of a resource. 
+* **ResourceArn**: string (Required, Identifier): Arn of OpsItemGroup etc.
 

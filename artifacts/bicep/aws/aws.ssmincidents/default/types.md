@@ -19,6 +19,7 @@
 * **Arn**: string (ReadOnly, Identifier): The ARN of the ReplicationSet.
 * **DeletionProtected**: bool
 * **Regions**: [ReplicationRegion](#replicationregion)[] (Required): The ReplicationSet configuration.
+* **Tags**: [Tag](#tag)[]: The tags to apply to the replication set.
 
 ## ReplicationRegion
 ### Properties
@@ -29,6 +30,11 @@
 ### Properties
 * **SseKmsKeyId**: string (Required)
 
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
 ## AWS.SSMIncidents/ResponsePlanProperties
 ### Properties
 * **Actions**: [Action](#action)[]: The list of actions.
@@ -37,6 +43,7 @@
 * **DisplayName**: string: The display name of the response plan.
 * **Engagements**: string[]: The list of engagements to use.
 * **IncidentTemplate**: [IncidentTemplate](#incidenttemplate) (Required)
+* **Integrations**: [Integration](#integration)[]: The list of integrations.
 * **Name**: string (Required): The name of the response plan.
 * **Tags**: [Tag](#tag)[]: The tags to apply to the response plan.
 
@@ -88,4 +95,18 @@
 ## NotificationTargetItem
 ### Properties
 * **SnsTopicArn**: string
+
+## Integration
+### Properties
+* **PagerDutyConfiguration**: [PagerDutyConfiguration](#pagerdutyconfiguration)
+
+## PagerDutyConfiguration
+### Properties
+* **Name**: string (Required): The name of the pagerDuty configuration.
+* **PagerDutyIncidentConfiguration**: [PagerDutyIncidentConfiguration](#pagerdutyincidentconfiguration) (Required)
+* **SecretId**: string (Required): The AWS secrets manager secretId storing the pagerDuty token.
+
+## PagerDutyIncidentConfiguration
+### Properties
+* **ServiceId**: string (Required): The pagerDuty serviceId.
 

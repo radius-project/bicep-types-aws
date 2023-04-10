@@ -11,28 +11,27 @@
 ### Properties
 * **Arn**: string (ReadOnly)
 * **AssociatePublicIpAddress**: bool
-* **BackupId**: string
+* **BackupId**: string (WriteOnly)
 * **BackupRetentionCount**: int
-* **CustomCertificate**: string
-* **CustomDomain**: string
+* **CustomCertificate**: string (WriteOnly)
+* **CustomDomain**: string (WriteOnly)
 * **CustomPrivateKey**: string (WriteOnly)
 * **DisableAutomatedBackup**: bool
 * **Endpoint**: string (ReadOnly)
 * **Engine**: string
 * **EngineAttributes**: [EngineAttribute](#engineattribute)[] (WriteOnly)
 * **EngineModel**: string
-* **EngineVersion**: string
-* **Id**: string (ReadOnly)
+* **EngineVersion**: string (WriteOnly)
 * **InstanceProfileArn**: string (Required)
 * **InstanceType**: string (Required)
-* **KeyPair**: string
+* **KeyPair**: string (WriteOnly)
 * **PreferredBackupWindow**: string
 * **PreferredMaintenanceWindow**: string
 * **SecurityGroupIds**: string[]
-* **ServerName**: string (Identifier)
+* **ServerName**: string (ReadOnly, Identifier)
 * **ServiceRoleArn**: string (Required)
 * **SubnetIds**: string[]
-* **Tags**: [Tag](#tag)[]
+* **Tags**: [Tag](#tag)[] (WriteOnly)
 
 ## EngineAttribute
 ### Properties

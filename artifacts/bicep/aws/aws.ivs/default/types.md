@@ -12,7 +12,7 @@
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IVS/PlaybackKeyPairProperties](#awsivsplaybackkeypairproperties) (Required): properties of the resource
+* **properties**: [AWS.IVS/PlaybackKeyPairProperties](#awsivsplaybackkeypairproperties): properties of the resource
 
 ## Resource AWS.IVS/RecordingConfiguration@default
 * **Valid Scope(s)**: Unknown
@@ -36,7 +36,7 @@
 * **LatencyMode**: string: Channel latency mode.
 * **Name**: string: Channel
 * **PlaybackUrl**: string (ReadOnly): Channel Playback URL.
-* **RecordingConfigurationArn**: string: Recording Configuration ARN. A value other than an empty string indicates that recording is enabled. Default: ?? (recording is disabled).
+* **RecordingConfigurationArn**: string: Recording Configuration ARN. A value other than an empty string indicates that recording is enabled. Default: "" (recording is disabled).
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
 * **Type**: string: Channel type, which determines the allowable resolution and bitrate. If you exceed the allowable resolution or bitrate, the stream probably will disconnect immediately.
 
@@ -50,7 +50,7 @@
 * **Arn**: string (ReadOnly, Identifier): Key-pair identifier.
 * **Fingerprint**: string (ReadOnly): Key-pair identifier.
 * **Name**: string: An arbitrary string (a nickname) assigned to a playback key pair that helps the customer identify that resource. The value does not need to be unique.
-* **PublicKeyMaterial**: string (Required): The public portion of a customer-generated key pair.
+* **PublicKeyMaterial**: string (WriteOnly): The public portion of a customer-generated key pair.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
 
 ## Tag
@@ -63,6 +63,7 @@
 * **Arn**: string (ReadOnly, Identifier): Recording Configuration ARN is automatically generated on creation and assigned as the unique identifier.
 * **DestinationConfiguration**: [DestinationConfiguration](#destinationconfiguration) (Required)
 * **Name**: string: Recording Configuration Name.
+* **RecordingReconnectWindowSeconds**: int: Recording Reconnect Window Seconds. (0 means disabled)
 * **State**: string (ReadOnly): Recording Configuration State.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
 * **ThumbnailConfiguration**: [ThumbnailConfiguration](#thumbnailconfiguration)

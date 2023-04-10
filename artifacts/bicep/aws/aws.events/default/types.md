@@ -40,7 +40,7 @@
 
 ## AWS.Events/ArchiveProperties
 ### Properties
-* **ArchiveName**: string (ReadOnly, Identifier)
+* **ArchiveName**: string (Identifier)
 * **Arn**: string (ReadOnly)
 * **Description**: string
 * **EventPattern**: [Archive_EventPattern](#archiveeventpattern)
@@ -107,7 +107,7 @@
 * **EndpointId**: string (ReadOnly)
 * **EndpointUrl**: string (ReadOnly)
 * **EventBuses**: [EndpointEventBus](#endpointeventbus)[] (Required)
-* **Name**: string (Required, Identifier)
+* **Name**: string (Identifier)
 * **ReplicationConfig**: [ReplicationConfig](#replicationconfig)
 * **RoleArn**: string
 * **RoutingConfig**: [RoutingConfig](#routingconfig) (Required)

@@ -55,9 +55,13 @@
 * **MaxLatency**: int: The maximum latency in milliseconds. This parameter applies only to RIST-based and Zixi-based streams.
 * **MinLatency**: int: The minimum latency in milliseconds.
 * **Name**: string: The name of the source.
-* **Protocol**: string: The protocol that is used by the source or output.
+* **Protocol**: string: The protocol that is used by the source.
+* **SenderControlPort**: int: The port that the flow uses to send outbound requests to initiate connection with the sender for fujitsu-qos protocol.
+* **SenderIpAddress**: string: The IP address that the flow communicates with to initiate connection with the sender for fujitsu-qos protocol.
 * **SourceArn**: string (ReadOnly): The ARN of the source.
 * **SourceIngestPort**: string (ReadOnly): The port that the flow will be listening on for incoming content.(ReadOnly)
+* **SourceListenerAddress**: string: Source IP or domain name for SRT-caller protocol.
+* **SourceListenerPort**: int: Source port for SRT-caller protocol.
 * **StreamId**: string: The stream ID that you want to use for this transport. This parameter applies only to Zixi-based streams.
 * **VpcInterfaceName**: string: The name of the VPC Interface this Source is configured with.
 * **WhitelistCidr**: string: The range of IP addresses that should be allowed to contribute content to your source. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16.
@@ -76,8 +80,14 @@
 
 ## FailoverConfig
 ### Properties
+* **FailoverMode**: string: The type of failover you choose for this flow. MERGE combines the source streams into a single stream, allowing graceful recovery from any single-source loss. FAILOVER allows switching between different streams.
 * **RecoveryWindow**: int: Search window time to look for dash-7 packets
+* **SourcePriority**: [Flow_SourcePriority](#flowsourcepriority): The priority you want to assign to a source. You can have a primary stream and a backup stream or two equally prioritized streams.
 * **State**: string
+
+## Flow_SourcePriority
+### Properties
+* **PrimarySource**: string (Required): The name of the source you choose as the primary source for this flow.
 
 ## AWS.MediaConnect/FlowEntitlementProperties
 ### Properties

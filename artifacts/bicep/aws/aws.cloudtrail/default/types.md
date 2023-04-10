@@ -1,11 +1,25 @@
 # AWS.CloudTrail @ default
 
+## Resource AWS.CloudTrail/Channel@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudTrail/ChannelProperties](#awscloudtrailchannelproperties): properties of the resource
+
 ## Resource AWS.CloudTrail/EventDataStore@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudTrail/EventDataStoreProperties](#awscloudtraileventdatastoreproperties): properties of the resource
+
+## Resource AWS.CloudTrail/ResourcePolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudTrail/ResourcePolicyProperties](#awscloudtrailresourcepolicyproperties) (Required): properties of the resource
 
 ## Resource AWS.CloudTrail/Trail@default
 * **Valid Scope(s)**: Unknown
@@ -14,11 +28,30 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudTrail/TrailProperties](#awscloudtrailtrailproperties) (Required): properties of the resource
 
+## AWS.CloudTrail/ChannelProperties
+### Properties
+* **ChannelArn**: string (ReadOnly, Identifier)
+* **Destinations**: [Destination](#destination)[]: One or more resources to which events arriving through a channel are logged and stored.
+* **Name**: string
+* **Source**: string: The ARN of an on-premises storage solution or application, or a partner event source.
+* **Tags**: [Tag](#tag)[] (WriteOnly): An array of key-value pairs to apply to this resource.
+
+## Destination
+### Properties
+* **Location**: string (Required): The ARN of a resource that receives events from a channel.
+* **Type**: string (Required): The type of destination for events arriving from a channel.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
 ## AWS.CloudTrail/EventDataStoreProperties
 ### Properties
 * **AdvancedEventSelectors**: [AdvancedEventSelector](#advancedeventselector)[]: The advanced event selectors that were used to select events for the data store.
 * **CreatedTimestamp**: string (ReadOnly): The timestamp of the event data store's creation.
 * **EventDataStoreArn**: string (ReadOnly, Identifier): The ARN of the event data store.
+* **KmsKeyId**: string: Specifies the KMS key ID to use to encrypt the events delivered by CloudTrail. The value can be an alias name prefixed by 'alias/', a fully specified ARN to an alias, a fully specified ARN to a key, or a globally unique identifier.
 * **MultiRegionEnabled**: bool: Indicates whether the event data store includes events from all regions, or only from the region in which it was created.
 * **Name**: string: The name of the event data store.
 * **OrganizationEnabled**: bool: Indicates that an event data store is collecting logged events for an organization.
@@ -47,6 +80,11 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## AWS.CloudTrail/ResourcePolicyProperties
+### Properties
+* **ResourceArn**: string (Required, Identifier): The ARN of the AWS CloudTrail resource to which the policy applies.
+* **ResourcePolicy**: [ResourcePolicy_ResourcePolicy](#resourcepolicyresourcepolicy) | string (Required): A policy document containing permissions to add to the specified resource. In IAM, you must provide policy documents in JSON format. However, in CloudFormation you can provide the policy in JSON or YAML format because CloudFormation converts YAML to JSON before submitting it to IAM.
 
 ## AWS.CloudTrail/TrailProperties
 ### Properties

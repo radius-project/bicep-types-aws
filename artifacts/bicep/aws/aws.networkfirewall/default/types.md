@@ -45,6 +45,7 @@
 
 ## SubnetMapping
 ### Properties
+* **IPAddressType**: string: A IPAddressType
 * **SubnetId**: string (Required): A SubnetId.
 
 ## Tag
@@ -74,6 +75,7 @@
 ## StatefulEngineOptions
 ### Properties
 * **RuleOrder**: string
+* **StreamExceptionPolicy**: string
 
 ## StatefulRuleGroupReference
 ### Properties
@@ -144,9 +146,17 @@
 
 ## RuleGroup
 ### Properties
+* **ReferenceSets**: [ReferenceSets](#referencesets)
 * **RulesSource**: [RulesSource](#rulessource) (Required)
 * **RuleVariables**: [RuleVariables](#rulevariables)
 * **StatefulRuleOptions**: [StatefulRuleOptions](#statefulruleoptions)
+
+## ReferenceSets
+### Properties
+* **IPSetReferences**: [RuleGroup_IPSetReferences](#rulegroupipsetreferences)
+
+## RuleGroup_IPSetReferences
+### Properties
 
 ## RulesSource
 ### Properties

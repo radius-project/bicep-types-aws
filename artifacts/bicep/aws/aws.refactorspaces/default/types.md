@@ -15,7 +15,7 @@
 * **EnvironmentIdentifier**: string (Required, Identifier)
 * **PathResourceToId**: string (ReadOnly)
 * **RouteIdentifier**: string (ReadOnly, Identifier)
-* **RouteType**: string (WriteOnly)
+* **RouteType**: string (Required, WriteOnly)
 * **ServiceIdentifier**: string (Required, WriteOnly)
 * **Tags**: [Tag](#tag)[]: Metadata that you can assign to help organize the frameworks that you create. Each tag is a key-value pair.
 * **UriPathRoute**: [UriPathRouteInput](#uripathrouteinput) (WriteOnly)

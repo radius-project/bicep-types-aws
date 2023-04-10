@@ -20,8 +20,8 @@
 * **AdminUserPassword**: string (WriteOnly): The password associated with the admin user for the namespace that is being created. Password must be at least 8 characters in length, should be any printable ASCII character. Must contain at least one lowercase letter, one uppercase letter and one decimal digit.
 * **DbName**: string: The database name associated for the namespace that is being created. Only alphanumeric characters and underscores are allowed. It should start with an alphabet.
 * **DefaultIamRoleArn**: string: The default IAM role ARN for the namespace that is being created.
-* **FinalSnapshotName**: string: The name of the namespace the source snapshot was created from. Please specify the name if needed before deleting namespace
-* **FinalSnapshotRetentionPeriod**: int: The number of days to retain automated snapshot in the destination region after they are copied from the source region. If the value is -1, the manual snapshot is retained indefinitely. The value must be either -1 or an integer between 1 and 3,653.
+* **FinalSnapshotName**: string (WriteOnly): The name of the namespace the source snapshot was created from. Please specify the name if needed before deleting namespace
+* **FinalSnapshotRetentionPeriod**: int (WriteOnly): The number of days to retain automated snapshot in the destination region after they are copied from the source region. If the value is -1, the manual snapshot is retained indefinitely. The value must be either -1 or an integer between 1 and 3,653.
 * **IamRoles**: string[]: A list of AWS Identity and Access Management (IAM) roles that can be used by the namespace to access other AWS services. You must supply the IAM roles in their Amazon Resource Name (ARN) format. The Default role limit for each request is 10.
 * **KmsKeyId**: string: The AWS Key Management Service (KMS) key ID of the encryption key that you want to use to encrypt data in the namespace.
 * **LogExports**: string[]: The collection of log types to be exported provided by the customer. Should only be one of the three supported log types: userlog, useractivitylog and connectionlog
@@ -31,17 +31,17 @@
 
 ## Namespace
 ### Properties
-* **AdminUsername**: string
-* **CreationDate**: string
-* **DbName**: string
-* **DefaultIamRoleArn**: string
-* **IamRoles**: string[]
-* **KmsKeyId**: string
-* **LogExports**: string[]
-* **NamespaceArn**: string
-* **NamespaceId**: string
-* **NamespaceName**: string (Identifier)
-* **Status**: string
+* **AdminUsername**: string (ReadOnly)
+* **CreationDate**: string (ReadOnly)
+* **DbName**: string (ReadOnly)
+* **DefaultIamRoleArn**: string (ReadOnly)
+* **IamRoles**: string[] (ReadOnly)
+* **KmsKeyId**: string (ReadOnly)
+* **LogExports**: string[] (ReadOnly)
+* **NamespaceArn**: string (ReadOnly)
+* **NamespaceId**: string (ReadOnly)
+* **NamespaceName**: string (ReadOnly, Identifier)
+* **Status**: string (ReadOnly)
 
 ## Tag
 ### Properties
@@ -52,9 +52,10 @@
 ### Properties
 * **BaseCapacity**: int (WriteOnly)
 * **ConfigParameters**: [ConfigParameter](#configparameter)[] (WriteOnly)
-* **EnhancedVpcRouting**: bool (WriteOnly)
+* **EnhancedVpcRouting**: bool
 * **NamespaceName**: string
-* **PubliclyAccessible**: bool (WriteOnly)
+* **Port**: int
+* **PubliclyAccessible**: bool
 * **SecurityGroupIds**: string[] (WriteOnly)
 * **SubnetIds**: string[] (WriteOnly)
 * **Tags**: [Tag](#tag)[] (WriteOnly)
@@ -73,25 +74,25 @@
 
 ## Workgroup
 ### Properties
-* **BaseCapacity**: int
-* **ConfigParameters**: [ConfigParameter](#configparameter)[]
-* **CreationDate**: string
+* **BaseCapacity**: int (ReadOnly)
+* **ConfigParameters**: [ConfigParameter](#configparameter)[] (ReadOnly)
+* **CreationDate**: string (ReadOnly)
 * **Endpoint**: [Endpoint](#endpoint)
-* **EnhancedVpcRouting**: bool
-* **NamespaceName**: string
-* **PubliclyAccessible**: bool
-* **SecurityGroupIds**: string[]
-* **Status**: string
-* **SubnetIds**: string[]
-* **WorkgroupArn**: string
-* **WorkgroupId**: string
-* **WorkgroupName**: string (Identifier)
+* **EnhancedVpcRouting**: bool (ReadOnly)
+* **NamespaceName**: string (ReadOnly)
+* **PubliclyAccessible**: bool (ReadOnly)
+* **SecurityGroupIds**: string[] (ReadOnly)
+* **Status**: string (ReadOnly)
+* **SubnetIds**: string[] (ReadOnly)
+* **WorkgroupArn**: string (ReadOnly)
+* **WorkgroupId**: string (ReadOnly)
+* **WorkgroupName**: string (ReadOnly, Identifier)
 
 ## Endpoint
 ### Properties
-* **Address**: string
-* **Port**: int
-* **VpcEndpoints**: [VpcEndpoint](#vpcendpoint)[]
+* **Address**: string (ReadOnly)
+* **Port**: int (ReadOnly)
+* **VpcEndpoints**: [VpcEndpoint](#vpcendpoint)[] (ReadOnly)
 
 ## VpcEndpoint
 ### Properties

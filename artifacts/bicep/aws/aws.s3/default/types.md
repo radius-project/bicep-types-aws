@@ -33,6 +33,7 @@
 * **Alias**: string (ReadOnly): The alias of this Access Point. This alias can be used for compatibility purposes with other AWS services and third-party applications.
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified accesspoint.
 * **Bucket**: string (Required): The name of the bucket that you want to associate this Access Point with.
+* **BucketAccountId**: string: The AWS account ID associated with the S3 bucket associated with this access point.
 * **Name**: string (ReadOnly, Identifier): The name you want to assign to this Access Point. If you don't specify a name, AWS CloudFormation generates a unique ID and uses that ID for the access point name.
 * **NetworkOrigin**: string (ReadOnly): Indicates whether this Access Point allows access from the public Internet. If VpcConfiguration is specified for this Access Point, then NetworkOrigin is VPC, and the Access Point doesn't allow access from the public Internet. Otherwise, NetworkOrigin is Internet, and the Access Point allows access from the public Internet, subject to the Access Point and bucket access policies.
 * **Policy**: [AccessPoint_Policy](#accesspointpolicy): The Access Point Policy you want to apply to this access point.
@@ -454,16 +455,34 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ## AccountLevel
 ### Properties
 * **ActivityMetrics**: [ActivityMetrics](#activitymetrics)
+* **AdvancedCostOptimizationMetrics**: [AdvancedCostOptimizationMetrics](#advancedcostoptimizationmetrics)
+* **AdvancedDataProtectionMetrics**: [AdvancedDataProtectionMetrics](#advanceddataprotectionmetrics)
 * **BucketLevel**: [BucketLevel](#bucketlevel) (Required)
+* **DetailedStatusCodesMetrics**: [DetailedStatusCodesMetrics](#detailedstatuscodesmetrics)
 
 ## ActivityMetrics
 ### Properties
 * **IsEnabled**: bool: Specifies whether activity metrics are enabled or disabled.
 
+## AdvancedCostOptimizationMetrics
+### Properties
+* **IsEnabled**: bool: Specifies whether advanced cost optimization metrics are enabled or disabled.
+
+## AdvancedDataProtectionMetrics
+### Properties
+* **IsEnabled**: bool: Specifies whether advanced data protection metrics are enabled or disabled.
+
 ## BucketLevel
 ### Properties
 * **ActivityMetrics**: [ActivityMetrics](#activitymetrics)
+* **AdvancedCostOptimizationMetrics**: [AdvancedCostOptimizationMetrics](#advancedcostoptimizationmetrics)
+* **AdvancedDataProtectionMetrics**: [AdvancedDataProtectionMetrics](#advanceddataprotectionmetrics)
+* **DetailedStatusCodesMetrics**: [DetailedStatusCodesMetrics](#detailedstatuscodesmetrics)
 * **PrefixLevel**: [PrefixLevel](#prefixlevel)
+
+## DetailedStatusCodesMetrics
+### Properties
+* **IsEnabled**: bool: Specifies whether detailed status codes metrics are enabled or disabled.
 
 ## PrefixLevel
 ### Properties

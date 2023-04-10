@@ -167,6 +167,7 @@
 ### Properties
 * **Action**: [RuleAction](#ruleaction)
 * **CaptchaConfig**: [CaptchaConfig](#captchaconfig)
+* **ChallengeConfig**: [ChallengeConfig](#challengeconfig)
 * **Name**: string (Required, Identifier)
 * **Priority**: int (Required)
 * **RuleLabels**: [Label](#label)[]: Collection of Rule Labels.
@@ -175,12 +176,13 @@
 
 ## RuleAction
 ### Properties
-* **Allow**: [RuleGroup_Allow](#rulegroupallow): Allow traffic towards application.
-* **Block**: [RuleGroup_Block](#rulegroupblock): Block traffic towards application.
-* **Captcha**: [RuleGroup_Captcha](#rulegroupcaptcha): Checks valid token exists with request.
-* **Count**: [RuleGroup_Count](#rulegroupcount): Count traffic towards application.
+* **Allow**: [AllowAction](#allowaction)
+* **Block**: [BlockAction](#blockaction)
+* **Captcha**: [CaptchaAction](#captchaaction)
+* **Challenge**: [ChallengeAction](#challengeaction)
+* **Count**: [CountAction](#countaction)
 
-## RuleGroup_Allow
+## AllowAction
 ### Properties
 * **CustomRequestHandling**: [CustomRequestHandling](#customrequesthandling)
 
@@ -193,7 +195,7 @@
 * **Name**: string (Required, Identifier)
 * **Value**: string (Required)
 
-## RuleGroup_Block
+## BlockAction
 ### Properties
 * **CustomResponse**: [CustomResponse](#customresponse)
 
@@ -203,11 +205,15 @@
 * **ResponseCode**: int (Required)
 * **ResponseHeaders**: [CustomHTTPHeader](#customhttpheader)[]: Collection of HTTP headers.
 
-## RuleGroup_Captcha
+## CaptchaAction
 ### Properties
 * **CustomRequestHandling**: [CustomRequestHandling](#customrequesthandling)
 
-## RuleGroup_Count
+## ChallengeAction
+### Properties
+* **CustomRequestHandling**: [CustomRequestHandling](#customrequesthandling)
+
+## CountAction
 ### Properties
 * **CustomRequestHandling**: [CustomRequestHandling](#customrequesthandling)
 
@@ -218,6 +224,10 @@
 ## ImmunityTimeProperty
 ### Properties
 * **ImmunityTime**: int (Required)
+
+## ChallengeConfig
+### Properties
+* **ImmunityTimeProperty**: [ImmunityTimeProperty](#immunitytimeproperty)
 
 ## Label
 ### Properties
@@ -425,6 +435,7 @@
 * **Arn**: string (ReadOnly)
 * **Capacity**: int (ReadOnly)
 * **CaptchaConfig**: [CaptchaConfig](#captchaconfig)
+* **ChallengeConfig**: [ChallengeConfig](#challengeconfig)
 * **CustomResponseBodies**: [CustomResponseBodies](#customresponsebodies)
 * **DefaultAction**: [DefaultAction](#defaultaction) (Required)
 * **Description**: string
@@ -434,6 +445,7 @@
 * **Rules**: [Rule](#rule)[]: Collection of Rules.
 * **Scope**: string (Required, Identifier)
 * **Tags**: [Tag](#tag)[]
+* **TokenDomains**: string[]
 * **VisibilityConfig**: [VisibilityConfig](#visibilityconfig) (Required)
 
 ## CaptchaConfig
@@ -443,6 +455,10 @@
 ## ImmunityTimeProperty
 ### Properties
 * **ImmunityTime**: int (Required)
+
+## ChallengeConfig
+### Properties
+* **ImmunityTimeProperty**: [ImmunityTimeProperty](#immunitytimeproperty)
 
 ## CustomResponseBodies
 ### Properties
@@ -479,6 +495,7 @@
 ### Properties
 * **Action**: [RuleAction](#ruleaction)
 * **CaptchaConfig**: [CaptchaConfig](#captchaconfig)
+* **ChallengeConfig**: [ChallengeConfig](#challengeconfig)
 * **Name**: string (Required, Identifier)
 * **OverrideAction**: [OverrideAction](#overrideaction)
 * **Priority**: int (Required)
@@ -491,9 +508,14 @@
 * **Allow**: [AllowAction](#allowaction)
 * **Block**: [BlockAction](#blockaction)
 * **Captcha**: [CaptchaAction](#captchaaction)
+* **Challenge**: [ChallengeAction](#challengeaction)
 * **Count**: [CountAction](#countaction)
 
 ## CaptchaAction
+### Properties
+* **CustomRequestHandling**: [CustomRequestHandling](#customrequesthandling)
+
+## ChallengeAction
 ### Properties
 * **CustomRequestHandling**: [CustomRequestHandling](#customrequesthandling)
 
@@ -664,6 +686,7 @@
 * **ExcludedRules**: [ExcludedRule](#excludedrule)[]
 * **ManagedRuleGroupConfigs**: [ManagedRuleGroupConfig](#managedrulegroupconfig)[]: Collection of ManagedRuleGroupConfig.
 * **Name**: string (Required, Identifier)
+* **RuleActionOverrides**: [RuleActionOverride](#ruleactionoverride)[]: Action overrides for rules in the rule group.
 * **ScopeDownStatement**: [Statement](#statement)
 * **VendorName**: string (Required)
 * **Version**: string
@@ -674,14 +697,66 @@
 
 ## ManagedRuleGroupConfig
 ### Properties
+* **AWSManagedRulesATPRuleSet**: [AWSManagedRulesATPRuleSet](#awsmanagedrulesatpruleset)
+* **AWSManagedRulesBotControlRuleSet**: [AWSManagedRulesBotControlRuleSet](#awsmanagedrulesbotcontrolruleset)
 * **LoginPath**: string
 * **PasswordField**: [FieldIdentifier](#fieldidentifier)
 * **PayloadType**: string
 * **UsernameField**: [FieldIdentifier](#fieldidentifier)
 
+## AWSManagedRulesATPRuleSet
+### Properties
+* **LoginPath**: string (Required)
+* **RequestInspection**: [RequestInspection](#requestinspection)
+* **ResponseInspection**: [ResponseInspection](#responseinspection)
+
+## RequestInspection
+### Properties
+* **PasswordField**: [FieldIdentifier](#fieldidentifier) (Required)
+* **PayloadType**: string (Required)
+* **UsernameField**: [FieldIdentifier](#fieldidentifier) (Required)
+
 ## FieldIdentifier
 ### Properties
 * **Identifier**: string (Required)
+
+## ResponseInspection
+### Properties
+* **BodyContains**: [ResponseInspectionBodyContains](#responseinspectionbodycontains)
+* **Header**: [ResponseInspectionHeader](#responseinspectionheader)
+* **Json**: [ResponseInspectionJson](#responseinspectionjson)
+* **StatusCode**: [ResponseInspectionStatusCode](#responseinspectionstatuscode)
+
+## ResponseInspectionBodyContains
+### Properties
+* **FailureStrings**: string[] (Required)
+* **SuccessStrings**: string[] (Required)
+
+## ResponseInspectionHeader
+### Properties
+* **FailureValues**: string[] (Required)
+* **Name**: string (Required, Identifier)
+* **SuccessValues**: string[] (Required)
+
+## ResponseInspectionJson
+### Properties
+* **FailureValues**: string[] (Required)
+* **Identifier**: string (Required)
+* **SuccessValues**: string[] (Required)
+
+## ResponseInspectionStatusCode
+### Properties
+* **FailureCodes**: int[] (Required)
+* **SuccessCodes**: int[] (Required)
+
+## AWSManagedRulesBotControlRuleSet
+### Properties
+* **InspectionLevel**: string (Required)
+
+## RuleActionOverride
+### Properties
+* **ActionToUse**: [RuleAction](#ruleaction) (Required)
+* **Name**: string (Required, Identifier)
 
 ## NotStatement
 ### Properties
@@ -714,6 +789,7 @@
 ### Properties
 * **Arn**: string (Required)
 * **ExcludedRules**: [ExcludedRule](#excludedrule)[]
+* **RuleActionOverrides**: [RuleActionOverride](#ruleactionoverride)[]: Action overrides for rules in the rule group.
 
 ## SizeConstraintStatement
 ### Properties

@@ -41,6 +41,8 @@
 * **AddonVersion**: string: Version of Addon
 * **Arn**: string (ReadOnly): Amazon Resource Name (ARN) of the add-on
 * **ClusterName**: string (Required, Identifier): Name of Cluster
+* **ConfigurationValues**: string: The configuration values to use with the add-on
+* **PreserveOnDelete**: bool (WriteOnly): PreserveOnDelete parameter value
 * **ResolveConflicts**: string (WriteOnly): Resolve parameter value conflicts
 * **ServiceAccountRoleArn**: string: IAM role to bind to the add-on's service account
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
@@ -99,7 +101,12 @@
 ## OutpostConfig
 ### Properties
 * **ControlPlaneInstanceType**: string (Required): Specify the Instance type of the machines that should be used to create your cluster.
+* **ControlPlanePlacement**: [ControlPlanePlacement](#controlplaneplacement): Specify the placement group of the control plane machines for your cluster.
 * **OutpostArns**: string[] (Required): Specify one or more Arn(s) of Outpost(s) on which you would like to create your cluster.
+
+## ControlPlanePlacement
+### Properties
+* **GroupName**: string: Specify the placement group name of the control place machines for your cluster.
 
 ## ResourcesVpcConfig
 ### Properties

@@ -38,26 +38,12 @@
 
 ## AWS.AppIntegrations/EventIntegrationProperties
 ### Properties
-* **Associations**: [EventIntegrationAssociation](#eventintegrationassociation)[] (ReadOnly): The associations with the event integration.
 * **Description**: string: The event integration description.
 * **EventBridgeBus**: string (Required): The Amazon Eventbridge bus for the event integration.
 * **EventFilter**: [EventFilter](#eventfilter) (Required): The EventFilter (source) associated with the event integration.
 * **EventIntegrationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the event integration.
 * **Name**: string (Required, Identifier): The name of the event integration.
 * **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the event integration.
-
-## EventIntegrationAssociation
-### Properties
-* **ClientAssociationMetadata**: [Metadata](#metadata)[]: The metadata associated with the client.
-* **ClientId**: string: The identifier for the client that is associated with the event integration.
-* **EventBridgeRuleName**: string: The name of the Eventbridge rule.
-* **EventIntegrationAssociationArn**: string: The Amazon Resource Name (ARN) for the event integration association.
-* **EventIntegrationAssociationId**: string: The identifier for the event integration association.
-
-## Metadata
-### Properties
-* **Key**: string (Required): A key to identify the metadata.
-* **Value**: string (Required): Corresponding metadata value for the key.
 
 ## EventFilter
 ### Properties

@@ -42,6 +42,7 @@
 
 
 * **PropertyDefinitions**: [ComponentType_PropertyDefinitions](#componenttypepropertydefinitions): An map of the property definitions in the component type. Each property definition's key must be unique to this map.
+* **PropertyGroups**: [ComponentType_PropertyGroups](#componenttypepropertygroups): An map of the property groups in the component type. Each property group's key must be unique to this map.
 * **Status**: [Status](#status) (ReadOnly): The current status of the component type.
 * **Tags**: [ComponentType_Tags](#componenttypetags): A map of key-value pairs to associate with a resource.
 * **UpdateDateTime**: string (ReadOnly): The last date and time when the component type was updated.
@@ -53,6 +54,9 @@
 ## ComponentType_PropertyDefinitions
 ### Properties
 
+## ComponentType_PropertyGroups
+### Properties
+
 ## Status
 ### Properties
 * **Error**: [ComponentType_Error](#componenttypeerror)
@@ -60,8 +64,6 @@
 
 ## ComponentType_Error
 ### Properties
-* **Code**: string
-* **Message**: string
 
 ## ComponentType_Tags
 ### Properties
@@ -91,8 +93,6 @@
 
 ## Entity_Error
 ### Properties
-* **Code**: string
-* **Message**: string
 
 ## Entity_Tags
 ### Properties

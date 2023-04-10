@@ -84,6 +84,20 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/RequestValidatorProperties](#awsapigatewayrequestvalidatorproperties) (Required): properties of the resource
 
+## Resource AWS.ApiGateway/Resource@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGateway/ResourceProperties](#awsapigatewayresourceproperties) (Required): properties of the resource
+
+## Resource AWS.ApiGateway/RestApi@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGateway/RestApiProperties](#awsapigatewayrestapiproperties): properties of the resource
+
 ## Resource AWS.ApiGateway/Stage@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -97,6 +111,13 @@
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/UsagePlanProperties](#awsapigatewayusageplanproperties): properties of the resource
+
+## Resource AWS.ApiGateway/VpcLink@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGateway/VpcLinkProperties](#awsapigatewayvpclinkproperties) (Required): properties of the resource
 
 ## AWS.ApiGateway/AccountProperties
 ### Properties
@@ -143,7 +164,6 @@
 ### Properties
 * **BasePath**: string (Identifier): The base path name that callers of the API must provide in the URL after the domain name.
 * **DomainName**: string (Required, Identifier): The DomainName of an AWS::ApiGateway::DomainName resource.
-* **Id**: string
 * **RestApiId**: string: The ID of the API.
 * **Stage**: string: The name of the API's stage.
 
@@ -370,6 +390,50 @@
 * **ValidateRequestBody**: bool: Indicates whether to validate the request body according to the configured schema for the targeted API and method. 
 * **ValidateRequestParameters**: bool: Indicates whether to validate request parameters.
 
+## AWS.ApiGateway/ResourceProperties
+### Properties
+* **ParentId**: string (Required): The parent resource's identifier.
+* **PathPart**: string (Required): The last path segment for this resource.
+* **ResourceId**: string (ReadOnly, Identifier): A unique primary identifier for a Resource
+* **RestApiId**: string (Required, Identifier): The ID of the RestApi resource in which you want to create this resource..
+
+## AWS.ApiGateway/RestApiProperties
+### Properties
+* **ApiKeySourceType**: string
+* **BinaryMediaTypes**: string[]
+* **Body**: [RestApi_Body](#restapibody) | string (WriteOnly)
+* **BodyS3Location**: [S3Location](#s3location) (WriteOnly)
+* **CloneFrom**: string (WriteOnly)
+* **Description**: string
+* **DisableExecuteApiEndpoint**: bool
+* **EndpointConfiguration**: [EndpointConfiguration](#endpointconfiguration)
+* **FailOnWarnings**: bool (WriteOnly)
+* **MinimumCompressionSize**: int
+* **Mode**: string (WriteOnly)
+* **Name**: string
+* **Parameters**: [RestApi_Parameters](#restapiparameters) | string (WriteOnly)
+* **Policy**: [RestApi_Policy](#restapipolicy) | string
+* **RestApiId**: string (ReadOnly, Identifier)
+* **RootResourceId**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]
+
+## S3Location
+### Properties
+* **Bucket**: string
+* **ETag**: string
+* **Key**: string
+* **Version**: string
+
+## EndpointConfiguration
+### Properties
+* **Types**: string[]
+* **VpcEndpointIds**: string[]
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
 ## AWS.ApiGateway/StageProperties
 ### Properties
 * **AccessLogSetting**: [AccessLogSetting](#accesslogsetting): Specifies settings for logging access in this stage.
@@ -457,4 +521,17 @@
 ### Properties
 * **BurstLimit**: int: The maximum API request rate limit over a time ranging from one to a few seconds. The maximum API request rate limit depends on whether the underlying token bucket is at its full capacity.
 * **RateLimit**: int: The API request steady-state rate limit (average requests per second over an extended period of time).
+
+## AWS.ApiGateway/VpcLinkProperties
+### Properties
+* **Description**: string: A description of the VPC link.
+* **Name**: string (Required): A name for the VPC link.
+* **Tags**: [Tag](#tag)[]: An array of arbitrary tags (key-value pairs) to associate with the stage.
+* **TargetArns**: string[] (Required): The ARN of network load balancer of the VPC targeted by the VPC link. The network load balancer must be owned by the same AWS account of the API owner.
+* **VpcLinkId**: string (ReadOnly, Identifier): The ID of the instance that backs VPC link.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 

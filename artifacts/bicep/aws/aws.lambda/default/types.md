@@ -50,6 +50,7 @@
 * **BatchSize**: int: The maximum number of items to retrieve in a single batch.
 * **BisectBatchOnFunctionError**: bool: (Streams) If the function returns an error, split the batch in two and retry.
 * **DestinationConfig**: [DestinationConfig](#destinationconfig): (Streams) An Amazon SQS queue or Amazon SNS topic destination for discarded records.
+* **DocumentDBEventSourceConfig**: [DocumentDBEventSourceConfig](#documentdbeventsourceconfig): Document db event source config.
 * **Enabled**: bool: Disables the event source mapping to pause polling and invocation.
 * **EventSourceArn**: string: The Amazon Resource Name (ARN) of the event source.
 * **FilterCriteria**: [FilterCriteria](#filtercriteria): The filter criteria to control event filtering.
@@ -61,6 +62,7 @@
 * **MaximumRetryAttempts**: int: (Streams) The maximum number of times to retry when the function returns an error.
 * **ParallelizationFactor**: int: (Streams) The number of batches to process from each shard concurrently.
 * **Queues**: string[]: (ActiveMQ) A list of ActiveMQ queues.
+* **ScalingConfig**: [ScalingConfig](#scalingconfig): The scaling configuration for the event source.
 * **SelfManagedEventSource**: [SelfManagedEventSource](#selfmanagedeventsource): Self-managed event source endpoints.
 * **SelfManagedKafkaEventSourceConfig**: [SelfManagedKafkaEventSourceConfig](#selfmanagedkafkaeventsourceconfig): Specific configuration settings for a Self-Managed Apache Kafka event source.
 * **SourceAccessConfigurations**: [SourceAccessConfiguration](#sourceaccessconfiguration)[]: A list of SourceAccessConfiguration.
@@ -81,6 +83,12 @@
 ### Properties
 * **Destination**: string: The Amazon Resource Name (ARN) of the destination resource.
 
+## DocumentDBEventSourceConfig
+### Properties
+* **CollectionName**: string: The collection name to connect to.
+* **DatabaseName**: string: The database name to connect to.
+* **FullDocument**: string: Include full document in change stream response. The default option will only send the changes made to documents to Lambda. If you want the complete document sent to Lambda, set this to UpdateLookup.
+
 ## FilterCriteria
 ### Properties
 * **Filters**: [Filter](#filter)[]: List of filters of this FilterCriteria
@@ -88,6 +96,10 @@
 ## Filter
 ### Properties
 * **Pattern**: string: The filter pattern that defines which events should be passed for invocations.
+
+## ScalingConfig
+### Properties
+* **MaximumConcurrency**: int: The maximum number of concurrent functions that the event source can invoke.
 
 ## SelfManagedEventSource
 ### Properties
@@ -127,6 +139,9 @@
 * **ReservedConcurrentExecutions**: int: The number of simultaneous executions to reserve for the function.
 * **Role**: string (Required): The Amazon Resource Name (ARN) of the function's execution role.
 * **Runtime**: string: The identifier of the function's runtime.
+* **RuntimeManagementConfig**: [RuntimeManagementConfig](#runtimemanagementconfig): RuntimeManagementConfig
+* **SnapStart**: [SnapStart](#snapstart): The SnapStart setting of your function
+* **SnapStartResponse**: [SnapStartResponse](#snapstartresponse) (ReadOnly): The SnapStart response of your function
 * **Tags**: [Tag](#tag)[]: A list of tags to apply to the function.
 * **Timeout**: int: The amount of time that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds.
 * **TracingConfig**: [TracingConfig](#tracingconfig): Set Mode to Active to sample and trace a subset of incoming requests with AWS X-Ray.
@@ -165,6 +180,20 @@
 * **Command**: string[]: Command.
 * **EntryPoint**: string[]: EntryPoint.
 * **WorkingDirectory**: string: WorkingDirectory.
+
+## RuntimeManagementConfig
+### Properties
+* **RuntimeVersionArn**: string: Unique identifier for a runtime version arn
+* **UpdateRuntimeOn**: string (Required): Trigger for runtime update
+
+## SnapStart
+### Properties
+* **ApplyOn**: string (Required): Applying SnapStart setting on function resource type.
+
+## SnapStartResponse
+### Properties
+* **ApplyOn**: string (ReadOnly): Applying SnapStart setting on function resource type.
+* **OptimizationStatus**: string (ReadOnly): Indicates whether SnapStart is activated for the specified function version.
 
 ## Tag
 ### Properties

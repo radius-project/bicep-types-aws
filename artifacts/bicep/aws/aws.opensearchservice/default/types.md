@@ -26,8 +26,10 @@
 * **Id**: string (ReadOnly)
 * **LogPublishingOptions**: [Domain_LogPublishingOptions](#domainlogpublishingoptions)
 * **NodeToNodeEncryptionOptions**: [NodeToNodeEncryptionOptions](#nodetonodeencryptionoptions)
+* **OffPeakWindowOptions**: [OffPeakWindowOptions](#offpeakwindowoptions)
 * **ServiceSoftwareOptions**: [ServiceSoftwareOptions](#servicesoftwareoptions) (ReadOnly)
 * **SnapshotOptions**: [SnapshotOptions](#snapshotoptions)
+* **SoftwareUpdateOptions**: [SoftwareUpdateOptions](#softwareupdateoptions)
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this Domain.
 * **VPCOptions**: [VPCOptions](#vpcoptions)
 
@@ -39,15 +41,33 @@
 
 ## AdvancedSecurityOptionsInput
 ### Properties
+* **AnonymousAuthDisableDate**: string (ReadOnly)
+* **AnonymousAuthEnabled**: bool
 * **Enabled**: bool
 * **InternalUserDatabaseEnabled**: bool
 * **MasterUserOptions**: [MasterUserOptions](#masteruseroptions) (WriteOnly)
+* **SAMLOptions**: [SAMLOptions](#samloptions)
 
 ## MasterUserOptions
 ### Properties
 * **MasterUserARN**: string
 * **MasterUserName**: string
 * **MasterUserPassword**: string
+
+## SAMLOptions
+### Properties
+* **Enabled**: bool
+* **Idp**: [Idp](#idp)
+* **MasterBackendRole**: string (WriteOnly)
+* **MasterUserName**: string (WriteOnly)
+* **RolesKey**: string
+* **SessionTimeoutMinutes**: int
+* **SubjectKey**: string
+
+## Idp
+### Properties
+* **EntityId**: string (Required)
+* **MetadataContent**: string (Required)
 
 ## ClusterConfig
 ### Properties
@@ -104,6 +124,20 @@
 ### Properties
 * **Enabled**: bool
 
+## OffPeakWindowOptions
+### Properties
+* **Enabled**: bool
+* **OffPeakWindow**: [OffPeakWindow](#offpeakwindow)
+
+## OffPeakWindow
+### Properties
+* **WindowStartTime**: [WindowStartTime](#windowstarttime)
+
+## WindowStartTime
+### Properties
+* **Hours**: int (Required)
+* **Minutes**: int (Required)
+
 ## ServiceSoftwareOptions
 ### Properties
 * **AutomatedUpdateDate**: string
@@ -118,6 +152,10 @@
 ## SnapshotOptions
 ### Properties
 * **AutomatedSnapshotStartHour**: int
+
+## SoftwareUpdateOptions
+### Properties
+* **AutoSoftwareUpdateEnabled**: bool
 
 ## Tag
 ### Properties

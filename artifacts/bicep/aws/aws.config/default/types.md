@@ -37,9 +37,9 @@
 
 ## AWS.Config/AggregationAuthorizationProperties
 ### Properties
-* **AggregationAuthorizationArn**: string (ReadOnly, Identifier): The ARN of the AggregationAuthorization.
-* **AuthorizedAccountId**: string (Required): The 12-digit account ID of the account authorized to aggregate data.
-* **AuthorizedAwsRegion**: string (Required): The region authorized to collect aggregated data.
+* **AggregationAuthorizationArn**: string (ReadOnly): The ARN of the AggregationAuthorization.
+* **AuthorizedAccountId**: string (Required, Identifier): The 12-digit account ID of the account authorized to aggregate data.
+* **AuthorizedAwsRegion**: string (Required, Identifier): The region authorized to collect aggregated data.
 * **Tags**: [Tag](#tag)[]: The tags for the AggregationAuthorization.
 
 ## Tag

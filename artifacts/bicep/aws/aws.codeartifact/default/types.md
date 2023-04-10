@@ -36,7 +36,7 @@
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The ARN of the repository.
 * **Description**: string: A text description of the repository.
-* **DomainName**: string (Required, ReadOnly): The name of the domain that contains the repository.
+* **DomainName**: string (Required): The name of the domain that contains the repository.
 * **DomainOwner**: string (ReadOnly): The 12-digit account ID of the AWS account that owns the domain.
 * **ExternalConnections**: string[]: A list of external connections associated with the repository.
 * **Name**: string (ReadOnly): The name of the repository. This is used for GetAtt

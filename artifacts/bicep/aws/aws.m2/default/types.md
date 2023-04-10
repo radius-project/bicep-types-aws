@@ -21,6 +21,7 @@
 * **Definition**: [Definition](#definition) (Required, WriteOnly)
 * **Description**: string
 * **EngineType**: string (Required)
+* **KmsKeyId**: string: The ID or the Amazon Resource Name (ARN) of the customer managed KMS Key used for encrypting application-related resources.
 * **Name**: string (Required)
 * **Tags**: [TagMap](#tagmap)
 
@@ -39,6 +40,7 @@
 * **EnvironmentId**: string (ReadOnly): The unique identifier of the environment.
 * **HighAvailabilityConfig**: [HighAvailabilityConfig](#highavailabilityconfig)
 * **InstanceType**: string (Required): The type of instance underlying the environment.
+* **KmsKeyId**: string: The ID or the Amazon Resource Name (ARN) of the customer managed KMS Key used for encrypting environment-related resources.
 * **Name**: string (Required): The name of the environment.
 * **PreferredMaintenanceWindow**: string: Configures a desired maintenance window for the environment. If you do not provide a value, a random system-generated value will be assigned.
 * **PubliclyAccessible**: bool: Specifies whether the environment is publicly accessible.

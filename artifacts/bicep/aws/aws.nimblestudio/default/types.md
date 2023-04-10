@@ -45,6 +45,7 @@
 
 ## StreamConfiguration
 ### Properties
+* **AutomaticTerminationMode**: string
 * **ClipboardMode**: string (Required)
 * **Ec2InstanceTypes**: string[] (Required): <p>The EC2 instance types that users can select from when launching a streaming session
             with this launch profile.</p>
@@ -53,19 +54,33 @@
             stops the session. The default length of time is 690 minutes, and the maximum length of
             time is 30 days.</p>
 * **MaxStoppedSessionLengthInMinutes**: int: <p>Integer that determines if you can start and stop your sessions and how long a session
-            can stay in the STOPPED state. The default value is 0. The maximum value is 5760.</p>
-        <p>If the value is missing or set to 0, your sessions can?t be stopped. If you then call
-                <code>StopStreamingSession</code>, the session fails. If the time that a session
-            stays in the READY state exceeds the <code>maxSessionLengthInMinutes</code> value, the
-            session will automatically be terminated (instead of stopped).</p>
-        <p>If the value is set to a positive number, the session can be stopped. You can call
-                <code>StopStreamingSession</code> to stop sessions in the READY state. If the time
-            that a session stays in the READY state exceeds the
+            can stay in the <code>STOPPED</code> state. The default value is 0. The maximum value is
+            5760.</p>
+         <p>This field is allowed only when <code>sessionPersistenceMode</code> is
+                <code>ACTIVATED</code> and <code>automaticTerminationMode</code> is
+                <code>ACTIVATED</code>.</p>
+         <p>If the value is set to 0, your sessions can?t be <code>STOPPED</code>. If you then
+            call <code>StopStreamingSession</code>, the session fails. If the time that a session
+            stays in the <code>READY</code> state exceeds the <code>maxSessionLengthInMinutes</code>
+            value, the session will automatically be terminated (instead of
+            <code>STOPPED</code>).</p>
+         <p>If the value is set to a positive number, the session can be stopped. You can call
+                <code>StopStreamingSession</code> to stop sessions in the <code>READY</code> state.
+            If the time that a session stays in the <code>READY</code> state exceeds the
                 <code>maxSessionLengthInMinutes</code> value, the session will automatically be
             stopped (instead of terminated).</p>
+* **SessionBackup**: [StreamConfigurationSessionBackup](#streamconfigurationsessionbackup)
+* **SessionPersistenceMode**: string
 * **SessionStorage**: [StreamConfigurationSessionStorage](#streamconfigurationsessionstorage)
 * **StreamingImageIds**: string[] (Required): <p>The streaming images that users can select from when launching a streaming session
             with this launch profile.</p>
+* **VolumeConfiguration**: [VolumeConfiguration](#volumeconfiguration)
+
+## StreamConfigurationSessionBackup
+### Properties
+* **MaxBackupsToRetain**: int: <p>The maximum number of backups that each streaming session created from this launch
+            profile can have.</p>
+* **Mode**: string
 
 ## StreamConfigurationSessionStorage
 ### Properties
@@ -77,6 +92,15 @@
 ### Properties
 * **Linux**: string: <p>The folder path in Linux workstations where files are uploaded.</p>
 * **Windows**: string: <p>The folder path in Windows workstations where files are uploaded.</p>
+
+## VolumeConfiguration
+### Properties
+* **Iops**: int: <p>The number of I/O operations per second for the root volume that is attached to
+            streaming session.</p>
+* **Size**: int: <p>The size of the root volume that is attached to the streaming session. The root volume
+            size is measured in GiBs.</p>
+* **Throughput**: int: <p>The throughput to provision for the root volume that is attached to the streaming
+            session. The throughput is measured in MiB/s.</p>
 
 ## Tags
 ### Properties
