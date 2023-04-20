@@ -120,6 +120,7 @@
 
 ## TargetAddress
 ### Properties
-* **Ip**: string (Required): One IP address that you want to forward DNS queries to. You can specify only IPv4 addresses. 
+* **Ip**: string: One IP address that you want to forward DNS queries to. You can specify only IPv4 addresses. 
+* **Ipv6**: string: One IPv6 address that you want to forward DNS queries to. You can specify only IPv6 addresses. 
 * **Port**: string: The port at Ip that you want to forward DNS queries to. 
 

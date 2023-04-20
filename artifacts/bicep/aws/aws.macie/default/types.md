@@ -63,7 +63,6 @@
 * **Arn**: string (ReadOnly): Findings filter ARN.
 * **Description**: string: Findings filter description
 * **FindingCriteria**: [FindingCriteria](#findingcriteria) (Required): Findings filter criteria.
-* **FindingsFilterListItems**: [FindingsFilterListItem](#findingsfilterlistitem)[] (ReadOnly): Findings filters list.
 * **Id**: string (ReadOnly, Identifier): Findings filter ID.
 * **Name**: string (Required): Findings filter name
 * **Position**: int: Findings filter position.
@@ -74,11 +73,6 @@
 
 ## Criterion
 ### Properties
-
-## FindingsFilterListItem
-### Properties
-* **Id**: string (Identifier)
-* **Name**: string
 
 ## AWS.Macie/SessionProperties
 ### Properties

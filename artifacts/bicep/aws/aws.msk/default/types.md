@@ -55,10 +55,37 @@
 ## ConnectivityInfo
 ### Properties
 * **PublicAccess**: [PublicAccess](#publicaccess)
+* **VpcConnectivity**: [VpcConnectivity](#vpcconnectivity)
 
 ## PublicAccess
 ### Properties
 * **Type**: string
+
+## VpcConnectivity
+### Properties
+* **ClientAuthentication**: [VpcConnectivityClientAuthentication](#vpcconnectivityclientauthentication)
+
+## VpcConnectivityClientAuthentication
+### Properties
+* **Sasl**: [VpcConnectivitySasl](#vpcconnectivitysasl)
+* **Tls**: [VpcConnectivityTls](#vpcconnectivitytls)
+
+## VpcConnectivitySasl
+### Properties
+* **Iam**: [VpcConnectivityIam](#vpcconnectivityiam)
+* **Scram**: [VpcConnectivityScram](#vpcconnectivityscram)
+
+## VpcConnectivityIam
+### Properties
+* **Enabled**: bool (Required)
+
+## VpcConnectivityScram
+### Properties
+* **Enabled**: bool (Required)
+
+## VpcConnectivityTls
+### Properties
+* **Enabled**: bool (Required)
 
 ## StorageInfo
 ### Properties

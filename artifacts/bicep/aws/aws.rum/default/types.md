@@ -10,8 +10,10 @@
 ## AWS.RUM/AppMonitorProperties
 ### Properties
 * **AppMonitorConfiguration**: [AppMonitorConfiguration](#appmonitorconfiguration)
+* **CustomEvents**: [CustomEvents](#customevents)
 * **CwLogEnabled**: bool: Data collected by RUM is kept by RUM for 30 days and then deleted. This parameter specifies whether RUM sends a copy of this telemetry data to CWLlong in your account. This enables you to keep the telemetry data for more than 30 days, but it does incur CWLlong charges. If you omit this parameter, the default is false
 * **Domain**: string (Required): The top-level internet domain name for which your application has administrative authority.
+* **Id**: string (ReadOnly): The unique ID of the new app monitor.
 * **Name**: string (Required, Identifier): A name for the app monitor
 * **Tags**: [Tag](#tag)[]
 
@@ -41,7 +43,7 @@ This parameter specifies the ARN of an IAM role that RUM will assume to write to
 ### Properties
 * **DimensionKeys**: [AppMonitor_DimensionKeys](#appmonitordimensionkeys): Use this field only if you are sending the metric to CloudWatch.
 
-This field is a map of field paths to dimension names. It defines the dimensions to associate with this metric in CloudWatch. Valid values for the entries in this field are the following:
+This field is a map of field paths to dimension names. It defines the dimensions to associate with this metric in CloudWatch. For extended metrics, valid values for the entries in this field are the following:
 
 "metadata.pageId": "PageId"
 
@@ -69,7 +71,7 @@ Example event patterns:
 '{ "event_type": ["com.amazon.rum.performance_navigation_event"], "metadata": { "browserName": [ "Chrome", "Safari" ], "countryCode": [ "US" ] }, "event_details": { "duration": [{ "numeric": [ ">=", 2000, "<", 8000 ] }] } }'
 
 If the metrics destination' is CloudWatch and the event also matches a value in DimensionKeys, then the metric is published with the specified dimensions.
-* **Name**: string (Required, Identifier): The name for the metric that is defined in this structure. Valid values are the following:
+* **Name**: string (Required, Identifier): The name for the metric that is defined in this structure. For extended metrics, valid values are the following:
 
 PerformanceNavigationDuration
 
@@ -92,6 +94,7 @@ JsErrorCount
 HttpErrorCount
 
 SessionCount
+* **Namespace**: string: The namespace used by CloudWatch Metrics for the metric that is defined in this structure
 * **UnitLabel**: string: The CloudWatch metric unit to use for this metric. If you omit this field, the metric is recorded with no unit.
 * **ValueKey**: string: The field within the event object that the metric value is sourced from.
 
@@ -101,6 +104,10 @@ If this metric is sent to Evidently, this field will be passed to Evidently raw 
 
 ## AppMonitor_DimensionKeys
 ### Properties
+
+## CustomEvents
+### Properties
+* **Status**: string: Indicates whether AppMonitor accepts custom events.
 
 ## Tag
 ### Properties

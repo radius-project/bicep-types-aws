@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTTwinMaker-Scene",
   "type": "AWS::IoTTwinMaker::Scene",
-  "time": "2023-03-23T15:22:02.361Z",
+  "time": "2023-04-19T17:20:39.372Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -95,12 +95,40 @@
         "minLength": 0,
         "type": "string"
       },
+      "GeneratedSceneMetadata": {
+        "additionalProperties": false,
+        "description": "A key-value pair of generated scene metadata for the scene.",
+        "maxLength": 50,
+        "minLength": 0,
+        "patternProperties": {
+          "[a-zA-Z_\\-0-9]+": {
+            "maxLength": 2048,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "SceneId": {
         "description": "The ID of the scene.",
         "maxLength": 128,
         "minLength": 1,
         "pattern": "[a-zA-Z_0-9][a-zA-Z_\\-0-9]*[a-zA-Z0-9]+",
         "type": "string"
+      },
+      "SceneMetadata": {
+        "additionalProperties": false,
+        "description": "A key-value pair of scene metadata for the scene.",
+        "maxLength": 50,
+        "minLength": 0,
+        "patternProperties": {
+          "[a-zA-Z_\\-0-9]+": {
+            "maxLength": 2048,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "type": "object"
       },
       "Tags": {
         "additionalProperties": false,
@@ -129,7 +157,8 @@
     "readOnlyProperties": [
       "/properties/Arn",
       "/properties/CreationDateTime",
-      "/properties/UpdateDateTime"
+      "/properties/UpdateDateTime",
+      "/properties/GeneratedSceneMetadata"
     ],
     "required": [
       "WorkspaceId",

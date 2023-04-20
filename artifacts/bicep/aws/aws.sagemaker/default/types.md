@@ -28,12 +28,33 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/DomainProperties](#awssagemakerdomainproperties) (Required): properties of the resource
 
+## Resource AWS.SageMaker/FeatureGroup@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/FeatureGroupProperties](#awssagemakerfeaturegroupproperties) (Required): properties of the resource
+
 ## Resource AWS.SageMaker/Image@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ImageProperties](#awssagemakerimageproperties) (Required): properties of the resource
+
+## Resource AWS.SageMaker/InferenceExperiment@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/InferenceExperimentProperties](#awssagemakerinferenceexperimentproperties) (Required): properties of the resource
+
+## Resource AWS.SageMaker/ModelCard@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/ModelCardProperties](#awssagemakermodelcardproperties) (Required): properties of the resource
 
 ## Resource AWS.SageMaker/ModelPackage@default
 * **Valid Scope(s)**: Unknown
@@ -69,6 +90,13 @@
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ProjectProperties](#awssagemakerprojectproperties) (Required): properties of the resource
+
+## Resource AWS.SageMaker/Space@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/SpaceProperties](#awssagemakerspaceproperties) (Required): properties of the resource
 
 ## Resource AWS.SageMaker/UserProfile@default
 * **Valid Scope(s)**: Unknown
@@ -145,6 +173,7 @@
 * **AppNetworkAccessType**: string: Specifies the VPC used for non-EFS traffic. The default value is PublicInternetOnly.
 * **AppSecurityGroupManagement**: string: The entity that creates and manages the required security groups for inter-app communication in VPCOnly mode. Required when CreateDomain.AppNetworkAccessType is VPCOnly and DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn is provided.
 * **AuthMode**: string (Required): The mode of authentication that members use to access the domain.
+* **DefaultSpaceSettings**: [DefaultSpaceSettings](#defaultspacesettings): The default space settings.
 * **DefaultUserSettings**: [UserSettings](#usersettings) (Required): The default user settings.
 * **DomainArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the created domain.
 * **DomainId**: string (ReadOnly, Identifier): The domain name.
@@ -159,15 +188,12 @@
 * **Url**: string (ReadOnly): The URL to the created domain.
 * **VpcId**: string (Required): The ID of the Amazon Virtual Private Cloud (VPC) that Studio uses for communication.
 
-## UserSettings
+## DefaultSpaceSettings
 ### Properties
-* **ExecutionRole**: string: The user profile Amazon Resource Name (ARN).
+* **ExecutionRole**: string (Required): The execution role for the space.
 * **JupyterServerAppSettings**: [JupyterServerAppSettings](#jupyterserverappsettings): The Jupyter server's app settings.
 * **KernelGatewayAppSettings**: [KernelGatewayAppSettings](#kernelgatewayappsettings): The kernel gateway app settings.
-* **RSessionAppSettings**: [RSessionAppSettings](#rsessionappsettings)
-* **RStudioServerProAppSettings**: [RStudioServerProAppSettings](#rstudioserverproappsettings)
 * **SecurityGroups**: string[]: The security groups for the Amazon Virtual Private Cloud (VPC) that Studio uses for communication.
-* **SharingSettings**: [SharingSettings](#sharingsettings): The sharing settings.
 
 ## JupyterServerAppSettings
 ### Properties
@@ -190,6 +216,16 @@
 * **AppImageConfigName**: string (Required): The Name of the AppImageConfig.
 * **ImageName**: string (Required): The name of the CustomImage. Must be unique to your account.
 * **ImageVersionNumber**: int: The version number of the CustomImage.
+
+## UserSettings
+### Properties
+* **ExecutionRole**: string (Required): The execution role for the user.
+* **JupyterServerAppSettings**: [JupyterServerAppSettings](#jupyterserverappsettings): The Jupyter server's app settings.
+* **KernelGatewayAppSettings**: [KernelGatewayAppSettings](#kernelgatewayappsettings): The kernel gateway app settings.
+* **RSessionAppSettings**: [RSessionAppSettings](#rsessionappsettings)
+* **RStudioServerProAppSettings**: [RStudioServerProAppSettings](#rstudioserverproappsettings)
+* **SecurityGroups**: string[]: The security groups for the Amazon Virtual Private Cloud (VPC) that Studio uses for communication.
+* **SharingSettings**: [SharingSettings](#sharingsettings): The sharing settings.
 
 ## RSessionAppSettings
 ### Properties
@@ -224,6 +260,55 @@
 * **Key**: string (Required)
 * **Value**: string (Required)
 
+## AWS.SageMaker/FeatureGroupProperties
+### Properties
+* **Description**: string: Description about the FeatureGroup.
+* **EventTimeFeatureName**: string (Required): The Event Time Feature Name.
+* **FeatureDefinitions**: [FeatureDefinition](#featuredefinition)[] (Required): An Array of Feature Definition
+* **FeatureGroupName**: string (Required, Identifier): The Name of the FeatureGroup.
+* **OfflineStoreConfig**: [FeatureGroup_OfflineStoreConfig](#featuregroupofflinestoreconfig)
+* **OnlineStoreConfig**: [FeatureGroup_OnlineStoreConfig](#featuregrouponlinestoreconfig)
+* **RecordIdentifierFeatureName**: string (Required): The Record Identifier Feature Name.
+* **RoleArn**: string: Role Arn
+* **Tags**: [Tag](#tag)[]: An array of key-value pair to apply to this resource.
+
+## FeatureDefinition
+### Properties
+* **FeatureName**: string (Required)
+* **FeatureType**: string (Required)
+
+## FeatureGroup_OfflineStoreConfig
+### Properties
+* **DataCatalogConfig**: [DataCatalogConfig](#datacatalogconfig)
+* **DisableGlueTableCreation**: bool
+* **S3StorageConfig**: [S3StorageConfig](#s3storageconfig) (Required)
+* **TableFormat**: string
+
+## DataCatalogConfig
+### Properties
+* **Catalog**: string (Required)
+* **Database**: string (Required)
+* **TableName**: string (Required)
+
+## S3StorageConfig
+### Properties
+* **KmsKeyId**: string
+* **S3Uri**: string (Required)
+
+## FeatureGroup_OnlineStoreConfig
+### Properties
+* **EnableOnlineStore**: bool
+* **SecurityConfig**: [OnlineStoreSecurityConfig](#onlinestoresecurityconfig)
+
+## OnlineStoreSecurityConfig
+### Properties
+* **KmsKeyId**: string
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
 ## AWS.SageMaker/ImageProperties
 ### Properties
 * **ImageArn**: string (ReadOnly, Identifier)
@@ -237,6 +322,221 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## AWS.SageMaker/InferenceExperimentProperties
+### Properties
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the inference experiment.
+* **CreationTime**: string (ReadOnly): The timestamp at which you created the inference experiment.
+* **DataStorageConfig**: [DataStorageConfig](#datastorageconfig)
+* **Description**: string: The description of the inference experiment.
+* **DesiredState**: string: The desired state of the experiment after starting or stopping operation.
+* **EndpointMetadata**: [EndpointMetadata](#endpointmetadata) (ReadOnly)
+* **EndpointName**: string (Required)
+* **KmsKey**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.
+* **LastModifiedTime**: string (ReadOnly): The timestamp at which you last modified the inference experiment.
+* **ModelVariants**: [ModelVariantConfig](#modelvariantconfig)[] (Required): An array of ModelVariantConfig objects. Each ModelVariantConfig object in the array describes the infrastructure configuration for the corresponding variant.
+* **Name**: string (Required, Identifier): The name for the inference experiment.
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to access model artifacts and container images, and manage Amazon SageMaker Inference endpoints for model deployment.
+* **Schedule**: [InferenceExperimentSchedule](#inferenceexperimentschedule)
+* **ShadowModeConfig**: [ShadowModeConfig](#shadowmodeconfig)
+* **Status**: string (ReadOnly): The status of the inference experiment.
+* **StatusReason**: string: The error message or client-specified reason from the StopInferenceExperiment API, that explains the status of the inference experiment.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **Type**: string (Required): The type of the inference experiment that you want to run.
+
+## DataStorageConfig
+### Properties
+* **ContentType**: [CaptureContentTypeHeader](#capturecontenttypeheader)
+* **Destination**: string (Required): The Amazon S3 bucket where the inference request and response data is stored.
+* **KmsKey**: string: The AWS Key Management Service key that Amazon SageMaker uses to encrypt captured data at rest using Amazon S3 server-side encryption.
+
+## CaptureContentTypeHeader
+### Properties
+* **CsvContentTypes**: string[]: The list of all content type headers that SageMaker will treat as CSV and capture accordingly.
+* **JsonContentTypes**: string[]: The list of all content type headers that SageMaker will treat as JSON and capture accordingly.
+
+## EndpointMetadata
+### Properties
+* **EndpointConfigName**: string: The name of the endpoint configuration.
+* **EndpointName**: string (Required)
+* **EndpointStatus**: string: The status of the endpoint. For possible values of the status of an endpoint.
+
+## ModelVariantConfig
+### Properties
+* **InfrastructureConfig**: [ModelInfrastructureConfig](#modelinfrastructureconfig) (Required)
+* **ModelName**: string (Required): The name of the Amazon SageMaker Model entity.
+* **VariantName**: string (Required): The name of the variant.
+
+## ModelInfrastructureConfig
+### Properties
+* **InfrastructureType**: string (Required): The type of the inference experiment that you want to run.
+* **RealTimeInferenceConfig**: [RealTimeInferenceConfig](#realtimeinferenceconfig) (Required)
+
+## RealTimeInferenceConfig
+### Properties
+* **InstanceCount**: int (Required): The number of instances of the type specified by InstanceType.
+* **InstanceType**: string (Required): The instance type the model is deployed to.
+
+## InferenceExperimentSchedule
+### Properties
+* **EndTime**: string: The timestamp at which the inference experiment ended or will end.
+* **StartTime**: string: The timestamp at which the inference experiment started or will start.
+
+## ShadowModeConfig
+### Properties
+* **ShadowModelVariants**: [ShadowModelVariantConfig](#shadowmodelvariantconfig)[] (Required): List of shadow variant configurations.
+* **SourceModelVariantName**: string (Required): The name of the production variant, which takes all the inference requests.
+
+## ShadowModelVariantConfig
+### Properties
+* **SamplingPercentage**: int (Required): The percentage of inference requests that Amazon SageMaker replicates from the production variant to the shadow variant.
+* **ShadowModelVariantName**: string (Required): The name of the shadow variant.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## AWS.SageMaker/ModelCardProperties
+### Properties
+* **Content**: [Content](#content) (Required)
+* **CreatedBy**: [UserContext](#usercontext): Information about the user who created or modified an experiment, trial, trial component, lineage group, project, or model card.
+* **CreationTime**: string (ReadOnly): The date and time the model card was created.
+* **LastModifiedBy**: [UserContext](#usercontext): Information about the user who created or modified an experiment, trial, trial component, lineage group, project, or model card.
+* **LastModifiedTime**: string (ReadOnly): The date and time the model card was last modified.
+* **ModelCardArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the successfully created model card.
+* **ModelCardName**: string (Required, Identifier): The unique name of the model card.
+* **ModelCardProcessingStatus**: string (ReadOnly): The processing status of model card deletion. The ModelCardProcessingStatus updates throughout the different deletion steps.
+* **ModelCardStatus**: string (Required): The approval status of the model card within your organization. Different organizations might have different criteria for model card review and approval.
+* **ModelCardVersion**: int (ReadOnly): A version of the model card.
+* **SecurityConfig**: [SecurityConfig](#securityconfig)
+* **Tags**: [Tag](#tag)[]: Key-value pairs used to manage metadata for model cards.
+
+## Content
+### Properties
+* **AdditionalInformation**: [AdditionalInformation](#additionalinformation)
+* **BusinessDetails**: [BusinessDetails](#businessdetails)
+* **EvaluationDetails**: [EvaluationDetail](#evaluationdetail)[]
+* **IntendedUses**: [IntendedUses](#intendeduses)
+* **ModelOverview**: [ModelOverview](#modeloverview)
+* **TrainingDetails**: [TrainingDetails](#trainingdetails)
+
+## AdditionalInformation
+### Properties
+* **CaveatsAndRecommendations**: string: Caveats and recommendations for people who might use this model in their applications.
+* **CustomDetails**: [ModelCard_CustomDetails](#modelcardcustomdetails): customer details.
+* **EthicalConsiderations**: string: Any ethical considerations that the author wants to provide.
+
+## ModelCard_CustomDetails
+### Properties
+
+## BusinessDetails
+### Properties
+* **BusinessProblem**: string: What business problem does the model solve?
+* **BusinessStakeholders**: string: Business stakeholders.
+* **LineOfBusiness**: string: Line of business.
+
+## EvaluationDetail
+### Properties
+* **Datasets**: string[]
+* **EvaluationJobArn**: string
+* **EvaluationObservation**: string
+* **Metadata**: [ModelCard_Metadata](#modelcardmetadata): additional attributes associated with the evaluation results.
+* **MetricGroups**: [MetricGroup](#metricgroup)[]
+* **Name**: string (Required)
+
+## ModelCard_Metadata
+### Properties
+
+## MetricGroup
+### Properties
+* **MetricData**: [ModelCard_MetricData](#modelcardmetricdata)[] (Required)
+* **Name**: string (Required)
+
+## ModelCard_MetricData
+### Properties
+
+## IntendedUses
+### Properties
+* **ExplanationsForRiskRating**: string
+* **FactorsAffectingModelEfficiency**: string
+* **IntendedUses**: string: intended use cases.
+* **PurposeOfModel**: string: Why the model was developed?
+* **RiskRating**: string
+
+## ModelOverview
+### Properties
+* **AlgorithmType**: string: Algorithm used to solve the problem.
+* **InferenceEnvironment**: [ModelCard_InferenceEnvironment](#modelcardinferenceenvironment): Overview about the inference.
+* **ModelArtifact**: string[]: Location of the model artifact.
+* **ModelCreator**: string: Creator of model.
+* **ModelDescription**: string: description of model.
+* **ModelId**: string: SageMaker Model Arn or Non SageMaker Model id.
+* **ModelName**: string: Name of the model.
+* **ModelOwner**: string: Owner of model.
+* **ModelVersion**: int: Version of the model.
+* **ProblemType**: string: Problem being solved with the model.
+
+## ModelCard_InferenceEnvironment
+### Properties
+* **ContainerImage**: string[]: SageMaker inference image uri.
+
+## TrainingDetails
+### Properties
+* **ObjectiveFunction**: [ObjectiveFunction](#objectivefunction)
+* **TrainingJobDetails**: [ModelCard_TrainingJobDetails](#modelcardtrainingjobdetails)
+* **TrainingObservations**: string
+
+## ObjectiveFunction
+### Properties
+* **Function**: [ModelCard_Function](#modelcardfunction): objective function that training job is optimized for.
+* **Notes**: string
+
+## ModelCard_Function
+### Properties
+* **Condition**: string
+* **Facet**: string
+* **Function**: string
+
+## ModelCard_TrainingJobDetails
+### Properties
+* **HyperParameters**: [TrainingHyperParameter](#traininghyperparameter)[]
+* **TrainingArn**: string: SageMaker Training job arn.
+* **TrainingDatasets**: string[]: Location of the model datasets.
+* **TrainingEnvironment**: [ModelCard_TrainingJobDetails_TrainingEnvironment](#modelcardtrainingjobdetailstrainingenvironment)
+* **TrainingMetrics**: [TrainingMetric](#trainingmetric)[]
+* **UserProvidedHyperParameters**: [TrainingHyperParameter](#traininghyperparameter)[]
+* **UserProvidedTrainingMetrics**: [TrainingMetric](#trainingmetric)[]
+
+## TrainingHyperParameter
+### Properties
+* **Name**: string (Required)
+* **Value**: string (Required)
+
+## ModelCard_TrainingJobDetails_TrainingEnvironment
+### Properties
+* **ContainerImage**: string[]: SageMaker training image uri.
+
+## TrainingMetric
+### Properties
+* **Name**: string (Required)
+* **Notes**: string
+* **Value**: int (Required)
+
+## UserContext
+### Properties
+* **DomainId**: string (ReadOnly): The domain associated with the user.
+* **UserProfileArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the user's profile.
+* **UserProfileName**: string (ReadOnly): The name of the user's profile.
+
+## SecurityConfig
+### Properties
+* **KmsKeyId**: string: A Key Management Service key ID to use for encrypting a model card.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key. Tag keys must be unique per resource.
+* **Value**: string (Required): The tag value.
 
 ## AWS.SageMaker/ModelPackageProperties
 ### Properties
@@ -268,7 +568,6 @@
 * **ModelPackageVersion**: int
 * **SamplePayloadUrl**: string
 * **SourceAlgorithmSpecification**: [SourceAlgorithmSpecification](#sourcealgorithmspecification)
-* **Tag**: [Tag](#tag)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Task**: string
 * **ValidationSpecification**: [ValidationSpecification](#validationspecification)
@@ -689,6 +988,45 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## AWS.SageMaker/SpaceProperties
+### Properties
+* **DomainId**: string (Required, Identifier): The ID of the associated Domain.
+* **SpaceArn**: string (ReadOnly): The space Amazon Resource Name (ARN).
+* **SpaceName**: string (Required, Identifier): A name for the Space.
+* **SpaceSettings**: [SpaceSettings](#spacesettings) (WriteOnly): A collection of settings.
+* **Tags**: [Tag](#tag)[] (WriteOnly): A list of tags to apply to the space.
+
+## SpaceSettings
+### Properties
+* **JupyterServerAppSettings**: [JupyterServerAppSettings](#jupyterserverappsettings): The Jupyter server's app settings.
+* **KernelGatewayAppSettings**: [KernelGatewayAppSettings](#kernelgatewayappsettings): The kernel gateway app settings.
+
+## JupyterServerAppSettings
+### Properties
+* **DefaultResourceSpec**: [ResourceSpec](#resourcespec)
+
+## ResourceSpec
+### Properties
+* **InstanceType**: string: The instance type that the image version runs on.
+* **SageMakerImageArn**: string: The ARN of the SageMaker image that the image version belongs to.
+* **SageMakerImageVersionArn**: string: The ARN of the image version created on the instance.
+
+## KernelGatewayAppSettings
+### Properties
+* **CustomImages**: [CustomImage](#customimage)[]: A list of custom SageMaker images that are configured to run as a KernelGateway app.
+* **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the KernelGateway app.
+
+## CustomImage
+### Properties
+* **AppImageConfigName**: string (Required): The Name of the AppImageConfig.
+* **ImageName**: string (Required): The name of the CustomImage. Must be unique to your account.
+* **ImageVersionNumber**: int: The version number of the CustomImage.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.SageMaker/UserProfileProperties
 ### Properties

@@ -80,7 +80,9 @@
 ## ReplicaSpecification
 ### Properties
 * **ContributorInsightsSpecification**: [ContributorInsightsSpecification](#contributorinsightsspecification)
+* **DeletionProtectionEnabled**: bool
 * **GlobalSecondaryIndexes**: [ReplicaGlobalSecondaryIndexSpecification](#replicaglobalsecondaryindexspecification)[]
+* **KinesisStreamSpecification**: [KinesisStreamSpecification](#kinesisstreamspecification)
 * **PointInTimeRecoverySpecification**: [PointInTimeRecoverySpecification](#pointintimerecoveryspecification)
 * **ReadProvisionedThroughputSettings**: [ReadProvisionedThroughputSettings](#readprovisionedthroughputsettings)
 * **Region**: string (Required)
@@ -102,6 +104,10 @@
 ### Properties
 * **ReadCapacityAutoScalingSettings**: [CapacityAutoScalingSettings](#capacityautoscalingsettings)
 * **ReadCapacityUnits**: int
+
+## KinesisStreamSpecification
+### Properties
+* **StreamArn**: string (Required)
 
 ## PointInTimeRecoverySpecification
 ### Properties
@@ -136,6 +142,7 @@
 * **AttributeDefinitions**: [AttributeDefinition](#attributedefinition)[]
 * **BillingMode**: string
 * **ContributorInsightsSpecification**: [ContributorInsightsSpecification](#contributorinsightsspecification)
+* **DeletionProtectionEnabled**: bool
 * **GlobalSecondaryIndexes**: [GlobalSecondaryIndex](#globalsecondaryindex)[]
 * **ImportSourceSpecification**: [ImportSourceSpecification](#importsourcespecification) (WriteOnly)
 * **KeySchema**: [Table_KeySchema](#tablekeyschema) (Required)

@@ -86,7 +86,7 @@ If this option is true , enhanced VPC routing is enabled.
 Default: false
 * **HsmClientCertificateIdentifier**: string: Specifies the name of the HSM client certificate the Amazon Redshift cluster uses to retrieve the data encryption keys stored in an HSM
 * **HsmConfigurationIdentifier**: string: Specifies the name of the HSM configuration that contains the information the Amazon Redshift cluster can use to retrieve and store keys in an HSM.
-* **IamRoles**: string[]: A list of AWS Identity and Access Management (IAM) roles that can be used by the cluster to access other AWS services. You must supply the IAM roles in their Amazon Resource Name (ARN) format. You can supply up to 10 IAM roles in a single request
+* **IamRoles**: string[]: A list of AWS Identity and Access Management (IAM) roles that can be used by the cluster to access other AWS services. You must supply the IAM roles in their Amazon Resource Name (ARN) format. You can supply up to 50 IAM roles in a single request
 * **Id**: string (ReadOnly)
 * **KmsKeyId**: string: The AWS Key Management Service (KMS) key ID of the encryption key that you want to use to encrypt data in the cluster.
 * **LoggingProperties**: [LoggingProperties](#loggingproperties)
@@ -136,9 +136,9 @@ The value must be either -1 or an integer between 1 and 3,653.
 ### Properties
 * **Description**: string (Required): A description of the parameter group.
 * **ParameterGroupFamily**: string (Required): The Amazon Redshift engine version to which the cluster parameter group applies. The cluster engine version determines the set of parameters.
-* **ParameterGroupName**: string (ReadOnly, Identifier): The name of the cluster parameter group.
+* **ParameterGroupName**: string (Identifier): The name of the cluster parameter group.
 * **Parameters**: [Parameter](#parameter)[]: An array of parameters to be modified. A maximum of 20 parameters can be modified in a single request.
-* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **Tags**: [Tag](#tag)[] (WriteOnly): An array of key-value pairs to apply to this resource.
 
 ## Parameter
 ### Properties
@@ -155,7 +155,7 @@ The value must be either -1 or an integer between 1 and 3,653.
 * **ClusterSubnetGroupName**: string (ReadOnly, Identifier): This name must be unique for all subnet groups that are created by your AWS account. If costumer do not provide it, cloudformation will generate it. Must not be "Default". 
 * **Description**: string (Required): The description of the parameter group.
 * **SubnetIds**: string[] (Required): The list of VPC subnet IDs
-* **Tags**: [Tag](#tag)[]: The list of tags for the cluster parameter group.
+* **Tags**: [Tag](#tag)[] (WriteOnly): The list of tags for the cluster parameter group.
 
 ## Tag
 ### Properties
@@ -172,7 +172,7 @@ The value must be either -1 or an integer between 1 and 3,653.
 * **Port**: int (ReadOnly): The port number on which the cluster accepts incoming connections.
 * **ResourceOwner**: string: The AWS account ID of the owner of the cluster.
 * **SubnetGroupName**: string (Required): The subnet group name where Amazon Redshift chooses to deploy the endpoint.
-* **VpcEndpoint**: [EndpointAccess_VpcEndpoint](#endpointaccessvpcendpoint): The connection endpoint for connecting to an Amazon Redshift cluster through the proxy.
+* **VpcEndpoint**: [EndpointAccess_VpcEndpoint](#endpointaccessvpcendpoint) (ReadOnly): The connection endpoint for connecting to an Amazon Redshift cluster through the proxy.
 * **VpcSecurityGroupIds**: string[] (Required): A list of vpc security group ids to apply to the created endpoint access.
 * **VpcSecurityGroups**: [VpcSecurityGroup](#vpcsecuritygroup)[] (ReadOnly): A list of Virtual Private Cloud (VPC) security groups to be associated with the endpoint.
 
@@ -224,7 +224,7 @@ The value must be either -1 or an integer between 1 and 3,653.
 * **Status**: string (ReadOnly): The status of the Amazon Redshift event notification subscription.
 * **SubscriptionCreationTime**: string (ReadOnly): The date and time the Amazon Redshift event notification subscription was created.
 * **SubscriptionName**: string (Required, Identifier): The name of the Amazon Redshift event notification subscription
-* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **Tags**: [Tag](#tag)[] (WriteOnly): An array of key-value pairs to apply to this resource.
 
 ## Tag
 ### Properties

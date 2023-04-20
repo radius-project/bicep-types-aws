@@ -22,7 +22,7 @@
 * **HomeRegion**: string: Home region for the created grant.
 * **LicenseArn**: string: License Arn for the grant.
 * **Principals**: string[] (WriteOnly)
-* **Status**: string
+* **Status**: string (WriteOnly)
 * **Version**: string (ReadOnly): The version of the grant.
 
 ## AWS.LicenseManager/LicenseProperties

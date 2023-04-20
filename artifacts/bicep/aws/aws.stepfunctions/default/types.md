@@ -36,6 +36,7 @@
 * **Name**: string (ReadOnly)
 * **RoleArn**: string (Required)
 * **StateMachineName**: string
+* **StateMachineRevisionId**: string (ReadOnly)
 * **StateMachineType**: string
 * **Tags**: [TagsEntry](#tagsentry)[]
 * **TracingConfiguration**: [TracingConfiguration](#tracingconfiguration)

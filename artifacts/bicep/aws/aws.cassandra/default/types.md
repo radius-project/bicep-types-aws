@@ -27,6 +27,7 @@
 ## AWS.Cassandra/TableProperties
 ### Properties
 * **BillingMode**: [BillingMode](#billingmode)
+* **ClientSideTimestampsEnabled**: bool: Indicates whether client side timestamps are enabled (true) or disabled (false) on the table. False by default, once it is enabled it cannot be disabled again.
 * **ClusteringKeyColumns**: [ClusteringKeyColumn](#clusteringkeycolumn)[]: Clustering key columns of the table
 * **DefaultTimeToLive**: int: Default TTL (Time To Live) in seconds, where zero is disabled. If the value is greater than zero, TTL is enabled for the entire table and an expiration timestamp is added to each column.
 * **EncryptionSpecification**: [EncryptionSpecification](#encryptionspecification)

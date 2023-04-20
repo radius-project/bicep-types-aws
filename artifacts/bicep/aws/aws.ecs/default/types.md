@@ -82,6 +82,7 @@
 * **ClusterSettings**: [ClusterSettings](#clustersettings)[]
 * **Configuration**: [ClusterConfiguration](#clusterconfiguration)
 * **DefaultCapacityProviderStrategy**: [CapacityProviderStrategyItem](#capacityproviderstrategyitem)[]
+* **ServiceConnectDefaults**: [ServiceConnectDefaults](#serviceconnectdefaults) (WriteOnly)
 * **Tags**: [Tag](#tag)[]
 
 ## ClusterSettings
@@ -112,6 +113,10 @@
 * **Base**: int
 * **CapacityProvider**: string
 * **Weight**: int
+
+## ServiceConnectDefaults
+### Properties
+* **Namespace**: string: Service Connect Namespace Name or ARN default for all services or tasks within this cluster
 
 ## Tag
 ### Properties
@@ -157,6 +162,7 @@
 * **Role**: string
 * **SchedulingStrategy**: string
 * **ServiceArn**: string (ReadOnly, Identifier)
+* **ServiceConnectConfiguration**: [ServiceConnectConfiguration](#serviceconnectconfiguration) (WriteOnly)
 * **ServiceName**: string
 * **ServiceRegistries**: [ServiceRegistry](#serviceregistry)[]
 * **Tags**: [Tag](#tag)[]
@@ -170,9 +176,16 @@
 
 ## DeploymentConfiguration
 ### Properties
+* **Alarms**: [DeploymentAlarms](#deploymentalarms)
 * **DeploymentCircuitBreaker**: [DeploymentCircuitBreaker](#deploymentcircuitbreaker)
 * **MaximumPercent**: int
 * **MinimumHealthyPercent**: int
+
+## DeploymentAlarms
+### Properties
+* **AlarmNames**: string[] (Required)
+* **Enable**: bool (Required)
+* **Rollback**: bool (Required)
 
 ## DeploymentCircuitBreaker
 ### Properties
@@ -209,6 +222,39 @@
 ### Properties
 * **Field**: string
 * **Type**: string (Required)
+
+## ServiceConnectConfiguration
+### Properties
+* **Enabled**: bool (Required)
+* **LogConfiguration**: [LogConfiguration](#logconfiguration)
+* **Namespace**: string
+* **Services**: [ServiceConnectService](#serviceconnectservice)[]
+
+## LogConfiguration
+### Properties
+* **LogDriver**: string
+* **Options**: [Service_Options](#serviceoptions)
+* **SecretOptions**: [Secret](#secret)[]
+
+## Service_Options
+### Properties
+
+## Secret
+### Properties
+* **Name**: string (Required)
+* **ValueFrom**: string (Required)
+
+## ServiceConnectService
+### Properties
+* **ClientAliases**: [ServiceConnectClientAlias](#serviceconnectclientalias)[]
+* **DiscoveryName**: string
+* **IngressPortOverride**: int
+* **PortName**: string (Required)
+
+## ServiceConnectClientAlias
+### Properties
+* **DnsName**: string
+* **Port**: int (Required)
 
 ## ServiceRegistry
 ### Properties
@@ -373,8 +419,11 @@
 
 ## PortMapping
 ### Properties
+* **AppProtocol**: string
 * **ContainerPort**: int
+* **ContainerPortRange**: string
 * **HostPort**: int
+* **Name**: string
 * **Protocol**: string
 
 ## RepositoryCredentials

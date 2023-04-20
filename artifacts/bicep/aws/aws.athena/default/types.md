@@ -65,7 +65,7 @@
 * **CreationTime**: string (ReadOnly): The date and time the workgroup was created.
 * **Description**: string: The workgroup description.
 * **Name**: string (Required, Identifier): The workGroup name.
-* **RecursiveDeleteOption**: bool: The option to delete the workgroup and its contents even if the workgroup contains any named queries.
+* **RecursiveDeleteOption**: bool (WriteOnly): The option to delete the workgroup and its contents even if the workgroup contains any named queries.
 * **State**: string: The state of the workgroup: ENABLED or DISABLED.
 * **Tags**: [Tag](#tag)[]: One or more tags, separated by commas, that you want to attach to the workgroup as you create it
 * **WorkGroupConfiguration**: [WorkGroupConfiguration](#workgroupconfiguration): The workgroup configuration
@@ -78,12 +78,19 @@
 
 ## WorkGroupConfiguration
 ### Properties
+* **AdditionalConfiguration**: string (WriteOnly)
 * **BytesScannedCutoffPerQuery**: int
+* **CustomerContentEncryptionConfiguration**: [CustomerContentEncryptionConfiguration](#customercontentencryptionconfiguration)
 * **EnforceWorkGroupConfiguration**: bool
 * **EngineVersion**: [EngineVersion](#engineversion)
+* **ExecutionRole**: string
 * **PublishCloudWatchMetricsEnabled**: bool
 * **RequesterPaysEnabled**: bool
 * **ResultConfiguration**: [ResultConfiguration](#resultconfiguration)
+
+## CustomerContentEncryptionConfiguration
+### Properties
+* **KmsKey**: string (Required)
 
 ## EngineVersion
 ### Properties
@@ -92,8 +99,14 @@
 
 ## ResultConfiguration
 ### Properties
+* **AclConfiguration**: [AclConfiguration](#aclconfiguration)
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
+* **ExpectedBucketOwner**: string
 * **OutputLocation**: string
+
+## AclConfiguration
+### Properties
+* **S3AclOption**: string (Required)
 
 ## EncryptionConfiguration
 ### Properties
@@ -102,18 +115,26 @@
 
 ## WorkGroupConfigurationUpdates
 ### Properties
+* **AdditionalConfiguration**: string
 * **BytesScannedCutoffPerQuery**: int
+* **CustomerContentEncryptionConfiguration**: [CustomerContentEncryptionConfiguration](#customercontentencryptionconfiguration)
 * **EnforceWorkGroupConfiguration**: bool
 * **EngineVersion**: [EngineVersion](#engineversion)
+* **ExecutionRole**: string
 * **PublishCloudWatchMetricsEnabled**: bool
 * **RemoveBytesScannedCutoffPerQuery**: bool
+* **RemoveCustomerContentEncryptionConfiguration**: bool
 * **RequesterPaysEnabled**: bool
 * **ResultConfigurationUpdates**: [ResultConfigurationUpdates](#resultconfigurationupdates)
 
 ## ResultConfigurationUpdates
 ### Properties
+* **AclConfiguration**: [AclConfiguration](#aclconfiguration)
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
+* **ExpectedBucketOwner**: string
 * **OutputLocation**: string
+* **RemoveAclConfiguration**: bool
 * **RemoveEncryptionConfiguration**: bool
+* **RemoveExpectedBucketOwner**: bool
 * **RemoveOutputLocation**: bool
 

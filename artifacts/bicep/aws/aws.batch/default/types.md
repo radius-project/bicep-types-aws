@@ -26,13 +26,14 @@
 * **ComputeEnvironmentArn**: string (ReadOnly, Identifier)
 * **ComputeEnvironmentName**: string
 * **ComputeResources**: [ComputeResources](#computeresources)
+* **EksConfiguration**: [EksConfiguration](#eksconfiguration)
 * **ReplaceComputeEnvironment**: bool (WriteOnly)
 * **ServiceRole**: string
 * **State**: string
 * **Tags**: [ComputeEnvironment_Tags](#computeenvironmenttags): A key-value pair to associate with a resource.
 * **Type**: string (Required)
 * **UnmanagedvCpus**: int
-* **UpdatePolicy**: [UpdatePolicy](#updatepolicy)
+* **UpdatePolicy**: [UpdatePolicy](#updatepolicy) (WriteOnly)
 
 ## ComputeResources
 ### Properties
@@ -58,6 +59,7 @@
 ## Ec2ConfigurationObject
 ### Properties
 * **ImageIdOverride**: string
+* **ImageKubernetesVersion**: string
 * **ImageType**: string (Required)
 
 ## LaunchTemplateSpecification
@@ -68,6 +70,11 @@
 
 ## ComputeEnvironment_Tags
 ### Properties
+
+## EksConfiguration
+### Properties
+* **EksClusterArn**: string (Required)
+* **KubernetesNamespace**: string (Required)
 
 ## ComputeEnvironment_Tags
 ### Properties

@@ -59,22 +59,24 @@
 
 ## CustomVocabularyItem
 ### Properties
+* **DisplayAs**: string: Defines how you want your phrase to look in your transcription output.
 * **Phrase**: string (Required): Phrase that should be recognized.
-* **Weight**: int: The degree to which the phrase recognition is boosted.
+* **Weight**: int: The degree to which the phrase recognition is boosted. The weight 0 means that no boosting will be applied and the entry will only be used for performing replacements using the displayAs field.
 
 ## Intent
 ### Properties
-* **Description**: string
+* **Description**: string: Description of thr intent.
 * **DialogCodeHook**: [DialogCodeHookSetting](#dialogcodehooksetting)
 * **FulfillmentCodeHook**: [FulfillmentCodeHookSetting](#fulfillmentcodehooksetting)
+* **InitialResponseSetting**: [InitialResponseSetting](#initialresponsesetting): Configuration setting for a response sent to the user before Amazon Lex starts eliciting slots.
 * **InputContexts**: [InputContext](#inputcontext)[]
 * **IntentClosingSetting**: [IntentClosingSetting](#intentclosingsetting)
 * **IntentConfirmationSetting**: [IntentConfirmationSetting](#intentconfirmationsetting)
 * **KendraConfiguration**: [KendraConfiguration](#kendraconfiguration)
-* **Name**: string (Required)
+* **Name**: string (Required): The name of the intent.
 * **OutputContexts**: [OutputContext](#outputcontext)[]
 * **ParentIntentSignature**: string
-* **SampleUtterances**: [SampleUtterance](#sampleutterance)[]
+* **SampleUtterances**: [SampleUtterance](#sampleutterance)[]: A sample utterance that invokes an intent or respond to a slot elicitation prompt.
 * **SlotPriorities**: [SlotPriority](#slotpriority)[]
 * **Slots**: [Slot](#slot)[]: List of slots
 
@@ -86,6 +88,7 @@
 ### Properties
 * **Enabled**: bool (Required)
 * **FulfillmentUpdatesSpecification**: [FulfillmentUpdatesSpecification](#fulfillmentupdatesspecification)
+* **IsActive**: bool: Determines whether the fulfillment code hook is used. When active is false, the code hook doesn't run.
 * **PostFulfillmentStatusSpecification**: [PostFulfillmentStatusSpecification](#postfulfillmentstatusspecification)
 
 ## FulfillmentUpdatesSpecification
@@ -145,14 +148,105 @@
 
 ## PostFulfillmentStatusSpecification
 ### Properties
-* **FailureResponse**: [ResponseSpecification](#responsespecification)
-* **SuccessResponse**: [ResponseSpecification](#responsespecification)
-* **TimeoutResponse**: [ResponseSpecification](#responsespecification)
+* **FailureConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate after the fulfillment code hook throws an exception or returns with the State field of the Intent object set to Failed.
+* **FailureNextStep**: [DialogState](#dialogstate): Specifies the next step the bot runs after the fulfillment code hook throws an exception or returns with the State field of the Intent object set to Failed.
+* **FailureResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+* **SuccessConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate after the fulfillment code hook finishes successfully.
+* **SuccessNextStep**: [DialogState](#dialogstate): Specifies the next step in the conversation that Amazon Lex invokes when the fulfillment code hook completes successfully.
+* **SuccessResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+* **TimeoutConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate if the fulfillment code hook times out.
+* **TimeoutNextStep**: [DialogState](#dialogstate): Specifies the next step that the bot runs when the fulfillment code hook times out.
+* **TimeoutResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+
+## ConditionalSpecification
+### Properties
+* **ConditionalBranches**: [ConditionalBranch](#conditionalbranch)[] (Required): A list of conditional branches. A conditional branch is made up of a condition, a response and a next step. The response and next step are executed when the condition is true.
+* **DefaultBranch**: [DefaultConditionalBranch](#defaultconditionalbranch) (Required): The conditional branch that should be followed when the conditions for other branches are not satisfied. A conditional branch is made up of a condition, a response and a next step.
+* **IsActive**: bool (Required): Determines whether a conditional branch is active. When active is false, the conditions are not evaluated.
+
+## ConditionalBranch
+### Properties
+* **Condition**: [Condition](#condition) (Required): Contains the expression to evaluate. If the condition is true, the branch's actions are taken.
+* **Name**: string (Required): The name of the branch.
+* **NextStep**: [DialogState](#dialogstate) (Required): The next step in the conversation.
+* **Response**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+
+## Condition
+### Properties
+* **ExpressionString**: string (Required): The expression string that is evaluated.
+
+## DialogState
+### Properties
+* **DialogAction**: [DialogAction](#dialogaction): Defines the action that the bot executes at runtime when the conversation reaches this step.
+* **Intent**: [IntentOverride](#intentoverride): Override settings to configure the intent state.
+* **SessionAttributes**: [SessionAttribute](#sessionattribute)[]: List of session attributes to be applied when the conversation reaches this step.
+
+## DialogAction
+### Properties
+* **SlotToElicit**: string: If the dialog action is ElicitSlot, defines the slot to elicit from the user.
+* **SuppressNextMessage**: bool: When true the next message for the intent is not used.
+* **Type**: string (Required): The action that the bot should execute.
+
+## IntentOverride
+### Properties
+* **Name**: string: The name of the intent. Only required when you're switching intents.
+* **Slots**: [SlotValueOverrideMap](#slotvalueoverridemap)[]: A map of all of the slot value overrides for the intent.
+
+## SlotValueOverrideMap
+### Properties
+* **SlotName**: string
+* **SlotValueOverride**: [SlotValueOverride](#slotvalueoverride)
+
+## SlotValueOverride
+### Properties
+* **Shape**: string: When the shape value is List, it indicates that the values field contains a list of slot values. When the value is Scalar, it indicates that the value field contains a single value.
+* **Value**: [SlotValue](#slotvalue): The current value of the slot.
+* **Values**: [SlotValueOverride](#slotvalueoverride)[]: A list of one or more values that the user provided for the slot. For example, for a slot that elicits pizza toppings, the values might be "pepperoni" and "pineapple."
+
+## SlotValue
+### Properties
+* **InterpretedValue**: string: The value that Amazon Lex determines for the slot.
+
+## SessionAttribute
+### Properties
+* **Key**: string (Required)
+* **Value**: string
 
 ## ResponseSpecification
 ### Properties
 * **AllowInterrupt**: bool: Indicates whether the user can interrupt a speech prompt from the bot.
 * **MessageGroupsList**: [MessageGroup](#messagegroup)[] (Required)
+
+## DefaultConditionalBranch
+### Properties
+* **NextStep**: [DialogState](#dialogstate): The next step in the conversation.
+* **Response**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+
+## InitialResponseSetting
+### Properties
+* **CodeHook**: [DialogCodeHookInvocationSetting](#dialogcodehookinvocationsetting): Settings that specify the dialog code hook that is called by Amazon Lex at a step of the conversation.
+* **Conditional**: [ConditionalSpecification](#conditionalspecification): Provides a list of conditional branches. Branches are evaluated in the order that they are entered in the list. The first branch with a condition that evaluates to true is executed. The last branch in the list is the default branch. The default branch should not have any condition expression. The default branch is executed if no other branch has a matching condition.
+* **InitialResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+* **NextStep**: [DialogState](#dialogstate): The next step in the conversation.
+
+## DialogCodeHookInvocationSetting
+### Properties
+* **EnableCodeHookInvocation**: bool (Required): Indicates whether a Lambda function should be invoked for the dialog.
+* **InvocationLabel**: string: A label that indicates the dialog step from which the dialog code hook is happening.
+* **IsActive**: bool (Required): Determines whether a dialog code hook is used when the intent is activated.
+* **PostCodeHookSpecification**: [PostDialogCodeHookInvocationSpecification](#postdialogcodehookinvocationspecification) (Required): Contains the responses and actions that Amazon Lex takes after the Lambda function is complete.
+
+## PostDialogCodeHookInvocationSpecification
+### Properties
+* **FailureConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate after the dialog code hook throws an exception or returns with the State field of the Intent object set to Failed.
+* **FailureNextStep**: [DialogState](#dialogstate): Specifies the next step the bot runs after the dialog code hook throws an exception or returns with the State field of the Intent object set to Failed.
+* **FailureResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+* **SuccessConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate after the dialog code hook finishes successfully.
+* **SuccessNextStep**: [DialogState](#dialogstate): Specifics the next step the bot runs after the dialog code hook finishes successfully.
+* **SuccessResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+* **TimeoutConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate if the code hook times out.
+* **TimeoutNextStep**: [DialogState](#dialogstate): Specifies the next step that the bot runs when the code hook times out.
+* **TimeoutResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
 
 ## InputContext
 ### Properties
@@ -160,14 +254,31 @@
 
 ## IntentClosingSetting
 ### Properties
-* **ClosingResponse**: [ResponseSpecification](#responsespecification) (Required)
-* **IsActive**: bool
+* **ClosingResponse**: [ResponseSpecification](#responsespecification): The response that Amazon Lex sends to the user when the intent is complete.
+* **Conditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches associated with the intent's closing response. These branches are executed when the nextStep attribute is set to EvalutateConditional.
+* **IsActive**: bool: Specifies whether an intent's closing response is used. When this field is false, the closing response isn't sent to the user. If the active field isn't specified, the default is true.
+* **NextStep**: [DialogState](#dialogstate): Specifies the next step that the bot executes after playing the intent's closing response.
 
 ## IntentConfirmationSetting
 ### Properties
-* **DeclinationResponse**: [ResponseSpecification](#responsespecification) (Required)
-* **IsActive**: bool
-* **PromptSpecification**: [PromptSpecification](#promptspecification) (Required)
+* **CodeHook**: [DialogCodeHookInvocationSetting](#dialogcodehookinvocationsetting): The DialogCodeHookInvocationSetting object associated with intent's confirmation step. The dialog code hook is triggered based on these invocation settings when the confirmation next step or declination next step or failure next step is InvokeDialogCodeHook.
+* **ConfirmationConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate after the intent is closed.
+* **ConfirmationNextStep**: [DialogState](#dialogstate): Specifies the next step that the bot executes when the customer confirms the intent.
+* **ConfirmationResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+* **DeclinationConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate after the intent is declined.
+* **DeclinationNextStep**: [DialogState](#dialogstate): Specifies the next step that the bot executes when the customer declines the intent.
+* **DeclinationResponse**: [ResponseSpecification](#responsespecification): When the user answers "no" to the question defined in promptSpecification, Amazon Lex responds with this response to acknowledge that the intent was canceled.
+* **ElicitationCodeHook**: [ElicitationCodeHookInvocationSetting](#elicitationcodehookinvocationsetting): The DialogCodeHookInvocationSetting used when the code hook is invoked during confirmation prompt retries.
+* **FailureConditional**: [ConditionalSpecification](#conditionalspecification): Provides a list of conditional branches. Branches are evaluated in the order that they are entered in the list. The first branch with a condition that evaluates to true is executed. The last branch in the list is the default branch. The default branch should not have any condition expression. The default branch is executed if no other branch has a matching condition.
+* **FailureNextStep**: [DialogState](#dialogstate): The next step to take in the conversation if the confirmation step fails.
+* **FailureResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+* **IsActive**: bool: Specifies whether the intent's confirmation is sent to the user. When this field is false, confirmation and declination responses aren't sent. If the active field isn't specified, the default is true.
+* **PromptSpecification**: [PromptSpecification](#promptspecification) (Required): Prompts the user to confirm the intent. This question should have a yes or no answer.
+
+## ElicitationCodeHookInvocationSetting
+### Properties
+* **EnableCodeHookInvocation**: bool (Required): Indicates whether a Lambda function should be invoked for the dialog.
+* **InvocationLabel**: string: A label that indicates the dialog step from which the dialog code hook is happening.
 
 ## PromptSpecification
 ### Properties
@@ -223,6 +334,7 @@
 * **DefaultValueSpecification**: [SlotDefaultValueSpecification](#slotdefaultvaluespecification): A list of default values for a slot.
 * **PromptSpecification**: [PromptSpecification](#promptspecification): The prompt that Amazon Lex uses to elicit the slot value from the user.
 * **SampleUtterances**: [SampleUtterance](#sampleutterance)[]: If you know a specific pattern that users might respond to an Amazon Lex request for a slot value, you can provide those utterances to improve accuracy.
+* **SlotCaptureSetting**: [SlotCaptureSetting](#slotcapturesetting): Specifies the next stage in the conversation after capturing the slot.
 * **SlotConstraint**: string (Required): Specifies whether the slot is required or optional.
 * **WaitAndContinueSpecification**: [WaitAndContinueSpecification](#waitandcontinuespecification): Specifies the prompts that Amazon Lex uses while a bot is waiting for customer input.
 
@@ -233,6 +345,17 @@
 ## SlotDefaultValue
 ### Properties
 * **DefaultValue**: string (Required): The default value to use when a user doesn't provide a value for a slot.
+
+## SlotCaptureSetting
+### Properties
+* **CaptureConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate after the slot value is captured.
+* **CaptureNextStep**: [DialogState](#dialogstate): Specifies the next step that the bot runs when the slot value is captured before the code hook times out.
+* **CaptureResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+* **CodeHook**: [DialogCodeHookInvocationSetting](#dialogcodehookinvocationsetting): Code hook called after Amazon Lex successfully captures a slot value.
+* **ElicitationCodeHook**: [ElicitationCodeHookInvocationSetting](#elicitationcodehookinvocationsetting): Code hook called when Amazon Lex doesn't capture a slot value.
+* **FailureConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate when the slot value isn't captured.
+* **FailureNextStep**: [DialogState](#dialogstate): Specifies the next step that the bot runs when the slot value code is not recognized.
+* **FailureResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
 
 ## WaitAndContinueSpecification
 ### Properties
