@@ -12,7 +12,7 @@
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSMContacts/ContactChannelProperties](#awsssmcontactscontactchannelproperties): properties of the resource
+* **properties**: [AWS.SSMContacts/ContactChannelProperties](#awsssmcontactscontactchannelproperties) (Required): properties of the resource
 
 ## AWS.SSMContacts/ContactProperties
 ### Properties
@@ -45,9 +45,9 @@
 ## AWS.SSMContacts/ContactChannelProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the engagement to a contact channel.
-* **ChannelAddress**: string: The details that SSM Incident Manager uses when trying to engage the contact channel.
-* **ChannelName**: string: The device name. String of 6 to 50 alphabetical, numeric, dash, and underscore characters.
-* **ChannelType**: string: Device type, which specify notification channel. Currently supported values: ?SMS?, ?VOICE?, ?EMAIL?, ?CHATBOT.
-* **ContactId**: string: ARN of the contact resource
+* **ChannelAddress**: string (Required): The details that SSM Incident Manager uses when trying to engage the contact channel.
+* **ChannelName**: string (Required): The device name. String of 6 to 50 alphabetical, numeric, dash, and underscore characters.
+* **ChannelType**: string (Required): Device type, which specify notification channel. Currently supported values: ?SMS?, ?VOICE?, ?EMAIL?, ?CHATBOT.
+* **ContactId**: string (Required): ARN of the contact resource
 * **DeferActivation**: bool: If you want to activate the channel at a later time, you can choose to defer activation. SSM Incident Manager can't engage your contact channel until it has been activated.
 

@@ -246,4 +246,23 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## ScheduledActionType
 ### Properties
+* **PauseCluster**: [PauseClusterMessage](#pauseclustermessage)
+* **ResizeCluster**: [ResizeClusterMessage](#resizeclustermessage)
+* **ResumeCluster**: [ResumeClusterMessage](#resumeclustermessage)
+
+## PauseClusterMessage
+### Properties
+* **ClusterIdentifier**: string (Required)
+
+## ResizeClusterMessage
+### Properties
+* **Classic**: bool
+* **ClusterIdentifier**: string (Required)
+* **ClusterType**: string
+* **NodeType**: string
+* **NumberOfNodes**: int
+
+## ResumeClusterMessage
+### Properties
+* **ClusterIdentifier**: string (Required)
 

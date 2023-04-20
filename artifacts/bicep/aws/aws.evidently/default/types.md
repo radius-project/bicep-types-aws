@@ -68,7 +68,7 @@
 * **AnalysisCompleteTime**: string: Provide the analysis Completion time for an experiment
 * **DesiredState**: string: Provide CANCELLED or COMPLETED desired state when stopping an experiment
 * **Reason**: string: Reason is a required input for stopping the experiment
-* **Status**: string: Provide START or STOP action to apply on an experiment
+* **Status**: string (Required): Provide START or STOP action to apply on an experiment
 
 ## Tag
 ### Properties
@@ -110,7 +110,7 @@
 * **DoubleValue**: int
 * **LongValue**: int
 * **StringValue**: string
-* **VariationName**: string
+* **VariationName**: string (Required)
 
 ## AWS.Evidently/LaunchProperties
 ### Properties

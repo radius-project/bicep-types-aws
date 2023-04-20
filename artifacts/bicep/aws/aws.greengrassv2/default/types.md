@@ -151,6 +151,8 @@
 
 ## IoTJobRateIncreaseCriteria
 ### Properties
+* **NumberOfNotifiedThings**: int
+* **NumberOfSucceededThings**: int
 
 ## IoTJobTimeoutConfig
 ### Properties

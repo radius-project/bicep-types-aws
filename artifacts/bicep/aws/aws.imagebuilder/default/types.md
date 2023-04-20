@@ -12,7 +12,7 @@
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ImageBuilder/ImagePipelineProperties](#awsimagebuilderimagepipelineproperties): properties of the resource
+* **properties**: [AWS.ImageBuilder/ImagePipelineProperties](#awsimagebuilderimagepipelineproperties) (Required): properties of the resource
 
 ## Resource AWS.ImageBuilder/InfrastructureConfiguration@default
 * **Valid Scope(s)**: Unknown
@@ -104,8 +104,8 @@
 * **EnhancedImageMetadataEnabled**: bool: Collects additional information about the image being created, including the operating system (OS) version and package list.
 * **ImageRecipeArn**: string: The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested, and assessed.
 * **ImageTestsConfiguration**: [ImageTestsConfiguration](#imagetestsconfiguration): The image tests configuration of the image pipeline.
-* **InfrastructureConfigurationArn**: string: The Amazon Resource Name (ARN) of the infrastructure configuration associated with this image pipeline.
-* **Name**: string: The name of the image pipeline.
+* **InfrastructureConfigurationArn**: string (Required): The Amazon Resource Name (ARN) of the infrastructure configuration associated with this image pipeline.
+* **Name**: string (Required): The name of the image pipeline.
 * **Schedule**: [Schedule](#schedule): The schedule of the image pipeline.
 * **Status**: string: The status of the image pipeline.
 * **Tags**: [ImagePipeline_Tags](#imagepipelinetags): The tags of this image pipeline.

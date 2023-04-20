@@ -12,7 +12,7 @@
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudFormation/HookTypeConfigProperties](#awscloudformationhooktypeconfigproperties): properties of the resource
+* **properties**: [AWS.CloudFormation/HookTypeConfigProperties](#awscloudformationhooktypeconfigproperties) (Required): properties of the resource
 
 ## Resource AWS.CloudFormation/ResourceDefaultVersion@default
 * **Valid Scope(s)**: Unknown
@@ -46,7 +46,7 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 
 ## AWS.CloudFormation/HookTypeConfigProperties
 ### Properties
-* **Configuration**: string: The configuration data for the extension, in this account and region.
+* **Configuration**: string (Required): The configuration data for the extension, in this account and region.
 * **ConfigurationAlias**: string: An alias by which to refer to this extension configuration data.
 * **ConfigurationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the configuration data, in this account and region.
 * **TypeArn**: string: The Amazon Resource Name (ARN) of the type without version number.
