@@ -87,12 +87,14 @@
 * **BackupRetentionPeriod**: int: The number of days for which automated backups are retained.
 * **CopyTagsToSnapshot**: bool: A value that indicates whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.
 * **DatabaseName**: string: The name of your database. If you don't provide a name, then Amazon RDS won't create a database in this DB cluster. For naming constraints, see Naming Constraints in the Amazon RDS User Guide.
+* **DBClusterArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the DB cluster.
 * **DBClusterIdentifier**: string (Identifier): The DB cluster identifier. This parameter is stored as a lowercase string.
 * **DBClusterInstanceClass**: string: The compute and memory capacity of each DB instance in the Multi-AZ DB cluster, for example db.m6g.xlarge.
 * **DBClusterParameterGroupName**: string: The name of the DB cluster parameter group to associate with this DB cluster.
 * **DBClusterResourceId**: string (ReadOnly): The AWS Region-unique, immutable identifier for the DB cluster.
 * **DBInstanceParameterGroupName**: string (WriteOnly): The name of the DB parameter group to apply to all instances of the DB cluster.
 * **DBSubnetGroupName**: string: A DB subnet group that you want to associate with this DB cluster.
+* **DBSystemId**: string: Reserved for future use.
 * **DeletionProtection**: bool: A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled.
 * **Domain**: string: The Active Directory directory ID to create the DB cluster in.
 * **DomainIAMRoleName**: string: Specify the name of the IAM role to be used when making API calls to the Directory Service.
@@ -108,8 +110,10 @@
 If you aren't configuring a global database cluster, don't specify this property.
 * **Iops**: int: The amount of Provisioned IOPS (input/output operations per second) to be initially allocated for each DB instance in the Multi-AZ DB cluster.
 * **KmsKeyId**: string: The Amazon Resource Name (ARN) of the AWS Key Management Service master key that is used to encrypt the database instances in the DB cluster, such as arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef. If you enable the StorageEncrypted property but don't specify this property, the default master key is used. If you specify this property, you must set the StorageEncrypted property to true.
+* **ManageMasterUserPassword**: bool: A value that indicates whether to manage the master user password with AWS Secrets Manager.
 * **MasterUsername**: string: The name of the master user for the DB cluster. You must specify MasterUsername, unless you specify SnapshotIdentifier. In that case, don't specify MasterUsername.
 * **MasterUserPassword**: string (WriteOnly): The master password for the DB instance.
+* **MasterUserSecret**: [MasterUserSecret](#masterusersecret): Contains the secret managed by RDS in AWS Secrets Manager for the master user password.
 * **MonitoringInterval**: int: The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB cluster. To turn off collecting Enhanced Monitoring metrics, specify 0. The default is 0.
 * **MonitoringRoleArn**: string: The Amazon Resource Name (ARN) for the IAM role that permits RDS to send Enhanced Monitoring metrics to Amazon CloudWatch Logs.
 * **NetworkType**: string: The network type of the DB cluster.
@@ -122,6 +126,7 @@ If you aren't configuring a global database cluster, don't specify this property
 * **PubliclyAccessible**: bool: A value that indicates whether the DB cluster is publicly accessible.
 * **ReadEndpoint**: [ReadEndpoint](#readendpoint)
 * **ReplicationSourceIdentifier**: string: The Amazon Resource Name (ARN) of the source DB instance or DB cluster if this DB cluster is created as a Read Replica.
+* **RestoreToTime**: string (WriteOnly): The date and time to restore the DB cluster to. Value must be a time in Universal Coordinated Time (UTC) format. An example: 2015-03-07T23:45:00Z
 * **RestoreType**: string (WriteOnly): The type of restore to be performed. You can specify one of the following values:
 full-copy - The new DB cluster is restored as a full copy of the source DB cluster.
 copy-on-write - The new DB cluster is restored as a clone of the source DB cluster.
@@ -149,6 +154,11 @@ If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceI
 * **Address**: string (ReadOnly): The connection endpoint for the DB cluster.
 * **Port**: string (ReadOnly): The port number that will accept connections on this DB cluster.
 
+## MasterUserSecret
+### Properties
+* **KmsKeyId**: string: The AWS KMS key identifier that is used to encrypt the secret.
+* **SecretArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the secret.
+
 ## ReadEndpoint
 ### Properties
 * **Address**: string (ReadOnly): The reader endpoint for the DB cluster.
@@ -164,7 +174,14 @@ The maximum capacity must be greater than or equal to the minimum capacity.
 For Aurora MySQL, valid capacity values are 1, 2, 4, 8, 16, 32, 64, 128, and 256.
 For Aurora PostgreSQL, valid capacity values are 2, 4, 8, 16, 32, 64, 192, and 384.
 The minimum capacity must be less than or equal to the maximum capacity.
+* **SecondsBeforeTimeout**: int: The amount of time, in seconds, that Aurora Serverless v1 tries to find a scaling point to perform seamless scaling before enforcing the timeout action.
+The default is 300.
 * **SecondsUntilAutoPause**: int: The time, in seconds, before an Aurora DB cluster in serverless mode is paused.
+* **TimeoutAction**: string: The action to take when the timeout is reached, either ForceApplyCapacityChange or RollbackCapacityChange.
+ForceApplyCapacityChange sets the capacity to the specified value as soon as possible.
+RollbackCapacityChange, the default, ignores the capacity change if a scaling point isn't found in the timeout period.
+
+For more information, see Autoscaling for Aurora Serverless v1 in the Amazon Aurora User Guide.
 
 ## ServerlessV2ScalingConfiguration
 ### Properties
@@ -178,10 +195,10 @@ The minimum capacity must be less than or equal to the maximum capacity.
 
 ## AWS.RDS/DBClusterParameterGroupProperties
 ### Properties
-* **DBClusterParameterGroupName**: string (ReadOnly, Identifier)
+* **DBClusterParameterGroupName**: string (Identifier)
 * **Description**: string (Required): A friendly description for this DB cluster parameter group.
 * **Family**: string (Required): The DB cluster parameter group family name. A DB cluster parameter group can be associated with one and only one DB cluster parameter group family, and can be applied only to a DB cluster running a DB engine and engine version compatible with that DB cluster parameter group family.
-* **Parameters**: [DBClusterParameterGroup_Parameters](#dbclusterparametergroupparameters) (Required, WriteOnly): An array of parameters to be modified. A maximum of 20 parameters can be modified in a single request.
+* **Parameters**: [DBClusterParameterGroup_Parameters](#dbclusterparametergroupparameters) (Required): An array of parameters to be modified. A maximum of 20 parameters can be modified in a single request.
 * **Tags**: [Tag](#tag)[]: The list of tags for the cluster parameter group.
 
 ## DBClusterParameterGroup_Parameters
@@ -195,12 +212,17 @@ The minimum capacity must be less than or equal to the maximum capacity.
 ## AWS.RDS/DBInstanceProperties
 ### Properties
 * **AllocatedStorage**: string: The amount of storage (in gigabytes) to be initially allocated for the database instance.
-* **AllowMajorVersionUpgrade**: bool: A value that indicates whether major version upgrades are allowed. Changing this parameter doesn't result in an outage and the change is asynchronously applied as soon as possible.
+* **AllowMajorVersionUpgrade**: bool (WriteOnly): A value that indicates whether major version upgrades are allowed. Changing this parameter doesn't result in an outage and the change is asynchronously applied as soon as possible.
 * **AssociatedRoles**: [DBInstanceRole](#dbinstancerole)[]: The AWS Identity and Access Management (IAM) roles associated with the DB instance.
 * **AutoMinorVersionUpgrade**: bool: A value that indicates whether minor engine upgrades are applied automatically to the DB instance during the maintenance window. By default, minor engine upgrades are applied automatically.
 * **AvailabilityZone**: string: The Availability Zone (AZ) where the database will be created. For information on AWS Regions and Availability Zones.
 * **BackupRetentionPeriod**: int: The number of days for which automated backups are retained. Setting this parameter to a positive number enables backups. Setting this parameter to 0 disables automated backups.
 * **CACertificateIdentifier**: string: The identifier of the CA certificate for this DB instance.
+* **CertificateDetails**: [CertificateDetails](#certificatedetails): Returns the details of the DB instance's server certificate.
+* **CertificateRotationRestart**: bool (WriteOnly): A value that indicates whether the DB instance is restarted when you rotate your SSL/TLS certificate.
+By default, the DB instance is restarted when you rotate your SSL/TLS certificate. The certificate is not updated until the DB instance is restarted.
+If you are using SSL/TLS to connect to the DB instance, follow the appropriate instructions for your DB engine to rotate your SSL/TLS certificate
+This setting doesn't apply to RDS Custom.
 * **CharacterSetName**: string: For supported engines, indicates that the DB instance should be associated with the specified character set.
 * **CopyTagsToSnapshot**: bool: A value that indicates whether to copy tags from the DB instance to snapshots of the DB instance. By default, tags are not copied.
 * **CustomIAMInstanceProfile**: string: The instance profile associated with the underlying Amazon EC2 instance of an RDS Custom DB instance. The instance profile must meet the following requirements:
@@ -211,14 +233,26 @@ For the list of permissions required for the IAM role, see Configure IAM and you
 
 This setting is required for RDS Custom.
 * **DBClusterIdentifier**: string: The identifier of the DB cluster that the instance will belong to.
+* **DBClusterSnapshotIdentifier**: string: The identifier for the RDS for MySQL Multi-AZ DB cluster snapshot to restore from. For more information on Multi-AZ DB clusters, see Multi-AZ deployments with two readable standby DB instances in the Amazon RDS User Guide .
+
+Constraints:
+ * Must match the identifier of an existing Multi-AZ DB cluster snapshot.
+ * Can't be specified when DBSnapshotIdentifier is specified.
+ * Must be specified when DBSnapshotIdentifier isn't specified.
+ * If you are restoring from a shared manual Multi-AZ DB cluster snapshot, the DBClusterSnapshotIdentifier must be the ARN of the shared snapshot.
+ * Can't be the identifier of an Aurora DB cluster snapshot.
+ * Can't be the identifier of an RDS for PostgreSQL Multi-AZ DB cluster snapshot.
+* **DBInstanceArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the DB instance.
 * **DBInstanceClass**: string: The compute and memory capacity of the DB instance, for example, db.m4.large. Not all DB instance classes are available in all AWS Regions, or for all database engines.
 * **DBInstanceIdentifier**: string (Identifier): A name for the DB instance. If you specify a name, AWS CloudFormation converts it to lowercase. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the DB instance.
+* **DbiResourceId**: string (ReadOnly): The AWS Region-unique, immutable identifier for the DB instance. This identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for the DB instance is accessed.
 * **DBName**: string: The meaning of this parameter differs according to the database engine you use.
 * **DBParameterGroupName**: string: The name of an existing DB parameter group or a reference to an AWS::RDS::DBParameterGroup resource created in the template.
 * **DBSecurityGroups**: string[]: A list of the DB security groups to assign to the DB instance. The list can include both the name of existing DB security groups or references to AWS::RDS::DBSecurityGroup resources created in the template.
 * **DBSnapshotIdentifier**: string (WriteOnly): The name or Amazon Resource Name (ARN) of the DB snapshot that's used to restore the DB instance. If you're restoring from a shared manual DB snapshot, you must specify the ARN of the snapshot.
 * **DBSubnetGroupName**: string: A DB subnet group to associate with the DB instance. If you update this value, the new subnet group must be a subnet group in a new VPC.
-* **DeleteAutomatedBackups**: bool: A value that indicates whether to remove automated backups immediately after the DB instance is deleted. This parameter isn't case-sensitive. The default is to remove automated backups immediately after the DB instance is deleted.
+* **DBSystemId**: string (ReadOnly): The Oracle system ID (Oracle SID) for a container database (CDB). The Oracle SID is also the name of the CDB. This setting is valid for RDS Custom only.
+* **DeleteAutomatedBackups**: bool (WriteOnly): A value that indicates whether to remove automated backups immediately after the DB instance is deleted. This parameter isn't case-sensitive. The default is to remove automated backups immediately after the DB instance is deleted.
 * **DeletionProtection**: bool: A value that indicates whether the DB instance has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled.
 * **Domain**: string: The Active Directory directory ID to create the DB instance in. Currently, only MySQL, Microsoft SQL Server, Oracle, and PostgreSQL DB instances can be created in an Active Directory Domain.
 * **DomainIAMRoleName**: string: Specify the name of the IAM role to be used when making API calls to the Directory Service.
@@ -231,8 +265,10 @@ This setting is required for RDS Custom.
 * **Iops**: int: The number of I/O operations per second (IOPS) that the database provisions.
 * **KmsKeyId**: string: The ARN of the AWS Key Management Service (AWS KMS) master key that's used to encrypt the DB instance.
 * **LicenseModel**: string: License model information for this DB instance.
+* **ManageMasterUserPassword**: bool: A value that indicates whether to manage the master user password with AWS Secrets Manager.
 * **MasterUsername**: string: The master user name for the DB instance.
 * **MasterUserPassword**: string (WriteOnly): The password for the master user.
+* **MasterUserSecret**: [MasterUserSecret](#masterusersecret): Contains the secret managed by RDS in AWS Secrets Manager for the master user password.
 * **MaxAllocatedStorage**: int: The upper limit to which Amazon RDS can automatically scale the storage of the DB instance.
 * **MonitoringInterval**: int: The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. The default is 0.
 * **MonitoringRoleArn**: string: The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to Amazon CloudWatch Logs.
@@ -248,15 +284,22 @@ This setting is required for RDS Custom.
 * **ProcessorFeatures**: [ProcessorFeature](#processorfeature)[]: The number of CPU cores and the number of threads per core for the DB instance class of the DB instance.
 * **PromotionTier**: int: A value that specifies the order in which an Aurora Replica is promoted to the primary instance after a failure of the existing primary instance.
 * **PubliclyAccessible**: bool: Indicates whether the DB instance is an internet-facing instance. If you specify true, AWS CloudFormation creates an instance with a publicly resolvable DNS name, which resolves to a public IP address. If you specify false, AWS CloudFormation creates an internal instance with a DNS name that resolves to a private IP address.
+* **ReplicaMode**: string: The open mode of an Oracle read replica. The default is open-read-only.
+* **RestoreTime**: string (WriteOnly): The date and time to restore from.
+* **SourceDBClusterIdentifier**: string: The identifier of the Multi-AZ DB cluster that will act as the source for the read replica. Each DB cluster can have up to 15 read replicas.
+* **SourceDBInstanceAutomatedBackupsArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the replicated automated backups from which to restore.
 * **SourceDBInstanceIdentifier**: string (WriteOnly): If you want to create a Read Replica DB instance, specify the ID of the source DB instance. Each DB instance can have a limited number of Read Replicas.
+* **SourceDbiResourceId**: string (WriteOnly): The resource ID of the source DB instance from which to restore.
 * **SourceRegion**: string (WriteOnly): The ID of the region that contains the source DB instance for the Read Replica.
 * **StorageEncrypted**: bool: A value that indicates whether the DB instance is encrypted. By default, it isn't encrypted.
+* **StorageThroughput**: int: Specifies the storage throughput for the DB instance.
 * **StorageType**: string: Specifies the storage type to be associated with the DB instance.
 * **Tags**: [Tag](#tag)[]: Tags to assign to the DB instance.
 * **TdeCredentialArn**: string: The ARN from the key store with which to associate the instance for TDE encryption.
 * **TdeCredentialPassword**: string (WriteOnly): The password for the given ARN from the key store in order to access the device.
 * **Timezone**: string: The time zone of the DB instance. The time zone parameter is currently supported only by Microsoft SQL Server.
 * **UseDefaultProcessorFeatures**: bool: A value that indicates whether the DB instance class of the DB instance uses its default processor features.
+* **UseLatestRestorableTime**: bool (WriteOnly): A value that indicates whether the DB instance is restored from the latest backup time. By default, the DB instance isn't restored from the latest backup time.
 * **VPCSecurityGroups**: string[]: A list of the VPC security group IDs to assign to the DB instance. The list can include both the physical IDs of existing VPC security groups and references to AWS::EC2::SecurityGroup resources created in the template.
 
 ## DBInstanceRole
@@ -264,11 +307,21 @@ This setting is required for RDS Custom.
 * **FeatureName**: string (Required): The name of the feature associated with the AWS Identity and Access Management (IAM) role. IAM roles that are associated with a DB instance grant permission for the DB instance to access other AWS services on your behalf.
 * **RoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that is associated with the DB instance.
 
+## CertificateDetails
+### Properties
+* **CAIdentifier**: string (ReadOnly): The CA identifier of the CA certificate used for the DB instance's server certificate.
+* **ValidTill**: string (ReadOnly): The expiration date of the DB instance’s server certificate.
+
 ## Endpoint
 ### Properties
 * **Address**: string (ReadOnly): Specifies the DNS address of the DB instance.
 * **HostedZoneId**: string (ReadOnly): Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.
 * **Port**: string (ReadOnly): Specifies the port that the database engine is listening on.
+
+## MasterUserSecret
+### Properties
+* **KmsKeyId**: string: The AWS KMS key identifier that is used to encrypt the secret.
+* **SecretArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the secret.
 
 ## ProcessorFeature
 ### Properties
@@ -282,10 +335,10 @@ This setting is required for RDS Custom.
 
 ## AWS.RDS/DBParameterGroupProperties
 ### Properties
-* **DBParameterGroupName**: string (ReadOnly, Identifier): Specifies the name of the DB parameter group
+* **DBParameterGroupName**: string (Identifier): Specifies the name of the DB parameter group
 * **Description**: string (Required): Provides the customer-specified description for this DB parameter group.
 * **Family**: string (Required): The DB parameter group family name.
-* **Parameters**: [DBParameterGroup_Parameters](#dbparametergroupparameters) (WriteOnly): An array of parameter names and values for the parameter update.
+* **Parameters**: [DBParameterGroup_Parameters](#dbparametergroupparameters): An array of parameter names and values for the parameter update.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## DBParameterGroup_Parameters
@@ -315,10 +368,10 @@ This setting is required for RDS Custom.
 ## AuthFormat
 ### Properties
 * **AuthScheme**: string: The type of authentication that the proxy uses for connections from the proxy to the underlying database. 
+* **ClientPasswordAuthType**: string: The type of authentication the proxy uses for connections from clients.
 * **Description**: string: A user-specified description about the authentication used by a proxy to log in as a specific database user. 
 * **IAMAuth**: string: Whether to require or disallow Amazon Web Services Identity and Access Management (IAM) authentication for connections to the proxy. The ENABLED value is valid only for proxies with RDS for Microsoft SQL Server.
 * **SecretArn**: string: The Amazon Resource Name (ARN) representing the secret that the proxy uses to authenticate to the RDS DB instance or Aurora DB cluster. These secrets are stored within Amazon Secrets Manager. 
-* **UserName**: string: The name of the database user to which the proxy connects.
 
 ## TagFormat
 ### Properties
@@ -404,7 +457,7 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 * **MajorEngineVersion**: string (Required): Indicates the major engine version associated with this option group.
 * **OptionConfigurations**: [OptionConfiguration](#optionconfiguration)[]: Indicates what options are available in the option group.
 * **OptionGroupDescription**: string (Required): Provides a description of the option group.
-* **OptionGroupName**: string (ReadOnly, Identifier): Specifies the name of the option group.
+* **OptionGroupName**: string (Identifier): Specifies the name of the option group.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## OptionConfiguration

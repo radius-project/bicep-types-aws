@@ -28,6 +28,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.FraudDetector/LabelProperties](#awsfrauddetectorlabelproperties) (Required): properties of the resource
 
+## Resource AWS.FraudDetector/List@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.FraudDetector/ListProperties](#awsfrauddetectorlistproperties) (Required): properties of the resource
+
 ## Resource AWS.FraudDetector/Outcome@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -215,6 +222,22 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## AWS.FraudDetector/ListProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The list ARN.
+* **CreatedTime**: string (ReadOnly): The time when the list was created.
+* **Description**: string: The description of the list.
+* **Elements**: string[]: The elements in this list.
+* **LastUpdatedTime**: string (ReadOnly): The time when the list was last updated.
+* **Name**: string (Required): The name of the list.
+* **Tags**: [Tag](#tag)[]: Tags associated with this list.
+* **VariableType**: string: The variable type of the list.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.FraudDetector/OutcomeProperties
 ### Properties

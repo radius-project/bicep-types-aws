@@ -91,12 +91,47 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/IPAMPoolProperties](#awsec2ipampoolproperties) (Required): properties of the resource
 
+## Resource AWS.EC2/IPAMResourceDiscovery@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/IPAMResourceDiscoveryProperties](#awsec2ipamresourcediscoveryproperties): properties of the resource
+
+## Resource AWS.EC2/IPAMResourceDiscoveryAssociation@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/IPAMResourceDiscoveryAssociationProperties](#awsec2ipamresourcediscoveryassociationproperties) (Required): properties of the resource
+
 ## Resource AWS.EC2/IPAMScope@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/IPAMScopeProperties](#awsec2ipamscopeproperties) (Required): properties of the resource
+
+## Resource AWS.EC2/LocalGatewayRoute@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/LocalGatewayRouteProperties](#awsec2localgatewayrouteproperties) (Required): properties of the resource
+
+## Resource AWS.EC2/LocalGatewayRouteTable@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/LocalGatewayRouteTableProperties](#awsec2localgatewayroutetableproperties) (Required): properties of the resource
+
+## Resource AWS.EC2/LocalGatewayRouteTableVirtualInterfaceGroupAssociation@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/LocalGatewayRouteTableVirtualInterfaceGroupAssociationProperties](#awsec2localgatewayroutetablevirtualinterfacegroupassociationproperties) (Required): properties of the resource
 
 ## Resource AWS.EC2/LocalGatewayRouteTableVPCAssociation@default
 * **Valid Scope(s)**: Unknown
@@ -245,6 +280,20 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCDHCPOptionsAssociationProperties](#awsec2vpcdhcpoptionsassociationproperties) (Required): properties of the resource
 
+## Resource AWS.EC2/VPCEndpoint@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/VPCEndpointProperties](#awsec2vpcendpointproperties) (Required): properties of the resource
+
+## Resource AWS.EC2/VPCEndpointService@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/VPCEndpointServiceProperties](#awsec2vpcendpointserviceproperties): properties of the resource
+
 ## Resource AWS.EC2/VPCPeeringConnection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -345,6 +394,7 @@
 ### Properties
 * **BgpAsn**: int (Required): For devices that support BGP, the customer gateway's BGP ASN.
 * **CustomerGatewayId**: string (ReadOnly, Identifier): CustomerGateway ID generated after customer gateway is created. Each customer gateway has a unique ID.
+* **DeviceName**: string: A name for the customer gateway device.
 * **IpAddress**: string (Required): The internet-routable IP address for the customer gateway's outside interface. The address must be static.
 * **Tags**: [Tag](#tag)[]: One or more tags for the customer gateway.
 * **Type**: string (Required): The type of VPN connection that this customer gateway supports.
@@ -569,7 +619,7 @@
 * **ResourceId**: string (Required): The ID of the subnet, network interface, or VPC for which you want to create a flow log.
 * **ResourceType**: string (Required): The type of resource for which to create the flow log. For example, if you specified a VPC ID for the ResourceId property, specify VPC for this property.
 * **Tags**: [Tag](#tag)[]: The tags to apply to the flow logs.
-* **TrafficType**: string (Required): The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic.
+* **TrafficType**: string: The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic.
 
 ## FlowLog_DestinationOptions
 ### Properties
@@ -593,6 +643,7 @@
 * **AutoPlacement**: string: Indicates whether the host accepts any untargeted instance launches that match its instance type configuration, or if it only accepts Host tenancy instance launches that specify its unique host ID.
 * **AvailabilityZone**: string (Required): The Availability Zone in which to allocate the Dedicated Host.
 * **HostId**: string (ReadOnly, Identifier): Id of the host created.
+* **HostMaintenance**: string: Automatically allocates a new dedicated host and moves your instances on to it if a degradation is detected on your current host.
 * **HostRecovery**: string: Indicates whether to enable or disable host recovery for the Dedicated Host. Host recovery is disabled by default.
 * **InstanceFamily**: string: Specifies the instance family to be supported by the Dedicated Hosts. If you specify an instance family, the Dedicated Hosts support multiple instance types within that instance family.
 * **InstanceType**: string: Specifies the instance type to be supported by the Dedicated Hosts. If you specify an instance type, the Dedicated Hosts support instances of the specified instance type only.
@@ -611,11 +662,14 @@
 ## AWS.EC2/IPAMProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the IPAM.
+* **DefaultResourceDiscoveryAssociationId**: string: The Id of the default association to the default resource discovery, created with this IPAM.
+* **DefaultResourceDiscoveryId**: string: The Id of the default resource discovery, created with this IPAM.
 * **Description**: string
 * **IpamId**: string (ReadOnly, Identifier): Id of the IPAM.
 * **OperatingRegions**: [IpamOperatingRegion](#ipamoperatingregion)[]: The regions IPAM is enabled for. Allows pools to be created in these regions, as well as enabling monitoring
 * **PrivateDefaultScopeId**: string (ReadOnly): The Id of the default scope for publicly routable IP space, created with this IPAM.
 * **PublicDefaultScopeId**: string (ReadOnly): The Id of the default scope for publicly routable IP space, created with this IPAM.
+* **ResourceDiscoveryAssociationCount**: int: The count of resource discoveries associated with this IPAM.
 * **ScopeCount**: int (ReadOnly): The number of scopes that currently exist in this IPAM.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
@@ -647,6 +701,7 @@
 * **Locale**: string: The region of this pool. If not set, this will default to "None" which will disable non-custom allocations. If the locale has been specified for the source pool, this value must match.
 * **PoolDepth**: int (ReadOnly): The depth of this pool in the source pool hierarchy.
 * **ProvisionedCidrs**: [ProvisionedCidr](#provisionedcidr)[]: A list of cidrs representing the address space available for allocation in this pool.
+* **PublicIpSource**: string: The IP address source for pools in the public scope. Only used for provisioning IP address CIDRs to pools in the public scope. Default is `byoip`.
 * **PubliclyAdvertisable**: bool: Determines whether or not address space from this pool is publicly advertised. Must be set if and only if the pool is IPv6.
 * **SourceIpamPoolId**: string: The Id of this pool's source. If set, all space provisioned in this pool must be free space provisioned in the parent pool.
 * **State**: string (ReadOnly): The state of this pool. This can be one of the following values: "create-in-progress", "create-complete", "modify-in-progress", "modify-complete", "delete-in-progress", or "delete-complete"
@@ -661,6 +716,46 @@
 ## ProvisionedCidr
 ### Properties
 * **Cidr**: string (Required)
+
+## AWS.EC2/IPAMResourceDiscoveryProperties
+### Properties
+* **Description**: string
+* **IpamResourceDiscoveryArn**: string (ReadOnly): Amazon Resource Name (Arn) for the Resource Discovery.
+* **IpamResourceDiscoveryId**: string (ReadOnly, Identifier): Id of the IPAM Pool.
+* **IpamResourceDiscoveryRegion**: string (ReadOnly): The region the resource discovery is setup in. 
+* **IsDefault**: bool (ReadOnly): Determines whether or not address space from this pool is publicly advertised. Must be set if and only if the pool is IPv6.
+* **OperatingRegions**: [IpamOperatingRegion](#ipamoperatingregion)[]: The regions Resource Discovery is enabled for. Allows resource discoveries to be created in these regions, as well as enabling monitoring
+* **OwnerId**: string (ReadOnly): Owner Account ID of the Resource Discovery
+* **State**: string (ReadOnly): The state of this Resource Discovery.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## IpamOperatingRegion
+### Properties
+* **RegionName**: string (Required): The name of the region.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## AWS.EC2/IPAMResourceDiscoveryAssociationProperties
+### Properties
+* **IpamArn**: string (ReadOnly): Arn of the IPAM.
+* **IpamId**: string (Required): The Id of the IPAM this Resource Discovery is associated to.
+* **IpamRegion**: string (ReadOnly): The home region of the IPAM.
+* **IpamResourceDiscoveryAssociationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the resource discovery association is a part of.
+* **IpamResourceDiscoveryAssociationId**: string (ReadOnly, Identifier): Id of the IPAM Resource Discovery Association.
+* **IpamResourceDiscoveryId**: string (Required): The Amazon Resource Name (ARN) of the IPAM Resource Discovery Association.
+* **IsDefault**: bool (ReadOnly): If the Resource Discovery Association exists due as part of CreateIpam.
+* **OwnerId**: string (ReadOnly): The AWS Account ID for the account where the shared IPAM exists.
+* **ResourceDiscoveryStatus**: string (ReadOnly): The status of the resource discovery.
+* **State**: string (ReadOnly): The operational state of the Resource Discovery Association. Related to Create/Delete activities.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.EC2/IPAMScopeProperties
 ### Properties
@@ -678,6 +773,47 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## AWS.EC2/LocalGatewayRouteProperties
+### Properties
+* **DestinationCidrBlock**: string (Required, Identifier): The CIDR block used for destination matches.
+* **LocalGatewayRouteTableId**: string (Required, Identifier): The ID of the local gateway route table.
+* **LocalGatewayVirtualInterfaceGroupId**: string: The ID of the virtual interface group.
+* **NetworkInterfaceId**: string: The ID of the network interface.
+* **State**: string (ReadOnly): The state of the route.
+* **Type**: string (ReadOnly): The route type.
+
+## AWS.EC2/LocalGatewayRouteTableProperties
+### Properties
+* **LocalGatewayId**: string (Required): The ID of the local gateway.
+* **LocalGatewayRouteTableArn**: string (ReadOnly): The ARN of the local gateway route table.
+* **LocalGatewayRouteTableId**: string (ReadOnly, Identifier): The ID of the local gateway route table.
+* **Mode**: string: The mode of the local gateway route table.
+* **OutpostArn**: string (ReadOnly): The ARN of the outpost.
+* **OwnerId**: string (ReadOnly): The owner of the local gateway route table.
+* **State**: string (ReadOnly): The state of the local gateway route table.
+* **Tags**: [Tag](#tag)[]: The tags for the local gateway route table.
+
+## Tag
+### Properties
+* **Key**: string
+* **Value**: string
+
+## AWS.EC2/LocalGatewayRouteTableVirtualInterfaceGroupAssociationProperties
+### Properties
+* **LocalGatewayId**: string (ReadOnly): The ID of the local gateway.
+* **LocalGatewayRouteTableArn**: string (ReadOnly): The ARN of the local gateway route table.
+* **LocalGatewayRouteTableId**: string (Required): The ID of the local gateway route table.
+* **LocalGatewayRouteTableVirtualInterfaceGroupAssociationId**: string (ReadOnly, Identifier): The ID of the local gateway route table virtual interface group association.
+* **LocalGatewayVirtualInterfaceGroupId**: string (Required): The ID of the local gateway route table virtual interface group.
+* **OwnerId**: string (ReadOnly): The owner of the local gateway route table virtual interface group association.
+* **State**: string (ReadOnly): The state of the local gateway route table virtual interface group association.
+* **Tags**: [Tag](#tag)[]: The tags for the local gateway route table virtual interface group association.
+
+## Tag
+### Properties
+* **Key**: string
+* **Value**: string
 
 ## AWS.EC2/LocalGatewayRouteTableVPCAssociationProperties
 ### Properties
@@ -697,7 +833,12 @@
 ### Properties
 * **AllocationId**: string
 * **ConnectivityType**: string
+* **MaxDrainDurationSeconds**: int (WriteOnly)
 * **NatGatewayId**: string (ReadOnly, Identifier)
+* **PrivateIpAddress**: string
+* **SecondaryAllocationIds**: string[]
+* **SecondaryPrivateIpAddressCount**: int
+* **SecondaryPrivateIpAddresses**: string[]
 * **SubnetId**: string (Required)
 * **Tags**: [Tag](#tag)[]
 
@@ -782,6 +923,7 @@
 
 ## AWS.EC2/NetworkInsightsAnalysisProperties
 ### Properties
+* **AdditionalAccounts**: string[]
 * **AlternatePathHints**: [AlternatePathHint](#alternatepathhint)[] (ReadOnly)
 * **Explanations**: [Explanation](#explanation)[] (ReadOnly)
 * **FilterInArns**: string[]
@@ -794,6 +936,7 @@
 * **StartDate**: string (ReadOnly)
 * **Status**: string (ReadOnly)
 * **StatusMessage**: string (ReadOnly)
+* **SuggestedAccounts**: string[] (ReadOnly)
 * **Tags**: [Tag](#tag)[]
 
 ## AlternatePathHint
@@ -932,6 +1075,7 @@
 * **RouteTableRoute**: [AnalysisRouteTableRoute](#analysisroutetableroute)
 * **SecurityGroupRule**: [AnalysisSecurityGroupRule](#analysissecuritygrouprule)
 * **SequenceNumber**: int
+* **ServiceName**: string
 * **SourceVpc**: [AnalysisComponent](#analysiscomponent)
 * **Subnet**: [AnalysisComponent](#analysiscomponent)
 * **TransitGateway**: [AnalysisComponent](#analysiscomponent)
@@ -942,6 +1086,8 @@
 ### Properties
 * **AdditionalDetailType**: string
 * **Component**: [AnalysisComponent](#analysiscomponent)
+* **LoadBalancers**: [AnalysisComponent](#analysiscomponent)[]
+* **ServiceName**: string
 
 ## AnalysisPacketHeader
 ### Properties
@@ -959,13 +1105,15 @@
 ## AWS.EC2/NetworkInsightsPathProperties
 ### Properties
 * **CreatedDate**: string (ReadOnly)
-* **Destination**: string (Required)
+* **Destination**: string
+* **DestinationArn**: string (ReadOnly)
 * **DestinationIp**: string
 * **DestinationPort**: int
 * **NetworkInsightsPathArn**: string (ReadOnly)
 * **NetworkInsightsPathId**: string (ReadOnly, Identifier)
 * **Protocol**: string (Required)
 * **Source**: string (Required)
+* **SourceArn**: string (ReadOnly)
 * **SourceIp**: string
 * **Tags**: [Tag](#tag)[]
 
@@ -1483,15 +1631,38 @@ Updating InstanceTenancy requires no replacement only if you are updating its va
 ## AWS.EC2/VPCDHCPOptionsAssociationProperties
 ### Properties
 * **DhcpOptionsId**: string (Required, Identifier): The ID of the DHCP options set, or default to associate no DHCP options with the VPC.
-* **Id**: string (ReadOnly): The ID of the VPC DHCPOptions Association.
 * **VpcId**: string (Required, Identifier): The ID of the VPC.
+
+## AWS.EC2/VPCEndpointProperties
+### Properties
+* **CreationTimestamp**: string (ReadOnly)
+* **DnsEntries**: string[] (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
+* **NetworkInterfaceIds**: string[] (ReadOnly)
+* **PolicyDocument**: [VPCEndpoint_PolicyDocument](#vpcendpointpolicydocument) | string: A policy to attach to the endpoint that controls access to the service.
+* **PrivateDnsEnabled**: bool: Indicate whether to associate a private hosted zone with the specified VPC.
+* **RouteTableIds**: string[]: One or more route table IDs.
+* **SecurityGroupIds**: string[]: The ID of one or more security groups to associate with the endpoint network interface.
+* **ServiceName**: string (Required): The service name.
+* **SubnetIds**: string[]: The ID of one or more subnets in which to create an endpoint network interface.
+* **VpcEndpointType**: string
+* **VpcId**: string (Required): The ID of the VPC in which the endpoint will be used.
+
+## AWS.EC2/VPCEndpointServiceProperties
+### Properties
+* **AcceptanceRequired**: bool
+* **ContributorInsightsEnabled**: bool (WriteOnly)
+* **GatewayLoadBalancerArns**: string[]
+* **NetworkLoadBalancerArns**: string[]
+* **PayerResponsibility**: string
+* **ServiceId**: string (ReadOnly, Identifier)
 
 ## AWS.EC2/VPCPeeringConnectionProperties
 ### Properties
 * **Id**: string (ReadOnly, Identifier)
 * **PeerOwnerId**: string: The AWS account ID of the owner of the accepter VPC.
 * **PeerRegion**: string: The Region code for the accepter VPC, if the accepter VPC is located in a Region other than the Region in which you make the request.
-* **PeerRoleArn**: string: The Amazon Resource Name (ARN) of the VPC peer role for the peering connection in another AWS account.
+* **PeerRoleArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the VPC peer role for the peering connection in another AWS account.
 * **PeerVpcId**: string (Required): The ID of the VPC with which you are creating the VPC peering connection. You must specify this parameter in the request.
 * **Tags**: [Tag](#tag)[]
 * **VpcId**: string (Required): The ID of the VPC.

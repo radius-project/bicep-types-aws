@@ -45,8 +45,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws: or memorydb:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws: or memorydb:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with 'aws:'. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.MemoryDB/ClusterProperties
 ### Properties
@@ -57,9 +57,10 @@
 You cannot modify the value of AutoMinorVersionUpgrade after the cluster is created. To enable AutoMinorVersionUpgrade on a cluster you must set AutoMinorVersionUpgrade to true when you create a cluster.
 * **ClusterEndpoint**: [Endpoint](#endpoint): The cluster endpoint.
 * **ClusterName**: string (Required, Identifier): The name of the cluster. This value must be unique as it also serves as the cluster identifier.
+* **DataTiering**: [Cluster_DataTieringStatus](#clusterdatatieringstatus): Enables data tiering. Data tiering is only supported for clusters using the r6gd node type. This parameter must be set when using r6gd nodes.
 * **Description**: string: An optional description of the cluster.
 * **EngineVersion**: string: The Redis engine version used by the cluster.
-* **FinalSnapshotName**: string: The user-supplied name of a final cluster snapshot. This is the unique name that identifies the snapshot. MemoryDB creates the snapshot, and then deletes the cluster immediately afterward.
+* **FinalSnapshotName**: string (WriteOnly): The user-supplied name of a final cluster snapshot. This is the unique name that identifies the snapshot. MemoryDB creates the snapshot, and then deletes the cluster immediately afterward.
 * **KmsKeyId**: string: The ID of the KMS key used to encrypt the cluster.
 * **MaintenanceWindow**: string: Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.
 * **NodeType**: string (Required): The compute and memory capacity of the nodes in the cluster.
@@ -69,8 +70,8 @@ You cannot modify the value of AutoMinorVersionUpgrade after the cluster is crea
 * **ParameterGroupStatus**: string (ReadOnly): The status of the parameter group used by the cluster.
 * **Port**: int: The port number on which each member of the cluster accepts connections.
 * **SecurityGroupIds**: string[]: One or more Amazon VPC security groups associated with this cluster.
-* **SnapshotArns**: string[]: A list of Amazon Resource Names (ARN) that uniquely identify the RDB snapshot files stored in Amazon S3. The snapshot files are used to populate the new cluster. The Amazon S3 object name in the ARN cannot contain any commas.
-* **SnapshotName**: string: The name of a snapshot from which to restore data into the new cluster. The snapshot status changes to restoring while the new cluster is being created.
+* **SnapshotArns**: string[] (WriteOnly): A list of Amazon Resource Names (ARN) that uniquely identify the RDB snapshot files stored in Amazon S3. The snapshot files are used to populate the new cluster. The Amazon S3 object name in the ARN cannot contain any commas.
+* **SnapshotName**: string (WriteOnly): The name of a snapshot from which to restore data into the new cluster. The snapshot status changes to restoring while the new cluster is being created.
 * **SnapshotRetentionLimit**: int: The number of days for which MemoryDB retains automatic snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot that was taken today is retained for 5 days before being deleted.
 * **SnapshotWindow**: string: The daily time range (in UTC) during which MemoryDB begins taking a daily snapshot of your cluster.
 * **SnsTopicArn**: string: The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) topic to which notifications are sent.
@@ -86,6 +87,9 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 ### Properties
 * **Address**: string (ReadOnly): The DNS address of the primary read-write node.
 * **Port**: int (ReadOnly): The port number that the engine is listening on. 
+
+## Cluster_DataTieringStatus
+### Properties
 
 ## Tag
 ### Properties
@@ -124,9 +128,9 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 
 ## AWS.MemoryDB/UserProperties
 ### Properties
-* **AccessString**: string (Required, WriteOnly): Access permissions string used for this user account.
+* **AccessString**: string (WriteOnly): Access permissions string used for this user account.
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the user account.
-* **AuthenticationMode**: [User_AuthenticationMode](#userauthenticationmode) (Required, WriteOnly)
+* **AuthenticationMode**: [User_AuthenticationMode](#userauthenticationmode) (WriteOnly)
 * **Status**: string (ReadOnly): Indicates the user status. Can be "active", "modifying" or "deleting".
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this user.
 * **UserName**: string (Required, Identifier): The name of the user.
@@ -138,6 +142,6 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws: or memorydb:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws: or memorydb:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with 'aws:'. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 

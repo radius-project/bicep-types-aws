@@ -61,7 +61,7 @@
 * **CreatedTime**: int (ReadOnly)
 * **PackageId**: string (ReadOnly, Identifier)
 * **PackageName**: string (Required)
-* **StorageLocation**: [StorageLocation](#storagelocation) (ReadOnly)
+* **StorageLocation**: [StorageLocation](#storagelocation)
 * **Tags**: [Tag](#tag)[]
 
 ## StorageLocation

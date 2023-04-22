@@ -5,28 +5,28 @@
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RolesAnywhere/CRLProperties](#awsrolesanywherecrlproperties): properties of the resource
+* **properties**: [AWS.RolesAnywhere/CRLProperties](#awsrolesanywherecrlproperties) (Required): properties of the resource
 
 ## Resource AWS.RolesAnywhere/Profile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RolesAnywhere/ProfileProperties](#awsrolesanywhereprofileproperties): properties of the resource
+* **properties**: [AWS.RolesAnywhere/ProfileProperties](#awsrolesanywhereprofileproperties) (Required): properties of the resource
 
 ## Resource AWS.RolesAnywhere/TrustAnchor@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RolesAnywhere/TrustAnchorProperties](#awsrolesanywheretrustanchorproperties): properties of the resource
+* **properties**: [AWS.RolesAnywhere/TrustAnchorProperties](#awsrolesanywheretrustanchorproperties) (Required): properties of the resource
 
 ## AWS.RolesAnywhere/CRLProperties
 ### Properties
-* **CrlData**: string
+* **CrlData**: string (Required)
 * **CrlId**: string (ReadOnly, Identifier)
 * **Enabled**: bool
-* **Name**: string
+* **Name**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **TrustAnchorArn**: string
 
@@ -40,11 +40,11 @@
 * **DurationSeconds**: int
 * **Enabled**: bool
 * **ManagedPolicyArns**: string[]
-* **Name**: string
+* **Name**: string (Required)
 * **ProfileArn**: string (ReadOnly)
 * **ProfileId**: string (ReadOnly, Identifier)
 * **RequireInstanceProperties**: bool
-* **RoleArns**: string[]
+* **RoleArns**: string[] (Required)
 * **SessionPolicy**: string
 * **Tags**: [Tag](#tag)[]
 
@@ -56,8 +56,8 @@
 ## AWS.RolesAnywhere/TrustAnchorProperties
 ### Properties
 * **Enabled**: bool
-* **Name**: string
-* **Source**: [Source](#source)
+* **Name**: string (Required)
+* **Source**: [Source](#source) (Required)
 * **Tags**: [Tag](#tag)[]
 * **TrustAnchorArn**: string (ReadOnly)
 * **TrustAnchorId**: string (ReadOnly, Identifier)

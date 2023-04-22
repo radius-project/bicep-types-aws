@@ -56,13 +56,13 @@
 * **Environment**: string: The URI of the Docker image for the robot application.
 * **Name**: string: The name of the robot application.
 * **RobotSoftwareSuite**: [RobotSoftwareSuite](#robotsoftwaresuite) (Required)
-* **Sources**: [SourceConfig](#sourceconfig)[]: The sources of the robot application.
+* **Sources**: [SourceConfig](#sourceconfig)[] (WriteOnly): The sources of the robot application.
 * **Tags**: [Tags](#tags)
 
 ## RobotSoftwareSuite
 ### Properties
 * **Name**: string (Required): The name of robot software suite.
-* **Version**: string: The version of robot software suite.
+* **Version**: string (WriteOnly): The version of robot software suite.
 
 ## SourceConfig
 ### Properties
@@ -79,10 +79,10 @@
 * **CurrentRevisionId**: string: The current revision id.
 * **Environment**: string: The URI of the Docker image for the robot application.
 * **Name**: string: The name of the simulation application.
-* **RenderingEngine**: [RenderingEngine](#renderingengine): The rendering engine for the simulation application.
+* **RenderingEngine**: [RenderingEngine](#renderingengine) (WriteOnly): The rendering engine for the simulation application.
 * **RobotSoftwareSuite**: [RobotSoftwareSuite](#robotsoftwaresuite) (Required): The robot software suite used by the simulation application.
 * **SimulationSoftwareSuite**: [SimulationSoftwareSuite](#simulationsoftwaresuite) (Required): The simulation software suite used by the simulation application.
-* **Sources**: [SourceConfig](#sourceconfig)[]: The sources of the simulation application.
+* **Sources**: [SourceConfig](#sourceconfig)[] (WriteOnly): The sources of the simulation application.
 * **Tags**: [Tags](#tags)
 
 ## RenderingEngine
@@ -93,12 +93,12 @@
 ## RobotSoftwareSuite
 ### Properties
 * **Name**: string (Required): The name of the robot software suite.
-* **Version**: string: The version of the robot software suite.
+* **Version**: string (WriteOnly): The version of the robot software suite.
 
 ## SimulationSoftwareSuite
 ### Properties
 * **Name**: string (Required): The name of the simulation software suite.
-* **Version**: string: The version of the simulation software suite.
+* **Version**: string (WriteOnly): The version of the simulation software suite.
 
 ## SourceConfig
 ### Properties

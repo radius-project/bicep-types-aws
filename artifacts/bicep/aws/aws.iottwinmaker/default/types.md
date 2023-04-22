@@ -42,6 +42,7 @@
 
 
 * **PropertyDefinitions**: [ComponentType_PropertyDefinitions](#componenttypepropertydefinitions): An map of the property definitions in the component type. Each property definition's key must be unique to this map.
+* **PropertyGroups**: [ComponentType_PropertyGroups](#componenttypepropertygroups): An map of the property groups in the component type. Each property group's key must be unique to this map.
 * **Status**: [Status](#status) (ReadOnly): The current status of the component type.
 * **Tags**: [ComponentType_Tags](#componenttypetags): A map of key-value pairs to associate with a resource.
 * **UpdateDateTime**: string (ReadOnly): The last date and time when the component type was updated.
@@ -53,6 +54,9 @@
 ## ComponentType_PropertyDefinitions
 ### Properties
 
+## ComponentType_PropertyGroups
+### Properties
+
 ## Status
 ### Properties
 * **Error**: [ComponentType_Error](#componenttypeerror)
@@ -60,8 +64,6 @@
 
 ## ComponentType_Error
 ### Properties
-* **Code**: string
-* **Message**: string
 
 ## ComponentType_Tags
 ### Properties
@@ -91,8 +93,6 @@
 
 ## Entity_Error
 ### Properties
-* **Code**: string
-* **Message**: string
 
 ## Entity_Tags
 ### Properties
@@ -104,10 +104,18 @@
 * **ContentLocation**: string (Required): The relative path that specifies the location of the content definition file.
 * **CreationDateTime**: string (ReadOnly): The date and time when the scene was created.
 * **Description**: string: The description of the scene.
+* **GeneratedSceneMetadata**: [Scene_GeneratedSceneMetadata](#scenegeneratedscenemetadata) (ReadOnly): A key-value pair of generated scene metadata for the scene.
 * **SceneId**: string (Required, Identifier): The ID of the scene.
+* **SceneMetadata**: [Scene_SceneMetadata](#scenescenemetadata): A key-value pair of scene metadata for the scene.
 * **Tags**: [Scene_Tags](#scenetags): A key-value pair to associate with a resource.
 * **UpdateDateTime**: string (ReadOnly): The date and time of the current update.
 * **WorkspaceId**: string (Required, Identifier): The ID of the scene.
+
+## Scene_GeneratedSceneMetadata
+### Properties
+
+## Scene_SceneMetadata
+### Properties
 
 ## Scene_Tags
 ### Properties

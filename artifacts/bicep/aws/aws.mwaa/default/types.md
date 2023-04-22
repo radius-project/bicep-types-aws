@@ -35,6 +35,8 @@
 * **RequirementsS3Path**: string
 * **Schedulers**: int
 * **SourceBucketArn**: string
+* **StartupScriptS3ObjectVersion**: string
+* **StartupScriptS3Path**: string
 * **Tags**: [Environment_Tags](#environmenttags): A map of tags for the environment.
 * **WebserverAccessMode**: string
 * **WebserverUrl**: string (ReadOnly)

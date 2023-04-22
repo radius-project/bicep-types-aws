@@ -1,13 +1,22 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-InternetMonitor-Monitor",
   "type": "AWS::InternetMonitor::Monitor",
-  "time": "2023-03-22T15:57:23.669Z",
+  "time": "2023-04-19T15:36:42.984Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/MonitorName"
     ],
     "definitions": {
+      "InternetMeasurementsLogDelivery": {
+        "additionalProperties": false,
+        "properties": {
+          "S3Config": {
+            "$ref": "#/definitions/S3Config"
+          }
+        },
+        "type": "object"
+      },
       "MonitorConfigState": {
         "enum": [
           "PENDING",
@@ -27,6 +36,26 @@
           "FAULT_ACCESS_CLOUDWATCH"
         ],
         "type": "string"
+      },
+      "S3Config": {
+        "additionalProperties": false,
+        "properties": {
+          "BucketName": {
+            "minLength": 3,
+            "type": "string"
+          },
+          "BucketPrefix": {
+            "type": "string"
+          },
+          "LogDeliveryStatus": {
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
       },
       "Tag": {
         "additionalProperties": false,
@@ -87,6 +116,9 @@
     "properties": {
       "CreatedAt": {
         "$ref": "#/definitions/iso8601UTC"
+      },
+      "InternetMeasurementsLogDelivery": {
+        "$ref": "#/definitions/InternetMeasurementsLogDelivery"
       },
       "MaxCityNetworksToMonitor": {
         "maximum": 500000,
@@ -151,6 +183,11 @@
           "$ref": "#/definitions/Tag"
         },
         "type": "array"
+      },
+      "TrafficPercentageToMonitor": {
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
       }
     },
     "readOnlyProperties": [

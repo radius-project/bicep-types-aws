@@ -26,7 +26,7 @@
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) assigned to the Channel.
 * **Description**: string: A short text description of the Channel.
 * **EgressAccessLogs**: [LogConfiguration](#logconfiguration): The configuration parameters for egress access logging.
-* **HlsIngest**: [HlsIngest](#hlsingest) (ReadOnly): A short text description of the Channel.
+* **HlsIngest**: [HlsIngest](#hlsingest): An HTTP Live Streaming (HLS) ingest resource configuration.
 * **Id**: string (Required, Identifier): The ID of the Channel.
 * **IngressAccessLogs**: [LogConfiguration](#logconfiguration): The configuration parameters for egress access logging.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
@@ -37,14 +37,14 @@
 
 ## HlsIngest
 ### Properties
-* **ingestEndpoints**: [IngestEndpoint](#ingestendpoint)[]: A list of endpoints to which the source stream should be sent.
+* **ingestEndpoints**: [IngestEndpoint](#ingestendpoint)[] (ReadOnly): A list of endpoints to which the source stream should be sent.
 
 ## IngestEndpoint
 ### Properties
-* **Id**: string (Identifier): The system generated unique identifier for the IngestEndpoint
-* **Password**: string: The system generated password for ingest authentication.
-* **Url**: string: The ingest URL to which the source stream should be sent.
-* **Username**: string: The system generated username for ingest authentication.
+* **Id**: string (Required, Identifier): The system generated unique identifier for the IngestEndpoint
+* **Password**: string (Required): The system generated password for ingest authentication.
+* **Url**: string (Required): The ingest URL to which the source stream should be sent.
+* **Username**: string (Required): The system generated username for ingest authentication.
 
 ## Tag
 ### Properties
@@ -153,6 +153,7 @@
 * **AdsOnDeliveryRestrictions**: string
 * **AdTriggers**: string[]: A list of SCTE-35 message types that are treated as ad markers in the output.  If empty, no ad markers are output.  Specify multiple items to create ad markers for all of the included message types.
 * **Encryption**: [HlsEncryption](#hlsencryption)
+* **IncludeDvbSubtitles**: bool: When enabled, MediaPackage passes through digital video broadcasting (DVB) subtitles into the output.
 * **IncludeIframeOnlyStream**: bool: When enabled, an I-Frame only stream will be included in the output.
 * **PlaylistType**: string: The HTTP Live Streaming (HLS) playlist type. When either "EVENT" or "VOD" is specified, a corresponding EXT-X-PLAYLIST-TYPE entry will be included in the media playlist.
 * **PlaylistWindowSeconds**: int: Time window (in seconds) contained in each parent manifest.

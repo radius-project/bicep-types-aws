@@ -35,6 +35,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SES/TemplateProperties](#awssestemplateproperties): properties of the resource
 
+## Resource AWS.SES/VdmAttributes@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SES/VdmAttributesProperties](#awssesvdmattributesproperties): properties of the resource
+
 ## AWS.SES/ConfigurationSetProperties
 ### Properties
 * **DeliveryOptions**: [DeliveryOptions](#deliveryoptions)
@@ -43,6 +50,7 @@
 * **SendingOptions**: [SendingOptions](#sendingoptions)
 * **SuppressionOptions**: [SuppressionOptions](#suppressionoptions)
 * **TrackingOptions**: [TrackingOptions](#trackingoptions)
+* **VdmOptions**: [VdmOptions](#vdmoptions)
 
 ## DeliveryOptions
 ### Properties
@@ -65,6 +73,19 @@
 ### Properties
 * **CustomRedirectDomain**: string: The domain to use for tracking open and click events.
 
+## VdmOptions
+### Properties
+* **DashboardOptions**: [DashboardOptions](#dashboardoptions)
+* **GuardianOptions**: [GuardianOptions](#guardianoptions)
+
+## DashboardOptions
+### Properties
+* **EngagementMetrics**: string (Required): Whether emails sent with this configuration set have engagement tracking enabled.
+
+## GuardianOptions
+### Properties
+* **OptimizedSharedDelivery**: string (Required): Whether emails sent with this configuration set have optimized delivery algorithm enabled.
+
 ## AWS.SES/ConfigurationSetEventDestinationProperties
 ### Properties
 * **ConfigurationSetName**: string (Required): The name of the configuration set that contains the event destination.
@@ -76,7 +97,7 @@
 * **CloudWatchDestination**: [CloudWatchDestination](#cloudwatchdestination): An object that contains the names, default values, and sources of the dimensions associated with an Amazon CloudWatch event destination.
 * **Enabled**: bool: Sets whether Amazon SES publishes events to this destination when you send an email with the associated configuration set. Set to true to enable publishing to this destination; set to false to prevent publishing to this destination. The default value is false.   
 * **KinesisFirehoseDestination**: [KinesisFirehoseDestination](#kinesisfirehosedestination): An object that contains the delivery stream ARN and the IAM role ARN associated with an Amazon Kinesis Firehose event destination.
-* **MatchingEventTypes**: string[] (Required): The type of email sending events, send, reject, bounce, complaint, delivery, open, click, renderingFailure.
+* **MatchingEventTypes**: string[] (Required): The type of email sending events, send, reject, bounce, complaint, delivery, open, click, renderingFailure, deliveryDelay, and subscription.
 * **Name**: string: The name of the event destination set.
 * **SnsDestination**: [SnsDestination](#snsdestination): An object that contains SNS topic ARN associated event destination.
 
@@ -167,4 +188,18 @@
 * **SubjectPart**: string (Required): The subject line of the email.
 * **TemplateName**: string: The name of the template.
 * **TextPart**: string: The email body that is visible to recipients whose email clients do not display HTML content.
+
+## AWS.SES/VdmAttributesProperties
+### Properties
+* **DashboardAttributes**: [DashboardAttributes](#dashboardattributes)
+* **GuardianAttributes**: [GuardianAttributes](#guardianattributes)
+* **VdmAttributesResourceId**: string (ReadOnly, Identifier): Unique identifier for this resource
+
+## DashboardAttributes
+### Properties
+* **EngagementMetrics**: string: Whether emails sent from this account have engagement tracking enabled.
+
+## GuardianAttributes
+### Properties
+* **OptimizedSharedDelivery**: string: Whether emails sent from this account have optimized delivery algorithm enabled.
 

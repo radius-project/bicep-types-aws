@@ -1,5 +1,12 @@
 # AWS.AppFlow @ default
 
+## Resource AWS.AppFlow/Connector@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppFlow/ConnectorProperties](#awsappflowconnectorproperties) (Required): properties of the resource
+
 ## Resource AWS.AppFlow/ConnectorProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -14,6 +21,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.AppFlow/FlowProperties](#awsappflowflowproperties) (Required): properties of the resource
 
+## AWS.AppFlow/ConnectorProperties
+### Properties
+* **ConnectorArn**: string (ReadOnly):  The arn of the connector. The arn is unique for each ConnectorRegistration in your AWS account.
+* **ConnectorLabel**: string (Identifier):  The name of the connector. The name is unique for each ConnectorRegistration in your AWS account.
+* **ConnectorProvisioningConfig**: [ConnectorProvisioningConfig](#connectorprovisioningconfig) (Required): Contains information about the configuration of the connector being registered.
+* **ConnectorProvisioningType**: string (Required): The provisioning type of the connector. Currently the only supported value is LAMBDA. 
+* **Description**: string: A description about the connector that's being registered.
+
+## ConnectorProvisioningConfig
+### Properties
+* **Lambda**: [LambdaConnectorProvisioningConfig](#lambdaconnectorprovisioningconfig): Contains information about the configuration of the lambda which is being registered as the connector.
+
+## LambdaConnectorProvisioningConfig
+### Properties
+* **LambdaArn**: string (Required): Lambda ARN of the connector being registered.
+
 ## AWS.AppFlow/ConnectorProfileProperties
 ### Properties
 * **ConnectionMode**: string (Required): Mode in which data transfer should be enabled. Private connection mode is currently enabled for Salesforce, Snowflake, Trendmicro and Singular
@@ -23,11 +46,11 @@
 * **ConnectorProfileName**: string (Required, Identifier): The maximum number of items to retrieve in a single batch.
 * **ConnectorType**: string (Required): List of Saas providers that need connector profile to be created
 * **CredentialsArn**: string (ReadOnly): A unique Arn for Connector-Profile resource
-* **KMSArn**: string: The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables. If it's not provided, AWS Lambda uses a default service key.
+* **KMSArn**: string (WriteOnly): The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables. If it's not provided, AWS Lambda uses a default service key.
 
 ## ConnectorProfileConfig
 ### Properties
-* **ConnectorProfileCredentials**: [ConnectorProfileCredentials](#connectorprofilecredentials) (Required)
+* **ConnectorProfileCredentials**: [ConnectorProfileCredentials](#connectorprofilecredentials)
 * **ConnectorProfileProperties**: [ConnectorProfileProperties](#connectorprofileproperties)
 
 ## ConnectorProfileCredentials
@@ -39,6 +62,7 @@
 * **GoogleAnalytics**: [GoogleAnalyticsConnectorProfileCredentials](#googleanalyticsconnectorprofilecredentials)
 * **InforNexus**: [InforNexusConnectorProfileCredentials](#infornexusconnectorprofilecredentials)
 * **Marketo**: [MarketoConnectorProfileCredentials](#marketoconnectorprofilecredentials)
+* **Pardot**: [PardotConnectorProfileCredentials](#pardotconnectorprofilecredentials)
 * **Redshift**: [RedshiftConnectorProfileCredentials](#redshiftconnectorprofilecredentials)
 * **Salesforce**: [SalesforceConnectorProfileCredentials](#salesforceconnectorprofilecredentials)
 * **SAPOData**: [SAPODataConnectorProfileCredentials](#sapodataconnectorprofilecredentials)
@@ -126,10 +150,17 @@ granted.
 * **ClientSecret**: string (Required): The client secret used by the oauth client to authenticate to the authorization server.
 * **ConnectorOAuthRequest**: [ConnectorOAuthRequest](#connectoroauthrequest): The oauth needed to request security tokens from the connector endpoint.
 
+## PardotConnectorProfileCredentials
+### Properties
+* **AccessToken**: string: The credentials used to access protected resources.
+* **ClientCredentialsArn**: string: The client credentials to fetch access token and refresh token.
+* **ConnectorOAuthRequest**: [ConnectorOAuthRequest](#connectoroauthrequest): The oauth needed to request security tokens from the connector endpoint.
+* **RefreshToken**: string: The credentials used to acquire new access tokens.
+
 ## RedshiftConnectorProfileCredentials
 ### Properties
-* **Password**: string (Required): The password that corresponds to the username.
-* **Username**: string (Required): The name of the user.
+* **Password**: string: The password that corresponds to the username.
+* **Username**: string: The name of the user.
 
 ## SalesforceConnectorProfileCredentials
 ### Properties
@@ -195,6 +226,7 @@ granted.
 * **Dynatrace**: [DynatraceConnectorProfileProperties](#dynatraceconnectorprofileproperties)
 * **InforNexus**: [InforNexusConnectorProfileProperties](#infornexusconnectorprofileproperties)
 * **Marketo**: [MarketoConnectorProfileProperties](#marketoconnectorprofileproperties)
+* **Pardot**: [PardotConnectorProfileProperties](#pardotconnectorprofileproperties)
 * **Redshift**: [RedshiftConnectorProfileProperties](#redshiftconnectorprofileproperties)
 * **Salesforce**: [SalesforceConnectorProfileProperties](#salesforceconnectorprofileproperties)
 * **SAPOData**: [SAPODataConnectorProfileProperties](#sapodataconnectorprofileproperties)
@@ -237,17 +269,29 @@ granted.
 ### Properties
 * **InstanceUrl**: string (Required): The location of the Marketo resource
 
+## PardotConnectorProfileProperties
+### Properties
+* **BusinessUnitId**: string (Required): The Business unit id of Salesforce Pardot instance to be connected
+* **InstanceUrl**: string: The location of the Salesforce Pardot resource
+* **IsSandboxEnvironment**: bool: Indicates whether the connector profile applies to a demo or production environment
+
 ## RedshiftConnectorProfileProperties
 ### Properties
 * **BucketName**: string (Required): The name of the Amazon S3 bucket associated with Redshift.
 * **BucketPrefix**: string: The object key for the destination bucket in which Amazon AppFlow will place the ?les.
-* **DatabaseUrl**: string (Required): The JDBC URL of the Amazon Redshift cluster.
+* **ClusterIdentifier**: string: The unique identifier of the Amazon Redshift cluster.
+* **DataApiRoleArn**: string: The Amazon Resource Name (ARN) of the IAM role that grants Amazon AppFlow access to the data through the Amazon Redshift Data API.
+* **DatabaseName**: string: The name of the Amazon Redshift database that will store the transferred data.
+* **DatabaseUrl**: string: The JDBC URL of the Amazon Redshift cluster.
+* **IsRedshiftServerless**: bool: If Amazon AppFlow will connect to Amazon Redshift Serverless or Amazon Redshift cluster.
 * **RoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role.
+* **WorkgroupName**: string: The name of the Amazon Redshift serverless workgroup
 
 ## SalesforceConnectorProfileProperties
 ### Properties
 * **InstanceUrl**: string: The location of the Salesforce resource
-* **isSandboxEnvironment**: bool
+* **isSandboxEnvironment**: bool: Indicates whether the connector profile applies to a sandbox or production environment
+* **usePrivateLinkForMetadataAndAuthorization**: bool: Indicates whether to make Metadata And Authorization calls over Pivate Network
 
 ## SAPODataConnectorProfileProperties
 ### Properties
@@ -299,6 +343,7 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 * **FlowArn**: string (ReadOnly): ARN identifier of the flow.
 * **FlowName**: string (Required, Identifier): Name of the flow.
 * **KMSArn**: string: The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables. If it's not provided, AWS Lambda uses a default service key.
+* **MetadataCatalogConfig**: [MetadataCatalogConfig](#metadatacatalogconfig): Configurations of metadata catalog of the flow.
 * **SourceFlowConfig**: [SourceFlowConfig](#sourceflowconfig) (Required): Configurations of Source connector of the flow.
 * **Tags**: [Tag](#tag)[]: List of Tags.
 * **Tasks**: [Task](#task)[] (Required): List of tasks for the flow.
@@ -379,9 +424,11 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 ## AggregationConfig
 ### Properties
 * **AggregationType**: string
+* **TargetFileSize**: int
 
 ## PrefixConfig
 ### Properties
+* **PathPrefixHierarchy**: string[]
 * **PrefixFormat**: string
 * **PrefixType**: string
 
@@ -432,6 +479,16 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 * **Object**: string (Required)
 * **WriteOperationType**: string
 
+## MetadataCatalogConfig
+### Properties
+* **GlueDataCatalog**: [GlueDataCatalog](#gluedatacatalog): Configurations of glue data catalog of the flow.
+
+## GlueDataCatalog
+### Properties
+* **DatabaseName**: string (Required): A string containing the value for the tag
+* **RoleArn**: string (Required): A string containing the value for the tag
+* **TablePrefix**: string (Required): A string containing the value for the tag
+
 ## SourceFlowConfig
 ### Properties
 * **ApiVersion**: string: The API version that the destination connector uses.
@@ -453,6 +510,7 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 * **GoogleAnalytics**: [GoogleAnalyticsSourceProperties](#googleanalyticssourceproperties)
 * **InforNexus**: [InforNexusSourceProperties](#infornexussourceproperties)
 * **Marketo**: [MarketoSourceProperties](#marketosourceproperties)
+* **Pardot**: [PardotSourceProperties](#pardotsourceproperties)
 * **S3**: [S3SourceProperties](#s3sourceproperties)
 * **Salesforce**: [SalesforceSourceProperties](#salesforcesourceproperties)
 * **SAPOData**: [SAPODataSourceProperties](#sapodatasourceproperties)
@@ -489,6 +547,10 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 * **Object**: string (Required)
 
 ## MarketoSourceProperties
+### Properties
+* **Object**: string (Required)
+
+## PardotSourceProperties
 ### Properties
 * **Object**: string (Required)
 
@@ -563,6 +625,7 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 * **GoogleAnalytics**: string
 * **InforNexus**: string
 * **Marketo**: string
+* **Pardot**: string
 * **S3**: string
 * **Salesforce**: string
 * **SAPOData**: string
@@ -580,6 +643,7 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 
 ## TriggerConfig
 ### Properties
+* **ActivateFlowOnCreate**: bool: Active 'Scheduled' or 'Event' flow after creation. Without activation the default state of such flows upon creation is DRAFT.
 * **TriggerProperties**: [ScheduledTriggerProperties](#scheduledtriggerproperties): Details required based on the type of trigger
 * **TriggerType**: string (Required): Trigger type of the flow
 

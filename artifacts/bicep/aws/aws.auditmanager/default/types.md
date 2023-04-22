@@ -14,7 +14,7 @@
 * **AssessmentReportsDestination**: [AssessmentReportsDestination](#assessmentreportsdestination)
 * **AwsAccount**: [AWSAccount](#awsaccount)
 * **CreationTime**: int (ReadOnly)
-* **Delegations**: [Delegation](#delegation)[] (ReadOnly): The list of delegations.
+* **Delegations**: [Delegation](#delegation)[]: The list of delegations.
 * **Description**: string (WriteOnly)
 * **FrameworkId**: string
 * **Name**: string (WriteOnly)

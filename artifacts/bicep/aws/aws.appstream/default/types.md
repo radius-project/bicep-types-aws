@@ -50,9 +50,15 @@
 
 ## AWS.AppStream/DirectoryConfigProperties
 ### Properties
+* **CertificateBasedAuthProperties**: [CertificateBasedAuthProperties](#certificatebasedauthproperties)
 * **DirectoryName**: string (Required, Identifier)
 * **OrganizationalUnitDistinguishedNames**: string[] (Required)
 * **ServiceAccountCredentials**: [ServiceAccountCredentials](#serviceaccountcredentials) (Required)
+
+## CertificateBasedAuthProperties
+### Properties
+* **CertificateAuthorityArn**: string
+* **Status**: string
 
 ## ServiceAccountCredentials
 ### Properties

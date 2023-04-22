@@ -7,12 +7,33 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGatewayV2/ApiProperties](#awsapigatewayv2apiproperties): properties of the resource
 
+## Resource AWS.ApiGatewayV2/Authorizer@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGatewayV2/AuthorizerProperties](#awsapigatewayv2authorizerproperties) (Required): properties of the resource
+
+## Resource AWS.ApiGatewayV2/Deployment@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGatewayV2/DeploymentProperties](#awsapigatewayv2deploymentproperties) (Required): properties of the resource
+
 ## Resource AWS.ApiGatewayV2/Model@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGatewayV2/ModelProperties](#awsapigatewayv2modelproperties) (Required): properties of the resource
+
+## Resource AWS.ApiGatewayV2/Route@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGatewayV2/RouteProperties](#awsapigatewayv2routeproperties) (Required): properties of the resource
 
 ## Resource AWS.ApiGatewayV2/VpcLink@default
 * **Valid Scope(s)**: Unknown
@@ -65,6 +86,33 @@
 ## Api_Tags
 ### Properties
 
+## AWS.ApiGatewayV2/AuthorizerProperties
+### Properties
+* **ApiId**: string (Required, Identifier)
+* **AuthorizerCredentialsArn**: string
+* **AuthorizerId**: string (ReadOnly, Identifier)
+* **AuthorizerPayloadFormatVersion**: string
+* **AuthorizerResultTtlInSeconds**: int
+* **AuthorizerType**: string (Required)
+* **AuthorizerUri**: string
+* **EnableSimpleResponses**: bool
+* **IdentitySource**: string[]
+* **IdentityValidationExpression**: string
+* **JwtConfiguration**: [JWTConfiguration](#jwtconfiguration)
+* **Name**: string (Required)
+
+## JWTConfiguration
+### Properties
+* **Audience**: string[]
+* **Issuer**: string
+
+## AWS.ApiGatewayV2/DeploymentProperties
+### Properties
+* **ApiId**: string (Required, Identifier)
+* **DeploymentId**: string (ReadOnly, Identifier)
+* **Description**: string
+* **StageName**: string (WriteOnly)
+
 ## AWS.ApiGatewayV2/ModelProperties
 ### Properties
 * **ApiId**: string (Required, Identifier)
@@ -75,6 +123,28 @@
 * **Schema**: [Model_Schema](#modelschema) (Required)
 
 ## Model_Schema
+### Properties
+
+## AWS.ApiGatewayV2/RouteProperties
+### Properties
+* **ApiId**: string (Required, Identifier)
+* **ApiKeyRequired**: bool
+* **AuthorizationScopes**: string[]
+* **AuthorizationType**: string
+* **AuthorizerId**: string (WriteOnly)
+* **ModelSelectionExpression**: string
+* **OperationName**: string
+* **RequestModels**: [Route_RequestModels](#routerequestmodels)
+* **RequestParameters**: [Route_RequestParameters](#routerequestparameters) (WriteOnly)
+* **RouteId**: string (ReadOnly, Identifier)
+* **RouteKey**: string (Required)
+* **RouteResponseSelectionExpression**: string
+* **Target**: string
+
+## Route_RequestModels
+### Properties
+
+## Route_RequestParameters
 ### Properties
 
 ## AWS.ApiGatewayV2/VpcLinkProperties

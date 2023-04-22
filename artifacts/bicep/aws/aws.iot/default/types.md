@@ -112,6 +112,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/SecurityProfileProperties](#awsiotsecurityprofileproperties): properties of the resource
 
+## Resource AWS.IoT/Thing@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/ThingProperties](#awsiotthingproperties): properties of the resource
+
 ## Resource AWS.IoT/TopicRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -142,7 +149,9 @@
 * **DeviceCertificateExpiringCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
 * **DeviceCertificateKeyQualityCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
 * **DeviceCertificateSharedCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
+* **IntermediateCaRevokedForActiveDeviceCertificatesCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
 * **IotPolicyOverlyPermissiveCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
+* **IoTPolicyPotentialMisConfigurationCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
 * **IotRoleAliasAllowsAccessToUnusedServicesCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
 * **IotRoleAliasOverlyPermissiveCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
 * **LoggingDisabledCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
@@ -192,7 +201,7 @@
 * **CertificateMode**: string
 * **Id**: string (ReadOnly, Identifier)
 * **RegistrationConfig**: [RegistrationConfig](#registrationconfig)
-* **RemoveAutoRegistration**: bool
+* **RemoveAutoRegistration**: bool (WriteOnly)
 * **Status**: string (Required)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **VerificationCertificatePem**: string (WriteOnly): The private key verification certificate.
@@ -256,7 +265,7 @@
 * **ServerCertificates**: [ServerCertificateSummary](#servercertificatesummary)[] (ReadOnly)
 * **ServiceType**: string
 * **Tags**: [Tag](#tag)[]
-* **ValidationCertificateArn**: string
+* **ValidationCertificateArn**: string (WriteOnly)
 
 ## AuthorizerConfig
 ### Properties
@@ -393,7 +402,7 @@
 * **LogLevel**: string (Required): The log level for a specific target. Valid values are: ERROR, WARN, INFO, DEBUG, or DISABLED.
 * **TargetId**: string (ReadOnly, Identifier): Unique Id for a Target (TargetType:TargetName), this will be internally built to serve as primary identifier for a log target.
 * **TargetName**: string (Required): The target name.
-* **TargetType**: string (Required): The target type. Value must be THING_GROUP, CLIENT_ID, SOURCE_IP, PRINCIPAL_ID.
+* **TargetType**: string (Required): The target type. Value must be THING_GROUP, CLIENT_ID, SOURCE_IP, PRINCIPAL_ID, or EVENT_TYPE.
 
 ## AWS.IoT/RoleAliasProperties
 ### Properties
@@ -487,6 +496,20 @@
 * **Key**: string (Required): The tag's key.
 * **Value**: string (Required): The tag's value.
 
+## AWS.IoT/ThingProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **AttributePayload**: [AttributePayload](#attributepayload)
+* **Id**: string (ReadOnly)
+* **ThingName**: string (Identifier)
+
+## AttributePayload
+### Properties
+* **Attributes**: [Thing_Attributes](#thingattributes)
+
+## Thing_Attributes
+### Properties
+
 ## AWS.IoT/TopicRuleProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -542,6 +565,7 @@
 
 ## CloudwatchLogsAction
 ### Properties
+* **BatchMode**: bool
 * **LogGroupName**: string (Required)
 * **RoleArn**: string (Required)
 
@@ -701,12 +725,12 @@
 
 ## RepublishAction
 ### Properties
-* **Headers**: [TopicRule_Headers](#topicruleheaders)
+* **Headers**: [RepublishActionHeaders](#republishactionheaders)
 * **Qos**: int
 * **RoleArn**: string (Required)
 * **Topic**: string (Required)
 
-## TopicRule_Headers
+## RepublishActionHeaders
 ### Properties
 * **ContentType**: string
 * **CorrelationData**: string

@@ -1,0 +1,160 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-RefreshSchedule",
+  "type": "AWS::QuickSight::RefreshSchedule",
+  "time": "2023-04-10T20:05:20.821Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AwsAccountId",
+      "/properties/DataSetId",
+      "/properties/Schedule/ScheduleId"
+    ],
+    "definitions": {
+      "RefreshScheduleMap": {
+        "additionalProperties": false,
+        "properties": {
+          "RefreshType": {
+            "enum": [
+              "FULL_REFRESH",
+              "INCREMENTAL_REFRESH"
+            ],
+            "type": "string"
+          },
+          "ScheduleFrequency": {
+            "additionalProperties": false,
+            "description": "\u003cp\u003eInformation about the schedule frequency.\u003c/p\u003e",
+            "properties": {
+              "Interval": {
+                "enum": [
+                  "MINUTE15",
+                  "MINUTE30",
+                  "HOURLY",
+                  "DAILY",
+                  "WEEKLY",
+                  "MONTHLY"
+                ],
+                "type": "string"
+              },
+              "RefreshOnDay": {
+                "additionalProperties": false,
+                "description": "\u003cp\u003eThe day scheduled for refresh.\u003c/p\u003e",
+                "properties": {
+                  "DayOfMonth": {
+                    "description": "\u003cp\u003eThe Day Of Month for scheduled refresh.\u003c/p\u003e",
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "DayOfWeek": {
+                    "enum": [
+                      "SUNDAY",
+                      "MONDAY",
+                      "TUESDAY",
+                      "WEDNESDAY",
+                      "THURSDAY",
+                      "FRIDAY",
+                      "SATURDAY"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [],
+                "type": "object"
+              },
+              "TimeOfTheDay": {
+                "description": "\u003cp\u003eThe time of the day for scheduled refresh.\u003c/p\u003e",
+                "maxLength": 128,
+                "minLength": 1,
+                "type": "string"
+              },
+              "TimeZone": {
+                "description": "\u003cp\u003eThe timezone for scheduled refresh.\u003c/p\u003e",
+                "maxLength": 128,
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [],
+            "type": "object"
+          },
+          "ScheduleId": {
+            "description": "\u003cp\u003eAn unique identifier for the refresh schedule.\u003c/p\u003e",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "StartAfterDateTime": {
+            "description": "\u003cp\u003eThe date time after which refresh is to be scheduled\u003c/p\u003e",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      }
+    },
+    "description": "Definition of the AWS::QuickSight::RefreshSchedule Resource Type.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "quicksight:CreateRefreshSchedule"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "quicksight:DeleteRefreshSchedule"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "quicksight:ListRefreshSchedules"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "quicksight:DescribeRefreshSchedule"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "quicksight:UpdateRefreshSchedule"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/AwsAccountId",
+      "/properties/DataSetId",
+      "/properties/Schedule/ScheduleId"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "\u003cp\u003eThe Amazon Resource Name (ARN) of the data source.\u003c/p\u003e",
+        "type": "string"
+      },
+      "AwsAccountId": {
+        "maxLength": 12,
+        "minLength": 12,
+        "pattern": "^[0-9]{12}$",
+        "type": "string"
+      },
+      "DataSetId": {
+        "type": "string"
+      },
+      "Schedule": {
+        "$ref": "#/definitions/RefreshScheduleMap"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn"
+    ],
+    "required": [],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
+    "typeName": "AWS::QuickSight::RefreshSchedule"
+  }
+}

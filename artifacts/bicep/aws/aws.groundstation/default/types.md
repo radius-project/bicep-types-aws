@@ -118,6 +118,8 @@
 * **MinimumViableContactDurationSeconds**: int (Required): Visibilities with shorter duration than the specified minimum viable contact duration will be ignored when searching for available contacts.
 * **Name**: string (Required): A name used to identify a mission profile.
 * **Region**: string (ReadOnly)
+* **StreamsKmsKey**: [StreamsKmsKey](#streamskmskey): The ARN of a KMS Key used for encrypting data during transmission from the source to destination locations.
+* **StreamsKmsRole**: string: The ARN of the KMS Key or Alias Key role used to define permissions on KMS Key usage.
 * **Tags**: [Tag](#tag)[]
 * **TrackingConfigArn**: string (Required)
 
@@ -126,8 +128,13 @@
 * **Destination**: string
 * **Source**: string
 
+## StreamsKmsKey
+### Properties
+* **KmsAliasArn**: string
+* **KmsKeyArn**: string
+
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
 

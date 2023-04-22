@@ -16,12 +16,18 @@
 
 ## AWS.S3ObjectLambda/AccessPointProperties
 ### Properties
+* **Alias**: [AccessPoint_Alias](#accesspointalias) (ReadOnly)
 * **Arn**: string (ReadOnly)
 * **CreationDate**: string (ReadOnly): The date and time when the Object lambda Access Point was created.
 * **Name**: string (Identifier): The name you want to assign to this Object lambda Access Point.
 * **ObjectLambdaConfiguration**: [ObjectLambdaConfiguration](#objectlambdaconfiguration) (Required): The Object lambda Access Point Configuration that configures transformations to be applied on the objects on specified S3 Actions
 * **PolicyStatus**: [AccessPoint_PolicyStatus](#accesspointpolicystatus) (ReadOnly)
 * **PublicAccessBlockConfiguration**: [PublicAccessBlockConfiguration](#publicaccessblockconfiguration) (ReadOnly): The PublicAccessBlock configuration that you want to apply to this Access Point. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status 'The Meaning of Public' in the Amazon Simple Storage Service Developer Guide.
+
+## AccessPoint_Alias
+### Properties
+* **Status**: string: The status of the Object Lambda alias.
+* **Value**: string: The value of the Object Lambda alias.
 
 ## ObjectLambdaConfiguration
 ### Properties

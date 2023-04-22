@@ -5,14 +5,14 @@
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/ConnectAttachmentProperties](#awsnetworkmanagerconnectattachmentproperties): properties of the resource
+* **properties**: [AWS.NetworkManager/ConnectAttachmentProperties](#awsnetworkmanagerconnectattachmentproperties) (Required): properties of the resource
 
 ## Resource AWS.NetworkManager/ConnectPeer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/ConnectPeerProperties](#awsnetworkmanagerconnectpeerproperties): properties of the resource
+* **properties**: [AWS.NetworkManager/ConnectPeerProperties](#awsnetworkmanagerconnectpeerproperties) (Required): properties of the resource
 
 ## Resource AWS.NetworkManager/CoreNetwork@default
 * **Valid Scope(s)**: Unknown
@@ -54,14 +54,28 @@
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/SiteToSiteVpnAttachmentProperties](#awsnetworkmanagersitetositevpnattachmentproperties): properties of the resource
+* **properties**: [AWS.NetworkManager/SiteToSiteVpnAttachmentProperties](#awsnetworkmanagersitetositevpnattachmentproperties) (Required): properties of the resource
+
+## Resource AWS.NetworkManager/TransitGatewayPeering@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NetworkManager/TransitGatewayPeeringProperties](#awsnetworkmanagertransitgatewaypeeringproperties) (Required): properties of the resource
+
+## Resource AWS.NetworkManager/TransitGatewayRouteTableAttachment@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NetworkManager/TransitGatewayRouteTableAttachmentProperties](#awsnetworkmanagertransitgatewayroutetableattachmentproperties) (Required): properties of the resource
 
 ## Resource AWS.NetworkManager/VpcAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/VpcAttachmentProperties](#awsnetworkmanagervpcattachmentproperties): properties of the resource
+* **properties**: [AWS.NetworkManager/VpcAttachmentProperties](#awsnetworkmanagervpcattachmentproperties) (Required): properties of the resource
 
 ## AWS.NetworkManager/ConnectAttachmentProperties
 ### Properties
@@ -69,17 +83,17 @@
 * **AttachmentPolicyRuleNumber**: int (ReadOnly): The policy rule number associated with the attachment.
 * **AttachmentType**: string (ReadOnly): The type of attachment.
 * **CoreNetworkArn**: string (ReadOnly): The ARN of a core network for the VPC attachment.
-* **CoreNetworkId**: string: ID of the CoreNetwork that the attachment will be attached to.
+* **CoreNetworkId**: string (Required): ID of the CoreNetwork that the attachment will be attached to.
 * **CreatedAt**: string (ReadOnly): Creation time of the attachment.
-* **EdgeLocation**: string: Edge location of the attachment.
-* **Options**: [ConnectAttachmentOptions](#connectattachmentoptions): Protocol options for connect attachment
+* **EdgeLocation**: string (Required): Edge location of the attachment.
+* **Options**: [ConnectAttachmentOptions](#connectattachmentoptions) (Required): Protocol options for connect attachment
 * **OwnerAccountId**: string (ReadOnly): The ID of the attachment account owner.
 * **ProposedSegmentChange**: [ProposedSegmentChange](#proposedsegmentchange) (ReadOnly): The attachment to move from one segment to another.
 * **ResourceArn**: string (ReadOnly): The attachment resource ARN.
 * **SegmentName**: string (ReadOnly): The name of the segment attachment.
 * **State**: string (ReadOnly): State of the attachment.
 * **Tags**: [Tag](#tag)[]: Tags for the attachment.
-* **TransportAttachmentId**: string: Id of transport attachment
+* **TransportAttachmentId**: string (Required): Id of transport attachment
 * **UpdatedAt**: string (ReadOnly): Last update time of the attachment.
 
 ## ConnectAttachmentOptions
@@ -101,14 +115,14 @@
 ### Properties
 * **BgpOptions**: [BgpOptions](#bgpoptions) (WriteOnly): Bgp options for connect peer.
 * **Configuration**: [ConnectPeerConfiguration](#connectpeerconfiguration) (ReadOnly): Configuration of the connect peer.
-* **ConnectAttachmentId**: string: The ID of the attachment to connect.
+* **ConnectAttachmentId**: string (Required): The ID of the attachment to connect.
 * **ConnectPeerId**: string (ReadOnly, Identifier): The ID of the Connect peer.
 * **CoreNetworkAddress**: string (WriteOnly): The IP address of a core network.
 * **CoreNetworkId**: string (ReadOnly): The ID of the core network.
 * **CreatedAt**: string (ReadOnly): Connect peer creation time.
 * **EdgeLocation**: string (ReadOnly): The Connect peer Regions where edges are located.
-* **InsideCidrBlocks**: string[] (WriteOnly): The inside IP addresses used for a Connect peer configuration.
-* **PeerAddress**: string (WriteOnly): The IP address of the Connect peer.
+* **InsideCidrBlocks**: string[] (Required, WriteOnly): The inside IP addresses used for a Connect peer configuration.
+* **PeerAddress**: string (Required, WriteOnly): The IP address of the Connect peer.
 * **State**: string (ReadOnly): State of the connect peer.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
@@ -255,7 +269,7 @@
 * **AttachmentPolicyRuleNumber**: int (ReadOnly): The policy rule number associated with the attachment.
 * **AttachmentType**: string (ReadOnly): The type of attachment.
 * **CoreNetworkArn**: string (ReadOnly): The ARN of a core network for the VPC attachment.
-* **CoreNetworkId**: string: The ID of a core network where you're creating a site-to-site VPN attachment.
+* **CoreNetworkId**: string (Required): The ID of a core network where you're creating a site-to-site VPN attachment.
 * **CreatedAt**: string (ReadOnly): Creation time of the attachment.
 * **EdgeLocation**: string (ReadOnly): The Region where the edge is located.
 * **OwnerAccountId**: string (ReadOnly): Owner account of the attachment.
@@ -265,7 +279,57 @@
 * **State**: string (ReadOnly): The state of the attachment.
 * **Tags**: [Tag](#tag)[]: Tags for the attachment.
 * **UpdatedAt**: string (ReadOnly): Last update time of the attachment.
-* **VpnConnectionArn**: string (WriteOnly): The ARN of the site-to-site VPN attachment.
+* **VpnConnectionArn**: string (Required, WriteOnly): The ARN of the site-to-site VPN attachment.
+
+## ProposedSegmentChange
+### Properties
+* **AttachmentPolicyRuleNumber**: int: The rule number in the policy document that applies to this change.
+* **SegmentName**: string: The name of the segment to change.
+* **Tags**: [Tag](#tag)[]: The key-value tags that changed for the segment.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## AWS.NetworkManager/TransitGatewayPeeringProperties
+### Properties
+* **CoreNetworkArn**: string (ReadOnly): The ARN (Amazon Resource Name) of the core network that you want to peer a transit gateway to.
+* **CoreNetworkId**: string (Required): The Id of the core network that you want to peer a transit gateway to.
+* **CreatedAt**: string (ReadOnly): The creation time of the transit gateway peering
+* **EdgeLocation**: string (ReadOnly): The location of the transit gateway peering
+* **OwnerAccountId**: string (ReadOnly): Peering owner account Id
+* **PeeringId**: string (ReadOnly, Identifier): The Id of the transit gateway peering
+* **PeeringType**: string (ReadOnly): Peering type (TransitGatewayPeering)
+* **ResourceArn**: string (ReadOnly): The ARN (Amazon Resource Name) of the resource that you will peer to a core network
+* **State**: string (ReadOnly): The state of the transit gateway peering
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **TransitGatewayArn**: string (Required): The ARN (Amazon Resource Name) of the transit gateway that you will peer to a core network
+* **TransitGatewayPeeringAttachmentId**: string (ReadOnly): The ID of the TransitGatewayPeeringAttachment
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## AWS.NetworkManager/TransitGatewayRouteTableAttachmentProperties
+### Properties
+* **AttachmentId**: string (ReadOnly, Identifier): The ID of the attachment.
+* **AttachmentPolicyRuleNumber**: int (ReadOnly): The policy rule number associated with the attachment.
+* **AttachmentType**: string (ReadOnly): The type of attachment.
+* **CoreNetworkArn**: string (ReadOnly): The ARN of a core network for the VPC attachment.
+* **CoreNetworkId**: string (ReadOnly): The ID of a core network where you're creating a site-to-site VPN attachment.
+* **CreatedAt**: string (ReadOnly): Creation time of the attachment.
+* **EdgeLocation**: string (ReadOnly): The Region where the edge is located.
+* **OwnerAccountId**: string (ReadOnly): Owner account of the attachment.
+* **PeeringId**: string (Required): The Id of peering between transit gateway and core network.
+* **ProposedSegmentChange**: [ProposedSegmentChange](#proposedsegmentchange): The attachment to move from one segment to another.
+* **ResourceArn**: string (ReadOnly): The ARN of the Resource.
+* **SegmentName**: string (ReadOnly): The name of the segment that attachment is in.
+* **State**: string (ReadOnly): The state of the attachment.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **TransitGatewayRouteTableArn**: string (Required): The Arn of transit gateway route table.
+* **UpdatedAt**: string (ReadOnly): Last update time of the attachment.
 
 ## ProposedSegmentChange
 ### Properties
@@ -284,7 +348,7 @@
 * **AttachmentPolicyRuleNumber**: int (ReadOnly): The policy rule number associated with the attachment.
 * **AttachmentType**: string (ReadOnly): Attachment type.
 * **CoreNetworkArn**: string (ReadOnly): The ARN of a core network for the VPC attachment.
-* **CoreNetworkId**: string: The ID of a core network for the VPC attachment.
+* **CoreNetworkId**: string (Required): The ID of a core network for the VPC attachment.
 * **CreatedAt**: string (ReadOnly): Creation time of the attachment.
 * **EdgeLocation**: string (ReadOnly): The Region where the edge is located.
 * **Options**: [VpcOptions](#vpcoptions): Vpc options of the attachment.
@@ -293,13 +357,14 @@
 * **ResourceArn**: string (ReadOnly): The ARN of the Resource.
 * **SegmentName**: string (ReadOnly): The name of the segment attachment..
 * **State**: string (ReadOnly): State of the attachment.
-* **SubnetArns**: string[]: Subnet Arn list
+* **SubnetArns**: string[] (Required): Subnet Arn list
 * **Tags**: [Tag](#tag)[]: Tags for the attachment.
 * **UpdatedAt**: string (ReadOnly): Last update time of the attachment.
-* **VpcArn**: string (WriteOnly): The ARN of the VPC.
+* **VpcArn**: string (Required): The ARN of the VPC.
 
 ## VpcOptions
 ### Properties
+* **ApplianceModeSupport**: bool: Indicates whether to enable ApplianceModeSupport Support for Vpc Attachment. Valid Values: true | false
 * **Ipv6Support**: bool: Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable | disable
 
 ## ProposedSegmentChange
