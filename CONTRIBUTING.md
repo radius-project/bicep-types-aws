@@ -1,6 +1,6 @@
 # Contributing
 
-This Repository is part of Radius project. For general information please see [Radius](https://github.com/project-radius/radius)
+This Repository is part of the Radius project. For general information please see [Radius](https://github.com/project-radius/radius) repository.
 
 ## Table of contents
 
