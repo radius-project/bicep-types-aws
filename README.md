@@ -10,7 +10,7 @@ This repo contains the tooling for Bicep support for AWS types. The tools in thi
 Browse our guides for how to [understand the code](./contributing-code/contributing-code-organization/)
 and [build the code](./contributing-code/contributing-code-building/).
 For information on how to contribute to Radius visit [Contributing](https://docs.radapp.dev/contributing/).
-For any other general information on Radius Visit [Radius](https://github.com/project-radius/radius) 
+For any other general information on Radius Visit [Radius](https://github.com/radius-project/radius) 
 
 ## Security
 

@@ -1,4 +1,4 @@
-module github.com/project-radius/bicep-types-aws/src/aws-type-downloader
+module github.com/radius-project/bicep-types-aws/src/aws-type-downloader
 
 go 1.19
 
