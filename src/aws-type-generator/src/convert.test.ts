@@ -395,7 +395,7 @@ describe('convert', () => {
             }));
     });
 
-    test('Regression for project-radius/radius#3688', () => {
+    test('Regression for radius-project/radius#3688', () => {
         const file = fs.readFileSync(path.resolve('./testdata/AWS::MemoryDB::ACL.json'), { encoding: 'utf8' });
         const schemaRecord: SchemaRecord = JSON.parse(file);
         const types = convertSchemaRecordToTypes([schemaRecord]);
@@ -408,7 +408,7 @@ describe('convert', () => {
         expect(aclNameProperty?.Flags).toEqual(ObjectPropertyFlags.Required|ObjectPropertyFlags.Identifier);
     });
 
-    test('Can convert string definitions properly (project-radius/radius#4823)', () => {
+    test('Can convert string definitions properly (radius-project/radius#4823)', () => {
         const file = fs.readFileSync(path.resolve('./testdata/AWS::Redshift::EndpointAuthorization.json'), { encoding: 'utf8' });
         const schemaRecord: SchemaRecord = JSON.parse(file);
         const types = convertSchemaRecordToTypes([schemaRecord]);
