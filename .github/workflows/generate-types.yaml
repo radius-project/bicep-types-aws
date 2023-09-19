@@ -73,8 +73,11 @@
         
         - name: Generate AWS Bicep types
           run: |
+            pushd ./src/aws-type-generator
+            npm ci
             npm run --prefix ./src/aws-type-generator start -- --input ../../artifacts/types --output ../../artifacts/bicep
-        
+            popd
+
         - name: Generate reference documentation
           run: |
             python ./.github/scripts/generate_reference_docs.py ./artifacts/types ./docs/reference/supported-resources.md
