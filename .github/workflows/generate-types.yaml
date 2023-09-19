@@ -56,7 +56,7 @@
             aws configure set output json
 
         - name: Install Go
-          uses: actions/setup-go@v2
+          uses: actions/setup-go@v4
           with:
             go-version: ${{ env.GOVER }}
         
@@ -67,7 +67,9 @@
         
         - name: Download AWS types
           run: |
-            go run ./src/aws-type-downloader/main.go --output ./artifacts/types --clean
+            pushd ./src/aws-type-downloader
+            go run main.go --output ../../artifacts/types --clean
+            popd
         
         - name: Generate AWS Bicep types
           run: |
