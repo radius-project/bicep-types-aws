@@ -51,7 +51,7 @@ def generate_reference_table(base_directory, output_filename):
 
 def main():
     if len(sys.argv) != 3:
-        print("Usage: generate_docs.py <base_directory> <output_filename>")
+        print("Usage: generate_reference_docs.py <base_directory> <output_filename>")
         sys.exit(1)
 
     base_directory = sys.argv[1]
