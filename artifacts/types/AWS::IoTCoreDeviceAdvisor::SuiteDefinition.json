@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTCoreDeviceAdvisor-SuiteDefinition",
   "type": "AWS::IoTCoreDeviceAdvisor::SuiteDefinition",
-  "time": "2022-08-16T04:48:37.575Z",
+  "time": "2023-08-04T17:12:37.425Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -80,12 +80,23 @@
     "handlers": {
       "create": {
         "permissions": [
+          "iot:DescribeCertificate",
+          "iot:DescribeThing",
+          "iot:GetPolicy",
+          "iot:ListAttachedPolicies",
+          "iot:ListCertificates",
+          "iot:ListPrincipalPolicies",
+          "iot:ListTagsForResource",
+          "iot:ListThingPrincipals",
+          "iot:ListThings",
           "iotdeviceadvisor:CreateSuiteDefinition",
+          "iotdeviceadvisor:TagResource",
           "iam:PassRole"
         ]
       },
       "delete": {
         "permissions": [
+          "iotdeviceadvisor:GetSuiteDefinition",
           "iotdeviceadvisor:DeleteSuiteDefinition"
         ]
       },
@@ -96,15 +107,26 @@
       },
       "read": {
         "permissions": [
-          "iotdeviceadvisor:GetSuiteDefinition"
+          "iotdeviceadvisor:GetSuiteDefinition",
+          "iotdeviceadvisor:TagResource"
         ]
       },
       "update": {
         "permissions": [
+          "iot:DescribeCertificate",
+          "iot:DescribeThing",
+          "iot:GetPolicy",
+          "iot:ListAttachedPolicies",
+          "iot:ListCertificates",
+          "iot:ListPrincipalPolicies",
+          "iot:ListTagsForResource",
+          "iot:ListThingPrincipals",
+          "iot:ListThings",
           "iotdeviceadvisor:UpdateSuiteDefinition",
           "iotdeviceadvisor:GetSuiteDefinition",
           "iotdeviceadvisor:UntagResource",
-          "iotdeviceadvisor:TagResource"
+          "iotdeviceadvisor:TagResource",
+          "iam:PassRole"
         ]
       }
     },

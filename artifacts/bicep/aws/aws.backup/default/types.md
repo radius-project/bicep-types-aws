@@ -59,6 +59,7 @@
 * **RecoveryPointTags**: [BackupPlan_RecoveryPointTags](#backupplanrecoverypointtags)
 * **RuleName**: string (Required)
 * **ScheduleExpression**: string
+* **ScheduleExpressionTimezone**: string
 * **StartWindowMinutes**: int
 * **TargetBackupVault**: string (Required)
 

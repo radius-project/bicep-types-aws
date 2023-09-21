@@ -103,6 +103,7 @@
 * **BufferingHints**: [AmazonopensearchserviceBufferingHints](#amazonopensearchservicebufferinghints)
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **ClusterEndpoint**: string
+* **DocumentIdOptions**: [DocumentIdOptions](#documentidoptions)
 * **DomainARN**: string
 * **IndexName**: string (Required)
 * **IndexRotationPeriod**: string
@@ -119,6 +120,10 @@
 * **IntervalInSeconds**: int
 * **SizeInMBs**: int
 
+## DocumentIdOptions
+### Properties
+* **DefaultDocumentIdFormat**: string (Required)
+
 ## AmazonopensearchserviceRetryOptions
 ### Properties
 * **DurationInSeconds**: int
@@ -133,6 +138,7 @@
 * **BufferingHints**: [ElasticsearchBufferingHints](#elasticsearchbufferinghints)
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **ClusterEndpoint**: string
+* **DocumentIdOptions**: [DocumentIdOptions](#documentidoptions)
 * **DomainARN**: string
 * **IndexName**: string (Required)
 * **IndexRotationPeriod**: string

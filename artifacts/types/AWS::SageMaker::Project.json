@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-Project",
   "type": "AWS::SageMaker::Project",
-  "time": "2023-02-28T04:17:00.152Z",
+  "time": "2023-09-21T08:27:00.889Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -112,8 +112,10 @@
     "handlers": {
       "create": {
         "permissions": [
+          "sagemaker:AddTags",
           "sagemaker:CreateProject",
           "sagemaker:DescribeProject",
+          "sagemaker:ListTags",
           "servicecatalog:DescribeProduct",
           "servicecatalog:DescribeProvisioningArtifact",
           "servicecatalog:ProvisionProduct",
@@ -123,7 +125,10 @@
       },
       "delete": {
         "permissions": [
-          "sagemaker:DeleteProject"
+          "sagemaker:DeleteProject",
+          "sagemaker:DescribeProject",
+          "servicecatalog:TerminateProvisionedProduct",
+          "servicecatalog:DescribeRecord"
         ]
       },
       "list": {
@@ -231,7 +236,6 @@
       "/properties/ProjectArn",
       "/properties/CreationTime",
       "/properties/ProjectId",
-      "/properties/ServiceCatalogProvisionedProductDetails",
       "/properties/ProjectStatus"
     ],
     "required": [

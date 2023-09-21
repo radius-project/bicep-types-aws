@@ -167,6 +167,8 @@ granted.
 * **AccessToken**: string: The credentials used to access protected resources.
 * **ClientCredentialsArn**: string: The client credentials to fetch access token and refresh token.
 * **ConnectorOAuthRequest**: [ConnectorOAuthRequest](#connectoroauthrequest): The oauth needed to request security tokens from the connector endpoint.
+* **JwtToken**: string: The credentials used to access your Salesforce records
+* **OAuth2GrantType**: string: The grant types to fetch an access token
 * **RefreshToken**: string: The credentials used to acquire new access tokens.
 
 ## SAPODataConnectorProfileCredentials
@@ -298,6 +300,7 @@ granted.
 * **ApplicationHostUrl**: string
 * **ApplicationServicePath**: string
 * **ClientNumber**: string
+* **DisableSSO**: bool: If you set this parameter to true, Amazon AppFlow bypasses the single sign-on (SSO) settings in your SAP account when it accesses your SAP OData instance.
 * **LogonLanguage**: string
 * **OAuthProperties**: [OAuthProperties](#oauthproperties)
 * **PortNumber**: int
@@ -342,6 +345,7 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 * **DestinationFlowConfigList**: [DestinationFlowConfig](#destinationflowconfig)[] (Required): List of Destination connectors of the flow.
 * **FlowArn**: string (ReadOnly): ARN identifier of the flow.
 * **FlowName**: string (Required, Identifier): Name of the flow.
+* **FlowStatus**: string: Flow activation status for Scheduled- and Event-triggered flows
 * **KMSArn**: string: The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables. If it's not provided, AWS Lambda uses a default service key.
 * **MetadataCatalogConfig**: [MetadataCatalogConfig](#metadatacatalogconfig): Configurations of metadata catalog of the flow.
 * **SourceFlowConfig**: [SourceFlowConfig](#sourceflowconfig) (Required): Configurations of Source connector of the flow.
@@ -528,7 +532,13 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 ## CustomConnectorSourceProperties
 ### Properties
 * **CustomProperties**: [CustomProperties](#customproperties)
+* **DataTransferApi**: [Flow_DataTransferApi](#flowdatatransferapi)
 * **EntityName**: string (Required)
+
+## Flow_DataTransferApi
+### Properties
+* **Name**: string (Required)
+* **Type**: string (Required)
 
 ## DatadogSourceProperties
 ### Properties
@@ -574,6 +584,16 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 ## SAPODataSourceProperties
 ### Properties
 * **ObjectPath**: string (Required)
+* **paginationConfig**: [SAPODataPaginationConfig](#sapodatapaginationconfig)
+* **parallelismConfig**: [SAPODataParallelismConfig](#sapodataparallelismconfig)
+
+## SAPODataPaginationConfig
+### Properties
+* **maxPageSize**: int (Required)
+
+## SAPODataParallelismConfig
+### Properties
+* **maxParallelism**: int (Required)
 
 ## ServiceNowSourceProperties
 ### Properties
@@ -643,7 +663,6 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 
 ## TriggerConfig
 ### Properties
-* **ActivateFlowOnCreate**: bool: Active 'Scheduled' or 'Event' flow after creation. Without activation the default state of such flows upon creation is DRAFT.
 * **TriggerProperties**: [ScheduledTriggerProperties](#scheduledtriggerproperties): Details required based on the type of trigger
 * **TriggerType**: string (Required): Trigger type of the flow
 

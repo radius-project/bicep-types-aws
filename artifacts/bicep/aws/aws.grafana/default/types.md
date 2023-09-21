@@ -16,7 +16,7 @@
 * **DataSources**: string[]: List of data sources on the service managed IAM role.
 * **Description**: string: Description of a workspace.
 * **Endpoint**: string (ReadOnly): Endpoint for the Grafana workspace.
-* **GrafanaVersion**: string (ReadOnly): Version of Grafana the workspace is currently using.
+* **GrafanaVersion**: string: The version of Grafana to support in your workspace.
 * **Id**: string (ReadOnly, Identifier): The id that uniquely identifies a Grafana workspace.
 * **ModificationTimestamp**: string (ReadOnly): Timestamp when the workspace was last modified
 * **Name**: string: The user friendly name of a workspace.

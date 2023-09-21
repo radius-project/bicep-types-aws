@@ -62,7 +62,7 @@ auto - Amazon Redshift determines whether to use AQUA.
 * **AvailabilityZone**: string: The EC2 Availability Zone (AZ) in which you want Amazon Redshift to provision the cluster. Default: A random, system-chosen Availability Zone in the region that is specified by the endpoint
 * **AvailabilityZoneRelocation**: bool: The option to enable relocation for an Amazon Redshift cluster between Availability Zones after the cluster modification is complete.
 * **AvailabilityZoneRelocationStatus**: string: The availability zone relocation status of the cluster
-* **Classic**: bool: A boolean value indicating whether the resize operation is using the classic resize process. If you don't provide this parameter or set the value to false , the resize type is elastic.
+* **Classic**: bool (WriteOnly): A boolean value indicating whether the resize operation is using the classic resize process. If you don't provide this parameter or set the value to false , the resize type is elastic.
 * **ClusterIdentifier**: string (Identifier): A unique identifier for the cluster. You use this identifier to refer to the cluster for any subsequent cluster operations such as deleting or modifying. All alphabetical characters must be lower case, no hypens at the end, no two consecutive hyphens. Cluster name should be unique for all clusters within an AWS account
 * **ClusterParameterGroupName**: string: The name of the parameter group to be associated with this cluster.
 * **ClusterSecurityGroups**: string[]: A list of security groups to be associated with this cluster.

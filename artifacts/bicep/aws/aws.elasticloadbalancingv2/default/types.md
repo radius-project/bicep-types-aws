@@ -14,6 +14,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ElasticLoadBalancingV2/ListenerRuleProperties](#awselasticloadbalancingv2listenerruleproperties) (Required): properties of the resource
 
+## Resource AWS.ElasticLoadBalancingV2/LoadBalancer@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ElasticLoadBalancingV2/LoadBalancerProperties](#awselasticloadbalancingv2loadbalancerproperties): properties of the resource
+
 ## Resource AWS.ElasticLoadBalancingV2/TargetGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -231,6 +238,40 @@
 ## SourceIpConfig
 ### Properties
 * **Values**: string[]
+
+## AWS.ElasticLoadBalancingV2/LoadBalancerProperties
+### Properties
+* **CanonicalHostedZoneID**: string (ReadOnly): The ID of the Amazon Route 53 hosted zone associated with the load balancer.
+* **DNSName**: string (ReadOnly): The public DNS name of the load balancer.
+* **IpAddressType**: string: The type of IP addresses used by the subnets for your load balancer. The possible values are ipv4 (for IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses).
+* **LoadBalancerArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the load balancer.
+* **LoadBalancerAttributes**: [LoadBalancerAttribute](#loadbalancerattribute)[]: The load balancer attributes.
+* **LoadBalancerFullName**: string (ReadOnly): The full name of the load balancer.
+* **LoadBalancerName**: string (ReadOnly): The name of the load balancer.
+* **Name**: string: The name of the load balancer.
+* **Scheme**: string: The nodes of an Internet-facing load balancer have public IP addresses. The DNS name of an Internet-facing load balancer is publicly resolvable to the public IP addresses of the nodes. Therefore, Internet-facing load balancers can route requests from clients over the internet. The nodes of an internal load balancer have only private IP addresses. The DNS name of an internal load balancer is publicly resolvable to the private IP addresses of the nodes. Therefore, internal load balancers can route requests only from clients with access to the VPC for the load balancer. The default is an Internet-facing load balancer.
+* **SecurityGroups**: string[]: The IDs of the security groups for the load balancer.
+* **SubnetMappings**: [SubnetMapping](#subnetmapping)[]: The IDs of the public subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings, but not both.
+* **Subnets**: string[]: The IDs of the public subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings, but not both. To specify an Elastic IP address, specify subnet mappings instead of subnets.
+* **Tags**: [Tag](#tag)[]: The tags to assign to the load balancer.
+* **Type**: string: The type of load balancer. The default is application.
+
+## LoadBalancerAttribute
+### Properties
+* **Key**: string
+* **Value**: string
+
+## SubnetMapping
+### Properties
+* **AllocationId**: string
+* **IPv6Address**: string
+* **PrivateIPv4Address**: string
+* **SubnetId**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.ElasticLoadBalancingV2/TargetGroupProperties
 ### Properties

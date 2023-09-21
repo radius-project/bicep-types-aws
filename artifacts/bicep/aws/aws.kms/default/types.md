@@ -12,7 +12,7 @@
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.KMS/KeyProperties](#awskmskeyproperties) (Required): properties of the resource
+* **properties**: [AWS.KMS/KeyProperties](#awskmskeyproperties): properties of the resource
 
 ## Resource AWS.KMS/ReplicaKey@default
 * **Valid Scope(s)**: Unknown
@@ -29,14 +29,16 @@
 ## AWS.KMS/KeyProperties
 ### Properties
 * **Arn**: string (ReadOnly)
+* **BypassPolicyLockoutSafetyCheck**: bool (WriteOnly): Skips ("bypasses") the key policy lockout safety check. The default value is false.
 * **Description**: string: A description of the AWS KMS key. Use a description that helps you to distinguish this AWS KMS key from others in the account, such as its intended use.
 * **Enabled**: bool: Specifies whether the AWS KMS key is enabled. Disabled AWS KMS keys cannot be used in cryptographic operations.
 * **EnableKeyRotation**: bool: Enables automatic rotation of the key material for the specified AWS KMS key. By default, automation key rotation is not enabled.
 * **KeyId**: string (ReadOnly, Identifier)
-* **KeyPolicy**: [Key_KeyPolicy](#keykeypolicy) | string (Required): The key policy that authorizes use of the AWS KMS key. The key policy must observe the following rules.
+* **KeyPolicy**: [Key_KeyPolicy](#keykeypolicy) | string: The key policy that authorizes use of the AWS KMS key. The key policy must observe the following rules.
 * **KeySpec**: string: Specifies the type of AWS KMS key to create. The default value is SYMMETRIC_DEFAULT. This property is required only for asymmetric AWS KMS keys. You can't change the KeySpec value after the AWS KMS key is created.
 * **KeyUsage**: string: Determines the cryptographic operations for which you can use the AWS KMS key. The default value is ENCRYPT_DECRYPT. This property is required only for asymmetric AWS KMS keys. You can't change the KeyUsage value after the AWS KMS key is created.
 * **MultiRegion**: bool: Specifies whether the AWS KMS key should be Multi-Region. You can't change the MultiRegion value after the AWS KMS key is created.
+* **Origin**: string: The source of the key material for the KMS key. You cannot change the origin after you create the KMS key. The default is AWS_KMS, which means that AWS KMS creates the key material.
 * **PendingWindowInDays**: int (WriteOnly): Specifies the number of days in the waiting period before AWS KMS deletes an AWS KMS key that has been removed from a CloudFormation stack. Enter a value between 7 and 30 days. The default value is 30 days.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 

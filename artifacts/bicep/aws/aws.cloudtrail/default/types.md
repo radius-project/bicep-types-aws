@@ -51,12 +51,13 @@
 * **AdvancedEventSelectors**: [AdvancedEventSelector](#advancedeventselector)[]: The advanced event selectors that were used to select events for the data store.
 * **CreatedTimestamp**: string (ReadOnly): The timestamp of the event data store's creation.
 * **EventDataStoreArn**: string (ReadOnly, Identifier): The ARN of the event data store.
+* **IngestionEnabled**: bool: Indicates whether the event data store is ingesting events.
 * **KmsKeyId**: string: Specifies the KMS key ID to use to encrypt the events delivered by CloudTrail. The value can be an alias name prefixed by 'alias/', a fully specified ARN to an alias, a fully specified ARN to a key, or a globally unique identifier.
 * **MultiRegionEnabled**: bool: Indicates whether the event data store includes events from all regions, or only from the region in which it was created.
 * **Name**: string: The name of the event data store.
 * **OrganizationEnabled**: bool: Indicates that an event data store is collecting logged events for an organization.
 * **RetentionPeriod**: int: The retention period, in days.
-* **Status**: string (ReadOnly): The status of an event data store. Values are ENABLED and PENDING_DELETION.
+* **Status**: string (ReadOnly): The status of an event data store. Values are STARTING_INGESTION, ENABLED, STOPPING_INGESTION, STOPPED_INGESTION and PENDING_DELETION.
 * **Tags**: [Tag](#tag)[]
 * **TerminationProtectionEnabled**: bool: Indicates whether the event data store is protected from termination.
 * **UpdatedTimestamp**: string (ReadOnly): The timestamp showing when an event data store was updated, if applicable. UpdatedTimestamp is always either the same or newer than the time shown in CreatedTimestamp.
@@ -88,6 +89,7 @@
 
 ## AWS.CloudTrail/TrailProperties
 ### Properties
+* **AdvancedEventSelectors**: [AdvancedEventSelector](#advancedeventselector)[]: The advanced event selectors that were used to select events for the data store.
 * **Arn**: string (ReadOnly)
 * **CloudWatchLogsLogGroupArn**: string: Specifies a log group name using an Amazon Resource Name (ARN), a unique identifier that represents the log group to which CloudTrail logs will be delivered. Not required unless you specify CloudWatchLogsRoleArn.
 * **CloudWatchLogsRoleArn**: string: Specifies the role for the CloudWatch Logs endpoint to assume to write to a user's log group.
@@ -105,6 +107,21 @@
 * **SnsTopicName**: string: Specifies the name of the Amazon SNS topic defined for notification of log file delivery. The maximum length is 256 characters.
 * **Tags**: [Tag](#tag)[]
 * **TrailName**: string (Identifier)
+
+## AdvancedEventSelector
+### Properties
+* **FieldSelectors**: [AdvancedFieldSelector](#advancedfieldselector)[] (Required): Contains all selector statements in an advanced event selector.
+* **Name**: string: An optional, descriptive name for an advanced event selector, such as "Log data events for only two S3 buckets".
+
+## AdvancedFieldSelector
+### Properties
+* **EndsWith**: string[]: An operator that includes events that match the last few characters of the event record field specified as the value of Field.
+* **Equals**: string[]: An operator that includes events that match the exact value of the event record field specified as the value of Field. This is the only valid operator that you can use with the readOnly, eventCategory, and resources.type fields.
+* **Field**: string (Required): A field in an event record on which to filter events to be logged. Supported fields include readOnly, eventCategory, eventSource (for management events), eventName, resources.type, and resources.ARN.
+* **NotEndsWith**: string[]: An operator that excludes events that match the last few characters of the event record field specified as the value of Field.
+* **NotEquals**: string[]: An operator that excludes events that match the exact value of the event record field specified as the value of Field.
+* **NotStartsWith**: string[]: An operator that excludes events that match the first few characters of the event record field specified as the value of Field.
+* **StartsWith**: string[]: An operator that includes events that match the first few characters of the event record field specified as the value of Field.
 
 ## EventSelector
 ### Properties

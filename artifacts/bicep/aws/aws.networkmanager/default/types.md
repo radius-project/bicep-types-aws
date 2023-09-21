@@ -88,7 +88,7 @@
 * **EdgeLocation**: string (Required): Edge location of the attachment.
 * **Options**: [ConnectAttachmentOptions](#connectattachmentoptions) (Required): Protocol options for connect attachment
 * **OwnerAccountId**: string (ReadOnly): The ID of the attachment account owner.
-* **ProposedSegmentChange**: [ProposedSegmentChange](#proposedsegmentchange) (ReadOnly): The attachment to move from one segment to another.
+* **ProposedSegmentChange**: [ProposedSegmentChange](#proposedsegmentchange): The attachment to move from one segment to another.
 * **ResourceArn**: string (ReadOnly): The attachment resource ARN.
 * **SegmentName**: string (ReadOnly): The name of the segment attachment.
 * **State**: string (ReadOnly): State of the attachment.
@@ -102,9 +102,9 @@
 
 ## ProposedSegmentChange
 ### Properties
-* **AttachmentPolicyRuleNumber**: int: New policy rule number of the attachment
-* **SegmentName**: string: Proposed segment name
-* **Tags**: [Tag](#tag)[]: Proposed tags for the Segment.
+* **AttachmentPolicyRuleNumber**: int: The rule number in the policy document that applies to this change.
+* **SegmentName**: string: The name of the segment to change.
+* **Tags**: [Tag](#tag)[]: The list of key-value tags that changed for the segment.
 
 ## Tag
 ### Properties
@@ -121,8 +121,8 @@
 * **CoreNetworkId**: string (ReadOnly): The ID of the core network.
 * **CreatedAt**: string (ReadOnly): Connect peer creation time.
 * **EdgeLocation**: string (ReadOnly): The Connect peer Regions where edges are located.
-* **InsideCidrBlocks**: string[] (Required, WriteOnly): The inside IP addresses used for a Connect peer configuration.
-* **PeerAddress**: string (Required, WriteOnly): The IP address of the Connect peer.
+* **InsideCidrBlocks**: string[]: The inside IP addresses used for a Connect peer configuration.
+* **PeerAddress**: string (Required): The IP address of the Connect peer.
 * **State**: string (ReadOnly): State of the connect peer.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
@@ -133,17 +133,17 @@
 ## ConnectPeerConfiguration
 ### Properties
 * **BgpConfigurations**: [ConnectPeerBgpConfiguration](#connectpeerbgpconfiguration)[]
-* **CoreNetworkAddress**: string
-* **InsideCidrBlocks**: string[]
-* **PeerAddress**: string
+* **CoreNetworkAddress**: string: The IP address of a core network.
+* **InsideCidrBlocks**: string[]: The inside IP addresses used for a Connect peer configuration.
+* **PeerAddress**: string: The IP address of the Connect peer.
 * **Protocol**: string
 
 ## ConnectPeerBgpConfiguration
 ### Properties
-* **CoreNetworkAddress**: string
-* **CoreNetworkAsn**: int
-* **PeerAddress**: string
-* **PeerAsn**: int
+* **CoreNetworkAddress**: string: The address of a core network.
+* **CoreNetworkAsn**: int: The ASN of the Coret Network.
+* **PeerAddress**: string: The address of a core network Connect peer.
+* **PeerAsn**: int: The ASN of the Connect peer.
 
 ## Tag
 ### Properties
@@ -186,6 +186,8 @@
 
 ## AWS.NetworkManager/DeviceProperties
 ### Properties
+* **AWSLocation**: [AWSLocation](#awslocation): The Amazon Web Services location of the device, if applicable.
+* **CreatedAt**: string (ReadOnly): The date and time that the device was created.
 * **Description**: string: The description of the device.
 * **DeviceArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the device.
 * **DeviceId**: string (ReadOnly, Identifier): The ID of the device.
@@ -198,6 +200,11 @@
 * **Type**: string: The device type.
 * **Vendor**: string: The device vendor.
 
+## AWSLocation
+### Properties
+* **SubnetArn**: string: The Amazon Resource Name (ARN) of the subnet that the device is located in.
+* **Zone**: string: The Zone that the device is located in. Specify the ID of an Availability Zone, Local Zone, Wavelength Zone, or an Outpost.
+
 ## Location
 ### Properties
 * **Address**: string: The physical address.
@@ -206,8 +213,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.NetworkManager/GlobalNetworkProperties
 ### Properties
@@ -245,6 +252,7 @@
 
 ## AWS.NetworkManager/SiteProperties
 ### Properties
+* **CreatedAt**: string (ReadOnly): The date and time that the device was created.
 * **Description**: string: The description of the site.
 * **GlobalNetworkId**: string (Required, Identifier): The ID of the global network.
 * **Location**: [Location](#location): The location of the site.
@@ -260,8 +268,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.NetworkManager/SiteToSiteVpnAttachmentProperties
 ### Properties
@@ -273,13 +281,13 @@
 * **CreatedAt**: string (ReadOnly): Creation time of the attachment.
 * **EdgeLocation**: string (ReadOnly): The Region where the edge is located.
 * **OwnerAccountId**: string (ReadOnly): Owner account of the attachment.
-* **ProposedSegmentChange**: [ProposedSegmentChange](#proposedsegmentchange) (ReadOnly): The attachment to move from one segment to another.
+* **ProposedSegmentChange**: [ProposedSegmentChange](#proposedsegmentchange): The attachment to move from one segment to another.
 * **ResourceArn**: string (ReadOnly): The ARN of the Resource.
 * **SegmentName**: string (ReadOnly): The name of the segment that attachment is in.
 * **State**: string (ReadOnly): The state of the attachment.
 * **Tags**: [Tag](#tag)[]: Tags for the attachment.
 * **UpdatedAt**: string (ReadOnly): Last update time of the attachment.
-* **VpnConnectionArn**: string (Required, WriteOnly): The ARN of the site-to-site VPN attachment.
+* **VpnConnectionArn**: string (Required): The ARN of the site-to-site VPN attachment.
 
 ## ProposedSegmentChange
 ### Properties
@@ -353,7 +361,7 @@
 * **EdgeLocation**: string (ReadOnly): The Region where the edge is located.
 * **Options**: [VpcOptions](#vpcoptions): Vpc options of the attachment.
 * **OwnerAccountId**: string (ReadOnly): Owner account of the attachment.
-* **ProposedSegmentChange**: [ProposedSegmentChange](#proposedsegmentchange) (ReadOnly): The attachment to move from one segment to another.
+* **ProposedSegmentChange**: [ProposedSegmentChange](#proposedsegmentchange): The attachment to move from one segment to another.
 * **ResourceArn**: string (ReadOnly): The ARN of the Resource.
 * **SegmentName**: string (ReadOnly): The name of the segment attachment..
 * **State**: string (ReadOnly): State of the attachment.

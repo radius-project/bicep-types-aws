@@ -1,13 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppFlow-Flow",
   "type": "AWS::AppFlow::Flow",
-  "time": "2023-04-19T19:40:26.955Z",
+  "time": "2023-09-06T21:46:44.924Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/FlowName",
-      "/properties/KMSArn",
-      "/properties/TriggerConfig/ActivateFlowOnCreate"
+      "/properties/KMSArn"
     ],
     "definitions": {
       "AggregationConfig": {
@@ -185,6 +184,29 @@
         "properties": {
           "CustomProperties": {
             "$ref": "#/definitions/CustomProperties"
+          },
+          "DataTransferApi": {
+            "additionalProperties": false,
+            "properties": {
+              "Name": {
+                "maxLength": 64,
+                "pattern": "[\\w/-]+",
+                "type": "string"
+              },
+              "Type": {
+                "enum": [
+                  "SYNC",
+                  "ASYNC",
+                  "AUTOMATIC"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "Name",
+              "Type"
+            ],
+            "type": "object"
           },
           "EntityName": {
             "$ref": "#/definitions/EntityName"
@@ -883,11 +905,53 @@
         ],
         "type": "object"
       },
+      "SAPODataMaxPageSize": {
+        "maximum": 10000,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "SAPODataMaxParallelism": {
+        "maximum": 10,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "SAPODataPaginationConfig": {
+        "additionalProperties": false,
+        "description": "SAP Source connector page size",
+        "properties": {
+          "maxPageSize": {
+            "$ref": "#/definitions/SAPODataMaxPageSize"
+          }
+        },
+        "required": [
+          "maxPageSize"
+        ],
+        "type": "object"
+      },
+      "SAPODataParallelismConfig": {
+        "additionalProperties": false,
+        "description": "SAP Source connector parallelism factor",
+        "properties": {
+          "maxParallelism": {
+            "$ref": "#/definitions/SAPODataMaxParallelism"
+          }
+        },
+        "required": [
+          "maxParallelism"
+        ],
+        "type": "object"
+      },
       "SAPODataSourceProperties": {
         "additionalProperties": false,
         "properties": {
           "ObjectPath": {
             "$ref": "#/definitions/Object"
+          },
+          "paginationConfig": {
+            "$ref": "#/definitions/SAPODataPaginationConfig"
+          },
+          "parallelismConfig": {
+            "$ref": "#/definitions/SAPODataParallelismConfig"
           }
         },
         "required": [
@@ -1293,7 +1357,6 @@
             "type": "array"
           },
           "TaskProperties": {
-            "additionalProperties": false,
             "description": "A Map used to store task related info",
             "items": {
               "$ref": "#/definitions/TaskPropertiesObject"
@@ -1380,10 +1443,6 @@
         "additionalProperties": false,
         "description": "Trigger settings of the flow.",
         "properties": {
-          "ActivateFlowOnCreate": {
-            "description": "Active 'Scheduled' or 'Event' flow after creation. Without activation the default state of such flows upon creation is DRAFT.",
-            "type": "boolean"
-          },
           "TriggerProperties": {
             "$ref": "#/definitions/ScheduledTriggerProperties",
             "description": "Details required based on the type of trigger"
@@ -1605,9 +1664,12 @@
       "update": {
         "permissions": [
           "appflow:UpdateFlow",
+          "appflow:StartFlow",
+          "appflow:StopFlow",
           "appflow:TagResource",
           "appflow:UntagResource",
           "appflow:ListTagsForResource",
+          "appflow:UseConnectorProfile",
           "iam:PassRole",
           "s3:ListAllMyBuckets",
           "s3:GetBucketLocation",
@@ -1646,6 +1708,15 @@
         "maxLength": 256,
         "minLength": 1,
         "pattern": "[a-zA-Z0-9][\\w!@#.-]+",
+        "type": "string"
+      },
+      "FlowStatus": {
+        "description": "Flow activation status for Scheduled- and Event-triggered flows",
+        "enum": [
+          "Active",
+          "Suspended",
+          "Draft"
+        ],
         "type": "string"
       },
       "KMSArn": {
@@ -1693,6 +1764,12 @@
       "TriggerConfig"
     ],
     "sourceUrl": "https://docs.aws.amazon.com/appflow/latest/userguide/what-is-appflow.html",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": true,
+      "tagUpdatable": false,
+      "taggable": true
+    },
     "typeName": "AWS::AppFlow::Flow"
   }
 }

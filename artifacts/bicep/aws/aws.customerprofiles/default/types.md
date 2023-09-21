@@ -1,11 +1,25 @@
 # AWS.CustomerProfiles @ default
 
+## Resource AWS.CustomerProfiles/CalculatedAttributeDefinition@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CustomerProfiles/CalculatedAttributeDefinitionProperties](#awscustomerprofilescalculatedattributedefinitionproperties) (Required): properties of the resource
+
 ## Resource AWS.CustomerProfiles/Domain@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CustomerProfiles/DomainProperties](#awscustomerprofilesdomainproperties) (Required): properties of the resource
+
+## Resource AWS.CustomerProfiles/EventStream@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CustomerProfiles/EventStreamProperties](#awscustomerprofileseventstreamproperties) (Required): properties of the resource
 
 ## Resource AWS.CustomerProfiles/Integration@default
 * **Valid Scope(s)**: Unknown
@@ -21,6 +35,49 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CustomerProfiles/ObjectTypeProperties](#awscustomerprofilesobjecttypeproperties) (Required): properties of the resource
 
+## AWS.CustomerProfiles/CalculatedAttributeDefinitionProperties
+### Properties
+* **AttributeDetails**: [AttributeDetails](#attributedetails) (Required)
+* **CalculatedAttributeName**: string (Required, Identifier)
+* **Conditions**: [Conditions](#conditions)
+* **CreatedAt**: string (ReadOnly): The timestamp of when the calculated attribute definition was created.
+* **Description**: string
+* **DisplayName**: string
+* **DomainName**: string (Required, Identifier)
+* **LastUpdatedAt**: string (ReadOnly): The timestamp of when the calculated attribute definition was most recently edited.
+* **Statistic**: string (Required)
+* **Tags**: [Tag](#tag)[]
+
+## AttributeDetails
+### Properties
+* **Attributes**: [AttributeItem](#attributeitem)[] (Required)
+* **Expression**: string (Required)
+
+## AttributeItem
+### Properties
+* **Name**: string (Required)
+
+## Conditions
+### Properties
+* **ObjectCount**: int
+* **Range**: [Range](#range)
+* **Threshold**: [Threshold](#threshold)
+
+## Range
+### Properties
+* **Unit**: string (Required)
+* **Value**: int (Required)
+
+## Threshold
+### Properties
+* **Operator**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
 ## AWS.CustomerProfiles/DomainProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly): The time of this integration got created
@@ -35,6 +92,27 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## AWS.CustomerProfiles/EventStreamProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): The timestamp of when the export was created.
+* **DestinationDetails**: [EventStream_DestinationDetails](#eventstreamdestinationdetails) (ReadOnly): Details regarding the Kinesis stream.
+* **DomainName**: string (Required, Identifier): The unique name of the domain.
+* **EventStreamArn**: string (ReadOnly): A unique identifier for the event stream.
+* **EventStreamName**: string (Required, Identifier): The name of the event stream.
+* **State**: string (ReadOnly): The operational state of destination stream for export.
+* **Tags**: [Tag](#tag)[]: The tags used to organize, track, or control access for this resource.
+* **Uri**: string (Required)
+
+## EventStream_DestinationDetails
+### Properties
+* **Status**: string (Required)
+* **Uri**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.CustomerProfiles/IntegrationProperties
 ### Properties
@@ -160,6 +238,7 @@
 * **Keys**: [KeyMap](#keymap)[]: A list of unique keys that can be used to map data to the profile.
 * **LastUpdatedAt**: string (ReadOnly): The time of this integration got last updated at.
 * **ObjectTypeName**: string (Identifier): The name of the profile object type.
+* **SourceLastUpdatedTimestampFormat**: string: The format of your sourceLastUpdatedTimestamp that was previously set up.
 * **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the integration.
 * **TemplateId**: string: A unique identifier for the object template.
 

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IVSChat-LoggingConfiguration",
   "type": "AWS::IVSChat::LoggingConfiguration",
-  "time": "2023-03-06T16:59:41.385Z",
+  "time": "2023-08-01T20:13:16.586Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -110,7 +110,8 @@
           "s3:PutBucketPolicy",
           "s3:GetBucketPolicy",
           "iam:CreateServiceLinkedRole",
-          "firehose:TagDeliveryStream"
+          "firehose:TagDeliveryStream",
+          "ivschat:TagResource"
         ]
       },
       "delete": {
@@ -118,17 +119,21 @@
           "ivschat:DeleteLoggingConfiguration",
           "ivschat:GetLoggingConfiguration",
           "logs:DeleteLogDelivery",
-          "logs:ListLogDeliveries"
+          "logs:ListLogDeliveries",
+          "ivschat:UntagResource",
+          "logs:GetLogDelivery"
         ]
       },
       "list": {
         "permissions": [
-          "ivschat:ListLoggingConfigurations"
+          "ivschat:ListLoggingConfigurations",
+          "ivschat:ListTagsForResource"
         ]
       },
       "read": {
         "permissions": [
-          "ivschat:GetLoggingConfiguration"
+          "ivschat:GetLoggingConfiguration",
+          "ivschat:ListTagsForResource"
         ]
       },
       "update": {

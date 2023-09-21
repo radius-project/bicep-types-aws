@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Backup-BackupPlan",
   "type": "AWS::Backup::BackupPlan",
-  "time": "2023-04-19T15:35:37.607Z",
+  "time": "2023-09-13T15:32:47.42Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -85,6 +85,9 @@
           "ScheduleExpression": {
             "type": "string"
           },
+          "ScheduleExpressionTimezone": {
+            "type": "string"
+          },
           "StartWindowMinutes": {
             "type": "number"
           },
@@ -130,6 +133,8 @@
     "handlers": {
       "create": {
         "permissions": [
+          "backup:GetBackupPlan",
+          "backup:TagResource",
           "backup:CreateBackupPlan"
         ]
       },

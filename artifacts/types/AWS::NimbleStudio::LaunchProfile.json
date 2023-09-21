@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NimbleStudio-LaunchProfile",
   "type": "AWS::NimbleStudio::LaunchProfile",
-  "time": "2023-04-17T15:35:05.307Z",
+  "time": "2023-09-13T21:31:08.827Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -229,6 +229,7 @@
       "create": {
         "permissions": [
           "nimble:CreateLaunchProfile",
+          "nimble:GetLaunchProfile",
           "nimble:TagResource",
           "ec2:CreateNetworkInterface",
           "ec2:CreateNetworkInterfacePermission",
@@ -239,6 +240,7 @@
       "delete": {
         "permissions": [
           "nimble:DeleteLaunchProfile",
+          "nimble:GetLaunchProfile",
           "nimble:UntagResource"
         ]
       },
@@ -264,7 +266,12 @@
       },
       "update": {
         "permissions": [
-          "nimble:UpdateLaunchProfile"
+          "nimble:UpdateLaunchProfile",
+          "nimble:GetLaunchProfile",
+          "ec2:CreateNetworkInterface",
+          "ec2:CreateNetworkInterfacePermission",
+          "ec2:DescribeSubnets",
+          "ec2:RunInstances"
         ]
       }
     },

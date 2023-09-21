@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IAM-Role",
   "type": "AWS::IAM::Role",
-  "time": "2023-04-17T15:46:12.006Z",
+  "time": "2023-09-21T05:47:20.193Z",
   "schema": {
     "$schema": "https://raw.githubusercontent.com/aws-cloudformation/cloudformation-resource-schema/master/src/main/resources/schema/provider.definition.schema.v1.json",
     "additionalProperties": false,
@@ -59,7 +59,9 @@
           "iam:CreateRole",
           "iam:PutRolePolicy",
           "iam:AttachRolePolicy",
-          "iam:GetRolePolicy"
+          "iam:GetRolePolicy",
+          "iam:TagRole",
+          "iam:UntagRole"
         ]
       },
       "delete": {
@@ -69,7 +71,9 @@
           "iam:DeleteRolePolicy",
           "iam:GetRole",
           "iam:ListAttachedRolePolicies",
-          "iam:ListRolePolicies"
+          "iam:ListRolePolicies",
+          "iam:TagRole",
+          "iam:UntagRole"
         ]
       },
       "list": {
@@ -134,6 +138,7 @@
         "type": "integer"
       },
       "Path": {
+        "default": "/",
         "description": "The path to the role.",
         "type": "string"
       },

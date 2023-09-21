@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Omics-AnnotationStore",
   "type": "AWS::Omics::AnnotationStore",
-  "time": "2023-04-03T16:04:13.936Z",
+  "time": "2023-08-20T23:16:54.259Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -181,12 +181,19 @@
       "create": {
         "permissions": [
           "omics:CreateAnnotationStore",
-          "omics:TagResource"
+          "omics:TagResource",
+          "kms:DescribeKey",
+          "kms:GenerateDataKey",
+          "kms:CreateGrant",
+          "ram:AcceptResourceShareInvitation",
+          "ram:GetResourceShareInvitations",
+          "omics:GetAnnotationStore"
         ]
       },
       "delete": {
         "permissions": [
-          "omics:DeleteAnnotationStore"
+          "omics:DeleteAnnotationStore",
+          "omics:ListAnnotationStores"
         ]
       },
       "list": {
@@ -203,7 +210,9 @@
         "permissions": [
           "omics:UpdateAnnotationStore",
           "omics:TagResource",
-          "omics:UntagResource"
+          "omics:UntagResource",
+          "omics:GetAnnotationStore",
+          "omics:ListTagsForResource"
         ]
       }
     },

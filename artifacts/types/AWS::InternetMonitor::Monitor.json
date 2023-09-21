@@ -1,18 +1,63 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-InternetMonitor-Monitor",
   "type": "AWS::InternetMonitor::Monitor",
-  "time": "2023-04-19T15:36:42.984Z",
+  "time": "2023-09-19T18:37:42.839Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/MonitorName"
     ],
     "definitions": {
+      "HealthEventsConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "AvailabilityLocalHealthEventsConfig": {
+            "$ref": "#/definitions/LocalHealthEventsConfig"
+          },
+          "AvailabilityScoreThreshold": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "number"
+          },
+          "PerformanceLocalHealthEventsConfig": {
+            "$ref": "#/definitions/LocalHealthEventsConfig"
+          },
+          "PerformanceScoreThreshold": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
       "InternetMeasurementsLogDelivery": {
         "additionalProperties": false,
         "properties": {
           "S3Config": {
             "$ref": "#/definitions/S3Config"
+          }
+        },
+        "type": "object"
+      },
+      "LocalHealthEventsConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "HealthScoreThreshold": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "number"
+          },
+          "MinTrafficImpact": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "number"
+          },
+          "Status": {
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
           }
         },
         "type": "object"
@@ -81,32 +126,55 @@
       "create": {
         "permissions": [
           "internetmonitor:CreateMonitor",
+          "internetmonitor:GetMonitor",
           "internetmonitor:TagResource",
-          "internetmonitor:UntagResource"
+          "internetmonitor:UntagResource",
+          "logs:CreateLogDelivery",
+          "logs:GetLogDelivery",
+          "s3:GetBucketPolicy",
+          "s3:PutBucketPolicy",
+          "s3:ListBucket",
+          "iam:PassRole"
         ]
       },
       "delete": {
         "permissions": [
-          "internetmonitor:DeleteMonitor"
+          "internetmonitor:UpdateMonitor",
+          "internetmonitor:DeleteMonitor",
+          "internetmonitor:GetMonitor",
+          "logs:DeleteLogDelivery"
         ]
       },
       "list": {
         "permissions": [
-          "internetmonitor:ListMonitors"
+          "internetmonitor:ListMonitors",
+          "internetmonitor:GetMonitor",
+          "logs:GetLogDelivery"
         ]
       },
       "read": {
         "permissions": [
           "internetmonitor:GetMonitor",
-          "internetmonitor:ListTagsForResource"
+          "internetmonitor:ListTagsForResource",
+          "logs:GetLogDelivery"
         ]
       },
       "update": {
         "permissions": [
           "internetmonitor:CreateMonitor",
+          "internetmonitor:GetMonitor",
           "internetmonitor:UpdateMonitor",
           "internetmonitor:TagResource",
-          "internetmonitor:UntagResource"
+          "internetmonitor:UntagResource",
+          "logs:CreateLogDelivery",
+          "logs:GetLogDelivery",
+          "logs:UpdateLogDelivery",
+          "logs:DeleteLogDelivery",
+          "logs:ListLogDeliveries",
+          "s3:GetBucketPolicy",
+          "s3:PutBucketPolicy",
+          "s3:ListBucket",
+          "iam:PassRole"
         ]
       }
     },
@@ -116,6 +184,9 @@
     "properties": {
       "CreatedAt": {
         "$ref": "#/definitions/iso8601UTC"
+      },
+      "HealthEventsConfig": {
+        "$ref": "#/definitions/HealthEventsConfig"
       },
       "InternetMeasurementsLogDelivery": {
         "$ref": "#/definitions/InternetMeasurementsLogDelivery"

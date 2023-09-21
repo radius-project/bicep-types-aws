@@ -68,6 +68,7 @@
 ## AWS.ECR/RepositoryProperties
 ### Properties
 * **Arn**: string (ReadOnly)
+* **EmptyOnDelete**: bool (WriteOnly)
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
 * **ImageScanningConfiguration**: [ImageScanningConfiguration](#imagescanningconfiguration)
 * **ImageTagMutability**: string: The image tag mutability setting for the repository.

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EFS-AccessPoint",
   "type": "AWS::EFS::AccessPoint",
-  "time": "2023-03-28T15:33:00.387Z",
+  "time": "2023-08-22T13:28:35.193Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -106,12 +106,15 @@
     "handlers": {
       "create": {
         "permissions": [
-          "elasticfilesystem:CreateAccessPoint"
+          "elasticfilesystem:CreateAccessPoint",
+          "elasticfilesystem:TagResource",
+          "elasticfilesystem:DescribeAccessPoints"
         ]
       },
       "delete": {
         "permissions": [
-          "elasticfilesystem:DeleteAccessPoint"
+          "elasticfilesystem:DeleteAccessPoint",
+          "elasticfilesystem:DescribeAccessPoints"
         ]
       },
       "list": {
@@ -176,6 +179,13 @@
       "FileSystemId"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/AccessPointTags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::EFS::AccessPoint"
   }
 }

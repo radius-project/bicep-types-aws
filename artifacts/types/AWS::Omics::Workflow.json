@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Omics-Workflow",
   "type": "AWS::Omics::Workflow",
-  "time": "2023-04-03T15:35:26.332Z",
+  "time": "2023-08-20T22:52:52.931Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,9 +9,18 @@
       "/properties/Engine",
       "/properties/Main",
       "/properties/ParameterTemplate",
-      "/properties/StorageCapacity"
+      "/properties/StorageCapacity",
+      "/properties/Accelerators"
     ],
     "definitions": {
+      "Accelerators": {
+        "enum": [
+          "GPU"
+        ],
+        "maxLength": 64,
+        "minLength": 1,
+        "type": "string"
+      },
       "TagMap": {
         "additionalProperties": false,
         "description": "A map of resource tags",
@@ -28,7 +37,8 @@
       "WorkflowEngine": {
         "enum": [
           "WDL",
-          "NEXTFLOW"
+          "NEXTFLOW",
+          "CWL"
         ],
         "maxLength": 64,
         "minLength": 1,
@@ -86,6 +96,7 @@
       "create": {
         "permissions": [
           "omics:CreateWorkflow",
+          "omics:GetWorkflow",
           "omics:TagResource",
           "s3:PutObject",
           "s3:GetObject",
@@ -101,7 +112,8 @@
       },
       "delete": {
         "permissions": [
-          "omics:DeleteWorkflow"
+          "omics:DeleteWorkflow",
+          "omics:GetWorkflow"
         ]
       },
       "list": {
@@ -117,7 +129,9 @@
       "update": {
         "permissions": [
           "omics:UpdateWorkflow",
+          "omics:GetWorkflow",
           "omics:TagResource",
+          "omics:ListTagsForResource",
           "omics:UntagResource"
         ]
       }
@@ -126,6 +140,9 @@
       "/properties/Id"
     ],
     "properties": {
+      "Accelerators": {
+        "$ref": "#/definitions/Accelerators"
+      },
       "Arn": {
         "maxLength": 128,
         "minLength": 1,
