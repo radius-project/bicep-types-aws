@@ -25,6 +25,7 @@ def generate_reference_table(base_directory, output_filename):
         output_file.write("| ------------- | --------------------- | ----- |\n")
 
         filepaths = os.listdir(base_directory)
+        filepaths.sort()
 
         for filepath in filepaths:
             with open(f"{base_directory}/{filepath}", "r") as input_file:
@@ -42,10 +43,14 @@ def generate_reference_table(base_directory, output_filename):
                 primary_identifiers_output = ", ".join(primary_identifiers)
                 notes_output = ""
                 if is_nonidempotent:
-                    notes_output = "\u26a0 This resource type is non-idempotent. It may not be fully supported by Radius."
+                    notes_output = "\u26a0 This resource type is non-idempotent. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/supported_resources.md) for more information."
+                
+                aws_resource_type = resource_type.split("::")[1].lower()
+                resource_api_version = "default"
+                resource_link = f"https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.{aws_resource_type}/{resource_api_version}/types.md"
 
                 output_file.write(
-                    f"| {resource_type} | {primary_identifiers_output} | {notes_output} |\n"
+                    f"| **[{resource_type}]({resource_link})** | {primary_identifiers_output} | {notes_output} |\n"
                 )
 
 
