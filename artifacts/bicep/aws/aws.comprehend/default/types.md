@@ -1,11 +1,77 @@
 # AWS.Comprehend @ default
 
+## Resource AWS.Comprehend/DocumentClassifier@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Comprehend/DocumentClassifierProperties](#awscomprehenddocumentclassifierproperties) (Required): properties of the resource
+
 ## Resource AWS.Comprehend/Flywheel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Comprehend/FlywheelProperties](#awscomprehendflywheelproperties) (Required): properties of the resource
+
+## AWS.Comprehend/DocumentClassifierProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **DataAccessRoleArn**: string (Required)
+* **DocumentClassifierName**: string (Required)
+* **InputDataConfig**: [DocumentClassifierInputDataConfig](#documentclassifierinputdataconfig) (Required)
+* **LanguageCode**: string (Required)
+* **Mode**: string
+* **ModelKmsKeyId**: string
+* **ModelPolicy**: string
+* **OutputDataConfig**: [DocumentClassifierOutputDataConfig](#documentclassifieroutputdataconfig)
+* **Tags**: [Tag](#tag)[]
+* **VersionName**: string
+* **VolumeKmsKeyId**: string
+* **VpcConfig**: [VpcConfig](#vpcconfig)
+
+## DocumentClassifierInputDataConfig
+### Properties
+* **AugmentedManifests**: [AugmentedManifestsListItem](#augmentedmanifestslistitem)[]
+* **DataFormat**: string
+* **DocumentReaderConfig**: [DocumentReaderConfig](#documentreaderconfig)
+* **Documents**: [DocumentClassifierDocuments](#documentclassifierdocuments)
+* **DocumentType**: string
+* **LabelDelimiter**: string
+* **S3Uri**: string
+* **TestS3Uri**: string
+
+## AugmentedManifestsListItem
+### Properties
+* **AttributeNames**: string[] (Required)
+* **S3Uri**: string (Required)
+* **Split**: string
+
+## DocumentReaderConfig
+### Properties
+* **DocumentReadAction**: string (Required)
+* **DocumentReadMode**: string
+* **FeatureTypes**: string[]
+
+## DocumentClassifierDocuments
+### Properties
+* **S3Uri**: string (Required)
+* **TestS3Uri**: string
+
+## DocumentClassifierOutputDataConfig
+### Properties
+* **KmsKeyId**: string
+* **S3Uri**: string
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required)
+* **Subnets**: string[] (Required)
 
 ## AWS.Comprehend/FlywheelProperties
 ### Properties

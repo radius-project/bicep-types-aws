@@ -1,15 +1,14 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-S3-AccessPoint",
   "type": "AWS::S3::AccessPoint",
-  "time": "2023-04-03T15:12:18.093Z",
+  "time": "2023-06-28T15:03:30.551Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name",
       "/properties/Bucket",
       "/properties/BucketAccountId",
-      "/properties/VpcConfiguration",
-      "/properties/PublicAccessBlockConfiguration"
+      "/properties/VpcConfiguration"
     ],
     "definitions": {
       "Arn": {
@@ -73,8 +72,7 @@
       "read": {
         "permissions": [
           "s3:GetAccessPoint",
-          "s3:GetAccessPointPolicy",
-          "s3:GetAccessPointPolicyStatus"
+          "s3:GetAccessPointPolicy"
         ]
       },
       "update": {
@@ -134,19 +132,6 @@
         "description": "The Access Point Policy you want to apply to this access point.",
         "type": "object"
       },
-      "PolicyStatus": {
-        "properties": {
-          "IsPublic": {
-            "description": "Specifies whether the policy is public or not.",
-            "enum": [
-              "true",
-              "false"
-            ],
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
       "PublicAccessBlockConfiguration": {
         "$ref": "#/definitions/PublicAccessBlockConfiguration",
         "description": "The PublicAccessBlock configuration that you want to apply to this Access Point. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status 'The Meaning of Public' in the Amazon Simple Storage Service Developer Guide."
@@ -157,7 +142,6 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/Name",
       "/properties/Alias",
       "/properties/NetworkOrigin",
       "/properties/Arn"

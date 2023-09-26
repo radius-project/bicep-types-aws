@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudWatch-MetricStream",
   "type": "AWS::CloudWatch::MetricStream",
-  "time": "2023-04-19T23:48:30.235Z",
+  "time": "2023-06-30T05:50:33.927Z",
   "schema": {
     "additionalProperties": false,
     "anyOf": [
@@ -131,14 +131,15 @@
             "type": "string"
           },
           "Value": {
-            "description": "An optional string, which you can use to describe or define the tag.",
+            "description": "String which you can use to describe or define the tag.",
             "maxLength": 256,
             "minLength": 1,
             "type": "string"
           }
         },
         "required": [
-          "Key"
+          "Key",
+          "Value"
         ],
         "type": "object"
       }
@@ -148,12 +149,15 @@
       "create": {
         "permissions": [
           "cloudwatch:PutMetricStream",
+          "cloudwatch:GetMetricStream",
+          "cloudwatch:TagResource",
           "iam:PassRole"
         ]
       },
       "delete": {
         "permissions": [
-          "cloudwatch:DeleteMetricStream"
+          "cloudwatch:DeleteMetricStream",
+          "cloudwatch:GetMetricStream"
         ]
       },
       "list": {
@@ -169,6 +173,9 @@
       "update": {
         "permissions": [
           "cloudwatch:PutMetricStream",
+          "cloudwatch:GetMetricStream",
+          "cloudwatch:TagResource",
+          "cloudwatch:UntagResource",
           "iam:PassRole"
         ]
       }
@@ -290,6 +297,7 @@
       "OutputFormat"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-cloudwatch.git",
+    "taggable": true,
     "typeName": "AWS::CloudWatch::MetricStream",
     "writeOnlyProperties": [
       "/properties/Tags"

@@ -127,6 +127,7 @@
 * **MagneticStoreWriteProperties**: [Table_MagneticStoreWriteProperties](#tablemagneticstorewriteproperties): The properties that determine whether magnetic store writes are enabled.
 * **Name**: string (ReadOnly): The table name exposed as a read-only attribute.
 * **RetentionProperties**: [Table_RetentionProperties](#tableretentionproperties): The retention duration of the memory store and the magnetic store.
+* **Schema**: [Table_Schema](#tableschema): A Schema specifies the expected data model of the table.
 * **TableName**: string (Identifier): The name for the table. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the table name.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
@@ -150,6 +151,16 @@
 ### Properties
 * **MagneticStoreRetentionPeriodInDays**: string: The duration for which data must be stored in the magnetic store.
 * **MemoryStoreRetentionPeriodInHours**: string: The duration for which data must be stored in the memory store.
+
+## Table_Schema
+### Properties
+* **CompositePartitionKey**: [PartitionKey](#partitionkey)[]
+
+## PartitionKey
+### Properties
+* **EnforcementInRecord**: string
+* **Name**: string
+* **Type**: string (Required)
 
 ## Tag
 ### Properties

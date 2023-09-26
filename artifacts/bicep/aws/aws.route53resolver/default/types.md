@@ -21,6 +21,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Route53Resolver/FirewallRuleGroupAssociationProperties](#awsroute53resolverfirewallrulegroupassociationproperties) (Required): properties of the resource
 
+## Resource AWS.Route53Resolver/OutpostResolver@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53Resolver/OutpostResolverProperties](#awsroute53resolveroutpostresolverproperties) (Required): properties of the resource
+
 ## Resource AWS.Route53Resolver/ResolverRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -101,6 +108,26 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## AWS.Route53Resolver/OutpostResolverProperties
+### Properties
+* **Arn**: string (ReadOnly): The OutpostResolver ARN.
+* **CreationTime**: string (ReadOnly): The OutpostResolver creation time
+* **CreatorRequestId**: string (ReadOnly): The id of the creator request.
+* **Id**: string (ReadOnly, Identifier): Id
+* **InstanceCount**: int: The number of OutpostResolvers.
+* **ModificationTime**: string (ReadOnly): The OutpostResolver last modified time
+* **Name**: string (Required): The OutpostResolver name.
+* **OutpostArn**: string (Required): The Outpost ARN.
+* **PreferredInstanceType**: string (Required): The OutpostResolver instance type.
+* **Status**: string (ReadOnly): The OutpostResolver status, possible values are CREATING, OPERATIONAL, UPDATING, DELETING, ACTION_NEEDED, FAILED_CREATION and FAILED_DELETION.
+* **StatusMessage**: string (ReadOnly): The OutpostResolver status message.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.Route53Resolver/ResolverRuleProperties
 ### Properties

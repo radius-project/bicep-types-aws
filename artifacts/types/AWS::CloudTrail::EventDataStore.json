@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudTrail-EventDataStore",
   "type": "AWS::CloudTrail::EventDataStore",
-  "time": "2023-01-31T20:16:51.721Z",
+  "time": "2023-08-14T16:31:56.527Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -159,12 +159,15 @@
           "iam:GetRole",
           "iam:CreateServiceLinkedRole",
           "organizations:DescribeOrganization",
-          "organizations:ListAWSServiceAccessForOrganization"
+          "organizations:ListAWSServiceAccessForOrganization",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
         ]
       },
       "delete": {
         "permissions": [
-          "CloudTrail:DeleteEventDataStore"
+          "CloudTrail:DeleteEventDataStore",
+          "CloudTrail:GetEventDataStore"
         ]
       },
       "list": {
@@ -187,6 +190,9 @@
           "CloudTrail:RestoreEventDataStore",
           "CloudTrail:AddTags",
           "CloudTrail:RemoveTags",
+          "CloudTrail:StartEventDataStoreIngestion",
+          "CloudTrail:StopEventDataStoreIngestion",
+          "CloudTrail:GetEventDataStore",
           "iam:PassRole",
           "iam:GetRole",
           "iam:CreateServiceLinkedRole",
@@ -216,6 +222,10 @@
         "description": "The ARN of the event data store.",
         "type": "string"
       },
+      "IngestionEnabled": {
+        "description": "Indicates whether the event data store is ingesting events.",
+        "type": "boolean"
+      },
       "KmsKeyId": {
         "description": "Specifies the KMS key ID to use to encrypt the events delivered by CloudTrail. The value can be an alias name prefixed by 'alias/', a fully specified ARN to an alias, a fully specified ARN to a key, or a globally unique identifier.",
         "type": "string"
@@ -237,7 +247,7 @@
         "type": "integer"
       },
       "Status": {
-        "description": "The status of an event data store. Values are ENABLED and PENDING_DELETION.",
+        "description": "The status of an event data store. Values are STARTING_INGESTION, ENABLED, STOPPING_INGESTION, STOPPED_INGESTION and PENDING_DELETION.",
         "type": "string"
       },
       "Tags": {

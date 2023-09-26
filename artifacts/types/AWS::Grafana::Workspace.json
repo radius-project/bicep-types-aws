@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Grafana-Workspace",
   "type": "AWS::Grafana::Workspace",
-  "time": "2023-04-13T19:06:41.394Z",
+  "time": "2023-09-14T21:23:44.377Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -265,11 +265,13 @@
           "FAILED",
           "UPDATING",
           "UPGRADING",
+          "VERSION_UPDATING",
           "DELETION_FAILED",
           "CREATION_FAILED",
           "UPDATE_FAILED",
           "UPGRADE_FAILED",
-          "LICENSE_REMOVAL_FAILED"
+          "LICENSE_REMOVAL_FAILED",
+          "VERSION_UPDATE_FAILED"
         ],
         "type": "string"
       }
@@ -279,6 +281,9 @@
       "create": {
         "permissions": [
           "grafana:CreateWorkspace",
+          "grafana:DescribeWorkspace",
+          "grafana:DescribeWorkspaceAuthentication",
+          "grafana:DescribeWorkspaceConfiguration",
           "grafana:UpdateWorkspaceAuthentication",
           "sso:DescribeRegisteredRegions",
           "sso:CreateManagedApplicationInstance",
@@ -297,6 +302,9 @@
       "delete": {
         "permissions": [
           "grafana:DeleteWorkspace",
+          "grafana:DescribeWorkspace",
+          "grafana:DescribeWorkspaceAuthentication",
+          "grafana:DescribeWorkspaceConfiguration",
           "sso:DeleteManagedApplicationInstance",
           "sso:DescribeRegisteredRegions"
         ]
@@ -304,19 +312,25 @@
       "list": {
         "permissions": [
           "grafana:ListWorkspaces",
-          "grafana:DescribeWorkspaceAuthentication"
+          "grafana:DescribeWorkspaceAuthentication",
+          "grafana:DescribeWorkspaceConfiguration"
         ]
       },
       "read": {
         "permissions": [
           "grafana:DescribeWorkspace",
-          "grafana:DescribeWorkspaceAuthentication"
+          "grafana:DescribeWorkspaceAuthentication",
+          "grafana:DescribeWorkspaceConfiguration"
         ]
       },
       "update": {
         "permissions": [
+          "grafana:DescribeWorkspace",
+          "grafana:DescribeWorkspaceAuthentication",
+          "grafana:DescribeWorkspaceConfiguration",
           "grafana:UpdateWorkspace",
           "grafana:UpdateWorkspaceAuthentication",
+          "grafana:UpdateWorkspaceConfiguration",
           "sso:DescribeRegisteredRegions",
           "sso:CreateManagedApplicationInstance",
           "ec2:GetManagedPrefixListEntries",
@@ -378,7 +392,7 @@
         "type": "string"
       },
       "GrafanaVersion": {
-        "description": "Version of Grafana the workspace is currently using.",
+        "description": "The version of Grafana to support in your workspace.",
         "maxLength": 255,
         "minLength": 1,
         "type": "string"
@@ -460,7 +474,6 @@
       "/properties/SamlConfigurationStatus",
       "/properties/Endpoint",
       "/properties/Status",
-      "/properties/GrafanaVersion",
       "/properties/CreationTimestamp",
       "/properties/ModificationTimestamp"
     ],

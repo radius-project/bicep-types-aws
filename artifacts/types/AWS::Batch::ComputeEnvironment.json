@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Batch-ComputeEnvironment",
   "type": "AWS::Batch::ComputeEnvironment",
-  "time": "2023-03-28T16:02:44.284Z",
+  "time": "2023-09-21T13:38:38.256Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -205,7 +205,11 @@
       },
       "delete": {
         "permissions": [
-          "Batch:DeleteComputeEnvironment"
+          "Batch:DeleteComputeEnvironment",
+          "Batch:DescribeComputeEnvironments",
+          "Batch:UpdateComputeEnvironment",
+          "Iam:PassRole",
+          "Eks:DescribeCluster"
         ]
       },
       "list": {
@@ -221,8 +225,11 @@
       "update": {
         "permissions": [
           "Batch:UpdateComputeEnvironment",
+          "Batch:DescribeComputeEnvironments",
           "Batch:TagResource",
-          "Batch:UnTagResource"
+          "Batch:UnTagResource",
+          "Iam:PassRole",
+          "Eks:DescribeCluster"
         ]
       }
     },

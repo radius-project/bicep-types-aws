@@ -1,0 +1,63 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaTailor-ChannelPolicy",
+  "type": "AWS::MediaTailor::ChannelPolicy",
+  "time": "2023-09-13T15:34:41.029Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ChannelName"
+    ],
+    "description": "Definition of AWS::MediaTailor::ChannelPolicy Resource Type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "mediatailor:PutChannelPolicy",
+          "mediatailor:GetChannelPolicy"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "mediatailor:DeleteChannelPolicy",
+          "mediatailor:GetChannelPolicy"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mediatailor:GetChannelPolicy"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "mediatailor:PutChannelPolicy",
+          "mediatailor:GetChannelPolicy"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ChannelName"
+    ],
+    "properties": {
+      "ChannelName": {
+        "type": "string"
+      },
+      "Policy": {
+        "description": "\u003cp\u003eThe IAM policy for the channel. IAM policies are used to control access to your channel.\u003c/p\u003e",
+        "type": [
+          "object",
+          "string"
+        ]
+      }
+    },
+    "required": [
+      "ChannelName",
+      "Policy"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
+    "typeName": "AWS::MediaTailor::ChannelPolicy"
+  }
+}

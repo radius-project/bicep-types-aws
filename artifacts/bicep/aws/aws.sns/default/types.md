@@ -7,6 +7,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SNS/TopicProperties](#awssnstopicproperties): properties of the resource
 
+## Resource AWS.SNS/TopicInlinePolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SNS/TopicInlinePolicyProperties](#awssnstopicinlinepolicyproperties) (Required): properties of the resource
+
 ## AWS.SNS/TopicProperties
 ### Properties
 * **ContentBasedDeduplication**: bool: Enables content-based deduplication for FIFO topics. By default, ContentBasedDeduplication is set to false. If you create a FIFO topic and this attribute is false, you must specify a value for the MessageDeduplicationId parameter for the Publish action.
@@ -49,4 +56,12 @@ If you don't specify a name, AWS CloudFormation generates a unique physical ID a
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, `_`, `.`, `/`, `=`, `+`, and `-`.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 characters in length.
+
+## AWS.SNS/TopicInlinePolicyProperties
+### Properties
+* **PolicyDocument**: [TopicInlinePolicy_PolicyDocument](#topicinlinepolicypolicydocument) (Required): A policy document that contains permissions to add to the specified SNS topics.
+* **TopicArn**: string (Required, Identifier): The Amazon Resource Name (ARN) of the topic to which you want to add the policy.
+
+## TopicInlinePolicy_PolicyDocument
+### Properties
 

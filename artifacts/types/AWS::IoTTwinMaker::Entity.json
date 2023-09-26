@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTTwinMaker-Entity",
   "type": "AWS::IoTTwinMaker::Entity",
-  "time": "2023-04-19T17:22:17.17Z",
+  "time": "2023-09-26T00:15:29.491Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -366,16 +366,29 @@
           "iottwinmaker:GetWorkspace",
           "iottwinmaker:CreateEntity",
           "iottwinmaker:GetEntity",
-          "iotsitewise:ListTagsForResource"
+          "iottwinmaker:ListTagsForResource",
+          "iottwinmaker:TagResource"
         ]
       },
       "delete": {
         "permissions": [
+          "iottwinmaker:GetEntity",
           "iottwinmaker:GetWorkspace",
           "iottwinmaker:DeleteEntity"
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "WorkspaceId": {
+              "$ref": "resource-schema.json#/properties/WorkspaceId",
+              "type": "string"
+            }
+          },
+          "required": [
+            "WorkspaceId"
+          ]
+        },
         "permissions": [
           "iottwinmaker:GetWorkspace",
           "iottwinmaker:ListTagsForResource",
@@ -385,17 +398,18 @@
       },
       "read": {
         "permissions": [
-          "iottwinmaker:GetWorkspace",
           "iottwinmaker:GetComponentType",
           "iottwinmaker:GetEntity",
+          "iottwinmaker:GetWorkspace",
           "iottwinmaker:ListEntities",
           "iottwinmaker:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
-          "iottwinmaker:GetWorkspace",
           "iottwinmaker:GetComponentType",
+          "iottwinmaker:GetEntity",
+          "iottwinmaker:GetWorkspace",
           "iottwinmaker:ListTagsForResource",
           "iottwinmaker:TagResource",
           "iottwinmaker:UntagResource",
@@ -500,6 +514,7 @@
       "WorkspaceId",
       "EntityName"
     ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-iottwinmaker",
     "tagging": {
       "cloudFormationSystemTags": true,
       "tagOnCreate": true,

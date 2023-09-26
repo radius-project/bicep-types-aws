@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Omics-VariantStore",
   "type": "AWS::Omics::VariantStore",
-  "time": "2023-04-03T16:04:11.663Z",
+  "time": "2023-09-22T23:07:14.472Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -77,12 +77,19 @@
       "create": {
         "permissions": [
           "omics:CreateVariantStore",
-          "omics:TagResource"
+          "omics:TagResource",
+          "kms:DescribeKey",
+          "kms:GenerateDataKey",
+          "kms:CreateGrant",
+          "ram:AcceptResourceShareInvitation",
+          "ram:GetResourceShareInvitations",
+          "omics:GetVariantStore"
         ]
       },
       "delete": {
         "permissions": [
-          "omics:DeleteVariantStore"
+          "omics:DeleteVariantStore",
+          "omics:ListVariantStores"
         ]
       },
       "list": {
@@ -99,7 +106,9 @@
         "permissions": [
           "omics:UpdateVariantStore",
           "omics:TagResource",
-          "omics:UntagResource"
+          "omics:UntagResource",
+          "omics:ListTagsForResource",
+          "omics:GetVariantStore"
         ]
       }
     },

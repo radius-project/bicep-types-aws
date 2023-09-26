@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Athena-PreparedStatement",
   "type": "AWS::Athena::PreparedStatement",
-  "time": "2023-02-03T18:37:35.647Z",
+  "time": "2023-09-18T15:23:48.415Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -12,15 +12,27 @@
     "handlers": {
       "create": {
         "permissions": [
-          "athena:CreatePreparedStatement"
+          "athena:CreatePreparedStatement",
+          "athena:GetPreparedStatement"
         ]
       },
       "delete": {
         "permissions": [
-          "athena:DeletePreparedStatement"
+          "athena:DeletePreparedStatement",
+          "athena:GetPreparedStatement"
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "WorkGroup": {
+              "$ref": "resource-schema.json#/properties/WorkGroup"
+            }
+          },
+          "required": [
+            "WorkGroup"
+          ]
+        },
         "permissions": [
           "athena:ListPreparedStatements"
         ]

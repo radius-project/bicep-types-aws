@@ -14,6 +14,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.S3/BucketProperties](#awss3bucketproperties): properties of the resource
 
+## Resource AWS.S3/BucketPolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.S3/BucketPolicyProperties](#awss3bucketpolicyproperties) (Required): properties of the resource
+
 ## Resource AWS.S3/MultiRegionAccessPointPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -34,19 +41,14 @@
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified accesspoint.
 * **Bucket**: string (Required): The name of the bucket that you want to associate this Access Point with.
 * **BucketAccountId**: string: The AWS account ID associated with the S3 bucket associated with this access point.
-* **Name**: string (ReadOnly, Identifier): The name you want to assign to this Access Point. If you don't specify a name, AWS CloudFormation generates a unique ID and uses that ID for the access point name.
+* **Name**: string (Identifier): The name you want to assign to this Access Point. If you don't specify a name, AWS CloudFormation generates a unique ID and uses that ID for the access point name.
 * **NetworkOrigin**: string (ReadOnly): Indicates whether this Access Point allows access from the public Internet. If VpcConfiguration is specified for this Access Point, then NetworkOrigin is VPC, and the Access Point doesn't allow access from the public Internet. Otherwise, NetworkOrigin is Internet, and the Access Point allows access from the public Internet, subject to the Access Point and bucket access policies.
 * **Policy**: [AccessPoint_Policy](#accesspointpolicy): The Access Point Policy you want to apply to this access point.
-* **PolicyStatus**: [AccessPoint_PolicyStatus](#accesspointpolicystatus)
 * **PublicAccessBlockConfiguration**: [PublicAccessBlockConfiguration](#publicaccessblockconfiguration): The PublicAccessBlock configuration that you want to apply to this Access Point. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status 'The Meaning of Public' in the Amazon Simple Storage Service Developer Guide.
 * **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration): If you include this field, Amazon S3 restricts access to this Access Point to requests from the specified Virtual Private Cloud (VPC).
 
 ## AccessPoint_Policy
 ### Properties
-
-## AccessPoint_PolicyStatus
-### Properties
-* **IsPublic**: string: Specifies whether the policy is public or not.
 
 ## PublicAccessBlockConfiguration
 ### Properties
@@ -67,7 +69,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ## AWS.S3/BucketProperties
 ### Properties
 * **AccelerateConfiguration**: [AccelerateConfiguration](#accelerateconfiguration): Configuration for the transfer acceleration state.
-* **AccessControl**: string: A canned access control list (ACL) that grants predefined permissions to the bucket.
+* **AccessControl**: string (WriteOnly): A canned access control list (ACL) that grants predefined permissions to the bucket.
 * **AnalyticsConfigurations**: [AnalyticsConfiguration](#analyticsconfiguration)[]: The configuration and any analyses for the analytics filter of an Amazon S3 bucket.
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified bucket.
 * **BucketEncryption**: [BucketEncryption](#bucketencryption)
@@ -135,7 +137,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 
 ## ServerSideEncryptionByDefault
 ### Properties
-* **KMSMasterKeyID**: string: "KMSMasterKeyID" can only be used when you set the value of SSEAlgorithm as aws:kms.
+* **KMSMasterKeyID**: string: "KMSMasterKeyID" can only be used when you set the value of SSEAlgorithm as aws:kms or aws:kms:dsse.
 * **SSEAlgorithm**: string (Required)
 
 ## CorsConfiguration
@@ -422,6 +424,11 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ### Properties
 * **HttpErrorCodeReturnedEquals**: string: The HTTP error code when the redirect is applied. 
 * **KeyPrefixEquals**: string: The object key name prefix when the redirect is applied.
+
+## AWS.S3/BucketPolicyProperties
+### Properties
+* **Bucket**: string (Required, Identifier): The name of the Amazon S3 bucket to which the policy applies.
+* **PolicyDocument**: [BucketPolicy_PolicyDocument](#bucketpolicypolicydocument) | string (Required): A policy document containing permissions to add to the specified bucket. In IAM, you must provide policy documents in JSON format. However, in CloudFormation you can provide the policy in JSON or YAML format because CloudFormation converts YAML to JSON before submitting it to IAM.
 
 ## AWS.S3/MultiRegionAccessPointPolicyProperties
 ### Properties
