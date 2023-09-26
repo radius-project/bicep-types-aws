@@ -1,0 +1,153 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaTailor-LiveSource",
+  "type": "AWS::MediaTailor::LiveSource",
+  "time": "2023-09-26T15:40:19.5Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/LiveSourceName",
+      "/properties/SourceLocationName"
+    ],
+    "definitions": {
+      "HttpPackageConfiguration": {
+        "additionalProperties": false,
+        "description": "\u003cp\u003eThe HTTP package configuration properties for the requested VOD source.\u003c/p\u003e",
+        "properties": {
+          "Path": {
+            "description": "\u003cp\u003eThe relative path to the URL for this VOD source. This is combined with \u003ccode\u003eSourceLocation::HttpConfiguration::BaseUrl\u003c/code\u003e to form a valid URL.\u003c/p\u003e",
+            "type": "string"
+          },
+          "SourceGroup": {
+            "description": "\u003cp\u003eThe name of the source group. This has to match one of the \u003ccode\u003eChannel::Outputs::SourceGroup\u003c/code\u003e.\u003c/p\u003e",
+            "type": "string"
+          },
+          "Type": {
+            "$ref": "#/definitions/Type"
+          }
+        },
+        "required": [
+          "Path",
+          "SourceGroup",
+          "Type"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      },
+      "Type": {
+        "enum": [
+          "DASH",
+          "HLS"
+        ],
+        "type": "string"
+      }
+    },
+    "description": "Definition of AWS::MediaTailor::LiveSource Resource Type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "mediatailor:CreateLiveSource",
+          "mediatailor:DescribeLiveSource",
+          "mediatailor:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "mediatailor:DeleteLiveSource",
+          "mediatailor:DescribeLiveSource"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "SourceLocationName": {
+              "$ref": "resource-schema.json#/properties/SourceLocationName"
+            }
+          },
+          "required": [
+            "SourceLocationName"
+          ]
+        },
+        "permissions": [
+          "mediatailor:ListLiveSources"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mediatailor:DescribeLiveSource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "mediatailor:UpdateLiveSource",
+          "mediatailor:DescribeLiveSource",
+          "mediatailor:TagResource",
+          "mediatailor:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/LiveSourceName",
+      "/properties/SourceLocationName"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "\u003cp\u003eThe ARN of the live source.\u003c/p\u003e",
+        "type": "string"
+      },
+      "HttpPackageConfigurations": {
+        "description": "\u003cp\u003eA list of HTTP package configuration parameters for this live source.\u003c/p\u003e",
+        "items": {
+          "$ref": "#/definitions/HttpPackageConfiguration"
+        },
+        "type": "array"
+      },
+      "LiveSourceName": {
+        "type": "string"
+      },
+      "SourceLocationName": {
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags to assign to the live source.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn"
+    ],
+    "required": [
+      "HttpPackageConfigurations",
+      "LiveSourceName",
+      "SourceLocationName"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-mediatailor",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::MediaTailor::LiveSource"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Redshift-ScheduledAction",
   "type": "AWS::Redshift::ScheduledAction",
-  "time": "2023-02-22T16:33:07.884Z",
+  "time": "2023-08-28T16:42:50.856Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -97,6 +97,8 @@
       "create": {
         "permissions": [
           "redshift:CreateScheduledAction",
+          "redshift:DescribeScheduledActions",
+          "redshift:DescribeTags",
           "redshift:PauseCluster",
           "redshift:ResumeCluster",
           "redshift:ResizeCluster",
@@ -105,25 +107,31 @@
       },
       "delete": {
         "permissions": [
+          "redshift:DescribeTags",
+          "redshift:DescribeScheduledActions",
           "redshift:DeleteScheduledAction"
         ]
       },
       "list": {
         "permissions": [
+          "redshift:DescribeTags",
           "redshift:DescribeScheduledActions"
         ]
       },
       "read": {
         "permissions": [
-          "redshift:DescribeScheduledActions"
+          "redshift:DescribeScheduledActions",
+          "redshift:DescribeTags"
         ]
       },
       "update": {
         "permissions": [
+          "redshift:DescribeScheduledActions",
           "redshift:ModifyScheduledAction",
           "redshift:PauseCluster",
           "redshift:ResumeCluster",
           "redshift:ResizeCluster",
+          "redshift:DescribeTags",
           "iam:PassRole"
         ]
       }

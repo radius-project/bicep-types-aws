@@ -69,7 +69,7 @@
 
 ## AWS.SSM/DocumentProperties
 ### Properties
-* **Attachments**: [AttachmentsSource](#attachmentssource)[]: A list of key and value pairs that describe attachments to a version of a document.
+* **Attachments**: [AttachmentsSource](#attachmentssource)[] (WriteOnly): A list of key and value pairs that describe attachments to a version of a document.
 * **Content**: [Document_Content](#documentcontent) | string (Required): The content for the Systems Manager document in JSON, YAML or String format.
 * **DocumentFormat**: string: Specify the document format for the request. The document format can be either JSON or YAML. JSON is the default format.
 * **DocumentType**: string: The type of document to create.
@@ -77,7 +77,7 @@
 * **Requires**: [DocumentRequires](#documentrequires)[]: A list of SSM documents required by a document. For example, an ApplicationConfiguration document requires an ApplicationConfigurationSchema document.
 * **Tags**: [Tag](#tag)[]: Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment.
 * **TargetType**: string: Specify a target type to define the kinds of resources the document can run on.
-* **UpdateMethod**: string: Update method - when set to 'Replace', the update will replace the existing document; when set to 'NewVersion', the update will create a new version.
+* **UpdateMethod**: string (WriteOnly): Update method - when set to 'Replace', the update will replace the existing document; when set to 'NewVersion', the update will create a new version.
 * **VersionName**: string: An optional field specifying the version of the artifact you are creating with the document. This value is unique across all versions of a document, and cannot be changed.
 
 ## AttachmentsSource

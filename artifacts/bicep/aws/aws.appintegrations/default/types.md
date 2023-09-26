@@ -18,17 +18,30 @@
 ### Properties
 * **DataIntegrationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the data integration.
 * **Description**: string: The data integration description.
+* **FileConfiguration**: [FileConfiguration](#fileconfiguration): The configuration for what files should be pulled from the source.
 * **Id**: string (ReadOnly, Identifier): The unique identifer of the data integration.
 * **KmsKey**: string (Required): The KMS key of the data integration.
 * **Name**: string (Required): The name of the data integration.
+* **ObjectConfiguration**: [ObjectConfiguration](#objectconfiguration): The configuration for what data should be pulled from the source.
 * **ScheduleConfig**: [ScheduleConfig](#scheduleconfig) (Required): The name of the data and how often it should be pulled from the source.
 * **SourceURI**: string (Required): The URI of the data source.
 * **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the data integration.
 
+## FileConfiguration
+### Properties
+* **Filters**: [DataIntegration_Filters](#dataintegrationfilters): Restrictions for what files should be pulled from the source.
+* **Folders**: string[] (Required): Identifiers for the source folders to pull all files from recursively.
+
+## DataIntegration_Filters
+### Properties
+
+## ObjectConfiguration
+### Properties
+
 ## ScheduleConfig
 ### Properties
-* **FirstExecutionFrom**: string (Required): The start date for objects to import in the first flow run. Epoch or ISO timestamp format is supported.
-* **Object**: string (Required): The name of the object to pull from the data source.
+* **FirstExecutionFrom**: string: The start date for objects to import in the first flow run. Epoch or ISO timestamp format is supported.
+* **Object**: string: The name of the object to pull from the data source.
 * **ScheduleExpression**: string (Required): How often the data should be pulled from data source.
 
 ## Tag

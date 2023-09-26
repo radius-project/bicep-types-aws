@@ -1,5 +1,12 @@
 # AWS.AppStream @ default
 
+## Resource AWS.AppStream/AppBlockBuilder@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppStream/AppBlockBuilderProperties](#awsappstreamappblockbuilderproperties) (Required): properties of the resource
+
 ## Resource AWS.AppStream/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -21,11 +28,42 @@
 * **name**: string: the resource name
 * **properties**: [AWS.AppStream/EntitlementProperties](#awsappstreamentitlementproperties) (Required): properties of the resource
 
+## AWS.AppStream/AppBlockBuilderProperties
+### Properties
+* **AccessEndpoints**: [AccessEndpoint](#accessendpoint)[]
+* **AppBlockArns**: string[] (WriteOnly)
+* **Arn**: string (ReadOnly)
+* **CreatedTime**: string (ReadOnly)
+* **Description**: string
+* **DisplayName**: string
+* **EnableDefaultInternetAccess**: bool
+* **IamRoleArn**: string
+* **InstanceType**: string (Required)
+* **Name**: string (Required, Identifier)
+* **Platform**: string (Required)
+* **Tags**: [Tag](#tag)[] (WriteOnly)
+* **VpcConfig**: [VpcConfig](#vpcconfig) (Required)
+
+## AccessEndpoint
+### Properties
+* **EndpointType**: string (Required)
+* **VpceId**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[]
+* **SubnetIds**: string[]
+
 ## AWS.AppStream/ApplicationProperties
 ### Properties
 * **AppBlockArn**: string (Required)
 * **Arn**: string (ReadOnly, Identifier)
-* **AttributesToDelete**: string[]
+* **AttributesToDelete**: string[] (WriteOnly)
 * **CreatedTime**: string (ReadOnly)
 * **Description**: string
 * **DisplayName**: string
@@ -45,8 +83,6 @@
 
 ## Tag
 ### Properties
-* **TagKey**: string (Required)
-* **TagValue**: string (Required)
 
 ## AWS.AppStream/DirectoryConfigProperties
 ### Properties

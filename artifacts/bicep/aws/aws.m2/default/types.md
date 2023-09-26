@@ -23,6 +23,7 @@
 * **EngineType**: string (Required)
 * **KmsKeyId**: string: The ID or the Amazon Resource Name (ARN) of the customer managed KMS Key used for encrypting application-related resources.
 * **Name**: string (Required)
+* **RoleArn**: string
 * **Tags**: [TagMap](#tagmap)
 
 ## Definition

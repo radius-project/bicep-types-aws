@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-NetworkInsightsAnalysis",
   "type": "AWS::EC2::NetworkInsightsAnalysis",
-  "time": "2023-04-13T15:06:09.285Z",
+  "time": "2023-09-21T15:16:08.567Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -558,6 +558,7 @@
     "handlers": {
       "create": {
         "permissions": [
+          "ec2:CreateTags",
           "ec2:StartNetworkInsightsAnalysis",
           "ec2:GetTransitGatewayRouteTablePropagations",
           "ec2:SearchTransitGatewayRoutes",
@@ -572,7 +573,8 @@
       },
       "delete": {
         "permissions": [
-          "ec2:DeleteNetworkInsightsAnalysis"
+          "ec2:DeleteNetworkInsightsAnalysis",
+          "ec2:DeleteTags"
         ]
       },
       "list": {

@@ -24,13 +24,12 @@
 ## AWS.Panorama/ApplicationInstanceProperties
 ### Properties
 * **ApplicationInstanceId**: string (ReadOnly, Identifier)
-* **ApplicationInstanceIdToReplace**: string
+* **ApplicationInstanceIdToReplace**: string (WriteOnly)
 * **Arn**: string (ReadOnly)
 * **CreatedTime**: int (ReadOnly)
 * **DefaultRuntimeContextDevice**: string (Required)
 * **DefaultRuntimeContextDeviceName**: string (ReadOnly)
 * **Description**: string
-* **DeviceId**: string
 * **HealthStatus**: string (ReadOnly)
 * **LastUpdatedTime**: int (ReadOnly)
 * **ManifestOverridesPayload**: [ManifestOverridesPayload](#manifestoverridespayload)
@@ -39,7 +38,6 @@
 * **RuntimeRoleArn**: string
 * **Status**: string (ReadOnly)
 * **StatusDescription**: string (ReadOnly)
-* **StatusFilter**: string
 * **Tags**: [Tag](#tag)[]
 
 ## ManifestOverridesPayload
@@ -90,5 +88,5 @@
 * **RegisteredTime**: int (ReadOnly)
 * **Status**: string (ReadOnly)
 * **StatusDescription**: string (ReadOnly)
-* **UpdatedLatestPatchVersion**: string
+* **UpdatedLatestPatchVersion**: string (WriteOnly)
 

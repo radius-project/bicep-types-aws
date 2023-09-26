@@ -1,13 +1,13 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ApiGatewayV2-Model",
   "type": "AWS::ApiGatewayV2::Model",
-  "time": "2023-03-20T19:13:05.845Z",
+  "time": "2023-09-26T16:45:27.647Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/ApiId"
     ],
-    "description": "Resource Type definition for AWS::ApiGatewayV2::Model",
+    "description": "The ``AWS::ApiGatewayV2::Model`` resource updates data model for a WebSocket API. For more information, see [Model Selection Expressions](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-model-selection-expressions) in the *API Gateway Developer Guide*.",
     "handlers": {
       "create": {
         "permissions": [
@@ -21,6 +21,16 @@
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "ApiId": {
+              "$ref": "resource-schema.json#/properties/ApiId"
+            }
+          },
+          "required": [
+            "ApiId"
+          ]
+        },
         "permissions": [
           "apigateway:GET"
         ]
@@ -44,21 +54,26 @@
     ],
     "properties": {
       "ApiId": {
+        "description": "The API identifier.",
         "type": "string"
       },
       "ContentType": {
+        "description": "The content-type for the model, for example, \"application/json\".",
         "type": "string"
       },
       "Description": {
+        "description": "The description of the model.",
         "type": "string"
       },
       "ModelId": {
         "type": "string"
       },
       "Name": {
+        "description": "The name of the model.",
         "type": "string"
       },
       "Schema": {
+        "description": "The schema for the model. For application/json models, this should be JSON schema draft 4 model.",
         "type": "object"
       }
     },
@@ -70,6 +85,7 @@
       "Schema",
       "Name"
     ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-apigatewayv2",
     "tagging": {
       "taggable": false
     },

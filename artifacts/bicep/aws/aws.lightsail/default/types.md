@@ -129,6 +129,8 @@
 * **ContainerServiceDeployment**: [ContainerServiceDeployment](#containerservicedeployment): Describes a container deployment configuration of an Amazon Lightsail container service.
 * **IsDisabled**: bool: A Boolean value to indicate whether the container service is disabled.
 * **Power**: string (Required): The power specification for the container service.
+* **PrincipalArn**: string (ReadOnly): The principal ARN of the container service.
+* **PrivateRegistryAccess**: [PrivateRegistryAccess](#privateregistryaccess): A Boolean value to indicate whether the container service has access to private container image repositories, such as Amazon Elastic Container Registry (Amazon ECR) private repositories.
 * **PublicDomainNames**: [PublicDomainName](#publicdomainname)[]: The public domain names to use with the container service, such as example.com and www.example.com.
 * **Scale**: int (Required): The scale specification for the container service.
 * **ServiceName**: string (Required, Identifier): The name for the container service.
@@ -172,6 +174,15 @@
 * **SuccessCodes**: string: The HTTP codes to use when checking for a successful response from a container. You can specify values between 200 and 499. You can specify multiple values (for example, 200,202) or a range of values (for example, 200-299).
 * **TimeoutSeconds**: int: The amount of time, in seconds, during which no response means a failed health check. You can specify between 2 and 60 seconds. The default value is 2.
 * **UnhealthyThreshold**: int: The number of consecutive health check failures required before moving the container to the Unhealthy state. The default value is 2.
+
+## PrivateRegistryAccess
+### Properties
+* **EcrImagePullerRole**: [Container_EcrImagePullerRole](#containerecrimagepullerrole): An object to describe a request to activate or deactivate the role that you can use to grant an Amazon Lightsail container service access to Amazon Elastic Container Registry (Amazon ECR) private repositories.
+
+## Container_EcrImagePullerRole
+### Properties
+* **IsActive**: bool: A Boolean value that indicates whether to activate the role.
+* **PrincipalArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the role, if it is activated.
 
 ## PublicDomainName
 ### Properties
@@ -228,7 +239,7 @@
 * **DiskName**: string (Required, Identifier): The names to use for your new Lightsail disk.
 * **Iops**: int (ReadOnly): Iops of the Lightsail disk
 * **IsAttached**: bool (ReadOnly): Check is Disk is attached state
-* **Location**: [Location](#location) (ReadOnly)
+* **Location**: [Location](#location)
 * **Path**: string (ReadOnly): Path of the  attached Disk
 * **ResourceType**: string (ReadOnly): Resource type of Lightsail instance.
 * **SizeInGb**: int (Required): Size of the Lightsail disk
@@ -248,8 +259,8 @@
 
 ## Location
 ### Properties
-* **AvailabilityZone**: string: The Availability Zone in which to create your disk. Use the following format: us-east-2a (case sensitive). Be sure to add the include Availability Zones parameter to your request.
-* **RegionName**: string: The Region Name in which to create your disk.
+* **AvailabilityZone**: string (ReadOnly): The Availability Zone in which to create your disk. Use the following format: us-east-2a (case sensitive). Be sure to add the include Availability Zones parameter to your request.
+* **RegionName**: string (ReadOnly): The Region Name in which to create your disk.
 
 ## Tag
 ### Properties
@@ -276,7 +287,7 @@
 * **State**: [State](#state)
 * **SupportCode**: string (ReadOnly): Support code to help identify any issues
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-* **UserData**: string: A launch script you can create that configures a server with additional user data. For example, you might want to run apt-get -y update.
+* **UserData**: string (WriteOnly): A launch script you can create that configures a server with additional user data. For example, you might want to run apt-get -y update.
 * **UserName**: string (ReadOnly): Username of the  Lightsail instance.
 
 ## AddOn

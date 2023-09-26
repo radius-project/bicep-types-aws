@@ -7,6 +7,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SQS/QueueProperties](#awssqsqueueproperties): properties of the resource
 
+## Resource AWS.SQS/QueueInlinePolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SQS/QueueInlinePolicyProperties](#awssqsqueueinlinepolicyproperties) (Required): properties of the resource
+
 ## AWS.SQS/QueueProperties
 ### Properties
 * **Arn**: string (ReadOnly): Amazon Resource Name (ARN) of the queue.
@@ -32,4 +39,12 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## AWS.SQS/QueueInlinePolicyProperties
+### Properties
+* **PolicyDocument**: [QueueInlinePolicy_PolicyDocument](#queueinlinepolicypolicydocument) (Required): A policy document that contains permissions to add to the specified SQS queue
+* **Queue**: string (Required, Identifier): The URL of the SQS queue.
+
+## QueueInlinePolicy_PolicyDocument
+### Properties
 

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppStream-Application",
   "type": "AWS::AppStream::Application",
-  "time": "2023-01-26T19:03:27.305Z",
+  "time": "2023-06-23T17:46:49.688Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -36,28 +36,53 @@
         "type": "object"
       },
       "Tag": {
-        "additionalProperties": false,
-        "properties": {
-          "TagKey": {
-            "type": "string"
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Key": {
+                "type": "string"
+              },
+              "Value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "Key",
+              "Value"
+            ],
+            "type": "object"
           },
-          "TagValue": {
-            "type": "string"
+          {
+            "additionalProperties": false,
+            "properties": {
+              "TagKey": {
+                "type": "string"
+              },
+              "TagValue": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "TagKey",
+              "TagValue"
+            ],
+            "type": "object"
           }
-        },
-        "required": [
-          "TagKey",
-          "TagValue"
-        ],
-        "type": "object"
+        ]
       }
     },
+    "deprecatedProperties": [
+      "/properties/Tags/TagKey",
+      "/properties/Tags/TagValue"
+    ],
     "description": "Resource Type definition for AWS::AppStream::Application",
     "handlers": {
       "create": {
         "permissions": [
           "s3:GetObject",
-          "appstream:CreateApplication"
+          "appstream:CreateApplication",
+          "appstream:TagResource"
         ]
       },
       "delete": {
@@ -72,7 +97,8 @@
       },
       "update": {
         "permissions": [
-          "appstream:UpdateApplication"
+          "appstream:UpdateApplication",
+          "s3:GetObject"
         ]
       }
     },
@@ -158,7 +184,8 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-appstream.git",
     "typeName": "AWS::AppStream::Application",
     "writeOnlyProperties": [
-      "/properties/Tags"
+      "/properties/Tags",
+      "/properties/AttributesToDelete"
     ]
   }
 }

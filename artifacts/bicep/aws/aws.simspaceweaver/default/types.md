@@ -5,14 +5,16 @@
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SimSpaceWeaver/SimulationProperties](#awssimspaceweaversimulationproperties): properties of the resource
+* **properties**: [AWS.SimSpaceWeaver/SimulationProperties](#awssimspaceweaversimulationproperties) (Required): properties of the resource
 
 ## AWS.SimSpaceWeaver/SimulationProperties
 ### Properties
 * **DescribePayload**: string (ReadOnly): Json object with all simulation details
-* **Name**: string (Identifier): The name of the simulation.
-* **RoleArn**: string: Role ARN.
+* **MaximumDuration**: string: The maximum running time of the simulation.
+* **Name**: string (Required, Identifier): The name of the simulation.
+* **RoleArn**: string (Required): Role ARN.
 * **SchemaS3Location**: [S3Location](#s3location)
+* **SnapshotS3Location**: [S3Location](#s3location)
 
 ## S3Location
 ### Properties

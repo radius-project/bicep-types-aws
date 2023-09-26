@@ -67,6 +67,7 @@
 * **LifecyclePolicies**: [LifecyclePolicy](#lifecyclepolicy)[]
 * **PerformanceMode**: string
 * **ProvisionedThroughputInMibps**: int
+* **ReplicationConfiguration**: [ReplicationConfiguration](#replicationconfiguration)
 * **ThroughputMode**: string
 
 ## BackupPolicy
@@ -85,6 +86,17 @@
 ### Properties
 * **TransitionToIA**: string
 * **TransitionToPrimaryStorageClass**: string
+
+## ReplicationConfiguration
+### Properties
+* **Destinations**: [ReplicationDestination](#replicationdestination)[] (WriteOnly)
+
+## ReplicationDestination
+### Properties
+* **AvailabilityZoneName**: string
+* **FileSystemId**: string (Identifier)
+* **KmsKeyId**: string
+* **Region**: string
 
 ## AWS.EFS/MountTargetProperties
 ### Properties

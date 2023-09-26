@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFormation-StackSet",
   "type": "AWS::CloudFormation::StackSet",
-  "time": "2023-04-17T15:13:57.616Z",
+  "time": "2023-09-20T15:43:45.311Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -63,6 +63,13 @@
             "minItems": 1,
             "type": "array",
             "uniqueItems": true
+          },
+          "AccountsUrl": {
+            "description": "Returns the value of the AccountsUrl property.",
+            "maxLength": 5120,
+            "minLength": 1,
+            "pattern": "(s3://|http(s?)://).+",
+            "type": "string"
           },
           "OrganizationalUnitIds": {
             "description": "The organization root ID or organizational unit (OU) IDs to which StackSets deploys.",
@@ -212,7 +219,8 @@
           "cloudformation:CreateStackInstances",
           "cloudformation:DescribeStackSetOperation",
           "cloudformation:ListStackSetOperationResults",
-          "cloudformation:TagResource"
+          "cloudformation:TagResource",
+          "iam:PassRole"
         ],
         "timeoutInMinutes": 2160
       },
@@ -220,6 +228,7 @@
         "permissions": [
           "cloudformation:DeleteStackSet",
           "cloudformation:DeleteStackInstances",
+          "cloudformation:DescribeStackSet",
           "cloudformation:DescribeStackSetOperation",
           "cloudformation:ListStackSetOperationResults",
           "cloudformation:UntagResource"
@@ -248,10 +257,12 @@
           "cloudformation:CreateStackInstances",
           "cloudformation:DeleteStackInstances",
           "cloudformation:UpdateStackInstances",
+          "cloudformation:DescribeStackSet",
           "cloudformation:DescribeStackSetOperation",
           "cloudformation:ListStackSetOperationResults",
           "cloudformation:TagResource",
-          "cloudformation:UntagResource"
+          "cloudformation:UntagResource",
+          "iam:PassRole"
         ],
         "timeoutInMinutes": 2160
       }
@@ -401,6 +412,7 @@
     "writeOnlyProperties": [
       "/properties/TemplateURL",
       "/properties/OperationPreferences",
+      "/properties/StackInstancesGroup",
       "/properties/CallAs"
     ]
   }

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-SpotFleet",
   "type": "AWS::EC2::SpotFleet",
-  "time": "2023-01-20T01:32:09.053Z",
+  "time": "2023-08-15T16:30:08.209Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -921,8 +921,11 @@
     "handlers": {
       "create": {
         "permissions": [
+          "iam:PassRole",
+          "ec2:CreateTags",
           "ec2:RequestSpotFleet",
-          "ec2:DescribeSpotFleetRequests"
+          "ec2:DescribeSpotFleetRequests",
+          "ec2:RunInstances"
         ]
       },
       "delete": {
@@ -965,6 +968,10 @@
     "required": [
       "SpotFleetRequestConfigData"
     ],
-    "typeName": "AWS::EC2::SpotFleet"
+    "typeName": "AWS::EC2::SpotFleet",
+    "writeOnlyProperties": [
+      "/properties/SpotFleetRequestConfigData/TagSpecifications",
+      "/properties/SpotFleetRequestConfigData/LaunchSpecifications/*/NetworkInterfaces/*/Groups"
+    ]
   }
 }

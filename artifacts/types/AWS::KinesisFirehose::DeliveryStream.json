@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-KinesisFirehose-DeliveryStream",
   "type": "AWS::KinesisFirehose::DeliveryStream",
-  "time": "2023-03-21T15:28:24.874Z",
+  "time": "2023-07-31T15:21:45.792Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -113,6 +113,9 @@
             "minLength": 1,
             "pattern": "https:.*",
             "type": "string"
+          },
+          "DocumentIdOptions": {
+            "$ref": "#/definitions/DocumentIdOptions"
           },
           "DomainARN": {
             "maxLength": 512,
@@ -285,6 +288,22 @@
         },
         "type": "object"
       },
+      "DocumentIdOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DefaultDocumentIdFormat": {
+            "enum": [
+              "FIREHOSE_DEFAULT",
+              "NO_DOCUMENT_ID"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "DefaultDocumentIdFormat"
+        ],
+        "type": "object"
+      },
       "DynamicPartitioningConfiguration": {
         "additionalProperties": false,
         "properties": {
@@ -323,6 +342,9 @@
             "minLength": 1,
             "pattern": "https:.*",
             "type": "string"
+          },
+          "DocumentIdOptions": {
+            "$ref": "#/definitions/DocumentIdOptions"
           },
           "DomainARN": {
             "maxLength": 512,

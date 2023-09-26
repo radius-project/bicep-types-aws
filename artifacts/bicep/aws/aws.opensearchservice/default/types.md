@@ -76,6 +76,7 @@
 * **DedicatedMasterType**: string
 * **InstanceCount**: int
 * **InstanceType**: string
+* **MultiAZWithStandbyEnabled**: bool
 * **WarmCount**: int
 * **WarmEnabled**: bool
 * **WarmType**: string

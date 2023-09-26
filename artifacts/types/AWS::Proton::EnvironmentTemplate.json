@@ -1,0 +1,149 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Proton-EnvironmentTemplate",
+  "type": "AWS::Proton::EnvironmentTemplate",
+  "time": "2023-09-13T13:33:12.033Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/EncryptionKey",
+      "/properties/Name",
+      "/properties/Provisioning"
+    ],
+    "definitions": {
+      "Provisioning": {
+        "enum": [
+          "CUSTOMER_MANAGED"
+        ],
+        "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "\u003cp\u003eA description of a resource tag.\u003c/p\u003e",
+        "properties": {
+          "Key": {
+            "description": "\u003cp\u003eThe key of the resource tag.\u003c/p\u003e",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "\u003cp\u003eThe value of the resource tag.\u003c/p\u003e",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::Proton::EnvironmentTemplate Resource Type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "proton:CreateEnvironmentTemplate",
+          "proton:TagResource",
+          "proton:GetEnvironmentTemplate",
+          "kms:*"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "proton:DeleteEnvironmentTemplate",
+          "proton:GetEnvironmentTemplate",
+          "kms:*"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "proton:ListEnvironmentTemplates"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "proton:GetEnvironmentTemplate",
+          "proton:ListTagsForResource",
+          "kms:*"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "proton:CreateEnvironmentTemplate",
+          "proton:ListTagsForResource",
+          "proton:TagResource",
+          "proton:UntagResource",
+          "proton:UpdateEnvironmentTemplate",
+          "proton:GetEnvironmentTemplate",
+          "kms:*"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "\u003cp\u003eThe Amazon Resource Name (ARN) of the environment template.\u003c/p\u003e",
+        "type": "string"
+      },
+      "Description": {
+        "description": "\u003cp\u003eA description of the environment template.\u003c/p\u003e",
+        "maxLength": 500,
+        "minLength": 0,
+        "type": "string"
+      },
+      "DisplayName": {
+        "description": "\u003cp\u003eThe environment template name as displayed in the developer interface.\u003c/p\u003e",
+        "maxLength": 100,
+        "minLength": 1,
+        "type": "string"
+      },
+      "EncryptionKey": {
+        "description": "\u003cp\u003eA customer provided encryption key that Proton uses to encrypt data.\u003c/p\u003e",
+        "maxLength": 200,
+        "minLength": 1,
+        "pattern": "^arn:(aws|aws-cn|aws-us-gov):[a-zA-Z0-9-]+:[a-zA-Z0-9-]*:\\d{12}:([\\w+=,.@-]+[/:])*[\\w+=,.@-]+$",
+        "type": "string"
+      },
+      "Name": {
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^[0-9A-Za-z]+[0-9A-Za-z_\\-]*$",
+        "type": "string"
+      },
+      "Provisioning": {
+        "$ref": "#/definitions/Provisioning"
+      },
+      "Tags": {
+        "description": "\u003cp\u003eAn optional list of metadata items that you can associate with the Proton environment template. A tag is a key-value pair.\u003c/p\u003e\n         \u003cp\u003eFor more information, see \u003ca href=\"https://docs.aws.amazon.com/proton/latest/userguide/resources.html\"\u003eProton resources and tagging\u003c/a\u003e in the\n        \u003ci\u003eProton User Guide\u003c/i\u003e.\u003c/p\u003e",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "minItems": 0,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-proton",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Proton::EnvironmentTemplate"
+  }
+}

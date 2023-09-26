@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IVS-StreamKey",
   "type": "AWS::IVS::StreamKey",
-  "time": "2023-04-17T15:58:38.536Z",
+  "time": "2023-09-19T18:03:06.567Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -33,26 +33,42 @@
     "handlers": {
       "create": {
         "permissions": [
+          "ivs:TagResource",
+          "ivs:UntagResource",
           "ivs:CreateStreamKey"
         ]
       },
       "delete": {
         "permissions": [
-          "ivs:DeleteStreamKey"
+          "ivs:DeleteStreamKey",
+          "ivs:UntagResource"
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "ChannelArn": {
+              "$ref": "resource-schema.json#/properties/ChannelArn"
+            }
+          },
+          "required": [
+            "ChannelArn"
+          ]
+        },
         "permissions": [
-          "ivs:ListStreamKeys"
+          "ivs:ListStreamKeys",
+          "ivs:ListTagsForResource"
         ]
       },
       "read": {
         "permissions": [
-          "ivs:GetStreamKey"
+          "ivs:GetStreamKey",
+          "ivs:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
+          "ivs:GetStreamKey",
           "ivs:TagResource",
           "ivs:UntagResource",
           "ivs:ListTagsForResource"

@@ -7,6 +7,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/AgentProperties](#awsdatasyncagentproperties): properties of the resource
 
+## Resource AWS.DataSync/LocationAzureBlob@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DataSync/LocationAzureBlobProperties](#awsdatasynclocationazureblobproperties) (Required): properties of the resource
+
 ## Resource AWS.DataSync/LocationEFS@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -77,6 +84,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationSMBProperties](#awsdatasynclocationsmbproperties) (Required): properties of the resource
 
+## Resource AWS.DataSync/StorageSystem@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DataSync/StorageSystemProperties](#awsdatasyncstoragesystemproperties) (Required): properties of the resource
+
 ## Resource AWS.DataSync/Task@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -94,6 +108,28 @@
 * **SubnetArns**: string[]: The ARNs of the subnets in which DataSync will create elastic network interfaces for each data transfer task.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **VpcEndpointId**: string: The ID of the VPC endpoint that the agent has access to.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for an AWS resource tag.
+* **Value**: string (Required): The value for an AWS resource tag.
+
+## AWS.DataSync/LocationAzureBlobProperties
+### Properties
+* **AgentArns**: string[] (Required): The Amazon Resource Names (ARNs) of agents to use for an Azure Blob Location.
+* **AzureAccessTier**: string: Specifies an access tier for the objects you're transferring into your Azure Blob Storage container.
+* **AzureBlobAuthenticationType**: string (Required): The specific authentication type that you want DataSync to use to access your Azure Blob Container.
+* **AzureBlobContainerUrl**: string (WriteOnly): The URL of the Azure Blob container that was described.
+* **AzureBlobSasConfiguration**: [AzureBlobSasConfiguration](#azureblobsasconfiguration) (WriteOnly)
+* **AzureBlobType**: string: Specifies a blob type for the objects you're transferring into your Azure Blob Storage container.
+* **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Azure Blob Location that is created.
+* **LocationUri**: string (ReadOnly): The URL of the Azure Blob Location that was described.
+* **Subdirectory**: string (WriteOnly): The subdirectory in the Azure Blob Container that is used to read data from the Azure Blob Source Location.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AzureBlobSasConfiguration
+### Properties
+* **AzureBlobSasToken**: string (Required): Specifies the shared access signature (SAS) token, which indicates the permissions DataSync needs to access your Azure Blob Storage container.
 
 ## Tag
 ### Properties
@@ -337,6 +373,34 @@
 * **Key**: string (Required): The key for an AWS resource tag.
 * **Value**: string (Required): The value for an AWS resource tag.
 
+## AWS.DataSync/StorageSystemProperties
+### Properties
+* **AgentArns**: string[] (Required): The ARN of the DataSync agent that connects to and reads from the on-premises storage system's management interface.
+* **CloudWatchLogGroupArn**: string: The ARN of the Amazon CloudWatch log group used to monitor and log discovery job events.
+* **ConnectivityStatus**: string (ReadOnly): Indicates whether the DataSync agent can access the on-premises storage system.
+* **Name**: string: A familiar name for the on-premises storage system.
+* **SecretsManagerArn**: string (ReadOnly): The ARN of a secret stored by AWS Secrets Manager.
+* **ServerConfiguration**: [ServerConfiguration](#serverconfiguration) (Required)
+* **ServerCredentials**: [ServerCredentials](#servercredentials) (WriteOnly)
+* **StorageSystemArn**: string (ReadOnly, Identifier): The ARN of the on-premises storage system added to DataSync Discovery.
+* **SystemType**: string (Required): The type of on-premises storage system that DataSync Discovery will analyze.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## ServerConfiguration
+### Properties
+* **ServerHostname**: string (Required): The domain name or IP address of the storage system's management interface.
+* **ServerPort**: int: The network port needed to access the system's management interface
+
+## ServerCredentials
+### Properties
+* **Password**: string (Required): The password for your storage system's management interface
+* **Username**: string (Required): The username for your storage system's management interface.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for an AWS resource tag.
+* **Value**: string (Required): The value for an AWS resource tag.
+
 ## AWS.DataSync/TaskProperties
 ### Properties
 * **CloudWatchLogGroupArn**: string: The ARN of the Amazon CloudWatch log group that is used to monitor and log events in the task.
@@ -352,6 +416,7 @@
 * **Status**: string (ReadOnly): The status of the task that was described.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TaskArn**: string (ReadOnly, Identifier): The ARN of the task.
+* **TaskReportConfig**: [TaskReportConfig](#taskreportconfig)
 
 ## FilterRule
 ### Properties
@@ -384,4 +449,45 @@
 ### Properties
 * **Key**: string (Required): The key for an AWS resource tag.
 * **Value**: string (Required): The value for an AWS resource tag.
+
+## TaskReportConfig
+### Properties
+* **Destination**: [Task_Destination](#taskdestination) (Required): Specifies where DataSync uploads your task report.
+* **ObjectVersionIds**: string: Specifies whether your task report includes the new version of each object transferred into an S3 bucket, this only applies if you enable versioning on your bucket.
+* **OutputType**: string (Required): Specifies the type of task report that you want.
+* **Overrides**: [Task_Overrides](#taskoverrides): Customizes the reporting level for aspects of your task report. For example, your report might generally only include errors, but you could specify that you want a list of successes and errors just for the files that Datasync attempted to delete in your destination location.
+* **ReportLevel**: string: Specifies whether you want your task report to include only what went wrong with your transfer or a list of what succeeded and didn't.
+
+## Task_Destination
+### Properties
+* **S3**: [Task_Destination_S3](#taskdestinations3): Specifies the Amazon S3 bucket where DataSync uploads your task report.
+
+## Task_Destination_S3
+### Properties
+* **BucketAccessRoleArn**: string: Specifies the Amazon Resource Name (ARN) of the IAM policy that allows Datasync to upload a task report to your S3 bucket.
+* **S3BucketArn**: string: Specifies the ARN of the S3 bucket where Datasync uploads your report.
+* **Subdirectory**: string: Specifies a bucket prefix for your report.
+
+## Task_Overrides
+### Properties
+* **Deleted**: [Task_Overrides_Deleted](#taskoverridesdeleted): Specifies the level of reporting for the files, objects, and directories that Datasync attempted to delete in your destination location. This only applies if you configure your task to delete data in the destination that isn't in the source.
+* **Skipped**: [Task_Overrides_Skipped](#taskoverridesskipped): Specifies the level of reporting for the files, objects, and directories that Datasync attempted to skip during your transfer.
+* **Transferred**: [Task_Overrides_Transferred](#taskoverridestransferred): Specifies the level of reporting for the files, objects, and directories that Datasync attempted to transfer.
+* **Verified**: [Task_Overrides_Verified](#taskoverridesverified): Specifies the level of reporting for the files, objects, and directories that Datasync attempted to verify at the end of your transfer. This only applies if you configure your task to verify data during and after the transfer (which Datasync does by default)
+
+## Task_Overrides_Deleted
+### Properties
+* **ReportLevel**: string: Specifies whether you want your task report to include only what went wrong with your transfer or a list of what succeeded and didn't.
+
+## Task_Overrides_Skipped
+### Properties
+* **ReportLevel**: string: Specifies whether you want your task report to include only what went wrong with your transfer or a list of what succeeded and didn't.
+
+## Task_Overrides_Transferred
+### Properties
+* **ReportLevel**: string: Specifies whether you want your task report to include only what went wrong with your transfer or a list of what succeeded and didn't.
+
+## Task_Overrides_Verified
+### Properties
+* **ReportLevel**: string: Specifies whether you want your task report to include only what went wrong with your transfer or a list of what succeeded and didn't.
 

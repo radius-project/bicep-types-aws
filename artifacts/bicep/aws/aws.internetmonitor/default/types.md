@@ -10,6 +10,7 @@
 ## AWS.InternetMonitor/MonitorProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly)
+* **HealthEventsConfig**: [HealthEventsConfig](#healtheventsconfig)
 * **InternetMeasurementsLogDelivery**: [InternetMeasurementsLogDelivery](#internetmeasurementslogdelivery)
 * **MaxCityNetworksToMonitor**: int
 * **ModifiedAt**: string (ReadOnly)
@@ -23,6 +24,19 @@
 * **Status**: string
 * **Tags**: [Tag](#tag)[]
 * **TrafficPercentageToMonitor**: int
+
+## HealthEventsConfig
+### Properties
+* **AvailabilityLocalHealthEventsConfig**: [LocalHealthEventsConfig](#localhealtheventsconfig)
+* **AvailabilityScoreThreshold**: int
+* **PerformanceLocalHealthEventsConfig**: [LocalHealthEventsConfig](#localhealtheventsconfig)
+* **PerformanceScoreThreshold**: int
+
+## LocalHealthEventsConfig
+### Properties
+* **HealthScoreThreshold**: int
+* **MinTrafficImpact**: int
+* **Status**: string
 
 ## InternetMeasurementsLogDelivery
 ### Properties

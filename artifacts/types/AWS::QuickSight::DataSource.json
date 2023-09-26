@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-DataSource",
   "type": "AWS::QuickSight::DataSource",
-  "time": "2023-03-28T15:23:43.134Z",
+  "time": "2023-09-07T15:22:33.945Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -43,6 +43,12 @@
       "AthenaParameters": {
         "description": "\u003cp\u003eAmazon Athena parameters.\u003c/p\u003e",
         "properties": {
+          "RoleArn": {
+            "description": "\u003cp\u003eUse the \u003ccode\u003eRoleArn\u003c/code\u003e structure to override an account-wide role for a specific Athena data source. For example, say an account administrator has turned off all Athena access with an account-wide role. The administrator can then use \u003ccode\u003eRoleArn\u003c/code\u003e to bypass the account-wide role and allow Athena access for the single Athena data source that is specified in the structure, even if the account-wide role forbidding Athena access is still active.\u003c/p\u003e",
+            "maxLength": 2048,
+            "minLength": 20,
+            "type": "string"
+          },
           "WorkGroup": {
             "description": "\u003cp\u003eThe workgroup that Amazon Athena uses.\u003c/p\u003e",
             "maxLength": 128,
@@ -582,6 +588,12 @@
         "properties": {
           "ManifestFileLocation": {
             "$ref": "#/definitions/ManifestFileLocation"
+          },
+          "RoleArn": {
+            "description": "\u003cp\u003eUse the \u003ccode\u003eRoleArn\u003c/code\u003e structure to override an account-wide role for a specific S3 data source. For example, say an account administrator has turned off all S3 access with an account-wide role. The administrator can then use \u003ccode\u003eRoleArn\u003c/code\u003e to bypass the account-wide role and allow S3 access for the single S3 data source that is specified in the structure, even if the account-wide role forbidding S3 access is still active.\u003c/p\u003e",
+            "maxLength": 2048,
+            "minLength": 20,
+            "type": "string"
           }
         },
         "required": [

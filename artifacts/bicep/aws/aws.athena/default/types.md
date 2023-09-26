@@ -1,5 +1,12 @@
 # AWS.Athena @ default
 
+## Resource AWS.Athena/CapacityReservation@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Athena/CapacityReservationProperties](#awsathenacapacityreservationproperties) (Required): properties of the resource
+
 ## Resource AWS.Athena/DataCatalog@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -27,6 +34,31 @@
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Athena/WorkGroupProperties](#awsathenaworkgroupproperties) (Required): properties of the resource
+
+## AWS.Athena/CapacityReservationProperties
+### Properties
+* **AllocatedDpus**: int (ReadOnly): The number of DPUs Athena has provisioned and allocated for the reservation
+* **Arn**: string (ReadOnly, Identifier)
+* **CapacityAssignmentConfiguration**: [CapacityAssignmentConfiguration](#capacityassignmentconfiguration)
+* **CreationTime**: string (ReadOnly): The date and time the reservation was created.
+* **LastSuccessfulAllocationTime**: string (ReadOnly): The timestamp when the last successful allocated was made
+* **Name**: string (Required): The reservation name.
+* **Status**: string (ReadOnly): The status of the reservation.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **TargetDpus**: int (Required): The number of DPUs to request to be allocated to the reservation.
+
+## CapacityAssignmentConfiguration
+### Properties
+* **CapacityAssignments**: [CapacityAssignment](#capacityassignment)[] (Required)
+
+## CapacityAssignment
+### Properties
+* **WorkgroupNames**: string[] (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.Athena/DataCatalogProperties
 ### Properties

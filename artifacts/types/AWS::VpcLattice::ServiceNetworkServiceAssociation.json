@@ -1,11 +1,15 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VpcLattice-ServiceNetworkServiceAssociation",
   "type": "AWS::VpcLattice::ServiceNetworkServiceAssociation",
-  "time": "2023-04-19T15:39:43.046Z",
+  "time": "2023-08-30T17:04:56.175Z",
   "schema": {
     "additionalIdentifiers": [
       [
         "/properties/Id"
+      ],
+      [
+        "/properties/ServiceNetworkIdentifier",
+        "/properties/ServiceIdentifier"
       ]
     ],
     "additionalProperties": false,
@@ -64,6 +68,23 @@
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "ServiceIdentifier": {
+              "maxLength": 2048,
+              "minLength": 20,
+              "pattern": "^((svc-[0-9a-z]{17})|(arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:service/svc-[0-9a-z]{17}))$",
+              "type": "string"
+            },
+            "ServiceNetworkIdentifier": {
+              "maxLength": 2048,
+              "minLength": 20,
+              "pattern": "^((sn-[0-9a-z]{17})|(arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:servicenetwork/sn-[0-9a-z]{17}))$",
+              "type": "string"
+            }
+          },
+          "required": []
+        },
         "permissions": [
           "vpc-lattice:ListServiceNetworkServiceAssociations"
         ]

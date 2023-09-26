@@ -1,5 +1,12 @@
 # AWS.RDS @ default
 
+## Resource AWS.RDS/CustomDBEngineVersion@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.RDS/CustomDBEngineVersionProperties](#awsrdscustomdbengineversionproperties) (Required): properties of the resource
+
 ## Resource AWS.RDS/DBCluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -76,6 +83,24 @@
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.RDS/OptionGroupProperties](#awsrdsoptiongroupproperties) (Required): properties of the resource
+
+## AWS.RDS/CustomDBEngineVersionProperties
+### Properties
+* **DatabaseInstallationFilesS3BucketName**: string (Required): The name of an Amazon S3 bucket that contains database installation files for your CEV. For example, a valid bucket name is `my-custom-installation-files`.
+* **DatabaseInstallationFilesS3Prefix**: string: The Amazon S3 directory that contains the database installation files for your CEV. For example, a valid bucket name is `123456789012/cev1`. If this setting isn't specified, no prefix is assumed.
+* **DBEngineVersionArn**: string (ReadOnly): The ARN of the custom engine version.
+* **Description**: string: An optional description of your CEV.
+* **Engine**: string (Required, Identifier): The database engine to use for your custom engine version (CEV). The only supported value is `custom-oracle-ee`.
+* **EngineVersion**: string (Required, Identifier): The name of your CEV. The name format is 19.customized_string . For example, a valid name is 19.my_cev1. This setting is required for RDS Custom for Oracle, but optional for Amazon RDS. The combination of Engine and EngineVersion is unique per customer per Region.
+* **KMSKeyId**: string: The AWS KMS key identifier for an encrypted CEV. A symmetric KMS key is required for RDS Custom, but optional for Amazon RDS.
+* **Manifest**: string (WriteOnly): The CEV manifest, which is a JSON document that describes the installation .zip files stored in Amazon S3. Specify the name/value pairs in a file or a quoted string. RDS Custom applies the patches in the order in which they are listed.
+* **Status**: string: The availability status to be assigned to the CEV.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.RDS/DBClusterProperties
 ### Properties
@@ -255,7 +280,11 @@ Constraints:
 * **DeleteAutomatedBackups**: bool (WriteOnly): A value that indicates whether to remove automated backups immediately after the DB instance is deleted. This parameter isn't case-sensitive. The default is to remove automated backups immediately after the DB instance is deleted.
 * **DeletionProtection**: bool: A value that indicates whether the DB instance has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled.
 * **Domain**: string: The Active Directory directory ID to create the DB instance in. Currently, only MySQL, Microsoft SQL Server, Oracle, and PostgreSQL DB instances can be created in an Active Directory Domain.
+* **DomainAuthSecretArn**: string: The ARN for the Secrets Manager secret with the credentials for the user joining the domain.
+* **DomainDnsIps**: string[]: The IPv4 DNS IP addresses of your primary and secondary Active Directory domain controllers.
+* **DomainFqdn**: string: The fully qualified domain name (FQDN) of an Active Directory domain.
 * **DomainIAMRoleName**: string: Specify the name of the IAM role to be used when making API calls to the Directory Service.
+* **DomainOu**: string: The Active Directory organizational unit for your DB instance to join.
 * **EnableCloudwatchLogsExports**: string[]: The list of log types that need to be enabled for exporting to CloudWatch Logs. The values in the list depend on the DB engine being used.
 * **EnableIAMDatabaseAuthentication**: bool: A value that indicates whether to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts. By default, mapping is disabled.
 * **EnablePerformanceInsights**: bool: A value that indicates whether to enable Performance Insights for the DB instance.
@@ -298,7 +327,7 @@ Constraints:
 * **TdeCredentialArn**: string: The ARN from the key store with which to associate the instance for TDE encryption.
 * **TdeCredentialPassword**: string (WriteOnly): The password for the given ARN from the key store in order to access the device.
 * **Timezone**: string: The time zone of the DB instance. The time zone parameter is currently supported only by Microsoft SQL Server.
-* **UseDefaultProcessorFeatures**: bool: A value that indicates whether the DB instance class of the DB instance uses its default processor features.
+* **UseDefaultProcessorFeatures**: bool (WriteOnly): A value that indicates whether the DB instance class of the DB instance uses its default processor features.
 * **UseLatestRestorableTime**: bool (WriteOnly): A value that indicates whether the DB instance is restored from the latest backup time. By default, the DB instance isn't restored from the latest backup time.
 * **VPCSecurityGroups**: string[]: A list of the VPC security group IDs to assign to the DB instance. The list can include both the physical IDs of existing VPC security groups and references to AWS::EC2::SecurityGroup resources created in the template.
 

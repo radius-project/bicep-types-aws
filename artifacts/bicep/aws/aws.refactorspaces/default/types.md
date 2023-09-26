@@ -32,6 +32,7 @@
 ## UriPathRouteInput
 ### Properties
 * **ActivationState**: string (Required)
+* **AppendSourcePath**: bool
 * **IncludeChildPaths**: bool
 * **Methods**: string[]
 * **SourcePath**: string

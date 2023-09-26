@@ -29,6 +29,7 @@
 * **Description**: string
 * **Id**: string (ReadOnly, Identifier)
 * **IndexId**: string (Required, Identifier)
+* **LanguageCode**: string
 * **Name**: string (Required)
 * **RoleArn**: string
 * **Schedule**: string
@@ -83,6 +84,7 @@
 * **SalesforceConfiguration**: [SalesforceConfiguration](#salesforceconfiguration)
 * **ServiceNowConfiguration**: [ServiceNowConfiguration](#servicenowconfiguration)
 * **SharePointConfiguration**: [SharePointConfiguration](#sharepointconfiguration)
+* **TemplateConfiguration**: [TemplateConfiguration](#templateconfiguration)
 * **WebCrawlerConfiguration**: [WebCrawlerConfiguration](#webcrawlerconfiguration)
 * **WorkDocsConfiguration**: [WorkDocsConfiguration](#workdocsconfiguration)
 
@@ -327,6 +329,10 @@
 * **Urls**: string[] (Required)
 * **UseChangeLog**: bool
 * **VpcConfiguration**: [DataSourceVpcConfiguration](#datasourcevpcconfiguration)
+
+## TemplateConfiguration
+### Properties
+* **Template**: string (Required)
 
 ## WebCrawlerConfiguration
 ### Properties

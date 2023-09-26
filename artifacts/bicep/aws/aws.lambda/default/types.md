@@ -140,7 +140,7 @@
 * **Role**: string (Required): The Amazon Resource Name (ARN) of the function's execution role.
 * **Runtime**: string: The identifier of the function's runtime.
 * **RuntimeManagementConfig**: [RuntimeManagementConfig](#runtimemanagementconfig): RuntimeManagementConfig
-* **SnapStart**: [SnapStart](#snapstart): The SnapStart setting of your function
+* **SnapStart**: [SnapStart](#snapstart) (WriteOnly): The SnapStart setting of your function
 * **SnapStartResponse**: [SnapStartResponse](#snapstartresponse) (ReadOnly): The SnapStart response of your function
 * **Tags**: [Tag](#tag)[]: A list of tags to apply to the function.
 * **Timeout**: int: The amount of time that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds.
@@ -188,7 +188,7 @@
 
 ## SnapStart
 ### Properties
-* **ApplyOn**: string (Required): Applying SnapStart setting on function resource type.
+* **ApplyOn**: string (Required, WriteOnly): Applying SnapStart setting on function resource type.
 
 ## SnapStartResponse
 ### Properties

@@ -39,8 +39,6 @@
 * **IsAbstract**: bool (ReadOnly): A Boolean value that specifies whether the component type is abstract.
 * **IsSchemaInitialized**: bool (ReadOnly): A Boolean value that specifies whether the component type has a schema initializer and that the schema initializer has run.
 * **IsSingleton**: bool: A Boolean value that specifies whether an entity can have more than one component of this type.
-
-
 * **PropertyDefinitions**: [ComponentType_PropertyDefinitions](#componenttypepropertydefinitions): An map of the property definitions in the component type. Each property definition's key must be unique to this map.
 * **PropertyGroups**: [ComponentType_PropertyGroups](#componenttypepropertygroups): An map of the property groups in the component type. Each property group's key must be unique to this map.
 * **Status**: [Status](#status) (ReadOnly): The current status of the component type.

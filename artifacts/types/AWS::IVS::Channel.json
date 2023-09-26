@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IVS-Channel",
   "type": "AWS::IVS::Channel",
-  "time": "2023-04-17T15:58:04.416Z",
+  "time": "2023-09-19T18:20:01.623Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -30,26 +30,31 @@
     "handlers": {
       "create": {
         "permissions": [
-          "ivs:CreateChannel"
+          "ivs:CreateChannel",
+          "ivs:TagResource"
         ]
       },
       "delete": {
         "permissions": [
-          "ivs:DeleteChannel"
+          "ivs:DeleteChannel",
+          "ivs:UnTagResource"
         ]
       },
       "list": {
         "permissions": [
-          "ivs:ListChannels"
+          "ivs:ListChannels",
+          "ivs:ListTagsForResource"
         ]
       },
       "read": {
         "permissions": [
-          "ivs:GetChannel"
+          "ivs:GetChannel",
+          "ivs:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
+          "ivs:GetChannel",
           "ivs:UpdateChannel",
           "ivs:TagResource",
           "ivs:UnTagResource",
@@ -103,6 +108,14 @@
         "description": "Channel Playback URL.",
         "type": "string"
       },
+      "Preset": {
+        "description": "Optional transcode preset for the channel. This is selectable only for ADVANCED_HD and ADVANCED_SD channel types. For those channel types, the default preset is HIGHER_BANDWIDTH_DELIVERY. For other channel types (BASIC and STANDARD), preset is the empty string (\"\").",
+        "enum": [
+          "HIGHER_BANDWIDTH_DELIVERY",
+          "CONSTRAINED_BANDWIDTH_DELIVERY"
+        ],
+        "type": "string"
+      },
       "RecordingConfigurationArn": {
         "default": "",
         "description": "Recording Configuration ARN. A value other than an empty string indicates that recording is enabled. Default: \"\" (recording is disabled).",
@@ -126,7 +139,9 @@
         "description": "Channel type, which determines the allowable resolution and bitrate. If you exceed the allowable resolution or bitrate, the stream probably will disconnect immediately.",
         "enum": [
           "STANDARD",
-          "BASIC"
+          "BASIC",
+          "ADVANCED_SD",
+          "ADVANCED_HD"
         ],
         "type": "string"
       }

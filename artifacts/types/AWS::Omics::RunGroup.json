@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Omics-RunGroup",
   "type": "AWS::Omics::RunGroup",
-  "time": "2023-04-03T15:27:45.989Z",
+  "time": "2023-09-22T23:07:00.57Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -29,7 +29,8 @@
       },
       "delete": {
         "permissions": [
-          "omics:DeleteRunGroup"
+          "omics:DeleteRunGroup",
+          "omics:GetRunGroup"
         ]
       },
       "list": {
@@ -46,6 +47,8 @@
         "permissions": [
           "omics:UpdateRunGroup",
           "omics:TagResource",
+          "omics:GetRunGroup",
+          "omics:ListTagsForResource",
           "omics:UntagResource"
         ]
       }
@@ -76,6 +79,11 @@
         "type": "number"
       },
       "MaxDuration": {
+        "maximum": 100000,
+        "minimum": 1,
+        "type": "number"
+      },
+      "MaxGpus": {
         "maximum": 100000,
         "minimum": 1,
         "type": "number"

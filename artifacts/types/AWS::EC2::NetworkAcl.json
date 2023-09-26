@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-NetworkAcl",
   "type": "AWS::EC2::NetworkAcl",
-  "time": "2023-04-14T18:27:20.145Z",
+  "time": "2023-08-30T04:30:17.507Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -30,11 +30,13 @@
       "create": {
         "permissions": [
           "ec2:CreateNetworkAcl",
-          "ec2:DescribeNetworkAcls"
+          "ec2:DescribeNetworkAcls",
+          "ec2:CreateTags"
         ]
       },
       "delete": {
         "permissions": [
+          "ec2:DeleteTags",
           "ec2:DeleteNetworkAcl",
           "ec2:DescribeNetworkAcls"
         ]
@@ -46,7 +48,8 @@
       },
       "read": {
         "permissions": [
-          "ec2:DescribeNetworkAcls"
+          "ec2:DescribeNetworkAcls",
+          "ec2:DescribeTags"
         ]
       },
       "update": {

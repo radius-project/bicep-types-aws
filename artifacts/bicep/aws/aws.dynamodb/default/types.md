@@ -19,10 +19,10 @@
 * **Arn**: string (ReadOnly)
 * **AttributeDefinitions**: [AttributeDefinition](#attributedefinition)[] (Required)
 * **BillingMode**: string
-* **GlobalSecondaryIndexes**: [GlobalSecondaryIndex](#globalsecondaryindex)[]
+* **GlobalSecondaryIndexes**: [GlobalSecondaryIndex](#globalsecondaryindex)[] (WriteOnly)
 * **KeySchema**: [KeySchema](#keyschema)[] (Required)
 * **LocalSecondaryIndexes**: [LocalSecondaryIndex](#localsecondaryindex)[]
-* **Replicas**: [ReplicaSpecification](#replicaspecification)[] (Required)
+* **Replicas**: [ReplicaSpecification](#replicaspecification)[] (Required, WriteOnly)
 * **SSESpecification**: [SSESpecification](#ssespecification)
 * **StreamArn**: string (ReadOnly)
 * **StreamSpecification**: [StreamSpecification](#streamspecification)
@@ -61,7 +61,7 @@
 ### Properties
 * **MaxCapacity**: int (Required)
 * **MinCapacity**: int (Required)
-* **SeedCapacity**: int
+* **SeedCapacity**: int (WriteOnly)
 * **TargetTrackingScalingPolicyConfiguration**: [TargetTrackingScalingPolicyConfiguration](#targettrackingscalingpolicyconfiguration) (Required)
 
 ## TargetTrackingScalingPolicyConfiguration
@@ -246,6 +246,6 @@
 
 ## TimeToLiveSpecification
 ### Properties
-* **AttributeName**: string (Required)
+* **AttributeName**: string
 * **Enabled**: bool (Required)
 

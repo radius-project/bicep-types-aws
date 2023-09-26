@@ -1,9 +1,17 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSM-Document",
   "type": "AWS::SSM::Document",
-  "time": "2023-02-28T20:16:45.881Z",
+  "time": "2023-09-14T18:02:25.844Z",
   "schema": {
     "additionalProperties": false,
+    "conditionalCreateOnlyProperties": [
+      "/properties/Content",
+      "/properties/Attachments",
+      "/properties/VersionName",
+      "/properties/DocumentFormat",
+      "/properties/TargetType",
+      "/properties/Requires"
+    ],
     "createOnlyProperties": [
       "/properties/Name",
       "/properties/DocumentType"
@@ -87,13 +95,17 @@
       "create": {
         "permissions": [
           "ssm:CreateDocument",
+          "ssm:GetDocument",
+          "ssm:AddTagsToResource",
+          "ssm:ListTagsForResource",
           "s3:GetObject",
           "iam:PassRole"
         ]
       },
       "delete": {
         "permissions": [
-          "ssm:DeleteDocument"
+          "ssm:DeleteDocument",
+          "ssm:GetDocument"
         ]
       },
       "list": {
@@ -103,7 +115,8 @@
       },
       "read": {
         "permissions": [
-          "ssm:GetDocument"
+          "ssm:GetDocument",
+          "ssm:ListTagsForResource"
         ]
       },
       "update": {
@@ -216,6 +229,13 @@
       "Content"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ssm",
-    "typeName": "AWS::SSM::Document"
+    "tagging": {
+      "taggable": true
+    },
+    "typeName": "AWS::SSM::Document",
+    "writeOnlyProperties": [
+      "/properties/UpdateMethod",
+      "/properties/Attachments"
+    ]
   }
 }

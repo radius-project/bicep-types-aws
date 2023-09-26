@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Athena-WorkGroup",
   "type": "AWS::Athena::WorkGroup",
-  "time": "2023-03-16T17:32:13.046Z",
+  "time": "2023-08-30T15:14:39.882Z",
   "schema": {
     "$comment": "Resource Schema for AWS::Athena::WorkGroup. Any changes made to SDK model for WorkGroup should be reflected here.",
     "additionalProperties": false,
@@ -304,12 +304,23 @@
       "create": {
         "permissions": [
           "athena:CreateWorkGroup",
-          "athena:TagResource"
+          "athena:TagResource",
+          "iam:PassRole",
+          "s3:GetBucketLocation",
+          "s3:GetObject",
+          "s3:ListBucket",
+          "s3:ListBucketMultipartUploads",
+          "s3:AbortMultipartUpload",
+          "s3:PutObject",
+          "s3:ListMultipartUploadParts",
+          "kms:Decrypt",
+          "kms:GenerateDataKey"
         ]
       },
       "delete": {
         "permissions": [
           "athena:DeleteWorkGroup",
+          "athena:GetWorkGroup",
           "athena:UntagResource"
         ]
       },
@@ -328,7 +339,17 @@
         "permissions": [
           "athena:UpdateWorkGroup",
           "athena:TagResource",
-          "athena:UntagResource"
+          "athena:UntagResource",
+          "iam:PassRole",
+          "s3:GetBucketLocation",
+          "s3:GetObject",
+          "s3:ListBucket",
+          "s3:ListBucketMultipartUploads",
+          "s3:AbortMultipartUpload",
+          "s3:PutObject",
+          "s3:ListMultipartUploadParts",
+          "kms:Decrypt",
+          "kms:GenerateDataKey"
         ]
       }
     },

@@ -11,13 +11,13 @@
 ### Properties
 * **ApplicationARN**: string (ReadOnly, Identifier): The ARN of the ApplicationInsights application.
 * **AutoConfigurationEnabled**: bool: If set to true, application will be configured with recommended monitoring configuration.
-* **ComponentMonitoringSettings**: [ComponentMonitoringSetting](#componentmonitoringsetting)[]: The monitoring settings of the components.
-* **CustomComponents**: [CustomComponent](#customcomponent)[]: The custom grouped components.
+* **ComponentMonitoringSettings**: [ComponentMonitoringSetting](#componentmonitoringsetting)[] (WriteOnly): The monitoring settings of the components.
+* **CustomComponents**: [CustomComponent](#customcomponent)[] (WriteOnly): The custom grouped components.
 * **CWEMonitorEnabled**: bool: Indicates whether Application Insights can listen to CloudWatch events for the application resources.
-* **GroupingType**: string: The grouping type of the application
-* **LogPatternSets**: [LogPatternSet](#logpatternset)[]: The log pattern sets.
+* **GroupingType**: string (WriteOnly): The grouping type of the application
+* **LogPatternSets**: [LogPatternSet](#logpatternset)[] (WriteOnly): The log pattern sets.
 * **OpsCenterEnabled**: bool: When set to true, creates opsItems for any problems detected on an application.
-* **OpsItemSNSTopicArn**: string: The SNS topic provided to Application Insights that is associated to the created opsItem.
+* **OpsItemSNSTopicArn**: string (WriteOnly): The SNS topic provided to Application Insights that is associated to the created opsItem.
 * **ResourceGroupName**: string (Required): The name of the resource group.
 * **Tags**: [Tag](#tag)[]: The tags of Application Insights application.
 

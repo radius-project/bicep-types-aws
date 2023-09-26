@@ -67,6 +67,7 @@
 * **Id**: string (ReadOnly, Identifier)
 * **MaxCpus**: int
 * **MaxDuration**: int
+* **MaxGpus**: int
 * **MaxRuns**: int
 * **Name**: string
 * **Tags**: [TagMap](#tagmap)
@@ -103,6 +104,7 @@
 
 ## AWS.Omics/WorkflowProperties
 ### Properties
+* **Accelerators**: string
 * **Arn**: string (ReadOnly)
 * **CreationTime**: string (ReadOnly)
 * **DefinitionUri**: string (WriteOnly)

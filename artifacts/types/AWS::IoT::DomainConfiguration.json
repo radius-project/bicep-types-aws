@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-DomainConfiguration",
   "type": "AWS::IoT::DomainConfiguration",
-  "time": "2023-03-21T15:16:55.016Z",
+  "time": "2023-09-18T15:41:50.54Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -64,6 +64,16 @@
           "Value"
         ],
         "type": "object"
+      },
+      "TlsConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "SecurityPolicy": {
+            "maxLength": 128,
+            "type": "string"
+          }
+        },
+        "type": "object"
       }
     },
     "description": "Create and manage a Domain Configuration",
@@ -73,11 +83,14 @@
           "iot:CreateDomainConfiguration",
           "iot:UpdateDomainConfiguration",
           "iot:DescribeDomainConfiguration",
-          "iot:ListTagsForResource"
+          "iot:TagResource",
+          "iot:ListTagsForResource",
+          "acm:GetCertificate"
         ]
       },
       "delete": {
         "permissions": [
+          "iot:DescribeDomainConfiguration",
           "iot:DeleteDomainConfiguration",
           "iot:UpdateDomainConfiguration"
         ]
@@ -172,6 +185,9 @@
           "$ref": "#/definitions/Tag"
         },
         "type": "array"
+      },
+      "TlsConfig": {
+        "$ref": "#/definitions/TlsConfig"
       },
       "ValidationCertificateArn": {
         "pattern": "^arn:aws(-cn|-us-gov|-iso-b|-iso)?:acm:[a-z]{2}-(gov-|iso-|isob-)?[a-z]{4,9}-\\d{1}:\\d{12}:certificate/[a-zA-Z0-9/-]+$",

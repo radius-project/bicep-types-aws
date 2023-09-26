@@ -79,15 +79,17 @@
 ## AWS.Transfer/ConnectorProperties
 ### Properties
 * **AccessRole**: string (Required): Specifies the access role for the connector.
-* **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the workflow.
-* **As2Config**: [Connector_As2Config](#connectoras2config) (Required): Configuration for an AS2 connector.
+* **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the connector.
+* **As2Config**: [Connector_As2Config](#connectoras2config): Configuration for an AS2 connector.
 * **ConnectorId**: string (ReadOnly, Identifier): A unique identifier for the connector.
 * **LoggingRole**: string: Specifies the logging role for the connector.
-* **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for workflows. Tags are metadata attached to workflows for any purpose.
+* **SftpConfig**: [Connector_SftpConfig](#connectorsftpconfig): Configuration for an SFTP connector.
+* **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for connectors. Tags are metadata attached to connectors for any purpose.
 * **Url**: string (Required): URL for Connector
 
 ## Connector_As2Config
 ### Properties
+* **BasicAuthSecretId**: string: ARN or name of the secret in AWS Secrets Manager which contains the credentials for Basic authentication. If empty, Basic authentication is disabled for the AS2 connector
 * **Compression**: string: Compression setting for this AS2 connector configuration.
 * **EncryptionAlgorithm**: string: Encryption algorithm for this AS2 connector configuration.
 * **LocalProfileId**: string: A unique identifier for the local profile.
@@ -96,6 +98,11 @@
 * **MessageSubject**: string: The message subject for this AS2 connector configuration.
 * **PartnerProfileId**: string: A unique identifier for the partner profile.
 * **SigningAlgorithm**: string: Signing algorithm for this AS2 connector configuration.
+
+## Connector_SftpConfig
+### Properties
+* **TrustedHostKeys**: string[]: List of public host keys, for the external server to which you are connecting.
+* **UserSecretId**: string: ARN or name of the secret in AWS Secrets Manager which contains the SFTP user's private keys or passwords.
 
 ## Tag
 ### Properties

@@ -14,12 +14,26 @@
 * **name**: string: the resource name
 * **properties**: [AWS.MSK/ClusterProperties](#awsmskclusterproperties) (Required): properties of the resource
 
+## Resource AWS.MSK/ClusterPolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MSK/ClusterPolicyProperties](#awsmskclusterpolicyproperties) (Required): properties of the resource
+
 ## Resource AWS.MSK/Configuration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MSK/ConfigurationProperties](#awsmskconfigurationproperties) (Required): properties of the resource
+
+## Resource AWS.MSK/VpcConnection@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MSK/VpcConnectionProperties](#awsmskvpcconnectionproperties) (Required): properties of the resource
 
 ## AWS.MSK/BatchScramSecretProperties
 ### Properties
@@ -194,11 +208,40 @@
 ## Cluster_Tags
 ### Properties
 
+## AWS.MSK/ClusterPolicyProperties
+### Properties
+* **ClusterArn**: string (Required, Identifier): The arn of the cluster for the resource policy.
+* **CurrentVersion**: string (ReadOnly): The current version of the policy attached to the specified cluster
+* **Policy**: [ClusterPolicy_Policy](#clusterpolicypolicy) (Required): A policy document containing permissions to add to the specified cluster.
+
+## ClusterPolicy_Policy
+### Properties
+
 ## AWS.MSK/ConfigurationProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
 * **Description**: string
 * **KafkaVersionsList**: string[]
+* **LatestRevision**: [LatestRevision](#latestrevision)
 * **Name**: string (Required)
 * **ServerProperties**: string (Required, WriteOnly)
+
+## LatestRevision
+### Properties
+* **CreationTime**: string (ReadOnly)
+* **Description**: string (ReadOnly)
+* **Revision**: int (ReadOnly)
+
+## AWS.MSK/VpcConnectionProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **Authentication**: string (Required)
+* **ClientSubnets**: string[] (Required)
+* **SecurityGroups**: string[] (Required)
+* **Tags**: [Tags](#tags)
+* **TargetClusterArn**: string (Required): The Amazon Resource Name (ARN) of the target cluster
+* **VpcId**: string (Required)
+
+## Tags
+### Properties
 

@@ -1,5 +1,12 @@
 # AWS.Logs @ default
 
+## Resource AWS.Logs/AccountPolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Logs/AccountPolicyProperties](#awslogsaccountpolicyproperties) (Required): properties of the resource
+
 ## Resource AWS.Logs/Destination@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -41,6 +48,20 @@
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/SubscriptionFilterProperties](#awslogssubscriptionfilterproperties) (Required): properties of the resource
+
+## AWS.Logs/AccountPolicyProperties
+### Properties
+* **AccountId**: string (ReadOnly, Identifier): User account id
+* **PolicyDocument**: string (Required): The body of the policy document you want to use for this topic.
+
+You can only add one policy per PolicyType.
+
+The policy must be in JSON string format.
+
+Length Constraints: Maximum length of 30720
+* **PolicyName**: string (Required, Identifier): The name of the account policy
+* **PolicyType**: string (Required, Identifier): Type of the policy.
+* **Scope**: string: Scope for policy application
 
 ## AWS.Logs/DestinationProperties
 ### Properties

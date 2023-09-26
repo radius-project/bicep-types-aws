@@ -1,11 +1,14 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VpcLattice-Service",
   "type": "AWS::VpcLattice::Service",
-  "time": "2023-04-19T15:35:37.91Z",
+  "time": "2023-08-30T16:31:21.27Z",
   "schema": {
     "additionalIdentifiers": [
       [
         "/properties/Id"
+      ],
+      [
+        "/properties/Name"
       ]
     ],
     "additionalProperties": false,
@@ -56,7 +59,8 @@
           "vpc-lattice:ListTagsForResource",
           "vpc-lattice:TagResource",
           "acm:DescribeCertificate",
-          "acm:ListCertificates"
+          "acm:ListCertificates",
+          "iam:CreateServiceLinkedRole"
         ]
       },
       "delete": {
@@ -80,7 +84,9 @@
         "permissions": [
           "vpc-lattice:UpdateService",
           "vpc-lattice:TagResource",
-          "vpc-lattice:UntagResource"
+          "vpc-lattice:UntagResource",
+          "vpc-lattice:GetService",
+          "vpc-lattice:ListTagsForResource"
         ]
       }
     },
