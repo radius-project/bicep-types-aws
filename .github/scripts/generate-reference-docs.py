@@ -43,7 +43,7 @@ def generate_reference_table(base_directory, output_filename):
                 primary_identifiers_output = ", ".join(primary_identifiers)
                 notes_output = ""
                 if is_nonidempotent:
-                    notes_output = "\u26a0 This resource type is non-idempotent. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/supported_resources.md) for more information."
+                    notes_output = "\u26a0 This resource type is non-idempotent. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md) for more information."
                 
                 aws_resource_type = resource_type.split("::")[1].lower()
                 resource_api_version = "default"
