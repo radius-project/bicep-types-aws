@@ -14,6 +14,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/AuthorizerProperties](#awsiotauthorizerproperties) (Required): properties of the resource
 
+## Resource AWS.IoT/BillingGroup@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/BillingGroupProperties](#awsiotbillinggroupproperties): properties of the resource
+
 ## Resource AWS.IoT/CACertificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -119,6 +126,20 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/ThingProperties](#awsiotthingproperties): properties of the resource
 
+## Resource AWS.IoT/ThingGroup@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/ThingGroupProperties](#awsiotthinggroupproperties): properties of the resource
+
+## Resource AWS.IoT/ThingType@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/ThingTypeProperties](#awsiotthingtypeproperties): properties of the resource
+
 ## Resource AWS.IoT/TopicRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -193,6 +214,23 @@
 ## Authorizer_TokenSigningPublicKeys
 ### Properties
 
+## AWS.IoT/BillingGroupProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **BillingGroupName**: string (Identifier)
+* **BillingGroupProperties**: [BillingGroup_BillingGroupProperties](#billinggroupbillinggroupproperties)
+* **Id**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## BillingGroup_BillingGroupProperties
+### Properties
+* **BillingGroupDescription**: string
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
 ## AWS.IoT/CACertificateProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -265,6 +303,7 @@
 * **ServerCertificates**: [ServerCertificateSummary](#servercertificatesummary)[] (ReadOnly)
 * **ServiceType**: string
 * **Tags**: [Tag](#tag)[]
+* **TlsConfig**: [TlsConfig](#tlsconfig)
 * **ValidationCertificateArn**: string (WriteOnly)
 
 ## AuthorizerConfig
@@ -282,6 +321,10 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## TlsConfig
+### Properties
+* **SecurityPolicy**: string
 
 ## AWS.IoT/FleetMetricProperties
 ### Properties
@@ -369,11 +412,8 @@
 ### Properties
 * **Arn**: string (ReadOnly)
 * **Id**: string (ReadOnly, Identifier)
-* **PolicyDocument**: [Policy_PolicyDocument](#policypolicydocument) (Required)
+* **PolicyDocument**: [Policy_PolicyDocument](#policypolicydocument) | string (Required)
 * **PolicyName**: string
-
-## Policy_PolicyDocument
-### Properties
 
 ## AWS.IoT/ProvisioningTemplateProperties
 ### Properties
@@ -509,6 +549,52 @@
 
 ## Thing_Attributes
 ### Properties
+
+## AWS.IoT/ThingGroupProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **Id**: string (ReadOnly)
+* **ParentGroupName**: string
+* **QueryString**: string
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **ThingGroupName**: string (Identifier)
+* **ThingGroupProperties**: [ThingGroup_ThingGroupProperties](#thinggroupthinggroupproperties)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## ThingGroup_ThingGroupProperties
+### Properties
+* **AttributePayload**: [AttributePayload](#attributepayload)
+* **ThingGroupDescription**: string
+
+## AttributePayload
+### Properties
+* **Attributes**: [ThingGroup_Attributes](#thinggroupattributes)
+
+## ThingGroup_Attributes
+### Properties
+
+## AWS.IoT/ThingTypeProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **DeprecateThingType**: bool
+* **Id**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **ThingTypeName**: string (Identifier)
+* **ThingTypeProperties**: [ThingType_ThingTypeProperties](#thingtypethingtypeproperties)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## ThingType_ThingTypeProperties
+### Properties
+* **SearchableAttributes**: string[]
+* **ThingTypeDescription**: string
 
 ## AWS.IoT/TopicRuleProperties
 ### Properties

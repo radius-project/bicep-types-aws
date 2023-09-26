@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkFirewall-RuleGroup",
   "type": "AWS::NetworkFirewall::RuleGroup",
-  "time": "2023-03-22T17:52:59.432Z",
+  "time": "2023-07-26T20:16:28.474Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -622,7 +622,10 @@
         "permissions": [
           "network-firewall:CreateRuleGroup",
           "network-firewall:DescribeRuleGroup",
-          "network-firewall:TagResource"
+          "network-firewall:TagResource",
+          "network-firewall:ListRuleGroups",
+          "iam:CreateServiceLinkedRole",
+          "ec2:GetManagedPrefixListEntries"
         ]
       },
       "delete": {
@@ -648,7 +651,9 @@
           "network-firewall:UpdateRuleGroup",
           "network-firewall:DescribeRuleGroup",
           "network-firewall:TagResource",
-          "network-firewall:UntagResource"
+          "network-firewall:UntagResource",
+          "iam:CreateServiceLinkedRole",
+          "ec2:GetManagedPrefixListEntries"
         ]
       }
     },
@@ -709,6 +714,9 @@
       "RuleGroupName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-networkfirewall.git",
+    "tagging": {
+      "taggable": true
+    },
     "typeName": "AWS::NetworkFirewall::RuleGroup"
   }
 }

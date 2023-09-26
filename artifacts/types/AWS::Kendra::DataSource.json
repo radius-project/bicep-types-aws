@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Kendra-DataSource",
   "type": "AWS::Kendra::DataSource",
-  "time": "2023-04-07T14:52:45.18Z",
+  "time": "2023-09-20T08:02:32.374Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -461,6 +461,11 @@
             "required": [
               "WorkDocsConfiguration"
             ]
+          },
+          {
+            "required": [
+              "TemplateConfiguration"
+            ]
           }
         ],
         "properties": {
@@ -487,6 +492,9 @@
           },
           "SharePointConfiguration": {
             "$ref": "#/definitions/SharePointConfiguration"
+          },
+          "TemplateConfiguration": {
+            "$ref": "#/definitions/TemplateConfiguration"
           },
           "WebCrawlerConfiguration": {
             "$ref": "#/definitions/WebCrawlerConfiguration"
@@ -825,6 +833,13 @@
       "LambdaArn": {
         "maxLength": 2048,
         "minLength": 1,
+        "type": "string"
+      },
+      "LanguageCode": {
+        "description": "The code for a language.",
+        "maxLength": 10,
+        "minLength": 2,
+        "pattern": "[a-zA-Z-]*",
         "type": "string"
       },
       "Long": {
@@ -1458,6 +1473,18 @@
         "maxItems": 200,
         "type": "array"
       },
+      "TemplateConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Template": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Template"
+        ],
+        "type": "object"
+      },
       "TenantDomain": {
         "maxLength": 256,
         "minLength": 1,
@@ -1480,7 +1507,8 @@
           "CONFLUENCE",
           "GOOGLEDRIVE",
           "WEBCRAWLER",
-          "WORKDOCS"
+          "WORKDOCS",
+          "TEMPLATE"
         ],
         "type": "string"
       },
@@ -1745,6 +1773,9 @@
       },
       "IndexId": {
         "$ref": "#/definitions/IndexId"
+      },
+      "LanguageCode": {
+        "$ref": "#/definitions/LanguageCode"
       },
       "Name": {
         "$ref": "#/definitions/Name"

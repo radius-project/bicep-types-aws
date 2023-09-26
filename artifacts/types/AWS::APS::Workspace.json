@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-APS-Workspace",
   "type": "AWS::APS::Workspace",
-  "time": "2023-04-19T15:42:06.438Z",
+  "time": "2023-09-18T16:00:45.993Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -47,17 +47,24 @@
       "create": {
         "permissions": [
           "aps:CreateWorkspace",
+          "aps:DescribeWorkspace",
           "aps:TagResource",
           "aps:CreateAlertManagerDefinition",
           "aps:DescribeAlertManagerDefinition",
-          "aps:CreateLoggingConfiguration"
+          "aps:CreateLoggingConfiguration",
+          "logs:CreateLogDelivery",
+          "logs:GetLogDelivery",
+          "logs:ListLogDeliveries",
+          "logs:PutResourcePolicy"
         ]
       },
       "delete": {
         "permissions": [
           "aps:DeleteWorkspace",
+          "aps:DescribeWorkspace",
           "aps:DeleteAlertManagerDefinition",
-          "aps:DeleteLoggingConfiguration"
+          "aps:DeleteLoggingConfiguration",
+          "logs:DeleteLogDelivery"
         ]
       },
       "list": {
@@ -77,11 +84,23 @@
       "update": {
         "permissions": [
           "aps:UpdateWorkspaceAlias",
+          "aps:DescribeWorkspace",
           "aps:TagResource",
           "aps:UntagResource",
           "aps:ListTagsForResource",
+          "aps:CreateAlertManagerDefinition",
           "aps:PutAlertManagerDefinition",
-          "aps:UpdateLoggingConfiguration"
+          "aps:DeleteAlertManagerDefinition",
+          "aps:CreateLoggingConfiguration",
+          "aps:DescribeLoggingConfiguration",
+          "aps:UpdateLoggingConfiguration",
+          "aps:DeleteLoggingConfiguration",
+          "logs:CreateLogDelivery",
+          "logs:GetLogDelivery",
+          "logs:UpdateLogDelivery",
+          "logs:ListLogDeliveries",
+          "logs:DeleteLogDelivery",
+          "logs:PutResourcePolicy"
         ]
       }
     },

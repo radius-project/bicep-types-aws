@@ -22,7 +22,7 @@
 * **ReleaseLabel**: string (Required): EMR release label.
 * **Tags**: [Tag](#tag)[]: Tag map with key and value
 * **Type**: string (Required): The type of the application
-* **WorkerTypeSpecifications**: [WorkerTypeSpecificationInputMap](#workertypespecificationinputmap)
+* **WorkerTypeSpecifications**: [WorkerTypeSpecificationInputMap](#workertypespecificationinputmap): The key-value pairs that specify worker type to WorkerTypeSpecificationInput. This parameter must contain all valid worker types for a Spark or Hive application. Valid worker types include Driver and Executor for Spark applications and HiveDriver and TezTask for Hive applications. You can either set image details in this parameter for each worker type, or in imageConfiguration for all worker types.
 
 ## AutoStartConfiguration
 ### Properties

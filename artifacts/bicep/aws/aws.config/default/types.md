@@ -7,6 +7,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Config/AggregationAuthorizationProperties](#awsconfigaggregationauthorizationproperties) (Required): properties of the resource
 
+## Resource AWS.Config/ConfigRule@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Config/ConfigRuleProperties](#awsconfigconfigruleproperties) (Required): properties of the resource
+
 ## Resource AWS.Config/ConfigurationAggregator@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -46,6 +53,53 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## AWS.Config/ConfigRuleProperties
+### Properties
+* **Arn**: string (ReadOnly): ARN generated for the AWS Config rule 
+* **Compliance**: [ConfigRule_Compliance](#configrulecompliance): Compliance details of the Config rule
+* **ConfigRuleId**: string (ReadOnly): ID of the config rule
+* **ConfigRuleName**: string (Identifier): Name for the AWS Config rule
+* **Description**: string: Description provided for the AWS Config rule
+* **EvaluationModes**: [EvaluationModeConfiguration](#evaluationmodeconfiguration)[]: List of EvaluationModeConfiguration objects
+* **InputParameters**: [ConfigRule_InputParameters](#configruleinputparameters) | string: JSON string passed the Lambda function
+* **MaximumExecutionFrequency**: string: Maximum frequency at which the rule has to be evaluated
+* **Scope**: [Scope](#scope): Scope to constrain which resources can trigger the AWS Config rule
+* **Source**: [Source](#source) (Required): Source of events for the AWS Config rule
+
+## ConfigRule_Compliance
+### Properties
+* **Type**: string (ReadOnly): Compliance type determined by the Config rule
+
+## EvaluationModeConfiguration
+### Properties
+* **Mode**: string: Mode of evaluation of AWS Config rule
+
+## Scope
+### Properties
+* **ComplianceResourceId**: string: ID of the only one resource which we want to trigger the rule
+* **ComplianceResourceTypes**: string[]: Resource types of resources which we want to trigger the rule
+* **TagKey**: string: Tag key applied only to resources which we want to trigger the rule
+* **TagValue**: string: Tag value applied only to resources which we want to trigger the rule
+
+## Source
+### Properties
+* **CustomPolicyDetails**: [CustomPolicyDetails](#custompolicydetails): Custom policy details when rule is custom owned
+* **Owner**: string (Required): Owner of the config rule
+* **SourceDetails**: [SourceDetail](#sourcedetail)[]: List of message types that can trigger the rule
+* **SourceIdentifier**: string: Identifier for the source of events
+
+## CustomPolicyDetails
+### Properties
+* **EnableDebugLogDelivery**: bool: Logging toggle for custom policy rule
+* **PolicyRuntime**: string: Runtime system for custom policy rule
+* **PolicyText**: string (WriteOnly): Policy definition containing logic for custom policy rule
+
+## SourceDetail
+### Properties
+* **EventSource**: string (Required): Source of event that can trigger the rule
+* **MaximumExecutionFrequency**: string: Frequency at which the rule has to be evaluated
+* **MessageType**: string (Required): Notification type that can trigger the rule
 
 ## AWS.Config/ConfigurationAggregatorProperties
 ### Properties

@@ -49,7 +49,7 @@
 * **Expression**: string (Required): Destination expression
 * **ExpressionType**: string (Required): Must be RuleName
 * **Name**: string (Required, Identifier): Unique name of destination
-* **RoleArn**: string (Required): AWS role ARN that grants access
+* **RoleArn**: string: AWS role ARN that grants access
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the destination.
 
 ## Tag

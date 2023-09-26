@@ -16,6 +16,7 @@
 * **DatastoreName**: string
 * **DatastoreStatus**: string (ReadOnly)
 * **DatastoreTypeVersion**: string (Required)
+* **IdentityProviderConfiguration**: [IdentityProviderConfiguration](#identityproviderconfiguration)
 * **PreloadDataConfig**: [PreloadDataConfig](#preloaddataconfig)
 * **SseConfiguration**: [SseConfiguration](#sseconfiguration)
 * **Tags**: [Tag](#tag)[]
@@ -24,6 +25,13 @@
 ### Properties
 * **Nanos**: int (Required): Nanoseconds.
 * **Seconds**: string (Required): Seconds since epoch.
+
+## IdentityProviderConfiguration
+### Properties
+* **AuthorizationStrategy**: string (Required): Type of Authorization Strategy. The two types of supported Authorization strategies are SMART_ON_FHIR_V1 and AWS_AUTH.
+* **FineGrainedAuthorizationEnabled**: bool: Flag to indicate if fine-grained authorization will be enabled for the datastore
+* **IdpLambdaArn**: string: The Amazon Resource Name (ARN) of the Lambda function that will be used to decode the access token created by the authorization server.
+* **Metadata**: string: The JSON metadata elements for identity provider configuration.
 
 ## PreloadDataConfig
 ### Properties

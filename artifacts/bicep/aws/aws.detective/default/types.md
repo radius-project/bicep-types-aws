@@ -14,9 +14,17 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Detective/MemberInvitationProperties](#awsdetectivememberinvitationproperties) (Required): properties of the resource
 
+## Resource AWS.Detective/OrganizationAdmin@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Detective/OrganizationAdminProperties](#awsdetectiveorganizationadminproperties) (Required): properties of the resource
+
 ## AWS.Detective/GraphProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The Detective graph ARN
+* **AutoEnableMembers**: bool: Indicates whether to automatically enable new organization accounts as member accounts in the organization behavior graph.
 * **Tags**: [Tag](#tag)[]
 
 ## Tag
@@ -31,4 +39,9 @@
 * **MemberEmailAddress**: string (Required): The root email address for the account to be invited, for validation. Updating this field has no effect.
 * **MemberId**: string (Required, Identifier): The AWS account ID to be invited to join the graph as a member
 * **Message**: string (WriteOnly): A message to be included in the email invitation sent to the invited account. Updating this field has no effect.
+
+## AWS.Detective/OrganizationAdminProperties
+### Properties
+* **AccountId**: string (Required, Identifier): The account ID of the account that should be registered as your Organization's delegated administrator for Detective
+* **GraphArn**: string (ReadOnly): The Detective graph ARN
 

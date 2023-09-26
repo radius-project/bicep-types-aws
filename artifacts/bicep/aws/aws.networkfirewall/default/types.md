@@ -64,6 +64,7 @@
 
 ## FirewallPolicy
 ### Properties
+* **PolicyVariables**: [FirewallPolicy_PolicyVariables](#firewallpolicypolicyvariables)
 * **StatefulDefaultActions**: string[]
 * **StatefulEngineOptions**: [StatefulEngineOptions](#statefulengineoptions)
 * **StatefulRuleGroupReferences**: [StatefulRuleGroupReference](#statefulrulegroupreference)[]
@@ -71,6 +72,13 @@
 * **StatelessDefaultActions**: string[] (Required)
 * **StatelessFragmentDefaultActions**: string[] (Required)
 * **StatelessRuleGroupReferences**: [StatelessRuleGroupReference](#statelessrulegroupreference)[]
+
+## FirewallPolicy_PolicyVariables
+### Properties
+* **RuleVariables**: [RuleVariables](#rulevariables)
+
+## RuleVariables
+### Properties
 
 ## StatefulEngineOptions
 ### Properties

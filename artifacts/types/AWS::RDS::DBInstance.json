@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBInstance",
   "type": "AWS::RDS::DBInstance",
-  "time": "2023-04-20T08:44:39.888Z",
+  "time": "2023-09-11T09:52:45.75Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -171,6 +171,9 @@
           "rds:CreateDBInstance",
           "rds:CreateDBInstanceReadReplica",
           "rds:DescribeDBInstances",
+          "rds:DescribeDBClusters",
+          "rds:DescribeDBClusterSnapshots",
+          "rds:DescribeDBInstanceAutomatedBackups",
           "rds:DescribeDBSnapshots",
           "rds:DescribeEvents",
           "rds:ModifyDBInstance",
@@ -365,8 +368,27 @@
         "description": "The Active Directory directory ID to create the DB instance in. Currently, only MySQL, Microsoft SQL Server, Oracle, and PostgreSQL DB instances can be created in an Active Directory Domain.",
         "type": "string"
       },
+      "DomainAuthSecretArn": {
+        "description": "The ARN for the Secrets Manager secret with the credentials for the user joining the domain.",
+        "type": "string"
+      },
+      "DomainDnsIps": {
+        "description": "The IPv4 DNS IP addresses of your primary and secondary Active Directory domain controllers.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "DomainFqdn": {
+        "description": "The fully qualified domain name (FQDN) of an Active Directory domain.",
+        "type": "string"
+      },
       "DomainIAMRoleName": {
         "description": "Specify the name of the IAM role to be used when making API calls to the Directory Service.",
+        "type": "string"
+      },
+      "DomainOu": {
+        "description": "The Active Directory organizational unit for your DB instance to join.",
         "type": "string"
       },
       "EnableCloudwatchLogsExports": {
@@ -619,6 +641,7 @@
       "/properties/SourceDbiResourceId",
       "/properties/SourceRegion",
       "/properties/TdeCredentialPassword",
+      "/properties/UseDefaultProcessorFeatures",
       "/properties/UseLatestRestorableTime"
     ]
   }

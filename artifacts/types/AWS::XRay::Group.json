@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-XRay-Group",
   "type": "AWS::XRay::Group",
-  "time": "2023-04-20T15:24:37.759Z",
+  "time": "2023-05-24T20:11:15.666Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -19,23 +19,29 @@
         },
         "type": "object"
       },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
       "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
         "insertionOrder": false,
         "items": {
-          "additionalProperties": false,
-          "properties": {
-            "Key": {
-              "type": "string"
-            },
-            "Value": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Key",
-            "Value"
-          ],
-          "type": "object"
+          "$ref": "#/definitions/Tag"
         },
         "type": "array"
       }
@@ -53,14 +59,24 @@
           "xray:DeleteGroup"
         ]
       },
+      "list": {
+        "permissions": [
+          "xray:GetGroups",
+          "xray:ListTagsForResource"
+        ]
+      },
       "read": {
         "permissions": [
-          "xray:GetGroup"
+          "xray:GetGroup",
+          "xray:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
-          "xray:UpdateGroup"
+          "xray:UpdateGroup",
+          "xray:TagResource",
+          "xray:UntagResource",
+          "xray:ListTagsForResource"
         ]
       }
     },
@@ -93,6 +109,9 @@
     },
     "readOnlyProperties": [
       "/properties/GroupARN"
+    ],
+    "required": [
+      "GroupName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "typeName": "AWS::XRay::Group"

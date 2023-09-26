@@ -1,9 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-XRay-SamplingRule",
   "type": "AWS::XRay::SamplingRule",
-  "time": "2023-04-20T15:24:38.274Z",
+  "time": "2023-05-24T20:10:35.549Z",
   "schema": {
     "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/SamplingRule/Version"
+    ],
     "definitions": {
       "RuleARN": {
         "description": "The ARN of the sampling rule. Specify a rule by either name or ARN, but not both.",
@@ -188,27 +191,38 @@
         },
         "type": "object"
       },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
       "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
         "insertionOrder": false,
         "items": {
-          "additionalProperties": false,
-          "properties": {
-            "Key": {
-              "type": "string"
-            },
-            "Value": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "Key",
-            "Value"
-          ],
-          "type": "object"
+          "$ref": "#/definitions/Tag"
         },
         "type": "array"
       }
     },
+    "deprecatedProperties": [
+      "/properties/RuleName",
+      "/properties/SamplingRuleRecord",
+      "/properties/SamplingRuleUpdate"
+    ],
     "description": "This schema provides construct and validation rules for AWS-XRay SamplingRule resource parameters.",
     "handlers": {
       "create": {
@@ -222,14 +236,24 @@
           "xray:DeleteSamplingRule"
         ]
       },
+      "list": {
+        "permissions": [
+          "xray:GetSamplingRules",
+          "xray:ListTagsForResource"
+        ]
+      },
       "read": {
         "permissions": [
-          "xray:GetSamplingRules"
+          "xray:GetSamplingRules",
+          "xray:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
-          "xray:UpdateSamplingRule"
+          "xray:UpdateSamplingRule",
+          "xray:TagResource",
+          "xray:UntagResource",
+          "xray:ListTagsForResource"
         ]
       }
     },
