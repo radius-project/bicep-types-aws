@@ -21,8 +21,8 @@ import json
 
 def generate_reference_table(base_directory, output_filename):
     with open(output_filename, "w") as output_file:
-        output_file.write("| Resource Type | Primary Identifier(s) | Notes |\n")
-        output_file.write("| ------------- | --------------------- | ----- |\n")
+        output_file.write("| Resource Type | Notes |\n")
+        output_file.write("| ------------- | ----- |\n")
 
         filepaths = os.listdir(base_directory)
         filepaths.sort()
@@ -50,7 +50,7 @@ def generate_reference_table(base_directory, output_filename):
                 resource_link = f"https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.{aws_resource_type}/{resource_api_version}/types.md"
 
                 output_file.write(
-                    f"| **[{resource_type}]({resource_link})** | {primary_identifiers_output} | {notes_output} |\n"
+                    f"| **[{resource_type}]({resource_link})** | {notes_output} |\n"
                 )
 
 
