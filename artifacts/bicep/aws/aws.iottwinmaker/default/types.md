@@ -32,6 +32,7 @@
 ### Properties
 * **Arn**: string (ReadOnly): The ARN of the component type.
 * **ComponentTypeId**: string (Required, Identifier): The ID of the component type.
+* **CompositeComponentTypes**: [ComponentType_CompositeComponentTypes](#componenttypecompositecomponenttypes): An map of the composite component types in the component type. Each composite component type's key must be unique to this map.
 * **CreationDateTime**: string (ReadOnly): The date and time when the component type was created.
 * **Description**: string: The description of the component type.
 * **ExtendsFrom**: string[]: Specifies the parent component type to extend.
@@ -39,14 +40,15 @@
 * **IsAbstract**: bool (ReadOnly): A Boolean value that specifies whether the component type is abstract.
 * **IsSchemaInitialized**: bool (ReadOnly): A Boolean value that specifies whether the component type has a schema initializer and that the schema initializer has run.
 * **IsSingleton**: bool: A Boolean value that specifies whether an entity can have more than one component of this type.
-
-
 * **PropertyDefinitions**: [ComponentType_PropertyDefinitions](#componenttypepropertydefinitions): An map of the property definitions in the component type. Each property definition's key must be unique to this map.
 * **PropertyGroups**: [ComponentType_PropertyGroups](#componenttypepropertygroups): An map of the property groups in the component type. Each property group's key must be unique to this map.
 * **Status**: [Status](#status) (ReadOnly): The current status of the component type.
 * **Tags**: [ComponentType_Tags](#componenttypetags): A map of key-value pairs to associate with a resource.
 * **UpdateDateTime**: string (ReadOnly): The last date and time when the component type was updated.
 * **WorkspaceId**: string (Required, Identifier): The ID of the workspace that contains the component type.
+
+## ComponentType_CompositeComponentTypes
+### Properties
 
 ## ComponentType_Functions
 ### Properties
@@ -72,6 +74,7 @@
 ### Properties
 * **Arn**: string (ReadOnly): The ARN of the entity.
 * **Components**: [Entity_Components](#entitycomponents): A map that sets information about a component type.
+* **CompositeComponents**: [Entity_CompositeComponents](#entitycompositecomponents): A map that sets information about a composite component.
 * **CreationDateTime**: string (ReadOnly): The date and time when the entity was created.
 * **Description**: string: The description of the entity.
 * **EntityId**: string (Identifier): The ID of the entity.
@@ -84,6 +87,9 @@
 * **WorkspaceId**: string (Required, Identifier): The ID of the workspace.
 
 ## Entity_Components
+### Properties
+
+## Entity_CompositeComponents
 ### Properties
 
 ## Status

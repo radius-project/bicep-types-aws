@@ -17,6 +17,7 @@
 * **Enrichment**: string
 * **EnrichmentParameters**: [PipeEnrichmentParameters](#pipeenrichmentparameters)
 * **LastModifiedTime**: string (ReadOnly)
+* **LogConfiguration**: [PipeLogConfiguration](#pipelogconfiguration)
 * **Name**: string (Identifier)
 * **RoleArn**: string (Required)
 * **Source**: string (Required)
@@ -42,6 +43,29 @@
 
 ## QueryStringParametersMap
 ### Properties
+
+## PipeLogConfiguration
+### Properties
+* **CloudwatchLogsLogDestination**: [CloudwatchLogsLogDestination](#cloudwatchlogslogdestination)
+* **FirehoseLogDestination**: [FirehoseLogDestination](#firehoselogdestination)
+* **IncludeExecutionData**: string[]
+* **Level**: string
+* **S3LogDestination**: [S3LogDestination](#s3logdestination)
+
+## CloudwatchLogsLogDestination
+### Properties
+* **LogGroupArn**: string
+
+## FirehoseLogDestination
+### Properties
+* **DeliveryStreamArn**: string
+
+## S3LogDestination
+### Properties
+* **BucketName**: string
+* **BucketOwner**: string
+* **OutputFormat**: string
+* **Prefix**: string
 
 ## PipeSourceParameters
 ### Properties

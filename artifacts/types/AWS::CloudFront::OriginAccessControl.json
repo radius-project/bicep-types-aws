@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFront-OriginAccessControl",
   "type": "AWS::CloudFront::OriginAccessControl",
-  "time": "2023-02-22T21:29:48.768Z",
+  "time": "2023-12-28T18:26:58.603Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -45,7 +45,8 @@
       },
       "delete": {
         "permissions": [
-          "cloudfront:DeleteOriginAccessControl"
+          "cloudfront:DeleteOriginAccessControl",
+          "cloudfront:GetOriginAccessControl"
         ]
       },
       "list": {
@@ -60,7 +61,8 @@
       },
       "update": {
         "permissions": [
-          "cloudfront:UpdateOriginAccessControl"
+          "cloudfront:UpdateOriginAccessControl",
+          "cloudfront:GetOriginAccessControl"
         ]
       }
     },
@@ -81,7 +83,12 @@
     "required": [
       "OriginAccessControlConfig"
     ],
-    "taggable": false,
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
     "typeName": "AWS::CloudFront::OriginAccessControl"
   }
 }

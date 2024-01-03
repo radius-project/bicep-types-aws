@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Redshift-EventSubscription",
   "type": "AWS::Redshift::EventSubscription",
-  "time": "2023-02-22T16:33:02.501Z",
+  "time": "2024-01-03T16:25:52.42Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -37,17 +37,22 @@
       "create": {
         "permissions": [
           "redshift:CreateEventSubscription",
-          "redshift:CreateTags"
+          "redshift:CreateTags",
+          "redshift:DescribeTags",
+          "redshift:DescribeEventSubscriptions"
         ]
       },
       "delete": {
         "permissions": [
+          "redshift:DescribeEventSubscriptions",
           "redshift:DeleteEventSubscription",
+          "redshift:DescribeTags",
           "redshift:DeleteTags"
         ]
       },
       "list": {
         "permissions": [
+          "redshift:DescribeTags",
           "redshift:DescribeEventSubscriptions"
         ]
       },
@@ -62,6 +67,7 @@
           "redshift:ModifyEventSubscription",
           "redshift:CreateTags",
           "redshift:DescribeTags",
+          "redshift:DescribeEventSubscriptions",
           "redshift:DeleteTags"
         ]
       }

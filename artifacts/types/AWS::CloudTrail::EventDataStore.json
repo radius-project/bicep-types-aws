@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudTrail-EventDataStore",
   "type": "AWS::CloudTrail::EventDataStore",
-  "time": "2023-01-31T20:16:51.721Z",
+  "time": "2023-12-06T22:08:56.51Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -126,6 +126,17 @@
         ],
         "type": "object"
       },
+      "InsightSelector": {
+        "additionalProperties": false,
+        "description": "A string that contains Insights types that are logged on an event data store.",
+        "properties": {
+          "InsightType": {
+            "description": "The type of Insights to log on an event data store.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "description": "An arbitrary set of tags (key-value pairs) for this event data store.",
@@ -149,28 +160,42 @@
         "type": "string"
       }
     },
-    "description": "A storage lake of event data against which you can run complex SQL-based queries. An event data store can include events that you have logged on your account from the last 90 to 2555 days (about three months to up to seven years).",
+    "description": "A storage lake of event data against which you can run complex SQL-based queries. An event data store can include events that you have logged on your account from the last 7 to 2557 or 3653 days (about seven or ten years) depending on the selected BillingMode.",
     "handlers": {
       "create": {
         "permissions": [
           "CloudTrail:CreateEventDataStore",
           "CloudTrail:AddTags",
+          "CloudTrail:PutInsightSelectors",
+          "CloudTrail:EnableFederation",
+          "CloudTrail:GetEventDataStore",
           "iam:PassRole",
           "iam:GetRole",
           "iam:CreateServiceLinkedRole",
           "organizations:DescribeOrganization",
-          "organizations:ListAWSServiceAccessForOrganization"
+          "organizations:ListAWSServiceAccessForOrganization",
+          "kms:GenerateDataKey",
+          "kms:Decrypt",
+          "glue:CreateDatabase",
+          "glue:CreateTable",
+          "glue:PassConnection",
+          "lakeformation:RegisterResource"
         ]
       },
       "delete": {
         "permissions": [
-          "CloudTrail:DeleteEventDataStore"
+          "CloudTrail:DeleteEventDataStore",
+          "CloudTrail:GetEventDataStore",
+          "CloudTrail:DisableFederation",
+          "glue:DeleteTable",
+          "lakeformation:DeregisterResource"
         ]
       },
       "list": {
         "permissions": [
           "CloudTrail:ListEventDataStores",
           "CloudTrail:GetEventDataStore",
+          "CloudTrail:GetInsightSelectors",
           "CloudTrail:ListTags"
         ]
       },
@@ -178,6 +203,7 @@
         "permissions": [
           "CloudTrail:GetEventDataStore",
           "CloudTrail:ListEventDataStores",
+          "CloudTrail:GetInsightSelectors",
           "CloudTrail:ListTags"
         ]
       },
@@ -187,11 +213,24 @@
           "CloudTrail:RestoreEventDataStore",
           "CloudTrail:AddTags",
           "CloudTrail:RemoveTags",
+          "CloudTrail:StartEventDataStoreIngestion",
+          "CloudTrail:StopEventDataStoreIngestion",
+          "CloudTrail:GetEventDataStore",
+          "CloudTrail:PutInsightSelectors",
+          "CloudTrail:GetInsightSelectors",
+          "CloudTrail:EnableFederation",
+          "CloudTrail:DisableFederation",
           "iam:PassRole",
           "iam:GetRole",
           "iam:CreateServiceLinkedRole",
           "organizations:DescribeOrganization",
-          "organizations:ListAWSServiceAccessForOrganization"
+          "organizations:ListAWSServiceAccessForOrganization",
+          "glue:CreateDatabase",
+          "glue:CreateTable",
+          "glue:PassConnection",
+          "lakeformation:RegisterResource",
+          "glue:DeleteTable",
+          "lakeformation:DeregisterResource"
         ]
       }
     },
@@ -208,12 +247,41 @@
         "type": "array",
         "uniqueItems": true
       },
+      "BillingMode": {
+        "description": "The mode that the event data store will use to charge for event storage.",
+        "type": "string"
+      },
       "CreatedTimestamp": {
         "$ref": "#/definitions/Timestamp",
         "description": "The timestamp of the event data store's creation."
       },
       "EventDataStoreArn": {
         "description": "The ARN of the event data store.",
+        "type": "string"
+      },
+      "FederationEnabled": {
+        "description": "Indicates whether federation is enabled on an event data store.",
+        "type": "boolean"
+      },
+      "FederationRoleArn": {
+        "description": "The ARN of the role used for event data store federation.",
+        "type": "string"
+      },
+      "IngestionEnabled": {
+        "description": "Indicates whether the event data store is ingesting events.",
+        "type": "boolean"
+      },
+      "InsightSelectors": {
+        "description": "Lets you enable Insights event logging by specifying the Insights selectors that you want to enable on an existing event data store. Both InsightSelectors and InsightsDestination need to have a value in order to enable Insights events on an event data store.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/InsightSelector"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "InsightsDestination": {
+        "description": "Specifies the ARN of the event data store that will collect Insights events. Both InsightSelectors and InsightsDestination need to have a value in order to enable Insights events on an event data store",
         "type": "string"
       },
       "KmsKeyId": {
@@ -237,7 +305,7 @@
         "type": "integer"
       },
       "Status": {
-        "description": "The status of an event data store. Values are ENABLED and PENDING_DELETION.",
+        "description": "The status of an event data store. Values are STARTING_INGESTION, ENABLED, STOPPING_INGESTION, STOPPED_INGESTION and PENDING_DELETION.",
         "type": "string"
       },
       "Tags": {
@@ -264,7 +332,8 @@
       "/properties/EventDataStoreArn",
       "/properties/CreatedTimestamp",
       "/properties/UpdatedTimestamp",
-      "/properties/Status"
+      "/properties/Status",
+      "/properties/FederationStatus"
     ],
     "required": [],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-cloudtrail.git",

@@ -37,6 +37,7 @@
 * **LatencyMode**: string: Channel latency mode.
 * **Name**: string: Channel
 * **PlaybackUrl**: string (ReadOnly): Channel Playback URL.
+* **Preset**: string: Optional transcode preset for the channel. This is selectable only for ADVANCED_HD and ADVANCED_SD channel types. For those channel types, the default preset is HIGHER_BANDWIDTH_DELIVERY. For other channel types (BASIC and STANDARD), preset is the empty string ("").
 * **RecordingConfigurationArn**: string: Recording Configuration ARN. A value other than an empty string indicates that recording is enabled. Default: "" (recording is disabled).
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
 * **Type**: string: Channel type, which determines the allowable resolution and bitrate. If you exceed the allowable resolution or bitrate, the stream probably will disconnect immediately.
@@ -65,17 +66,23 @@
 * **DestinationConfiguration**: [DestinationConfiguration](#destinationconfiguration) (Required)
 * **Name**: string: Recording Configuration Name.
 * **RecordingReconnectWindowSeconds**: int: Recording Reconnect Window Seconds. (0 means disabled)
+* **RenditionConfiguration**: [RenditionConfiguration](#renditionconfiguration)
 * **State**: string (ReadOnly): Recording Configuration State.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
 * **ThumbnailConfiguration**: [ThumbnailConfiguration](#thumbnailconfiguration)
 
 ## DestinationConfiguration
 ### Properties
-* **S3**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
+* **S3**: [S3DestinationConfiguration](#s3destinationconfiguration)
 
 ## S3DestinationConfiguration
 ### Properties
 * **BucketName**: string (Required)
+
+## RenditionConfiguration
+### Properties
+* **Renditions**: string[]: Renditions indicates which renditions are recorded for a stream.
+* **RenditionSelection**: string: Resolution Selection indicates which set of renditions are recorded for a stream.
 
 ## Tag
 ### Properties
@@ -84,8 +91,10 @@
 
 ## ThumbnailConfiguration
 ### Properties
-* **RecordingMode**: string (Required): Thumbnail Recording Mode, which determines whether thumbnails are recorded at an interval or are disabled.
-* **TargetIntervalSeconds**: int: Thumbnail recording Target Interval Seconds defines the interval at which thumbnails are recorded. This field is required if RecordingMode is INTERVAL.
+* **RecordingMode**: string: Thumbnail Recording Mode, which determines whether thumbnails are recorded at an interval or are disabled.
+* **Resolution**: string: Resolution indicates the desired resolution of recorded thumbnails.
+* **Storage**: string[]: Storage indicates the format in which thumbnails are recorded.
+* **TargetIntervalSeconds**: int: Target Interval Seconds defines the interval at which thumbnails are recorded. This field is required if RecordingMode is INTERVAL.
 
 ## AWS.IVS/StreamKeyProperties
 ### Properties

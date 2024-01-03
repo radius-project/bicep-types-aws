@@ -1,11 +1,14 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkManager-CoreNetwork",
   "type": "AWS::NetworkManager::CoreNetwork",
-  "time": "2023-04-19T15:18:42.698Z",
+  "time": "2023-11-13T18:59:21.653Z",
   "schema": {
     "additionalIdentifiers": [
       [
         "/properties/CoreNetworkArn"
+      ],
+      [
+        "/properties/GlobalNetworkId"
       ]
     ],
     "additionalProperties": false,
@@ -187,7 +190,8 @@
         "items": {
           "$ref": "#/definitions/Tag"
         },
-        "type": "array"
+        "type": "array",
+        "uniqueItems": true
       }
     },
     "readOnlyProperties": [
@@ -206,6 +210,7 @@
     "tagging": {
       "cloudFormationSystemTags": false,
       "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
       "tagUpdatable": true,
       "taggable": true
     },

@@ -14,6 +14,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.OpenSearchServerless/CollectionProperties](#awsopensearchserverlesscollectionproperties) (Required): properties of the resource
 
+## Resource AWS.OpenSearchServerless/LifecyclePolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.OpenSearchServerless/LifecyclePolicyProperties](#awsopensearchserverlesslifecyclepolicyproperties) (Required): properties of the resource
+
 ## Resource AWS.OpenSearchServerless/SecurityConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -57,6 +64,7 @@ Starts with a lowercase letter
 Contains only lowercase letters a-z, the numbers 0-9 and the hyphen (-)
 Contains between 3 and 32 characters
 
+* **StandbyReplicas**: string
 * **Tags**: [Tag](#tag)[] (WriteOnly): List of tags to be added to the resource
 * **Type**: string
 
@@ -64,6 +72,13 @@ Contains between 3 and 32 characters
 ### Properties
 * **Key**: string (Required): The key in the key-value pair
 * **Value**: string (Required): The value in the key-value pair
+
+## AWS.OpenSearchServerless/LifecyclePolicyProperties
+### Properties
+* **Description**: string: The description of the policy
+* **Name**: string (Required, Identifier): The name of the policy
+* **Policy**: string (Required): The JSON policy document that is the content for the policy
+* **Type**: string (Required, Identifier)
 
 ## AWS.OpenSearchServerless/SecurityConfigProperties
 ### Properties

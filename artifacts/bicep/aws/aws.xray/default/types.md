@@ -5,7 +5,7 @@
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.XRay/GroupProperties](#awsxraygroupproperties): properties of the resource
+* **properties**: [AWS.XRay/GroupProperties](#awsxraygroupproperties) (Required): properties of the resource
 
 ## Resource AWS.XRay/ResourcePolicy@default
 * **Valid Scope(s)**: Unknown
@@ -25,19 +25,19 @@
 ### Properties
 * **FilterExpression**: string: The filter expression defining criteria by which to group traces.
 * **GroupARN**: string (ReadOnly, Identifier): The ARN of the group that was generated on creation.
-* **GroupName**: string: The case-sensitive name of the new group. Names must be unique.
+* **GroupName**: string (Required): The case-sensitive name of the new group. Names must be unique.
 * **InsightsConfiguration**: [InsightsConfiguration](#insightsconfiguration)
-* **Tags**: [Group_Tags](#grouptags)[]
+* **Tags**: [Tag](#tag)[]
 
 ## InsightsConfiguration
 ### Properties
 * **InsightsEnabled**: bool: Set the InsightsEnabled value to true to enable insights or false to disable insights.
 * **NotificationsEnabled**: bool: Set the NotificationsEnabled value to true to enable insights notifications. Notifications can only be enabled on a group with InsightsEnabled set to true.
 
-## Group_Tags
+## Tag
 ### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## AWS.XRay/ResourcePolicyProperties
 ### Properties
@@ -52,7 +52,7 @@
 * **SamplingRule**: [SamplingRule](#samplingrule)
 * **SamplingRuleRecord**: [SamplingRuleRecord](#samplingrulerecord)
 * **SamplingRuleUpdate**: [SamplingRuleUpdate](#samplingruleupdate)
-* **Tags**: [SamplingRule_Tags](#samplingruletags)[]
+* **Tags**: [Tag](#tag)[]
 
 ## SamplingRule
 ### Properties
@@ -97,8 +97,8 @@
 ## SamplingRule_Attributes
 ### Properties
 
-## SamplingRule_Tags
+## Tag
 ### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 

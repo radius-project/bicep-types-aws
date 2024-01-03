@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GlobalAccelerator-EndpointGroup",
   "type": "AWS::GlobalAccelerator::EndpointGroup",
-  "time": "2023-03-20T16:59:46.299Z",
+  "time": "2023-12-26T17:16:58.993Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -13,6 +13,10 @@
         "additionalProperties": false,
         "description": "The configuration for a given endpoint",
         "properties": {
+          "AttachmentArn": {
+            "description": "Attachment ARN that provides access control to the cross account endpoint. Not required for resources hosted in the same account as the endpoint group.",
+            "type": "string"
+          },
           "ClientIPPreservationEnabled": {
             "default": true,
             "description": "true if client ip should be preserved",
@@ -65,6 +69,7 @@
         "permissions": [
           "globalaccelerator:CreateEndpointGroup",
           "globalaccelerator:DescribeEndpointGroup",
+          "globalaccelerator:DescribeAccelerator",
           "globalaccelerator:DescribeListener",
           "globalaccelerator:ListAccelerators",
           "globalaccelerator:ListListeners"
@@ -91,7 +96,8 @@
         "permissions": [
           "globalaccelerator:UpdateEndpointGroup",
           "globalaccelerator:DescribeEndpointGroup",
-          "globalaccelerator:DescribeListener"
+          "globalaccelerator:DescribeListener",
+          "globalaccelerator:DescribeAccelerator"
         ]
       }
     },
@@ -172,6 +178,9 @@
       "EndpointGroupRegion"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-globalaccelerator",
-    "typeName": "AWS::GlobalAccelerator::EndpointGroup"
+    "typeName": "AWS::GlobalAccelerator::EndpointGroup",
+    "writeOnlyProperties": [
+      "/properties/EndpointConfigurations/*/AttachmentArn"
+    ]
   }
 }

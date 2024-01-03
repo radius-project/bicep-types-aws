@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-TopicRule",
   "type": "AWS::IoT::TopicRule",
-  "time": "2023-02-16T16:55:31.014Z",
+  "time": "2023-12-19T18:59:23.98Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -447,6 +447,13 @@
           "DestinationArn": {
             "type": "string"
           },
+          "Headers": {
+            "items": {
+              "$ref": "#/definitions/KafkaActionHeader"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
           "Key": {
             "type": "string"
           },
@@ -461,6 +468,22 @@
           "DestinationArn",
           "Topic",
           "ClientProperties"
+        ],
+        "type": "object"
+      },
+      "KafkaActionHeader": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
         ],
         "type": "object"
       },
@@ -914,7 +937,9 @@
         "permissions": [
           "iam:PassRole",
           "iot:CreateTopicRule",
-          "iot:GetTopicRule"
+          "iot:GetTopicRule",
+          "iot:TagResource",
+          "iot:ListTagsForResource"
         ]
       },
       "delete": {
@@ -936,8 +961,10 @@
       },
       "update": {
         "permissions": [
-          "iot:ReplaceTopicRule",
+          "iam:PassRole",
+          "iot:GetTopicRule",
           "iot:ListTagsForResource",
+          "iot:ReplaceTopicRule",
           "iot:TagResource",
           "iot:UntagResource"
         ]
@@ -954,6 +981,7 @@
         "type": "string"
       },
       "Tags": {
+        "insertionOrder": true,
         "items": {
           "$ref": "#/definitions/Tag"
         },
@@ -970,6 +998,13 @@
       "TopicRulePayload"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::IoT::TopicRule"
   }
 }

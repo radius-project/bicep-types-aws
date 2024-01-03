@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NimbleStudio-Studio",
   "type": "AWS::NimbleStudio::Studio",
-  "time": "2023-04-17T15:46:44.806Z",
+  "time": "2023-12-28T17:18:33.504Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -53,14 +53,26 @@
         "permissions": [
           "iam:PassRole",
           "nimble:CreateStudio",
+          "nimble:GetStudio",
           "nimble:TagResource",
-          "sso:CreateManagedApplicationInstance"
+          "sso:CreateManagedApplicationInstance",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:CreateGrant",
+          "kms:ListGrants",
+          "kms:GenerateDataKey"
         ]
       },
       "delete": {
         "permissions": [
           "nimble:DeleteStudio",
+          "nimble:GetStudio",
           "nimble:UntagResource",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:ListGrants",
+          "kms:RetireGrant",
+          "kms:GenerateDataKey",
           "sso:DeleteManagedApplicationInstance",
           "sso:GetManagedApplicationInstance"
         ]
@@ -72,13 +84,23 @@
       },
       "read": {
         "permissions": [
-          "nimble:GetStudio"
+          "nimble:GetStudio",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:ListGrants",
+          "kms:GenerateDataKey"
         ]
       },
       "update": {
         "permissions": [
           "iam:PassRole",
-          "nimble:UpdateStudio"
+          "nimble:UpdateStudio",
+          "nimble:GetStudio",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:CreateGrant",
+          "kms:ListGrants",
+          "kms:GenerateDataKey"
         ]
       }
     },

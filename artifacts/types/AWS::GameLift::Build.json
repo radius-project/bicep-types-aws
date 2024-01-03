@@ -1,12 +1,13 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GameLift-Build",
   "type": "AWS::GameLift::Build",
-  "time": "2023-04-13T15:26:54.959Z",
+  "time": "2023-12-22T23:11:14.872Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/StorageLocation",
-      "/properties/OperatingSystem"
+      "/properties/OperatingSystem",
+      "/properties/ServerSdkVersion"
     ],
     "definitions": {
       "StorageLocation": {
@@ -85,9 +86,14 @@
         "enum": [
           "AMAZON_LINUX",
           "AMAZON_LINUX_2",
+          "AMAZON_LINUX_2023",
           "WINDOWS_2012",
           "WINDOWS_2016"
         ],
+        "type": "string"
+      },
+      "ServerSdkVersion": {
+        "description": "A server SDK version you used when integrating your game server build with Amazon GameLift. By default Amazon GameLift sets this value to 4.0.2.",
         "type": "string"
       },
       "StorageLocation": {
@@ -112,7 +118,8 @@
     },
     "typeName": "AWS::GameLift::Build",
     "writeOnlyProperties": [
-      "/properties/StorageLocation"
+      "/properties/StorageLocation",
+      "/properties/ServerSdkVersion"
     ]
   }
 }

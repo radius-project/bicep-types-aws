@@ -19,6 +19,7 @@
 * **ExtendedS3DestinationConfiguration**: [ExtendedS3DestinationConfiguration](#extendeds3destinationconfiguration)
 * **HttpEndpointDestinationConfiguration**: [HttpEndpointDestinationConfiguration](#httpendpointdestinationconfiguration)
 * **KinesisStreamSourceConfiguration**: [KinesisStreamSourceConfiguration](#kinesisstreamsourceconfiguration)
+* **MSKSourceConfiguration**: [MSKSourceConfiguration](#msksourceconfiguration)
 * **RedshiftDestinationConfiguration**: [RedshiftDestinationConfiguration](#redshiftdestinationconfiguration)
 * **S3DestinationConfiguration**: [S3DestinationConfiguration](#s3destinationconfiguration)
 * **SplunkDestinationConfiguration**: [SplunkDestinationConfiguration](#splunkdestinationconfiguration)
@@ -103,6 +104,7 @@
 * **BufferingHints**: [AmazonopensearchserviceBufferingHints](#amazonopensearchservicebufferinghints)
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **ClusterEndpoint**: string
+* **DocumentIdOptions**: [DocumentIdOptions](#documentidoptions)
 * **DomainARN**: string
 * **IndexName**: string (Required)
 * **IndexRotationPeriod**: string
@@ -119,6 +121,10 @@
 * **IntervalInSeconds**: int
 * **SizeInMBs**: int
 
+## DocumentIdOptions
+### Properties
+* **DefaultDocumentIdFormat**: string (Required)
+
 ## AmazonopensearchserviceRetryOptions
 ### Properties
 * **DurationInSeconds**: int
@@ -133,6 +139,7 @@
 * **BufferingHints**: [ElasticsearchBufferingHints](#elasticsearchbufferinghints)
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **ClusterEndpoint**: string
+* **DocumentIdOptions**: [DocumentIdOptions](#documentidoptions)
 * **DomainARN**: string
 * **IndexName**: string (Required)
 * **IndexRotationPeriod**: string
@@ -280,6 +287,17 @@
 * **KinesisStreamARN**: string (Required)
 * **RoleARN**: string (Required)
 
+## MSKSourceConfiguration
+### Properties
+* **AuthenticationConfiguration**: [AuthenticationConfiguration](#authenticationconfiguration) (Required)
+* **MSKClusterARN**: string (Required)
+* **TopicName**: string (Required)
+
+## AuthenticationConfiguration
+### Properties
+* **Connectivity**: string (Required)
+* **RoleARN**: string (Required)
+
 ## RedshiftDestinationConfiguration
 ### Properties
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
@@ -306,6 +324,7 @@
 
 ## SplunkDestinationConfiguration
 ### Properties
+* **BufferingHints**: [SplunkBufferingHints](#splunkbufferinghints)
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **HECAcknowledgmentTimeoutInSeconds**: int
 * **HECEndpoint**: string (Required)
@@ -315,6 +334,11 @@
 * **RetryOptions**: [SplunkRetryOptions](#splunkretryoptions)
 * **S3BackupMode**: string
 * **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
+
+## SplunkBufferingHints
+### Properties
+* **IntervalInSeconds**: int
+* **SizeInMBs**: int
 
 ## SplunkRetryOptions
 ### Properties

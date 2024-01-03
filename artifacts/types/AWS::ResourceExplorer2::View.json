@@ -1,34 +1,39 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ResourceExplorer2-View",
   "type": "AWS::ResourceExplorer2::View",
-  "time": "2023-04-13T13:26:13.532Z",
+  "time": "2023-12-27T23:31:30.135Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
+      "/properties/Scope",
       "/properties/ViewName"
     ],
     "definitions": {
-      "Filters": {
-        "additionalProperties": false,
-        "properties": {
-          "FilterString": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "FilterString"
-        ],
-        "type": "object"
-      },
       "IncludedProperty": {
         "additionalProperties": false,
         "properties": {
           "Name": {
+            "maxLength": 1011,
+            "minLength": 1,
             "type": "string"
           }
         },
         "required": [
           "Name"
+        ],
+        "type": "object"
+      },
+      "SearchFilter": {
+        "additionalProperties": false,
+        "properties": {
+          "FilterString": {
+            "maxLength": 2048,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "FilterString"
         ],
         "type": "object"
       },
@@ -53,6 +58,7 @@
       "delete": {
         "permissions": [
           "resource-explorer-2:DeleteView",
+          "resource-explorer-2:GetView",
           "resource-explorer-2:UntagResource"
         ]
       },
@@ -80,14 +86,16 @@
     ],
     "properties": {
       "Filters": {
-        "$ref": "#/definitions/Filters"
+        "$ref": "#/definitions/SearchFilter"
       },
       "IncludedProperties": {
-        "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/IncludedProperty"
         },
         "type": "array"
+      },
+      "Scope": {
+        "type": "string"
       },
       "Tags": {
         "$ref": "#/definitions/TagMap"

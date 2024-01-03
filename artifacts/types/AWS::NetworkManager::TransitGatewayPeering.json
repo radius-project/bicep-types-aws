@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkManager-TransitGatewayPeering",
   "type": "AWS::NetworkManager::TransitGatewayPeering",
-  "time": "2023-04-19T19:07:23.277Z",
+  "time": "2023-11-13T22:26:24.787Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -50,6 +50,7 @@
       "delete": {
         "permissions": [
           "networkmanager:DeletePeering",
+          "networkmanager:GetTransitGatewayPeering",
           "ec2:DescribeRegions"
         ],
         "timeoutInMinutes": 60
@@ -61,7 +62,8 @@
       },
       "read": {
         "permissions": [
-          "networkmanager:GetTransitGatewayPeering"
+          "networkmanager:GetTransitGatewayPeering",
+          "networkmanager:TagResource"
         ]
       },
       "update": {
@@ -69,6 +71,7 @@
           "networkmanager:TagResource",
           "networkmanager:UntagResource",
           "networkmanager:ListTagsForResource",
+          "networkmanager:GetTransitGatewayPeering",
           "ec2:DescribeRegions"
         ]
       }

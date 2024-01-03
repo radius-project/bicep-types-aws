@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-MitigationAction",
   "type": "AWS::IoT::MitigationAction",
-  "time": "2023-01-10T20:20:31.918Z",
+  "time": "2023-12-05T16:05:48.633Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -70,7 +70,8 @@
               "DEBUG",
               "INFO",
               "ERROR",
-              "WARN"
+              "WARN",
+              "UNSET_VALUE"
             ],
             "type": "string"
           },
@@ -109,7 +110,8 @@
         "properties": {
           "TemplateName": {
             "enum": [
-              "BLANK_POLICY"
+              "BLANK_POLICY",
+              "UNSET_VALUE"
             ],
             "type": "string"
           }
@@ -148,7 +150,8 @@
         "properties": {
           "Action": {
             "enum": [
-              "DEACTIVATE"
+              "DEACTIVATE",
+              "UNSET_VALUE"
             ],
             "type": "string"
           }
@@ -164,7 +167,8 @@
         "properties": {
           "Action": {
             "enum": [
-              "DEACTIVATE"
+              "DEACTIVATE",
+              "UNSET_VALUE"
             ],
             "type": "string"
           }
@@ -180,6 +184,8 @@
       "create": {
         "permissions": [
           "iot:CreateMitigationAction",
+          "iot:DescribeMitigationAction",
+          "iot:TagResource",
           "iam:PassRole"
         ]
       },

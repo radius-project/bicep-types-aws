@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFront-ResponseHeadersPolicy",
   "type": "AWS::CloudFront::ResponseHeadersPolicy",
-  "time": "2023-02-22T21:21:54.345Z",
+  "time": "2024-01-03T17:02:27.673Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -358,7 +358,8 @@
       },
       "delete": {
         "permissions": [
-          "cloudfront:DeleteResponseHeadersPolicy"
+          "cloudfront:DeleteResponseHeadersPolicy",
+          "cloudfront:GetResponseHeadersPolicy"
         ]
       },
       "list": {
@@ -373,7 +374,8 @@
       },
       "update": {
         "permissions": [
-          "cloudfront:UpdateResponseHeadersPolicy"
+          "cloudfront:UpdateResponseHeadersPolicy",
+          "cloudfront:GetResponseHeadersPolicy"
         ]
       }
     },
@@ -398,7 +400,12 @@
     "required": [
       "ResponseHeadersPolicyConfig"
     ],
-    "taggable": false,
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
     "typeName": "AWS::CloudFront::ResponseHeadersPolicy"
   }
 }

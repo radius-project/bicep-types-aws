@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Redshift-Cluster",
   "type": "AWS::Redshift::Cluster",
-  "time": "2023-02-22T16:19:40.826Z",
+  "time": "2024-01-03T16:14:08.883Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -36,9 +36,6 @@
             "type": "string"
           }
         },
-        "required": [
-          "BucketName"
-        ],
         "type": "object"
       },
       "Tag": {
@@ -69,15 +66,44 @@
     "handlers": {
       "create": {
         "permissions": [
+          "iam:PassRole",
+          "iam:CreateServiceLinkedRole",
           "redshift:DescribeClusters",
           "redshift:CreateCluster",
           "redshift:RestoreFromClusterSnapshot",
-          "redshift:EnableLogging"
+          "redshift:EnableLogging",
+          "redshift:DescribeLoggingStatus",
+          "redshift:CreateTags",
+          "redshift:DescribeTags",
+          "redshift:GetResourcePolicy",
+          "redshift:PutResourcePolicy",
+          "redshift:ModifyClusterMaintenance",
+          "ec2:DescribeVpcs",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:DescribeAddresses",
+          "ec2:AssociateAddress",
+          "ec2:CreateNetworkInterface",
+          "ec2:ModifyNetworkInterfaceAttribute",
+          "ec2:CreateVpcEndpoint",
+          "ec2:DescribeVpcEndpoints",
+          "ec2:ModifyVpcEndpoint",
+          "ec2:AllocateAddress",
+          "ec2:CreateSecurityGroup",
+          "ec2:DescribeVpcAttribute",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeInternetGateways",
+          "ec2:DescribeSecurityGroupRules",
+          "ec2:DescribeAvailabilityZones",
+          "ec2:DescribeNetworkAcls",
+          "ec2:DescribeRouteTables",
+          "cloudwatch:PutMetricData"
         ],
         "timeoutInMinutes": 2160
       },
       "delete": {
         "permissions": [
+          "redshift:DescribeTags",
           "redshift:DescribeClusters",
           "redshift:DeleteCluster"
         ],
@@ -85,6 +111,7 @@
       },
       "list": {
         "permissions": [
+          "redshift:DescribeTags",
           "redshift:DescribeClusters"
         ]
       },
@@ -93,18 +120,23 @@
           "redshift:DescribeClusters",
           "redshift:DescribeLoggingStatus",
           "redshift:DescribeSnapshotCopyGrant",
-          "redshift:DescribeClusterDbRevisions"
+          "redshift:DescribeClusterDbRevisions",
+          "redshift:DescribeTags",
+          "redshift:GetResourcePolicy"
         ]
       },
       "update": {
         "permissions": [
+          "iam:PassRole",
           "redshift:DescribeClusters",
           "redshift:ModifyCluster",
           "redshift:ModifyClusterIamRoles",
           "redshift:EnableLogging",
           "redshift:CreateTags",
           "redshift:DeleteTags",
+          "redshift:DescribeTags",
           "redshift:DisableLogging",
+          "redshift:DescribeLoggingStatus",
           "redshift:RebootCluster",
           "redshift:EnableSnapshotCopy",
           "redshift:DisableSnapshotCopy",
@@ -116,7 +148,12 @@
           "redshift:ModifyClusterDbRevisions",
           "redshift:PauseCluster",
           "redshift:ResumeCluster",
-          "redshift:RotateEncryptionKey"
+          "redshift:RotateEncryptionKey",
+          "redshift:FailoverPrimaryCompute",
+          "redshift:PutResourcePolicy",
+          "redshift:GetResourcePolicy",
+          "redshift:DeleteResourcePolicy",
+          "cloudwatch:PutMetricData"
         ],
         "timeoutInMinutes": 2160
       }
@@ -156,6 +193,10 @@
       "ClusterIdentifier": {
         "description": "A unique identifier for the cluster. You use this identifier to refer to the cluster for any subsequent cluster operations such as deleting or modifying. All alphabetical characters must be lower case, no hypens at the end, no two consecutive hyphens. Cluster name should be unique for all clusters within an AWS account",
         "maxLength": 63,
+        "type": "string"
+      },
+      "ClusterNamespaceArn": {
+        "description": "The Amazon Resource Name (ARN) of the cluster namespace.",
         "type": "string"
       },
       "ClusterParameterGroupName": {
@@ -244,9 +285,6 @@
         "maxItems": 50,
         "type": "array"
       },
-      "Id": {
-        "type": "string"
-      },
       "KmsKeyId": {
         "description": "The AWS Key Management Service (KMS) key ID of the encryption key that you want to use to encrypt data in the cluster.",
         "type": "string"
@@ -258,12 +296,24 @@
         "description": "The name for the maintenance track that you want to assign for the cluster. This name change is asynchronous. The new track name stays in the PendingModifiedValues for the cluster until the next maintenance window. When the maintenance track changes, the cluster is switched to the latest cluster release available for the maintenance track. At this point, the maintenance track name is applied.",
         "type": "string"
       },
+      "ManageMasterPassword": {
+        "description": "A boolean indicating if the redshift cluster's admin user credentials is managed by Redshift or not. You can't use MasterUserPassword if ManageMasterPassword is true. If ManageMasterPassword is false or not set, Amazon Redshift uses MasterUserPassword for the admin user account's password.",
+        "type": "boolean"
+      },
       "ManualSnapshotRetentionPeriod": {
         "description": "The number of days to retain newly copied snapshots in the destination AWS Region after they are copied from the source AWS Region. If the value is -1, the manual snapshot is retained indefinitely.\n\nThe value must be either -1 or an integer between 1 and 3,653.",
         "type": "integer"
       },
+      "MasterPasswordSecretArn": {
+        "description": "The Amazon Resource Name (ARN) for the cluster's admin user credentials secret.",
+        "type": "string"
+      },
+      "MasterPasswordSecretKmsKeyId": {
+        "description": "The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's admin user credentials secret.",
+        "type": "string"
+      },
       "MasterUserPassword": {
-        "description": "The password associated with the master user account for the cluster that is being created. Password must be between 8 and 64 characters in length, should have at least one uppercase letter.Must contain at least one lowercase letter.Must contain one number.Can be any printable ASCII character.",
+        "description": "The password associated with the master user account for the cluster that is being created. You can't use MasterUserPassword if ManageMasterPassword is true. Password must be between 8 and 64 characters in length, should have at least one uppercase letter.Must contain at least one lowercase letter.Must contain one number.Can be any printable ASCII character.",
         "maxLength": 64,
         "type": "string"
       },
@@ -271,6 +321,14 @@
         "description": "The user name associated with the master user account for the cluster that is being created. The user name can't be PUBLIC and first character must be a letter.",
         "maxLength": 128,
         "type": "string"
+      },
+      "MultiAZ": {
+        "description": "A boolean indicating if the redshift cluster is multi-az or not. If you don't provide this parameter or set the value to false, the redshift cluster will be single-az.",
+        "type": "boolean"
+      },
+      "NamespaceResourcePolicy": {
+        "description": "The namespace resource policy document that will be attached to a Redshift cluster.",
+        "type": "object"
       },
       "NodeType": {
         "description": "The node type to be provisioned for the cluster.Valid Values: ds2.xlarge | ds2.8xlarge | dc1.large | dc1.8xlarge | dc2.large | dc2.8xlarge | ra3.4xlarge | ra3.16xlarge",
@@ -296,7 +354,7 @@
         "type": "boolean"
       },
       "ResourceAction": {
-        "description": "The Redshift operation to be performed. Resource Action supports pause-cluster, resume-cluster APIs",
+        "description": "The Redshift operation to be performed. Resource Action supports pause-cluster, resume-cluster, failover-primary-compute APIs",
         "type": "string"
       },
       "RevisionTarget": {
@@ -348,13 +406,13 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/Id",
       "/properties/DeferMaintenanceIdentifier",
       "/properties/Endpoint/Port",
-      "/properties/Endpoint/Address"
+      "/properties/Endpoint/Address",
+      "/properties/ClusterNamespaceArn",
+      "/properties/MasterPasswordSecretArn"
     ],
     "required": [
-      "MasterUserPassword",
       "NodeType",
       "MasterUsername",
       "DBName",
@@ -366,7 +424,12 @@
     },
     "typeName": "AWS::Redshift::Cluster",
     "writeOnlyProperties": [
-      "/properties/MasterUserPassword"
+      "/properties/MasterUserPassword",
+      "/properties/Classic",
+      "/properties/SnapshotIdentifier",
+      "/properties/DeferMaintenance",
+      "/properties/DeferMaintenanceDuration",
+      "/properties/ManageMasterPassword"
     ]
   }
 }

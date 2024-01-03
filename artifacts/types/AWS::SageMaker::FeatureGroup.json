@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-FeatureGroup",
   "type": "AWS::SageMaker::FeatureGroup",
-  "time": "2023-04-04T15:13:42.311Z",
+  "time": "2023-12-28T16:53:40.862Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -98,6 +98,13 @@
         ],
         "type": "object"
       },
+      "StorageType": {
+        "enum": [
+          "Standard",
+          "InMemory"
+        ],
+        "type": "string"
+      },
       "TableFormat": {
         "description": "Format for the offline store feature group. Iceberg is the optimal format for feature groups shared between offline and online stores.",
         "enum": [
@@ -172,6 +179,10 @@
       "/properties/FeatureGroupName"
     ],
     "properties": {
+      "CreationTime": {
+        "description": "A timestamp of FeatureGroup creation time.",
+        "type": "string"
+      },
       "Description": {
         "description": "Description about the FeatureGroup.",
         "maxLength": 128,
@@ -186,6 +197,7 @@
       },
       "FeatureDefinitions": {
         "description": "An Array of Feature Definition",
+        "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/FeatureDefinition"
         },
@@ -199,6 +211,10 @@
         "maxLength": 64,
         "minLength": 1,
         "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,63}",
+        "type": "string"
+      },
+      "FeatureGroupStatus": {
+        "description": "The status of the feature group.",
         "type": "string"
       },
       "OfflineStoreConfig": {
@@ -230,6 +246,9 @@
           },
           "SecurityConfig": {
             "$ref": "#/definitions/OnlineStoreSecurityConfig"
+          },
+          "StorageType": {
+            "$ref": "#/definitions/StorageType"
           }
         },
         "type": "object"
@@ -250,6 +269,7 @@
       },
       "Tags": {
         "description": "An array of key-value pair to apply to this resource.",
+        "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/Tag"
         },
@@ -260,9 +280,7 @@
     },
     "readOnlyProperties": [
       "/properties/CreationTime",
-      "/properties/FeatureGroupStatus",
-      "/properties/FailureReason",
-      "/properties/OfflineStoreStatus"
+      "/properties/FeatureGroupStatus"
     ],
     "required": [
       "FeatureGroupName",
@@ -270,6 +288,13 @@
       "EventTimeFeatureName",
       "FeatureDefinitions"
     ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
     "typeName": "AWS::SageMaker::FeatureGroup"
   }
 }

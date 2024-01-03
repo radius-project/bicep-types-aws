@@ -1,11 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-FIS-ExperimentTemplate",
   "type": "AWS::FIS::ExperimentTemplate",
-  "time": "2023-03-22T03:32:45.142Z",
+  "time": "2023-12-13T05:18:11.096Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/Tags"
+      "/properties/Tags",
+      "/properties/ExperimentOptions/properties/AccountTargeting"
     ],
     "definitions": {
       "ActionId": {
@@ -90,6 +91,28 @@
         "description": "A description for the experiment template.",
         "maxLength": 512,
         "type": "string"
+      },
+      "ExperimentTemplateExperimentOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "AccountTargeting": {
+            "description": "The account targeting setting for the experiment template.",
+            "enum": [
+              "multi-account",
+              "single-account"
+            ],
+            "type": "string"
+          },
+          "EmptyTargetResolutionMode": {
+            "description": "The target resolution failure mode for the experiment template.",
+            "enum": [
+              "fail",
+              "skip"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
       },
       "ExperimentTemplateId": {
         "type": "string"
@@ -295,7 +318,9 @@
     "handlers": {
       "create": {
         "permissions": [
-          "fis:CreateExperimentTemplate"
+          "fis:CreateExperimentTemplate",
+          "fis:TagResource",
+          "iam:PassRole"
         ]
       },
       "delete": {
@@ -305,17 +330,22 @@
       },
       "list": {
         "permissions": [
-          "fis:ListExperimentTemplates"
+          "fis:ListExperimentTemplates",
+          "fis:ListTagsForResource"
         ]
       },
       "read": {
         "permissions": [
-          "fis:GetExperimentTemplate"
+          "fis:GetExperimentTemplate",
+          "fis:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
-          "fis:UpdateExperimentTemplate"
+          "fis:UpdateExperimentTemplate",
+          "fis:TagResource",
+          "fis:UntagResource",
+          "iam:PassRole"
         ]
       }
     },
@@ -328,6 +358,9 @@
       },
       "Description": {
         "$ref": "#/definitions/ExperimentTemplateDescription"
+      },
+      "ExperimentOptions": {
+        "$ref": "#/definitions/ExperimentTemplateExperimentOptions"
       },
       "Id": {
         "$ref": "#/definitions/ExperimentTemplateId"

@@ -7,6 +7,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Lambda/CodeSigningConfigProperties](#awslambdacodesigningconfigproperties) (Required): properties of the resource
 
+## Resource AWS.Lambda/EventInvokeConfig@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lambda/EventInvokeConfigProperties](#awslambdaeventinvokeconfigproperties) (Required): properties of the resource
+
 ## Resource AWS.Lambda/EventSourceMapping@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -28,6 +35,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Lambda/UrlProperties](#awslambdaurlproperties) (Required): properties of the resource
 
+## Resource AWS.Lambda/Version@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lambda/VersionProperties](#awslambdaversionproperties) (Required): properties of the resource
+
 ## AWS.Lambda/CodeSigningConfigProperties
 ### Properties
 * **AllowedPublishers**: [AllowedPublishers](#allowedpublishers) (Required): When the CodeSigningConfig is later on attached to a function, the function code will be expected to be signed by profiles from this list
@@ -43,6 +57,27 @@
 ## CodeSigningPolicies
 ### Properties
 * **UntrustedArtifactOnDeployment**: string (Required): Indicates how Lambda operations involve updating the code artifact will operate. Default to Warn if not provided
+
+## AWS.Lambda/EventInvokeConfigProperties
+### Properties
+* **DestinationConfig**: [DestinationConfig](#destinationconfig)
+* **FunctionName**: string (Required, Identifier): The name of the Lambda function.
+* **MaximumEventAgeInSeconds**: int: The maximum age of a request that Lambda sends to a function for processing.
+* **MaximumRetryAttempts**: int: The maximum number of times to retry when the function returns an error.
+* **Qualifier**: string (Required, Identifier): The identifier of a version or alias.
+
+## DestinationConfig
+### Properties
+* **OnFailure**: [OnFailure](#onfailure)
+* **OnSuccess**: [OnSuccess](#onsuccess)
+
+## OnFailure
+### Properties
+* **Destination**: string (Required): The Amazon Resource Name (ARN) of the destination resource.
+
+## OnSuccess
+### Properties
+* **Destination**: string (Required): The Amazon Resource Name (ARN) of the destination resource.
 
 ## AWS.Lambda/EventSourceMappingProperties
 ### Properties
@@ -134,13 +169,14 @@
 * **ImageConfig**: [ImageConfig](#imageconfig): ImageConfig
 * **KmsKeyArn**: string: The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables. If it's not provided, AWS Lambda uses a default service key.
 * **Layers**: string[]: A list of function layers to add to the function's execution environment. Specify each layer by its ARN, including the version.
+* **LoggingConfig**: [LoggingConfig](#loggingconfig): The logging configuration of your function
 * **MemorySize**: int: The amount of memory that your function has access to. Increasing the function's memory also increases its CPU allocation. The default value is 128 MB. The value must be a multiple of 64 MB.
 * **PackageType**: string: PackageType.
 * **ReservedConcurrentExecutions**: int: The number of simultaneous executions to reserve for the function.
 * **Role**: string (Required): The Amazon Resource Name (ARN) of the function's execution role.
 * **Runtime**: string: The identifier of the function's runtime.
 * **RuntimeManagementConfig**: [RuntimeManagementConfig](#runtimemanagementconfig): RuntimeManagementConfig
-* **SnapStart**: [SnapStart](#snapstart): The SnapStart setting of your function
+* **SnapStart**: [SnapStart](#snapstart) (WriteOnly): The SnapStart setting of your function
 * **SnapStartResponse**: [SnapStartResponse](#snapstartresponse) (ReadOnly): The SnapStart response of your function
 * **Tags**: [Tag](#tag)[]: A list of tags to apply to the function.
 * **Timeout**: int: The amount of time that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds.
@@ -181,6 +217,13 @@
 * **EntryPoint**: string[]: EntryPoint.
 * **WorkingDirectory**: string: WorkingDirectory.
 
+## LoggingConfig
+### Properties
+* **ApplicationLogLevel**: string: Application log granularity level, can only be used when LogFormat is set to JSON
+* **LogFormat**: string: Log delivery format for the lambda function
+* **LogGroup**: string: The log group name.
+* **SystemLogLevel**: string: System log granularity level, can only be used when LogFormat is set to JSON
+
 ## RuntimeManagementConfig
 ### Properties
 * **RuntimeVersionArn**: string: Unique identifier for a runtime version arn
@@ -188,7 +231,7 @@
 
 ## SnapStart
 ### Properties
-* **ApplyOn**: string (Required): Applying SnapStart setting on function resource type.
+* **ApplyOn**: string (Required, WriteOnly): Applying SnapStart setting on function resource type.
 
 ## SnapStartResponse
 ### Properties
@@ -206,6 +249,7 @@
 
 ## VpcConfig
 ### Properties
+* **Ipv6AllowedForDualStack**: bool: A boolean indicating whether IPv6 protocols will be allowed for dual stack subnets
 * **SecurityGroupIds**: string[]: A list of VPC security groups IDs.
 * **SubnetIds**: string[]: A list of VPC subnet IDs.
 
@@ -216,8 +260,8 @@
 * **FunctionArn**: string (ReadOnly, Identifier): The full Amazon Resource Name (ARN) of the function associated with the Function URL.
 * **FunctionUrl**: string (ReadOnly): The generated url for this resource.
 * **InvokeMode**: string: The invocation mode for the function?s URL. Set to BUFFERED if you want to buffer responses before returning them to the client. Set to RESPONSE_STREAM if you want to stream responses, allowing faster time to first byte and larger response payload sizes. If not set, defaults to BUFFERED.
-* **Qualifier**: string (WriteOnly): The alias qualifier for the target function. If TargetFunctionArn is unqualified then Qualifier must be passed.
-* **TargetFunctionArn**: string (Required, WriteOnly): The Amazon Resource Name (ARN) of the function associated with the Function URL.
+* **Qualifier**: string: The alias qualifier for the target function. If TargetFunctionArn is unqualified then Qualifier must be passed.
+* **TargetFunctionArn**: string (Required): The Amazon Resource Name (ARN) of the function associated with the Function URL.
 
 ## Cors
 ### Properties
@@ -227,4 +271,23 @@
 * **AllowOrigins**: string[]: Represents a collection of allowed origins.
 * **ExposeHeaders**: string[]: Represents a collection of exposed headers.
 * **MaxAge**: int
+
+## AWS.Lambda/VersionProperties
+### Properties
+* **CodeSha256**: string: Only publish a version if the hash value matches the value that's specified. Use this option to avoid publishing a version if the function code has changed since you last updated it. Updates are not supported for this property.
+* **Description**: string: A description for the version to override the description in the function configuration. Updates are not supported for this property.
+* **FunctionArn**: string (ReadOnly, Identifier): The ARN of the version.
+* **FunctionName**: string (Required): The name of the Lambda function.
+* **ProvisionedConcurrencyConfig**: [ProvisionedConcurrencyConfiguration](#provisionedconcurrencyconfiguration): Specifies a provisioned concurrency configuration for a function's version. Updates are not supported for this property.
+* **RuntimePolicy**: [RuntimePolicy](#runtimepolicy): Specifies the runtime management configuration of a function. Displays runtimeVersionArn only for Manual.
+* **Version**: string (ReadOnly): The version number.
+
+## ProvisionedConcurrencyConfiguration
+### Properties
+* **ProvisionedConcurrentExecutions**: int (Required): The amount of provisioned concurrency to allocate for the version.
+
+## RuntimePolicy
+### Properties
+* **RuntimeVersionArn**: string: The ARN of the runtime the function is configured to use. If the runtime update mode is manual, the ARN is returned, otherwise null is returned.
+* **UpdateRuntimeOn**: string (Required): The runtime update mode.
 

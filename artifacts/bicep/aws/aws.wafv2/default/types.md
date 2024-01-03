@@ -385,9 +385,58 @@
 ## RateBasedStatement
 ### Properties
 * **AggregateKeyType**: string (Required)
+* **CustomKeys**: [RateBasedStatementCustomKey](#ratebasedstatementcustomkey)[]: Specifies the aggregate keys to use in a rate-base rule.
 * **ForwardedIPConfig**: [ForwardedIPConfiguration](#forwardedipconfiguration)
 * **Limit**: int (Required)
 * **ScopeDownStatement**: [Statement](#statement)
+
+## RateBasedStatementCustomKey
+### Properties
+* **Cookie**: [RateLimitCookie](#ratelimitcookie)
+* **ForwardedIP**: [RateLimitForwardedIP](#ratelimitforwardedip)
+* **Header**: [RateLimitHeader](#ratelimitheader)
+* **HTTPMethod**: [RateLimitHTTPMethod](#ratelimithttpmethod)
+* **IP**: [RateLimitIP](#ratelimitip)
+* **LabelNamespace**: [RateLimitLabelNamespace](#ratelimitlabelnamespace)
+* **QueryArgument**: [RateLimitQueryArgument](#ratelimitqueryargument)
+* **QueryString**: [RateLimitQueryString](#ratelimitquerystring)
+* **UriPath**: [RateLimitUriPath](#ratelimituripath)
+
+## RateLimitCookie
+### Properties
+* **Name**: string (Required, Identifier): The name of the cookie to use.
+* **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
+
+## RateLimitForwardedIP
+### Properties
+
+## RateLimitHeader
+### Properties
+* **Name**: string (Required, Identifier): The name of the header to use.
+* **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
+
+## RateLimitHTTPMethod
+### Properties
+
+## RateLimitIP
+### Properties
+
+## RateLimitLabelNamespace
+### Properties
+* **Namespace**: string (Required): The namespace to use for aggregation.
+
+## RateLimitQueryArgument
+### Properties
+* **Name**: string (Required, Identifier): The name of the query argument to use.
+* **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
+
+## RateLimitQueryString
+### Properties
+* **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
+
+## RateLimitUriPath
+### Properties
+* **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
 ## RegexMatchStatement
 ### Properties
@@ -433,6 +482,7 @@
 ## AWS.WAFv2/WebACLProperties
 ### Properties
 * **Arn**: string (ReadOnly)
+* **AssociationConfig**: [AssociationConfig](#associationconfig)
 * **Capacity**: int (ReadOnly)
 * **CaptchaConfig**: [CaptchaConfig](#captchaconfig)
 * **ChallengeConfig**: [ChallengeConfig](#challengeconfig)
@@ -447,6 +497,13 @@
 * **Tags**: [Tag](#tag)[]
 * **TokenDomains**: string[]
 * **VisibilityConfig**: [VisibilityConfig](#visibilityconfig) (Required)
+
+## AssociationConfig
+### Properties
+* **RequestBody**: [RequestBody](#requestbody)
+
+## RequestBody
+### Properties
 
 ## CaptchaConfig
 ### Properties
@@ -697,6 +754,7 @@
 
 ## ManagedRuleGroupConfig
 ### Properties
+* **AWSManagedRulesACFPRuleSet**: [AWSManagedRulesACFPRuleSet](#awsmanagedrulesacfpruleset)
 * **AWSManagedRulesATPRuleSet**: [AWSManagedRulesATPRuleSet](#awsmanagedrulesatpruleset)
 * **AWSManagedRulesBotControlRuleSet**: [AWSManagedRulesBotControlRuleSet](#awsmanagedrulesbotcontrolruleset)
 * **LoginPath**: string
@@ -704,21 +762,32 @@
 * **PayloadType**: string
 * **UsernameField**: [FieldIdentifier](#fieldidentifier)
 
-## AWSManagedRulesATPRuleSet
+## AWSManagedRulesACFPRuleSet
 ### Properties
-* **LoginPath**: string (Required)
-* **RequestInspection**: [RequestInspection](#requestinspection)
+* **CreationPath**: string (Required)
+* **EnableRegexInPath**: bool
+* **RegistrationPagePath**: string (Required)
+* **RequestInspection**: [RequestInspectionACFP](#requestinspectionacfp) (Required)
 * **ResponseInspection**: [ResponseInspection](#responseinspection)
 
-## RequestInspection
+## RequestInspectionACFP
 ### Properties
-* **PasswordField**: [FieldIdentifier](#fieldidentifier) (Required)
+* **AddressFields**: [WebACL_AddressField](#webacladdressfield)[]
+* **EmailField**: [FieldIdentifier](#fieldidentifier)
+* **PasswordField**: [FieldIdentifier](#fieldidentifier)
 * **PayloadType**: string (Required)
-* **UsernameField**: [FieldIdentifier](#fieldidentifier) (Required)
+* **PhoneNumberFields**: [WebACL_PhoneNumberField](#webaclphonenumberfield)[]
+* **UsernameField**: [FieldIdentifier](#fieldidentifier)
+
+## WebACL_AddressField
+### Properties
 
 ## FieldIdentifier
 ### Properties
 * **Identifier**: string (Required)
+
+## WebACL_PhoneNumberField
+### Properties
 
 ## ResponseInspection
 ### Properties
@@ -749,8 +818,22 @@
 * **FailureCodes**: int[] (Required)
 * **SuccessCodes**: int[] (Required)
 
+## AWSManagedRulesATPRuleSet
+### Properties
+* **EnableRegexInPath**: bool
+* **LoginPath**: string (Required)
+* **RequestInspection**: [RequestInspection](#requestinspection)
+* **ResponseInspection**: [ResponseInspection](#responseinspection)
+
+## RequestInspection
+### Properties
+* **PasswordField**: [FieldIdentifier](#fieldidentifier) (Required)
+* **PayloadType**: string (Required)
+* **UsernameField**: [FieldIdentifier](#fieldidentifier) (Required)
+
 ## AWSManagedRulesBotControlRuleSet
 ### Properties
+* **EnableMachineLearning**: bool
 * **InspectionLevel**: string (Required)
 
 ## RuleActionOverride
@@ -769,9 +852,58 @@
 ## RateBasedStatement
 ### Properties
 * **AggregateKeyType**: string (Required)
+* **CustomKeys**: [RateBasedStatementCustomKey](#ratebasedstatementcustomkey)[]: Specifies the aggregate keys to use in a rate-base rule.
 * **ForwardedIPConfig**: [ForwardedIPConfiguration](#forwardedipconfiguration)
 * **Limit**: int (Required)
 * **ScopeDownStatement**: [Statement](#statement)
+
+## RateBasedStatementCustomKey
+### Properties
+* **Cookie**: [RateLimitCookie](#ratelimitcookie)
+* **ForwardedIP**: [RateLimitForwardedIP](#ratelimitforwardedip)
+* **Header**: [RateLimitHeader](#ratelimitheader)
+* **HTTPMethod**: [RateLimitHTTPMethod](#ratelimithttpmethod)
+* **IP**: [RateLimitIP](#ratelimitip)
+* **LabelNamespace**: [RateLimitLabelNamespace](#ratelimitlabelnamespace)
+* **QueryArgument**: [RateLimitQueryArgument](#ratelimitqueryargument)
+* **QueryString**: [RateLimitQueryString](#ratelimitquerystring)
+* **UriPath**: [RateLimitUriPath](#ratelimituripath)
+
+## RateLimitCookie
+### Properties
+* **Name**: string (Required, Identifier): The name of the cookie to use.
+* **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
+
+## RateLimitForwardedIP
+### Properties
+
+## RateLimitHeader
+### Properties
+* **Name**: string (Required, Identifier): The name of the header to use.
+* **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
+
+## RateLimitHTTPMethod
+### Properties
+
+## RateLimitIP
+### Properties
+
+## RateLimitLabelNamespace
+### Properties
+* **Namespace**: string (Required): The namespace to use for aggregation.
+
+## RateLimitQueryArgument
+### Properties
+* **Name**: string (Required, Identifier): The name of the query argument to use.
+* **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
+
+## RateLimitQueryString
+### Properties
+* **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
+
+## RateLimitUriPath
+### Properties
+* **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
 ## RegexMatchStatement
 ### Properties

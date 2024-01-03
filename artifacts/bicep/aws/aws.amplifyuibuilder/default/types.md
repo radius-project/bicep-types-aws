@@ -82,6 +82,7 @@
 * **Fields**: [FieldsMap](#fieldsmap) (Required)
 * **FormActionType**: string (Required)
 * **Id**: string (ReadOnly, Identifier)
+* **LabelDecorator**: string
 * **Name**: string (Required)
 * **SchemaVersion**: string (Required)
 * **SectionalElements**: [SectionalElementMap](#sectionalelementmap) (Required)

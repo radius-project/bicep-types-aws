@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-Analysis",
   "type": "AWS::QuickSight::Analysis",
-  "time": "2023-03-30T18:43:38.309Z",
+  "time": "2023-12-07T19:55:47.144Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -12,6 +12,9 @@
       "AggregationFunction": {
         "additionalProperties": false,
         "properties": {
+          "AttributeAggregationFunction": {
+            "$ref": "#/definitions/AttributeAggregationFunction"
+          },
           "CategoricalAggregationFunction": {
             "$ref": "#/definitions/CategoricalAggregationFunction"
           },
@@ -38,10 +41,13 @@
           }
         },
         "required": [
-          "AggregationFunction",
           "Column",
           "SortDirection"
         ],
+        "type": "object"
+      },
+      "AllSheetsFilterScopeConfiguration": {
+        "additionalProperties": false,
         "type": "object"
       },
       "AnalysisDefaults": {
@@ -66,7 +72,7 @@
             "items": {
               "$ref": "#/definitions/CalculatedField"
             },
-            "maxItems": 100,
+            "maxItems": 500,
             "minItems": 0,
             "type": "array"
           },
@@ -93,6 +99,9 @@
             "maxItems": 2000,
             "minItems": 0,
             "type": "array"
+          },
+          "Options": {
+            "$ref": "#/definitions/AssetOptions"
           },
           "ParameterDeclarations": {
             "items": {
@@ -267,6 +276,30 @@
           "LARGE"
         ],
         "type": "string"
+      },
+      "AssetOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "Timezone": {
+            "type": "string"
+          },
+          "WeekStart": {
+            "$ref": "#/definitions/DayOfTheWeek"
+          }
+        },
+        "type": "object"
+      },
+      "AttributeAggregationFunction": {
+        "additionalProperties": false,
+        "properties": {
+          "SimpleAttributeAggregation": {
+            "$ref": "#/definitions/SimpleAttributeAggregationFunction"
+          },
+          "ValueForMultipleValues": {
+            "type": "string"
+          }
+        },
+        "type": "object"
       },
       "AxisBinding": {
         "enum": [
@@ -869,7 +902,7 @@
             "type": "string"
           },
           "Expression": {
-            "maxLength": 4096,
+            "maxLength": 32000,
             "minLength": 1,
             "type": "string"
           },
@@ -2086,6 +2119,9 @@
           "Position": {
             "$ref": "#/definitions/DataLabelPosition"
           },
+          "TotalsVisibility": {
+            "$ref": "#/definitions/Visibility"
+          },
           "Visibility": {
             "$ref": "#/definitions/Visibility"
           }
@@ -2191,9 +2227,21 @@
         ],
         "type": "object"
       },
+      "DataPathType": {
+        "additionalProperties": false,
+        "properties": {
+          "PivotTableDataPathType": {
+            "$ref": "#/definitions/PivotTableDataPathType"
+          }
+        },
+        "type": "object"
+      },
       "DataPathValue": {
         "additionalProperties": false,
         "properties": {
+          "DataPathType": {
+            "$ref": "#/definitions/DataPathType"
+          },
           "FieldId": {
             "maxLength": 512,
             "minLength": 1,
@@ -2205,10 +2253,6 @@
             "type": "string"
           }
         },
-        "required": [
-          "FieldId",
-          "FieldValue"
-        ],
         "type": "object"
       },
       "DataSetIdentifierDeclaration": {
@@ -2437,6 +2481,9 @@
             "minLength": 1,
             "type": "string"
           },
+          "InfoIconLabelOptions": {
+            "$ref": "#/definitions/SheetControlInfoIconLabelOptions"
+          },
           "TitleOptions": {
             "$ref": "#/definitions/LabelOptions"
           }
@@ -2455,6 +2502,18 @@
           }
         },
         "type": "object"
+      },
+      "DayOfTheWeek": {
+        "enum": [
+          "SUNDAY",
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY"
+        ],
+        "type": "string"
       },
       "DecimalDefaultValues": {
         "additionalProperties": false,
@@ -2635,6 +2694,9 @@
           "SelectAllValueOptions": {
             "$ref": "#/definitions/SelectAllValueOptions"
           },
+          "SourceColumn": {
+            "$ref": "#/definitions/ColumnIdentifier"
+          },
           "SourceField": {
             "maxLength": 512,
             "minLength": 1,
@@ -2700,6 +2762,9 @@
       "DropDownControlDisplayOptions": {
         "additionalProperties": false,
         "properties": {
+          "InfoIconLabelOptions": {
+            "$ref": "#/definitions/SheetControlInfoIconLabelOptions"
+          },
           "SelectAllOptions": {
             "$ref": "#/definitions/ListControlSelectAllOptions"
           },
@@ -3259,6 +3324,9 @@
           "MatchOperator": {
             "$ref": "#/definitions/CategoryFilterMatchOperator"
           },
+          "NullOption": {
+            "$ref": "#/definitions/FilterNullOption"
+          },
           "SelectAllOptions": {
             "$ref": "#/definitions/CategoryFilterSelectAllOptions"
           }
@@ -3319,6 +3387,14 @@
       "FilterOperationSelectedFieldsConfiguration": {
         "additionalProperties": false,
         "properties": {
+          "SelectedColumns": {
+            "items": {
+              "$ref": "#/definitions/ColumnIdentifier"
+            },
+            "maxItems": 10,
+            "minItems": 0,
+            "type": "array"
+          },
           "SelectedFieldOptions": {
             "$ref": "#/definitions/SelectedFieldOptions"
           },
@@ -3378,6 +3454,9 @@
       "FilterScopeConfiguration": {
         "additionalProperties": false,
         "properties": {
+          "AllSheets": {
+            "$ref": "#/definitions/AllSheetsFilterScopeConfiguration"
+          },
           "SelectedSheets": {
             "$ref": "#/definitions/SelectedSheetsFilterScopeConfiguration"
           }
@@ -3634,8 +3713,7 @@
           }
         },
         "required": [
-          "ComputationId",
-          "Time"
+          "ComputationId"
         ],
         "type": "object"
       },
@@ -4163,6 +4241,42 @@
         ],
         "type": "object"
       },
+      "GeospatialHeatmapColorScale": {
+        "additionalProperties": false,
+        "properties": {
+          "Colors": {
+            "items": {
+              "$ref": "#/definitions/GeospatialHeatmapDataColor"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "GeospatialHeatmapConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "HeatmapColor": {
+            "$ref": "#/definitions/GeospatialHeatmapColorScale"
+          }
+        },
+        "type": "object"
+      },
+      "GeospatialHeatmapDataColor": {
+        "additionalProperties": false,
+        "properties": {
+          "Color": {
+            "pattern": "^#[A-F0-9]{6}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Color"
+        ],
+        "type": "object"
+      },
       "GeospatialMapAggregatedFieldWells": {
         "additionalProperties": false,
         "properties": {
@@ -4284,6 +4398,9 @@
           "ClusterMarkerConfiguration": {
             "$ref": "#/definitions/ClusterMarkerConfiguration"
           },
+          "HeatmapConfiguration": {
+            "$ref": "#/definitions/GeospatialHeatmapConfiguration"
+          },
           "SelectedPointStyle": {
             "$ref": "#/definitions/GeospatialSelectedPointStyle"
           }
@@ -4293,7 +4410,8 @@
       "GeospatialSelectedPointStyle": {
         "enum": [
           "POINT",
-          "CLUSTER"
+          "CLUSTER",
+          "HEATMAP"
         ],
         "type": "string"
       },
@@ -4468,8 +4586,7 @@
           }
         },
         "required": [
-          "ComputationId",
-          "Time"
+          "ComputationId"
         ],
         "type": "object"
       },
@@ -4935,6 +5052,30 @@
         },
         "type": "object"
       },
+      "KPIActualValueConditionalFormatting": {
+        "additionalProperties": false,
+        "properties": {
+          "Icon": {
+            "$ref": "#/definitions/ConditionalFormattingIcon"
+          },
+          "TextColor": {
+            "$ref": "#/definitions/ConditionalFormattingColor"
+          }
+        },
+        "type": "object"
+      },
+      "KPIComparisonValueConditionalFormatting": {
+        "additionalProperties": false,
+        "properties": {
+          "Icon": {
+            "$ref": "#/definitions/ConditionalFormattingIcon"
+          },
+          "TextColor": {
+            "$ref": "#/definitions/ConditionalFormattingColor"
+          }
+        },
+        "type": "object"
+      },
       "KPIConditionalFormatting": {
         "additionalProperties": false,
         "properties": {
@@ -4952,6 +5093,12 @@
       "KPIConditionalFormattingOption": {
         "additionalProperties": false,
         "properties": {
+          "ActualValue": {
+            "$ref": "#/definitions/KPIActualValueConditionalFormatting"
+          },
+          "ComparisonValue": {
+            "$ref": "#/definitions/KPIComparisonValueConditionalFormatting"
+          },
           "PrimaryValue": {
             "$ref": "#/definitions/KPIPrimaryValueConditionalFormatting"
           },
@@ -5027,8 +5174,14 @@
           "SecondaryValueFontConfiguration": {
             "$ref": "#/definitions/FontConfiguration"
           },
+          "Sparkline": {
+            "$ref": "#/definitions/KPISparklineOptions"
+          },
           "TrendArrows": {
             "$ref": "#/definitions/TrendArrowOptions"
+          },
+          "VisualLayoutOptions": {
+            "$ref": "#/definitions/KPIVisualLayoutOptions"
           }
         },
         "type": "object"
@@ -5067,6 +5220,35 @@
           }
         },
         "type": "object"
+      },
+      "KPISparklineOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "Color": {
+            "pattern": "^#[A-F0-9]{6}$",
+            "type": "string"
+          },
+          "TooltipVisibility": {
+            "$ref": "#/definitions/Visibility"
+          },
+          "Type": {
+            "$ref": "#/definitions/KPISparklineType"
+          },
+          "Visibility": {
+            "$ref": "#/definitions/Visibility"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
+      "KPISparklineType": {
+        "enum": [
+          "LINE",
+          "AREA"
+        ],
+        "type": "string"
       },
       "KPIVisual": {
         "additionalProperties": false,
@@ -5110,6 +5292,34 @@
           "VisualId"
         ],
         "type": "object"
+      },
+      "KPIVisualLayoutOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "StandardLayout": {
+            "$ref": "#/definitions/KPIVisualStandardLayout"
+          }
+        },
+        "type": "object"
+      },
+      "KPIVisualStandardLayout": {
+        "additionalProperties": false,
+        "properties": {
+          "Type": {
+            "$ref": "#/definitions/KPIVisualStandardLayoutType"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
+      "KPIVisualStandardLayoutType": {
+        "enum": [
+          "CLASSIC",
+          "VERTICAL"
+        ],
+        "type": "string"
       },
       "LabelOptions": {
         "additionalProperties": false,
@@ -5515,6 +5725,9 @@
       "ListControlDisplayOptions": {
         "additionalProperties": false,
         "properties": {
+          "InfoIconLabelOptions": {
+            "$ref": "#/definitions/SheetControlInfoIconLabelOptions"
+          },
           "SearchOptions": {
             "$ref": "#/definitions/ListControlSearchOptions"
           },
@@ -5646,7 +5859,6 @@
         },
         "required": [
           "ComputationId",
-          "Time",
           "Type"
         ],
         "type": "object"
@@ -5699,10 +5911,7 @@
           }
         },
         "required": [
-          "ComputationId",
-          "FromValue",
-          "TargetValue",
-          "Time"
+          "ComputationId"
         ],
         "type": "object"
       },
@@ -6570,8 +6779,7 @@
           }
         },
         "required": [
-          "ComputationId",
-          "Time"
+          "ComputationId"
         ],
         "type": "object"
       },
@@ -6598,8 +6806,7 @@
           }
         },
         "required": [
-          "ComputationId",
-          "Time"
+          "ComputationId"
         ],
         "type": "object"
       },
@@ -6813,6 +7020,14 @@
           "Scope": {
             "$ref": "#/definitions/PivotTableConditionalFormattingScope"
           },
+          "Scopes": {
+            "items": {
+              "$ref": "#/definitions/PivotTableConditionalFormattingScope"
+            },
+            "maxItems": 3,
+            "minItems": 0,
+            "type": "array"
+          },
           "TextFormat": {
             "$ref": "#/definitions/TextConditionalFormat"
           }
@@ -6907,6 +7122,54 @@
         ],
         "type": "object"
       },
+      "PivotTableDataPathType": {
+        "enum": [
+          "HIERARCHY_ROWS_LAYOUT_COLUMN",
+          "MULTIPLE_ROW_METRICS_COLUMN",
+          "EMPTY_COLUMN_HEADER",
+          "COUNT_METRIC_COLUMN"
+        ],
+        "type": "string"
+      },
+      "PivotTableFieldCollapseState": {
+        "enum": [
+          "COLLAPSED",
+          "EXPANDED"
+        ],
+        "type": "string"
+      },
+      "PivotTableFieldCollapseStateOption": {
+        "additionalProperties": false,
+        "properties": {
+          "State": {
+            "$ref": "#/definitions/PivotTableFieldCollapseState"
+          },
+          "Target": {
+            "$ref": "#/definitions/PivotTableFieldCollapseStateTarget"
+          }
+        },
+        "required": [
+          "Target"
+        ],
+        "type": "object"
+      },
+      "PivotTableFieldCollapseStateTarget": {
+        "additionalProperties": false,
+        "properties": {
+          "FieldDataPathValues": {
+            "items": {
+              "$ref": "#/definitions/DataPathValue"
+            },
+            "maxItems": 20,
+            "minItems": 0,
+            "type": "array"
+          },
+          "FieldId": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "PivotTableFieldOption": {
         "additionalProperties": false,
         "properties": {
@@ -6932,6 +7195,12 @@
       "PivotTableFieldOptions": {
         "additionalProperties": false,
         "properties": {
+          "CollapseStateOptions": {
+            "items": {
+              "$ref": "#/definitions/PivotTableFieldCollapseStateOption"
+            },
+            "type": "array"
+          },
           "DataPathOptions": {
             "items": {
               "$ref": "#/definitions/PivotTableDataPathOption"
@@ -6984,11 +7253,18 @@
           "CellStyle": {
             "$ref": "#/definitions/TableCellStyle"
           },
+          "CollapsedRowDimensionsVisibility": {
+            "$ref": "#/definitions/Visibility"
+          },
           "ColumnHeaderStyle": {
             "$ref": "#/definitions/TableCellStyle"
           },
           "ColumnNamesVisibility": {
             "$ref": "#/definitions/Visibility"
+          },
+          "DefaultCellWidth": {
+            "description": "String based length that is composed of value and unit in px",
+            "type": "string"
           },
           "MetricPlacement": {
             "$ref": "#/definitions/PivotTableMetricPlacement"
@@ -7001,6 +7277,12 @@
           },
           "RowHeaderStyle": {
             "$ref": "#/definitions/TableCellStyle"
+          },
+          "RowsLabelOptions": {
+            "$ref": "#/definitions/PivotTableRowsLabelOptions"
+          },
+          "RowsLayout": {
+            "$ref": "#/definitions/PivotTableRowsLayout"
           },
           "SingleMetricVisibility": {
             "$ref": "#/definitions/Visibility"
@@ -7022,6 +7304,27 @@
           }
         },
         "type": "object"
+      },
+      "PivotTableRowsLabelOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "CustomLabel": {
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Visibility": {
+            "$ref": "#/definitions/Visibility"
+          }
+        },
+        "type": "object"
+      },
+      "PivotTableRowsLayout": {
+        "enum": [
+          "TABULAR",
+          "HIERARCHY"
+        ],
+        "type": "string"
       },
       "PivotTableSortBy": {
         "additionalProperties": false,
@@ -7128,6 +7431,14 @@
           "ScrollStatus": {
             "$ref": "#/definitions/TableTotalsScrollStatus"
           },
+          "TotalAggregationOptions": {
+            "items": {
+              "$ref": "#/definitions/TotalAggregationOption"
+            },
+            "maxItems": 200,
+            "minItems": 0,
+            "type": "array"
+          },
           "TotalCellStyle": {
             "$ref": "#/definitions/TableCellStyle"
           },
@@ -7227,6 +7538,14 @@
         },
         "type": "object"
       },
+      "RadarChartAxesRangeScale": {
+        "enum": [
+          "AUTO",
+          "INDEPENDENT",
+          "SHARED"
+        ],
+        "type": "string"
+      },
       "RadarChartConfiguration": {
         "additionalProperties": false,
         "properties": {
@@ -7240,6 +7559,9 @@
           "AlternateBandOddColor": {
             "pattern": "^#[A-F0-9]{6}$",
             "type": "string"
+          },
+          "AxesRangeScale": {
+            "$ref": "#/definitions/RadarChartAxesRangeScale"
           },
           "BaseSeriesSettings": {
             "$ref": "#/definitions/RadarChartSeriesSettings"
@@ -7424,6 +7746,9 @@
           "DynamicConfiguration": {
             "$ref": "#/definitions/ReferenceLineDynamicDataConfiguration"
           },
+          "SeriesType": {
+            "$ref": "#/definitions/ReferenceLineSeriesType"
+          },
           "StaticConfiguration": {
             "$ref": "#/definitions/ReferenceLineStaticDataConfiguration"
           }
@@ -7445,8 +7770,7 @@
         },
         "required": [
           "Calculation",
-          "Column",
-          "MeasureAggregationFunction"
+          "Column"
         ],
         "type": "object"
       },
@@ -7495,6 +7819,13 @@
           "SOLID",
           "DASHED",
           "DOTTED"
+        ],
+        "type": "string"
+      },
+      "ReferenceLineSeriesType": {
+        "enum": [
+          "BAR",
+          "LINE"
         ],
         "type": "string"
       },
@@ -7550,6 +7881,9 @@
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
+          },
+          "InfoIconLabelOptions": {
+            "$ref": "#/definitions/SheetControlInfoIconLabelOptions"
           },
           "TitleOptions": {
             "$ref": "#/definitions/LabelOptions"
@@ -7642,7 +7976,7 @@
             "items": {
               "type": "string"
             },
-            "maxItems": 16,
+            "maxItems": 20,
             "minItems": 1,
             "type": "array"
           },
@@ -7705,6 +8039,9 @@
             "type": "array"
           },
           "Status": {
+            "$ref": "#/definitions/WidgetStatus"
+          },
+          "UsePrimaryBackgroundColor": {
             "$ref": "#/definitions/WidgetStatus"
           }
         },
@@ -7847,6 +8184,14 @@
             "minItems": 0,
             "type": "array"
           },
+          "Label": {
+            "items": {
+              "$ref": "#/definitions/DimensionField"
+            },
+            "maxItems": 200,
+            "minItems": 0,
+            "type": "array"
+          },
           "Size": {
             "items": {
               "$ref": "#/definitions/MeasureField"
@@ -7922,6 +8267,22 @@
       "ScatterPlotUnaggregatedFieldWells": {
         "additionalProperties": false,
         "properties": {
+          "Category": {
+            "items": {
+              "$ref": "#/definitions/DimensionField"
+            },
+            "maxItems": 200,
+            "minItems": 0,
+            "type": "array"
+          },
+          "Label": {
+            "items": {
+              "$ref": "#/definitions/DimensionField"
+            },
+            "maxItems": 200,
+            "minItems": 0,
+            "type": "array"
+          },
           "Size": {
             "items": {
               "$ref": "#/definitions/MeasureField"
@@ -8230,6 +8591,20 @@
         ],
         "type": "string"
       },
+      "SheetControlInfoIconLabelOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "InfoIconText": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Visibility": {
+            "$ref": "#/definitions/Visibility"
+          }
+        },
+        "type": "object"
+      },
       "SheetControlLayout": {
         "additionalProperties": false,
         "properties": {
@@ -8439,6 +8814,12 @@
         },
         "type": "object"
       },
+      "SimpleAttributeAggregationFunction": {
+        "enum": [
+          "UNIQUE_VALUE"
+        ],
+        "type": "string"
+      },
       "SimpleClusterMarker": {
         "additionalProperties": false,
         "properties": {
@@ -8465,14 +8846,54 @@
         ],
         "type": "string"
       },
+      "SimpleTotalAggregationFunction": {
+        "enum": [
+          "DEFAULT",
+          "SUM",
+          "AVERAGE",
+          "MIN",
+          "MAX",
+          "NONE"
+        ],
+        "type": "string"
+      },
       "SliderControlDisplayOptions": {
         "additionalProperties": false,
         "properties": {
+          "InfoIconLabelOptions": {
+            "$ref": "#/definitions/SheetControlInfoIconLabelOptions"
+          },
           "TitleOptions": {
             "$ref": "#/definitions/LabelOptions"
           }
         },
         "type": "object"
+      },
+      "SmallMultiplesAxisPlacement": {
+        "enum": [
+          "OUTSIDE",
+          "INSIDE"
+        ],
+        "type": "string"
+      },
+      "SmallMultiplesAxisProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "Placement": {
+            "$ref": "#/definitions/SmallMultiplesAxisPlacement"
+          },
+          "Scale": {
+            "$ref": "#/definitions/SmallMultiplesAxisScale"
+          }
+        },
+        "type": "object"
+      },
+      "SmallMultiplesAxisScale": {
+        "enum": [
+          "SHARED",
+          "INDEPENDENT"
+        ],
+        "type": "string"
       },
       "SmallMultiplesOptions": {
         "additionalProperties": false,
@@ -8489,6 +8910,12 @@
           },
           "PanelConfiguration": {
             "$ref": "#/definitions/PanelConfiguration"
+          },
+          "XAxis": {
+            "$ref": "#/definitions/SmallMultiplesAxisProperties"
+          },
+          "YAxis": {
+            "$ref": "#/definitions/SmallMultiplesAxisProperties"
           }
         },
         "type": "object"
@@ -8624,6 +9051,14 @@
         },
         "type": "object"
       },
+      "StyledCellType": {
+        "enum": [
+          "TOTAL",
+          "METRIC_HEADER",
+          "VALUE"
+        ],
+        "type": "string"
+      },
       "SubtotalOptions": {
         "additionalProperties": false,
         "properties": {
@@ -8643,6 +9078,14 @@
           },
           "MetricHeaderCellStyle": {
             "$ref": "#/definitions/TableCellStyle"
+          },
+          "StyleTargets": {
+            "items": {
+              "$ref": "#/definitions/TableStyleTarget"
+            },
+            "maxItems": 3,
+            "minItems": 0,
+            "type": "array"
           },
           "TotalCellStyle": {
             "$ref": "#/definitions/TableCellStyle"
@@ -8933,9 +9376,12 @@
               "minLength": 1,
               "type": "string"
             },
-            "maxItems": 100,
+            "maxItems": 200,
             "minItems": 0,
             "type": "array"
+          },
+          "PinnedFieldOptions": {
+            "$ref": "#/definitions/TablePinnedFieldOptions"
           },
           "SelectedFieldOptions": {
             "items": {
@@ -9018,6 +9464,22 @@
         },
         "type": "object"
       },
+      "TablePinnedFieldOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "PinnedLeftFields": {
+            "items": {
+              "maxLength": 512,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 201,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
       "TableRowConditionalFormatting": {
         "additionalProperties": false,
         "properties": {
@@ -9071,10 +9533,23 @@
         },
         "type": "object"
       },
+      "TableStyleTarget": {
+        "additionalProperties": false,
+        "properties": {
+          "CellType": {
+            "$ref": "#/definitions/StyledCellType"
+          }
+        },
+        "required": [
+          "CellType"
+        ],
+        "type": "object"
+      },
       "TableTotalsPlacement": {
         "enum": [
           "START",
-          "END"
+          "END",
+          "AUTO"
         ],
         "type": "string"
       },
@@ -9163,6 +9638,9 @@
       "TextAreaControlDisplayOptions": {
         "additionalProperties": false,
         "properties": {
+          "InfoIconLabelOptions": {
+            "$ref": "#/definitions/SheetControlInfoIconLabelOptions"
+          },
           "PlaceholderOptions": {
             "$ref": "#/definitions/TextControlPlaceholderOptions"
           },
@@ -9199,6 +9677,9 @@
       "TextFieldControlDisplayOptions": {
         "additionalProperties": false,
         "properties": {
+          "InfoIconLabelOptions": {
+            "$ref": "#/definitions/SheetControlInfoIconLabelOptions"
+          },
           "PlaceholderOptions": {
             "$ref": "#/definitions/TextControlPlaceholderOptions"
           },
@@ -9278,6 +9759,9 @@
             "minLength": 1,
             "pattern": "^[a-zA-Z0-9]+$",
             "type": "string"
+          },
+          "RollingDate": {
+            "$ref": "#/definitions/RollingDateConfiguration"
           },
           "TimeGranularity": {
             "$ref": "#/definitions/TimeGranularity"
@@ -9512,9 +9996,7 @@
           }
         },
         "required": [
-          "Category",
           "ComputationId",
-          "Time",
           "Type"
         ],
         "type": "object"
@@ -9548,7 +10030,6 @@
           }
         },
         "required": [
-          "Category",
           "ComputationId",
           "Type"
         ],
@@ -9578,8 +10059,34 @@
           }
         },
         "required": [
-          "ComputationId",
-          "Value"
+          "ComputationId"
+        ],
+        "type": "object"
+      },
+      "TotalAggregationFunction": {
+        "additionalProperties": false,
+        "properties": {
+          "SimpleTotalAggregationFunction": {
+            "$ref": "#/definitions/SimpleTotalAggregationFunction"
+          }
+        },
+        "type": "object"
+      },
+      "TotalAggregationOption": {
+        "additionalProperties": false,
+        "properties": {
+          "FieldId": {
+            "maxLength": 512,
+            "minLength": 1,
+            "type": "string"
+          },
+          "TotalAggregationFunction": {
+            "$ref": "#/definitions/TotalAggregationFunction"
+          }
+        },
+        "required": [
+          "FieldId",
+          "TotalAggregationFunction"
         ],
         "type": "object"
       },
@@ -9594,6 +10101,14 @@
           },
           "ScrollStatus": {
             "$ref": "#/definitions/TableTotalsScrollStatus"
+          },
+          "TotalAggregationOptions": {
+            "items": {
+              "$ref": "#/definitions/TotalAggregationOption"
+            },
+            "maxItems": 200,
+            "minItems": 0,
+            "type": "array"
           },
           "TotalCellStyle": {
             "$ref": "#/definitions/TableCellStyle"
@@ -9788,10 +10303,28 @@
           }
         },
         "required": [
-          "Category",
           "ComputationId"
         ],
         "type": "object"
+      },
+      "ValidationStrategy": {
+        "additionalProperties": false,
+        "properties": {
+          "Mode": {
+            "$ref": "#/definitions/ValidationStrategyMode"
+          }
+        },
+        "required": [
+          "Mode"
+        ],
+        "type": "object"
+      },
+      "ValidationStrategyMode": {
+        "enum": [
+          "STRICT",
+          "LENIENT"
+        ],
+        "type": "string"
       },
       "ValueWhenUnsetOption": {
         "enum": [
@@ -9804,7 +10337,8 @@
         "enum": [
           "TOP",
           "MIDDLE",
-          "BOTTOM"
+          "BOTTOM",
+          "AUTO"
         ],
         "type": "string"
       },
@@ -10490,6 +11024,9 @@
       },
       "ThemeArn": {
         "type": "string"
+      },
+      "ValidationStrategy": {
+        "$ref": "#/definitions/ValidationStrategy"
       }
     },
     "readOnlyProperties": [
@@ -10511,7 +11048,9 @@
       "/properties/Parameters",
       "/properties/SourceEntity",
       "/properties/LastUpdatedTime",
-      "/properties/Sheets"
+      "/properties/Status",
+      "/properties/Sheets",
+      "/properties/ValidationStrategy"
     ]
   }
 }

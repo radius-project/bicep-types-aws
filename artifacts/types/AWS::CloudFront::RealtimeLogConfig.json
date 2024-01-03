@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFront-RealtimeLogConfig",
   "type": "AWS::CloudFront::RealtimeLogConfig",
-  "time": "2023-02-22T21:06:12.354Z",
+  "time": "2023-12-28T23:59:40.342Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -45,12 +45,14 @@
     "handlers": {
       "create": {
         "permissions": [
-          "cloudfront:CreateRealtimeLogConfig"
+          "cloudfront:CreateRealtimeLogConfig",
+          "iam:PassRole"
         ]
       },
       "delete": {
         "permissions": [
-          "cloudfront:DeleteRealtimeLogConfig"
+          "cloudfront:DeleteRealtimeLogConfig",
+          "cloudfront:GetRealtimeLogConfig"
         ]
       },
       "list": {
@@ -65,7 +67,9 @@
       },
       "update": {
         "permissions": [
-          "cloudfront:UpdateRealtimeLogConfig"
+          "cloudfront:UpdateRealtimeLogConfig",
+          "cloudfront:GetRealtimeLogConfig",
+          "iam:PassRole"
         ]
       }
     },
@@ -111,6 +115,12 @@
       "Fields",
       "SamplingRate"
     ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
     "typeName": "AWS::CloudFront::RealtimeLogConfig"
   }
 }

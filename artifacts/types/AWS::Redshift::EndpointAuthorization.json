@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Redshift-EndpointAuthorization",
   "type": "AWS::Redshift::EndpointAuthorization",
-  "time": "2023-02-22T16:41:04.935Z",
+  "time": "2024-01-03T16:28:55.285Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -22,7 +22,8 @@
     "handlers": {
       "create": {
         "permissions": [
-          "redshift:AuthorizeEndpointAccess"
+          "redshift:AuthorizeEndpointAccess",
+          "redshift:DescribeEndpointAuthorization"
         ],
         "timeoutInMinutes": 60
       },
@@ -30,6 +31,7 @@
         "permissions": [
           "redshift:RevokeEndpointAccess",
           "redshift:DeleteEndpointAccess",
+          "redshift:DescribeEndpointAuthorization",
           "ec2:DeleteClientVpnEndpoint",
           "ec2:DescribeVpcAttribute",
           "ec2:DescribeSecurityGroups",
@@ -52,6 +54,7 @@
       "update": {
         "permissions": [
           "redshift:AuthorizeEndpointAccess",
+          "redshift:DescribeEndpointAuthorization",
           "redshift:RevokeEndpointAccess"
         ],
         "timeoutInMinutes": 60

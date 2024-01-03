@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Logs-LogGroup",
   "type": "AWS::Logs::LogGroup",
-  "time": "2023-04-20T06:47:05.053Z",
+  "time": "2023-12-18T06:08:25.483Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -39,7 +39,7 @@
           "logs:DescribeLogGroups",
           "logs:CreateLogGroup",
           "logs:PutRetentionPolicy",
-          "logs:TagLogGroup",
+          "logs:TagResource",
           "logs:GetDataProtectionPolicy",
           "logs:PutDataProtectionPolicy",
           "logs:CreateLogDelivery",
@@ -57,15 +57,23 @@
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "LogGroupName": {
+              "$ref": "resource-schema.json#/properties/LogGroupName"
+            }
+          },
+          "required": []
+        },
         "permissions": [
           "logs:DescribeLogGroups",
-          "logs:ListTagsLogGroup"
+          "logs:ListTagsForResource"
         ]
       },
       "read": {
         "permissions": [
           "logs:DescribeLogGroups",
-          "logs:ListTagsLogGroup",
+          "logs:ListTagsForResource",
           "logs:GetDataProtectionPolicy"
         ]
       },
@@ -76,8 +84,8 @@
           "logs:DisassociateKmsKey",
           "logs:PutRetentionPolicy",
           "logs:DeleteRetentionPolicy",
-          "logs:TagLogGroup",
-          "logs:UntagLogGroup",
+          "logs:TagResource",
+          "logs:UntagResource",
           "logs:GetDataProtectionPolicy",
           "logs:PutDataProtectionPolicy",
           "logs:CreateLogDelivery",
@@ -102,6 +110,15 @@
         "description": "The Amazon Resource Name (ARN) of the CMK to use when encrypting log data.",
         "maxLength": 256,
         "pattern": "^arn:[a-z0-9-]+:kms:[a-z0-9-]+:\\d{12}:(key|alias)/.+\\Z",
+        "type": "string"
+      },
+      "LogGroupClass": {
+        "default": "STANDARD",
+        "description": "The class of the log group. Possible values are: STANDARD and INFREQUENT_ACCESS, with STANDARD being the default class",
+        "enum": [
+          "STANDARD",
+          "INFREQUENT_ACCESS"
+        ],
         "type": "string"
       },
       "LogGroupName": {

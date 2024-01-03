@@ -21,6 +21,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/ResourceDefaultVersionProperties](#awscloudformationresourcedefaultversionproperties): properties of the resource
 
+## Resource AWS.CloudFormation/Stack@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFormation/StackProperties](#awscloudformationstackproperties) (Required): properties of the resource
+
 ## Resource AWS.CloudFormation/StackSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -63,6 +70,53 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **TypeVersionArn**: string: The Amazon Resource Name (ARN) of the type version.
 * **VersionId**: string: The ID of an existing version of the resource to set as the default.
 
+## AWS.CloudFormation/StackProperties
+### Properties
+* **Capabilities**: string[]
+* **ChangeSetId**: string (ReadOnly)
+* **CreationTime**: string (ReadOnly)
+* **Description**: string
+* **DisableRollback**: bool
+* **EnableTerminationProtection**: bool
+* **LastUpdateTime**: string (ReadOnly)
+* **NotificationARNs**: string[]
+* **Outputs**: [Output](#output)[] (ReadOnly)
+* **Parameters**: [Stack_Parameters](#stackparameters)
+* **ParentId**: string (ReadOnly)
+* **RoleARN**: string
+* **RootId**: string (ReadOnly)
+* **StackId**: string (ReadOnly, Identifier)
+* **StackName**: string (Required)
+* **StackPolicyBody**: [Stack_StackPolicyBody](#stackstackpolicybody)
+* **StackPolicyURL**: string (WriteOnly)
+* **StackStatus**: string (ReadOnly)
+* **StackStatusReason**: string
+* **Tags**: [Tag](#tag)[]
+* **TemplateBody**: [Stack_TemplateBody](#stacktemplatebody)
+* **TemplateURL**: string (WriteOnly)
+* **TimeoutInMinutes**: int
+
+## Output
+### Properties
+* **Description**: string
+* **ExportName**: string
+* **OutputKey**: string
+* **OutputValue**: string
+
+## Stack_Parameters
+### Properties
+
+## Stack_StackPolicyBody
+### Properties
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Stack_TemplateBody
+### Properties
+
 ## AWS.CloudFormation/StackSetProperties
 ### Properties
 * **AdministrationRoleARN**: string: The Amazon Resource Number (ARN) of the IAM role to use to create this stack set. Specify an IAM role only if you are using customized administrator roles to control which users or groups can manage specific stack sets within the same administrator account.
@@ -75,7 +129,7 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **OperationPreferences**: [OperationPreferences](#operationpreferences) (WriteOnly)
 * **Parameters**: [Parameter](#parameter)[]: The input parameters for the stack set template.
 * **PermissionModel**: string (Required): Describes how the IAM roles required for stack set operations are created. By default, SELF-MANAGED is specified.
-* **StackInstancesGroup**: [StackInstances](#stackinstances)[]: A group of stack instances with parameters in some specific accounts and regions.
+* **StackInstancesGroup**: [StackInstances](#stackinstances)[] (WriteOnly): A group of stack instances with parameters in some specific accounts and regions.
 * **StackSetId**: string (ReadOnly, Identifier): The ID of the stack set that you're creating.
 * **StackSetName**: string (Required): The name to associate with the stack set. The name must be unique in the Region where you create your stack set.
 * **Tags**: [Tag](#tag)[]: The key-value pairs to associate with this stack set and the stacks created from it. AWS CloudFormation also propagates these tags to supported resources that are created in the stacks. A maximum number of 50 tags can be specified.
@@ -115,6 +169,7 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 ### Properties
 * **AccountFilterType**: string: The filter type you want to apply on organizational units and accounts.
 * **Accounts**: string[]: AWS accounts that you want to create stack instances in the specified Region(s) for.
+* **AccountsUrl**: string: Returns the value of the AccountsUrl property.
 * **OrganizationalUnitIds**: string[]: The organization root ID or organizational unit (OU) IDs to which StackSets deploys.
 
 ## Tag
@@ -125,18 +180,18 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 ## AWS.CloudFormation/TypeActivationProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the extension.
-* **AutoUpdate**: bool: Whether to automatically update the extension in this account and region when a new minor version is published by the extension publisher. Major versions released by the publisher must be manually updated.
-* **ExecutionRoleArn**: string: The Amazon Resource Name (ARN) of the IAM execution role to use to register the type. If your resource type calls AWS APIs in any of its handlers, you must create an IAM execution role that includes the necessary permissions to call those AWS APIs, and provision that execution role in your account. CloudFormation then assumes that execution role to provide your resource type with the appropriate credentials.
-* **LoggingConfig**: [LoggingConfig](#loggingconfig): Specifies logging configuration information for a type.
-* **MajorVersion**: string: The Major Version of the type you want to enable
+* **AutoUpdate**: bool (WriteOnly): Whether to automatically update the extension in this account and region when a new minor version is published by the extension publisher. Major versions released by the publisher must be manually updated.
+* **ExecutionRoleArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the IAM execution role to use to register the type. If your resource type calls AWS APIs in any of its handlers, you must create an IAM execution role that includes the necessary permissions to call those AWS APIs, and provision that execution role in your account. CloudFormation then assumes that execution role to provide your resource type with the appropriate credentials.
+* **LoggingConfig**: [LoggingConfig](#loggingconfig) (WriteOnly): Specifies logging configuration information for a type.
+* **MajorVersion**: string (WriteOnly): The Major Version of the type you want to enable
 * **PublicTypeArn**: string: The Amazon Resource Number (ARN) assigned to the public extension upon publication
 * **PublisherId**: string: The publisher id assigned by CloudFormation for publishing in this region.
-* **Type**: string: The kind of extension
+* **Type**: string (WriteOnly): The kind of extension
 * **TypeName**: string: The name of the type being registered.
 
 We recommend that type names adhere to the following pattern: company_or_organization::service::type.
 * **TypeNameAlias**: string: An alias to assign to the public extension in this account and region. If you specify an alias for the extension, you must then use the alias to refer to the extension in your templates.
-* **VersionBump**: string: Manually updates a previously-enabled type to a new major or minor version, if available. You can also use this parameter to update the value of AutoUpdateEnabled
+* **VersionBump**: string (WriteOnly): Manually updates a previously-enabled type to a new major or minor version, if available. You can also use this parameter to update the value of AutoUpdateEnabled
 
 ## LoggingConfig
 ### Properties

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSM-Association",
   "type": "AWS::SSM::Association",
-  "time": "2023-01-27T16:34:06.295Z",
+  "time": "2024-01-03T16:18:10.588Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -78,13 +78,20 @@
         "permissions": [
           "ec2:DescribeInstanceStatus",
           "iam:PassRole",
+          "iam:CreateServiceLinkedRole",
           "ssm:CreateAssociation",
-          "ssm:DescribeAssociation"
+          "ssm:DescribeAssociation",
+          "ssm:GetCalendarState"
         ]
       },
       "delete": {
         "permissions": [
           "ssm:DeleteAssociation"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ssm:ListAssociations"
         ]
       },
       "read": {
@@ -98,7 +105,8 @@
       "update": {
         "permissions": [
           "iam:PassRole",
-          "ssm:UpdateAssociation"
+          "ssm:UpdateAssociation",
+          "ssm:GetCalendarState"
         ]
       }
     },
@@ -255,6 +263,12 @@
       "Name"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ssm",
-    "typeName": "AWS::SSM::Association"
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::SSM::Association",
+    "writeOnlyProperties": [
+      "/properties/WaitForSuccessTimeoutSeconds"
+    ]
   }
 }

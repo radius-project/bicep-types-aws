@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lambda-Function",
   "type": "AWS::Lambda::Function",
-  "time": "2023-04-12T19:03:02.642Z",
+  "time": "2023-12-28T20:11:57.323Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -136,6 +136,49 @@
         },
         "type": "object"
       },
+      "LoggingConfig": {
+        "additionalProperties": false,
+        "description": "The function's logging configuration.",
+        "properties": {
+          "ApplicationLogLevel": {
+            "description": "Application log granularity level, can only be used when LogFormat is set to JSON",
+            "enum": [
+              "TRACE",
+              "DEBUG",
+              "INFO",
+              "WARN",
+              "ERROR",
+              "FATAL"
+            ],
+            "type": "string"
+          },
+          "LogFormat": {
+            "description": "Log delivery format for the lambda function",
+            "enum": [
+              "Text",
+              "JSON"
+            ],
+            "type": "string"
+          },
+          "LogGroup": {
+            "description": "The log group name.",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "[\\.\\-_/#A-Za-z0-9]+",
+            "type": "string"
+          },
+          "SystemLogLevel": {
+            "description": "System log granularity level, can only be used when LogFormat is set to JSON",
+            "enum": [
+              "DEBUG",
+              "INFO",
+              "WARN"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "RuntimeManagementConfig": {
         "additionalProperties": false,
         "properties": {
@@ -239,6 +282,10 @@
         "additionalProperties": false,
         "description": "The VPC security groups and subnets that are attached to a Lambda function. When you connect a function to a VPC, Lambda creates an elastic network interface for each combination of security group and subnet in the function's VPC configuration. The function can only access resources and the internet through that VPC.",
         "properties": {
+          "Ipv6AllowedForDualStack": {
+            "description": "A boolean indicating whether IPv6 protocols will be allowed for dual stack subnets",
+            "type": "boolean"
+          },
           "SecurityGroupIds": {
             "description": "A list of VPC security groups IDs.",
             "items": {
@@ -261,7 +308,7 @@
         "type": "object"
       }
     },
-    "description": "Resource Type definition for AWS::Lambda::Function",
+    "description": "Resource Type definition for AWS::Lambda::Function in region",
     "handlers": {
       "create": {
         "permissions": [
@@ -274,11 +321,22 @@
           "ec2:DescribeSecurityGroups",
           "ec2:DescribeSubnets",
           "ec2:DescribeVpcs",
+          "elasticfilesystem:DescribeMountTargets",
+          "kms:CreateGrant",
           "kms:Decrypt",
+          "kms:Encrypt",
+          "kms:GenerateDataKey",
           "lambda:GetCodeSigningConfig",
           "lambda:GetFunctionCodeSigningConfig",
+          "lambda:GetLayerVersion",
           "lambda:GetRuntimeManagementConfig",
-          "lambda:PutRuntimeManagementConfig"
+          "lambda:PutRuntimeManagementConfig",
+          "lambda:TagResource",
+          "lambda:GetPolicy",
+          "lambda:AddPermission",
+          "lambda:RemovePermission",
+          "lambda:GetResourcePolicy",
+          "lambda:PutResourcePolicy"
         ]
       },
       "delete": {
@@ -314,13 +372,22 @@
           "ec2:DescribeSecurityGroups",
           "ec2:DescribeSubnets",
           "ec2:DescribeVpcs",
+          "elasticfilesystem:DescribeMountTargets",
+          "kms:CreateGrant",
           "kms:Decrypt",
+          "kms:GenerateDataKey",
+          "lambda:GetRuntimeManagementConfig",
+          "lambda:PutRuntimeManagementConfig",
           "lambda:PutFunctionCodeSigningConfig",
           "lambda:DeleteFunctionCodeSigningConfig",
           "lambda:GetCodeSigningConfig",
           "lambda:GetFunctionCodeSigningConfig",
-          "lambda:GetRuntimeManagementConfig",
-          "lambda:PutRuntimeManagementConfig"
+          "lambda:GetPolicy",
+          "lambda:AddPermission",
+          "lambda:RemovePermission",
+          "lambda:GetResourcePolicy",
+          "lambda:PutResourcePolicy",
+          "lambda:DeleteResourcePolicy"
         ]
       }
     },
@@ -407,6 +474,10 @@
         "type": "array",
         "uniqueItems": false
       },
+      "LoggingConfig": {
+        "$ref": "#/definitions/LoggingConfig",
+        "description": "The logging configuration of your function"
+      },
       "MemorySize": {
         "description": "The amount of memory that your function has access to. Increasing the function's memory also increases its CPU allocation. The default value is 128 MB. The value must be a multiple of 64 MB.",
         "type": "integer"
@@ -469,17 +540,26 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/Arn",
       "/properties/SnapStartResponse",
       "/properties/SnapStartResponse/ApplyOn",
-      "/properties/SnapStartResponse/OptimizationStatus"
+      "/properties/SnapStartResponse/OptimizationStatus",
+      "/properties/Arn"
     ],
     "required": [
       "Code",
       "Role"
     ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Lambda::Function",
     "writeOnlyProperties": [
+      "/properties/SnapStart",
+      "/properties/SnapStart/ApplyOn",
       "/properties/Code",
       "/properties/Code/ImageUri",
       "/properties/Code/S3Bucket",

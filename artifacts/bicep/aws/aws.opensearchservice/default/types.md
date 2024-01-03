@@ -19,11 +19,13 @@
 * **DomainEndpoint**: string (ReadOnly)
 * **DomainEndpointOptions**: [DomainEndpointOptions](#domainendpointoptions)
 * **DomainEndpoints**: [Domain_DomainEndpoints](#domaindomainendpoints) (ReadOnly)
+* **DomainEndpointV2**: string (ReadOnly)
 * **DomainName**: string (Identifier)
 * **EBSOptions**: [EBSOptions](#ebsoptions)
 * **EncryptionAtRestOptions**: [EncryptionAtRestOptions](#encryptionatrestoptions)
 * **EngineVersion**: string
 * **Id**: string (ReadOnly)
+* **IPAddressType**: string
 * **LogPublishingOptions**: [Domain_LogPublishingOptions](#domainlogpublishingoptions)
 * **NodeToNodeEncryptionOptions**: [NodeToNodeEncryptionOptions](#nodetonodeencryptionoptions)
 * **OffPeakWindowOptions**: [OffPeakWindowOptions](#offpeakwindowoptions)
@@ -76,6 +78,7 @@
 * **DedicatedMasterType**: string
 * **InstanceCount**: int
 * **InstanceType**: string
+* **MultiAZWithStandbyEnabled**: bool
 * **WarmCount**: int
 * **WarmEnabled**: bool
 * **WarmType**: string

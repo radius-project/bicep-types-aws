@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ImageBuilder-ImagePipeline",
   "type": "AWS::ImageBuilder::ImagePipeline",
-  "time": "2023-04-04T15:12:33.393Z",
+  "time": "2023-12-31T06:43:51.167Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -21,7 +21,7 @@
             "type": "array"
           },
           "RepositoryName": {
-            "description": "The name of the container repository that Amazon Inspector scans to identify findings for your container images. The name includes the path for the repository location. If you don?t provide this information, Image Builder creates a repository in your account named image-builder-image-scanning-repository to use for vulnerability scans for your output container images.",
+            "description": "The name of the container repository that Amazon Inspector scans to identify findings for your container images. The name includes the path for the repository location. If you don't provide this information, Image Builder creates a repository in your account named image-builder-image-scanning-repository to use for vulnerability scans for your output container images.",
             "type": "string"
           }
         },
@@ -77,6 +77,58 @@
           }
         },
         "type": "object"
+      },
+      "WorkflowConfiguration": {
+        "additionalProperties": false,
+        "description": "The workflow configuration of the image",
+        "properties": {
+          "OnFailure": {
+            "description": "Define execution decision in case of workflow failure",
+            "enum": [
+              "CONTINUE",
+              "ABORT"
+            ],
+            "type": "string"
+          },
+          "ParallelGroup": {
+            "description": "The parallel group name",
+            "type": "string"
+          },
+          "Parameters": {
+            "description": "The parameters associated with the workflow",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/WorkflowParameter"
+            },
+            "type": "array"
+          },
+          "WorkflowArn": {
+            "description": "The Amazon Resource Name (ARN) of the workflow",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "WorkflowParameter": {
+        "additionalProperties": false,
+        "description": "A parameter associated with the workflow",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Value": {
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/WorkflowParameterValue"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "WorkflowParameterValue": {
+        "description": "The value associated with the workflow parameter",
+        "type": "string"
       }
     },
     "description": "Resource schema for AWS::ImageBuilder::ImagePipeline",
@@ -85,6 +137,7 @@
         "permissions": [
           "ecr:BatchGetRepositoryScanningConfiguration",
           "iam:GetRole",
+          "iam:PassRole",
           "iam:CreateServiceLinkedRole",
           "imagebuilder:TagResource",
           "imagebuilder:GetImagePipeline",
@@ -92,6 +145,7 @@
           "imagebuilder:GetInfrastructureConfiguration",
           "imagebuilder:GetDistributionConfiguration",
           "imagebuilder:CreateImagePipeline",
+          "imagebuilder:GetWorkflow",
           "inspector2:BatchGetAccountStatus"
         ]
       },
@@ -114,8 +168,10 @@
       },
       "update": {
         "permissions": [
+          "iam:PassRole",
           "imagebuilder:GetImagePipeline",
-          "imagebuilder:UpdateImagePipeline"
+          "imagebuilder:UpdateImagePipeline",
+          "imagebuilder:GetWorkflow"
         ]
       }
     },
@@ -159,6 +215,10 @@
         "description": "Collects additional information about the image being created, including the operating system (OS) version and package list.",
         "type": "boolean"
       },
+      "ExecutionRole": {
+        "description": "The execution role name/ARN for the image build, if provided",
+        "type": "string"
+      },
       "ImageRecipeArn": {
         "description": "The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested, and assessed.",
         "type": "string"
@@ -200,12 +260,23 @@
           }
         },
         "type": "object"
+      },
+      "Workflows": {
+        "description": "Workflows to define the image build process",
+        "insertionOrder": true,
+        "items": {
+          "$ref": "#/definitions/WorkflowConfiguration"
+        },
+        "type": "array"
       }
     },
     "readOnlyProperties": [
       "/properties/Arn"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-imagebuilder.git",
+    "tagging": {
+      "taggable": false
+    },
     "typeName": "AWS::ImageBuilder::ImagePipeline"
   }
 }

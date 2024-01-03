@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTSiteWise-Gateway",
   "type": "AWS::IoTSiteWise::Gateway",
-  "time": "2023-01-25T19:00:48.898Z",
+  "time": "2023-12-27T18:38:00.871Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -110,15 +110,21 @@
       "create": {
         "permissions": [
           "iotsitewise:CreateGateway",
+          "iotsitewise:DescribeGateway",
+          "iotsitewise:DescribeGatewayCapabilityConfiguration",
           "iotsitewise:UpdateGatewayCapabilityConfiguration",
           "iam:PassRole",
           "iam:GetRole",
           "greengrass:GetCoreDevice",
+          "iotsitewise:ListTagsForResource",
+          "iotsitewise:TagResource",
           "iot:DescribeThing"
         ]
       },
       "delete": {
         "permissions": [
+          "iotsitewise:DescribeGateway",
+          "iotsitewise:DescribeGatewayCapabilityConfiguration",
           "iotsitewise:DeleteGateway"
         ]
       },
@@ -141,6 +147,7 @@
           "iotsitewise:TagResource",
           "iotsitewise:UntagResource",
           "iotsitewise:DescribeGateway",
+          "iotsitewise:DescribeGatewayCapabilityConfiguration",
           "iotsitewise:ListTagsForResource"
         ]
       }

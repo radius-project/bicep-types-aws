@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFront-Function",
   "type": "AWS::CloudFront::Function",
-  "time": "2023-02-22T21:22:58.313Z",
+  "time": "2023-12-28T19:36:42.756Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -10,6 +10,13 @@
         "properties": {
           "Comment": {
             "type": "string"
+          },
+          "KeyValueStoreAssociations": {
+            "items": {
+              "$ref": "#/definitions/KeyValueStoreAssociation"
+            },
+            "type": "array",
+            "uniqueItems": true
           },
           "Runtime": {
             "type": "string"
@@ -29,6 +36,18 @@
           }
         },
         "type": "object"
+      },
+      "KeyValueStoreAssociation": {
+        "additionalProperties": false,
+        "properties": {
+          "KeyValueStoreARN": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "KeyValueStoreARN"
+        ],
+        "type": "object"
       }
     },
     "description": "Resource Type definition for AWS::CloudFront::Function",
@@ -36,12 +55,14 @@
       "create": {
         "permissions": [
           "cloudfront:CreateFunction",
-          "cloudfront:PublishFunction"
+          "cloudfront:PublishFunction",
+          "cloudfront:DescribeFunction"
         ]
       },
       "delete": {
         "permissions": [
-          "cloudfront:DeleteFunction"
+          "cloudfront:DeleteFunction",
+          "cloudfront:DescribeFunction"
         ]
       },
       "list": {
@@ -51,13 +72,15 @@
       },
       "read": {
         "permissions": [
-          "cloudfront:DescribeFunction"
+          "cloudfront:DescribeFunction",
+          "cloudfront:GetFunction"
         ]
       },
       "update": {
         "permissions": [
           "cloudfront:UpdateFunction",
-          "cloudfront:PublishFunction"
+          "cloudfront:PublishFunction",
+          "cloudfront:DescribeFunction"
         ]
       }
     },
@@ -97,6 +120,12 @@
       "FunctionConfig",
       "FunctionCode"
     ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
     "typeName": "AWS::CloudFront::Function",
     "writeOnlyProperties": [
       "/properties/AutoPublish"

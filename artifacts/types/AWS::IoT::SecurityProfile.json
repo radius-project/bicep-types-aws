@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-SecurityProfile",
   "type": "AWS::IoT::SecurityProfile",
-  "time": "2023-01-11T08:59:14.648Z",
+  "time": "2023-12-05T16:05:46.084Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -36,6 +36,9 @@
         "properties": {
           "Criteria": {
             "$ref": "#/definitions/BehaviorCriteria"
+          },
+          "ExportMetric": {
+            "$ref": "#/definitions/ExportMetric"
           },
           "Metric": {
             "description": "What is measured by the behavior.",
@@ -112,6 +115,10 @@
         },
         "type": "object"
       },
+      "ExportMetric": {
+        "description": "Flag to enable/disable metrics export for metric to be retained.",
+        "type": "boolean"
+      },
       "MachineLearningDetectionConfig": {
         "additionalProperties": false,
         "description": "The configuration of an ML Detect Security Profile.",
@@ -157,6 +164,9 @@
         "additionalProperties": false,
         "description": "The metric you want to retain. Dimensions are optional.",
         "properties": {
+          "ExportMetric": {
+            "$ref": "#/definitions/ExportMetric"
+          },
           "Metric": {
             "description": "What is measured by the behavior.",
             "maxLength": 128,
@@ -282,6 +292,8 @@
         "permissions": [
           "iot:CreateSecurityProfile",
           "iot:AttachSecurityProfile",
+          "iot:DescribeSecurityProfile",
+          "iot:TagResource",
           "iam:PassRole"
         ]
       },
@@ -348,6 +360,29 @@
         "maxLength": 100,
         "type": "array",
         "uniqueItems": true
+      },
+      "MetricsExportConfig": {
+        "additionalProperties": false,
+        "description": "A structure containing the mqtt topic for metrics export.",
+        "properties": {
+          "MqttTopic": {
+            "description": "The topic for metrics export.",
+            "maxLength": 512,
+            "minLength": 1,
+            "type": "string"
+          },
+          "RoleArn": {
+            "description": "The ARN of the role that grants permission to publish to mqtt topic.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "type": "string"
+          }
+        },
+        "required": [
+          "MqttTopic",
+          "RoleArn"
+        ],
+        "type": "object"
       },
       "SecurityProfileArn": {
         "description": "The ARN (Amazon resource name) of the created security profile.",

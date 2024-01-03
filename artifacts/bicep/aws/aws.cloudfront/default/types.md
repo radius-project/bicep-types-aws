@@ -42,6 +42,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/KeyGroupProperties](#awscloudfrontkeygroupproperties) (Required): properties of the resource
 
+## Resource AWS.CloudFront/KeyValueStore@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFront/KeyValueStoreProperties](#awscloudfrontkeyvaluestoreproperties) (Required): properties of the resource
+
 ## Resource AWS.CloudFront/OriginAccessControl@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -134,8 +141,26 @@
 ## ContinuousDeploymentPolicyConfig
 ### Properties
 * **Enabled**: bool (Required)
+* **SingleHeaderPolicyConfig**: [ContinuousDeploymentPolicy_SingleHeaderPolicyConfig](#continuousdeploymentpolicysingleheaderpolicyconfig)
+* **SingleWeightPolicyConfig**: [ContinuousDeploymentPolicy_SingleWeightPolicyConfig](#continuousdeploymentpolicysingleweightpolicyconfig)
 * **StagingDistributionDnsNames**: string[] (Required)
 * **TrafficConfig**: [TrafficConfig](#trafficconfig)
+* **Type**: string
+
+## ContinuousDeploymentPolicy_SingleHeaderPolicyConfig
+### Properties
+* **Header**: string (Required)
+* **Value**: string (Required)
+
+## ContinuousDeploymentPolicy_SingleWeightPolicyConfig
+### Properties
+* **SessionStickinessConfig**: [SessionStickinessConfig](#sessionstickinessconfig)
+* **Weight**: int (Required)
+
+## SessionStickinessConfig
+### Properties
+* **IdleTTL**: int (Required)
+* **MaximumTTL**: int (Required)
 
 ## TrafficConfig
 ### Properties
@@ -152,11 +177,6 @@
 ### Properties
 * **SessionStickinessConfig**: [SessionStickinessConfig](#sessionstickinessconfig)
 * **Weight**: int (Required)
-
-## SessionStickinessConfig
-### Properties
-* **IdleTTL**: int (Required)
-* **MaximumTTL**: int (Required)
 
 ## AWS.CloudFront/DistributionProperties
 ### Properties
@@ -383,7 +403,12 @@
 ## FunctionConfig
 ### Properties
 * **Comment**: string (Required)
+* **KeyValueStoreAssociations**: [KeyValueStoreAssociation](#keyvaluestoreassociation)[]
 * **Runtime**: string (Required)
+
+## KeyValueStoreAssociation
+### Properties
+* **KeyValueStoreARN**: string (Required)
 
 ## FunctionMetadata
 ### Properties
@@ -400,6 +425,20 @@
 * **Comment**: string
 * **Items**: string[] (Required)
 * **Name**: string (Required)
+
+## AWS.CloudFront/KeyValueStoreProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **Comment**: string
+* **Id**: string (ReadOnly)
+* **ImportSource**: [ImportSource](#importsource) (WriteOnly)
+* **Name**: string (Required, Identifier)
+* **Status**: string (ReadOnly)
+
+## ImportSource
+### Properties
+* **SourceArn**: string (Required)
+* **SourceType**: string (Required)
 
 ## AWS.CloudFront/OriginAccessControlProperties
 ### Properties

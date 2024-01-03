@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-FargateProfile",
   "type": "AWS::EKS::FargateProfile",
-  "time": "2023-04-20T15:12:03.689Z",
+  "time": "2024-01-03T16:53:51.295Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -97,6 +97,16 @@
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "ClusterName": {
+              "$ref": "resource-schema.json#/properties/ClusterName"
+            }
+          },
+          "required": [
+            "ClusterName"
+          ]
+        },
         "permissions": [
           "eks:ListFargateProfiles"
         ]
@@ -169,6 +179,13 @@
       "Selectors"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-eks.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::EKS::FargateProfile"
   }
 }

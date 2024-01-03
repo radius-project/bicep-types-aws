@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-CapacityReservation",
   "type": "AWS::EC2::CapacityReservation",
-  "time": "2023-01-12T16:21:52.196Z",
+  "time": "2024-01-03T16:21:18.311Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -56,13 +56,17 @@
       "create": {
         "permissions": [
           "ec2:CreateCapacityReservation",
-          "ec2:DescribeCapacityReservations"
+          "ec2:DescribeCapacityReservations",
+          "ec2:CancelCapacityReservation",
+          "ec2:CreateTags"
         ]
       },
       "delete": {
         "permissions": [
+          "ec2:CreateCapacityReservation",
           "ec2:DescribeCapacityReservations",
-          "ec2:CancelCapacityReservation"
+          "ec2:CancelCapacityReservation",
+          "ec2:DeleteTags"
         ]
       },
       "list": {
@@ -78,7 +82,11 @@
       "update": {
         "permissions": [
           "ec2:ModifyCapacityReservation",
-          "ec2:DescribeCapacityReservations"
+          "ec2:CreateCapacityReservation",
+          "ec2:DescribeCapacityReservations",
+          "ec2:CancelCapacityReservation",
+          "ec2:CreateTags",
+          "ec2:DeleteTags"
         ]
       }
     },

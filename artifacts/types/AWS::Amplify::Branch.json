@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Amplify-Branch",
   "type": "AWS::Amplify::Branch",
-  "time": "2022-11-15T18:30:51.686Z",
+  "time": "2023-10-25T23:10:23.196Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,17 @@
       "/properties/BranchName"
     ],
     "definitions": {
+      "Backend": {
+        "additionalProperties": false,
+        "properties": {
+          "StackArn": {
+            "maxLength": 2048,
+            "minLength": 20,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "BasicAuthConfig": {
         "additionalProperties": false,
         "properties": {
@@ -80,6 +91,7 @@
     "handlers": {
       "create": {
         "permissions": [
+          "amplify:GetBranch",
           "amplify:CreateBranch",
           "amplify:TagResource",
           "codecommit:GetRepository",
@@ -96,6 +108,7 @@
       },
       "delete": {
         "permissions": [
+          "amplify:GetBranch",
           "amplify:DeleteBranch",
           "codecommit:GetRepository",
           "codecommit:GetRepositoryTriggers",
@@ -104,7 +117,18 @@
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "AppId": {
+              "$ref": "resource-schema.json#/properties/AppId"
+            }
+          },
+          "required": [
+            "AppId"
+          ]
+        },
         "permissions": [
+          "amplify:GetBranch",
           "amplify:ListBranches",
           "amplify:ListTagsForResource",
           "iam:PassRole"
@@ -123,6 +147,7 @@
       },
       "update": {
         "permissions": [
+          "amplify:GetBranch",
           "amplify:UpdateBranch",
           "amplify:ListTagsForResource",
           "amplify:TagResource",
@@ -155,6 +180,9 @@
         "maxLength": 1000,
         "pattern": "(?s).*",
         "type": "string"
+      },
+      "Backend": {
+        "$ref": "#/definitions/Backend"
       },
       "BasicAuthConfig": {
         "$ref": "#/definitions/BasicAuthConfig"
@@ -227,6 +255,7 @@
       "AppId",
       "BranchName"
     ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-amplify",
     "typeName": "AWS::Amplify::Branch",
     "writeOnlyProperties": [
       "/properties/BasicAuthConfig"

@@ -14,12 +14,26 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ElasticLoadBalancingV2/ListenerRuleProperties](#awselasticloadbalancingv2listenerruleproperties) (Required): properties of the resource
 
+## Resource AWS.ElasticLoadBalancingV2/LoadBalancer@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ElasticLoadBalancingV2/LoadBalancerProperties](#awselasticloadbalancingv2loadbalancerproperties): properties of the resource
+
 ## Resource AWS.ElasticLoadBalancingV2/TargetGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ElasticLoadBalancingV2/TargetGroupProperties](#awselasticloadbalancingv2targetgroupproperties): properties of the resource
+
+## Resource AWS.ElasticLoadBalancingV2/TrustStore@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ElasticLoadBalancingV2/TrustStoreProperties](#awselasticloadbalancingv2truststoreproperties): properties of the resource
 
 ## AWS.ElasticLoadBalancingV2/ListenerProperties
 ### Properties
@@ -28,6 +42,7 @@
 * **DefaultActions**: [Action](#action)[] (Required, WriteOnly)
 * **ListenerArn**: string (ReadOnly, Identifier)
 * **LoadBalancerArn**: string (Required)
+* **MutualAuthentication**: [MutualAuthentication](#mutualauthentication)
 * **Port**: int
 * **Protocol**: string
 * **SslPolicy**: string
@@ -108,6 +123,12 @@
 * **Protocol**: string
 * **Query**: string
 * **StatusCode**: string (Required)
+
+## MutualAuthentication
+### Properties
+* **IgnoreClientCertificateExpiry**: bool
+* **Mode**: string
+* **TrustStoreArn**: string
 
 ## AWS.ElasticLoadBalancingV2/ListenerRuleProperties
 ### Properties
@@ -232,6 +253,40 @@
 ### Properties
 * **Values**: string[]
 
+## AWS.ElasticLoadBalancingV2/LoadBalancerProperties
+### Properties
+* **CanonicalHostedZoneID**: string (ReadOnly): The ID of the Amazon Route 53 hosted zone associated with the load balancer.
+* **DNSName**: string (ReadOnly): The public DNS name of the load balancer.
+* **IpAddressType**: string: The type of IP addresses used by the subnets for your load balancer. The possible values are ipv4 (for IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses).
+* **LoadBalancerArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the load balancer.
+* **LoadBalancerAttributes**: [LoadBalancerAttribute](#loadbalancerattribute)[]: The load balancer attributes.
+* **LoadBalancerFullName**: string (ReadOnly): The full name of the load balancer.
+* **LoadBalancerName**: string (ReadOnly): The name of the load balancer.
+* **Name**: string: The name of the load balancer.
+* **Scheme**: string: The nodes of an Internet-facing load balancer have public IP addresses. The DNS name of an Internet-facing load balancer is publicly resolvable to the public IP addresses of the nodes. Therefore, Internet-facing load balancers can route requests from clients over the internet. The nodes of an internal load balancer have only private IP addresses. The DNS name of an internal load balancer is publicly resolvable to the private IP addresses of the nodes. Therefore, internal load balancers can route requests only from clients with access to the VPC for the load balancer. The default is an Internet-facing load balancer.
+* **SecurityGroups**: string[]: The IDs of the security groups for the load balancer.
+* **SubnetMappings**: [SubnetMapping](#subnetmapping)[]: The IDs of the public subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings, but not both.
+* **Subnets**: string[]: The IDs of the public subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings, but not both. To specify an Elastic IP address, specify subnet mappings instead of subnets.
+* **Tags**: [Tag](#tag)[]: The tags to assign to the load balancer.
+* **Type**: string: The type of load balancer. The default is application.
+
+## LoadBalancerAttribute
+### Properties
+* **Key**: string
+* **Value**: string
+
+## SubnetMapping
+### Properties
+* **AllocationId**: string
+* **IPv6Address**: string
+* **PrivateIPv4Address**: string
+* **SubnetId**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string
+
 ## AWS.ElasticLoadBalancingV2/TargetGroupProperties
 ### Properties
 * **HealthCheckEnabled**: bool: Indicates whether health checks are enabled. If the target type is lambda, health checks are disabled by default but can be enabled. If the target type is instance, ip, or alb, health checks are always enabled and cannot be disabled.
@@ -278,4 +333,20 @@
 * **AvailabilityZone**: string: An Availability Zone or all. This determines whether the target receives traffic from the load balancer nodes in the specified Availability Zone or from all enabled Availability Zones for the load balancer.
 * **Id**: string (Required): The ID of the target. If the target type of the target group is instance, specify an instance ID. If the target type is ip, specify an IP address. If the target type is lambda, specify the ARN of the Lambda function. If the target type is alb, specify the ARN of the Application Load Balancer target. 
 * **Port**: int: The port on which the target is listening. If the target group protocol is GENEVE, the supported port is 6081. If the target type is alb, the targeted Application Load Balancer must have at least one listener whose port matches the target group port. Not used if the target is a Lambda function.
+
+## AWS.ElasticLoadBalancingV2/TrustStoreProperties
+### Properties
+* **CaCertificatesBundleS3Bucket**: string (WriteOnly): The name of the S3 bucket to fetch the CA certificate bundle from.
+* **CaCertificatesBundleS3Key**: string (WriteOnly): The name of the S3 object to fetch the CA certificate bundle from.
+* **CaCertificatesBundleS3ObjectVersion**: string (WriteOnly): The version of the S3 bucket that contains the CA certificate bundle.
+* **Name**: string: The name of the trust store.
+* **NumberOfCaCertificates**: int (ReadOnly): The number of certificates associated with the trust store.
+* **Status**: string (ReadOnly): The status of the trust store, could be either of ACTIVE or CREATING.
+* **Tags**: [Tag](#tag)[]: The tags to assign to the trust store.
+* **TrustStoreArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the trust store.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
