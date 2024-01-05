@@ -14,6 +14,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/AuthorizerProperties](#awsiotauthorizerproperties) (Required): properties of the resource
 
+## Resource AWS.IoT/BillingGroup@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/BillingGroupProperties](#awsiotbillinggroupproperties): properties of the resource
+
 ## Resource AWS.IoT/CACertificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -27,6 +34,13 @@
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/CertificateProperties](#awsiotcertificateproperties) (Required): properties of the resource
+
+## Resource AWS.IoT/CertificateProvider@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/CertificateProviderProperties](#awsiotcertificateproviderproperties) (Required): properties of the resource
 
 ## Resource AWS.IoT/CustomMetric@default
 * **Valid Scope(s)**: Unknown
@@ -112,12 +126,40 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/SecurityProfileProperties](#awsiotsecurityprofileproperties): properties of the resource
 
+## Resource AWS.IoT/SoftwarePackage@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/SoftwarePackageProperties](#awsiotsoftwarepackageproperties): properties of the resource
+
+## Resource AWS.IoT/SoftwarePackageVersion@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/SoftwarePackageVersionProperties](#awsiotsoftwarepackageversionproperties) (Required): properties of the resource
+
 ## Resource AWS.IoT/Thing@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/ThingProperties](#awsiotthingproperties): properties of the resource
+
+## Resource AWS.IoT/ThingGroup@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/ThingGroupProperties](#awsiotthinggroupproperties): properties of the resource
+
+## Resource AWS.IoT/ThingType@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/ThingTypeProperties](#awsiotthingtypeproperties): properties of the resource
 
 ## Resource AWS.IoT/TopicRule@default
 * **Valid Scope(s)**: Unknown
@@ -193,6 +235,23 @@
 ## Authorizer_TokenSigningPublicKeys
 ### Properties
 
+## AWS.IoT/BillingGroupProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **BillingGroupName**: string (Identifier)
+* **BillingGroupProperties**: [BillingGroup_BillingGroupProperties](#billinggroupbillinggroupproperties)
+* **Id**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## BillingGroup_BillingGroupProperties
+### Properties
+* **BillingGroupDescription**: string
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
 ## AWS.IoT/CACertificateProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -226,6 +285,19 @@
 * **CertificateSigningRequest**: string (WriteOnly)
 * **Id**: string (ReadOnly, Identifier)
 * **Status**: string (Required)
+
+## AWS.IoT/CertificateProviderProperties
+### Properties
+* **AccountDefaultForOperations**: string[] (Required)
+* **Arn**: string (ReadOnly)
+* **CertificateProviderName**: string (Identifier)
+* **LambdaFunctionArn**: string (Required)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.IoT/CustomMetricProperties
 ### Properties
@@ -262,15 +334,21 @@
 * **DomainName**: string
 * **DomainType**: string (ReadOnly)
 * **ServerCertificateArns**: string[] (WriteOnly)
+* **ServerCertificateConfig**: [ServerCertificateConfig](#servercertificateconfig)
 * **ServerCertificates**: [ServerCertificateSummary](#servercertificatesummary)[] (ReadOnly)
 * **ServiceType**: string
 * **Tags**: [Tag](#tag)[]
+* **TlsConfig**: [TlsConfig](#tlsconfig)
 * **ValidationCertificateArn**: string (WriteOnly)
 
 ## AuthorizerConfig
 ### Properties
 * **AllowAuthorizerOverride**: bool
 * **DefaultAuthorizerName**: string
+
+## ServerCertificateConfig
+### Properties
+* **EnableOCSPCheck**: bool
 
 ## ServerCertificateSummary
 ### Properties
@@ -282,6 +360,10 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## TlsConfig
+### Properties
+* **SecurityPolicy**: string
 
 ## AWS.IoT/FleetMetricProperties
 ### Properties
@@ -369,11 +451,14 @@
 ### Properties
 * **Arn**: string (ReadOnly)
 * **Id**: string (ReadOnly, Identifier)
-* **PolicyDocument**: [Policy_PolicyDocument](#policypolicydocument) (Required)
+* **PolicyDocument**: [Policy_PolicyDocument](#policypolicydocument) | string (Required)
 * **PolicyName**: string
+* **Tags**: [Tag](#tag)[]
 
-## Policy_PolicyDocument
+## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.IoT/ProvisioningTemplateProperties
 ### Properties
@@ -437,6 +522,7 @@
 * **AdditionalMetricsToRetainV2**: [MetricToRetain](#metrictoretain)[]: A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's behaviors, but it is also retained for any metric specified here.
 * **AlertTargets**: [SecurityProfile_AlertTargets](#securityprofilealerttargets): Specifies the destinations to which alerts are sent.
 * **Behaviors**: [Behavior](#behavior)[]: Specifies the behaviors that, when violated by a device (thing), cause an alert.
+* **MetricsExportConfig**: [SecurityProfile_MetricsExportConfig](#securityprofilemetricsexportconfig): A structure containing the mqtt topic for metrics export.
 * **SecurityProfileArn**: string (ReadOnly): The ARN (Amazon resource name) of the created security profile.
 * **SecurityProfileDescription**: string: A description of the security profile.
 * **SecurityProfileName**: string (Identifier): A unique identifier for the security profile.
@@ -445,6 +531,7 @@
 
 ## MetricToRetain
 ### Properties
+* **ExportMetric**: bool
 * **Metric**: string (Required): What is measured by the behavior.
 * **MetricDimension**: [MetricDimension](#metricdimension)
 
@@ -459,6 +546,7 @@
 ## Behavior
 ### Properties
 * **Criteria**: [BehaviorCriteria](#behaviorcriteria)
+* **ExportMetric**: bool
 * **Metric**: string: What is measured by the behavior.
 * **MetricDimension**: [MetricDimension](#metricdimension)
 * **Name**: string (Required): The name for the behavior.
@@ -491,10 +579,46 @@
 * **Ports**: int[]: If the ComparisonOperator calls for a set of ports, use this to specify that set to be compared with the metric.
 * **Strings**: string[]: The string values of a metric.
 
+## SecurityProfile_MetricsExportConfig
+### Properties
+* **MqttTopic**: string (Required): The topic for metrics export.
+* **RoleArn**: string (Required): The ARN of the role that grants permission to publish to mqtt topic.
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The tag's key.
 * **Value**: string (Required): The tag's value.
+
+## AWS.IoT/SoftwarePackageProperties
+### Properties
+* **Description**: string
+* **PackageArn**: string (ReadOnly)
+* **PackageName**: string (Identifier)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## AWS.IoT/SoftwarePackageVersionProperties
+### Properties
+* **Attributes**: [ResourceAttributes](#resourceattributes)
+* **Description**: string
+* **ErrorReason**: string (ReadOnly)
+* **PackageName**: string (Required, Identifier)
+* **PackageVersionArn**: string (ReadOnly)
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **VersionName**: string (Identifier)
+
+## ResourceAttributes
+### Properties
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## AWS.IoT/ThingProperties
 ### Properties
@@ -509,6 +633,52 @@
 
 ## Thing_Attributes
 ### Properties
+
+## AWS.IoT/ThingGroupProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **Id**: string (ReadOnly)
+* **ParentGroupName**: string
+* **QueryString**: string
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **ThingGroupName**: string (Identifier)
+* **ThingGroupProperties**: [ThingGroup_ThingGroupProperties](#thinggroupthinggroupproperties)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## ThingGroup_ThingGroupProperties
+### Properties
+* **AttributePayload**: [AttributePayload](#attributepayload)
+* **ThingGroupDescription**: string
+
+## AttributePayload
+### Properties
+* **Attributes**: [ThingGroup_Attributes](#thinggroupattributes)
+
+## ThingGroup_Attributes
+### Properties
+
+## AWS.IoT/ThingTypeProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **DeprecateThingType**: bool
+* **Id**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **ThingTypeName**: string (Identifier)
+* **ThingTypeProperties**: [ThingType_ThingTypeProperties](#thingtypethingtypeproperties)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## ThingType_ThingTypeProperties
+### Properties
+* **SearchableAttributes**: string[]
+* **ThingTypeDescription**: string
 
 ## AWS.IoT/TopicRuleProperties
 ### Properties
@@ -684,12 +854,18 @@
 ### Properties
 * **ClientProperties**: [TopicRule_ClientProperties](#topicruleclientproperties) (Required)
 * **DestinationArn**: string (Required)
+* **Headers**: [KafkaActionHeader](#kafkaactionheader)[]
 * **Key**: string
 * **Partition**: string
 * **Topic**: string (Required)
 
 ## TopicRule_ClientProperties
 ### Properties
+
+## KafkaActionHeader
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## KinesisAction
 ### Properties

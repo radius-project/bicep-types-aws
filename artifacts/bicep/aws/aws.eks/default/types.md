@@ -1,5 +1,12 @@
 # AWS.EKS @ default
 
+## Resource AWS.EKS/AccessEntry@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EKS/AccessEntryProperties](#awseksaccessentryproperties) (Required): properties of the resource
+
 ## Resource AWS.EKS/Addon@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -35,6 +42,39 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EKS/NodegroupProperties](#awseksnodegroupproperties) (Required): properties of the resource
 
+## Resource AWS.EKS/PodIdentityAssociation@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EKS/PodIdentityAssociationProperties](#awsekspodidentityassociationproperties) (Required): properties of the resource
+
+## AWS.EKS/AccessEntryProperties
+### Properties
+* **AccessEntryArn**: string (ReadOnly): The ARN of the access entry.
+* **AccessPolicies**: [AccessPolicy](#accesspolicy)[]: An array of access policies that are associated with the access entry.
+* **ClusterName**: string (Required, Identifier): The cluster that the access entry is created for.
+* **KubernetesGroups**: string[]: The Kubernetes groups that the access entry is associated with.
+* **PrincipalArn**: string (Required, Identifier): The principal ARN that the access entry is created for.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **Type**: string: The node type to associate with the access entry.
+* **Username**: string: The Kubernetes user that the access entry is associated with.
+
+## AccessPolicy
+### Properties
+* **AccessScope**: [AccessScope](#accessscope) (Required)
+* **PolicyArn**: string (Required): The ARN of the access policy to add to the access entry.
+
+## AccessScope
+### Properties
+* **Namespaces**: string[]: The namespaces to associate with the access scope. Only specify if Type is set to 'namespace'.
+* **Type**: string (Required): The type of the access scope.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
 ## AWS.EKS/AddonProperties
 ### Properties
 * **AddonName**: string (Required, Identifier): Name of Addon
@@ -54,6 +94,7 @@
 
 ## AWS.EKS/ClusterProperties
 ### Properties
+* **AccessConfig**: [AccessConfig](#accessconfig)
 * **Arn**: string (ReadOnly): The ARN of the cluster, such as arn:aws:eks:us-west-2:666666666666:cluster/prod.
 * **CertificateAuthorityData**: string (ReadOnly): The certificate-authority-data for your cluster.
 * **ClusterSecurityGroupId**: string (ReadOnly): The cluster security group that was created by Amazon EKS for the cluster. Managed node groups use this security group for control plane to data plane communication.
@@ -70,6 +111,11 @@
 * **RoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Version**: string: The desired Kubernetes version for your cluster. If you don't specify a value here, the latest version available in Amazon EKS is used.
+
+## AccessConfig
+### Properties
+* **AuthenticationMode**: string: Specify the authentication mode that should be used to create your cluster.
+* **BootstrapClusterCreatorAdminPermissions**: bool (WriteOnly): Set this value to false to avoid creating a default cluster admin Access Entry using the IAM principal used to create the cluster.
 
 ## EncryptionConfig
 ### Properties
@@ -231,4 +277,19 @@
 ### Properties
 * **MaxUnavailable**: int: The maximum number of nodes unavailable at once during a version update. Nodes will be updated in parallel. This value or maxUnavailablePercentage is required to have a value.The maximum number is 100. 
 * **MaxUnavailablePercentage**: int: The maximum percentage of nodes unavailable during a version update. This percentage of nodes will be updated in parallel, up to 100 nodes at once. This value or maxUnavailable is required to have a value.
+
+## AWS.EKS/PodIdentityAssociationProperties
+### Properties
+* **AssociationArn**: string (ReadOnly, Identifier): The ARN of the pod identity association.
+* **AssociationId**: string (ReadOnly): The ID of the pod identity association.
+* **ClusterName**: string (Required): The cluster that the pod identity association is created for.
+* **Namespace**: string (Required): The Kubernetes namespace that the pod identity association is created for.
+* **RoleArn**: string (Required): The IAM role ARN that the pod identity association is created for.
+* **ServiceAccount**: string (Required): The Kubernetes service account that the pod identity association is created for.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 

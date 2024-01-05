@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GameLift-GameServerGroup",
   "type": "AWS::GameLift::GameServerGroup",
-  "time": "2023-04-13T16:03:42.931Z",
+  "time": "2024-01-04T19:44:48.346Z",
   "schema": {
     "$schema": "https://schema.cloudformation.us-east-1.amazonaws.com/provider.definition.schema.v1.json",
     "additionalProperties": false,
@@ -291,12 +291,56 @@
     "handlers": {
       "create": {
         "permissions": [
-          "gamelift:CreateGameServerGroup"
+          "gamelift:CreateGameServerGroup",
+          "gamelift:TagResource",
+          "gamelift:DescribeGameServerGroup",
+          "iam:assumeRole",
+          "iam:PassRole",
+          "iam:CreateServiceLinkedRole",
+          "ec2:DescribeAvailabilityZones",
+          "ec2:DescribeSubnets",
+          "ec2:RunInstances",
+          "ec2:CreateTags",
+          "ec2:DescribeLaunchTemplateVersions",
+          "autoscaling:CreateAutoScalingGroup",
+          "autoscaling:DescribeLifecycleHooks",
+          "autoscaling:DescribeNotificationConfigurations",
+          "autoscaling:CreateAutoScalingGroup",
+          "autoscaling:CreateOrUpdateTags",
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:ExitStandby",
+          "autoscaling:PutLifecycleHook",
+          "autoscaling:PutScalingPolicy",
+          "autoscaling:ResumeProcesses",
+          "autoscaling:SetInstanceProtection",
+          "autoscaling:UpdateAutoScalingGroup",
+          "events:PutRule",
+          "events:PutTargets"
         ]
       },
       "delete": {
         "permissions": [
-          "gamelift:DeleteGameServerGroup"
+          "gamelift:DeleteGameServerGroup",
+          "gamelift:DescribeGameServerGroup",
+          "iam:assumeRole",
+          "iam:PassRole",
+          "iam:CreateServiceLinkedRole",
+          "ec2:DescribeAvailabilityZones",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeLaunchTemplateVersions",
+          "autoscaling:CreateAutoScalingGroup",
+          "autoscaling:DescribeLifecycleHooks",
+          "autoscaling:DescribeNotificationConfigurations",
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:ExitStandby",
+          "autoscaling:PutLifecycleHook",
+          "autoscaling:PutScalingPolicy",
+          "autoscaling:ResumeProcesses",
+          "autoscaling:SetInstanceProtection",
+          "autoscaling:UpdateAutoScalingGroup",
+          "autoscaling:DeleteAutoScalingGroup",
+          "events:PutRule",
+          "events:PutTargets"
         ]
       },
       "list": {
@@ -311,7 +355,12 @@
       },
       "update": {
         "permissions": [
-          "gamelift:UpdateGameServerGroup"
+          "gamelift:UpdateGameServerGroup",
+          "iam:assumeRole",
+          "iam:PassRole",
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:UpdateAutoScalingGroup",
+          "autoscaling:SetInstanceProtection"
         ]
       }
     },

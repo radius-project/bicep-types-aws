@@ -53,6 +53,7 @@
 ### Properties
 * **EgressConfiguration**: [EgressConfiguration](#egressconfiguration)
 * **IngressConfiguration**: [IngressConfiguration](#ingressconfiguration)
+* **IpAddressType**: string: App Runner service endpoint IP address type
 
 ## EgressConfiguration
 ### Properties
@@ -85,6 +86,7 @@
 * **CodeConfiguration**: [CodeConfiguration](#codeconfiguration)
 * **RepositoryUrl**: string (Required): Repository Url
 * **SourceCodeVersion**: [SourceCodeVersion](#sourcecodeversion) (Required)
+* **SourceDirectory**: string: Source Directory
 
 ## CodeConfiguration
 ### Properties

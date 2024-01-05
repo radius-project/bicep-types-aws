@@ -21,6 +21,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SES/ContactListProperties](#awssescontactlistproperties): properties of the resource
 
+## Resource AWS.SES/DedicatedIpPool@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SES/DedicatedIpPoolProperties](#awssesdedicatedippoolproperties): properties of the resource
+
 ## Resource AWS.SES/EmailIdentity@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -138,6 +145,11 @@
 * **Description**: string: The description of the topic.
 * **DisplayName**: string (Required): The display name of the topic.
 * **TopicName**: string (Required): The name of the topic.
+
+## AWS.SES/DedicatedIpPoolProperties
+### Properties
+* **PoolName**: string (Identifier): The name of the dedicated IP pool.
+* **ScalingMode**: string: Specifies whether the dedicated IP pool is managed or not. The default value is STANDARD.
 
 ## AWS.SES/EmailIdentityProperties
 ### Properties

@@ -28,6 +28,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.NetworkFirewall/RuleGroupProperties](#awsnetworkfirewallrulegroupproperties) (Required): properties of the resource
 
+## Resource AWS.NetworkFirewall/TLSInspectionConfiguration@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NetworkFirewall/TLSInspectionConfigurationProperties](#awsnetworkfirewalltlsinspectionconfigurationproperties) (Required): properties of the resource
+
 ## AWS.NetworkFirewall/FirewallProperties
 ### Properties
 * **DeleteProtection**: bool
@@ -64,6 +71,7 @@
 
 ## FirewallPolicy
 ### Properties
+* **PolicyVariables**: [FirewallPolicy_PolicyVariables](#firewallpolicypolicyvariables)
 * **StatefulDefaultActions**: string[]
 * **StatefulEngineOptions**: [StatefulEngineOptions](#statefulengineoptions)
 * **StatefulRuleGroupReferences**: [StatefulRuleGroupReference](#statefulrulegroupreference)[]
@@ -71,6 +79,14 @@
 * **StatelessDefaultActions**: string[] (Required)
 * **StatelessFragmentDefaultActions**: string[] (Required)
 * **StatelessRuleGroupReferences**: [StatelessRuleGroupReference](#statelessrulegroupreference)[]
+* **TLSInspectionConfigurationArn**: string
+
+## FirewallPolicy_PolicyVariables
+### Properties
+* **RuleVariables**: [RuleVariables](#rulevariables)
+
+## RuleVariables
+### Properties
 
 ## StatefulEngineOptions
 ### Properties
@@ -265,4 +281,55 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## AWS.NetworkFirewall/TLSInspectionConfigurationProperties
+### Properties
+* **Description**: string
+* **Tags**: [Tag](#tag)[]
+* **TLSInspectionConfiguration**: [TLSInspectionConfiguration](#tlsinspectionconfiguration) (Required)
+* **TLSInspectionConfigurationArn**: string (ReadOnly, Identifier)
+* **TLSInspectionConfigurationId**: string (ReadOnly)
+* **TLSInspectionConfigurationName**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## TLSInspectionConfiguration
+### Properties
+* **ServerCertificateConfigurations**: [ServerCertificateConfiguration](#servercertificateconfiguration)[]
+
+## ServerCertificateConfiguration
+### Properties
+* **CertificateAuthorityArn**: string
+* **CheckCertificateRevocationStatus**: [TLSInspectionConfiguration_CheckCertificateRevocationStatus](#tlsinspectionconfigurationcheckcertificaterevocationstatus)
+* **Scopes**: [ServerCertificateScope](#servercertificatescope)[]
+* **ServerCertificates**: [ServerCertificate](#servercertificate)[]
+
+## TLSInspectionConfiguration_CheckCertificateRevocationStatus
+### Properties
+* **RevokedStatusAction**: string
+* **UnknownStatusAction**: string
+
+## ServerCertificateScope
+### Properties
+* **DestinationPorts**: [PortRange](#portrange)[]
+* **Destinations**: [Address](#address)[]
+* **Protocols**: int[]
+* **SourcePorts**: [PortRange](#portrange)[]
+* **Sources**: [Address](#address)[]
+
+## PortRange
+### Properties
+* **FromPort**: int (Required)
+* **ToPort**: int (Required)
+
+## Address
+### Properties
+* **AddressDefinition**: string (Required)
+
+## ServerCertificate
+### Properties
+* **ResourceArn**: string
 

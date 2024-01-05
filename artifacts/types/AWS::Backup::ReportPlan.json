@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Backup-ReportPlan",
   "type": "AWS::Backup::ReportPlan",
-  "time": "2023-04-19T15:16:51.315Z",
+  "time": "2024-01-04T16:46:13.663Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -34,6 +34,7 @@
         "permissions": [
           "backup:CreateReportPlan",
           "backup:DescribeReportPlan",
+          "backup:ListTags",
           "backup:TagResource",
           "iam:CreateServiceLinkedRole"
         ]
@@ -57,6 +58,7 @@
       },
       "update": {
         "permissions": [
+          "backup:DescribeReportPlan",
           "backup:UpdateReportPlan",
           "backup:ListTags",
           "backup:UntagResource",
@@ -180,7 +182,13 @@
       "ReportSetting"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/ReportPlanTags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Backup::ReportPlan"
   }
 }

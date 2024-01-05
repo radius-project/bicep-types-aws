@@ -42,6 +42,20 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ImageProperties](#awssagemakerimageproperties) (Required): properties of the resource
 
+## Resource AWS.SageMaker/ImageVersion@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/ImageVersionProperties](#awssagemakerimageversionproperties) (Required): properties of the resource
+
+## Resource AWS.SageMaker/InferenceComponent@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/InferenceComponentProperties](#awssagemakerinferencecomponentproperties) (Required): properties of the resource
+
 ## Resource AWS.SageMaker/InferenceExperiment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -182,6 +196,7 @@
 * **HomeEfsFileSystemId**: string (ReadOnly): The ID of the Amazon Elastic File System (EFS) managed by this Domain.
 * **KmsKeyId**: string: SageMaker uses AWS KMS to encrypt the EFS volume attached to the domain with an AWS managed customer master key (CMK) by default.
 * **SecurityGroupIdForDomainBoundary**: string (ReadOnly): The ID of the security group that authorizes traffic between the RSessionGateway apps and the RStudioServerPro app.
+* **SingleSignOnApplicationArn**: string (ReadOnly): The ARN of the application managed by SageMaker in IAM Identity Center. This value is only returned for domains created after October 1, 2023.
 * **SingleSignOnManagedApplicationInstanceId**: string (ReadOnly): The SSO managed application instance ID.
 * **SubnetIds**: string[] (Required): The VPC subnets that Studio uses for communication.
 * **Tags**: [Tag](#tag)[] (WriteOnly): A list of tags to apply to the user profile.
@@ -219,13 +234,50 @@
 
 ## UserSettings
 ### Properties
+* **CodeEditorAppSettings**: [CodeEditorAppSettings](#codeeditorappsettings)
+* **CustomFileSystemConfigs**: [CustomFileSystemConfig](#customfilesystemconfig)[]
+* **CustomPosixUserConfig**: [CustomPosixUserConfig](#customposixuserconfig)
+* **DefaultLandingUri**: string: Defines which Amazon SageMaker application users are directed to by default.
 * **ExecutionRole**: string (Required): The execution role for the user.
+* **JupyterLabAppSettings**: [JupyterLabAppSettings](#jupyterlabappsettings)
 * **JupyterServerAppSettings**: [JupyterServerAppSettings](#jupyterserverappsettings): The Jupyter server's app settings.
 * **KernelGatewayAppSettings**: [KernelGatewayAppSettings](#kernelgatewayappsettings): The kernel gateway app settings.
 * **RSessionAppSettings**: [RSessionAppSettings](#rsessionappsettings)
 * **RStudioServerProAppSettings**: [RStudioServerProAppSettings](#rstudioserverproappsettings)
 * **SecurityGroups**: string[]: The security groups for the Amazon Virtual Private Cloud (VPC) that Studio uses for communication.
 * **SharingSettings**: [SharingSettings](#sharingsettings): The sharing settings.
+* **SpaceStorageSettings**: [DefaultSpaceStorageSettings](#defaultspacestoragesettings)
+* **StudioWebPortal**: string: Indicates whether the Studio experience is available to users. If not, users cannot access Studio.
+
+## CodeEditorAppSettings
+### Properties
+* **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the CodeEditor app.
+* **LifecycleConfigArns**: string[]: A list of LifecycleConfigArns available for use with CodeEditor apps.
+
+## CustomFileSystemConfig
+### Properties
+* **EFSFileSystemConfig**: [EFSFileSystemConfig](#efsfilesystemconfig)
+
+## EFSFileSystemConfig
+### Properties
+* **FileSystemId**: string (Required)
+* **FileSystemPath**: string
+
+## CustomPosixUserConfig
+### Properties
+* **Gid**: int (Required)
+* **Uid**: int (Required)
+
+## JupyterLabAppSettings
+### Properties
+* **CodeRepositories**: [CodeRepository](#coderepository)[]: A list of CodeRepositories available for use with JupyterLab apps.
+* **CustomImages**: [CustomImage](#customimage)[]: A list of custom images for use for JupyterLab apps.
+* **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the JupyterLab app.
+* **LifecycleConfigArns**: string[]: A list of LifecycleConfigArns available for use with JupyterLab apps.
+
+## CodeRepository
+### Properties
+* **RepositoryUrl**: string (Required): A CodeRepository (valid URL) to be used within Jupyter's Git extension.
 
 ## RSessionAppSettings
 ### Properties
@@ -242,6 +294,15 @@
 * **NotebookOutputOption**: string: Whether to include the notebook cell output when sharing the notebook. The default is Disabled.
 * **S3KmsKeyId**: string: When NotebookOutputOption is Allowed, the AWS Key Management Service (KMS) encryption key ID used to encrypt the notebook cell output in the Amazon S3 bucket.
 * **S3OutputPath**: string: When NotebookOutputOption is Allowed, the Amazon S3 bucket used to store the shared notebook snapshots.
+
+## DefaultSpaceStorageSettings
+### Properties
+* **DefaultEbsStorageSettings**: [DefaultEbsStorageSettings](#defaultebsstoragesettings)
+
+## DefaultEbsStorageSettings
+### Properties
+* **DefaultEbsVolumeSizeInGb**: int (Required): Default size of the Amazon EBS volume in Gb
+* **MaximumEbsVolumeSizeInGb**: int (Required): Maximum size of the Amazon EBS volume in Gb. Must be greater than or equal to the DefaultEbsVolumeSizeInGb.
 
 ## DomainSettings
 ### Properties
@@ -262,10 +323,12 @@
 
 ## AWS.SageMaker/FeatureGroupProperties
 ### Properties
+* **CreationTime**: string (ReadOnly): A timestamp of FeatureGroup creation time.
 * **Description**: string: Description about the FeatureGroup.
 * **EventTimeFeatureName**: string (Required): The Event Time Feature Name.
 * **FeatureDefinitions**: [FeatureDefinition](#featuredefinition)[] (Required): An Array of Feature Definition
 * **FeatureGroupName**: string (Required, Identifier): The Name of the FeatureGroup.
+* **FeatureGroupStatus**: string (ReadOnly): The status of the feature group.
 * **OfflineStoreConfig**: [FeatureGroup_OfflineStoreConfig](#featuregroupofflinestoreconfig)
 * **OnlineStoreConfig**: [FeatureGroup_OnlineStoreConfig](#featuregrouponlinestoreconfig)
 * **RecordIdentifierFeatureName**: string (Required): The Record Identifier Feature Name.
@@ -299,6 +362,7 @@
 ### Properties
 * **EnableOnlineStore**: bool
 * **SecurityConfig**: [OnlineStoreSecurityConfig](#onlinestoresecurityconfig)
+* **StorageType**: string
 
 ## OnlineStoreSecurityConfig
 ### Properties
@@ -322,6 +386,85 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## AWS.SageMaker/ImageVersionProperties
+### Properties
+* **Alias**: string (WriteOnly)
+* **Aliases**: string[] (WriteOnly)
+* **BaseImage**: string (Required)
+* **ContainerImage**: string (ReadOnly)
+* **Horovod**: bool
+* **ImageArn**: string (ReadOnly)
+* **ImageName**: string (Required)
+* **ImageVersionArn**: string (ReadOnly, Identifier)
+* **JobType**: string
+* **MLFramework**: string
+* **Processor**: string
+* **ProgrammingLang**: string
+* **ReleaseNotes**: string
+* **VendorGuidance**: string
+* **Version**: int (ReadOnly)
+
+## AWS.SageMaker/InferenceComponentProperties
+### Properties
+* **CreationTime**: string (ReadOnly)
+* **EndpointArn**: string
+* **EndpointName**: string (Required)
+* **FailureReason**: string (ReadOnly)
+* **InferenceComponentArn**: string (ReadOnly, Identifier)
+* **InferenceComponentName**: string
+* **InferenceComponentStatus**: string (ReadOnly)
+* **LastModifiedTime**: string (ReadOnly)
+* **RuntimeConfig**: [InferenceComponentRuntimeConfig](#inferencecomponentruntimeconfig) (Required)
+* **Specification**: [InferenceComponentSpecification](#inferencecomponentspecification) (Required)
+* **Tags**: [Tag](#tag)[]
+* **VariantName**: string (Required)
+
+## InferenceComponentRuntimeConfig
+### Properties
+* **CopyCount**: int (WriteOnly)
+* **CurrentCopyCount**: int (ReadOnly)
+* **DesiredCopyCount**: int (ReadOnly)
+
+## InferenceComponentSpecification
+### Properties
+* **ComputeResourceRequirements**: [InferenceComponentComputeResourceRequirements](#inferencecomponentcomputeresourcerequirements) (Required)
+* **Container**: [InferenceComponentContainerSpecification](#inferencecomponentcontainerspecification)
+* **ModelName**: string
+* **StartupParameters**: [InferenceComponentStartupParameters](#inferencecomponentstartupparameters)
+
+## InferenceComponentComputeResourceRequirements
+### Properties
+* **MaxMemoryRequiredInMb**: int
+* **MinMemoryRequiredInMb**: int
+* **NumberOfAcceleratorDevicesRequired**: int
+* **NumberOfCpuCoresRequired**: int
+
+## InferenceComponentContainerSpecification
+### Properties
+* **ArtifactUrl**: string
+* **DeployedImage**: [DeployedImage](#deployedimage) (ReadOnly)
+* **Environment**: [EnvironmentMap](#environmentmap)
+* **Image**: string (WriteOnly)
+
+## DeployedImage
+### Properties
+* **ResolutionTime**: string
+* **ResolvedImage**: string
+* **SpecifiedImage**: string
+
+## EnvironmentMap
+### Properties
+
+## InferenceComponentStartupParameters
+### Properties
+* **ContainerStartupHealthCheckTimeoutInSeconds**: int
+* **ModelDataDownloadTimeoutInSeconds**: int
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -
 
 ## AWS.SageMaker/InferenceExperimentProperties
 ### Properties
@@ -419,6 +562,7 @@
 * **EvaluationDetails**: [EvaluationDetail](#evaluationdetail)[]
 * **IntendedUses**: [IntendedUses](#intendeduses)
 * **ModelOverview**: [ModelOverview](#modeloverview)
+* **ModelPackageDetails**: [ModelPackageDetails](#modelpackagedetails)
 * **TrainingDetails**: [TrainingDetails](#trainingdetails)
 
 ## AdditionalInformation
@@ -481,6 +625,41 @@
 ### Properties
 * **ContainerImage**: string[]: SageMaker inference image uri.
 
+## ModelPackageDetails
+### Properties
+* **ApprovalDescription**: string: A description provided for the model approval
+* **CreatedBy**: [ModelPackageCreator](#modelpackagecreator): Information about the user who created model package.
+* **Domain**: string: The machine learning domain of the model package you specified. Common machine learning domains include computer vision and natural language processing.
+* **InferenceSpecification**: [InferenceSpecification](#inferencespecification): Details about inference jobs that can be run with models based on this model package.
+* **ModelApprovalStatus**: string: Current approval status of model package
+* **ModelPackageArn**: string: The Amazon Resource Name (ARN) of the model package
+* **ModelPackageDescription**: string: A brief summary of the model package
+* **ModelPackageGroupName**: string: If the model is a versioned model, the name of the model group that the versioned model belongs to.
+* **ModelPackageName**: string: Name of the model package
+* **ModelPackageStatus**: string: Current status of model package
+* **ModelPackageVersion**: int: Version of the model package
+* **SourceAlgorithms**: [SourceAlgorithm](#sourcealgorithm)[]: A list of algorithms that were used to create a model package.
+* **Task**: string: The machine learning task you specified that your model package accomplishes. Common machine learning tasks include object detection and image classification.
+
+## ModelPackageCreator
+### Properties
+* **UserProfileName**: string: The name of the user's profile in Studio
+
+## InferenceSpecification
+### Properties
+* **Containers**: [Container](#container)[] (Required): Contains inference related information which were used to create model package.
+
+## Container
+### Properties
+* **Image**: string (Required): Inference environment path. The Amazon EC2 Container Registry (Amazon ECR) path where inference code is stored.
+* **ModelDataUrl**: string: The Amazon S3 path where the model artifacts, which result from model training, are stored.
+* **NearestModelName**: string: The name of a pre-trained machine learning benchmarked by Amazon SageMaker Inference Recommender model that matches your model.
+
+## SourceAlgorithm
+### Properties
+* **AlgorithmName**: string (Required): The name of an algorithm that was used to create the model package. The algorithm must be either an algorithm resource in your SageMaker account or an algorithm in AWS Marketplace that you are subscribed to.
+* **ModelDataUrl**: string: The Amazon S3 path where the model artifacts, which result from model training, are stored.
+
 ## TrainingDetails
 ### Properties
 * **ObjectiveFunction**: [ObjectiveFunction](#objectivefunction)
@@ -540,20 +719,16 @@
 
 ## AWS.SageMaker/ModelPackageProperties
 ### Properties
-* **AdditionalInferenceSpecificationDefinition**: [AdditionalInferenceSpecificationDefinition](#additionalinferencespecificationdefinition)
 * **AdditionalInferenceSpecifications**: [AdditionalInferenceSpecificationDefinition](#additionalinferencespecificationdefinition)[]
-* **AdditionalInferenceSpecificationsToAdd**: [AdditionalInferenceSpecificationDefinition](#additionalinferencespecificationdefinition)[]
+* **AdditionalInferenceSpecificationsToAdd**: [AdditionalInferenceSpecificationDefinition](#additionalinferencespecificationdefinition)[] (WriteOnly)
 * **ApprovalDescription**: string
 * **CertifyForMarketplace**: bool
-* **ClientToken**: string
-* **CreatedBy**: [ModelPackage_CreatedBy](#modelpackagecreatedby)
+* **ClientToken**: string (WriteOnly)
 * **CreationTime**: string (ReadOnly)
 * **CustomerMetadataProperties**: [CustomerMetadataProperties](#customermetadataproperties)
 * **Domain**: string
 * **DriftCheckBaselines**: [DriftCheckBaselines](#driftcheckbaselines)
-* **Environment**: [Environment](#environment)
 * **InferenceSpecification**: [InferenceSpecification](#inferencespecification)
-* **LastModifiedBy**: [ModelPackage_LastModifiedBy](#modelpackagelastmodifiedby)
 * **LastModifiedTime**: string
 * **MetadataProperties**: [MetadataProperties](#metadataproperties)
 * **ModelApprovalStatus**: string
@@ -564,9 +739,9 @@
 * **ModelPackageName**: string
 * **ModelPackageStatus**: string (ReadOnly)
 * **ModelPackageStatusDetails**: [ModelPackageStatusDetails](#modelpackagestatusdetails)
-* **ModelPackageStatusItem**: [ModelPackageStatusItem](#modelpackagestatusitem)
 * **ModelPackageVersion**: int
 * **SamplePayloadUrl**: string
+* **SkipModelValidation**: string
 * **SourceAlgorithmSpecification**: [SourceAlgorithmSpecification](#sourcealgorithmspecification)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Task**: string
@@ -593,7 +768,6 @@
 * **ModelDataUrl**: string: A structure with Model Input details.
 * **ModelInput**: [ModelPackage_ModelInput](#modelpackagemodelinput)
 * **NearestModelName**: string: The name of a pre-trained machine learning benchmarked by Amazon SageMaker Inference Recommender model that matches your model.
-* **ProductId**: string: The AWS Marketplace product ID of the model package.
 
 ## Environment
 ### Properties
@@ -601,9 +775,6 @@
 ## ModelPackage_ModelInput
 ### Properties
 * **DataInputConfig**: string (Required): The input configuration object for the model.
-
-## ModelPackage_CreatedBy
-### Properties
 
 ## CustomerMetadataProperties
 ### Properties
@@ -656,9 +827,6 @@
 * **SupportedResponseMIMETypes**: string[] (Required): The supported MIME types for the output data.
 * **SupportedTransformInstanceTypes**: string[]: A list of the instance types on which a transformation job can be run or on which an endpoint can be deployed.
 
-## ModelPackage_LastModifiedBy
-### Properties
-
 ## MetadataProperties
 ### Properties
 * **CommitId**: string: The commit ID.
@@ -695,8 +863,7 @@
 
 ## ModelPackageStatusDetails
 ### Properties
-* **ImageScanStatuses**: [ModelPackageStatusItem](#modelpackagestatusitem)[]
-* **ValidationStatuses**: [ModelPackageStatusItem](#modelpackagestatusitem)[] (Required)
+* **ValidationStatuses**: [ModelPackageStatusItem](#modelpackagestatusitem)[]
 
 ## ModelPackageStatusItem
 ### Properties
@@ -858,6 +1025,7 @@
 ### Properties
 * **DataCapturedDestinationS3Uri**: string (Required): A URI that identifies the Amazon S3 storage location where Batch Transform Job captures data.
 * **DatasetFormat**: [DatasetFormat](#datasetformat) (Required)
+* **ExcludeFeaturesAttribute**: string: Indexes or names of the features to be excluded from analysis
 * **LocalPath**: string (Required): Path to the filesystem where the endpoint data is available to the container.
 * **S3DataDistributionType**: string: Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defauts to FullyReplicated
 * **S3InputMode**: string: Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.
@@ -879,6 +1047,7 @@
 ## EndpointInput
 ### Properties
 * **EndpointName**: string (Required)
+* **ExcludeFeaturesAttribute**: string: Indexes or names of the features to be excluded from analysis
 * **LocalPath**: string (Required): Path to the filesystem where the endpoint data is available to the container.
 * **S3DataDistributionType**: string: Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defauts to FullyReplicated
 * **S3InputMode**: string: Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.
@@ -926,7 +1095,9 @@
 
 ## ScheduleConfig
 ### Properties
-* **ScheduleExpression**: string (Required): A cron expression that describes details about the monitoring schedule.
+* **DataAnalysisEndTime**: string: Data Analysis end time, e.g. PT0H
+* **DataAnalysisStartTime**: string: Data Analysis start time, e.g. -PT1H
+* **ScheduleExpression**: string (Required): A cron expression or 'NOW' that describes details about the monitoring schedule.
 
 ## Tag
 ### Properties
@@ -963,7 +1134,7 @@
 * **ProjectId**: string (ReadOnly)
 * **ProjectName**: string (Required)
 * **ProjectStatus**: string (ReadOnly): The status of a project.
-* **ServiceCatalogProvisionedProductDetails**: [Project_ServiceCatalogProvisionedProductDetails](#projectservicecatalogprovisionedproductdetails) (ReadOnly): Provisioned ServiceCatalog  Details
+* **ServiceCatalogProvisionedProductDetails**: [Project_ServiceCatalogProvisionedProductDetails](#projectservicecatalogprovisionedproductdetails): Provisioned ServiceCatalog  Details
 * **ServiceCatalogProvisioningDetails**: [Project_ServiceCatalogProvisioningDetails](#projectservicecatalogprovisioningdetails) (Required): Input ServiceCatalog Provisioning Details
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
@@ -1045,16 +1216,24 @@
 
 ## UserSettings
 ### Properties
+* **CodeEditorAppSettings**: [CodeEditorAppSettings](#codeeditorappsettings)
+* **CustomFileSystemConfigs**: [CustomFileSystemConfig](#customfilesystemconfig)[]
+* **CustomPosixUserConfig**: [CustomPosixUserConfig](#customposixuserconfig)
+* **DefaultLandingUri**: string: Defines which Amazon SageMaker application users are directed to by default.
 * **ExecutionRole**: string: The user profile Amazon Resource Name (ARN).
+* **JupyterLabAppSettings**: [JupyterLabAppSettings](#jupyterlabappsettings)
 * **JupyterServerAppSettings**: [JupyterServerAppSettings](#jupyterserverappsettings): The Jupyter server's app settings.
 * **KernelGatewayAppSettings**: [KernelGatewayAppSettings](#kernelgatewayappsettings): The kernel gateway app settings.
 * **RStudioServerProAppSettings**: [RStudioServerProAppSettings](#rstudioserverproappsettings)
 * **SecurityGroups**: string[]: The security groups for the Amazon Virtual Private Cloud (VPC) that Studio uses for communication.
 * **SharingSettings**: [SharingSettings](#sharingsettings): The sharing settings.
+* **SpaceStorageSettings**: [DefaultSpaceStorageSettings](#defaultspacestoragesettings)
+* **StudioWebPortal**: string: Indicates whether the Studio experience is available to users. If not, users cannot access Studio.
 
-## JupyterServerAppSettings
+## CodeEditorAppSettings
 ### Properties
-* **DefaultResourceSpec**: [ResourceSpec](#resourcespec)
+* **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the CodeEditor app.
+* **LifecycleConfigArns**: string[]: A list of LifecycleConfigArns available for use with CodeEditor apps.
 
 ## ResourceSpec
 ### Properties
@@ -1062,16 +1241,45 @@
 * **SageMakerImageArn**: string: The ARN of the SageMaker image that the image version belongs to.
 * **SageMakerImageVersionArn**: string: The ARN of the image version created on the instance.
 
-## KernelGatewayAppSettings
+## CustomFileSystemConfig
 ### Properties
-* **CustomImages**: [CustomImage](#customimage)[]: A list of custom SageMaker images that are configured to run as a KernelGateway app.
-* **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the KernelGateway app.
+* **EFSFileSystemConfig**: [EFSFileSystemConfig](#efsfilesystemconfig)
+
+## EFSFileSystemConfig
+### Properties
+* **FileSystemId**: string (Required)
+* **FileSystemPath**: string
+
+## CustomPosixUserConfig
+### Properties
+* **Gid**: int (Required)
+* **Uid**: int (Required)
+
+## JupyterLabAppSettings
+### Properties
+* **CodeRepositories**: [CodeRepository](#coderepository)[]: A list of CodeRepositories available for use with JupyterLab apps.
+* **CustomImages**: [CustomImage](#customimage)[]: A list of custom images available for use for JupyterLab apps
+* **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the JupyterLab app.
+* **LifecycleConfigArns**: string[]: A list of LifecycleConfigArns available for use with JupyterLab apps.
+
+## CodeRepository
+### Properties
+* **RepositoryUrl**: string (Required): A CodeRepository (valid URL) to be used within Jupyter's Git extension.
 
 ## CustomImage
 ### Properties
 * **AppImageConfigName**: string (Required): The Name of the AppImageConfig.
 * **ImageName**: string (Required): The name of the CustomImage. Must be unique to your account.
 * **ImageVersionNumber**: int: The version number of the CustomImage.
+
+## JupyterServerAppSettings
+### Properties
+* **DefaultResourceSpec**: [ResourceSpec](#resourcespec)
+
+## KernelGatewayAppSettings
+### Properties
+* **CustomImages**: [CustomImage](#customimage)[]: A list of custom SageMaker images that are configured to run as a KernelGateway app.
+* **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the KernelGateway app.
 
 ## RStudioServerProAppSettings
 ### Properties
@@ -1083,4 +1291,13 @@
 * **NotebookOutputOption**: string: Whether to include the notebook cell output when sharing the notebook. The default is Disabled.
 * **S3KmsKeyId**: string: When NotebookOutputOption is Allowed, the AWS Key Management Service (KMS) encryption key ID used to encrypt the notebook cell output in the Amazon S3 bucket.
 * **S3OutputPath**: string: When NotebookOutputOption is Allowed, the Amazon S3 bucket used to store the shared notebook snapshots.
+
+## DefaultSpaceStorageSettings
+### Properties
+* **DefaultEbsStorageSettings**: [DefaultEbsStorageSettings](#defaultebsstoragesettings)
+
+## DefaultEbsStorageSettings
+### Properties
+* **DefaultEbsVolumeSizeInGb**: int (Required): Default size of the Amazon EBS volume in Gb
+* **MaximumEbsVolumeSizeInGb**: int (Required): Maximum size of the Amazon EBS volume in Gb. Must be greater than or equal to the DefaultEbsVolumeSizeInGb.
 

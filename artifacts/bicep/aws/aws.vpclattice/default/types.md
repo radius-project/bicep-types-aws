@@ -308,10 +308,11 @@
 ### Properties
 * **HealthCheck**: [HealthCheckConfig](#healthcheckconfig)
 * **IpAddressType**: string
-* **Port**: int (Required)
-* **Protocol**: string (Required)
+* **LambdaEventStructureVersion**: string
+* **Port**: int
+* **Protocol**: string
 * **ProtocolVersion**: string
-* **VpcIdentifier**: string (Required)
+* **VpcIdentifier**: string
 
 ## HealthCheckConfig
 ### Properties

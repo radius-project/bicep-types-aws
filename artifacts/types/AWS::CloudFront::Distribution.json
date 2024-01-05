@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFront-Distribution",
   "type": "AWS::CloudFront::Distribution",
-  "time": "2023-02-22T21:42:24.349Z",
+  "time": "2024-01-04T22:54:31.792Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -791,34 +791,46 @@
         "type": "object"
       }
     },
+    "deprecatedProperties": [
+      "/properties/DistributionConfig/properties/CustomOrigin",
+      "/properties/DistributionConfig/properties/S3Origin"
+    ],
     "description": "Resource Type definition for AWS::CloudFront::Distribution",
     "handlers": {
       "create": {
         "permissions": [
-          "cloudfront:CreateDistribution*",
+          "cloudfront:CreateDistribution",
+          "cloudfront:CreateDistributionWithTags",
+          "cloudfront:GetDistribution",
+          "cloudfront:GetDistributionConfig",
           "cloudfront:TagResource"
         ]
       },
       "delete": {
         "permissions": [
-          "cloudfront:DeleteDistribution*"
+          "cloudfront:DeleteDistribution",
+          "cloudfront:GetDistribution",
+          "cloudfront:GetDistributionConfig"
         ]
       },
       "list": {
         "permissions": [
-          "cloudfront:ListDistributions*"
+          "cloudfront:ListDistributions"
         ]
       },
       "read": {
         "permissions": [
-          "cloudfront:GetDistribution*"
+          "cloudfront:GetDistribution",
+          "cloudfront:GetDistributionConfig"
         ]
       },
       "update": {
         "permissions": [
-          "cloudfront:GetDistribution*",
-          "cloudfront:UpdateDistribution*",
-          "cloudfront:ListTagsForResource*",
+          "cloudfront:GetDistribution",
+          "cloudfront:GetDistributionConfig",
+          "cloudfront:UpdateDistribution",
+          "cloudfront:UpdateDistributionWithStagingConfig",
+          "cloudfront:ListTagsForResource",
           "cloudfront:TagResource",
           "cloudfront:UntagResource"
         ]
@@ -852,6 +864,12 @@
     "required": [
       "DistributionConfig"
     ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
     "typeName": "AWS::CloudFront::Distribution"
   }
 }

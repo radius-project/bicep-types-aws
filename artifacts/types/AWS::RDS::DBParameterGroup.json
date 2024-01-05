@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBParameterGroup",
   "type": "AWS::RDS::DBParameterGroup",
-  "time": "2023-04-20T08:56:36.99Z",
+  "time": "2023-12-18T10:42:02.519Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -37,13 +37,15 @@
     "handlers": {
       "create": {
         "permissions": [
+          "iam:CreateServiceLinkedRole",
           "rds:AddTagsToResource",
           "rds:CreateDBParameterGroup",
           "rds:DescribeDBParameterGroups",
           "rds:DescribeDBParameters",
           "rds:DescribeEngineDefaultParameters",
           "rds:ListTagsForResource",
-          "rds:ModifyDBParameterGroup"
+          "rds:ModifyDBParameterGroup",
+          "rds:RemoveTagsFromResource"
         ]
       },
       "delete": {

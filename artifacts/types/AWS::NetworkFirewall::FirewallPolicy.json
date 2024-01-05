@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkFirewall-FirewallPolicy",
   "type": "AWS::NetworkFirewall::FirewallPolicy",
-  "time": "2023-03-22T16:03:20.776Z",
+  "time": "2023-12-20T22:04:49.006Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -54,6 +54,15 @@
       "FirewallPolicy": {
         "additionalProperties": false,
         "properties": {
+          "PolicyVariables": {
+            "additionalProperties": false,
+            "properties": {
+              "RuleVariables": {
+                "$ref": "#/definitions/RuleVariables"
+              }
+            },
+            "type": "object"
+          },
           "StatefulDefaultActions": {
             "insertionOrder": true,
             "items": {
@@ -104,12 +113,29 @@
             },
             "type": "array",
             "uniqueItems": false
+          },
+          "TLSInspectionConfigurationArn": {
+            "$ref": "#/definitions/ResourceArn"
           }
         },
         "required": [
           "StatelessDefaultActions",
           "StatelessFragmentDefaultActions"
         ],
+        "type": "object"
+      },
+      "IPSet": {
+        "additionalProperties": false,
+        "properties": {
+          "Definition": {
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/VariableDefinition"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
         "type": "object"
       },
       "OverrideAction": {
@@ -153,6 +179,15 @@
           "STRICT_ORDER"
         ],
         "type": "string"
+      },
+      "RuleVariables": {
+        "additionalProperties": false,
+        "patternProperties": {
+          "^[A-Za-z0-9_]{1,32}$": {
+            "$ref": "#/definitions/IPSet"
+          }
+        },
+        "type": "object"
       },
       "StatefulEngineOptions": {
         "additionalProperties": false,
@@ -212,7 +247,8 @@
       "StreamExceptionPolicy": {
         "enum": [
           "DROP",
-          "CONTINUE"
+          "CONTINUE",
+          "REJECT"
         ],
         "type": "string"
       },
@@ -237,6 +273,11 @@
           "Value"
         ],
         "type": "object"
+      },
+      "VariableDefinition": {
+        "minLength": 1,
+        "pattern": "^.*$",
+        "type": "string"
       }
     },
     "description": "Resource type definition for AWS::NetworkFirewall::FirewallPolicy",
@@ -245,7 +286,9 @@
         "permissions": [
           "network-firewall:CreateFirewallPolicy",
           "network-firewall:DescribeFirewallPolicy",
-          "network-firewall:TagResource"
+          "network-firewall:ListTLSInspectionConfigurations",
+          "network-firewall:TagResource",
+          "network-firewall:ListRuleGroups"
         ]
       },
       "delete": {
@@ -271,7 +314,9 @@
           "network-firewall:UpdateFirewallPolicy",
           "network-firewall:DescribeFirewallPolicy",
           "network-firewall:TagResource",
-          "network-firewall:UntagResource"
+          "network-firewall:UntagResource",
+          "network-firewall:ListRuleGroups",
+          "network-firewall:ListTLSInspectionConfigurations"
         ]
       }
     },
@@ -321,6 +366,9 @@
       "FirewallPolicy"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-networkfirewall.git",
+    "tagging": {
+      "taggable": true
+    },
     "typeName": "AWS::NetworkFirewall::FirewallPolicy"
   }
 }

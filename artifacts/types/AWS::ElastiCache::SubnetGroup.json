@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ElastiCache-SubnetGroup",
   "type": "AWS::ElastiCache::SubnetGroup",
-  "time": "2023-01-19T17:46:06.813Z",
+  "time": "2024-01-02T21:49:08.849Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -31,13 +31,16 @@
       "create": {
         "permissions": [
           "elasticache:CreateCacheSubnetGroup",
-          "elasticache:DescribeCacheSubnetGroups"
+          "elasticache:AddTagsToResource",
+          "elasticache:DescribeCacheSubnetGroups",
+          "elasticache:ListTagsForResource"
         ]
       },
       "delete": {
         "permissions": [
           "elasticache:DeleteCacheSubnetGroup",
-          "elasticache:DescribeCacheSubnetGroups"
+          "elasticache:DescribeCacheSubnetGroups",
+          "elasticache:ListTagsForResource"
         ]
       },
       "list": {
@@ -54,6 +57,7 @@
       "update": {
         "permissions": [
           "elasticache:ModifyCacheSubnetGroup",
+          "elasticache:DescribeCacheSubnetGroups",
           "elasticache:AddTagsToResource",
           "elasticache:RemoveTagsFromResource"
         ]

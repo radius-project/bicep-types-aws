@@ -29,6 +29,7 @@
 * **Description**: string
 * **Id**: string (ReadOnly, Identifier)
 * **IndexId**: string (Required, Identifier)
+* **LanguageCode**: string
 * **Name**: string (Required)
 * **RoleArn**: string
 * **Schedule**: string

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-IPAM",
   "type": "AWS::EC2::IPAM",
-  "time": "2023-03-21T15:26:46.282Z",
+  "time": "2023-12-05T16:29:12.683Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -49,13 +49,15 @@
         "permissions": [
           "ec2:CreateIpam",
           "iam:CreateServiceLinkedRole",
-          "ec2:CreateTags"
+          "ec2:CreateTags",
+          "ec2:DescribeIpams"
         ]
       },
       "delete": {
         "permissions": [
           "ec2:DeleteIpam",
-          "ec2:DeleteTags"
+          "ec2:DeleteTags",
+          "ec2:DescribeIpams"
         ]
       },
       "list": {
@@ -72,7 +74,8 @@
         "permissions": [
           "ec2:ModifyIpam",
           "ec2:CreateTags",
-          "ec2:DeleteTags"
+          "ec2:DeleteTags",
+          "ec2:DescribeIpams"
         ]
       }
     },
@@ -133,6 +136,14 @@
         },
         "type": "array",
         "uniqueItems": true
+      },
+      "Tier": {
+        "description": "The tier of the IPAM.",
+        "enum": [
+          "free",
+          "advanced"
+        ],
+        "type": "string"
       }
     },
     "readOnlyProperties": [
@@ -140,11 +151,20 @@
       "/properties/Arn",
       "/properties/PublicDefaultScopeId",
       "/properties/PrivateDefaultScopeId",
-      "/properties/ScopeCount"
+      "/properties/ScopeCount",
+      "/properties/ResourceDiscoveryAssociationCount",
+      "/properties/DefaultResourceDiscoveryId",
+      "/properties/DefaultResourceDiscoveryAssociationId"
     ],
     "required": [],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ipam.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::EC2::IPAM"
   }
 }

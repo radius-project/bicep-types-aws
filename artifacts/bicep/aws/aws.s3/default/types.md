@@ -1,5 +1,26 @@
 # AWS.S3 @ default
 
+## Resource AWS.S3/AccessGrant@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.S3/AccessGrantProperties](#awss3accessgrantproperties) (Required): properties of the resource
+
+## Resource AWS.S3/AccessGrantsInstance@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.S3/AccessGrantsInstanceProperties](#awss3accessgrantsinstanceproperties): properties of the resource
+
+## Resource AWS.S3/AccessGrantsLocation@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.S3/AccessGrantsLocationProperties](#awss3accessgrantslocationproperties): properties of the resource
+
 ## Resource AWS.S3/AccessPoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -13,6 +34,13 @@
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.S3/BucketProperties](#awss3bucketproperties): properties of the resource
+
+## Resource AWS.S3/BucketPolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.S3/BucketPolicyProperties](#awss3bucketpolicyproperties) (Required): properties of the resource
 
 ## Resource AWS.S3/MultiRegionAccessPointPolicy@default
 * **Valid Scope(s)**: Unknown
@@ -28,25 +56,79 @@
 * **name**: string: the resource name
 * **properties**: [AWS.S3/StorageLensProperties](#awss3storagelensproperties) (Required): properties of the resource
 
+## Resource AWS.S3/StorageLensGroup@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.S3/StorageLensGroupProperties](#awss3storagelensgroupproperties) (Required): properties of the resource
+
+## AWS.S3/AccessGrantProperties
+### Properties
+* **AccessGrantArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified access grant.
+* **AccessGrantId**: string (ReadOnly, Identifier): The ID assigned to this access grant.
+* **AccessGrantsLocationConfiguration**: [AccessGrantsLocationConfiguration](#accessgrantslocationconfiguration): The configuration options of the grant location, which is the S3 path to the data to which you are granting access.
+* **AccessGrantsLocationId**: string (Required): The custom S3 location to be accessed by the grantee
+* **ApplicationArn**: string: The ARN of the application grantees will use to access the location
+* **Grantee**: [Grantee](#grantee) (Required): The principal who will be granted permission to access S3.
+* **GrantScope**: string (ReadOnly): The S3 path of the data to which you are granting access. It is a combination of the S3 path of the registered location and the subprefix.
+* **Permission**: string (Required): The level of access to be afforded to the grantee
+* **S3PrefixType**: string (WriteOnly): The type of S3SubPrefix.
+* **Tags**: [Tag](#tag)[] (WriteOnly)
+
+## AccessGrantsLocationConfiguration
+### Properties
+* **S3SubPrefix**: string (Required): The S3 sub prefix of a registered location in your S3 Access Grants instance
+
+## Grantee
+### Properties
+* **GranteeIdentifier**: string (Required): The unique identifier of the Grantee
+* **GranteeType**: string (Required): Configures the transfer acceleration state for an Amazon S3 bucket.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## AWS.S3/AccessGrantsInstanceProperties
+### Properties
+* **AccessGrantsInstanceArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the specified Access Grants instance.
+* **AccessGrantsInstanceId**: string (ReadOnly): A unique identifier for the specified access grants instance.
+* **IdentityCenterArn**: string: The Amazon Resource Name (ARN) of the specified AWS Identity Center.
+* **Tags**: [Tag](#tag)[] (WriteOnly)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## AWS.S3/AccessGrantsLocationProperties
+### Properties
+* **AccessGrantsLocationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified Access Grants location.
+* **AccessGrantsLocationId**: string (ReadOnly, Identifier): The unique identifier for the specified Access Grants location.
+* **IamRoleArn**: string: The Amazon Resource Name (ARN) of the access grant location's associated IAM role.
+* **LocationScope**: string: Descriptor for where the location actually points
+* **Tags**: [Tag](#tag)[] (WriteOnly)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
 ## AWS.S3/AccessPointProperties
 ### Properties
 * **Alias**: string (ReadOnly): The alias of this Access Point. This alias can be used for compatibility purposes with other AWS services and third-party applications.
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified accesspoint.
 * **Bucket**: string (Required): The name of the bucket that you want to associate this Access Point with.
 * **BucketAccountId**: string: The AWS account ID associated with the S3 bucket associated with this access point.
-* **Name**: string (ReadOnly, Identifier): The name you want to assign to this Access Point. If you don't specify a name, AWS CloudFormation generates a unique ID and uses that ID for the access point name.
+* **Name**: string (Identifier): The name you want to assign to this Access Point. If you don't specify a name, AWS CloudFormation generates a unique ID and uses that ID for the access point name.
 * **NetworkOrigin**: string (ReadOnly): Indicates whether this Access Point allows access from the public Internet. If VpcConfiguration is specified for this Access Point, then NetworkOrigin is VPC, and the Access Point doesn't allow access from the public Internet. Otherwise, NetworkOrigin is Internet, and the Access Point allows access from the public Internet, subject to the Access Point and bucket access policies.
 * **Policy**: [AccessPoint_Policy](#accesspointpolicy): The Access Point Policy you want to apply to this access point.
-* **PolicyStatus**: [AccessPoint_PolicyStatus](#accesspointpolicystatus)
 * **PublicAccessBlockConfiguration**: [PublicAccessBlockConfiguration](#publicaccessblockconfiguration): The PublicAccessBlock configuration that you want to apply to this Access Point. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status 'The Meaning of Public' in the Amazon Simple Storage Service Developer Guide.
 * **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration): If you include this field, Amazon S3 restricts access to this Access Point to requests from the specified Virtual Private Cloud (VPC).
 
 ## AccessPoint_Policy
 ### Properties
-
-## AccessPoint_PolicyStatus
-### Properties
-* **IsPublic**: string: Specifies whether the policy is public or not.
 
 ## PublicAccessBlockConfiguration
 ### Properties
@@ -67,7 +149,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ## AWS.S3/BucketProperties
 ### Properties
 * **AccelerateConfiguration**: [AccelerateConfiguration](#accelerateconfiguration): Configuration for the transfer acceleration state.
-* **AccessControl**: string: A canned access control list (ACL) that grants predefined permissions to the bucket.
+* **AccessControl**: string (WriteOnly): A canned access control list (ACL) that grants predefined permissions to the bucket.
 * **AnalyticsConfigurations**: [AnalyticsConfiguration](#analyticsconfiguration)[]: The configuration and any analyses for the analytics filter of an Amazon S3 bucket.
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified bucket.
 * **BucketEncryption**: [BucketEncryption](#bucketencryption)
@@ -135,7 +217,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 
 ## ServerSideEncryptionByDefault
 ### Properties
-* **KMSMasterKeyID**: string: "KMSMasterKeyID" can only be used when you set the value of SSEAlgorithm as aws:kms.
+* **KMSMasterKeyID**: string: "KMSMasterKeyID" can only be used when you set the value of SSEAlgorithm as aws:kms or aws:kms:dsse.
 * **SSEAlgorithm**: string (Required)
 
 ## CorsConfiguration
@@ -176,7 +258,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 
 ## LifecycleConfiguration
 ### Properties
-* **Rules**: [Rule](#rule)[] (Required): A lifecycle rule for individual objects in an Amazon S3 bucket.
+* **Rules**: [Rule](#rule)[] (Required, WriteOnly): A lifecycle rule for individual objects in an Amazon S3 bucket.
 
 ## Rule
 ### Properties
@@ -222,6 +304,10 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ### Properties
 * **DestinationBucketName**: string: The name of an Amazon S3 bucket where Amazon S3 store server access log files. You can store log files in any bucket that you own. By default, logs are stored in the bucket where the LoggingConfiguration property is defined.
 * **LogFilePrefix**: string
+* **TargetObjectKeyFormat**: [TargetObjectKeyFormat](#targetobjectkeyformat)
+
+## TargetObjectKeyFormat
+### Properties
 
 ## MetricsConfiguration
 ### Properties
@@ -311,7 +397,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ## ReplicationConfiguration
 ### Properties
 * **Role**: string (Required): The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that Amazon S3 assumes when replicating objects.
-* **Rules**: [ReplicationRule](#replicationrule)[] (Required): A container for one or more replication rules.
+* **Rules**: [ReplicationRule](#replicationrule)[] (Required, WriteOnly): A container for one or more replication rules.
 
 ## ReplicationRule
 ### Properties
@@ -423,6 +509,11 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 * **HttpErrorCodeReturnedEquals**: string: The HTTP error code when the redirect is applied. 
 * **KeyPrefixEquals**: string: The object key name prefix when the redirect is applied.
 
+## AWS.S3/BucketPolicyProperties
+### Properties
+* **Bucket**: string (Required, Identifier): The name of the Amazon S3 bucket to which the policy applies.
+* **PolicyDocument**: [BucketPolicy_PolicyDocument](#bucketpolicypolicydocument) | string (Required): A policy document containing permissions to add to the specified bucket. In IAM, you must provide policy documents in JSON format. However, in CloudFormation you can provide the policy in JSON or YAML format because CloudFormation converts YAML to JSON before submitting it to IAM.
+
 ## AWS.S3/MultiRegionAccessPointPolicyProperties
 ### Properties
 * **MrapName**: string (Required, Identifier): The name of the Multi Region Access Point to apply policy
@@ -459,6 +550,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 * **AdvancedDataProtectionMetrics**: [AdvancedDataProtectionMetrics](#advanceddataprotectionmetrics)
 * **BucketLevel**: [BucketLevel](#bucketlevel) (Required)
 * **DetailedStatusCodesMetrics**: [DetailedStatusCodesMetrics](#detailedstatuscodesmetrics)
+* **StorageLensGroupLevel**: [StorageLensGroupLevel](#storagelensgrouplevel)
 
 ## ActivityMetrics
 ### Properties
@@ -499,6 +591,15 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 * **MaxDepth**: int: Max depth of prefixes of S3 key that Amazon S3 Storage Lens will analyze.
 * **MinStorageBytesPercentage**: int: The minimum storage bytes threshold for the prefixes to be included in the analysis.
 
+## StorageLensGroupLevel
+### Properties
+* **StorageLensGroupSelectionCriteria**: [StorageLensGroupSelectionCriteria](#storagelensgroupselectioncriteria)
+
+## StorageLensGroupSelectionCriteria
+### Properties
+* **Exclude**: string[]
+* **Include**: string[]
+
 ## AwsOrg
 ### Properties
 * **Arn**: string (Required)
@@ -533,4 +634,52 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## AWS.S3/StorageLensGroupProperties
+### Properties
+* **Filter**: [Filter](#filter) (Required)
+* **Name**: string (Required, Identifier)
+* **StorageLensGroupArn**: string (ReadOnly): The ARN for the Amazon S3 Storage Lens Group.
+* **Tags**: [Tag](#tag)[]: A set of tags (key-value pairs) for this Amazon S3 Storage Lens Group.
+
+## Filter
+### Properties
+* **And**: [And](#and)
+* **MatchAnyPrefix**: string[]
+* **MatchAnySuffix**: string[]
+* **MatchAnyTag**: [Tag](#tag)[]
+* **MatchObjectAge**: [MatchObjectAge](#matchobjectage)
+* **MatchObjectSize**: [MatchObjectSize](#matchobjectsize)
+* **Or**: [Or](#or)
+
+## And
+### Properties
+* **MatchAnyPrefix**: string[]
+* **MatchAnySuffix**: string[]
+* **MatchAnyTag**: [Tag](#tag)[]
+* **MatchObjectAge**: [MatchObjectAge](#matchobjectage)
+* **MatchObjectSize**: [MatchObjectSize](#matchobjectsize)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## MatchObjectAge
+### Properties
+* **DaysGreaterThan**: int: Minimum object age to which the rule applies.
+* **DaysLessThan**: int: Maximum object age to which the rule applies.
+
+## MatchObjectSize
+### Properties
+* **BytesGreaterThan**: int: Minimum object size to which the rule applies.
+* **BytesLessThan**: int: Maximum object size to which the rule applies.
+
+## Or
+### Properties
+* **MatchAnyPrefix**: string[]
+* **MatchAnySuffix**: string[]
+* **MatchAnyTag**: [Tag](#tag)[]
+* **MatchObjectAge**: [MatchObjectAge](#matchobjectage)
+* **MatchObjectSize**: [MatchObjectSize](#matchobjectsize)
 

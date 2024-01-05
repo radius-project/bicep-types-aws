@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-APS-RuleGroupsNamespace",
   "type": "AWS::APS::RuleGroupsNamespace",
-  "time": "2023-04-19T15:37:19.951Z",
+  "time": "2023-12-21T21:29:49.059Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -37,15 +37,27 @@
       "create": {
         "permissions": [
           "aps:CreateRuleGroupsNamespace",
+          "aps:DescribeRuleGroupsNamespace",
           "aps:TagResource"
         ]
       },
       "delete": {
         "permissions": [
-          "aps:DeleteRuleGroupsNamespace"
+          "aps:DeleteRuleGroupsNamespace",
+          "aps:DescribeRuleGroupsNamespace"
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "Arn": {
+              "$ref": "resource-schema.json#/properties/Workspace"
+            }
+          },
+          "required": [
+            "Arn"
+          ]
+        },
         "permissions": [
           "aps:ListRuleGroupsNamespaces",
           "aps:ListTagsForResource"
@@ -60,6 +72,7 @@
       "update": {
         "permissions": [
           "aps:PutRuleGroupsNamespace",
+          "aps:DescribeRuleGroupsNamespace",
           "aps:TagResource",
           "aps:UntagResource",
           "aps:ListTagsForResource"
@@ -108,7 +121,7 @@
       "Data",
       "Name"
     ],
-    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-aps",
     "tagging": {
       "cloudFormationSystemTags": true,
       "tagOnCreate": true,

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Panorama-ApplicationInstance",
   "type": "AWS::Panorama::ApplicationInstance",
-  "time": "2023-04-20T15:15:50.334Z",
+  "time": "2024-01-04T17:53:31.909Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -173,31 +173,57 @@
         "permissions": [
           "panorama:CreateApplicationInstance",
           "panorama:ListTagsForResource",
-          "panorama:TagResource"
+          "panorama:TagResource",
+          "panorama:DescribeApplicationInstance",
+          "panorama:DescribeApplicationInstanceDetails",
+          "iam:PassRole",
+          "s3:ListBucket",
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:GetObjectVersion"
         ]
       },
       "delete": {
         "permissions": [
-          "panorama:RemoveApplicationInstance"
+          "panorama:RemoveApplicationInstance",
+          "panorama:DescribeApplicationInstance",
+          "panorama:DescribeApplicationInstanceDetails",
+          "s3:DeleteObject",
+          "s3:DeleteObjectVersion",
+          "s3:DeleteObjectVersionTagging",
+          "s3:ListObjects",
+          "s3:GetObject",
+          "s3:GetObjectVersion"
         ]
       },
       "list": {
         "permissions": [
-          "panorama:ListApplicationInstances"
+          "panorama:ListApplicationInstances",
+          "s3:ListBucket",
+          "s3:GetObject",
+          "s3:GetObjectVersion"
         ]
       },
       "read": {
         "permissions": [
           "panorama:DescribeApplicationInstance",
           "panorama:DescribeApplicationInstanceDetails",
-          "panorama:ListTagsForResource"
+          "panorama:ListTagsForResource",
+          "s3:ListObjects",
+          "s3:GetObject",
+          "s3:GetObjectVersion"
         ]
       },
       "update": {
         "permissions": [
           "panorama:ListTagsForResource",
           "panorama:TagResource",
-          "panorama:UntagResource"
+          "panorama:UntagResource",
+          "panorama:DescribeApplicationInstance",
+          "panorama:DescribeApplicationInstanceDetails",
+          "s3:ListObjects",
+          "s3:GetObject",
+          "s3:GetObjectVersion"
         ]
       }
     },
@@ -226,9 +252,6 @@
       "Description": {
         "$ref": "#/definitions/Description"
       },
-      "DeviceId": {
-        "$ref": "#/definitions/DeviceId"
-      },
       "HealthStatus": {
         "$ref": "#/definitions/ApplicationInstanceHealthStatus"
       },
@@ -253,9 +276,6 @@
       "StatusDescription": {
         "$ref": "#/definitions/ApplicationInstanceStatusDescription"
       },
-      "StatusFilter": {
-        "$ref": "#/definitions/StatusFilter"
-      },
       "Tags": {
         "$ref": "#/definitions/TagList"
       }
@@ -276,6 +296,9 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "taggable": true,
-    "typeName": "AWS::Panorama::ApplicationInstance"
+    "typeName": "AWS::Panorama::ApplicationInstance",
+    "writeOnlyProperties": [
+      "/properties/ApplicationInstanceIdToReplace"
+    ]
   }
 }

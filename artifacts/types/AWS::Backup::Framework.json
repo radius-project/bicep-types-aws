@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Backup-Framework",
   "type": "AWS::Backup::Framework",
-  "time": "2023-04-19T15:16:52.018Z",
+  "time": "2024-01-04T16:37:03.661Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -103,6 +103,7 @@
         "permissions": [
           "backup:CreateFramework",
           "backup:DescribeFramework",
+          "backup:ListTags",
           "backup:TagResource",
           "iam:CreateServiceLinkedRole"
         ]
@@ -126,6 +127,7 @@
       },
       "update": {
         "permissions": [
+          "backup:DescribeFramework",
           "backup:UpdateFramework",
           "backup:ListTags",
           "backup:TagResource",
@@ -194,7 +196,13 @@
       "FrameworkControls"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/FrameworkTags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Backup::Framework"
   }
 }

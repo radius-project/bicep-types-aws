@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkManager-ConnectAttachment",
   "type": "AWS::NetworkManager::ConnectAttachment",
-  "time": "2023-04-19T15:26:01.162Z",
+  "time": "2023-11-13T23:49:48.144Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -24,23 +24,24 @@
       },
       "ProposedSegmentChange": {
         "additionalProperties": false,
-        "description": "A key-value pair to associate with a resource.",
+        "description": "The attachment to move from one segment to another.",
         "properties": {
           "AttachmentPolicyRuleNumber": {
-            "description": "New policy rule number of the attachment",
+            "description": "The rule number in the policy document that applies to this change.",
             "type": "integer"
           },
           "SegmentName": {
-            "description": "Proposed segment name",
+            "description": "The name of the segment to change.",
             "type": "string"
           },
           "Tags": {
-            "description": "Proposed tags for the Segment.",
+            "description": "The list of key-value tags that changed for the segment.",
             "insertionOrder": false,
             "items": {
               "$ref": "#/definitions/Tag"
             },
-            "type": "array"
+            "type": "array",
+            "uniqueItems": true
           }
         },
         "type": "object"
@@ -71,6 +72,7 @@
         "permissions": [
           "networkmanager:GetConnectAttachment",
           "networkmanager:CreateConnectAttachment",
+          "networkmanager:TagResource",
           "ec2:DescribeRegions"
         ]
       },
@@ -118,7 +120,7 @@
         "type": "string"
       },
       "CoreNetworkArn": {
-        "description": "The ARN of a core network for the VPC attachment.",
+        "description": "The ARN of a core network.",
         "type": "string"
       },
       "CoreNetworkId": {
@@ -163,7 +165,8 @@
         "items": {
           "$ref": "#/definitions/Tag"
         },
-        "type": "array"
+        "type": "array",
+        "uniqueItems": true
       },
       "TransportAttachmentId": {
         "description": "Id of transport attachment",
@@ -184,7 +187,6 @@
       "/properties/AttachmentId",
       "/properties/OwnerAccountId",
       "/properties/AttachmentPolicyRuleNumber",
-      "/properties/ProposedSegmentChange",
       "/properties/SegmentName"
     ],
     "required": [
@@ -197,6 +199,7 @@
     "tagging": {
       "cloudFormationSystemTags": false,
       "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
       "tagUpdatable": true,
       "taggable": true
     },

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECS-CapacityProvider",
   "type": "AWS::ECS::CapacityProvider",
-  "time": "2023-02-16T16:37:34.038Z",
+  "time": "2024-01-04T23:49:54.824Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -13,6 +13,13 @@
         "additionalProperties": false,
         "properties": {
           "AutoScalingGroupArn": {
+            "type": "string"
+          },
+          "ManagedDraining": {
+            "enum": [
+              "DISABLED",
+              "ENABLED"
+            ],
             "type": "string"
           },
           "ManagedScaling": {
@@ -78,7 +85,8 @@
         "permissions": [
           "autoscaling:CreateOrUpdateTags",
           "ecs:CreateCapacityProvider",
-          "ecs:DescribeCapacityProviders"
+          "ecs:DescribeCapacityProviders",
+          "ecs:TagResource"
         ]
       },
       "delete": {
@@ -125,11 +133,14 @@
       }
     },
     "propertyTransform": {
-      "/properties/AutoScalingGroupProvider/AutoScalingGroupArn": "$split(AutoScalingGroupProvider.AutoScalingGroupArn, \"autoScalingGroupName/\")[-1]"
+      "/properties/AutoScalingGroupProvider/AutoScalingGroupArn": "$split(AutoScalingGroupProvider.AutoScalingGroupArn, \"autoScalingGroupName/\")[-1] $OR $split(AutoScalingGroupArn, \"autoScalingGroupName/\")[-1]"
     },
     "required": [
       "AutoScalingGroupProvider"
     ],
+    "tagging": {
+      "taggable": true
+    },
     "typeName": "AWS::ECS::CapacityProvider"
   }
 }

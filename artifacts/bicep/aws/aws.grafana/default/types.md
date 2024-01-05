@@ -16,7 +16,7 @@
 * **DataSources**: string[]: List of data sources on the service managed IAM role.
 * **Description**: string: Description of a workspace.
 * **Endpoint**: string (ReadOnly): Endpoint for the Grafana workspace.
-* **GrafanaVersion**: string (ReadOnly): Version of Grafana the workspace is currently using.
+* **GrafanaVersion**: string: The version of Grafana to support in your workspace.
 * **Id**: string (ReadOnly, Identifier): The id that uniquely identifies a Grafana workspace.
 * **ModificationTimestamp**: string (ReadOnly): Timestamp when the workspace was last modified
 * **Name**: string: The user friendly name of a workspace.
@@ -25,6 +25,7 @@
 * **OrganizationalUnits**: string[]: List of Organizational Units containing AWS accounts the Grafana workspace can pull data from.
 * **OrganizationRoleName**: string: The name of an IAM role that already exists to use with AWS Organizations to access AWS data sources and notification channels in other accounts in an organization.
 * **PermissionType**: string (Required)
+* **PluginAdminEnabled**: bool: Allow workspace admins to install plugins
 * **RoleArn**: string: IAM Role that will be used to grant the Grafana workspace access to a customers AWS resources.
 * **SamlConfiguration**: [SamlConfiguration](#samlconfiguration)
 * **SamlConfigurationStatus**: string (ReadOnly)

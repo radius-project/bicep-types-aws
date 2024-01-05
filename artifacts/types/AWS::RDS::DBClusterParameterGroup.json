@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBClusterParameterGroup",
   "type": "AWS::RDS::DBClusterParameterGroup",
-  "time": "2023-04-20T08:44:29.036Z",
+  "time": "2023-12-18T10:44:36.609Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -37,6 +37,7 @@
     "handlers": {
       "create": {
         "permissions": [
+          "iam:CreateServiceLinkedRole",
           "rds:AddTagsToResource",
           "rds:CreateDBClusterParameterGroup",
           "rds:DescribeDBClusterParameterGroups",
@@ -44,7 +45,8 @@
           "rds:DescribeDBClusters",
           "rds:DescribeEngineDefaultClusterParameters",
           "rds:ListTagsForResource",
-          "rds:ModifyDBClusterParameterGroup"
+          "rds:ModifyDBClusterParameterGroup",
+          "rds:RemoveTagsFromResource"
         ],
         "timeoutInMinutes": 180
       },

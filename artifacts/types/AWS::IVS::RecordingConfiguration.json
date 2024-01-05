@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IVS-RecordingConfiguration",
   "type": "AWS::IVS::RecordingConfiguration",
-  "time": "2023-04-17T16:18:04.196Z",
+  "time": "2024-01-04T16:41:11.514Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -12,7 +12,12 @@
       "/properties/RecordingReconnectWindowSeconds",
       "/properties/ThumbnailConfiguration",
       "/properties/ThumbnailConfiguration/RecordingMode",
-      "/properties/ThumbnailConfiguration/TargetIntervalSeconds"
+      "/properties/ThumbnailConfiguration/TargetIntervalSeconds",
+      "/properties/ThumbnailConfiguration/Storage",
+      "/properties/ThumbnailConfiguration/Resolution",
+      "/properties/RenditionConfiguration",
+      "/properties/RenditionConfiguration/RenditionSelection",
+      "/properties/RenditionConfiguration/Renditions"
     ],
     "definitions": {
       "DestinationConfiguration": {
@@ -23,9 +28,42 @@
             "$ref": "#/definitions/S3DestinationConfiguration"
           }
         },
-        "required": [
-          "S3"
-        ],
+        "required": [],
+        "type": "object"
+      },
+      "RenditionConfiguration": {
+        "additionalProperties": false,
+        "description": "Rendition Configuration describes which renditions should be recorded for a stream.",
+        "properties": {
+          "RenditionSelection": {
+            "default": "ALL",
+            "description": "Resolution Selection indicates which set of renditions are recorded for a stream.",
+            "enum": [
+              "ALL",
+              "NONE",
+              "CUSTOM"
+            ],
+            "type": "string"
+          },
+          "Renditions": {
+            "description": "Renditions indicates which renditions are recorded for a stream.",
+            "insertionOrder": false,
+            "items": {
+              "enum": [
+                "FULL_HD",
+                "HD",
+                "SD",
+                "LOWEST_RESOLUTION"
+              ],
+              "type": "string"
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [],
         "type": "object"
       },
       "S3DestinationConfiguration": {
@@ -69,6 +107,7 @@
         "description": "Recording Thumbnail Configuration.",
         "properties": {
           "RecordingMode": {
+            "default": "INTERVAL",
             "description": "Thumbnail Recording Mode, which determines whether thumbnails are recorded at an interval or are disabled.",
             "enum": [
               "INTERVAL",
@@ -76,16 +115,40 @@
             ],
             "type": "string"
           },
+          "Resolution": {
+            "description": "Resolution indicates the desired resolution of recorded thumbnails.",
+            "enum": [
+              "FULL_HD",
+              "HD",
+              "SD",
+              "LOWEST_RESOLUTION"
+            ],
+            "type": "string"
+          },
+          "Storage": {
+            "description": "Storage indicates the format in which thumbnails are recorded.",
+            "insertionOrder": false,
+            "items": {
+              "enum": [
+                "SEQUENTIAL",
+                "LATEST"
+              ],
+              "type": "string"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
           "TargetIntervalSeconds": {
-            "description": "Thumbnail recording Target Interval Seconds defines the interval at which thumbnails are recorded. This field is required if RecordingMode is INTERVAL.",
+            "default": 60,
+            "description": "Target Interval Seconds defines the interval at which thumbnails are recorded. This field is required if RecordingMode is INTERVAL.",
             "maximum": 60,
-            "minimum": 5,
+            "minimum": 1,
             "type": "integer"
           }
         },
-        "required": [
-          "RecordingMode"
-        ],
+        "required": [],
         "type": "object"
       }
     },
@@ -94,6 +157,8 @@
       "create": {
         "permissions": [
           "ivs:CreateRecordingConfiguration",
+          "ivs:GetRecordingConfiguration",
+          "ivs:TagResource",
           "iam:CreateServiceLinkedRole",
           "iam:PutRolePolicy",
           "iam:AttachRolePolicy",
@@ -105,23 +170,32 @@
       "delete": {
         "permissions": [
           "ivs:DeleteRecordingConfiguration",
+          "ivs:UntagResource",
           "iam:CreateServiceLinkedRole"
         ]
       },
       "list": {
         "permissions": [
-          "ivs:ListRecordingConfigurations"
+          "ivs:ListRecordingConfigurations",
+          "s3:GetBucketLocation",
+          "ivs:ListTagsForResource"
         ]
       },
       "read": {
         "permissions": [
-          "ivs:GetRecordingConfiguration"
+          "ivs:GetRecordingConfiguration",
+          "s3:GetBucketLocation",
+          "ivs:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
+          "ivs:GetRecordingConfiguration",
           "sts:AssumeRole",
           "iam:CreateServiceLinkedRole",
+          "iam:PutRolePolicy",
+          "iam:AttachRolePolicy",
+          "s3:ListBucket",
           "ivs:TagResource",
           "ivs:UntagResource",
           "ivs:ListTagsForResource"
@@ -135,7 +209,7 @@
       "Arn": {
         "description": "Recording Configuration ARN is automatically generated on creation and assigned as the unique identifier.",
         "maxLength": 128,
-        "minLength": 1,
+        "minLength": 0,
         "pattern": "^arn:aws[-a-z]*:ivs:[a-z0-9-]+:[0-9]+:recording-configuration/[a-zA-Z0-9-]+$",
         "type": "string"
       },
@@ -155,6 +229,9 @@
         "maximum": 300,
         "minimum": 0,
         "type": "integer"
+      },
+      "RenditionConfiguration": {
+        "$ref": "#/definitions/RenditionConfiguration"
       },
       "State": {
         "description": "Recording Configuration State.",

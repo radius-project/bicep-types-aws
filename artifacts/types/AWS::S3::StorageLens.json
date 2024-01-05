@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-S3-StorageLens",
   "type": "AWS::S3::StorageLens",
-  "time": "2022-12-15T18:16:35.672Z",
+  "time": "2023-11-10T19:08:16.062Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -26,6 +26,9 @@
           },
           "DetailedStatusCodesMetrics": {
             "$ref": "#/definitions/DetailedStatusCodesMetrics"
+          },
+          "StorageLensGroupLevel": {
+            "$ref": "#/definitions/StorageLensGroupLevel"
           }
         },
         "required": [
@@ -344,6 +347,43 @@
         ],
         "type": "object"
       },
+      "StorageLensGroupArn": {
+        "description": "The ARN for the Amazon S3 Storage Lens Group configuration.",
+        "type": "string"
+      },
+      "StorageLensGroupLevel": {
+        "additionalProperties": false,
+        "description": "Specifies the details of Amazon S3 Storage Lens Group configuration.",
+        "properties": {
+          "StorageLensGroupSelectionCriteria": {
+            "$ref": "#/definitions/StorageLensGroupSelectionCriteria"
+          }
+        },
+        "type": "object"
+      },
+      "StorageLensGroupSelectionCriteria": {
+        "additionalProperties": false,
+        "description": "Selection criteria for Storage Lens Group level metrics",
+        "properties": {
+          "Exclude": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/StorageLensGroupArn"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "Include": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/StorageLensGroupArn"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "properties": {
@@ -356,7 +396,7 @@
           "Value": {
             "maxLength": 255,
             "minLength": 1,
-            "pattern": "^(?!aws:.*)[a-zA-Z0-9\\s\\_\\.\\/\\=\\+\\-]+$",
+            "pattern": "^(?!aws:.*)[a-zA-Z0-9\\s\\_\\.\\/\\=\\+\\-\\@]+$",
             "type": "string"
           }
         },
@@ -372,7 +412,14 @@
       "create": {
         "permissions": [
           "s3:PutStorageLensConfiguration",
-          "s3:PutStorageLensConfigurationTagging"
+          "s3:PutStorageLensConfigurationTagging",
+          "s3:GetStorageLensConfiguration",
+          "s3:GetStorageLensConfigurationTagging",
+          "organizations:DescribeOrganization",
+          "organizations:ListAccounts",
+          "organizations:ListAWSServiceAccessForOrganization",
+          "organizations:ListDelegatedAdministrators",
+          "iam:CreateServiceLinkedRole"
         ]
       },
       "delete": {
@@ -395,7 +442,14 @@
       "update": {
         "permissions": [
           "s3:PutStorageLensConfiguration",
-          "s3:PutStorageLensConfigurationTagging"
+          "s3:PutStorageLensConfigurationTagging",
+          "s3:GetStorageLensConfiguration",
+          "s3:GetStorageLensConfigurationTagging",
+          "organizations:DescribeOrganization",
+          "organizations:ListAccounts",
+          "organizations:ListAWSServiceAccessForOrganization",
+          "organizations:ListDelegatedAdministrators",
+          "iam:CreateServiceLinkedRole"
         ]
       }
     },

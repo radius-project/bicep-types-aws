@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppFlow-ConnectorProfile",
   "type": "AWS::AppFlow::ConnectorProfile",
-  "time": "2023-04-19T19:40:27.452Z",
+  "time": "2023-12-19T20:43:58.686Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -525,6 +525,11 @@
         "pattern": "\\S+",
         "type": "string"
       },
+      "JwtToken": {
+        "maxLength": 8000,
+        "pattern": "^[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_.+/=]*$",
+        "type": "string"
+      },
       "Key": {
         "maxLength": 512,
         "pattern": "\\S+",
@@ -596,7 +601,8 @@
       "OAuth2GrantType": {
         "enum": [
           "CLIENT_CREDENTIALS",
-          "AUTHORIZATION_CODE"
+          "AUTHORIZATION_CODE",
+          "JWT_BEARER"
         ],
         "type": "string"
       },
@@ -825,6 +831,10 @@
           "ClientNumber": {
             "$ref": "#/definitions/ClientNumber"
           },
+          "DisableSSO": {
+            "description": "If you set this parameter to true, Amazon AppFlow bypasses the single sign-on (SSO) settings in your SAP account when it accesses your SAP OData instance.",
+            "type": "boolean"
+          },
           "LogonLanguage": {
             "$ref": "#/definitions/LogonLanguage"
           },
@@ -853,6 +863,14 @@
           "ConnectorOAuthRequest": {
             "$ref": "#/definitions/ConnectorOAuthRequest",
             "description": "The oauth needed to request security tokens from the connector endpoint."
+          },
+          "JwtToken": {
+            "$ref": "#/definitions/JwtToken",
+            "description": "The credentials used to access your Salesforce records"
+          },
+          "OAuth2GrantType": {
+            "$ref": "#/definitions/OAuth2GrantType",
+            "description": "The grant types to fetch an access token"
           },
           "RefreshToken": {
             "$ref": "#/definitions/RefreshToken",
@@ -885,6 +903,10 @@
       },
       "ServiceNowConnectorProfileCredentials": {
         "properties": {
+          "OAuth2Credentials": {
+            "$ref": "#/definitions/OAuth2Credentials",
+            "description": "The OAuth 2.0 credentials required to authenticate the user."
+          },
           "Password": {
             "$ref": "#/definitions/Password",
             "description": "The password that corresponds to the username."
@@ -894,10 +916,6 @@
             "description": "The name of the user."
           }
         },
-        "required": [
-          "Username",
-          "Password"
-        ],
         "type": "object"
       },
       "ServiceNowConnectorProfileProperties": {
@@ -1017,7 +1035,7 @@
         "type": "object"
       },
       "Stage": {
-        "maxLength": 16,
+        "maxLength": 512,
         "pattern": "\\S+",
         "type": "string"
       },
@@ -1237,6 +1255,12 @@
       "ConnectionMode",
       "ConnectorType"
     ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
     "typeName": "AWS::AppFlow::ConnectorProfile",
     "writeOnlyProperties": [
       "/properties/ConnectorProfileConfig",

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTSiteWise-Portal",
   "type": "AWS::IoTSiteWise::Portal",
-  "time": "2023-01-25T19:05:51.191Z",
+  "time": "2024-01-04T16:09:03.524Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -36,6 +36,8 @@
       "create": {
         "permissions": [
           "iotsitewise:CreatePortal",
+          "iotsitewise:DescribePortal",
+          "iotsitewise:ListTagsForResource",
           "iotsitewise:TagResource",
           "iam:PassRole",
           "sso:CreateManagedApplicationInstance",
@@ -44,6 +46,7 @@
       },
       "delete": {
         "permissions": [
+          "iotsitewise:DescribePortal",
           "iotsitewise:DeletePortal",
           "sso:DeleteManagedApplicationInstance"
         ]
@@ -55,11 +58,13 @@
       },
       "read": {
         "permissions": [
-          "iotsitewise:DescribePortal"
+          "iotsitewise:DescribePortal",
+          "iotsitewise:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
+          "iotsitewise:DescribePortal",
           "iotsitewise:ListTagsForResource",
           "iotsitewise:TagResource",
           "iotsitewise:UpdatePortal",

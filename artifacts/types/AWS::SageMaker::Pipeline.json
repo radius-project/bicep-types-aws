@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-Pipeline",
   "type": "AWS::SageMaker::Pipeline",
-  "time": "2023-04-19T15:58:15.913Z",
+  "time": "2024-01-04T16:54:42.243Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -58,7 +58,9 @@
           "iam:PassRole",
           "s3:GetObject",
           "sagemaker:CreatePipeline",
-          "sagemaker:DescribePipeline"
+          "sagemaker:DescribePipeline",
+          "sagemaker:AddTags",
+          "sagemaker:ListTags"
         ]
       },
       "delete": {
@@ -73,7 +75,8 @@
       },
       "read": {
         "permissions": [
-          "sagemaker:DescribePipeline"
+          "sagemaker:DescribePipeline",
+          "sagemaker:ListTags"
         ]
       },
       "update": {
@@ -81,7 +84,10 @@
           "iam:PassRole",
           "s3:GetObject",
           "sagemaker:UpdatePipeline",
-          "sagemaker:DescribePipeline"
+          "sagemaker:DescribePipeline",
+          "sagemaker:AddTags",
+          "sagemaker:DeleteTags",
+          "sagemaker:ListTags"
         ]
       }
     },

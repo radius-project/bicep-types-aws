@@ -1,10 +1,47 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RolesAnywhere-TrustAnchor",
   "type": "AWS::RolesAnywhere::TrustAnchor",
-  "time": "2023-04-19T06:26:59.785Z",
+  "time": "2023-11-02T15:26:03.447Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
+      "NotificationChannel": {
+        "enum": [
+          "ALL"
+        ],
+        "type": "string"
+      },
+      "NotificationEvent": {
+        "enum": [
+          "CA_CERTIFICATE_EXPIRY",
+          "END_ENTITY_CERTIFICATE_EXPIRY"
+        ],
+        "type": "string"
+      },
+      "NotificationSetting": {
+        "additionalProperties": false,
+        "properties": {
+          "Channel": {
+            "$ref": "#/definitions/NotificationChannel"
+          },
+          "Enabled": {
+            "type": "boolean"
+          },
+          "Event": {
+            "$ref": "#/definitions/NotificationEvent"
+          },
+          "Threshold": {
+            "maximum": 360,
+            "minimum": 1,
+            "type": "number"
+          }
+        },
+        "required": [
+          "Enabled",
+          "Event"
+        ],
+        "type": "object"
+      },
       "Source": {
         "additionalProperties": false,
         "properties": {
@@ -82,6 +119,7 @@
         "permissions": [
           "iam:CreateServiceLinkedRole",
           "rolesanywhere:CreateTrustAnchor",
+          "rolesanywhere:TagResource",
           "rolesanywhere:ListTagsForResource"
         ]
       },
@@ -110,7 +148,10 @@
           "rolesanywhere:UntagResource",
           "rolesanywhere:EnableTrustAnchor",
           "rolesanywhere:DisableTrustAnchor",
-          "rolesanywhere:UpdateTrustAnchor"
+          "rolesanywhere:UpdateTrustAnchor",
+          "rolesanywhere:GetTrustAnchor",
+          "rolesanywhere:PutNotificationSettings",
+          "rolesanywhere:ResetNotificationSettings"
         ]
       }
     },
@@ -123,6 +164,14 @@
       },
       "Name": {
         "type": "string"
+      },
+      "NotificationSettings": {
+        "items": {
+          "$ref": "#/definitions/NotificationSetting"
+        },
+        "maxItems": 50,
+        "minItems": 0,
+        "type": "array"
       },
       "Source": {
         "$ref": "#/definitions/Source"

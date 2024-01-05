@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-KMS-Key",
   "type": "AWS::KMS::Key",
-  "time": "2023-03-28T16:30:20.084Z",
+  "time": "2023-12-13T17:48:03.372Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -36,7 +36,8 @@
           "kms:CreateKey",
           "kms:EnableKeyRotation",
           "kms:DisableKey",
-          "kms:TagResource"
+          "kms:TagResource",
+          "kms:PutKeyPolicy"
         ]
       },
       "delete": {
@@ -69,7 +70,8 @@
           "kms:PutKeyPolicy",
           "kms:TagResource",
           "kms:UntagResource",
-          "kms:UpdateKeyDescription"
+          "kms:UpdateKeyDescription",
+          "kms:ListResourceTags"
         ]
       }
     },
@@ -79,6 +81,11 @@
     "properties": {
       "Arn": {
         "type": "string"
+      },
+      "BypassPolicyLockoutSafetyCheck": {
+        "default": false,
+        "description": "Skips (\"bypasses\") the key policy lockout safety check. The default value is false.",
+        "type": "boolean"
       },
       "Description": {
         "description": "A description of the AWS KMS key. Use a description that helps you to distinguish this AWS KMS key from others in the account, such as its intended use.",
@@ -98,6 +105,7 @@
         "type": "string"
       },
       "KeyPolicy": {
+        "default": "{\n    \"Version\": \"2012-10-17\",\n    \"Id\": \"key-default\",\n    \"Statement\": [\n        {\n            \"Sid\": \"Enable IAM User Permissions\",\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"AWS\": \"arn:\u003cpartition\u003e:iam::\u003caccount-id\u003e:root\"\n            },\n            \"Action\": \"kms:*\",\n            \"Resource\": \"*\"\n        }\n    ]\n}",
         "description": "The key policy that authorizes use of the AWS KMS key. The key policy must observe the following rules.",
         "type": [
           "object",
@@ -139,6 +147,15 @@
         "description": "Specifies whether the AWS KMS key should be Multi-Region. You can't change the MultiRegion value after the AWS KMS key is created.",
         "type": "boolean"
       },
+      "Origin": {
+        "default": "AWS_KMS",
+        "description": "The source of the key material for the KMS key. You cannot change the origin after you create the KMS key. The default is AWS_KMS, which means that AWS KMS creates the key material.",
+        "enum": [
+          "AWS_KMS",
+          "EXTERNAL"
+        ],
+        "type": "string"
+      },
       "PendingWindowInDays": {
         "description": "Specifies the number of days in the waiting period before AWS KMS deletes an AWS KMS key that has been removed from a CloudFormation stack. Enter a value between 7 and 30 days. The default value is 30 days.",
         "maximum": 30,
@@ -159,9 +176,6 @@
       "/properties/Arn",
       "/properties/KeyId"
     ],
-    "required": [
-      "KeyPolicy"
-    ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-kms",
     "tagging": {
       "cloudFormationSystemTags": false,
@@ -171,7 +185,8 @@
     },
     "typeName": "AWS::KMS::Key",
     "writeOnlyProperties": [
-      "/properties/PendingWindowInDays"
+      "/properties/PendingWindowInDays",
+      "/properties/BypassPolicyLockoutSafetyCheck"
     ]
   }
 }

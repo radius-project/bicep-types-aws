@@ -17,12 +17,14 @@
 * **ImageConfiguration**: [ImageConfigurationInput](#imageconfigurationinput)
 * **InitialCapacity**: [InitialCapacityConfigKeyValuePair](#initialcapacityconfigkeyvaluepair)[]: Initial capacity initialized when an Application is started.
 * **MaximumCapacity**: [MaximumAllowedResources](#maximumallowedresources): Maximum allowed cumulative resources for an Application. No new resources will be created once the limit is hit.
+* **MonitoringConfiguration**: [MonitoringConfiguration](#monitoringconfiguration)
 * **Name**: string: User friendly Application name.
 * **NetworkConfiguration**: [NetworkConfiguration](#networkconfiguration): Network Configuration for customer VPC connectivity.
 * **ReleaseLabel**: string (Required): EMR release label.
+* **RuntimeConfiguration**: [ConfigurationObject](#configurationobject)[]
 * **Tags**: [Tag](#tag)[]: Tag map with key and value
 * **Type**: string (Required): The type of the application
-* **WorkerTypeSpecifications**: [WorkerTypeSpecificationInputMap](#workertypespecificationinputmap)
+* **WorkerTypeSpecifications**: [WorkerTypeSpecificationInputMap](#workertypespecificationinputmap): The key-value pairs that specify worker type to WorkerTypeSpecificationInput. This parameter must contain all valid worker types for a Spark or Hive application. Valid worker types include Driver and Executor for Spark applications and HiveDriver and TezTask for Hive applications. You can either set image details in this parameter for each worker type, or in imageConfiguration for all worker types.
 
 ## AutoStartConfiguration
 ### Properties
@@ -59,10 +61,48 @@
 * **Disk**: string: Per worker Disk resource. GB is the only supported unit and specifying GB is optional
 * **Memory**: string (Required): Per worker memory resource. GB is the only supported unit and specifying GB is optional.
 
+## MonitoringConfiguration
+### Properties
+* **CloudWatchLoggingConfiguration**: [CloudWatchLoggingConfiguration](#cloudwatchloggingconfiguration): CloudWatch logging configurations for a JobRun.
+* **ManagedPersistenceMonitoringConfiguration**: [ManagedPersistenceMonitoringConfiguration](#managedpersistencemonitoringconfiguration): Managed log persistence configurations for a JobRun.
+* **S3MonitoringConfiguration**: [Application_S3MonitoringConfiguration](#applications3monitoringconfiguration): S3 monitoring configurations for a JobRun.
+
+## CloudWatchLoggingConfiguration
+### Properties
+* **Enabled**: bool: If set to false, CloudWatch logging will be turned off. Defaults to false.
+* **EncryptionKeyArn**: string: KMS key ARN to encrypt the logs stored in given CloudWatch log-group.
+* **LogGroupName**: string: Log-group name to produce log-streams on CloudWatch. If undefined, logs will be produced in a default log-group /aws/emr-serverless
+* **LogStreamNamePrefix**: string: Log-stream name prefix by which log-stream names will start in the CloudWatch Log-group.
+* **LogTypeMap**: [LogTypeMapKeyValuePair](#logtypemapkeyvaluepair)[]: The specific log-streams which need to be uploaded to CloudWatch.
+
+## LogTypeMapKeyValuePair
+### Properties
+* **Key**: string (Required)
+* **Value**: string[] (Required)
+
+## ManagedPersistenceMonitoringConfiguration
+### Properties
+* **Enabled**: bool: If set to false, managed logging will be turned off. Defaults to true.
+* **EncryptionKeyArn**: string: KMS key ARN to encrypt the logs stored in managed persistence
+
+## Application_S3MonitoringConfiguration
+### Properties
+* **EncryptionKeyArn**: string: KMS key ARN to encrypt the logs stored in given s3
+* **LogUri**: string
+
 ## NetworkConfiguration
 ### Properties
 * **SecurityGroupIds**: string[]: The ID of the security groups in the VPC to which you want to connect your job or application.
 * **SubnetIds**: string[]: The ID of the subnets in the VPC to which you want to connect your job or application.
+
+## ConfigurationObject
+### Properties
+* **Classification**: string (Required): String with a maximum length of 1024.
+* **Configurations**: [ConfigurationObject](#configurationobject)[]
+* **Properties**: [Application_Properties](#applicationproperties)
+
+## Application_Properties
+### Properties
 
 ## Tag
 ### Properties

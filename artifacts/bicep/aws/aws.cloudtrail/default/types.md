@@ -49,14 +49,20 @@
 ## AWS.CloudTrail/EventDataStoreProperties
 ### Properties
 * **AdvancedEventSelectors**: [AdvancedEventSelector](#advancedeventselector)[]: The advanced event selectors that were used to select events for the data store.
+* **BillingMode**: string: The mode that the event data store will use to charge for event storage.
 * **CreatedTimestamp**: string (ReadOnly): The timestamp of the event data store's creation.
 * **EventDataStoreArn**: string (ReadOnly, Identifier): The ARN of the event data store.
+* **FederationEnabled**: bool: Indicates whether federation is enabled on an event data store.
+* **FederationRoleArn**: string: The ARN of the role used for event data store federation.
+* **IngestionEnabled**: bool: Indicates whether the event data store is ingesting events.
+* **InsightsDestination**: string: Specifies the ARN of the event data store that will collect Insights events. Both InsightSelectors and InsightsDestination need to have a value in order to enable Insights events on an event data store
+* **InsightSelectors**: [InsightSelector](#insightselector)[]: Lets you enable Insights event logging by specifying the Insights selectors that you want to enable on an existing event data store. Both InsightSelectors and InsightsDestination need to have a value in order to enable Insights events on an event data store.
 * **KmsKeyId**: string: Specifies the KMS key ID to use to encrypt the events delivered by CloudTrail. The value can be an alias name prefixed by 'alias/', a fully specified ARN to an alias, a fully specified ARN to a key, or a globally unique identifier.
 * **MultiRegionEnabled**: bool: Indicates whether the event data store includes events from all regions, or only from the region in which it was created.
 * **Name**: string: The name of the event data store.
 * **OrganizationEnabled**: bool: Indicates that an event data store is collecting logged events for an organization.
 * **RetentionPeriod**: int: The retention period, in days.
-* **Status**: string (ReadOnly): The status of an event data store. Values are ENABLED and PENDING_DELETION.
+* **Status**: string (ReadOnly): The status of an event data store. Values are STARTING_INGESTION, ENABLED, STOPPING_INGESTION, STOPPED_INGESTION and PENDING_DELETION.
 * **Tags**: [Tag](#tag)[]
 * **TerminationProtectionEnabled**: bool: Indicates whether the event data store is protected from termination.
 * **UpdatedTimestamp**: string (ReadOnly): The timestamp showing when an event data store was updated, if applicable. UpdatedTimestamp is always either the same or newer than the time shown in CreatedTimestamp.
@@ -76,6 +82,10 @@
 * **NotStartsWith**: string[]: An operator that excludes events that match the first few characters of the event record field specified as the value of Field.
 * **StartsWith**: string[]: An operator that includes events that match the first few characters of the event record field specified as the value of Field.
 
+## InsightSelector
+### Properties
+* **InsightType**: string: The type of Insights to log on an event data store.
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
@@ -88,6 +98,7 @@
 
 ## AWS.CloudTrail/TrailProperties
 ### Properties
+* **AdvancedEventSelectors**: [AdvancedEventSelector](#advancedeventselector)[]: The advanced event selectors that were used to select events for the data store.
 * **Arn**: string (ReadOnly)
 * **CloudWatchLogsLogGroupArn**: string: Specifies a log group name using an Amazon Resource Name (ARN), a unique identifier that represents the log group to which CloudTrail logs will be delivered. Not required unless you specify CloudWatchLogsRoleArn.
 * **CloudWatchLogsRoleArn**: string: Specifies the role for the CloudWatch Logs endpoint to assume to write to a user's log group.
@@ -105,6 +116,21 @@
 * **SnsTopicName**: string: Specifies the name of the Amazon SNS topic defined for notification of log file delivery. The maximum length is 256 characters.
 * **Tags**: [Tag](#tag)[]
 * **TrailName**: string (Identifier)
+
+## AdvancedEventSelector
+### Properties
+* **FieldSelectors**: [AdvancedFieldSelector](#advancedfieldselector)[] (Required): Contains all selector statements in an advanced event selector.
+* **Name**: string: An optional, descriptive name for an advanced event selector, such as "Log data events for only two S3 buckets".
+
+## AdvancedFieldSelector
+### Properties
+* **EndsWith**: string[]: An operator that includes events that match the last few characters of the event record field specified as the value of Field.
+* **Equals**: string[]: An operator that includes events that match the exact value of the event record field specified as the value of Field. This is the only valid operator that you can use with the readOnly, eventCategory, and resources.type fields.
+* **Field**: string (Required): A field in an event record on which to filter events to be logged. Supported fields include readOnly, eventCategory, eventSource (for management events), eventName, resources.type, and resources.ARN.
+* **NotEndsWith**: string[]: An operator that excludes events that match the last few characters of the event record field specified as the value of Field.
+* **NotEquals**: string[]: An operator that excludes events that match the exact value of the event record field specified as the value of Field.
+* **NotStartsWith**: string[]: An operator that excludes events that match the first few characters of the event record field specified as the value of Field.
+* **StartsWith**: string[]: An operator that includes events that match the first few characters of the event record field specified as the value of Field.
 
 ## EventSelector
 ### Properties

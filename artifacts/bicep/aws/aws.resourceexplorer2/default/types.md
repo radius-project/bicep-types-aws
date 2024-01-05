@@ -38,13 +38,14 @@
 
 ## AWS.ResourceExplorer2/ViewProperties
 ### Properties
-* **Filters**: [Filters](#filters)
+* **Filters**: [SearchFilter](#searchfilter)
 * **IncludedProperties**: [IncludedProperty](#includedproperty)[]
+* **Scope**: string
 * **Tags**: [TagMap](#tagmap)
 * **ViewArn**: string (ReadOnly, Identifier)
 * **ViewName**: string (Required)
 
-## Filters
+## SearchFilter
 ### Properties
 * **FilterString**: string (Required)
 

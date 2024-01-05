@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DynamoDB-Table",
   "type": "AWS::DynamoDB::Table",
-  "time": "2023-04-11T15:49:15.086Z",
+  "time": "2024-01-04T17:02:07.054Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -310,8 +310,7 @@
           }
         },
         "required": [
-          "Enabled",
-          "AttributeName"
+          "Enabled"
         ],
         "type": "object"
       }
@@ -341,10 +340,9 @@
           "iam:CreateServiceLinkedRole",
           "kms:CreateGrant",
           "kms:Decrypt",
-          "kms:Describe*",
+          "kms:DescribeKey",
+          "kms:ListAliases",
           "kms:Encrypt",
-          "kms:Get*",
-          "kms:List*",
           "kms:RevokeGrant",
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
@@ -374,7 +372,9 @@
         "permissions": [
           "dynamodb:DescribeTable",
           "dynamodb:DescribeContinuousBackups",
-          "dynamodb:DescribeContributorInsights"
+          "dynamodb:DescribeContributorInsights",
+          "dynamodb:DescribeKinesisStreamingDestination",
+          "dynamodb:ListTagsOfResource"
         ]
       },
       "update": {
@@ -397,9 +397,8 @@
           "kinesis:PutRecords",
           "iam:CreateServiceLinkedRole",
           "kms:CreateGrant",
-          "kms:Describe*",
-          "kms:Get*",
-          "kms:List*",
+          "kms:DescribeKey",
+          "kms:ListAliases",
           "kms:RevokeGrant"
         ],
         "timeoutInMinutes": 720
@@ -495,7 +494,7 @@
       }
     },
     "propertyTransform": {
-      "/properties/SSESpecification/KMSMasterKeyId": "$join([\"arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,4}[-]{1}[1-4]{1}:[0-9]{12}[:]{1}key\\/\", SSESpecification.KMSMasterKeyId])"
+      "/properties/SSESpecification/KMSMasterKeyId": "$join([\"arn:(aws)[-]{0,1}[a-z]{0,3}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,4}[-]{1}[1-4]{1}:[0-9]{12}[:]{1}key\\/\", SSESpecification.KMSMasterKeyId]) $OR $join([\"arn:(aws)[-]{0,1}[a-z]{0,3}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,4}[-]{1}[1-4]{1}:[0-9]{12}[:]{1}key\\/\", KMSMasterKeyId])"
     },
     "readOnlyProperties": [
       "/properties/Arn",

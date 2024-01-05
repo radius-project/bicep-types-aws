@@ -57,10 +57,18 @@
 ### Properties
 * **Enabled**: bool
 * **Name**: string (Required)
+* **NotificationSettings**: [NotificationSetting](#notificationsetting)[]
 * **Source**: [Source](#source) (Required)
 * **Tags**: [Tag](#tag)[]
 * **TrustAnchorArn**: string (ReadOnly)
 * **TrustAnchorId**: string (ReadOnly, Identifier)
+
+## NotificationSetting
+### Properties
+* **Channel**: string
+* **Enabled**: bool (Required)
+* **Event**: string (Required)
+* **Threshold**: int
 
 ## Source
 ### Properties

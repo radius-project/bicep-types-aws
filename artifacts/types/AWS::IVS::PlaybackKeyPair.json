@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IVS-PlaybackKeyPair",
   "type": "AWS::IVS::PlaybackKeyPair",
-  "time": "2023-04-17T15:58:09.108Z",
+  "time": "2024-01-04T16:25:09.465Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -34,17 +34,20 @@
     "handlers": {
       "create": {
         "permissions": [
-          "ivs:ImportPlaybackKeyPair"
+          "ivs:ImportPlaybackKeyPair",
+          "ivs:TagResource"
         ]
       },
       "delete": {
         "permissions": [
-          "ivs:DeletePlaybackKeyPair"
+          "ivs:DeletePlaybackKeyPair",
+          "ivs:UntagResource"
         ]
       },
       "list": {
         "permissions": [
-          "ivs:ListPlaybackKeyPairs"
+          "ivs:ListPlaybackKeyPairs",
+          "ivs:ListTagsForResource"
         ]
       },
       "read": {
@@ -54,6 +57,7 @@
       },
       "update": {
         "permissions": [
+          "ivs:GetPlaybackKeyPair",
           "ivs:ListTagsForResource",
           "ivs:UntagResource",
           "ivs:TagResource"
@@ -102,6 +106,13 @@
       "/properties/Fingerprint"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::IVS::PlaybackKeyPair",
     "writeOnlyProperties": [
       "/properties/PublicKeyMaterial"

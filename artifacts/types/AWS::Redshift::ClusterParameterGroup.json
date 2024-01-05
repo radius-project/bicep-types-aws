@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Redshift-ClusterParameterGroup",
   "type": "AWS::Redshift::ClusterParameterGroup",
-  "time": "2023-02-22T16:33:07.59Z",
+  "time": "2024-01-04T18:20:36.249Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -59,6 +59,8 @@
           "redshift:CreateClusterParameterGroup",
           "redshift:ModifyClusterParameterGroup",
           "redshift:DescribeClusterParameterGroups",
+          "redshift:DescribeClusterParameters",
+          "redshift:DescribeTags",
           "redshift:CreateTags",
           "ec2:AllocateAddress",
           "ec2:AssociateAddress",
@@ -74,26 +76,35 @@
       },
       "delete": {
         "permissions": [
+          "redshift:DescribeTags",
+          "redshift:DescribeClusterParameterGroups",
           "redshift:DeleteClusterParameterGroup",
+          "redshift:DescribeClusterParameters",
           "initech:DeleteReport"
         ]
       },
       "list": {
         "permissions": [
+          "redshift:DescribeTags",
           "redshift:DescribeClusterParameterGroups",
+          "redshift:DescribeClusterParameters",
           "initech:ListReports"
         ]
       },
       "read": {
         "permissions": [
           "redshift:DescribeClusterParameterGroups",
-          "initech:DescribeReport"
+          "initech:DescribeReport",
+          "redshift:DescribeClusterParameters",
+          "redshift:DescribeTags"
         ]
       },
       "update": {
         "permissions": [
+          "redshift:DescribeClusterParameterGroups",
           "redshift:ResetClusterParameterGroup",
           "redshift:ModifyClusterParameterGroup",
+          "redshift:DescribeClusterParameters",
           "redshift:DescribeTags",
           "redshift:CreateTags",
           "redshift:DeleteTags",

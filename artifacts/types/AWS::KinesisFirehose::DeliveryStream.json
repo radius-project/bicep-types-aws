@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-KinesisFirehose-DeliveryStream",
   "type": "AWS::KinesisFirehose::DeliveryStream",
-  "time": "2023-03-21T15:28:24.874Z",
+  "time": "2023-12-26T16:22:56.215Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -10,7 +10,8 @@
       "/properties/ElasticsearchDestinationConfiguration/VpcConfiguration",
       "/properties/AmazonopensearchserviceDestinationConfiguration/VpcConfiguration",
       "/properties/AmazonOpenSearchServerlessDestinationConfiguration/VpcConfiguration",
-      "/properties/KinesisStreamSourceConfiguration"
+      "/properties/KinesisStreamSourceConfiguration",
+      "/properties/MSKSourceConfiguration"
     ],
     "definitions": {
       "AmazonOpenSearchServerlessBufferingHints": {
@@ -114,6 +115,9 @@
             "pattern": "https:.*",
             "type": "string"
           },
+          "DocumentIdOptions": {
+            "$ref": "#/definitions/DocumentIdOptions"
+          },
           "DomainARN": {
             "maxLength": 512,
             "minLength": 1,
@@ -180,6 +184,29 @@
             "type": "integer"
           }
         },
+        "type": "object"
+      },
+      "AuthenticationConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Connectivity": {
+            "enum": [
+              "PUBLIC",
+              "PRIVATE"
+            ],
+            "type": "string"
+          },
+          "RoleARN": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "arn:.*",
+            "type": "string"
+          }
+        },
+        "required": [
+          "RoleARN",
+          "Connectivity"
+        ],
         "type": "object"
       },
       "BufferingHints": {
@@ -285,6 +312,22 @@
         },
         "type": "object"
       },
+      "DocumentIdOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DefaultDocumentIdFormat": {
+            "enum": [
+              "FIREHOSE_DEFAULT",
+              "NO_DOCUMENT_ID"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "DefaultDocumentIdFormat"
+        ],
+        "type": "object"
+      },
       "DynamicPartitioningConfiguration": {
         "additionalProperties": false,
         "properties": {
@@ -323,6 +366,9 @@
             "minLength": 1,
             "pattern": "https:.*",
             "type": "string"
+          },
+          "DocumentIdOptions": {
+            "$ref": "#/definitions/DocumentIdOptions"
           },
           "DomainARN": {
             "maxLength": 512,
@@ -639,6 +685,32 @@
         ],
         "type": "object"
       },
+      "MSKSourceConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "AuthenticationConfiguration": {
+            "$ref": "#/definitions/AuthenticationConfiguration"
+          },
+          "MSKClusterARN": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "arn:.*",
+            "type": "string"
+          },
+          "TopicName": {
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "[a-zA-Z0-9\\._\\-]+",
+            "type": "string"
+          }
+        },
+        "required": [
+          "MSKClusterARN",
+          "TopicName",
+          "AuthenticationConfiguration"
+        ],
+        "type": "object"
+      },
       "OpenXJsonSerDe": {
         "additionalProperties": false,
         "properties": {
@@ -761,6 +833,7 @@
           "Type": {
             "enum": [
               "RecordDeAggregation",
+              "Decompression",
               "Lambda",
               "MetadataExtraction",
               "AppendDelimiterToRecord"
@@ -957,9 +1030,24 @@
         },
         "type": "object"
       },
+      "SplunkBufferingHints": {
+        "additionalProperties": false,
+        "properties": {
+          "IntervalInSeconds": {
+            "type": "integer"
+          },
+          "SizeInMBs": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "SplunkDestinationConfiguration": {
         "additionalProperties": false,
         "properties": {
+          "BufferingHints": {
+            "$ref": "#/definitions/SplunkBufferingHints"
+          },
           "CloudWatchLoggingOptions": {
             "$ref": "#/definitions/CloudWatchLoggingOptions"
           },
@@ -1146,7 +1234,8 @@
       "DeliveryStreamType": {
         "enum": [
           "DirectPut",
-          "KinesisStreamAsSource"
+          "KinesisStreamAsSource",
+          "MSKAsSource"
         ],
         "type": "string"
       },
@@ -1161,6 +1250,9 @@
       },
       "KinesisStreamSourceConfiguration": {
         "$ref": "#/definitions/KinesisStreamSourceConfiguration"
+      },
+      "MSKSourceConfiguration": {
+        "$ref": "#/definitions/MSKSourceConfiguration"
       },
       "RedshiftDestinationConfiguration": {
         "$ref": "#/definitions/RedshiftDestinationConfiguration"

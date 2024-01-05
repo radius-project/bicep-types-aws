@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Panorama-Package",
   "type": "AWS::Panorama::Package",
-  "time": "2023-04-20T15:12:27.404Z",
+  "time": "2024-01-04T16:25:55.886Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -86,23 +86,43 @@
         "permissions": [
           "panorama:CreatePackage",
           "panorama:ListTagsForResource",
-          "panorama:TagResource"
+          "panorama:TagResource",
+          "panorama:DescribePackage",
+          "s3:ListBucket",
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:GetObjectVersion"
         ]
       },
       "delete": {
         "permissions": [
-          "panorama:DeletePackage"
+          "panorama:DeletePackage",
+          "panorama:DescribePackage",
+          "s3:DeleteObject",
+          "s3:DeleteObjectVersion",
+          "s3:DeleteObjectVersionTagging",
+          "s3:ListObjects",
+          "s3:ListObjectsV2",
+          "s3:ListBucket",
+          "s3:GetObject",
+          "s3:GetObjectVersion"
         ]
       },
       "list": {
         "permissions": [
-          "panorama:ListPackages"
+          "panorama:ListPackages",
+          "s3:ListBucket",
+          "s3:GetObject",
+          "s3:GetObjectVersion"
         ]
       },
       "read": {
         "permissions": [
           "panorama:DescribePackage",
-          "panorama:ListTagsForResource"
+          "panorama:ListTagsForResource",
+          "s3:ListBucket",
+          "s3:GetObject",
+          "s3:GetObjectVersion"
         ]
       },
       "update": {
@@ -110,7 +130,11 @@
           "panorama:DescribePackage",
           "panorama:ListTagsForResource",
           "panorama:TagResource",
-          "panorama:UntagResource"
+          "panorama:UntagResource",
+          "s3:PutObject",
+          "s3:ListBucket",
+          "s3:GetObject",
+          "s3:GetObjectVersion"
         ]
       }
     },

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECS-Service",
   "type": "AWS::ECS::Service",
-  "time": "2023-04-11T15:13:55.425Z",
+  "time": "2023-12-20T02:42:51.175Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -122,6 +122,30 @@
             "type": "string"
           }
         },
+        "type": "object"
+      },
+      "EBSTagSpecification": {
+        "properties": {
+          "PropagateTags": {
+            "enum": [
+              "SERVICE",
+              "TASK_DEFINITION"
+            ],
+            "type": "string"
+          },
+          "ResourceType": {
+            "type": "string"
+          },
+          "Tags": {
+            "items": {
+              "$ref": "#/definitions/Tag"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "ResourceType"
+        ],
         "type": "object"
       },
       "LoadBalancer": {
@@ -294,6 +318,47 @@
         ],
         "type": "object"
       },
+      "ServiceManagedEBSVolumeConfiguration": {
+        "properties": {
+          "Encrypted": {
+            "type": "boolean"
+          },
+          "FilesystemType": {
+            "type": "string"
+          },
+          "Iops": {
+            "type": "integer"
+          },
+          "KmsKeyId": {
+            "type": "string"
+          },
+          "RoleArn": {
+            "type": "string"
+          },
+          "SizeInGiB": {
+            "type": "integer"
+          },
+          "SnapshotId": {
+            "type": "string"
+          },
+          "TagSpecifications": {
+            "items": {
+              "$ref": "#/definitions/EBSTagSpecification"
+            },
+            "type": "array"
+          },
+          "Throughput": {
+            "type": "integer"
+          },
+          "VolumeType": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "RoleArn"
+        ],
+        "type": "object"
+      },
       "ServiceRegistry": {
         "additionalProperties": false,
         "properties": {
@@ -310,6 +375,20 @@
             "type": "string"
           }
         },
+        "type": "object"
+      },
+      "ServiceVolumeConfiguration": {
+        "properties": {
+          "ManagedEBSVolume": {
+            "$ref": "#/definitions/ServiceManagedEBSVolumeConfiguration"
+          },
+          "Name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name"
+        ],
         "type": "object"
       },
       "Tag": {
@@ -331,7 +410,8 @@
         "permissions": [
           "ecs:CreateService",
           "ecs:DescribeServices",
-          "iam:PassRole"
+          "iam:PassRole",
+          "ecs:TagResource"
         ],
         "timeoutInMinutes": 180
       },
@@ -473,15 +553,29 @@
       },
       "TaskDefinition": {
         "type": "string"
+      },
+      "VolumeConfigurations": {
+        "items": {
+          "$ref": "#/definitions/ServiceVolumeConfiguration"
+        },
+        "type": "array"
       }
     },
     "readOnlyProperties": [
       "/properties/ServiceArn",
       "/properties/Name"
     ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::ECS::Service",
     "writeOnlyProperties": [
-      "/properties/ServiceConnectConfiguration"
+      "/properties/ServiceConnectConfiguration",
+      "/properties/VolumeConfigurations"
     ]
   }
 }

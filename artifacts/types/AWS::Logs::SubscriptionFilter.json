@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Logs-SubscriptionFilter",
   "type": "AWS::Logs::SubscriptionFilter",
-  "time": "2023-04-20T06:10:00.486Z",
+  "time": "2023-12-18T06:23:45.116Z",
   "schema": {
     "$schema": "https://raw.githubusercontent.com/aws-cloudformation/cloudformation-cli/master/src/rpdk/core/data/schema/provider.definition.schema.v1.json",
     "additionalProperties": false,
@@ -24,6 +24,16 @@
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "LogGroupName": {
+              "$ref": "resource-schema.json#/properties/LogGroupName"
+            }
+          },
+          "required": [
+            "LogGroupName"
+          ]
+        },
         "permissions": [
           "logs:DescribeSubscriptionFilters"
         ]
@@ -35,6 +45,7 @@
       },
       "update": {
         "permissions": [
+          "iam:PassRole",
           "logs:PutSubscriptionFilter",
           "logs:DescribeSubscriptionFilters"
         ]

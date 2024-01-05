@@ -19,7 +19,7 @@
 * **ArtifactConfig**: [ArtifactConfig](#artifactconfig): Provide artifact configuration
 * **ArtifactS3Location**: string (Required): Provide the s3 bucket output location for test results
 * **Code**: [Code](#code) (Required): Provide the canary script source
-* **DeleteLambdaResourcesOnCanaryDeletion**: bool: Deletes associated lambda resources created by Synthetics if set to True. Default is False
+* **DeleteLambdaResourcesOnCanaryDeletion**: bool (WriteOnly): Deletes associated lambda resources created by Synthetics if set to True. Default is False
 * **ExecutionRoleArn**: string (Required): Lambda Execution role used to run your canaries
 * **FailureRetentionPeriod**: int: Retention period of failed canary runs represented in number of days
 * **Id**: string (ReadOnly): Id of the canary
@@ -27,11 +27,11 @@
 * **RunConfig**: [RunConfig](#runconfig): Provide canary run configuration
 * **RuntimeVersion**: string (Required): Runtime version of Synthetics Library
 * **Schedule**: [Schedule](#schedule) (Required): Frequency to run your canaries
-* **StartCanaryAfterCreation**: bool (Required): Runs canary if set to True. Default is False
+* **StartCanaryAfterCreation**: bool (WriteOnly): Runs canary if set to True. Default is False
 * **State**: string (ReadOnly): State of the canary
 * **SuccessRetentionPeriod**: int: Retention period of successful canary runs represented in number of days
 * **Tags**: [Tag](#tag)[]
-* **VisualReference**: [VisualReference](#visualreference): Visual reference configuration for visual testing
+* **VisualReference**: [VisualReference](#visualreference) (WriteOnly): Visual reference configuration for visual testing
 * **VPCConfig**: [VPCConfig](#vpcconfig): Provide VPC Configuration if enabled.
 
 ## ArtifactConfig
@@ -50,11 +50,12 @@
 * **S3Key**: string (WriteOnly)
 * **S3ObjectVersion**: string (WriteOnly)
 * **Script**: string (WriteOnly)
+* **SourceLocationArn**: string (ReadOnly)
 
 ## RunConfig
 ### Properties
 * **ActiveTracing**: bool: Enable active tracing if set to true
-* **EnvironmentVariables**: [Canary_EnvironmentVariables](#canaryenvironmentvariables): Environment variable key-value pairs.
+* **EnvironmentVariables**: [Canary_EnvironmentVariables](#canaryenvironmentvariables) (WriteOnly): Environment variable key-value pairs.
 * **MemoryInMB**: int: Provide maximum memory available for canary in MB
 * **TimeoutInSeconds**: int: Provide maximum canary timeout per run in seconds
 

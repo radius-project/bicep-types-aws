@@ -30,7 +30,9 @@
 
 ## AWS.ECR/PullThroughCacheRuleProperties
 ### Properties
+* **CredentialArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that identifies the credentials to authenticate to the upstream registry.
 * **EcrRepositoryPrefix**: string (Identifier): The ECRRepositoryPrefix is a custom alias for upstream registry url.
+* **UpstreamRegistry**: string (WriteOnly): The name of the upstream registry.
 * **UpstreamRegistryUrl**: string: The upstreamRegistryUrl is the endpoint of upstream registry url of the public repository to be cached
 
 ## AWS.ECR/RegistryPolicyProperties
@@ -68,6 +70,7 @@
 ## AWS.ECR/RepositoryProperties
 ### Properties
 * **Arn**: string (ReadOnly)
+* **EmptyOnDelete**: bool (WriteOnly)
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
 * **ImageScanningConfiguration**: [ImageScanningConfiguration](#imagescanningconfiguration)
 * **ImageTagMutability**: string: The image tag mutability setting for the repository.

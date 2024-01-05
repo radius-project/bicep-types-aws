@@ -14,6 +14,20 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SSM/DocumentProperties](#awsssmdocumentproperties) (Required): properties of the resource
 
+## Resource AWS.SSM/Parameter@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SSM/ParameterProperties](#awsssmparameterproperties) (Required): properties of the resource
+
+## Resource AWS.SSM/PatchBaseline@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SSM/PatchBaselineProperties](#awsssmpatchbaselineproperties) (Required): properties of the resource
+
 ## Resource AWS.SSM/ResourceDataSync@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -47,7 +61,7 @@
 * **ScheduleOffset**: int
 * **SyncCompliance**: string
 * **Targets**: [Target](#target)[]: The targets that the SSM document sends commands to.
-* **WaitForSuccessTimeoutSeconds**: int
+* **WaitForSuccessTimeoutSeconds**: int (WriteOnly)
 
 ## InstanceAssociationOutputLocation
 ### Properties
@@ -69,7 +83,7 @@
 
 ## AWS.SSM/DocumentProperties
 ### Properties
-* **Attachments**: [AttachmentsSource](#attachmentssource)[]: A list of key and value pairs that describe attachments to a version of a document.
+* **Attachments**: [AttachmentsSource](#attachmentssource)[] (WriteOnly): A list of key and value pairs that describe attachments to a version of a document.
 * **Content**: [Document_Content](#documentcontent) | string (Required): The content for the Systems Manager document in JSON, YAML or String format.
 * **DocumentFormat**: string: Specify the document format for the request. The document format can be either JSON or YAML. JSON is the default format.
 * **DocumentType**: string: The type of document to create.
@@ -77,7 +91,7 @@
 * **Requires**: [DocumentRequires](#documentrequires)[]: A list of SSM documents required by a document. For example, an ApplicationConfiguration document requires an ApplicationConfigurationSchema document.
 * **Tags**: [Tag](#tag)[]: Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment.
 * **TargetType**: string: Specify a target type to define the kinds of resources the document can run on.
-* **UpdateMethod**: string: Update method - when set to 'Replace', the update will replace the existing document; when set to 'NewVersion', the update will create a new version.
+* **UpdateMethod**: string (WriteOnly): Update method - when set to 'Replace', the update will replace the existing document; when set to 'NewVersion', the update will create a new version.
 * **VersionName**: string: An optional field specifying the version of the artifact you are creating with the document. This value is unique across all versions of a document, and cannot be changed.
 
 ## AttachmentsSource
@@ -95,6 +109,71 @@
 ### Properties
 * **Key**: string: The name of the tag.
 * **Value**: string: The value of the tag.
+
+## AWS.SSM/ParameterProperties
+### Properties
+* **AllowedPattern**: string (WriteOnly): The regular expression used to validate the parameter value.
+* **DataType**: string: The corresponding DataType of the parameter.
+* **Description**: string (WriteOnly): The information about the parameter.
+* **Name**: string (Identifier): The name of the parameter.
+* **Policies**: string (WriteOnly): The policies attached to the parameter.
+* **Tags**: [Parameter_Tags](#parametertags) (WriteOnly): A key-value pair to associate with a resource.
+* **Tier**: string (WriteOnly): The corresponding tier of the parameter.
+* **Type**: string (Required): The type of the parameter.
+* **Value**: string (Required): The value associated with the parameter.
+
+## Parameter_Tags
+### Properties
+
+## AWS.SSM/PatchBaselineProperties
+### Properties
+* **ApprovalRules**: [RuleGroup](#rulegroup)
+* **ApprovedPatches**: string[]: A list of explicitly approved patches for the baseline.
+* **ApprovedPatchesComplianceLevel**: string: Defines the compliance level for approved patches. This means that if an approved patch is reported as missing, this is the severity of the compliance violation. The default value is UNSPECIFIED.
+* **ApprovedPatchesEnableNonSecurity**: bool: Indicates whether the list of approved patches includes non-security updates that should be applied to the instances. The default value is 'false'. Applies to Linux instances only.
+* **DefaultBaseline**: bool: Set the baseline as default baseline. Only registering to default patch baseline is allowed.
+* **Description**: string: The description of the patch baseline.
+* **GlobalFilters**: [PatchFilterGroup](#patchfiltergroup): A set of global filters used to include patches in the baseline.
+* **Id**: string (ReadOnly, Identifier): The ID of the patch baseline.
+* **Name**: string (Required): The name of the patch baseline.
+* **OperatingSystem**: string: Defines the operating system the patch baseline applies to. The Default value is WINDOWS.
+* **PatchGroups**: string[]: PatchGroups is used to associate instances with a specific patch baseline
+* **RejectedPatches**: string[]: A list of explicitly rejected patches for the baseline.
+* **RejectedPatchesAction**: string: The action for Patch Manager to take on patches included in the RejectedPackages list.
+* **Sources**: [PatchSource](#patchsource)[]: Information about the patches to use to update the instances, including target operating systems and source repository. Applies to Linux instances only.
+* **Tags**: [Tag](#tag)[]: Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways.
+
+## RuleGroup
+### Properties
+* **PatchRules**: [Rule](#rule)[]
+
+## Rule
+### Properties
+* **ApproveAfterDays**: int
+* **ApproveUntilDate**: string
+* **ComplianceLevel**: string
+* **EnableNonSecurity**: bool
+* **PatchFilterGroup**: [PatchFilterGroup](#patchfiltergroup)
+
+## PatchFilterGroup
+### Properties
+* **PatchFilters**: [PatchFilter](#patchfilter)[]
+
+## PatchFilter
+### Properties
+* **Key**: string
+* **Values**: string[]
+
+## PatchSource
+### Properties
+* **Configuration**: string
+* **Name**: string
+* **Products**: string[]
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AWS.SSM/ResourceDataSyncProperties
 ### Properties

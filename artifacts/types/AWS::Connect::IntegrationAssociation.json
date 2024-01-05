@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-IntegrationAssociation",
   "type": "AWS::Connect::IntegrationAssociation",
-  "time": "2023-03-03T19:03:16.34Z",
+  "time": "2023-12-11T19:28:40.64Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -32,7 +32,8 @@
         "description": "Specifies the integration type to be associated with the instance",
         "enum": [
           "LEX_BOT",
-          "LAMBDA_FUNCTION"
+          "LAMBDA_FUNCTION",
+          "APPLICATION"
         ],
         "type": "string"
       }
@@ -41,10 +42,23 @@
     "handlers": {
       "create": {
         "permissions": [
+          "connect:DescribeInstance",
+          "ds:DescribeDirectories",
+          "app-integrations:CreateEventIntegrationAssociation",
+          "mobiletargeting:GetApp",
+          "cases:GetDomain",
+          "wisdom:GetAssistant",
+          "wisdom:GetKnowledgeBase",
+          "wisdom:TagResource",
+          "voiceid:DescribeDomain",
+          "events:PutTargets",
+          "events:PutRule",
           "connect:AssociateBot",
           "connect:AssociateLambdaFunction",
+          "connect:CreateIntegrationAssociation",
           "connect:ListBots",
           "connect:ListLambdaFunctions",
+          "connect:ListIntegrationAssociations",
           "lambda:addPermission",
           "lex:GetBot",
           "lex:DescribeBotAlias",
@@ -52,31 +66,47 @@
           "lex:UpdateResourcePolicy",
           "lex:CreateResourcePolicyStatement",
           "lambda:AddPermission",
+          "app-integrations:GetApplication",
+          "iam:AttachRolePolicy",
+          "iam:CreateServiceLinkedRole",
+          "iam:GetRolePolicy",
           "iam:PutRolePolicy"
         ]
       },
       "delete": {
         "permissions": [
+          "connect:DescribeInstance",
+          "ds:DescribeDirectories",
+          "app-integrations:DeleteEventIntegrationAssociation",
+          "events:ListTargetsByRule",
+          "events:RemoveTargets",
+          "events:DeleteRule",
           "connect:DisassociateBot",
           "connect:DisassociateLambdaFunction",
+          "connect:DeleteIntegrationAssociation",
           "connect:ListBots",
           "connect:ListLambdaFunctions",
+          "connect:ListIntegrationAssociations",
           "lex:DeleteResourcePolicy",
           "lex:DeleteResourcePolicyStatement",
           "lambda:RemovePermission",
+          "iam:GetRolePolicy",
+          "iam:DeleteRolePolicy",
           "iam:PutRolePolicy"
         ]
       },
       "list": {
         "permissions": [
           "connect:ListBots",
-          "connect:ListLambdaFunctions"
+          "connect:ListLambdaFunctions",
+          "connect:ListIntegrationAssociations"
         ]
       },
       "read": {
         "permissions": [
           "connect:ListBots",
-          "connect:ListLambdaFunctions"
+          "connect:ListLambdaFunctions",
+          "connect:ListIntegrationAssociations"
         ]
       },
       "update": {

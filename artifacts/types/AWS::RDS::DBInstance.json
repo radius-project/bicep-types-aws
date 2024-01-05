@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBInstance",
   "type": "AWS::RDS::DBInstance",
-  "time": "2023-04-20T08:44:39.888Z",
+  "time": "2023-12-18T10:26:07.107Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -171,12 +171,16 @@
           "rds:CreateDBInstance",
           "rds:CreateDBInstanceReadReplica",
           "rds:DescribeDBInstances",
+          "rds:DescribeDBClusters",
+          "rds:DescribeDBClusterSnapshots",
+          "rds:DescribeDBInstanceAutomatedBackups",
           "rds:DescribeDBSnapshots",
           "rds:DescribeEvents",
           "rds:ModifyDBInstance",
           "rds:RebootDBInstance",
           "rds:RestoreDBInstanceFromDBSnapshot",
           "rds:RestoreDBInstanceToPointInTime",
+          "rds:StartDBInstanceAutomatedBackupsReplication",
           "secretsmanager:CreateSecret",
           "secretsmanager:TagResource"
         ],
@@ -184,6 +188,7 @@
       },
       "delete": {
         "permissions": [
+          "rds:CreateDBSnapshot",
           "rds:DeleteDBInstance",
           "rds:DescribeDBInstances"
         ],
@@ -233,6 +238,8 @@
           "rds:RebootDBInstance",
           "rds:RemoveRoleFromDBInstance",
           "rds:RemoveTagsFromResource",
+          "rds:StartDBInstanceAutomatedBackupsReplication",
+          "rds:StopDBInstanceAutomatedBackupsReplication",
           "secretsmanager:CreateSecret",
           "secretsmanager:TagResource"
         ],
@@ -262,6 +269,10 @@
       "AutoMinorVersionUpgrade": {
         "description": "A value that indicates whether minor engine upgrades are applied automatically to the DB instance during the maintenance window. By default, minor engine upgrades are applied automatically.",
         "type": "boolean"
+      },
+      "AutomaticBackupReplicationRegion": {
+        "description": "Enables replication of automated backups to a different Amazon Web Services Region.",
+        "type": "string"
       },
       "AvailabilityZone": {
         "description": "The Availability Zone (AZ) where the database will be created. For information on AWS Regions and Availability Zones.",
@@ -322,7 +333,6 @@
       },
       "DBName": {
         "description": "The meaning of this parameter differs according to the database engine you use.",
-        "pattern": "^$|^[_a-zA-Z][a-zA-Z0-9_]{0,63}$",
         "type": "string"
       },
       "DBParameterGroupName": {
@@ -353,6 +363,10 @@
         "description": "The AWS Region-unique, immutable identifier for the DB instance. This identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for the DB instance is accessed.",
         "type": "string"
       },
+      "DedicatedLogVolume": {
+        "description": "Indicates whether the DB instance has a dedicated log volume (DLV) enabled.",
+        "type": "boolean"
+      },
       "DeleteAutomatedBackups": {
         "description": "A value that indicates whether to remove automated backups immediately after the DB instance is deleted. This parameter isn't case-sensitive. The default is to remove automated backups immediately after the DB instance is deleted.",
         "type": "boolean"
@@ -365,8 +379,27 @@
         "description": "The Active Directory directory ID to create the DB instance in. Currently, only MySQL, Microsoft SQL Server, Oracle, and PostgreSQL DB instances can be created in an Active Directory Domain.",
         "type": "string"
       },
+      "DomainAuthSecretArn": {
+        "description": "The ARN for the Secrets Manager secret with the credentials for the user joining the domain.",
+        "type": "string"
+      },
+      "DomainDnsIps": {
+        "description": "The IPv4 DNS IP addresses of your primary and secondary Active Directory domain controllers.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "DomainFqdn": {
+        "description": "The fully qualified domain name (FQDN) of an Active Directory domain.",
+        "type": "string"
+      },
       "DomainIAMRoleName": {
         "description": "Specify the name of the IAM role to be used when making API calls to the Directory Service.",
+        "type": "string"
+      },
+      "DomainOu": {
+        "description": "The Active Directory organizational unit for your DB instance to join.",
         "type": "string"
       },
       "EnableCloudwatchLogsExports": {
@@ -619,6 +652,7 @@
       "/properties/SourceDbiResourceId",
       "/properties/SourceRegion",
       "/properties/TdeCredentialPassword",
+      "/properties/UseDefaultProcessorFeatures",
       "/properties/UseLatestRestorableTime"
     ]
   }

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53RecoveryControl-RoutingControl",
   "type": "AWS::Route53RecoveryControl::RoutingControl",
-  "time": "2023-03-20T15:36:36.96Z",
+  "time": "2024-01-04T22:09:26.943Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -21,10 +21,21 @@
       },
       "delete": {
         "permissions": [
+          "route53-recovery-control-config:DescribeRoutingControl",
           "route53-recovery-control-config:DeleteRoutingControl"
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "ControlPanelArn": {
+              "$ref": "resource-schema.json#/properties/ControlPanelArn"
+            }
+          },
+          "required": [
+            "ControlPanelArn"
+          ]
+        },
         "permissions": [
           "route53-recovery-control-config:ListRoutingControls"
         ]

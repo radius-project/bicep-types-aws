@@ -62,11 +62,13 @@
 * **Encrypted**: bool
 * **FileSystemId**: string (ReadOnly, Identifier)
 * **FileSystemPolicy**: [FileSystem_FileSystemPolicy](#filesystemfilesystempolicy)
+* **FileSystemProtection**: [FileSystemProtection](#filesystemprotection)
 * **FileSystemTags**: [ElasticFileSystemTag](#elasticfilesystemtag)[]
 * **KmsKeyId**: string
 * **LifecyclePolicies**: [LifecyclePolicy](#lifecyclepolicy)[]
 * **PerformanceMode**: string
 * **ProvisionedThroughputInMibps**: int
+* **ReplicationConfiguration**: [ReplicationConfiguration](#replicationconfiguration)
 * **ThroughputMode**: string
 
 ## BackupPolicy
@@ -76,6 +78,10 @@
 ## FileSystem_FileSystemPolicy
 ### Properties
 
+## FileSystemProtection
+### Properties
+* **ReplicationOverwriteProtection**: string
+
 ## ElasticFileSystemTag
 ### Properties
 * **Key**: string (Required)
@@ -83,8 +89,20 @@
 
 ## LifecyclePolicy
 ### Properties
+* **TransitionToArchive**: string
 * **TransitionToIA**: string
 * **TransitionToPrimaryStorageClass**: string
+
+## ReplicationConfiguration
+### Properties
+* **Destinations**: [ReplicationDestination](#replicationdestination)[] (WriteOnly)
+
+## ReplicationDestination
+### Properties
+* **AvailabilityZoneName**: string
+* **FileSystemId**: string (Identifier)
+* **KmsKeyId**: string
+* **Region**: string
 
 ## AWS.EFS/MountTargetProperties
 ### Properties

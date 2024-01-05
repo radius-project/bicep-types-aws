@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ElasticLoadBalancingV2-Listener",
   "type": "AWS::ElasticLoadBalancingV2::Listener",
-  "time": "2023-03-27T19:37:24.443Z",
+  "time": "2023-11-26T18:51:08.695Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -178,6 +178,21 @@
         },
         "type": "object"
       },
+      "MutualAuthentication": {
+        "additionalProperties": false,
+        "properties": {
+          "IgnoreClientCertificateExpiry": {
+            "type": "boolean"
+          },
+          "Mode": {
+            "type": "string"
+          },
+          "TrustStoreArn": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "RedirectConfig": {
         "additionalProperties": false,
         "properties": {
@@ -235,15 +250,43 @@
       "create": {
         "permissions": [
           "elasticloadbalancing:CreateListener",
-          "elasticloadbalancing:DescribeListeners"
+          "elasticloadbalancing:DescribeListeners",
+          "cognito-idp:DescribeUserPoolClient"
         ]
       },
       "delete": {
         "permissions": [
-          "elasticloadbalancing:DeleteListener"
+          "elasticloadbalancing:DeleteListener",
+          "elasticloadbalancing:DescribeListeners"
         ]
       },
       "list": {
+        "handlerSchema": {
+          "oneOf": [
+            {
+              "required": [
+                "LoadBalancerArn"
+              ]
+            },
+            {
+              "required": [
+                "ListenerArns"
+              ]
+            }
+          ],
+          "properties": {
+            "ListenerArns": {
+              "items": {
+                "$ref": "resource-schema.json#/properties/ListenerArn"
+              },
+              "type": "array",
+              "uniqueItems": false
+            },
+            "LoadBalancerArn": {
+              "$ref": "resource-schema.json#/properties/LoadBalancerArn"
+            }
+          }
+        },
         "permissions": [
           "elasticloadbalancing:DescribeListeners"
         ]
@@ -255,7 +298,9 @@
       },
       "update": {
         "permissions": [
-          "elasticloadbalancing:ModifyListener"
+          "elasticloadbalancing:ModifyListener",
+          "elasticloadbalancing:DescribeListeners",
+          "cognito-idp:DescribeUserPoolClient"
         ]
       }
     },
@@ -289,6 +334,9 @@
       "LoadBalancerArn": {
         "type": "string"
       },
+      "MutualAuthentication": {
+        "$ref": "#/definitions/MutualAuthentication"
+      },
       "Port": {
         "type": "integer"
       },
@@ -307,7 +355,12 @@
       "DefaultActions"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-elasticloadbalancingv2.git",
-    "taggable": false,
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
     "typeName": "AWS::ElasticLoadBalancingV2::Listener",
     "writeOnlyProperties": [
       "/properties/DefaultActions/*/AuthenticateOidcConfig/ClientSecret"

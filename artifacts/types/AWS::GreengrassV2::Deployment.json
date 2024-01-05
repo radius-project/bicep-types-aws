@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GreengrassV2-Deployment",
   "type": "AWS::GreengrassV2::Deployment",
-  "time": "2023-02-28T16:29:09.569Z",
+  "time": "2023-10-03T15:31:22.076Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -284,6 +284,7 @@
         "permissions": [
           "greengrass:CreateDeployment",
           "greengrass:GetDeployment",
+          "greengrass:TagResource",
           "iot:CancelJob",
           "iot:CreateJob",
           "iot:DeleteThingShadow",
@@ -299,7 +300,9 @@
         "permissions": [
           "greengrass:DeleteDeployment",
           "greengrass:CancelDeployment",
-          "iot:DeleteJob"
+          "iot:CancelJob",
+          "iot:DeleteJob",
+          "iot:DescribeJob"
         ]
       },
       "list": {
@@ -322,8 +325,10 @@
       },
       "update": {
         "permissions": [
+          "greengrass:GetDeployment",
           "greengrass:TagResource",
-          "greengrass:UntagResource"
+          "greengrass:UntagResource",
+          "iot:DescribeJob"
         ]
       }
     },

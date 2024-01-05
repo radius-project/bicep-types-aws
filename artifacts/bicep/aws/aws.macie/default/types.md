@@ -56,6 +56,12 @@
 * **MaximumMatchDistance**: int: Maximum match distance.
 * **Name**: string (Required): Name of custom data identifier.
 * **Regex**: string (Required): Regular expression for custom data identifier.
+* **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
 
 ## AWS.Macie/FindingsFilterProperties
 ### Properties
@@ -66,6 +72,7 @@
 * **Id**: string (ReadOnly, Identifier): Findings filter ID.
 * **Name**: string (Required): Findings filter name
 * **Position**: int: Findings filter position.
+* **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
 ## FindingCriteria
 ### Properties
@@ -73,6 +80,11 @@
 
 ## Criterion
 ### Properties
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
 
 ## AWS.Macie/SessionProperties
 ### Properties

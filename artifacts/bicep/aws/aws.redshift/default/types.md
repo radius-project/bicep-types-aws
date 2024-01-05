@@ -62,16 +62,17 @@ auto - Amazon Redshift determines whether to use AQUA.
 * **AvailabilityZone**: string: The EC2 Availability Zone (AZ) in which you want Amazon Redshift to provision the cluster. Default: A random, system-chosen Availability Zone in the region that is specified by the endpoint
 * **AvailabilityZoneRelocation**: bool: The option to enable relocation for an Amazon Redshift cluster between Availability Zones after the cluster modification is complete.
 * **AvailabilityZoneRelocationStatus**: string: The availability zone relocation status of the cluster
-* **Classic**: bool: A boolean value indicating whether the resize operation is using the classic resize process. If you don't provide this parameter or set the value to false , the resize type is elastic.
+* **Classic**: bool (WriteOnly): A boolean value indicating whether the resize operation is using the classic resize process. If you don't provide this parameter or set the value to false , the resize type is elastic.
 * **ClusterIdentifier**: string (Identifier): A unique identifier for the cluster. You use this identifier to refer to the cluster for any subsequent cluster operations such as deleting or modifying. All alphabetical characters must be lower case, no hypens at the end, no two consecutive hyphens. Cluster name should be unique for all clusters within an AWS account
+* **ClusterNamespaceArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the cluster namespace.
 * **ClusterParameterGroupName**: string: The name of the parameter group to be associated with this cluster.
 * **ClusterSecurityGroups**: string[]: A list of security groups to be associated with this cluster.
 * **ClusterSubnetGroupName**: string: The name of a cluster subnet group to be associated with this cluster.
 * **ClusterType**: string (Required): The type of the cluster. When cluster type is specified as single-node, the NumberOfNodes parameter is not required and if multi-node, the NumberOfNodes parameter is required
 * **ClusterVersion**: string: The version of the Amazon Redshift engine software that you want to deploy on the cluster.The version selected runs on all the nodes in the cluster.
 * **DBName**: string (Required): The name of the first database to be created when the cluster is created. To create additional databases after the cluster is created, connect to the cluster with a SQL client and use SQL commands to create a database.
-* **DeferMaintenance**: bool: A boolean indicating whether to enable the deferred maintenance window.
-* **DeferMaintenanceDuration**: int: An integer indicating the duration of the maintenance window in days. If you specify a duration, you can't specify an end time. The duration must be 45 days or less.
+* **DeferMaintenance**: bool (WriteOnly): A boolean indicating whether to enable the deferred maintenance window.
+* **DeferMaintenanceDuration**: int (WriteOnly): An integer indicating the duration of the maintenance window in days. If you specify a duration, you can't specify an end time. The duration must be 45 days or less.
 * **DeferMaintenanceEndTime**: string: A timestamp indicating end time for the deferred maintenance window. If you specify an end time, you can't specify a duration.
 * **DeferMaintenanceIdentifier**: string (ReadOnly): A unique identifier for the deferred maintenance window.
 * **DeferMaintenanceStartTime**: string: A timestamp indicating the start time for the deferred maintenance window.
@@ -87,22 +88,26 @@ Default: false
 * **HsmClientCertificateIdentifier**: string: Specifies the name of the HSM client certificate the Amazon Redshift cluster uses to retrieve the data encryption keys stored in an HSM
 * **HsmConfigurationIdentifier**: string: Specifies the name of the HSM configuration that contains the information the Amazon Redshift cluster can use to retrieve and store keys in an HSM.
 * **IamRoles**: string[]: A list of AWS Identity and Access Management (IAM) roles that can be used by the cluster to access other AWS services. You must supply the IAM roles in their Amazon Resource Name (ARN) format. You can supply up to 50 IAM roles in a single request
-* **Id**: string (ReadOnly)
 * **KmsKeyId**: string: The AWS Key Management Service (KMS) key ID of the encryption key that you want to use to encrypt data in the cluster.
 * **LoggingProperties**: [LoggingProperties](#loggingproperties)
 * **MaintenanceTrackName**: string: The name for the maintenance track that you want to assign for the cluster. This name change is asynchronous. The new track name stays in the PendingModifiedValues for the cluster until the next maintenance window. When the maintenance track changes, the cluster is switched to the latest cluster release available for the maintenance track. At this point, the maintenance track name is applied.
+* **ManageMasterPassword**: bool (WriteOnly): A boolean indicating if the redshift cluster's admin user credentials is managed by Redshift or not. You can't use MasterUserPassword if ManageMasterPassword is true. If ManageMasterPassword is false or not set, Amazon Redshift uses MasterUserPassword for the admin user account's password.
 * **ManualSnapshotRetentionPeriod**: int: The number of days to retain newly copied snapshots in the destination AWS Region after they are copied from the source AWS Region. If the value is -1, the manual snapshot is retained indefinitely.
 
 The value must be either -1 or an integer between 1 and 3,653.
+* **MasterPasswordSecretArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the cluster's admin user credentials secret.
+* **MasterPasswordSecretKmsKeyId**: string: The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's admin user credentials secret.
 * **MasterUsername**: string (Required): The user name associated with the master user account for the cluster that is being created. The user name can't be PUBLIC and first character must be a letter.
-* **MasterUserPassword**: string (Required, WriteOnly): The password associated with the master user account for the cluster that is being created. Password must be between 8 and 64 characters in length, should have at least one uppercase letter.Must contain at least one lowercase letter.Must contain one number.Can be any printable ASCII character.
+* **MasterUserPassword**: string (WriteOnly): The password associated with the master user account for the cluster that is being created. You can't use MasterUserPassword if ManageMasterPassword is true. Password must be between 8 and 64 characters in length, should have at least one uppercase letter.Must contain at least one lowercase letter.Must contain one number.Can be any printable ASCII character.
+* **MultiAZ**: bool: A boolean indicating if the redshift cluster is multi-az or not. If you don't provide this parameter or set the value to false, the redshift cluster will be single-az.
+* **NamespaceResourcePolicy**: [Cluster_NamespaceResourcePolicy](#clusternamespaceresourcepolicy): The namespace resource policy document that will be attached to a Redshift cluster.
 * **NodeType**: string (Required): The node type to be provisioned for the cluster.Valid Values: ds2.xlarge | ds2.8xlarge | dc1.large | dc1.8xlarge | dc2.large | dc2.8xlarge | ra3.4xlarge | ra3.16xlarge
 * **NumberOfNodes**: int: The number of compute nodes in the cluster. This parameter is required when the ClusterType parameter is specified as multi-node.
 * **OwnerAccount**: string
 * **Port**: int: The port number on which the cluster accepts incoming connections. The cluster is accessible only via the JDBC and ODBC connection strings
 * **PreferredMaintenanceWindow**: string: The weekly time range (in UTC) during which automated cluster maintenance can occur.
 * **PubliclyAccessible**: bool: If true, the cluster can be accessed from a public network.
-* **ResourceAction**: string: The Redshift operation to be performed. Resource Action supports pause-cluster, resume-cluster APIs
+* **ResourceAction**: string: The Redshift operation to be performed. Resource Action supports pause-cluster, resume-cluster, failover-primary-compute APIs
 * **RevisionTarget**: string: The identifier of the database revision. You can retrieve this value from the response to the DescribeClusterDbRevisions request.
 * **RotateEncryptionKey**: bool: A boolean indicating if we want to rotate Encryption Keys.
 * **SnapshotClusterIdentifier**: string: The name of the cluster the source snapshot was created from. This parameter is required if your IAM user has a policy containing a snapshot resource element that specifies anything other than * for the cluster name.
@@ -113,7 +118,7 @@ The value must be either -1 or an integer between 1 and 3,653.
  Default is 7. 
 
  Constraints: Must be at least 1 and no more than 35.
-* **SnapshotIdentifier**: string: The name of the snapshot from which to create the new cluster. This parameter isn't case sensitive.
+* **SnapshotIdentifier**: string (WriteOnly): The name of the snapshot from which to create the new cluster. This parameter isn't case sensitive.
 * **Tags**: [Tag](#tag)[]: The list of tags for the cluster parameter group.
 * **VpcSecurityGroupIds**: string[]: A list of Virtual Private Cloud (VPC) security groups to be associated with the cluster.
 
@@ -124,8 +129,11 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## LoggingProperties
 ### Properties
-* **BucketName**: string (Required)
+* **BucketName**: string
 * **S3KeyPrefix**: string
+
+## Cluster_NamespaceResourcePolicy
+### Properties
 
 ## Tag
 ### Properties

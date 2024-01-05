@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DynamoDB-GlobalTable",
   "type": "AWS::DynamoDB::GlobalTable",
-  "time": "2023-04-11T15:17:18.172Z",
+  "time": "2024-01-04T16:30:00.043Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -396,8 +396,6 @@
           "dynamodb:TagResource",
           "dynamodb:EnableKinesisStreamingDestination",
           "dynamodb:DisableKinesisStreamingDestination",
-          "dynamodb:DescribeKinesisStreamingDestination",
-          "dynamodb:DescribeTableReplicaAutoScaling",
           "dynamodb:UpdateTableReplicaAutoScaling",
           "dynamodb:TagResource",
           "application-autoscaling:DeleteScalingPolicy",
@@ -411,16 +409,18 @@
           "kinesis:DescribeStream",
           "kinesis:PutRecords",
           "kms:CreateGrant",
-          "kms:Describe*",
-          "kms:Get*",
-          "kms:List*",
+          "kms:DescribeKey",
+          "kms:ListAliases",
+          "kms:Decrypt",
           "kms:RevokeGrant",
-          "cloudwatch:PutMetricData"
+          "cloudwatch:PutMetricData",
+          "iam:CreateServiceLinkedRole"
         ]
       },
       "delete": {
         "permissions": [
           "dynamodb:Describe*",
+          "dynamodb:DeleteTable",
           "application-autoscaling:DeleteScalingPolicy",
           "application-autoscaling:DeleteScheduledAction",
           "application-autoscaling:DeregisterScalableTarget",
@@ -440,7 +440,9 @@
         "permissions": [
           "dynamodb:Describe*",
           "application-autoscaling:Describe*",
-          "cloudwatch:PutMetricData"
+          "cloudwatch:PutMetricData",
+          "dynamodb:ListTagsOfResource",
+          "kms:DescribeKey"
         ]
       },
       "update": {
@@ -466,8 +468,6 @@
           "dynamodb:UntagResource",
           "dynamodb:EnableKinesisStreamingDestination",
           "dynamodb:DisableKinesisStreamingDestination",
-          "dynamodb:DescribeKinesisStreamingDestination",
-          "dynamodb:DescribeTableReplicaAutoScaling",
           "dynamodb:UpdateTableReplicaAutoScaling",
           "application-autoscaling:DeleteScalingPolicy",
           "application-autoscaling:DeleteScheduledAction",
@@ -480,9 +480,8 @@
           "kinesis:DescribeStream",
           "kinesis:PutRecords",
           "kms:CreateGrant",
-          "kms:Describe*",
-          "kms:Get*",
-          "kms:List*",
+          "kms:DescribeKey",
+          "kms:ListAliases",
           "kms:RevokeGrant",
           "cloudwatch:PutMetricData"
         ],
@@ -574,6 +573,12 @@
       "AttributeDefinitions",
       "Replicas"
     ],
-    "typeName": "AWS::DynamoDB::GlobalTable"
+    "typeName": "AWS::DynamoDB::GlobalTable",
+    "writeOnlyProperties": [
+      "/properties/Replicas/*/ReadProvisionedThroughputSettings/ReadCapacityAutoScalingSettings/SeedCapacity",
+      "/properties/Replicas/*/GlobalSecondaryIndexes/*/ReadProvisionedThroughputSettings/ReadCapacityAutoScalingSettings/SeedCapacity",
+      "/properties/WriteProvisionedThroughputSettings/WriteCapacityAutoScalingSettings/SeedCapacity",
+      "/properties/GlobalSecondaryIndexes/*/WriteProvisionedThroughputSettings/WriteCapacityAutoScalingSettings/SeedCapacity"
+    ]
   }
 }

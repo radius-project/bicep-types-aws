@@ -28,6 +28,20 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Backup/ReportPlanProperties](#awsbackupreportplanproperties) (Required): properties of the resource
 
+## Resource AWS.Backup/RestoreTestingPlan@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Backup/RestoreTestingPlanProperties](#awsbackuprestoretestingplanproperties) (Required): properties of the resource
+
+## Resource AWS.Backup/RestoreTestingSelection@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Backup/RestoreTestingSelectionProperties](#awsbackuprestoretestingselectionproperties) (Required): properties of the resource
+
 ## AWS.Backup/BackupPlanProperties
 ### Properties
 * **BackupPlan**: [BackupPlanResourceType](#backupplanresourcetype) (Required)
@@ -59,6 +73,7 @@
 * **RecoveryPointTags**: [BackupPlan_RecoveryPointTags](#backupplanrecoverypointtags)
 * **RuleName**: string (Required)
 * **ScheduleExpression**: string
+* **ScheduleExpressionTimezone**: string
 * **StartWindowMinutes**: int
 * **TargetBackupVault**: string (Required)
 
@@ -170,4 +185,51 @@
 * **OrganizationUnits**: string[]: The list of AWS organization units that a report covers.
 * **Regions**: string[]: The list of AWS regions that a report covers.
 * **ReportTemplate**: string (Required): Identifies the report template for the report. Reports are built using a report template. The report templates are: `BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT`
+
+## AWS.Backup/RestoreTestingPlanProperties
+### Properties
+* **RecoveryPointSelection**: [RestoreTestingRecoveryPointSelection](#restoretestingrecoverypointselection) (Required)
+* **RestoreTestingPlanArn**: string (ReadOnly)
+* **RestoreTestingPlanName**: string (Required, Identifier)
+* **ScheduleExpression**: string (Required)
+* **ScheduleExpressionTimezone**: string
+* **StartWindowHours**: int
+* **Tags**: [Tag](#tag)[]
+
+## RestoreTestingRecoveryPointSelection
+### Properties
+* **Algorithm**: string (Required)
+* **ExcludeVaults**: string[]
+* **IncludeVaults**: string[] (Required)
+* **RecoveryPointTypes**: string[] (Required)
+* **SelectionWindowDays**: int
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## AWS.Backup/RestoreTestingSelectionProperties
+### Properties
+* **IamRoleArn**: string (Required)
+* **ProtectedResourceArns**: string[]
+* **ProtectedResourceConditions**: [ProtectedResourceConditions](#protectedresourceconditions)
+* **ProtectedResourceType**: string (Required)
+* **RestoreMetadataOverrides**: [SensitiveStringMap](#sensitivestringmap)
+* **RestoreTestingPlanName**: string (Required, Identifier)
+* **RestoreTestingSelectionName**: string (Required, Identifier)
+* **ValidationWindowHours**: int
+
+## ProtectedResourceConditions
+### Properties
+* **StringEquals**: [KeyValue](#keyvalue)[]
+* **StringNotEquals**: [KeyValue](#keyvalue)[]
+
+## KeyValue
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## SensitiveStringMap
+### Properties
 

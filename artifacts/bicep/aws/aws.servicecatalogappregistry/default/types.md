@@ -16,6 +16,9 @@
 
 ## AWS.ServiceCatalogAppRegistry/ApplicationProperties
 ### Properties
+* **ApplicationName**: string (ReadOnly): The name of the application. 
+* **ApplicationTagKey**: string (ReadOnly): The key of the AWS application tag, which is awsApplication. Applications created before 11/13/2023 or applications without the AWS application tag resource group return no value.
+* **ApplicationTagValue**: string (ReadOnly): The value of the AWS application tag, which is the identifier of an associated resource. Applications created before 11/13/2023 or applications without the AWS application tag resource group return no value. 
 * **Arn**: string (ReadOnly)
 * **Description**: string: The description of the application. 
 * **Id**: string (ReadOnly, Identifier)
