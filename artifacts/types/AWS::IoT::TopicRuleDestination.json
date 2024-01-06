@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-TopicRuleDestination",
   "type": "AWS::IoT::TopicRuleDestination",
-  "time": "2023-02-16T20:37:14.616Z",
+  "time": "2023-12-19T20:40:19.14Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -57,12 +57,15 @@
     "handlers": {
       "create": {
         "permissions": [
+          "iam:PassRole",
           "iot:CreateTopicRuleDestination",
-          "iam:PassRole"
+          "iot:GetTopicRuleDestination",
+          "iot:UpdateTopicRuleDestination"
         ]
       },
       "delete": {
         "permissions": [
+          "iot:GetTopicRuleDestination",
           "iot:DeleteTopicRuleDestination"
         ]
       },
@@ -78,6 +81,8 @@
       },
       "update": {
         "permissions": [
+          "iam:PassRole",
+          "iot:GetTopicRuleDestination",
           "iot:UpdateTopicRuleDestination"
         ]
       }
@@ -112,6 +117,12 @@
       "/properties/StatusReason"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
     "typeName": "AWS::IoT::TopicRuleDestination"
   }
 }

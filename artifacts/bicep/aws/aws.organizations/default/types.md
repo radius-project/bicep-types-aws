@@ -7,6 +7,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Organizations/AccountProperties](#awsorganizationsaccountproperties) (Required): properties of the resource
 
+## Resource AWS.Organizations/Organization@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Organizations/OrganizationProperties](#awsorganizationsorganizationproperties): properties of the resource
+
 ## Resource AWS.Organizations/OrganizationalUnit@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -45,6 +52,16 @@
 ### Properties
 * **Key**: string (Required): The key identifier, or name, of the tag.
 * **Value**: string (Required): The string value that's associated with the key of the tag. You can set the value of a tag to an empty string, but you can't set the value of a tag to null.
+
+## AWS.Organizations/OrganizationProperties
+### Properties
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of an organization.
+* **FeatureSet**: string: Specifies the feature set supported by the new organization. Each feature set supports different levels of functionality.
+* **Id**: string (ReadOnly, Identifier): The unique identifier (ID) of an organization.
+* **ManagementAccountArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the account that is designated as the management account for the organization.
+* **ManagementAccountEmail**: string (ReadOnly): The email address that is associated with the AWS account that is designated as the management account for the organization.
+* **ManagementAccountId**: string (ReadOnly): The unique identifier (ID) of the management account of an organization.
+* **RootId**: string (ReadOnly): The unique identifier (ID) for the root.
 
 ## AWS.Organizations/OrganizationalUnitProperties
 ### Properties

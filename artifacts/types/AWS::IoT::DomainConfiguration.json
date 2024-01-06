@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-DomainConfiguration",
   "type": "AWS::IoT::DomainConfiguration",
-  "time": "2023-03-21T15:16:55.016Z",
+  "time": "2024-01-03T16:52:38.446Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -23,6 +23,15 @@
             "minLength": 1,
             "pattern": "^[\\w=,@-]+$",
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ServerCertificateConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "EnableOCSPCheck": {
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -64,6 +73,16 @@
           "Value"
         ],
         "type": "object"
+      },
+      "TlsConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "SecurityPolicy": {
+            "maxLength": 128,
+            "type": "string"
+          }
+        },
+        "type": "object"
       }
     },
     "description": "Create and manage a Domain Configuration",
@@ -73,11 +92,14 @@
           "iot:CreateDomainConfiguration",
           "iot:UpdateDomainConfiguration",
           "iot:DescribeDomainConfiguration",
-          "iot:ListTagsForResource"
+          "iot:TagResource",
+          "iot:ListTagsForResource",
+          "acm:GetCertificate"
         ]
       },
       "delete": {
         "permissions": [
+          "iot:DescribeDomainConfiguration",
           "iot:DeleteDomainConfiguration",
           "iot:UpdateDomainConfiguration"
         ]
@@ -151,6 +173,9 @@
         "minItems": 0,
         "type": "array"
       },
+      "ServerCertificateConfig": {
+        "$ref": "#/definitions/ServerCertificateConfig"
+      },
       "ServerCertificates": {
         "insertionOrder": true,
         "items": {
@@ -172,6 +197,9 @@
           "$ref": "#/definitions/Tag"
         },
         "type": "array"
+      },
+      "TlsConfig": {
+        "$ref": "#/definitions/TlsConfig"
       },
       "ValidationCertificateArn": {
         "pattern": "^arn:aws(-cn|-us-gov|-iso-b|-iso)?:acm:[a-z]{2}-(gov-|iso-|isob-)?[a-z]{4,9}-\\d{1}:\\d{12}:certificate/[a-zA-Z0-9/-]+$",

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MSK-Cluster",
   "type": "AWS::MSK::Cluster",
-  "time": "2023-04-19T22:51:37.997Z",
+  "time": "2023-12-07T03:34:19.164Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -10,8 +10,7 @@
       "/properties/BrokerNodeGroupInfo/SecurityGroups",
       "/properties/EncryptionInfo/EncryptionAtRest",
       "/properties/EncryptionInfo/EncryptionInTransit/InCluster",
-      "/properties/ClusterName",
-      "/properties/Tags"
+      "/properties/ClusterName"
     ],
     "definitions": {
       "BrokerLogs": {
@@ -457,23 +456,27 @@
           "kms:CreateGrant",
           "kms:DescribeKey",
           "kafka:CreateCluster",
+          "kafka:DescribeCluster",
           "kafka:TagResource",
           "logs:CreateLogDelivery",
           "logs:GetLogDelivery",
           "logs:UpdateLogDelivery",
           "logs:DeleteLogDelivery",
           "logs:ListLogDeliveries",
-          "S3:GetBucketPolicy",
+          "s3:GetBucketPolicy",
+          "s3:PutBucketPolicy",
           "logs:PutResourcePolicy",
           "logs:DescribeResourcePolicies",
           "logs:DescribeLogGroups",
-          "firehose:TagDeliveryStream"
+          "firehose:TagDeliveryStream",
+          "acm-pca:GetCertificateAuthorityCertificate"
         ],
         "timeoutInMinutes": 120
       },
       "delete": {
         "permissions": [
-          "kafka:DeleteCluster"
+          "kafka:DeleteCluster",
+          "kafka:DescribeCluster"
         ],
         "timeoutInMinutes": 30
       },
@@ -498,7 +501,10 @@
           "kafka:UpdateStorage",
           "kafka:UpdateSecurity",
           "kafka:UpdateConnectivity",
+          "kafka:DescribeCluster",
           "kafka:DescribeClusterOperation",
+          "kafka:TagResource",
+          "kafka:UntagResource",
           "ec2:DescribeSubnets",
           "ec2:DescribeVpcs",
           "ec2:DescribeSecurityGroups",
@@ -512,11 +518,12 @@
           "logs:UpdateLogDelivery",
           "logs:DeleteLogDelivery",
           "logs:ListLogDeliveries",
-          "S3:GetBucketPolicy",
+          "s3:GetBucketPolicy",
           "logs:PutResourcePolicy",
           "logs:DescribeResourcePolicies",
           "logs:DescribeLogGroups",
-          "firehose:TagDeliveryStream"
+          "firehose:TagDeliveryStream",
+          "acm-pca:GetCertificateAuthorityCertificate"
         ],
         "timeoutInMinutes": 720
       }
@@ -607,7 +614,7 @@
       "cloudFormationSystemTags": true,
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
-      "tagUpdatable": false,
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::MSK::Cluster"

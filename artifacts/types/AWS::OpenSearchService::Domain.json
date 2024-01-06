@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-OpenSearchService-Domain",
   "type": "AWS::OpenSearchService::Domain",
-  "time": "2023-04-19T18:10:34.81Z",
+  "time": "2023-12-21T03:41:36.56Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -53,6 +53,9 @@
           },
           "InstanceType": {
             "type": "string"
+          },
+          "MultiAZWithStandbyEnabled": {
+            "type": "boolean"
           },
           "WarmCount": {
             "type": "integer"
@@ -151,7 +154,7 @@
             "type": "string"
           },
           "MetadataContent": {
-            "maxLength": 20480,
+            "maxLength": 1048576,
             "minLength": 1,
             "type": "string"
           }
@@ -395,8 +398,10 @@
           "es:DescribeDomain",
           "es:AddTags",
           "es:RemoveTags",
-          "es:ListTags"
-        ]
+          "es:ListTags",
+          "es:DescribeDomainChangeProgress"
+        ],
+        "timeoutInMinutes": 780
       }
     },
     "primaryIdentifier": [
@@ -436,6 +441,9 @@
       "DomainEndpointOptions": {
         "$ref": "#/definitions/DomainEndpointOptions"
       },
+      "DomainEndpointV2": {
+        "type": "string"
+      },
       "DomainEndpoints": {
         "additionalProperties": false,
         "patternProperties": {
@@ -455,6 +463,9 @@
         "$ref": "#/definitions/EncryptionAtRestOptions"
       },
       "EngineVersion": {
+        "type": "string"
+      },
+      "IPAddressType": {
         "type": "string"
       },
       "Id": {
@@ -501,6 +512,7 @@
       "/properties/Arn",
       "/properties/DomainArn",
       "/properties/DomainEndpoint",
+      "/properties/DomainEndpointV2",
       "/properties/DomainEndpoints",
       "/properties/ServiceSoftwareOptions",
       "/properties/AdvancedSecurityOptions/AnonymousAuthDisableDate"

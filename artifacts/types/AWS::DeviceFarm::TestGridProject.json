@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DeviceFarm-TestGridProject",
   "type": "AWS::DeviceFarm::TestGridProject",
-  "time": "2023-04-19T22:32:38.701Z",
+  "time": "2023-12-07T18:20:31.19Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -81,12 +81,17 @@
           "ec2:DescribeSubnets",
           "ec2:DescribeSecurityGroups",
           "ec2:CreateNetworkInterface",
-          "iam:CreateServiceLinkedRole"
+          "iam:CreateServiceLinkedRole",
+          "devicefarm:GetTestGridProject",
+          "devicefarm:ListTagsForResource"
         ]
       },
       "delete": {
         "permissions": [
-          "devicefarm:DeleteTestGridProject"
+          "devicefarm:DeleteTestGridProject",
+          "devicefarm:UntagResource",
+          "devicefarm:GetTestGridProject",
+          "devicefarm:ListTagsForResource"
         ]
       },
       "list": {
@@ -110,7 +115,8 @@
           "ec2:DescribeSubnets",
           "ec2:DescribeSecurityGroups",
           "ec2:CreateNetworkInterface",
-          "iam:CreateServiceLinkedRole"
+          "iam:CreateServiceLinkedRole",
+          "devicefarm:GetTestGridProject"
         ]
       }
     },

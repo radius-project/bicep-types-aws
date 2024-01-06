@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkFirewall-Firewall",
   "type": "AWS::NetworkFirewall::Firewall",
-  "time": "2023-03-22T20:49:39.89Z",
+  "time": "2023-12-21T04:53:08.761Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -70,7 +70,10 @@
           "network-firewall:CreateFirewall",
           "network-firewall:DescribeFirewallPolicy",
           "network-firewall:DescribeRuleGroup",
-          "network-firewall:TagResource"
+          "network-firewall:TagResource",
+          "network-firewall:AssociateSubnets",
+          "network-firewall:AssociateFirewallPolicy",
+          "network-firewall:DescribeFirewall"
         ]
       },
       "delete": {
@@ -82,7 +85,8 @@
           "logs:GetLogDelivery",
           "logs:ListLogDeliveries",
           "network-firewall:DeleteFirewall",
-          "network-firewall:UntagResource"
+          "network-firewall:UntagResource",
+          "network-firewall:DescribeFirewall"
         ]
       },
       "list": {
@@ -190,6 +194,9 @@
       "SubnetMappings"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-networkfirewall.git",
+    "tagging": {
+      "taggable": true
+    },
     "typeName": "AWS::NetworkFirewall::Firewall"
   }
 }

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CustomerProfiles-ObjectType",
   "type": "AWS::CustomerProfiles::ObjectType",
-  "time": "2023-04-11T15:12:46.028Z",
+  "time": "2024-01-03T17:05:59.924Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -95,7 +95,10 @@
                 "UNIQUE",
                 "SECONDARY",
                 "LOOKUP_ONLY",
-                "NEW_ONLY"
+                "NEW_ONLY",
+                "ASSET",
+                "CASE",
+                "ORDER"
               ],
               "type": "string"
             },
@@ -131,7 +134,8 @@
       "create": {
         "permissions": [
           "profile:GetProfileObjectType",
-          "profile:PutProfileObjectType"
+          "profile:PutProfileObjectType",
+          "profile:TagResource"
         ]
       },
       "delete": {
@@ -140,6 +144,16 @@
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "DomainName": {
+              "$ref": "resource-schema.json#/properties/DomainName"
+            }
+          },
+          "required": [
+            "DomainName"
+          ]
+        },
         "permissions": [
           "profile:ListProfileObjectTypes"
         ]
@@ -223,6 +237,12 @@
         "pattern": "^[a-zA-Z_][a-zA-Z_0-9-]*$",
         "type": "string"
       },
+      "SourceLastUpdatedTimestampFormat": {
+        "description": "The format of your sourceLastUpdatedTimestamp that was previously set up.",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
       "Tags": {
         "description": "The tags (keys and values) associated with the integration.",
         "items": {
@@ -248,6 +268,13 @@
       "DomainName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-customer-profiles.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::CustomerProfiles::ObjectType"
   }
 }

@@ -1,11 +1,15 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VpcLattice-ServiceNetworkVpcAssociation",
   "type": "AWS::VpcLattice::ServiceNetworkVpcAssociation",
-  "time": "2023-04-19T15:47:44.344Z",
+  "time": "2023-08-30T17:18:11.759Z",
   "schema": {
     "additionalIdentifiers": [
       [
         "/properties/Id"
+      ],
+      [
+        "/properties/ServiceNetworkIdentifier",
+        "/properties/VpcIdentifier"
       ]
     ],
     "additionalProperties": false,
@@ -44,7 +48,8 @@
           "vpc-lattice:ListServiceNetworkVpcAssociations",
           "vpc-lattice:ListTagsForResource",
           "ec2:DescribeSecurityGroups",
-          "ec2:DescribeVpcs"
+          "ec2:DescribeVpcs",
+          "vpc-lattice:TagResource"
         ]
       },
       "delete": {
@@ -54,6 +59,23 @@
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "ServiceNetworkIdentifier": {
+              "maxLength": 2048,
+              "minLength": 20,
+              "pattern": "^((sn-[0-9a-z]{17})|(arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:servicenetwork/sn-[0-9a-z]{17}))$",
+              "type": "string"
+            },
+            "VpcIdentifier": {
+              "maxLength": 2048,
+              "minLength": 5,
+              "pattern": "^vpc-(([0-9a-z]{8})|([0-9a-z]{17}))$",
+              "type": "string"
+            }
+          },
+          "required": []
+        },
         "permissions": [
           "vpc-lattice:ListServiceNetworkVpcAssociations"
         ]

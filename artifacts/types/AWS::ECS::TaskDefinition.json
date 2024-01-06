@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECS-TaskDefinition",
   "type": "AWS::ECS::TaskDefinition",
-  "time": "2023-03-02T17:56:36.317Z",
+  "time": "2024-01-04T16:57:20.861Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -102,7 +102,7 @@
           },
           "Environment": {
             "description": "The environment variables to pass to a container",
-            "insertionOrder": true,
+            "insertionOrder": false,
             "items": {
               "$ref": "#/definitions/KeyValuePair"
             },
@@ -780,6 +780,8 @@
       "create": {
         "permissions": [
           "ecs:RegisterTaskDefinition",
+          "ecs:DescribeTaskDefinition",
+          "ecs:TagResource",
           "iam:GetRole",
           "iam:PassRole"
         ]
@@ -787,6 +789,7 @@
       "delete": {
         "permissions": [
           "ecs:DeregisterTaskDefinition",
+          "ecs:DescribeTaskDefinition",
           "iam:GetRole",
           "iam:PassRole"
         ]
@@ -807,6 +810,7 @@
           "ecs:TagResource",
           "ecs:UntagResource",
           "ecs:ListTagsForResource",
+          "ecs:DescribeTaskDefinition",
           "iam:GetRole",
           "iam:PassRole"
         ]
@@ -902,7 +906,7 @@
       }
     },
     "propertyTransform": {
-      "/properties/TaskRoleArn": "$split(TaskRoleArn, \"role/\")[-1]"
+      "/properties/TaskRoleArn": "TaskRoleArn $OR $split(TaskRoleArn, \"role/\")[-1]"
     },
     "readOnlyProperties": [
       "/properties/TaskDefinitionArn"

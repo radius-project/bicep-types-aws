@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-InternetGateway",
   "type": "AWS::EC2::InternetGateway",
-  "time": "2023-04-14T23:01:49.367Z",
+  "time": "2023-12-29T22:50:50.823Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -30,12 +30,14 @@
       "create": {
         "permissions": [
           "ec2:CreateInternetGateway",
-          "ec2:CreateTags"
+          "ec2:CreateTags",
+          "ec2:DescribeInternetGateways"
         ]
       },
       "delete": {
         "permissions": [
-          "ec2:DeleteInternetGateway"
+          "ec2:DeleteInternetGateway",
+          "ec2:DescribeInternetGateways"
         ]
       },
       "list": {
@@ -51,7 +53,8 @@
       "update": {
         "permissions": [
           "ec2:DeleteTags",
-          "ec2:CreateTags"
+          "ec2:CreateTags",
+          "ec2:DescribeInternetGateways"
         ]
       }
     },
@@ -77,7 +80,13 @@
       "/properties/InternetGatewayId"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::EC2::InternetGateway"
   }
 }

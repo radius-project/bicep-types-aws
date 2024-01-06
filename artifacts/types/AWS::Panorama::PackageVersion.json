@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Panorama-PackageVersion",
   "type": "AWS::Panorama::PackageVersion",
-  "time": "2023-04-20T15:12:44.221Z",
+  "time": "2024-01-04T16:24:39.734Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -68,23 +68,42 @@
     "handlers": {
       "create": {
         "permissions": [
-          "panorama:RegisterPackageVersion"
+          "panorama:RegisterPackageVersion",
+          "panorama:DescribePackageVersion",
+          "s3:ListBucket",
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:GetObjectVersion"
         ]
       },
       "delete": {
         "permissions": [
-          "panorama:DeregisterPackageVersion"
+          "panorama:DeregisterPackageVersion",
+          "panorama:DescribePackageVersion",
+          "s3:DeleteObject",
+          "s3:DeleteObjectVersion",
+          "s3:DeleteObjectVersionTagging",
+          "s3:ListBucket",
+          "s3:GetObject",
+          "s3:GetObjectVersion"
         ]
       },
       "read": {
         "permissions": [
-          "panorama:DescribePackageVersion"
+          "panorama:DescribePackageVersion",
+          "s3:ListBucket",
+          "s3:GetObject",
+          "s3:GetObjectVersion"
         ]
       },
       "update": {
         "permissions": [
           "panorama:DescribePackageVersion",
-          "panorama:RegisterPackageVersion"
+          "panorama:RegisterPackageVersion",
+          "s3:ListBucket",
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:GetObjectVersion"
         ]
       }
     },
@@ -146,6 +165,9 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-panorama.git",
     "taggable": false,
-    "typeName": "AWS::Panorama::PackageVersion"
+    "typeName": "AWS::Panorama::PackageVersion",
+    "writeOnlyProperties": [
+      "/properties/UpdatedLatestPatchVersion"
+    ]
   }
 }

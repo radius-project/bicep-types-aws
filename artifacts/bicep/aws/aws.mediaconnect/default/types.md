@@ -1,5 +1,26 @@
 # AWS.MediaConnect @ default
 
+## Resource AWS.MediaConnect/Bridge@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaConnect/BridgeProperties](#awsmediaconnectbridgeproperties) (Required): properties of the resource
+
+## Resource AWS.MediaConnect/BridgeOutput@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaConnect/BridgeOutputProperties](#awsmediaconnectbridgeoutputproperties) (Required): properties of the resource
+
+## Resource AWS.MediaConnect/BridgeSource@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaConnect/BridgeSourceProperties](#awsmediaconnectbridgesourceproperties) (Required): properties of the resource
+
 ## Resource AWS.MediaConnect/Flow@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -35,6 +56,110 @@
 * **name**: string: the resource name
 * **properties**: [AWS.MediaConnect/FlowVpcInterfaceProperties](#awsmediaconnectflowvpcinterfaceproperties) (Required): properties of the resource
 
+## AWS.MediaConnect/BridgeProperties
+### Properties
+* **BridgeArn**: string (ReadOnly, Identifier): The Amazon Resource Number (ARN) of the bridge.
+* **BridgeState**: string (ReadOnly)
+* **EgressGatewayBridge**: [Bridge_EgressGatewayBridge](#bridgeegressgatewaybridge)
+* **IngressGatewayBridge**: [Bridge_IngressGatewayBridge](#bridgeingressgatewaybridge)
+* **Name**: string (Required): The name of the bridge.
+* **Outputs**: [BridgeOutput](#bridgeoutput)[]: The outputs on this bridge.
+* **PlacementArn**: string (Required): The placement Amazon Resource Number (ARN) of the bridge.
+* **SourceFailoverConfig**: [FailoverConfig](#failoverconfig)
+* **Sources**: [BridgeSource](#bridgesource)[] (Required): The sources on this bridge.
+
+## Bridge_EgressGatewayBridge
+### Properties
+* **MaxBitrate**: int (Required): The maximum expected bitrate of the egress bridge.
+
+## Bridge_IngressGatewayBridge
+### Properties
+* **MaxBitrate**: int (Required): The maximum expected bitrate of the ingress bridge.
+* **MaxOutputs**: int (Required): The maximum number of outputs on the ingress bridge.
+
+## BridgeOutput
+### Properties
+* **NetworkOutput**: [BridgeNetworkOutput](#bridgenetworkoutput)
+
+## BridgeNetworkOutput
+### Properties
+* **IpAddress**: string (Required): The network output IP Address.
+* **Name**: string (Required): The network output name.
+* **NetworkName**: string (Required): The network output's gateway network name.
+* **Port**: int (Required): The network output port.
+* **Protocol**: string (Required): The network output protocol.
+* **Ttl**: int (Required): The network output TTL.
+
+## FailoverConfig
+### Properties
+* **FailoverMode**: string (Required): The type of failover you choose for this flow. FAILOVER allows switching between different streams.
+* **SourcePriority**: [SourcePriority](#sourcepriority): The priority you want to assign to a source. You can have a primary stream and a backup stream or two equally prioritized streams.
+* **State**: string
+
+## SourcePriority
+### Properties
+* **PrimarySource**: string: The name of the source you choose as the primary source for this flow.
+
+## BridgeSource
+### Properties
+* **FlowSource**: [BridgeFlowSource](#bridgeflowsource)
+* **NetworkSource**: [BridgeNetworkSource](#bridgenetworksource)
+
+## BridgeFlowSource
+### Properties
+* **FlowArn**: string (Required): The ARN of the cloud flow used as a source of this bridge.
+* **FlowVpcInterfaceAttachment**: [VpcInterfaceAttachment](#vpcinterfaceattachment): The name of the VPC interface attachment to use for this source.
+* **Name**: string (Required): The name of the flow source.
+
+## VpcInterfaceAttachment
+### Properties
+* **VpcInterfaceName**: string: The name of the VPC interface to use for this resource.
+
+## BridgeNetworkSource
+### Properties
+* **MulticastIp**: string (Required): The network source multicast IP.
+* **Name**: string (Required): The name of the network source.
+* **NetworkName**: string (Required): The network source's gateway network name.
+* **Port**: int (Required): The network source port.
+* **Protocol**: string (Required): The network source protocol.
+
+## AWS.MediaConnect/BridgeOutputProperties
+### Properties
+* **BridgeArn**: string (Required, Identifier): The Amazon Resource Number (ARN) of the bridge.
+* **Name**: string (Required, Identifier): The network output name.
+* **NetworkOutput**: [BridgeNetworkOutput](#bridgenetworkoutput) (Required): The output of the bridge.
+
+## BridgeNetworkOutput
+### Properties
+* **IpAddress**: string (Required): The network output IP Address.
+* **NetworkName**: string (Required): The network output's gateway network name.
+* **Port**: int (Required): The network output port.
+* **Protocol**: string (Required): The network output protocol.
+* **Ttl**: int (Required): The network output TTL.
+
+## AWS.MediaConnect/BridgeSourceProperties
+### Properties
+* **BridgeArn**: string (Required, Identifier): The Amazon Resource Number (ARN) of the bridge.
+* **FlowSource**: [BridgeFlowSource](#bridgeflowsource)
+* **Name**: string (Required, Identifier): The name of the source.
+* **NetworkSource**: [BridgeNetworkSource](#bridgenetworksource)
+
+## BridgeFlowSource
+### Properties
+* **FlowArn**: string (Required): The ARN of the cloud flow used as a source of this bridge.
+* **FlowVpcInterfaceAttachment**: [VpcInterfaceAttachment](#vpcinterfaceattachment): The name of the VPC interface attachment to use for this source.
+
+## VpcInterfaceAttachment
+### Properties
+* **VpcInterfaceName**: string: The name of the VPC interface to use for this resource.
+
+## BridgeNetworkSource
+### Properties
+* **MulticastIp**: string (Required): The network source multicast IP.
+* **NetworkName**: string (Required): The network source's gateway network name.
+* **Port**: int (Required): The network source port.
+* **Protocol**: string (Required): The network source protocol.
+
 ## AWS.MediaConnect/FlowProperties
 ### Properties
 * **AvailabilityZone**: string: The Availability Zone that you want to create the flow in. These options are limited to the Availability Zones within the current AWS.
@@ -49,6 +174,7 @@
 * **Decryption**: [Encryption](#encryption): The type of decryption that is used on the content ingested from this source.
 * **Description**: string: A description for the source. This value is not used or seen outside of the current AWS Elemental MediaConnect account.
 * **EntitlementArn**: string: The ARN of the entitlement that allows you to subscribe to content that comes from another AWS account. The entitlement is set by the content originator and the ARN is generated as part of the originator's flow.
+* **GatewayBridgeSource**: [GatewayBridgeSource](#gatewaybridgesource): The source configuration for cloud flows receiving a stream from a bridge.
 * **IngestIp**: string (ReadOnly): The IP address that the flow will be listening on for incoming content.
 * **IngestPort**: int: The port that the flow will be listening on for incoming content.
 * **MaxBitrate**: int: The smoothing max bitrate for RIST, RTP, and RTP-FEC streams.
@@ -77,6 +203,15 @@
 * **RoleArn**: string (Required): The ARN of the role that you created during setup (when you set up AWS Elemental MediaConnect as a trusted entity).
 * **SecretArn**: string:  The ARN of the secret that you created in AWS Secrets Manager to store the encryption key. This parameter is required for static key encryption and is not valid for SPEKE encryption.
 * **Url**: string: The URL from the API Gateway proxy that you set up to talk to your key server. This parameter is required for SPEKE encryption and is not valid for static key encryption.
+
+## GatewayBridgeSource
+### Properties
+* **BridgeArn**: string (Required): The ARN of the bridge feeding this flow.
+* **VpcInterfaceAttachment**: [VpcInterfaceAttachment](#vpcinterfaceattachment): The name of the VPC interface attachment to use for this bridge source.
+
+## VpcInterfaceAttachment
+### Properties
+* **VpcInterfaceName**: string: The name of the VPC interface to use for this resource.
 
 ## FailoverConfig
 ### Properties
@@ -147,21 +282,27 @@
 * **Description**: string (Required): A description for the source. This value is not used or seen outside of the current AWS Elemental MediaConnect account.
 * **EntitlementArn**: string: The ARN of the entitlement that allows you to subscribe to content that comes from another AWS account. The entitlement is set by the content originator and the ARN is generated as part of the originator's flow.
 * **FlowArn**: string: The ARN of the flow.
+* **GatewayBridgeSource**: [GatewayBridgeSource](#gatewaybridgesource): The source configuration for cloud flows receiving a stream from a bridge.
 * **IngestIp**: string (ReadOnly): The IP address that the flow will be listening on for incoming content.
 * **IngestPort**: int: The port that the flow will be listening on for incoming content.
 * **MaxBitrate**: int: The smoothing max bitrate for RIST, RTP, and RTP-FEC streams.
 * **MaxLatency**: int: The maximum latency in milliseconds. This parameter applies only to RIST-based and Zixi-based streams.
+* **MinLatency**: int: The minimum latency in milliseconds.
 * **Name**: string (Required): The name of the source.
 * **Protocol**: string: The protocol that is used by the source.
+* **SenderControlPort**: int: The port that the flow uses to send outbound requests to initiate connection with the sender for fujitsu-qos protocol.
+* **SenderIpAddress**: string: The IP address that the flow communicates with to initiate connection with the sender for fujitsu-qos protocol.
 * **SourceArn**: string (ReadOnly, Identifier): The ARN of the source.
 * **SourceIngestPort**: string (ReadOnly): The port that the flow will be listening on for incoming content.(ReadOnly)
+* **SourceListenerAddress**: string: Source IP or domain name for SRT-caller protocol.
+* **SourceListenerPort**: int: Source port for SRT-caller protocol.
 * **StreamId**: string: The stream ID that you want to use for this transport. This parameter applies only to Zixi-based streams.
 * **VpcInterfaceName**: string: The name of the VPC Interface this Source is configured with.
 * **WhitelistCidr**: string: The range of IP addresses that should be allowed to contribute content to your source. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16.
 
 ## Encryption
 ### Properties
-* **Algorithm**: string (Required): The type of algorithm that is used for the encryption (such as aes128, aes192, or aes256).
+* **Algorithm**: string: The type of algorithm that is used for the encryption (such as aes128, aes192, or aes256).
 * **ConstantInitializationVector**: string: A 128-bit, 16-byte hex value represented by a 32-character string, to be used with the key for encrypting content. This parameter is not valid for static key encryption.
 * **DeviceId**: string: The value of one of the devices that you configured with your digital rights management (DRM) platform key provider. This parameter is required for SPEKE encryption and is not valid for static key encryption.
 * **KeyType**: string: The type of key that is used for the encryption. If no keyType is provided, the service will use the default setting (static-key).
@@ -170,6 +311,15 @@
 * **RoleArn**: string (Required): The ARN of the role that you created during setup (when you set up AWS Elemental MediaConnect as a trusted entity).
 * **SecretArn**: string:  The ARN of the secret that you created in AWS Secrets Manager to store the encryption key. This parameter is required for static key encryption and is not valid for SPEKE encryption.
 * **Url**: string: The URL from the API Gateway proxy that you set up to talk to your key server. This parameter is required for SPEKE encryption and is not valid for static key encryption.
+
+## GatewayBridgeSource
+### Properties
+* **BridgeArn**: string (Required): The ARN of the bridge feeding this flow.
+* **VpcInterfaceAttachment**: [VpcInterfaceAttachment](#vpcinterfaceattachment): The name of the VPC interface attachment to use for this bridge source.
+
+## VpcInterfaceAttachment
+### Properties
+* **VpcInterfaceName**: string: The name of the VPC interface to use for this resource.
 
 ## AWS.MediaConnect/FlowVpcInterfaceProperties
 ### Properties

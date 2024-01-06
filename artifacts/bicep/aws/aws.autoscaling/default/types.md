@@ -1,5 +1,12 @@
 # AWS.AutoScaling @ default
 
+## Resource AWS.AutoScaling/AutoScalingGroup@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AutoScaling/AutoScalingGroupProperties](#awsautoscalingautoscalinggroupproperties) (Required): properties of the resource
+
 ## Resource AWS.AutoScaling/LifecycleHook@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -27,6 +34,173 @@
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AutoScaling/WarmPoolProperties](#awsautoscalingwarmpoolproperties) (Required): properties of the resource
+
+## AWS.AutoScaling/AutoScalingGroupProperties
+### Properties
+* **AutoScalingGroupName**: string (Identifier)
+* **AvailabilityZones**: string[]
+* **CapacityRebalance**: bool
+* **Context**: string
+* **Cooldown**: string
+* **DefaultInstanceWarmup**: int
+* **DesiredCapacity**: string
+* **DesiredCapacityType**: string
+* **HealthCheckGracePeriod**: int
+* **HealthCheckType**: string
+* **InstanceId**: string (WriteOnly)
+* **InstanceMaintenancePolicy**: [InstanceMaintenancePolicy](#instancemaintenancepolicy)
+* **LaunchConfigurationName**: string
+* **LaunchTemplate**: [LaunchTemplateSpecification](#launchtemplatespecification)
+* **LifecycleHookSpecificationList**: [LifecycleHookSpecification](#lifecyclehookspecification)[]
+* **LoadBalancerNames**: string[]
+* **MaxInstanceLifetime**: int
+* **MaxSize**: string (Required)
+* **MetricsCollection**: [MetricsCollection](#metricscollection)[]
+* **MinSize**: string (Required)
+* **MixedInstancesPolicy**: [MixedInstancesPolicy](#mixedinstancespolicy)
+* **NewInstancesProtectedFromScaleIn**: bool
+* **NotificationConfiguration**: [NotificationConfiguration](#notificationconfiguration)
+* **NotificationConfigurations**: [NotificationConfiguration](#notificationconfiguration)[]
+* **PlacementGroup**: string
+* **ServiceLinkedRoleARN**: string
+* **Tags**: [TagProperty](#tagproperty)[]
+* **TargetGroupARNs**: string[]
+* **TerminationPolicies**: string[]
+* **VPCZoneIdentifier**: string[]
+
+## InstanceMaintenancePolicy
+### Properties
+* **MaxHealthyPercentage**: int
+* **MinHealthyPercentage**: int
+
+## LaunchTemplateSpecification
+### Properties
+* **LaunchTemplateId**: string
+* **LaunchTemplateName**: string
+* **Version**: string (Required)
+
+## LifecycleHookSpecification
+### Properties
+* **DefaultResult**: string
+* **HeartbeatTimeout**: int
+* **LifecycleHookName**: string (Required)
+* **LifecycleTransition**: string (Required)
+* **NotificationMetadata**: string
+* **NotificationTargetARN**: string
+* **RoleARN**: string
+
+## MetricsCollection
+### Properties
+* **Granularity**: string (Required)
+* **Metrics**: string[]
+
+## MixedInstancesPolicy
+### Properties
+* **InstancesDistribution**: [InstancesDistribution](#instancesdistribution)
+* **LaunchTemplate**: [LaunchTemplate](#launchtemplate) (Required)
+
+## InstancesDistribution
+### Properties
+* **OnDemandAllocationStrategy**: string
+* **OnDemandBaseCapacity**: int
+* **OnDemandPercentageAboveBaseCapacity**: int
+* **SpotAllocationStrategy**: string
+* **SpotInstancePools**: int
+* **SpotMaxPrice**: string
+
+## LaunchTemplate
+### Properties
+* **LaunchTemplateSpecification**: [LaunchTemplateSpecification](#launchtemplatespecification) (Required)
+* **Overrides**: [LaunchTemplateOverrides](#launchtemplateoverrides)[]
+
+## LaunchTemplateOverrides
+### Properties
+* **InstanceRequirements**: [InstanceRequirements](#instancerequirements)
+* **InstanceType**: string
+* **LaunchTemplateSpecification**: [LaunchTemplateSpecification](#launchtemplatespecification)
+* **WeightedCapacity**: string
+
+## InstanceRequirements
+### Properties
+* **AcceleratorCount**: [AcceleratorCountRequest](#acceleratorcountrequest)
+* **AcceleratorManufacturers**: string[]
+* **AcceleratorNames**: string[]
+* **AcceleratorTotalMemoryMiB**: [AcceleratorTotalMemoryMiBRequest](#acceleratortotalmemorymibrequest)
+* **AcceleratorTypes**: string[]
+* **AllowedInstanceTypes**: string[]
+* **BareMetal**: string
+* **BaselineEbsBandwidthMbps**: [BaselineEbsBandwidthMbpsRequest](#baselineebsbandwidthmbpsrequest)
+* **BurstablePerformance**: string
+* **CpuManufacturers**: string[]
+* **ExcludedInstanceTypes**: string[]
+* **InstanceGenerations**: string[]
+* **LocalStorage**: string
+* **LocalStorageTypes**: string[]
+* **MemoryGiBPerVCpu**: [MemoryGiBPerVCpuRequest](#memorygibpervcpurequest)
+* **MemoryMiB**: [MemoryMiBRequest](#memorymibrequest) (Required)
+* **NetworkBandwidthGbps**: [NetworkBandwidthGbpsRequest](#networkbandwidthgbpsrequest)
+* **NetworkInterfaceCount**: [NetworkInterfaceCountRequest](#networkinterfacecountrequest)
+* **OnDemandMaxPricePercentageOverLowestPrice**: int
+* **RequireHibernateSupport**: bool
+* **SpotMaxPricePercentageOverLowestPrice**: int
+* **TotalLocalStorageGB**: [TotalLocalStorageGBRequest](#totallocalstoragegbrequest)
+* **VCpuCount**: [VCpuCountRequest](#vcpucountrequest) (Required)
+
+## AcceleratorCountRequest
+### Properties
+* **Max**: int
+* **Min**: int
+
+## AcceleratorTotalMemoryMiBRequest
+### Properties
+* **Max**: int
+* **Min**: int
+
+## BaselineEbsBandwidthMbpsRequest
+### Properties
+* **Max**: int
+* **Min**: int
+
+## MemoryGiBPerVCpuRequest
+### Properties
+* **Max**: int
+* **Min**: int
+
+## MemoryMiBRequest
+### Properties
+* **Max**: int
+* **Min**: int
+
+## NetworkBandwidthGbpsRequest
+### Properties
+* **Max**: int
+* **Min**: int
+
+## NetworkInterfaceCountRequest
+### Properties
+* **Max**: int
+* **Min**: int
+
+## TotalLocalStorageGBRequest
+### Properties
+* **Max**: int
+* **Min**: int
+
+## VCpuCountRequest
+### Properties
+* **Max**: int
+* **Min**: int
+
+## NotificationConfiguration
+### Properties
+* **NotificationTypes**: string[]
+* **TopicARN**: string | string[] (Required)
+
+## TagProperty
+### Properties
+* **Key**: string (Required)
+* **PropagateAtLaunch**: bool (Required)
+* **Value**: string (Required)
 
 ## AWS.AutoScaling/LifecycleHookProperties
 ### Properties

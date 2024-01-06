@@ -105,11 +105,18 @@
 * **DefaultJobTimeoutMinutes**: int
 * **Name**: string (Required)
 * **Tags**: [Tag](#tag)[]
+* **VpcConfig**: [VpcConfig](#vpcconfig)
 
 ## Tag
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required): An array of security group Ids in your Amazon VPC
+* **SubnetIds**: string[] (Required): A array of subnet IDs in your Amazon VPC.
+* **VpcId**: string (Required): The ID of the Amazon VPC
 
 ## AWS.DeviceFarm/TestGridProjectProperties
 ### Properties

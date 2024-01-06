@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBCluster",
   "type": "AWS::RDS::DBCluster",
-  "time": "2023-04-20T08:44:40.368Z",
+  "time": "2023-12-18T10:26:08.782Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -160,6 +160,7 @@
     "handlers": {
       "create": {
         "permissions": [
+          "iam:CreateServiceLinkedRole",
           "iam:PassRole",
           "rds:AddRoleToDBCluster",
           "rds:AddTagsToResource",
@@ -177,6 +178,7 @@
       },
       "delete": {
         "permissions": [
+          "rds:CreateDBClusterSnapshot",
           "rds:DeleteDBCluster",
           "rds:DeleteDBInstance",
           "rds:DescribeDBClusters",
@@ -318,6 +320,10 @@
         },
         "type": "array",
         "uniqueItems": true
+      },
+      "EnableGlobalWriteForwarding": {
+        "description": "Specifies whether to enable this DB cluster to forward write operations to the primary cluster of a global cluster (Aurora global database). By default, write operations are not allowed on Aurora DB clusters that are secondary clusters in an Aurora global database.",
+        "type": "boolean"
       },
       "EnableHttpEndpoint": {
         "description": "A value that indicates whether to enable the HTTP endpoint for an Aurora Serverless DB cluster. By default, the HTTP endpoint is disabled.",

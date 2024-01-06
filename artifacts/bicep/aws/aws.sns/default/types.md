@@ -7,8 +7,16 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SNS/TopicProperties](#awssnstopicproperties): properties of the resource
 
+## Resource AWS.SNS/TopicInlinePolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SNS/TopicInlinePolicyProperties](#awssnstopicinlinepolicyproperties) (Required): properties of the resource
+
 ## AWS.SNS/TopicProperties
 ### Properties
+* **ArchivePolicy**: [Topic_ArchivePolicy](#topicarchivepolicy): The archive policy determines the number of days Amazon SNS retains messages. You can set a retention period from 1 to 365 days.
 * **ContentBasedDeduplication**: bool: Enables content-based deduplication for FIFO topics. By default, ContentBasedDeduplication is set to false. If you create a FIFO topic and this attribute is false, you must specify a value for the MessageDeduplicationId parameter for the Publish action.
 
 When you set ContentBasedDeduplication to true, Amazon SNS uses a SHA-256 hash to generate the MessageDeduplicationId using the body of the message (but not the attributes of the message).
@@ -23,6 +31,7 @@ You can only add one policy per topic.
 The policy must be in JSON string format.
 
 Length Constraints: Maximum length of 30720
+* **DeliveryStatusLogging**: [LoggingConfig](#loggingconfig)[]: Delivery status logging configuration for supported protocols for an Amazon SNS topic.
 * **DisplayName**: string: The display name to use for an Amazon SNS topic with SMS subscriptions.
 * **FifoTopic**: bool: Set to true to create a FIFO topic.
 * **KmsMasterKeyId**: string: The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK. For more information, see Key Terms. For more examples, see KeyId in the AWS Key Management Service API Reference.
@@ -37,8 +46,18 @@ This property applies only to [server-side-encryption](https://docs.aws.amazon.c
 If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the topic name. For more information, see Name Type.
 * **TracingConfig**: string: Tracing mode of an Amazon SNS topic. By default TracingConfig is set to PassThrough, and the topic passes through the tracing header it receives from an SNS publisher to its subscriptions. If set to Active, SNS will vend X-Ray segment data to topic owner account if the sampled flag in the tracing header is true. Only supported on standard topics.
 
+## Topic_ArchivePolicy
+### Properties
+
 ## Topic_DataProtectionPolicy
 ### Properties
+
+## LoggingConfig
+### Properties
+* **FailureFeedbackRoleArn**: string: The IAM role ARN to be used when logging failed message deliveries in Amazon CloudWatch
+* **Protocol**: string (Required): Indicates one of the supported protocols for the SNS topic
+* **SuccessFeedbackRoleArn**: string: The IAM role ARN to be used when logging successful message deliveries in Amazon CloudWatch
+* **SuccessFeedbackSampleRate**: string: The percentage of successful message deliveries to be logged in Amazon CloudWatch. Valid percentage values range from 0 to 100
 
 ## Subscription
 ### Properties
@@ -49,4 +68,12 @@ If you don't specify a name, AWS CloudFormation generates a unique physical ID a
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, `_`, `.`, `/`, `=`, `+`, and `-`.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 characters in length.
+
+## AWS.SNS/TopicInlinePolicyProperties
+### Properties
+* **PolicyDocument**: [TopicInlinePolicy_PolicyDocument](#topicinlinepolicypolicydocument) (Required): A policy document that contains permissions to add to the specified SNS topics.
+* **TopicArn**: string (Required, Identifier): The Amazon Resource Name (ARN) of the topic to which you want to add the policy.
+
+## TopicInlinePolicy_PolicyDocument
+### Properties
 

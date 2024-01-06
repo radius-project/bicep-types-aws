@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSMIncidents-ResponsePlan",
   "type": "AWS::SSMIncidents::ResponsePlan",
-  "time": "2023-04-19T23:33:43.96Z",
+  "time": "2024-01-03T23:01:22.646Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -326,6 +326,9 @@
       "create": {
         "permissions": [
           "ssm-incidents:CreateResponsePlan",
+          "ssm-incidents:GetResponsePlan",
+          "ssm-incidents:TagResource",
+          "ssm-incidents:ListTagsForResource",
           "iam:PassRole",
           "secretsmanager:GetSecretValue",
           "kms:Decrypt",
@@ -334,7 +337,8 @@
       },
       "delete": {
         "permissions": [
-          "ssm-incidents:DeleteResponsePlan"
+          "ssm-incidents:DeleteResponsePlan",
+          "ssm-incidents:GetResponsePlan"
         ]
       },
       "list": {
@@ -351,10 +355,11 @@
       "update": {
         "permissions": [
           "ssm-incidents:UpdateResponsePlan",
-          "iam:PassRole",
+          "ssm-incidents:GetResponsePlan",
           "ssm-incidents:TagResource",
           "ssm-incidents:UntagResource",
           "ssm-incidents:ListTagsForResource",
+          "iam:PassRole",
           "secretsmanager:GetSecretValue",
           "kms:Decrypt",
           "kms:GenerateDataKey*"

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTWireless-Destination",
   "type": "AWS::IoTWireless::Destination",
-  "time": "2023-04-12T19:37:43.956Z",
+  "time": "2023-10-03T16:53:00.799Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -29,6 +29,7 @@
     "handlers": {
       "create": {
         "permissions": [
+          "iam:PassRole",
           "iotwireless:CreateDestination",
           "iotwireless:TagResource",
           "iotwireless:ListTagsForResource"
@@ -53,6 +54,7 @@
       },
       "update": {
         "permissions": [
+          "iam:PassRole",
           "iotwireless:UpdateDestination",
           "iotwireless:UntagResource",
           "iotwireless:ListTagsForResource"
@@ -80,7 +82,8 @@
         "description": "Must be RuleName",
         "enum": [
           "RuleName",
-          "MqttTopic"
+          "MqttTopic",
+          "SnsTopic"
         ],
         "type": "string"
       },
@@ -113,8 +116,7 @@
     "required": [
       "Name",
       "Expression",
-      "ExpressionType",
-      "RoleArn"
+      "ExpressionType"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "taggable": true,

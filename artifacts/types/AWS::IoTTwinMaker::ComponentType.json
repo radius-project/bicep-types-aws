@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTTwinMaker-ComponentType",
   "type": "AWS::IoTTwinMaker::ComponentType",
-  "time": "2023-04-19T17:20:40.384Z",
+  "time": "2023-12-19T16:28:48.771Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,20 @@
       "/properties/ComponentTypeId"
     ],
     "definitions": {
+      "CompositeComponentType": {
+        "additionalProperties": false,
+        "description": "An object that sets information about a composite component type.",
+        "properties": {
+          "ComponentTypeId": {
+            "description": "The id of the composite component type.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "[a-zA-Z_\\.\\-0-9:]+",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "DataConnector": {
         "additionalProperties": false,
         "description": "The data connector.",
@@ -355,7 +369,8 @@
           "iottwinmaker:CreateComponentType",
           "iottwinmaker:GetComponentType",
           "iottwinmaker:GetWorkspace",
-          "iottwinmaker:ListTagsForResource"
+          "iottwinmaker:ListTagsForResource",
+          "iottwinmaker:TagResource"
         ]
       },
       "delete": {
@@ -366,6 +381,17 @@
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "WorkspaceId": {
+              "$ref": "resource-schema.json#/properties/WorkspaceId",
+              "type": "string"
+            }
+          },
+          "required": [
+            "WorkspaceId"
+          ]
+        },
         "permissions": [
           "iottwinmaker:GetComponentType",
           "iottwinmaker:GetWorkspace",
@@ -410,6 +436,16 @@
         "pattern": "[a-zA-Z_\\.\\-0-9:]+",
         "type": "string"
       },
+      "CompositeComponentTypes": {
+        "additionalProperties": false,
+        "description": "An map of the composite component types in the component type. Each composite component type's key must be unique to this map.",
+        "patternProperties": {
+          "[a-zA-Z_\\-0-9]+": {
+            "$ref": "#/definitions/CompositeComponentType"
+          }
+        },
+        "type": "object"
+      },
       "CreationDateTime": {
         "$ref": "#/definitions/DateTimeFormat",
         "description": "The date and time when the component type was created."
@@ -450,7 +486,7 @@
         "type": "boolean"
       },
       "IsSingleton": {
-        "description": "A Boolean value that specifies whether an entity can have more than one component of this type.\n\n",
+        "description": "A Boolean value that specifies whether an entity can have more than one component of this type.",
         "type": "boolean"
       },
       "PropertyDefinitions": {
@@ -514,7 +550,7 @@
       "WorkspaceId",
       "ComponentTypeId"
     ],
-    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-iottwinmaker",
     "tagging": {
       "cloudFormationSystemTags": true,
       "tagOnCreate": true,

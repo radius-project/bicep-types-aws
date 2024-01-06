@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ApiGatewayV2-Authorizer",
   "type": "AWS::ApiGatewayV2::Authorizer",
-  "time": "2023-03-20T19:21:08.94Z",
+  "time": "2024-01-02T19:04:17.712Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -29,7 +29,8 @@
     "handlers": {
       "create": {
         "permissions": [
-          "apigateway:POST"
+          "apigateway:POST",
+          "iam:PassRole"
         ]
       },
       "delete": {
@@ -39,6 +40,16 @@
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "ApiId": {
+              "$ref": "resource-schema.json#/properties/ApiId"
+            }
+          },
+          "required": [
+            "ApiId"
+          ]
+        },
         "permissions": [
           "apigateway:GET"
         ]
@@ -52,7 +63,8 @@
         "permissions": [
           "apigateway:PATCH",
           "apigateway:GET",
-          "apigateway:PUT"
+          "apigateway:PUT",
+          "iam:PassRole"
         ]
       }
     },
@@ -110,6 +122,7 @@
       "ApiId",
       "Name"
     ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-apigatewayv2",
     "tagging": {
       "cloudFormationSystemTags": false,
       "tagOnCreate": false,

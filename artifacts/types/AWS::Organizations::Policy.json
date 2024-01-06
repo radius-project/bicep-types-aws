@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Organizations-Policy",
   "type": "AWS::Organizations::Policy",
-  "time": "2023-03-29T16:07:37.205Z",
+  "time": "2023-12-12T16:56:13.004Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -53,6 +53,16 @@
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "Type": {
+              "$ref": "resource-schema.json#/properties/Type"
+            }
+          },
+          "required": [
+            "Type"
+          ]
+        },
         "permissions": [
           "organizations:ListPolicies"
         ]
@@ -72,7 +82,8 @@
           "organizations:ListTagsForResource",
           "organizations:ListTargetsForPolicy",
           "organizations:TagResource",
-          "organizations:UntagResource"
+          "organizations:UntagResource",
+          "organizations:DescribePolicy"
         ]
       }
     },
@@ -158,7 +169,7 @@
       "Type",
       "Content"
     ],
-    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-organizations.git",
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-organizations",
     "tagging": {
       "cloudFormationSystemTags": false,
       "tagOnCreate": true,

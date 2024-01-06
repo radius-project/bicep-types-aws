@@ -20,7 +20,10 @@
     "core.dags_folder": "{AIRFLOW_HOME}/dags"
 * **AirflowVersion**: string
 * **Arn**: string (ReadOnly)
+* **CeleryExecutorQueue**: string (ReadOnly)
 * **DagS3Path**: string
+* **DatabaseVpcEndpointService**: string (ReadOnly)
+* **EndpointManagement**: string
 * **EnvironmentClass**: string
 * **ExecutionRoleArn**: string
 * **KmsKey**: string
@@ -40,6 +43,7 @@
 * **Tags**: [Environment_Tags](#environmenttags): A map of tags for the environment.
 * **WebserverAccessMode**: string
 * **WebserverUrl**: string (ReadOnly)
+* **WebserverVpcEndpointService**: string (ReadOnly)
 * **WeeklyMaintenanceWindowStart**: string
 
 ## Environment_AirflowConfigurationOptions

@@ -84,6 +84,7 @@
 ### Properties
 * **AppId**: string (Required)
 * **Arn**: string (ReadOnly, Identifier)
+* **Backend**: [Backend](#backend)
 * **BasicAuthConfig**: [BasicAuthConfig](#basicauthconfig) (WriteOnly)
 * **BranchName**: string (Required)
 * **BuildSpec**: string
@@ -96,6 +97,10 @@
 * **PullRequestEnvironmentName**: string
 * **Stage**: string
 * **Tags**: [Tag](#tag)[]
+
+## Backend
+### Properties
+* **StackArn**: string
 
 ## BasicAuthConfig
 ### Properties

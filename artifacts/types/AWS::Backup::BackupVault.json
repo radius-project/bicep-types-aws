@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Backup-BackupVault",
   "type": "AWS::Backup::BackupVault",
-  "time": "2023-04-19T15:35:41.515Z",
+  "time": "2024-01-04T16:27:16.584Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -57,6 +57,7 @@
     "handlers": {
       "create": {
         "permissions": [
+          "backup:TagResource",
           "backup:CreateBackupVault",
           "backup:PutBackupVaultAccessPolicy",
           "backup:PutBackupVaultNotifications",
@@ -145,7 +146,13 @@
       "BackupVaultName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/BackupVaultTags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Backup::BackupVault",
     "writeOnlyProperties": [
       "/properties/LockConfiguration/ChangeableForDays"

@@ -1,11 +1,14 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VpcLattice-TargetGroup",
   "type": "AWS::VpcLattice::TargetGroup",
-  "time": "2023-04-19T15:36:12.026Z",
+  "time": "2023-08-30T16:55:15.308Z",
   "schema": {
     "additionalIdentifiers": [
       [
         "/properties/Id"
+      ],
+      [
+        "/properties/Name"
       ]
     ],
     "additionalProperties": false,
@@ -16,7 +19,8 @@
       "/properties/Config/IpAddressType",
       "/properties/Config/Protocol",
       "/properties/Config/ProtocolVersion",
-      "/properties/Config/VpcIdentifier"
+      "/properties/Config/VpcIdentifier",
+      "/properties/Config/LambdaEventStructureVersion"
     ],
     "definitions": {
       "HealthCheckConfig": {
@@ -64,7 +68,8 @@
           "ProtocolVersion": {
             "enum": [
               "HTTP1",
-              "HTTP2"
+              "HTTP2",
+              "GRPC"
             ],
             "type": "string"
           },
@@ -142,6 +147,13 @@
             ],
             "type": "string"
           },
+          "LambdaEventStructureVersion": {
+            "enum": [
+              "V1",
+              "V2"
+            ],
+            "type": "string"
+          },
           "Port": {
             "maximum": 65535,
             "minimum": 1,
@@ -170,11 +182,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "Port",
-          "Protocol",
-          "VpcIdentifier"
-        ],
+        "required": [],
         "type": "object"
       }
     },
@@ -195,7 +203,8 @@
           "ec2:DescribeAvailabilityZoneMappings",
           "lambda:Invoke",
           "lambda:AddPermission",
-          "elasticloadbalancing:DescribeLoadBalancers"
+          "elasticloadbalancing:DescribeLoadBalancers",
+          "iam:CreateServiceLinkedRole"
         ]
       },
       "delete": {
@@ -203,6 +212,7 @@
           "vpc-lattice:DeleteTargetGroup",
           "vpc-lattice:GetTargetGroup",
           "vpc-lattice:DeregisterTargets",
+          "vpc-lattice:ListTargets",
           "lambda:RemovePermission"
         ]
       },
@@ -225,6 +235,7 @@
           "vpc-lattice:ListTargets",
           "vpc-lattice:RegisterTargets",
           "vpc-lattice:DeregisterTargets",
+          "ec2:DescribeVpcs",
           "ec2:DescribeInstances",
           "ec2:DescribeSubnets",
           "ec2:DescribeAvailabilityZoneMappings",

@@ -17,7 +17,13 @@
 ## AWS.Cassandra/KeyspaceProperties
 ### Properties
 * **KeyspaceName**: string (Identifier): Name for Cassandra keyspace
+* **ReplicationSpecification**: [ReplicationSpecification](#replicationspecification)
 * **Tags**: [Tag](#tag)[]
+
+## ReplicationSpecification
+### Properties
+* **RegionList**: string[]
+* **ReplicationStrategy**: string
 
 ## Tag
 ### Properties

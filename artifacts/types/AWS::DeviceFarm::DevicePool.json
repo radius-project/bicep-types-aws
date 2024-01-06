@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DeviceFarm-DevicePool",
   "type": "AWS::DeviceFarm::DevicePool",
-  "time": "2023-04-19T22:32:38.155Z",
+  "time": "2023-12-07T18:20:33.408Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -79,15 +79,30 @@
       "create": {
         "permissions": [
           "devicefarm:CreateDevicePool",
-          "devicefarm:TagResource"
+          "devicefarm:TagResource",
+          "devicefarm:GetDevicePool",
+          "devicefarm:ListTagsForResource"
         ]
       },
       "delete": {
         "permissions": [
-          "devicefarm:DeleteDevicePool"
+          "devicefarm:DeleteDevicePool",
+          "devicefarm:GetDevicePool",
+          "devicefarm:UntagResource",
+          "devicefarm:ListTagsForResource"
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "ProjectArn": {
+              "$ref": "resource-schema.json#/properties/ProjectArn"
+            }
+          },
+          "required": [
+            "ProjectArn"
+          ]
+        },
         "permissions": [
           "devicefarm:ListDevicePools"
         ]
@@ -103,7 +118,8 @@
           "devicefarm:UpdateDevicePool",
           "devicefarm:TagResource",
           "devicefarm:UntagResource",
-          "devicefarm:ListTagsForResource"
+          "devicefarm:ListTagsForResource",
+          "devicefarm:GetDevicePool"
         ]
       }
     },
@@ -161,6 +177,7 @@
       "Rules",
       "ProjectArn"
     ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-device-farm",
     "tagging": {
       "taggable": true
     },
