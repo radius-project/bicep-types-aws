@@ -309,7 +309,7 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
             if (typeName) {
                 const existing = factory.types.find(t => (t as ObjectType) !== undefined && (t as ObjectType).type === TypeBaseKind.ObjectType && (t as ObjectType).name === typeName) as ObjectType;
                 
-                // NOTE: This won't work because it'll combine definitions per namespace and we want per schema (i.e. AWS.Logs is a namespace but would contain schemas from AWS.Logs/Delivery, AWS.Logs/MetriFilter, etc)
+                // NOTE: This won't work because it'll still have duplicate definitions because we check typetotypeReference, not types[] for existing types 
                 if(existing) { 
                     const reference = factory.addType(existing)
                     const type: BicepType = {
