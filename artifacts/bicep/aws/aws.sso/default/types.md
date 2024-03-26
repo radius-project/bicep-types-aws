@@ -14,12 +14,6 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SSO/PermissionSetProperties](#awsssopermissionsetproperties) (Required): properties of the resource
 
-## AWS.SSO/InstanceAccessControlAttributeConfigurationProperties
-### Properties
-* **AccessControlAttributes**: [AccessControlAttribute](#accesscontrolattribute)[]
-* **InstanceAccessControlAttributeConfiguration**: [InstanceAccessControlAttributeConfiguration_InstanceAccessControlAttributeConfiguration](#instanceaccesscontrolattributeconfigurationinstanceaccesscontrolattributeconfiguration): The InstanceAccessControlAttributeConfiguration property has been deprecated but is still supported for backwards compatibility purposes. We recomend that you use  AccessControlAttributes property instead.
-* **InstanceArn**: string (Required, Identifier): The ARN of the AWS SSO instance under which the operation will be executed.
-
 ## AccessControlAttribute
 ### Properties
 * **Key**: string (Required)
@@ -29,9 +23,11 @@
 ### Properties
 * **Source**: string[] (Required)
 
-## InstanceAccessControlAttributeConfiguration_InstanceAccessControlAttributeConfiguration
+## AWS.SSO/InstanceAccessControlAttributeConfigurationProperties
 ### Properties
-* **AccessControlAttributes**: [AccessControlAttribute](#accesscontrolattribute)[] (Required)
+* **AccessControlAttributes**: [AccessControlAttribute](#accesscontrolattribute)[]
+* **InstanceAccessControlAttributeConfiguration**: [InstanceAccessControlAttributeConfiguration_InstanceAccessControlAttributeConfiguration](#instanceaccesscontrolattributeconfigurationinstanceaccesscontrolattributeconfiguration): The InstanceAccessControlAttributeConfiguration property has been deprecated but is still supported for backwards compatibility purposes. We recomend that you use  AccessControlAttributes property instead.
+* **InstanceArn**: string (Required, Identifier): The ARN of the AWS SSO instance under which the operation will be executed.
 
 ## AWS.SSO/PermissionSetProperties
 ### Properties
@@ -51,6 +47,10 @@
 ### Properties
 * **Name**: string (Required)
 * **Path**: string
+
+## InstanceAccessControlAttributeConfiguration_InstanceAccessControlAttributeConfiguration
+### Properties
+* **AccessControlAttributes**: [AccessControlAttribute](#accesscontrolattribute)[] (Required)
 
 ## PermissionsBoundary
 ### Properties

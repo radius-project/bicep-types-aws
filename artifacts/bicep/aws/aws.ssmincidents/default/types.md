@@ -14,26 +14,16 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SSMIncidents/ResponsePlanProperties](#awsssmincidentsresponseplanproperties) (Required): properties of the resource
 
+## Action
+### Properties
+* **SsmAutomation**: [SsmAutomation](#ssmautomation)
+
 ## AWS.SSMIncidents/ReplicationSetProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The ARN of the ReplicationSet.
 * **DeletionProtected**: bool
 * **Regions**: [ReplicationRegion](#replicationregion)[] (Required): The ReplicationSet configuration.
 * **Tags**: [Tag](#tag)[]: The tags to apply to the replication set.
-
-## ReplicationRegion
-### Properties
-* **RegionConfiguration**: [RegionConfiguration](#regionconfiguration)
-* **RegionName**: string
-
-## RegionConfiguration
-### Properties
-* **SseKmsKeyId**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 
 ## AWS.SSMIncidents/ResponsePlanProperties
 ### Properties
@@ -47,18 +37,9 @@
 * **Name**: string (Required): The name of the response plan.
 * **Tags**: [Tag](#tag)[]: The tags to apply to the response plan.
 
-## Action
+## ChatChannel
 ### Properties
-* **SsmAutomation**: [SsmAutomation](#ssmautomation)
-
-## SsmAutomation
-### Properties
-* **DocumentName**: string (Required): The document name to use when starting the SSM automation document.
-* **DocumentVersion**: string: The version of the document to use when starting the SSM automation document.
-* **DynamicParameters**: [DynamicSsmParameter](#dynamicssmparameter)[]: The parameters with dynamic values to set when starting the SSM automation document.
-* **Parameters**: [SsmParameter](#ssmparameter)[]: The parameters to set when starting the SSM automation document.
-* **RoleArn**: string (Required): The role ARN to use when starting the SSM automation document.
-* **TargetAccount**: string: The account type to use when starting the SSM automation document.
+* **ChatbotSns**: string[]
 
 ## DynamicSsmParameter
 ### Properties
@@ -69,15 +50,6 @@
 ### Properties
 * **Variable**: string
 
-## SsmParameter
-### Properties
-* **Key**: string (Required)
-* **Values**: string[] (Required)
-
-## ChatChannel
-### Properties
-* **ChatbotSns**: string[]
-
 ## IncidentTemplate
 ### Properties
 * **DedupeString**: string: The deduplication string.
@@ -87,18 +59,13 @@
 * **Summary**: string: The summary string.
 * **Title**: string (Required): The title string.
 
-## Tag
+## Integration
 ### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **PagerDutyConfiguration**: [PagerDutyConfiguration](#pagerdutyconfiguration) (Required)
 
 ## NotificationTargetItem
 ### Properties
 * **SnsTopicArn**: string
-
-## Integration
-### Properties
-* **PagerDutyConfiguration**: [PagerDutyConfiguration](#pagerdutyconfiguration) (Required)
 
 ## PagerDutyConfiguration
 ### Properties
@@ -109,4 +76,37 @@
 ## PagerDutyIncidentConfiguration
 ### Properties
 * **ServiceId**: string (Required): The pagerDuty serviceId.
+
+## RegionConfiguration
+### Properties
+* **SseKmsKeyId**: string (Required)
+
+## ReplicationRegion
+### Properties
+* **RegionConfiguration**: [RegionConfiguration](#regionconfiguration)
+* **RegionName**: string
+
+## SsmAutomation
+### Properties
+* **DocumentName**: string (Required): The document name to use when starting the SSM automation document.
+* **DocumentVersion**: string: The version of the document to use when starting the SSM automation document.
+* **DynamicParameters**: [DynamicSsmParameter](#dynamicssmparameter)[]: The parameters with dynamic values to set when starting the SSM automation document.
+* **Parameters**: [SsmParameter](#ssmparameter)[]: The parameters to set when starting the SSM automation document.
+* **RoleArn**: string (Required): The role ARN to use when starting the SSM automation document.
+* **TargetAccount**: string: The account type to use when starting the SSM automation document.
+
+## SsmParameter
+### Properties
+* **Key**: string (Required)
+* **Values**: string[] (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 

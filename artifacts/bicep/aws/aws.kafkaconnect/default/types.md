@@ -7,6 +7,19 @@
 * **name**: string: the resource name
 * **properties**: [AWS.KafkaConnect/ConnectorProperties](#awskafkaconnectconnectorproperties) (Required): properties of the resource
 
+## ApacheKafkaCluster
+### Properties
+* **BootstrapServers**: string (Required): The bootstrap servers string of the Apache Kafka cluster.
+* **Vpc**: [Vpc](#vpc) (Required)
+
+## AutoScaling
+### Properties
+* **MaxWorkerCount**: int (Required): The maximum number of workers for a connector.
+* **McuCount**: int (Required): Specifies how many MSK Connect Units (MCU) as the minimum scaling unit.
+* **MinWorkerCount**: int (Required): The minimum number of workers for a connector.
+* **ScaleInPolicy**: [ScaleInPolicy](#scaleinpolicy) (Required)
+* **ScaleOutPolicy**: [ScaleOutPolicy](#scaleoutpolicy) (Required)
+
 ## AWS.KafkaConnect/ConnectorProperties
 ### Properties
 * **Capacity**: [Capacity](#capacity) (Required)
@@ -21,6 +34,7 @@
 * **LogDelivery**: [LogDelivery](#logdelivery)
 * **Plugins**: [Plugin](#plugin)[] (Required): List of plugins to use with the connector.
 * **ServiceExecutionRoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role used by the connector to access Amazon S3 objects and other external resources.
+* **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 * **WorkerConfiguration**: [WorkerConfiguration](#workerconfiguration)
 
 ## Capacity
@@ -28,43 +42,27 @@
 * **AutoScaling**: [AutoScaling](#autoscaling)
 * **ProvisionedCapacity**: [ProvisionedCapacity](#provisionedcapacity)
 
-## AutoScaling
+## CloudWatchLogsLogDelivery
 ### Properties
-* **MaxWorkerCount**: int (Required): The maximum number of workers for a connector.
-* **McuCount**: int (Required): Specifies how many MSK Connect Units (MCU) as the minimum scaling unit.
-* **MinWorkerCount**: int (Required): The minimum number of workers for a connector.
-* **ScaleInPolicy**: [ScaleInPolicy](#scaleinpolicy) (Required)
-* **ScaleOutPolicy**: [ScaleOutPolicy](#scaleoutpolicy) (Required)
-
-## ScaleInPolicy
-### Properties
-* **CpuUtilizationPercentage**: int (Required): Specifies the CPU utilization percentage threshold at which connector scale in should trigger.
-
-## ScaleOutPolicy
-### Properties
-* **CpuUtilizationPercentage**: int (Required): Specifies the CPU utilization percentage threshold at which connector scale out should trigger.
-
-## ProvisionedCapacity
-### Properties
-* **McuCount**: int: Specifies how many MSK Connect Units (MCU) are allocated to the connector.
-* **WorkerCount**: int (Required): Number of workers for a connector.
+* **Enabled**: bool (Required): Specifies whether the logs get sent to the specified CloudWatch Logs destination.
+* **LogGroup**: string: The CloudWatch log group that is the destination for log delivery.
 
 ## Connector_ConnectorConfiguration
 ### Properties
 
+## CustomPlugin
+### Properties
+* **CustomPluginArn**: string (Required): The Amazon Resource Name (ARN) of the custom plugin to use.
+* **Revision**: int (Required): The revision of the custom plugin to use.
+
+## FirehoseLogDelivery
+### Properties
+* **DeliveryStream**: string: The Kinesis Data Firehose delivery stream that is the destination for log delivery.
+* **Enabled**: bool (Required): Specifies whether the logs get sent to the specified Kinesis Data Firehose delivery stream.
+
 ## KafkaCluster
 ### Properties
 * **ApacheKafkaCluster**: [ApacheKafkaCluster](#apachekafkacluster) (Required)
-
-## ApacheKafkaCluster
-### Properties
-* **BootstrapServers**: string (Required): The bootstrap servers string of the Apache Kafka cluster.
-* **Vpc**: [Vpc](#vpc) (Required)
-
-## Vpc
-### Properties
-* **SecurityGroups**: string[] (Required): The AWS security groups to associate with the elastic network interfaces in order to specify what the connector has access to.
-* **Subnets**: string[] (Required): The list of subnets to connect to in the virtual private cloud (VPC). AWS creates elastic network interfaces inside these subnets.
 
 ## KafkaClusterClientAuthentication
 ### Properties
@@ -78,21 +76,14 @@
 ### Properties
 * **WorkerLogDelivery**: [WorkerLogDelivery](#workerlogdelivery) (Required)
 
-## WorkerLogDelivery
+## Plugin
 ### Properties
-* **CloudWatchLogs**: [CloudWatchLogsLogDelivery](#cloudwatchlogslogdelivery)
-* **Firehose**: [FirehoseLogDelivery](#firehoselogdelivery)
-* **S3**: [S3LogDelivery](#s3logdelivery)
+* **CustomPlugin**: [CustomPlugin](#customplugin) (Required)
 
-## CloudWatchLogsLogDelivery
+## ProvisionedCapacity
 ### Properties
-* **Enabled**: bool (Required): Specifies whether the logs get sent to the specified CloudWatch Logs destination.
-* **LogGroup**: string: The CloudWatch log group that is the destination for log delivery.
-
-## FirehoseLogDelivery
-### Properties
-* **DeliveryStream**: string: The Kinesis Data Firehose delivery stream that is the destination for log delivery.
-* **Enabled**: bool (Required): Specifies whether the logs get sent to the specified Kinesis Data Firehose delivery stream.
+* **McuCount**: int: Specifies how many MSK Connect Units (MCU) are allocated to the connector.
+* **WorkerCount**: int (Required): Number of workers for a connector.
 
 ## S3LogDelivery
 ### Properties
@@ -100,17 +91,32 @@
 * **Enabled**: bool (Required): Specifies whether the logs get sent to the specified Amazon S3 destination.
 * **Prefix**: string: The S3 prefix that is the destination for log delivery.
 
-## Plugin
+## ScaleInPolicy
 ### Properties
-* **CustomPlugin**: [CustomPlugin](#customplugin) (Required)
+* **CpuUtilizationPercentage**: int (Required): Specifies the CPU utilization percentage threshold at which connector scale in should trigger.
 
-## CustomPlugin
+## ScaleOutPolicy
 ### Properties
-* **CustomPluginArn**: string (Required): The Amazon Resource Name (ARN) of the custom plugin to use.
-* **Revision**: int (Required): The revision of the custom plugin to use.
+* **CpuUtilizationPercentage**: int (Required): Specifies the CPU utilization percentage threshold at which connector scale out should trigger.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Vpc
+### Properties
+* **SecurityGroups**: string[] (Required): The AWS security groups to associate with the elastic network interfaces in order to specify what the connector has access to.
+* **Subnets**: string[] (Required): The list of subnets to connect to in the virtual private cloud (VPC). AWS creates elastic network interfaces inside these subnets.
 
 ## WorkerConfiguration
 ### Properties
 * **Revision**: int (Required): The revision of the worker configuration to use.
 * **WorkerConfigurationArn**: string (Required): The Amazon Resource Name (ARN) of the worker configuration to use.
+
+## WorkerLogDelivery
+### Properties
+* **CloudWatchLogs**: [CloudWatchLogsLogDelivery](#cloudwatchlogslogdelivery)
+* **Firehose**: [FirehoseLogDelivery](#firehoselogdelivery)
+* **S3**: [S3LogDelivery](#s3logdelivery)
 

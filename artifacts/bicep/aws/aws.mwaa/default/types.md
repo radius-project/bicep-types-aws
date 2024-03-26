@@ -49,6 +49,9 @@
 ## Environment_AirflowConfigurationOptions
 ### Properties
 
+## Environment_Tags
+### Properties
+
 ## LoggingConfiguration
 ### Properties
 * **DagProcessingLogs**: [ModuleLoggingConfiguration](#moduleloggingconfiguration)
@@ -67,7 +70,4 @@
 ### Properties
 * **SecurityGroupIds**: string[]: A list of security groups to use for the environment.
 * **SubnetIds**: string[]: A list of subnets to use for the environment. These must be private subnets, in the same VPC, in two different availability zones.
-
-## Environment_Tags
-### Properties
 

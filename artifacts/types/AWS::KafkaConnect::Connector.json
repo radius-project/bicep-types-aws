@@ -1,8 +1,13 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-KafkaConnect-Connector",
   "type": "AWS::KafkaConnect::Connector",
-  "time": "2023-06-21T09:46:42.272Z",
+  "time": "2024-03-14T16:37:19.058Z",
   "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ConnectorName"
+      ]
+    ],
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/ConnectorConfiguration",
@@ -316,6 +321,25 @@
         ],
         "type": "object"
       },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      },
       "Vpc": {
         "additionalProperties": false,
         "description": "Information about a VPC used with the connector.",
@@ -391,6 +415,8 @@
         "permissions": [
           "kafkaconnect:CreateConnector",
           "kafkaconnect:DescribeConnector",
+          "kafkaconnect:TagResource",
+          "kafkaconnect:ListTagsForResource",
           "iam:CreateServiceLinkedRole",
           "iam:PassRole",
           "ec2:CreateNetworkInterface",
@@ -424,13 +450,17 @@
       },
       "read": {
         "permissions": [
-          "kafkaconnect:DescribeConnector"
+          "kafkaconnect:DescribeConnector",
+          "kafkaconnect:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "kafkaconnect:UpdateConnector",
           "kafkaconnect:DescribeConnector",
+          "kafkaconnect:TagResource",
+          "kafkaconnect:ListTagsForResource",
+          "kafkaconnect:UntagResource",
           "iam:CreateServiceLinkedRole",
           "logs:UpdateLogDelivery",
           "logs:GetLogDelivery",
@@ -508,6 +538,15 @@
         "pattern": "arn:(aws|aws-us-gov|aws-cn):iam:.*",
         "type": "string"
       },
+      "Tags": {
+        "description": "A collection of tags associated with a resource",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
       "WorkerConfiguration": {
         "$ref": "#/definitions/WorkerConfiguration"
       }
@@ -528,7 +567,13 @@
       "ServiceExecutionRoleArn"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-kafkaconnect.git",
-    "taggable": false,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::KafkaConnect::Connector"
   }
 }

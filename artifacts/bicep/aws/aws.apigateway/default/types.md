@@ -119,6 +119,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/VpcLinkProperties](#awsapigatewayvpclinkproperties) (Required): properties of the resource
 
+## AccessLogSetting
+### Properties
+* **DestinationArn**: string: The Amazon Resource Name (ARN) of the CloudWatch Logs log group or Kinesis Data Firehose delivery stream to receive access logs. If you specify a Kinesis Data Firehose delivery stream, the stream name must begin with ``amazon-apigateway-``.
+* **Format**: string: A single line format of the access logs of data, as specified by selected $context variables. The format must include at least ``$context.requestId``.
+
+## AccessLogSetting
+### Properties
+* **DestinationArn**: string: The Amazon Resource Name (ARN) of the CloudWatch Logs log group or Kinesis Data Firehose delivery stream to receive access logs. If you specify a Kinesis Data Firehose delivery stream, the stream name must begin with ``amazon-apigateway-``. This parameter is required to enable access logging.
+* **Format**: string: A single line format of the access logs of data, as specified by selected [$context variables](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html#context-variable-reference). The format must include at least ``$context.requestId``. This parameter is required to enable access logging.
+
+## ApiStage
+### Properties
+* **ApiId**: string: API Id of the associated API stage in a usage plan.
+* **Stage**: string: API stage name of the associated API stage in a usage plan.
+* **Throttle**: [UsagePlan_Throttle](#usageplanthrottle): Map containing method level throttling information for API stage in a usage plan.
+
 ## AWS.ApiGateway/AccountProperties
 ### Properties
 * **CloudWatchRoleArn**: string: The ARN of an Amazon CloudWatch role for the current Account.
@@ -136,16 +152,6 @@
 * **StageKeys**: [StageKey](#stagekey)[]: DEPRECATED FOR USAGE PLANS - Specifies stages associated with the API key.
 * **Tags**: [Tag](#tag)[]: The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with ``aws:``. The tag value can be up to 256 characters.
 * **Value**: string: Specifies a value of the API key.
-
-## StageKey
-### Properties
-* **RestApiId**: string: The string identifier of the associated RestApi.
-* **StageName**: string: The stage name associated with the stage key.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## AWS.ApiGateway/AuthorizerProperties
 ### Properties
@@ -174,11 +180,6 @@
 * **Description**: string: The description of the client certificate.
 * **Tags**: [Tag](#tag)[]: The collection of tags. Each tag element is associated with a given resource.
 
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.ApiGateway/DeploymentProperties
 ### Properties
 * **DeploymentCanarySettings**: [DeploymentCanarySettings](#deploymentcanarysettings) (WriteOnly): The input configuration for a canary deployment.
@@ -188,87 +189,12 @@
 * **StageDescription**: [StageDescription](#stagedescription) (WriteOnly): The description of the Stage resource for the Deployment resource to create. To specify a stage description, you must also provide a stage name.
 * **StageName**: string (WriteOnly): The name of the Stage resource for the Deployment resource to create.
 
-## DeploymentCanarySettings
-### Properties
-* **PercentTraffic**: int: The percentage (0.0-100.0) of traffic routed to the canary deployment.
-* **StageVariableOverrides**: [Deployment_StageVariableOverrides](#deploymentstagevariableoverrides): A stage variable overrides used for the canary release deployment. They can override existing stage variables or add new stage variables for the canary release deployment. These stage variables are represented as a string-to-string map between stage variable names and their values.
-* **UseStageCache**: bool: A Boolean flag to indicate whether the canary release deployment uses the stage cache or not.
-
-## Deployment_StageVariableOverrides
-### Properties
-
-## StageDescription
-### Properties
-* **AccessLogSetting**: [AccessLogSetting](#accesslogsetting): Specifies settings for logging access in this stage.
-* **CacheClusterEnabled**: bool: Specifies whether a cache cluster is enabled for the stage.
-* **CacheClusterSize**: string: The size of the stage's cache cluster. For more information, see [cacheClusterSize](https://docs.aws.amazon.com/apigateway/latest/api/API_CreateStage.html#apigw-CreateStage-request-cacheClusterSize) in the *API Gateway API Reference*.
-* **CacheDataEncrypted**: bool: Indicates whether the cached responses are encrypted.
-* **CacheTtlInSeconds**: int: The time-to-live (TTL) period, in seconds, that specifies how long API Gateway caches responses.
-* **CachingEnabled**: bool: Indicates whether responses are cached and returned for requests. You must enable a cache cluster on the stage to cache responses. For more information, see [Enable API Gateway Caching in a Stage to Enhance API Performance](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html) in the *API Gateway Developer Guide*.
-* **CanarySetting**: [CanarySetting](#canarysetting): Specifies settings for the canary deployment in this stage.
-* **ClientCertificateId**: string: The identifier of the client certificate that API Gateway uses to call your integration endpoints in the stage.
-* **DataTraceEnabled**: bool: Indicates whether data trace logging is enabled for methods in the stage. API Gateway pushes these logs to Amazon CloudWatch Logs.
-* **Description**: string: A description of the purpose of the stage.
-* **DocumentationVersion**: string: The version identifier of the API documentation snapshot.
-* **LoggingLevel**: string: The logging level for this method. For valid values, see the ``loggingLevel`` property of the [MethodSetting](https://docs.aws.amazon.com/apigateway/latest/api/API_MethodSetting.html) resource in the *Amazon API Gateway API Reference*.
-* **MethodSettings**: [MethodSetting](#methodsetting)[]: Configures settings for all of the stage's methods.
-* **MetricsEnabled**: bool: Indicates whether Amazon CloudWatch metrics are enabled for methods in the stage.
-* **Tags**: [Tag](#tag)[]: An array of arbitrary tags (key-value pairs) to associate with the stage.
-* **ThrottlingBurstLimit**: int: The target request burst rate limit. This allows more requests through for a period of time than the target rate limit. For more information, see [Manage API Request Throttling](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html) in the *API Gateway Developer Guide*.
-* **ThrottlingRateLimit**: int: The target request steady-state rate limit. For more information, see [Manage API Request Throttling](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html) in the *API Gateway Developer Guide*.
-* **TracingEnabled**: bool: Specifies whether active tracing with X-ray is enabled for this stage.
- For more information, see [Trace API Gateway API Execution with X-Ray](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-xray.html) in the *API Gateway Developer Guide*.
-* **Variables**: [Deployment_Variables](#deploymentvariables): A map that defines the stage variables. Variable names must consist of alphanumeric characters, and the values must match the following regular expression: ``[A-Za-z0-9-._~:/?#&=,]+``.
-
-## AccessLogSetting
-### Properties
-* **DestinationArn**: string: The Amazon Resource Name (ARN) of the CloudWatch Logs log group or Kinesis Data Firehose delivery stream to receive access logs. If you specify a Kinesis Data Firehose delivery stream, the stream name must begin with ``amazon-apigateway-``.
-* **Format**: string: A single line format of the access logs of data, as specified by selected $context variables. The format must include at least ``$context.requestId``.
-
-## CanarySetting
-### Properties
-* **PercentTraffic**: int: The percent (0-100) of traffic diverted to a canary deployment.
-* **StageVariableOverrides**: [Deployment_StageVariableOverrides](#deploymentstagevariableoverrides): Stage variables overridden for a canary release deployment, including new stage variables introduced in the canary. These stage variables are represented as a string-to-string map between stage variable names and their values.
-* **UseStageCache**: bool: A Boolean flag to indicate whether the canary deployment uses the stage cache or not.
-
-## Deployment_StageVariableOverrides
-### Properties
-
-## MethodSetting
-### Properties
-* **CacheDataEncrypted**: bool: Specifies whether the cached responses are encrypted.
-* **CacheTtlInSeconds**: int: Specifies the time to live (TTL), in seconds, for cached responses. The higher the TTL, the longer the response will be cached.
-* **CachingEnabled**: bool: Specifies whether responses should be cached and returned for requests. A cache cluster must be enabled on the stage for responses to be cached.
-* **DataTraceEnabled**: bool: Specifies whether data trace logging is enabled for this method, which affects the log entries pushed to Amazon CloudWatch Logs. This can be useful to troubleshoot APIs, but can result in logging sensitive data. We recommend that you don't enable this option for production APIs.
-* **HttpMethod**: string: The HTTP method.
-* **LoggingLevel**: string: Specifies the logging level for this method, which affects the log entries pushed to Amazon CloudWatch Logs. Valid values are ``OFF``, ``ERROR``, and ``INFO``. Choose ``ERROR`` to write only error-level entries to CloudWatch Logs, or choose ``INFO`` to include all ``ERROR`` events as well as extra informational events.
-* **MetricsEnabled**: bool: Specifies whether Amazon CloudWatch metrics are enabled for this method.
-* **ResourcePath**: string: The resource path for this method. Forward slashes (``/``) are encoded as ``~1`` and the initial slash must include a forward slash. For example, the path value ``/resource/subresource`` must be encoded as ``/~1resource~1subresource``. To specify the root path, use only a slash (``/``).
-* **ThrottlingBurstLimit**: int: Specifies the throttling burst limit.
-* **ThrottlingRateLimit**: int: Specifies the throttling rate limit.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag
-* **Value**: string (Required): The value for the tag
-
-## Deployment_Variables
-### Properties
-
 ## AWS.ApiGateway/DocumentationPartProperties
 ### Properties
 * **DocumentationPartId**: string (ReadOnly, Identifier)
 * **Location**: [Location](#location) (Required): The location of the targeted API entity of the to-be-created documentation part.
 * **Properties**: string (Required): The new documentation content map of the targeted API entity. Enclosed key-value pairs are API-specific, but only OpenAPI-compliant key-value pairs can be exported and, hence, published.
 * **RestApiId**: string (Required, Identifier): The string identifier of the associated RestApi.
-
-## Location
-### Properties
-* **Method**: string: The HTTP verb of a method. It is a valid field for the API entity types of ``METHOD``, ``PATH_PARAMETER``, ``QUERY_PARAMETER``, ``REQUEST_HEADER``, ``REQUEST_BODY``, ``RESPONSE``, ``RESPONSE_HEADER``, and ``RESPONSE_BODY``. The default value is ``*`` for any method. When an applicable child entity inherits the content of an entity of the same type with more general specifications of the other ``location`` attributes, the child entity's ``method`` attribute must match that of the parent entity exactly.
-* **Name**: string: The name of the targeted API entity. It is a valid and required field for the API entity types of ``AUTHORIZER``, ``MODEL``, ``PATH_PARAMETER``, ``QUERY_PARAMETER``, ``REQUEST_HEADER``, ``REQUEST_BODY`` and ``RESPONSE_HEADER``. It is an invalid field for any other entity type.
-* **Path**: string: The URL path of the target. It is a valid field for the API entity types of ``RESOURCE``, ``METHOD``, ``PATH_PARAMETER``, ``QUERY_PARAMETER``, ``REQUEST_HEADER``, ``REQUEST_BODY``, ``RESPONSE``, ``RESPONSE_HEADER``, and ``RESPONSE_BODY``. The default value is ``/`` for the root resource. When an applicable child entity inherits the content of another entity of the same type with more general specifications of the other ``location`` attributes, the child entity's ``path`` attribute must match that of the parent entity as a prefix.
-* **StatusCode**: string: The HTTP status code of a response. It is a valid field for the API entity types of ``RESPONSE``, ``RESPONSE_HEADER``, and ``RESPONSE_BODY``. The default value is ``*`` for any status code. When an applicable child entity inherits the content of an entity of the same type with more general specifications of the other ``location`` attributes, the child entity's ``statusCode`` attribute must match that of the parent entity exactly.
-* **Type**: string: The type of API entity to which the documentation content applies. Valid values are ``API``, ``AUTHORIZER``, ``MODEL``, ``RESOURCE``, ``METHOD``, ``PATH_PARAMETER``, ``QUERY_PARAMETER``, ``REQUEST_HEADER``, ``REQUEST_BODY``, ``RESPONSE``, ``RESPONSE_HEADER``, and ``RESPONSE_BODY``. Content inheritance does not apply to any entity of the ``API``, ``AUTHORIZER``, ``METHOD``, ``MODEL``, ``REQUEST_BODY``, or ``RESOURCE`` type.
 
 ## AWS.ApiGateway/DocumentationVersionProperties
 ### Properties
@@ -291,20 +217,6 @@
 * **SecurityPolicy**: string
 * **Tags**: [Tag](#tag)[]
 
-## EndpointConfiguration
-### Properties
-* **Types**: string[]
-
-## MutualTlsAuthentication
-### Properties
-* **TruststoreUri**: string
-* **TruststoreVersion**: string
-
-## Tag
-### Properties
-* **Key**: string
-* **Value**: string
-
 ## AWS.ApiGateway/MethodProperties
 ### Properties
 * **ApiKeyRequired**: bool: A boolean flag specifying whether a valid ApiKey is required to invoke this method.
@@ -321,65 +233,6 @@
 * **RequestValidatorId**: string: The identifier of a RequestValidator for request validation.
 * **ResourceId**: string (Required, Identifier): The Resource identifier for the MethodResponse resource.
 * **RestApiId**: string (Required, Identifier): The string identifier of the associated RestApi.
-
-## Integration
-### Properties
-* **CacheKeyParameters**: string[]: A list of request parameters whose values API Gateway caches. To be valid values for ``cacheKeyParameters``, these parameters must also be specified for Method ``requestParameters``.
-* **CacheNamespace**: string: Specifies a group of related cached parameters. By default, API Gateway uses the resource ID as the ``cacheNamespace``. You can specify the same ``cacheNamespace`` across resources to return the same cached data for requests to different resources.
-* **ConnectionId**: string: The ID of the VpcLink used for the integration when ``connectionType=VPC_LINK`` and undefined, otherwise.
-* **ConnectionType**: string: The type of the network connection to the integration endpoint. The valid value is ``INTERNET`` for connections through the public routable internet or ``VPC_LINK`` for private connections between API Gateway and a network load balancer in a VPC. The default value is ``INTERNET``.
-* **ContentHandling**: string: Specifies how to handle request payload content type conversions. Supported values are ``CONVERT_TO_BINARY`` and ``CONVERT_TO_TEXT``, with the following behaviors:
- If this property is not defined, the request payload will be passed through from the method request to integration request without modification, provided that the ``passthroughBehavior`` is configured to support payload pass-through.
-* **Credentials**: string: Specifies the credentials required for the integration, if any. For AWS integrations, three options are available. To specify an IAM Role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To require that the caller's identity be passed through from the request, specify the string ``arn:aws:iam::\*:user/\*``. To use resource-based permissions on supported AWS services, specify null.
-* **IntegrationHttpMethod**: string: Specifies the integration's HTTP method type. For the Type property, if you specify ``MOCK``, this property is optional. For Lambda integrations, you must set the integration method to ``POST``. For all other types, you must specify this property.
-* **IntegrationResponses**: [IntegrationResponse](#integrationresponse)[]: Specifies the integration's responses.
-* **PassthroughBehavior**: string: Specifies how the method request body of an unmapped content type will be passed through the integration request to the back end without transformation. A content type is unmapped if no mapping template is defined in the integration or the content type does not match any of the mapped content types, as specified in ``requestTemplates``. The valid value is one of the following: ``WHEN_NO_MATCH``: passes the method request body through the integration request to the back end without transformation when the method request content type does not match any content type associated with the mapping templates defined in the integration request. ``WHEN_NO_TEMPLATES``: passes the method request body through the integration request to the back end without transformation when no mapping template is defined in the integration request. If a template is defined when this option is selected, the method request of an unmapped content-type will be rejected with an HTTP 415 Unsupported Media Type response. ``NEVER``: rejects the method request with an HTTP 415 Unsupported Media Type response when either the method request content type does not match any content type associated with the mapping templates defined in the integration request or no mapping template is defined in the integration request.
-* **RequestParameters**: [Method_RequestParameters](#methodrequestparameters): A key-value map specifying request parameters that are passed from the method request to the back end. The key is an integration request parameter name and the associated value is a method request parameter value or static value that must be enclosed within single quotes and pre-encoded as required by the back end. The method request parameter value must match the pattern of ``method.request.{location}.{name}``, where ``location`` is ``querystring``, ``path``, or ``header`` and ``name`` must be a valid and unique method request parameter name.
-* **RequestTemplates**: [Method_RequestTemplates](#methodrequesttemplates): Represents a map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client. The content type value is the key in this map, and the template (as a String) is the value.
-* **TimeoutInMillis**: int: Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000 milliseconds or 29 seconds.
-* **Type**: string (Required): Specifies an API method integration type. The valid value is one of the following:
- For the HTTP and HTTP proxy integrations, each integration can specify a protocol (``http/https``), port and path. Standard 80 and 443 ports are supported as well as custom ports above 1024. An HTTP or HTTP proxy integration with a ``connectionType`` of ``VPC_LINK`` is referred to as a private integration and uses a VpcLink to connect API Gateway to a network load balancer of a VPC.
-* **Uri**: string: Specifies Uniform Resource Identifier (URI) of the integration endpoint.
- For ``HTTP`` or ``HTTP_PROXY`` integrations, the URI must be a fully formed, encoded HTTP(S) URL according to the RFC-3986 specification for standard integrations. If ``connectionType`` is ``VPC_LINK`` specify the Network Load Balancer DNS name. For ``AWS`` or ``AWS_PROXY`` integrations, the URI is of the form ``arn:aws:apigateway:{region}:{subdomain.service|service}:path|action/{service_api}``. Here, {Region} is the API Gateway region (e.g., us-east-1); {service} is the name of the integrated AWS service (e.g., s3); and {subdomain} is a designated subdomain supported by certain AWS service for fast host-name lookup. action can be used for an AWS service action-based API, using an Action={name}&{p1}={v1}&p2={v2}... query string. The ensuing {service_api} refers to a supported action {name} plus any required input parameters. Alternatively, path can be used for an AWS service path-based API. The ensuing service_api refers to the path to an AWS service resource, including the region of the integrated AWS service, if applicable. For example, for integration with the S3 API of GetObject, the uri can be either ``arn:aws:apigateway:us-west-2:s3:action/GetObject&Bucket={bucket}&Key={key}`` or ``arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}``
-
-## IntegrationResponse
-### Properties
-* **ContentHandling**: string: Specifies how to handle response payload content type conversions. Supported values are ``CONVERT_TO_BINARY`` and ``CONVERT_TO_TEXT``, with the following behaviors:
- If this property is not defined, the response payload will be passed through from the integration response to the method response without modification.
-* **ResponseParameters**: [Method_ResponseParameters](#methodresponseparameters): A key-value map specifying response parameters that are passed to the method response from the back end. The key is a method response header parameter name and the mapped value is an integration response header value, a static value enclosed within a pair of single quotes, or a JSON expression from the integration response body. The mapping key must match the pattern of ``method.response.header.{name}``, where ``name`` is a valid and unique header name. The mapped non-static value must match the pattern of ``integration.response.header.{name}`` or ``integration.response.body.{JSON-expression}``, where ``name`` is a valid and unique response header name and ``JSON-expression`` is a valid JSON expression without the ``$`` prefix.
-* **ResponseTemplates**: [Method_ResponseTemplates](#methodresponsetemplates): Specifies the templates used to transform the integration response body. Response templates are represented as a key/value map, with a content-type as the key and a template as the value.
-* **SelectionPattern**: string: Specifies the regular expression (regex) pattern used to choose an integration response based on the response from the back end. For example, if the success response returns nothing and the error response returns some string, you could use the ``.+`` regex to match error response. However, make sure that the error response does not contain any newline (``\n``) character in such cases. If the back end is an LAMlong function, the LAMlong function error header is matched. For all other HTTP and AWS back ends, the HTTP status code is matched.
-* **StatusCode**: string (Required): Specifies the status code that is used to map the integration response to an existing MethodResponse.
-
-## Method_ResponseParameters
-### Properties
-
-## Method_ResponseTemplates
-### Properties
-
-## Method_RequestParameters
-### Properties
-
-## Method_RequestTemplates
-### Properties
-
-## MethodResponse
-### Properties
-* **ResponseModels**: [Method_ResponseModels](#methodresponsemodels): Specifies the Model resources used for the response's content-type. Response models are represented as a key/value map, with a content-type as the key and a Model name as the value.
-* **ResponseParameters**: [Method_ResponseParameters](#methodresponseparameters): A key-value map specifying required or optional response parameters that API Gateway can send back to the caller. A key defines a method response header and the value specifies whether the associated method response header is required or not. The expression of the key must match the pattern ``method.response.header.{name}``, where ``name`` is a valid and unique header name. API Gateway passes certain integration response data to the method response headers specified here according to the mapping you prescribe in the API's IntegrationResponse. The integration response data that can be mapped include an integration response header expressed in ``integration.response.header.{name}``, a static value enclosed within a pair of single quotes (e.g., ``'application/json'``), or a JSON expression from the back-end response payload in the form of ``integration.response.body.{JSON-expression}``, where ``JSON-expression`` is a valid JSON expression without the ``$`` prefix.)
-* **StatusCode**: string (Required): The method response's status code.
-
-## Method_ResponseModels
-### Properties
-
-## Method_ResponseParameters
-### Properties
-
-## Method_RequestModels
-### Properties
-
-## Method_RequestParameters
-### Properties
 
 ## AWS.ApiGateway/ModelProperties
 ### Properties
@@ -430,23 +283,6 @@
 * **RootResourceId**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]: The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with ``aws:``. The tag value can be up to 256 characters.
 
-## S3Location
-### Properties
-* **Bucket**: string: The name of the S3 bucket where the OpenAPI file is stored.
-* **ETag**: string: The Amazon S3 ETag (a file checksum) of the OpenAPI file. If you don't specify a value, API Gateway skips ETag validation of your OpenAPI file.
-* **Key**: string: The file name of the OpenAPI file (Amazon S3 object name).
-* **Version**: string: For versioning-enabled buckets, a specific version of the OpenAPI file.
-
-## EndpointConfiguration
-### Properties
-* **Types**: string[]: A list of endpoint types of an API (RestApi) or its custom domain name (DomainName). For an edge-optimized API and its custom domain name, the endpoint type is ``"EDGE"``. For a regional API and its custom domain name, the endpoint type is ``REGIONAL``. For a private API, the endpoint type is ``PRIVATE``.
-* **VpcEndpointIds**: string[]: A list of VpcEndpointIds of an API (RestApi) against which to create Route53 ALIASes. It is only supported for ``PRIVATE`` endpoint type.
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.ApiGateway/StageProperties
 ### Properties
 * **AccessLogSetting**: [AccessLogSetting](#accesslogsetting): Access log settings, including the access log format and access log destination ARN.
@@ -464,10 +300,29 @@
 * **TracingEnabled**: bool: Specifies whether active tracing with X-ray is enabled for the Stage.
 * **Variables**: [Stage_Variables](#stagevariables): A map (string-to-string map) that defines the stage variables, where the variable name is the key and the variable value is the value. Variable names are limited to alphanumeric characters. Values must match the following regular expression: ``[A-Za-z0-9-._~:/?#&=,]+``.
 
-## AccessLogSetting
+## AWS.ApiGateway/UsagePlanProperties
 ### Properties
-* **DestinationArn**: string: The Amazon Resource Name (ARN) of the CloudWatch Logs log group or Kinesis Data Firehose delivery stream to receive access logs. If you specify a Kinesis Data Firehose delivery stream, the stream name must begin with ``amazon-apigateway-``. This parameter is required to enable access logging.
-* **Format**: string: A single line format of the access logs of data, as specified by selected [$context variables](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html#context-variable-reference). The format must include at least ``$context.requestId``. This parameter is required to enable access logging.
+* **ApiStages**: [ApiStage](#apistage)[]: The associated API stages of a usage plan.
+* **Description**: string: The description of a usage plan.
+* **Id**: string (ReadOnly, Identifier)
+* **Quota**: [QuotaSettings](#quotasettings): The target maximum number of permitted requests per a given unit time interval.
+* **Tags**: [Tag](#tag)[]: The collection of tags. Each tag element is associated with a given resource.
+* **Throttle**: [ThrottleSettings](#throttlesettings): A map containing method level throttling information for API stage in a usage plan.
+* **UsagePlanName**: string: The name of a usage plan.
+
+## AWS.ApiGateway/VpcLinkProperties
+### Properties
+* **Description**: string: A description of the VPC link.
+* **Name**: string (Required): A name for the VPC link.
+* **Tags**: [Tag](#tag)[]: An array of arbitrary tags (key-value pairs) to associate with the stage.
+* **TargetArns**: string[] (Required): The ARN of network load balancer of the VPC targeted by the VPC link. The network load balancer must be owned by the same AWS account of the API owner.
+* **VpcLinkId**: string (ReadOnly, Identifier): The ID of the instance that backs VPC link.
+
+## CanarySetting
+### Properties
+* **PercentTraffic**: int: The percent (0-100) of traffic diverted to a canary deployment.
+* **StageVariableOverrides**: [Deployment_StageVariableOverrides](#deploymentstagevariableoverrides): Stage variables overridden for a canary release deployment, including new stage variables introduced in the canary. These stage variables are represented as a string-to-string map between stage variable names and their values.
+* **UseStageCache**: bool: A Boolean flag to indicate whether the canary deployment uses the stage cache or not.
 
 ## CanarySetting
 ### Properties
@@ -476,8 +331,109 @@
 * **StageVariableOverrides**: [Stage_StageVariableOverrides](#stagestagevariableoverrides): Stage variables overridden for a canary release deployment, including new stage variables introduced in the canary. These stage variables are represented as a string-to-string map between stage variable names and their values.
 * **UseStageCache**: bool: A Boolean flag to indicate whether the canary deployment uses the stage cache or not.
 
-## Stage_StageVariableOverrides
+## Deployment_StageVariableOverrides
 ### Properties
+
+## Deployment_StageVariableOverrides
+### Properties
+
+## Deployment_Variables
+### Properties
+
+## DeploymentCanarySettings
+### Properties
+* **PercentTraffic**: int: The percentage (0.0-100.0) of traffic routed to the canary deployment.
+* **StageVariableOverrides**: [Deployment_StageVariableOverrides](#deploymentstagevariableoverrides): A stage variable overrides used for the canary release deployment. They can override existing stage variables or add new stage variables for the canary release deployment. These stage variables are represented as a string-to-string map between stage variable names and their values.
+* **UseStageCache**: bool: A Boolean flag to indicate whether the canary release deployment uses the stage cache or not.
+
+## EndpointConfiguration
+### Properties
+* **Types**: string[]
+
+## EndpointConfiguration
+### Properties
+* **Types**: string[]: A list of endpoint types of an API (RestApi) or its custom domain name (DomainName). For an edge-optimized API and its custom domain name, the endpoint type is ``"EDGE"``. For a regional API and its custom domain name, the endpoint type is ``REGIONAL``. For a private API, the endpoint type is ``PRIVATE``.
+* **VpcEndpointIds**: string[]: A list of VpcEndpointIds of an API (RestApi) against which to create Route53 ALIASes. It is only supported for ``PRIVATE`` endpoint type.
+
+## Integration
+### Properties
+* **CacheKeyParameters**: string[]: A list of request parameters whose values API Gateway caches. To be valid values for ``cacheKeyParameters``, these parameters must also be specified for Method ``requestParameters``.
+* **CacheNamespace**: string: Specifies a group of related cached parameters. By default, API Gateway uses the resource ID as the ``cacheNamespace``. You can specify the same ``cacheNamespace`` across resources to return the same cached data for requests to different resources.
+* **ConnectionId**: string: The ID of the VpcLink used for the integration when ``connectionType=VPC_LINK`` and undefined, otherwise.
+* **ConnectionType**: string: The type of the network connection to the integration endpoint. The valid value is ``INTERNET`` for connections through the public routable internet or ``VPC_LINK`` for private connections between API Gateway and a network load balancer in a VPC. The default value is ``INTERNET``.
+* **ContentHandling**: string: Specifies how to handle request payload content type conversions. Supported values are ``CONVERT_TO_BINARY`` and ``CONVERT_TO_TEXT``, with the following behaviors:
+ If this property is not defined, the request payload will be passed through from the method request to integration request without modification, provided that the ``passthroughBehavior`` is configured to support payload pass-through.
+* **Credentials**: string: Specifies the credentials required for the integration, if any. For AWS integrations, three options are available. To specify an IAM Role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To require that the caller's identity be passed through from the request, specify the string ``arn:aws:iam::\*:user/\*``. To use resource-based permissions on supported AWS services, specify null.
+* **IntegrationHttpMethod**: string: Specifies the integration's HTTP method type. For the Type property, if you specify ``MOCK``, this property is optional. For Lambda integrations, you must set the integration method to ``POST``. For all other types, you must specify this property.
+* **IntegrationResponses**: [IntegrationResponse](#integrationresponse)[]: Specifies the integration's responses.
+* **PassthroughBehavior**: string: Specifies how the method request body of an unmapped content type will be passed through the integration request to the back end without transformation. A content type is unmapped if no mapping template is defined in the integration or the content type does not match any of the mapped content types, as specified in ``requestTemplates``. The valid value is one of the following: ``WHEN_NO_MATCH``: passes the method request body through the integration request to the back end without transformation when the method request content type does not match any content type associated with the mapping templates defined in the integration request. ``WHEN_NO_TEMPLATES``: passes the method request body through the integration request to the back end without transformation when no mapping template is defined in the integration request. If a template is defined when this option is selected, the method request of an unmapped content-type will be rejected with an HTTP 415 Unsupported Media Type response. ``NEVER``: rejects the method request with an HTTP 415 Unsupported Media Type response when either the method request content type does not match any content type associated with the mapping templates defined in the integration request or no mapping template is defined in the integration request.
+* **RequestParameters**: [Method_RequestParameters](#methodrequestparameters): A key-value map specifying request parameters that are passed from the method request to the back end. The key is an integration request parameter name and the associated value is a method request parameter value or static value that must be enclosed within single quotes and pre-encoded as required by the back end. The method request parameter value must match the pattern of ``method.request.{location}.{name}``, where ``location`` is ``querystring``, ``path``, or ``header`` and ``name`` must be a valid and unique method request parameter name.
+* **RequestTemplates**: [Method_RequestTemplates](#methodrequesttemplates): Represents a map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client. The content type value is the key in this map, and the template (as a String) is the value.
+* **TimeoutInMillis**: int: Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000 milliseconds or 29 seconds.
+* **Type**: string (Required): Specifies an API method integration type. The valid value is one of the following:
+ For the HTTP and HTTP proxy integrations, each integration can specify a protocol (``http/https``), port and path. Standard 80 and 443 ports are supported as well as custom ports above 1024. An HTTP or HTTP proxy integration with a ``connectionType`` of ``VPC_LINK`` is referred to as a private integration and uses a VpcLink to connect API Gateway to a network load balancer of a VPC.
+* **Uri**: string: Specifies Uniform Resource Identifier (URI) of the integration endpoint.
+ For ``HTTP`` or ``HTTP_PROXY`` integrations, the URI must be a fully formed, encoded HTTP(S) URL according to the RFC-3986 specification for standard integrations. If ``connectionType`` is ``VPC_LINK`` specify the Network Load Balancer DNS name. For ``AWS`` or ``AWS_PROXY`` integrations, the URI is of the form ``arn:aws:apigateway:{region}:{subdomain.service|service}:path|action/{service_api}``. Here, {Region} is the API Gateway region (e.g., us-east-1); {service} is the name of the integrated AWS service (e.g., s3); and {subdomain} is a designated subdomain supported by certain AWS service for fast host-name lookup. action can be used for an AWS service action-based API, using an Action={name}&{p1}={v1}&p2={v2}... query string. The ensuing {service_api} refers to a supported action {name} plus any required input parameters. Alternatively, path can be used for an AWS service path-based API. The ensuing service_api refers to the path to an AWS service resource, including the region of the integrated AWS service, if applicable. For example, for integration with the S3 API of GetObject, the uri can be either ``arn:aws:apigateway:us-west-2:s3:action/GetObject&Bucket={bucket}&Key={key}`` or ``arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}``
+
+## IntegrationResponse
+### Properties
+* **ContentHandling**: string: Specifies how to handle response payload content type conversions. Supported values are ``CONVERT_TO_BINARY`` and ``CONVERT_TO_TEXT``, with the following behaviors:
+ If this property is not defined, the response payload will be passed through from the integration response to the method response without modification.
+* **ResponseParameters**: [Method_ResponseParameters](#methodresponseparameters): A key-value map specifying response parameters that are passed to the method response from the back end. The key is a method response header parameter name and the mapped value is an integration response header value, a static value enclosed within a pair of single quotes, or a JSON expression from the integration response body. The mapping key must match the pattern of ``method.response.header.{name}``, where ``name`` is a valid and unique header name. The mapped non-static value must match the pattern of ``integration.response.header.{name}`` or ``integration.response.body.{JSON-expression}``, where ``name`` is a valid and unique response header name and ``JSON-expression`` is a valid JSON expression without the ``$`` prefix.
+* **ResponseTemplates**: [Method_ResponseTemplates](#methodresponsetemplates): Specifies the templates used to transform the integration response body. Response templates are represented as a key/value map, with a content-type as the key and a template as the value.
+* **SelectionPattern**: string: Specifies the regular expression (regex) pattern used to choose an integration response based on the response from the back end. For example, if the success response returns nothing and the error response returns some string, you could use the ``.+`` regex to match error response. However, make sure that the error response does not contain any newline (``\n``) character in such cases. If the back end is an LAMlong function, the LAMlong function error header is matched. For all other HTTP and AWS back ends, the HTTP status code is matched.
+* **StatusCode**: string (Required): Specifies the status code that is used to map the integration response to an existing MethodResponse.
+
+## Location
+### Properties
+* **Method**: string: The HTTP verb of a method. It is a valid field for the API entity types of ``METHOD``, ``PATH_PARAMETER``, ``QUERY_PARAMETER``, ``REQUEST_HEADER``, ``REQUEST_BODY``, ``RESPONSE``, ``RESPONSE_HEADER``, and ``RESPONSE_BODY``. The default value is ``*`` for any method. When an applicable child entity inherits the content of an entity of the same type with more general specifications of the other ``location`` attributes, the child entity's ``method`` attribute must match that of the parent entity exactly.
+* **Name**: string: The name of the targeted API entity. It is a valid and required field for the API entity types of ``AUTHORIZER``, ``MODEL``, ``PATH_PARAMETER``, ``QUERY_PARAMETER``, ``REQUEST_HEADER``, ``REQUEST_BODY`` and ``RESPONSE_HEADER``. It is an invalid field for any other entity type.
+* **Path**: string: The URL path of the target. It is a valid field for the API entity types of ``RESOURCE``, ``METHOD``, ``PATH_PARAMETER``, ``QUERY_PARAMETER``, ``REQUEST_HEADER``, ``REQUEST_BODY``, ``RESPONSE``, ``RESPONSE_HEADER``, and ``RESPONSE_BODY``. The default value is ``/`` for the root resource. When an applicable child entity inherits the content of another entity of the same type with more general specifications of the other ``location`` attributes, the child entity's ``path`` attribute must match that of the parent entity as a prefix.
+* **StatusCode**: string: The HTTP status code of a response. It is a valid field for the API entity types of ``RESPONSE``, ``RESPONSE_HEADER``, and ``RESPONSE_BODY``. The default value is ``*`` for any status code. When an applicable child entity inherits the content of an entity of the same type with more general specifications of the other ``location`` attributes, the child entity's ``statusCode`` attribute must match that of the parent entity exactly.
+* **Type**: string: The type of API entity to which the documentation content applies. Valid values are ``API``, ``AUTHORIZER``, ``MODEL``, ``RESOURCE``, ``METHOD``, ``PATH_PARAMETER``, ``QUERY_PARAMETER``, ``REQUEST_HEADER``, ``REQUEST_BODY``, ``RESPONSE``, ``RESPONSE_HEADER``, and ``RESPONSE_BODY``. Content inheritance does not apply to any entity of the ``API``, ``AUTHORIZER``, ``METHOD``, ``MODEL``, ``REQUEST_BODY``, or ``RESOURCE`` type.
+
+## Method_RequestModels
+### Properties
+
+## Method_RequestParameters
+### Properties
+
+## Method_RequestParameters
+### Properties
+
+## Method_RequestTemplates
+### Properties
+
+## Method_ResponseModels
+### Properties
+
+## Method_ResponseParameters
+### Properties
+
+## Method_ResponseParameters
+### Properties
+
+## Method_ResponseTemplates
+### Properties
+
+## MethodResponse
+### Properties
+* **ResponseModels**: [Method_ResponseModels](#methodresponsemodels): Specifies the Model resources used for the response's content-type. Response models are represented as a key/value map, with a content-type as the key and a Model name as the value.
+* **ResponseParameters**: [Method_ResponseParameters](#methodresponseparameters): A key-value map specifying required or optional response parameters that API Gateway can send back to the caller. A key defines a method response header and the value specifies whether the associated method response header is required or not. The expression of the key must match the pattern ``method.response.header.{name}``, where ``name`` is a valid and unique header name. API Gateway passes certain integration response data to the method response headers specified here according to the mapping you prescribe in the API's IntegrationResponse. The integration response data that can be mapped include an integration response header expressed in ``integration.response.header.{name}``, a static value enclosed within a pair of single quotes (e.g., ``'application/json'``), or a JSON expression from the back-end response payload in the form of ``integration.response.body.{JSON-expression}``, where ``JSON-expression`` is a valid JSON expression without the ``$`` prefix.)
+* **StatusCode**: string (Required): The method response's status code.
+
+## MethodSetting
+### Properties
+* **CacheDataEncrypted**: bool: Specifies whether the cached responses are encrypted.
+* **CacheTtlInSeconds**: int: Specifies the time to live (TTL), in seconds, for cached responses. The higher the TTL, the longer the response will be cached.
+* **CachingEnabled**: bool: Specifies whether responses should be cached and returned for requests. A cache cluster must be enabled on the stage for responses to be cached.
+* **DataTraceEnabled**: bool: Specifies whether data trace logging is enabled for this method, which affects the log entries pushed to Amazon CloudWatch Logs. This can be useful to troubleshoot APIs, but can result in logging sensitive data. We recommend that you don't enable this option for production APIs.
+* **HttpMethod**: string: The HTTP method.
+* **LoggingLevel**: string: Specifies the logging level for this method, which affects the log entries pushed to Amazon CloudWatch Logs. Valid values are ``OFF``, ``ERROR``, and ``INFO``. Choose ``ERROR`` to write only error-level entries to CloudWatch Logs, or choose ``INFO`` to include all ``ERROR`` events as well as extra informational events.
+* **MetricsEnabled**: bool: Specifies whether Amazon CloudWatch metrics are enabled for this method.
+* **ResourcePath**: string: The resource path for this method. Forward slashes (``/``) are encoded as ``~1`` and the initial slash must include a forward slash. For example, the path value ``/resource/subresource`` must be encoded as ``/~1resource~1subresource``. To specify the root path, use only a slash (``/``).
+* **ThrottlingBurstLimit**: int: Specifies the throttling burst limit.
+* **ThrottlingRateLimit**: int: Specifies the throttling rate limit.
 
 ## MethodSetting
 ### Properties
@@ -492,32 +448,10 @@
 * **ThrottlingBurstLimit**: int: Specifies the throttling burst limit.
 * **ThrottlingRateLimit**: int: Specifies the throttling rate limit.
 
-## Tag
+## MutualTlsAuthentication
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:.
-
-## Stage_Variables
-### Properties
-
-## AWS.ApiGateway/UsagePlanProperties
-### Properties
-* **ApiStages**: [ApiStage](#apistage)[]: The associated API stages of a usage plan.
-* **Description**: string: The description of a usage plan.
-* **Id**: string (ReadOnly, Identifier)
-* **Quota**: [QuotaSettings](#quotasettings): The target maximum number of permitted requests per a given unit time interval.
-* **Tags**: [Tag](#tag)[]: The collection of tags. Each tag element is associated with a given resource.
-* **Throttle**: [ThrottleSettings](#throttlesettings): A map containing method level throttling information for API stage in a usage plan.
-* **UsagePlanName**: string: The name of a usage plan.
-
-## ApiStage
-### Properties
-* **ApiId**: string: API Id of the associated API stage in a usage plan.
-* **Stage**: string: API stage name of the associated API stage in a usage plan.
-* **Throttle**: [UsagePlan_Throttle](#usageplanthrottle): Map containing method level throttling information for API stage in a usage plan.
-
-## UsagePlan_Throttle
-### Properties
+* **TruststoreUri**: string
+* **TruststoreVersion**: string
 
 ## QuotaSettings
 ### Properties
@@ -525,26 +459,87 @@
 * **Offset**: int: The number of requests subtracted from the given limit in the initial time period.
 * **Period**: string: The time period in which the limit applies. Valid values are "DAY", "WEEK" or "MONTH".
 
+## S3Location
+### Properties
+* **Bucket**: string: The name of the S3 bucket where the OpenAPI file is stored.
+* **ETag**: string: The Amazon S3 ETag (a file checksum) of the OpenAPI file. If you don't specify a value, API Gateway skips ETag validation of your OpenAPI file.
+* **Key**: string: The file name of the OpenAPI file (Amazon S3 object name).
+* **Version**: string: For versioning-enabled buckets, a specific version of the OpenAPI file.
+
+## Stage_StageVariableOverrides
+### Properties
+
+## Stage_Variables
+### Properties
+
+## StageDescription
+### Properties
+* **AccessLogSetting**: [AccessLogSetting](#accesslogsetting): Specifies settings for logging access in this stage.
+* **CacheClusterEnabled**: bool: Specifies whether a cache cluster is enabled for the stage.
+* **CacheClusterSize**: string: The size of the stage's cache cluster. For more information, see [cacheClusterSize](https://docs.aws.amazon.com/apigateway/latest/api/API_CreateStage.html#apigw-CreateStage-request-cacheClusterSize) in the *API Gateway API Reference*.
+* **CacheDataEncrypted**: bool: Indicates whether the cached responses are encrypted.
+* **CacheTtlInSeconds**: int: The time-to-live (TTL) period, in seconds, that specifies how long API Gateway caches responses.
+* **CachingEnabled**: bool: Indicates whether responses are cached and returned for requests. You must enable a cache cluster on the stage to cache responses. For more information, see [Enable API Gateway Caching in a Stage to Enhance API Performance](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html) in the *API Gateway Developer Guide*.
+* **CanarySetting**: [CanarySetting](#canarysetting): Specifies settings for the canary deployment in this stage.
+* **ClientCertificateId**: string: The identifier of the client certificate that API Gateway uses to call your integration endpoints in the stage.
+* **DataTraceEnabled**: bool: Indicates whether data trace logging is enabled for methods in the stage. API Gateway pushes these logs to Amazon CloudWatch Logs.
+* **Description**: string: A description of the purpose of the stage.
+* **DocumentationVersion**: string: The version identifier of the API documentation snapshot.
+* **LoggingLevel**: string: The logging level for this method. For valid values, see the ``loggingLevel`` property of the [MethodSetting](https://docs.aws.amazon.com/apigateway/latest/api/API_MethodSetting.html) resource in the *Amazon API Gateway API Reference*.
+* **MethodSettings**: [MethodSetting](#methodsetting)[]: Configures settings for all of the stage's methods.
+* **MetricsEnabled**: bool: Indicates whether Amazon CloudWatch metrics are enabled for methods in the stage.
+* **Tags**: [Tag](#tag)[]: An array of arbitrary tags (key-value pairs) to associate with the stage.
+* **ThrottlingBurstLimit**: int: The target request burst rate limit. This allows more requests through for a period of time than the target rate limit. For more information, see [Manage API Request Throttling](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html) in the *API Gateway Developer Guide*.
+* **ThrottlingRateLimit**: int: The target request steady-state rate limit. For more information, see [Manage API Request Throttling](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html) in the *API Gateway Developer Guide*.
+* **TracingEnabled**: bool: Specifies whether active tracing with X-ray is enabled for this stage.
+ For more information, see [Trace API Gateway API Execution with X-Ray](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-xray.html) in the *API Gateway Developer Guide*.
+* **Variables**: [Deployment_Variables](#deploymentvariables): A map that defines the stage variables. Variable names must consist of alphanumeric characters, and the values must match the following regular expression: ``[A-Za-z0-9-._~:/?#&=,]+``.
+
+## StageKey
+### Properties
+* **RestApiId**: string: The string identifier of the associated RestApi.
+* **StageName**: string: The stage name associated with the stage key.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string
+* **Value**: string
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:.
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## ThrottleSettings
 ### Properties
 * **BurstLimit**: int: The API target request burst rate limit. This allows more requests through for a period of time than the target rate limit.
 * **RateLimit**: int: The API target request rate limit.
 
-## AWS.ApiGateway/VpcLinkProperties
+## UsagePlan_Throttle
 ### Properties
-* **Description**: string: A description of the VPC link.
-* **Name**: string (Required): A name for the VPC link.
-* **Tags**: [Tag](#tag)[]: An array of arbitrary tags (key-value pairs) to associate with the stage.
-* **TargetArns**: string[] (Required): The ARN of network load balancer of the VPC targeted by the VPC link. The network load balancer must be owned by the same AWS account of the API owner.
-* **VpcLinkId**: string (ReadOnly, Identifier): The ID of the instance that backs VPC link.
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 

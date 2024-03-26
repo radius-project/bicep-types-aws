@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTSiteWise-Asset",
   "type": "AWS::IoTSiteWise::Asset",
-  "time": "2024-01-04T16:08:31.081Z",
+  "time": "2024-03-15T20:43:13.465Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -13,6 +13,20 @@
             "description": "The ID of the child asset to be associated.",
             "type": "string"
           },
+          "ExternalId": {
+            "description": "String-friendly customer provided external ID",
+            "maxLength": 128,
+            "minLength": 2,
+            "pattern": "[a-zA-Z0-9_][a-zA-Z_\\-0-9.:]*[a-zA-Z0-9_]+",
+            "type": "string"
+          },
+          "Id": {
+            "description": "Customer provided actual UUID for property",
+            "maxLength": 36,
+            "minLength": 36,
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "type": "string"
+          },
           "LogicalId": {
             "description": "The LogicalID of a hierarchy in the parent asset's model.",
             "maxLength": 256,
@@ -22,7 +36,6 @@
           }
         },
         "required": [
-          "LogicalId",
           "ChildAssetId"
         ],
         "type": "object"
@@ -33,6 +46,20 @@
         "properties": {
           "Alias": {
             "description": "The property alias that identifies the property.",
+            "type": "string"
+          },
+          "ExternalId": {
+            "description": "String-friendly customer provided external ID",
+            "maxLength": 128,
+            "minLength": 2,
+            "pattern": "[a-zA-Z0-9_][a-zA-Z_\\-0-9.:]*[a-zA-Z0-9_]+",
+            "type": "string"
+          },
+          "Id": {
+            "description": "Customer provided actual UUID for property",
+            "maxLength": 36,
+            "minLength": 36,
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
             "type": "string"
           },
           "LogicalId": {
@@ -55,9 +82,6 @@
             "type": "string"
           }
         },
-        "required": [
-          "LogicalId"
-        ],
         "type": "object"
       },
       "Tag": {
@@ -88,6 +112,9 @@
           "iotsitewise:ListAssociatedAssets",
           "iotsitewise:ListTagsForResource",
           "iotsitewise:TagResource",
+          "iotsitewise:ListAssetModelProperties",
+          "iotsitewise:ListAssetProperties",
+          "iotsitewise:ListAssetModelCompositeModels",
           "iotsitewise:UpdateAssetProperty"
         ]
       },
@@ -98,7 +125,11 @@
           "iotsitewise:DescribeAssetModel",
           "iotsitewise:DisassociateAssets",
           "iotsitewise:ListAssociatedAssets",
-          "iotsitewise:ListTagsForResource"
+          "iotsitewise:ListAssetProperties",
+          "iotsitewise:ListTagsForResource",
+          "iotsitewise:ListAssetModelCompositeModels",
+          "iotsitewise:ListAssetModelProperties",
+          "iotsitewise:ListAssetProperties"
         ]
       },
       "list": {
@@ -112,6 +143,9 @@
           "iotsitewise:DescribeAsset",
           "iotsitewise:DescribeAssetModel",
           "iotsitewise:ListAssociatedAssets",
+          "iotsitewise:ListAssetModelProperties",
+          "iotsitewise:ListAssetModelCompositeModels",
+          "iotsitewise:ListAssetProperties",
           "iotsitewise:ListTagsForResource"
         ]
       },
@@ -126,6 +160,9 @@
           "iotsitewise:TagResource",
           "iotsitewise:UpdateAsset",
           "iotsitewise:UpdateAssetProperty",
+          "iotsitewise:ListAssetModelProperties",
+          "iotsitewise:ListAssetProperties",
+          "iotsitewise:ListAssetModelCompositeModels",
           "iotsitewise:UntagResource"
         ]
       }
@@ -142,6 +179,13 @@
         "description": "A description for the asset",
         "type": "string"
       },
+      "AssetExternalId": {
+        "description": "The External ID of the asset",
+        "maxLength": 128,
+        "minLength": 2,
+        "pattern": "[a-zA-Z0-9_][a-zA-Z_\\-0-9.:]*[a-zA-Z0-9_]+",
+        "type": "string"
+      },
       "AssetHierarchies": {
         "insertionOrder": false,
         "items": {
@@ -151,6 +195,9 @@
       },
       "AssetId": {
         "description": "The ID of the asset",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
         "type": "string"
       },
       "AssetModelId": {
@@ -180,7 +227,9 @@
     },
     "readOnlyProperties": [
       "/properties/AssetArn",
-      "/properties/AssetId"
+      "/properties/AssetId",
+      "/properties/AssetProperties/*/Id",
+      "/properties/AssetHierarchies/*/Id"
     ],
     "required": [
       "AssetName",

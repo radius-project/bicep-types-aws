@@ -14,6 +14,9 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ServiceCatalogAppRegistry/AttributeGroupProperties](#awsservicecatalogappregistryattributegroupproperties) (Required): properties of the resource
 
+## AttributeGroup_Attributes
+### Properties
+
 ## AWS.ServiceCatalogAppRegistry/ApplicationProperties
 ### Properties
 * **ApplicationName**: string (ReadOnly): The name of the application. 
@@ -25,9 +28,6 @@
 * **Name**: string (Required): The name of the application. 
 * **Tags**: [Tags](#tags)
 
-## Tags
-### Properties
-
 ## AWS.ServiceCatalogAppRegistry/AttributeGroupProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -37,7 +37,7 @@
 * **Name**: string (Required): The name of the attribute group. 
 * **Tags**: [Tags](#tags)
 
-## AttributeGroup_Attributes
+## Tags
 ### Properties
 
 ## Tags

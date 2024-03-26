@@ -38,23 +38,6 @@
 * **State**: string (ReadOnly): Defines the current state of the discoverer.
 * **Tags**: [TagsEntry](#tagsentry)[]: Tags associated with the resource.
 
-## TagsEntry
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
-## AWS.EventSchemas/RegistryProperties
-### Properties
-* **Description**: string: A description of the registry to be created.
-* **RegistryArn**: string (ReadOnly, Identifier): The ARN of the registry.
-* **RegistryName**: string: The name of the schema registry.
-* **Tags**: [TagsEntry](#tagsentry)[]: Tags associated with the resource.
-
-## TagsEntry
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.EventSchemas/RegistryPolicyProperties
 ### Properties
 * **Id**: string (ReadOnly, Identifier)
@@ -62,8 +45,12 @@
 * **RegistryName**: string (Required)
 * **RevisionId**: string
 
-## RegistryPolicy_Policy
+## AWS.EventSchemas/RegistryProperties
 ### Properties
+* **Description**: string: A description of the registry to be created.
+* **RegistryArn**: string (ReadOnly, Identifier): The ARN of the registry.
+* **RegistryName**: string: The name of the schema registry.
+* **Tags**: [TagsEntry](#tagsentry)[]: Tags associated with the resource.
 
 ## AWS.EventSchemas/SchemaProperties
 ### Properties
@@ -77,6 +64,19 @@
 * **Tags**: [TagsEntry](#tagsentry)[]: Tags associated with the resource.
 * **Type**: string (Required): The type of schema. Valid types include OpenApi3 and JSONSchemaDraft4.
 * **VersionCreatedDate**: string (ReadOnly): The date the schema version was created.
+
+## RegistryPolicy_Policy
+### Properties
+
+## TagsEntry
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## TagsEntry
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## TagsEntry
 ### Properties

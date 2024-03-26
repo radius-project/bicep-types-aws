@@ -40,14 +40,6 @@
 * **Settings**: [DataProvider_Settings](#dataprovidersettings): The property identifies the exact type of settings for the data provider.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## DataProvider_Settings
-### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.DMS/InstanceProfileProperties
 ### Properties
 * **AvailabilityZone**: string: The property describes an availability zone of the instance profile.
@@ -62,11 +54,6 @@
 * **SubnetGroupIdentifier**: string: The property describes a subnet group identifier for the instance profile.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **VpcSecurityGroups**: string[]: The property describes vps security groups for the instance profile.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.DMS/MigrationProjectProperties
 ### Properties
@@ -83,24 +70,6 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TargetDataProviderDescriptors**: [DataProviderDescriptor](#dataproviderdescriptor)[] (WriteOnly): The property describes target data provider descriptors for the migration project.
 * **TransformationRules**: string: The property describes transformation rules for the migration project.
-
-## MigrationProject_SchemaConversionApplicationAttributes
-### Properties
-* **S3BucketPath**: string
-* **S3BucketRoleArn**: string
-
-## DataProviderDescriptor
-### Properties
-* **DataProviderArn**: string
-* **DataProviderIdentifier**: string
-* **DataProviderName**: string
-* **SecretsManagerAccessRoleArn**: string
-* **SecretsManagerSecretId**: string
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, , and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, , and -.
 
 ## AWS.DMS/ReplicationConfigProperties
 ### Properties
@@ -128,6 +97,22 @@
 * **ReplicationSubnetGroupId**: string
 * **VpcSecurityGroupIds**: string[]
 
+## DataProvider_Settings
+### Properties
+
+## DataProviderDescriptor
+### Properties
+* **DataProviderArn**: string
+* **DataProviderIdentifier**: string
+* **DataProviderName**: string
+* **SecretsManagerAccessRoleArn**: string
+* **SecretsManagerSecretId**: string
+
+## MigrationProject_SchemaConversionApplicationAttributes
+### Properties
+* **S3BucketPath**: string
+* **S3BucketRoleArn**: string
+
 ## ReplicationConfig_ReplicationSettings
 ### Properties
 
@@ -136,6 +121,21 @@
 
 ## ReplicationConfig_TableMappings
 ### Properties
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, , and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, , and -.
 
 ## Tag
 ### Properties

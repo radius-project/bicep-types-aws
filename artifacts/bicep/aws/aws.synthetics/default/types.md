@@ -14,6 +14,10 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Synthetics/GroupProperties](#awssyntheticsgroupproperties) (Required): properties of the resource
 
+## ArtifactConfig
+### Properties
+* **S3Encryption**: [S3Encryption](#s3encryption): Encryption configuration for uploading artifacts to S3
+
 ## AWS.Synthetics/CanaryProperties
 ### Properties
 * **ArtifactConfig**: [ArtifactConfig](#artifactconfig): Provide artifact configuration
@@ -34,14 +38,20 @@
 * **VisualReference**: [VisualReference](#visualreference) (WriteOnly): Visual reference configuration for visual testing
 * **VPCConfig**: [VPCConfig](#vpcconfig): Provide VPC Configuration if enabled.
 
-## ArtifactConfig
+## AWS.Synthetics/GroupProperties
 ### Properties
-* **S3Encryption**: [S3Encryption](#s3encryption): Encryption configuration for uploading artifacts to S3
+* **Id**: string (ReadOnly): Id of the group.
+* **Name**: string (Required, Identifier): Name of the group.
+* **ResourceArns**: string[]
+* **Tags**: [Tag](#tag)[]
 
-## S3Encryption
+## BaseScreenshot
 ### Properties
-* **EncryptionMode**: string: Encryption mode for encrypting artifacts when uploading to S3. Valid values: SSE_S3 and SSE_KMS.
-* **KmsKeyArn**: string: KMS key Arn for encrypting artifacts when uploading to S3. You must specify KMS key Arn for SSE_KMS encryption mode only.
+* **IgnoreCoordinates**: string[]: List of coordinates of rectangles to be ignored during visual testing
+* **ScreenshotName**: string (Required): Name of the screenshot to be used as base reference for visual testing
+
+## Canary_EnvironmentVariables
+### Properties
 
 ## Code
 ### Properties
@@ -59,8 +69,10 @@
 * **MemoryInMB**: int: Provide maximum memory available for canary in MB
 * **TimeoutInSeconds**: int: Provide maximum canary timeout per run in seconds
 
-## Canary_EnvironmentVariables
+## S3Encryption
 ### Properties
+* **EncryptionMode**: string: Encryption mode for encrypting artifacts when uploading to S3. Valid values: SSE_S3 and SSE_KMS.
+* **KmsKeyArn**: string: KMS key Arn for encrypting artifacts when uploading to S3. You must specify KMS key Arn for SSE_KMS encryption mode only.
 
 ## Schedule
 ### Properties
@@ -72,31 +84,19 @@
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
 ## VisualReference
 ### Properties
 * **BaseCanaryRunId**: string (Required): Canary run id to be used as base reference for visual testing
 * **BaseScreenshots**: [BaseScreenshot](#basescreenshot)[]: List of screenshots used as base reference for visual testing
-
-## BaseScreenshot
-### Properties
-* **IgnoreCoordinates**: string[]: List of coordinates of rectangles to be ignored during visual testing
-* **ScreenshotName**: string (Required): Name of the screenshot to be used as base reference for visual testing
 
 ## VPCConfig
 ### Properties
 * **SecurityGroupIds**: string[] (Required)
 * **SubnetIds**: string[] (Required)
 * **VpcId**: string
-
-## AWS.Synthetics/GroupProperties
-### Properties
-* **Id**: string (ReadOnly): Id of the group.
-* **Name**: string (Required, Identifier): Name of the group.
-* **ResourceArns**: string[]
-* **Tags**: [Tag](#tag)[]
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 

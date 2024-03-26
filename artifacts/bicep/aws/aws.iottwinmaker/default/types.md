@@ -47,29 +47,6 @@
 * **UpdateDateTime**: string (ReadOnly): The last date and time when the component type was updated.
 * **WorkspaceId**: string (Required, Identifier): The ID of the workspace that contains the component type.
 
-## ComponentType_CompositeComponentTypes
-### Properties
-
-## ComponentType_Functions
-### Properties
-
-## ComponentType_PropertyDefinitions
-### Properties
-
-## ComponentType_PropertyGroups
-### Properties
-
-## Status
-### Properties
-* **Error**: [ComponentType_Error](#componenttypeerror)
-* **State**: string
-
-## ComponentType_Error
-### Properties
-
-## ComponentType_Tags
-### Properties
-
 ## AWS.IoTTwinMaker/EntityProperties
 ### Properties
 * **Arn**: string (ReadOnly): The ARN of the entity.
@@ -86,23 +63,6 @@
 * **UpdateDateTime**: string (ReadOnly): The last date and time when the entity was updated.
 * **WorkspaceId**: string (Required, Identifier): The ID of the workspace.
 
-## Entity_Components
-### Properties
-
-## Entity_CompositeComponents
-### Properties
-
-## Status
-### Properties
-* **Error**: [Entity_Error](#entityerror)
-* **State**: string
-
-## Entity_Error
-### Properties
-
-## Entity_Tags
-### Properties
-
 ## AWS.IoTTwinMaker/SceneProperties
 ### Properties
 * **Arn**: string (ReadOnly): The ARN of the scene.
@@ -117,15 +77,6 @@
 * **UpdateDateTime**: string (ReadOnly): The date and time of the current update.
 * **WorkspaceId**: string (Required, Identifier): The ID of the scene.
 
-## Scene_GeneratedSceneMetadata
-### Properties
-
-## Scene_SceneMetadata
-### Properties
-
-## Scene_Tags
-### Properties
-
 ## AWS.IoTTwinMaker/WorkspaceProperties
 ### Properties
 * **Arn**: string (ReadOnly): The ARN of the workspace.
@@ -136,6 +87,55 @@
 * **Tags**: [Workspace_Tags](#workspacetags): A map of key-value pairs to associate with a resource.
 * **UpdateDateTime**: string (ReadOnly): The date and time of the current update.
 * **WorkspaceId**: string (Required, Identifier): The ID of the workspace.
+
+## ComponentType_CompositeComponentTypes
+### Properties
+
+## ComponentType_Error
+### Properties
+
+## ComponentType_Functions
+### Properties
+
+## ComponentType_PropertyDefinitions
+### Properties
+
+## ComponentType_PropertyGroups
+### Properties
+
+## ComponentType_Tags
+### Properties
+
+## Entity_Components
+### Properties
+
+## Entity_CompositeComponents
+### Properties
+
+## Entity_Error
+### Properties
+
+## Entity_Tags
+### Properties
+
+## Scene_GeneratedSceneMetadata
+### Properties
+
+## Scene_SceneMetadata
+### Properties
+
+## Scene_Tags
+### Properties
+
+## Status
+### Properties
+* **Error**: [ComponentType_Error](#componenttypeerror)
+* **State**: string
+
+## Status
+### Properties
+* **Error**: [Entity_Error](#entityerror)
+* **State**: string
 
 ## Workspace_Tags
 ### Properties

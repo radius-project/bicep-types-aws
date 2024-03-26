@@ -51,42 +51,6 @@
 * **StatusMessage**: string (ReadOnly): FirewallDomainListAssociationStatus
 * **Tags**: [Tag](#tag)[]: Tags
 
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
-## AWS.Route53Resolver/FirewallRuleGroupProperties
-### Properties
-* **Arn**: string (ReadOnly): Arn
-* **CreationTime**: string (ReadOnly): Rfc3339TimeString
-* **CreatorRequestId**: string (ReadOnly): The id of the creator request.
-* **FirewallRules**: [FirewallRule](#firewallrule)[]: FirewallRules
-* **Id**: string (ReadOnly, Identifier): ResourceId
-* **ModificationTime**: string (ReadOnly): Rfc3339TimeString
-* **Name**: string: FirewallRuleGroupName
-* **OwnerId**: string (ReadOnly): AccountId
-* **RuleCount**: int (ReadOnly): Count
-* **ShareStatus**: string (ReadOnly): ShareStatus, possible values are NOT_SHARED, SHARED_WITH_ME, SHARED_BY_ME.
-* **Status**: string (ReadOnly): ResolverFirewallRuleGroupAssociation, possible values are COMPLETE, DELETING, UPDATING, and INACTIVE_OWNER_ACCOUNT_CLOSED.
-* **StatusMessage**: string (ReadOnly): FirewallRuleGroupStatus
-* **Tags**: [Tag](#tag)[]: Tags
-
-## FirewallRule
-### Properties
-* **Action**: string (Required): Rule Action
-* **BlockOverrideDnsType**: string: BlockOverrideDnsType
-* **BlockOverrideDomain**: string: BlockOverrideDomain
-* **BlockOverrideTtl**: int: BlockOverrideTtl
-* **BlockResponse**: string: BlockResponse
-* **FirewallDomainListId**: string (Required): ResourceId
-* **Priority**: int (Required): Rule Priority
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.Route53Resolver/FirewallRuleGroupAssociationProperties
 ### Properties
 * **Arn**: string (ReadOnly): Arn
@@ -104,10 +68,21 @@
 * **Tags**: [Tag](#tag)[]: Tags
 * **VpcId**: string (Required): VpcId
 
-## Tag
+## AWS.Route53Resolver/FirewallRuleGroupProperties
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Arn**: string (ReadOnly): Arn
+* **CreationTime**: string (ReadOnly): Rfc3339TimeString
+* **CreatorRequestId**: string (ReadOnly): The id of the creator request.
+* **FirewallRules**: [FirewallRule](#firewallrule)[]: FirewallRules
+* **Id**: string (ReadOnly, Identifier): ResourceId
+* **ModificationTime**: string (ReadOnly): Rfc3339TimeString
+* **Name**: string: FirewallRuleGroupName
+* **OwnerId**: string (ReadOnly): AccountId
+* **RuleCount**: int (ReadOnly): Count
+* **ShareStatus**: string (ReadOnly): ShareStatus, possible values are NOT_SHARED, SHARED_WITH_ME, SHARED_BY_ME.
+* **Status**: string (ReadOnly): ResolverFirewallRuleGroupAssociation, possible values are COMPLETE, DELETING, UPDATING, and INACTIVE_OWNER_ACCOUNT_CLOSED.
+* **StatusMessage**: string (ReadOnly): FirewallRuleGroupStatus
+* **Tags**: [Tag](#tag)[]: Tags
 
 ## AWS.Route53Resolver/OutpostResolverProperties
 ### Properties
@@ -124,11 +99,6 @@
 * **StatusMessage**: string (ReadOnly): The OutpostResolver status message.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.Route53Resolver/ResolverRuleProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the resolver rule.
@@ -139,6 +109,37 @@
 * **RuleType**: string (Required): When you want to forward DNS queries for specified domain name to resolvers on your network, specify FORWARD. When you have a forwarding rule to forward DNS queries for a domain to your network and you want Resolver to process queries for a subdomain of that domain, specify SYSTEM.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TargetIps**: [TargetAddress](#targetaddress)[]: An array that contains the IP addresses and ports that an outbound endpoint forwards DNS queries to. Typically, these are the IP addresses of DNS resolvers on your network. Specify IPv4 addresses. IPv6 is not supported.
+
+## FirewallRule
+### Properties
+* **Action**: string (Required): Rule Action
+* **BlockOverrideDnsType**: string: BlockOverrideDnsType
+* **BlockOverrideDomain**: string: BlockOverrideDomain
+* **BlockOverrideTtl**: int: BlockOverrideTtl
+* **BlockResponse**: string: BlockResponse
+* **FirewallDomainListId**: string (Required): ResourceId
+* **Priority**: int (Required): Rule Priority
+* **Qtype**: string: Qtype
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties

@@ -26,26 +26,6 @@
 * **ServiceNamespace**: string (Required, Identifier): The namespace of the AWS service that provides the resource, or a custom-resource
 * **SuspendedState**: [SuspendedState](#suspendedstate): An embedded object that contains attributes and attribute values that are used to suspend and resume automatic scaling. Setting the value of an attribute to true suspends the specified scaling activities. Setting it to false (default) resumes the specified scaling activities.
 
-## ScheduledAction
-### Properties
-* **EndTime**: string
-* **ScalableTargetAction**: [ScalableTargetAction](#scalabletargetaction)
-* **Schedule**: string (Required)
-* **ScheduledActionName**: string (Required)
-* **StartTime**: string
-* **Timezone**: string
-
-## ScalableTargetAction
-### Properties
-* **MaxCapacity**: int
-* **MinCapacity**: int
-
-## SuspendedState
-### Properties
-* **DynamicScalingInSuspended**: bool
-* **DynamicScalingOutSuspended**: bool
-* **ScheduledScalingSuspended**: bool
-
 ## AWS.ApplicationAutoScaling/ScalingPolicyProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): ARN is a read only property for the resource.
@@ -66,29 +46,6 @@ StepScaling Not supported for DynamoDB, Amazon Comprehend, Lambda, Amazon Keyspa
 * **StepScalingPolicyConfiguration**: [StepScalingPolicyConfiguration](#stepscalingpolicyconfiguration): A step scaling policy.
 * **TargetTrackingScalingPolicyConfiguration**: [TargetTrackingScalingPolicyConfiguration](#targettrackingscalingpolicyconfiguration): A target tracking scaling policy.
 
-## StepScalingPolicyConfiguration
-### Properties
-* **AdjustmentType**: string: Specifies how the ScalingAdjustment value in a StepAdjustment is interpreted.
-* **Cooldown**: int: The amount of time, in seconds, to wait for a previous scaling activity to take effect.
-* **MetricAggregationType**: string: The aggregation type for the CloudWatch metrics. Valid values are Minimum, Maximum, and Average. If the aggregation type is null, the value is treated as Average
-* **MinAdjustmentMagnitude**: int: The minimum value to scale by when the adjustment type is PercentChangeInCapacity.
-* **StepAdjustments**: [StepAdjustment](#stepadjustment)[]: A set of adjustments that enable you to scale based on the size of the alarm breach.
-
-## StepAdjustment
-### Properties
-* **MetricIntervalLowerBound**: int: The lower bound for the difference between the alarm threshold and the CloudWatch metric. If the metric value is above the breach threshold, the lower bound is inclusive (the metric must be greater than or equal to the threshold plus the lower bound). Otherwise, it is exclusive (the metric must be greater than the threshold plus the lower bound). A null value indicates negative infinity.
-* **MetricIntervalUpperBound**: int: The upper bound for the difference between the alarm threshold and the CloudWatch metric. If the metric value is above the breach threshold, the upper bound is exclusive (the metric must be less than the threshold plus the upper bound). Otherwise, it is inclusive (the metric must be less than or equal to the threshold plus the upper bound). A null value indicates positive infinity.
-* **ScalingAdjustment**: int (Required): The amount by which to scale, based on the specified adjustment type. A positive value adds to the current capacity while a negative number removes from the current capacity. For exact capacity, you must specify a positive value.
-
-## TargetTrackingScalingPolicyConfiguration
-### Properties
-* **CustomizedMetricSpecification**: [CustomizedMetricSpecification](#customizedmetricspecification): A customized metric. You can specify either a predefined metric or a customized metric.
-* **DisableScaleIn**: bool: Indicates whether scale in by the target tracking scaling policy is disabled. If the value is true, scale in is disabled and the target tracking scaling policy won't remove capacity from the scalable target. Otherwise, scale in is enabled and the target tracking scaling policy can remove capacity from the scalable target. The default value is false.
-* **PredefinedMetricSpecification**: [PredefinedMetricSpecification](#predefinedmetricspecification): A predefined metric. You can specify either a predefined metric or a customized metric.
-* **ScaleInCooldown**: int: The amount of time, in seconds, after a scale-in activity completes before another scale-in activity can start.
-* **ScaleOutCooldown**: int: The amount of time, in seconds, to wait for a previous scale-out activity to take effect.
-* **TargetValue**: int (Required): The target value for the metric. Although this property accepts numbers of type Double, it won't accept values that are either too small or too large. Values must be in the range of -2^360 to 2^360. The value must be a valid number based on the choice of metric. For example, if the metric is CPU utilization, then the target value is a percent value that represents how much of the CPU can be used before scaling out.
-
 ## CustomizedMetricSpecification
 ### Properties
 * **Dimensions**: [MetricDimension](#metricdimension)[]: The dimensions of the metric.
@@ -103,6 +60,51 @@ StepScaling Not supported for DynamoDB, Amazon Comprehend, Lambda, Amazon Keyspa
 * **Name**: string (Required): The name of the dimension.
 * **Value**: string (Required): The value of the dimension.
 
+## PredefinedMetricSpecification
+### Properties
+* **PredefinedMetricType**: string (Required): The metric type. The ALBRequestCountPerTarget metric type applies only to Spot Fleets and ECS services.
+* **ResourceLabel**: string (WriteOnly): Identifies the resource associated with the metric type. You can't specify a resource label unless the metric type is ALBRequestCountPerTarget and there is a target group attached to the Spot Fleet or ECS service.
+
+## ScalableTargetAction
+### Properties
+* **MaxCapacity**: int
+* **MinCapacity**: int
+
+## ScheduledAction
+### Properties
+* **EndTime**: string
+* **ScalableTargetAction**: [ScalableTargetAction](#scalabletargetaction)
+* **Schedule**: string (Required)
+* **ScheduledActionName**: string (Required)
+* **StartTime**: string
+* **Timezone**: string
+
+## StepAdjustment
+### Properties
+* **MetricIntervalLowerBound**: int: The lower bound for the difference between the alarm threshold and the CloudWatch metric. If the metric value is above the breach threshold, the lower bound is inclusive (the metric must be greater than or equal to the threshold plus the lower bound). Otherwise, it is exclusive (the metric must be greater than the threshold plus the lower bound). A null value indicates negative infinity.
+* **MetricIntervalUpperBound**: int: The upper bound for the difference between the alarm threshold and the CloudWatch metric. If the metric value is above the breach threshold, the upper bound is exclusive (the metric must be less than the threshold plus the upper bound). Otherwise, it is inclusive (the metric must be less than or equal to the threshold plus the upper bound). A null value indicates positive infinity.
+* **ScalingAdjustment**: int (Required): The amount by which to scale, based on the specified adjustment type. A positive value adds to the current capacity while a negative number removes from the current capacity. For exact capacity, you must specify a positive value.
+
+## StepScalingPolicyConfiguration
+### Properties
+* **AdjustmentType**: string: Specifies how the ScalingAdjustment value in a StepAdjustment is interpreted.
+* **Cooldown**: int: The amount of time, in seconds, to wait for a previous scaling activity to take effect.
+* **MetricAggregationType**: string: The aggregation type for the CloudWatch metrics. Valid values are Minimum, Maximum, and Average. If the aggregation type is null, the value is treated as Average
+* **MinAdjustmentMagnitude**: int: The minimum value to scale by when the adjustment type is PercentChangeInCapacity.
+* **StepAdjustments**: [StepAdjustment](#stepadjustment)[]: A set of adjustments that enable you to scale based on the size of the alarm breach.
+
+## SuspendedState
+### Properties
+* **DynamicScalingInSuspended**: bool
+* **DynamicScalingOutSuspended**: bool
+* **ScheduledScalingSuspended**: bool
+
+## TargetTrackingMetric
+### Properties
+* **Dimensions**: [TargetTrackingMetricDimension](#targettrackingmetricdimension)[]: The dimensions for the metric.
+* **MetricName**: string: The name of the metric.
+* **Namespace**: string: The namespace of the metric.
+
 ## TargetTrackingMetricDataQuery
 ### Properties
 * **Expression**: string: The math expression to perform on the returned data, if this object is performing a math expression.
@@ -111,25 +113,23 @@ StepScaling Not supported for DynamoDB, Amazon Comprehend, Lambda, Amazon Keyspa
 * **MetricStat**: [TargetTrackingMetricStat](#targettrackingmetricstat): Information about the metric data to return.
 * **ReturnData**: bool: Indicates whether to return the timestamps and raw data values of this metric.
 
+## TargetTrackingMetricDimension
+### Properties
+* **Name**: string: The name of the dimension.
+* **Value**: string: The value of the dimension.
+
 ## TargetTrackingMetricStat
 ### Properties
 * **Metric**: [TargetTrackingMetric](#targettrackingmetric): The CloudWatch metric to return, including the metric name, namespace, and dimensions. 
 * **Stat**: string: The statistic to return. It can include any CloudWatch statistic or extended statistic.
 * **Unit**: string: The unit to use for the returned data points.
 
-## TargetTrackingMetric
+## TargetTrackingScalingPolicyConfiguration
 ### Properties
-* **Dimensions**: [TargetTrackingMetricDimension](#targettrackingmetricdimension)[]: The dimensions for the metric.
-* **MetricName**: string: The name of the metric.
-* **Namespace**: string: The namespace of the metric.
-
-## TargetTrackingMetricDimension
-### Properties
-* **Name**: string: The name of the dimension.
-* **Value**: string: The value of the dimension.
-
-## PredefinedMetricSpecification
-### Properties
-* **PredefinedMetricType**: string (Required): The metric type. The ALBRequestCountPerTarget metric type applies only to Spot Fleets and ECS services.
-* **ResourceLabel**: string (WriteOnly): Identifies the resource associated with the metric type. You can't specify a resource label unless the metric type is ALBRequestCountPerTarget and there is a target group attached to the Spot Fleet or ECS service.
+* **CustomizedMetricSpecification**: [CustomizedMetricSpecification](#customizedmetricspecification): A customized metric. You can specify either a predefined metric or a customized metric.
+* **DisableScaleIn**: bool: Indicates whether scale in by the target tracking scaling policy is disabled. If the value is true, scale in is disabled and the target tracking scaling policy won't remove capacity from the scalable target. Otherwise, scale in is enabled and the target tracking scaling policy can remove capacity from the scalable target. The default value is false.
+* **PredefinedMetricSpecification**: [PredefinedMetricSpecification](#predefinedmetricspecification): A predefined metric. You can specify either a predefined metric or a customized metric.
+* **ScaleInCooldown**: int: The amount of time, in seconds, after a scale-in activity completes before another scale-in activity can start.
+* **ScaleOutCooldown**: int: The amount of time, in seconds, to wait for a previous scale-out activity to take effect.
+* **TargetValue**: int (Required): The target value for the metric. Although this property accepts numbers of type Double, it won't accept values that are either too small or too large. Values must be in the range of -2^360 to 2^360. The value must be a valid number based on the choice of metric. For example, if the metric is CPU utilization, then the target value is a percent value that represents how much of the CPU can be used before scaling out.
 

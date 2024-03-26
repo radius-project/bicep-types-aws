@@ -45,10 +45,33 @@
 * **SecurityServicePolicyData**: [SecurityServicePolicyData](#securityservicepolicydata) (Required)
 * **Tags**: [PolicyTag](#policytag)[]
 
+## AWS.FMS/ResourceSetProperties
+### Properties
+* **Description**: string
+* **Id**: string (ReadOnly, Identifier)
+* **Name**: string (Required)
+* **Resources**: string[]
+* **ResourceTypeList**: string[] (Required)
+* **Tags**: [Tag](#tag)[]
+
 ## IEMap
 ### Properties
 * **ACCOUNT**: string[]
 * **ORGUNIT**: string[]
+
+## NetworkFirewallPolicy
+### Properties
+* **FirewallDeploymentModel**: string (Required)
+
+## PolicyOption
+### Properties
+* **NetworkFirewallPolicy**: [NetworkFirewallPolicy](#networkfirewallpolicy)
+* **ThirdPartyFirewallPolicy**: [ThirdPartyFirewallPolicy](#thirdpartyfirewallpolicy)
+
+## PolicyTag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## ResourceTag
 ### Properties
@@ -61,35 +84,12 @@
 * **PolicyOption**: [PolicyOption](#policyoption)
 * **Type**: string (Required)
 
-## PolicyOption
-### Properties
-* **NetworkFirewallPolicy**: [NetworkFirewallPolicy](#networkfirewallpolicy)
-* **ThirdPartyFirewallPolicy**: [ThirdPartyFirewallPolicy](#thirdpartyfirewallpolicy)
-
-## NetworkFirewallPolicy
-### Properties
-* **FirewallDeploymentModel**: string (Required)
-
-## ThirdPartyFirewallPolicy
-### Properties
-* **FirewallDeploymentModel**: string (Required)
-
-## PolicyTag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
-## AWS.FMS/ResourceSetProperties
-### Properties
-* **Description**: string
-* **Id**: string (ReadOnly, Identifier)
-* **Name**: string (Required)
-* **Resources**: string[]
-* **ResourceTypeList**: string[] (Required)
-* **Tags**: [Tag](#tag)[]
-
 ## Tag
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## ThirdPartyFirewallPolicy
+### Properties
+* **FirewallDeploymentModel**: string (Required)
 

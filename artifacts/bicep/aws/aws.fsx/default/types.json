@@ -1,1 +1,286 @@
-[{"1":{"Kind":1}},{"1":{"Kind":2}},{"1":{"Kind":3}},{"1":{"Kind":4}},{"1":{"Kind":5}},{"1":{"Kind":6}},{"1":{"Kind":7}},{"1":{"Kind":8}},{"2":{"Name":"AutoExportPolicy","Properties":{"Events":{"Type":14,"Flags":1,"Description":"The ``AutoExportPolicy`` can have the following event values:\n  +   ``NEW`` - New files and directories are automatically exported to the data repository as they are added to the file system.\n  +   ``CHANGED`` - Changes to files and directories on the file system are automatically exported to the data repository.\n  +   ``DELETED`` - Files and directories are automatically deleted on the data repository when they are deleted on the file system.\n  \n You can define any combination of event types for your ``AutoExportPolicy``."}}}},{"2":{"Name":"AutoImportPolicy","Properties":{"Events":{"Type":15,"Flags":1,"Description":"The ``AutoImportPolicy`` can have the following event values:\n  +   ``NEW`` - Amazon FSx automatically imports metadata of files added to the linked S3 bucket that do not currently exist in the FSx file system.\n  +   ``CHANGED`` - Amazon FSx automatically updates file metadata and invalidates existing file content on the file system as files change in the data repository.\n  +   ``DELETED`` - Amazon FSx automatically deletes files on the file system as corresponding files are deleted in the data repository.\n  \n You can define any combination of event types for your ``AutoImportPolicy``."}}}},{"2":{"Name":"EventType"}},{"2":{"Name":"EventTypes"}},{"2":{"Name":"S3","Properties":{"AutoExportPolicy":{"Type":8,"Flags":0,"Description":"Describes a data repository association's automatic export policy. The ``AutoExportPolicy`` defines the types of updated objects on the file system that will be automatically exported to the data repository. As you create, modify, or delete files, Amazon FSx for Lustre automatically exports the defined changes asynchronously once your application finishes modifying the file.\n The ``AutoExportPolicy`` is only supported on Amazon FSx for Lustre file systems with a data repository association."},"AutoImportPolicy":{"Type":9,"Flags":0,"Description":"Describes the data repository association's automatic import policy. The AutoImportPolicy defines how Amazon FSx keeps your file metadata and directory listings up to date by importing changes to your Amazon FSx for Lustre file system as you modify objects in a linked S3 bucket.\n The ``AutoImportPolicy`` is only supported on Amazon FSx for Lustre file systems with a data repository association."}}}},{"2":{"Name":"Tag","Properties":{"Key":{"Type":4,"Flags":1,"Description":"A value that specifies the ``TagKey``, the name of the tag. Tag keys must be unique for the resource to which they are attached."},"Value":{"Type":4,"Flags":1,"Description":"A value that specifies the ``TagValue``, the value assigned to the corresponding tag key. Tag values can be null and don't have to be unique in a tag set. For example, you can have a key-value pair in a tag set of ``finances : April`` and also of ``payroll : April``."}}}},{"3":{"ItemType":4}},{"3":{"ItemType":4}},{"3":{"ItemType":4}},{"2":{"Name":"AWS.FSx/DataRepositoryAssociationProperties","Properties":{"AssociationId":{"Type":4,"Flags":18,"Description":""},"BatchImportMetaDataOnCreate":{"Type":2,"Flags":0,"Description":"A boolean flag indicating whether an import data repository task to import metadata should run after the data repository association is created. The task runs if this flag is set to ``true``."},"DataRepositoryPath":{"Type":4,"Flags":1,"Description":"The path to the Amazon S3 data repository that will be linked to the file system. The path can be an S3 bucket or prefix in the format ``s3://myBucket/myPrefix/``. This path specifies where in the S3 data repository files will be imported from or exported to."},"FileSystemId":{"Type":4,"Flags":1,"Description":"The ID of the file system on which the data repository association is configured."},"FileSystemPath":{"Type":4,"Flags":1,"Description":"A path on the Amazon FSx for Lustre file system that points to a high-level directory (such as ``/ns1/``) or subdirectory (such as ``/ns1/subdir/``) that will be mapped 1-1 with ``DataRepositoryPath``. The leading forward slash in the name is required. Two data repository associations cannot have overlapping file system paths. For example, if a data repository is associated with file system path ``/ns1/``, then you cannot link another data repository with file system path ``/ns1/ns2``.\n This path specifies where in your file system files will be exported from or imported to. This file system directory can be linked to only one Amazon S3 bucket, and no other S3 bucket can be linked to the directory.\n  If you specify only a forward slash (``/``) as the file system path, you can link only one data repository to the file system. You can only specify \"/\" as the file system path for the first data repository associated with a file system."},"ImportedFileChunkSize":{"Type":3,"Flags":0,"Description":"For files imported from a data repository, this value determines the stripe count and maximum amount of data per file (in MiB) stored on a single physical disk. The maximum number of disks that a single file can be striped across is limited by the total number of disks that make up the file system or cache.\n The default chunk size is 1,024 MiB (1 GiB) and can go as high as 512,000 MiB (500 GiB). Amazon S3 objects have a maximum size of 5 TB."},"ResourceARN":{"Type":4,"Flags":2,"Description":""},"S3":{"Type":12,"Flags":0,"Description":"The configuration for an Amazon S3 data repository linked to an Amazon FSx Lustre file system with a data repository association. The configuration defines which file events (new, changed, or deleted files or directories) are automatically imported from the linked data repository to the file system or automatically exported from the file system to the data repository."},"Tags":{"Type":18,"Flags":0,"Description":"An array of key-value pairs to apply to this resource.\n For more information, see [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)."}}}},{"3":{"ItemType":13}},{"2":{"Name":"AWS.FSx/DataRepositoryAssociation","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":17,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.FSx/DataRepositoryAssociation@default","ScopeType":0,"Body":19}}]
+[
+  {
+    "$type": "ObjectType",
+    "name": "AutoExportPolicy",
+    "properties": {
+      "Events": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The ``AutoExportPolicy`` can have the following event values:\n  +   ``NEW`` - New files and directories are automatically exported to the data repository as they are added to the file system.\n  +   ``CHANGED`` - Changes to files and directories on the file system are automatically exported to the data repository.\n  +   ``DELETED`` - Files and directories are automatically deleted on the data repository when they are deleted on the file system.\n  \n You can define any combination of event types for your ``AutoExportPolicy``."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutoImportPolicy",
+    "properties": {
+      "Events": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The ``AutoImportPolicy`` can have the following event values:\n  +   ``NEW`` - Amazon FSx automatically imports metadata of files added to the linked S3 bucket that do not currently exist in the FSx file system.\n  +   ``CHANGED`` - Amazon FSx automatically updates file metadata and invalidates existing file content on the file system as files change in the data repository.\n  +   ``DELETED`` - Amazon FSx automatically deletes files on the file system as corresponding files are deleted in the data repository.\n  \n You can define any combination of event types for your ``AutoImportPolicy``."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EventType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EventTypes",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3",
+    "properties": {
+      "AutoExportPolicy": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Describes a data repository association's automatic export policy. The ``AutoExportPolicy`` defines the types of updated objects on the file system that will be automatically exported to the data repository. As you create, modify, or delete files, Amazon FSx for Lustre automatically exports the defined changes asynchronously once your application finishes modifying the file.\n The ``AutoExportPolicy`` is only supported on Amazon FSx for Lustre file systems with a data repository association."
+      },
+      "AutoImportPolicy": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "Describes the data repository association's automatic import policy. The AutoImportPolicy defines how Amazon FSx keeps your file metadata and directory listings up to date by importing changes to your Amazon FSx for Lustre file system as you modify objects in a linked S3 bucket.\n The ``AutoImportPolicy`` is only supported on Amazon FSx for Lustre file systems with a data repository association."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "A value that specifies the ``TagKey``, the name of the tag. Tag keys must be unique for the resource to which they are attached."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "A value that specifies the ``TagValue``, the value assigned to the corresponding tag key. Tag values can be null and don't have to be unique in a tag set. For example, you can have a key-value pair in a tag set of ``finances : April`` and also of ``payroll : April``."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutoExportPolicy",
+    "properties": {
+      "Events": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The ``AutoExportPolicy`` can have the following event values:\n  +   ``NEW`` - New files and directories are automatically exported to the data repository as they are added to the file system.\n  +   ``CHANGED`` - Changes to files and directories on the file system are automatically exported to the data repository.\n  +   ``DELETED`` - Files and directories are automatically deleted on the data repository when they are deleted on the file system.\n  \n You can define any combination of event types for your ``AutoExportPolicy``."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutoImportPolicy",
+    "properties": {
+      "Events": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The ``AutoImportPolicy`` can have the following event values:\n  +   ``NEW`` - Amazon FSx automatically imports metadata of files added to the linked S3 bucket that do not currently exist in the FSx file system.\n  +   ``CHANGED`` - Amazon FSx automatically updates file metadata and invalidates existing file content on the file system as files change in the data repository.\n  +   ``DELETED`` - Amazon FSx automatically deletes files on the file system as corresponding files are deleted in the data repository.\n  \n You can define any combination of event types for your ``AutoImportPolicy``."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.FSx/DataRepositoryAssociationProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3",
+    "properties": {
+      "AutoExportPolicy": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Describes a data repository association's automatic export policy. The ``AutoExportPolicy`` defines the types of updated objects on the file system that will be automatically exported to the data repository. As you create, modify, or delete files, Amazon FSx for Lustre automatically exports the defined changes asynchronously once your application finishes modifying the file.\n The ``AutoExportPolicy`` is only supported on Amazon FSx for Lustre file systems with a data repository association."
+      },
+      "AutoImportPolicy": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "Describes the data repository association's automatic import policy. The AutoImportPolicy defines how Amazon FSx keeps your file metadata and directory listings up to date by importing changes to your Amazon FSx for Lustre file system as you modify objects in a linked S3 bucket.\n The ``AutoImportPolicy`` is only supported on Amazon FSx for Lustre file systems with a data repository association."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "A value that specifies the ``TagKey``, the name of the tag. Tag keys must be unique for the resource to which they are attached."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "A value that specifies the ``TagValue``, the value assigned to the corresponding tag key. Tag values can be null and don't have to be unique in a tag set. For example, you can have a key-value pair in a tag set of ``finances : April`` and also of ``payroll : April``."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FSx/DataRepositoryAssociationProperties",
+    "properties": {
+      "AssociationId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": ""
+      },
+      "BatchImportMetaDataOnCreate": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "A boolean flag indicating whether an import data repository task to import metadata should run after the data repository association is created. The task runs if this flag is set to ``true``."
+      },
+      "DataRepositoryPath": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The path to the Amazon S3 data repository that will be linked to the file system. The path can be an S3 bucket or prefix in the format ``s3://myBucket/myPrefix/``. This path specifies where in the S3 data repository files will be imported from or exported to."
+      },
+      "FileSystemId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The ID of the file system on which the data repository association is configured."
+      },
+      "FileSystemPath": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "A path on the Amazon FSx for Lustre file system that points to a high-level directory (such as ``/ns1/``) or subdirectory (such as ``/ns1/subdir/``) that will be mapped 1-1 with ``DataRepositoryPath``. The leading forward slash in the name is required. Two data repository associations cannot have overlapping file system paths. For example, if a data repository is associated with file system path ``/ns1/``, then you cannot link another data repository with file system path ``/ns1/ns2``.\n This path specifies where in your file system files will be exported from or imported to. This file system directory can be linked to only one Amazon S3 bucket, and no other S3 bucket can be linked to the directory.\n  If you specify only a forward slash (``/``) as the file system path, you can link only one data repository to the file system. You can only specify \"/\" as the file system path for the first data repository associated with a file system."
+      },
+      "ImportedFileChunkSize": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "For files imported from a data repository, this value determines the stripe count and maximum amount of data per file (in MiB) stored on a single physical disk. The maximum number of disks that a single file can be striped across is limited by the total number of disks that make up the file system or cache.\n The default chunk size is 1,024 MiB (1 GiB) and can go as high as 512,000 MiB (500 GiB). Amazon S3 objects have a maximum size of 5 TB."
+      },
+      "ResourceARN": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "S3": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The configuration for an Amazon S3 data repository linked to an Amazon FSx Lustre file system with a data repository association. The configuration defines which file events (new, changed, or deleted files or directories) are automatically imported from the linked data repository to the file system or automatically exported from the file system to the data repository."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource.\n For more information, see [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FSx/DataRepositoryAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.FSx/DataRepositoryAssociation@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/19"
+    },
+    "flags": 0
+  }
+]

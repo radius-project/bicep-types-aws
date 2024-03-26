@@ -23,15 +23,15 @@
 * **SinkIdentifier**: string (Required)
 * **Tags**: [Link_Tags](#linktags): Tags to apply to the link
 
-## Link_Tags
-### Properties
-
 ## AWS.Oam/SinkProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The Amazon resource name (ARN) of the ObservabilityAccessManager Sink
 * **Name**: string (Required): The name of the ObservabilityAccessManager Sink.
 * **Policy**: [Sink_Policy](#sinkpolicy): The policy of this ObservabilityAccessManager Sink.
 * **Tags**: [Sink_Tags](#sinktags): Tags to apply to the sink
+
+## Link_Tags
+### Properties
 
 ## Sink_Policy
 ### Properties

@@ -5,13 +5,20 @@
         "name": "Debug Jest Tests",
         "type": "node",
         "request": "launch",
+        "runtimeExecutable": "npm",
         "runtimeArgs": [
+          "run", 
           "--inspect-brk",
-          "${workspaceRoot}/src/aws-type-generator/node_modules/.bin/jest",
-          "--runInBand",
-          "--no-cache"
+          "--prefix",
+          "./src/aws-type-generator",
+          "start",
+          "--",
+          "--input", 
+          "../../artifacts/test",
+          "--output",
+          "../../artifacts/bicep"
         ],
-        "cwd": "${workspaceFolder}/src/aws-type-generator/",
+        "cwd": "${workspaceFolder}",
         "console": "integratedTerminal",
         "internalConsoleOptions": "neverOpen",
         "sourceMaps": true

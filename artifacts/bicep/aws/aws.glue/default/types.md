@@ -21,11 +21,6 @@
 * **Name**: string (Required): Name of the registry to be created of max length of 255, and may only contain letters, numbers, hyphen, underscore, dollar sign, or hash mark.  No whitespace.
 * **Tags**: [Tag](#tag)[]: List of tags to tag the Registry
 
-## Tag
-### Properties
-* **Key**: string (Required): A key to identify the tag.
-* **Value**: string (Required): Corresponding tag value for the key.
-
 ## AWS.Glue/SchemaProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): Amazon Resource Name for the Schema.
@@ -39,15 +34,20 @@
 * **SchemaDefinition**: string (Required, WriteOnly): Definition for the initial schema version in plain-text.
 * **Tags**: [Tag](#tag)[]: List of tags to tag the schema
 
+## Registry
+### Properties
+* **Arn**: string (Identifier): Amazon Resource Name for the Registry.
+* **Name**: string: Name of the registry in which the schema will be created.
+
 ## SchemaVersion
 ### Properties
 * **IsLatest**: bool: Indicates if the latest version needs to be updated.
 * **VersionNumber**: int: Indicates the version number in the schema to update.
 
-## Registry
+## Tag
 ### Properties
-* **Arn**: string (Identifier): Amazon Resource Name for the Registry.
-* **Name**: string: Name of the registry in which the schema will be created.
+* **Key**: string (Required): A key to identify the tag.
+* **Value**: string (Required): Corresponding tag value for the key.
 
 ## Tag
 ### Properties

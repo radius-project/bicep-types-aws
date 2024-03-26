@@ -21,20 +21,26 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityHub/StandardProperties](#awssecurityhubstandardproperties) (Required): properties of the resource
 
-## AWS.SecurityHub/AutomationRuleProperties
+## AutomationRule_arnOrId
 ### Properties
-* **Actions**: [AutomationRulesAction](#automationrulesaction)[]
-* **CreatedAt**: string (ReadOnly): The date and time when Automation Rule was created
-* **CreatedBy**: string (ReadOnly): The identifier by which created the rule
-* **Criteria**: [AutomationRulesFindingFilters](#automationrulesfindingfilters): The rule criteria for evaluating findings
-* **Description**: string: Rule description
-* **IsTerminal**: bool: If Rule is a terminal rule
-* **RuleArn**: string (ReadOnly, Identifier): An Automation Rule Arn is automatically created
-* **RuleName**: string: Rule name
-* **RuleOrder**: int: Rule order value
-* **RuleStatus**: string: Status of the Rule upon creation
-* **Tags**: [Tags](#tags)
-* **UpdatedAt**: string (ReadOnly): The date and time when Automation Rule was last updated
+
+## AutomationRule_arnOrId
+### Properties
+
+## AutomationRule_NoteUpdate
+### Properties
+* **Text**: string (Required)
+* **UpdatedBy**: [AutomationRule_arnOrId](#automationrulearnorid) (Required)
+
+## AutomationRule_SeverityUpdate
+### Properties
+* **Label**: string
+* **Normalized**: int
+* **Product**: int
+
+## AutomationRule_WorkflowUpdate
+### Properties
+* **Status**: string (Required)
 
 ## AutomationRulesAction
 ### Properties
@@ -45,42 +51,13 @@
 ### Properties
 * **Confidence**: int
 * **Criticality**: int
-* **Note**: [AutomationRule_NoteUpdate](#automationrulenoteupdate): Note added to the finding
-* **RelatedFindings**: [RelatedFinding](#relatedfinding)[]
-* **Severity**: [AutomationRule_SeverityUpdate](#automationruleseverityupdate): Severity of the finding
+* **Note**: [AutomationRule_NoteUpdate](#automationrulenoteupdate): The rule action will update the ``Note`` field of a finding.
+* **RelatedFindings**: [RelatedFinding](#relatedfinding)[]: The rule action will update the ``RelatedFindings`` field of a finding.
+* **Severity**: [AutomationRule_SeverityUpdate](#automationruleseverityupdate): The rule action will update the ``Severity`` field of a finding.
 * **Types**: string[]
 * **UserDefinedFields**: [map](#map)
 * **VerificationState**: string
-* **Workflow**: [AutomationRule_WorkflowUpdate](#automationruleworkflowupdate): Workflow status set for the finding
-
-## AutomationRule_NoteUpdate
-### Properties
-* **Text**: string (Required)
-* **UpdatedBy**: [AutomationRule_arnOrId](#automationrulearnorid) (Required)
-
-## AutomationRule_arnOrId
-### Properties
-
-## RelatedFinding
-### Properties
-* **Id**: [AutomationRule_arnOrId](#automationrulearnorid) (Required)
-* **ProductArn**: string (Required)
-
-## AutomationRule_arnOrId
-### Properties
-
-## AutomationRule_SeverityUpdate
-### Properties
-* **Label**: string
-* **Normalized**: int
-* **Product**: int
-
-## map
-### Properties
-
-## AutomationRule_WorkflowUpdate
-### Properties
-* **Status**: string (Required)
+* **Workflow**: [AutomationRule_WorkflowUpdate](#automationruleworkflowupdate): The rule action will update the ``Workflow`` field of a finding.
 
 ## AutomationRulesFindingFilters
 ### Properties
@@ -120,16 +97,36 @@
 * **VerificationState**: [StringFilter](#stringfilter)[]
 * **WorkflowStatus**: [StringFilter](#stringfilter)[]
 
-## StringFilter
+## AWS.SecurityHub/AutomationRuleProperties
 ### Properties
-* **Comparison**: string (Required)
-* **Value**: string (Required)
+* **Actions**: [AutomationRulesAction](#automationrulesaction)[]
+* **CreatedAt**: string (ReadOnly)
+* **CreatedBy**: string (ReadOnly)
+* **Criteria**: [AutomationRulesFindingFilters](#automationrulesfindingfilters): A set of [Security Finding Format (ASFF)](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html) finding field attributes and corresponding expected values that ASH uses to filter findings. If a rule is enabled and a finding matches the criteria specified in this parameter, ASH applies the rule action to the finding.
+* **Description**: string
+* **IsTerminal**: bool
+* **RuleArn**: string (ReadOnly, Identifier)
+* **RuleName**: string
+* **RuleOrder**: int
+* **RuleStatus**: string: Whether the rule is active after it is created. If this parameter is equal to ``ENABLED``, ASH applies the rule to findings and finding updates after the rule is created.
+* **Tags**: [Tags](#tags)
+* **UpdatedAt**: string (ReadOnly)
 
-## NumberFilter
+## AWS.SecurityHub/HubProperties
 ### Properties
-* **Eq**: int (Required)
-* **Gte**: int
-* **Lte**: int
+* **ARN**: string (ReadOnly, Identifier): An ARN is automatically created for the customer.
+* **AutoEnableControls**: bool: Whether to automatically enable new controls when they are added to standards that are enabled
+* **ControlFindingGenerator**: string: This field, used when enabling Security Hub, specifies whether the calling account has consolidated control findings turned on. If the value for this field is set to SECURITY_CONTROL, Security Hub generates a single finding for a control check even when the check applies to multiple enabled standards.  If the value for this field is set to STANDARD_CONTROL, Security Hub generates separate findings for a control check when the check applies to multiple enabled standards.
+* **EnableDefaultStandards**: bool (WriteOnly): Whether to enable the security standards that Security Hub has designated as automatically enabled.
+* **SubscribedAt**: string (ReadOnly): The date and time when Security Hub was enabled in the account.
+* **Tags**: [Tags](#tags)
+
+## AWS.SecurityHub/StandardProperties
+### Properties
+* **DisabledStandardsControls**: [StandardsControl](#standardscontrol)[]: Specifies which controls are to be disabled in a standard. 
+ *Maximum*: ``100``
+* **StandardsArn**: string (Required): The ARN of the standard that you want to enable. To view a list of available ASH standards and their ARNs, use the [DescribeStandards](https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_DescribeStandards.html) API operation.
+* **StandardsSubscriptionArn**: string (ReadOnly, Identifier)
 
 ## DateFilter
 ### Properties
@@ -142,35 +139,39 @@
 * **Unit**: string (Required)
 * **Value**: int (Required)
 
+## map
+### Properties
+
 ## MapFilter
 ### Properties
 * **Comparison**: string (Required)
 * **Key**: string (Required)
 * **Value**: string (Required)
 
-## Tags
+## NumberFilter
 ### Properties
+* **Eq**: int (Required)
+* **Gte**: int
+* **Lte**: int
 
-## AWS.SecurityHub/HubProperties
+## RelatedFinding
 ### Properties
-* **ARN**: string (ReadOnly, Identifier): An ARN is automatically created for the customer.
-* **AutoEnableControls**: bool: Whether to automatically enable new controls when they are added to standards that are enabled
-* **ControlFindingGenerator**: string: This field, used when enabling Security Hub, specifies whether the calling account has consolidated control findings turned on. If the value for this field is set to SECURITY_CONTROL, Security Hub generates a single finding for a control check even when the check applies to multiple enabled standards.  If the value for this field is set to STANDARD_CONTROL, Security Hub generates separate findings for a control check when the check applies to multiple enabled standards.
-* **EnableDefaultStandards**: bool (WriteOnly): Whether to enable the security standards that Security Hub has designated as automatically enabled.
-* **SubscribedAt**: string (ReadOnly): The date and time when Security Hub was enabled in the account.
-* **Tags**: [Tags](#tags)
-
-## Tags
-### Properties
-
-## AWS.SecurityHub/StandardProperties
-### Properties
-* **DisabledStandardsControls**: [StandardsControl](#standardscontrol)[]: StandardsControls to disable from this Standard.
-* **StandardsArn**: string (Required): The ARN of the Standard being enabled
-* **StandardsSubscriptionArn**: string (ReadOnly, Identifier): The ARN of the StandardsSubscription for the account ID, region, and Standard.
+* **Id**: [AutomationRule_arnOrId](#automationrulearnorid) (Required)
+* **ProductArn**: string (Required): The Amazon Resource Name (ARN) for the product that generated a related finding.
 
 ## StandardsControl
 ### Properties
-* **Reason**: string: the reason the standard control is disabled
-* **StandardsControlArn**: string (Required): the Arn for the standard control.
+* **Reason**: string: A user-defined reason for changing a control's enablement status in a specified standard. If you are disabling a control, then this property is required.
+* **StandardsControlArn**: string (Required): The Amazon Resource Name (ARN) of the control.
+
+## StringFilter
+### Properties
+* **Comparison**: string (Required)
+* **Value**: string (Required)
+
+## Tags
+### Properties
+
+## Tags
+### Properties
 

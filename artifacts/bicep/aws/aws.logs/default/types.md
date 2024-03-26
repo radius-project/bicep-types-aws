@@ -90,20 +90,7 @@ Length Constraints: Maximum length of 30720
 * **PolicyName**: string (Required, Identifier): The name of the account policy
 * **PolicyType**: string (Required, Identifier): Type of the policy.
 * **Scope**: string: Scope for policy application
-
-## AWS.Logs/DeliveryProperties
-### Properties
-* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) that uniquely identifies this delivery.
-* **DeliveryDestinationArn**: string (Required): The ARN of the delivery destination that is associated with this delivery.
-* **DeliveryDestinationType**: string (ReadOnly): Displays whether the delivery destination associated with this delivery is CloudWatch Logs, Amazon S3, or Kinesis Data Firehose.
-* **DeliveryId**: string (ReadOnly, Identifier): The unique ID that identifies this delivery in your account.
-* **DeliverySourceName**: string (Required): The name of the delivery source that is associated with this delivery.
-* **Tags**: [Tag](#tag)[]: The tags that have been assigned to this delivery.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode
+* **SelectionCriteria**: string: Log group  selection criteria to apply policy only to a subset of log groups. SelectionCriteria string can be up to 25KB and cloudwatchlogs determines the length of selectionCriteria by using its UTF-8 bytes
 
 ## AWS.Logs/DeliveryDestinationProperties
 ### Properties
@@ -118,13 +105,14 @@ Length Constraints: Maximum length of 51200
 * **Name**: string (Required, Identifier): The name of this delivery destination.
 * **Tags**: [Tag](#tag)[]: The tags that have been assigned to this delivery destination.
 
-## DeliveryDestination_DeliveryDestinationPolicy
+## AWS.Logs/DeliveryProperties
 ### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) that uniquely identifies this delivery.
+* **DeliveryDestinationArn**: string (Required): The ARN of the delivery destination that is associated with this delivery.
+* **DeliveryDestinationType**: string (ReadOnly): Displays whether the delivery destination associated with this delivery is CloudWatch Logs, Amazon S3, or Kinesis Data Firehose.
+* **DeliveryId**: string (ReadOnly, Identifier): The unique ID that identifies this delivery in your account.
+* **DeliverySourceName**: string (Required): The name of the delivery source that is associated with this delivery.
+* **Tags**: [Tag](#tag)[]: The tags that have been assigned to this delivery.
 
 ## AWS.Logs/DeliverySourceProperties
 ### Properties
@@ -135,11 +123,6 @@ Length Constraints: Maximum length of 51200
 * **ResourceArns**: string[] (ReadOnly): This array contains the ARN of the AWS resource that sends logs and is represented by this delivery source. Currently, only one ARN can be in the array.
 * **Service**: string (ReadOnly): The AWS service that is sending logs.
 * **Tags**: [Tag](#tag)[]: The tags that have been assigned to this delivery source.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode
 
 ## AWS.Logs/DestinationProperties
 ### Properties
@@ -179,34 +162,12 @@ Length Constraints: Maximum length of 30720
 * **RetentionInDays**: int: The number of days to retain the log events in the specified log group. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, and 3653.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## LogGroup_DataProtectionPolicy
-### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., :, /, =, +, - and @.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., :, /, =, +, - and @.
-
 ## AWS.Logs/MetricFilterProperties
 ### Properties
 * **FilterName**: string (Identifier): A name for the metric filter.
 * **FilterPattern**: string (Required): Pattern that Logs follows to interpret each entry in a log.
 * **LogGroupName**: string (Required, Identifier): Existing log group that you want to associate with this filter.
 * **MetricTransformations**: [MetricTransformation](#metrictransformation)[] (Required): A collection of information that defines how metric data gets emitted.
-
-## MetricTransformation
-### Properties
-* **DefaultValue**: int: The value to emit when a filter pattern does not match a log event. This value can be null.
-* **Dimensions**: [Dimension](#dimension)[]: Dimensions are the key-value pairs that further define a metric
-* **MetricName**: string (Required): The name of the CloudWatch metric. Metric name must be in ASCII format.
-* **MetricNamespace**: string (Required): The namespace of the CloudWatch metric.
-* **MetricValue**: string (Required): The value to publish to the CloudWatch metric when a filter pattern matches a log event.
-* **Unit**: string: The unit to assign to the metric. If you omit this, the unit is set as None.
-
-## Dimension
-### Properties
-* **Key**: string (Required): The key of the dimension. Maximum length of 255.
-* **Value**: string (Required): The value of the dimension. Maximum length of 255.
 
 ## AWS.Logs/QueryDefinitionProperties
 ### Properties
@@ -228,4 +189,44 @@ Length Constraints: Maximum length of 30720
 * **FilterPattern**: string (Required): The filtering expressions that restrict what gets delivered to the destination AWS resource.
 * **LogGroupName**: string (Required, Identifier): Existing log group that you want to associate with this filter.
 * **RoleArn**: string: The ARN of an IAM role that grants CloudWatch Logs permissions to deliver ingested log events to the destination stream. You don't need to provide the ARN when you are working with a logical destination for cross-account delivery.
+
+## DeliveryDestination_DeliveryDestinationPolicy
+### Properties
+
+## Dimension
+### Properties
+* **Key**: string (Required): The key of the dimension. Maximum length of 255.
+* **Value**: string (Required): The value of the dimension. Maximum length of 255.
+
+## LogGroup_DataProtectionPolicy
+### Properties
+
+## MetricTransformation
+### Properties
+* **DefaultValue**: int: The value to emit when a filter pattern does not match a log event. This value can be null.
+* **Dimensions**: [Dimension](#dimension)[]: Dimensions are the key-value pairs that further define a metric
+* **MetricName**: string (Required): The name of the CloudWatch metric. Metric name must be in ASCII format.
+* **MetricNamespace**: string (Required): The namespace of the CloudWatch metric.
+* **MetricValue**: string (Required): The value to publish to the CloudWatch metric when a filter pattern matches a log event.
+* **Unit**: string: The unit to assign to the metric. If you omit this, the unit is set as None.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., :, /, =, +, - and @.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., :, /, =, +, - and @.
 

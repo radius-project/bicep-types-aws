@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-Domain",
   "type": "AWS::SageMaker::Domain",
-  "time": "2023-12-12T01:00:49.946Z",
+  "time": "2024-03-12T16:28:33.676Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -173,10 +173,41 @@
         },
         "type": "object"
       },
+      "DockerSettings": {
+        "additionalProperties": false,
+        "description": "A collection of settings that are required to start docker-proxy server.",
+        "properties": {
+          "EnableDockerAccess": {
+            "description": "The flag to enable/disable docker-proxy server",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
+          "VpcOnlyTrustedAccounts": {
+            "description": "A list of account id's that would be used to pull images from in VpcOnly mode",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 12,
+              "pattern": "^[0-9]$",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "type": "object"
+      },
       "DomainSettings": {
         "additionalProperties": false,
         "description": "A collection of Domain settings.",
         "properties": {
+          "DockerSettings": {
+            "$ref": "#/definitions/DockerSettings"
+          },
           "RStudioServerProDomainSettings": {
             "$ref": "#/definitions/RStudioServerProDomainSettings"
           },

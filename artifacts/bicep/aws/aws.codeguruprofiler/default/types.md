@@ -16,14 +16,14 @@
 * **ProfilingGroupName**: string (Required, Identifier): The name of the profiling group.
 * **Tags**: [Tag](#tag)[]: The tags associated with a profiling group.
 
-## ProfilingGroup_AgentPermissions
-### Properties
-* **Principals**: string[] (Required): The principals for the agent permissions.
-
 ## Channel
 ### Properties
 * **channelId**: string
 * **channelUri**: string (Required)
+
+## ProfilingGroup_AgentPermissions
+### Properties
+* **Principals**: string[] (Required): The principals for the agent permissions.
 
 ## Tag
 ### Properties

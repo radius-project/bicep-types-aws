@@ -33,17 +33,39 @@
 * **Configuration**: [IdentitySourceConfiguration](#identitysourceconfiguration) (Required)
 * **Details**: [IdentitySourceDetails](#identitysourcedetails) (ReadOnly)
 * **IdentitySourceId**: string (ReadOnly, Identifier)
-* **PolicyStoreId**: string (Identifier)
+* **PolicyStoreId**: string (Required, Identifier)
 * **PrincipalEntityType**: string
 
-## IdentitySourceConfiguration
+## AWS.VerifiedPermissions/PolicyProperties
 ### Properties
-* **CognitoUserPoolConfiguration**: [CognitoUserPoolConfiguration](#cognitouserpoolconfiguration) (Required)
+* **Definition**: [PolicyDefinition](#policydefinition) (Required)
+* **PolicyId**: string (ReadOnly, Identifier)
+* **PolicyStoreId**: string (Required, Identifier)
+* **PolicyType**: string (ReadOnly)
+
+## AWS.VerifiedPermissions/PolicyStoreProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **Description**: string
+* **PolicyStoreId**: string (ReadOnly, Identifier)
+* **Schema**: [SchemaDefinition](#schemadefinition)
+* **ValidationSettings**: [ValidationSettings](#validationsettings) (Required)
+
+## AWS.VerifiedPermissions/PolicyTemplateProperties
+### Properties
+* **Description**: string
+* **PolicyStoreId**: string (Required, Identifier)
+* **PolicyTemplateId**: string (ReadOnly, Identifier)
+* **Statement**: string (Required)
 
 ## CognitoUserPoolConfiguration
 ### Properties
 * **ClientIds**: string[]
 * **UserPoolArn**: string (Required)
+
+## IdentitySourceConfiguration
+### Properties
+* **CognitoUserPoolConfiguration**: [CognitoUserPoolConfiguration](#cognitouserpoolconfiguration) (Required)
 
 ## IdentitySourceDetails
 ### Properties
@@ -52,22 +74,8 @@
 * **OpenIdIssuer**: string
 * **UserPoolArn**: string
 
-## AWS.VerifiedPermissions/PolicyProperties
-### Properties
-* **Definition**: [PolicyDefinition](#policydefinition) (Required)
-* **PolicyId**: string (ReadOnly, Identifier)
-* **PolicyStoreId**: string (Identifier)
-* **PolicyType**: string (ReadOnly)
-
 ## PolicyDefinition
 ### Properties
-
-## AWS.VerifiedPermissions/PolicyStoreProperties
-### Properties
-* **Arn**: string (ReadOnly)
-* **PolicyStoreId**: string (ReadOnly, Identifier)
-* **Schema**: [SchemaDefinition](#schemadefinition)
-* **ValidationSettings**: [ValidationSettings](#validationsettings) (Required)
 
 ## SchemaDefinition
 ### Properties
@@ -76,11 +84,4 @@
 ## ValidationSettings
 ### Properties
 * **Mode**: string (Required)
-
-## AWS.VerifiedPermissions/PolicyTemplateProperties
-### Properties
-* **Description**: string
-* **PolicyStoreId**: string (Identifier)
-* **PolicyTemplateId**: string (ReadOnly, Identifier)
-* **Statement**: string (Required)
 

@@ -1,1 +1,565 @@
-[{"1":{"Kind":1}},{"1":{"Kind":2}},{"1":{"Kind":3}},{"1":{"Kind":4}},{"1":{"Kind":5}},{"1":{"Kind":6}},{"1":{"Kind":7}},{"1":{"Kind":8}},{"2":{"Name":"IpAddress"}},{"2":{"Name":"Tag","Properties":{"Key":{"Type":4,"Flags":1,"Description":"Key of the tag. Value can be 1 to 127 characters."},"Value":{"Type":4,"Flags":1,"Description":"Value for the tag. Value can be 1 to 255 characters."}}}},{"2":{"Name":"AWS.GlobalAccelerator/AcceleratorProperties","Properties":{"AcceleratorArn":{"Type":4,"Flags":18,"Description":"The Amazon Resource Name (ARN) of the accelerator."},"DnsName":{"Type":4,"Flags":2,"Description":"The Domain Name System (DNS) name that Global Accelerator creates that points to your accelerator's static IPv4 addresses."},"DualStackDnsName":{"Type":4,"Flags":2,"Description":"The Domain Name System (DNS) name that Global Accelerator creates that points to your accelerator's static IPv4 and IPv6 addresses."},"Enabled":{"Type":2,"Flags":0,"Description":"Indicates whether an accelerator is enabled. The value is true or false."},"IpAddressType":{"Type":4,"Flags":0,"Description":"IP Address type."},"IpAddresses":{"Type":11,"Flags":0,"Description":"The IP addresses from BYOIP Prefix pool."},"Ipv4Addresses":{"Type":12,"Flags":2,"Description":"The IPv4 addresses assigned to the accelerator."},"Ipv6Addresses":{"Type":13,"Flags":2,"Description":"The IPv6 addresses assigned if the accelerator is dualstack"},"Name":{"Type":4,"Flags":1,"Description":"Name of accelerator."},"Tags":{"Type":14,"Flags":0}}}},{"3":{"ItemType":4}},{"3":{"ItemType":4}},{"3":{"ItemType":4}},{"3":{"ItemType":9}},{"2":{"Name":"AWS.GlobalAccelerator/Accelerator","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":10,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.GlobalAccelerator/Accelerator@default","ScopeType":0,"Body":15}},{"2":{"Name":"EndpointConfiguration","Properties":{"AttachmentArn":{"Type":4,"Flags":0,"Description":"Attachment ARN that provides access control to the cross account endpoint. Not required for resources hosted in the same account as the endpoint group."},"ClientIPPreservationEnabled":{"Type":2,"Flags":0,"Description":"true if client ip should be preserved"},"EndpointId":{"Type":4,"Flags":1,"Description":"Id of the endpoint. For Network/Application Load Balancer this value is the ARN.  For EIP, this value is the allocation ID.  For EC2 instances, this is the EC2 instance ID"},"Weight":{"Type":3,"Flags":0,"Description":"The weight for the endpoint."}}}},{"2":{"Name":"Port"}},{"2":{"Name":"PortOverride","Properties":{"EndpointPort":{"Type":3,"Flags":1},"ListenerPort":{"Type":3,"Flags":1}}}},{"2":{"Name":"AWS.GlobalAccelerator/EndpointGroupProperties","Properties":{"EndpointConfigurations":{"Type":21,"Flags":4,"Description":"The list of endpoint objects."},"EndpointGroupArn":{"Type":4,"Flags":18,"Description":"The Amazon Resource Name (ARN) of the endpoint group"},"EndpointGroupRegion":{"Type":4,"Flags":1,"Description":"The name of the AWS Region where the endpoint group is located"},"HealthCheckIntervalSeconds":{"Type":3,"Flags":0,"Description":"The time in seconds between each health check for an endpoint. Must be a value of 10 or 30"},"HealthCheckPath":{"Type":4,"Flags":0,"Description":""},"HealthCheckPort":{"Type":3,"Flags":0,"Description":"The port that AWS Global Accelerator uses to check the health of endpoints in this endpoint group."},"HealthCheckProtocol":{"Type":4,"Flags":0,"Description":"The protocol that AWS Global Accelerator uses to check the health of endpoints in this endpoint group."},"ListenerArn":{"Type":4,"Flags":1,"Description":"The Amazon Resource Name (ARN) of the listener"},"PortOverrides":{"Type":22,"Flags":0},"ThresholdCount":{"Type":3,"Flags":0,"Description":"The number of consecutive health checks required to set the state of the endpoint to unhealthy."},"TrafficDialPercentage":{"Type":3,"Flags":0,"Description":"The percentage of traffic to sent to an AWS Region"}}}},{"3":{"ItemType":17}},{"3":{"ItemType":19}},{"2":{"Name":"AWS.GlobalAccelerator/EndpointGroup","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":20,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.GlobalAccelerator/EndpointGroup@default","ScopeType":0,"Body":23}},{"2":{"Name":"Port"}},{"2":{"Name":"PortRange","Properties":{"FromPort":{"Type":3,"Flags":1},"ToPort":{"Type":3,"Flags":1}}}},{"2":{"Name":"AWS.GlobalAccelerator/ListenerProperties","Properties":{"AcceleratorArn":{"Type":4,"Flags":1,"Description":"The Amazon Resource Name (ARN) of the accelerator."},"ClientAffinity":{"Type":4,"Flags":0,"Description":"Client affinity lets you direct all requests from a user to the same endpoint."},"ListenerArn":{"Type":4,"Flags":18,"Description":"The Amazon Resource Name (ARN) of the listener."},"PortRanges":{"Type":28,"Flags":1},"Protocol":{"Type":4,"Flags":1,"Description":"The protocol for the listener."}}}},{"3":{"ItemType":26}},{"2":{"Name":"AWS.GlobalAccelerator/Listener","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":27,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.GlobalAccelerator/Listener@default","ScopeType":0,"Body":29}}]
+[
+  {
+    "$type": "ObjectType",
+    "name": "IpAddress",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "Key of the tag. Value can be 1 to 127 characters."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "Value for the tag. Value can be 1 to 255 characters."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.GlobalAccelerator/AcceleratorProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "Key of the tag. Value can be 1 to 127 characters."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "Value for the tag. Value can be 1 to 255 characters."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GlobalAccelerator/AcceleratorProperties",
+    "properties": {
+      "AcceleratorArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the accelerator."
+      },
+      "DnsName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The Domain Name System (DNS) name that Global Accelerator creates that points to your accelerator's static IPv4 addresses."
+      },
+      "DualStackDnsName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The Domain Name System (DNS) name that Global Accelerator creates that points to your accelerator's static IPv4 and IPv6 addresses."
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Indicates whether an accelerator is enabled. The value is true or false."
+      },
+      "IpAddressType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "IP Address type."
+      },
+      "IpAddresses": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The IP addresses from BYOIP Prefix pool."
+      },
+      "Ipv4Addresses": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The IPv4 addresses assigned to the accelerator."
+      },
+      "Ipv6Addresses": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The IPv6 addresses assigned if the accelerator is dualstack"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "Name of accelerator."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GlobalAccelerator/Accelerator",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.GlobalAccelerator/Accelerator@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/11"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointConfiguration",
+    "properties": {
+      "AttachmentArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Attachment ARN that provides access control to the cross account endpoint. Not required for resources hosted in the same account as the endpoint group."
+      },
+      "ClientIPPreservationEnabled": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "true if client ip should be preserved"
+      },
+      "EndpointId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "Id of the endpoint. For Network/Application Load Balancer this value is the ARN.  For EIP, this value is the allocation ID.  For EC2 instances, this is the EC2 instance ID"
+      },
+      "Weight": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The weight for the endpoint."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Port",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PortOverride",
+    "properties": {
+      "EndpointPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      },
+      "ListenerPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.GlobalAccelerator/EndpointGroupProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointConfiguration",
+    "properties": {
+      "AttachmentArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Attachment ARN that provides access control to the cross account endpoint. Not required for resources hosted in the same account as the endpoint group."
+      },
+      "ClientIPPreservationEnabled": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "true if client ip should be preserved"
+      },
+      "EndpointId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "Id of the endpoint. For Network/Application Load Balancer this value is the ARN.  For EIP, this value is the allocation ID.  For EC2 instances, this is the EC2 instance ID"
+      },
+      "Weight": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The weight for the endpoint."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PortOverride",
+    "properties": {
+      "EndpointPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      },
+      "ListenerPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/20"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GlobalAccelerator/EndpointGroupProperties",
+    "properties": {
+      "EndpointConfigurations": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 4,
+        "description": "The list of endpoint objects."
+      },
+      "EndpointGroupArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the endpoint group"
+      },
+      "EndpointGroupRegion": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name of the AWS Region where the endpoint group is located"
+      },
+      "HealthCheckIntervalSeconds": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The time in seconds between each health check for an endpoint. Must be a value of 10 or 30"
+      },
+      "HealthCheckPath": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "HealthCheckPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The port that AWS Global Accelerator uses to check the health of endpoints in this endpoint group."
+      },
+      "HealthCheckProtocol": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The protocol that AWS Global Accelerator uses to check the health of endpoints in this endpoint group."
+      },
+      "ListenerArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the listener"
+      },
+      "PortOverrides": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
+      "ThresholdCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of consecutive health checks required to set the state of the endpoint to unhealthy."
+      },
+      "TrafficDialPercentage": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The percentage of traffic to sent to an AWS Region"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GlobalAccelerator/EndpointGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.GlobalAccelerator/EndpointGroup@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/23"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Port",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PortRange",
+    "properties": {
+      "FromPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      },
+      "ToPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.GlobalAccelerator/ListenerProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PortRange",
+    "properties": {
+      "FromPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      },
+      "ToPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GlobalAccelerator/ListenerProperties",
+    "properties": {
+      "AcceleratorArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the accelerator."
+      },
+      "ClientAffinity": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Client affinity lets you direct all requests from a user to the same endpoint."
+      },
+      "ListenerArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the listener."
+      },
+      "PortRanges": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 1
+      },
+      "Protocol": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The protocol for the listener."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GlobalAccelerator/Listener",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.GlobalAccelerator/Listener@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/31"
+    },
+    "flags": 0
+  }
+]

@@ -13,15 +13,15 @@
 * **ResourceIdentifier**: string (Identifier)
 * **ZonalAutoshiftStatus**: string
 
+## ControlCondition
+### Properties
+* **AlarmIdentifier**: string (Required)
+* **Type**: string (Required)
+
 ## PracticeRunConfiguration
 ### Properties
 * **BlockedDates**: string[]
 * **BlockedWindows**: string[]
 * **BlockingAlarms**: [ControlCondition](#controlcondition)[]
 * **OutcomeAlarms**: [ControlCondition](#controlcondition)[] (Required)
-
-## ControlCondition
-### Properties
-* **AlarmIdentifier**: string (Required)
-* **Type**: string (Required)
 

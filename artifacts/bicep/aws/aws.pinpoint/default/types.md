@@ -17,25 +17,10 @@
 * **TemplateDescription**: string
 * **TemplateName**: string (Required, Identifier)
 
-## InAppMessageContent
-### Properties
-* **BackgroundColor**: string
-* **BodyConfig**: [BodyConfig](#bodyconfig)
-* **HeaderConfig**: [HeaderConfig](#headerconfig)
-* **ImageUrl**: string
-* **PrimaryBtn**: [ButtonConfig](#buttonconfig)
-* **SecondaryBtn**: [ButtonConfig](#buttonconfig)
-
 ## BodyConfig
 ### Properties
 * **Alignment**: string
 * **Body**: string
-* **TextColor**: string
-
-## HeaderConfig
-### Properties
-* **Alignment**: string
-* **Header**: string
 * **TextColor**: string
 
 ## ButtonConfig
@@ -44,11 +29,6 @@
 * **DefaultConfig**: [DefaultButtonConfiguration](#defaultbuttonconfiguration)
 * **IOS**: [OverrideButtonConfiguration](#overridebuttonconfiguration)
 * **Web**: [OverrideButtonConfiguration](#overridebuttonconfiguration)
-
-## OverrideButtonConfiguration
-### Properties
-* **ButtonAction**: string
-* **Link**: string
 
 ## DefaultButtonConfiguration
 ### Properties
@@ -59,9 +39,29 @@
 * **Text**: string
 * **TextColor**: string
 
+## HeaderConfig
+### Properties
+* **Alignment**: string
+* **Header**: string
+* **TextColor**: string
+
+## InAppMessageContent
+### Properties
+* **BackgroundColor**: string
+* **BodyConfig**: [BodyConfig](#bodyconfig)
+* **HeaderConfig**: [HeaderConfig](#headerconfig)
+* **ImageUrl**: string
+* **PrimaryBtn**: [ButtonConfig](#buttonconfig)
+* **SecondaryBtn**: [ButtonConfig](#buttonconfig)
+
 ## InAppTemplate_CustomConfig
 ### Properties
 
 ## InAppTemplate_Tags
 ### Properties
+
+## OverrideButtonConfiguration
+### Properties
+* **ButtonAction**: string
+* **Link**: string
 

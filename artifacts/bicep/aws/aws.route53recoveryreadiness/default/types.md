@@ -36,11 +36,6 @@
 * **ParentReadinessScopes**: string[] (ReadOnly): The readiness scope for the cell, which can be a cell Amazon Resource Name (ARN) or a recovery group ARN. This is a list but currently can have only one element.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.Route53RecoveryReadiness/ReadinessCheckProperties
 ### Properties
 * **ReadinessCheckArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the readiness check.
@@ -48,22 +43,12 @@
 * **ResourceSetName**: string: The name of the resource set to check.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource.
 
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.Route53RecoveryReadiness/RecoveryGroupProperties
 ### Properties
 * **Cells**: string[]: A list of the cell Amazon Resource Names (ARNs) in the recovery group.
 * **RecoveryGroupArn**: string (ReadOnly): A collection of tags associated with a resource.
 * **RecoveryGroupName**: string (Identifier): The name of the recovery group to create.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource.
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 
 ## AWS.Route53RecoveryReadiness/ResourceSetProperties
 ### Properties
@@ -75,13 +60,6 @@
 AWS: :AutoScaling: :AutoScalingGroup, AWS: :CloudWatch: :Alarm, AWS: :EC2: :CustomerGateway, AWS: :DynamoDB: :Table, AWS: :EC2: :Volume, AWS: :ElasticLoadBalancing: :LoadBalancer, AWS: :ElasticLoadBalancingV2: :LoadBalancer, AWS: :MSK: :Cluster, AWS: :RDS: :DBCluster, AWS: :Route53: :HealthCheck, AWS: :SQS: :Queue, AWS: :SNS: :Topic, AWS: :SNS: :Subscription, AWS: :EC2: :VPC, AWS: :EC2: :VPNConnection, AWS: :EC2: :VPNGateway, AWS::Route53RecoveryReadiness::DNSTargetResource
 * **Tags**: [Tag](#tag)[]: A tag to associate with the parameters for a resource set.
 
-## Resource
-### Properties
-* **ComponentId**: string: The component identifier of the resource, generated when DNS target resource is used.
-* **DnsTargetResource**: [DNSTargetResource](#dnstargetresource)
-* **ReadinessScopes**: string[]: A list of recovery group Amazon Resource Names (ARNs) and cell ARNs that this resource is contained within.
-* **ResourceArn**: string: The Amazon Resource Name (ARN) of the AWS resource.
-
 ## DNSTargetResource
 ### Properties
 * **DomainName**: string: The domain name that acts as an ingress point to a portion of the customer application.
@@ -89,11 +67,6 @@ AWS: :AutoScaling: :AutoScalingGroup, AWS: :CloudWatch: :Alarm, AWS: :EC2: :Cust
 * **RecordSetId**: string: The Route 53 record set ID that will uniquely identify a DNS record, given a name and a type.
 * **RecordType**: string: The type of DNS record of the target resource.
 * **TargetResource**: [TargetResource](#targetresource)
-
-## TargetResource
-### Properties
-* **NLBResource**: [NLBResource](#nlbresource)
-* **R53Resource**: [R53ResourceRecord](#r53resourcerecord)
 
 ## NLBResource
 ### Properties
@@ -104,8 +77,35 @@ AWS: :AutoScaling: :AutoScalingGroup, AWS: :CloudWatch: :Alarm, AWS: :EC2: :Cust
 * **DomainName**: string: The DNS target domain name.
 * **RecordSetId**: string: The Resource Record set id.
 
+## Resource
+### Properties
+* **ComponentId**: string: The component identifier of the resource, generated when DNS target resource is used.
+* **DnsTargetResource**: [DNSTargetResource](#dnstargetresource)
+* **ReadinessScopes**: string[]: A list of recovery group Amazon Resource Names (ARNs) and cell ARNs that this resource is contained within.
+* **ResourceArn**: string: The Amazon Resource Name (ARN) of the AWS resource.
+
 ## Tag
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## TargetResource
+### Properties
+* **NLBResource**: [NLBResource](#nlbresource)
+* **R53Resource**: [R53ResourceRecord](#r53resourcerecord)
 

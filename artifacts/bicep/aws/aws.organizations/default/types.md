@@ -48,10 +48,13 @@
 * **Status**: string (ReadOnly): The status of the account in the organization.
 * **Tags**: [Tag](#tag)[]: A list of tags that you want to attach to the newly created account. For each tag in the list, you must specify both a tag key and a value.
 
-## Tag
+## AWS.Organizations/OrganizationalUnitProperties
 ### Properties
-* **Key**: string (Required): The key identifier, or name, of the tag.
-* **Value**: string (Required): The string value that's associated with the key of the tag. You can set the value of a tag to an empty string, but you can't set the value of a tag to null.
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of this OU.
+* **Id**: string (ReadOnly, Identifier): The unique identifier (ID) associated with this OU.
+* **Name**: string (Required): The friendly name of this OU.
+* **ParentId**: string (Required): The unique identifier (ID) of the parent root or OU that you want to create the new OU in.
+* **Tags**: [Tag](#tag)[]: A list of tags that you want to attach to the newly created OU.
 
 ## AWS.Organizations/OrganizationProperties
 ### Properties
@@ -62,19 +65,6 @@
 * **ManagementAccountEmail**: string (ReadOnly): The email address that is associated with the AWS account that is designated as the management account for the organization.
 * **ManagementAccountId**: string (ReadOnly): The unique identifier (ID) of the management account of an organization.
 * **RootId**: string (ReadOnly): The unique identifier (ID) for the root.
-
-## AWS.Organizations/OrganizationalUnitProperties
-### Properties
-* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of this OU.
-* **Id**: string (ReadOnly, Identifier): The unique identifier (ID) associated with this OU.
-* **Name**: string (Required): The friendly name of this OU.
-* **ParentId**: string (Required): The unique identifier (ID) of the parent root or OU that you want to create the new OU in.
-* **Tags**: [Tag](#tag)[]: A list of tags that you want to attach to the newly created OU.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key identifier, or name, of the tag.
-* **Value**: string (Required): The string value that's associated with the key of the tag. You can set the value of a tag to an empty string, but you can't set the value of a tag to null.
 
 ## AWS.Organizations/PolicyProperties
 ### Properties
@@ -88,17 +78,27 @@
 * **TargetIds**: string[]: List of unique identifiers (IDs) of the root, OU, or account that you want to attach the policy to
 * **Type**: string (Required): The type of policy to create. You can specify one of the following values: AISERVICES_OPT_OUT_POLICY, BACKUP_POLICY, SERVICE_CONTROL_POLICY, TAG_POLICY
 
-## Tag
-### Properties
-* **Key**: string (Required): The key identifier, or name, of the tag.
-* **Value**: string (Required): The string value that's associated with the key of the tag. You can set the value of a tag to an empty string, but you can't set the value of a tag to null.
-
 ## AWS.Organizations/ResourcePolicyProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the resource policy.
 * **Content**: [ResourcePolicy_Content](#resourcepolicycontent) | string (Required): The policy document. For AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it.
 * **Id**: string (ReadOnly, Identifier): The unique identifier (ID) associated with this resource policy.
 * **Tags**: [Tag](#tag)[]: A list of tags that you want to attach to the resource policy
+
+## Tag
+### Properties
+* **Key**: string (Required): The key identifier, or name, of the tag.
+* **Value**: string (Required): The string value that's associated with the key of the tag. You can set the value of a tag to an empty string, but you can't set the value of a tag to null.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key identifier, or name, of the tag.
+* **Value**: string (Required): The string value that's associated with the key of the tag. You can set the value of a tag to an empty string, but you can't set the value of a tag to null.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key identifier, or name, of the tag.
+* **Value**: string (Required): The string value that's associated with the key of the tag. You can set the value of a tag to an empty string, but you can't set the value of a tag to null.
 
 ## Tag
 ### Properties

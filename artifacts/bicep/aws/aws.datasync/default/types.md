@@ -109,11 +109,6 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **VpcEndpointId**: string: The ID of the VPC endpoint that the agent has access to.
 
-## Tag
-### Properties
-* **Key**: string (Required): The key for an AWS resource tag.
-* **Value**: string (Required): The value for an AWS resource tag.
-
 ## AWS.DataSync/LocationAzureBlobProperties
 ### Properties
 * **AgentArns**: string[] (Required): The Amazon Resource Names (ARNs) of agents to use for an Azure Blob Location.
@@ -127,15 +122,6 @@
 * **Subdirectory**: string (WriteOnly): The subdirectory in the Azure Blob Container that is used to read data from the Azure Blob Source Location.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## AzureBlobSasConfiguration
-### Properties
-* **AzureBlobSasToken**: string (Required): Specifies the shared access signature (SAS) token, which indicates the permissions DataSync needs to access your Azure Blob Storage container.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key for an AWS resource tag.
-* **Value**: string (Required): The value for an AWS resource tag.
-
 ## AWS.DataSync/LocationEFSProperties
 ### Properties
 * **AccessPointArn**: string: The Amazon Resource Name (ARN) for the Amazon EFS Access point that DataSync uses when accessing the EFS file system.
@@ -148,16 +134,6 @@
 * **Subdirectory**: string (WriteOnly): A subdirectory in the location's path. This subdirectory in the EFS file system is used to read data from the EFS source location or write data to the EFS destination.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## Ec2Config
-### Properties
-* **SecurityGroupArns**: string[] (Required): The Amazon Resource Names (ARNs) of the security groups that are configured for the Amazon EC2 resource.
-* **SubnetArn**: string (Required): The ARN of the subnet that DataSync uses to access the target EFS file system.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key for an AWS resource tag.
-* **Value**: string (Required): The value for an AWS resource tag.
-
 ## AWS.DataSync/LocationFSxLustreProperties
 ### Properties
 * **FsxFilesystemArn**: string (WriteOnly): The Amazon Resource Name (ARN) for the FSx for Lustre file system.
@@ -166,11 +142,6 @@
 * **SecurityGroupArns**: string[] (Required): The ARNs of the security groups that are to use to configure the FSx for Lustre file system.
 * **Subdirectory**: string (WriteOnly): A subdirectory in the location's path.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key for an AWS resource tag.
-* **Value**: string (Required): The value for an AWS resource tag.
 
 ## AWS.DataSync/LocationFSxONTAPProperties
 ### Properties
@@ -183,35 +154,6 @@
 * **Subdirectory**: string (WriteOnly): A subdirectory in the location's path.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## Protocol
-### Properties
-* **NFS**: [NFS](#nfs)
-* **SMB**: [SMB](#smb)
-
-## NFS
-### Properties
-* **MountOptions**: [NfsMountOptions](#nfsmountoptions) (Required)
-
-## NfsMountOptions
-### Properties
-* **Version**: string: The specific NFS version that you want DataSync to use to mount your NFS share.
-
-## SMB
-### Properties
-* **Domain**: string: The name of the Windows domain that the SMB server belongs to.
-* **MountOptions**: [SmbMountOptions](#smbmountoptions) (Required)
-* **Password**: string (Required): The password of the user who can mount the share and has the permissions to access files and folders in the SMB share.
-* **User**: string (Required): The user who can mount the share, has the permissions to access files and folders in the SMB share.
-
-## SmbMountOptions
-### Properties
-* **Version**: string: The specific SMB version that you want DataSync to use to mount your SMB share.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key for an AWS resource tag.
-* **Value**: string (Required): The value for an AWS resource tag.
-
 ## AWS.DataSync/LocationFSxOpenZFSProperties
 ### Properties
 * **FsxFilesystemArn**: string (WriteOnly): The Amazon Resource Name (ARN) for the FSx OpenZFS file system.
@@ -221,23 +163,6 @@
 * **SecurityGroupArns**: string[] (Required): The ARNs of the security groups that are to use to configure the FSx OpenZFS file system.
 * **Subdirectory**: string (WriteOnly): A subdirectory in the location's path.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## Protocol
-### Properties
-* **NFS**: [NFS](#nfs)
-
-## NFS
-### Properties
-* **MountOptions**: [MountOptions](#mountoptions) (Required)
-
-## MountOptions
-### Properties
-* **Version**: string: The specific NFS version that you want DataSync to use to mount your NFS share.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key for an AWS resource tag.
-* **Value**: string (Required): The value for an AWS resource tag.
 
 ## AWS.DataSync/LocationFSxWindowsProperties
 ### Properties
@@ -250,11 +175,6 @@
 * **Subdirectory**: string (WriteOnly): A subdirectory in the location's path.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **User**: string (Required): The user who has the permissions to access files and folders in the FSx for Windows file system.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key for an AWS resource tag.
-* **Value**: string (Required): The value for an AWS resource tag.
 
 ## AWS.DataSync/LocationHDFSProperties
 ### Properties
@@ -274,21 +194,6 @@
 * **Subdirectory**: string (WriteOnly): The subdirectory in HDFS that is used to read data from the HDFS source location or write data to the HDFS destination.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## NameNode
-### Properties
-* **Hostname**: string (Required): The DNS name or IP address of the Name Node in the customer's on premises HDFS cluster.
-* **Port**: int (Required): The port on which the Name Node is listening on for client requests.
-
-## QopConfiguration
-### Properties
-* **DataTransferProtection**: string: Configuration for Data Transfer Protection.
-* **RpcProtection**: string: Configuration for RPC Protection.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.DataSync/LocationNFSProperties
 ### Properties
 * **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the NFS location.
@@ -298,19 +203,6 @@
 * **ServerHostname**: string (WriteOnly): The name of the NFS server. This value is the IP address or DNS name of the NFS server.
 * **Subdirectory**: string (WriteOnly): The subdirectory in the NFS file system that is used to read data from the NFS source location or write data to the NFS destination.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## MountOptions
-### Properties
-* **Version**: string: The specific NFS version that you want DataSync to use to mount your NFS share.
-
-## OnPremConfig
-### Properties
-* **AgentArns**: string[] (Required): ARN(s) of the agent(s) to use for an NFS location.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key for an AWS resource tag.
-* **Value**: string (Required): The value for an AWS resource tag.
 
 ## AWS.DataSync/LocationObjectStorageProperties
 ### Properties
@@ -327,11 +219,6 @@
 * **Subdirectory**: string (WriteOnly): The subdirectory in the self-managed object storage server that is used to read data from.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## Tag
-### Properties
-* **Key**: string (Required): The key for an AWS resource tag.
-* **Value**: string (Required): The value for an AWS resource tag.
-
 ## AWS.DataSync/LocationS3Properties
 ### Properties
 * **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Amazon S3 bucket location.
@@ -341,15 +228,6 @@
 * **S3StorageClass**: string: The Amazon S3 storage class you want to store your files in when this location is used as a task destination.
 * **Subdirectory**: string (WriteOnly): A subdirectory in the Amazon S3 bucket. This subdirectory in Amazon S3 is used to read data from the S3 source location or write data to the S3 destination.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## S3Config
-### Properties
-* **BucketAccessRoleArn**: string (Required): The ARN of the IAM role of the Amazon S3 bucket.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key for an AWS resource tag.
-* **Value**: string (Required): The value for an AWS resource tag.
 
 ## AWS.DataSync/LocationSMBProperties
 ### Properties
@@ -364,15 +242,6 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **User**: string (Required): The user who can mount the share, has the permissions to access files and folders in the SMB share.
 
-## MountOptions
-### Properties
-* **Version**: string: The specific SMB version that you want DataSync to use to mount your SMB share.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key for an AWS resource tag.
-* **Value**: string (Required): The value for an AWS resource tag.
-
 ## AWS.DataSync/StorageSystemProperties
 ### Properties
 * **AgentArns**: string[] (Required): The ARN of the DataSync agent that connects to and reads from the on-premises storage system's management interface.
@@ -386,21 +255,6 @@
 * **SystemType**: string (Required): The type of on-premises storage system that DataSync Discovery will analyze.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## ServerConfiguration
-### Properties
-* **ServerHostname**: string (Required): The domain name or IP address of the storage system's management interface.
-* **ServerPort**: int: The network port needed to access the system's management interface
-
-## ServerCredentials
-### Properties
-* **Password**: string (Required): The password for your storage system's management interface
-* **Username**: string (Required): The username for your storage system's management interface.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key for an AWS resource tag.
-* **Value**: string (Required): The value for an AWS resource tag.
-
 ## AWS.DataSync/TaskProperties
 ### Properties
 * **CloudWatchLogGroupArn**: string: The ARN of the Amazon CloudWatch log group that is used to monitor and log events in the task.
@@ -408,6 +262,7 @@
 * **DestinationNetworkInterfaceArns**: string[] (ReadOnly)
 * **Excludes**: [FilterRule](#filterrule)[]
 * **Includes**: [FilterRule](#filterrule)[]
+* **ManifestConfig**: [ManifestConfig](#manifestconfig)
 * **Name**: string: The name of a task. This value is a text reference that is used to identify the task in the console.
 * **Options**: [Options](#options)
 * **Schedule**: [TaskSchedule](#taskschedule)
@@ -418,10 +273,65 @@
 * **TaskArn**: string (ReadOnly, Identifier): The ARN of the task.
 * **TaskReportConfig**: [TaskReportConfig](#taskreportconfig)
 
+## AzureBlobSasConfiguration
+### Properties
+* **AzureBlobSasToken**: string (Required): Specifies the shared access signature (SAS) token, which indicates the permissions DataSync needs to access your Azure Blob Storage container.
+
+## Ec2Config
+### Properties
+* **SecurityGroupArns**: string[] (Required): The Amazon Resource Names (ARNs) of the security groups that are configured for the Amazon EC2 resource.
+* **SubnetArn**: string (Required): The ARN of the subnet that DataSync uses to access the target EFS file system.
+
 ## FilterRule
 ### Properties
 * **FilterType**: string: The type of filter rule to apply. AWS DataSync only supports the SIMPLE_PATTERN rule type.
 * **Value**: string: A single filter string that consists of the patterns to include or exclude. The patterns are delimited by "|".
+
+## ManifestConfig
+### Properties
+* **Action**: string: Specifies what DataSync uses the manifest for.
+* **Format**: string: Specifies the file format of your manifest.
+* **Source**: [Task_Source](#tasksource) (Required): Specifies the manifest that you want DataSync to use and where it's hosted.
+
+## ManifestConfigSourceS3
+### Properties
+* **BucketAccessRoleArn**: string: Specifies the AWS Identity and Access Management (IAM) role that allows DataSync to access your manifest.
+* **ManifestObjectPath**: string: Specifies the Amazon S3 object key of your manifest.
+* **ManifestObjectVersionId**: string: Specifies the object version ID of the manifest that you want DataSync to use.
+* **S3BucketArn**: string: Specifies the Amazon Resource Name (ARN) of the S3 bucket where you're hosting your manifest.
+
+## MountOptions
+### Properties
+* **Version**: string: The specific NFS version that you want DataSync to use to mount your NFS share.
+
+## MountOptions
+### Properties
+* **Version**: string: The specific NFS version that you want DataSync to use to mount your NFS share.
+
+## MountOptions
+### Properties
+* **Version**: string: The specific SMB version that you want DataSync to use to mount your SMB share.
+
+## NameNode
+### Properties
+* **Hostname**: string (Required): The DNS name or IP address of the Name Node in the customer's on premises HDFS cluster.
+* **Port**: int (Required): The port on which the Name Node is listening on for client requests.
+
+## NFS
+### Properties
+* **MountOptions**: [NfsMountOptions](#nfsmountoptions) (Required)
+
+## NFS
+### Properties
+* **MountOptions**: [MountOptions](#mountoptions) (Required)
+
+## NfsMountOptions
+### Properties
+* **Version**: string: The specific NFS version that you want DataSync to use to mount your NFS share.
+
+## OnPremConfig
+### Properties
+* **AgentArns**: string[] (Required): ARN(s) of the agent(s) to use for an NFS location.
 
 ## Options
 ### Properties
@@ -441,32 +351,118 @@
 * **Uid**: string: The user ID (UID) of the file's owner.
 * **VerifyMode**: string: A value that determines whether a data integrity verification should be performed at the end of a task execution after all data and metadata have been transferred.
 
-## TaskSchedule
+## Protocol
 ### Properties
-* **ScheduleExpression**: string (Required): A cron expression that specifies when AWS DataSync initiates a scheduled transfer from a source to a destination location
+* **NFS**: [NFS](#nfs)
+* **SMB**: [SMB](#smb)
+
+## Protocol
+### Properties
+* **NFS**: [NFS](#nfs)
+
+## QopConfiguration
+### Properties
+* **DataTransferProtection**: string: Configuration for Data Transfer Protection.
+* **RpcProtection**: string: Configuration for RPC Protection.
+
+## S3Config
+### Properties
+* **BucketAccessRoleArn**: string (Required): The ARN of the IAM role of the Amazon S3 bucket.
+
+## ServerConfiguration
+### Properties
+* **ServerHostname**: string (Required): The domain name or IP address of the storage system's management interface.
+* **ServerPort**: int: The network port needed to access the system's management interface
+
+## ServerCredentials
+### Properties
+* **Password**: string (Required): The password for your storage system's management interface
+* **Username**: string (Required): The username for your storage system's management interface.
+
+## SMB
+### Properties
+* **Domain**: string: The name of the Windows domain that the SMB server belongs to.
+* **MountOptions**: [SmbMountOptions](#smbmountoptions) (Required)
+* **Password**: string (Required): The password of the user who can mount the share and has the permissions to access files and folders in the SMB share.
+* **User**: string (Required): The user who can mount the share, has the permissions to access files and folders in the SMB share.
+
+## SmbMountOptions
+### Properties
+* **Version**: string: The specific SMB version that you want DataSync to use to mount your SMB share.
 
 ## Tag
 ### Properties
 * **Key**: string (Required): The key for an AWS resource tag.
 * **Value**: string (Required): The value for an AWS resource tag.
 
-## TaskReportConfig
+## Tag
 ### Properties
-* **Destination**: [Task_Destination](#taskdestination) (Required): Specifies where DataSync uploads your task report.
-* **ObjectVersionIds**: string: Specifies whether your task report includes the new version of each object transferred into an S3 bucket, this only applies if you enable versioning on your bucket.
-* **OutputType**: string (Required): Specifies the type of task report that you want.
-* **Overrides**: [Task_Overrides](#taskoverrides): Customizes the reporting level for aspects of your task report. For example, your report might generally only include errors, but you could specify that you want a list of successes and errors just for the files that Datasync attempted to delete in your destination location.
-* **ReportLevel**: string: Specifies whether you want your task report to include only what went wrong with your transfer or a list of what succeeded and didn't.
+* **Key**: string (Required): The key for an AWS resource tag.
+* **Value**: string (Required): The value for an AWS resource tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for an AWS resource tag.
+* **Value**: string (Required): The value for an AWS resource tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for an AWS resource tag.
+* **Value**: string (Required): The value for an AWS resource tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for an AWS resource tag.
+* **Value**: string (Required): The value for an AWS resource tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for an AWS resource tag.
+* **Value**: string (Required): The value for an AWS resource tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for an AWS resource tag.
+* **Value**: string (Required): The value for an AWS resource tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for an AWS resource tag.
+* **Value**: string (Required): The value for an AWS resource tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for an AWS resource tag.
+* **Value**: string (Required): The value for an AWS resource tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for an AWS resource tag.
+* **Value**: string (Required): The value for an AWS resource tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for an AWS resource tag.
+* **Value**: string (Required): The value for an AWS resource tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for an AWS resource tag.
+* **Value**: string (Required): The value for an AWS resource tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for an AWS resource tag.
+* **Value**: string (Required): The value for an AWS resource tag.
 
 ## Task_Destination
 ### Properties
-* **S3**: [Task_Destination_S3](#taskdestinations3): Specifies the Amazon S3 bucket where DataSync uploads your task report.
-
-## Task_Destination_S3
-### Properties
-* **BucketAccessRoleArn**: string: Specifies the Amazon Resource Name (ARN) of the IAM policy that allows Datasync to upload a task report to your S3 bucket.
-* **S3BucketArn**: string: Specifies the ARN of the S3 bucket where Datasync uploads your report.
-* **Subdirectory**: string: Specifies a bucket prefix for your report.
+* **S3**: [TaskReportConfigDestinationS3](#taskreportconfigdestinations3)
 
 ## Task_Overrides
 ### Properties
@@ -490,4 +486,26 @@
 ## Task_Overrides_Verified
 ### Properties
 * **ReportLevel**: string: Specifies whether you want your task report to include only what went wrong with your transfer or a list of what succeeded and didn't.
+
+## Task_Source
+### Properties
+* **S3**: [ManifestConfigSourceS3](#manifestconfigsources3)
+
+## TaskReportConfig
+### Properties
+* **Destination**: [Task_Destination](#taskdestination) (Required): Specifies where DataSync uploads your task report.
+* **ObjectVersionIds**: string: Specifies whether your task report includes the new version of each object transferred into an S3 bucket, this only applies if you enable versioning on your bucket.
+* **OutputType**: string (Required): Specifies the type of task report that you want.
+* **Overrides**: [Task_Overrides](#taskoverrides): Customizes the reporting level for aspects of your task report. For example, your report might generally only include errors, but you could specify that you want a list of successes and errors just for the files that Datasync attempted to delete in your destination location.
+* **ReportLevel**: string: Specifies whether you want your task report to include only what went wrong with your transfer or a list of what succeeded and didn't.
+
+## TaskReportConfigDestinationS3
+### Properties
+* **BucketAccessRoleArn**: string: Specifies the Amazon Resource Name (ARN) of the IAM policy that allows Datasync to upload a task report to your S3 bucket.
+* **S3BucketArn**: string: Specifies the ARN of the S3 bucket where Datasync uploads your report.
+* **Subdirectory**: string: Specifies a bucket prefix for your report.
+
+## TaskSchedule
+### Properties
+* **ScheduleExpression**: string (Required): A cron expression that specifies when AWS DataSync initiates a scheduled transfer from a source to a destination location
 

@@ -1,274 +1,155 @@
-import { Dictionary } from "lodash";
-
-export enum BuiltInTypeKind {
-  Any = 1,
-  Null = 2,
-  Bool = 3,
-  Int = 4,
-  String = 5,
-  Object = 6,
-  Array = 7,
-  ResourceRef = 8,
-}
-
-const BuiltInTypeKindLabel = new Map<BuiltInTypeKind, string>([
-  [BuiltInTypeKind.Any, 'Any'],
-  [BuiltInTypeKind.Null, 'Null'],
-  [BuiltInTypeKind.Bool, 'Bool'],
-  [BuiltInTypeKind.Int, 'Int'],
-  [BuiltInTypeKind.String, 'String'],
-  [BuiltInTypeKind.Object, 'Object'],
-  [BuiltInTypeKind.Array, 'Array'],
-  [BuiltInTypeKind.ResourceRef, 'ResourceRef'],
-]);
-
-export function getBuiltInTypeKindLabel(input: BuiltInTypeKind) {
-  return BuiltInTypeKindLabel.get(input) ?? '';
-}
-
-export enum ScopeType {
-  Unknown = 0,
-  Tenant = 1 << 0,
-  ManagementGroup = 1 << 1,
-  Subscription = 1 << 2,
-  ResourceGroup = 1 << 3,
-  Extension = 1 << 4,
-}
-
-const ScopeTypeLabel = new Map<ScopeType, string>([
-  [ScopeType.Tenant, 'Tenant'],
-  [ScopeType.ManagementGroup, 'ManagementGroup'],
-  [ScopeType.Subscription, 'Subscription'],
-  [ScopeType.ResourceGroup, 'ResourceGroup'],
-  [ScopeType.Extension, 'Extension'],
-]);
-
-export function getScopeTypeLabels(input: ScopeType) {
-  const types = [];
-  for (const [key, value] of ScopeTypeLabel) {
-    if ((key & input) === key) {
-      types.push(value);
-    }
-  }
-
-  return types
-}
-
-export enum ObjectPropertyFlags {
-  None = 0,
-  Required = 1 << 0,
-  ReadOnly = 1 << 1,
-  WriteOnly = 1 << 2,
-  DeployTimeConstant = 1 << 3,
-  Identifier = 1 << 4,
-}
-
-const ObjectPropertyFlagsLabel = new Map<ObjectPropertyFlags, string>([
-  [ObjectPropertyFlags.Required, 'Required'],
-  [ObjectPropertyFlags.ReadOnly, 'ReadOnly'],
-  [ObjectPropertyFlags.WriteOnly, 'WriteOnly'],
-  [ObjectPropertyFlags.DeployTimeConstant, 'DeployTimeConstant'],
-  [ObjectPropertyFlags.Identifier, 'Identifier']
-]);
-
-export function getObjectPropertyFlagsLabels(input: ObjectPropertyFlags) {
-  const types = [];
-  for (const [key, value] of ObjectPropertyFlagsLabel) {
-    if ((key & input) === key) {
-      types.push(value);
-    }
-  }
-
-  return types;
-}
-
-export enum TypeBaseKind {
-  BuiltInType = 1,
-  ObjectType = 2,
-  ArrayType = 3,
-  ResourceType = 4,
-  UnionType = 5,
-  StringLiteralType = 6,
-  DiscriminatedObjectType = 7,
-}
-
-const TypeBaseKindLabel = new Map<TypeBaseKind, string>([
-  [TypeBaseKind.BuiltInType, 'BuiltInType'],
-  [TypeBaseKind.ObjectType, 'ObjectType'],
-  [TypeBaseKind.ArrayType, 'ArrayType'],
-  [TypeBaseKind.ResourceType, 'ResourceType'],
-  [TypeBaseKind.UnionType, 'UnionType'],
-  [TypeBaseKind.StringLiteralType, 'StringLiteralType'],
-  [TypeBaseKind.DiscriminatedObjectType, 'DiscriminatedObjectType'],
-]);
-
-export function getTypeBaseKindLabel(input: TypeBaseKind) {
-  return TypeBaseKindLabel.get(input) ?? '';
-}
-
-export abstract class TypeBase {
-  constructor(type: TypeBaseKind) {
-    this.Type = type;
-  }
-  readonly Type: TypeBaseKind;
-}
-
-export class TypeReference {
-  constructor(index: number) {
-    this.Index = index;
-  }
-  readonly Index: number;
-}
-
-export class BuiltInType extends TypeBase {
-  constructor(kind: BuiltInTypeKind) {
-    super(TypeBaseKind.BuiltInType);
-    this.Kind = kind;
-  }
-  readonly Kind: BuiltInTypeKind;
-}
-
-export class UnionType extends TypeBase {
-  constructor(elements: TypeReference[]) {
-    super(TypeBaseKind.UnionType);
-    this.Elements = elements;
-  }
-  readonly Elements: TypeReference[];
-}
-
-export class StringLiteralType extends TypeBase {
-  constructor(value: string) {
-    super(TypeBaseKind.StringLiteralType);
-    this.Value = value;
-  }
-  readonly Value: string;
-}
-
-export class ResourceType extends TypeBase {
-  constructor(name: string, scopeType: ScopeType, body: TypeReference) {
-    super(TypeBaseKind.ResourceType);
-    this.Name = name;
-    this.ScopeType = scopeType;
-    this.Body = body;
-  }
-  readonly Name: string;
-  readonly ScopeType: ScopeType;
-  readonly Body: TypeReference;
-}
-
-export class ObjectType extends TypeBase {
-  constructor(name: string, properties: Dictionary<ObjectProperty>, additionalProperties?: TypeReference) {
-    super(TypeBaseKind.ObjectType);
-    this.Name = name;
-    this.Properties = properties;
-    this.AdditionalProperties = additionalProperties;
-  }
-  readonly Name: string;
-  readonly Properties: Dictionary<ObjectProperty>;
-  readonly AdditionalProperties?: TypeReference;
-}
-
-export class DiscriminatedObjectType extends TypeBase {
-  constructor(name: string, discriminator: string, baseProperties: Dictionary<ObjectProperty>, elements: Dictionary<TypeReference>) {
-    super(TypeBaseKind.DiscriminatedObjectType);
-    this.Name = name;
-    this.Discriminator = discriminator;
-    this.BaseProperties = baseProperties;
-    this.Elements = elements;
-  }
-  readonly Name: string;
-  readonly Discriminator: string;
-  readonly BaseProperties: Dictionary<ObjectProperty>;
-  readonly Elements: Dictionary<TypeReference>;
-}
-
-export class ArrayType extends TypeBase {
-  constructor(itemType: TypeReference) {
-    super(TypeBaseKind.ArrayType);
-    this.ItemType = itemType;
-  }
-  readonly ItemType: TypeReference;
-}
-
-export class ObjectProperty {
-  constructor(type: TypeReference, flags: ObjectPropertyFlags, description?: string) {
-    if (!type) {
-      throw new Error("error")
-    }
-    this.Type = type;
-    this.Flags = flags;
-    this.Description = description;
-  }
-  readonly Type: TypeReference;
-  Flags: ObjectPropertyFlags;
-  readonly Description?: string;
-}
-
-export class LazyType extends TypeBase {
-  constructor(name: string) {
-    super(TypeBaseKind.ObjectType)
-    this.Name = name
-  }
-
-  readonly Name: string
-}
+import { BicepType, TypeReference, AnyType, NullType, BooleanType, TypeBaseKind, ScopeType, ObjectTypeProperty, FunctionParameter, ResourceFlags, ResourceTypeFunction } from "bicep-types";
 
 export class TypeFactory {
-  private readonly types: TypeBase[];
-  private readonly namedTypes: { [key: string]: TypeReference }
-  private readonly builtInTypes: Record<BuiltInTypeKind, TypeReference>;
+  types: BicepType[];
+  typeToTypeReference: Map<BicepType, TypeReference> = new Map();
+  private readonly stringTypeCache: Map<string, TypeReference> = new Map();
+  private readonly integerTypeCache: Map<string, TypeReference> = new Map();
+  private readonly anyType: AnyType = {type: TypeBaseKind.AnyType};
+  private readonly nullType: NullType = {type: TypeBaseKind.NullType};
+  private readonly booleanType: BooleanType = {type: TypeBaseKind.BooleanType};
 
   constructor() {
     this.types = [];
-    this.namedTypes = {};
-    this.builtInTypes = {
-      [BuiltInTypeKind.Any]: this.addType(new BuiltInType(BuiltInTypeKind.Any)),
-      [BuiltInTypeKind.Null]: this.addType(new BuiltInType(BuiltInTypeKind.Null)),
-      [BuiltInTypeKind.Bool]: this.addType(new BuiltInType(BuiltInTypeKind.Bool)),
-      [BuiltInTypeKind.Int]: this.addType(new BuiltInType(BuiltInTypeKind.Int)),
-      [BuiltInTypeKind.String]: this.addType(new BuiltInType(BuiltInTypeKind.String)),
-      [BuiltInTypeKind.Object]: this.addType(new BuiltInType(BuiltInTypeKind.Object)),
-      [BuiltInTypeKind.Array]: this.addType(new BuiltInType(BuiltInTypeKind.Array)),
-      [BuiltInTypeKind.ResourceRef]: this.addType(new BuiltInType(BuiltInTypeKind.ResourceRef)),
-    };
   }
 
-  public getTypes(): TypeBase[] {
-    return this.types.map(v => v); // Defensive copy
-  }
-
-  public getNamedType(name: string): TypeReference | undefined {
-    return this.namedTypes[name];
-  } 
-
-  public addType<TType extends TypeBase>(type: TType): TypeReference {
-    const index = this.types.length;
-    this.types[index] = type;
-
-    return new TypeReference(index);
-  }
-
-  public declareType(name: string): TypeReference {
-    const reference = this.addType(new LazyType(name))
-    this.namedTypes[name] = reference
-    return reference
-  }
-
-  public defineType<TType extends TypeBase>(name: string, type: TType): TypeReference {
-    const reference = this.namedTypes[name]
-    if (!reference) {
-      throw new Error(`could not find named type ${name}`)
+  public addType(type: BicepType): TypeReference {
+    const preexisting = this.typeToTypeReference.get(type);
+    if (preexisting !== undefined)
+    {
+      return preexisting;
     }
 
-    this.types[reference.Index] = type
-    return reference
+    const index = this.types.length;
+    const reference = new TypeReference(index);
+    this.types[index] = type;
+    this.typeToTypeReference.set(type, reference);
+
+    return reference;
   }
 
-  public lookupType<TType extends TypeBase>(reference: TypeReference): TType {
-    return this.types[reference.Index] as TType;
+  public lookupType(reference: TypeReference): BicepType {
+    return this.types[reference.index];
   }
 
-  public lookupBuiltInType(kind: BuiltInTypeKind): TypeReference {
-    return this.builtInTypes[kind];
+  public addUnionType(elements: TypeReference[]) {
+    return this.addType({
+      type: TypeBaseKind.UnionType,
+      elements: elements,
+    });
+  }
+
+  public addStringLiteralType(value: string) {
+    return this.addType({
+      type: TypeBaseKind.StringLiteralType,
+      value: value,
+    });
+  }
+
+  public addStringType(sensitive?: true, minLength?: number, maxLength?: number, pattern?: string): TypeReference {
+    const cacheKey = `secure:${sensitive}|minLength:${minLength}|maxLength:${maxLength}|pattern:${pattern}`;
+    const preexisting = this.stringTypeCache.get(cacheKey);
+    if (preexisting !== undefined) {
+      return preexisting;
+    }
+
+    const added = this.addType({
+      type: TypeBaseKind.StringType,
+      sensitive: sensitive,
+      minLength: minLength,
+      maxLength: maxLength,
+      pattern: pattern,
+    });
+    this.stringTypeCache.set(cacheKey, added);
+    return added;
+  }
+
+  public addIntegerType(minValue?: number, maxValue?: number): TypeReference {
+    const cacheKey = `minValue:${minValue}|maxValue:${maxValue}`;
+    const preexisting = this.integerTypeCache.get(cacheKey);
+    if (preexisting !== undefined)
+    {
+      return preexisting;
+    }
+
+    const added = this.addType({
+      type: TypeBaseKind.IntegerType,
+      minValue: minValue,
+      maxValue: maxValue,
+    });
+    this.integerTypeCache.set(cacheKey, added);
+    return added;
+  }
+
+  public addAnyType(): TypeReference {
+    return this.addType(this.anyType);
+  }
+
+  public addNullType(): TypeReference {
+    return this.addType(this.nullType);
+  }
+
+  public addBooleanType(): TypeReference {
+    return this.addType(this.booleanType);
+  }
+
+  public addResourceType(name: string, scopeType: ScopeType, readOnlyScopes: ScopeType | undefined, body: TypeReference, flags: ResourceFlags, functions?: Record<string, ResourceTypeFunction>) {
+    return this.addType({
+      type: TypeBaseKind.ResourceType,
+      name: name,
+      scopeType: scopeType,
+      readOnlyScopes: readOnlyScopes,
+      body: body,
+      flags: flags,
+      functions,
+    });
+  }
+
+  public addResourceFunctionType(name: string, resourceType: string, apiVersion: string, output: TypeReference, input?: TypeReference) {
+    return this.addType({
+      type: TypeBaseKind.ResourceFunctionType,
+      name: name,
+      resourceType: resourceType,
+      apiVersion: apiVersion,
+      output: output,
+      input: input,
+    });
+  }
+
+  public addObjectType(name: string, properties: Record<string, ObjectTypeProperty>, additionalProperties?: TypeReference, sensitive?: boolean) {
+    return this.addType({
+      type: TypeBaseKind.ObjectType,
+      name: name,
+      properties: properties,
+      additionalProperties: additionalProperties,
+      sensitive: sensitive,
+    });
+  }
+
+  public addDiscriminatedObjectType(name: string, discriminator: string, baseProperties: Record<string, ObjectTypeProperty>, elements: Record<string, TypeReference>) {
+    return this.addType({
+      type: TypeBaseKind.DiscriminatedObjectType,
+      name: name,
+      discriminator: discriminator,
+      baseProperties: baseProperties,
+      elements: elements,
+    });
+  }
+
+  public addArrayType(itemType: TypeReference, minLength?: number, maxLength?: number) {
+    return this.addType({
+      type: TypeBaseKind.ArrayType,
+      itemType: itemType,
+      minLength: minLength,
+      maxLength: maxLength,
+    });
+  }
+
+  public addFunctionType(parameters: FunctionParameter[], output: TypeReference) {
+    return this.addType({
+      type: TypeBaseKind.FunctionType,
+      parameters,
+      output,
+    });
   }
 }

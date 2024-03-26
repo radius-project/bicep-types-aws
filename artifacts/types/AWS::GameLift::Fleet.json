@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GameLift-Fleet",
   "type": "AWS::GameLift::Fleet",
-  "time": "2024-01-04T19:43:48.748Z",
+  "time": "2024-03-07T22:25:47.457Z",
   "schema": {
     "$schema": "https://schema.cloudformation.us-east-1.amazonaws.com/provider.definition.schema.v1.json",
     "additionalProperties": false,
@@ -404,7 +404,7 @@
         "description": "Configuration for Anywhere fleet."
       },
       "ApplyCapacity": {
-        "description": "ComputeType to differentiate EC2 hardware managed by GameLift and Anywhere hardware managed by the customer.",
+        "description": "Determines whether to apply fleet or location capacities on fleet creation.",
         "enum": [
           "ON_UPDATE",
           "ON_CREATE_AND_UPDATE"
@@ -586,6 +586,9 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-gamelift.git",
     "taggable": true,
-    "typeName": "AWS::GameLift::Fleet"
+    "typeName": "AWS::GameLift::Fleet",
+    "writeOnlyProperties": [
+      "/properties/ApplyCapacity"
+    ]
   }
 }

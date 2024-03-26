@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RoboMaker-RobotApplication",
   "type": "AWS::RoboMaker::RobotApplication",
-  "time": "2023-06-20T15:38:04.35Z",
+  "time": "2024-02-20T16:55:35.89Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -88,11 +88,19 @@
     "handlers": {
       "create": {
         "permissions": [
-          "robomaker:CreateRobotApplication"
+          "robomaker:CreateRobotApplication",
+          "robomaker:TagResource",
+          "robomaker:UntagResource",
+          "ecr:BatchGetImage",
+          "ecr:GetAuthorizationToken",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr-public:GetAuthorizationToken",
+          "sts:GetServiceBearerToken"
         ]
       },
       "delete": {
         "permissions": [
+          "robomaker:DescribeRobotApplication",
           "robomaker:DeleteRobotApplication"
         ]
       },
@@ -110,7 +118,11 @@
         "permissions": [
           "robomaker:TagResource",
           "robomaker:UntagResource",
-          "robomaker:UpdateRobotApplication"
+          "robomaker:UpdateRobotApplication",
+          "ecr:BatchGetImage",
+          "ecr:GetAuthorizationToken",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr-public:GetAuthorizationToken"
         ]
       }
     },

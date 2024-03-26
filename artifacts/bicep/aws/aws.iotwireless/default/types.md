@@ -42,6 +42,16 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IoTWireless/WirelessGatewayProperties](#awsiotwirelesswirelessgatewayproperties) (Required): properties of the resource
 
+## AbpV10x
+### Properties
+* **DevAddr**: string (Required)
+* **SessionKeys**: [SessionKeysAbpV10x](#sessionkeysabpv10x) (Required)
+
+## AbpV11
+### Properties
+* **DevAddr**: string (Required)
+* **SessionKeys**: [SessionKeysAbpV11](#sessionkeysabpv11) (Required)
+
 ## AWS.IoTWireless/DestinationProperties
 ### Properties
 * **Arn**: string (ReadOnly): Destination arn. Returned after successful create.
@@ -51,11 +61,6 @@
 * **Name**: string (Required, Identifier): Unique name of destination
 * **RoleArn**: string: AWS role ARN that grants access
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the destination.
-
-## Tag
-### Properties
-* **Key**: string
-* **Value**: string
 
 ## AWS.IoTWireless/FuotaTaskProperties
 ### Properties
@@ -73,16 +78,6 @@
 * **Name**: string: Name of FUOTA task
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the FUOTA task.
 
-## LoRaWAN
-### Properties
-* **RfRegion**: string (Required): FUOTA task LoRaWAN RF region
-* **StartTime**: string (ReadOnly): FUOTA task LoRaWAN start time
-
-## Tag
-### Properties
-* **Key**: string
-* **Value**: string
-
 ## AWS.IoTWireless/MulticastGroupProperties
 ### Properties
 * **Arn**: string (ReadOnly): Multicast group arn. Returned after successful create.
@@ -95,18 +90,6 @@
 * **Status**: string (ReadOnly): Multicast group status. Returned after successful read.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the Multicast group.
 
-## LoRaWAN
-### Properties
-* **DlClass**: string (Required): Multicast group LoRaWAN DL Class
-* **NumberOfDevicesInGroup**: int (ReadOnly): Multicast group number of devices in group. Returned after successful read.
-* **NumberOfDevicesRequested**: int (ReadOnly): Multicast group number of devices requested. Returned after successful read.
-* **RfRegion**: string (Required): Multicast group LoRaWAN RF region
-
-## Tag
-### Properties
-* **Key**: string
-* **Value**: string
-
 ## AWS.IoTWireless/NetworkAnalyzerConfigurationProperties
 ### Properties
 * **Arn**: string (ReadOnly): Arn for network analyzer configuration, Returned upon successful create.
@@ -116,16 +99,6 @@
 * **TraceContent**: [NetworkAnalyzerConfiguration_TraceContent](#networkanalyzerconfigurationtracecontent): Trace content for your wireless gateway and wireless device resources
 * **WirelessDevices**: string[]: List of wireless gateway resources that have been added to the network analyzer configuration
 * **WirelessGateways**: string[]: List of wireless gateway resources that have been added to the network analyzer configuration
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
-## NetworkAnalyzerConfiguration_TraceContent
-### Properties
-* **LogLevel**: string
-* **WirelessDeviceFrameInfo**: string
 
 ## AWS.IoTWireless/WirelessDeviceProperties
 ### Properties
@@ -141,54 +114,6 @@
 * **ThingName**: string (ReadOnly): Thing Arn. If there is a Thing created, this can be returned with a Get call.
 * **Type**: string (Required): Wireless device type, currently only Sidewalk and LoRa
 
-## LoRaWANDevice
-### Properties
-* **AbpV10x**: [AbpV10x](#abpv10x)
-* **AbpV11**: [AbpV11](#abpv11)
-* **DevEui**: string
-* **DeviceProfileId**: string
-* **OtaaV10x**: [OtaaV10x](#otaav10x)
-* **OtaaV11**: [OtaaV11](#otaav11)
-* **ServiceProfileId**: string
-
-## AbpV10x
-### Properties
-* **DevAddr**: string (Required)
-* **SessionKeys**: [SessionKeysAbpV10x](#sessionkeysabpv10x) (Required)
-
-## SessionKeysAbpV10x
-### Properties
-* **AppSKey**: string (Required)
-* **NwkSKey**: string (Required)
-
-## AbpV11
-### Properties
-* **DevAddr**: string (Required)
-* **SessionKeys**: [SessionKeysAbpV11](#sessionkeysabpv11) (Required)
-
-## SessionKeysAbpV11
-### Properties
-* **AppSKey**: string (Required)
-* **FNwkSIntKey**: string (Required)
-* **NwkSEncKey**: string (Required)
-* **SNwkSIntKey**: string (Required)
-
-## OtaaV10x
-### Properties
-* **AppEui**: string (Required)
-* **AppKey**: string (Required)
-
-## OtaaV11
-### Properties
-* **AppKey**: string (Required)
-* **JoinEui**: string (Required)
-* **NwkKey**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string
-* **Value**: string
-
 ## AWS.IoTWireless/WirelessGatewayProperties
 ### Properties
 * **Arn**: string (ReadOnly): Arn for Wireless Gateway. Returned upon successful create.
@@ -201,10 +126,85 @@
 * **ThingArn**: string: Thing Arn. Passed into Update to associate a Thing with the Wireless Gateway.
 * **ThingName**: string: Thing Name. If there is a Thing created, this can be returned with a Get call.
 
+## LoRaWAN
+### Properties
+* **RfRegion**: string (Required): FUOTA task LoRaWAN RF region
+* **StartTime**: string (ReadOnly): FUOTA task LoRaWAN start time
+
+## LoRaWAN
+### Properties
+* **DlClass**: string (Required): Multicast group LoRaWAN DL Class
+* **NumberOfDevicesInGroup**: int (ReadOnly): Multicast group number of devices in group. Returned after successful read.
+* **NumberOfDevicesRequested**: int (ReadOnly): Multicast group number of devices requested. Returned after successful read.
+* **RfRegion**: string (Required): Multicast group LoRaWAN RF region
+
+## LoRaWANDevice
+### Properties
+* **AbpV10x**: [AbpV10x](#abpv10x)
+* **AbpV11**: [AbpV11](#abpv11)
+* **DevEui**: string
+* **DeviceProfileId**: string
+* **OtaaV10x**: [OtaaV10x](#otaav10x)
+* **OtaaV11**: [OtaaV11](#otaav11)
+* **ServiceProfileId**: string
+
 ## LoRaWANGateway
 ### Properties
 * **GatewayEui**: string (Required)
 * **RfRegion**: string (Required)
+
+## NetworkAnalyzerConfiguration_TraceContent
+### Properties
+* **LogLevel**: string
+* **WirelessDeviceFrameInfo**: string
+
+## OtaaV10x
+### Properties
+* **AppEui**: string (Required)
+* **AppKey**: string (Required)
+
+## OtaaV11
+### Properties
+* **AppKey**: string (Required)
+* **JoinEui**: string (Required)
+* **NwkKey**: string (Required)
+
+## SessionKeysAbpV10x
+### Properties
+* **AppSKey**: string (Required)
+* **NwkSKey**: string (Required)
+
+## SessionKeysAbpV11
+### Properties
+* **AppSKey**: string (Required)
+* **FNwkSIntKey**: string (Required)
+* **NwkSEncKey**: string (Required)
+* **SNwkSIntKey**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string
+* **Value**: string
+
+## Tag
+### Properties
+* **Key**: string
+* **Value**: string
+
+## Tag
+### Properties
+* **Key**: string
+* **Value**: string
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string
+* **Value**: string
 
 ## Tag
 ### Properties

@@ -11,7 +11,9 @@
 ### Properties
 * **CreatedAt**: string (ReadOnly)
 * **HealthEventsConfig**: [HealthEventsConfig](#healtheventsconfig)
+* **IncludeLinkedAccounts**: bool (WriteOnly)
 * **InternetMeasurementsLogDelivery**: [InternetMeasurementsLogDelivery](#internetmeasurementslogdelivery)
+* **LinkedAccountId**: string (WriteOnly)
 * **MaxCityNetworksToMonitor**: int
 * **ModifiedAt**: string (ReadOnly)
 * **MonitorArn**: string (ReadOnly)
@@ -32,15 +34,15 @@
 * **PerformanceLocalHealthEventsConfig**: [LocalHealthEventsConfig](#localhealtheventsconfig)
 * **PerformanceScoreThreshold**: int
 
+## InternetMeasurementsLogDelivery
+### Properties
+* **S3Config**: [S3Config](#s3config)
+
 ## LocalHealthEventsConfig
 ### Properties
 * **HealthScoreThreshold**: int
 * **MinTrafficImpact**: int
 * **Status**: string
-
-## InternetMeasurementsLogDelivery
-### Properties
-* **S3Config**: [S3Config](#s3config)
 
 ## S3Config
 ### Properties

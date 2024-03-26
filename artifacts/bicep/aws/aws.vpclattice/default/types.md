@@ -70,6 +70,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.VpcLattice/TargetGroupProperties](#awsvpclatticetargetgroupproperties) (Required): properties of the resource
 
+## Action
+### Properties
+* **FixedResponse**: [FixedResponse](#fixedresponse)
+* **Forward**: [Forward](#forward)
+
+## AuthPolicy_Policy
+### Properties
+
 ## AWS.VpcLattice/AccessLogSubscriptionProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
@@ -80,19 +88,11 @@
 * **ResourceIdentifier**: string (WriteOnly)
 * **Tags**: [Tag](#tag)[]
 
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.VpcLattice/AuthPolicyProperties
 ### Properties
 * **Policy**: [AuthPolicy_Policy](#authpolicypolicy) (Required)
 * **ResourceIdentifier**: string (Required, Identifier)
 * **State**: string (ReadOnly)
-
-## AuthPolicy_Policy
-### Properties
 
 ## AWS.VpcLattice/ListenerProperties
 ### Properties
@@ -107,36 +107,10 @@
 * **ServiceIdentifier**: string (WriteOnly)
 * **Tags**: [Tag](#tag)[]
 
-## DefaultAction
-### Properties
-* **FixedResponse**: [FixedResponse](#fixedresponse)
-* **Forward**: [Forward](#forward)
-
-## FixedResponse
-### Properties
-* **StatusCode**: int (Required)
-
-## Forward
-### Properties
-* **TargetGroups**: [WeightedTargetGroup](#weightedtargetgroup)[] (Required)
-
-## WeightedTargetGroup
-### Properties
-* **TargetGroupIdentifier**: string (Required)
-* **Weight**: int
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.VpcLattice/ResourcePolicyProperties
 ### Properties
 * **Policy**: [ResourcePolicy_Policy](#resourcepolicypolicy) (Required)
 * **ResourceArn**: string (Required, Identifier)
-
-## ResourcePolicy_Policy
-### Properties
 
 ## AWS.VpcLattice/RuleProperties
 ### Properties
@@ -150,85 +124,6 @@
 * **ServiceIdentifier**: string (WriteOnly)
 * **Tags**: [Tag](#tag)[]
 
-## Action
-### Properties
-* **FixedResponse**: [FixedResponse](#fixedresponse)
-* **Forward**: [Forward](#forward)
-
-## FixedResponse
-### Properties
-* **StatusCode**: int (Required)
-
-## Forward
-### Properties
-* **TargetGroups**: [WeightedTargetGroup](#weightedtargetgroup)[] (Required)
-
-## WeightedTargetGroup
-### Properties
-* **TargetGroupIdentifier**: string (Required)
-* **Weight**: int
-
-## Match
-### Properties
-* **HttpMatch**: [HttpMatch](#httpmatch) (Required)
-
-## HttpMatch
-### Properties
-* **HeaderMatches**: [HeaderMatch](#headermatch)[]
-* **Method**: string
-* **PathMatch**: [PathMatch](#pathmatch)
-
-## HeaderMatch
-### Properties
-* **CaseSensitive**: bool
-* **Match**: [HeaderMatchType](#headermatchtype) (Required)
-* **Name**: string (Required)
-
-## HeaderMatchType
-### Properties
-* **Contains**: string
-* **Exact**: string
-* **Prefix**: string
-
-## PathMatch
-### Properties
-* **CaseSensitive**: bool
-* **Match**: [PathMatchType](#pathmatchtype) (Required)
-
-## PathMatchType
-### Properties
-* **Exact**: string
-* **Prefix**: string
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
-## AWS.VpcLattice/ServiceProperties
-### Properties
-* **Arn**: string (ReadOnly, Identifier)
-* **AuthType**: string
-* **CertificateArn**: string
-* **CreatedAt**: string (ReadOnly)
-* **CustomDomainName**: string
-* **DnsEntry**: [DnsEntry](#dnsentry)
-* **Id**: string (ReadOnly)
-* **LastUpdatedAt**: string (ReadOnly)
-* **Name**: string
-* **Status**: string (ReadOnly)
-* **Tags**: [Tag](#tag)[]
-
-## DnsEntry
-### Properties
-* **DomainName**: string (ReadOnly)
-* **HostedZoneId**: string (ReadOnly)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.VpcLattice/ServiceNetworkProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
@@ -238,11 +133,6 @@
 * **LastUpdatedAt**: string (ReadOnly)
 * **Name**: string
 * **Tags**: [Tag](#tag)[]
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 
 ## AWS.VpcLattice/ServiceNetworkServiceAssociationProperties
 ### Properties
@@ -261,16 +151,6 @@
 * **Status**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]
 
-## DnsEntry
-### Properties
-* **DomainName**: string (ReadOnly)
-* **HostedZoneId**: string (ReadOnly)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.VpcLattice/ServiceNetworkVpcAssociationProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
@@ -286,10 +166,19 @@
 * **VpcId**: string (ReadOnly)
 * **VpcIdentifier**: string (WriteOnly)
 
-## Tag
+## AWS.VpcLattice/ServiceProperties
 ### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Arn**: string (ReadOnly, Identifier)
+* **AuthType**: string
+* **CertificateArn**: string
+* **CreatedAt**: string (ReadOnly)
+* **CustomDomainName**: string
+* **DnsEntry**: [DnsEntry](#dnsentry)
+* **Id**: string (ReadOnly)
+* **LastUpdatedAt**: string (ReadOnly)
+* **Name**: string
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]
 
 ## AWS.VpcLattice/TargetGroupProperties
 ### Properties
@@ -304,15 +193,48 @@
 * **Targets**: [Target](#target)[]
 * **Type**: string (Required)
 
-## TargetGroupConfig
+## DefaultAction
 ### Properties
-* **HealthCheck**: [HealthCheckConfig](#healthcheckconfig)
-* **IpAddressType**: string
-* **LambdaEventStructureVersion**: string
-* **Port**: int
-* **Protocol**: string
-* **ProtocolVersion**: string
-* **VpcIdentifier**: string
+* **FixedResponse**: [FixedResponse](#fixedresponse)
+* **Forward**: [Forward](#forward)
+
+## DnsEntry
+### Properties
+* **DomainName**: string (ReadOnly)
+* **HostedZoneId**: string (ReadOnly)
+
+## DnsEntry
+### Properties
+* **DomainName**: string (ReadOnly)
+* **HostedZoneId**: string (ReadOnly)
+
+## FixedResponse
+### Properties
+* **StatusCode**: int (Required)
+
+## FixedResponse
+### Properties
+* **StatusCode**: int (Required)
+
+## Forward
+### Properties
+* **TargetGroups**: [WeightedTargetGroup](#weightedtargetgroup)[] (Required)
+
+## Forward
+### Properties
+* **TargetGroups**: [WeightedTargetGroup](#weightedtargetgroup)[] (Required)
+
+## HeaderMatch
+### Properties
+* **CaseSensitive**: bool
+* **Match**: [HeaderMatchType](#headermatchtype) (Required)
+* **Name**: string (Required)
+
+## HeaderMatchType
+### Properties
+* **Contains**: string
+* **Exact**: string
+* **Prefix**: string
 
 ## HealthCheckConfig
 ### Properties
@@ -327,9 +249,67 @@
 * **ProtocolVersion**: string
 * **UnhealthyThresholdCount**: int
 
+## HttpMatch
+### Properties
+* **HeaderMatches**: [HeaderMatch](#headermatch)[]
+* **Method**: string
+* **PathMatch**: [PathMatch](#pathmatch)
+
+## Match
+### Properties
+* **HttpMatch**: [HttpMatch](#httpmatch) (Required)
+
 ## Matcher
 ### Properties
 * **HttpCode**: string (Required)
+
+## PathMatch
+### Properties
+* **CaseSensitive**: bool
+* **Match**: [PathMatchType](#pathmatchtype) (Required)
+
+## PathMatchType
+### Properties
+* **Exact**: string
+* **Prefix**: string
+
+## ResourcePolicy_Policy
+### Properties
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
@@ -340,4 +320,24 @@
 ### Properties
 * **Id**: string (Required)
 * **Port**: int
+
+## TargetGroupConfig
+### Properties
+* **HealthCheck**: [HealthCheckConfig](#healthcheckconfig)
+* **IpAddressType**: string
+* **LambdaEventStructureVersion**: string
+* **Port**: int
+* **Protocol**: string
+* **ProtocolVersion**: string
+* **VpcIdentifier**: string
+
+## WeightedTargetGroup
+### Properties
+* **TargetGroupIdentifier**: string (Required)
+* **Weight**: int
+
+## WeightedTargetGroup
+### Properties
+* **TargetGroupIdentifier**: string (Required)
+* **Weight**: int
 

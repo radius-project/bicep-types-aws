@@ -65,14 +65,6 @@
 * **CustomerManagedKey**: string (WriteOnly)
 * **Tags**: [Tag](#tag)[]
 
-## EncryptionContextMap
-### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.WorkSpacesWeb/IdentityProviderProperties
 ### Properties
 * **IdentityProviderArn**: string (ReadOnly, Identifier)
@@ -80,9 +72,6 @@
 * **IdentityProviderName**: string (Required)
 * **IdentityProviderType**: string (Required)
 * **PortalArn**: string (WriteOnly)
-
-## IdentityProviderDetails
-### Properties
 
 ## AWS.WorkSpacesWeb/IpAccessSettingsProperties
 ### Properties
@@ -96,19 +85,6 @@
 * **IpRules**: [IpRule](#iprule)[] (Required)
 * **Tags**: [Tag](#tag)[]
 
-## EncryptionContextMap
-### Properties
-
-## IpRule
-### Properties
-* **Description**: string
-* **IpRange**: string (Required): A single IP address or an IP address range in CIDR notation
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.WorkSpacesWeb/NetworkSettingsProperties
 ### Properties
 * **AssociatedPortalArns**: string[] (ReadOnly)
@@ -117,11 +93,6 @@
 * **SubnetIds**: string[] (Required)
 * **Tags**: [Tag](#tag)[]
 * **VpcId**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 
 ## AWS.WorkSpacesWeb/PortalProperties
 ### Properties
@@ -145,14 +116,6 @@
 * **UserAccessLoggingSettingsArn**: string
 * **UserSettingsArn**: string
 
-## EncryptionContextMap
-### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.WorkSpacesWeb/TrustStoreProperties
 ### Properties
 * **AssociatedPortalArns**: string[] (ReadOnly)
@@ -160,22 +123,12 @@
 * **Tags**: [Tag](#tag)[]
 * **TrustStoreArn**: string (ReadOnly, Identifier)
 
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.WorkSpacesWeb/UserAccessLoggingSettingsProperties
 ### Properties
 * **AssociatedPortalArns**: string[] (ReadOnly)
 * **KinesisStreamArn**: string (Required): Kinesis stream ARN to which log events are published.
 * **Tags**: [Tag](#tag)[]
 * **UserAccessLoggingSettingsArn**: string (ReadOnly, Identifier)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 
 ## AWS.WorkSpacesWeb/UserSettingsProperties
 ### Properties
@@ -193,19 +146,66 @@
 * **UploadAllowed**: string (Required)
 * **UserSettingsArn**: string (ReadOnly, Identifier)
 
-## EncryptionContextMap
+## CookieSpecification
 ### Properties
+* **Domain**: string (Required)
+* **Name**: string
+* **Path**: string
 
 ## CookieSynchronizationConfiguration
 ### Properties
 * **Allowlist**: [CookieSpecification](#cookiespecification)[] (Required)
 * **Blocklist**: [CookieSpecification](#cookiespecification)[]
 
-## CookieSpecification
+## EncryptionContextMap
 ### Properties
-* **Domain**: string (Required)
-* **Name**: string
-* **Path**: string
+
+## EncryptionContextMap
+### Properties
+
+## EncryptionContextMap
+### Properties
+
+## EncryptionContextMap
+### Properties
+
+## IdentityProviderDetails
+### Properties
+
+## IpRule
+### Properties
+* **Description**: string
+* **IpRange**: string (Required): A single IP address or an IP address range in CIDR notation
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

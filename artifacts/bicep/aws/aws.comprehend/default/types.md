@@ -14,6 +14,12 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Comprehend/FlywheelProperties](#awscomprehendflywheelproperties) (Required): properties of the resource
 
+## AugmentedManifestsListItem
+### Properties
+* **AttributeNames**: string[] (Required)
+* **S3Uri**: string (Required)
+* **Split**: string
+
 ## AWS.Comprehend/DocumentClassifierProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
@@ -29,49 +35,6 @@
 * **VersionName**: string
 * **VolumeKmsKeyId**: string
 * **VpcConfig**: [VpcConfig](#vpcconfig)
-
-## DocumentClassifierInputDataConfig
-### Properties
-* **AugmentedManifests**: [AugmentedManifestsListItem](#augmentedmanifestslistitem)[]
-* **DataFormat**: string
-* **DocumentReaderConfig**: [DocumentReaderConfig](#documentreaderconfig)
-* **Documents**: [DocumentClassifierDocuments](#documentclassifierdocuments)
-* **DocumentType**: string
-* **LabelDelimiter**: string
-* **S3Uri**: string
-* **TestS3Uri**: string
-
-## AugmentedManifestsListItem
-### Properties
-* **AttributeNames**: string[] (Required)
-* **S3Uri**: string (Required)
-* **Split**: string
-
-## DocumentReaderConfig
-### Properties
-* **DocumentReadAction**: string (Required)
-* **DocumentReadMode**: string
-* **FeatureTypes**: string[]
-
-## DocumentClassifierDocuments
-### Properties
-* **S3Uri**: string (Required)
-* **TestS3Uri**: string
-
-## DocumentClassifierOutputDataConfig
-### Properties
-* **KmsKeyId**: string
-* **S3Uri**: string
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
-## VpcConfig
-### Properties
-* **SecurityGroupIds**: string[] (Required)
-* **Subnets**: string[] (Required)
 
 ## AWS.Comprehend/FlywheelProperties
 ### Properties
@@ -92,10 +55,50 @@
 * **VolumeKmsKeyId**: string
 * **VpcConfig**: [VpcConfig](#vpcconfig)
 
-## VpcConfig
+## DocumentClassificationConfig
 ### Properties
-* **SecurityGroupIds**: string[] (Required)
-* **Subnets**: string[] (Required)
+* **Labels**: string[]
+* **Mode**: string (Required)
+
+## DocumentClassifierDocuments
+### Properties
+* **S3Uri**: string (Required)
+* **TestS3Uri**: string
+
+## DocumentClassifierInputDataConfig
+### Properties
+* **AugmentedManifests**: [AugmentedManifestsListItem](#augmentedmanifestslistitem)[]
+* **DataFormat**: string
+* **DocumentReaderConfig**: [DocumentReaderConfig](#documentreaderconfig)
+* **Documents**: [DocumentClassifierDocuments](#documentclassifierdocuments)
+* **DocumentType**: string
+* **LabelDelimiter**: string
+* **S3Uri**: string
+* **TestS3Uri**: string
+
+## DocumentClassifierOutputDataConfig
+### Properties
+* **KmsKeyId**: string
+* **S3Uri**: string
+
+## DocumentReaderConfig
+### Properties
+* **DocumentReadAction**: string (Required)
+* **DocumentReadMode**: string
+* **FeatureTypes**: string[]
+
+## EntityRecognitionConfig
+### Properties
+* **EntityTypes**: [EntityTypesListItem](#entitytypeslistitem)[]
+
+## EntityTypesListItem
+### Properties
+* **Type**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
@@ -108,16 +111,8 @@
 * **EntityRecognitionConfig**: [EntityRecognitionConfig](#entityrecognitionconfig)
 * **LanguageCode**: string (Required)
 
-## DocumentClassificationConfig
+## VpcConfig
 ### Properties
-* **Labels**: string[]
-* **Mode**: string (Required)
-
-## EntityRecognitionConfig
-### Properties
-* **EntityTypes**: [EntityTypesListItem](#entitytypeslistitem)[]
-
-## EntityTypesListItem
-### Properties
-* **Type**: string (Required)
+* **SecurityGroupIds**: string[] (Required)
+* **Subnets**: string[] (Required)
 

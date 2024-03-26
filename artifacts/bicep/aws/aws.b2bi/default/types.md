@@ -40,19 +40,6 @@
 * **Tags**: [Tag](#tag)[]
 * **Type**: string (Required)
 
-## CapabilityConfiguration
-### Properties
-
-## S3Location
-### Properties
-* **BucketName**: string
-* **Key**: string
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.B2BI/PartnershipProperties
 ### Properties
 * **Capabilities**: string[]
@@ -66,11 +53,6 @@
 * **ProfileId**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **TradingPartnerId**: string (ReadOnly)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 
 ## AWS.B2BI/ProfileProperties
 ### Properties
@@ -86,18 +68,13 @@
 * **ProfileId**: string (ReadOnly, Identifier)
 * **Tags**: [Tag](#tag)[]
 
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.B2BI/TransformerProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly)
 * **EdiType**: [EdiType](#editype) (Required)
 * **FileFormat**: string (Required)
 * **MappingTemplate**: string (Required)
-* **ModifiedAt**: string
+* **ModifiedAt**: string (ReadOnly)
 * **Name**: string (Required)
 * **SampleDocument**: string
 * **Status**: string (Required)
@@ -105,8 +82,31 @@
 * **TransformerArn**: string (ReadOnly)
 * **TransformerId**: string (ReadOnly, Identifier)
 
+## CapabilityConfiguration
+### Properties
+
 ## EdiType
 ### Properties
+
+## S3Location
+### Properties
+* **BucketName**: string
+* **Key**: string
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ACMPCA-CertificateAuthority",
   "type": "AWS::ACMPCA::CertificateAuthority",
-  "time": "2023-12-27T15:53:02.297Z",
+  "time": "2024-03-15T14:38:13.509Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -55,6 +55,9 @@
         "additionalProperties": false,
         "description": "Your certificate authority can create and maintain a certificate revocation list (CRL). A CRL contains information about certificates that have been revoked.",
         "properties": {
+          "CrlDistributionPointExtensionConfiguration": {
+            "$ref": "#/definitions/CrlDistributionPointExtensionConfiguration"
+          },
           "CustomCname": {
             "type": "string"
           },
@@ -71,6 +74,19 @@
             "type": "string"
           }
         },
+        "type": "object"
+      },
+      "CrlDistributionPointExtensionConfiguration": {
+        "additionalProperties": false,
+        "description": "Configures the default behavior of the CRL Distribution Point extension for certificates issued by your certificate authority",
+        "properties": {
+          "OmitExtension": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "OmitExtension"
+        ],
         "type": "object"
       },
       "CsrExtensions": {
@@ -347,7 +363,8 @@
       },
       "delete": {
         "permissions": [
-          "acm-pca:DeleteCertificateAuthority"
+          "acm-pca:DeleteCertificateAuthority",
+          "acm-pca:DescribeCertificateAuthority"
         ]
       },
       "list": {
@@ -438,7 +455,12 @@
     "sourceUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_ACMPCA.html",
     "typeName": "AWS::ACMPCA::CertificateAuthority",
     "writeOnlyProperties": [
-      "/properties/Subject"
+      "/properties/Subject",
+      "/properties/Subject",
+      "/properties/CsrExtensions",
+      "/properties/Tags",
+      "/properties/RevocationConfiguration",
+      "/properties/KeyStorageSecurityStandard"
     ]
   }
 }

@@ -44,11 +44,6 @@
 * **VpcId**: string (Required): The ID of the Amazon Virtual Private Cloud (Amazon VPC) to associate with the Studio.
 * **WorkspaceSecurityGroupId**: string (Required): The ID of the Amazon EMR Studio Workspace security group. The Workspace security group allows outbound network traffic to resources in the Engine security group, and it must be in the same VPC specified by VpcId.
 
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 255 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-
 ## AWS.EMR/StudioSessionMappingProperties
 ### Properties
 * **IdentityName**: string (Required, Identifier): The name of the user or group. For more information, see UserName and DisplayName in the AWS SSO Identity Store API Reference. Either IdentityName or IdentityId must be specified.
@@ -60,6 +55,11 @@
 ### Properties
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **WALWorkspaceName**: string (Identifier): The name of the emrwal container
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 255 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## Tag
 ### Properties

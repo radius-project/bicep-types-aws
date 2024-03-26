@@ -68,11 +68,6 @@ Contains between 3 and 32 characters
 * **Tags**: [Tag](#tag)[] (WriteOnly): List of tags to be added to the resource
 * **Type**: string
 
-## Tag
-### Properties
-* **Key**: string (Required): The key in the key-value pair
-* **Value**: string (Required): The value in the key-value pair
-
 ## AWS.OpenSearchServerless/LifecyclePolicyProperties
 ### Properties
 * **Description**: string: The description of the policy
@@ -88,13 +83,6 @@ Contains between 3 and 32 characters
 * **SamlOptions**: [SamlConfigOptions](#samlconfigoptions)
 * **Type**: string
 
-## SamlConfigOptions
-### Properties
-* **GroupAttribute**: string: Group attribute for this saml integration
-* **Metadata**: string (Required): The XML saml provider metadata document that you want to use
-* **SessionTimeout**: int: Defines the session timeout in minutes
-* **UserAttribute**: string: Custom attribute for this saml integration
-
 ## AWS.OpenSearchServerless/SecurityPolicyProperties
 ### Properties
 * **Description**: string: The description of the policy
@@ -109,4 +97,16 @@ Contains between 3 and 32 characters
 * **SecurityGroupIds**: string[]: The ID of one or more security groups to associate with the endpoint network interface
 * **SubnetIds**: string[] (Required): The ID of one or more subnets in which to create an endpoint network interface
 * **VpcId**: string (Required): The ID of the VPC in which the endpoint will be used.
+
+## SamlConfigOptions
+### Properties
+* **GroupAttribute**: string: Group attribute for this saml integration
+* **Metadata**: string (Required): The XML saml provider metadata document that you want to use
+* **SessionTimeout**: int: Defines the session timeout in minutes
+* **UserAttribute**: string: Custom attribute for this saml integration
+
+## Tag
+### Properties
+* **Key**: string (Required): The key in the key-value pair
+* **Value**: string (Required): The value in the key-value pair
 

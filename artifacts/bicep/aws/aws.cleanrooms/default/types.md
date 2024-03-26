@@ -35,6 +35,25 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CleanRooms/MembershipProperties](#awscleanroomsmembershipproperties) (Required): properties of the resource
 
+## AnalysisParameter
+### Properties
+* **DefaultValue**: string
+* **Name**: string (Required)
+* **Type**: string (Required)
+
+## AnalysisRule
+### Properties
+* **Policy**: [ConfiguredTableAnalysisRulePolicy](#configuredtableanalysisrulepolicy) (Required)
+* **Type**: string (Required)
+
+## AnalysisSchema
+### Properties
+* **ReferencedTables**: string[] (Required)
+
+## AnalysisSource
+### Properties
+* **Text**: string (Required)
+
 ## AWS.CleanRooms/AnalysisTemplateProperties
 ### Properties
 * **AnalysisParameters**: [AnalysisParameter](#analysisparameter)[]: The member who can query can provide this placeholder for a literal data value in an analysis template
@@ -51,25 +70,6 @@
 * **Source**: [AnalysisSource](#analysissource) (Required)
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this cleanrooms analysis template.
 
-## AnalysisParameter
-### Properties
-* **DefaultValue**: string
-* **Name**: string (Required)
-* **Type**: string (Required)
-
-## AnalysisSchema
-### Properties
-* **ReferencedTables**: string[] (Required)
-
-## AnalysisSource
-### Properties
-* **Text**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.CleanRooms/CollaborationProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -84,32 +84,16 @@
 * **QueryLogStatus**: string (Required)
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration.
 
-## PaymentConfiguration
+## AWS.CleanRooms/ConfiguredTableAssociationProperties
 ### Properties
-* **QueryCompute**: [QueryComputePaymentConfig](#querycomputepaymentconfig) (Required)
-
-## QueryComputePaymentConfig
-### Properties
-* **IsResponsible**: bool (Required)
-
-## DataEncryptionMetadata
-### Properties
-* **AllowCleartext**: bool (Required)
-* **AllowDuplicates**: bool (Required)
-* **AllowJoinsOnColumnsWithDifferentNames**: bool (Required)
-* **PreserveNulls**: bool (Required)
-
-## MemberSpecification
-### Properties
-* **AccountId**: string (Required)
-* **DisplayName**: string (Required)
-* **MemberAbilities**: string[] (Required)
-* **PaymentConfiguration**: [PaymentConfiguration](#paymentconfiguration)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Arn**: string (ReadOnly)
+* **ConfiguredTableAssociationIdentifier**: string (ReadOnly, Identifier)
+* **ConfiguredTableIdentifier**: string (Required)
+* **Description**: string
+* **MembershipIdentifier**: string (Required, Identifier)
+* **Name**: string (Required)
+* **RoleArn**: string (Required)
+* **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration.
 
 ## AWS.CleanRooms/ConfiguredTableProperties
 ### Properties
@@ -123,48 +107,6 @@
 * **TableReference**: [TableReference](#tablereference) (Required)
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration.
 
-## AnalysisRule
-### Properties
-* **Policy**: [ConfiguredTableAnalysisRulePolicy](#configuredtableanalysisrulepolicy) (Required)
-* **Type**: string (Required)
-
-## ConfiguredTableAnalysisRulePolicy
-### Properties
-* **V1**: [ConfiguredTable_ConfiguredTableAnalysisRulePolicyV1](#configuredtableconfiguredtableanalysisrulepolicyv1) (Required)
-
-## ConfiguredTable_ConfiguredTableAnalysisRulePolicyV1
-### Properties
-
-## TableReference
-### Properties
-* **Glue**: [GlueTableReference](#gluetablereference) (Required)
-
-## GlueTableReference
-### Properties
-* **DatabaseName**: string (Required)
-* **TableName**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
-## AWS.CleanRooms/ConfiguredTableAssociationProperties
-### Properties
-* **Arn**: string (ReadOnly)
-* **ConfiguredTableAssociationIdentifier**: string (ReadOnly, Identifier)
-* **ConfiguredTableIdentifier**: string (Required)
-* **Description**: string
-* **MembershipIdentifier**: string (Required, Identifier)
-* **Name**: string (Required)
-* **RoleArn**: string (Required)
-* **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration.
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.CleanRooms/MembershipProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -177,14 +119,52 @@
 * **QueryLogStatus**: string (Required)
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this cleanrooms membership.
 
+## ConfiguredTable_ConfiguredTableAnalysisRulePolicyV1
+### Properties
+
+## ConfiguredTableAnalysisRulePolicy
+### Properties
+* **V1**: [ConfiguredTable_ConfiguredTableAnalysisRulePolicyV1](#configuredtableconfiguredtableanalysisrulepolicyv1) (Required)
+
+## DataEncryptionMetadata
+### Properties
+* **AllowCleartext**: bool (Required)
+* **AllowDuplicates**: bool (Required)
+* **AllowJoinsOnColumnsWithDifferentNames**: bool (Required)
+* **PreserveNulls**: bool (Required)
+
+## GlueTableReference
+### Properties
+* **DatabaseName**: string (Required)
+* **TableName**: string (Required)
+
+## MembershipPaymentConfiguration
+### Properties
+* **QueryCompute**: [MembershipQueryComputePaymentConfig](#membershipquerycomputepaymentconfig) (Required)
+
+## MembershipProtectedQueryOutputConfiguration
+### Properties
+* **S3**: [ProtectedQueryS3OutputConfiguration](#protectedquerys3outputconfiguration) (Required)
+
 ## MembershipProtectedQueryResultConfiguration
 ### Properties
 * **OutputConfiguration**: [MembershipProtectedQueryOutputConfiguration](#membershipprotectedqueryoutputconfiguration) (Required)
 * **RoleArn**: string
 
-## MembershipProtectedQueryOutputConfiguration
+## MembershipQueryComputePaymentConfig
 ### Properties
-* **S3**: [ProtectedQueryS3OutputConfiguration](#protectedquerys3outputconfiguration) (Required)
+* **IsResponsible**: bool (Required)
+
+## MemberSpecification
+### Properties
+* **AccountId**: string (Required)
+* **DisplayName**: string (Required)
+* **MemberAbilities**: string[] (Required)
+* **PaymentConfiguration**: [PaymentConfiguration](#paymentconfiguration)
+
+## PaymentConfiguration
+### Properties
+* **QueryCompute**: [QueryComputePaymentConfig](#querycomputepaymentconfig) (Required)
 
 ## ProtectedQueryS3OutputConfiguration
 ### Properties
@@ -192,13 +172,33 @@
 * **KeyPrefix**: string
 * **ResultFormat**: string (Required)
 
-## MembershipPaymentConfiguration
-### Properties
-* **QueryCompute**: [MembershipQueryComputePaymentConfig](#membershipquerycomputepaymentconfig) (Required)
-
-## MembershipQueryComputePaymentConfig
+## QueryComputePaymentConfig
 ### Properties
 * **IsResponsible**: bool (Required)
+
+## TableReference
+### Properties
+* **Glue**: [GlueTableReference](#gluetablereference) (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

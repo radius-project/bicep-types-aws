@@ -28,6 +28,16 @@
 * **ResourceMappings**: [ResourceMapping](#resourcemapping)[] (Required): An array of ResourceMapping objects.
 * **Tags**: [TagMap](#tagmap)
 
+## AWS.ResilienceHub/ResiliencyPolicyProperties
+### Properties
+* **DataLocationConstraint**: string: Data Location Constraint of the Policy.
+* **Policy**: [PolicyMap](#policymap) (Required)
+* **PolicyArn**: string (ReadOnly, Identifier): Amazon Resource Name (ARN) of the Resiliency Policy.
+* **PolicyDescription**: string: Description of Resiliency Policy.
+* **PolicyName**: string (Required): Name of Resiliency Policy.
+* **Tags**: [TagMap](#tagmap)
+* **Tier**: string (Required): Resiliency Policy Tier.
+
 ## EventSubscription
 ### Properties
 * **EventType**: string (Required): The type of event you would like to subscribe and get notification for.
@@ -40,6 +50,16 @@
 * **InvokerRoleName**: string: Existing AWS IAM role name in the primary AWS account that will be assumed by AWS Resilience Hub Service Principle to obtain a read-only access to your application resources while running an assessment.
 * **Type**: string (Required): Defines how AWS Resilience Hub scans your resources. It can scan for the resources by using a pre-existing role in your AWS account, or by using the credentials of the current IAM user.
 
+## PhysicalResourceId
+### Properties
+* **AwsAccountId**: string
+* **AwsRegion**: string
+* **Identifier**: string (Required)
+* **Type**: string (Required)
+
+## PolicyMap
+### Properties
+
 ## ResourceMapping
 ### Properties
 * **EksSourceName**: string
@@ -49,27 +69,7 @@
 * **ResourceName**: string
 * **TerraformSourceName**: string
 
-## PhysicalResourceId
-### Properties
-* **AwsAccountId**: string
-* **AwsRegion**: string
-* **Identifier**: string (Required)
-* **Type**: string (Required)
-
 ## TagMap
-### Properties
-
-## AWS.ResilienceHub/ResiliencyPolicyProperties
-### Properties
-* **DataLocationConstraint**: string: Data Location Constraint of the Policy.
-* **Policy**: [PolicyMap](#policymap) (Required)
-* **PolicyArn**: string (ReadOnly, Identifier): Amazon Resource Name (ARN) of the Resiliency Policy.
-* **PolicyDescription**: string: Description of Resiliency Policy.
-* **PolicyName**: string (Required): Name of Resiliency Policy.
-* **Tags**: [TagMap](#tagmap)
-* **Tier**: string (Required): Resiliency Policy Tier.
-
-## PolicyMap
 ### Properties
 
 ## TagMap

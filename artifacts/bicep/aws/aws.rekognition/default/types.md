@@ -27,11 +27,6 @@
 * **CollectionId**: string (Required, Identifier)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.Rekognition/ProjectProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -98,6 +93,11 @@
 ### Properties
 * **BucketName**: string (Required): Name of the S3 bucket.
 * **ObjectKeyPrefix**: string: The object key prefix path where the results will be stored. Default is no prefix path
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties

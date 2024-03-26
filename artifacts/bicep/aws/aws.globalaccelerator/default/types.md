@@ -34,11 +34,6 @@
 * **Name**: string (Required): Name of accelerator.
 * **Tags**: [Tag](#tag)[]
 
-## Tag
-### Properties
-* **Key**: string (Required): Key of the tag. Value can be 1 to 127 characters.
-* **Value**: string (Required): Value for the tag. Value can be 1 to 255 characters.
-
 ## AWS.GlobalAccelerator/EndpointGroupProperties
 ### Properties
 * **EndpointConfigurations**: [EndpointConfiguration](#endpointconfiguration)[] (WriteOnly): The list of endpoint objects.
@@ -53,6 +48,14 @@
 * **ThresholdCount**: int: The number of consecutive health checks required to set the state of the endpoint to unhealthy.
 * **TrafficDialPercentage**: int: The percentage of traffic to sent to an AWS Region
 
+## AWS.GlobalAccelerator/ListenerProperties
+### Properties
+* **AcceleratorArn**: string (Required): The Amazon Resource Name (ARN) of the accelerator.
+* **ClientAffinity**: string: Client affinity lets you direct all requests from a user to the same endpoint.
+* **ListenerArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the listener.
+* **PortRanges**: [PortRange](#portrange)[] (Required)
+* **Protocol**: string (Required): The protocol for the listener.
+
 ## EndpointConfiguration
 ### Properties
 * **AttachmentArn**: string: Attachment ARN that provides access control to the cross account endpoint. Not required for resources hosted in the same account as the endpoint group.
@@ -65,16 +68,13 @@
 * **EndpointPort**: int (Required)
 * **ListenerPort**: int (Required)
 
-## AWS.GlobalAccelerator/ListenerProperties
-### Properties
-* **AcceleratorArn**: string (Required): The Amazon Resource Name (ARN) of the accelerator.
-* **ClientAffinity**: string: Client affinity lets you direct all requests from a user to the same endpoint.
-* **ListenerArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the listener.
-* **PortRanges**: [PortRange](#portrange)[] (Required)
-* **Protocol**: string (Required): The protocol for the listener.
-
 ## PortRange
 ### Properties
 * **FromPort**: int (Required)
 * **ToPort**: int (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): Key of the tag. Value can be 1 to 127 characters.
+* **Value**: string (Required): Value for the tag. Value can be 1 to 255 characters.
 

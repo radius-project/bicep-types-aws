@@ -21,6 +21,11 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Route53RecoveryControl/SafetyRuleProperties](#awsroute53recoverycontrolsafetyruleproperties) (Required): properties of the resource
 
+## AssertionRule
+### Properties
+* **AssertedControls**: string[] (Required): The routing controls that are part of transactions that are evaluated to determine if a request to change a routing control state is allowed. For example, you might include three routing controls, one for each of three AWS Regions.
+* **WaitPeriodMs**: int (Required): An evaluation period, in milliseconds (ms), during which any request against the target routing controls will fail. This helps prevent "flapping" of state. The wait period is 5000 ms by default, but you can choose a custom value.
+
 ## AWS.Route53RecoveryControl/ControlPanelProperties
 ### Properties
 * **ClusterArn**: string: Cluster to associate with the Control Panel
@@ -30,11 +35,6 @@
 * **RoutingControlCount**: int (ReadOnly): Count of associated routing controls
 * **Status**: string (ReadOnly): The deployment status of control panel. Status can be one of the following: PENDING, DEPLOYED, PENDING_DELETION.
 * **Tags**: [Tag](#tag)[] (WriteOnly): A collection of tags associated with a resource
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 
 ## AWS.Route53RecoveryControl/RoutingControlProperties
 ### Properties
@@ -55,11 +55,6 @@
 * **Status**: string (ReadOnly): The deployment status of the routing control. Status can be one of the following: PENDING, DEPLOYED, PENDING_DELETION.
 * **Tags**: [Tag](#tag)[] (WriteOnly): A collection of tags associated with a resource
 
-## AssertionRule
-### Properties
-* **AssertedControls**: string[] (Required): The routing controls that are part of transactions that are evaluated to determine if a request to change a routing control state is allowed. For example, you might include three routing controls, one for each of three AWS Regions.
-* **WaitPeriodMs**: int (Required): An evaluation period, in milliseconds (ms), during which any request against the target routing controls will fail. This helps prevent "flapping" of state. The wait period is 5000 ms by default, but you can choose a custom value.
-
 ## GatingRule
 ### Properties
 * **GatingControls**: string[] (Required): The gating controls for the gating rule. That is, routing controls that are evaluated by the rule configuration that you specify.
@@ -72,6 +67,11 @@ In other words, your ability to change the routing controls that you have specif
 * **Inverted**: bool (Required): Logical negation of the rule. If the rule would usually evaluate true, it's evaluated as false, and vice versa.
 * **Threshold**: int (Required): The value of N, when you specify an ATLEAST rule type. That is, Threshold is the number of controls that must be set when you specify an ATLEAST type.
 * **Type**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

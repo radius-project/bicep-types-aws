@@ -27,13 +27,26 @@
 * **SourceURI**: string (Required): The URI of the data source.
 * **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the data integration.
 
+## AWS.AppIntegrations/EventIntegrationProperties
+### Properties
+* **Description**: string: The event integration description.
+* **EventBridgeBus**: string (Required): The Amazon Eventbridge bus for the event integration.
+* **EventFilter**: [EventFilter](#eventfilter) (Required): The EventFilter (source) associated with the event integration.
+* **EventIntegrationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the event integration.
+* **Name**: string (Required, Identifier): The name of the event integration.
+* **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the event integration.
+
+## DataIntegration_Filters
+### Properties
+
+## EventFilter
+### Properties
+* **Source**: string (Required): The source of the events.
+
 ## FileConfiguration
 ### Properties
 * **Filters**: [DataIntegration_Filters](#dataintegrationfilters): Restrictions for what files should be pulled from the source.
 * **Folders**: string[] (Required): Identifiers for the source folders to pull all files from recursively.
-
-## DataIntegration_Filters
-### Properties
 
 ## ObjectConfiguration
 ### Properties
@@ -48,19 +61,6 @@
 ### Properties
 * **Key**: string (Required): A key to identify the tag.
 * **Value**: string (Required): Corresponding tag value for the key.
-
-## AWS.AppIntegrations/EventIntegrationProperties
-### Properties
-* **Description**: string: The event integration description.
-* **EventBridgeBus**: string (Required): The Amazon Eventbridge bus for the event integration.
-* **EventFilter**: [EventFilter](#eventfilter) (Required): The EventFilter (source) associated with the event integration.
-* **EventIntegrationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the event integration.
-* **Name**: string (Required, Identifier): The name of the event integration.
-* **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the event integration.
-
-## EventFilter
-### Properties
-* **Source**: string (Required): The source of the events.
 
 ## Tag
 ### Properties

@@ -1,1 +1,357 @@
-[{"1":{"Kind":1}},{"1":{"Kind":2}},{"1":{"Kind":3}},{"1":{"Kind":4}},{"1":{"Kind":5}},{"1":{"Kind":6}},{"1":{"Kind":7}},{"1":{"Kind":8}},{"2":{"Name":"GenerateSecretString","Properties":{"ExcludeCharacters":{"Type":4,"Flags":0,"Description":"A string that excludes characters in the generated password. By default, all characters from the included sets can be used. The string can be a minimum length of 0 characters and a maximum length of 7168 characters. "},"ExcludeLowercase":{"Type":2,"Flags":0,"Description":"Specifies the generated password should not include lowercase letters. By default, ecrets Manager disables this parameter, and the generated password can include lowercase False, and the generated password can include lowercase letters."},"ExcludeNumbers":{"Type":2,"Flags":0,"Description":"Specifies that the generated password should exclude digits. By default, Secrets Manager does not enable the parameter, False, and the generated password can include digits."},"ExcludePunctuation":{"Type":2,"Flags":0,"Description":"Specifies that the generated password should not include punctuation characters. The default if you do not include this switch parameter is that punctuation characters can be included. "},"ExcludeUppercase":{"Type":2,"Flags":0,"Description":"Specifies that the generated password should not include uppercase letters. The default behavior is False, and the generated password can include uppercase letters. "},"GenerateStringKey":{"Type":4,"Flags":0,"Description":"The JSON key name used to add the generated password to the JSON structure specified by the SecretStringTemplate parameter. If you specify this parameter, then you must also specify SecretStringTemplate. "},"IncludeSpace":{"Type":2,"Flags":0,"Description":"Specifies that the generated password can include the space character. By default, Secrets Manager disables this parameter, and the generated password doesn't include space"},"PasswordLength":{"Type":3,"Flags":0,"Description":"The desired length of the generated password. The default value if you do not include this parameter is 32 characters. "},"RequireEachIncludedType":{"Type":2,"Flags":0,"Description":"Specifies whether the generated password must include at least one of every allowed character type. By default, Secrets Manager enables this parameter, and the generated password includes at least one of every character type."},"SecretStringTemplate":{"Type":4,"Flags":0,"Description":"A properly structured JSON string that the generated password can be added to. If you specify this parameter, then you must also specify GenerateStringKey."}}}},{"2":{"Name":"ReplicaRegion","Properties":{"KmsKeyId":{"Type":4,"Flags":0,"Description":"The ARN, key ID, or alias of the KMS key to encrypt the secret. If you don't include this field, Secrets Manager uses aws/secretsmanager."},"Region":{"Type":4,"Flags":1,"Description":"(Optional) A string that represents a Region, for example \"us-east-1\"."}}}},{"2":{"Name":"Tag","Properties":{"Key":{"Type":4,"Flags":1,"Description":"The value for the tag. You can specify a value that's 1 to 256 characters in length."},"Value":{"Type":4,"Flags":1,"Description":"The key name of the tag. You can specify a value that's 1 to 128 Unicode characters in length and can't be prefixed with aws."}}}},{"2":{"Name":"AWS.SecretsManager/SecretProperties","Properties":{"Description":{"Type":4,"Flags":0,"Description":"(Optional) Specifies a user-provided description of the secret."},"GenerateSecretString":{"Type":8,"Flags":4,"Description":"(Optional) Specifies text data that you want to encrypt and store in this new version of the secret."},"Id":{"Type":4,"Flags":18,"Description":"secret Id, the Arn of the resource."},"KmsKeyId":{"Type":4,"Flags":0,"Description":"(Optional) Specifies the ARN, Key ID, or alias of the AWS KMS customer master key (CMK) used to encrypt the SecretString."},"Name":{"Type":4,"Flags":0,"Description":"The friendly name of the secret. You can use forward slashes in the name to represent a path hierarchy."},"ReplicaRegions":{"Type":12,"Flags":0,"Description":"(Optional) A list of ReplicaRegion objects. The ReplicaRegion type consists of a Region (required) and the KmsKeyId which can be an ARN, Key ID, or Alias."},"SecretString":{"Type":4,"Flags":4,"Description":"(Optional) Specifies text data that you want to encrypt and store in this new version of the secret."},"Tags":{"Type":13,"Flags":0,"Description":"The list of user-defined tags associated with the secret. Use tags to manage your AWS resources. For additional information about tags, see TagResource."}}}},{"3":{"ItemType":9}},{"3":{"ItemType":10}},{"2":{"Name":"AWS.SecretsManager/Secret","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":11,"Flags":0,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.SecretsManager/Secret@default","ScopeType":0,"Body":14}}]
+[
+  {
+    "$type": "ObjectType",
+    "name": "GenerateSecretString",
+    "properties": {
+      "ExcludeCharacters": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A string of the characters that you don't want in the password."
+      },
+      "ExcludeLowercase": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies whether to exclude lowercase letters from the password. If you don't include this switch, the password can contain lowercase letters."
+      },
+      "ExcludeNumbers": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies whether to exclude numbers from the password. If you don't include this switch, the password can contain numbers."
+      },
+      "ExcludePunctuation": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies whether to exclude the following punctuation characters from the password: ``! \" # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~``. If you don't include this switch, the password can contain punctuation."
+      },
+      "ExcludeUppercase": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies whether to exclude uppercase letters from the password. If you don't include this switch, the password can contain uppercase letters."
+      },
+      "GenerateStringKey": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The JSON key name for the key/value pair, where the value is the generated password. This pair is added to the JSON structure specified by the ``SecretStringTemplate`` parameter. If you specify this parameter, then you must also specify ``SecretStringTemplate``."
+      },
+      "IncludeSpace": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies whether to include the space character. If you include this switch, the password can contain space characters."
+      },
+      "PasswordLength": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The length of the password. If you don't include this parameter, the default length is 32 characters."
+      },
+      "RequireEachIncludedType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies whether to include at least one upper and lowercase letter, one number, and one punctuation. If you don't include this switch, the password contains at least one of every character type."
+      },
+      "SecretStringTemplate": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A template that the generated string must match. When you make a change to this property, a new secret version is created."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReplicaRegion",
+    "properties": {
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The ARN, key ID, or alias of the KMS key to encrypt the secret. If you don't include this field, Secrets Manager uses ``aws/secretsmanager``."
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "A string that represents a ``Region``, for example \"us-east-1\"."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key identifier, or name, of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The string value associated with the key of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecretsManager/SecretProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GenerateSecretString",
+    "properties": {
+      "ExcludeCharacters": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A string of the characters that you don't want in the password."
+      },
+      "ExcludeLowercase": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies whether to exclude lowercase letters from the password. If you don't include this switch, the password can contain lowercase letters."
+      },
+      "ExcludeNumbers": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies whether to exclude numbers from the password. If you don't include this switch, the password can contain numbers."
+      },
+      "ExcludePunctuation": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies whether to exclude the following punctuation characters from the password: ``! \" # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~``. If you don't include this switch, the password can contain punctuation."
+      },
+      "ExcludeUppercase": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies whether to exclude uppercase letters from the password. If you don't include this switch, the password can contain uppercase letters."
+      },
+      "GenerateStringKey": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The JSON key name for the key/value pair, where the value is the generated password. This pair is added to the JSON structure specified by the ``SecretStringTemplate`` parameter. If you specify this parameter, then you must also specify ``SecretStringTemplate``."
+      },
+      "IncludeSpace": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies whether to include the space character. If you include this switch, the password can contain space characters."
+      },
+      "PasswordLength": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The length of the password. If you don't include this parameter, the default length is 32 characters."
+      },
+      "RequireEachIncludedType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies whether to include at least one upper and lowercase letter, one number, and one punctuation. If you don't include this switch, the password contains at least one of every character type."
+      },
+      "SecretStringTemplate": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A template that the generated string must match. When you make a change to this property, a new secret version is created."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReplicaRegion",
+    "properties": {
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The ARN, key ID, or alias of the KMS key to encrypt the secret. If you don't include this field, Secrets Manager uses ``aws/secretsmanager``."
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "A string that represents a ``Region``, for example \"us-east-1\"."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key identifier, or name, of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The string value associated with the key of the tag."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecretsManager/SecretProperties",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The description of the secret."
+      },
+      "GenerateSecretString": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 4,
+        "description": "A structure that specifies how to generate a password to encrypt and store in the secret. To include a specific string in the secret, use ``SecretString`` instead. If you omit both ``GenerateSecretString`` and ``SecretString``, you create an empty secret. When you make a change to this property, a new secret version is created.\n We recommend that you specify the maximum length and include every character type that the system you are generating a password for can support."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": ""
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The ARN, key ID, or alias of the KMS key that Secrets Manager uses to encrypt the secret value in the secret. An alias is always prefixed by ``alias/``, for example ``alias/aws/secretsmanager``. For more information, see [About aliases](https://docs.aws.amazon.com/kms/latest/developerguide/alias-about.html).\n To use a KMS key in a different account, use the key ARN or the alias ARN.\n If you don't specify this value, then Secrets Manager uses the key ``aws/secretsmanager``. If that key doesn't yet exist, then Secrets Manager creates it for you automatically the first time it encrypts the secret value.\n If the secret is in a different AWS account from the credentials calling the API, then you can't use ``aws/secretsmanager`` to encrypt the secret, and you must create and use a customer managed KMS key."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The name of the new secret.\n The secret name can contain ASCII letters, numbers, and the following characters: /_+=.@-\n Do not end your secret name with a hyphen followed by six characters. If you do so, you risk confusion and unexpected results when searching for a secret by partial ARN. Secrets Manager automatically adds a hyphen and six random characters after the secret name at the end of the ARN."
+      },
+      "ReplicaRegions": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "A custom type that specifies a ``Region`` and the ``KmsKeyId`` for a replica secret."
+      },
+      "SecretString": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 4,
+        "description": "The text to encrypt and store in the secret. We recommend you use a JSON structure of key/value pairs for your secret value. To generate a random password, use ``GenerateSecretString`` instead. If you omit both ``GenerateSecretString`` and ``SecretString``, you create an empty secret. When you make a change to this property, a new secret version is created."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "A list of tags to attach to the secret. Each tag is a key and value pair of strings in a JSON text string, for example:\n  ``[{\"Key\":\"CostCenter\",\"Value\":\"12345\"},{\"Key\":\"environment\",\"Value\":\"production\"}]`` \n Secrets Manager tag key names are case sensitive. A tag with the key \"ABC\" is a different tag from one with key \"abc\".\n Stack-level tags, tags you apply to the CloudFormation stack, are also attached to the secret. \n If you check tags in permissions policies as part of your security strategy, then adding or removing a tag can change permissions. If the completion of this operation would result in you losing your permissions for this secret, then Secrets Manager blocks the operation and returns an ``Access Denied`` error. For more information, see [Control access to secrets using tags](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_examples.html#tag-secrets-abac) and [Limit access to identities with tags that match secrets' tags](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_examples.html#auth-and-access_tags2).\n For information about how to format a JSON parameter for the various command line tool environments, see [Using JSON for Parameters](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#cli-using-param-json). If your command-line tool or SDK requires quotation marks around the parameter, you should use single quotes to avoid confusion with the double quotes required in the JSON text.\n The following restrictions apply to tags:\n  +  Maximum number of tags per secret: 50\n  +  Maximum key length: 127 Unicode characters in UTF-8\n  +  Maximum value length: 255 Unicode characters in UTF-8\n  +  Tag keys and values are case sensitive.\n  +  Do not use the ``aws:`` prefix in your tag names or values because AWS reserves it for AWS use. You can't edit or delete tag names or values with this prefix. Tags with this prefix do not count against your tags per secret limit.\n  +  If you use your tagging schema across multiple services and resources, other services might have restrictions on allowed characters. Generally allowed characters: letters, spaces, and numbers representable in UTF-8, plus the following special characters: + - = . _ : / @."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecretsManager/Secret",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecretsManager/Secret@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/13"
+    },
+    "flags": 0
+  }
+]

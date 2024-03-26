@@ -23,29 +23,6 @@
 * **State**: string (ReadOnly): The state of the logging configuration. When the state is ACTIVE, the configuration is ready to log chat content.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## DestinationConfiguration
-### Properties
-* **CloudWatchLogs**: [CloudWatchLogsDestinationConfiguration](#cloudwatchlogsdestinationconfiguration)
-* **Firehose**: [FirehoseDestinationConfiguration](#firehosedestinationconfiguration)
-* **S3**: [S3DestinationConfiguration](#s3destinationconfiguration)
-
-## CloudWatchLogsDestinationConfiguration
-### Properties
-* **LogGroupName**: string (Required): Name of the Amazon CloudWatch Logs log group where chat activity will be logged.
-
-## FirehoseDestinationConfiguration
-### Properties
-* **DeliveryStreamName**: string (Required): Name of the Amazon Kinesis Firehose delivery stream where chat activity will be logged.
-
-## S3DestinationConfiguration
-### Properties
-* **BucketName**: string (Required): Name of the Amazon S3 bucket where chat activity will be logged.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.IVSChat/RoomProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): Room ARN is automatically generated on creation and assigned as the unique identifier.
@@ -57,10 +34,33 @@
 * **Name**: string: The name of the room. The value does not need to be unique.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## CloudWatchLogsDestinationConfiguration
+### Properties
+* **LogGroupName**: string (Required): Name of the Amazon CloudWatch Logs log group where chat activity will be logged.
+
+## DestinationConfiguration
+### Properties
+* **CloudWatchLogs**: [CloudWatchLogsDestinationConfiguration](#cloudwatchlogsdestinationconfiguration)
+* **Firehose**: [FirehoseDestinationConfiguration](#firehosedestinationconfiguration)
+* **S3**: [S3DestinationConfiguration](#s3destinationconfiguration)
+
+## FirehoseDestinationConfiguration
+### Properties
+* **DeliveryStreamName**: string (Required): Name of the Amazon Kinesis Firehose delivery stream where chat activity will be logged.
+
 ## MessageReviewHandler
 ### Properties
 * **FallbackResult**: string: Specifies the fallback behavior if the handler does not return a valid response, encounters an error, or times out.
 * **Uri**: string: Identifier of the message review handler.
+
+## S3DestinationConfiguration
+### Properties
+* **BucketName**: string (Required): Name of the Amazon S3 bucket where chat activity will be logged.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties

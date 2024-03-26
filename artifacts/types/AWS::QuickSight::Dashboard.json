@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-Dashboard",
   "type": "AWS::QuickSight::Dashboard",
-  "time": "2024-01-04T17:31:33.29Z",
+  "time": "2024-03-11T16:15:10.201Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -11170,6 +11170,7 @@
           "quicksight:DescribeDashboard",
           "quicksight:DescribeDashboardPermissions",
           "quicksight:UpdateDashboard",
+          "quicksight:UpdateDashboardLinks",
           "quicksight:UpdateDashboardPermissions",
           "quicksight:UpdateDashboardPublishedVersion",
           "quicksight:DescribeTemplate",
@@ -11218,6 +11219,17 @@
       "LastUpdatedTime": {
         "format": "date-time",
         "type": "string"
+      },
+      "LinkEntities": {
+        "items": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "pattern": "^arn:aws[\\w\\-]*:quicksight:[\\w\\-]+:\\d+:analysis/[\\w\\-]{1,512}",
+          "type": "string"
+        },
+        "maxItems": 5,
+        "minItems": 0,
+        "type": "array"
       },
       "LinkSharingConfiguration": {
         "$ref": "#/definitions/LinkSharingConfiguration"

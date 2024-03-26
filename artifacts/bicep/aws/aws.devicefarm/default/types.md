@@ -52,17 +52,6 @@
 * **Rules**: [Rule](#rule)[] (Required)
 * **Tags**: [Tag](#tag)[]
 
-## Rule
-### Properties
-* **Attribute**: string: The rule's stringified attribute.
-* **Operator**: string: Specifies how Device Farm compares the rule's attribute to the value.
-* **Value**: string: The rule's value.
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.DeviceFarm/InstanceProfileProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
@@ -72,11 +61,6 @@
 * **PackageCleanup**: bool
 * **RebootAfterUse**: bool
 * **Tags**: [Tag](#tag)[]
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 
 ## AWS.DeviceFarm/NetworkProfileProperties
 ### Properties
@@ -94,11 +78,6 @@
 * **UplinkJitterMs**: int
 * **UplinkLossPercent**: int
 
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.DeviceFarm/ProjectProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
@@ -106,6 +85,54 @@
 * **Name**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **VpcConfig**: [VpcConfig](#vpcconfig)
+
+## AWS.DeviceFarm/TestGridProjectProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **Description**: string
+* **Name**: string (Required)
+* **Tags**: [Tag](#tag)[]
+* **VpcConfig**: [VpcConfig](#vpcconfig) (WriteOnly)
+
+## AWS.DeviceFarm/VPCEConfigurationProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **ServiceDnsName**: string (Required)
+* **Tags**: [Tag](#tag)[]
+* **VpceConfigurationDescription**: string
+* **VpceConfigurationName**: string (Required)
+* **VpceServiceName**: string (Required)
+
+## Rule
+### Properties
+* **Attribute**: string: The rule's stringified attribute.
+* **Operator**: string: Specifies how Device Farm compares the rule's attribute to the value.
+* **Value**: string: The rule's value.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
@@ -118,36 +145,9 @@
 * **SubnetIds**: string[] (Required): A array of subnet IDs in your Amazon VPC.
 * **VpcId**: string (Required): The ID of the Amazon VPC
 
-## AWS.DeviceFarm/TestGridProjectProperties
-### Properties
-* **Arn**: string (ReadOnly, Identifier)
-* **Description**: string
-* **Name**: string (Required)
-* **Tags**: [Tag](#tag)[]
-* **VpcConfig**: [VpcConfig](#vpcconfig) (WriteOnly)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## VpcConfig
 ### Properties
 * **SecurityGroupIds**: string[] (Required): A list of VPC security group IDs in your Amazon VPC.
 * **SubnetIds**: string[] (Required): A list of VPC subnet IDs in your Amazon VPC.
 * **VpcId**: string (Required)
-
-## AWS.DeviceFarm/VPCEConfigurationProperties
-### Properties
-* **Arn**: string (ReadOnly, Identifier)
-* **ServiceDnsName**: string (Required)
-* **Tags**: [Tag](#tag)[]
-* **VpceConfigurationDescription**: string
-* **VpceConfigurationName**: string (Required)
-* **VpceServiceName**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 

@@ -1,1 +1,657 @@
-[{"1":{"Kind":1}},{"1":{"Kind":2}},{"1":{"Kind":3}},{"1":{"Kind":4}},{"1":{"Kind":5}},{"1":{"Kind":6}},{"1":{"Kind":7}},{"1":{"Kind":8}},{"2":{"Name":"Criteria","Properties":{}}},{"2":{"Name":"Regex"}},{"2":{"Name":"S3WordsList","Properties":{"BucketName":{"Type":4,"Flags":1},"ObjectKey":{"Type":4,"Flags":1}}}},{"2":{"Name":"Status"}},{"2":{"Name":"Tag","Properties":{"Key":{"Type":4,"Flags":1,"Description":"The tag's key."},"Value":{"Type":4,"Flags":1,"Description":"The tag's value."}}}},{"2":{"Name":"AWS.Macie/AllowListProperties","Properties":{"Arn":{"Type":4,"Flags":2,"Description":"AllowList ARN."},"Criteria":{"Type":8,"Flags":1,"Description":"AllowList criteria."},"Description":{"Type":4,"Flags":0,"Description":"Description of AllowList."},"Id":{"Type":4,"Flags":18,"Description":"AllowList ID."},"Name":{"Type":4,"Flags":1,"Description":"Name of AllowList."},"Status":{"Type":4,"Flags":2,"Description":"AllowList status."},"Tags":{"Type":14,"Flags":0,"Description":"A collection of tags associated with a resource"}}}},{"3":{"ItemType":12}},{"2":{"Name":"AWS.Macie/AllowList","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":13,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.Macie/AllowList@default","ScopeType":0,"Body":15}},{"2":{"Name":"Tag","Properties":{"Key":{"Type":4,"Flags":1,"Description":"The tag's key."},"Value":{"Type":4,"Flags":1,"Description":"The tag's value."}}}},{"2":{"Name":"AWS.Macie/CustomDataIdentifierProperties","Properties":{"Arn":{"Type":4,"Flags":2,"Description":"Custom data identifier ARN."},"Description":{"Type":4,"Flags":0,"Description":"Description of custom data identifier."},"Id":{"Type":4,"Flags":18,"Description":"Custom data identifier ID."},"IgnoreWords":{"Type":19,"Flags":0,"Description":"Words to be ignored."},"Keywords":{"Type":20,"Flags":0,"Description":"Keywords to be matched against."},"MaximumMatchDistance":{"Type":3,"Flags":0,"Description":"Maximum match distance."},"Name":{"Type":4,"Flags":1,"Description":"Name of custom data identifier."},"Regex":{"Type":4,"Flags":1,"Description":"Regular expression for custom data identifier."},"Tags":{"Type":21,"Flags":0,"Description":"A collection of tags associated with a resource"}}}},{"3":{"ItemType":4}},{"3":{"ItemType":4}},{"3":{"ItemType":17}},{"2":{"Name":"AWS.Macie/CustomDataIdentifier","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":18,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.Macie/CustomDataIdentifier@default","ScopeType":0,"Body":22}},{"2":{"Name":"Criterion","Properties":{}}},{"2":{"Name":"CriterionAdditionalProperties","Properties":{"eq":{"Type":30,"Flags":0},"gt":{"Type":3,"Flags":0},"gte":{"Type":3,"Flags":0},"lt":{"Type":3,"Flags":0},"lte":{"Type":3,"Flags":0},"neq":{"Type":31,"Flags":0}}}},{"2":{"Name":"FindingCriteria","Properties":{"Criterion":{"Type":24,"Flags":0}}}},{"2":{"Name":"FindingFilterAction"}},{"2":{"Name":"FindingsFilterListItem","Properties":{"Id":{"Type":4,"Flags":16},"Name":{"Type":4,"Flags":0}}}},{"2":{"Name":"Tag","Properties":{"Key":{"Type":4,"Flags":1,"Description":"The tag's key."},"Value":{"Type":4,"Flags":1,"Description":"The tag's value."}}}},{"3":{"ItemType":4}},{"3":{"ItemType":4}},{"2":{"Name":"AWS.Macie/FindingsFilterProperties","Properties":{"Action":{"Type":4,"Flags":0,"Description":"Findings filter action."},"Arn":{"Type":4,"Flags":2,"Description":"Findings filter ARN."},"Description":{"Type":4,"Flags":0,"Description":"Findings filter description"},"FindingCriteria":{"Type":26,"Flags":1,"Description":"Findings filter criteria."},"Id":{"Type":4,"Flags":18,"Description":"Findings filter ID."},"Name":{"Type":4,"Flags":1,"Description":"Findings filter name"},"Position":{"Type":3,"Flags":0,"Description":"Findings filter position."},"Tags":{"Type":33,"Flags":0,"Description":"A collection of tags associated with a resource"}}}},{"3":{"ItemType":29}},{"2":{"Name":"AWS.Macie/FindingsFilter","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":32,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.Macie/FindingsFilter@default","ScopeType":0,"Body":34}},{"2":{"Name":"AWS.Macie/SessionProperties","Properties":{"AwsAccountId":{"Type":4,"Flags":18,"Description":"AWS account ID of customer"},"FindingPublishingFrequency":{"Type":4,"Flags":0,"Description":"A enumeration value that specifies how frequently finding updates are published."},"ServiceRole":{"Type":4,"Flags":2,"Description":"Service role used by Macie"},"Status":{"Type":4,"Flags":0,"Description":"A enumeration value that specifies the status of the Macie Session."}}}},{"2":{"Name":"AWS.Macie/Session","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":36,"Flags":0,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.Macie/Session@default","ScopeType":0,"Body":37}}]
+[
+  {
+    "$type": "ObjectType",
+    "name": "Criteria",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Regex",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3WordsList",
+    "properties": {
+      "BucketName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "ObjectKey": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Status",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag's key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag's value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Criteria",
+    "properties": {}
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Macie/AllowListProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag's key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag's value."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Macie/AllowListProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "AllowList ARN."
+      },
+      "Criteria": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "AllowList criteria."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Description of AllowList."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "AllowList ID."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Name of AllowList."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "AllowList status."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "A collection of tags associated with a resource"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Macie/AllowList",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Macie/AllowList@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/11"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Macie/CustomDataIdentifierProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag's key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag's value."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Macie/CustomDataIdentifierProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "Custom data identifier ARN."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Description of custom data identifier."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "Custom data identifier ID."
+      },
+      "IgnoreWords": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Words to be ignored."
+      },
+      "Keywords": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Keywords to be matched against."
+      },
+      "MaximumMatchDistance": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Maximum match distance."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Name of custom data identifier."
+      },
+      "Regex": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Regular expression for custom data identifier."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "A collection of tags associated with a resource"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Macie/CustomDataIdentifier",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Macie/CustomDataIdentifier@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/21"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Criterion",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CriterionAdditionalProperties",
+    "properties": {
+      "eq": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0
+      },
+      "gt": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "gte": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "lt": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "lte": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "neq": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FindingCriteria",
+    "properties": {
+      "Criterion": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FindingFilterAction",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FindingsFilterListItem",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 16
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Criterion",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Macie/FindingsFilterProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FindingCriteria",
+    "properties": {
+      "Criterion": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag's key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag's value."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/34"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Macie/FindingsFilterProperties",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Findings filter action."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "Findings filter ARN."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Findings filter description"
+      },
+      "FindingCriteria": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 1,
+        "description": "Findings filter criteria."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "Findings filter ID."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Findings filter name"
+      },
+      "Position": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Findings filter position."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "A collection of tags associated with a resource"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Macie/FindingsFilter",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 1,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Macie/FindingsFilter@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/37"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Macie/SessionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Macie/SessionProperties",
+    "properties": {
+      "AwsAccountId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "AWS account ID of customer"
+      },
+      "FindingPublishingFrequency": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "A enumeration value that specifies how frequently finding updates are published."
+      },
+      "ServiceRole": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "Service role used by Macie"
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "A enumeration value that specifies the status of the Macie Session."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Macie/Session",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Macie/Session@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/41"
+    },
+    "flags": 0
+  }
+]

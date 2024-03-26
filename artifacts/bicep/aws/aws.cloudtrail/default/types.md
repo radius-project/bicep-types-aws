@@ -28,6 +28,36 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudTrail/TrailProperties](#awscloudtrailtrailproperties) (Required): properties of the resource
 
+## AdvancedEventSelector
+### Properties
+* **FieldSelectors**: [AdvancedFieldSelector](#advancedfieldselector)[] (Required): Contains all selector statements in an advanced event selector.
+* **Name**: string: An optional, descriptive name for an advanced event selector, such as "Log data events for only two S3 buckets".
+
+## AdvancedEventSelector
+### Properties
+* **FieldSelectors**: [AdvancedFieldSelector](#advancedfieldselector)[] (Required): Contains all selector statements in an advanced event selector.
+* **Name**: string: An optional, descriptive name for an advanced event selector, such as "Log data events for only two S3 buckets".
+
+## AdvancedFieldSelector
+### Properties
+* **EndsWith**: string[]: An operator that includes events that match the last few characters of the event record field specified as the value of Field.
+* **Equals**: string[]: An operator that includes events that match the exact value of the event record field specified as the value of Field. This is the only valid operator that you can use with the readOnly, eventCategory, and resources.type fields.
+* **Field**: string (Required): A field in an event record on which to filter events to be logged. Supported fields include readOnly, eventCategory, eventSource (for management events), eventName, resources.type, and resources.ARN.
+* **NotEndsWith**: string[]: An operator that excludes events that match the last few characters of the event record field specified as the value of Field.
+* **NotEquals**: string[]: An operator that excludes events that match the exact value of the event record field specified as the value of Field.
+* **NotStartsWith**: string[]: An operator that excludes events that match the first few characters of the event record field specified as the value of Field.
+* **StartsWith**: string[]: An operator that includes events that match the first few characters of the event record field specified as the value of Field.
+
+## AdvancedFieldSelector
+### Properties
+* **EndsWith**: string[]: An operator that includes events that match the last few characters of the event record field specified as the value of Field.
+* **Equals**: string[]: An operator that includes events that match the exact value of the event record field specified as the value of Field. This is the only valid operator that you can use with the readOnly, eventCategory, and resources.type fields.
+* **Field**: string (Required): A field in an event record on which to filter events to be logged. Supported fields include readOnly, eventCategory, eventSource (for management events), eventName, resources.type, and resources.ARN.
+* **NotEndsWith**: string[]: An operator that excludes events that match the last few characters of the event record field specified as the value of Field.
+* **NotEquals**: string[]: An operator that excludes events that match the exact value of the event record field specified as the value of Field.
+* **NotStartsWith**: string[]: An operator that excludes events that match the first few characters of the event record field specified as the value of Field.
+* **StartsWith**: string[]: An operator that includes events that match the first few characters of the event record field specified as the value of Field.
+
 ## AWS.CloudTrail/ChannelProperties
 ### Properties
 * **ChannelArn**: string (ReadOnly, Identifier)
@@ -35,16 +65,6 @@
 * **Name**: string
 * **Source**: string: The ARN of an on-premises storage solution or application, or a partner event source.
 * **Tags**: [Tag](#tag)[] (WriteOnly): An array of key-value pairs to apply to this resource.
-
-## Destination
-### Properties
-* **Location**: string (Required): The ARN of a resource that receives events from a channel.
-* **Type**: string (Required): The type of destination for events arriving from a channel.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.CloudTrail/EventDataStoreProperties
 ### Properties
@@ -66,30 +86,6 @@
 * **Tags**: [Tag](#tag)[]
 * **TerminationProtectionEnabled**: bool: Indicates whether the event data store is protected from termination.
 * **UpdatedTimestamp**: string (ReadOnly): The timestamp showing when an event data store was updated, if applicable. UpdatedTimestamp is always either the same or newer than the time shown in CreatedTimestamp.
-
-## AdvancedEventSelector
-### Properties
-* **FieldSelectors**: [AdvancedFieldSelector](#advancedfieldselector)[] (Required): Contains all selector statements in an advanced event selector.
-* **Name**: string: An optional, descriptive name for an advanced event selector, such as "Log data events for only two S3 buckets".
-
-## AdvancedFieldSelector
-### Properties
-* **EndsWith**: string[]: An operator that includes events that match the last few characters of the event record field specified as the value of Field.
-* **Equals**: string[]: An operator that includes events that match the exact value of the event record field specified as the value of Field. This is the only valid operator that you can use with the readOnly, eventCategory, and resources.type fields.
-* **Field**: string (Required): A field in an event record on which to filter events to be logged. Supported fields include readOnly, eventCategory, eventSource (for management events), eventName, resources.type, and resources.ARN.
-* **NotEndsWith**: string[]: An operator that excludes events that match the last few characters of the event record field specified as the value of Field.
-* **NotEquals**: string[]: An operator that excludes events that match the exact value of the event record field specified as the value of Field.
-* **NotStartsWith**: string[]: An operator that excludes events that match the first few characters of the event record field specified as the value of Field.
-* **StartsWith**: string[]: An operator that includes events that match the first few characters of the event record field specified as the value of Field.
-
-## InsightSelector
-### Properties
-* **InsightType**: string: The type of Insights to log on an event data store.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.CloudTrail/ResourcePolicyProperties
 ### Properties
@@ -117,20 +113,15 @@
 * **Tags**: [Tag](#tag)[]
 * **TrailName**: string (Identifier)
 
-## AdvancedEventSelector
+## DataResource
 ### Properties
-* **FieldSelectors**: [AdvancedFieldSelector](#advancedfieldselector)[] (Required): Contains all selector statements in an advanced event selector.
-* **Name**: string: An optional, descriptive name for an advanced event selector, such as "Log data events for only two S3 buckets".
+* **Type**: string (Required): The resource type in which you want to log data events. You can specify AWS::S3::Object or AWS::Lambda::Function resources.
+* **Values**: string[]: An array of Amazon Resource Name (ARN) strings or partial ARN strings for the specified objects.
 
-## AdvancedFieldSelector
+## Destination
 ### Properties
-* **EndsWith**: string[]: An operator that includes events that match the last few characters of the event record field specified as the value of Field.
-* **Equals**: string[]: An operator that includes events that match the exact value of the event record field specified as the value of Field. This is the only valid operator that you can use with the readOnly, eventCategory, and resources.type fields.
-* **Field**: string (Required): A field in an event record on which to filter events to be logged. Supported fields include readOnly, eventCategory, eventSource (for management events), eventName, resources.type, and resources.ARN.
-* **NotEndsWith**: string[]: An operator that excludes events that match the last few characters of the event record field specified as the value of Field.
-* **NotEquals**: string[]: An operator that excludes events that match the exact value of the event record field specified as the value of Field.
-* **NotStartsWith**: string[]: An operator that excludes events that match the first few characters of the event record field specified as the value of Field.
-* **StartsWith**: string[]: An operator that includes events that match the first few characters of the event record field specified as the value of Field.
+* **Location**: string (Required): The ARN of a resource that receives events from a channel.
+* **Type**: string (Required): The type of destination for events arriving from a channel.
 
 ## EventSelector
 ### Properties
@@ -139,14 +130,23 @@
 * **IncludeManagementEvents**: bool: Specify if you want your event selector to include management events for your trail.
 * **ReadWriteType**: string: Specify if you want your trail to log read-only events, write-only events, or all. For example, the EC2 GetConsoleOutput is a read-only API operation and RunInstances is a write-only API operation.
 
-## DataResource
+## InsightSelector
 ### Properties
-* **Type**: string (Required): The resource type in which you want to log data events. You can specify AWS::S3::Object or AWS::Lambda::Function resources.
-* **Values**: string[]: An array of Amazon Resource Name (ARN) strings or partial ARN strings for the specified objects.
+* **InsightType**: string: The type of Insights to log on an event data store.
 
 ## InsightSelector
 ### Properties
 * **InsightType**: string: The type of insight to log on a trail.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties

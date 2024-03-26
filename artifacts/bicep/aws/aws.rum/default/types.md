@@ -7,15 +7,8 @@
 * **name**: string: the resource name
 * **properties**: [AWS.RUM/AppMonitorProperties](#awsrumappmonitorproperties) (Required): properties of the resource
 
-## AWS.RUM/AppMonitorProperties
+## AppMonitor_DimensionKeys
 ### Properties
-* **AppMonitorConfiguration**: [AppMonitorConfiguration](#appmonitorconfiguration)
-* **CustomEvents**: [CustomEvents](#customevents)
-* **CwLogEnabled**: bool: Data collected by RUM is kept by RUM for 30 days and then deleted. This parameter specifies whether RUM sends a copy of this telemetry data to CWLlong in your account. This enables you to keep the telemetry data for more than 30 days, but it does incur CWLlong charges. If you omit this parameter, the default is false
-* **Domain**: string (Required): The top-level internet domain name for which your application has administrative authority.
-* **Id**: string (ReadOnly): The unique ID of the new app monitor.
-* **Name**: string (Required, Identifier): A name for the app monitor
-* **Tags**: [Tag](#tag)[]
 
 ## AppMonitorConfiguration
 ### Properties
@@ -30,14 +23,19 @@
 * **SessionSampleRate**: int: Specifies the percentage of user sessions to use for RUM data collection. Choosing a higher percentage gives you more data but also incurs more costs. The number you specify is the percentage of user sessions that will be used. If you omit this parameter, the default of 10 is used.
 * **Telemetries**: string[]: An array that lists the types of telemetry data that this app monitor is to collect.
 
-## MetricDestination
+## AWS.RUM/AppMonitorProperties
 ### Properties
-* **Destination**: string (Required): Defines the destination to send the metrics to. Valid values are CloudWatch and Evidently. If you specify Evidently, you must also specify the ARN of the Evidently experiment that is to be the destination and an IAM role that has permission to write to the experiment.
-* **DestinationArn**: string: Use this parameter only if Destination is Evidently. This parameter specifies the ARN of the Evidently experiment that will receive the extended metrics.
-* **IamRoleArn**: string: This parameter is required if Destination is Evidently. If Destination is CloudWatch, do not use this parameter.
+* **AppMonitorConfiguration**: [AppMonitorConfiguration](#appmonitorconfiguration)
+* **CustomEvents**: [CustomEvents](#customevents)
+* **CwLogEnabled**: bool: Data collected by RUM is kept by RUM for 30 days and then deleted. This parameter specifies whether RUM sends a copy of this telemetry data to CWLlong in your account. This enables you to keep the telemetry data for more than 30 days, but it does incur CWLlong charges. If you omit this parameter, the default is false
+* **Domain**: string (Required): The top-level internet domain name for which your application has administrative authority.
+* **Id**: string (ReadOnly): The unique ID of the new app monitor.
+* **Name**: string (Required, Identifier): A name for the app monitor
+* **Tags**: [Tag](#tag)[]
 
-This parameter specifies the ARN of an IAM role that RUM will assume to write to the Evidently experiment that you are sending metrics to. This role must have permission to write to that experiment.
-* **MetricDefinitions**: [MetricDefinition](#metricdefinition)[]: An array of structures which define the metrics that you want to send.
+## CustomEvents
+### Properties
+* **Status**: string: Indicates whether AppMonitor accepts custom events.
 
 ## MetricDefinition
 ### Properties
@@ -102,12 +100,14 @@ If you omit this field, a hardcoded value of 1 is pushed as the metric value. Th
 
 If this metric is sent to Evidently, this field will be passed to Evidently raw and Evidently will handle data extraction from the event.
 
-## AppMonitor_DimensionKeys
+## MetricDestination
 ### Properties
+* **Destination**: string (Required): Defines the destination to send the metrics to. Valid values are CloudWatch and Evidently. If you specify Evidently, you must also specify the ARN of the Evidently experiment that is to be the destination and an IAM role that has permission to write to the experiment.
+* **DestinationArn**: string: Use this parameter only if Destination is Evidently. This parameter specifies the ARN of the Evidently experiment that will receive the extended metrics.
+* **IamRoleArn**: string: This parameter is required if Destination is Evidently. If Destination is CloudWatch, do not use this parameter.
 
-## CustomEvents
-### Properties
-* **Status**: string: Indicates whether AppMonitor accepts custom events.
+This parameter specifies the ARN of an IAM role that RUM will assume to write to the Evidently experiment that you are sending metrics to. This role must have permission to write to that experiment.
+* **MetricDefinitions**: [MetricDefinition](#metricdefinition)[]: An array of structures which define the metrics that you want to send.
 
 ## Tag
 ### Properties

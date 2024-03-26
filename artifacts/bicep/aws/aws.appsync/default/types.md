@@ -35,6 +35,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.AppSync/SourceApiAssociationProperties](#awsappsyncsourceapiassociationproperties): properties of the resource
 
+## AppSyncRuntime
+### Properties
+* **Name**: string (Required): The name of the runtime to use. Currently, the only allowed value is APPSYNC_JS.
+* **RuntimeVersion**: string (Required): The version of the runtime to use. Currently, the only allowed version is 1.0.0.
+
+## AppSyncRuntime
+### Properties
+* **Name**: string (Required): The ``name`` of the runtime to use. Currently, the only allowed value is ``APPSYNC_JS``.
+* **RuntimeVersion**: string (Required): The ``version`` of the runtime to use. Currently, the only allowed version is ``1.0.0``.
+
+## AWS.AppSync/DomainNameApiAssociationProperties
+### Properties
+* **ApiAssociationIdentifier**: string (ReadOnly, Identifier)
+* **ApiId**: string (Required)
+* **DomainName**: string (Required)
+
 ## AWS.AppSync/DomainNameProperties
 ### Properties
 * **AppSyncDomainName**: string (ReadOnly)
@@ -42,12 +58,6 @@
 * **Description**: string
 * **DomainName**: string (Required, Identifier)
 * **HostedZoneId**: string (ReadOnly)
-
-## AWS.AppSync/DomainNameApiAssociationProperties
-### Properties
-* **ApiAssociationIdentifier**: string (ReadOnly, Identifier)
-* **ApiId**: string (Required)
-* **DomainName**: string (Required)
 
 ## AWS.AppSync/FunctionConfigurationProperties
 ### Properties
@@ -68,64 +78,29 @@
 * **Runtime**: [AppSyncRuntime](#appsyncruntime): Describes a runtime used by an AWS AppSync pipeline resolver or AWS AppSync function. Specifies the name and version of the runtime to use. Note that if a runtime is specified, code must also be specified.
 * **SyncConfig**: [SyncConfig](#syncconfig): Describes a Sync configuration for a resolver. Specifies which Conflict Detection strategy and Resolution strategy to use when the resolver is invoked.
 
-## AppSyncRuntime
-### Properties
-* **Name**: string (Required): The name of the runtime to use. Currently, the only allowed value is APPSYNC_JS.
-* **RuntimeVersion**: string (Required): The version of the runtime to use. Currently, the only allowed version is 1.0.0.
-
-## SyncConfig
-### Properties
-* **ConflictDetection**: string (Required): The Conflict Detection strategy to use.
-* **ConflictHandler**: string: The Conflict Resolution strategy to perform in the event of a conflict.
-* **LambdaConflictHandlerConfig**: [LambdaConflictHandlerConfig](#lambdaconflicthandlerconfig)
-
-## LambdaConflictHandlerConfig
-### Properties
-* **LambdaConflictHandlerArn**: string: The Amazon Resource Name (ARN) for the Lambda function to use as the Conflict Handler.
-
 ## AWS.AppSync/ResolverProperties
 ### Properties
-* **ApiId**: string (Required): The AWS AppSync GraphQL API to which you want to attach this resolver.
+* **ApiId**: string (Required): The APSYlong GraphQL API to which you want to attach this resolver.
 * **CachingConfig**: [CachingConfig](#cachingconfig): The caching configuration for the resolver.
-* **Code**: string: The resolver code that contains the request and response functions. When code is used, the runtime is required.
+* **Code**: string: The ``resolver`` code that contains the request and response functions. When code is used, the ``runtime`` is required. The runtime value must be ``APPSYNC_JS``.
 * **CodeS3Location**: string (WriteOnly): The Amazon S3 endpoint.
 * **DataSourceName**: string: The resolver data source name.
 * **FieldName**: string (Required): The GraphQL field on a type that invokes the resolver.
 * **Kind**: string: The resolver type.
-* **MaxBatchSize**: int: The maximum number of resolver request inputs that will be sent to a single AWS Lambda function in a BatchInvoke operation.
+  +   *UNIT*: A UNIT resolver type. A UNIT resolver is the default resolver type. You can use a UNIT resolver to run a GraphQL query against a single data source.
+  +   *PIPELINE*: A PIPELINE resolver type. You can use a PIPELINE resolver to invoke a series of ``Function`` objects in a serial manner. You can use a pipeline resolver to run a GraphQL query against multiple data sources.
+* **MaxBatchSize**: int: The maximum number of resolver request inputs that will be sent to a single LAMlong function in a ``BatchInvoke`` operation.
+* **MetricsConfig**: string
 * **PipelineConfig**: [PipelineConfig](#pipelineconfig): Functions linked with the pipeline resolver.
-* **RequestMappingTemplate**: string: Request mapping templates are optional when using a Lambda data source. For all other data sources, a request mapping template is required.
-* **RequestMappingTemplateS3Location**: string (WriteOnly): The location of a request mapping template in an Amazon S3 bucket. Use this if you want to provision with a template file in Amazon S3 rather than embedding it in your CloudFormation template.
-* **ResolverArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the resolver.
+* **RequestMappingTemplate**: string: The request mapping template.
+ Request mapping templates are optional when using a Lambda data source. For all other data sources, a request mapping template is required.
+* **RequestMappingTemplateS3Location**: string (WriteOnly): The location of a request mapping template in an S3 bucket. Use this if you want to provision with a template file in S3 rather than embedding it in your CFNshort template.
+* **ResolverArn**: string (ReadOnly, Identifier)
 * **ResponseMappingTemplate**: string: The response mapping template.
-* **ResponseMappingTemplateS3Location**: string (WriteOnly): The location of a response mapping template in an Amazon S3 bucket. Use this if you want to provision with a template file in Amazon S3 rather than embedding it in your CloudFormation template.
-* **Runtime**: [AppSyncRuntime](#appsyncruntime): Describes a runtime used by an AWS AppSync pipeline resolver or AWS AppSync function. Specifies the name and version of the runtime to use. Note that if a runtime is specified, code must also be specified.
-* **SyncConfig**: [SyncConfig](#syncconfig): The SyncConfig for a resolver attached to a versioned data source.
+* **ResponseMappingTemplateS3Location**: string (WriteOnly): The location of a response mapping template in an S3 bucket. Use this if you want to provision with a template file in S3 rather than embedding it in your CFNshort template.
+* **Runtime**: [AppSyncRuntime](#appsyncruntime): Describes a runtime used by an APSYlong resolver or APSYlong function. Specifies the name and version of the runtime to use. Note that if a runtime is specified, code must also be specified.
+* **SyncConfig**: [SyncConfig](#syncconfig): The ``SyncConfig`` for a resolver attached to a versioned data source.
 * **TypeName**: string (Required): The GraphQL type that invokes this resolver.
-
-## CachingConfig
-### Properties
-* **CachingKeys**: string[]: The caching keys for a resolver that has caching activated. Valid values are entries from the $context.arguments, $context.source, and $context.identity maps.
-* **Ttl**: int (Required): The TTL in seconds for a resolver that has caching activated. Valid values are 1-36.00 seconds.
-
-## PipelineConfig
-### Properties
-* **Functions**: string[]: A list of Function objects.
-
-## AppSyncRuntime
-### Properties
-* **Name**: string (Required): The name of the runtime to use.
-* **RuntimeVersion**: string (Required): The version of the runtime to use.
-
-## SyncConfig
-### Properties
-* **ConflictDetection**: string (Required): The Conflict Detection strategy to use.
-* **ConflictHandler**: string: The Conflict Resolution strategy to perform in the event of a conflict.
-* **LambdaConflictHandlerConfig**: [LambdaConflictHandlerConfig](#lambdaconflicthandlerconfig)
-
-## LambdaConflictHandlerConfig
-### Properties
-* **LambdaConflictHandlerArn**: string: The Amazon Resource Name (ARN) for the Lambda function to use as the Conflict Handler.
 
 ## AWS.AppSync/SourceApiAssociationProperties
 ### Properties
@@ -143,7 +118,43 @@
 * **SourceApiId**: string (ReadOnly): GraphQLApiId of the source API in the association.
 * **SourceApiIdentifier**: string (WriteOnly): Identifier of the Source GraphQLApi to associate. It could be either GraphQLApi ApiId or ARN
 
+## CachingConfig
+### Properties
+* **CachingKeys**: string[]: The caching keys for a resolver that has caching activated.
+ Valid values are entries from the ``$context.arguments``, ``$context.source``, and ``$context.identity`` maps.
+* **Ttl**: int (Required): The TTL in seconds for a resolver that has caching activated.
+ Valid values are 1?3,600 seconds.
+
+## LambdaConflictHandlerConfig
+### Properties
+* **LambdaConflictHandlerArn**: string: The Amazon Resource Name (ARN) for the Lambda function to use as the Conflict Handler.
+
+## LambdaConflictHandlerConfig
+### Properties
+* **LambdaConflictHandlerArn**: string: The Amazon Resource Name (ARN) for the Lambda function to use as the Conflict Handler.
+
+## PipelineConfig
+### Properties
+* **Functions**: string[]: A list of ``Function`` objects.
+
 ## SourceApiAssociationConfig
 ### Properties
 * **MergeType**: string: Configuration of the merged behavior for the association. For example when it could be auto or has to be manual.
+
+## SyncConfig
+### Properties
+* **ConflictDetection**: string (Required): The Conflict Detection strategy to use.
+* **ConflictHandler**: string: The Conflict Resolution strategy to perform in the event of a conflict.
+* **LambdaConflictHandlerConfig**: [LambdaConflictHandlerConfig](#lambdaconflicthandlerconfig)
+
+## SyncConfig
+### Properties
+* **ConflictDetection**: string (Required): The Conflict Detection strategy to use.
+  +   *VERSION*: Detect conflicts based on object versions for this resolver.
+  +   *NONE*: Do not detect conflicts when invoking this resolver.
+* **ConflictHandler**: string: The Conflict Resolution strategy to perform in the event of a conflict.
+  +   *OPTIMISTIC_CONCURRENCY*: Resolve conflicts by rejecting mutations when versions don't match the latest version at the server.
+  +   *AUTOMERGE*: Resolve conflicts with the Automerge conflict resolution strategy.
+  +   *LAMBDA*: Resolve conflicts with an LAMlong function supplied in the ``LambdaConflictHandlerConfig``.
+* **LambdaConflictHandlerConfig**: [LambdaConflictHandlerConfig](#lambdaconflicthandlerconfig): The ``LambdaConflictHandlerConfig`` when configuring ``LAMBDA`` as the Conflict Handler.
 

@@ -41,20 +41,16 @@
 * **Validity**: [ValidityDateFormat](#validitydateformat) (Required)
 * **Version**: string (ReadOnly): The version of the license.
 
-## ConsumptionConfiguration
-### Properties
-* **BorrowConfiguration**: [BorrowConfiguration](#borrowconfiguration)
-* **ProvisionalConfiguration**: [ProvisionalConfiguration](#provisionalconfiguration)
-* **RenewType**: string
-
 ## BorrowConfiguration
 ### Properties
 * **AllowEarlyCheckIn**: bool (Required)
 * **MaxTimeToLiveInMinutes**: int (Required)
 
-## ProvisionalConfiguration
+## ConsumptionConfiguration
 ### Properties
-* **MaxTimeToLiveInMinutes**: int (Required)
+* **BorrowConfiguration**: [BorrowConfiguration](#borrowconfiguration)
+* **ProvisionalConfiguration**: [ProvisionalConfiguration](#provisionalconfiguration)
+* **RenewType**: string
 
 ## Entitlement
 ### Properties
@@ -74,6 +70,10 @@
 ### Properties
 * **Name**: string (Required)
 * **Value**: string (Required)
+
+## ProvisionalConfiguration
+### Properties
+* **MaxTimeToLiveInMinutes**: int (Required)
 
 ## ValidityDateFormat
 ### Properties

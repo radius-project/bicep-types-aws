@@ -34,21 +34,6 @@
 * **Name**: string: The name of the fleet.
 * **Tags**: [Tags](#tags)
 
-## Tags
-### Properties
-
-## AWS.RoboMaker/RobotProperties
-### Properties
-* **Architecture**: string (Required): The target architecture of the robot.
-* **Arn**: string (ReadOnly, Identifier)
-* **Fleet**: string: The Amazon Resource Name (ARN) of the fleet.
-* **GreengrassGroupId**: string (Required): The Greengrass group id.
-* **Name**: string: The name for the robot.
-* **Tags**: [Tags](#tags)
-
-## Tags
-### Properties
-
 ## AWS.RoboMaker/RobotApplicationProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
@@ -59,19 +44,14 @@
 * **Sources**: [SourceConfig](#sourceconfig)[] (WriteOnly): The sources of the robot application.
 * **Tags**: [Tags](#tags)
 
-## RobotSoftwareSuite
+## AWS.RoboMaker/RobotProperties
 ### Properties
-* **Name**: string (Required): The name of robot software suite.
-* **Version**: string (WriteOnly): The version of robot software suite.
-
-## SourceConfig
-### Properties
-* **Architecture**: string (Required): The architecture of robot application.
-* **S3Bucket**: string (Required): The Arn of the S3Bucket that stores the robot application source.
-* **S3Key**: string (Required): The s3 key of robot application source.
-
-## Tags
-### Properties
+* **Architecture**: string (Required): The target architecture of the robot.
+* **Arn**: string (ReadOnly, Identifier)
+* **Fleet**: string: The Amazon Resource Name (ARN) of the fleet.
+* **GreengrassGroupId**: string (Required): The Greengrass group id.
+* **Name**: string: The name for the robot.
+* **Tags**: [Tags](#tags)
 
 ## AWS.RoboMaker/SimulationApplicationProperties
 ### Properties
@@ -92,6 +72,11 @@
 
 ## RobotSoftwareSuite
 ### Properties
+* **Name**: string (Required): The name of robot software suite.
+* **Version**: string (WriteOnly): The version of robot software suite.
+
+## RobotSoftwareSuite
+### Properties
 * **Name**: string (Required): The name of the robot software suite.
 * **Version**: string (WriteOnly): The version of the robot software suite.
 
@@ -102,9 +87,24 @@
 
 ## SourceConfig
 ### Properties
+* **Architecture**: string (Required): The architecture of robot application.
+* **S3Bucket**: string (Required): The Arn of the S3Bucket that stores the robot application source.
+* **S3Key**: string (Required): The s3 key of robot application source.
+
+## SourceConfig
+### Properties
 * **Architecture**: string (Required): The target processor architecture for the application.
 * **S3Bucket**: string (Required): The Amazon S3 bucket name.
 * **S3Key**: string (Required): The s3 object key.
+
+## Tags
+### Properties
+
+## Tags
+### Properties
+
+## Tags
+### Properties
 
 ## Tags
 ### Properties

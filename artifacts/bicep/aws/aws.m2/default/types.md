@@ -26,12 +26,6 @@
 * **RoleArn**: string
 * **Tags**: [TagMap](#tagmap)
 
-## Definition
-### Properties
-
-## TagMap
-### Properties
-
 ## AWS.M2/EnvironmentProperties
 ### Properties
 * **Description**: string: The description of the environment.
@@ -50,11 +44,17 @@
 * **SubnetIds**: string[]: The unique identifiers of the subnets assigned to this runtime environment.
 * **Tags**: [TagMap](#tagmap): Tags associated to this environment.
 
+## Definition
+### Properties
+
 ## HighAvailabilityConfig
 ### Properties
 * **DesiredCapacity**: int (Required)
 
 ## StorageConfiguration
+### Properties
+
+## TagMap
 ### Properties
 
 ## TagMap

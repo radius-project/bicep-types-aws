@@ -5,39 +5,69 @@
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AmplifyUIBuilder/ComponentProperties](#awsamplifyuibuildercomponentproperties) (Required): properties of the resource
+* **properties**: [AWS.AmplifyUIBuilder/ComponentProperties](#awsamplifyuibuildercomponentproperties): properties of the resource
 
 ## Resource AWS.AmplifyUIBuilder/Form@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AmplifyUIBuilder/FormProperties](#awsamplifyuibuilderformproperties) (Required): properties of the resource
+* **properties**: [AWS.AmplifyUIBuilder/FormProperties](#awsamplifyuibuilderformproperties): properties of the resource
 
 ## Resource AWS.AmplifyUIBuilder/Theme@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AmplifyUIBuilder/ThemeProperties](#awsamplifyuibuilderthemeproperties) (Required): properties of the resource
+* **properties**: [AWS.AmplifyUIBuilder/ThemeProperties](#awsamplifyuibuilderthemeproperties): properties of the resource
 
 ## AWS.AmplifyUIBuilder/ComponentProperties
 ### Properties
 * **AppId**: string (Identifier)
-* **BindingProperties**: [ComponentBindingProperties](#componentbindingproperties) (Required)
+* **BindingProperties**: [ComponentBindingProperties](#componentbindingproperties)
 * **Children**: [ComponentChild](#componentchild)[]
 * **CollectionProperties**: [ComponentCollectionProperties](#componentcollectionproperties)
-* **ComponentType**: string (Required)
+* **ComponentType**: string
+* **CreatedAt**: string (ReadOnly)
 * **EnvironmentName**: string (Identifier)
 * **Events**: [ComponentEvents](#componentevents)
 * **Id**: string (ReadOnly, Identifier)
-* **Name**: string (Required)
-* **Overrides**: [ComponentOverrides](#componentoverrides) (Required)
-* **Properties**: [ComponentProperties](#componentproperties) (Required)
+* **ModifiedAt**: string (ReadOnly)
+* **Name**: string
+* **Overrides**: [ComponentOverrides](#componentoverrides)
+* **Properties**: [ComponentProperties](#componentproperties)
 * **SchemaVersion**: string
 * **SourceId**: string
 * **Tags**: [Tags](#tags)
-* **Variants**: [ComponentVariant](#componentvariant)[] (Required)
+* **Variants**: [ComponentVariant](#componentvariant)[]
+
+## AWS.AmplifyUIBuilder/FormProperties
+### Properties
+* **AppId**: string (Identifier)
+* **Cta**: [FormCTA](#formcta)
+* **DataType**: [FormDataTypeConfig](#formdatatypeconfig)
+* **EnvironmentName**: string (Identifier)
+* **Fields**: [FieldsMap](#fieldsmap)
+* **FormActionType**: string
+* **Id**: string (ReadOnly, Identifier)
+* **LabelDecorator**: string
+* **Name**: string
+* **SchemaVersion**: string
+* **SectionalElements**: [SectionalElementMap](#sectionalelementmap)
+* **Style**: [FormStyle](#formstyle)
+* **Tags**: [Tags](#tags)
+
+## AWS.AmplifyUIBuilder/ThemeProperties
+### Properties
+* **AppId**: string (Identifier)
+* **CreatedAt**: string (ReadOnly)
+* **EnvironmentName**: string (Identifier)
+* **Id**: string (ReadOnly, Identifier)
+* **ModifiedAt**: string (ReadOnly)
+* **Name**: string
+* **Overrides**: [ThemeValues](#themevalues)[]
+* **Tags**: [Tags](#tags)
+* **Values**: [ThemeValues](#themevalues)[]
 
 ## ComponentBindingProperties
 ### Properties
@@ -49,20 +79,18 @@
 * **Events**: [ComponentEvents](#componentevents)
 * **Name**: string (Required)
 * **Properties**: [ComponentProperties](#componentproperties) (Required)
-
-## ComponentEvents
-### Properties
-
-## ComponentProperties
-### Properties
+* **SourceId**: string
 
 ## ComponentCollectionProperties
+### Properties
+
+## ComponentEvents
 ### Properties
 
 ## ComponentOverrides
 ### Properties
 
-## Tags
+## ComponentProperties
 ### Properties
 
 ## ComponentVariant
@@ -73,21 +101,26 @@
 ## ComponentVariantValues
 ### Properties
 
-## AWS.AmplifyUIBuilder/FormProperties
+## FieldPosition
 ### Properties
-* **AppId**: string (Identifier)
-* **Cta**: [FormCTA](#formcta)
-* **DataType**: [FormDataTypeConfig](#formdatatypeconfig) (Required)
-* **EnvironmentName**: string (Identifier)
-* **Fields**: [FieldsMap](#fieldsmap) (Required)
-* **FormActionType**: string (Required)
-* **Id**: string (ReadOnly, Identifier)
-* **LabelDecorator**: string
-* **Name**: string (Required)
-* **SchemaVersion**: string (Required)
-* **SectionalElements**: [SectionalElementMap](#sectionalelementmap) (Required)
-* **Style**: [FormStyle](#formstyle) (Required)
-* **Tags**: [Tags](#tags)
+
+## FieldsMap
+### Properties
+
+## Form_FormStyleConfig
+### Properties
+
+## Form_FormStyleConfig
+### Properties
+
+## Form_FormStyleConfig
+### Properties
+
+## FormButton
+### Properties
+* **Children**: string
+* **Excluded**: bool
+* **Position**: [FieldPosition](#fieldposition)
 
 ## FormCTA
 ### Properties
@@ -96,25 +129,10 @@
 * **Position**: string
 * **Submit**: [FormButton](#formbutton)
 
-## FormButton
-### Properties
-* **Children**: string
-* **Excluded**: bool
-* **Position**: [FieldPosition](#fieldposition)
-
-## FieldPosition
-### Properties
-
 ## FormDataTypeConfig
 ### Properties
 * **DataSourceType**: string (Required)
 * **DataTypeName**: string (Required)
-
-## FieldsMap
-### Properties
-
-## SectionalElementMap
-### Properties
 
 ## FormStyle
 ### Properties
@@ -122,38 +140,25 @@
 * **OuterPadding**: [Form_FormStyleConfig](#formformstyleconfig)
 * **VerticalGap**: [Form_FormStyleConfig](#formformstyleconfig)
 
-## Form_FormStyleConfig
-### Properties
-
-## Form_FormStyleConfig
-### Properties
-
-## Form_FormStyleConfig
+## SectionalElementMap
 ### Properties
 
 ## Tags
 ### Properties
 
-## AWS.AmplifyUIBuilder/ThemeProperties
+## Tags
 ### Properties
-* **AppId**: string (Identifier)
-* **EnvironmentName**: string (Identifier)
-* **Id**: string (ReadOnly, Identifier)
-* **Name**: string (Required)
-* **Overrides**: [ThemeValues](#themevalues)[]
-* **Tags**: [Tags](#tags)
-* **Values**: [ThemeValues](#themevalues)[] (Required)
 
-## ThemeValues
+## Tags
 ### Properties
-* **Key**: string
-* **Value**: [ThemeValue](#themevalue)
 
 ## ThemeValue
 ### Properties
 * **Children**: [ThemeValues](#themevalues)[]
 * **Value**: string
 
-## Tags
+## ThemeValues
 ### Properties
+* **Key**: string
+* **Value**: [ThemeValue](#themevalue)
 

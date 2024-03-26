@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-Topic",
   "type": "AWS::QuickSight::Topic",
-  "time": "2023-10-12T19:10:24.155Z",
+  "time": "2024-03-14T17:26:58.144Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -713,6 +713,9 @@
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
+          },
+          "UserExperienceVersion": {
+            "$ref": "#/definitions/TopicUserExperienceVersion"
           }
         },
         "type": "object"
@@ -906,6 +909,13 @@
         ],
         "type": "string"
       },
+      "TopicUserExperienceVersion": {
+        "enum": [
+          "LEGACY",
+          "NEW_READER_EXPERIENCE"
+        ],
+        "type": "string"
+      },
       "TypeParameters": {
         "additionalProperties": false,
         "patternProperties": {
@@ -992,6 +1002,9 @@
         "minLength": 0,
         "pattern": "^[A-Za-z0-9-_.\\\\+]*$",
         "type": "string"
+      },
+      "UserExperienceVersion": {
+        "$ref": "#/definitions/TopicUserExperienceVersion"
       }
     },
     "readOnlyProperties": [

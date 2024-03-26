@@ -161,26 +161,33 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Connect/ViewVersionProperties](#awsconnectviewversionproperties) (Required): properties of the resource
 
+## Actions
+### Properties
+* **AssignContactCategoryActions**: [AssignContactCategoryAction](#assigncontactcategoryaction)[]
+* **CreateCaseActions**: [CreateCaseAction](#createcaseaction)[]
+* **EndAssociatedTasksActions**: [EndAssociatedTasksAction](#endassociatedtasksaction)[]
+* **EventBridgeActions**: [EventBridgeAction](#eventbridgeaction)[]
+* **SendNotificationActions**: [SendNotificationAction](#sendnotificationaction)[]
+* **TaskActions**: [TaskAction](#taskaction)[]
+* **UpdateCaseActions**: [UpdateCaseAction](#updatecaseaction)[]
+
+## AssignContactCategoryAction
+### Properties
+
+## Attributes
+### Properties
+* **AutoResolveBestVoices**: bool
+* **ContactflowLogs**: bool
+* **ContactLens**: bool
+* **EarlyMedia**: bool
+* **InboundCalls**: bool (Required)
+* **OutboundCalls**: bool (Required)
+* **UseCustomTTSVoices**: bool
+
 ## AWS.Connect/ApprovedOriginProperties
 ### Properties
 * **InstanceId**: string (Required, Identifier)
 * **Origin**: string (Required, Identifier)
-
-## AWS.Connect/ContactFlowProperties
-### Properties
-* **ContactFlowArn**: string (ReadOnly, Identifier): The identifier of the contact flow (ARN).
-* **Content**: string (Required): The content of the contact flow in JSON format.
-* **Description**: string: The description of the contact flow.
-* **InstanceArn**: string (Required): The identifier of the Amazon Connect instance (ARN).
-* **Name**: string (Required): The name of the contact flow.
-* **State**: string: The state of the contact flow.
-* **Tags**: [Tag](#tag)[]: One or more tags.
-* **Type**: string (Required): The type of the contact flow.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. . You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.Connect/ContactFlowModuleProperties
 ### Properties
@@ -193,10 +200,16 @@
 * **Status**: string (ReadOnly): The status of the contact flow module.
 * **Tags**: [Tag](#tag)[]: One or more tags.
 
-## Tag
+## AWS.Connect/ContactFlowProperties
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **ContactFlowArn**: string (ReadOnly, Identifier): The identifier of the contact flow (ARN).
+* **Content**: string (Required): The content of the contact flow in JSON format.
+* **Description**: string: The description of the contact flow.
+* **InstanceArn**: string (Required): The identifier of the Amazon Connect instance (ARN).
+* **Name**: string (Required): The name of the contact flow.
+* **State**: string: The state of the contact flow.
+* **Tags**: [Tag](#tag)[]: One or more tags.
+* **Type**: string (Required): The type of the contact flow.
 
 ## AWS.Connect/EvaluationFormProperties
 ### Properties
@@ -209,98 +222,6 @@
 * **Tags**: [Tag](#tag)[]: One or more tags.
 * **Title**: string (Required): The title of the evaluation form.
 
-## EvaluationFormBaseItem
-### Properties
-* **Section**: [EvaluationFormSection](#evaluationformsection) (Required): The evaluation form section item
-
-## EvaluationFormSection
-### Properties
-* **Instructions**: string: The instructions for the section.
-* **Items**: [EvaluationFormItem](#evaluationformitem)[]: The list of section items.
-* **RefId**: string (Required): The identifier to reference the section.
-* **Title**: string (Required): The title of the section.
-* **Weight**: int: The item weight used for scoring.
-
-## EvaluationFormItem
-### Properties
-* **Question**: [EvaluationFormQuestion](#evaluationformquestion): The evaluation form question item
-* **Section**: [EvaluationFormSection](#evaluationformsection): The evaluation form section item
-
-## EvaluationFormQuestion
-### Properties
-* **Instructions**: string: The instructions for the question.
-* **NotApplicableEnabled**: bool: The flag to enable not applicable answers to the question.
-* **QuestionType**: string (Required): The type of the question.
-* **QuestionTypeProperties**: [EvaluationFormQuestionTypeProperties](#evaluationformquestiontypeproperties): The properties of the question
-* **RefId**: string (Required): The identifier used to reference the question.
-* **Title**: string (Required): The title of the question.
-* **Weight**: int: The question weight used for scoring.
-
-## EvaluationFormQuestionTypeProperties
-### Properties
-* **Numeric**: [EvaluationFormNumericQuestionProperties](#evaluationformnumericquestionproperties): The properties of the numeric question.
-* **SingleSelect**: [EvaluationFormSingleSelectQuestionProperties](#evaluationformsingleselectquestionproperties): The properties of the single-select question.
-
-## EvaluationFormNumericQuestionProperties
-### Properties
-* **Automation**: [EvaluationFormNumericQuestionAutomation](#evaluationformnumericquestionautomation): The automation properties for the numeric question.
-* **MaxValue**: int (Required): The maximum value for answers of the question.
-* **MinValue**: int (Required): The minimum value for answers of the question.
-* **Options**: [EvaluationFormNumericQuestionOption](#evaluationformnumericquestionoption)[]: The list of option ranges used for scoring.
-
-## EvaluationFormNumericQuestionAutomation
-### Properties
-* **PropertyValue**: [NumericQuestionPropertyValueAutomation](#numericquestionpropertyvalueautomation) (Required): The automation property name of the question.
-
-## NumericQuestionPropertyValueAutomation
-### Properties
-* **Label**: string (Required): The automation property label.
-
-## EvaluationFormNumericQuestionOption
-### Properties
-* **AutomaticFail**: bool: The flag to mark the option as automatic fail.
-* **MaxValue**: int (Required): The maximum value of the option range.
-* **MinValue**: int (Required): The minimum value of the option range.
-* **Score**: int: The score of the option range.
-
-## EvaluationFormSingleSelectQuestionProperties
-### Properties
-* **Automation**: [EvaluationFormSingleSelectQuestionAutomation](#evaluationformsingleselectquestionautomation): The automation properties for the single-select question.
-* **DisplayAs**: string: The display mode of the single-select question.
-* **Options**: [EvaluationFormSingleSelectQuestionOption](#evaluationformsingleselectquestionoption)[] (Required): The list of options for the question.
-
-## EvaluationFormSingleSelectQuestionAutomation
-### Properties
-* **DefaultOptionRefId**: string: The option reference identifier of the default answer.
-* **Options**: [EvaluationFormSingleSelectQuestionAutomationOption](#evaluationformsingleselectquestionautomationoption)[] (Required): The answer options for the automation.
-
-## EvaluationFormSingleSelectQuestionAutomationOption
-### Properties
-* **RuleCategory**: [SingleSelectQuestionRuleCategoryAutomation](#singleselectquestionrulecategoryautomation) (Required): The automation option based on Rules categories.
-
-## SingleSelectQuestionRuleCategoryAutomation
-### Properties
-* **Category**: string (Required): The category name as defined in Rules.
-* **Condition**: string (Required): The automation condition applied on contact categories.
-* **OptionRefId**: string (Required): The option identifier referencing the option to be selected when the automation option is triggered.
-
-## EvaluationFormSingleSelectQuestionOption
-### Properties
-* **AutomaticFail**: bool: The flag to mark the option as automatic fail.
-* **RefId**: string (Required): The identifier used to reference the option.
-* **Score**: int: The score of the option.
-* **Text**: string (Required): The title of the option.
-
-## ScoringStrategy
-### Properties
-* **Mode**: string (Required): The scoring mode.
-* **Status**: string (Required): The scoring status.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that's 1 to 256 characters in length.
-
 ## AWS.Connect/HoursOfOperationProperties
 ### Properties
 * **Config**: [HoursOfOperationConfig](#hoursofoperationconfig)[] (Required): Configuration information for the hours of operation: day, start time, and end time.
@@ -310,22 +231,6 @@
 * **Name**: string (Required): The name of the hours of operation.
 * **Tags**: [Tag](#tag)[]: One or more tags.
 * **TimeZone**: string (Required): The time zone of the hours of operation.
-
-## HoursOfOperationConfig
-### Properties
-* **Day**: string (Required): The day that the hours of operation applies to.
-* **EndTime**: [HoursOfOperationTimeSlice](#hoursofoperationtimeslice) (Required): The end time that your contact center closes.
-* **StartTime**: [HoursOfOperationTimeSlice](#hoursofoperationtimeslice) (Required): The start time that your contact center opens.
-
-## HoursOfOperationTimeSlice
-### Properties
-* **Hours**: int (Required): The hours.
-* **Minutes**: int (Required): The minutes.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## AWS.Connect/InstanceProperties
 ### Properties
@@ -340,21 +245,6 @@
 * **ServiceRole**: string (ReadOnly): Service linked role created as part of instance creation.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## Attributes
-### Properties
-* **AutoResolveBestVoices**: bool
-* **ContactflowLogs**: bool
-* **ContactLens**: bool
-* **EarlyMedia**: bool
-* **InboundCalls**: bool (Required)
-* **OutboundCalls**: bool (Required)
-* **UseCustomTTSVoices**: bool
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.Connect/InstanceStorageConfigProperties
 ### Properties
 * **AssociationId**: string (ReadOnly, Identifier)
@@ -365,31 +255,6 @@
 * **ResourceType**: string (Required, Identifier)
 * **S3Config**: [S3Config](#s3config)
 * **StorageType**: string (Required)
-
-## KinesisFirehoseConfig
-### Properties
-* **FirehoseArn**: string (Required)
-
-## KinesisStreamConfig
-### Properties
-* **StreamArn**: string (Required)
-
-## KinesisVideoStreamConfig
-### Properties
-* **EncryptionConfig**: [EncryptionConfig](#encryptionconfig) (Required)
-* **Prefix**: string (Required)
-* **RetentionPeriodHours**: int (Required)
-
-## EncryptionConfig
-### Properties
-* **EncryptionType**: string (Required)
-* **KeyId**: string (Required)
-
-## S3Config
-### Properties
-* **BucketName**: string (Required)
-* **BucketPrefix**: string (Required)
-* **EncryptionConfig**: [EncryptionConfig](#encryptionconfig)
 
 ## AWS.Connect/IntegrationAssociationProperties
 ### Properties
@@ -410,20 +275,11 @@
 * **TargetArn**: string (Required): The ARN of the target the phone number is claimed to.
 * **Type**: string: The phone number type
 
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-
 ## AWS.Connect/PredefinedAttributeProperties
 ### Properties
 * **InstanceArn**: string (Required, Identifier): The identifier of the Amazon Connect instance.
 * **Name**: string (Required, Identifier): The name of the predefined attribute.
 * **Values**: [PredefinedAttribute_Values](#predefinedattributevalues) (Required): The values of a predefined attribute.
-
-## PredefinedAttribute_Values
-### Properties
-* **StringList**: string[]
 
 ## AWS.Connect/PromptProperties
 ### Properties
@@ -433,11 +289,6 @@
 * **PromptArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the prompt.
 * **S3Uri**: string (WriteOnly): S3 URI of the customer's audio file for creating prompts resource..
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.Connect/QueueProperties
 ### Properties
@@ -453,17 +304,6 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Type**: string (ReadOnly): The type of queue.
 
-## OutboundCallerConfig
-### Properties
-* **OutboundCallerIdName**: string
-* **OutboundCallerIdNumberArn**: string
-* **OutboundFlowArn**: string
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.Connect/QuickConnectProperties
 ### Properties
 * **Description**: string: The description of the quick connect.
@@ -473,32 +313,6 @@
 * **QuickConnectConfig**: [QuickConnectConfig](#quickconnectconfig) (Required): Configuration settings for the quick connect.
 * **QuickConnectType**: string (ReadOnly): The type of quick connect. In the Amazon Connect console, when you create a quick connect, you are prompted to assign one of the following types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
 * **Tags**: [Tag](#tag)[]: One or more tags.
-
-## QuickConnectConfig
-### Properties
-* **PhoneConfig**: [PhoneNumberQuickConnectConfig](#phonenumberquickconnectconfig)
-* **QueueConfig**: [QueueQuickConnectConfig](#queuequickconnectconfig)
-* **QuickConnectType**: string (Required)
-* **UserConfig**: [UserQuickConnectConfig](#userquickconnectconfig)
-
-## PhoneNumberQuickConnectConfig
-### Properties
-* **PhoneNumber**: string (Required)
-
-## QueueQuickConnectConfig
-### Properties
-* **ContactFlowArn**: string (Required)
-* **QueueArn**: string (Required)
-
-## UserQuickConnectConfig
-### Properties
-* **ContactFlowArn**: string (Required)
-* **UserArn**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## AWS.Connect/RoutingProfileProperties
 ### Properties
@@ -512,32 +326,6 @@
 * **RoutingProfileArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the routing profile.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## MediaConcurrency
-### Properties
-* **Channel**: string (Required)
-* **Concurrency**: int (Required)
-* **CrossChannelBehavior**: [CrossChannelBehavior](#crosschannelbehavior)
-
-## CrossChannelBehavior
-### Properties
-* **BehaviorType**: string (Required)
-
-## RoutingProfileQueueConfig
-### Properties
-* **Delay**: int (Required)
-* **Priority**: int (Required)
-* **QueueReference**: [RoutingProfileQueueReference](#routingprofilequeuereference) (Required)
-
-## RoutingProfileQueueReference
-### Properties
-* **Channel**: string (Required)
-* **QueueArn**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.Connect/RuleProperties
 ### Properties
 * **Actions**: [Actions](#actions) (Required): The list of actions that will be executed when a rule is triggered.
@@ -548,86 +336,6 @@
 * **RuleArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the rule.
 * **Tags**: [Tag](#tag)[]: One or more tags.
 * **TriggerEventSource**: [RuleTriggerEventSource](#ruletriggereventsource) (Required): The event source that triggers the rule.
-
-## Actions
-### Properties
-* **AssignContactCategoryActions**: [AssignContactCategoryAction](#assigncontactcategoryaction)[]
-* **CreateCaseActions**: [CreateCaseAction](#createcaseaction)[]
-* **EndAssociatedTaskActions**: [EndAssociatedTasksAction](#endassociatedtasksaction)[]
-* **EventBridgeActions**: [EventBridgeAction](#eventbridgeaction)[]
-* **SendNotificationActions**: [SendNotificationAction](#sendnotificationaction)[]
-* **TaskActions**: [TaskAction](#taskaction)[]
-* **UpdateCaseActions**: [UpdateCaseAction](#updatecaseaction)[]
-
-## AssignContactCategoryAction
-### Properties
-
-## CreateCaseAction
-### Properties
-* **Fields**: [Field](#field)[] (Required)
-* **TemplateId**: string (Required): The Id of template.
-
-## Field
-### Properties
-* **Id**: string (Required): The Id of the field
-* **Value**: [FieldValue](#fieldvalue) (Required)
-
-## FieldValue
-### Properties
-* **BooleanValue**: bool
-* **DoubleValue**: int
-* **EmptyValue**: [Rule_EmptyValue](#ruleemptyvalue)
-* **StringValue**: string
-
-## Rule_EmptyValue
-### Properties
-
-## EndAssociatedTasksAction
-### Properties
-
-## EventBridgeAction
-### Properties
-* **Name**: string (Required): The name of the event bridge action.
-
-## SendNotificationAction
-### Properties
-* **Content**: string (Required): The content of notification.
-* **ContentType**: string (Required): The type of content.
-* **DeliveryMethod**: string (Required): The means of delivery.
-* **Recipient**: [NotificationRecipientType](#notificationrecipienttype) (Required)
-* **Subject**: string: The subject of notification.
-
-## NotificationRecipientType
-### Properties
-* **UserArns**: string[]: The list of recipients by user arns.
-* **UserTags**: [Rule_UserTags](#ruleusertags): The collection of recipients who are identified by user tags
-
-## Rule_UserTags
-### Properties
-
-## TaskAction
-### Properties
-* **ContactFlowArn**: string (Required): The Amazon Resource Name (ARN) of the contact flow.
-* **Description**: string: The description which appears in the agent's Contact Control Panel (CCP).
-* **Name**: string (Required): The name which appears in the agent's Contact Control Panel (CCP).
-* **References**: [Rule_References](#rulereferences): A formatted URL that is shown to an agent in the Contact Control Panel (CCP).
-
-## Rule_References
-### Properties
-
-## UpdateCaseAction
-### Properties
-* **Fields**: [Field](#field)[] (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that's 1 to 256 characters in length.
-
-## RuleTriggerEventSource
-### Properties
-* **EventSourceName**: string (Required): The name of event source.
-* **IntegrationAssociationArn**: string: The Amazon Resource Name (ARN) for the AppIntegration association.
 
 ## AWS.Connect/SecurityKeyProperties
 ### Properties
@@ -646,11 +354,6 @@
 * **TagRestrictedResources**: string[]: The list of resources that a security profile applies tag restrictions to in Amazon Connect.
 * **Tags**: [Tag](#tag)[]: The tags used to organize, track, or control access for this resource.
 
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.Connect/TaskTemplateProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The identifier (arn) of the task template.
@@ -665,45 +368,6 @@
 * **Status**: string
 * **Tags**: [Tag](#tag)[]: One or more tags.
 
-## TaskTemplate_Constraints
-### Properties
-* **InvisibleFields**: [InvisibleFieldInfo](#invisiblefieldinfo)[]
-* **ReadOnlyFields**: [ReadOnlyFieldInfo](#readonlyfieldinfo)[]
-* **RequiredFields**: [RequiredFieldInfo](#requiredfieldinfo)[]
-
-## InvisibleFieldInfo
-### Properties
-* **Id**: [FieldIdentifier](#fieldidentifier) (Required)
-
-## FieldIdentifier
-### Properties
-* **Name**: string (Required): The name of the task template field
-
-## ReadOnlyFieldInfo
-### Properties
-* **Id**: [FieldIdentifier](#fieldidentifier) (Required)
-
-## RequiredFieldInfo
-### Properties
-* **Id**: [FieldIdentifier](#fieldidentifier) (Required)
-
-## DefaultFieldValue
-### Properties
-* **DefaultValue**: string (Required)
-* **Id**: [FieldIdentifier](#fieldidentifier) (Required)
-
-## Field
-### Properties
-* **Description**: string: The description of the task template's field
-* **Id**: [FieldIdentifier](#fieldidentifier) (Required)
-* **SingleSelectOptions**: string[]: list of field options to be used with single select
-* **Type**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. . You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.Connect/TrafficDistributionGroupProperties
 ### Properties
 * **Description**: string: A description for the traffic distribution group.
@@ -714,10 +378,13 @@
 * **Tags**: [Tag](#tag)[]: One or more tags.
 * **TrafficDistributionGroupArn**: string (ReadOnly, Identifier): The identifier of the traffic distribution group.
 
-## Tag
+## AWS.Connect/UserHierarchyGroupProperties
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **InstanceArn**: string (Required): The identifier of the Amazon Connect instance.
+* **Name**: string (Required): The name of the user hierarchy group.
+* **ParentGroupArn**: string: The Amazon Resource Name (ARN) for the parent user hierarchy group.
+* **Tags**: [Tag](#tag)[]: One or more tags.
+* **UserHierarchyGroupArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the user hierarchy group.
 
 ## AWS.Connect/UserProperties
 ### Properties
@@ -734,6 +401,377 @@
 * **Username**: string (Required): The user name for the account.
 * **UserProficiencies**: [UserProficiency](#userproficiency)[]: One or more predefined attributes assigned to a user, with a level that indicates how skilled they are.
 
+## AWS.Connect/ViewProperties
+### Properties
+* **Actions**: string[] (Required): The actions of the view in an array.
+* **Description**: string: The description of the view.
+* **InstanceArn**: string (Required): The Amazon Resource Name (ARN) of the instance.
+* **Name**: string (Required): The name of the view.
+* **Tags**: [Tag](#tag)[]: One or more tags.
+* **Template**: [View_Template](#viewtemplate) (Required): The template of the view as JSON.
+* **ViewArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the view.
+* **ViewContentSha256**: string (ReadOnly): The view content hash.
+* **ViewId**: string (ReadOnly): The view id of the view.
+
+## AWS.Connect/ViewVersionProperties
+### Properties
+* **Version**: int (ReadOnly): The version of the view.
+* **VersionDescription**: string: The description for the view version.
+* **ViewArn**: string (Required): The Amazon Resource Name (ARN) of the view for which a version is being created.
+* **ViewContentSha256**: string: The view content hash to be checked.
+* **ViewVersionArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the created view version.
+
+## CreateCaseAction
+### Properties
+* **Fields**: [Field](#field)[] (Required)
+* **TemplateId**: string (Required): The Id of template.
+
+## CrossChannelBehavior
+### Properties
+* **BehaviorType**: string (Required)
+
+## DefaultFieldValue
+### Properties
+* **DefaultValue**: string (Required)
+* **Id**: [FieldIdentifier](#fieldidentifier) (Required)
+
+## EncryptionConfig
+### Properties
+* **EncryptionType**: string (Required)
+* **KeyId**: string (Required)
+
+## EndAssociatedTasksAction
+### Properties
+
+## EvaluationFormBaseItem
+### Properties
+* **Section**: [EvaluationFormSection](#evaluationformsection) (Required): The evaluation form section item
+
+## EvaluationFormItem
+### Properties
+* **Question**: [EvaluationFormQuestion](#evaluationformquestion): The evaluation form question item
+* **Section**: [EvaluationFormSection](#evaluationformsection): The evaluation form section item
+
+## EvaluationFormNumericQuestionAutomation
+### Properties
+* **PropertyValue**: [NumericQuestionPropertyValueAutomation](#numericquestionpropertyvalueautomation) (Required): The automation property name of the question.
+
+## EvaluationFormNumericQuestionOption
+### Properties
+* **AutomaticFail**: bool: The flag to mark the option as automatic fail.
+* **MaxValue**: int (Required): The maximum value of the option range.
+* **MinValue**: int (Required): The minimum value of the option range.
+* **Score**: int: The score of the option range.
+
+## EvaluationFormNumericQuestionProperties
+### Properties
+* **Automation**: [EvaluationFormNumericQuestionAutomation](#evaluationformnumericquestionautomation): The automation properties for the numeric question.
+* **MaxValue**: int (Required): The maximum value for answers of the question.
+* **MinValue**: int (Required): The minimum value for answers of the question.
+* **Options**: [EvaluationFormNumericQuestionOption](#evaluationformnumericquestionoption)[]: The list of option ranges used for scoring.
+
+## EvaluationFormQuestion
+### Properties
+* **Instructions**: string: The instructions for the question.
+* **NotApplicableEnabled**: bool: The flag to enable not applicable answers to the question.
+* **QuestionType**: string (Required): The type of the question.
+* **QuestionTypeProperties**: [EvaluationFormQuestionTypeProperties](#evaluationformquestiontypeproperties): The properties of the question
+* **RefId**: string (Required): The identifier used to reference the question.
+* **Title**: string (Required): The title of the question.
+* **Weight**: int: The question weight used for scoring.
+
+## EvaluationFormQuestionTypeProperties
+### Properties
+* **Numeric**: [EvaluationFormNumericQuestionProperties](#evaluationformnumericquestionproperties): The properties of the numeric question.
+* **SingleSelect**: [EvaluationFormSingleSelectQuestionProperties](#evaluationformsingleselectquestionproperties): The properties of the single-select question.
+
+## EvaluationFormSection
+### Properties
+* **Instructions**: string: The instructions for the section.
+* **Items**: [EvaluationFormItem](#evaluationformitem)[]: The list of section items.
+* **RefId**: string (Required): The identifier to reference the section.
+* **Title**: string (Required): The title of the section.
+* **Weight**: int: The item weight used for scoring.
+
+## EvaluationFormSingleSelectQuestionAutomation
+### Properties
+* **DefaultOptionRefId**: string: The option reference identifier of the default answer.
+* **Options**: [EvaluationFormSingleSelectQuestionAutomationOption](#evaluationformsingleselectquestionautomationoption)[] (Required): The answer options for the automation.
+
+## EvaluationFormSingleSelectQuestionAutomationOption
+### Properties
+* **RuleCategory**: [SingleSelectQuestionRuleCategoryAutomation](#singleselectquestionrulecategoryautomation) (Required): The automation option based on Rules categories.
+
+## EvaluationFormSingleSelectQuestionOption
+### Properties
+* **AutomaticFail**: bool: The flag to mark the option as automatic fail.
+* **RefId**: string (Required): The identifier used to reference the option.
+* **Score**: int: The score of the option.
+* **Text**: string (Required): The title of the option.
+
+## EvaluationFormSingleSelectQuestionProperties
+### Properties
+* **Automation**: [EvaluationFormSingleSelectQuestionAutomation](#evaluationformsingleselectquestionautomation): The automation properties for the single-select question.
+* **DisplayAs**: string: The display mode of the single-select question.
+* **Options**: [EvaluationFormSingleSelectQuestionOption](#evaluationformsingleselectquestionoption)[] (Required): The list of options for the question.
+
+## EventBridgeAction
+### Properties
+* **Name**: string (Required): The name of the event bridge action.
+
+## Field
+### Properties
+* **Description**: string: The description of the task template's field
+* **Id**: [FieldIdentifier](#fieldidentifier) (Required)
+* **SingleSelectOptions**: string[]: list of field options to be used with single select
+* **Type**: string (Required)
+
+## Field
+### Properties
+* **Id**: string (Required): The Id of the field
+* **Value**: [FieldValue](#fieldvalue) (Required)
+
+## FieldIdentifier
+### Properties
+* **Name**: string (Required): The name of the task template field
+
+## FieldValue
+### Properties
+* **BooleanValue**: bool
+* **DoubleValue**: int
+* **EmptyValue**: [Rule_EmptyValue](#ruleemptyvalue)
+* **StringValue**: string
+
+## HoursOfOperationConfig
+### Properties
+* **Day**: string (Required): The day that the hours of operation applies to.
+* **EndTime**: [HoursOfOperationTimeSlice](#hoursofoperationtimeslice) (Required): The end time that your contact center closes.
+* **StartTime**: [HoursOfOperationTimeSlice](#hoursofoperationtimeslice) (Required): The start time that your contact center opens.
+
+## HoursOfOperationTimeSlice
+### Properties
+* **Hours**: int (Required): The hours.
+* **Minutes**: int (Required): The minutes.
+
+## InvisibleFieldInfo
+### Properties
+* **Id**: [FieldIdentifier](#fieldidentifier) (Required)
+
+## KinesisFirehoseConfig
+### Properties
+* **FirehoseArn**: string (Required)
+
+## KinesisStreamConfig
+### Properties
+* **StreamArn**: string (Required)
+
+## KinesisVideoStreamConfig
+### Properties
+* **EncryptionConfig**: [EncryptionConfig](#encryptionconfig) (Required)
+* **Prefix**: string (Required)
+* **RetentionPeriodHours**: int (Required)
+
+## MediaConcurrency
+### Properties
+* **Channel**: string (Required)
+* **Concurrency**: int (Required)
+* **CrossChannelBehavior**: [CrossChannelBehavior](#crosschannelbehavior)
+
+## NotificationRecipientType
+### Properties
+* **UserArns**: string[]: The list of recipients by user arns.
+* **UserTags**: [Rule_UserTags](#ruleusertags): The collection of recipients who are identified by user tags
+
+## NumericQuestionPropertyValueAutomation
+### Properties
+* **Label**: string (Required): The automation property label.
+
+## OutboundCallerConfig
+### Properties
+* **OutboundCallerIdName**: string
+* **OutboundCallerIdNumberArn**: string
+* **OutboundFlowArn**: string
+
+## PhoneNumberQuickConnectConfig
+### Properties
+* **PhoneNumber**: string (Required)
+
+## PredefinedAttribute_Values
+### Properties
+* **StringList**: string[]
+
+## QueueQuickConnectConfig
+### Properties
+* **ContactFlowArn**: string (Required)
+* **QueueArn**: string (Required)
+
+## QuickConnectConfig
+### Properties
+* **PhoneConfig**: [PhoneNumberQuickConnectConfig](#phonenumberquickconnectconfig)
+* **QueueConfig**: [QueueQuickConnectConfig](#queuequickconnectconfig)
+* **QuickConnectType**: string (Required)
+* **UserConfig**: [UserQuickConnectConfig](#userquickconnectconfig)
+
+## ReadOnlyFieldInfo
+### Properties
+* **Id**: [FieldIdentifier](#fieldidentifier) (Required)
+
+## RequiredFieldInfo
+### Properties
+* **Id**: [FieldIdentifier](#fieldidentifier) (Required)
+
+## RoutingProfileQueueConfig
+### Properties
+* **Delay**: int (Required)
+* **Priority**: int (Required)
+* **QueueReference**: [RoutingProfileQueueReference](#routingprofilequeuereference) (Required)
+
+## RoutingProfileQueueReference
+### Properties
+* **Channel**: string (Required)
+* **QueueArn**: string (Required)
+
+## Rule_EmptyValue
+### Properties
+
+## Rule_References
+### Properties
+
+## Rule_UserTags
+### Properties
+
+## RuleTriggerEventSource
+### Properties
+* **EventSourceName**: string (Required): The name of event source.
+* **IntegrationAssociationArn**: string: The Amazon Resource Name (ARN) for the AppIntegration association.
+
+## S3Config
+### Properties
+* **BucketName**: string (Required)
+* **BucketPrefix**: string (Required)
+* **EncryptionConfig**: [EncryptionConfig](#encryptionconfig)
+
+## ScoringStrategy
+### Properties
+* **Mode**: string (Required): The scoring mode.
+* **Status**: string (Required): The scoring status.
+
+## SendNotificationAction
+### Properties
+* **Content**: string (Required): The content of notification.
+* **ContentType**: string (Required): The type of content.
+* **DeliveryMethod**: string (Required): The means of delivery.
+* **Recipient**: [NotificationRecipientType](#notificationrecipienttype) (Required)
+* **Subject**: string: The subject of notification.
+
+## SingleSelectQuestionRuleCategoryAutomation
+### Properties
+* **Category**: string (Required): The category name as defined in Rules.
+* **Condition**: string (Required): The automation condition applied on contact categories.
+* **OptionRefId**: string (Required): The option identifier referencing the option to be selected when the automation option is triggered.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. . You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that's 1 to 256 characters in length.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that's 1 to 256 characters in length.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. . You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters
+* **Value**: string (Required): The value for the tag. . You can specify a value that is maximum of 256 Unicode characters
+
+## TaskAction
+### Properties
+* **ContactFlowArn**: string (Required): The Amazon Resource Name (ARN) of the contact flow.
+* **Description**: string: The description which appears in the agent's Contact Control Panel (CCP).
+* **Name**: string (Required): The name which appears in the agent's Contact Control Panel (CCP).
+* **References**: [Rule_References](#rulereferences): A formatted URL that is shown to an agent in the Contact Control Panel (CCP).
+
+## TaskTemplate_Constraints
+### Properties
+* **InvisibleFields**: [InvisibleFieldInfo](#invisiblefieldinfo)[]
+* **ReadOnlyFields**: [ReadOnlyFieldInfo](#readonlyfieldinfo)[]
+* **RequiredFields**: [RequiredFieldInfo](#requiredfieldinfo)[]
+
+## UpdateCaseAction
+### Properties
+* **Fields**: [Field](#field)[] (Required)
+
 ## UserIdentityInfo
 ### Properties
 * **Email**: string
@@ -749,55 +787,17 @@
 * **DeskPhoneNumber**: string
 * **PhoneType**: string (Required)
 
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-
 ## UserProficiency
 ### Properties
 * **AttributeName**: string (Required)
 * **AttributeValue**: string (Required)
 * **Level**: int (Required)
 
-## AWS.Connect/UserHierarchyGroupProperties
+## UserQuickConnectConfig
 ### Properties
-* **InstanceArn**: string (Required): The identifier of the Amazon Connect instance.
-* **Name**: string (Required): The name of the user hierarchy group.
-* **ParentGroupArn**: string: The Amazon Resource Name (ARN) for the parent user hierarchy group.
-* **Tags**: [Tag](#tag)[]: One or more tags.
-* **UserHierarchyGroupArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the user hierarchy group.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-
-## AWS.Connect/ViewProperties
-### Properties
-* **Actions**: string[] (Required): The actions of the view in an array.
-* **Description**: string: The description of the view.
-* **InstanceArn**: string (Required): The Amazon Resource Name (ARN) of the instance.
-* **Name**: string (Required): The name of the view.
-* **Tags**: [Tag](#tag)[]: One or more tags.
-* **Template**: [View_Template](#viewtemplate) (Required): The template of the view as JSON.
-* **ViewArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the view.
-* **ViewContentSha256**: string (ReadOnly): The view content hash.
-* **ViewId**: string (ReadOnly): The view id of the view.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters
-* **Value**: string (Required): The value for the tag. . You can specify a value that is maximum of 256 Unicode characters
+* **ContactFlowArn**: string (Required)
+* **UserArn**: string (Required)
 
 ## View_Template
 ### Properties
-
-## AWS.Connect/ViewVersionProperties
-### Properties
-* **Version**: int (ReadOnly): The version of the view.
-* **VersionDescription**: string: The description for the view version.
-* **ViewArn**: string (Required): The Amazon Resource Name (ARN) of the view for which a version is being created.
-* **ViewContentSha256**: string: The view content hash to be checked.
-* **ViewVersionArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the created view version.
 

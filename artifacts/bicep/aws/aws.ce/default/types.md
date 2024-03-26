@@ -34,11 +34,6 @@
 * **MonitorType**: string (Required)
 * **ResourceTags**: [ResourceTag](#resourcetag)[] (WriteOnly): Tags to assign to monitor.
 
-## ResourceTag
-### Properties
-* **Key**: string (Required): The key name for the tag.
-* **Value**: string (Required): The value for the tag.
-
 ## AWS.CE/AnomalySubscriptionProperties
 ### Properties
 * **AccountId**: string (ReadOnly): The accountId
@@ -51,6 +46,21 @@
 * **Threshold**: int: The dollar value that triggers a notification if the threshold is exceeded. 
 * **ThresholdExpression**: string: An Expression object in JSON String format used to specify the anomalies that you want to generate alerts for.
 
+## AWS.CE/CostCategoryProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): Cost category ARN
+* **DefaultValue**: string: The default value for the cost category
+* **EffectiveStart**: string (ReadOnly)
+* **Name**: string (Required)
+* **Rules**: string (Required): JSON array format of Expression in Billing and Cost Management API
+* **RuleVersion**: string (Required)
+* **SplitChargeRules**: string: Json array format of CostCategorySplitChargeRule in Billing and Cost Management API
+
+## ResourceTag
+### Properties
+* **Key**: string (Required): The key name for the tag.
+* **Value**: string (Required): The value for the tag.
+
 ## ResourceTag
 ### Properties
 * **Key**: string (Required): The key name for the tag.
@@ -61,14 +71,4 @@
 * **Address**: string (Required)
 * **Status**: string
 * **Type**: string (Required)
-
-## AWS.CE/CostCategoryProperties
-### Properties
-* **Arn**: string (ReadOnly, Identifier): Cost category ARN
-* **DefaultValue**: string: The default value for the cost category
-* **EffectiveStart**: string (ReadOnly)
-* **Name**: string (Required)
-* **Rules**: string (Required): JSON array format of Expression in Billing and Cost Management API
-* **RuleVersion**: string (Required)
-* **SplitChargeRules**: string: Json array format of CostCategorySplitChargeRule in Billing and Cost Management API
 

@@ -29,16 +29,6 @@
 * **InsightsConfiguration**: [InsightsConfiguration](#insightsconfiguration)
 * **Tags**: [Tag](#tag)[]
 
-## InsightsConfiguration
-### Properties
-* **InsightsEnabled**: bool: Set the InsightsEnabled value to true to enable insights or false to disable insights.
-* **NotificationsEnabled**: bool: Set the NotificationsEnabled value to true to enable insights notifications. Notifications can only be enabled on a group with InsightsEnabled set to true.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag.
-* **Value**: string (Required): The value for the tag.
-
 ## AWS.XRay/ResourcePolicyProperties
 ### Properties
 * **BypassPolicyLockoutCheck**: bool (WriteOnly): A flag to indicate whether to bypass the resource policy lockout safety check
@@ -53,6 +43,11 @@
 * **SamplingRuleRecord**: [SamplingRuleRecord](#samplingrulerecord)
 * **SamplingRuleUpdate**: [SamplingRuleUpdate](#samplingruleupdate)
 * **Tags**: [Tag](#tag)[]
+
+## InsightsConfiguration
+### Properties
+* **InsightsEnabled**: bool: Set the InsightsEnabled value to true to enable insights or false to disable insights.
+* **NotificationsEnabled**: bool: Set the NotificationsEnabled value to true to enable insights notifications. Notifications can only be enabled on a group with InsightsEnabled set to true.
 
 ## SamplingRule
 ### Properties
@@ -69,6 +64,9 @@
 * **ServiceType**: string (Required): Matches the origin that the service uses to identify its type in segments.
 * **URLPath**: string (Required): Matches the path from a request URL.
 * **Version**: int: The version of the sampling rule format (1)
+
+## SamplingRule_Attributes
+### Properties
 
 ## SamplingRule_Attributes
 ### Properties
@@ -94,8 +92,10 @@
 * **ServiceType**: string: Matches the origin that the service uses to identify its type in segments.
 * **URLPath**: string: Matches the path from a request URL.
 
-## SamplingRule_Attributes
+## Tag
 ### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties

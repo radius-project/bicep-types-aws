@@ -36,11 +36,6 @@
          <p>For more information, see <a href="https://docs.aws.amazon.com/proton/latest/userguide/resources.html">Proton resources and tagging</a> in the
         <i>Proton User Guide</i>.</p>
 
-## Tag
-### Properties
-* **Key**: string (Required): <p>The key of the resource tag.</p>
-* **Value**: string (Required): <p>The value of the resource tag.</p>
-
 ## AWS.Proton/EnvironmentTemplateProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): <p>The Amazon Resource Name (ARN) of the environment template.</p>
@@ -53,11 +48,6 @@
          <p>For more information, see <a href="https://docs.aws.amazon.com/proton/latest/userguide/resources.html">Proton resources and tagging</a> in the
         <i>Proton User Guide</i>.</p>
 
-## Tag
-### Properties
-* **Key**: string (Required): <p>The key of the resource tag.</p>
-* **Value**: string (Required): <p>The value of the resource tag.</p>
-
 ## AWS.Proton/ServiceTemplateProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): <p>The Amazon Resource Name (ARN) of the service template.</p>
@@ -69,6 +59,16 @@
 * **Tags**: [Tag](#tag)[]: <p>An optional list of metadata items that you can associate with the Proton service template. A tag is a key-value pair.</p>
          <p>For more information, see <a href="https://docs.aws.amazon.com/proton/latest/userguide/resources.html">Proton resources and tagging</a> in the
         <i>Proton User Guide</i>.</p>
+
+## Tag
+### Properties
+* **Key**: string (Required): <p>The key of the resource tag.</p>
+* **Value**: string (Required): <p>The value of the resource tag.</p>
+
+## Tag
+### Properties
+* **Key**: string (Required): <p>The key of the resource tag.</p>
+* **Value**: string (Required): <p>The value of the resource tag.</p>
 
 ## Tag
 ### Properties

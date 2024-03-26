@@ -48,11 +48,6 @@
 * **Status**: string: Specifies the status of the agreement.
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for agreements. Tags are metadata attached to agreements for any purpose.
 
-## Tag
-### Properties
-* **Key**: string (Required): The name assigned to the tag that you create.
-* **Value**: string (Required): Contains one or more values that you assigned to the key name you create.
-
 ## AWS.Transfer/CertificateProperties
 ### Properties
 * **ActiveDate**: string: Specifies the active date for the certificate.
@@ -71,11 +66,6 @@
 * **Type**: string (ReadOnly): Describing the type of certificate. With or without a private key.
 * **Usage**: string (Required): Specifies the usage type for the certificate.
 
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.Transfer/ConnectorProperties
 ### Properties
 * **AccessRole**: string (Required): Specifies the access role for the connector.
@@ -86,6 +76,24 @@
 * **SftpConfig**: [Connector_SftpConfig](#connectorsftpconfig): Configuration for an SFTP connector.
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for connectors. Tags are metadata attached to connectors for any purpose.
 * **Url**: string (Required): URL for Connector
+
+## AWS.Transfer/ProfileProperties
+### Properties
+* **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the profile.
+* **As2Id**: string (Required): AS2 identifier agreed with a trading partner.
+* **CertificateIds**: string[]: List of the certificate IDs associated with this profile to be used for encryption and signing of AS2 messages.
+* **ProfileId**: string (ReadOnly, Identifier): A unique identifier for the profile
+* **ProfileType**: string (Required): Enum specifying whether the profile is local or associated with a trading partner.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.Transfer/WorkflowProperties
+### Properties
+* **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the workflow.
+* **Description**: string: A textual description for the workflow.
+* **OnExceptionSteps**: [WorkflowStep](#workflowstep)[]: Specifies the steps (actions) to take if any errors are encountered during execution of the workflow.
+* **Steps**: [WorkflowStep](#workflowstep)[] (Required): Specifies the details for the steps that are in the specified workflow.
+* **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for workflows. Tags are metadata attached to workflows for any purpose.
+* **WorkflowId**: string (ReadOnly, Identifier): A unique identifier for the workflow.
 
 ## Connector_As2Config
 ### Properties
@@ -104,49 +112,15 @@
 * **TrustedHostKeys**: string[]: List of public host keys, for the external server to which you are connecting.
 * **UserSecretId**: string: ARN or name of the secret in AWS Secrets Manager which contains the SFTP user's private keys or passwords.
 
-## Tag
+## EfsInputFileLocation
 ### Properties
-* **Key**: string (Required): The name assigned to the tag that you create.
-* **Value**: string (Required): Contains one or more values that you assigned to the key name you create.
+* **FileSystemId**: string: Specifies the EFS filesystem that contains the file.
+* **Path**: string: The name assigned to the file when it was created in EFS. You use the object path to retrieve the object.
 
-## AWS.Transfer/ProfileProperties
+## InputFileLocation
 ### Properties
-* **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the profile.
-* **As2Id**: string (Required): AS2 identifier agreed with a trading partner.
-* **CertificateIds**: string[]: List of the certificate IDs associated with this profile to be used for encryption and signing of AS2 messages.
-* **ProfileId**: string (ReadOnly, Identifier): A unique identifier for the profile
-* **ProfileType**: string (Required): Enum specifying whether the profile is local or associated with a trading partner.
-* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## Tag
-### Properties
-* **Key**: string (Required): The name assigned to the tag that you create.
-* **Value**: string (Required): Contains one or more values that you assigned to the key name you create.
-
-## AWS.Transfer/WorkflowProperties
-### Properties
-* **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the workflow.
-* **Description**: string: A textual description for the workflow.
-* **OnExceptionSteps**: [WorkflowStep](#workflowstep)[]: Specifies the steps (actions) to take if any errors are encountered during execution of the workflow.
-* **Steps**: [WorkflowStep](#workflowstep)[] (Required): Specifies the details for the steps that are in the specified workflow.
-* **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for workflows. Tags are metadata attached to workflows for any purpose.
-* **WorkflowId**: string (ReadOnly, Identifier): A unique identifier for the workflow.
-
-## WorkflowStep
-### Properties
-* **CopyStepDetails**: [Workflow_CopyStepDetails](#workflowcopystepdetails): Details for a step that performs a file copy.
-* **CustomStepDetails**: [Workflow_CustomStepDetails](#workflowcustomstepdetails): Details for a step that invokes a lambda function.
-* **DecryptStepDetails**: [Workflow_DecryptStepDetails](#workflowdecryptstepdetails): Details for a step that performs a file decryption.
-* **DeleteStepDetails**: [Workflow_DeleteStepDetails](#workflowdeletestepdetails): Details for a step that deletes the file.
-* **TagStepDetails**: [Workflow_TagStepDetails](#workflowtagstepdetails): Details for a step that creates one or more tags.
-* **Type**: string
-
-## Workflow_CopyStepDetails
-### Properties
-* **DestinationFileLocation**: [S3FileLocation](#s3filelocation)
-* **Name**: string: The name of the step, used as an identifier.
-* **OverwriteExisting**: string: A flag that indicates whether or not to overwrite an existing file of the same name. The default is FALSE.
-* **SourceFileLocation**: string: Specifies which file to use as input to the workflow step.
+* **EfsFileLocation**: [EfsInputFileLocation](#efsinputfilelocation)
+* **S3FileLocation**: [S3InputFileLocation](#s3inputfilelocation)
 
 ## S3FileLocation
 ### Properties
@@ -156,6 +130,43 @@
 ### Properties
 * **Bucket**: string: Specifies the S3 bucket that contains the file.
 * **Key**: string: The name assigned to the file when it was created in S3. You use the object key to retrieve the object.
+
+## S3Tag
+### Properties
+* **Key**: string (Required): The name assigned to the tag that you create.
+* **Value**: string (Required): The value that corresponds to the key.
+
+## Tag
+### Properties
+* **Key**: string (Required): The name assigned to the tag that you create.
+* **Value**: string (Required): Contains one or more values that you assigned to the key name you create.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The name assigned to the tag that you create.
+* **Value**: string (Required): Contains one or more values that you assigned to the key name you create.
+
+## Tag
+### Properties
+* **Key**: string (Required): The name assigned to the tag that you create.
+* **Value**: string (Required): Contains one or more values that you assigned to the key name you create.
+
+## Tag
+### Properties
+* **Key**: string (Required): The name assigned to the tag that you create.
+* **Value**: string (Required): Contains one or more values that you assigned to the key name you create.
+
+## Workflow_CopyStepDetails
+### Properties
+* **DestinationFileLocation**: [S3FileLocation](#s3filelocation)
+* **Name**: string: The name of the step, used as an identifier.
+* **OverwriteExisting**: string: A flag that indicates whether or not to overwrite an existing file of the same name. The default is FALSE.
+* **SourceFileLocation**: string: Specifies which file to use as input to the workflow step.
 
 ## Workflow_CustomStepDetails
 ### Properties
@@ -172,16 +183,6 @@
 * **SourceFileLocation**: string: Specifies which file to use as input to the workflow step.
 * **Type**: string: Specifies which encryption method to use.
 
-## InputFileLocation
-### Properties
-* **EfsFileLocation**: [EfsInputFileLocation](#efsinputfilelocation)
-* **S3FileLocation**: [S3InputFileLocation](#s3inputfilelocation)
-
-## EfsInputFileLocation
-### Properties
-* **FileSystemId**: string: Specifies the EFS filesystem that contains the file.
-* **Path**: string: The name assigned to the file when it was created in EFS. You use the object path to retrieve the object.
-
 ## Workflow_DeleteStepDetails
 ### Properties
 * **Name**: string: The name of the step, used as an identifier.
@@ -193,13 +194,12 @@
 * **SourceFileLocation**: string: Specifies which file to use as input to the workflow step.
 * **Tags**: [S3Tag](#s3tag)[]: Array that contains from 1 to 10 key/value pairs.
 
-## S3Tag
+## WorkflowStep
 ### Properties
-* **Key**: string (Required): The name assigned to the tag that you create.
-* **Value**: string (Required): The value that corresponds to the key.
-
-## Tag
-### Properties
-* **Key**: string (Required): The name assigned to the tag that you create.
-* **Value**: string (Required): Contains one or more values that you assigned to the key name you create.
+* **CopyStepDetails**: [Workflow_CopyStepDetails](#workflowcopystepdetails): Details for a step that performs a file copy.
+* **CustomStepDetails**: [Workflow_CustomStepDetails](#workflowcustomstepdetails): Details for a step that invokes a lambda function.
+* **DecryptStepDetails**: [Workflow_DecryptStepDetails](#workflowdecryptstepdetails): Details for a step that performs a file decryption.
+* **DeleteStepDetails**: [Workflow_DeleteStepDetails](#workflowdeletestepdetails): Details for a step that deletes the file.
+* **TagStepDetails**: [Workflow_TagStepDetails](#workflowtagstepdetails): Details for a step that creates one or more tags.
+* **Type**: string
 

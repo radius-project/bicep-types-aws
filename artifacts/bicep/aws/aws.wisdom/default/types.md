@@ -21,24 +21,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/KnowledgeBaseProperties](#awswisdomknowledgebaseproperties) (Required): properties of the resource
 
-## AWS.Wisdom/AssistantProperties
+## AppIntegrationsConfiguration
 ### Properties
-* **AssistantArn**: string (ReadOnly)
-* **AssistantId**: string (ReadOnly, Identifier)
-* **Description**: string
-* **Name**: string (Required)
-* **ServerSideEncryptionConfiguration**: [ServerSideEncryptionConfiguration](#serversideencryptionconfiguration)
-* **Tags**: [Tag](#tag)[]
-* **Type**: string (Required)
+* **AppIntegrationArn**: string (Required)
+* **ObjectFields**: string[]
 
-## ServerSideEncryptionConfiguration
+## AssociationData
 ### Properties
-* **KmsKeyId**: string
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **KnowledgeBaseId**: string (Required)
 
 ## AWS.Wisdom/AssistantAssociationProperties
 ### Properties
@@ -50,14 +40,15 @@
 * **AssociationType**: string (Required)
 * **Tags**: [Tag](#tag)[]
 
-## AssociationData
+## AWS.Wisdom/AssistantProperties
 ### Properties
-* **KnowledgeBaseId**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **AssistantArn**: string (ReadOnly)
+* **AssistantId**: string (ReadOnly, Identifier)
+* **Description**: string
+* **Name**: string (Required)
+* **ServerSideEncryptionConfiguration**: [ServerSideEncryptionConfiguration](#serversideencryptionconfiguration)
+* **Tags**: [Tag](#tag)[]
+* **Type**: string (Required)
 
 ## AWS.Wisdom/KnowledgeBaseProperties
 ### Properties
@@ -79,14 +70,23 @@
 ### Properties
 * **KmsKeyId**: string
 
+## ServerSideEncryptionConfiguration
+### Properties
+* **KmsKeyId**: string
+
 ## SourceConfiguration
 ### Properties
 * **AppIntegrations**: [AppIntegrationsConfiguration](#appintegrationsconfiguration) (Required)
 
-## AppIntegrationsConfiguration
+## Tag
 ### Properties
-* **AppIntegrationArn**: string (Required)
-* **ObjectFields**: string[]
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

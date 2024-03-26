@@ -7,6 +7,23 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EMRServerless/ApplicationProperties](#awsemrserverlessapplicationproperties) (Required): properties of the resource
 
+## Application_Properties
+### Properties
+
+## Application_S3MonitoringConfiguration
+### Properties
+* **EncryptionKeyArn**: string: KMS key ARN to encrypt the logs stored in given s3
+* **LogUri**: string
+
+## AutoStartConfiguration
+### Properties
+* **Enabled**: bool: If set to true, the Application will automatically start. Defaults to true.
+
+## AutoStopConfiguration
+### Properties
+* **Enabled**: bool: If set to true, the Application will automatically stop after being idle. Defaults to true.
+* **IdleTimeoutMinutes**: int: The amount of time [in minutes] to wait before auto stopping the Application when idle. Defaults to 15 minutes.
+
 ## AWS.EMRServerless/ApplicationProperties
 ### Properties
 * **ApplicationId**: string (ReadOnly, Identifier): The ID of the EMR Serverless Application.
@@ -26,34 +43,43 @@
 * **Type**: string (Required): The type of the application
 * **WorkerTypeSpecifications**: [WorkerTypeSpecificationInputMap](#workertypespecificationinputmap): The key-value pairs that specify worker type to WorkerTypeSpecificationInput. This parameter must contain all valid worker types for a Spark or Hive application. Valid worker types include Driver and Executor for Spark applications and HiveDriver and TezTask for Hive applications. You can either set image details in this parameter for each worker type, or in imageConfiguration for all worker types.
 
-## AutoStartConfiguration
+## CloudWatchLoggingConfiguration
 ### Properties
-* **Enabled**: bool: If set to true, the Application will automatically start. Defaults to true.
+* **Enabled**: bool: If set to false, CloudWatch logging will be turned off. Defaults to false.
+* **EncryptionKeyArn**: string: KMS key ARN to encrypt the logs stored in given CloudWatch log-group.
+* **LogGroupName**: string: Log-group name to produce log-streams on CloudWatch. If undefined, logs will be produced in a default log-group /aws/emr-serverless
+* **LogStreamNamePrefix**: string: Log-stream name prefix by which log-stream names will start in the CloudWatch Log-group.
+* **LogTypeMap**: [LogTypeMapKeyValuePair](#logtypemapkeyvaluepair)[]: The specific log-streams which need to be uploaded to CloudWatch.
 
-## AutoStopConfiguration
+## ConfigurationObject
 ### Properties
-* **Enabled**: bool: If set to true, the Application will automatically stop after being idle. Defaults to true.
-* **IdleTimeoutMinutes**: int: The amount of time [in minutes] to wait before auto stopping the Application when idle. Defaults to 15 minutes.
+* **Classification**: string (Required): String with a maximum length of 1024.
+* **Configurations**: [ConfigurationObject](#configurationobject)[]
+* **Properties**: [Application_Properties](#applicationproperties)
 
 ## ImageConfigurationInput
 ### Properties
 * **ImageUri**: string: The URI of an image in the Amazon ECR registry. This field is required when you create a new application. If you leave this field blank in an update, Amazon EMR will remove the image configuration.
-
-## InitialCapacityConfigKeyValuePair
-### Properties
-* **Key**: string (Required): Worker type for an analytics framework.
-* **Value**: [InitialCapacityConfig](#initialcapacityconfig) (Required)
 
 ## InitialCapacityConfig
 ### Properties
 * **WorkerConfiguration**: [WorkerConfiguration](#workerconfiguration) (Required)
 * **WorkerCount**: int (Required): Initial count of workers to be initialized when an Application is started. This count will be continued to be maintained until the Application is stopped
 
-## WorkerConfiguration
+## InitialCapacityConfigKeyValuePair
 ### Properties
-* **Cpu**: string (Required): Per worker CPU resource. vCPU is the only supported unit and specifying vCPU is optional.
-* **Disk**: string: Per worker Disk resource. GB is the only supported unit and specifying GB is optional
-* **Memory**: string (Required): Per worker memory resource. GB is the only supported unit and specifying GB is optional.
+* **Key**: string (Required): Worker type for an analytics framework.
+* **Value**: [InitialCapacityConfig](#initialcapacityconfig) (Required)
+
+## LogTypeMapKeyValuePair
+### Properties
+* **Key**: string (Required)
+* **Value**: string[] (Required)
+
+## ManagedPersistenceMonitoringConfiguration
+### Properties
+* **Enabled**: bool: If set to false, managed logging will be turned off. Defaults to true.
+* **EncryptionKeyArn**: string: KMS key ARN to encrypt the logs stored in managed persistence
 
 ## MaximumAllowedResources
 ### Properties
@@ -67,47 +93,21 @@
 * **ManagedPersistenceMonitoringConfiguration**: [ManagedPersistenceMonitoringConfiguration](#managedpersistencemonitoringconfiguration): Managed log persistence configurations for a JobRun.
 * **S3MonitoringConfiguration**: [Application_S3MonitoringConfiguration](#applications3monitoringconfiguration): S3 monitoring configurations for a JobRun.
 
-## CloudWatchLoggingConfiguration
-### Properties
-* **Enabled**: bool: If set to false, CloudWatch logging will be turned off. Defaults to false.
-* **EncryptionKeyArn**: string: KMS key ARN to encrypt the logs stored in given CloudWatch log-group.
-* **LogGroupName**: string: Log-group name to produce log-streams on CloudWatch. If undefined, logs will be produced in a default log-group /aws/emr-serverless
-* **LogStreamNamePrefix**: string: Log-stream name prefix by which log-stream names will start in the CloudWatch Log-group.
-* **LogTypeMap**: [LogTypeMapKeyValuePair](#logtypemapkeyvaluepair)[]: The specific log-streams which need to be uploaded to CloudWatch.
-
-## LogTypeMapKeyValuePair
-### Properties
-* **Key**: string (Required)
-* **Value**: string[] (Required)
-
-## ManagedPersistenceMonitoringConfiguration
-### Properties
-* **Enabled**: bool: If set to false, managed logging will be turned off. Defaults to true.
-* **EncryptionKeyArn**: string: KMS key ARN to encrypt the logs stored in managed persistence
-
-## Application_S3MonitoringConfiguration
-### Properties
-* **EncryptionKeyArn**: string: KMS key ARN to encrypt the logs stored in given s3
-* **LogUri**: string
-
 ## NetworkConfiguration
 ### Properties
 * **SecurityGroupIds**: string[]: The ID of the security groups in the VPC to which you want to connect your job or application.
 * **SubnetIds**: string[]: The ID of the subnets in the VPC to which you want to connect your job or application.
 
-## ConfigurationObject
-### Properties
-* **Classification**: string (Required): String with a maximum length of 1024.
-* **Configurations**: [ConfigurationObject](#configurationobject)[]
-* **Properties**: [Application_Properties](#applicationproperties)
-
-## Application_Properties
-### Properties
-
 ## Tag
 ### Properties
 * **Key**: string (Required): The value for the tag. You can specify a value that is 1 to 128 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## WorkerConfiguration
+### Properties
+* **Cpu**: string (Required): Per worker CPU resource. vCPU is the only supported unit and specifying vCPU is optional.
+* **Disk**: string: Per worker Disk resource. GB is the only supported unit and specifying GB is optional
+* **Memory**: string (Required): Per worker memory resource. GB is the only supported unit and specifying GB is optional.
 
 ## WorkerTypeSpecificationInputMap
 ### Properties

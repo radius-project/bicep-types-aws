@@ -14,24 +14,27 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Cassandra/TableProperties](#awscassandratableproperties) (Required): properties of the resource
 
+## AutoScalingSetting
+### Properties
+* **AutoScalingDisabled**: bool
+* **MaximumUnits**: int
+* **MinimumUnits**: int
+* **ScalingPolicy**: [ScalingPolicy](#scalingpolicy)
+
+## AutoScalingSpecification
+### Properties
+* **ReadCapacityAutoScaling**: [AutoScalingSetting](#autoscalingsetting)
+* **WriteCapacityAutoScaling**: [AutoScalingSetting](#autoscalingsetting)
+
 ## AWS.Cassandra/KeyspaceProperties
 ### Properties
 * **KeyspaceName**: string (Identifier): Name for Cassandra keyspace
 * **ReplicationSpecification**: [ReplicationSpecification](#replicationspecification)
 * **Tags**: [Tag](#tag)[]
 
-## ReplicationSpecification
-### Properties
-* **RegionList**: string[]
-* **ReplicationStrategy**: string
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.Cassandra/TableProperties
 ### Properties
+* **AutoScalingSpecifications**: [AutoScalingSpecification](#autoscalingspecification) (WriteOnly)
 * **BillingMode**: [BillingMode](#billingmode)
 * **ClientSideTimestampsEnabled**: bool: Indicates whether client side timestamps are enabled (true) or disabled (false) on the table. False by default, once it is enabled it cannot be disabled again.
 * **ClusteringKeyColumns**: [ClusteringKeyColumn](#clusteringkeycolumn)[]: Clustering key columns of the table
@@ -41,6 +44,7 @@
 * **PartitionKeyColumns**: [Column](#column)[] (Required): Partition key columns of the table
 * **PointInTimeRecoveryEnabled**: bool: Indicates whether point in time recovery is enabled (true) or disabled (false) on the table
 * **RegularColumns**: [Column](#column)[]: Non-key columns of the table
+* **ReplicaSpecifications**: [ReplicaSpecification](#replicaspecification)[] (WriteOnly)
 * **TableName**: string (Identifier): Name for Cassandra table
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource
 
@@ -48,11 +52,6 @@
 ### Properties
 * **Mode**: string (Required)
 * **ProvisionedThroughput**: [ProvisionedThroughput](#provisionedthroughput)
-
-## ProvisionedThroughput
-### Properties
-* **ReadCapacityUnits**: int (Required)
-* **WriteCapacityUnits**: int (Required)
 
 ## ClusteringKeyColumn
 ### Properties
@@ -69,8 +68,40 @@
 * **EncryptionType**: string (Required)
 * **KmsKeyIdentifier**: string
 
+## ProvisionedThroughput
+### Properties
+* **ReadCapacityUnits**: int (Required)
+* **WriteCapacityUnits**: int (Required)
+
+## ReplicaSpecification
+### Properties
+* **ReadCapacityAutoScaling**: [AutoScalingSetting](#autoscalingsetting)
+* **ReadCapacityUnits**: int
+* **Region**: string (Required)
+
+## ReplicationSpecification
+### Properties
+* **RegionList**: string[]
+* **ReplicationStrategy**: string
+
+## ScalingPolicy
+### Properties
+* **TargetTrackingScalingPolicyConfiguration**: [TargetTrackingScalingPolicyConfiguration](#targettrackingscalingpolicyconfiguration)
+
 ## Tag
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## TargetTrackingScalingPolicyConfiguration
+### Properties
+* **DisableScaleIn**: bool
+* **ScaleInCooldown**: int
+* **ScaleOutCooldown**: int
+* **TargetValue**: int (Required)
 

@@ -1,11 +1,13 @@
 import yargs from 'yargs/yargs';
 import path from "path";
 import fs from "fs";
-import { writeJson } from "./lib/writers/json";
-import { writeMarkdown } from "./lib/writers/markdown";
+import { writeTypesJson } from "bicep-types";
+import { writeMarkdown } from "bicep-types";
 import { SchemaRecord } from "./schemarecord";
 import { convertSchemaRecordToTypes } from "./convert";
-import { buildTypeIndex } from "./lib";
+import { copyRecursive, executeSynchronous, getLogger, lowerCaseCompare, logErr, logOut, ILogger, defaultLogger, executeCmd, findRecursive } from './utils';
+import { mkdir, rm, writeFile, readFile } from 'fs/promises';
+import { TypeFile, buildIndex, readTypesJson, writeIndexJson, writeIndexMarkdown } from 'bicep-types'; 
 
 const parser = yargs(process.argv.slice(2)).options({
     input: { type: 'string', demandOption: true },
@@ -50,13 +52,13 @@ async function main() {
             fs.mkdirSync(outFolder, { recursive: true })
 
             // write types.json
-            fs.writeFileSync(`${outFolder}/types.json`, writeJson(definition.types))
+            fs.writeFileSync(`${outFolder}/types.json`, writeTypesJson(definition.types))
 
             // writer types.md
-            fs.writeFileSync(`${outFolder}/types.md`, writeMarkdown(definition.namespace, definition.apiVersion, definition.types))
+            fs.writeFileSync(`${outFolder}/types.md`, writeMarkdown(definition.types, `${definition.namespace} @ ${definition.apiVersion}`))
         })
 
-        await buildTypeIndex(argv.output)
+        await buildTypeIndex(defaultLogger, argv.output)
 
         console.info(`generator took ${Date.now() - start}ms`);
     } catch (err) {
@@ -72,5 +74,24 @@ const groupBy = <T, K extends keyof any, V>(list: T[], getKey: (item: T) => K, g
         previous[group].push(getValue(currentItem));
         return previous;
     }, {} as Record<K, V[]>);
+
+async function buildTypeIndex(logger: ILogger, baseDir: string) {
+  const typesPaths = await findRecursive(baseDir, filePath => {
+    return path.basename(filePath) === 'types.json';
+  });
+
+  const typeFiles: TypeFile[] = [];
+  for (const typePath of typesPaths) {
+    const content = await readFile(typePath, { encoding: 'utf8' });
+    typeFiles.push({
+      relativePath: path.relative(baseDir, typePath),
+      types: readTypesJson(content),
+    });
+  }
+  const indexContent = await buildIndex(typeFiles,  log => logOut(logger, log));
+
+  await writeFile(`${baseDir}/index.json`, writeIndexJson(indexContent));
+  await writeFile(`${baseDir}/index.md`, writeIndexMarkdown(indexContent));
+}
 
 main()

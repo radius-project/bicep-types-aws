@@ -30,11 +30,6 @@
 * **Tags**: [Tag](#tag)[]
 * **TrustAnchorArn**: string
 
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.RolesAnywhere/ProfileProperties
 ### Properties
 * **DurationSeconds**: int
@@ -47,11 +42,6 @@
 * **RoleArns**: string[] (Required)
 * **SessionPolicy**: string
 * **Tags**: [Tag](#tag)[]
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 
 ## AWS.RolesAnywhere/TrustAnchorProperties
 ### Properties
@@ -75,11 +65,21 @@
 * **SourceData**: [TrustAnchor_SourceData](#trustanchorsourcedata)
 * **SourceType**: string
 
-## TrustAnchor_SourceData
+## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## TrustAnchor_SourceData
+### Properties
 

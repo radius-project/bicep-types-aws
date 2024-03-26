@@ -26,6 +26,25 @@
 * **Tags**: [ExperimentTemplate_Tags](#experimenttemplatetags) (Required)
 * **Targets**: [ExperimentTemplateTargetMap](#experimenttemplatetargetmap) (Required)
 
+## AWS.FIS/TargetAccountConfigurationProperties
+### Properties
+* **AccountId**: string (Required, Identifier)
+* **Description**: string
+* **ExperimentTemplateId**: string (Required, Identifier)
+* **RoleArn**: string (Required)
+
+## ExperimentTemplate_CloudWatchLogsConfiguration
+### Properties
+* **LogGroupArn**: string (Required)
+
+## ExperimentTemplate_S3Configuration
+### Properties
+* **BucketName**: string (Required)
+* **Prefix**: string
+
+## ExperimentTemplate_Tags
+### Properties
+
 ## ExperimentTemplateActionMap
 ### Properties
 
@@ -40,30 +59,11 @@
 * **LogSchemaVersion**: int (Required)
 * **S3Configuration**: [ExperimentTemplate_S3Configuration](#experimenttemplates3configuration)
 
-## ExperimentTemplate_CloudWatchLogsConfiguration
-### Properties
-* **LogGroupArn**: string (Required)
-
-## ExperimentTemplate_S3Configuration
-### Properties
-* **BucketName**: string (Required)
-* **Prefix**: string
-
 ## ExperimentTemplateStopCondition
 ### Properties
 * **Source**: string (Required)
 * **Value**: string
 
-## ExperimentTemplate_Tags
-### Properties
-
 ## ExperimentTemplateTargetMap
 ### Properties
-
-## AWS.FIS/TargetAccountConfigurationProperties
-### Properties
-* **AccountId**: string (Required, Identifier)
-* **Description**: string
-* **ExperimentTemplateId**: string (Required, Identifier)
-* **RoleArn**: string (Required)
 

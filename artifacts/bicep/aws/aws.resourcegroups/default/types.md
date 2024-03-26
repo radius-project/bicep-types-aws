@@ -27,24 +27,24 @@
 * **Name**: string (Identifier)
 * **Values**: string[]
 
-## ResourceQuery
-### Properties
-* **Query**: [Query](#query)
-* **Type**: string
-
 ## Query
 ### Properties
 * **ResourceTypeFilters**: string[]
 * **StackIdentifier**: string
 * **TagFilters**: [TagFilter](#tagfilter)[]
 
-## TagFilter
+## ResourceQuery
 ### Properties
-* **Key**: string
-* **Values**: string[]
+* **Query**: [Query](#query)
+* **Type**: string
 
 ## Tag
 ### Properties
 * **Key**: string
 * **Value**: string
+
+## TagFilter
+### Properties
+* **Key**: string
+* **Values**: string[]
 

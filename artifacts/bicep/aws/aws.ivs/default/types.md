@@ -21,6 +21,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IVS/RecordingConfigurationProperties](#awsivsrecordingconfigurationproperties) (Required): properties of the resource
 
+## Resource AWS.IVS/Stage@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IVS/StageProperties](#awsivsstageproperties): properties of the resource
+
 ## Resource AWS.IVS/StreamKey@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -42,11 +49,6 @@
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
 * **Type**: string: Channel type, which determines the allowable resolution and bitrate. If you exceed the allowable resolution or bitrate, the stream probably will disconnect immediately.
 
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.IVS/PlaybackKeyPairProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): Key-pair identifier.
@@ -54,11 +56,6 @@
 * **Name**: string: An arbitrary string (a nickname) assigned to a playback key pair that helps the customer identify that resource. The value does not need to be unique.
 * **PublicKeyMaterial**: string (WriteOnly): The public portion of a customer-generated key pair.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 
 ## AWS.IVS/RecordingConfigurationProperties
 ### Properties
@@ -71,18 +68,52 @@
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
 * **ThumbnailConfiguration**: [ThumbnailConfiguration](#thumbnailconfiguration)
 
+## AWS.IVS/StageProperties
+### Properties
+* **ActiveSessionId**: string (ReadOnly): ID of the active session within the stage.
+* **Arn**: string (ReadOnly, Identifier): Stage ARN is automatically generated on creation and assigned as the unique identifier.
+* **Name**: string: Stage name
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.IVS/StreamKeyProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): Stream Key ARN is automatically generated on creation and assigned as the unique identifier.
+* **ChannelArn**: string (Required): Channel ARN for the stream.
+* **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
+* **Value**: string (ReadOnly): Stream-key value.
+
 ## DestinationConfiguration
 ### Properties
 * **S3**: [S3DestinationConfiguration](#s3destinationconfiguration)
-
-## S3DestinationConfiguration
-### Properties
-* **BucketName**: string (Required)
 
 ## RenditionConfiguration
 ### Properties
 * **Renditions**: string[]: Renditions indicates which renditions are recorded for a stream.
 * **RenditionSelection**: string: Resolution Selection indicates which set of renditions are recorded for a stream.
+
+## S3DestinationConfiguration
+### Properties
+* **BucketName**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
@@ -95,16 +126,4 @@
 * **Resolution**: string: Resolution indicates the desired resolution of recorded thumbnails.
 * **Storage**: string[]: Storage indicates the format in which thumbnails are recorded.
 * **TargetIntervalSeconds**: int: Target Interval Seconds defines the interval at which thumbnails are recorded. This field is required if RecordingMode is INTERVAL.
-
-## AWS.IVS/StreamKeyProperties
-### Properties
-* **Arn**: string (ReadOnly, Identifier): Stream Key ARN is automatically generated on creation and assigned as the unique identifier.
-* **ChannelArn**: string (Required): Channel ARN for the stream.
-* **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
-* **Value**: string (ReadOnly): Stream-key value.
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 

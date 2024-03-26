@@ -40,19 +40,6 @@
 * **StatusDescription**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]
 
-## ManifestOverridesPayload
-### Properties
-* **PayloadData**: string
-
-## ManifestPayload
-### Properties
-* **PayloadData**: string
-
-## Tag
-### Properties
-* **Key**: string (Required): A string used to identify this tag
-* **Value**: string (Required): A string containing the value for the tag
-
 ## AWS.Panorama/PackageProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -61,19 +48,6 @@
 * **PackageName**: string (Required)
 * **StorageLocation**: [StorageLocation](#storagelocation)
 * **Tags**: [Tag](#tag)[]
-
-## StorageLocation
-### Properties
-* **BinaryPrefixLocation**: string (ReadOnly)
-* **Bucket**: string (ReadOnly)
-* **GeneratedPrefixLocation**: string (ReadOnly)
-* **ManifestPrefixLocation**: string (ReadOnly)
-* **RepoPrefixLocation**: string (ReadOnly)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 
 ## AWS.Panorama/PackageVersionProperties
 ### Properties
@@ -89,4 +63,30 @@
 * **Status**: string (ReadOnly)
 * **StatusDescription**: string (ReadOnly)
 * **UpdatedLatestPatchVersion**: string (WriteOnly)
+
+## ManifestOverridesPayload
+### Properties
+* **PayloadData**: string
+
+## ManifestPayload
+### Properties
+* **PayloadData**: string
+
+## StorageLocation
+### Properties
+* **BinaryPrefixLocation**: string (ReadOnly)
+* **Bucket**: string (ReadOnly)
+* **GeneratedPrefixLocation**: string (ReadOnly)
+* **ManifestPrefixLocation**: string (ReadOnly)
+* **RepoPrefixLocation**: string (ReadOnly)
+
+## Tag
+### Properties
+* **Key**: string (Required): A string used to identify this tag
+* **Value**: string (Required): A string containing the value for the tag
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 

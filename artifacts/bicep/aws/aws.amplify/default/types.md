@@ -21,6 +21,20 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Amplify/DomainProperties](#awsamplifydomainproperties) (Required): properties of the resource
 
+## AutoBranchCreationConfig
+### Properties
+* **AutoBranchCreationPatterns**: string[]
+* **BasicAuthConfig**: [BasicAuthConfig](#basicauthconfig)
+* **BuildSpec**: string
+* **EnableAutoBranchCreation**: bool
+* **EnableAutoBuild**: bool
+* **EnablePerformanceMode**: bool
+* **EnablePullRequestPreview**: bool
+* **EnvironmentVariables**: [EnvironmentVariable](#environmentvariable)[]
+* **Framework**: string
+* **PullRequestEnvironmentName**: string
+* **Stage**: string
+
 ## AWS.Amplify/AppProperties
 ### Properties
 * **AccessToken**: string (WriteOnly)
@@ -43,43 +57,6 @@
 * **Repository**: string
 * **Tags**: [Tag](#tag)[]
 
-## AutoBranchCreationConfig
-### Properties
-* **AutoBranchCreationPatterns**: string[]
-* **BasicAuthConfig**: [BasicAuthConfig](#basicauthconfig)
-* **BuildSpec**: string
-* **EnableAutoBranchCreation**: bool
-* **EnableAutoBuild**: bool
-* **EnablePerformanceMode**: bool
-* **EnablePullRequestPreview**: bool
-* **EnvironmentVariables**: [EnvironmentVariable](#environmentvariable)[]
-* **Framework**: string
-* **PullRequestEnvironmentName**: string
-* **Stage**: string
-
-## BasicAuthConfig
-### Properties
-* **EnableBasicAuth**: bool
-* **Password**: string
-* **Username**: string
-
-## EnvironmentVariable
-### Properties
-* **Name**: string (Required)
-* **Value**: string (Required)
-
-## CustomRule
-### Properties
-* **Condition**: string
-* **Source**: string (Required)
-* **Status**: string
-* **Target**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.Amplify/BranchProperties
 ### Properties
 * **AppId**: string (Required)
@@ -98,6 +75,22 @@
 * **Stage**: string
 * **Tags**: [Tag](#tag)[]
 
+## AWS.Amplify/DomainProperties
+### Properties
+* **AppId**: string (Required)
+* **Arn**: string (ReadOnly, Identifier)
+* **AutoSubDomainCreationPatterns**: string[]
+* **AutoSubDomainIAMRole**: string
+* **Certificate**: [Certificate](#certificate)
+* **CertificateRecord**: string (ReadOnly)
+* **CertificateSettings**: [CertificateSettings](#certificatesettings)
+* **DomainName**: string (Required)
+* **DomainStatus**: string (ReadOnly)
+* **EnableAutoSubDomain**: bool
+* **StatusReason**: string (ReadOnly)
+* **SubDomainSettings**: [SubDomainSetting](#subdomainsetting)[] (Required)
+* **UpdateStatus**: string
+
 ## Backend
 ### Properties
 * **StackArn**: string
@@ -108,31 +101,52 @@
 * **Password**: string (Required)
 * **Username**: string (Required)
 
+## BasicAuthConfig
+### Properties
+* **EnableBasicAuth**: bool
+* **Password**: string
+* **Username**: string
+
+## Certificate
+### Properties
+* **CertificateArn**: string
+* **CertificateType**: string
+* **CertificateVerificationDNSRecord**: string
+
+## CertificateSettings
+### Properties
+* **CertificateType**: string
+* **CustomCertificateArn**: string
+
+## CustomRule
+### Properties
+* **Condition**: string
+* **Source**: string (Required)
+* **Status**: string
+* **Target**: string (Required)
+
 ## EnvironmentVariable
 ### Properties
 * **Name**: string (Required)
 * **Value**: string (Required)
+
+## EnvironmentVariable
+### Properties
+* **Name**: string (Required)
+* **Value**: string (Required)
+
+## SubDomainSetting
+### Properties
+* **BranchName**: string (Required)
+* **Prefix**: string (Required)
 
 ## Tag
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
 
-## AWS.Amplify/DomainProperties
+## Tag
 ### Properties
-* **AppId**: string (Required)
-* **Arn**: string (ReadOnly, Identifier)
-* **AutoSubDomainCreationPatterns**: string[]
-* **AutoSubDomainIAMRole**: string
-* **CertificateRecord**: string (ReadOnly)
-* **DomainName**: string (Required)
-* **DomainStatus**: string (ReadOnly)
-* **EnableAutoSubDomain**: bool
-* **StatusReason**: string (ReadOnly)
-* **SubDomainSettings**: [SubDomainSetting](#subdomainsetting)[] (Required)
-
-## SubDomainSetting
-### Properties
-* **BranchName**: string (Required)
-* **Prefix**: string (Required)
+* **Key**: string (Required)
+* **Value**: string (Required)
 

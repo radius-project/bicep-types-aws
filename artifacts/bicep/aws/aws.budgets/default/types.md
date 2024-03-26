@@ -7,6 +7,11 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Budgets/BudgetsActionProperties](#awsbudgetsbudgetsactionproperties) (Required): properties of the resource
 
+## ActionThreshold
+### Properties
+* **Type**: string (Required)
+* **Value**: int (Required)
+
 ## AWS.Budgets/BudgetsActionProperties
 ### Properties
 * **ActionId**: string (ReadOnly, Identifier)
@@ -18,11 +23,6 @@
 * **ExecutionRoleArn**: string (Required)
 * **NotificationType**: string (Required)
 * **Subscribers**: [Subscriber](#subscriber)[] (Required)
-
-## ActionThreshold
-### Properties
-* **Type**: string (Required)
-* **Value**: int (Required)
 
 ## Definition
 ### Properties

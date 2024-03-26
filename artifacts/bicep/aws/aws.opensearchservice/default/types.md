@@ -7,6 +7,15 @@
 * **name**: string: the resource name
 * **properties**: [AWS.OpenSearchService/DomainProperties](#awsopensearchservicedomainproperties): properties of the resource
 
+## AdvancedSecurityOptionsInput
+### Properties
+* **AnonymousAuthDisableDate**: string (ReadOnly)
+* **AnonymousAuthEnabled**: bool
+* **Enabled**: bool
+* **InternalUserDatabaseEnabled**: bool
+* **MasterUserOptions**: [MasterUserOptions](#masteruseroptions) (WriteOnly)
+* **SAMLOptions**: [SAMLOptions](#samloptions)
+
 ## AWS.OpenSearchService/DomainProperties
 ### Properties
 * **AccessPolicies**: [Domain_AccessPolicies](#domainaccesspolicies)
@@ -35,44 +44,9 @@
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this Domain.
 * **VPCOptions**: [VPCOptions](#vpcoptions)
 
-## Domain_AccessPolicies
-### Properties
-
-## Domain_AdvancedOptions
-### Properties
-
-## AdvancedSecurityOptionsInput
-### Properties
-* **AnonymousAuthDisableDate**: string (ReadOnly)
-* **AnonymousAuthEnabled**: bool
-* **Enabled**: bool
-* **InternalUserDatabaseEnabled**: bool
-* **MasterUserOptions**: [MasterUserOptions](#masteruseroptions) (WriteOnly)
-* **SAMLOptions**: [SAMLOptions](#samloptions)
-
-## MasterUserOptions
-### Properties
-* **MasterUserARN**: string
-* **MasterUserName**: string
-* **MasterUserPassword**: string
-
-## SAMLOptions
-### Properties
-* **Enabled**: bool
-* **Idp**: [Idp](#idp)
-* **MasterBackendRole**: string (WriteOnly)
-* **MasterUserName**: string (WriteOnly)
-* **RolesKey**: string
-* **SessionTimeoutMinutes**: int
-* **SubjectKey**: string
-
-## Idp
-### Properties
-* **EntityId**: string (Required)
-* **MetadataContent**: string (Required)
-
 ## ClusterConfig
 ### Properties
+* **ColdStorageOptions**: [ColdStorageOptions](#coldstorageoptions)
 * **DedicatedMasterCount**: int
 * **DedicatedMasterEnabled**: bool
 * **DedicatedMasterType**: string
@@ -85,16 +59,28 @@
 * **ZoneAwarenessConfig**: [ZoneAwarenessConfig](#zoneawarenessconfig)
 * **ZoneAwarenessEnabled**: bool
 
-## ZoneAwarenessConfig
-### Properties
-* **AvailabilityZoneCount**: int
-
 ## CognitoOptions
 ### Properties
 * **Enabled**: bool
 * **IdentityPoolId**: string
 * **RoleArn**: string
 * **UserPoolId**: string
+
+## ColdStorageOptions
+### Properties
+* **Enabled**: bool
+
+## Domain_AccessPolicies
+### Properties
+
+## Domain_AdvancedOptions
+### Properties
+
+## Domain_DomainEndpoints
+### Properties
+
+## Domain_LogPublishingOptions
+### Properties
 
 ## DomainEndpointOptions
 ### Properties
@@ -103,9 +89,6 @@
 * **CustomEndpointEnabled**: bool
 * **EnforceHTTPS**: bool
 * **TLSSecurityPolicy**: string
-
-## Domain_DomainEndpoints
-### Properties
 
 ## EBSOptions
 ### Properties
@@ -120,26 +103,39 @@
 * **Enabled**: bool
 * **KmsKeyId**: string
 
-## Domain_LogPublishingOptions
+## Idp
 ### Properties
+* **EntityId**: string (Required)
+* **MetadataContent**: string (Required)
+
+## MasterUserOptions
+### Properties
+* **MasterUserARN**: string
+* **MasterUserName**: string
+* **MasterUserPassword**: string
 
 ## NodeToNodeEncryptionOptions
 ### Properties
 * **Enabled**: bool
+
+## OffPeakWindow
+### Properties
+* **WindowStartTime**: [WindowStartTime](#windowstarttime)
 
 ## OffPeakWindowOptions
 ### Properties
 * **Enabled**: bool
 * **OffPeakWindow**: [OffPeakWindow](#offpeakwindow)
 
-## OffPeakWindow
+## SAMLOptions
 ### Properties
-* **WindowStartTime**: [WindowStartTime](#windowstarttime)
-
-## WindowStartTime
-### Properties
-* **Hours**: int (Required)
-* **Minutes**: int (Required)
+* **Enabled**: bool
+* **Idp**: [Idp](#idp)
+* **MasterBackendRole**: string (WriteOnly)
+* **MasterUserName**: string (WriteOnly)
+* **RolesKey**: string
+* **SessionTimeoutMinutes**: int
+* **SubjectKey**: string
 
 ## ServiceSoftwareOptions
 ### Properties
@@ -169,4 +165,13 @@
 ### Properties
 * **SecurityGroupIds**: string[]
 * **SubnetIds**: string[]
+
+## WindowStartTime
+### Properties
+* **Hours**: int (Required)
+* **Minutes**: int (Required)
+
+## ZoneAwarenessConfig
+### Properties
+* **AvailabilityZoneCount**: int
 

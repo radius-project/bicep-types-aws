@@ -23,14 +23,14 @@
 * **ResourceCollectionFilter**: [ResourceCollectionFilter](#resourcecollectionfilter) (Required)
 * **ResourceCollectionType**: string (ReadOnly, Identifier): The type of ResourceCollection
 
+## CloudFormationCollectionFilter
+### Properties
+* **StackNames**: string[]: An array of CloudFormation stack names.
+
 ## ResourceCollectionFilter
 ### Properties
 * **CloudFormation**: [CloudFormationCollectionFilter](#cloudformationcollectionfilter)
 * **Tags**: [TagCollection](#tagcollection)[]
-
-## CloudFormationCollectionFilter
-### Properties
-* **StackNames**: string[]: An array of CloudFormation stack names.
 
 ## TagCollection
 ### Properties

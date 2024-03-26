@@ -7,6 +7,15 @@
 * **name**: string: the resource name
 * **properties**: [AWS.LookoutMetrics/AnomalyDetectorProperties](#awslookoutmetricsanomalydetectorproperties) (Required): properties of the resource
 
+## AnomalyDetectorConfig
+### Properties
+* **AnomalyDetectorFrequency**: string (Required): Frequency of anomaly detection
+
+## AppFlowConfig
+### Properties
+* **FlowName**: string (Required)
+* **RoleArn**: string (Required)
+
 ## AWS.LookoutMetrics/AnomalyDetectorProperties
 ### Properties
 * **AnomalyDetectorConfig**: [AnomalyDetectorConfig](#anomalydetectorconfig) (Required): Configuration options for the AnomalyDetector
@@ -16,9 +25,34 @@
 * **KmsKeyArn**: string: KMS key used to encrypt the AnomalyDetector data
 * **MetricSetList**: [MetricSet](#metricset)[] (Required): List of metric sets for anomaly detection
 
-## AnomalyDetectorConfig
+## CloudwatchConfig
 ### Properties
-* **AnomalyDetectorFrequency**: string (Required): Frequency of anomaly detection
+* **RoleArn**: string (Required)
+
+## CsvFormatDescriptor
+### Properties
+* **Charset**: string
+* **ContainsHeader**: bool
+* **Delimiter**: string
+* **FileCompression**: string
+* **HeaderList**: string[]
+* **QuoteSymbol**: string
+
+## FileFormatDescriptor
+### Properties
+* **CsvFormatDescriptor**: [CsvFormatDescriptor](#csvformatdescriptor)
+* **JsonFormatDescriptor**: [JsonFormatDescriptor](#jsonformatdescriptor)
+
+## JsonFormatDescriptor
+### Properties
+* **Charset**: string
+* **FileCompression**: string
+
+## Metric
+### Properties
+* **AggregationFunction**: string (Required): Operator used to aggregate metric values
+* **MetricName**: string (Required)
+* **Namespace**: string
 
 ## MetricSet
 ### Properties
@@ -32,12 +66,6 @@
 * **TimestampColumn**: [TimestampColumn](#timestampcolumn)
 * **Timezone**: string
 
-## Metric
-### Properties
-* **AggregationFunction**: string (Required): Operator used to aggregate metric values
-* **MetricName**: string (Required)
-* **Namespace**: string
-
 ## MetricSource
 ### Properties
 * **AppFlowConfig**: [AppFlowConfig](#appflowconfig)
@@ -45,15 +73,6 @@
 * **RDSSourceConfig**: [RDSSourceConfig](#rdssourceconfig)
 * **RedshiftSourceConfig**: [RedshiftSourceConfig](#redshiftsourceconfig)
 * **S3SourceConfig**: [S3SourceConfig](#s3sourceconfig)
-
-## AppFlowConfig
-### Properties
-* **FlowName**: string (Required)
-* **RoleArn**: string (Required)
-
-## CloudwatchConfig
-### Properties
-* **RoleArn**: string (Required)
 
 ## RDSSourceConfig
 ### Properties
@@ -65,11 +84,6 @@
 * **SecretManagerArn**: string (Required)
 * **TableName**: string (Required)
 * **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration) (Required)
-
-## VpcConfiguration
-### Properties
-* **SecurityGroupIdList**: string[] (Required)
-* **SubnetIdList**: string[] (Required)
 
 ## RedshiftSourceConfig
 ### Properties
@@ -89,27 +103,13 @@
 * **RoleArn**: string (Required)
 * **TemplatedPathList**: string[]
 
-## FileFormatDescriptor
-### Properties
-* **CsvFormatDescriptor**: [CsvFormatDescriptor](#csvformatdescriptor)
-* **JsonFormatDescriptor**: [JsonFormatDescriptor](#jsonformatdescriptor)
-
-## CsvFormatDescriptor
-### Properties
-* **Charset**: string
-* **ContainsHeader**: bool
-* **Delimiter**: string
-* **FileCompression**: string
-* **HeaderList**: string[]
-* **QuoteSymbol**: string
-
-## JsonFormatDescriptor
-### Properties
-* **Charset**: string
-* **FileCompression**: string
-
 ## TimestampColumn
 ### Properties
 * **ColumnFormat**: string: A timestamp format for the timestamps in the dataset
 * **ColumnName**: string
+
+## VpcConfiguration
+### Properties
+* **SecurityGroupIdList**: string[] (Required)
+* **SubnetIdList**: string[] (Required)
 

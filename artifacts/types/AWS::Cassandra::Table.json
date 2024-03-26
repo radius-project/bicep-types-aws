@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Cassandra-Table",
   "type": "AWS::Cassandra::Table",
-  "time": "2024-01-04T17:48:44.665Z",
+  "time": "2024-02-15T17:49:38.49Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -12,6 +12,41 @@
       "/properties/ClientSideTimestampsEnabled"
     ],
     "definitions": {
+      "AutoScalingSetting": {
+        "additionalProperties": false,
+        "description": "Represents configuration for auto scaling.",
+        "properties": {
+          "AutoScalingDisabled": {
+            "default": false,
+            "type": "boolean"
+          },
+          "MaximumUnits": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MinimumUnits": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "ScalingPolicy": {
+            "$ref": "#/definitions/ScalingPolicy"
+          }
+        },
+        "type": "object"
+      },
+      "AutoScalingSpecification": {
+        "additionalProperties": false,
+        "description": "Represents the read and write settings used for AutoScaling.",
+        "properties": {
+          "ReadCapacityAutoScaling": {
+            "$ref": "#/definitions/AutoScalingSetting"
+          },
+          "WriteCapacityAutoScaling": {
+            "$ref": "#/definitions/AutoScalingSetting"
+          }
+        },
+        "type": "object"
+      },
       "BillingMode": {
         "additionalProperties": false,
         "properties": {
@@ -121,6 +156,37 @@
         ],
         "type": "object"
       },
+      "ReplicaSpecification": {
+        "additionalProperties": false,
+        "description": "Represents replica specifications.",
+        "properties": {
+          "ReadCapacityAutoScaling": {
+            "$ref": "#/definitions/AutoScalingSetting"
+          },
+          "ReadCapacityUnits": {
+            "type": "integer"
+          },
+          "Region": {
+            "maxLength": 25,
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Region"
+        ],
+        "type": "object"
+      },
+      "ScalingPolicy": {
+        "additionalProperties": false,
+        "description": "Represents scaling policy.",
+        "properties": {
+          "TargetTrackingScalingPolicyConfiguration": {
+            "$ref": "#/definitions/TargetTrackingScalingPolicyConfiguration"
+          }
+        },
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "description": "A key-value pair to apply to the resource",
@@ -141,6 +207,31 @@
           "Key"
         ],
         "type": "object"
+      },
+      "TargetTrackingScalingPolicyConfiguration": {
+        "additionalProperties": false,
+        "description": "Represents configuration for target tracking scaling policy.",
+        "properties": {
+          "DisableScaleIn": {
+            "default": "false",
+            "type": "boolean"
+          },
+          "ScaleInCooldown": {
+            "default": 0,
+            "type": "integer"
+          },
+          "ScaleOutCooldown": {
+            "default": 0,
+            "type": "integer"
+          },
+          "TargetValue": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "TargetValue"
+        ],
+        "type": "object"
       }
     },
     "description": "Resource schema for AWS::Cassandra::Table",
@@ -156,7 +247,16 @@
           "kms:CreateGrant",
           "kms:DescribeKey",
           "kms:Encrypt",
-          "kms:Decrypt"
+          "kms:Decrypt",
+          "application-autoscaling:DescribeScalableTargets",
+          "application-autoscaling:DescribeScalingPolicies",
+          "application-autoscaling:DeregisterScalableTarget",
+          "application-autoscaling:RegisterScalableTarget",
+          "application-autoscaling:PutScalingPolicy",
+          "cloudwatch:DeleteAlarms",
+          "cloudwatch:DescribeAlarms",
+          "cloudwatch:GetMetricData",
+          "cloudwatch:PutMetricAlarm"
         ]
       },
       "delete": {
@@ -164,19 +264,46 @@
           "cassandra:Drop",
           "cassandra:DropMultiRegionResource",
           "cassandra:Select",
-          "cassandra:SelectMultiRegionResource"
+          "cassandra:SelectMultiRegionResource",
+          "application-autoscaling:DescribeScalableTargets",
+          "application-autoscaling:DescribeScalingPolicies",
+          "application-autoscaling:DeregisterScalableTarget",
+          "application-autoscaling:RegisterScalableTarget",
+          "application-autoscaling:PutScalingPolicy",
+          "cloudwatch:DeleteAlarms",
+          "cloudwatch:DescribeAlarms",
+          "cloudwatch:GetMetricData",
+          "cloudwatch:PutMetricAlarm"
         ]
       },
       "list": {
         "permissions": [
           "cassandra:Select",
-          "cassandra:SelectMultiRegionResource"
+          "cassandra:SelectMultiRegionResource",
+          "application-autoscaling:DescribeScalableTargets",
+          "application-autoscaling:DescribeScalingPolicies",
+          "application-autoscaling:DeregisterScalableTarget",
+          "application-autoscaling:RegisterScalableTarget",
+          "application-autoscaling:PutScalingPolicy",
+          "cloudwatch:DeleteAlarms",
+          "cloudwatch:DescribeAlarms",
+          "cloudwatch:GetMetricData",
+          "cloudwatch:PutMetricAlarm"
         ]
       },
       "read": {
         "permissions": [
           "cassandra:Select",
-          "cassandra:SelectMultiRegionResource"
+          "cassandra:SelectMultiRegionResource",
+          "application-autoscaling:DescribeScalableTargets",
+          "application-autoscaling:DescribeScalingPolicies",
+          "application-autoscaling:DeregisterScalableTarget",
+          "application-autoscaling:RegisterScalableTarget",
+          "application-autoscaling:PutScalingPolicy",
+          "cloudwatch:DeleteAlarms",
+          "cloudwatch:DescribeAlarms",
+          "cloudwatch:GetMetricData",
+          "cloudwatch:PutMetricAlarm"
         ]
       },
       "update": {
@@ -192,7 +319,16 @@
           "kms:CreateGrant",
           "kms:DescribeKey",
           "kms:Encrypt",
-          "kms:Decrypt"
+          "kms:Decrypt",
+          "application-autoscaling:DescribeScalableTargets",
+          "application-autoscaling:DescribeScalingPolicies",
+          "application-autoscaling:DeregisterScalableTarget",
+          "application-autoscaling:RegisterScalableTarget",
+          "application-autoscaling:PutScalingPolicy",
+          "cloudwatch:DeleteAlarms",
+          "cloudwatch:DescribeAlarms",
+          "cloudwatch:GetMetricData",
+          "cloudwatch:PutMetricAlarm"
         ]
       }
     },
@@ -201,6 +337,9 @@
       "/properties/TableName"
     ],
     "properties": {
+      "AutoScalingSpecifications": {
+        "$ref": "#/definitions/AutoScalingSpecification"
+      },
       "BillingMode": {
         "$ref": "#/definitions/BillingMode"
       },
@@ -253,6 +392,15 @@
         "type": "array",
         "uniqueItems": true
       },
+      "ReplicaSpecifications": {
+        "insertionOrder": true,
+        "items": {
+          "$ref": "#/definitions/ReplicaSpecification"
+        },
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
       "TableName": {
         "description": "Name for Cassandra table",
         "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_]{1,47}$",
@@ -273,6 +421,10 @@
       "KeyspaceName",
       "PartitionKeyColumns"
     ],
-    "typeName": "AWS::Cassandra::Table"
+    "typeName": "AWS::Cassandra::Table",
+    "writeOnlyProperties": [
+      "/properties/AutoScalingSpecifications",
+      "/properties/ReplicaSpecifications"
+    ]
   }
 }

@@ -31,11 +31,6 @@
 * **ProviderType**: string: The name of the external provider where your third-party code repository is configured. You must specify either a ProviderType or a HostArn.
 * **Tags**: [Tag](#tag)[]: Specifies the tags applied to a connection.
 
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-
 ## AWS.CodeStarConnections/RepositoryLinkProperties
 ### Properties
 * **ConnectionArn**: string (Required): The Amazon Resource Name (ARN) of the CodeStarConnection. The ARN is used as the connection reference when the connection is shared between AWS services.
@@ -46,11 +41,6 @@
 * **RepositoryLinkId**: string (ReadOnly): A UUID that uniquely identifies the RepositoryLink.
 * **RepositoryName**: string (Required): The repository for which the link is being created.
 * **Tags**: [Tag](#tag)[]: Specifies the tags applied to a RepositoryLink.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, , ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, , ., /, =, +, and -. 
 
 ## AWS.CodeStarConnections/SyncConfigurationProperties
 ### Properties
@@ -63,4 +53,14 @@
 * **ResourceName**: string (Required, Identifier): The name of the resource that is being synchronized to the repository.
 * **RoleArn**: string (Required): The IAM Role that allows AWS to update CloudFormation stacks based on content in the specified repository.
 * **SyncType**: string (Required, Identifier): The type of resource synchronization service that is to be configured, for example, CFN_STACK_SYNC.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, , ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, , ., /, =, +, and -. 
 

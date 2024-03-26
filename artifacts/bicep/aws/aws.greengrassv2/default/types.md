@@ -23,76 +23,6 @@
 * **LambdaFunction**: [LambdaFunctionRecipeSource](#lambdafunctionrecipesource) (WriteOnly)
 * **Tags**: [ComponentVersion_Tags](#componentversiontags)
 
-## LambdaFunctionRecipeSource
-### Properties
-* **ComponentDependencies**: [ComponentVersion_ComponentDependencies](#componentversioncomponentdependencies)
-* **ComponentLambdaParameters**: [LambdaExecutionParameters](#lambdaexecutionparameters)
-* **ComponentName**: string
-* **ComponentPlatforms**: [ComponentPlatform](#componentplatform)[]
-* **ComponentVersion**: string
-* **LambdaArn**: string
-
-## ComponentVersion_ComponentDependencies
-### Properties
-
-## LambdaExecutionParameters
-### Properties
-* **EnvironmentVariables**: [ComponentVersion_EnvironmentVariables](#componentversionenvironmentvariables)
-* **EventSources**: [LambdaEventSource](#lambdaeventsource)[]
-* **ExecArgs**: string[]
-* **InputPayloadEncodingType**: string
-* **LinuxProcessParams**: [LambdaLinuxProcessParams](#lambdalinuxprocessparams)
-* **MaxIdleTimeInSeconds**: int
-* **MaxInstancesCount**: int
-* **MaxQueueSize**: int
-* **Pinned**: bool
-* **StatusTimeoutInSeconds**: int
-* **TimeoutInSeconds**: int
-
-## ComponentVersion_EnvironmentVariables
-### Properties
-
-## LambdaEventSource
-### Properties
-* **Topic**: string
-* **Type**: string
-
-## LambdaLinuxProcessParams
-### Properties
-* **ContainerParams**: [LambdaContainerParams](#lambdacontainerparams)
-* **IsolationMode**: string
-
-## LambdaContainerParams
-### Properties
-* **Devices**: [LambdaDeviceMount](#lambdadevicemount)[]
-* **MemorySizeInKB**: int
-* **MountROSysfs**: bool
-* **Volumes**: [LambdaVolumeMount](#lambdavolumemount)[]
-
-## LambdaDeviceMount
-### Properties
-* **AddGroupOwner**: bool
-* **Path**: string
-* **Permission**: string
-
-## LambdaVolumeMount
-### Properties
-* **AddGroupOwner**: bool
-* **DestinationPath**: string
-* **Permission**: string
-* **SourcePath**: string
-
-## ComponentPlatform
-### Properties
-* **Attributes**: [ComponentVersion_Attributes](#componentversionattributes)
-* **Name**: string
-
-## ComponentVersion_Attributes
-### Properties
-
-## ComponentVersion_Tags
-### Properties
-
 ## AWS.GreengrassV2/DeploymentProperties
 ### Properties
 * **Components**: [Deployment_Components](#deploymentcomponents)
@@ -104,14 +34,28 @@
 * **Tags**: [Deployment_Tags](#deploymenttags)
 * **TargetArn**: string (Required)
 
+## ComponentPlatform
+### Properties
+* **Attributes**: [ComponentVersion_Attributes](#componentversionattributes)
+* **Name**: string
+
+## ComponentVersion_Attributes
+### Properties
+
+## ComponentVersion_ComponentDependencies
+### Properties
+
+## ComponentVersion_EnvironmentVariables
+### Properties
+
+## ComponentVersion_Tags
+### Properties
+
 ## Deployment_Components
 ### Properties
 
-## DeploymentPolicies
+## Deployment_Tags
 ### Properties
-* **ComponentUpdatePolicy**: [DeploymentComponentUpdatePolicy](#deploymentcomponentupdatepolicy)
-* **ConfigurationValidationPolicy**: [DeploymentConfigurationValidationPolicy](#deploymentconfigurationvalidationpolicy)
-* **FailureHandlingPolicy**: string
 
 ## DeploymentComponentUpdatePolicy
 ### Properties
@@ -127,6 +71,12 @@
 * **AbortConfig**: [IoTJobAbortConfig](#iotjobabortconfig)
 * **JobExecutionsRolloutConfig**: [IoTJobExecutionsRolloutConfig](#iotjobexecutionsrolloutconfig)
 * **TimeoutConfig**: [IoTJobTimeoutConfig](#iotjobtimeoutconfig)
+
+## DeploymentPolicies
+### Properties
+* **ComponentUpdatePolicy**: [DeploymentComponentUpdatePolicy](#deploymentcomponentupdatepolicy)
+* **ConfigurationValidationPolicy**: [DeploymentConfigurationValidationPolicy](#deploymentconfigurationvalidationpolicy)
+* **FailureHandlingPolicy**: string
 
 ## IoTJobAbortConfig
 ### Properties
@@ -159,6 +109,56 @@
 ### Properties
 * **InProgressTimeoutInMinutes**: int
 
-## Deployment_Tags
+## LambdaContainerParams
 ### Properties
+* **Devices**: [LambdaDeviceMount](#lambdadevicemount)[]
+* **MemorySizeInKB**: int
+* **MountROSysfs**: bool
+* **Volumes**: [LambdaVolumeMount](#lambdavolumemount)[]
+
+## LambdaDeviceMount
+### Properties
+* **AddGroupOwner**: bool
+* **Path**: string
+* **Permission**: string
+
+## LambdaEventSource
+### Properties
+* **Topic**: string
+* **Type**: string
+
+## LambdaExecutionParameters
+### Properties
+* **EnvironmentVariables**: [ComponentVersion_EnvironmentVariables](#componentversionenvironmentvariables)
+* **EventSources**: [LambdaEventSource](#lambdaeventsource)[]
+* **ExecArgs**: string[]
+* **InputPayloadEncodingType**: string
+* **LinuxProcessParams**: [LambdaLinuxProcessParams](#lambdalinuxprocessparams)
+* **MaxIdleTimeInSeconds**: int
+* **MaxInstancesCount**: int
+* **MaxQueueSize**: int
+* **Pinned**: bool
+* **StatusTimeoutInSeconds**: int
+* **TimeoutInSeconds**: int
+
+## LambdaFunctionRecipeSource
+### Properties
+* **ComponentDependencies**: [ComponentVersion_ComponentDependencies](#componentversioncomponentdependencies)
+* **ComponentLambdaParameters**: [LambdaExecutionParameters](#lambdaexecutionparameters)
+* **ComponentName**: string
+* **ComponentPlatforms**: [ComponentPlatform](#componentplatform)[]
+* **ComponentVersion**: string
+* **LambdaArn**: string
+
+## LambdaLinuxProcessParams
+### Properties
+* **ContainerParams**: [LambdaContainerParams](#lambdacontainerparams)
+* **IsolationMode**: string
+
+## LambdaVolumeMount
+### Properties
+* **AddGroupOwner**: bool
+* **DestinationPath**: string
+* **Permission**: string
+* **SourcePath**: string
 

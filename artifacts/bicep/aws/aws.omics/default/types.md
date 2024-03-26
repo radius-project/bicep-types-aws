@@ -45,21 +45,6 @@
 * **Tags**: [TagMap](#tagmap)
 * **UpdateTime**: string (ReadOnly)
 
-## ReferenceItem
-### Properties
-* **ReferenceArn**: string (Required)
-
-## SseConfig
-### Properties
-* **KeyArn**: string
-* **Type**: string (Required)
-
-## StoreOptions
-### Properties
-
-## TagMap
-### Properties
-
 ## AWS.Omics/RunGroupProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -71,9 +56,6 @@
 * **MaxRuns**: int
 * **Name**: string
 * **Tags**: [TagMap](#tagmap)
-
-## TagMap
-### Properties
 
 ## AWS.Omics/VariantStoreProperties
 ### Properties
@@ -89,18 +71,6 @@
 * **StoreSizeBytes**: int (ReadOnly)
 * **Tags**: [TagMap](#tagmap)
 * **UpdateTime**: string (ReadOnly)
-
-## ReferenceItem
-### Properties
-* **ReferenceArn**: string (Required)
-
-## SseConfig
-### Properties
-* **KeyArn**: string
-* **Type**: string (Required)
-
-## TagMap
-### Properties
 
 ## AWS.Omics/WorkflowProperties
 ### Properties
@@ -119,9 +89,39 @@
 * **Tags**: [TagMap](#tagmap)
 * **Type**: string (ReadOnly)
 
-## WorkflowParameterTemplate
+## ReferenceItem
+### Properties
+* **ReferenceArn**: string (Required)
+
+## ReferenceItem
+### Properties
+* **ReferenceArn**: string (Required)
+
+## SseConfig
+### Properties
+* **KeyArn**: string
+* **Type**: string (Required)
+
+## SseConfig
+### Properties
+* **KeyArn**: string
+* **Type**: string (Required)
+
+## StoreOptions
 ### Properties
 
 ## TagMap
+### Properties
+
+## TagMap
+### Properties
+
+## TagMap
+### Properties
+
+## TagMap
+### Properties
+
+## WorkflowParameterTemplate
 ### Properties
 

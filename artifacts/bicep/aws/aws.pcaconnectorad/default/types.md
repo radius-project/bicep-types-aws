@@ -28,6 +28,11 @@
 * **name**: string: the resource name
 * **properties**: [AWS.PCAConnectorAD/TemplateGroupAccessControlEntryProperties](#awspcaconnectoradtemplategroupaccesscontrolentryproperties) (Required): properties of the resource
 
+## AccessRights
+### Properties
+* **AutoEnroll**: string
+* **Enroll**: string
+
 ## AWS.PCAConnectorAD/ConnectorProperties
 ### Properties
 * **CertificateAuthorityArn**: string (Required, WriteOnly)
@@ -36,21 +41,18 @@
 * **Tags**: [Tags](#tags) (WriteOnly)
 * **VpcInformation**: [VpcInformation](#vpcinformation) (Required, WriteOnly)
 
-## Tags
-### Properties
-
-## VpcInformation
-### Properties
-* **SecurityGroupIds**: string[] (Required)
-
 ## AWS.PCAConnectorAD/DirectoryRegistrationProperties
 ### Properties
 * **DirectoryId**: string (Required, WriteOnly)
 * **DirectoryRegistrationArn**: string (ReadOnly, Identifier)
 * **Tags**: [Tags](#tags) (WriteOnly)
 
-## Tags
+## AWS.PCAConnectorAD/TemplateGroupAccessControlEntryProperties
 ### Properties
+* **AccessRights**: [AccessRights](#accessrights) (Required, WriteOnly)
+* **GroupDisplayName**: string (Required, WriteOnly)
+* **GroupSecurityIdentifier**: string (Identifier)
+* **TemplateArn**: string (Identifier)
 
 ## AWS.PCAConnectorAD/TemplateProperties
 ### Properties
@@ -61,21 +63,19 @@
 * **Tags**: [Tags](#tags) (WriteOnly)
 * **TemplateArn**: string (ReadOnly, Identifier)
 
-## TemplateDefinition
+## Tags
 ### Properties
 
 ## Tags
 ### Properties
 
-## AWS.PCAConnectorAD/TemplateGroupAccessControlEntryProperties
+## Tags
 ### Properties
-* **AccessRights**: [AccessRights](#accessrights) (Required, WriteOnly)
-* **GroupDisplayName**: string (Required, WriteOnly)
-* **GroupSecurityIdentifier**: string (Identifier)
-* **TemplateArn**: string (Identifier)
 
-## AccessRights
+## TemplateDefinition
 ### Properties
-* **AutoEnroll**: string
-* **Enroll**: string
+
+## VpcInformation
+### Properties
+* **SecurityGroupIds**: string[] (Required)
 

@@ -28,11 +28,6 @@
 * **KmsKeyId**: string: The KMS key for the database. If the KMS key is not specified, the database will be encrypted with a Timestream managed KMS key located in your account.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## Tag
-### Properties
-* **Key**: string
-* **Value**: string
-
 ## AWS.Timestream/ScheduledQueryProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
@@ -55,51 +50,25 @@
 * **Tags**: [Tag](#tag)[]
 * **TargetConfiguration**: [TargetConfiguration](#targetconfiguration)
 
-## ErrorReportConfiguration
+## AWS.Timestream/TableProperties
 ### Properties
-* **S3Configuration**: [S3Configuration](#s3configuration) (Required)
-
-## S3Configuration
-### Properties
-* **BucketName**: string (Required)
-* **EncryptionOption**: string
-* **ObjectKeyPrefix**: string
-
-## NotificationConfiguration
-### Properties
-* **SnsConfiguration**: [SnsConfiguration](#snsconfiguration) (Required)
-
-## SnsConfiguration
-### Properties
-* **TopicArn**: string (Required)
-
-## ScheduleConfiguration
-### Properties
-* **ScheduleExpression**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
-## TargetConfiguration
-### Properties
-* **TimestreamConfiguration**: [TimestreamConfiguration](#timestreamconfiguration) (Required)
-
-## TimestreamConfiguration
-### Properties
-* **DatabaseName**: string (Required)
-* **DimensionMappings**: [DimensionMapping](#dimensionmapping)[] (Required)
-* **MeasureNameColumn**: string
-* **MixedMeasureMappings**: [MixedMeasureMapping](#mixedmeasuremapping)[]
-* **MultiMeasureMappings**: [MultiMeasureMappings](#multimeasuremappings)
-* **TableName**: string (Required)
-* **TimeColumn**: string (Required)
+* **Arn**: string (ReadOnly)
+* **DatabaseName**: string (Required, Identifier): The name for the database which the table to be created belongs to.
+* **MagneticStoreWriteProperties**: [Table_MagneticStoreWriteProperties](#tablemagneticstorewriteproperties): The properties that determine whether magnetic store writes are enabled.
+* **Name**: string (ReadOnly): The table name exposed as a read-only attribute.
+* **RetentionProperties**: [Table_RetentionProperties](#tableretentionproperties): The retention duration of the memory store and the magnetic store.
+* **Schema**: [Table_Schema](#tableschema): A Schema specifies the expected data model of the table.
+* **TableName**: string (Identifier): The name for the table. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the table name.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## DimensionMapping
 ### Properties
 * **DimensionValueType**: string (Required)
 * **Name**: string (Required)
+
+## ErrorReportConfiguration
+### Properties
+* **S3Configuration**: [S3Configuration](#s3configuration) (Required)
 
 ## MixedMeasureMapping
 ### Properties
@@ -120,16 +89,29 @@
 * **MultiMeasureAttributeMappings**: [MultiMeasureAttributeMapping](#multimeasureattributemapping)[] (Required)
 * **TargetMultiMeasureName**: string
 
-## AWS.Timestream/TableProperties
+## NotificationConfiguration
 ### Properties
-* **Arn**: string (ReadOnly)
-* **DatabaseName**: string (Required, Identifier): The name for the database which the table to be created belongs to.
-* **MagneticStoreWriteProperties**: [Table_MagneticStoreWriteProperties](#tablemagneticstorewriteproperties): The properties that determine whether magnetic store writes are enabled.
-* **Name**: string (ReadOnly): The table name exposed as a read-only attribute.
-* **RetentionProperties**: [Table_RetentionProperties](#tableretentionproperties): The retention duration of the memory store and the magnetic store.
-* **Schema**: [Table_Schema](#tableschema): A Schema specifies the expected data model of the table.
-* **TableName**: string (Identifier): The name for the table. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the table name.
-* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **SnsConfiguration**: [SnsConfiguration](#snsconfiguration) (Required)
+
+## PartitionKey
+### Properties
+* **EnforcementInRecord**: string
+* **Name**: string
+* **Type**: string (Required)
+
+## S3Configuration
+### Properties
+* **BucketName**: string (Required)
+* **EncryptionOption**: string
+* **ObjectKeyPrefix**: string
+
+## ScheduleConfiguration
+### Properties
+* **ScheduleExpression**: string (Required)
+
+## SnsConfiguration
+### Properties
+* **TopicArn**: string (Required)
 
 ## Table_MagneticStoreWriteProperties
 ### Properties
@@ -156,14 +138,32 @@
 ### Properties
 * **CompositePartitionKey**: [PartitionKey](#partitionkey)[]
 
-## PartitionKey
+## Tag
 ### Properties
-* **EnforcementInRecord**: string
-* **Name**: string
-* **Type**: string (Required)
+* **Key**: string
+* **Value**: string
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
 * **Key**: string
 * **Value**: string
+
+## TargetConfiguration
+### Properties
+* **TimestreamConfiguration**: [TimestreamConfiguration](#timestreamconfiguration) (Required)
+
+## TimestreamConfiguration
+### Properties
+* **DatabaseName**: string (Required)
+* **DimensionMappings**: [DimensionMapping](#dimensionmapping)[] (Required)
+* **MeasureNameColumn**: string
+* **MixedMeasureMappings**: [MixedMeasureMapping](#mixedmeasuremapping)[]
+* **MultiMeasureMappings**: [MultiMeasureMappings](#multimeasuremappings)
+* **TableName**: string (Required)
+* **TimeColumn**: string (Required)
 

@@ -33,8 +33,22 @@
 * **RecordId**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]
 
+## AWS.ServiceCatalog/ServiceActionProperties
+### Properties
+* **AcceptLanguage**: string (WriteOnly)
+* **Definition**: [DefinitionParameter](#definitionparameter)[] (Required)
+* **DefinitionType**: string (Required)
+* **Description**: string
+* **Id**: string (ReadOnly, Identifier)
+* **Name**: string (Required)
+
 ## CloudFormationProvisionedProduct_Outputs
 ### Properties
+
+## DefinitionParameter
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## ProvisioningParameter
 ### Properties
@@ -52,20 +66,6 @@
 * **StackSetRegions**: string[]
 
 ## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
-## AWS.ServiceCatalog/ServiceActionProperties
-### Properties
-* **AcceptLanguage**: string (WriteOnly)
-* **Definition**: [DefinitionParameter](#definitionparameter)[] (Required)
-* **DefinitionType**: string (Required)
-* **Description**: string
-* **Id**: string (ReadOnly, Identifier)
-* **Name**: string (Required)
-
-## DefinitionParameter
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)

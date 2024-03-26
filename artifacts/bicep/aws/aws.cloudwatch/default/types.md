@@ -46,34 +46,6 @@
 * **TreatMissingData**: string: Sets how this alarm is to handle missing data points. Valid values are breaching, notBreaching, ignore, and missing.
 * **Unit**: string: The unit of the metric associated with the alarm.
 
-## Dimension
-### Properties
-* **Name**: string (Required): The name of the dimension.
-* **Value**: string (Required): The value for the dimension.
-
-## MetricDataQuery
-### Properties
-* **AccountId**: string: The ID of the account where the metrics are located, if this is a cross-account alarm.
-* **Expression**: string: The math expression to be performed on the returned data.
-* **Id**: string (Required): A short name used to tie this object to the results in the response.
-* **Label**: string: A human-readable label for this metric or expression.
-* **MetricStat**: [MetricStat](#metricstat): The metric to be returned, along with statistics, period, and units.
-* **Period**: int: The period in seconds, over which the statistic is applied.
-* **ReturnData**: bool: This option indicates whether to return the timestamps and raw data values of this metric.
-
-## MetricStat
-### Properties
-* **Metric**: [Metric](#metric) (Required): The metric to return, including the metric name, namespace, and dimensions.
-* **Period**: int (Required): The granularity, in seconds, of the returned data points.
-* **Stat**: string (Required): The statistic to return.
-* **Unit**: string: The unit to use for the returned data points.
-
-## Metric
-### Properties
-* **Dimensions**: [Dimension](#dimension)[]: The dimensions for the metric.
-* **MetricName**: string: The name of the metric.
-* **Namespace**: string: The namespace of the metric.
-
 ## AWS.CloudWatch/CompositeAlarmProperties
 ### Properties
 * **ActionsEnabled**: bool: Indicates whether actions should be executed during any changes to the alarm state. The default is TRUE.
@@ -103,6 +75,34 @@
 * **State**: string (ReadOnly): Displays the state of the Metric Stream.
 * **StatisticsConfigurations**: [MetricStreamStatisticsConfiguration](#metricstreamstatisticsconfiguration)[]: By default, a metric stream always sends the MAX, MIN, SUM, and SAMPLECOUNT statistics for each metric that is streamed. You can use this parameter to have the metric stream also send additional statistics in the stream. This array can have up to 100 members.
 * **Tags**: [Tag](#tag)[] (WriteOnly): A set of tags to assign to the delivery stream.
+
+## Dimension
+### Properties
+* **Name**: string (Required): The name of the dimension.
+* **Value**: string (Required): The value for the dimension.
+
+## Metric
+### Properties
+* **Dimensions**: [Dimension](#dimension)[]: The dimensions for the metric.
+* **MetricName**: string: The name of the metric.
+* **Namespace**: string: The namespace of the metric.
+
+## MetricDataQuery
+### Properties
+* **AccountId**: string: The ID of the account where the metrics are located, if this is a cross-account alarm.
+* **Expression**: string: The math expression to be performed on the returned data.
+* **Id**: string (Required): A short name used to tie this object to the results in the response.
+* **Label**: string: A human-readable label for this metric or expression.
+* **MetricStat**: [MetricStat](#metricstat): The metric to be returned, along with statistics, period, and units.
+* **Period**: int: The period in seconds, over which the statistic is applied.
+* **ReturnData**: bool: This option indicates whether to return the timestamps and raw data values of this metric.
+
+## MetricStat
+### Properties
+* **Metric**: [Metric](#metric) (Required): The metric to return, including the metric name, namespace, and dimensions.
+* **Period**: int (Required): The granularity, in seconds, of the returned data points.
+* **Stat**: string (Required): The statistic to return.
+* **Unit**: string: The unit to use for the returned data points.
 
 ## MetricStreamFilter
 ### Properties

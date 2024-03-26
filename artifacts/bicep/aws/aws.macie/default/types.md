@@ -38,14 +38,6 @@
 * **Status**: string (ReadOnly): AllowList status.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
-## Criteria
-### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required): The tag's key.
-* **Value**: string (Required): The tag's value.
-
 ## AWS.Macie/CustomDataIdentifierProperties
 ### Properties
 * **Arn**: string (ReadOnly): Custom data identifier ARN.
@@ -58,11 +50,6 @@
 * **Regex**: string (Required): Regular expression for custom data identifier.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
-## Tag
-### Properties
-* **Key**: string (Required): The tag's key.
-* **Value**: string (Required): The tag's value.
-
 ## AWS.Macie/FindingsFilterProperties
 ### Properties
 * **Action**: string: Findings filter action.
@@ -74,22 +61,35 @@
 * **Position**: int: Findings filter position.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
-## FindingCriteria
-### Properties
-* **Criterion**: [Criterion](#criterion)
-
-## Criterion
-### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required): The tag's key.
-* **Value**: string (Required): The tag's value.
-
 ## AWS.Macie/SessionProperties
 ### Properties
 * **AwsAccountId**: string (ReadOnly, Identifier): AWS account ID of customer
 * **FindingPublishingFrequency**: string: A enumeration value that specifies how frequently finding updates are published.
 * **ServiceRole**: string (ReadOnly): Service role used by Macie
 * **Status**: string: A enumeration value that specifies the status of the Macie Session.
+
+## Criteria
+### Properties
+
+## Criterion
+### Properties
+
+## FindingCriteria
+### Properties
+* **Criterion**: [Criterion](#criterion)
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
 

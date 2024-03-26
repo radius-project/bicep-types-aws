@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-Rule",
   "type": "AWS::Connect::Rule",
-  "time": "2024-01-03T18:47:28.639Z",
+  "time": "2024-02-08T22:26:14.106Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -19,7 +19,7 @@
           "CreateCaseActions": {
             "$ref": "#/definitions/CreateCaseActions"
           },
-          "EndAssociatedTaskActions": {
+          "EndAssociatedTasksActions": {
             "$ref": "#/definitions/EndAssociatedTasksActions"
           },
           "EventBridgeActions": {
@@ -244,7 +244,7 @@
               "OnSalesforceCaseCreate",
               "OnMetricDataUpdate",
               "OnCaseCreate",
-              "OnCasesUpdate"
+              "OnCaseUpdate"
             ],
             "type": "string"
           },
@@ -417,7 +417,10 @@
     "handlers": {
       "create": {
         "permissions": [
-          "connect:CreateRule"
+          "connect:CreateRule",
+          "cases:GetTemplate",
+          "cases:ListFields",
+          "cases:ListFieldOptions"
         ]
       },
       "delete": {
@@ -434,6 +437,9 @@
       "update": {
         "permissions": [
           "connect:UpdateRule",
+          "cases:GetTemplate",
+          "cases:ListFields",
+          "cases:ListFieldOptions",
           "connect:TagResource",
           "connect:UntagResource"
         ]

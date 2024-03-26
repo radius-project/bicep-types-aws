@@ -16,6 +16,10 @@
 * **Name**: string (Required): The name for the dataset
 * **SchemaArn**: string (Required): The ARN of the schema to associate with the dataset. The schema defines the dataset fields.
 
+## Dataset_DataSource
+### Properties
+* **DataLocation**: string: The path to the Amazon S3 bucket where the data that you want to upload to your dataset is stored.
+
 ## DatasetImportJob
 ### Properties
 * **DatasetArn**: string (Identifier): The ARN of the dataset that receives the imported data
@@ -23,8 +27,4 @@
 * **DataSource**: [Dataset_DataSource](#datasetdatasource): The Amazon S3 bucket that contains the training data to import.
 * **JobName**: string: The name for the dataset import job.
 * **RoleArn**: string: The ARN of the IAM role that has permissions to read from the Amazon S3 data source.
-
-## Dataset_DataSource
-### Properties
-* **DataLocation**: string: The path to the Amazon S3 bucket where the data that you want to upload to your dataset is stored.
 

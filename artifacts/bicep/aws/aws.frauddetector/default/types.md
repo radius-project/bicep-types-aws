@@ -64,9 +64,88 @@
 * **Rules**: [Rule](#rule)[] (Required, ReadOnly)
 * **Tags**: [Tag](#tag)[]: Tags associated with this detector.
 
-## Model
+## AWS.FraudDetector/EntityTypeProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The entity type ARN.
+* **CreatedTime**: string (ReadOnly): The timestamp when the entity type was created.
+* **Description**: string: The entity type description.
+* **LastUpdatedTime**: string (ReadOnly): The timestamp when the entity type was last updated.
+* **Name**: string (Required): The name of the entity type.
+* **Tags**: [Tag](#tag)[]: Tags associated with this entity type.
+
+## AWS.FraudDetector/EventTypeProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The ARN of the event type.
+* **CreatedTime**: string (ReadOnly): The time when the event type was created.
+* **Description**: string: The description of the event type.
+* **EntityTypes**: [EntityType](#entitytype)[] (Required, ReadOnly)
+* **EventVariables**: [EventVariable](#eventvariable)[] (Required, ReadOnly)
+* **Labels**: [Label](#label)[] (Required, ReadOnly)
+* **LastUpdatedTime**: string (ReadOnly): The time when the event type was last updated.
+* **Name**: string (Required): The name for the event type
+* **Tags**: [Tag](#tag)[]: Tags associated with this event type.
+
+## AWS.FraudDetector/LabelProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The label ARN.
+* **CreatedTime**: string (ReadOnly): The timestamp when the label was created.
+* **Description**: string: The label description.
+* **LastUpdatedTime**: string (ReadOnly): The timestamp when the label was last updated.
+* **Name**: string (Required): The name of the label.
+* **Tags**: [Tag](#tag)[]: Tags associated with this label.
+
+## AWS.FraudDetector/ListProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The list ARN.
+* **CreatedTime**: string (ReadOnly): The time when the list was created.
+* **Description**: string: The description of the list.
+* **Elements**: string[]: The elements in this list.
+* **LastUpdatedTime**: string (ReadOnly): The time when the list was last updated.
+* **Name**: string (Required): The name of the list.
+* **Tags**: [Tag](#tag)[]: Tags associated with this list.
+* **VariableType**: string: The variable type of the list.
+
+## AWS.FraudDetector/OutcomeProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The outcome ARN.
+* **CreatedTime**: string (ReadOnly): The timestamp when the outcome was created.
+* **Description**: string: The outcome description.
+* **LastUpdatedTime**: string (ReadOnly): The timestamp when the outcome was last updated.
+* **Name**: string (Required): The name of the outcome.
+* **Tags**: [Tag](#tag)[]: Tags associated with this outcome.
+
+## AWS.FraudDetector/VariableProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The ARN of the variable.
+* **CreatedTime**: string (ReadOnly): The time when the variable was created.
+* **DataSource**: string (Required): The source of the data.
+* **DataType**: string (Required): The data type.
+* **DefaultValue**: string (Required): The default value for the variable when no value is received.
+* **Description**: string: The description.
+* **LastUpdatedTime**: string (ReadOnly): The time when the variable was last updated.
+* **Name**: string (Required): The name of the variable.
+* **Tags**: [Tag](#tag)[]: Tags associated with this variable.
+* **VariableType**: string: The variable type. For more information see https://docs.aws.amazon.com/frauddetector/latest/ug/create-a-variable.html#variable-types
+
+## EntityType
 ### Properties
 * **Arn**: string (Identifier)
+* **CreatedTime**: string: The time when the entity type was created.
+* **Description**: string: The description.
+* **Inline**: bool
+* **LastUpdatedTime**: string: The time when the entity type was last updated.
+* **Name**: string
+* **Tags**: [Tag](#tag)[]: Tags associated with this entity type.
+
+## EntityType
+### Properties
+* **Arn**: string (Identifier)
+* **CreatedTime**: string: The time when the event type was created.
+* **Description**: string: The description.
+* **Inline**: bool
+* **LastUpdatedTime**: string: The time when the event type was last updated.
+* **Name**: string
+* **Tags**: [Tag](#tag)[]: Tags associated with this event type.
 
 ## EventType
 ### Properties
@@ -81,44 +160,43 @@
 * **Name**: string: The name for the event type
 * **Tags**: [Tag](#tag)[]: Tags associated with this event type.
 
-## EntityType
-### Properties
-* **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the entity type was created.
-* **Description**: string: The description.
-* **Inline**: bool
-* **LastUpdatedTime**: string: The time when the entity type was last updated.
-* **Name**: string
-* **Tags**: [Tag](#tag)[]: Tags associated with this entity type.
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## EventVariable
 ### Properties
 * **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the event variable was created.
+* **CreatedTime**: string: The time when the event type was created.
 * **DataSource**: string
 * **DataType**: string
 * **DefaultValue**: string
 * **Description**: string: The description.
 * **Inline**: bool
-* **LastUpdatedTime**: string: The time when the event variable was last updated.
+* **LastUpdatedTime**: string: The time when the event type was last updated.
 * **Name**: string
-* **Tags**: [Tag](#tag)[]: Tags associated with this event variable.
+* **Tags**: [Tag](#tag)[]: Tags associated with this event type.
 * **VariableType**: string
 
 ## Label
 ### Properties
 * **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the label was created.
+* **CreatedTime**: string: The time when the event type was created.
 * **Description**: string: The description.
 * **Inline**: bool
-* **LastUpdatedTime**: string: The time when the label was last updated.
+* **LastUpdatedTime**: string: The time when the event type was last updated.
 * **Name**: string
-* **Tags**: [Tag](#tag)[]: Tags associated with this label.
+* **Tags**: [Tag](#tag)[]: Tags associated with this event type.
+
+## Model
+### Properties
+* **Arn**: string (Identifier)
+
+## Outcome
+### Properties
+* **Arn**: string (Identifier)
+* **CreatedTime**: string: The time when the outcome was created.
+* **Description**: string: The description.
+* **Inline**: bool
+* **LastUpdatedTime**: string: The time when the outcome was last updated.
+* **Name**: string
+* **Tags**: [Tag](#tag)[]: Tags associated with this outcome.
 
 ## Rule
 ### Properties
@@ -134,137 +212,35 @@
 * **RuleVersion**: string
 * **Tags**: [Tag](#tag)[]: Tags associated with this event type.
 
-## Outcome
+## Tag
 ### Properties
-* **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the outcome was created.
-* **Description**: string: The description.
-* **Inline**: bool
-* **LastUpdatedTime**: string: The time when the outcome was last updated.
-* **Name**: string
-* **Tags**: [Tag](#tag)[]: Tags associated with this outcome.
-
-## AWS.FraudDetector/EntityTypeProperties
-### Properties
-* **Arn**: string (ReadOnly, Identifier): The entity type ARN.
-* **CreatedTime**: string (ReadOnly): The timestamp when the entity type was created.
-* **Description**: string: The entity type description.
-* **LastUpdatedTime**: string (ReadOnly): The timestamp when the entity type was last updated.
-* **Name**: string (Required): The name of the entity type.
-* **Tags**: [Tag](#tag)[]: Tags associated with this entity type.
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
 
-## AWS.FraudDetector/EventTypeProperties
+## Tag
 ### Properties
-* **Arn**: string (ReadOnly, Identifier): The ARN of the event type.
-* **CreatedTime**: string (ReadOnly): The time when the event type was created.
-* **Description**: string: The description of the event type.
-* **EntityTypes**: [EntityType](#entitytype)[] (Required, ReadOnly)
-* **EventVariables**: [EventVariable](#eventvariable)[] (Required, ReadOnly)
-* **Labels**: [Label](#label)[] (Required, ReadOnly)
-* **LastUpdatedTime**: string (ReadOnly): The time when the event type was last updated.
-* **Name**: string (Required): The name for the event type
-* **Tags**: [Tag](#tag)[]: Tags associated with this event type.
-
-## EntityType
-### Properties
-* **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the event type was created.
-* **Description**: string: The description.
-* **Inline**: bool
-* **LastUpdatedTime**: string: The time when the event type was last updated.
-* **Name**: string
-* **Tags**: [Tag](#tag)[]: Tags associated with this event type.
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
 
-## EventVariable
-### Properties
-* **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the event type was created.
-* **DataSource**: string
-* **DataType**: string
-* **DefaultValue**: string
-* **Description**: string: The description.
-* **Inline**: bool
-* **LastUpdatedTime**: string: The time when the event type was last updated.
-* **Name**: string
-* **Tags**: [Tag](#tag)[]: Tags associated with this event type.
-* **VariableType**: string
-
-## Label
-### Properties
-* **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the event type was created.
-* **Description**: string: The description.
-* **Inline**: bool
-* **LastUpdatedTime**: string: The time when the event type was last updated.
-* **Name**: string
-* **Tags**: [Tag](#tag)[]: Tags associated with this event type.
-
-## AWS.FraudDetector/LabelProperties
-### Properties
-* **Arn**: string (ReadOnly, Identifier): The label ARN.
-* **CreatedTime**: string (ReadOnly): The timestamp when the label was created.
-* **Description**: string: The label description.
-* **LastUpdatedTime**: string (ReadOnly): The timestamp when the label was last updated.
-* **Name**: string (Required): The name of the label.
-* **Tags**: [Tag](#tag)[]: Tags associated with this label.
-
 ## Tag
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
-
-## AWS.FraudDetector/ListProperties
-### Properties
-* **Arn**: string (ReadOnly, Identifier): The list ARN.
-* **CreatedTime**: string (ReadOnly): The time when the list was created.
-* **Description**: string: The description of the list.
-* **Elements**: string[]: The elements in this list.
-* **LastUpdatedTime**: string (ReadOnly): The time when the list was last updated.
-* **Name**: string (Required): The name of the list.
-* **Tags**: [Tag](#tag)[]: Tags associated with this list.
-* **VariableType**: string: The variable type of the list.
 
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
-## AWS.FraudDetector/OutcomeProperties
-### Properties
-* **Arn**: string (ReadOnly, Identifier): The outcome ARN.
-* **CreatedTime**: string (ReadOnly): The timestamp when the outcome was created.
-* **Description**: string: The outcome description.
-* **LastUpdatedTime**: string (ReadOnly): The timestamp when the outcome was last updated.
-* **Name**: string (Required): The name of the outcome.
-* **Tags**: [Tag](#tag)[]: Tags associated with this outcome.
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
-## AWS.FraudDetector/VariableProperties
-### Properties
-* **Arn**: string (ReadOnly, Identifier): The ARN of the variable.
-* **CreatedTime**: string (ReadOnly): The time when the variable was created.
-* **DataSource**: string (Required): The source of the data.
-* **DataType**: string (Required): The data type.
-* **DefaultValue**: string (Required): The default value for the variable when no value is received.
-* **Description**: string: The description.
-* **LastUpdatedTime**: string (ReadOnly): The time when the variable was last updated.
-* **Name**: string (Required): The name of the variable.
-* **Tags**: [Tag](#tag)[]: Tags associated with this variable.
-* **VariableType**: string: The variable type. For more information see https://docs.aws.amazon.com/frauddetector/latest/ug/create-a-variable.html#variable-types
 
 ## Tag
 ### Properties

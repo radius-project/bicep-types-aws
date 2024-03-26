@@ -33,9 +33,6 @@
 * **Tags**: [TagMap](#tagmap)
 * **Type**: string (Required)
 
-## TagMap
-### Properties
-
 ## AWS.ResourceExplorer2/ViewProperties
 ### Properties
 * **Filters**: [SearchFilter](#searchfilter)
@@ -45,13 +42,16 @@
 * **ViewArn**: string (ReadOnly, Identifier)
 * **ViewName**: string (Required)
 
+## IncludedProperty
+### Properties
+* **Name**: string (Required)
+
 ## SearchFilter
 ### Properties
 * **FilterString**: string (Required)
 
-## IncludedProperty
+## TagMap
 ### Properties
-* **Name**: string (Required)
 
 ## TagMap
 ### Properties
