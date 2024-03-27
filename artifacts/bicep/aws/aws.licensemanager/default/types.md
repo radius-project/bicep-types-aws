@@ -3,16 +3,16 @@
 ## Resource AWS.LicenseManager/Grant@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.LicenseManager/GrantProperties](#awslicensemanagergrantproperties): properties of the resource
+* **properties**: [AWS.LicenseManager/GrantProperties](#awslicensemanagergrantproperties) (Identifier): properties of the resource
 
 ## Resource AWS.LicenseManager/License@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.LicenseManager/LicenseProperties](#awslicensemanagerlicenseproperties) (Required): properties of the resource
+* **properties**: [AWS.LicenseManager/LicenseProperties](#awslicensemanagerlicenseproperties) (Required, Identifier): properties of the resource
 
 ## AWS.LicenseManager/GrantProperties
 ### Properties

@@ -3,65 +3,65 @@
 ## Resource AWS.GameLift/Alias@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/AliasProperties](#awsgameliftaliasproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/AliasProperties](#awsgameliftaliasproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/Build@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/BuildProperties](#awsgameliftbuildproperties): properties of the resource
+* **properties**: [AWS.GameLift/BuildProperties](#awsgameliftbuildproperties) (Identifier): properties of the resource
 
 ## Resource AWS.GameLift/Fleet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/FleetProperties](#awsgameliftfleetproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/FleetProperties](#awsgameliftfleetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/GameServerGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/GameServerGroupProperties](#awsgameliftgameservergroupproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/GameServerGroupProperties](#awsgameliftgameservergroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/GameSessionQueue@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/GameSessionQueueProperties](#awsgameliftgamesessionqueueproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/GameSessionQueueProperties](#awsgameliftgamesessionqueueproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/Location@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/LocationProperties](#awsgameliftlocationproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/LocationProperties](#awsgameliftlocationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/MatchmakingConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/MatchmakingConfigurationProperties](#awsgameliftmatchmakingconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/MatchmakingConfigurationProperties](#awsgameliftmatchmakingconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/MatchmakingRuleSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/MatchmakingRuleSetProperties](#awsgameliftmatchmakingrulesetproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/MatchmakingRuleSetProperties](#awsgameliftmatchmakingrulesetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/Script@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/ScriptProperties](#awsgameliftscriptproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/ScriptProperties](#awsgameliftscriptproperties) (Required, Identifier): properties of the resource
 
 ## AnywhereConfiguration
 ### Properties

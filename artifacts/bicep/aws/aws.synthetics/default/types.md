@@ -3,16 +3,16 @@
 ## Resource AWS.Synthetics/Canary@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Synthetics/CanaryProperties](#awssyntheticscanaryproperties) (Required): properties of the resource
+* **properties**: [AWS.Synthetics/CanaryProperties](#awssyntheticscanaryproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Synthetics/Group@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Synthetics/GroupProperties](#awssyntheticsgroupproperties) (Required): properties of the resource
+* **properties**: [AWS.Synthetics/GroupProperties](#awssyntheticsgroupproperties) (Required, Identifier): properties of the resource
 
 ## ArtifactConfig
 ### Properties

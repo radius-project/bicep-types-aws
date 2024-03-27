@@ -3,9 +3,9 @@
 ## Resource AWS.IoTCoreDeviceAdvisor/SuiteDefinition@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoTCoreDeviceAdvisor/SuiteDefinitionProperties](#awsiotcoredeviceadvisorsuitedefinitionproperties) (Required): properties of the resource
+* **properties**: [AWS.IoTCoreDeviceAdvisor/SuiteDefinitionProperties](#awsiotcoredeviceadvisorsuitedefinitionproperties) (Required, Identifier): properties of the resource
 
 ## AWS.IoTCoreDeviceAdvisor/SuiteDefinitionProperties
 ### Properties

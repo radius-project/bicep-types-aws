@@ -140,142 +140,15 @@
     "value": "AWS.CodePipeline/CustomActionTypeProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "ConfigurationProperties",
-    "properties": {
-      "Description": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "The description of the action configuration property that is displayed to users. "
-      },
-      "Key": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1,
-        "description": "Whether the configuration property is a key."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "The name of the action configuration property."
-      },
-      "Queryable": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0,
-        "description": "Indicates that the property is used with PollForJobs. When creating a custom action, an action can have up to one queryable property. If it has one, that property must be both required and not secret.If you create a pipeline with a custom action type, and that custom action contains a queryable property, the value for that configuration property is subject to other restrictions. The value must be less than or equal to twenty (20) characters. The value can contain only alphanumeric characters, underscores, and hyphens. "
-      },
-      "Required": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1,
-        "description": "Whether the configuration property is a required value."
-      },
-      "Secret": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1,
-        "description": "Whether the configuration property is secret. Secrets are hidden from all calls except for GetJobDetails, GetThirdPartyJobDetails, PollForJobs, and PollForThirdPartyJobs."
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "The type of the configuration property."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ArtifactDetails",
-    "properties": {
-      "MaximumCount": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The maximum number of artifacts allowed for the action type."
-      },
-      "MinimumCount": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The minimum number of artifacts allowed for the action type."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Settings",
-    "properties": {
-      "EntityUrlTemplate": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "The URL returned to the AWS CodePipeline console that provides a deep link to the resources of the external system, such as the configuration page for an AWS CodeDeploy deployment group. This link is provided as part of the action display in the pipeline. "
-      },
-      "ExecutionUrlTemplate": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "The URL returned to the AWS CodePipeline console that contains a link to the top-level landing page for the external system, such as the console page for AWS CodeDeploy. This link is shown on the pipeline view page in the AWS CodePipeline console and provides a link to the execution entity of the external action. "
-      },
-      "RevisionUrlTemplate": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "The URL returned to the AWS CodePipeline console that contains a link to the page where customers can update or change the configuration of the external action. "
-      },
-      "ThirdPartyConfigurationUrl": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "The URL of a sign-up page where users can sign up for an external service and perform initial configuration of the action provided by that service."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/3"
     }
   },
   {
@@ -291,7 +164,7 @@
       },
       "ConfigurationProperties": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/8"
         },
         "flags": 4,
         "description": "The configuration properties for the custom action."
@@ -304,14 +177,14 @@
       },
       "InputArtifactDetails": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/0"
         },
         "flags": 1,
         "description": "The details of the input artifact for the action, such as its commit ID."
       },
       "OutputArtifactDetails": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/0"
         },
         "flags": 1,
         "description": "The details of the output artifact of the action, such as its commit ID."
@@ -325,14 +198,14 @@
       },
       "Settings": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "URLs that provide users information about this custom action."
       },
       "Tags": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "Any tags assigned to the custom action."
@@ -361,14 +234,14 @@
         "type": {
           "$ref": "#/5"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/10"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -378,7 +251,7 @@
     "name": "AWS.CodePipeline/CustomActionType@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/11"
     },
     "flags": 0
   }

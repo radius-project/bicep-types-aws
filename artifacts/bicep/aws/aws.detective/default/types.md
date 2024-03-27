@@ -3,23 +3,23 @@
 ## Resource AWS.Detective/Graph@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Detective/GraphProperties](#awsdetectivegraphproperties): properties of the resource
+* **properties**: [AWS.Detective/GraphProperties](#awsdetectivegraphproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Detective/MemberInvitation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Detective/MemberInvitationProperties](#awsdetectivememberinvitationproperties) (Required): properties of the resource
+* **properties**: [AWS.Detective/MemberInvitationProperties](#awsdetectivememberinvitationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Detective/OrganizationAdmin@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Detective/OrganizationAdminProperties](#awsdetectiveorganizationadminproperties) (Required): properties of the resource
+* **properties**: [AWS.Detective/OrganizationAdminProperties](#awsdetectiveorganizationadminproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Detective/GraphProperties
 ### Properties

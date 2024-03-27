@@ -3,30 +3,30 @@
 ## Resource AWS.Macie/AllowList@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Macie/AllowListProperties](#awsmacieallowlistproperties) (Required): properties of the resource
+* **properties**: [AWS.Macie/AllowListProperties](#awsmacieallowlistproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Macie/CustomDataIdentifier@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Macie/CustomDataIdentifierProperties](#awsmaciecustomdataidentifierproperties) (Required): properties of the resource
+* **properties**: [AWS.Macie/CustomDataIdentifierProperties](#awsmaciecustomdataidentifierproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Macie/FindingsFilter@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Macie/FindingsFilterProperties](#awsmaciefindingsfilterproperties) (Required): properties of the resource
+* **properties**: [AWS.Macie/FindingsFilterProperties](#awsmaciefindingsfilterproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Macie/Session@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Macie/SessionProperties](#awsmaciesessionproperties): properties of the resource
+* **properties**: [AWS.Macie/SessionProperties](#awsmaciesessionproperties) (Identifier): properties of the resource
 
 ## AWS.Macie/AllowListProperties
 ### Properties

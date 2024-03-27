@@ -94,95 +94,21 @@
     "properties": {}
   },
   {
-    "$type": "ObjectType",
-    "name": "LoggingConfig",
-    "properties": {
-      "FailureFeedbackRoleArn": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": ""
-      },
-      "Protocol": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": ""
-      },
-      "SuccessFeedbackRoleArn": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": ""
-      },
-      "SuccessFeedbackSampleRate": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": ""
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Subscription",
-    "properties": {
-      "Endpoint": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The endpoint that receives notifications from the SNS topic. The endpoint value depends on the protocol that you specify. For more information, see the ``Endpoint`` parameter of the ``Subscribe`` action in the *API Reference*."
-      },
-      "Protocol": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The subscription's protocol. For more information, see the ``Protocol`` parameter of the ``Subscribe`` action in the *API Reference*."
-      }
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/10"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The required key portion of the tag."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The optional value portion of the tag."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/2"
     }
   },
   {
@@ -212,7 +138,7 @@
       },
       "DeliveryStatusLogging": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": ""
@@ -247,14 +173,14 @@
       },
       "Subscription": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "The SNS subscriptions (endpoints) for this topic.\n  If you specify the ``Subscription`` property in the ``AWS::SNS::Topic`` resource and it creates an associated subscription resource, the associated subscription is not deleted when the ``AWS::SNS::Topic`` resource is deleted."
       },
       "Tags": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The list of tags to add to a new topic.\n  To be able to tag a topic on creation, you must have the ``sns:CreateTopic`` and ``sns:TagResource`` permissions."
@@ -297,14 +223,14 @@
         "type": {
           "$ref": "#/3"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/11"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -314,7 +240,7 @@
     "name": "AWS.SNS/Topic@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/12"
     },
     "flags": 0
   },
@@ -333,7 +259,7 @@
     "properties": {
       "PolicyDocument": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/15"
         },
         "flags": 1,
         "description": "A policy document that contains permissions to add to the specified SNS topics."
@@ -362,14 +288,14 @@
         "type": {
           "$ref": "#/3"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/16"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -379,7 +305,7 @@
     "name": "AWS.SNS/TopicInlinePolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/17"
     },
     "flags": 0
   }

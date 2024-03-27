@@ -3,23 +3,23 @@
 ## Resource AWS.Amplify/App@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Amplify/AppProperties](#awsamplifyappproperties) (Required): properties of the resource
+* **properties**: [AWS.Amplify/AppProperties](#awsamplifyappproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Amplify/Branch@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Amplify/BranchProperties](#awsamplifybranchproperties) (Required): properties of the resource
+* **properties**: [AWS.Amplify/BranchProperties](#awsamplifybranchproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Amplify/Domain@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Amplify/DomainProperties](#awsamplifydomainproperties) (Required): properties of the resource
+* **properties**: [AWS.Amplify/DomainProperties](#awsamplifydomainproperties) (Required, Identifier): properties of the resource
 
 ## AutoBranchCreationConfig
 ### Properties
@@ -98,14 +98,14 @@
 ## BasicAuthConfig
 ### Properties
 * **EnableBasicAuth**: bool
-* **Password**: string (Required)
-* **Username**: string (Required)
+* **Password**: string
+* **Username**: string
 
 ## BasicAuthConfig
 ### Properties
 * **EnableBasicAuth**: bool
-* **Password**: string
-* **Username**: string
+* **Password**: string (Required)
+* **Username**: string (Required)
 
 ## Certificate
 ### Properties

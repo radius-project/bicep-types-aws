@@ -3,16 +3,16 @@
 ## Resource AWS.Cassandra/Keyspace@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Cassandra/KeyspaceProperties](#awscassandrakeyspaceproperties): properties of the resource
+* **properties**: [AWS.Cassandra/KeyspaceProperties](#awscassandrakeyspaceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Cassandra/Table@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Cassandra/TableProperties](#awscassandratableproperties) (Required): properties of the resource
+* **properties**: [AWS.Cassandra/TableProperties](#awscassandratableproperties) (Required, Identifier): properties of the resource
 
 ## AutoScalingSetting
 ### Properties

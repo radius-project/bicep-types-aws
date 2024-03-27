@@ -3,30 +3,30 @@
 ## Resource AWS.NimbleStudio/LaunchProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NimbleStudio/LaunchProfileProperties](#awsnimblestudiolaunchprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.NimbleStudio/LaunchProfileProperties](#awsnimblestudiolaunchprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NimbleStudio/StreamingImage@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NimbleStudio/StreamingImageProperties](#awsnimblestudiostreamingimageproperties) (Required): properties of the resource
+* **properties**: [AWS.NimbleStudio/StreamingImageProperties](#awsnimblestudiostreamingimageproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NimbleStudio/Studio@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NimbleStudio/StudioProperties](#awsnimblestudiostudioproperties) (Required): properties of the resource
+* **properties**: [AWS.NimbleStudio/StudioProperties](#awsnimblestudiostudioproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NimbleStudio/StudioComponent@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NimbleStudio/StudioComponentProperties](#awsnimblestudiostudiocomponentproperties) (Required): properties of the resource
+* **properties**: [AWS.NimbleStudio/StudioComponentProperties](#awsnimblestudiostudiocomponentproperties) (Required, Identifier): properties of the resource
 
 ## AWS.NimbleStudio/LaunchProfileProperties
 ### Properties

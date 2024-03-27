@@ -37,13 +37,15 @@
         "type": {
           "$ref": "#/26"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "Specifies the object identifier (OID) of the attribute type of the relative distinguished name (RDN)."
       },
       "Value": {
         "type": {
           "$ref": "#/26"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "Specifies the attribute value of relative distinguished name (RDN)."
       }
     }
   },
@@ -58,7 +60,7 @@
     "properties": {
       "Critical": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "Specifies the critical flag of the X.509 extension."
@@ -102,13 +104,15 @@
         "type": {
           "$ref": "#/26"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "Specifies the name assigner."
       },
       "PartyName": {
         "type": {
           "$ref": "#/26"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "Specifies the party name."
       }
     }
   },
@@ -143,21 +147,21 @@
     "properties": {
       "CertificatePolicies": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "Contains a sequence of one or more policy information terms, each of which consists of an object identifier (OID) and optional qualifiers. For more information, see NIST's definition of [Object Identifier (OID)](https://docs.aws.amazon.com/https://csrc.nist.gov/glossary/term/Object_Identifier).\n In an end-entity certificate, these terms indicate the policy under which the certificate was issued and the purposes for which it may be used. In a CA certificate, these terms limit the set of policies for certification paths that include this certificate."
       },
       "CustomExtensions": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "Contains a sequence of one or more X.509 extensions, each of which consists of an object identifier (OID), a base64-encoded value, and the critical flag. For more information, see the [Global OID reference database.](https://docs.aws.amazon.com/https://oidref.com/2.5.29)"
       },
       "ExtendedKeyUsage": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "Specifies additional purposes for which the certified public key may be used other than basic purposes indicated in the ``KeyUsage`` extension."
@@ -171,7 +175,7 @@
       },
       "SubjectAlternativeNames": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "The subject alternative name extension allows identities to be bound to the subject of the certificate. These identities may be included in addition to or in place of the identity in the subject field of the certificate."
@@ -184,51 +188,59 @@
     "properties": {
       "DirectoryName": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/23"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Contains information about the certificate subject. The certificate can be one issued by your private certificate authority (CA) or it can be your private CA certificate. The Subject field in the certificate identifies the entity that owns or controls the public key in the certificate. The entity can be a user, computer, device, or service. The Subject must contain an X.500 distinguished name (DN). A DN is a sequence of relative distinguished names (RDNs). The RDNs are separated by commas in the certificate. The DN must be unique for each entity, but your private CA can issue more than one certificate with the same DN to the same entity."
       },
       "DnsName": {
         "type": {
           "$ref": "#/26"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Represents ``GeneralName`` as a DNS name."
       },
       "EdiPartyName": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/9"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Represents ``GeneralName`` as an ``EdiPartyName`` object."
       },
       "IpAddress": {
         "type": {
           "$ref": "#/26"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Represents ``GeneralName`` as an IPv4 or IPv6 address."
       },
       "OtherName": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/17"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Represents ``GeneralName`` using an ``OtherName`` object."
       },
       "RegisteredId": {
         "type": {
           "$ref": "#/26"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Represents ``GeneralName`` as an object identifier (OID)."
       },
       "Rfc822Name": {
         "type": {
           "$ref": "#/26"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Represents ``GeneralName`` as an [RFC 822](https://docs.aws.amazon.com/https://datatracker.ietf.org/doc/html/rfc822) email address."
       },
       "UniformResourceIdentifier": {
         "type": {
           "$ref": "#/26"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Represents ``GeneralName`` as a URI."
       }
     }
   },
@@ -248,57 +260,66 @@
     "properties": {
       "CRLSign": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Key can be used to sign CRLs."
       },
       "DataEncipherment": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Key can be used to decipher data."
       },
       "DecipherOnly": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Key can be used only to decipher data."
       },
       "DigitalSignature": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Key can be used for digital signing."
       },
       "EncipherOnly": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Key can be used only to encipher data."
       },
       "KeyAgreement": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Key can be used in a key-agreement protocol."
       },
       "KeyCertSign": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Key can be used to sign certificates."
       },
       "KeyEncipherment": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Key can be used to encipher data."
       },
       "NonRepudiation": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Key can be used for non-repudiation."
       }
     }
   },
@@ -310,13 +331,15 @@
         "type": {
           "$ref": "#/26"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "Specifies an OID."
       },
       "Value": {
         "type": {
           "$ref": "#/26"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "Specifies an OID value."
       }
     }
   },
@@ -333,7 +356,7 @@
       },
       "PolicyQualifiers": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "Modifies the given ``CertPolicyId`` with a qualifier. AWS Private CA supports the certification practice statement (CPS) qualifier."
@@ -391,880 +414,6 @@
         "type": {
           "$ref": "#/26"
         },
-        "flags": 0
-      },
-      "Country": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "CustomAttributes": {
-        "type": {
-          "$ref": "#/86"
-        },
-        "flags": 0
-      },
-      "DistinguishedNameQualifier": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "GenerationQualifier": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "GivenName": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "Initials": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "Locality": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "Organization": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "OrganizationalUnit": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "Pseudonym": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "SerialNumber": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "State": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "Surname": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "Title": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "UniformResourceIdentifier",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Validity",
-    "properties": {
-      "Type": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1,
-        "description": "Specifies whether the ``Value`` parameter represents days, months, or years."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/46"
-        },
-        "flags": 1,
-        "description": "A long integer interpreted according to the value of ``Type``, below."
-      }
-    }
-  },
-  {
-    "$type": "StringType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/18"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomAttribute",
-    "properties": {
-      "ObjectIdentifier": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1,
-        "description": "Specifies the object identifier (OID) of the attribute type of the relative distinguished name (RDN)."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1,
-        "description": "Specifies the attribute value of relative distinguished name (RDN)."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/28"
-    }
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomExtension",
-    "properties": {
-      "Critical": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0,
-        "description": "Specifies the critical flag of the X.509 extension."
-      },
-      "ObjectIdentifier": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1,
-        "description": "Specifies the object identifier (OID) of the X.509 extension. For more information, see the [Global OID reference database.](https://docs.aws.amazon.com/https://oidref.com/2.5.29)"
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1,
-        "description": "Specifies the base64-encoded value of the X.509 extension."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/31"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ExtendedKeyUsage",
-    "properties": {
-      "ExtendedKeyUsageObjectIdentifier": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Specifies a custom ``ExtendedKeyUsage`` with an object identifier (OID)."
-      },
-      "ExtendedKeyUsageType": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Specifies a standard ``ExtendedKeyUsage`` as defined as in [RFC 5280](https://docs.aws.amazon.com/https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.12)."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/33"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/18"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/31"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/33"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/13"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "EdiPartyName",
-    "properties": {
-      "NameAssigner": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1,
-        "description": "Specifies the name assigner."
-      },
-      "PartyName": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1,
-        "description": "Specifies the party name."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "GeneralName",
-    "properties": {
-      "DirectoryName": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "Contains information about the certificate subject. The certificate can be one issued by your private certificate authority (CA) or it can be your private CA certificate. The Subject field in the certificate identifies the entity that owns or controls the public key in the certificate. The entity can be a user, computer, device, or service. The Subject must contain an X.500 distinguished name (DN). A DN is a sequence of relative distinguished names (RDNs). The RDNs are separated by commas in the certificate. The DN must be unique for each entity, but your private CA can issue more than one certificate with the same DN to the same entity."
-      },
-      "DnsName": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Represents ``GeneralName`` as a DNS name."
-      },
-      "EdiPartyName": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0,
-        "description": "Represents ``GeneralName`` as an ``EdiPartyName`` object."
-      },
-      "IpAddress": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Represents ``GeneralName`` as an IPv4 or IPv6 address."
-      },
-      "OtherName": {
-        "type": {
-          "$ref": "#/17"
-        },
-        "flags": 0,
-        "description": "Represents ``GeneralName`` using an ``OtherName`` object."
-      },
-      "RegisteredId": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Represents ``GeneralName`` as an object identifier (OID)."
-      },
-      "Rfc822Name": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Represents ``GeneralName`` as an [RFC 822](https://docs.aws.amazon.com/https://datatracker.ietf.org/doc/html/rfc822) email address."
-      },
-      "UniformResourceIdentifier": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Represents ``GeneralName`` as a URI."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/40"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/19"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PolicyQualifierInfo",
-    "properties": {
-      "PolicyQualifierId": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1,
-        "description": "Identifies the qualifier modifying a ``CertPolicyId``."
-      },
-      "Qualifier": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "Defines the qualifier type. AWS Private CA supports the use of a URI for a CPS qualifier in this field."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/43"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/28"
-    }
-  },
-  {
-    "$type": "IntegerType"
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.ACMPCA/CertificateProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ApiPassthrough",
-    "properties": {
-      "Extensions": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0,
-        "description": "Specifies X.509 extension information for a certificate."
-      },
-      "Subject": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "Contains information about the certificate subject. The Subject field in the certificate identifies the entity that owns or controls the public key in the certificate. The entity can be a user, computer, device, or service. The Subject must contain an X.500 distinguished name (DN). A DN is a sequence of relative distinguished names (RDNs). The RDNs are separated by commas in the certificate."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Validity",
-    "properties": {
-      "Type": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1,
-        "description": "Specifies whether the ``Value`` parameter represents days, months, or years."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/46"
-        },
-        "flags": 1,
-        "description": "A long integer interpreted according to the value of ``Type``, below."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.ACMPCA/CertificateProperties",
-    "properties": {
-      "ApiPassthrough": {
-        "type": {
-          "$ref": "#/48"
-        },
-        "flags": 4,
-        "description": "Specifies X.509 certificate information to be included in the issued certificate. An ``APIPassthrough`` or ``APICSRPassthrough`` template variant must be selected, or else this parameter is ignored."
-      },
-      "Arn": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 18,
-        "description": ""
-      },
-      "Certificate": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 2,
-        "description": ""
-      },
-      "CertificateAuthorityArn": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 17,
-        "description": "The Amazon Resource Name (ARN) for the private CA issues the certificate."
-      },
-      "CertificateSigningRequest": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 5,
-        "description": "The certificate signing request (CSR) for the certificate."
-      },
-      "SigningAlgorithm": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1,
-        "description": "The name of the algorithm that will be used to sign the certificate to be issued. \n This parameter should not be confused with the ``SigningAlgorithm`` parameter used to sign a CSR in the ``CreateCertificateAuthority`` action.\n  The specified signing algorithm family (RSA or ECDSA) must match the algorithm family of the CA's secret key."
-      },
-      "TemplateArn": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Specifies a custom configuration template to use when issuing a certificate. If this parameter is not provided, PCAshort defaults to the ``EndEntityCertificate/V1`` template. For more information about PCAshort templates, see [Using Templates](https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html)."
-      },
-      "Validity": {
-        "type": {
-          "$ref": "#/49"
-        },
-        "flags": 1,
-        "description": "The period of time during which the certificate will be valid."
-      },
-      "ValidityNotBefore": {
-        "type": {
-          "$ref": "#/49"
-        },
-        "flags": 0,
-        "description": "Information describing the start of the validity period of the certificate. This parameter sets the ?Not Before\" date for the certificate.\n By default, when issuing a certificate, PCAshort sets the \"Not Before\" date to the issuance time minus 60 minutes. This compensates for clock inconsistencies across computer systems. The ``ValidityNotBefore`` parameter can be used to customize the ?Not Before? value. \n Unlike the ``Validity`` parameter, the ``ValidityNotBefore`` parameter is optional.\n The ``ValidityNotBefore`` value is expressed as an explicit date and time, using the ``Validity`` type value ``ABSOLUTE``."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.ACMPCA/Certificate",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/50"
-        },
-        "flags": 1,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.ACMPCA/Certificate@default",
-    "scopeType": 0,
-    "body": {
-      "$ref": "#/51"
-    },
-    "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AccessDescription",
-    "properties": {
-      "AccessLocation": {
-        "type": {
-          "$ref": "#/40"
-        },
-        "flags": 1
-      },
-      "AccessMethod": {
-        "type": {
-          "$ref": "#/54"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AccessMethod",
-    "properties": {
-      "AccessMethodType": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "CustomObjectIdentifier": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AccessMethodType",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Arn",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CrlConfiguration",
-    "properties": {
-      "CrlDistributionPointExtensionConfiguration": {
-        "type": {
-          "$ref": "#/58"
-        },
-        "flags": 0
-      },
-      "CustomCname": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "Enabled": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0
-      },
-      "ExpirationInDays": {
-        "type": {
-          "$ref": "#/46"
-        },
-        "flags": 0
-      },
-      "S3BucketName": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "S3ObjectAcl": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CrlDistributionPointExtensionConfiguration",
-    "properties": {
-      "OmitExtension": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CsrExtensions",
-    "properties": {
-      "KeyUsage": {
-        "type": {
-          "$ref": "#/76"
-        },
-        "flags": 0
-      },
-      "SubjectInformationAccess": {
-        "type": {
-          "$ref": "#/78"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomAttribute",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomAttributeList",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomObjectIdentifier",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DnsName",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "EdiPartyName",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "GeneralName",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "IpAddress",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "KeyUsage",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "OcspConfiguration",
-    "properties": {
-      "Enabled": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0
-      },
-      "OcspCustomCname": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "OtherName",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RevocationConfiguration",
-    "properties": {
-      "CrlConfiguration": {
-        "type": {
-          "$ref": "#/84"
-        },
-        "flags": 0
-      },
-      "OcspConfiguration": {
-        "type": {
-          "$ref": "#/85"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Rfc822Name",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Subject",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SubjectInformationAccess",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "UniformResourceIdentifier",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "KeyUsage",
-    "properties": {
-      "CRLSign": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0,
-        "description": "Key can be used to sign CRLs."
-      },
-      "DataEncipherment": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0,
-        "description": "Key can be used to decipher data."
-      },
-      "DecipherOnly": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0,
-        "description": "Key can be used only to decipher data."
-      },
-      "DigitalSignature": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0,
-        "description": "Key can be used for digital signing."
-      },
-      "EncipherOnly": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0,
-        "description": "Key can be used only to encipher data."
-      },
-      "KeyAgreement": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0,
-        "description": "Key can be used in a key-agreement protocol."
-      },
-      "KeyCertSign": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0,
-        "description": "Key can be used to sign certificates."
-      },
-      "KeyEncipherment": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0,
-        "description": "Key can be used to encipher data."
-      },
-      "NonRepudiation": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0,
-        "description": "Key can be used for non-repudiation."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AccessDescription",
-    "properties": {
-      "AccessLocation": {
-        "type": {
-          "$ref": "#/40"
-        },
-        "flags": 1
-      },
-      "AccessMethod": {
-        "type": {
-          "$ref": "#/54"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/77"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomAttribute",
-    "properties": {
-      "ObjectIdentifier": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/79"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Subject",
-    "properties": {
-      "CommonName": {
-        "type": {
-          "$ref": "#/26"
-        },
         "flags": 0,
         "description": "For CA and end-entity certificates in a private PKI, the common name (CN) can be any string within the length limit.\n Note: In publicly trusted certificates, the common name must be a fully qualified domain name (FQDN) associated with the certificate subject."
       },
@@ -1277,7 +426,7 @@
       },
       "CustomAttributes": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "Contains a sequence of one or more X.500 relative distinguished names (RDNs), each of which consists of an object identifier (OID) and a value. For more information, see NIST?s definition of [Object Identifier (OID)](https://docs.aws.amazon.com/https://csrc.nist.gov/glossary/term/Object_Identifier).\n  Custom attributes cannot be used in combination with standard attributes."
@@ -1370,17 +519,232 @@
   },
   {
     "$type": "ObjectType",
-    "name": "EdiPartyName",
+    "name": "UniformResourceIdentifier",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Validity",
     "properties": {
-      "NameAssigner": {
+      "Type": {
         "type": {
           "$ref": "#/26"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "Specifies whether the ``Value`` parameter represents days, months, or years."
       },
-      "PartyName": {
+      "Value": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 1,
+        "description": "A long integer interpreted according to the value of ``Type``, below."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ACMPCA/CertificateProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ACMPCA/CertificateProperties",
+    "properties": {
+      "ApiPassthrough": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 4,
+        "description": "Specifies X.509 certificate information to be included in the issued certificate. An ``APIPassthrough`` or ``APICSRPassthrough`` template variant must be selected, or else this parameter is ignored."
+      },
+      "Arn": {
         "type": {
           "$ref": "#/26"
+        },
+        "flags": 18,
+        "description": ""
+      },
+      "Certificate": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "CertificateAuthorityArn": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 17,
+        "description": "The Amazon Resource Name (ARN) for the private CA issues the certificate."
+      },
+      "CertificateSigningRequest": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 5,
+        "description": "The certificate signing request (CSR) for the certificate."
+      },
+      "SigningAlgorithm": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1,
+        "description": "The name of the algorithm that will be used to sign the certificate to be issued. \n This parameter should not be confused with the ``SigningAlgorithm`` parameter used to sign a CSR in the ``CreateCertificateAuthority`` action.\n  The specified signing algorithm family (RSA or ECDSA) must match the algorithm family of the CA's secret key."
+      },
+      "TemplateArn": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "Specifies a custom configuration template to use when issuing a certificate. If this parameter is not provided, PCAshort defaults to the ``EndEntityCertificate/V1`` template. For more information about PCAshort templates, see [Using Templates](https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html)."
+      },
+      "Validity": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1,
+        "description": "The period of time during which the certificate will be valid."
+      },
+      "ValidityNotBefore": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "Information describing the start of the validity period of the certificate. This parameter sets the ?Not Before\" date for the certificate.\n By default, when issuing a certificate, PCAshort sets the \"Not Before\" date to the issuance time minus 60 minutes. This compensates for clock inconsistencies across computer systems. The ``ValidityNotBefore`` parameter can be used to customize the ?Not Before? value. \n Unlike the ``Validity`` parameter, the ``ValidityNotBefore`` parameter is optional.\n The ``ValidityNotBefore`` value is expressed as an explicit date and time, using the ``Validity`` type value ``ABSOLUTE``."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ACMPCA/Certificate",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ACMPCA/Certificate@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/43"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AccessDescription",
+    "properties": {
+      "AccessLocation": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 1
+      },
+      "AccessMethod": {
+        "type": {
+          "$ref": "#/46"
         },
         "flags": 1
       }
@@ -1388,23 +752,31 @@
   },
   {
     "$type": "ObjectType",
-    "name": "OtherName",
+    "name": "AccessMethod",
     "properties": {
-      "TypeId": {
+      "AccessMethodType": {
         "type": {
           "$ref": "#/26"
         },
-        "flags": 1,
-        "description": "Specifies an OID."
+        "flags": 0
       },
-      "Value": {
+      "CustomObjectIdentifier": {
         "type": {
           "$ref": "#/26"
         },
-        "flags": 1,
-        "description": "Specifies an OID value."
+        "flags": 0
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AccessMethodType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Arn",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1412,7 +784,7 @@
     "properties": {
       "CrlDistributionPointExtensionConfiguration": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/50"
         },
         "flags": 0
       },
@@ -1424,13 +796,13 @@
       },
       "Enabled": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
         "flags": 0
       },
       "ExpirationInDays": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/40"
         },
         "flags": 0
       },
@@ -1450,11 +822,211 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CrlDistributionPointExtensionConfiguration",
+    "properties": {
+      "OmitExtension": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CsrExtensions",
+    "properties": {
+      "KeyUsage": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0
+      },
+      "SubjectInformationAccess": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomAttribute",
+    "properties": {
+      "ObjectIdentifier": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomAttributeList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomObjectIdentifier",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DnsName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EdiPartyName",
+    "properties": {
+      "NameAssigner": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1
+      },
+      "PartyName": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GeneralName",
+    "properties": {
+      "DirectoryName": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 0
+      },
+      "DnsName": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
+      "EdiPartyName": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0
+      },
+      "IpAddress": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
+      "OtherName": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0
+      },
+      "RegisteredId": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
+      "Rfc822Name": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
+      "UniformResourceIdentifier": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IpAddress",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KeyUsage",
+    "properties": {
+      "CRLSign": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0
+      },
+      "DataEncipherment": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0
+      },
+      "DecipherOnly": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0
+      },
+      "DigitalSignature": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0
+      },
+      "EncipherOnly": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0
+      },
+      "KeyAgreement": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0
+      },
+      "KeyCertSign": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0
+      },
+      "KeyEncipherment": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0
+      },
+      "NonRepudiation": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "OcspConfiguration",
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
         "flags": 0
       },
@@ -1467,36 +1039,20 @@
     }
   },
   {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/79"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/77"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.ACMPCA/CertificateAuthorityProperties"
-  },
-  {
     "$type": "ObjectType",
-    "name": "CsrExtensions",
+    "name": "OtherName",
     "properties": {
-      "KeyUsage": {
+      "TypeId": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/26"
         },
-        "flags": 0
+        "flags": 1
       },
-      "SubjectInformationAccess": {
+      "Value": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/26"
         },
-        "flags": 0
+        "flags": 1
       }
     }
   },
@@ -1506,17 +1062,22 @@
     "properties": {
       "CrlConfiguration": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/49"
         },
         "flags": 0
       },
       "OcspConfiguration": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/60"
         },
         "flags": 0
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Rfc822Name",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1536,7 +1097,7 @@
       },
       "CustomAttributes": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/70"
         },
         "flags": 0
       },
@@ -1616,6 +1177,11 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SubjectInformationAccess",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
@@ -1633,9 +1199,42 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "UniformResourceIdentifier",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/92"
+      "$ref": "#/45"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/52"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/52"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/45"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ACMPCA/CertificateAuthorityProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/66"
     }
   },
   {
@@ -1658,7 +1257,7 @@
       },
       "CsrExtensions": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/51"
         },
         "flags": 4,
         "description": "Structure that contains CSR pass through extension information used by the CreateCertificateAuthority action."
@@ -1679,7 +1278,7 @@
       },
       "RevocationConfiguration": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/62"
         },
         "flags": 4,
         "description": "Certificate revocation information used by the CreateCertificateAuthority and UpdateCertificateAuthority actions."
@@ -1693,14 +1292,14 @@
       },
       "Subject": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/64"
         },
         "flags": 5,
         "description": "Structure that contains X.500 distinguished name information for your CA."
       },
       "Tags": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/73"
         },
         "flags": 4
       },
@@ -1735,14 +1334,14 @@
         "type": {
           "$ref": "#/26"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/74"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1752,7 +1351,7 @@
     "name": "AWS.ACMPCA/CertificateAuthority@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/95"
+      "$ref": "#/75"
     },
     "flags": 0
   },
@@ -1816,14 +1415,14 @@
         "type": {
           "$ref": "#/26"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/78"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1833,7 +1432,7 @@
     "name": "AWS.ACMPCA/CertificateAuthorityActivation@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/99"
+      "$ref": "#/79"
     },
     "flags": 0
   }

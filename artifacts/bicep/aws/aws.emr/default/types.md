@@ -3,23 +3,23 @@
 ## Resource AWS.EMR/Studio@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EMR/StudioProperties](#awsemrstudioproperties) (Required): properties of the resource
+* **properties**: [AWS.EMR/StudioProperties](#awsemrstudioproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EMR/StudioSessionMapping@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EMR/StudioSessionMappingProperties](#awsemrstudiosessionmappingproperties) (Required): properties of the resource
+* **properties**: [AWS.EMR/StudioSessionMappingProperties](#awsemrstudiosessionmappingproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EMR/WALWorkspace@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EMR/WALWorkspaceProperties](#awsemrwalworkspaceproperties): properties of the resource
+* **properties**: [AWS.EMR/WALWorkspaceProperties](#awsemrwalworkspaceproperties) (Identifier): properties of the resource
 
 ## AWS.EMR/StudioProperties
 ### Properties

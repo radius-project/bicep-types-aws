@@ -3,16 +3,16 @@
 ## Resource AWS.FIS/ExperimentTemplate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FIS/ExperimentTemplateProperties](#awsfisexperimenttemplateproperties) (Required): properties of the resource
+* **properties**: [AWS.FIS/ExperimentTemplateProperties](#awsfisexperimenttemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.FIS/TargetAccountConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FIS/TargetAccountConfigurationProperties](#awsfistargetaccountconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.FIS/TargetAccountConfigurationProperties](#awsfistargetaccountconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## AWS.FIS/ExperimentTemplateProperties
 ### Properties

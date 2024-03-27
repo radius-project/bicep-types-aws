@@ -3,23 +3,23 @@
 ## Resource AWS.CloudWatch/Alarm@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudWatch/AlarmProperties](#awscloudwatchalarmproperties) (Required): properties of the resource
+* **properties**: [AWS.CloudWatch/AlarmProperties](#awscloudwatchalarmproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudWatch/CompositeAlarm@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudWatch/CompositeAlarmProperties](#awscloudwatchcompositealarmproperties) (Required): properties of the resource
+* **properties**: [AWS.CloudWatch/CompositeAlarmProperties](#awscloudwatchcompositealarmproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudWatch/MetricStream@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudWatch/MetricStreamProperties](#awscloudwatchmetricstreamproperties) (Required): properties of the resource
+* **properties**: [AWS.CloudWatch/MetricStreamProperties](#awscloudwatchmetricstreamproperties) (Required, Identifier): properties of the resource
 
 ## AWS.CloudWatch/AlarmProperties
 ### Properties

@@ -3,44 +3,44 @@
 ## Resource AWS.DeviceFarm/DevicePool@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DeviceFarm/DevicePoolProperties](#awsdevicefarmdevicepoolproperties) (Required): properties of the resource
+* **properties**: [AWS.DeviceFarm/DevicePoolProperties](#awsdevicefarmdevicepoolproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DeviceFarm/InstanceProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DeviceFarm/InstanceProfileProperties](#awsdevicefarminstanceprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.DeviceFarm/InstanceProfileProperties](#awsdevicefarminstanceprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DeviceFarm/NetworkProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DeviceFarm/NetworkProfileProperties](#awsdevicefarmnetworkprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.DeviceFarm/NetworkProfileProperties](#awsdevicefarmnetworkprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DeviceFarm/Project@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DeviceFarm/ProjectProperties](#awsdevicefarmprojectproperties) (Required): properties of the resource
+* **properties**: [AWS.DeviceFarm/ProjectProperties](#awsdevicefarmprojectproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DeviceFarm/TestGridProject@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DeviceFarm/TestGridProjectProperties](#awsdevicefarmtestgridprojectproperties) (Required): properties of the resource
+* **properties**: [AWS.DeviceFarm/TestGridProjectProperties](#awsdevicefarmtestgridprojectproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DeviceFarm/VPCEConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DeviceFarm/VPCEConfigurationProperties](#awsdevicefarmvpceconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.DeviceFarm/VPCEConfigurationProperties](#awsdevicefarmvpceconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## AWS.DeviceFarm/DevicePoolProperties
 ### Properties

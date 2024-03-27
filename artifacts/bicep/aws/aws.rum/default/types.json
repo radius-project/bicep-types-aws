@@ -178,7 +178,7 @@
       },
       "MetricDefinitions": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "An array of structures which define the metrics that you want to send."
@@ -276,57 +276,9 @@
     "properties": {}
   },
   {
-    "$type": "ObjectType",
-    "name": "MetricDefinition",
-    "properties": {
-      "DimensionKeys": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0,
-        "description": "Use this field only if you are sending the metric to CloudWatch.\n\nThis field is a map of field paths to dimension names. It defines the dimensions to associate with this metric in CloudWatch. For extended metrics, valid values for the entries in this field are the following:\n\n\"metadata.pageId\": \"PageId\"\n\n\"metadata.browserName\": \"BrowserName\"\n\n\"metadata.deviceType\": \"DeviceType\"\n\n\"metadata.osName\": \"OSName\"\n\n\"metadata.countryCode\": \"CountryCode\"\n\n\"event_details.fileType\": \"FileType\"\n\nAll dimensions listed in this field must also be included in EventPattern."
-      },
-      "EventPattern": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0,
-        "description": "The pattern that defines the metric, specified as a JSON object. RUM checks events that happen in a user's session against the pattern, and events that match the pattern are sent to the metric destination.\n\nWhen you define extended metrics, the metric definition is not valid if EventPattern is omitted.\n\nExample event patterns:\n\n'{ \"event_type\": [\"com.amazon.rum.js_error_event\"], \"metadata\": { \"browserName\": [ \"Chrome\", \"Safari\" ], } }'\n\n'{ \"event_type\": [\"com.amazon.rum.performance_navigation_event\"], \"metadata\": { \"browserName\": [ \"Chrome\", \"Firefox\" ] }, \"event_details\": { \"duration\": [{ \"numeric\": [ \"<\", 2000 ] }] } }'\n\n'{ \"event_type\": [\"com.amazon.rum.performance_navigation_event\"], \"metadata\": { \"browserName\": [ \"Chrome\", \"Safari\" ], \"countryCode\": [ \"US\" ] }, \"event_details\": { \"duration\": [{ \"numeric\": [ \">=\", 2000, \"<\", 8000 ] }] } }'\n\nIf the metrics destination' is CloudWatch and the event also matches a value in DimensionKeys, then the metric is published with the specified dimensions."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 17,
-        "description": "The name for the metric that is defined in this structure. For extended metrics, valid values are the following:\n\nPerformanceNavigationDuration\n\nPerformanceResourceDuration\n\nNavigationSatisfiedTransaction\n\nNavigationToleratedTransaction\n\nNavigationFrustratedTransaction\n\nWebVitalsCumulativeLayoutShift\n\nWebVitalsFirstInputDelay\n\nWebVitalsLargestContentfulPaint\n\nJsErrorCount\n\nHttpErrorCount\n\nSessionCount"
-      },
-      "Namespace": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0,
-        "description": "The namespace used by CloudWatch Metrics for the metric that is defined in this structure"
-      },
-      "UnitLabel": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0,
-        "description": "The CloudWatch metric unit to use for this metric. If you omit this field, the metric is recorded with no unit."
-      },
-      "ValueKey": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0,
-        "description": "The field within the event object that the metric value is sourced from.\n\nIf you omit this field, a hardcoded value of 1 is pushed as the metric value. This is useful if you just want to count the number of events that the filter catches.\n\nIf this metric is sent to Evidently, this field will be passed to Evidently raw and Evidently will handle data extraction from the event."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/5"
     }
   },
   {
@@ -336,29 +288,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/8"
     }
   },
   {
@@ -366,98 +298,9 @@
     "value": "AWS.RUM/AppMonitorProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "AppMonitorConfiguration",
-    "properties": {
-      "AllowCookies": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0,
-        "description": "If you set this to true, the RUM web client sets two cookies, a session cookie and a user cookie. The cookies allow the RUM web client to collect data relating to the number of users an application has and the behavior of the application across a sequence of events. Cookies are stored in the top-level domain of the current page."
-      },
-      "EnableXRay": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0,
-        "description": "If you set this to true, RUM enables xray tracing for the user sessions that RUM samples. RUM adds an xray trace header to allowed HTTP requests. It also records an xray segment for allowed HTTP requests. You can see traces and segments from these user sessions in the xray console and the CW ServiceLens console."
-      },
-      "ExcludedPages": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "A list of URLs in your website or application to exclude from RUM data collection. You can't include both ExcludedPages and IncludedPages in the same operation."
-      },
-      "FavoritePages": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0,
-        "description": "A list of pages in the RUM console that are to be displayed with a favorite icon."
-      },
-      "GuestRoleArn": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0,
-        "description": "The ARN of the guest IAM role that is attached to the identity pool that is used to authorize the sending of data to RUM."
-      },
-      "IdentityPoolId": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0,
-        "description": "The ID of the identity pool that is used to authorize the sending of data to RUM."
-      },
-      "IncludedPages": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "If this app monitor is to collect data from only certain pages in your application, this structure lists those pages. You can't include both ExcludedPages and IncludedPages in the same operation."
-      },
-      "MetricDestinations": {
-        "type": {
-          "$ref": "#/17"
-        },
-        "flags": 0,
-        "description": "An array of structures which define the destinations and the metrics that you want to send."
-      },
-      "SessionSampleRate": {
-        "type": {
-          "$ref": "#/18"
-        },
-        "flags": 0,
-        "description": "Specifies the percentage of user sessions to use for RUM data collection. Choosing a higher percentage gives you more data but also incurs more costs. The number you specify is the percentage of user sessions that will be used. If you omit this parameter, the default of 10 is used."
-      },
-      "Telemetries": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "An array that lists the types of telemetry data that this app monitor is to collect."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomEvents",
-    "properties": {
-      "Status": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0,
-        "description": "Indicates whether AppMonitor accepts custom events."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/8"
     }
   },
   {
@@ -466,13 +309,13 @@
     "properties": {
       "AppMonitorConfiguration": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/0"
         },
         "flags": 0
       },
       "CustomEvents": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/2"
         },
         "flags": 0
       },
@@ -506,7 +349,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/26"
         },
         "flags": 0
       }
@@ -527,14 +370,14 @@
         "type": {
           "$ref": "#/13"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/27"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -544,7 +387,7 @@
     "name": "AWS.RUM/AppMonitor@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/32"
+      "$ref": "#/28"
     },
     "flags": 0
   }

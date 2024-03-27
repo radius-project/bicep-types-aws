@@ -3,9 +3,9 @@
 ## Resource AWS.ARCZonalShift/ZonalAutoshiftConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ARCZonalShift/ZonalAutoshiftConfigurationProperties](#awsarczonalshiftzonalautoshiftconfigurationproperties): properties of the resource
+* **properties**: [AWS.ARCZonalShift/ZonalAutoshiftConfigurationProperties](#awsarczonalshiftzonalautoshiftconfigurationproperties) (Identifier): properties of the resource
 
 ## AWS.ARCZonalShift/ZonalAutoshiftConfigurationProperties
 ### Properties

@@ -29,7 +29,7 @@
       },
       "ScalableTargetAction": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/0"
         },
         "flags": 0
       },
@@ -65,19 +65,19 @@
     "properties": {
       "DynamicScalingInSuspended": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DynamicScalingOutSuspended": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "ScheduledScalingSuspended": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/5"
         },
         "flags": 0
       }
@@ -90,24 +90,6 @@
     "$type": "StringType"
   },
   {
-    "$type": "ObjectType",
-    "name": "ScalableTargetAction",
-    "properties": {
-      "MaxCapacity": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0
-      },
-      "MinCapacity": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
     "$type": "BooleanType"
   },
   {
@@ -115,75 +97,9 @@
     "value": "AWS.ApplicationAutoScaling/ScalableTargetProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "ScheduledAction",
-    "properties": {
-      "EndTime": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0
-      },
-      "ScalableTargetAction": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0
-      },
-      "Schedule": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1
-      },
-      "ScheduledActionName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1
-      },
-      "StartTime": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0
-      },
-      "Timezone": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SuspendedState",
-    "properties": {
-      "DynamicScalingInSuspended": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0
-      },
-      "DynamicScalingOutSuspended": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0
-      },
-      "ScheduledScalingSuspended": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0
-      }
+      "$ref": "#/1"
     }
   },
   {
@@ -234,7 +150,7 @@
       },
       "ScheduledActions": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "The scheduled actions for the scalable target. Duplicates aren't allowed."
@@ -248,7 +164,7 @@
       },
       "SuspendedState": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "An embedded object that contains attributes and attribute values that are used to suspend and resume automatic scaling. Setting the value of an attribute to true suspends the specified scaling activities. Setting it to false (default) resumes the specified scaling activities."
@@ -270,14 +186,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/8"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -287,7 +203,7 @@
     "name": "AWS.ApplicationAutoScaling/ScalableTarget@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/12"
+      "$ref": "#/9"
     },
     "flags": 0
   },
@@ -297,7 +213,7 @@
     "properties": {
       "Dimensions": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "The dimensions of the metric."
@@ -311,7 +227,7 @@
       },
       "Metrics": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "The metrics to include in the target tracking scaling policy, as a metric data query. This can include both raw metric and metric math expressions."
@@ -440,7 +356,7 @@
       },
       "StepAdjustments": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "A set of adjustments that enable you to scale based on the size of the alarm breach."
@@ -453,7 +369,7 @@
     "properties": {
       "Dimensions": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The dimensions for the metric."
@@ -501,14 +417,14 @@
       },
       "MetricStat": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "Information about the metric data to return."
       },
       "ReturnData": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "Indicates whether to return the timestamps and raw data values of this metric."
@@ -541,7 +457,7 @@
     "properties": {
       "Metric": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "The CloudWatch metric to return, including the metric name, namespace, and dimensions. "
@@ -568,21 +484,21 @@
     "properties": {
       "CustomizedMetricSpecification": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "A customized metric. You can specify either a predefined metric or a customized metric."
       },
       "DisableScaleIn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "Indicates whether scale in by the target tracking scaling policy is disabled. If the value is true, scale in is disabled and the target tracking scaling policy won't remove capacity from the scalable target. Otherwise, scale in is enabled and the target tracking scaling policy can remove capacity from the scalable target. The default value is false."
       },
       "PredefinedMetricSpecification": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "A predefined metric. You can specify either a predefined metric or a customized metric."
@@ -613,241 +529,30 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/15"
+      "$ref": "#/12"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "StepAdjustment",
-    "properties": {
-      "MetricIntervalLowerBound": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The lower bound for the difference between the alarm threshold and the CloudWatch metric. If the metric value is above the breach threshold, the lower bound is inclusive (the metric must be greater than or equal to the threshold plus the lower bound). Otherwise, it is exclusive (the metric must be greater than the threshold plus the lower bound). A null value indicates negative infinity."
-      },
-      "MetricIntervalUpperBound": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The upper bound for the difference between the alarm threshold and the CloudWatch metric. If the metric value is above the breach threshold, the upper bound is exclusive (the metric must be less than the threshold plus the upper bound). Otherwise, it is inclusive (the metric must be less than or equal to the threshold plus the upper bound). A null value indicates positive infinity."
-      },
-      "ScalingAdjustment": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The amount by which to scale, based on the specified adjustment type. A positive value adds to the current capacity while a negative number removes from the current capacity. For exact capacity, you must specify a positive value."
-      }
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/14"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/21"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TargetTrackingMetric",
-    "properties": {
-      "Dimensions": {
-        "type": {
-          "$ref": "#/28"
-        },
-        "flags": 0,
-        "description": "The dimensions for the metric."
-      },
-      "MetricName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The name of the metric."
-      },
-      "Namespace": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The namespace of the metric."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomizedMetricSpecification",
-    "properties": {
-      "Dimensions": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0,
-        "description": "The dimensions of the metric."
-      },
-      "MetricName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The name of the metric. To get the exact metric name, namespace, and dimensions, inspect the Metric object that is returned by a call to ListMetrics."
-      },
-      "Metrics": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 0,
-        "description": "The metrics to include in the target tracking scaling policy, as a metric data query. This can include both raw metric and metric math expressions."
-      },
-      "Namespace": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The namespace of the metric."
-      },
-      "Statistic": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The statistic of the metric."
-      },
-      "Unit": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The unit of the metric. For a complete list of the units that CloudWatch supports, see the MetricDatum data type in the Amazon CloudWatch API Reference."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PredefinedMetricSpecification",
-    "properties": {
-      "PredefinedMetricType": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The metric type. The ALBRequestCountPerTarget metric type applies only to Spot Fleets and ECS services."
-      },
-      "ResourceLabel": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 4,
-        "description": "Identifies the resource associated with the metric type. You can't specify a resource label unless the metric type is ALBRequestCountPerTarget and there is a target group attached to the Spot Fleet or ECS service."
-      }
+      "$ref": "#/18"
     }
   },
   {
     "$type": "StringLiteralType",
     "value": "AWS.ApplicationAutoScaling/ScalingPolicyProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "StepScalingPolicyConfiguration",
-    "properties": {
-      "AdjustmentType": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Specifies how the ScalingAdjustment value in a StepAdjustment is interpreted."
-      },
-      "Cooldown": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The amount of time, in seconds, to wait for a previous scaling activity to take effect."
-      },
-      "MetricAggregationType": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The aggregation type for the CloudWatch metrics. Valid values are Minimum, Maximum, and Average. If the aggregation type is null, the value is treated as Average"
-      },
-      "MinAdjustmentMagnitude": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The minimum value to scale by when the adjustment type is PercentChangeInCapacity."
-      },
-      "StepAdjustments": {
-        "type": {
-          "$ref": "#/27"
-        },
-        "flags": 0,
-        "description": "A set of adjustments that enable you to scale based on the size of the alarm breach."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TargetTrackingScalingPolicyConfiguration",
-    "properties": {
-      "CustomizedMetricSpecification": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0,
-        "description": "A customized metric. You can specify either a predefined metric or a customized metric."
-      },
-      "DisableScaleIn": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0,
-        "description": "Indicates whether scale in by the target tracking scaling policy is disabled. If the value is true, scale in is disabled and the target tracking scaling policy won't remove capacity from the scalable target. Otherwise, scale in is enabled and the target tracking scaling policy can remove capacity from the scalable target. The default value is false."
-      },
-      "PredefinedMetricSpecification": {
-        "type": {
-          "$ref": "#/31"
-        },
-        "flags": 0,
-        "description": "A predefined metric. You can specify either a predefined metric or a customized metric."
-      },
-      "ScaleInCooldown": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The amount of time, in seconds, after a scale-in activity completes before another scale-in activity can start."
-      },
-      "ScaleOutCooldown": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The amount of time, in seconds, to wait for a previous scale-out activity to take effect."
-      },
-      "TargetValue": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The target value for the metric. Although this property accepts numbers of type Double, it won't accept values that are either too small or too large. Values must be in the range of -2^360 to 2^360. The value must be a valid number based on the choice of metric. For example, if the metric is CPU utilization, then the target value is a percent value that represents how much of the CPU can be used before scaling out."
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -904,14 +609,14 @@
       },
       "StepScalingPolicyConfiguration": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "A step scaling policy."
       },
       "TargetTrackingScalingPolicyConfiguration": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "A target tracking scaling policy."
@@ -933,14 +638,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/26"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -950,7 +655,7 @@
     "name": "AWS.ApplicationAutoScaling/ScalingPolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/36"
+      "$ref": "#/27"
     },
     "flags": 0
   }

@@ -3,16 +3,16 @@
 ## Resource AWS.ApplicationAutoScaling/ScalableTarget@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ApplicationAutoScaling/ScalableTargetProperties](#awsapplicationautoscalingscalabletargetproperties) (Required): properties of the resource
+* **properties**: [AWS.ApplicationAutoScaling/ScalableTargetProperties](#awsapplicationautoscalingscalabletargetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApplicationAutoScaling/ScalingPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ApplicationAutoScaling/ScalingPolicyProperties](#awsapplicationautoscalingscalingpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.ApplicationAutoScaling/ScalingPolicyProperties](#awsapplicationautoscalingscalingpolicyproperties) (Required, Identifier): properties of the resource
 
 ## AWS.ApplicationAutoScaling/ScalableTargetProperties
 ### Properties

@@ -103,18 +103,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "InstanceAssociationOutputLocation",
-    "properties": {
-      "S3Location": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "Association_Parameters",
     "properties": {}
   },
@@ -122,27 +110,9 @@
     "$type": "IntegerType"
   },
   {
-    "$type": "ObjectType",
-    "name": "Target",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "Values": {
-        "type": {
-          "$ref": "#/9"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/16"
+      "$ref": "#/6"
     }
   },
   {
@@ -222,13 +192,13 @@
       },
       "OutputLocation": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/0"
         },
         "flags": 0
       },
       "Parameters": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "Parameter values that the SSM document uses at runtime."
@@ -242,7 +212,7 @@
       },
       "ScheduleOffset": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0
       },
@@ -254,14 +224,14 @@
       },
       "Targets": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The targets that the SSM document sends commands to."
       },
       "WaitForSuccessTimeoutSeconds": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 4
       }
@@ -282,14 +252,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/16"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -299,7 +269,7 @@
     "name": "AWS.SSM/Association@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/19"
+      "$ref": "#/17"
     },
     "flags": 0
   },
@@ -323,7 +293,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "The value of a key-value pair that identifies the location of an attachment to a document. The format for Value depends on the type of key you specify."
@@ -348,109 +318,6 @@
         "flags": 0,
         "description": "The document version required by the current document."
       }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/7"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.SSM/DocumentProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AttachmentsSource",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The key of a key-value pair that identifies the location of an attachment to a document."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 16,
-        "description": "The name of the document attachment file."
-      },
-      "Values": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0,
-        "description": "The value of a key-value pair that identifies the location of an attachment to a document. The format for Value depends on the type of key you specify."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/26"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Document_Content",
-    "properties": {}
-  },
-  {
-    "$type": "UnionType",
-    "elements": [
-      {
-        "$ref": "#/28"
-      },
-      {
-        "$ref": "#/7"
-      }
-    ]
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DocumentRequires",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 16,
-        "description": "The name of the required SSM document. The name can be an Amazon Resource Name (ARN)."
-      },
-      "Version": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The document version required by the current document."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/30"
     }
   },
   {
@@ -476,7 +343,45 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/32"
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SSM/DocumentProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Document_Content",
+    "properties": {}
+  },
+  {
+    "$type": "UnionType",
+    "elements": [
+      {
+        "$ref": "#/25"
+      },
+      {
+        "$ref": "#/7"
+      }
+    ]
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/20"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/21"
     }
   },
   {
@@ -485,14 +390,14 @@
     "properties": {
       "Attachments": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/24"
         },
         "flags": 4,
         "description": "A list of key and value pairs that describe attachments to a version of a document."
       },
       "Content": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/26"
         },
         "flags": 1,
         "description": "The content for the Systems Manager document in JSON, YAML or String format."
@@ -520,14 +425,14 @@
       },
       "Requires": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "A list of SSM documents required by a document. For example, an ApplicationConfiguration document requires an ApplicationConfigurationSchema document."
       },
       "Tags": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment."
@@ -570,14 +475,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/29"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -587,7 +492,7 @@
     "name": "AWS.SSM/Document@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/35"
+      "$ref": "#/30"
     },
     "flags": 0
   },
@@ -641,7 +546,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/33"
         },
         "flags": 4,
         "description": "Optional metadata that you assign to a resource in the form of an arbitrary set of tags (key-value pairs). Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag a SYS parameter to identify the type of resource to which it applies, the environment, or the type of configuration data referenced by the parameter."
@@ -684,14 +589,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/34"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -701,7 +606,7 @@
     "name": "AWS.SSM/Parameter@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/40"
+      "$ref": "#/35"
     },
     "flags": 0
   },
@@ -717,7 +622,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/43"
         },
         "flags": 0
       }
@@ -729,7 +634,7 @@
     "properties": {
       "PatchFilters": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/44"
         },
         "flags": 0
       }
@@ -753,7 +658,7 @@
       },
       "Products": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/45"
         },
         "flags": 0
       }
@@ -765,7 +670,7 @@
     "properties": {
       "ApproveAfterDays": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0
       },
@@ -789,7 +694,7 @@
       },
       "PatchFilterGroup": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/38"
         },
         "flags": 0
       }
@@ -801,169 +706,10 @@
     "properties": {
       "PatchRules": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/46"
         },
         "flags": 0
       }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/7"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PatchFilter",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "Values": {
-        "type": {
-          "$ref": "#/48"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/49"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/7"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PatchFilterGroup",
-    "properties": {
-      "PatchFilters": {
-        "type": {
-          "$ref": "#/50"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Rule",
-    "properties": {
-      "ApproveAfterDays": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0
-      },
-      "ApproveUntilDate": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "ComplianceLevel": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "EnableNonSecurity": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0
-      },
-      "PatchFilterGroup": {
-        "type": {
-          "$ref": "#/52"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/53"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.SSM/PatchBaselineProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RuleGroup",
-    "properties": {
-      "PatchRules": {
-        "type": {
-          "$ref": "#/54"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/7"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/7"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/7"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PatchSource",
-    "properties": {
-      "Configuration": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "Products": {
-        "type": {
-          "$ref": "#/51"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/60"
     }
   },
   {
@@ -987,7 +733,59 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/62"
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/37"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SSM/PatchBaselineProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/39"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/42"
     }
   },
   {
@@ -996,13 +794,13 @@
     "properties": {
       "ApprovalRules": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "ApprovedPatches": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "A list of explicitly approved patches for the baseline."
@@ -1037,7 +835,7 @@
       },
       "GlobalFilters": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "A set of global filters used to include patches in the baseline."
@@ -1065,14 +863,14 @@
       },
       "PatchGroups": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "PatchGroups is used to associate instances with a specific patch baseline"
       },
       "RejectedPatches": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "A list of explicitly rejected patches for the baseline."
@@ -1086,14 +884,14 @@
       },
       "Sources": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "Information about the patches to use to update the instances, including target operating systems and source repository. Applies to Linux instances only."
       },
       "Tags": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways."
@@ -1115,14 +913,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/53"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1132,7 +930,7 @@
     "name": "AWS.SSM/PatchBaseline@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/65"
+      "$ref": "#/54"
     },
     "flags": 0
   },
@@ -1148,7 +946,7 @@
       },
       "OrganizationalUnits": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/59"
         },
         "flags": 0
       }
@@ -1196,7 +994,7 @@
     "properties": {
       "AwsOrganizationsSource": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/56"
         },
         "flags": 0
       },
@@ -1208,7 +1006,7 @@
       },
       "SourceRegions": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/60"
         },
         "flags": 1
       },
@@ -1224,24 +1022,6 @@
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/7"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AwsOrganizationsSource",
-    "properties": {
-      "OrganizationSourceType": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "OrganizationalUnits": {
-        "type": {
-          "$ref": "#/70"
-        },
-        "flags": 0
-      }
     }
   },
   {
@@ -1253,72 +1033,6 @@
   {
     "$type": "StringLiteralType",
     "value": "AWS.SSM/ResourceDataSyncProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "S3Destination",
-    "properties": {
-      "BucketName": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "BucketPrefix": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "BucketRegion": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "KMSKeyArn": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "SyncFormat": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SyncSource",
-    "properties": {
-      "AwsOrganizationsSource": {
-        "type": {
-          "$ref": "#/71"
-        },
-        "flags": 0
-      },
-      "IncludeFutureRegions": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0
-      },
-      "SourceRegions": {
-        "type": {
-          "$ref": "#/72"
-        },
-        "flags": 1
-      },
-      "SourceType": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -1350,7 +1064,7 @@
       },
       "S3Destination": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/57"
         },
         "flags": 0
       },
@@ -1368,7 +1082,7 @@
       },
       "SyncSource": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/58"
         },
         "flags": 0
       },
@@ -1395,14 +1109,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/62"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1412,7 +1126,7 @@
     "name": "AWS.SSM/ResourceDataSync@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/77"
+      "$ref": "#/63"
     },
     "flags": 0
   },
@@ -1429,7 +1143,7 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/80"
+        "$ref": "#/66"
       },
       {
         "$ref": "#/7"
@@ -1442,7 +1156,7 @@
     "properties": {
       "Policy": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/67"
         },
         "flags": 1,
         "description": "Actual policy statement."
@@ -1485,14 +1199,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/68"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1502,7 +1216,7 @@
     "name": "AWS.SSM/ResourcePolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/83"
+      "$ref": "#/69"
     },
     "flags": 0
   }

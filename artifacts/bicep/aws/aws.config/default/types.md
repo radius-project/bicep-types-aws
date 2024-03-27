@@ -3,44 +3,44 @@
 ## Resource AWS.Config/AggregationAuthorization@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Config/AggregationAuthorizationProperties](#awsconfigaggregationauthorizationproperties) (Required): properties of the resource
+* **properties**: [AWS.Config/AggregationAuthorizationProperties](#awsconfigaggregationauthorizationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Config/ConfigRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Config/ConfigRuleProperties](#awsconfigconfigruleproperties) (Required): properties of the resource
+* **properties**: [AWS.Config/ConfigRuleProperties](#awsconfigconfigruleproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Config/ConfigurationAggregator@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Config/ConfigurationAggregatorProperties](#awsconfigconfigurationaggregatorproperties): properties of the resource
+* **properties**: [AWS.Config/ConfigurationAggregatorProperties](#awsconfigconfigurationaggregatorproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Config/ConformancePack@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Config/ConformancePackProperties](#awsconfigconformancepackproperties) (Required): properties of the resource
+* **properties**: [AWS.Config/ConformancePackProperties](#awsconfigconformancepackproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Config/OrganizationConformancePack@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Config/OrganizationConformancePackProperties](#awsconfigorganizationconformancepackproperties) (Required): properties of the resource
+* **properties**: [AWS.Config/OrganizationConformancePackProperties](#awsconfigorganizationconformancepackproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Config/StoredQuery@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Config/StoredQueryProperties](#awsconfigstoredqueryproperties) (Required): properties of the resource
+* **properties**: [AWS.Config/StoredQueryProperties](#awsconfigstoredqueryproperties) (Required, Identifier): properties of the resource
 
 ## AccountAggregationSource
 ### Properties

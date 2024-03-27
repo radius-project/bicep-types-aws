@@ -3,72 +3,72 @@
 ## Resource AWS.VpcLattice/AccessLogSubscription@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.VpcLattice/AccessLogSubscriptionProperties](#awsvpclatticeaccesslogsubscriptionproperties) (Required): properties of the resource
+* **properties**: [AWS.VpcLattice/AccessLogSubscriptionProperties](#awsvpclatticeaccesslogsubscriptionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/AuthPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.VpcLattice/AuthPolicyProperties](#awsvpclatticeauthpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.VpcLattice/AuthPolicyProperties](#awsvpclatticeauthpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/Listener@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.VpcLattice/ListenerProperties](#awsvpclatticelistenerproperties) (Required): properties of the resource
+* **properties**: [AWS.VpcLattice/ListenerProperties](#awsvpclatticelistenerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/ResourcePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.VpcLattice/ResourcePolicyProperties](#awsvpclatticeresourcepolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.VpcLattice/ResourcePolicyProperties](#awsvpclatticeresourcepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/Rule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.VpcLattice/RuleProperties](#awsvpclatticeruleproperties) (Required): properties of the resource
+* **properties**: [AWS.VpcLattice/RuleProperties](#awsvpclatticeruleproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/Service@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.VpcLattice/ServiceProperties](#awsvpclatticeserviceproperties): properties of the resource
+* **properties**: [AWS.VpcLattice/ServiceProperties](#awsvpclatticeserviceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/ServiceNetwork@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.VpcLattice/ServiceNetworkProperties](#awsvpclatticeservicenetworkproperties): properties of the resource
+* **properties**: [AWS.VpcLattice/ServiceNetworkProperties](#awsvpclatticeservicenetworkproperties) (Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/ServiceNetworkServiceAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.VpcLattice/ServiceNetworkServiceAssociationProperties](#awsvpclatticeservicenetworkserviceassociationproperties): properties of the resource
+* **properties**: [AWS.VpcLattice/ServiceNetworkServiceAssociationProperties](#awsvpclatticeservicenetworkserviceassociationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/ServiceNetworkVpcAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.VpcLattice/ServiceNetworkVpcAssociationProperties](#awsvpclatticeservicenetworkvpcassociationproperties): properties of the resource
+* **properties**: [AWS.VpcLattice/ServiceNetworkVpcAssociationProperties](#awsvpclatticeservicenetworkvpcassociationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/TargetGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.VpcLattice/TargetGroupProperties](#awsvpclatticetargetgroupproperties) (Required): properties of the resource
+* **properties**: [AWS.VpcLattice/TargetGroupProperties](#awsvpclatticetargetgroupproperties) (Required, Identifier): properties of the resource
 
 ## Action
 ### Properties

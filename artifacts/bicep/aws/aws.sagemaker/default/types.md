@@ -3,121 +3,121 @@
 ## Resource AWS.SageMaker/AppImageConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/AppImageConfigProperties](#awssagemakerappimageconfigproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/AppImageConfigProperties](#awssagemakerappimageconfigproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/Device@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/DeviceProperties](#awssagemakerdeviceproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/DeviceProperties](#awssagemakerdeviceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/DeviceFleet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/DeviceFleetProperties](#awssagemakerdevicefleetproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/DeviceFleetProperties](#awssagemakerdevicefleetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/Domain@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/DomainProperties](#awssagemakerdomainproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/DomainProperties](#awssagemakerdomainproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/FeatureGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/FeatureGroupProperties](#awssagemakerfeaturegroupproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/FeatureGroupProperties](#awssagemakerfeaturegroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/Image@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/ImageProperties](#awssagemakerimageproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/ImageProperties](#awssagemakerimageproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/ImageVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/ImageVersionProperties](#awssagemakerimageversionproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/ImageVersionProperties](#awssagemakerimageversionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/InferenceComponent@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/InferenceComponentProperties](#awssagemakerinferencecomponentproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/InferenceComponentProperties](#awssagemakerinferencecomponentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/InferenceExperiment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/InferenceExperimentProperties](#awssagemakerinferenceexperimentproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/InferenceExperimentProperties](#awssagemakerinferenceexperimentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/ModelCard@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/ModelCardProperties](#awssagemakermodelcardproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/ModelCardProperties](#awssagemakermodelcardproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/ModelPackage@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/ModelPackageProperties](#awssagemakermodelpackageproperties): properties of the resource
+* **properties**: [AWS.SageMaker/ModelPackageProperties](#awssagemakermodelpackageproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/ModelPackageGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/ModelPackageGroupProperties](#awssagemakermodelpackagegroupproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/ModelPackageGroupProperties](#awssagemakermodelpackagegroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/MonitoringSchedule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/MonitoringScheduleProperties](#awssagemakermonitoringscheduleproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/MonitoringScheduleProperties](#awssagemakermonitoringscheduleproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/Pipeline@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/PipelineProperties](#awssagemakerpipelineproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/PipelineProperties](#awssagemakerpipelineproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/Project@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/ProjectProperties](#awssagemakerprojectproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/ProjectProperties](#awssagemakerprojectproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/Space@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/SpaceProperties](#awssagemakerspaceproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/SpaceProperties](#awssagemakerspaceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/UserProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SageMaker/UserProfileProperties](#awssagemakeruserprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.SageMaker/UserProfileProperties](#awssagemakeruserprofileproperties) (Required, Identifier): properties of the resource
 
 ## AdditionalInferenceSpecificationDefinition
 ### Properties
@@ -1055,21 +1055,21 @@
 ## ResourceSpec
 ### Properties
 * **InstanceType**: string: The instance type that the image version runs on.
-* **SageMakerImageArn**: string: The ARN of the SageMaker image that the image version belongs to.
-* **SageMakerImageVersionArn**: string: The ARN of the image version created on the instance.
-
-## ResourceSpec
-### Properties
-* **InstanceType**: string: The instance type that the image version runs on.
-* **SageMakerImageArn**: string: The ARN of the SageMaker image that the image version belongs to.
-* **SageMakerImageVersionArn**: string: The ARN of the image version created on the instance.
-
-## ResourceSpec
-### Properties
-* **InstanceType**: string: The instance type that the image version runs on.
 * **LifecycleConfigArn**: string: The Amazon Resource Name (ARN) of the Lifecycle Configuration to attach to the Resource.
 * **SageMakerImageArn**: string: The Amazon Resource Name (ARN) of the SageMaker image that the image version belongs to.
 * **SageMakerImageVersionArn**: string: The Amazon Resource Name (ARN) of the image version created on the instance.
+
+## ResourceSpec
+### Properties
+* **InstanceType**: string: The instance type that the image version runs on.
+* **SageMakerImageArn**: string: The ARN of the SageMaker image that the image version belongs to.
+* **SageMakerImageVersionArn**: string: The ARN of the image version created on the instance.
+
+## ResourceSpec
+### Properties
+* **InstanceType**: string: The instance type that the image version runs on.
+* **SageMakerImageArn**: string: The ARN of the SageMaker image that the image version belongs to.
+* **SageMakerImageVersionArn**: string: The ARN of the image version created on the instance.
 
 ## RSessionAppSettings
 ### Properties
@@ -1140,6 +1140,11 @@
 * **NotebookOutputOption**: string: Whether to include the notebook cell output when sharing the notebook. The default is Disabled.
 * **S3KmsKeyId**: string: When NotebookOutputOption is Allowed, the AWS Key Management Service (KMS) encryption key ID used to encrypt the notebook cell output in the Amazon S3 bucket.
 * **S3OutputPath**: string: When NotebookOutputOption is Allowed, the Amazon S3 bucket used to store the shared notebook snapshots.
+
+## SourceAlgorithm
+### Properties
+* **AlgorithmName**: string (Required): The name of an algorithm that was used to create the model package. The algorithm must be either an algorithm resource in your SageMaker account or an algorithm in AWS Marketplace that you are subscribed to.
+* **ModelDataUrl**: string: The Amazon S3 path where the model artifacts, which result from model training, are stored.
 
 ## SourceAlgorithm
 ### Properties

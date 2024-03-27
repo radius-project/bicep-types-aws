@@ -3,30 +3,30 @@
 ## Resource AWS.SSMContacts/Contact@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSMContacts/ContactProperties](#awsssmcontactscontactproperties) (Required): properties of the resource
+* **properties**: [AWS.SSMContacts/ContactProperties](#awsssmcontactscontactproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSMContacts/ContactChannel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSMContacts/ContactChannelProperties](#awsssmcontactscontactchannelproperties) (Required): properties of the resource
+* **properties**: [AWS.SSMContacts/ContactChannelProperties](#awsssmcontactscontactchannelproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSMContacts/Plan@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSMContacts/PlanProperties](#awsssmcontactsplanproperties) (Required): properties of the resource
+* **properties**: [AWS.SSMContacts/PlanProperties](#awsssmcontactsplanproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSMContacts/Rotation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSMContacts/RotationProperties](#awsssmcontactsrotationproperties) (Required): properties of the resource
+* **properties**: [AWS.SSMContacts/RotationProperties](#awsssmcontactsrotationproperties) (Required, Identifier): properties of the resource
 
 ## AWS.SSMContacts/ContactChannelProperties
 ### Properties

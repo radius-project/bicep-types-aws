@@ -3,79 +3,79 @@
 ## Resource AWS.NetworkManager/ConnectAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/ConnectAttachmentProperties](#awsnetworkmanagerconnectattachmentproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkManager/ConnectAttachmentProperties](#awsnetworkmanagerconnectattachmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkManager/ConnectPeer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/ConnectPeerProperties](#awsnetworkmanagerconnectpeerproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkManager/ConnectPeerProperties](#awsnetworkmanagerconnectpeerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkManager/CoreNetwork@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/CoreNetworkProperties](#awsnetworkmanagercorenetworkproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkManager/CoreNetworkProperties](#awsnetworkmanagercorenetworkproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkManager/Device@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/DeviceProperties](#awsnetworkmanagerdeviceproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkManager/DeviceProperties](#awsnetworkmanagerdeviceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkManager/GlobalNetwork@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/GlobalNetworkProperties](#awsnetworkmanagerglobalnetworkproperties): properties of the resource
+* **properties**: [AWS.NetworkManager/GlobalNetworkProperties](#awsnetworkmanagerglobalnetworkproperties) (Identifier): properties of the resource
 
 ## Resource AWS.NetworkManager/Link@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/LinkProperties](#awsnetworkmanagerlinkproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkManager/LinkProperties](#awsnetworkmanagerlinkproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkManager/Site@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/SiteProperties](#awsnetworkmanagersiteproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkManager/SiteProperties](#awsnetworkmanagersiteproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkManager/SiteToSiteVpnAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/SiteToSiteVpnAttachmentProperties](#awsnetworkmanagersitetositevpnattachmentproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkManager/SiteToSiteVpnAttachmentProperties](#awsnetworkmanagersitetositevpnattachmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkManager/TransitGatewayPeering@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/TransitGatewayPeeringProperties](#awsnetworkmanagertransitgatewaypeeringproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkManager/TransitGatewayPeeringProperties](#awsnetworkmanagertransitgatewaypeeringproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkManager/TransitGatewayRouteTableAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/TransitGatewayRouteTableAttachmentProperties](#awsnetworkmanagertransitgatewayroutetableattachmentproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkManager/TransitGatewayRouteTableAttachmentProperties](#awsnetworkmanagertransitgatewayroutetableattachmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkManager/VpcAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkManager/VpcAttachmentProperties](#awsnetworkmanagervpcattachmentproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkManager/VpcAttachmentProperties](#awsnetworkmanagervpcattachmentproperties) (Required, Identifier): properties of the resource
 
 ## AWS.NetworkManager/ConnectAttachmentProperties
 ### Properties

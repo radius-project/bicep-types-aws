@@ -112,7 +112,7 @@
       },
       "PhysicalResourceId": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/3"
         },
         "flags": 1
       },
@@ -150,151 +150,20 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "PhysicalResourceId",
-    "properties": {
-      "AwsAccountId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "AwsRegion": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "Identifier": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.ResilienceHub/AppProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "EventSubscription",
-    "properties": {
-      "EventType": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "The type of event you would like to subscribe and get notification for."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "Unique name to identify an event subscription."
-      },
-      "SnsTopicArn": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Amazon Resource Name (ARN) of the Amazon Simple Notification Service topic."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/4"
     }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PermissionModel",
-    "properties": {
-      "CrossAccountRoleArns": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0,
-        "description": "Defines a list of role Amazon Resource Names (ARNs) to be used in other accounts. These ARNs are used for querying purposes while importing resources and assessing your application."
-      },
-      "InvokerRoleName": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Existing AWS IAM role name in the primary AWS account that will be assumed by AWS Resilience Hub Service Principle to obtain a read-only access to your application resources while running an assessment."
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "Defines how AWS Resilience Hub scans your resources. It can scan for the resources by using a pre-existing role in your AWS account, or by using the credentials of the current IAM user."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ResourceMapping",
-    "properties": {
-      "EksSourceName": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "LogicalStackName": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "MappingType": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "PhysicalResourceId": {
-        "type": {
-          "$ref": "#/9"
-        },
-        "flags": 1
-      },
-      "ResourceName": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "TerraformSourceName": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/14"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TagMap",
-    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -337,7 +206,7 @@
       },
       "EventSubscriptions": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The list of events you would like to subscribe and get notification for."
@@ -351,7 +220,7 @@
       },
       "PermissionModel": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/2"
         },
         "flags": 0
       },
@@ -364,14 +233,14 @@
       },
       "ResourceMappings": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/11"
         },
         "flags": 1,
         "description": "An array of ResourceMapping objects."
       },
       "Tags": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/5"
         },
         "flags": 0
       }
@@ -392,14 +261,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/12"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -409,7 +278,7 @@
     "name": "AWS.ResilienceHub/App@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/18"
+      "$ref": "#/13"
     },
     "flags": 0
   },
@@ -419,14 +288,14 @@
     "properties": {
       "RpoInSecs": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/19"
         },
         "flags": 1,
         "description": "RPO in seconds."
       },
       "RtoInSecs": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/19"
         },
         "flags": 1,
         "description": "RTO in seconds."
@@ -457,16 +326,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "PolicyMap",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TagMap",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
     "name": "AWS.ResilienceHub/ResiliencyPolicyProperties",
     "properties": {
       "DataLocationConstraint": {
@@ -478,7 +337,7 @@
       },
       "Policy": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/16"
         },
         "flags": 1
       },
@@ -505,7 +364,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/17"
         },
         "flags": 0
       },
@@ -533,14 +392,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/21"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -550,7 +409,7 @@
     "name": "AWS.ResilienceHub/ResiliencyPolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/29"
+      "$ref": "#/22"
     },
     "flags": 0
   }

@@ -3,9 +3,9 @@
 ## Resource AWS.AuditManager/Assessment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AuditManager/AssessmentProperties](#awsauditmanagerassessmentproperties): properties of the resource
+* **properties**: [AWS.AuditManager/AssessmentProperties](#awsauditmanagerassessmentproperties) (Identifier): properties of the resource
 
 ## AssessmentReportsDestination
 ### Properties

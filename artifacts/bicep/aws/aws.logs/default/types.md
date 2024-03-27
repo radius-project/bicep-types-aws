@@ -3,79 +3,79 @@
 ## Resource AWS.Logs/AccountPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Logs/AccountPolicyProperties](#awslogsaccountpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.Logs/AccountPolicyProperties](#awslogsaccountpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/Delivery@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Logs/DeliveryProperties](#awslogsdeliveryproperties) (Required): properties of the resource
+* **properties**: [AWS.Logs/DeliveryProperties](#awslogsdeliveryproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/DeliveryDestination@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Logs/DeliveryDestinationProperties](#awslogsdeliverydestinationproperties) (Required): properties of the resource
+* **properties**: [AWS.Logs/DeliveryDestinationProperties](#awslogsdeliverydestinationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/DeliverySource@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Logs/DeliverySourceProperties](#awslogsdeliverysourceproperties) (Required): properties of the resource
+* **properties**: [AWS.Logs/DeliverySourceProperties](#awslogsdeliverysourceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/Destination@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Logs/DestinationProperties](#awslogsdestinationproperties) (Required): properties of the resource
+* **properties**: [AWS.Logs/DestinationProperties](#awslogsdestinationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/LogAnomalyDetector@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Logs/LogAnomalyDetectorProperties](#awslogsloganomalydetectorproperties): properties of the resource
+* **properties**: [AWS.Logs/LogAnomalyDetectorProperties](#awslogsloganomalydetectorproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Logs/LogGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Logs/LogGroupProperties](#awslogsloggroupproperties): properties of the resource
+* **properties**: [AWS.Logs/LogGroupProperties](#awslogsloggroupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Logs/MetricFilter@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Logs/MetricFilterProperties](#awslogsmetricfilterproperties) (Required): properties of the resource
+* **properties**: [AWS.Logs/MetricFilterProperties](#awslogsmetricfilterproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/QueryDefinition@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Logs/QueryDefinitionProperties](#awslogsquerydefinitionproperties) (Required): properties of the resource
+* **properties**: [AWS.Logs/QueryDefinitionProperties](#awslogsquerydefinitionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/ResourcePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Logs/ResourcePolicyProperties](#awslogsresourcepolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.Logs/ResourcePolicyProperties](#awslogsresourcepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/SubscriptionFilter@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Logs/SubscriptionFilterProperties](#awslogssubscriptionfilterproperties) (Required): properties of the resource
+* **properties**: [AWS.Logs/SubscriptionFilterProperties](#awslogssubscriptionfilterproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Logs/AccountPolicyProperties
 ### Properties

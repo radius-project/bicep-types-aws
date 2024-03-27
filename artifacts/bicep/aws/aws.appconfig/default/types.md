@@ -3,37 +3,37 @@
 ## Resource AWS.AppConfig/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppConfig/ApplicationProperties](#awsappconfigapplicationproperties) (Required): properties of the resource
+* **properties**: [AWS.AppConfig/ApplicationProperties](#awsappconfigapplicationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppConfig/ConfigurationProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppConfig/ConfigurationProfileProperties](#awsappconfigconfigurationprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.AppConfig/ConfigurationProfileProperties](#awsappconfigconfigurationprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppConfig/Environment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppConfig/EnvironmentProperties](#awsappconfigenvironmentproperties) (Required): properties of the resource
+* **properties**: [AWS.AppConfig/EnvironmentProperties](#awsappconfigenvironmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppConfig/Extension@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppConfig/ExtensionProperties](#awsappconfigextensionproperties) (Required): properties of the resource
+* **properties**: [AWS.AppConfig/ExtensionProperties](#awsappconfigextensionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppConfig/ExtensionAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppConfig/ExtensionAssociationProperties](#awsappconfigextensionassociationproperties): properties of the resource
+* **properties**: [AWS.AppConfig/ExtensionAssociationProperties](#awsappconfigextensionassociationproperties) (Identifier): properties of the resource
 
 ## AWS.AppConfig/ApplicationProperties
 ### Properties

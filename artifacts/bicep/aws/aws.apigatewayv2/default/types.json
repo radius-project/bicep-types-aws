@@ -125,88 +125,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "BodyS3Location",
-    "properties": {
-      "Bucket": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 4,
-        "description": "The S3 bucket that contains the OpenAPI definition to import. Required if you specify a ``BodyS3Location`` for an API."
-      },
-      "Etag": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 4,
-        "description": "The Etag of the S3 object."
-      },
-      "Key": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 4,
-        "description": "The key of the S3 object. Required if you specify a ``BodyS3Location`` for an API."
-      },
-      "Version": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 4,
-        "description": "The version of the S3 object."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Cors",
-    "properties": {
-      "AllowCredentials": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "Specifies whether credentials are included in the CORS request. Supported only for HTTP APIs."
-      },
-      "AllowHeaders": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Represents a collection of allowed headers. Supported only for HTTP APIs."
-      },
-      "AllowMethods": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "Represents a collection of allowed HTTP methods. Supported only for HTTP APIs."
-      },
-      "AllowOrigins": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0,
-        "description": "Represents a collection of allowed origins. Supported only for HTTP APIs."
-      },
-      "ExposeHeaders": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Represents a collection of exposed headers. Supported only for HTTP APIs."
-      },
-      "MaxAge": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0,
-        "description": "The number of seconds that the browser should cache preflight request results. Supported only for HTTP APIs."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "Api_Tags",
     "properties": {}
   },
@@ -251,14 +169,14 @@
       },
       "BodyS3Location": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/0"
         },
         "flags": 4,
         "description": "The S3 location of an OpenAPI definition. Supported only for HTTP APIs. To import an HTTP API, you must specify a ``Body`` or ``BodyS3Location``. If you specify a ``Body`` or ``BodyS3Location``, don't specify CloudFormation resources such as ``AWS::ApiGatewayV2::Authorizer`` or ``AWS::ApiGatewayV2::Route``. API Gateway doesn't support the combination of OpenAPI and CloudFormation resources."
       },
       "CorsConfiguration": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A CORS configuration. Supported only for HTTP APIs. See [Configuring CORS](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html) for more information."
@@ -328,7 +246,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The collection of tags. Each tag element is associated with a given resource."
@@ -364,14 +282,14 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/12"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -381,7 +299,7 @@
     "name": "AWS.ApiGatewayV2/Api@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/13"
     },
     "flags": 0
   },
@@ -445,14 +363,14 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/16"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -462,7 +380,7 @@
     "name": "AWS.ApiGatewayV2/ApiMapping@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/19"
+      "$ref": "#/17"
     },
     "flags": 0
   },
@@ -472,7 +390,7 @@
     "properties": {
       "Audience": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "A list of the intended recipients of the JWT. A valid JWT must provide an ``aud`` that matches at least one entry in this list. See [RFC 7519](https://docs.aws.amazon.com/https://tools.ietf.org/html/rfc7519#section-4.1.3). Required for the ``JWT`` authorizer type. Supported only for HTTP APIs."
@@ -500,26 +418,6 @@
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/2"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "JWTConfiguration",
-    "properties": {
-      "Audience": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0,
-        "description": "A list of the intended recipients of the JWT. A valid JWT must provide an ``aud`` that matches at least one entry in this list. See [RFC 7519](https://docs.aws.amazon.com/https://tools.ietf.org/html/rfc7519#section-4.1.3). Required for the ``JWT`` authorizer type. Supported only for HTTP APIs."
-      },
-      "Issuer": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The base domain of the identity provider that issues JSON Web Tokens. For example, an Amazon Cognito user pool has the following format: ``https://cognito-idp.{region}.amazonaws.com/{userPoolId}``. Required for the ``JWT`` authorizer type. Supported only for HTTP APIs."
-      }
     }
   },
   {
@@ -584,7 +482,7 @@
       },
       "IdentitySource": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "The identity source for which authorization is requested.\n For a ``REQUEST`` authorizer, this is optional. The value is a set of one or more mapping expressions of the specified request parameters. The identity source can be headers, query string parameters, stage variables, and context parameters. For example, if an Auth header and a Name query string parameter are defined as identity sources, this value is route.request.header.Auth, route.request.querystring.Name for WebSocket APIs. For HTTP APIs, use selection expressions prefixed with ``$``, for example, ``$request.header.Auth``, ``$request.querystring.Name``. These parameters are used to perform runtime validation for Lambda-based authorizers by verifying all of the identity-related request parameters are present in the request, not null, and non-empty. Only when this is true does the authorizer invoke the authorizer Lambda function. Otherwise, it returns a 401 Unauthorized response without calling the Lambda function. For HTTP APIs, identity sources are also used as the cache key when caching is enabled. To learn more, see [Working with Lambda authorizers for HTTP APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-lambda-authorizer.html).\n For ``JWT``, a single entry that specifies where to extract the JSON Web Token (JWT) from inbound requests. Currently only header-based and query parameter-based selections are supported, for example ``$request.header.Authorization``."
@@ -598,7 +496,7 @@
       },
       "JwtConfiguration": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "The ``JWTConfiguration`` property specifies the configuration of a JWT authorizer. Required for the ``JWT`` authorizer type. Supported only for HTTP APIs."
@@ -627,14 +525,14 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/23"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -644,7 +542,7 @@
     "name": "AWS.ApiGatewayV2/Authorizer@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/27"
+      "$ref": "#/24"
     },
     "flags": 0
   },
@@ -701,14 +599,14 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/27"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -718,7 +616,7 @@
     "name": "AWS.ApiGatewayV2/Deployment@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/31"
+      "$ref": "#/28"
     },
     "flags": 0
   },
@@ -788,70 +686,9 @@
     "value": "AWS.ApiGatewayV2/DomainNameProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "DomainNameConfiguration",
-    "properties": {
-      "CertificateArn": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "An AWS-managed certificate that will be used by the edge-optimized endpoint for this domain name. AWS Certificate Manager is the only supported source."
-      },
-      "CertificateName": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The user-friendly name of the certificate that will be used by the edge-optimized endpoint for this domain name."
-      },
-      "EndpointType": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The endpoint type."
-      },
-      "OwnershipVerificationCertificateArn": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The Amazon resource name (ARN) for the public certificate issued by ACMlong. This ARN is used to validate custom domain ownership. It's required only if you configure mutual TLS and use either an ACM-imported or a private CA certificate ARN as the regionalCertificateArn."
-      },
-      "SecurityPolicy": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The Transport Layer Security (TLS) version of the security policy for this domain name. The valid values are ``TLS_1_0`` and ``TLS_1_2``."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "MutualTlsAuthentication",
-    "properties": {
-      "TruststoreUri": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "An Amazon S3 URL that specifies the truststore for mutual TLS authentication, for example, ``s3://bucket-name/key-name``. The truststore can contain certificates from public or private certificate authorities. To update the truststore, upload a new version to S3, and then update your custom domain name to use the new version. To update the truststore, you must have permissions to access the S3 object."
-      },
-      "TruststoreVersion": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The version of the S3 object that contains your truststore. To specify a version, you must have versioning enabled for the S3 bucket."
-      }
+      "$ref": "#/30"
     }
   },
   {
@@ -872,14 +709,14 @@
       },
       "DomainNameConfigurations": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The domain name configurations."
       },
       "MutualTlsAuthentication": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "The mutual TLS authentication configuration for a custom domain name."
@@ -900,7 +737,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The collection of tags associated with a domain name."
@@ -922,14 +759,14 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/35"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -939,7 +776,7 @@
     "name": "AWS.ApiGatewayV2/DomainName@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/41"
+      "$ref": "#/36"
     },
     "flags": 0
   },
@@ -998,14 +835,14 @@
       },
       "ResponseParameters": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "A key-value map specifying response parameters that are passed to the method response from the backend. The key is a method response header parameter name and the mapped value is an integration response header value, a static value enclosed within a pair of single quotes, or a JSON expression from the integration response body. The mapping key must match the pattern of ``method.response.header.{name}``, where name is a valid and unique header name. The mapped non-static value must match the pattern of ``integration.response.header.{name}`` or ``integration.response.body.{JSON-expression}``, where ``{name}`` is a valid and unique response header name and ``{JSON-expression}`` is a valid JSON expression without the ``$`` prefix."
       },
       "ResponseTemplates": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The collection of response templates for the integration response as a string-to-string map of key-value pairs. Response templates are represented as a key/value map, with a content-type as the key and a template as the value."
@@ -1034,14 +871,14 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/41"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1051,7 +888,7 @@
     "name": "AWS.ApiGatewayV2/IntegrationResponse@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/47"
+      "$ref": "#/42"
     },
     "flags": 0
   },
@@ -1105,7 +942,7 @@
       },
       "Schema": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/45"
         },
         "flags": 1,
         "description": "The schema for the model. For application/json models, this should be JSON schema draft 4 model."
@@ -1127,14 +964,14 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/46"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1144,7 +981,7 @@
     "name": "AWS.ApiGatewayV2/Model@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/52"
+      "$ref": "#/47"
     },
     "flags": 0
   },
@@ -1156,8 +993,7 @@
         "type": {
           "$ref": "#/3"
         },
-        "flags": 1,
-        "description": "Specifies whether the parameter is required."
+        "flags": 1
       }
     }
   },
@@ -1201,7 +1037,7 @@
       },
       "AuthorizationScopes": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "The authorization scopes supported by this route."
@@ -1236,14 +1072,14 @@
       },
       "RequestModels": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "The request models for the route. Supported only for WebSocket APIs."
       },
       "RequestParameters": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/53"
         },
         "flags": 4,
         "description": "The request parameters for the route. Supported only for WebSocket APIs."
@@ -1293,14 +1129,14 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/54"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1310,19 +1146,9 @@
     "name": "AWS.ApiGatewayV2/Route@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/60"
+      "$ref": "#/55"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ParameterConstraints",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RouteParameters",
-    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1332,9 +1158,15 @@
         "type": {
           "$ref": "#/3"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "Specifies whether the parameter is required."
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RouteParameters",
+    "properties": {}
   },
   {
     "$type": "StringLiteralType",
@@ -1343,11 +1175,6 @@
   {
     "$type": "ObjectType",
     "name": "RouteResponse_ResponseModels",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RouteParameters",
     "properties": {}
   },
   {
@@ -1370,14 +1197,14 @@
       },
       "ResponseModels": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "The response models for the route response."
       },
       "ResponseParameters": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "The route response parameters."
@@ -1420,14 +1247,14 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/61"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1437,7 +1264,7 @@
     "name": "AWS.ApiGatewayV2/RouteResponse@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/69"
+      "$ref": "#/62"
     },
     "flags": 0
   },
@@ -1474,19 +1301,19 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/66"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "This resource type use map for Tags, suggest to use List of Tag"
@@ -1514,14 +1341,14 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/68"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1531,7 +1358,7 @@
     "name": "AWS.ApiGatewayV2/VpcLink@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/76"
+      "$ref": "#/69"
     },
     "flags": 0
   }

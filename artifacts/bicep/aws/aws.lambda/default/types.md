@@ -3,44 +3,44 @@
 ## Resource AWS.Lambda/CodeSigningConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lambda/CodeSigningConfigProperties](#awslambdacodesigningconfigproperties) (Required): properties of the resource
+* **properties**: [AWS.Lambda/CodeSigningConfigProperties](#awslambdacodesigningconfigproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lambda/EventInvokeConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lambda/EventInvokeConfigProperties](#awslambdaeventinvokeconfigproperties) (Required): properties of the resource
+* **properties**: [AWS.Lambda/EventInvokeConfigProperties](#awslambdaeventinvokeconfigproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lambda/EventSourceMapping@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lambda/EventSourceMappingProperties](#awslambdaeventsourcemappingproperties) (Required): properties of the resource
+* **properties**: [AWS.Lambda/EventSourceMappingProperties](#awslambdaeventsourcemappingproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lambda/Function@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lambda/FunctionProperties](#awslambdafunctionproperties) (Required): properties of the resource
+* **properties**: [AWS.Lambda/FunctionProperties](#awslambdafunctionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lambda/Url@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lambda/UrlProperties](#awslambdaurlproperties) (Required): properties of the resource
+* **properties**: [AWS.Lambda/UrlProperties](#awslambdaurlproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lambda/Version@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lambda/VersionProperties](#awslambdaversionproperties) (Required): properties of the resource
+* **properties**: [AWS.Lambda/VersionProperties](#awslambdaversionproperties) (Required, Identifier): properties of the resource
 
 ## AllowedPublishers
 ### Properties
@@ -231,11 +231,11 @@
 
 ## OnFailure
 ### Properties
-* **Destination**: string: The Amazon Resource Name (ARN) of the destination resource.
+* **Destination**: string (Required): The Amazon Resource Name (ARN) of the destination resource.
 
 ## OnFailure
 ### Properties
-* **Destination**: string (Required): The Amazon Resource Name (ARN) of the destination resource.
+* **Destination**: string: The Amazon Resource Name (ARN) of the destination resource.
 
 ## OnSuccess
 ### Properties

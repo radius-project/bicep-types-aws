@@ -3,23 +3,23 @@
 ## Resource AWS.ControlTower/EnabledBaseline@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ControlTower/EnabledBaselineProperties](#awscontroltowerenabledbaselineproperties) (Required): properties of the resource
+* **properties**: [AWS.ControlTower/EnabledBaselineProperties](#awscontroltowerenabledbaselineproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ControlTower/EnabledControl@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ControlTower/EnabledControlProperties](#awscontroltowerenabledcontrolproperties) (Required): properties of the resource
+* **properties**: [AWS.ControlTower/EnabledControlProperties](#awscontroltowerenabledcontrolproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ControlTower/LandingZone@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ControlTower/LandingZoneProperties](#awscontroltowerlandingzoneproperties) (Required): properties of the resource
+* **properties**: [AWS.ControlTower/LandingZoneProperties](#awscontroltowerlandingzoneproperties) (Required, Identifier): properties of the resource
 
 ## AnyType
 ### Properties

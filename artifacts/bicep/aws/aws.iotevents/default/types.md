@@ -3,23 +3,23 @@
 ## Resource AWS.IoTEvents/AlarmModel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoTEvents/AlarmModelProperties](#awsioteventsalarmmodelproperties) (Required): properties of the resource
+* **properties**: [AWS.IoTEvents/AlarmModelProperties](#awsioteventsalarmmodelproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTEvents/DetectorModel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoTEvents/DetectorModelProperties](#awsioteventsdetectormodelproperties) (Required): properties of the resource
+* **properties**: [AWS.IoTEvents/DetectorModelProperties](#awsioteventsdetectormodelproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTEvents/Input@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoTEvents/InputProperties](#awsioteventsinputproperties) (Required): properties of the resource
+* **properties**: [AWS.IoTEvents/InputProperties](#awsioteventsinputproperties) (Required, Identifier): properties of the resource
 
 ## AcknowledgeFlow
 ### Properties
@@ -280,7 +280,7 @@ If you don't specify `rangeKeyField`, the default value is `STRING`.
 * **EntryId**: string: A unique identifier for this entry. You can use the entry ID to track which data entry causes an error in case of failure. The default is a new unique identifier. You can also specify an expression.
 * **PropertyAlias**: string: The alias of the asset property. You can also specify an expression.
 * **PropertyId**: string: The ID of the asset property. You can specify an expression.
-* **PropertyValue**: [AssetPropertyValue](#assetpropertyvalue) (Required)
+* **PropertyValue**: [AssetPropertyValue](#assetpropertyvalue)
 
 ## IotSiteWise
 ### Properties
@@ -288,7 +288,7 @@ If you don't specify `rangeKeyField`, the default value is `STRING`.
 * **EntryId**: string: A unique identifier for this entry. You can use the entry ID to track which data entry causes an error in case of failure. The default is a new unique identifier. You can also specify an expression.
 * **PropertyAlias**: string: The alias of the asset property. You can also specify an expression.
 * **PropertyId**: string: The ID of the asset property. You can specify an expression.
-* **PropertyValue**: [AssetPropertyValue](#assetpropertyvalue)
+* **PropertyValue**: [AssetPropertyValue](#assetpropertyvalue) (Required)
 
 ## IotTopicPublish
 ### Properties

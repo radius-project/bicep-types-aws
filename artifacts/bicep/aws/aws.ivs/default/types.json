@@ -28,27 +28,9 @@
     "$type": "BooleanType"
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/0"
     }
   },
   {
@@ -120,7 +102,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the asset model."
@@ -149,14 +131,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/5"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -166,18 +148,9 @@
     "name": "AWS.IVS/Channel@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/7"
+      "$ref": "#/6"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.IVS/PlaybackKeyPairProperties"
   },
   {
     "$type": "ObjectType",
@@ -198,9 +171,13 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.IVS/PlaybackKeyPairProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/8"
     }
   },
   {
@@ -237,7 +214,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the asset model."
@@ -259,14 +236,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/11"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -276,7 +253,7 @@
     "name": "AWS.IVS/PlaybackKeyPair@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/14"
+      "$ref": "#/12"
     },
     "flags": 0
   },
@@ -286,7 +263,7 @@
     "properties": {
       "S3": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/16"
         },
         "flags": 0
       }
@@ -305,7 +282,7 @@
       },
       "Renditions": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "Renditions indicates which renditions are recorded for a stream."
@@ -327,7 +304,20 @@
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -349,14 +339,14 @@
       },
       "Storage": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "Storage indicates the format in which thumbnails are recorded."
       },
       "TargetIntervalSeconds": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "Target Interval Seconds defines the interval at which thumbnails are recorded. This field is required if RecordingMode is INTERVAL."
@@ -383,93 +373,9 @@
     "value": "AWS.IVS/RecordingConfigurationProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "DestinationConfiguration",
-    "properties": {
-      "S3": {
-        "type": {
-          "$ref": "#/18"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RenditionConfiguration",
-    "properties": {
-      "RenditionSelection": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "Resolution Selection indicates which set of renditions are recorded for a stream."
-      },
-      "Renditions": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0,
-        "description": "Renditions indicates which renditions are recorded for a stream."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ThumbnailConfiguration",
-    "properties": {
-      "RecordingMode": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "Thumbnail Recording Mode, which determines whether thumbnails are recorded at an interval or are disabled."
-      },
-      "Resolution": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "Resolution indicates the desired resolution of recorded thumbnails."
-      },
-      "Storage": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0,
-        "description": "Storage indicates the format in which thumbnails are recorded."
-      },
-      "TargetIntervalSeconds": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "Target Interval Seconds defines the interval at which thumbnails are recorded. This field is required if RecordingMode is INTERVAL."
-      }
+      "$ref": "#/17"
     }
   },
   {
@@ -485,7 +391,7 @@
       },
       "DestinationConfiguration": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/14"
         },
         "flags": 1
       },
@@ -498,14 +404,14 @@
       },
       "RecordingReconnectWindowSeconds": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "Recording Reconnect Window Seconds. (0 means disabled)"
       },
       "RenditionConfiguration": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/15"
         },
         "flags": 0
       },
@@ -518,14 +424,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the asset model."
       },
       "ThumbnailConfiguration": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/18"
         },
         "flags": 0
       }
@@ -546,14 +452,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/24"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -563,18 +469,9 @@
     "name": "AWS.IVS/RecordingConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/31"
+      "$ref": "#/25"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.IVS/StageProperties"
   },
   {
     "$type": "ObjectType",
@@ -595,9 +492,13 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.IVS/StageProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/27"
     }
   },
   {
@@ -627,7 +528,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -649,14 +550,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/30"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -666,18 +567,9 @@
     "name": "AWS.IVS/Stage@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/38"
+      "$ref": "#/31"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.IVS/StreamKeyProperties"
   },
   {
     "$type": "ObjectType",
@@ -698,9 +590,13 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.IVS/StreamKeyProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/42"
+      "$ref": "#/33"
     }
   },
   {
@@ -723,7 +619,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the asset model."
@@ -752,14 +648,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/36"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -769,7 +665,7 @@
     "name": "AWS.IVS/StreamKey@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/45"
+      "$ref": "#/37"
     },
     "flags": 0
   }

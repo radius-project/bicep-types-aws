@@ -3,16 +3,16 @@
 ## Resource AWS.MediaLive/Multiplex@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaLive/MultiplexProperties](#awsmedialivemultiplexproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaLive/MultiplexProperties](#awsmedialivemultiplexproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaLive/Multiplexprogram@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaLive/MultiplexprogramProperties](#awsmedialivemultiplexprogramproperties): properties of the resource
+* **properties**: [AWS.MediaLive/MultiplexprogramProperties](#awsmedialivemultiplexprogramproperties) (Identifier): properties of the resource
 
 ## AWS.MediaLive/MultiplexprogramProperties
 ### Properties

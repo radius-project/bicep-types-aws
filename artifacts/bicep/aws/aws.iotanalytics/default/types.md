@@ -3,30 +3,30 @@
 ## Resource AWS.IoTAnalytics/Channel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoTAnalytics/ChannelProperties](#awsiotanalyticschannelproperties): properties of the resource
+* **properties**: [AWS.IoTAnalytics/ChannelProperties](#awsiotanalyticschannelproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoTAnalytics/Dataset@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoTAnalytics/DatasetProperties](#awsiotanalyticsdatasetproperties) (Required): properties of the resource
+* **properties**: [AWS.IoTAnalytics/DatasetProperties](#awsiotanalyticsdatasetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTAnalytics/Datastore@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoTAnalytics/DatastoreProperties](#awsiotanalyticsdatastoreproperties): properties of the resource
+* **properties**: [AWS.IoTAnalytics/DatastoreProperties](#awsiotanalyticsdatastoreproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoTAnalytics/Pipeline@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoTAnalytics/PipelineProperties](#awsiotanalyticspipelineproperties) (Required): properties of the resource
+* **properties**: [AWS.IoTAnalytics/PipelineProperties](#awsiotanalyticspipelineproperties) (Required, Identifier): properties of the resource
 
 ## Action
 ### Properties
@@ -119,6 +119,12 @@
 * **KeyPrefix**: string
 * **RoleArn**: string (Required)
 
+## CustomerManagedS3
+### Properties
+* **Bucket**: string (Required)
+* **KeyPrefix**: string
+* **RoleArn**: string (Required)
+
 ## CustomerManagedS3Storage
 ### Properties
 * **Bucket**: string (Required)
@@ -191,6 +197,12 @@
 ## Filter
 ### Properties
 * **DeltaTime**: [DeltaTime](#deltatime)
+
+## Filter
+### Properties
+* **Filter**: string (Required)
+* **Name**: string (Required)
+* **Next**: string
 
 ## GlueConfiguration
 ### Properties

@@ -3,23 +3,23 @@
 ## Resource AWS.AppFlow/Connector@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppFlow/ConnectorProperties](#awsappflowconnectorproperties) (Required): properties of the resource
+* **properties**: [AWS.AppFlow/ConnectorProperties](#awsappflowconnectorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppFlow/ConnectorProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppFlow/ConnectorProfileProperties](#awsappflowconnectorprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.AppFlow/ConnectorProfileProperties](#awsappflowconnectorprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppFlow/Flow@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppFlow/FlowProperties](#awsappflowflowproperties) (Required): properties of the resource
+* **properties**: [AWS.AppFlow/FlowProperties](#awsappflowflowproperties) (Required, Identifier): properties of the resource
 
 ## AggregationConfig
 ### Properties

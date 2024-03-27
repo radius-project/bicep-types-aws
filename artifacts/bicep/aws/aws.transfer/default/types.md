@@ -3,37 +3,37 @@
 ## Resource AWS.Transfer/Agreement@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Transfer/AgreementProperties](#awstransferagreementproperties) (Required): properties of the resource
+* **properties**: [AWS.Transfer/AgreementProperties](#awstransferagreementproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Transfer/Certificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Transfer/CertificateProperties](#awstransfercertificateproperties) (Required): properties of the resource
+* **properties**: [AWS.Transfer/CertificateProperties](#awstransfercertificateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Transfer/Connector@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Transfer/ConnectorProperties](#awstransferconnectorproperties) (Required): properties of the resource
+* **properties**: [AWS.Transfer/ConnectorProperties](#awstransferconnectorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Transfer/Profile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Transfer/ProfileProperties](#awstransferprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.Transfer/ProfileProperties](#awstransferprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Transfer/Workflow@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Transfer/WorkflowProperties](#awstransferworkflowproperties) (Required): properties of the resource
+* **properties**: [AWS.Transfer/WorkflowProperties](#awstransferworkflowproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Transfer/AgreementProperties
 ### Properties

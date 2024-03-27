@@ -3,23 +3,23 @@
 ## Resource AWS.Proton/EnvironmentAccountConnection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Proton/EnvironmentAccountConnectionProperties](#awsprotonenvironmentaccountconnectionproperties): properties of the resource
+* **properties**: [AWS.Proton/EnvironmentAccountConnectionProperties](#awsprotonenvironmentaccountconnectionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Proton/EnvironmentTemplate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Proton/EnvironmentTemplateProperties](#awsprotonenvironmenttemplateproperties): properties of the resource
+* **properties**: [AWS.Proton/EnvironmentTemplateProperties](#awsprotonenvironmenttemplateproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Proton/ServiceTemplate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Proton/ServiceTemplateProperties](#awsprotonservicetemplateproperties): properties of the resource
+* **properties**: [AWS.Proton/ServiceTemplateProperties](#awsprotonservicetemplateproperties) (Identifier): properties of the resource
 
 ## AWS.Proton/EnvironmentAccountConnectionProperties
 ### Properties

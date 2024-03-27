@@ -63,60 +63,9 @@
     "value": "AWS.S3/AccessGrantProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "AccessGrantsLocationConfiguration",
-    "properties": {
-      "S3SubPrefix": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The S3 sub prefix of a registered location in your S3 Access Grants instance"
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Grantee",
-    "properties": {
-      "GranteeIdentifier": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The unique identifier of the Grantee"
-      },
-      "GranteeType": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "Configures the transfer acceleration state for an Amazon S3 bucket."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/3"
     }
   },
   {
@@ -139,7 +88,7 @@
       },
       "AccessGrantsLocationConfiguration": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The configuration options of the grant location, which is the S3 path to the data to which you are granting access."
@@ -167,7 +116,7 @@
       },
       "Grantee": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The principal who will be granted permission to access S3."
@@ -188,7 +137,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/6"
         },
         "flags": 4
       }
@@ -209,14 +158,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -226,7 +175,7 @@
     "name": "AWS.S3/AccessGrant@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/8"
     },
     "flags": 0
   },
@@ -239,15 +188,6 @@
     "$type": "ObjectType",
     "name": "IdentityCenterArn",
     "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.S3/AccessGrantsInstanceProperties"
   },
   {
     "$type": "ObjectType",
@@ -268,9 +208,13 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.S3/AccessGrantsInstanceProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/12"
     }
   },
   {
@@ -300,7 +244,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/14"
         },
         "flags": 4
       }
@@ -321,14 +265,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/15"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -338,18 +282,9 @@
     "name": "AWS.S3/AccessGrantsInstance@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/16"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.S3/AccessGrantsLocationProperties"
   },
   {
     "$type": "ObjectType",
@@ -370,9 +305,13 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.S3/AccessGrantsLocationProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/18"
     }
   },
   {
@@ -409,7 +348,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/20"
         },
         "flags": 4
       }
@@ -430,14 +369,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/21"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -447,7 +386,7 @@
     "name": "AWS.S3/AccessGrantsLocation@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/27"
+      "$ref": "#/22"
     },
     "flags": 0
   },
@@ -462,31 +401,31 @@
     "properties": {
       "BlockPublicAcls": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 0,
-        "description": "Specifies whether Amazon S3 should block public access control lists (ACLs) for this bucket and objects in this bucket. Setting this element to ``TRUE`` causes the following behavior:\n  +  PUT Bucket ACL and PUT Object ACL calls fail if the specified ACL is public.\n  +  PUT Object calls fail if the request includes a public ACL.\n  +  PUT Bucket calls fail if the request includes a public ACL.\n  \n Enabling this setting doesn't affect existing policies or ACLs."
+        "description": "Specifies whether Amazon S3 should block public access control lists (ACLs) for buckets in this account. Setting this element to TRUE causes the following behavior:\n- PUT Bucket acl and PUT Object acl calls fail if the specified ACL is public.\n - PUT Object calls fail if the request includes a public ACL.\n. - PUT Bucket calls fail if the request includes a public ACL.\nEnabling this setting doesn't affect existing policies or ACLs."
       },
       "BlockPublicPolicy": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 0,
-        "description": "Specifies whether Amazon S3 should block public bucket policies for this bucket. Setting this element to ``TRUE`` causes Amazon S3 to reject calls to PUT Bucket policy if the specified bucket policy allows public access. \n Enabling this setting doesn't affect existing bucket policies."
+        "description": "Specifies whether Amazon S3 should block public bucket policies for buckets in this account. Setting this element to TRUE causes Amazon S3 to reject calls to PUT Bucket policy if the specified bucket policy allows public access. Enabling this setting doesn't affect existing bucket policies."
       },
       "IgnorePublicAcls": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 0,
-        "description": "Specifies whether Amazon S3 should ignore public ACLs for this bucket and objects in this bucket. Setting this element to ``TRUE`` causes Amazon S3 to ignore all public ACLs on this bucket and objects in this bucket.\n Enabling this setting doesn't affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set."
+        "description": "Specifies whether Amazon S3 should ignore public ACLs for buckets in this account. Setting this element to TRUE causes Amazon S3 to ignore all public ACLs on buckets in this account and any objects that they contain. Enabling this setting doesn't affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set."
       },
       "RestrictPublicBuckets": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 0,
-        "description": "Specifies whether Amazon S3 should restrict public bucket policies for this bucket. Setting this element to ``TRUE`` restricts access to this bucket to only AWS-service principals and authorized users within this account if the bucket has a public policy.\n Enabling this setting doesn't affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked."
+        "description": "Specifies whether Amazon S3 should restrict public bucket policies for this bucket. Setting this element to TRUE restricts access to this bucket to only AWS services and authorized users within this account if the bucket has a public policy.\nEnabling this setting doesn't affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked."
       }
     }
   },
@@ -514,53 +453,6 @@
     "$type": "ObjectType",
     "name": "AccessPoint_Policy",
     "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PublicAccessBlockConfiguration",
-    "properties": {
-      "BlockPublicAcls": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0,
-        "description": "Specifies whether Amazon S3 should block public access control lists (ACLs) for buckets in this account. Setting this element to TRUE causes the following behavior:\n- PUT Bucket acl and PUT Object acl calls fail if the specified ACL is public.\n - PUT Object calls fail if the request includes a public ACL.\n. - PUT Bucket calls fail if the request includes a public ACL.\nEnabling this setting doesn't affect existing policies or ACLs."
-      },
-      "BlockPublicPolicy": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0,
-        "description": "Specifies whether Amazon S3 should block public bucket policies for buckets in this account. Setting this element to TRUE causes Amazon S3 to reject calls to PUT Bucket policy if the specified bucket policy allows public access. Enabling this setting doesn't affect existing bucket policies."
-      },
-      "IgnorePublicAcls": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0,
-        "description": "Specifies whether Amazon S3 should ignore public ACLs for buckets in this account. Setting this element to TRUE causes Amazon S3 to ignore all public ACLs on buckets in this account and any objects that they contain. Enabling this setting doesn't affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set."
-      },
-      "RestrictPublicBuckets": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0,
-        "description": "Specifies whether Amazon S3 should restrict public bucket policies for this bucket. Setting this element to TRUE restricts access to this bucket to only AWS services and authorized users within this account if the bucket has a public policy.\nEnabling this setting doesn't affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "VpcConfiguration",
-    "properties": {
-      "VpcId": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "If this field is specified, this access point will only allow connections from the specified VPC ID."
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -610,21 +502,21 @@
       },
       "Policy": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "The Access Point Policy you want to apply to this access point."
       },
       "PublicAccessBlockConfiguration": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The PublicAccessBlock configuration that you want to apply to this Access Point. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status 'The Meaning of Public' in the Amazon Simple Storage Service Developer Guide."
       },
       "VpcConfiguration": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "If you include this field, Amazon S3 restricts access to this Access Point to requests from the specified Virtual Private Cloud (VPC)."
@@ -646,14 +538,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/30"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -663,7 +555,7 @@
     "name": "AWS.S3/AccessPoint@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/38"
+      "$ref": "#/31"
     },
     "flags": 0
   },
@@ -673,7 +565,7 @@
     "properties": {
       "DaysAfterInitiation": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 1,
         "description": "Specifies the number of days after which Amazon S3 stops an incomplete multipart upload."
@@ -726,14 +618,14 @@
       },
       "StorageClassAnalysis": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/84"
         },
         "flags": 1,
         "description": "Contains data related to access patterns to be collected and made available to analyze the tradeoffs between different storage classes."
       },
       "TagFilters": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/95"
         },
         "flags": 0,
         "description": "The tags to use when evaluating an analytics filter.\n The analytics only includes objects that meet the filter's criteria. If no filter is specified, all of the contents of the bucket are included in the analysis."
@@ -751,7 +643,7 @@
     "properties": {
       "ServerSideEncryptionConfiguration": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/96"
         },
         "flags": 1,
         "description": "Specifies the default server-side-encryption configuration."
@@ -764,7 +656,7 @@
     "properties": {
       "CorsRules": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/97"
         },
         "flags": 1,
         "description": "A set of origins and methods (cross-origin access that you want to allow). You can add up to 100 rules to the configuration."
@@ -777,28 +669,28 @@
     "properties": {
       "AllowedHeaders": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/98"
         },
         "flags": 0,
         "description": "Headers that are specified in the ``Access-Control-Request-Headers`` header. These headers are allowed in a preflight OPTIONS request. In response to any preflight OPTIONS request, Amazon S3 returns any requested headers that are allowed."
       },
       "AllowedMethods": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/99"
         },
         "flags": 1,
         "description": "An HTTP method that you allow the origin to run.\n *Allowed values*: ``GET`` | ``PUT`` | ``HEAD`` | ``POST`` | ``DELETE``"
       },
       "AllowedOrigins": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/100"
         },
         "flags": 1,
         "description": "One or more origins you want customers to be able to access the bucket from."
       },
       "ExposedHeaders": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/101"
         },
         "flags": 0,
         "description": "One or more headers in the response that you want customers to be able to access from their applications (for example, from a JavaScript ``XMLHttpRequest`` object)."
@@ -812,7 +704,7 @@
       },
       "MaxAge": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "The time in seconds that your browser is to cache the preflight response for the specified resource."
@@ -823,17 +715,19 @@
     "$type": "ObjectType",
     "name": "DataExport",
     "properties": {
-      "CloudWatchMetrics": {
+      "Destination": {
         "type": {
-          "$ref": "#/213"
+          "$ref": "#/44"
         },
-        "flags": 0
+        "flags": 1,
+        "description": "The place to store the data for an analysis."
       },
-      "S3BucketDestination": {
+      "OutputSchemaVersion": {
         "type": {
-          "$ref": "#/200"
+          "$ref": "#/4"
         },
-        "flags": 0
+        "flags": 1,
+        "description": "The version of the output schema to use when exporting data. Must be ``V_1``."
       }
     }
   },
@@ -843,7 +737,7 @@
     "properties": {
       "Days": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "The number of days that you want to specify for the default retention period. If Object Lock is turned on, you must specify ``Mode`` and specify either ``Days`` or ``Years``."
@@ -857,7 +751,7 @@
       },
       "Years": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "The number of years that you want to specify for the default retention period. If Object Lock is turned on, you must specify ``Mode`` and specify either ``Days`` or ``Years``."
@@ -930,7 +824,7 @@
     "properties": {
       "EventBridgeEnabled": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "Enables delivery of events to Amazon EventBridge."
@@ -984,14 +878,14 @@
       },
       "TagFilters": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/102"
         },
         "flags": 0,
         "description": "A container for a key-value pair."
       },
       "Tierings": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/103"
         },
         "flags": 1,
         "description": "Specifies a list of S3 Intelligent-Tiering storage class tiers in the configuration. At least one tier must be defined in the list. At most, you can specify two tiers in the list, one for each available AccessTier: ``ARCHIVE_ACCESS`` and ``DEEP_ARCHIVE_ACCESS``.\n  You only need Intelligent Tiering Configuration enabled on a bucket if you want to automatically move objects stored in the Intelligent-Tiering storage class to Archive Access or Deep Archive Access tiers."
@@ -1004,14 +898,14 @@
     "properties": {
       "Destination": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/44"
         },
         "flags": 1,
         "description": "Contains information about where to publish the inventory results."
       },
       "Enabled": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "Specifies whether the inventory is enabled or disabled. If set to ``True``, an inventory list is generated. If set to ``False``, no inventory list is generated."
@@ -1032,7 +926,7 @@
       },
       "OptionalFields": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/104"
         },
         "flags": 0,
         "description": "Contains the optional fields that are included in the inventory results."
@@ -1066,7 +960,7 @@
       },
       "Filter": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "The filtering rules that determine which objects invoke the AWS Lambda function. For example, you can create a filter so that only image files with a ``.jpg`` extension invoke the function when they are added to the Amazon S3 bucket."
@@ -1086,7 +980,7 @@
     "properties": {
       "Rules": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/105"
         },
         "flags": 5,
         "description": "A lifecycle rule for individual objects in an Amazon S3 bucket."
@@ -1113,7 +1007,7 @@
       },
       "TargetObjectKeyFormat": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/87"
         },
         "flags": 0,
         "description": "Amazon S3 key format for log objects. Only one format, either PartitionedPrefix or SimplePrefix, is allowed."
@@ -1126,7 +1020,7 @@
     "properties": {
       "EventThreshold": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "A container specifying the time threshold for emitting the ``s3:Replication:OperationMissedThreshold`` event."
@@ -1167,7 +1061,7 @@
       },
       "TagFilters": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/106"
         },
         "flags": 0,
         "description": "Specifies a list of tag filters to use as a metrics configuration filter. The metrics configuration includes only objects that meet the filter's criteria."
@@ -1180,14 +1074,14 @@
     "properties": {
       "NewerNoncurrentVersions": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "Specifies how many noncurrent versions S3 will retain. If there are this many more recent noncurrent versions, S3 will take the associated action. For more information about noncurrent versions, see [Lifecycle configuration elements](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html) in the *Amazon S3 User Guide*."
       },
       "NoncurrentDays": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 1,
         "description": "Specifies the number of days an object is noncurrent before S3 can perform the associated action. For information about the noncurrent days calculations, see [How Amazon S3 Calculates When an Object Became Noncurrent](https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html#non-current-days-calculations) in the *Amazon S3 User Guide*."
@@ -1200,7 +1094,7 @@
     "properties": {
       "NewerNoncurrentVersions": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "Specifies how many noncurrent versions S3 will retain. If there are this many more recent noncurrent versions, S3 will take the associated action. For more information about noncurrent versions, see [Lifecycle configuration elements](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html) in the *Amazon S3 User Guide*."
@@ -1214,7 +1108,7 @@
       },
       "TransitionInDays": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 1,
         "description": "Specifies the number of days an object is noncurrent before Amazon S3 can perform the associated action. For information about the noncurrent days calculations, see [How Amazon S3 Calculates How Long an Object Has Been Noncurrent](https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html#non-current-days-calculations) in the *Amazon S3 User Guide*."
@@ -1227,28 +1121,28 @@
     "properties": {
       "EventBridgeConfiguration": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "Enables delivery of events to Amazon EventBridge."
       },
       "LambdaConfigurations": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/107"
         },
         "flags": 0,
         "description": "Describes the LAMlong functions to invoke and the events for which to invoke them."
       },
       "QueueConfigurations": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/108"
         },
         "flags": 0,
         "description": "The Amazon Simple Queue Service queues to publish messages to and the events for which to publish messages."
       },
       "TopicConfigurations": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/109"
         },
         "flags": 0,
         "description": "The topic to which notifications are sent and the events for which notifications are generated."
@@ -1261,7 +1155,7 @@
     "properties": {
       "S3Key": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/79"
         },
         "flags": 1,
         "description": "A container for object key name prefix and suffix filtering rules."
@@ -1281,7 +1175,7 @@
       },
       "Rule": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "Specifies the Object Lock rule for the specified object. Enable this rule when you apply ``ObjectLockConfiguration`` to a bucket. If Object Lock is turned on, bucket settings require both ``Mode`` and a period of either ``Days`` or ``Years``. You cannot specify ``Days`` and ``Years`` at the same time. For more information, see [ObjectLockRule](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-objectlockrule.html) and [DefaultRetention](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-defaultretention.html)."
@@ -1294,7 +1188,7 @@
     "properties": {
       "DefaultRetention": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The default Object Lock retention mode and period that you want to apply to new objects placed in the specified bucket. If Object Lock is turned on, bucket settings require both ``Mode`` and a period of either ``Days`` or ``Years``. You cannot specify ``Days`` and ``Years`` at the same time. For more information about allowable values for mode and period, see [DefaultRetention](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-defaultretention.html)."
@@ -1307,7 +1201,7 @@
     "properties": {
       "Rules": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/110"
         },
         "flags": 1,
         "description": "Specifies the container element for Object Ownership rules."
@@ -1343,7 +1237,36 @@
   {
     "$type": "ObjectType",
     "name": "PublicAccessBlockConfiguration",
-    "properties": {}
+    "properties": {
+      "BlockPublicAcls": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "Specifies whether Amazon S3 should block public access control lists (ACLs) for this bucket and objects in this bucket. Setting this element to ``TRUE`` causes the following behavior:\n  +  PUT Bucket ACL and PUT Object ACL calls fail if the specified ACL is public.\n  +  PUT Object calls fail if the request includes a public ACL.\n  +  PUT Bucket calls fail if the request includes a public ACL.\n  \n Enabling this setting doesn't affect existing policies or ACLs."
+      },
+      "BlockPublicPolicy": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "Specifies whether Amazon S3 should block public bucket policies for this bucket. Setting this element to ``TRUE`` causes Amazon S3 to reject calls to PUT Bucket policy if the specified bucket policy allows public access. \n Enabling this setting doesn't affect existing bucket policies."
+      },
+      "IgnorePublicAcls": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "Specifies whether Amazon S3 should ignore public ACLs for this bucket and objects in this bucket. Setting this element to ``TRUE`` causes Amazon S3 to ignore all public ACLs on this bucket and objects in this bucket.\n Enabling this setting doesn't affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set."
+      },
+      "RestrictPublicBuckets": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "Specifies whether Amazon S3 should restrict public bucket policies for this bucket. Setting this element to ``TRUE`` restricts access to this bucket to only AWS-service principals and authorized users within this account if the bucket has a public policy.\n Enabling this setting doesn't affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1358,7 +1281,7 @@
       },
       "Filter": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "The filtering rules that determine which objects trigger notifications. For example, you can create a filter so that Amazon S3 sends notifications only when image files with a ``.jpg`` extension are added to the bucket. For more information, see [Configuring event notifications using object key name filtering](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/notification-how-to-filtering.html) in the *Amazon S3 User Guide*."
@@ -1459,7 +1382,7 @@
       },
       "Rules": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/111"
         },
         "flags": 5,
         "description": "A container for one or more replication rules. A replication configuration must have at least one rule and can contain a maximum of 1,000 rules."
@@ -1472,7 +1395,7 @@
     "properties": {
       "AccessControlTranslation": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "Specify this only in a cross-account scenario (where source and destination bucket owners are not the same), and you want to change replica ownership to the AWS-account that owns the destination bucket. If this is not specified in the replication configuration, the replicas are owned by same AWS-account that owns the source object."
@@ -1493,21 +1416,21 @@
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "Specifies encryption-related information."
       },
       "Metrics": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "A container specifying replication metrics-related settings enabling replication metrics and events."
       },
       "ReplicationTime": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "A container specifying S3 Replication Time Control (S3 RTC), including whether S3 RTC is enabled and the time when all objects and operations on objects must be replicated. Must be specified together with a ``Metrics`` block."
@@ -1527,21 +1450,21 @@
     "properties": {
       "DeleteMarkerReplication": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "Specifies whether Amazon S3 replicates delete markers. If you specify a ``Filter`` in your replication configuration, you must also include a ``DeleteMarkerReplication`` element. If your ``Filter`` includes a ``Tag`` element, the ``DeleteMarkerReplication`` ``Status`` must be set to Disabled, because Amazon S3 does not support replicating delete markers for tag-based rules. For an example configuration, see [Basic Rule Configuration](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-config-min-rule-config). \n For more information about delete marker replication, see [Basic Rule Configuration](https://docs.aws.amazon.com/AmazonS3/latest/dev/delete-marker-replication.html). \n  If you are using an earlier version of the replication configuration, Amazon S3 handles replication of delete markers differently. For more information, see [Backward Compatibility](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-backward-compat-considerations)."
       },
       "Destination": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/70"
         },
         "flags": 1,
         "description": "A container for information about the replication destination and its configurations including enabling the S3 Replication Time Control (S3 RTC)."
       },
       "Filter": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "A filter that identifies the subset of objects to which the replication rule applies. A ``Filter`` must specify exactly one ``Prefix``, ``TagFilter``, or an ``And`` child element. The use of the filter field indicates that this is a V2 replication configuration. This field isn't supported in a V1 replication configuration.\n  V1 replication configuration only supports filtering by key prefix. To filter using a V1 replication configuration, add the ``Prefix`` directly as a child element of the ``Rule`` element."
@@ -1562,14 +1485,14 @@
       },
       "Priority": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "The priority indicates which rule has precedence whenever two or more replication rules conflict. Amazon S3 will attempt to replicate objects according to all replication rules. However, if there are two or more rules with the same destination bucket, then objects will be replicated according to the rule with the highest priority. The higher the number, the higher the priority. \n For more information, see [Replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication.html) in the *Amazon S3 User Guide*."
       },
       "SourceSelectionCriteria": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "A container that describes additional filters for identifying the source objects that you want to replicate. You can choose to enable or disable the replication of these objects."
@@ -1596,7 +1519,7 @@
       },
       "TagFilters": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/112"
         },
         "flags": 0,
         "description": "An array of tags containing key and value pairs."
@@ -1609,7 +1532,7 @@
     "properties": {
       "And": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "A container for specifying rule filters. The filters determine the subset of objects to which the rule applies. This element is required only if you specify more than one filter. For example: \n  +  If you specify both a ``Prefix`` and a ``TagFilter``, wrap these filters in an ``And`` tag.\n  +  If you specify a filter based on multiple tags, wrap the ``TagFilter`` elements in an ``And`` tag."
@@ -1623,7 +1546,7 @@
       },
       "TagFilter": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/86"
         },
         "flags": 0,
         "description": "A container for specifying a tag key and value. \n The rule applies only to objects that have the tag in their tag set."
@@ -1643,7 +1566,7 @@
       },
       "Time": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/75"
         },
         "flags": 1,
         "description": "A container specifying the time by which replication should be complete for all objects and operations on objects."
@@ -1656,7 +1579,7 @@
     "properties": {
       "Minutes": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 1,
         "description": "Contains an integer specifying time in minutes. \n  Valid value: 15"
@@ -1669,14 +1592,14 @@
     "properties": {
       "RedirectRule": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/67"
         },
         "flags": 1,
         "description": "Container for redirect information. You can redirect requests to another host, to another page, or with another protocol. In the event of an error, you can specify a different error code to return."
       },
       "RoutingRuleCondition": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "A container for describing a condition that must be met for the specified redirect to apply. For example, 1. If request is for pages in the ``/docs`` folder, redirect to the ``/documents`` folder. 2. If request results in HTTP error 4xx, redirect request to another host where you might process the error."
@@ -1709,7 +1632,7 @@
     "properties": {
       "AbortIncompleteMultipartUpload": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "Specifies a lifecycle rule that stops incomplete multipart uploads to an Amazon S3 bucket."
@@ -1723,14 +1646,14 @@
       },
       "ExpirationInDays": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "Indicates the number of days after creation when objects are deleted from Amazon S3 and Amazon S3 Glacier. If you specify an expiration and transition time, you must use the same time unit for both properties (either in days or by date). The expiration time must also be later than the transition time."
       },
       "ExpiredObjectDeleteMarker": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Indicates whether Amazon S3 will remove a delete marker without any noncurrent versions. If set to true, the delete marker will be removed if there are no noncurrent versions. This cannot be specified with ``ExpirationInDays``, ``ExpirationDate``, or ``TagFilters``."
@@ -1744,28 +1667,28 @@
       },
       "NoncurrentVersionExpiration": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "Specifies when noncurrent object versions expire. Upon expiration, S3 permanently deletes the noncurrent object versions. You set this lifecycle configuration action on a bucket that has versioning enabled (or suspended) to request that S3 delete noncurrent object versions at a specific period in the object's lifetime."
       },
       "NoncurrentVersionExpirationInDays": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "(Deprecated.) For buckets with versioning enabled (or suspended), specifies the time, in days, between when a new version of the object is uploaded to the bucket and when old versions of the object expire. When object versions expire, Amazon S3 permanently deletes them. If you specify a transition and expiration time, the expiration time must be later than the transition time."
       },
       "NoncurrentVersionTransition": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "(Deprecated.) For buckets with versioning enabled (or suspended), specifies when non-current objects transition to a specified storage class. If you specify a transition and expiration time, the expiration time must be later than the transition time. If you specify this property, don't specify the ``NoncurrentVersionTransitions`` property."
       },
       "NoncurrentVersionTransitions": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "For buckets with versioning enabled (or suspended), one or more transition rules that specify when non-current objects transition to a specified storage class. If you specify a transition and expiration time, the expiration time must be later than the transition time. If you specify this property, don't specify the ``NoncurrentVersionTransition`` property."
@@ -1800,21 +1723,21 @@
       },
       "TagFilters": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/114"
         },
         "flags": 0,
         "description": "Tags to use to identify a subset of objects to which the lifecycle rule applies."
       },
       "Transition": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/90"
         },
         "flags": 0,
         "description": "(Deprecated.) Specifies when an object transitions to a specified storage class. If you specify an expiration and transition time, you must use the same time unit for both properties (either in days or by date). The expiration time must also be later than the transition time. If you specify this property, don't specify the ``Transitions`` property."
       },
       "Transitions": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "One or more transition rules that specify when an object transitions to a specified storage class. If you specify an expiration and transition time, you must use the same time unit for both properties (either in days or by date). The expiration time must also be later than the transition time. If you specify this property, don't specify the ``Transition`` property."
@@ -1827,7 +1750,7 @@
     "properties": {
       "Rules": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/116"
         },
         "flags": 1,
         "description": "A list of containers for the key-value pair that defines the criteria for the filter rule."
@@ -1860,14 +1783,14 @@
     "properties": {
       "BucketKeyEnabled": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Specifies whether Amazon S3 should use an S3 Bucket Key with server-side encryption using KMS (SSE-KMS) for new objects in the bucket. Existing objects are not affected. Setting the ``BucketKeyEnabled`` element to ``true`` causes Amazon S3 to use an S3 Bucket Key. By default, S3 Bucket Key is not enabled.\n For more information, see [Amazon S3 Bucket Keys](https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-key.html) in the *Amazon S3 User Guide*."
       },
       "ServerSideEncryptionByDefault": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/80"
         },
         "flags": 0,
         "description": "Specifies the default server-side encryption to apply to new objects in the bucket. If a PUT Object request doesn't specify any server-side encryption, this default encryption will be applied."
@@ -1880,14 +1803,14 @@
     "properties": {
       "ReplicaModifications": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "A filter that you can specify for selection for modifications on replicas."
       },
       "SseKmsEncryptedObjects": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "A container for filter information for the selection of Amazon S3 objects encrypted with AWS KMS."
@@ -1913,7 +1836,7 @@
     "properties": {
       "DataExport": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "Specifies how data related to the storage class analysis for an Amazon S3 bucket should be exported."
@@ -1923,7 +1846,22 @@
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "Name of the object key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "Value of the tag."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1963,7 +1901,7 @@
       },
       "Days": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 1,
         "description": "The number of consecutive days of no access after which an object will be eligible to be transitioned to the corresponding tier. The minimum number of days specified for Archive Access tier must be at least 90 days and Deep Archive Access tier must be at least 180 days. The maximum can be up to 2 years (730 days)."
@@ -1983,7 +1921,7 @@
       },
       "Filter": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "The filtering rules that determine for which objects to send notifications. For example, you can create a filter so that Amazon S3 sends notifications only when image files with a ``.jpg`` extension are added to the bucket."
@@ -2017,7 +1955,7 @@
       },
       "TransitionInDays": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "Indicates the number of days after creation when objects are transitioned to the specified storage class. The value must be a positive integer."
@@ -2057,14 +1995,14 @@
       },
       "RedirectAllRequestsTo": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "The redirect behavior for every request to this bucket's website endpoint.\n  If you specify this property, you can't specify any other property."
       },
       "RoutingRules": {
         "type": {
-          "$ref": "#/146"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": "Rules that define when a redirect is applied and the redirect behavior."
@@ -2082,7 +2020,49 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/93"
+      "$ref": "#/86"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/81"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/86"
     }
   },
   {
@@ -2094,199 +2074,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/93"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/95"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Destination",
-    "properties": {
-      "BucketAccountId": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The account ID that owns the destination S3 bucket. If no account ID is provided, the owner is not validated before exporting data.\n   Although this value is optional, we strongly recommend that you set it to help prevent problems if the destination bucket ownership changes."
-      },
-      "BucketArn": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the bucket to which data is exported."
-      },
-      "Format": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "Specifies the file format used when exporting data to Amazon S3.\n *Allowed values*: ``CSV`` | ``ORC`` | ``Parquet``"
-      },
-      "Prefix": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The prefix to use when exporting data. The prefix is prepended to all results."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/85"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/93"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "EventBridgeConfiguration",
-    "properties": {
-      "EventBridgeEnabled": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 1,
-        "description": "Enables delivery of events to Amazon EventBridge."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "LambdaConfiguration",
-    "properties": {
-      "Event": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The Amazon S3 bucket event for which to invoke the LAMlong function. For more information, see [Supported Event Types](https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the *Amazon S3 User Guide*."
-      },
-      "Filter": {
-        "type": {
-          "$ref": "#/65"
-        },
-        "flags": 0,
-        "description": "The filtering rules that determine which objects invoke the AWS Lambda function. For example, you can create a filter so that only image files with a ``.jpg`` extension invoke the function when they are added to the Amazon S3 bucket."
-      },
-      "Function": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the LAMlong function that Amazon S3 invokes when the specified event type occurs."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/116"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/72"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/96"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DefaultRetention",
-    "properties": {
-      "Days": {
-        "type": {
-          "$ref": "#/101"
-        },
-        "flags": 0,
-        "description": "The number of days that you want to specify for the default retention period. If Object Lock is turned on, you must specify ``Mode`` and specify either ``Days`` or ``Years``."
-      },
-      "Mode": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. If Object Lock is turned on, you must specify ``Mode`` and specify either ``Days`` or ``Years``."
-      },
-      "Years": {
-        "type": {
-          "$ref": "#/101"
-        },
-        "flags": 0,
-        "description": "The number of years that you want to specify for the default retention period. If Object Lock is turned on, you must specify ``Mode`` and specify either ``Days`` or ``Years``."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/69"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "NotificationFilter",
-    "properties": {
-      "S3Key": {
-        "type": {
-          "$ref": "#/86"
-        },
-        "flags": 1,
-        "description": "A container for object key name prefix and suffix filtering rules."
-      }
     }
   },
   {
@@ -2296,341 +2084,69 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "AccessControlTranslation",
-    "properties": {
-      "Owner": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "Specifies the replica ownership. For default and valid values, see [PUT bucket replication](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTreplication.html) in the *Amazon S3 API Reference*."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "EncryptionConfiguration",
-    "properties": {
-      "ReplicaKmsKeyID": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "Specifies the ID (Key ARN or Alias ARN) of the customer managed AWS KMS key stored in AWS Key Management Service (KMS) for the destination bucket. Amazon S3 uses this key to encrypt replica objects. Amazon S3 only supports symmetric encryption KMS keys. For more information, see [Asymmetric keys in KMS](https://docs.aws.amazon.com//kms/latest/developerguide/symmetric-asymmetric.html) in the *Key Management Service Developer Guide*."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Metrics",
-    "properties": {
-      "EventThreshold": {
-        "type": {
-          "$ref": "#/82"
-        },
-        "flags": 0,
-        "description": "A container specifying the time threshold for emitting the ``s3:Replication:OperationMissedThreshold`` event."
-      },
-      "Status": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "Specifies whether the replication metrics are enabled."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DeleteMarkerReplication",
-    "properties": {
-      "Status": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Indicates whether to replicate delete markers. Disabled by default."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ReplicationDestination",
-    "properties": {
-      "AccessControlTranslation": {
-        "type": {
-          "$ref": "#/124"
-        },
-        "flags": 0,
-        "description": "Specify this only in a cross-account scenario (where source and destination bucket owners are not the same), and you want to change replica ownership to the AWS-account that owns the destination bucket. If this is not specified in the replication configuration, the replicas are owned by same AWS-account that owns the source object."
-      },
-      "Account": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Destination bucket owner account ID. In a cross-account scenario, if you direct Amazon S3 to change replica ownership to the AWS-account that owns the destination bucket by specifying the ``AccessControlTranslation`` property, this is the account ID of the destination bucket owner. For more information, see [Cross-Region Replication Additional Configuration: Change Replica Owner](https://docs.aws.amazon.com/AmazonS3/latest/dev/crr-change-owner.html) in the *Amazon S3 User Guide*.\n If you specify the ``AccessControlTranslation`` property, the ``Account`` property is required."
-      },
-      "Bucket": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the bucket where you want Amazon S3 to store the results."
-      },
-      "EncryptionConfiguration": {
-        "type": {
-          "$ref": "#/125"
-        },
-        "flags": 0,
-        "description": "Specifies encryption-related information."
-      },
-      "Metrics": {
-        "type": {
-          "$ref": "#/126"
-        },
-        "flags": 0,
-        "description": "A container specifying replication metrics-related settings enabling replication metrics and events."
-      },
-      "ReplicationTime": {
-        "type": {
-          "$ref": "#/81"
-        },
-        "flags": 0,
-        "description": "A container specifying S3 Replication Time Control (S3 RTC), including whether S3 RTC is enabled and the time when all objects and operations on objects must be replicated. Must be specified together with a ``Metrics`` block."
-      },
-      "StorageClass": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The storage class to use when replicating objects, such as S3 Standard or reduced redundancy. By default, Amazon S3 uses the storage class of the source object to create the object replica. \n For valid values, see the ``StorageClass`` element of the [PUT Bucket replication](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTreplication.html) action in the *Amazon S3 API Reference*."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/86"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/93"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ReplicationRuleAndOperator",
-    "properties": {
-      "Prefix": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "An object key name prefix that identifies the subset of objects to which the rule applies."
-      },
-      "TagFilters": {
-        "type": {
-          "$ref": "#/129"
-        },
-        "flags": 0,
-        "description": "An array of tags containing key and value pairs."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RedirectRule",
-    "properties": {
-      "HostName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The host name to use in the redirect request."
-      },
-      "HttpRedirectCode": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The HTTP redirect code to use on the response. Not required if one of the siblings is present."
-      },
-      "Protocol": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Protocol to use when redirecting requests. The default is the protocol that is used in the original request."
-      },
-      "ReplaceKeyPrefixWith": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The object key prefix to use in the redirect request. For example, to redirect requests for all pages with prefix ``docs/`` (objects in the ``docs/`` folder) to ``documents/``, you can set a condition block with ``KeyPrefixEquals`` set to ``docs/`` and in the Redirect set ``ReplaceKeyPrefixWith`` to ``/documents``. Not required if one of the siblings is present. Can be present only if ``ReplaceKeyWith`` is not provided.\n  Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests. For more information, see [XML related object key constraints](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints)."
-      },
-      "ReplaceKeyWith": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The specific object key to use in the redirect request. For example, redirect request to ``error.html``. Not required if one of the siblings is present. Can be present only if ``ReplaceKeyPrefixWith`` is not provided.\n  Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests. For more information, see [XML related object key constraints](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints)."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AbortIncompleteMultipartUpload",
-    "properties": {
-      "DaysAfterInitiation": {
-        "type": {
-          "$ref": "#/101"
-        },
-        "flags": 1,
-        "description": "Specifies the number of days after which Amazon S3 stops an incomplete multipart upload."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "NoncurrentVersionExpiration",
-    "properties": {
-      "NewerNoncurrentVersions": {
-        "type": {
-          "$ref": "#/101"
-        },
-        "flags": 0,
-        "description": "Specifies how many noncurrent versions S3 will retain. If there are this many more recent noncurrent versions, S3 will take the associated action. For more information about noncurrent versions, see [Lifecycle configuration elements](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html) in the *Amazon S3 User Guide*."
-      },
-      "NoncurrentDays": {
-        "type": {
-          "$ref": "#/101"
-        },
-        "flags": 1,
-        "description": "Specifies the number of days an object is noncurrent before S3 can perform the associated action. For information about the noncurrent days calculations, see [How Amazon S3 Calculates When an Object Became Noncurrent](https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html#non-current-days-calculations) in the *Amazon S3 User Guide*."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "NoncurrentVersionTransition",
-    "properties": {
-      "NewerNoncurrentVersions": {
-        "type": {
-          "$ref": "#/101"
-        },
-        "flags": 0,
-        "description": "Specifies how many noncurrent versions S3 will retain. If there are this many more recent noncurrent versions, S3 will take the associated action. For more information about noncurrent versions, see [Lifecycle configuration elements](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html) in the *Amazon S3 User Guide*."
-      },
-      "StorageClass": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The class of storage used to store the object."
-      },
-      "TransitionInDays": {
-        "type": {
-          "$ref": "#/101"
-        },
-        "flags": 1,
-        "description": "Specifies the number of days an object is noncurrent before Amazon S3 can perform the associated action. For information about the noncurrent days calculations, see [How Amazon S3 Calculates How Long an Object Has Been Noncurrent](https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html#non-current-days-calculations) in the *Amazon S3 User Guide*."
-      }
+      "$ref": "#/50"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/134"
+      "$ref": "#/65"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/93"
+      "$ref": "#/89"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/97"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "FilterRule",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The object key name prefix or suffix identifying one or more objects to which the filtering rule applies. The maximum length is 1,024 characters. Overlapping prefixes and suffixes are not supported. For more information, see [Configuring Event Notifications](https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the *Amazon S3 User Guide*."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The value that the filter searches for in object key names."
-      }
+      "$ref": "#/62"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/138"
+      "$ref": "#/71"
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "ServerSideEncryptionByDefault",
-    "properties": {
-      "KMSMasterKeyID": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "AWS Key Management Service (KMS) customer AWS KMS key ID to use for the default encryption. This parameter is allowed if and only if ``SSEAlgorithm`` is set to ``aws:kms`` or ``aws:kms:dsse``.\n You can specify the key ID, key alias, or the Amazon Resource Name (ARN) of the KMS key.\n  +  Key ID: ``1234abcd-12ab-34cd-56ef-1234567890ab`` \n  +  Key ARN: ``arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab`` \n  +  Key Alias: ``alias/alias-name`` \n  \n If you use a key ID, you can run into a LogDestination undeliverable error when creating a VPC flow log. \n If you are using encryption with cross-account or AWS service operations you must use a fully qualified KMS key ARN. For more information, see [Using encryption for cross-account operations](https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html#bucket-encryption-update-bucket-policy).\n  Amazon S3 only supports symmetric encryption KMS keys. For more information, see [Asymmetric keys in KMS](https://docs.aws.amazon.com//kms/latest/developerguide/symmetric-asymmetric.html) in the *Key Management Service Developer Guide*."
-      },
-      "SSEAlgorithm": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "Server-side encryption algorithm to use for the default encryption."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/86"
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "ReplicaModifications",
-    "properties": {
-      "Status": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "Specifies whether Amazon S3 replicates modifications on replicas.\n *Allowed values*: ``Enabled`` | ``Disabled``"
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/56"
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "DataExport",
-    "properties": {
-      "Destination": {
-        "type": {
-          "$ref": "#/51"
-        },
-        "flags": 1,
-        "description": "The place to store the data for an analysis."
-      },
-      "OutputSchemaVersion": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The version of the output schema to use when exporting data. Must be ``V_1``."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/86"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/90"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/47"
     }
   },
   {
@@ -2639,49 +2155,9 @@
     "properties": {}
   },
   {
-    "$type": "ObjectType",
-    "name": "RedirectAllRequestsTo",
-    "properties": {
-      "HostName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "Name of the host where requests are redirected."
-      },
-      "Protocol": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Protocol to use when redirecting requests. The default is the protocol that is used in the original request."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RoutingRule",
-    "properties": {
-      "RedirectRule": {
-        "type": {
-          "$ref": "#/131"
-        },
-        "flags": 1,
-        "description": "Container for redirect information. You can redirect requests to another host, to another page, or with another protocol. In the event of an error, you can specify a different error code to return."
-      },
-      "RoutingRuleCondition": {
-        "type": {
-          "$ref": "#/84"
-        },
-        "flags": 0,
-        "description": "A container for describing a condition that must be met for the specified redirect to apply. For example, 1. If request is for pages in the ``/docs`` folder, redirect to the ``/documents`` folder. 2. If request results in HTTP error 4xx, redirect request to another host where you might process the error."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/145"
+      "$ref": "#/76"
     }
   },
   {
@@ -2689,464 +2165,33 @@
     "value": "AWS.S3/BucketProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "AccelerateConfiguration",
-    "properties": {
-      "AccelerationStatus": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "Specifies the transfer acceleration status of the bucket."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AnalyticsConfiguration",
-    "properties": {
-      "Id": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The ID that identifies the analytics configuration."
-      },
-      "Prefix": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The prefix that an object must have to be included in the analytics results."
-      },
-      "StorageClassAnalysis": {
-        "type": {
-          "$ref": "#/91"
-        },
-        "flags": 1,
-        "description": "Contains data related to access patterns to be collected and made available to analyze the tradeoffs between different storage classes."
-      },
-      "TagFilters": {
-        "type": {
-          "$ref": "#/102"
-        },
-        "flags": 0,
-        "description": "The tags to use when evaluating an analytics filter.\n The analytics only includes objects that meet the filter's criteria. If no filter is specified, all of the contents of the bucket are included in the analysis."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/36"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/149"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "BucketEncryption",
-    "properties": {
-      "ServerSideEncryptionConfiguration": {
-        "type": {
-          "$ref": "#/103"
-        },
-        "flags": 1,
-        "description": "Specifies the default server-side-encryption configuration."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CorsConfiguration",
-    "properties": {
-      "CorsRules": {
-        "type": {
-          "$ref": "#/104"
-        },
-        "flags": 1,
-        "description": "A set of origins and methods (cross-origin access that you want to allow). You can add up to 100 rules to the configuration."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "IntelligentTieringConfiguration",
-    "properties": {
-      "Id": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The ID used to identify the S3 Intelligent-Tiering configuration."
-      },
-      "Prefix": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "An object key name prefix that identifies the subset of objects to which the rule applies."
-      },
-      "Status": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "Specifies the status of the configuration."
-      },
-      "TagFilters": {
-        "type": {
-          "$ref": "#/109"
-        },
-        "flags": 0,
-        "description": "A container for a key-value pair."
-      },
-      "Tierings": {
-        "type": {
-          "$ref": "#/110"
-        },
-        "flags": 1,
-        "description": "Specifies a list of S3 Intelligent-Tiering storage class tiers in the configuration. At least one tier must be defined in the list. At most, you can specify two tiers in the list, one for each available AccessTier: ``ARCHIVE_ACCESS`` and ``DEEP_ARCHIVE_ACCESS``.\n  You only need Intelligent Tiering Configuration enabled on a bucket if you want to automatically move objects stored in the Intelligent-Tiering storage class to Archive Access or Deep Archive Access tiers."
-      }
+      "$ref": "#/48"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/153"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "InventoryConfiguration",
-    "properties": {
-      "Destination": {
-        "type": {
-          "$ref": "#/111"
-        },
-        "flags": 1,
-        "description": "Contains information about where to publish the inventory results."
-      },
-      "Enabled": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 1,
-        "description": "Specifies whether the inventory is enabled or disabled. If set to ``True``, an inventory list is generated. If set to ``False``, no inventory list is generated."
-      },
-      "Id": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The ID used to identify the inventory configuration."
-      },
-      "IncludedObjectVersions": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "Object versions to include in the inventory list. If set to ``All``, the list includes all the object versions, which adds the version-related fields ``VersionId``, ``IsLatest``, and ``DeleteMarker`` to the list. If set to ``Current``, the list does not contain these version-related fields."
-      },
-      "OptionalFields": {
-        "type": {
-          "$ref": "#/112"
-        },
-        "flags": 0,
-        "description": "Contains the optional fields that are included in the inventory results."
-      },
-      "Prefix": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Specifies the inventory filter prefix."
-      },
-      "ScheduleFrequency": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "Specifies the schedule for generating inventory results."
-      }
+      "$ref": "#/49"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/155"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "LifecycleConfiguration",
-    "properties": {
-      "Rules": {
-        "type": {
-          "$ref": "#/113"
-        },
-        "flags": 5,
-        "description": "A lifecycle rule for individual objects in an Amazon S3 bucket."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "LoggingConfiguration",
-    "properties": {
-      "DestinationBucketName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The name of the bucket where Amazon S3 should store server access log files. You can store log files in any bucket that you own. By default, logs are stored in the bucket where the ``LoggingConfiguration`` property is defined."
-      },
-      "LogFilePrefix": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "A prefix for all log object keys. If you store log files from multiple Amazon S3 buckets in a single bucket, you can use a prefix to distinguish which log files came from which bucket."
-      },
-      "TargetObjectKeyFormat": {
-        "type": {
-          "$ref": "#/94"
-        },
-        "flags": 0,
-        "description": "Amazon S3 key format for log objects. Only one format, either PartitionedPrefix or SimplePrefix, is allowed."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "MetricsConfiguration",
-    "properties": {
-      "AccessPointArn": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The access point that was used while performing operations on the object. The metrics configuration only includes objects that meet the filter's criteria."
-      },
-      "Id": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The ID used to identify the metrics configuration. This can be any value you choose that helps you identify your metrics configuration."
-      },
-      "Prefix": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The prefix that an object must have to be included in the metrics results."
-      },
-      "TagFilters": {
-        "type": {
-          "$ref": "#/114"
-        },
-        "flags": 0,
-        "description": "Specifies a list of tag filters to use as a metrics configuration filter. The metrics configuration includes only objects that meet the filter's criteria."
-      }
+      "$ref": "#/54"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/159"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "NotificationConfiguration",
-    "properties": {
-      "EventBridgeConfiguration": {
-        "type": {
-          "$ref": "#/115"
-        },
-        "flags": 0,
-        "description": "Enables delivery of events to Amazon EventBridge."
-      },
-      "LambdaConfigurations": {
-        "type": {
-          "$ref": "#/117"
-        },
-        "flags": 0,
-        "description": "Describes the LAMlong functions to invoke and the events for which to invoke them."
-      },
-      "QueueConfigurations": {
-        "type": {
-          "$ref": "#/118"
-        },
-        "flags": 0,
-        "description": "The Amazon Simple Queue Service queues to publish messages to and the events for which to publish messages."
-      },
-      "TopicConfigurations": {
-        "type": {
-          "$ref": "#/119"
-        },
-        "flags": 0,
-        "description": "The topic to which notifications are sent and the events for which notifications are generated."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ObjectLockConfiguration",
-    "properties": {
-      "ObjectLockEnabled": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Indicates whether this bucket has an Object Lock configuration enabled. Enable ``ObjectLockEnabled`` when you apply ``ObjectLockConfiguration`` to a bucket."
-      },
-      "Rule": {
-        "type": {
-          "$ref": "#/67"
-        },
-        "flags": 0,
-        "description": "Specifies the Object Lock rule for the specified object. Enable this rule when you apply ``ObjectLockConfiguration`` to a bucket. If Object Lock is turned on, bucket settings require both ``Mode`` and a period of either ``Days`` or ``Years``. You cannot specify ``Days`` and ``Years`` at the same time. For more information, see [ObjectLockRule](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-objectlockrule.html) and [DefaultRetention](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-defaultretention.html)."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "OwnershipControls",
-    "properties": {
-      "Rules": {
-        "type": {
-          "$ref": "#/121"
-        },
-        "flags": 1,
-        "description": "Specifies the container element for Object Ownership rules."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PublicAccessBlockConfiguration",
-    "properties": {
-      "BlockPublicAcls": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0,
-        "description": "Specifies whether Amazon S3 should block public access control lists (ACLs) for this bucket and objects in this bucket. Setting this element to ``TRUE`` causes the following behavior:\n  +  PUT Bucket ACL and PUT Object ACL calls fail if the specified ACL is public.\n  +  PUT Object calls fail if the request includes a public ACL.\n  +  PUT Bucket calls fail if the request includes a public ACL.\n  \n Enabling this setting doesn't affect existing policies or ACLs."
-      },
-      "BlockPublicPolicy": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0,
-        "description": "Specifies whether Amazon S3 should block public bucket policies for this bucket. Setting this element to ``TRUE`` causes Amazon S3 to reject calls to PUT Bucket policy if the specified bucket policy allows public access. \n Enabling this setting doesn't affect existing bucket policies."
-      },
-      "IgnorePublicAcls": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0,
-        "description": "Specifies whether Amazon S3 should ignore public ACLs for this bucket and objects in this bucket. Setting this element to ``TRUE`` causes Amazon S3 to ignore all public ACLs on this bucket and objects in this bucket.\n Enabling this setting doesn't affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set."
-      },
-      "RestrictPublicBuckets": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0,
-        "description": "Specifies whether Amazon S3 should restrict public bucket policies for this bucket. Setting this element to ``TRUE`` restricts access to this bucket to only AWS-service principals and authorized users within this account if the bucket has a public policy.\n Enabling this setting doesn't affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ReplicationConfiguration",
-    "properties": {
-      "Role": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the IAMlong (IAM) role that Amazon S3 assumes when replicating objects. For more information, see [How to Set Up Replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-how-setup.html) in the *Amazon S3 User Guide*."
-      },
-      "Rules": {
-        "type": {
-          "$ref": "#/123"
-        },
-        "flags": 5,
-        "description": "A container for one or more replication rules. A replication configuration must have at least one rule and can contain a maximum of 1,000 rules."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "Name of the object key."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "Value of the tag."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/166"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "VersioningConfiguration",
-    "properties": {
-      "Status": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The versioning state of the bucket."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "WebsiteConfiguration",
-    "properties": {
-      "ErrorDocument": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The name of the error document for the website."
-      },
-      "IndexDocument": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The name of the index document for the website."
-      },
-      "RedirectAllRequestsTo": {
-        "type": {
-          "$ref": "#/144"
-        },
-        "flags": 0,
-        "description": "The redirect behavior for every request to this bucket's website endpoint.\n  If you specify this property, you can't specify any other property."
-      },
-      "RoutingRules": {
-        "type": {
-          "$ref": "#/146"
-        },
-        "flags": 0,
-        "description": "Rules that define when a redirect is applied and the redirect behavior."
-      }
+      "$ref": "#/85"
     }
   },
   {
@@ -3155,7 +2200,7 @@
     "properties": {
       "AccelerateConfiguration": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "Configures the transfer acceleration state for an Amazon S3 bucket. For more information, see [Amazon S3 Transfer Acceleration](https://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html) in the *Amazon S3 User Guide*."
@@ -3169,7 +2214,7 @@
       },
       "AnalyticsConfigurations": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "Specifies the configuration and any analyses for the analytics filter of an Amazon S3 bucket."
@@ -3183,7 +2228,7 @@
       },
       "BucketEncryption": {
         "type": {
-          "$ref": "#/151"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "Specifies default encryption for a bucket using server-side encryption with Amazon S3-managed keys (SSE-S3), AWS KMS-managed keys (SSE-KMS), or dual-layer server-side encryption with KMS-managed keys (DSSE-KMS). For information about the Amazon S3 default encryption feature, see [Amazon S3 Default Encryption for S3 Buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html) in the *Amazon S3 User Guide*."
@@ -3197,7 +2242,7 @@
       },
       "CorsConfiguration": {
         "type": {
-          "$ref": "#/152"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "Describes the cross-origin access configuration for objects in an Amazon S3 bucket. For more information, see [Enabling Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) in the *Amazon S3 User Guide*."
@@ -3218,70 +2263,70 @@
       },
       "IntelligentTieringConfigurations": {
         "type": {
-          "$ref": "#/154"
+          "$ref": "#/121"
         },
         "flags": 0,
         "description": "Defines how Amazon S3 handles Intelligent-Tiering storage."
       },
       "InventoryConfigurations": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "Specifies the inventory configuration for an Amazon S3 bucket. For more information, see [GET Bucket inventory](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETInventoryConfig.html) in the *Amazon S3 API Reference*."
       },
       "LifecycleConfiguration": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "Specifies the lifecycle configuration for objects in an Amazon S3 bucket. For more information, see [Object Lifecycle Management](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html) in the *Amazon S3 User Guide*."
       },
       "LoggingConfiguration": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "Settings that define where logs are stored."
       },
       "MetricsConfigurations": {
         "type": {
-          "$ref": "#/160"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "Specifies a metrics configuration for the CloudWatch request metrics (specified by the metrics configuration ID) from an Amazon S3 bucket. If you're updating an existing metrics configuration, note that this is a full replacement of the existing metrics configuration. If you don't include the elements you want to keep, they are erased. For more information, see [PutBucketMetricsConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTMetricConfiguration.html)."
       },
       "NotificationConfiguration": {
         "type": {
-          "$ref": "#/161"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "Configuration that defines how Amazon S3 handles bucket notifications."
       },
       "ObjectLockConfiguration": {
         "type": {
-          "$ref": "#/162"
+          "$ref": "#/59"
         },
         "flags": 0,
         "description": "This operation is not supported by directory buckets.\n  Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see [Locking Objects](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html). \n   +  The ``DefaultRetention`` settings require both a mode and a period.\n  +  The ``DefaultRetention`` period can be either ``Days`` or ``Years`` but you must select one. You cannot specify ``Days`` and ``Years`` at the same time.\n  +  You can enable Object Lock for new or existing buckets. For more information, see [Configuring Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-configure.html)."
       },
       "ObjectLockEnabled": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Indicates whether this bucket has an Object Lock configuration enabled. Enable ``ObjectLockEnabled`` when you apply ``ObjectLockConfiguration`` to a bucket."
       },
       "OwnershipControls": {
         "type": {
-          "$ref": "#/163"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "Configuration that defines how Amazon S3 handles Object Ownership rules."
       },
       "PublicAccessBlockConfiguration": {
         "type": {
-          "$ref": "#/164"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "Configuration that defines how Amazon S3 handles public access."
@@ -3295,28 +2340,28 @@
       },
       "ReplicationConfiguration": {
         "type": {
-          "$ref": "#/165"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "Configuration for replicating objects in an S3 bucket. To enable replication, you must also enable versioning by using the ``VersioningConfiguration`` property.\n Amazon S3 can store replicated objects in a single destination bucket or multiple destination buckets. The destination bucket or buckets must already exist."
       },
       "Tags": {
         "type": {
-          "$ref": "#/167"
+          "$ref": "#/124"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this S3 bucket."
       },
       "VersioningConfiguration": {
         "type": {
-          "$ref": "#/168"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "Enables multiple versions of all objects in this bucket. You might enable versioning to prevent objects from being deleted or overwritten by mistake or to archive objects so that you can retrieve previous versions of them."
       },
       "WebsiteConfiguration": {
         "type": {
-          "$ref": "#/169"
+          "$ref": "#/92"
         },
         "flags": 0,
         "description": "Information used to configure the bucket as a static website. For more information, see [Hosting Websites on Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html)."
@@ -3345,14 +2390,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/170"
+          "$ref": "#/125"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -3362,7 +2407,7 @@
     "name": "AWS.S3/Bucket@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/171"
+      "$ref": "#/126"
     },
     "flags": 0
   },
@@ -3379,7 +2424,7 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/174"
+        "$ref": "#/129"
       },
       {
         "$ref": "#/4"
@@ -3399,7 +2444,7 @@
       },
       "PolicyDocument": {
         "type": {
-          "$ref": "#/175"
+          "$ref": "#/130"
         },
         "flags": 1,
         "description": "A policy document containing permissions to add to the specified bucket. In IAM, you must provide policy documents in JSON format. However, in CloudFormation you can provide the policy in JSON or YAML format because CloudFormation converts YAML to JSON before submitting it to IAM. For more information, see the AWS::IAM::Policy [PolicyDocument](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html#cfn-iam-policy-policydocument) resource description in this guide and [Access Policy Language Overview](https://docs.aws.amazon.com/AmazonS3/latest/dev/access-policy-language-overview.html) in the *Amazon S3 User Guide*."
@@ -3421,14 +2466,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/176"
+          "$ref": "#/131"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -3438,7 +2483,7 @@
     "name": "AWS.S3/BucketPolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/177"
+      "$ref": "#/132"
     },
     "flags": 0
   },
@@ -3477,14 +2522,14 @@
       },
       "Policy": {
         "type": {
-          "$ref": "#/180"
+          "$ref": "#/135"
         },
         "flags": 1,
         "description": "Policy document to apply to a Multi Region Access Point"
       },
       "PolicyStatus": {
         "type": {
-          "$ref": "#/181"
+          "$ref": "#/136"
         },
         "flags": 2,
         "description": "The Policy Status associated with this Multi Region Access Point"
@@ -3506,14 +2551,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/182"
+          "$ref": "#/137"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -3523,7 +2568,7 @@
     "name": "AWS.S3/MultiRegionAccessPointPolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/183"
+      "$ref": "#/138"
     },
     "flags": 0
   },
@@ -3533,37 +2578,37 @@
     "properties": {
       "ActivityMetrics": {
         "type": {
-          "$ref": "#/186"
+          "$ref": "#/141"
         },
         "flags": 0
       },
       "AdvancedCostOptimizationMetrics": {
         "type": {
-          "$ref": "#/187"
+          "$ref": "#/142"
         },
         "flags": 0
       },
       "AdvancedDataProtectionMetrics": {
         "type": {
-          "$ref": "#/188"
+          "$ref": "#/143"
         },
         "flags": 0
       },
       "BucketLevel": {
         "type": {
-          "$ref": "#/191"
+          "$ref": "#/146"
         },
         "flags": 1
       },
       "DetailedStatusCodesMetrics": {
         "type": {
-          "$ref": "#/195"
+          "$ref": "#/150"
         },
         "flags": 0
       },
       "StorageLensGroupLevel": {
         "type": {
-          "$ref": "#/205"
+          "$ref": "#/160"
         },
         "flags": 0
       }
@@ -3575,7 +2620,7 @@
     "properties": {
       "IsEnabled": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Specifies whether activity metrics are enabled or disabled."
@@ -3588,7 +2633,7 @@
     "properties": {
       "IsEnabled": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Specifies whether advanced cost optimization metrics are enabled or disabled."
@@ -3601,7 +2646,7 @@
     "properties": {
       "IsEnabled": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Specifies whether advanced data protection metrics are enabled or disabled."
@@ -3631,31 +2676,31 @@
     "properties": {
       "ActivityMetrics": {
         "type": {
-          "$ref": "#/208"
+          "$ref": "#/141"
         },
         "flags": 0
       },
       "AdvancedCostOptimizationMetrics": {
         "type": {
-          "$ref": "#/209"
+          "$ref": "#/142"
         },
         "flags": 0
       },
       "AdvancedDataProtectionMetrics": {
         "type": {
-          "$ref": "#/210"
+          "$ref": "#/143"
         },
         "flags": 0
       },
       "DetailedStatusCodesMetrics": {
         "type": {
-          "$ref": "#/195"
+          "$ref": "#/150"
         },
         "flags": 0
       },
       "PrefixLevel": {
         "type": {
-          "$ref": "#/198"
+          "$ref": "#/153"
         },
         "flags": 0
       }
@@ -3667,13 +2712,13 @@
     "properties": {
       "Buckets": {
         "type": {
-          "$ref": "#/211"
+          "$ref": "#/163"
         },
         "flags": 0
       },
       "Regions": {
         "type": {
-          "$ref": "#/212"
+          "$ref": "#/164"
         },
         "flags": 0
       }
@@ -3685,7 +2730,7 @@
     "properties": {
       "IsEnabled": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "Specifies whether CloudWatch metrics are enabled or disabled."
@@ -3695,7 +2740,20 @@
   {
     "$type": "ObjectType",
     "name": "DataExport",
-    "properties": {}
+    "properties": {
+      "CloudWatchMetrics": {
+        "type": {
+          "$ref": "#/148"
+        },
+        "flags": 0
+      },
+      "S3BucketDestination": {
+        "type": {
+          "$ref": "#/155"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3703,7 +2761,7 @@
     "properties": {
       "IsEnabled": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Specifies whether detailed status codes metrics are enabled or disabled."
@@ -3726,7 +2784,7 @@
     "properties": {
       "StorageMetrics": {
         "type": {
-          "$ref": "#/199"
+          "$ref": "#/154"
         },
         "flags": 1
       }
@@ -3738,14 +2796,14 @@
     "properties": {
       "IsEnabled": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Specifies whether prefix-level storage metrics are enabled or disabled."
       },
       "SelectionCriteria": {
         "type": {
-          "$ref": "#/202"
+          "$ref": "#/157"
         },
         "flags": 0
       }
@@ -3771,7 +2829,7 @@
       },
       "Encryption": {
         "type": {
-          "$ref": "#/214"
+          "$ref": "#/151"
         },
         "flags": 0
       },
@@ -3824,14 +2882,14 @@
       },
       "MaxDepth": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "Max depth of prefixes of S3 key that Amazon S3 Storage Lens will analyze."
       },
       "MinStorageBytesPercentage": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "The minimum storage bytes threshold for the prefixes to be included in the analysis."
@@ -3844,25 +2902,25 @@
     "properties": {
       "AccountLevel": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/140"
         },
         "flags": 1
       },
       "AwsOrg": {
         "type": {
-          "$ref": "#/216"
+          "$ref": "#/145"
         },
         "flags": 0
       },
       "DataExport": {
         "type": {
-          "$ref": "#/217"
+          "$ref": "#/149"
         },
         "flags": 0
       },
       "Exclude": {
         "type": {
-          "$ref": "#/218"
+          "$ref": "#/147"
         },
         "flags": 0
       },
@@ -3874,13 +2932,13 @@
       },
       "Include": {
         "type": {
-          "$ref": "#/218"
+          "$ref": "#/147"
         },
         "flags": 0
       },
       "IsEnabled": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "Specifies whether the Amazon S3 Storage Lens configuration is enabled or disabled."
@@ -3905,7 +2963,7 @@
     "properties": {
       "StorageLensGroupSelectionCriteria": {
         "type": {
-          "$ref": "#/206"
+          "$ref": "#/161"
         },
         "flags": 0
       }
@@ -3917,251 +2975,15 @@
     "properties": {
       "Exclude": {
         "type": {
-          "$ref": "#/219"
+          "$ref": "#/166"
         },
         "flags": 0
       },
       "Include": {
         "type": {
-          "$ref": "#/220"
+          "$ref": "#/167"
         },
         "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ActivityMetrics",
-    "properties": {
-      "IsEnabled": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0,
-        "description": "Specifies whether activity metrics are enabled or disabled."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AdvancedCostOptimizationMetrics",
-    "properties": {
-      "IsEnabled": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0,
-        "description": "Specifies whether advanced cost optimization metrics are enabled or disabled."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AdvancedDataProtectionMetrics",
-    "properties": {
-      "IsEnabled": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0,
-        "description": "Specifies whether advanced data protection metrics are enabled or disabled."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CloudWatchMetrics",
-    "properties": {
-      "IsEnabled": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 1,
-        "description": "Specifies whether CloudWatch metrics are enabled or disabled."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Encryption",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AccountLevel",
-    "properties": {
-      "ActivityMetrics": {
-        "type": {
-          "$ref": "#/186"
-        },
-        "flags": 0
-      },
-      "AdvancedCostOptimizationMetrics": {
-        "type": {
-          "$ref": "#/187"
-        },
-        "flags": 0
-      },
-      "AdvancedDataProtectionMetrics": {
-        "type": {
-          "$ref": "#/188"
-        },
-        "flags": 0
-      },
-      "BucketLevel": {
-        "type": {
-          "$ref": "#/191"
-        },
-        "flags": 1
-      },
-      "DetailedStatusCodesMetrics": {
-        "type": {
-          "$ref": "#/195"
-        },
-        "flags": 0
-      },
-      "StorageLensGroupLevel": {
-        "type": {
-          "$ref": "#/205"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AwsOrg",
-    "properties": {
-      "Arn": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DataExport",
-    "properties": {
-      "CloudWatchMetrics": {
-        "type": {
-          "$ref": "#/213"
-        },
-        "flags": 0
-      },
-      "S3BucketDestination": {
-        "type": {
-          "$ref": "#/200"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "BucketsAndRegions",
-    "properties": {
-      "Buckets": {
-        "type": {
-          "$ref": "#/211"
-        },
-        "flags": 0
-      },
-      "Regions": {
-        "type": {
-          "$ref": "#/212"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.S3/StorageLensProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "StorageLensConfiguration",
-    "properties": {
-      "AccountLevel": {
-        "type": {
-          "$ref": "#/215"
-        },
-        "flags": 1
-      },
-      "AwsOrg": {
-        "type": {
-          "$ref": "#/216"
-        },
-        "flags": 0
-      },
-      "DataExport": {
-        "type": {
-          "$ref": "#/217"
-        },
-        "flags": 0
-      },
-      "Exclude": {
-        "type": {
-          "$ref": "#/218"
-        },
-        "flags": 0
-      },
-      "Id": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1
-      },
-      "Include": {
-        "type": {
-          "$ref": "#/218"
-        },
-        "flags": 0
-      },
-      "IsEnabled": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 1,
-        "description": "Specifies whether the Amazon S3 Storage Lens configuration is enabled or disabled."
-      },
-      "StorageLensArn": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 2,
-        "description": "The ARN for the Amazon S3 Storage Lens configuration."
       }
     }
   },
@@ -4186,7 +3008,40 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/223"
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Encryption",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.S3/StorageLensProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/162"
     }
   },
   {
@@ -4195,13 +3050,13 @@
     "properties": {
       "StorageLensConfiguration": {
         "type": {
-          "$ref": "#/222"
+          "$ref": "#/158"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/224"
+          "$ref": "#/169"
         },
         "flags": 0,
         "description": "A set of tags (key-value pairs) for this Amazon S3 Storage Lens configuration."
@@ -4223,14 +3078,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/225"
+          "$ref": "#/170"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -4240,7 +3095,7 @@
     "name": "AWS.S3/StorageLens@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/226"
+      "$ref": "#/171"
     },
     "flags": 0
   },
@@ -4250,31 +3105,31 @@
     "properties": {
       "MatchAnyPrefix": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/183"
         },
         "flags": 0
       },
       "MatchAnySuffix": {
         "type": {
-          "$ref": "#/239"
+          "$ref": "#/184"
         },
         "flags": 0
       },
       "MatchAnyTag": {
         "type": {
-          "$ref": "#/240"
+          "$ref": "#/185"
         },
         "flags": 0
       },
       "MatchObjectAge": {
         "type": {
-          "$ref": "#/233"
+          "$ref": "#/178"
         },
         "flags": 0
       },
       "MatchObjectSize": {
         "type": {
-          "$ref": "#/234"
+          "$ref": "#/179"
         },
         "flags": 0
       }
@@ -4286,43 +3141,43 @@
     "properties": {
       "And": {
         "type": {
-          "$ref": "#/241"
+          "$ref": "#/173"
         },
         "flags": 0
       },
       "MatchAnyPrefix": {
         "type": {
-          "$ref": "#/242"
+          "$ref": "#/186"
         },
         "flags": 0
       },
       "MatchAnySuffix": {
         "type": {
-          "$ref": "#/243"
+          "$ref": "#/187"
         },
         "flags": 0
       },
       "MatchAnyTag": {
         "type": {
-          "$ref": "#/244"
+          "$ref": "#/188"
         },
         "flags": 0
       },
       "MatchObjectAge": {
         "type": {
-          "$ref": "#/233"
+          "$ref": "#/178"
         },
         "flags": 0
       },
       "MatchObjectSize": {
         "type": {
-          "$ref": "#/234"
+          "$ref": "#/179"
         },
         "flags": 0
       },
       "Or": {
         "type": {
-          "$ref": "#/236"
+          "$ref": "#/181"
         },
         "flags": 0
       }
@@ -4349,14 +3204,14 @@
     "properties": {
       "DaysGreaterThan": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "Minimum object age to which the rule applies."
       },
       "DaysLessThan": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "Maximum object age to which the rule applies."
@@ -4369,14 +3224,14 @@
     "properties": {
       "BytesGreaterThan": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "Minimum object size to which the rule applies."
       },
       "BytesLessThan": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "Maximum object size to which the rule applies."
@@ -4394,236 +3249,31 @@
     "properties": {
       "MatchAnyPrefix": {
         "type": {
-          "$ref": "#/248"
+          "$ref": "#/192"
         },
         "flags": 0
       },
       "MatchAnySuffix": {
         "type": {
-          "$ref": "#/249"
+          "$ref": "#/193"
         },
         "flags": 0
       },
       "MatchAnyTag": {
         "type": {
-          "$ref": "#/250"
+          "$ref": "#/194"
         },
         "flags": 0
       },
       "MatchObjectAge": {
         "type": {
-          "$ref": "#/251"
+          "$ref": "#/178"
         },
         "flags": 0
       },
       "MatchObjectSize": {
         "type": {
-          "$ref": "#/252"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/223"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "And",
-    "properties": {
-      "MatchAnyPrefix": {
-        "type": {
-          "$ref": "#/238"
-        },
-        "flags": 0
-      },
-      "MatchAnySuffix": {
-        "type": {
-          "$ref": "#/239"
-        },
-        "flags": 0
-      },
-      "MatchAnyTag": {
-        "type": {
-          "$ref": "#/240"
-        },
-        "flags": 0
-      },
-      "MatchObjectAge": {
-        "type": {
-          "$ref": "#/233"
-        },
-        "flags": 0
-      },
-      "MatchObjectSize": {
-        "type": {
-          "$ref": "#/234"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/223"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/223"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/223"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "MatchObjectAge",
-    "properties": {
-      "DaysGreaterThan": {
-        "type": {
-          "$ref": "#/101"
-        },
-        "flags": 0,
-        "description": "Minimum object age to which the rule applies."
-      },
-      "DaysLessThan": {
-        "type": {
-          "$ref": "#/101"
-        },
-        "flags": 0,
-        "description": "Maximum object age to which the rule applies."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "MatchObjectSize",
-    "properties": {
-      "BytesGreaterThan": {
-        "type": {
-          "$ref": "#/101"
-        },
-        "flags": 0,
-        "description": "Minimum object size to which the rule applies."
-      },
-      "BytesLessThan": {
-        "type": {
-          "$ref": "#/101"
-        },
-        "flags": 0,
-        "description": "Maximum object size to which the rule applies."
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.S3/StorageLensGroupProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Filter",
-    "properties": {
-      "And": {
-        "type": {
-          "$ref": "#/241"
-        },
-        "flags": 0
-      },
-      "MatchAnyPrefix": {
-        "type": {
-          "$ref": "#/242"
-        },
-        "flags": 0
-      },
-      "MatchAnySuffix": {
-        "type": {
-          "$ref": "#/243"
-        },
-        "flags": 0
-      },
-      "MatchAnyTag": {
-        "type": {
-          "$ref": "#/244"
-        },
-        "flags": 0
-      },
-      "MatchObjectAge": {
-        "type": {
-          "$ref": "#/233"
-        },
-        "flags": 0
-      },
-      "MatchObjectSize": {
-        "type": {
-          "$ref": "#/234"
-        },
-        "flags": 0
-      },
-      "Or": {
-        "type": {
-          "$ref": "#/236"
+          "$ref": "#/179"
         },
         "flags": 0
       }
@@ -4650,7 +3300,83 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/255"
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/182"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/182"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/182"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/182"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.S3/StorageLensGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/182"
     }
   },
   {
@@ -4659,7 +3385,7 @@
     "properties": {
       "Filter": {
         "type": {
-          "$ref": "#/254"
+          "$ref": "#/174"
         },
         "flags": 1
       },
@@ -4678,7 +3404,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/256"
+          "$ref": "#/196"
         },
         "flags": 0,
         "description": "A set of tags (key-value pairs) for this Amazon S3 Storage Lens Group."
@@ -4700,14 +3426,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/257"
+          "$ref": "#/197"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -4717,7 +3443,7 @@
     "name": "AWS.S3/StorageLensGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/258"
+      "$ref": "#/198"
     },
     "flags": 0
   }

@@ -3,9 +3,9 @@
 ## Resource AWS.S3Express/BucketPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.S3Express/BucketPolicyProperties](#awss3expressbucketpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.S3Express/BucketPolicyProperties](#awss3expressbucketpolicyproperties) (Required, Identifier): properties of the resource
 
 ## AWS.S3Express/BucketPolicyProperties
 ### Properties

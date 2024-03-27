@@ -3,44 +3,44 @@
 ## Resource AWS.CloudFormation/HookDefaultVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudFormation/HookDefaultVersionProperties](#awscloudformationhookdefaultversionproperties): properties of the resource
+* **properties**: [AWS.CloudFormation/HookDefaultVersionProperties](#awscloudformationhookdefaultversionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/HookTypeConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudFormation/HookTypeConfigProperties](#awscloudformationhooktypeconfigproperties) (Required): properties of the resource
+* **properties**: [AWS.CloudFormation/HookTypeConfigProperties](#awscloudformationhooktypeconfigproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/ResourceDefaultVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudFormation/ResourceDefaultVersionProperties](#awscloudformationresourcedefaultversionproperties): properties of the resource
+* **properties**: [AWS.CloudFormation/ResourceDefaultVersionProperties](#awscloudformationresourcedefaultversionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/Stack@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudFormation/StackProperties](#awscloudformationstackproperties) (Required): properties of the resource
+* **properties**: [AWS.CloudFormation/StackProperties](#awscloudformationstackproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/StackSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudFormation/StackSetProperties](#awscloudformationstacksetproperties) (Required): properties of the resource
+* **properties**: [AWS.CloudFormation/StackSetProperties](#awscloudformationstacksetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/TypeActivation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudFormation/TypeActivationProperties](#awscloudformationtypeactivationproperties): properties of the resource
+* **properties**: [AWS.CloudFormation/TypeActivationProperties](#awscloudformationtypeactivationproperties) (Identifier): properties of the resource
 
 ## AutoDeployment
 ### Properties

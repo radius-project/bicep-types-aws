@@ -112,7 +112,7 @@
       },
       "RelationalFilterConfigurations": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "The relational filter configurations included in the configuration details of the AWS Glue data source."
@@ -125,7 +125,7 @@
     "properties": {
       "EnableBusinessNameGeneration": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Specifies whether automatic business name generation is to be enabled or not as part of the recommendation configuration."
@@ -171,21 +171,21 @@
       },
       "RedshiftCredentialConfiguration": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "The details of the credentials required to access an Amazon Redshift cluster."
       },
       "RedshiftStorage": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "The details of the Amazon Redshift storage as part of the configuration of an Amazon Redshift data source run."
       },
       "RelationalFilterConfigurations": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/26"
         },
         "flags": 1
       }
@@ -227,7 +227,7 @@
       },
       "FilterExpressions": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "The filter expressions specified in the relational filter configuration for the data source."
@@ -280,23 +280,6 @@
     "$type": "StringType"
   },
   {
-    "$type": "ObjectType",
-    "name": "DataSourceConfigurationInput",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DataSourceConfigurationInput",
-    "properties": {
-      "GlueRunConfiguration": {
-        "type": {
-          "$ref": "#/9"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/17"
@@ -304,19 +287,6 @@
   },
   {
     "$type": "BooleanType"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RedshiftCredentialConfiguration",
-    "properties": {
-      "SecretManagerArn": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1,
-        "description": "The ARN of a secret manager for an Amazon Redshift cluster."
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -335,60 +305,15 @@
     "properties": {}
   },
   {
-    "$type": "ObjectType",
-    "name": "FilterExpression",
-    "properties": {
-      "Expression": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RelationalFilterConfiguration",
-    "properties": {
-      "DatabaseName": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1,
-        "description": "The database name specified in the relational filter configuration for the data source."
-      },
-      "FilterExpressions": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0,
-        "description": "The filter expressions specified in the relational filter configuration for the data source."
-      },
-      "SchemaName": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0,
-        "description": "The schema name specified in the relational filter configuration for the data source."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/33"
+      "$ref": "#/17"
     }
   },
   {
@@ -396,61 +321,9 @@
     "value": "AWS.DataZone/DataSourceProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "FormInput",
-    "properties": {
-      "Content": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0,
-        "description": "The content of the metadata form."
-      },
-      "FormName": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1,
-        "description": "The name of the metadata form."
-      },
-      "TypeIdentifier": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0,
-        "description": "The ID of the metadata form type."
-      },
-      "TypeRevision": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0,
-        "description": "The revision of the metadata form type."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DataSourceConfigurationInput",
-    "properties": {
-      "GlueRunConfiguration": {
-        "type": {
-          "$ref": "#/9"
-        },
-        "flags": 0
-      },
-      "RedshiftRunConfiguration": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0
-      }
+      "$ref": "#/7"
     }
   },
   {
@@ -458,51 +331,18 @@
   },
   {
     "$type": "ObjectType",
-    "name": "RecommendationConfiguration",
-    "properties": {
-      "EnableBusinessNameGeneration": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Specifies whether automatic business name generation is to be enabled or not as part of the recommendation configuration."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ScheduleConfiguration",
-    "properties": {
-      "Schedule": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0,
-        "description": "The schedule of the data source runs."
-      },
-      "Timezone": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0,
-        "description": "The timezone of the data source run."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "AWS.DataZone/DataSourceProperties",
     "properties": {
       "AssetFormsInput": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/31"
         },
         "flags": 4,
         "description": "The metadata forms that are to be attached to the assets that this data source works with."
       },
       "Configuration": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/2"
         },
         "flags": 4,
         "description": "Configuration of the data source. It can be set to either glueRunConfiguration or redshiftRunConfiguration."
@@ -565,7 +405,7 @@
       },
       "LastRunAssetCount": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/32"
         },
         "flags": 2,
         "description": "The number of assets created by the data source during its last run."
@@ -607,21 +447,21 @@
       },
       "PublishOnImport": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Specifies whether the assets that this data source creates in the inventory are to be also automatically published to the catalog."
       },
       "Recommendation": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Specifies whether the business name generation is to be enabled for this data source."
       },
       "Schedule": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "The schedule of the data source runs."
@@ -664,14 +504,14 @@
         "type": {
           "$ref": "#/22"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/33"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -681,7 +521,7 @@
     "name": "AWS.DataZone/DataSource@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/43"
+      "$ref": "#/34"
     },
     "flags": 0
   },
@@ -743,47 +583,9 @@
     "value": "AWS.DataZone/DomainProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "SingleSignOn",
-    "properties": {
-      "Type": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0
-      },
-      "UserAssignment": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1,
-        "description": "The key name of the tag."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1,
-        "description": "The value for the tag."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/39"
     }
   },
   {
@@ -862,7 +664,7 @@
       },
       "SingleSignOn": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "The single-sign on configuration of the Amazon DataZone domain."
@@ -876,7 +678,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The tags specified for the Amazon DataZone domain."
@@ -898,14 +700,14 @@
         "type": {
           "$ref": "#/22"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/43"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -915,44 +717,9 @@
     "name": "AWS.DataZone/Domain@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/55"
+      "$ref": "#/44"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "EnvironmentParameter",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0,
-        "description": "The name of an environment profile parameter."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0,
-        "description": "The value of an environment profile parameter."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "EnvironmentStatus",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.DataZone/EnvironmentProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/22"
-    }
   },
   {
     "$type": "ObjectType",
@@ -975,9 +742,24 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "EnvironmentStatus",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DataZone/EnvironmentProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/61"
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/46"
     }
   },
   {
@@ -1056,7 +838,7 @@
       },
       "GlossaryTerms": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "The glossary terms that can be used in the Amazon DataZone environment."
@@ -1112,7 +894,7 @@
       },
       "UserParameters": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "The user parameters of the Amazon DataZone environment."
@@ -1134,14 +916,14 @@
         "type": {
           "$ref": "#/22"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/51"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1151,7 +933,7 @@
     "name": "AWS.DataZone/Environment@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/64"
+      "$ref": "#/52"
     },
     "flags": 0
   },
@@ -1166,7 +948,7 @@
     "properties": {
       "Parameters": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/54"
         },
         "flags": 0
       },
@@ -1177,11 +959,6 @@
         "flags": 0
       }
     }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Parameter",
-    "properties": {}
   },
   {
     "$type": "StringLiteralType",
@@ -1194,27 +971,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "RegionalParameter",
-    "properties": {
-      "Parameters": {
-        "type": {
-          "$ref": "#/68"
-        },
-        "flags": 0
-      },
-      "Region": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/71"
+      "$ref": "#/55"
     }
   },
   {
@@ -1241,7 +1000,7 @@
       },
       "EnabledRegions": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/57"
         },
         "flags": 1
       },
@@ -1271,7 +1030,7 @@
       },
       "RegionalParameters": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/58"
         },
         "flags": 0
       },
@@ -1298,14 +1057,14 @@
         "type": {
           "$ref": "#/22"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/59"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1315,18 +1074,9 @@
     "name": "AWS.DataZone/EnvironmentBlueprintConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/74"
+      "$ref": "#/60"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "EnvironmentParameter",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.DataZone/EnvironmentProfileProperties"
   },
   {
     "$type": "ObjectType",
@@ -1349,9 +1099,13 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.DataZone/EnvironmentProfileProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/78"
+      "$ref": "#/62"
     }
   },
   {
@@ -1458,7 +1212,7 @@
       },
       "UserParameters": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "The user parameters of this Amazon DataZone environment profile."
@@ -1480,14 +1234,14 @@
         "type": {
           "$ref": "#/22"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/65"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1497,7 +1251,7 @@
     "name": "AWS.DataZone/EnvironmentProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/81"
+      "$ref": "#/66"
     },
     "flags": 0
   },
@@ -1552,7 +1306,7 @@
       },
       "GlossaryTerms": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "The glossary terms that can be used in this Amazon DataZone project."
@@ -1595,14 +1349,14 @@
         "type": {
           "$ref": "#/22"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/70"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1612,7 +1366,7 @@
     "name": "AWS.DataZone/Project@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/86"
+      "$ref": "#/71"
     },
     "flags": 0
   },
@@ -1653,29 +1407,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "SubscriptionTargetForm",
-    "properties": {
-      "Content": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1,
-        "description": "The content of the subscription target configuration."
-      },
-      "FormName": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1,
-        "description": "The form name included in the subscription target configuration."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/92"
+      "$ref": "#/73"
     }
   },
   {
@@ -1684,14 +1418,14 @@
     "properties": {
       "ApplicableAssetTypes": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/75"
         },
         "flags": 1,
         "description": "The asset types that can be included in the subscription target."
       },
       "AuthorizedPrincipals": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/76"
         },
         "flags": 1,
         "description": "The authorized principals of the subscription target."
@@ -1775,7 +1509,7 @@
       },
       "SubscriptionTargetConfig": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/77"
         },
         "flags": 1,
         "description": "The configuration of the subscription target."
@@ -1818,14 +1552,14 @@
         "type": {
           "$ref": "#/22"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/78"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1835,7 +1569,7 @@
     "name": "AWS.DataZone/SubscriptionTarget@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/95"
+      "$ref": "#/79"
     },
     "flags": 0
   }

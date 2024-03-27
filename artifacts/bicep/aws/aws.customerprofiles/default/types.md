@@ -3,37 +3,37 @@
 ## Resource AWS.CustomerProfiles/CalculatedAttributeDefinition@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CustomerProfiles/CalculatedAttributeDefinitionProperties](#awscustomerprofilescalculatedattributedefinitionproperties) (Required): properties of the resource
+* **properties**: [AWS.CustomerProfiles/CalculatedAttributeDefinitionProperties](#awscustomerprofilescalculatedattributedefinitionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CustomerProfiles/Domain@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CustomerProfiles/DomainProperties](#awscustomerprofilesdomainproperties) (Required): properties of the resource
+* **properties**: [AWS.CustomerProfiles/DomainProperties](#awscustomerprofilesdomainproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CustomerProfiles/EventStream@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CustomerProfiles/EventStreamProperties](#awscustomerprofileseventstreamproperties) (Required): properties of the resource
+* **properties**: [AWS.CustomerProfiles/EventStreamProperties](#awscustomerprofileseventstreamproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CustomerProfiles/Integration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CustomerProfiles/IntegrationProperties](#awscustomerprofilesintegrationproperties) (Required): properties of the resource
+* **properties**: [AWS.CustomerProfiles/IntegrationProperties](#awscustomerprofilesintegrationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CustomerProfiles/ObjectType@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CustomerProfiles/ObjectTypeProperties](#awscustomerprofilesobjecttypeproperties) (Required): properties of the resource
+* **properties**: [AWS.CustomerProfiles/ObjectTypeProperties](#awscustomerprofilesobjecttypeproperties) (Required, Identifier): properties of the resource
 
 ## AttributeDetails
 ### Properties

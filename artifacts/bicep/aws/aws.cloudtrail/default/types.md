@@ -3,30 +3,30 @@
 ## Resource AWS.CloudTrail/Channel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudTrail/ChannelProperties](#awscloudtrailchannelproperties): properties of the resource
+* **properties**: [AWS.CloudTrail/ChannelProperties](#awscloudtrailchannelproperties) (Identifier): properties of the resource
 
 ## Resource AWS.CloudTrail/EventDataStore@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudTrail/EventDataStoreProperties](#awscloudtraileventdatastoreproperties): properties of the resource
+* **properties**: [AWS.CloudTrail/EventDataStoreProperties](#awscloudtraileventdatastoreproperties) (Identifier): properties of the resource
 
 ## Resource AWS.CloudTrail/ResourcePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudTrail/ResourcePolicyProperties](#awscloudtrailresourcepolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.CloudTrail/ResourcePolicyProperties](#awscloudtrailresourcepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudTrail/Trail@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudTrail/TrailProperties](#awscloudtrailtrailproperties) (Required): properties of the resource
+* **properties**: [AWS.CloudTrail/TrailProperties](#awscloudtrailtrailproperties) (Required, Identifier): properties of the resource
 
 ## AdvancedEventSelector
 ### Properties

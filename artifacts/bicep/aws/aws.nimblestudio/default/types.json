@@ -230,85 +230,10 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "StreamConfiguration",
-    "properties": {
-      "AutomaticTerminationMode": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0
-      },
-      "ClipboardMode": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 1
-      },
-      "Ec2InstanceTypes": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 1,
-        "description": "<p>The EC2 instance types that users can select from when launching a streaming session\n            with this launch profile.</p>"
-      },
-      "MaxSessionLengthInMinutes": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "<p>The length of time, in minutes, that a streaming session can be active before it is\n            stopped or terminated. After this point, Nimble Studio automatically terminates or\n            stops the session. The default length of time is 690 minutes, and the maximum length of\n            time is 30 days.</p>"
-      },
-      "MaxStoppedSessionLengthInMinutes": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "<p>Integer that determines if you can start and stop your sessions and how long a session\n            can stay in the <code>STOPPED</code> state. The default value is 0. The maximum value is\n            5760.</p>\n         <p>This field is allowed only when <code>sessionPersistenceMode</code> is\n                <code>ACTIVATED</code> and <code>automaticTerminationMode</code> is\n                <code>ACTIVATED</code>.</p>\n         <p>If the value is set to 0, your sessions can?t be <code>STOPPED</code>. If you then\n            call <code>StopStreamingSession</code>, the session fails. If the time that a session\n            stays in the <code>READY</code> state exceeds the <code>maxSessionLengthInMinutes</code>\n            value, the session will automatically be terminated (instead of\n            <code>STOPPED</code>).</p>\n         <p>If the value is set to a positive number, the session can be stopped. You can call\n                <code>StopStreamingSession</code> to stop sessions in the <code>READY</code> state.\n            If the time that a session stays in the <code>READY</code> state exceeds the\n                <code>maxSessionLengthInMinutes</code> value, the session will automatically be\n            stopped (instead of terminated).</p>"
-      },
-      "SessionBackup": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0
-      },
-      "SessionPersistenceMode": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0
-      },
-      "SessionStorage": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0
-      },
-      "StreamingImageIds": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 1,
-        "description": "<p>The streaming images that users can select from when launching a streaming session\n            with this launch profile.</p>"
-      },
-      "VolumeConfiguration": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/12"
     }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tags",
-    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -350,13 +275,13 @@
       },
       "StreamConfiguration": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "StudioComponentIds": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/20"
         },
         "flags": 1,
         "description": "<p>Unique identifiers for a collection of studio components that can be used with this\n            launch profile.</p>"
@@ -370,7 +295,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -391,14 +316,14 @@
         "type": {
           "$ref": "#/12"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/21"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -408,7 +333,7 @@
     "name": "AWS.NimbleStudio/LaunchProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/24"
+      "$ref": "#/22"
     },
     "flags": 0
   },
@@ -446,34 +371,10 @@
     "value": "AWS.NimbleStudio/StreamingImageProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "StreamingImageEncryptionConfiguration",
-    "properties": {
-      "KeyArn": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0,
-        "description": "<p>The ARN for a KMS key that is used to encrypt studio data.</p>"
-      },
-      "KeyType": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/12"
     }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tags",
-    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -495,13 +396,13 @@
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/24"
         },
         "flags": 2
       },
       "EulaIds": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/28"
         },
         "flags": 2,
         "description": "<p>The list of EULAs that must be accepted before a Streaming Session can be started using this streaming image.</p>"
@@ -542,7 +443,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/26"
         },
         "flags": 0
       }
@@ -563,14 +464,14 @@
         "type": {
           "$ref": "#/12"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/29"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -580,7 +481,7 @@
     "name": "AWS.NimbleStudio/StreamingImage@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/30"
     },
     "flags": 0
   },
@@ -619,30 +520,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "StudioEncryptionConfiguration",
-    "properties": {
-      "KeyArn": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0,
-        "description": "<p>The ARN for a KMS key that is used to encrypt studio data.</p>"
-      },
-      "KeyType": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tags",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
     "name": "AWS.NimbleStudio/StudioProperties",
     "properties": {
       "AdminRoleArn": {
@@ -675,7 +552,7 @@
       },
       "StudioEncryptionConfiguration": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/32"
         },
         "flags": 0
       },
@@ -701,7 +578,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/34"
         },
         "flags": 0
       },
@@ -729,14 +606,14 @@
         "type": {
           "$ref": "#/12"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/36"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -746,7 +623,7 @@
     "name": "AWS.NimbleStudio/Studio@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/43"
+      "$ref": "#/37"
     },
     "flags": 0
   },
@@ -776,7 +653,7 @@
     "properties": {
       "ComputerAttributes": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "<p>A collection of custom attributes for an Active Directory computer.</p>"
@@ -954,29 +831,9 @@
     "properties": {}
   },
   {
-    "$type": "ObjectType",
-    "name": "ActiveDirectoryComputerAttribute",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0,
-        "description": "<p>The name for the LDAP attribute.</p>"
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0,
-        "description": "<p>The value for the LDAP attribute.</p>"
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/39"
     }
   },
   {
@@ -995,73 +852,16 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "StudioComponentInitializationScript",
-    "properties": {
-      "LaunchProfileProtocolVersion": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0,
-        "description": "<p>The version number of the protocol that is used by the launch profile. The only valid\n            version is \"2021-03-31\".</p>"
-      },
-      "Platform": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0
-      },
-      "RunContext": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0
-      },
-      "Script": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0,
-        "description": "<p>The initialization script.</p>"
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/47"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/63"
+      "$ref": "#/44"
     }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ScriptParameterKeyValue",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0,
-        "description": "<p>A script parameter key.</p>"
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0,
-        "description": "<p>A script parameter value.</p>"
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/65"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tags",
-    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1069,7 +869,7 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/46"
         },
         "flags": 0
       },
@@ -1082,14 +882,14 @@
       },
       "Ec2SecurityGroupIds": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "<p>The EC2 security groups that control access to the studio component.</p>"
       },
       "InitializationScripts": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "<p>Initialization scripts for studio components.</p>"
@@ -1109,7 +909,7 @@
       },
       "ScriptParameters": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "<p>Parameters for the studio component scripts.</p>"
@@ -1141,7 +941,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/51"
         },
         "flags": 0
       },
@@ -1168,14 +968,14 @@
         "type": {
           "$ref": "#/12"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/58"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1185,7 +985,7 @@
     "name": "AWS.NimbleStudio/StudioComponent@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/69"
+      "$ref": "#/59"
     },
     "flags": 0
   }

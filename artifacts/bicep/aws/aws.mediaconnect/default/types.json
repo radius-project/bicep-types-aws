@@ -12,10 +12,17 @@
       },
       "FlowVpcInterfaceAttachment": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "The name of the VPC interface attachment to use for this source."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The name of the flow source."
       }
     }
   },
@@ -29,6 +36,13 @@
         },
         "flags": 1,
         "description": "The network output IP Address."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The network output name."
       },
       "NetworkName": {
         "type": {
@@ -71,6 +85,13 @@
         "flags": 1,
         "description": "The network source multicast IP."
       },
+      "Name": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The name of the network source."
+      },
       "NetworkName": {
         "type": {
           "$ref": "#/14"
@@ -100,7 +121,7 @@
     "properties": {
       "NetworkOutput": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -112,13 +133,13 @@
     "properties": {
       "FlowSource": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/0"
         },
         "flags": 0
       },
       "NetworkSource": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/2"
         },
         "flags": 0
       }
@@ -150,19 +171,12 @@
         "type": {
           "$ref": "#/14"
         },
-        "flags": 0,
-        "description": "The type of failover you choose for this flow. MERGE combines the source streams into a single stream, allowing graceful recovery from any single-source loss. FAILOVER allows switching between different streams."
-      },
-      "RecoveryWindow": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0,
-        "description": "Search window time to look for dash-7 packets"
+        "flags": 1,
+        "description": "The type of failover you choose for this flow. FAILOVER allows switching between different streams."
       },
       "SourcePriority": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The priority you want to assign to a source. You can have a primary stream and a backup stream or two equally prioritized streams."
@@ -243,122 +257,6 @@
     "$type": "IntegerType"
   },
   {
-    "$type": "ObjectType",
-    "name": "BridgeNetworkOutput",
-    "properties": {
-      "IpAddress": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The network output IP Address."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The network output name."
-      },
-      "NetworkName": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The network output's gateway network name."
-      },
-      "Port": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 1,
-        "description": "The network output port."
-      },
-      "Protocol": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The network output protocol."
-      },
-      "Ttl": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 1,
-        "description": "The network output TTL."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "BridgeFlowSource",
-    "properties": {
-      "FlowArn": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The ARN of the cloud flow used as a source of this bridge."
-      },
-      "FlowVpcInterfaceAttachment": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0,
-        "description": "The name of the VPC interface attachment to use for this source."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The name of the flow source."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "BridgeNetworkSource",
-    "properties": {
-      "MulticastIp": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The network source multicast IP."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The name of the network source."
-      },
-      "NetworkName": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The network source's gateway network name."
-      },
-      "Port": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 1,
-        "description": "The network source port."
-      },
-      "Protocol": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The network source protocol."
-      }
-    }
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.MediaConnect/BridgeProperties"
   },
@@ -396,71 +294,15 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "BridgeOutput",
-    "properties": {
-      "NetworkOutput": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "FailoverConfig",
-    "properties": {
-      "FailoverMode": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The type of failover you choose for this flow. FAILOVER allows switching between different streams."
-      },
-      "SourcePriority": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0,
-        "description": "The priority you want to assign to a source. You can have a primary stream and a backup stream or two equally prioritized streams."
-      },
-      "State": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "BridgeSource",
-    "properties": {
-      "FlowSource": {
-        "type": {
-          "$ref": "#/17"
-        },
-        "flags": 0
-      },
-      "NetworkSource": {
-        "type": {
-          "$ref": "#/18"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/4"
     }
   },
   {
@@ -482,13 +324,13 @@
       },
       "EgressGatewayBridge": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "IngressGatewayBridge": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/18"
         },
         "flags": 0
       },
@@ -501,7 +343,7 @@
       },
       "Outputs": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "The outputs on this bridge."
@@ -515,13 +357,13 @@
       },
       "SourceFailoverConfig": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/7"
         },
         "flags": 0
       },
       "Sources": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/20"
         },
         "flags": 1,
         "description": "The sources on this bridge."
@@ -543,14 +385,14 @@
         "type": {
           "$ref": "#/14"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/21"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -560,18 +402,9 @@
     "name": "AWS.MediaConnect/Bridge@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/28"
+      "$ref": "#/22"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "BridgeNetworkOutput",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.MediaConnect/BridgeOutputProperties"
   },
   {
     "$type": "ObjectType",
@@ -615,6 +448,10 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaConnect/BridgeOutputProperties"
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.MediaConnect/BridgeOutputProperties",
     "properties": {
@@ -634,7 +471,7 @@
       },
       "NetworkOutput": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The output of the bridge."
@@ -656,14 +493,14 @@
         "type": {
           "$ref": "#/14"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/26"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -673,46 +510,9 @@
     "name": "AWS.MediaConnect/BridgeOutput@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/27"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "BridgeFlowSource",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "BridgeNetworkSource",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ProtocolEnum",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "VpcInterfaceAttachment",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "VpcInterfaceAttachment",
-    "properties": {
-      "VpcInterfaceName": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The name of the VPC interface to use for this resource."
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.MediaConnect/BridgeSourceProperties"
   },
   {
     "$type": "ObjectType",
@@ -727,7 +527,7 @@
       },
       "FlowVpcInterfaceAttachment": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "The name of the VPC interface attachment to use for this source."
@@ -770,6 +570,28 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ProtocolEnum",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcInterfaceAttachment",
+    "properties": {
+      "VpcInterfaceName": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "The name of the VPC interface to use for this resource."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaConnect/BridgeSourceProperties"
+  },
+  {
+    "$type": "ObjectType",
     "name": "AWS.MediaConnect/BridgeSourceProperties",
     "properties": {
       "BridgeArn": {
@@ -781,7 +603,7 @@
       },
       "FlowSource": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/29"
         },
         "flags": 0
       },
@@ -794,7 +616,7 @@
       },
       "NetworkSource": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -815,14 +637,14 @@
         "type": {
           "$ref": "#/14"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/34"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -832,7 +654,7 @@
     "name": "AWS.MediaConnect/BridgeSource@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/45"
+      "$ref": "#/35"
     },
     "flags": 0
   },
@@ -908,7 +730,35 @@
   {
     "$type": "ObjectType",
     "name": "FailoverConfig",
-    "properties": {}
+    "properties": {
+      "FailoverMode": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "The type of failover you choose for this flow. MERGE combines the source streams into a single stream, allowing graceful recovery from any single-source loss. FAILOVER allows switching between different streams."
+      },
+      "RecoveryWindow": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Search window time to look for dash-7 packets"
+      },
+      "SourcePriority": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "The priority you want to assign to a source. You can have a primary stream and a backup stream or two equally prioritized streams."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -923,7 +773,7 @@
       },
       "VpcInterfaceAttachment": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The name of the VPC interface attachment to use for this bridge source."
@@ -936,7 +786,7 @@
     "properties": {
       "Decryption": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "The type of decryption that is used on the content ingested from this source."
@@ -957,7 +807,7 @@
       },
       "GatewayBridgeSource": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "The source configuration for cloud flows receiving a stream from a bridge."
@@ -1073,24 +923,6 @@
         },
         "flags": 0,
         "description": "The range of IP addresses that should be allowed to contribute content to your source. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "VpcInterfaceAttachment",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Flow_SourcePriority",
-    "properties": {
-      "PrimarySource": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The name of the source you choose as the primary source for this flow."
       }
     }
   },
@@ -1109,275 +941,20 @@
   },
   {
     "$type": "ObjectType",
-    "name": "Encryption",
+    "name": "Flow_SourcePriority",
     "properties": {
-      "Algorithm": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The type of algorithm that is used for the encryption (such as aes128, aes192, or aes256)."
-      },
-      "ConstantInitializationVector": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "A 128-bit, 16-byte hex value represented by a 32-character string, to be used with the key for encrypting content. This parameter is not valid for static key encryption."
-      },
-      "DeviceId": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The value of one of the devices that you configured with your digital rights management (DRM) platform key provider. This parameter is required for SPEKE encryption and is not valid for static key encryption."
-      },
-      "KeyType": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The type of key that is used for the encryption. If no keyType is provided, the service will use the default setting (static-key)."
-      },
-      "Region": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The AWS Region that the API Gateway proxy endpoint was created in. This parameter is required for SPEKE encryption and is not valid for static key encryption."
-      },
-      "ResourceId": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "An identifier for the content. The service sends this value to the key server to identify the current endpoint. The resource ID is also known as the content ID. This parameter is required for SPEKE encryption and is not valid for static key encryption."
-      },
-      "RoleArn": {
+      "PrimarySource": {
         "type": {
           "$ref": "#/14"
         },
         "flags": 1,
-        "description": "The ARN of the role that you created during setup (when you set up AWS Elemental MediaConnect as a trusted entity)."
-      },
-      "SecretArn": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": " The ARN of the secret that you created in AWS Secrets Manager to store the encryption key. This parameter is required for static key encryption and is not valid for SPEKE encryption."
-      },
-      "Url": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The URL from the API Gateway proxy that you set up to talk to your key server. This parameter is required for SPEKE encryption and is not valid for static key encryption."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "GatewayBridgeSource",
-    "properties": {
-      "BridgeArn": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The ARN of the bridge feeding this flow."
-      },
-      "VpcInterfaceAttachment": {
-        "type": {
-          "$ref": "#/53"
-        },
-        "flags": 0,
-        "description": "The name of the VPC interface attachment to use for this bridge source."
+        "description": "The name of the source you choose as the primary source for this flow."
       }
     }
   },
   {
     "$type": "StringLiteralType",
     "value": "AWS.MediaConnect/FlowProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Source",
-    "properties": {
-      "Decryption": {
-        "type": {
-          "$ref": "#/54"
-        },
-        "flags": 0,
-        "description": "The type of decryption that is used on the content ingested from this source."
-      },
-      "Description": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "A description for the source. This value is not used or seen outside of the current AWS Elemental MediaConnect account."
-      },
-      "EntitlementArn": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The ARN of the entitlement that allows you to subscribe to content that comes from another AWS account. The entitlement is set by the content originator and the ARN is generated as part of the originator's flow."
-      },
-      "GatewayBridgeSource": {
-        "type": {
-          "$ref": "#/55"
-        },
-        "flags": 0,
-        "description": "The source configuration for cloud flows receiving a stream from a bridge."
-      },
-      "IngestIp": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 2,
-        "description": "The IP address that the flow will be listening on for incoming content."
-      },
-      "IngestPort": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0,
-        "description": "The port that the flow will be listening on for incoming content."
-      },
-      "MaxBitrate": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0,
-        "description": "The smoothing max bitrate for RIST, RTP, and RTP-FEC streams."
-      },
-      "MaxLatency": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0,
-        "description": "The maximum latency in milliseconds. This parameter applies only to RIST-based and Zixi-based streams."
-      },
-      "MinLatency": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0,
-        "description": "The minimum latency in milliseconds."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The name of the source."
-      },
-      "Protocol": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The protocol that is used by the source."
-      },
-      "SenderControlPort": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0,
-        "description": "The port that the flow uses to send outbound requests to initiate connection with the sender for fujitsu-qos protocol."
-      },
-      "SenderIpAddress": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The IP address that the flow communicates with to initiate connection with the sender for fujitsu-qos protocol."
-      },
-      "SourceArn": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 2,
-        "description": "The ARN of the source."
-      },
-      "SourceIngestPort": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 2,
-        "description": "The port that the flow will be listening on for incoming content.(ReadOnly)"
-      },
-      "SourceListenerAddress": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "Source IP or domain name for SRT-caller protocol."
-      },
-      "SourceListenerPort": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0,
-        "description": "Source port for SRT-caller protocol."
-      },
-      "StreamId": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The stream ID that you want to use for this transport. This parameter applies only to Zixi-based streams."
-      },
-      "VpcInterfaceName": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The name of the VPC Interface this Source is configured with."
-      },
-      "WhitelistCidr": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The range of IP addresses that should be allowed to contribute content to your source. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "FailoverConfig",
-    "properties": {
-      "FailoverMode": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The type of failover you choose for this flow. MERGE combines the source streams into a single stream, allowing graceful recovery from any single-source loss. FAILOVER allows switching between different streams."
-      },
-      "RecoveryWindow": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0,
-        "description": "Search window time to look for dash-7 packets"
-      },
-      "SourcePriority": {
-        "type": {
-          "$ref": "#/52"
-        },
-        "flags": 0,
-        "description": "The priority you want to assign to a source. You can have a primary stream and a backup stream or two equally prioritized streams."
-      },
-      "State": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -1413,14 +990,14 @@
       },
       "Source": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/40"
         },
         "flags": 1,
         "description": "The source of the flow."
       },
       "SourceFailoverConfig": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "The source failover config of the flow."
@@ -1442,14 +1019,14 @@
         "type": {
           "$ref": "#/14"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/44"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1459,18 +1036,9 @@
     "name": "AWS.MediaConnect/Flow@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/60"
+      "$ref": "#/45"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Encryption",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.MediaConnect/FlowEntitlementProperties"
   },
   {
     "$type": "ObjectType",
@@ -1542,6 +1110,10 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaConnect/FlowEntitlementProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/14"
@@ -1567,7 +1139,7 @@
       },
       "Encryption": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "The type of encryption that will be used on the output that is associated with this entitlement."
@@ -1602,7 +1174,7 @@
       },
       "Subscribers": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/49"
         },
         "flags": 1,
         "description": "The AWS account IDs that you want to share your content with. The receiving accounts (subscribers) will be allowed to create their own flow using your content as the source."
@@ -1624,14 +1196,14 @@
         "type": {
           "$ref": "#/14"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/50"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1641,42 +1213,9 @@
     "name": "AWS.MediaConnect/FlowEntitlement@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/67"
+      "$ref": "#/51"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Encryption",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "VpcInterfaceAttachment",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "VpcInterfaceAttachment",
-    "properties": {
-      "VpcInterfaceName": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The name of the VPC interface to use for this resource."
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.MediaConnect/FlowOutputProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/14"
-    }
   },
   {
     "$type": "ObjectType",
@@ -1726,12 +1265,22 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaConnect/FlowOutputProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.MediaConnect/FlowOutputProperties",
     "properties": {
       "CidrAllowList": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "The range of IP addresses that should be allowed to initiate output requests to this flow. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16."
@@ -1752,7 +1301,7 @@
       },
       "Encryption": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "The type of key used for the encryption. If no keyType is provided, the service will use the default setting (static-key)."
@@ -1829,7 +1378,7 @@
       },
       "VpcInterfaceAttachment": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "The name of the VPC interface attachment to use for this output."
@@ -1851,14 +1400,14 @@
         "type": {
           "$ref": "#/14"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/57"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1868,28 +1417,9 @@
     "name": "AWS.MediaConnect/FlowOutput@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/77"
+      "$ref": "#/58"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Encryption",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "GatewayBridgeSource",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "VpcInterfaceAttachment",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.MediaConnect/FlowSourceProperties"
   },
   {
     "$type": "ObjectType",
@@ -1973,7 +1503,7 @@
       },
       "VpcInterfaceAttachment": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "The name of the VPC interface attachment to use for this bridge source."
@@ -1982,11 +1512,28 @@
   },
   {
     "$type": "ObjectType",
+    "name": "VpcInterfaceAttachment",
+    "properties": {
+      "VpcInterfaceName": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "The name of the VPC interface to use for this resource."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaConnect/FlowSourceProperties"
+  },
+  {
+    "$type": "ObjectType",
     "name": "AWS.MediaConnect/FlowSourceProperties",
     "properties": {
       "Decryption": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "The type of encryption that is used on the content ingested from this source."
@@ -2014,7 +1561,7 @@
       },
       "GatewayBridgeSource": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "The source configuration for cloud flows receiving a stream from a bridge."
@@ -2148,14 +1695,14 @@
         "type": {
           "$ref": "#/14"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/64"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -2165,7 +1712,7 @@
     "name": "AWS.MediaConnect/FlowSource@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/86"
+      "$ref": "#/65"
     },
     "flags": 0
   },
@@ -2205,7 +1752,7 @@
       },
       "NetworkInterfaceIds": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/68"
         },
         "flags": 2,
         "description": "IDs of the network interfaces created in customer's account by MediaConnect."
@@ -2219,7 +1766,7 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/69"
         },
         "flags": 1,
         "description": "Security Group IDs to be used on ENI."
@@ -2248,14 +1795,14 @@
         "type": {
           "$ref": "#/14"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/70"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -2265,7 +1812,7 @@
     "name": "AWS.MediaConnect/FlowVpcInterface@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/92"
+      "$ref": "#/71"
     },
     "flags": 0
   }

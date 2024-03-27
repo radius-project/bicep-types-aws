@@ -3,16 +3,16 @@
 ## Resource AWS.AppRunner/Service@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppRunner/ServiceProperties](#awsapprunnerserviceproperties) (Required): properties of the resource
+* **properties**: [AWS.AppRunner/ServiceProperties](#awsapprunnerserviceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppRunner/VpcIngressConnection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppRunner/VpcIngressConnectionProperties](#awsapprunnervpcingressconnectionproperties) (Required): properties of the resource
+* **properties**: [AWS.AppRunner/VpcIngressConnectionProperties](#awsapprunnervpcingressconnectionproperties) (Required, Identifier): properties of the resource
 
 ## AuthenticationConfiguration
 ### Properties

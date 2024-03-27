@@ -70,29 +70,9 @@
     "value": "AWS.Neptune/DBClusterProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "DBClusterRole",
-    "properties": {
-      "FeatureName": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The name of the feature associated with the AWS Identity and Access Management (IAM) role. For the list of supported feature names, see DBEngineVersion in the Amazon Neptune API Reference."
-      },
-      "RoleArn": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the IAM role that is associated with the DB cluster."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/0"
     }
   },
   {
@@ -111,49 +91,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "ServerlessScalingConfiguration",
-    "properties": {
-      "MaxCapacity": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The maximum number of Neptune capacity units (NCUs) for a DB instance in an Neptune Serverless cluster. You can specify NCU values in half-step increments, such as 40, 40.5, 41, and so on. The smallest value you can use is 2.5, whereas the largest is 128."
-      },
-      "MinCapacity": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The minimum number of Neptune capacity units (NCUs) for a DB instance in an Neptune Serverless cluster. You can specify NCU values in half-step increments, such as 8, 8.5, 9, and so on. The smallest value you can use is 1, whereas the largest is 128."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/2"
     }
   },
   {
@@ -168,14 +108,14 @@
     "properties": {
       "AssociatedRoles": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "Provides a list of the AWS Identity and Access Management (IAM) roles that are associated with the DB cluster. IAM roles that are associated with a DB cluster grant permission for the DB cluster to access other AWS services on your behalf."
       },
       "AvailabilityZones": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "Provides the list of EC2 Availability Zones that instances in the DB cluster can be created in."
@@ -196,7 +136,7 @@
       },
       "CopyTagsToSnapshot": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "A value that indicates whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default behaviour is not to copy them."
@@ -238,14 +178,14 @@
       },
       "DeletionProtection": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "Indicates whether or not the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled."
       },
       "EnableCloudwatchLogsExports": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "Specifies a list of log types that are enabled for export to CloudWatch Logs."
@@ -266,7 +206,7 @@
       },
       "IamAuthEnabled": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "True if mapping of Amazon Identity and Access Management (IAM) accounts to database accounts is enabled, and otherwise false."
@@ -322,7 +262,7 @@
       },
       "ServerlessScalingConfiguration": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Contains the scaling configuration used by the Neptune Serverless Instances within this DB cluster."
@@ -343,28 +283,28 @@
       },
       "StorageEncrypted": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "Indicates whether the DB cluster is encrypted.\n\nIf you specify the `DBClusterIdentifier`, `DBSnapshotIdentifier`, or `SourceDBInstanceIdentifier` property, don't specify this property. The value is inherited from the cluster, snapshot, or source DB instance. If you specify the KmsKeyId property, you must enable encryption.\n\nIf you specify the KmsKeyId, you must enable encryption by setting StorageEncrypted to true."
       },
       "Tags": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The tags assigned to this cluster."
       },
       "UseLatestRestorableTime": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/8"
         },
         "flags": 4,
         "description": "Creates a new DB cluster from a DB snapshot or DB cluster snapshot.\n\nIf a DB snapshot is specified, the target DB cluster is created from the source DB snapshot with a default configuration and default security group.\n\nIf a DB cluster snapshot is specified, the target DB cluster is created from the source DB cluster restore point with the same configuration as the original source DB cluster, except that the new DB cluster is created with the default security group."
       },
       "VpcSecurityGroupIds": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "Provides a list of VPC security groups that the DB cluster belongs to."
@@ -386,14 +326,14 @@
         "type": {
           "$ref": "#/3"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/12"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -403,7 +343,7 @@
     "name": "AWS.Neptune/DBCluster@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/16"
+      "$ref": "#/13"
     },
     "flags": 0
   }

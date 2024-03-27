@@ -3,16 +3,16 @@
 ## Resource AWS.RedshiftServerless/Namespace@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RedshiftServerless/NamespaceProperties](#awsredshiftserverlessnamespaceproperties) (Required): properties of the resource
+* **properties**: [AWS.RedshiftServerless/NamespaceProperties](#awsredshiftserverlessnamespaceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.RedshiftServerless/Workgroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RedshiftServerless/WorkgroupProperties](#awsredshiftserverlessworkgroupproperties) (Required): properties of the resource
+* **properties**: [AWS.RedshiftServerless/WorkgroupProperties](#awsredshiftserverlessworkgroupproperties) (Required, Identifier): properties of the resource
 
 ## AWS.RedshiftServerless/NamespaceProperties
 ### Properties

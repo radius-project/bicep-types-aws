@@ -18,34 +18,6 @@
           "$ref": "#/4"
         },
         "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tags",
-    "properties": {}
-  },
-  {
-    "$type": "StringType"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
@@ -58,9 +30,17 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "StringType"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/2"
     }
   },
   {
@@ -76,7 +56,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/2"
     }
   },
   {
@@ -179,21 +159,21 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/7"
         },
         "flags": 1,
         "description": "A list of up to 5 subnet IDs to associate with the Studio. The subnets must belong to the VPC specified by VpcId. Studio users can create a Workspace in any of the specified subnets."
       },
       "Tags": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "A list of tags to associate with the Studio. Tags are user-defined key-value pairs that consist of a required key string with a maximum of 128 characters, and an optional value string with a maximum of 256 characters."
       },
       "TrustedIdentityPropagationEnabled": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "A Boolean indicating whether to enable Trusted identity propagation for the Studio. The default value is false."
@@ -243,14 +223,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/10"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -260,7 +240,7 @@
     "name": "AWS.EMR/Studio@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/12"
+      "$ref": "#/11"
     },
     "flags": 0
   },
@@ -322,14 +302,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -339,18 +319,9 @@
     "name": "AWS.EMR/StudioSessionMapping@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/16"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.EMR/WALWorkspaceProperties"
   },
   {
     "$type": "ObjectType",
@@ -373,9 +344,13 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.EMR/WALWorkspaceProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/21"
+      "$ref": "#/18"
     }
   },
   {
@@ -384,7 +359,7 @@
     "properties": {
       "Tags": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -413,14 +388,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/21"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -430,7 +405,7 @@
     "name": "AWS.EMR/WALWorkspace@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/24"
+      "$ref": "#/22"
     },
     "flags": 0
   }

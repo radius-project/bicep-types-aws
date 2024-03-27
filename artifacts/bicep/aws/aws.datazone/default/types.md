@@ -3,51 +3,51 @@
 ## Resource AWS.DataZone/DataSource@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DataZone/DataSourceProperties](#awsdatazonedatasourceproperties) (Required): properties of the resource
+* **properties**: [AWS.DataZone/DataSourceProperties](#awsdatazonedatasourceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataZone/Domain@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DataZone/DomainProperties](#awsdatazonedomainproperties) (Required): properties of the resource
+* **properties**: [AWS.DataZone/DomainProperties](#awsdatazonedomainproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataZone/Environment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DataZone/EnvironmentProperties](#awsdatazoneenvironmentproperties) (Required): properties of the resource
+* **properties**: [AWS.DataZone/EnvironmentProperties](#awsdatazoneenvironmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataZone/EnvironmentBlueprintConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DataZone/EnvironmentBlueprintConfigurationProperties](#awsdatazoneenvironmentblueprintconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.DataZone/EnvironmentBlueprintConfigurationProperties](#awsdatazoneenvironmentblueprintconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataZone/EnvironmentProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DataZone/EnvironmentProfileProperties](#awsdatazoneenvironmentprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.DataZone/EnvironmentProfileProperties](#awsdatazoneenvironmentprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataZone/Project@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DataZone/ProjectProperties](#awsdatazoneprojectproperties) (Required): properties of the resource
+* **properties**: [AWS.DataZone/ProjectProperties](#awsdatazoneprojectproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataZone/SubscriptionTarget@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DataZone/SubscriptionTargetProperties](#awsdatazonesubscriptiontargetproperties) (Required): properties of the resource
+* **properties**: [AWS.DataZone/SubscriptionTargetProperties](#awsdatazonesubscriptiontargetproperties) (Required, Identifier): properties of the resource
 
 ## AWS.DataZone/DataSourceProperties
 ### Properties

@@ -3,30 +3,30 @@
 ## Resource AWS.B2BI/Capability@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.B2BI/CapabilityProperties](#awsb2bicapabilityproperties) (Required): properties of the resource
+* **properties**: [AWS.B2BI/CapabilityProperties](#awsb2bicapabilityproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.B2BI/Partnership@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.B2BI/PartnershipProperties](#awsb2bipartnershipproperties) (Required): properties of the resource
+* **properties**: [AWS.B2BI/PartnershipProperties](#awsb2bipartnershipproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.B2BI/Profile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.B2BI/ProfileProperties](#awsb2biprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.B2BI/ProfileProperties](#awsb2biprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.B2BI/Transformer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.B2BI/TransformerProperties](#awsb2bitransformerproperties) (Required): properties of the resource
+* **properties**: [AWS.B2BI/TransformerProperties](#awsb2bitransformerproperties) (Required, Identifier): properties of the resource
 
 ## AWS.B2BI/CapabilityProperties
 ### Properties

@@ -3,30 +3,30 @@
 ## Resource AWS.EventSchemas/Discoverer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EventSchemas/DiscovererProperties](#awseventschemasdiscovererproperties) (Required): properties of the resource
+* **properties**: [AWS.EventSchemas/DiscovererProperties](#awseventschemasdiscovererproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EventSchemas/Registry@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EventSchemas/RegistryProperties](#awseventschemasregistryproperties): properties of the resource
+* **properties**: [AWS.EventSchemas/RegistryProperties](#awseventschemasregistryproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EventSchemas/RegistryPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EventSchemas/RegistryPolicyProperties](#awseventschemasregistrypolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.EventSchemas/RegistryPolicyProperties](#awseventschemasregistrypolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EventSchemas/Schema@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EventSchemas/SchemaProperties](#awseventschemasschemaproperties) (Required): properties of the resource
+* **properties**: [AWS.EventSchemas/SchemaProperties](#awseventschemasschemaproperties) (Required, Identifier): properties of the resource
 
 ## AWS.EventSchemas/DiscovererProperties
 ### Properties

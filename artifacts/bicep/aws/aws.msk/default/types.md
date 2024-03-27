@@ -3,44 +3,44 @@
 ## Resource AWS.MSK/BatchScramSecret@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MSK/BatchScramSecretProperties](#awsmskbatchscramsecretproperties) (Required): properties of the resource
+* **properties**: [AWS.MSK/BatchScramSecretProperties](#awsmskbatchscramsecretproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MSK/Cluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MSK/ClusterProperties](#awsmskclusterproperties) (Required): properties of the resource
+* **properties**: [AWS.MSK/ClusterProperties](#awsmskclusterproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MSK/ClusterPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MSK/ClusterPolicyProperties](#awsmskclusterpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.MSK/ClusterPolicyProperties](#awsmskclusterpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MSK/Configuration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MSK/ConfigurationProperties](#awsmskconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.MSK/ConfigurationProperties](#awsmskconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MSK/Replicator@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MSK/ReplicatorProperties](#awsmskreplicatorproperties) (Required): properties of the resource
+* **properties**: [AWS.MSK/ReplicatorProperties](#awsmskreplicatorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MSK/VpcConnection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MSK/VpcConnectionProperties](#awsmskvpcconnectionproperties) (Required): properties of the resource
+* **properties**: [AWS.MSK/VpcConnectionProperties](#awsmskvpcconnectionproperties) (Required, Identifier): properties of the resource
 
 ## AmazonMskCluster
 ### Properties

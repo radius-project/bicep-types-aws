@@ -3,58 +3,58 @@
 ## Resource AWS.WorkSpacesWeb/BrowserSettings@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WorkSpacesWeb/BrowserSettingsProperties](#awsworkspaceswebbrowsersettingsproperties): properties of the resource
+* **properties**: [AWS.WorkSpacesWeb/BrowserSettingsProperties](#awsworkspaceswebbrowsersettingsproperties) (Identifier): properties of the resource
 
 ## Resource AWS.WorkSpacesWeb/IdentityProvider@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WorkSpacesWeb/IdentityProviderProperties](#awsworkspaceswebidentityproviderproperties) (Required): properties of the resource
+* **properties**: [AWS.WorkSpacesWeb/IdentityProviderProperties](#awsworkspaceswebidentityproviderproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WorkSpacesWeb/IpAccessSettings@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WorkSpacesWeb/IpAccessSettingsProperties](#awsworkspaceswebipaccesssettingsproperties) (Required): properties of the resource
+* **properties**: [AWS.WorkSpacesWeb/IpAccessSettingsProperties](#awsworkspaceswebipaccesssettingsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WorkSpacesWeb/NetworkSettings@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WorkSpacesWeb/NetworkSettingsProperties](#awsworkspaceswebnetworksettingsproperties) (Required): properties of the resource
+* **properties**: [AWS.WorkSpacesWeb/NetworkSettingsProperties](#awsworkspaceswebnetworksettingsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WorkSpacesWeb/Portal@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WorkSpacesWeb/PortalProperties](#awsworkspaceswebportalproperties): properties of the resource
+* **properties**: [AWS.WorkSpacesWeb/PortalProperties](#awsworkspaceswebportalproperties) (Identifier): properties of the resource
 
 ## Resource AWS.WorkSpacesWeb/TrustStore@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WorkSpacesWeb/TrustStoreProperties](#awsworkspaceswebtruststoreproperties) (Required): properties of the resource
+* **properties**: [AWS.WorkSpacesWeb/TrustStoreProperties](#awsworkspaceswebtruststoreproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WorkSpacesWeb/UserAccessLoggingSettings@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WorkSpacesWeb/UserAccessLoggingSettingsProperties](#awsworkspaceswebuseraccessloggingsettingsproperties) (Required): properties of the resource
+* **properties**: [AWS.WorkSpacesWeb/UserAccessLoggingSettingsProperties](#awsworkspaceswebuseraccessloggingsettingsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WorkSpacesWeb/UserSettings@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WorkSpacesWeb/UserSettingsProperties](#awsworkspaceswebusersettingsproperties) (Required): properties of the resource
+* **properties**: [AWS.WorkSpacesWeb/UserSettingsProperties](#awsworkspaceswebusersettingsproperties) (Required, Identifier): properties of the resource
 
 ## AWS.WorkSpacesWeb/BrowserSettingsProperties
 ### Properties

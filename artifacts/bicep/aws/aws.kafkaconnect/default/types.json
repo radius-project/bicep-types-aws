@@ -63,7 +63,7 @@
     "properties": {
       "AutoScaling": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0
       },
@@ -81,7 +81,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Specifies whether the logs get sent to the specified CloudWatch Logs destination."
@@ -128,7 +128,7 @@
       },
       "Enabled": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Specifies whether the logs get sent to the specified Kinesis Data Firehose delivery stream."
@@ -141,7 +141,7 @@
     "properties": {
       "ApacheKafkaCluster": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/0"
         },
         "flags": 1
       }
@@ -199,7 +199,7 @@
     "properties": {
       "CustomPlugin": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -238,7 +238,7 @@
       },
       "Enabled": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Specifies whether the logs get sent to the specified Amazon S3 destination."
@@ -302,14 +302,14 @@
     "properties": {
       "SecurityGroups": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "The AWS security groups to associate with the elastic network interfaces in order to specify what the connector has access to."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/26"
         },
         "flags": 1,
         "description": "The list of subnets to connect to in the virtual private cloud (VPC). AWS creates elastic network interfaces inside these subnets."
@@ -342,19 +342,19 @@
     "properties": {
       "CloudWatchLogs": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "Firehose": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "S3": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/14"
         },
         "flags": 0
       }
@@ -368,50 +368,11 @@
   },
   {
     "$type": "ObjectType",
-    "name": "AutoScaling",
-    "properties": {
-      "MaxWorkerCount": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1,
-        "description": "The maximum number of workers for a connector."
-      },
-      "McuCount": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1,
-        "description": "Specifies how many MSK Connect Units (MCU) as the minimum scaling unit."
-      },
-      "MinWorkerCount": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1,
-        "description": "The minimum number of workers for a connector."
-      },
-      "ScaleInPolicy": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 1
-      },
-      "ScaleOutPolicy": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "Capacity",
     "properties": {
       "AutoScaling": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0
       },
@@ -427,45 +388,6 @@
     "$type": "BooleanType"
   },
   {
-    "$type": "ObjectType",
-    "name": "ApacheKafkaCluster",
-    "properties": {
-      "BootstrapServers": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "The bootstrap servers string of the Apache Kafka cluster."
-      },
-      "Vpc": {
-        "type": {
-          "$ref": "#/18"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomPlugin",
-    "properties": {
-      "CustomPluginArn": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the custom plugin to use."
-      },
-      "Revision": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1,
-        "description": "The revision of the custom plugin to use."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/21"
@@ -475,73 +397,6 @@
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/21"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CloudWatchLogsLogDelivery",
-    "properties": {
-      "Enabled": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 1,
-        "description": "Specifies whether the logs get sent to the specified CloudWatch Logs destination."
-      },
-      "LogGroup": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0,
-        "description": "The CloudWatch log group that is the destination for log delivery."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "FirehoseLogDelivery",
-    "properties": {
-      "DeliveryStream": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0,
-        "description": "The Kinesis Data Firehose delivery stream that is the destination for log delivery."
-      },
-      "Enabled": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 1,
-        "description": "Specifies whether the logs get sent to the specified Kinesis Data Firehose delivery stream."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "S3LogDelivery",
-    "properties": {
-      "Bucket": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0,
-        "description": "The name of the S3 bucket that is the destination for log delivery."
-      },
-      "Enabled": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 1,
-        "description": "Specifies whether the logs get sent to the specified Amazon S3 destination."
-      },
-      "Prefix": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0,
-        "description": "The S3 prefix that is the destination for log delivery."
-      }
     }
   },
   {
@@ -554,113 +409,15 @@
     "properties": {}
   },
   {
-    "$type": "ObjectType",
-    "name": "KafkaCluster",
-    "properties": {
-      "ApacheKafkaCluster": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "KafkaClusterClientAuthentication",
-    "properties": {
-      "AuthenticationType": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "KafkaClusterEncryptionInTransit",
-    "properties": {
-      "EncryptionType": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "LogDelivery",
-    "properties": {
-      "WorkerLogDelivery": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Plugin",
-    "properties": {
-      "CustomPlugin": {
-        "type": {
-          "$ref": "#/27"
-        },
-        "flags": 1
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/41"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "WorkerConfiguration",
-    "properties": {
-      "Revision": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1,
-        "description": "The revision of the worker configuration to use."
-      },
-      "WorkerConfigurationArn": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the worker configuration to use."
-      }
+      "$ref": "#/17"
     }
   },
   {
@@ -669,7 +426,7 @@
     "properties": {
       "Capacity": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/2"
         },
         "flags": 1
       },
@@ -682,7 +439,7 @@
       },
       "ConnectorConfiguration": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/28"
         },
         "flags": 1,
         "description": "The configuration for the connector."
@@ -703,19 +460,19 @@
       },
       "KafkaCluster": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "KafkaClusterClientAuthentication": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/7"
         },
         "flags": 1
       },
       "KafkaClusterEncryptionInTransit": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/9"
         },
         "flags": 1
       },
@@ -728,13 +485,13 @@
       },
       "LogDelivery": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/11"
         },
         "flags": 0
       },
       "Plugins": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/29"
         },
         "flags": 1,
         "description": "List of plugins to use with the connector."
@@ -748,14 +505,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "A collection of tags associated with a resource"
       },
       "WorkerConfiguration": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/19"
         },
         "flags": 0
       }
@@ -776,14 +533,14 @@
         "type": {
           "$ref": "#/21"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/31"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -793,7 +550,7 @@
     "name": "AWS.KafkaConnect/Connector@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/45"
+      "$ref": "#/32"
     },
     "flags": 0
   }

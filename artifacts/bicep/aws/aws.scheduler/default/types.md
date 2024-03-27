@@ -3,16 +3,16 @@
 ## Resource AWS.Scheduler/Schedule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Scheduler/ScheduleProperties](#awsschedulerscheduleproperties) (Required): properties of the resource
+* **properties**: [AWS.Scheduler/ScheduleProperties](#awsschedulerscheduleproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Scheduler/ScheduleGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Scheduler/ScheduleGroupProperties](#awsschedulerschedulegroupproperties): properties of the resource
+* **properties**: [AWS.Scheduler/ScheduleGroupProperties](#awsschedulerschedulegroupproperties) (Identifier): properties of the resource
 
 ## AWS.Scheduler/ScheduleGroupProperties
 ### Properties

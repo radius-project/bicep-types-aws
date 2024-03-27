@@ -3,23 +3,23 @@
 ## Resource AWS.XRay/Group@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.XRay/GroupProperties](#awsxraygroupproperties) (Required): properties of the resource
+* **properties**: [AWS.XRay/GroupProperties](#awsxraygroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.XRay/ResourcePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.XRay/ResourcePolicyProperties](#awsxrayresourcepolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.XRay/ResourcePolicyProperties](#awsxrayresourcepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.XRay/SamplingRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.XRay/SamplingRuleProperties](#awsxraysamplingruleproperties): properties of the resource
+* **properties**: [AWS.XRay/SamplingRuleProperties](#awsxraysamplingruleproperties) (Identifier): properties of the resource
 
 ## AWS.XRay/GroupProperties
 ### Properties

@@ -5,28 +5,28 @@
     "properties": {
       "AuthenticateCognitoConfig": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "[HTTPS listeners] Information for using Amazon Cognito to authenticate users. Specify only when ``Type`` is ``authenticate-cognito``."
       },
       "AuthenticateOidcConfig": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "[HTTPS listeners] Information about an identity provider that is compliant with OpenID Connect (OIDC). Specify only when ``Type`` is ``authenticate-oidc``."
       },
       "FixedResponseConfig": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "[Application Load Balancer] Information for creating an action that returns a custom HTTP response. Specify only when ``Type`` is ``fixed-response``."
       },
       "ForwardConfig": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "Information for creating an action that distributes requests among one or more target groups. For Network Load Balancers, you can specify a single target group. Specify only when ``Type`` is ``forward``. If you specify both ``ForwardConfig`` and ``TargetGroupArn``, you can specify only one target group using ``ForwardConfig`` and it must be the same target group specified in ``TargetGroupArn``."
@@ -40,7 +40,7 @@
       },
       "RedirectConfig": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "[Application Load Balancer] Information for creating a redirect action. Specify only when ``Type`` is ``redirect``."
@@ -67,7 +67,7 @@
     "properties": {
       "AuthenticationRequestExtraParams": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The query parameters (up to 10) to include in the redirect request to the authorization endpoint."
@@ -95,7 +95,7 @@
       },
       "SessionTimeout": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The maximum duration of the authentication session, in seconds. The default is 604800 seconds (7 days)."
@@ -129,7 +129,7 @@
     "properties": {
       "AuthenticationRequestExtraParams": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "The query parameters (up to 10) to include in the redirect request to the authorization endpoint."
@@ -185,7 +185,7 @@
       },
       "SessionTimeout": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The maximum duration of the authentication session, in seconds. The default is 604800 seconds (7 days)."
@@ -259,14 +259,14 @@
     "properties": {
       "TargetGroupStickinessConfig": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "Information about the target group stickiness for a rule."
       },
       "TargetGroups": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "Information about how traffic will be distributed between multiple target groups in a forward rule."
@@ -424,117 +424,15 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Certificate",
-    "properties": {
-      "CertificateArn": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The Amazon Resource Name (ARN) of the certificate."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/18"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Action",
-    "properties": {
-      "AuthenticateCognitoConfig": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "[HTTPS listeners] Information for using Amazon Cognito to authenticate users. Specify only when ``Type`` is ``authenticate-cognito``."
-      },
-      "AuthenticateOidcConfig": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "[HTTPS listeners] Information about an identity provider that is compliant with OpenID Connect (OIDC). Specify only when ``Type`` is ``authenticate-oidc``."
-      },
-      "FixedResponseConfig": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "[Application Load Balancer] Information for creating an action that returns a custom HTTP response. Specify only when ``Type`` is ``fixed-response``."
-      },
-      "ForwardConfig": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "Information for creating an action that distributes requests among one or more target groups. For Network Load Balancers, you can specify a single target group. Specify only when ``Type`` is ``forward``. If you specify both ``ForwardConfig`` and ``TargetGroupArn``, you can specify only one target group using ``ForwardConfig`` and it must be the same target group specified in ``TargetGroupArn``."
-      },
-      "Order": {
-        "type": {
-          "$ref": "#/10"
-        },
-        "flags": 0,
-        "description": "The order for the action. This value is required for rules with multiple actions. The action with the lowest value for order is performed first."
-      },
-      "RedirectConfig": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "[Application Load Balancer] Information for creating a redirect action. Specify only when ``Type`` is ``redirect``."
-      },
-      "TargetGroupArn": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The Amazon Resource Name (ARN) of the target group. Specify only when ``Type`` is ``forward`` and you want to route to a single target group. To route to one or more target groups, use ``ForwardConfig`` instead."
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 1,
-        "description": "The type of action."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/20"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "MutualAuthentication",
-    "properties": {
-      "IgnoreClientCertificateExpiry": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "Indicates whether expired client certificates are ignored."
-      },
-      "Mode": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The client certificate handling method. Options are ``off``, ``passthrough`` or ``verify``. The default value is ``off``."
-      },
-      "TrustStoreArn": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The Amazon Resource Name (ARN) of the trust store."
-      }
+      "$ref": "#/0"
     }
   },
   {
@@ -550,14 +448,14 @@
       },
       "Certificates": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "The default SSL server certificate for a secure listener. You must provide exactly one certificate if the listener protocol is HTTPS or TLS.\n To create a certificate list for a secure listener, use [AWS::ElasticLoadBalancingV2::ListenerCertificate](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html)."
       },
       "DefaultActions": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/19"
         },
         "flags": 5,
         "description": "The actions for the default rule. You cannot define a condition for a default rule.\n To create additional rules for an Application Load Balancer, use [AWS::ElasticLoadBalancingV2::ListenerRule](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html)."
@@ -578,7 +476,7 @@
       },
       "MutualAuthentication": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The mutual authentication configuration information."
@@ -621,14 +519,14 @@
         "type": {
           "$ref": "#/11"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/20"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -638,216 +536,71 @@
     "name": "AWS.ElasticLoadBalancingV2/Listener@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/24"
+      "$ref": "#/21"
     },
     "flags": 0
   },
   {
     "$type": "ObjectType",
     "name": "Action",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AuthenticateCognitoConfig",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AuthenticateOidcConfig",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "FixedResponseConfig",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ForwardConfig",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "HostHeaderConfig",
     "properties": {
-      "Values": {
+      "AuthenticateCognitoConfig": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/24"
         },
         "flags": 0,
-        "description": "The host names. The maximum size of each name is 128 characters. The comparison is case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character).\n If you specify multiple strings, the condition is satisfied if one of the strings matches the host name."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "HttpHeaderConfig",
-    "properties": {
-      "HttpHeaderName": {
+        "description": "[HTTPS listeners] Information for using Amazon Cognito to authenticate users. Specify only when ``Type`` is ``authenticate-cognito``."
+      },
+      "AuthenticateOidcConfig": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "[HTTPS listeners] Information about an identity provider that is compliant with OpenID Connect (OIDC). Specify only when ``Type`` is ``authenticate-oidc``."
+      },
+      "FixedResponseConfig": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "[Application Load Balancer] Information for creating an action that returns a custom HTTP response. Specify only when ``Type`` is ``fixed-response``."
+      },
+      "ForwardConfig": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "Information for creating an action that distributes requests among one or more target groups. For Network Load Balancers, you can specify a single target group. Specify only when ``Type`` is ``forward``. If you specify both ``ForwardConfig`` and ``TargetGroupArn``, you can specify only one target group using ``ForwardConfig`` and it must be the same target group specified in ``TargetGroupArn``."
+      },
+      "Order": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The order for the action. This value is required for rules with multiple actions. The action with the lowest value for order is performed first."
+      },
+      "RedirectConfig": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "[Application Load Balancer] Information for creating a redirect action. Specify only when ``Type`` is ``redirect``."
+      },
+      "TargetGroupArn": {
         "type": {
           "$ref": "#/11"
         },
         "flags": 0,
-        "description": "The name of the HTTP header field. The maximum size is 40 characters. The header name is case insensitive. The allowed characters are specified by RFC 7230. Wildcards are not supported."
+        "description": "The Amazon Resource Name (ARN) of the target group. Specify only when ``Type`` is ``forward`` and you want to route to a single target group. To route to one or more target groups, use ``ForwardConfig`` instead."
       },
-      "Values": {
-        "type": {
-          "$ref": "#/53"
-        },
-        "flags": 0,
-        "description": "The strings to compare against the value of the HTTP header. The maximum size of each string is 128 characters. The comparison strings are case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character).\n If the same header appears multiple times in the request, we search them in order until a match is found.\n If you specify multiple strings, the condition is satisfied if one of the strings matches the value of the HTTP header. To require that all of the strings are a match, create one condition per string."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "HttpRequestMethodConfig",
-    "properties": {
-      "Values": {
-        "type": {
-          "$ref": "#/54"
-        },
-        "flags": 0,
-        "description": "The name of the request method. The maximum size is 40 characters. The allowed characters are A-Z, hyphen (-), and underscore (_). The comparison is case sensitive. Wildcards are not supported; therefore, the method name must be an exact match.\n If you specify multiple strings, the condition is satisfied if one of the strings matches the HTTP request method. We recommend that you route GET and HEAD requests in the same way, because the response to a HEAD request may be cached."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PathPatternConfig",
-    "properties": {
-      "Values": {
-        "type": {
-          "$ref": "#/55"
-        },
-        "flags": 0,
-        "description": "The path patterns to compare against the request URL. The maximum size of each string is 128 characters. The comparison is case sensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character).\n If you specify multiple strings, the condition is satisfied if one of them matches the request URL. The path pattern is compared only to the path of the URL, not to its query string."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "QueryStringConfig",
-    "properties": {
-      "Values": {
-        "type": {
-          "$ref": "#/56"
-        },
-        "flags": 0,
-        "description": "The key/value pairs or values to find in the query string. The maximum size of each string is 128 characters. The comparison is case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character). To search for a literal '*' or '?' character in a query string, you must escape these characters in ``Values`` using a '\\' character.\n If you specify multiple key/value pairs or values, the condition is satisfied if one of them is found in the query string."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "QueryStringKeyValue",
-    "properties": {
-      "Key": {
+      "Type": {
         "type": {
           "$ref": "#/11"
         },
-        "flags": 0,
-        "description": "The key. You can omit the key."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The value."
+        "flags": 1,
+        "description": "The type of action."
       }
     }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RedirectConfig",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RuleCondition",
-    "properties": {
-      "Field": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The field in the HTTP request. The following are the possible values:\n  +   ``http-header`` \n  +   ``http-request-method`` \n  +   ``host-header`` \n  +   ``path-pattern`` \n  +   ``query-string`` \n  +   ``source-ip``"
-      },
-      "HostHeaderConfig": {
-        "type": {
-          "$ref": "#/57"
-        },
-        "flags": 0,
-        "description": "Information for a host header condition. Specify only when ``Field`` is ``host-header``."
-      },
-      "HttpHeaderConfig": {
-        "type": {
-          "$ref": "#/58"
-        },
-        "flags": 0,
-        "description": "Information for an HTTP header condition. Specify only when ``Field`` is ``http-header``."
-      },
-      "HttpRequestMethodConfig": {
-        "type": {
-          "$ref": "#/59"
-        },
-        "flags": 0,
-        "description": "Information for an HTTP method condition. Specify only when ``Field`` is ``http-request-method``."
-      },
-      "PathPatternConfig": {
-        "type": {
-          "$ref": "#/60"
-        },
-        "flags": 0,
-        "description": "Information for a path pattern condition. Specify only when ``Field`` is ``path-pattern``."
-      },
-      "QueryStringConfig": {
-        "type": {
-          "$ref": "#/61"
-        },
-        "flags": 0,
-        "description": "Information for a query string condition. Specify only when ``Field`` is ``query-string``."
-      },
-      "SourceIpConfig": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0,
-        "description": "Information for a source IP condition. Specify only when ``Field`` is ``source-ip``."
-      },
-      "Values": {
-        "type": {
-          "$ref": "#/62"
-        },
-        "flags": 0,
-        "description": "The condition value. Specify only when ``Field`` is ``host-header`` or ``path-pattern``. Alternatively, to specify multiple host names or multiple path patterns, use ``HostHeaderConfig`` or ``PathPatternConfig``.\n If ``Field`` is ``host-header`` and you're not using ``HostHeaderConfig``, you can specify a single host name (for example, my.example.com). A host name is case insensitive, can be up to 128 characters in length, and can contain any of the following characters.\n  +  A-Z, a-z, 0-9\n  +  - .\n  +  * (matches 0 or more characters)\n  +  ? (matches exactly 1 character)\n  \n If ``Field`` is ``path-pattern`` and you're not using ``PathPatternConfig``, you can specify a single path pattern (for example, /img/*). A path pattern is case-sensitive, can be up to 128 characters in length, and can contain any of the following characters.\n  +  A-Z, a-z, 0-9\n  +  _ - . $ / ~ \" ' @ : +\n  +  & (using &amp;)\n  +  * (matches 0 or more characters)\n  +  ? (matches exactly 1 character)"
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SourceIpConfig",
-    "properties": {
-      "Values": {
-        "type": {
-          "$ref": "#/63"
-        },
-        "flags": 0,
-        "description": "The source IP addresses, in CIDR format. You can use both IPv4 and IPv6 addresses. Wildcards are not supported.\n If you specify multiple addresses, the condition is satisfied if the source IP address of the request matches one of the CIDR blocks. This condition is not satisfied by the addresses in the X-Forwarded-For header."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TargetGroupStickinessConfig",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TargetGroupTuple",
-    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -855,7 +608,7 @@
     "properties": {
       "AuthenticationRequestExtraParams": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "The query parameters (up to 10) to include in the redirect request to the authorization endpoint."
@@ -883,7 +636,7 @@
       },
       "SessionTimeout": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The maximum duration of the authentication session, in seconds. The default is 604800 seconds (7 days)."
@@ -917,7 +670,7 @@
     "properties": {
       "AuthenticationRequestExtraParams": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The query parameters (up to 10) to include in the redirect request to the authorization endpoint."
@@ -973,7 +726,7 @@
       },
       "SessionTimeout": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The maximum duration of the authentication session, in seconds. The default is 604800 seconds (7 days)."
@@ -1034,17 +787,109 @@
     "properties": {
       "TargetGroupStickinessConfig": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "Information about the target group stickiness for a rule."
       },
       "TargetGroups": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "Information about how traffic will be distributed between multiple target groups in a forward rule."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HostHeaderConfig",
+    "properties": {
+      "Values": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "The host names. The maximum size of each name is 128 characters. The comparison is case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character).\n If you specify multiple strings, the condition is satisfied if one of the strings matches the host name."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HttpHeaderConfig",
+    "properties": {
+      "HttpHeaderName": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The name of the HTTP header field. The maximum size is 40 characters. The header name is case insensitive. The allowed characters are specified by RFC 7230. Wildcards are not supported."
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "The strings to compare against the value of the HTTP header. The maximum size of each string is 128 characters. The comparison strings are case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character).\n If the same header appears multiple times in the request, we search them in order until a match is found.\n If you specify multiple strings, the condition is satisfied if one of the strings matches the value of the HTTP header. To require that all of the strings are a match, create one condition per string."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HttpRequestMethodConfig",
+    "properties": {
+      "Values": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "The name of the request method. The maximum size is 40 characters. The allowed characters are A-Z, hyphen (-), and underscore (_). The comparison is case sensitive. Wildcards are not supported; therefore, the method name must be an exact match.\n If you specify multiple strings, the condition is satisfied if one of the strings matches the HTTP request method. We recommend that you route GET and HEAD requests in the same way, because the response to a HEAD request may be cached."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PathPatternConfig",
+    "properties": {
+      "Values": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "The path patterns to compare against the request URL. The maximum size of each string is 128 characters. The comparison is case sensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character).\n If you specify multiple strings, the condition is satisfied if one of them matches the request URL. The path pattern is compared only to the path of the URL, not to its query string."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryStringConfig",
+    "properties": {
+      "Values": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "The key/value pairs or values to find in the query string. The maximum size of each string is 128 characters. The comparison is case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character). To search for a literal '*' or '?' character in a query string, you must escape these characters in ``Values`` using a '\\' character.\n If you specify multiple key/value pairs or values, the condition is satisfied if one of them is found in the query string."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryStringKeyValue",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The key. You can omit the key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The value."
       }
     }
   },
@@ -1098,13 +943,78 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ListenerRule_AuthenticationRequestExtraParams",
-    "properties": {}
+    "name": "RuleCondition",
+    "properties": {
+      "Field": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The field in the HTTP request. The following are the possible values:\n  +   ``http-header`` \n  +   ``http-request-method`` \n  +   ``host-header`` \n  +   ``path-pattern`` \n  +   ``query-string`` \n  +   ``source-ip``"
+      },
+      "HostHeaderConfig": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "Information for a host header condition. Specify only when ``Field`` is ``host-header``."
+      },
+      "HttpHeaderConfig": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0,
+        "description": "Information for an HTTP header condition. Specify only when ``Field`` is ``http-header``."
+      },
+      "HttpRequestMethodConfig": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0,
+        "description": "Information for an HTTP method condition. Specify only when ``Field`` is ``http-request-method``."
+      },
+      "PathPatternConfig": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "Information for a path pattern condition. Specify only when ``Field`` is ``path-pattern``."
+      },
+      "QueryStringConfig": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0,
+        "description": "Information for a query string condition. Specify only when ``Field`` is ``query-string``."
+      },
+      "SourceIpConfig": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Information for a source IP condition. Specify only when ``Field`` is ``source-ip``."
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0,
+        "description": "The condition value. Specify only when ``Field`` is ``host-header`` or ``path-pattern``. Alternatively, to specify multiple host names or multiple path patterns, use ``HostHeaderConfig`` or ``PathPatternConfig``.\n If ``Field`` is ``host-header`` and you're not using ``HostHeaderConfig``, you can specify a single host name (for example, my.example.com). A host name is case insensitive, can be up to 128 characters in length, and can contain any of the following characters.\n  +  A-Z, a-z, 0-9\n  +  - .\n  +  * (matches 0 or more characters)\n  +  ? (matches exactly 1 character)\n  \n If ``Field`` is ``path-pattern`` and you're not using ``PathPatternConfig``, you can specify a single path pattern (for example, /img/*). A path pattern is case-sensitive, can be up to 128 characters in length, and can contain any of the following characters.\n  +  A-Z, a-z, 0-9\n  +  _ - . $ / ~ \" ' @ : +\n  +  & (using &amp;)\n  +  * (matches 0 or more characters)\n  +  ? (matches exactly 1 character)"
+      }
+    }
   },
   {
     "$type": "ObjectType",
-    "name": "ListenerRule_AuthenticationRequestExtraParams",
-    "properties": {}
+    "name": "SourceIpConfig",
+    "properties": {
+      "Values": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0,
+        "description": "The source IP addresses, in CIDR format. You can use both IPv4 and IPv6 addresses. Wildcards are not supported.\n If you specify multiple addresses, the condition is satisfied if the source IP address of the request matches one of the CIDR blocks. This condition is not satisfied by the addresses in the X-Forwarded-For header."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1147,9 +1057,19 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "ListenerRule_AuthenticationRequestExtraParams",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ListenerRule_AuthenticationRequestExtraParams",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/50"
+      "$ref": "#/38"
     }
   },
   {
@@ -1179,79 +1099,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "HostHeaderConfig",
-    "properties": {
-      "Values": {
-        "type": {
-          "$ref": "#/52"
-        },
-        "flags": 0,
-        "description": "The host names. The maximum size of each name is 128 characters. The comparison is case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character).\n If you specify multiple strings, the condition is satisfied if one of the strings matches the host name."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "HttpHeaderConfig",
-    "properties": {
-      "HttpHeaderName": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The name of the HTTP header field. The maximum size is 40 characters. The header name is case insensitive. The allowed characters are specified by RFC 7230. Wildcards are not supported."
-      },
-      "Values": {
-        "type": {
-          "$ref": "#/53"
-        },
-        "flags": 0,
-        "description": "The strings to compare against the value of the HTTP header. The maximum size of each string is 128 characters. The comparison strings are case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character).\n If the same header appears multiple times in the request, we search them in order until a match is found.\n If you specify multiple strings, the condition is satisfied if one of the strings matches the value of the HTTP header. To require that all of the strings are a match, create one condition per string."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "HttpRequestMethodConfig",
-    "properties": {
-      "Values": {
-        "type": {
-          "$ref": "#/54"
-        },
-        "flags": 0,
-        "description": "The name of the request method. The maximum size is 40 characters. The allowed characters are A-Z, hyphen (-), and underscore (_). The comparison is case sensitive. Wildcards are not supported; therefore, the method name must be an exact match.\n If you specify multiple strings, the condition is satisfied if one of the strings matches the HTTP request method. We recommend that you route GET and HEAD requests in the same way, because the response to a HEAD request may be cached."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PathPatternConfig",
-    "properties": {
-      "Values": {
-        "type": {
-          "$ref": "#/55"
-        },
-        "flags": 0,
-        "description": "The path patterns to compare against the request URL. The maximum size of each string is 128 characters. The comparison is case sensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character).\n If you specify multiple strings, the condition is satisfied if one of them matches the request URL. The path pattern is compared only to the path of the URL, not to its query string."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "QueryStringConfig",
-    "properties": {
-      "Values": {
-        "type": {
-          "$ref": "#/56"
-        },
-        "flags": 0,
-        "description": "The key/value pairs or values to find in the query string. The maximum size of each string is 128 characters. The comparison is case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character). To search for a literal '*' or '?' character in a query string, you must escape these characters in ``Values`` using a '\\' character.\n If you specify multiple key/value pairs or values, the condition is satisfied if one of them is found in the query string."
-      }
+      "$ref": "#/33"
     }
   },
   {
@@ -1271,139 +1119,15 @@
     "value": "AWS.ElasticLoadBalancingV2/ListenerRuleProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "Action",
-    "properties": {
-      "AuthenticateCognitoConfig": {
-        "type": {
-          "$ref": "#/42"
-        },
-        "flags": 0,
-        "description": "[HTTPS listeners] Information for using Amazon Cognito to authenticate users. Specify only when ``Type`` is ``authenticate-cognito``."
-      },
-      "AuthenticateOidcConfig": {
-        "type": {
-          "$ref": "#/43"
-        },
-        "flags": 0,
-        "description": "[HTTPS listeners] Information about an identity provider that is compliant with OpenID Connect (OIDC). Specify only when ``Type`` is ``authenticate-oidc``."
-      },
-      "FixedResponseConfig": {
-        "type": {
-          "$ref": "#/44"
-        },
-        "flags": 0,
-        "description": "[Application Load Balancer] Information for creating an action that returns a custom HTTP response. Specify only when ``Type`` is ``fixed-response``."
-      },
-      "ForwardConfig": {
-        "type": {
-          "$ref": "#/45"
-        },
-        "flags": 0,
-        "description": "Information for creating an action that distributes requests among one or more target groups. For Network Load Balancers, you can specify a single target group. Specify only when ``Type`` is ``forward``. If you specify both ``ForwardConfig`` and ``TargetGroupArn``, you can specify only one target group using ``ForwardConfig`` and it must be the same target group specified in ``TargetGroupArn``."
-      },
-      "Order": {
-        "type": {
-          "$ref": "#/10"
-        },
-        "flags": 0,
-        "description": "The order for the action. This value is required for rules with multiple actions. The action with the lowest value for order is performed first."
-      },
-      "RedirectConfig": {
-        "type": {
-          "$ref": "#/46"
-        },
-        "flags": 0,
-        "description": "[Application Load Balancer] Information for creating a redirect action. Specify only when ``Type`` is ``redirect``."
-      },
-      "TargetGroupArn": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The Amazon Resource Name (ARN) of the target group. Specify only when ``Type`` is ``forward`` and you want to route to a single target group. To route to one or more target groups, use ``ForwardConfig`` instead."
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 1,
-        "description": "The type of action."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/65"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RuleCondition",
-    "properties": {
-      "Field": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The field in the HTTP request. The following are the possible values:\n  +   ``http-header`` \n  +   ``http-request-method`` \n  +   ``host-header`` \n  +   ``path-pattern`` \n  +   ``query-string`` \n  +   ``source-ip``"
-      },
-      "HostHeaderConfig": {
-        "type": {
-          "$ref": "#/57"
-        },
-        "flags": 0,
-        "description": "Information for a host header condition. Specify only when ``Field`` is ``host-header``."
-      },
-      "HttpHeaderConfig": {
-        "type": {
-          "$ref": "#/58"
-        },
-        "flags": 0,
-        "description": "Information for an HTTP header condition. Specify only when ``Field`` is ``http-header``."
-      },
-      "HttpRequestMethodConfig": {
-        "type": {
-          "$ref": "#/59"
-        },
-        "flags": 0,
-        "description": "Information for an HTTP method condition. Specify only when ``Field`` is ``http-request-method``."
-      },
-      "PathPatternConfig": {
-        "type": {
-          "$ref": "#/60"
-        },
-        "flags": 0,
-        "description": "Information for a path pattern condition. Specify only when ``Field`` is ``path-pattern``."
-      },
-      "QueryStringConfig": {
-        "type": {
-          "$ref": "#/61"
-        },
-        "flags": 0,
-        "description": "Information for a query string condition. Specify only when ``Field`` is ``query-string``."
-      },
-      "SourceIpConfig": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0,
-        "description": "Information for a source IP condition. Specify only when ``Field`` is ``source-ip``."
-      },
-      "Values": {
-        "type": {
-          "$ref": "#/62"
-        },
-        "flags": 0,
-        "description": "The condition value. Specify only when ``Field`` is ``host-header`` or ``path-pattern``. Alternatively, to specify multiple host names or multiple path patterns, use ``HostHeaderConfig`` or ``PathPatternConfig``.\n If ``Field`` is ``host-header`` and you're not using ``HostHeaderConfig``, you can specify a single host name (for example, my.example.com). A host name is case insensitive, can be up to 128 characters in length, and can contain any of the following characters.\n  +  A-Z, a-z, 0-9\n  +  - .\n  +  * (matches 0 or more characters)\n  +  ? (matches exactly 1 character)\n  \n If ``Field`` is ``path-pattern`` and you're not using ``PathPatternConfig``, you can specify a single path pattern (for example, /img/*). A path pattern is case-sensitive, can be up to 128 characters in length, and can contain any of the following characters.\n  +  A-Z, a-z, 0-9\n  +  _ - . $ / ~ \" ' @ : +\n  +  & (using &amp;)\n  +  * (matches 0 or more characters)\n  +  ? (matches exactly 1 character)"
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/67"
+      "$ref": "#/35"
     }
   },
   {
@@ -1412,14 +1136,14 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/50"
         },
         "flags": 5,
         "description": "The actions.\n The rule must include exactly one of the following types of actions: ``forward``, ``fixed-response``, or ``redirect``, and it must be the last action to be performed. If the rule is for an HTTPS listener, it can also optionally include an authentication action."
       },
       "Conditions": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/51"
         },
         "flags": 1,
         "description": "The conditions.\n The rule can optionally include up to one of each of the following conditions: ``http-request-method``, ``host-header``, ``path-pattern``, and ``source-ip``. A rule can also optionally include one or more of each of the following conditions: ``http-header`` and ``query-string``."
@@ -1469,14 +1193,14 @@
         "type": {
           "$ref": "#/11"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/52"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1486,7 +1210,7 @@
     "name": "AWS.ElasticLoadBalancingV2/ListenerRule@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/70"
+      "$ref": "#/53"
     },
     "flags": 0
   },
@@ -1552,106 +1276,6 @@
         "type": {
           "$ref": "#/11"
         },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.ElasticLoadBalancingV2/LoadBalancerProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "LoadBalancerAttribute",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The name of the attribute.\n The following attributes are supported by all load balancers:\n  +   ``deletion_protection.enabled`` - Indicates whether deletion protection is enabled. The value is ``true`` or ``false``. The default is ``false``.\n  +   ``load_balancing.cross_zone.enabled`` - Indicates whether cross-zone load balancing is enabled. The possible values are ``true`` and ``false``. The default for Network Load Balancers and Gateway Load Balancers is ``false``. The default for Application Load Balancers is ``true``, and cannot be changed.\n  \n The following attributes are supported by both Application Load Balancers and Network Load Balancers:\n  +   ``access_logs.s3.enabled`` - Indicates whether access logs are enabled. The value is ``true`` or ``false``. The default is ``false``.\n  +   ``access_logs.s3.bucket`` - The name of the S3 bucket for the access logs. This attribute is required if access logs are enabled. The bucket must exist in the same region as the load balancer and h"
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The value of the attribute."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/76"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/11"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SubnetMapping",
-    "properties": {
-      "AllocationId": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "[Network Load Balancers] The allocation ID of the Elastic IP address for an internet-facing load balancer."
-      },
-      "IPv6Address": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "[Network Load Balancers] The IPv6 address."
-      },
-      "PrivateIPv4Address": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "[Network Load Balancers] The private IPv4 address for an internal load balancer."
-      },
-      "SubnetId": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 1,
-        "description": "The ID of the subnet."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/79"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/11"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/11"
-        },
         "flags": 1,
         "description": "The key of the tag."
       },
@@ -1665,9 +1289,37 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.ElasticLoadBalancingV2/LoadBalancerProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/82"
+      "$ref": "#/55"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/11"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/56"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/11"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/57"
     }
   },
   {
@@ -1711,7 +1363,7 @@
       },
       "LoadBalancerAttributes": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/59"
         },
         "flags": 0,
         "description": "The load balancer attributes."
@@ -1746,28 +1398,28 @@
       },
       "SecurityGroups": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "[Application Load Balancers and Network Load Balancers] The IDs of the security groups for the load balancer."
       },
       "SubnetMappings": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "The IDs of the public subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings, but not both.\n [Application Load Balancers] You must specify subnets from at least two Availability Zones. You cannot specify Elastic IP addresses for your subnets.\n [Application Load Balancers on Outposts] You must specify one Outpost subnet.\n [Application Load Balancers on Local Zones] You can specify subnets from one or more Local Zones.\n [Network Load Balancers] You can specify subnets from one or more Availability Zones. You can specify one Elastic IP address per subnet if you need static IP addresses for your internet-facing load balancer. For internal load balancers, you can specify one private IP address per subnet from the IPv4 range of the subnet. For internet-facing load balancer, you can specify one IPv6 address per subnet.\n [Gateway Load Balancers] You can specify subnets from one or more Availability Zones. You cannot specify Elastic IP"
       },
       "Subnets": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "The IDs of the public subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings, but not both. To specify an Elastic IP address, specify subnet mappings instead of subnets.\n [Application Load Balancers] You must specify subnets from at least two Availability Zones.\n [Application Load Balancers on Outposts] You must specify one Outpost subnet.\n [Application Load Balancers on Local Zones] You can specify subnets from one or more Local Zones.\n [Network Load Balancers] You can specify subnets from one or more Availability Zones.\n [Gateway Load Balancers] You can specify subnets from one or more Availability Zones."
       },
       "Tags": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "The tags to assign to the load balancer."
@@ -1796,14 +1448,14 @@
         "type": {
           "$ref": "#/11"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/64"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -1813,7 +1465,7 @@
     "name": "AWS.ElasticLoadBalancingV2/LoadBalancer@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/85"
+      "$ref": "#/65"
     },
     "flags": 0
   },
@@ -1840,7 +1492,22 @@
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1,
+        "description": "The value for the tag. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. "
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1900,108 +1567,21 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Matcher",
-    "properties": {
-      "GrpcCode": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "You can specify values between 0 and 99. You can specify multiple values, or a range of values. The default value is 12."
-      },
-      "HttpCode": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "For Application Load Balancers, you can specify values between 200 and 499, and the default value is 200. You can specify multiple values or a range of values. "
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 1,
-        "description": "The value for the tag. "
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. "
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/68"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/94"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TargetGroupAttribute",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The value of the attribute."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The name of the attribute."
-      }
+      "$ref": "#/70"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/96"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TargetDescription",
-    "properties": {
-      "AvailabilityZone": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "An Availability Zone or all. This determines whether the target receives traffic from the load balancer nodes in the specified Availability Zone or from all enabled Availability Zones for the load balancer."
-      },
-      "Id": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 1,
-        "description": "The ID of the target. If the target type of the target group is instance, specify an instance ID. If the target type is ip, specify an IP address. If the target type is lambda, specify the ARN of the Lambda function. If the target type is alb, specify the ARN of the Application Load Balancer target. "
-      },
-      "Port": {
-        "type": {
-          "$ref": "#/10"
-        },
-        "flags": 0,
-        "description": "The port on which the target is listening. If the target group protocol is GENEVE, the supported port is 6081. If the target type is alb, the targeted Application Load Balancer must have at least one listener whose port matches the target group port. Not used if the target is a Lambda function."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/98"
+      "$ref": "#/69"
     }
   },
   {
@@ -2066,14 +1646,14 @@
       },
       "LoadBalancerArns": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/72"
         },
         "flags": 2,
         "description": "The Amazon Resource Names (ARNs) of the load balancers that route traffic to this target group."
       },
       "Matcher": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "[HTTP/HTTPS health checks] The HTTP or gRPC codes to use when checking for a successful response from a target."
@@ -2108,7 +1688,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "The tags."
@@ -2122,7 +1702,7 @@
       },
       "TargetGroupAttributes": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "The attributes."
@@ -2150,7 +1730,7 @@
       },
       "Targets": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "The targets."
@@ -2186,14 +1766,14 @@
         "type": {
           "$ref": "#/11"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/76"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -2203,18 +1783,9 @@
     "name": "AWS.ElasticLoadBalancingV2/TargetGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/101"
+      "$ref": "#/77"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.ElasticLoadBalancingV2/TrustStoreProperties"
   },
   {
     "$type": "ObjectType",
@@ -2235,9 +1806,13 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.ElasticLoadBalancingV2/TrustStoreProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/79"
     }
   },
   {
@@ -2288,7 +1863,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/81"
         },
         "flags": 0,
         "description": "The tags to assign to the trust store."
@@ -2317,14 +1892,14 @@
         "type": {
           "$ref": "#/11"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/82"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -2334,7 +1909,7 @@
     "name": "AWS.ElasticLoadBalancingV2/TrustStore@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/108"
+      "$ref": "#/83"
     },
     "flags": 0
   }

@@ -3,30 +3,30 @@
 ## Resource AWS.Evidently/Experiment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Evidently/ExperimentProperties](#awsevidentlyexperimentproperties) (Required): properties of the resource
+* **properties**: [AWS.Evidently/ExperimentProperties](#awsevidentlyexperimentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Evidently/Feature@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Evidently/FeatureProperties](#awsevidentlyfeatureproperties) (Required): properties of the resource
+* **properties**: [AWS.Evidently/FeatureProperties](#awsevidentlyfeatureproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Evidently/Launch@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Evidently/LaunchProperties](#awsevidentlylaunchproperties) (Required): properties of the resource
+* **properties**: [AWS.Evidently/LaunchProperties](#awsevidentlylaunchproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Evidently/Project@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Evidently/ProjectProperties](#awsevidentlyprojectproperties) (Required): properties of the resource
+* **properties**: [AWS.Evidently/ProjectProperties](#awsevidentlyprojectproperties) (Required, Identifier): properties of the resource
 
 ## AppConfigResourceObject
 ### Properties

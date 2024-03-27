@@ -3,16 +3,16 @@
 ## Resource AWS.DynamoDB/GlobalTable@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DynamoDB/GlobalTableProperties](#awsdynamodbglobaltableproperties) (Required): properties of the resource
+* **properties**: [AWS.DynamoDB/GlobalTableProperties](#awsdynamodbglobaltableproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DynamoDB/Table@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DynamoDB/TableProperties](#awsdynamodbtableproperties) (Required): properties of the resource
+* **properties**: [AWS.DynamoDB/TableProperties](#awsdynamodbtableproperties) (Required, Identifier): properties of the resource
 
 ## AttributeDefinition
 ### Properties
@@ -137,6 +137,11 @@
 
 ## KeySchema
 ### Properties
+* **AttributeName**: string (Required)
+* **KeyType**: string (Required)
+
+## KeySchema
+### Properties
 * **AttributeName**: string (Required): The name of a key attribute.
 * **KeyType**: string (Required): The role that this key attribute will assume:
   +   ``HASH`` - partition key
@@ -144,11 +149,6 @@
   
   The partition key of an item is also known as its *hash attribute*. The term "hash attribute" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values.
  The sort key of an item is also known as its *range attribute*. The term "range attribute" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value.
-
-## KeySchema
-### Properties
-* **AttributeName**: string (Required)
-* **KeyType**: string (Required)
 
 ## KinesisStreamSpecification
 ### Properties
@@ -188,6 +188,11 @@
 
 ## Projection
 ### Properties
+* **NonKeyAttributes**: string[]
+* **ProjectionType**: string
+
+## Projection
+### Properties
 * **NonKeyAttributes**: string[]: Represents the non-key attribute names which will be projected into the index.
  For local secondary indexes, the total count of ``NonKeyAttributes`` summed across all of the local secondary indexes, must not exceed 100. If you project the same attribute into two different indexes, this counts as two distinct attributes when determining the total.
 * **ProjectionType**: string: The set of attributes that are projected into the index:
@@ -196,11 +201,6 @@
   +   ``ALL`` - All of the table attributes are projected into the index.
   
  When using the DynamoDB console, ``ALL`` is selected by default.
-
-## Projection
-### Properties
-* **NonKeyAttributes**: string[]
-* **ProjectionType**: string
 
 ## ProvisionedThroughput
 ### Properties
@@ -269,6 +269,11 @@
 
 ## Table_KeySchema
 ### Properties
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

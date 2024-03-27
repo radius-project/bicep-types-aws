@@ -3,23 +3,23 @@
 ## Resource AWS.FMS/NotificationChannel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FMS/NotificationChannelProperties](#awsfmsnotificationchannelproperties) (Required): properties of the resource
+* **properties**: [AWS.FMS/NotificationChannelProperties](#awsfmsnotificationchannelproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.FMS/Policy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FMS/PolicyProperties](#awsfmspolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.FMS/PolicyProperties](#awsfmspolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.FMS/ResourceSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FMS/ResourceSetProperties](#awsfmsresourcesetproperties) (Required): properties of the resource
+* **properties**: [AWS.FMS/ResourceSetProperties](#awsfmsresourcesetproperties) (Required, Identifier): properties of the resource
 
 ## AWS.FMS/NotificationChannelProperties
 ### Properties

@@ -3,30 +3,30 @@
 ## Resource AWS.Route53RecoveryReadiness/Cell@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Route53RecoveryReadiness/CellProperties](#awsroute53recoveryreadinesscellproperties): properties of the resource
+* **properties**: [AWS.Route53RecoveryReadiness/CellProperties](#awsroute53recoveryreadinesscellproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Route53RecoveryReadiness/ReadinessCheck@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Route53RecoveryReadiness/ReadinessCheckProperties](#awsroute53recoveryreadinessreadinesscheckproperties): properties of the resource
+* **properties**: [AWS.Route53RecoveryReadiness/ReadinessCheckProperties](#awsroute53recoveryreadinessreadinesscheckproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Route53RecoveryReadiness/RecoveryGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Route53RecoveryReadiness/RecoveryGroupProperties](#awsroute53recoveryreadinessrecoverygroupproperties): properties of the resource
+* **properties**: [AWS.Route53RecoveryReadiness/RecoveryGroupProperties](#awsroute53recoveryreadinessrecoverygroupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Route53RecoveryReadiness/ResourceSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Route53RecoveryReadiness/ResourceSetProperties](#awsroute53recoveryreadinessresourcesetproperties) (Required): properties of the resource
+* **properties**: [AWS.Route53RecoveryReadiness/ResourceSetProperties](#awsroute53recoveryreadinessresourcesetproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Route53RecoveryReadiness/CellProperties
 ### Properties

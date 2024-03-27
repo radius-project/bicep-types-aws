@@ -3,16 +3,16 @@
 ## Resource AWS.SNS/Topic@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SNS/TopicProperties](#awssnstopicproperties): properties of the resource
+* **properties**: [AWS.SNS/TopicProperties](#awssnstopicproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SNS/TopicInlinePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SNS/TopicInlinePolicyProperties](#awssnstopicinlinepolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.SNS/TopicInlinePolicyProperties](#awssnstopicinlinepolicyproperties) (Required, Identifier): properties of the resource
 
 ## AWS.SNS/TopicInlinePolicyProperties
 ### Properties

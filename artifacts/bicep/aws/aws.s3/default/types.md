@@ -3,65 +3,65 @@
 ## Resource AWS.S3/AccessGrant@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.S3/AccessGrantProperties](#awss3accessgrantproperties) (Required): properties of the resource
+* **properties**: [AWS.S3/AccessGrantProperties](#awss3accessgrantproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.S3/AccessGrantsInstance@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.S3/AccessGrantsInstanceProperties](#awss3accessgrantsinstanceproperties): properties of the resource
+* **properties**: [AWS.S3/AccessGrantsInstanceProperties](#awss3accessgrantsinstanceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.S3/AccessGrantsLocation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.S3/AccessGrantsLocationProperties](#awss3accessgrantslocationproperties): properties of the resource
+* **properties**: [AWS.S3/AccessGrantsLocationProperties](#awss3accessgrantslocationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.S3/AccessPoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.S3/AccessPointProperties](#awss3accesspointproperties) (Required): properties of the resource
+* **properties**: [AWS.S3/AccessPointProperties](#awss3accesspointproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.S3/Bucket@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.S3/BucketProperties](#awss3bucketproperties): properties of the resource
+* **properties**: [AWS.S3/BucketProperties](#awss3bucketproperties) (Identifier): properties of the resource
 
 ## Resource AWS.S3/BucketPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.S3/BucketPolicyProperties](#awss3bucketpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.S3/BucketPolicyProperties](#awss3bucketpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.S3/MultiRegionAccessPointPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.S3/MultiRegionAccessPointPolicyProperties](#awss3multiregionaccesspointpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.S3/MultiRegionAccessPointPolicyProperties](#awss3multiregionaccesspointpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.S3/StorageLens@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.S3/StorageLensProperties](#awss3storagelensproperties) (Required): properties of the resource
+* **properties**: [AWS.S3/StorageLensProperties](#awss3storagelensproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.S3/StorageLensGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.S3/StorageLensGroupProperties](#awss3storagelensgroupproperties) (Required): properties of the resource
+* **properties**: [AWS.S3/StorageLensGroupProperties](#awss3storagelensgroupproperties) (Required, Identifier): properties of the resource
 
 ## AbortIncompleteMultipartUpload
 ### Properties

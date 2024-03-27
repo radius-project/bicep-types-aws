@@ -3,9 +3,9 @@
 ## Resource AWS.KafkaConnect/Connector@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.KafkaConnect/ConnectorProperties](#awskafkaconnectconnectorproperties) (Required): properties of the resource
+* **properties**: [AWS.KafkaConnect/ConnectorProperties](#awskafkaconnectconnectorproperties) (Required, Identifier): properties of the resource
 
 ## ApacheKafkaCluster
 ### Properties

@@ -3,93 +3,93 @@
 ## Resource AWS.IAM/Group@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IAM/GroupProperties](#awsiamgroupproperties): properties of the resource
+* **properties**: [AWS.IAM/GroupProperties](#awsiamgroupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IAM/GroupPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IAM/GroupPolicyProperties](#awsiamgrouppolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.IAM/GroupPolicyProperties](#awsiamgrouppolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IAM/InstanceProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IAM/InstanceProfileProperties](#awsiaminstanceprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.IAM/InstanceProfileProperties](#awsiaminstanceprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IAM/ManagedPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IAM/ManagedPolicyProperties](#awsiammanagedpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.IAM/ManagedPolicyProperties](#awsiammanagedpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IAM/OIDCProvider@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IAM/OIDCProviderProperties](#awsiamoidcproviderproperties) (Required): properties of the resource
+* **properties**: [AWS.IAM/OIDCProviderProperties](#awsiamoidcproviderproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IAM/Role@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IAM/RoleProperties](#awsiamroleproperties) (Required): properties of the resource
+* **properties**: [AWS.IAM/RoleProperties](#awsiamroleproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IAM/RolePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IAM/RolePolicyProperties](#awsiamrolepolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.IAM/RolePolicyProperties](#awsiamrolepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IAM/SAMLProvider@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IAM/SAMLProviderProperties](#awsiamsamlproviderproperties) (Required): properties of the resource
+* **properties**: [AWS.IAM/SAMLProviderProperties](#awsiamsamlproviderproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IAM/ServerCertificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IAM/ServerCertificateProperties](#awsiamservercertificateproperties): properties of the resource
+* **properties**: [AWS.IAM/ServerCertificateProperties](#awsiamservercertificateproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IAM/ServiceLinkedRole@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IAM/ServiceLinkedRoleProperties](#awsiamservicelinkedroleproperties): properties of the resource
+* **properties**: [AWS.IAM/ServiceLinkedRoleProperties](#awsiamservicelinkedroleproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IAM/User@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IAM/UserProperties](#awsiamuserproperties): properties of the resource
+* **properties**: [AWS.IAM/UserProperties](#awsiamuserproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IAM/UserPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IAM/UserPolicyProperties](#awsiamuserpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.IAM/UserPolicyProperties](#awsiamuserpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IAM/VirtualMFADevice@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IAM/VirtualMFADeviceProperties](#awsiamvirtualmfadeviceproperties) (Required): properties of the resource
+* **properties**: [AWS.IAM/VirtualMFADeviceProperties](#awsiamvirtualmfadeviceproperties) (Required, Identifier): properties of the resource
 
 ## AWS.IAM/GroupPolicyProperties
 ### Properties

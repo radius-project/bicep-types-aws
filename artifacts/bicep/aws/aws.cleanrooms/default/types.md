@@ -3,37 +3,37 @@
 ## Resource AWS.CleanRooms/AnalysisTemplate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CleanRooms/AnalysisTemplateProperties](#awscleanroomsanalysistemplateproperties) (Required): properties of the resource
+* **properties**: [AWS.CleanRooms/AnalysisTemplateProperties](#awscleanroomsanalysistemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CleanRooms/Collaboration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CleanRooms/CollaborationProperties](#awscleanroomscollaborationproperties) (Required): properties of the resource
+* **properties**: [AWS.CleanRooms/CollaborationProperties](#awscleanroomscollaborationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CleanRooms/ConfiguredTable@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CleanRooms/ConfiguredTableProperties](#awscleanroomsconfiguredtableproperties) (Required): properties of the resource
+* **properties**: [AWS.CleanRooms/ConfiguredTableProperties](#awscleanroomsconfiguredtableproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CleanRooms/ConfiguredTableAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CleanRooms/ConfiguredTableAssociationProperties](#awscleanroomsconfiguredtableassociationproperties) (Required): properties of the resource
+* **properties**: [AWS.CleanRooms/ConfiguredTableAssociationProperties](#awscleanroomsconfiguredtableassociationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CleanRooms/Membership@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CleanRooms/MembershipProperties](#awscleanroomsmembershipproperties) (Required): properties of the resource
+* **properties**: [AWS.CleanRooms/MembershipProperties](#awscleanroomsmembershipproperties) (Required, Identifier): properties of the resource
 
 ## AnalysisParameter
 ### Properties

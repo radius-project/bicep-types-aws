@@ -3,23 +3,23 @@
 ## Resource AWS.Rekognition/Collection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Rekognition/CollectionProperties](#awsrekognitioncollectionproperties) (Required): properties of the resource
+* **properties**: [AWS.Rekognition/CollectionProperties](#awsrekognitioncollectionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Rekognition/Project@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Rekognition/ProjectProperties](#awsrekognitionprojectproperties) (Required): properties of the resource
+* **properties**: [AWS.Rekognition/ProjectProperties](#awsrekognitionprojectproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Rekognition/StreamProcessor@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Rekognition/StreamProcessorProperties](#awsrekognitionstreamprocessorproperties) (Required): properties of the resource
+* **properties**: [AWS.Rekognition/StreamProcessorProperties](#awsrekognitionstreamprocessorproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Rekognition/CollectionProperties
 ### Properties

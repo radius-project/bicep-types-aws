@@ -3,44 +3,44 @@
 ## Resource AWS.SSM/Association@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSM/AssociationProperties](#awsssmassociationproperties) (Required): properties of the resource
+* **properties**: [AWS.SSM/AssociationProperties](#awsssmassociationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSM/Document@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSM/DocumentProperties](#awsssmdocumentproperties) (Required): properties of the resource
+* **properties**: [AWS.SSM/DocumentProperties](#awsssmdocumentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSM/Parameter@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSM/ParameterProperties](#awsssmparameterproperties) (Required): properties of the resource
+* **properties**: [AWS.SSM/ParameterProperties](#awsssmparameterproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSM/PatchBaseline@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSM/PatchBaselineProperties](#awsssmpatchbaselineproperties) (Required): properties of the resource
+* **properties**: [AWS.SSM/PatchBaselineProperties](#awsssmpatchbaselineproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSM/ResourceDataSync@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSM/ResourceDataSyncProperties](#awsssmresourcedatasyncproperties) (Required): properties of the resource
+* **properties**: [AWS.SSM/ResourceDataSyncProperties](#awsssmresourcedatasyncproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSM/ResourcePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSM/ResourcePolicyProperties](#awsssmresourcepolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.SSM/ResourcePolicyProperties](#awsssmresourcepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Association_Parameters
 ### Properties

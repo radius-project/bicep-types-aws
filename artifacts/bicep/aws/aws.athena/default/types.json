@@ -22,7 +22,7 @@
     "properties": {
       "CapacityAssignments": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -76,27 +76,15 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "CapacityAssignment",
-    "properties": {
-      "WorkgroupNames": {
-        "type": {
-          "$ref": "#/9"
-        },
-        "flags": 1
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/10"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/10"
+      "$ref": "#/1"
     }
   },
   {
@@ -113,39 +101,9 @@
     "$type": "IntegerType"
   },
   {
-    "$type": "ObjectType",
-    "name": "CapacityAssignmentConfiguration",
-    "properties": {
-      "CapacityAssignments": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/5"
     }
   },
   {
@@ -154,7 +112,7 @@
     "properties": {
       "AllocatedDpus": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 2,
         "description": "The number of DPUs Athena has provisioned and allocated for the reservation"
@@ -167,7 +125,7 @@
       },
       "CapacityAssignmentConfiguration": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/2"
         },
         "flags": 0
       },
@@ -201,14 +159,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "TargetDpus": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The number of DPUs to request to be allocated to the reservation."
@@ -230,14 +188,14 @@
         "type": {
           "$ref": "#/8"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/16"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -247,19 +205,9 @@
     "name": "AWS.Athena/CapacityReservation@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/17"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tags",
-    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -280,9 +228,14 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/19"
     }
   },
   {
@@ -297,7 +250,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/19"
     }
   },
   {
@@ -320,14 +273,14 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "Specifies the Lambda function or functions to use for creating the data catalog. This is a mapping whose values depend on the catalog type. "
       },
       "Tags": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "A list of comma separated tags to add to the data catalog that is created. "
@@ -356,14 +309,14 @@
         "type": {
           "$ref": "#/8"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/25"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -373,7 +326,7 @@
     "name": "AWS.Athena/DataCatalog@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/30"
+      "$ref": "#/26"
     },
     "flags": 0
   },
@@ -430,14 +383,14 @@
         "type": {
           "$ref": "#/8"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/29"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -447,7 +400,7 @@
     "name": "AWS.Athena/PreparedStatement@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/30"
     },
     "flags": 0
   },
@@ -602,13 +555,13 @@
     "properties": {
       "AclConfiguration": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/32"
         },
         "flags": 0
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/37"
         },
         "flags": 0
       },
@@ -632,13 +585,13 @@
     "properties": {
       "AclConfiguration": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/32"
         },
         "flags": 0
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/37"
         },
         "flags": 0
       },
@@ -656,25 +609,25 @@
       },
       "RemoveAclConfiguration": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "RemoveEncryptionConfiguration": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "RemoveExpectedBucketOwner": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "RemoveOutputLocation": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/61"
         },
         "flags": 0
       }
@@ -689,181 +642,6 @@
     "$type": "ObjectType",
     "name": "SelectedEngineVersion",
     "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tags",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "WorkGroupConfiguration",
-    "properties": {
-      "AdditionalConfiguration": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 4
-      },
-      "BytesScannedCutoffPerQuery": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0
-      },
-      "CustomerContentEncryptionConfiguration": {
-        "type": {
-          "$ref": "#/70"
-        },
-        "flags": 0
-      },
-      "EnforceWorkGroupConfiguration": {
-        "type": {
-          "$ref": "#/65"
-        },
-        "flags": 0
-      },
-      "EngineVersion": {
-        "type": {
-          "$ref": "#/71"
-        },
-        "flags": 0
-      },
-      "ExecutionRole": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "PublishCloudWatchMetricsEnabled": {
-        "type": {
-          "$ref": "#/65"
-        },
-        "flags": 0
-      },
-      "RequesterPaysEnabled": {
-        "type": {
-          "$ref": "#/65"
-        },
-        "flags": 0
-      },
-      "ResultConfiguration": {
-        "type": {
-          "$ref": "#/72"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "WorkGroupConfigurationUpdates",
-    "properties": {
-      "AdditionalConfiguration": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "BytesScannedCutoffPerQuery": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0
-      },
-      "CustomerContentEncryptionConfiguration": {
-        "type": {
-          "$ref": "#/70"
-        },
-        "flags": 0
-      },
-      "EnforceWorkGroupConfiguration": {
-        "type": {
-          "$ref": "#/65"
-        },
-        "flags": 0
-      },
-      "EngineVersion": {
-        "type": {
-          "$ref": "#/71"
-        },
-        "flags": 0
-      },
-      "ExecutionRole": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "PublishCloudWatchMetricsEnabled": {
-        "type": {
-          "$ref": "#/65"
-        },
-        "flags": 0
-      },
-      "RemoveBytesScannedCutoffPerQuery": {
-        "type": {
-          "$ref": "#/65"
-        },
-        "flags": 0
-      },
-      "RemoveCustomerContentEncryptionConfiguration": {
-        "type": {
-          "$ref": "#/65"
-        },
-        "flags": 0
-      },
-      "RequesterPaysEnabled": {
-        "type": {
-          "$ref": "#/65"
-        },
-        "flags": 0
-      },
-      "ResultConfigurationUpdates": {
-        "type": {
-          "$ref": "#/73"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AclConfiguration",
-    "properties": {
-      "S3AclOption": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "EncryptionConfiguration",
-    "properties": {
-      "EncryptionOption": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "KmsKey": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -884,134 +662,9 @@
     }
   },
   {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/68"
-    }
-  },
-  {
     "$type": "ObjectType",
-    "name": "CustomerContentEncryptionConfiguration",
-    "properties": {
-      "KmsKey": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "EngineVersion",
-    "properties": {
-      "EffectiveEngineVersion": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 2
-      },
-      "SelectedEngineVersion": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ResultConfiguration",
-    "properties": {
-      "AclConfiguration": {
-        "type": {
-          "$ref": "#/66"
-        },
-        "flags": 0
-      },
-      "EncryptionConfiguration": {
-        "type": {
-          "$ref": "#/67"
-        },
-        "flags": 0
-      },
-      "ExpectedBucketOwner": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "OutputLocation": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ResultConfigurationUpdates",
-    "properties": {
-      "AclConfiguration": {
-        "type": {
-          "$ref": "#/66"
-        },
-        "flags": 0
-      },
-      "EncryptionConfiguration": {
-        "type": {
-          "$ref": "#/67"
-        },
-        "flags": 0
-      },
-      "ExpectedBucketOwner": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "OutputLocation": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "RemoveAclConfiguration": {
-        "type": {
-          "$ref": "#/65"
-        },
-        "flags": 0
-      },
-      "RemoveEncryptionConfiguration": {
-        "type": {
-          "$ref": "#/65"
-        },
-        "flags": 0
-      },
-      "RemoveExpectedBucketOwner": {
-        "type": {
-          "$ref": "#/65"
-        },
-        "flags": 0
-      },
-      "RemoveOutputLocation": {
-        "type": {
-          "$ref": "#/65"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Athena/WorkGroupProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/68"
-    }
+    "name": "Tags",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1025,25 +678,25 @@
       },
       "BytesScannedCutoffPerQuery": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0
       },
       "CustomerContentEncryptionConfiguration": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/35"
         },
         "flags": 0
       },
       "EnforceWorkGroupConfiguration": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "EngineVersion": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/40"
         },
         "flags": 0
       },
@@ -1055,19 +708,19 @@
       },
       "PublishCloudWatchMetricsEnabled": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "RequesterPaysEnabled": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "ResultConfiguration": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/53"
         },
         "flags": 0
       }
@@ -1085,25 +738,25 @@
       },
       "BytesScannedCutoffPerQuery": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0
       },
       "CustomerContentEncryptionConfiguration": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/35"
         },
         "flags": 0
       },
       "EnforceWorkGroupConfiguration": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "EngineVersion": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/40"
         },
         "flags": 0
       },
@@ -1115,34 +768,53 @@
       },
       "PublishCloudWatchMetricsEnabled": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "RemoveBytesScannedCutoffPerQuery": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "RemoveCustomerContentEncryptionConfiguration": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "RequesterPaysEnabled": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "ResultConfigurationUpdates": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/54"
         },
         "flags": 0
       }
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/57"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Athena/WorkGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/57"
     }
   },
   {
@@ -1172,7 +844,7 @@
       },
       "RecursiveDeleteOption": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/61"
         },
         "flags": 4,
         "description": "The option to delete the workgroup and its contents even if the workgroup contains any named queries."
@@ -1186,21 +858,21 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "One or more tags, separated by commas, that you want to attach to the workgroup as you create it"
       },
       "WorkGroupConfiguration": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/59"
         },
         "flags": 0,
         "description": "The workgroup configuration"
       },
       "WorkGroupConfigurationUpdates": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/60"
         },
         "flags": 4,
         "description": "The workgroup configuration update object"
@@ -1222,14 +894,14 @@
         "type": {
           "$ref": "#/8"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/65"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1239,7 +911,7 @@
     "name": "AWS.Athena/WorkGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/79"
+      "$ref": "#/66"
     },
     "flags": 0
   }

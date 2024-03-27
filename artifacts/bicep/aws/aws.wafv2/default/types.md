@@ -3,44 +3,44 @@
 ## Resource AWS.WAFv2/IPSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WAFv2/IPSetProperties](#awswafv2ipsetproperties) (Required): properties of the resource
+* **properties**: [AWS.WAFv2/IPSetProperties](#awswafv2ipsetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WAFv2/LoggingConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WAFv2/LoggingConfigurationProperties](#awswafv2loggingconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.WAFv2/LoggingConfigurationProperties](#awswafv2loggingconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WAFv2/RegexPatternSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WAFv2/RegexPatternSetProperties](#awswafv2regexpatternsetproperties) (Required): properties of the resource
+* **properties**: [AWS.WAFv2/RegexPatternSetProperties](#awswafv2regexpatternsetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WAFv2/RuleGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WAFv2/RuleGroupProperties](#awswafv2rulegroupproperties) (Required): properties of the resource
+* **properties**: [AWS.WAFv2/RuleGroupProperties](#awswafv2rulegroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WAFv2/WebACL@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WAFv2/WebACLProperties](#awswafv2webaclproperties) (Required): properties of the resource
+* **properties**: [AWS.WAFv2/WebACLProperties](#awswafv2webaclproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WAFv2/WebACLAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WAFv2/WebACLAssociationProperties](#awswafv2webaclassociationproperties) (Required): properties of the resource
+* **properties**: [AWS.WAFv2/WebACLAssociationProperties](#awswafv2webaclassociationproperties) (Required, Identifier): properties of the resource
 
 ## AllowAction
 ### Properties
@@ -364,13 +364,13 @@
 
 ## HeaderMatchPattern
 ### Properties
-* **All**: [WebACL_All](#webaclall): Inspect all parts of the web request headers.
+* **All**: [RuleGroup_All](#rulegroupall): Inspect all parts of the web request headers.
 * **ExcludedHeaders**: string[]
 * **IncludedHeaders**: string[]
 
 ## HeaderMatchPattern
 ### Properties
-* **All**: [RuleGroup_All](#rulegroupall): Inspect all parts of the web request headers.
+* **All**: [WebACL_All](#webaclall): Inspect all parts of the web request headers.
 * **ExcludedHeaders**: string[]
 * **IncludedHeaders**: string[]
 
@@ -834,13 +834,11 @@
 * **GeoMatchStatement**: [GeoMatchStatement](#geomatchstatement)
 * **IPSetReferenceStatement**: [IPSetReferenceStatement](#ipsetreferencestatement)
 * **LabelMatchStatement**: [LabelMatchStatement](#labelmatchstatement)
-* **ManagedRuleGroupStatement**: [ManagedRuleGroupStatement](#managedrulegroupstatement)
 * **NotStatement**: [NotStatement](#notstatement)
 * **OrStatement**: [OrStatement](#orstatement)
 * **RateBasedStatement**: [RateBasedStatement](#ratebasedstatement)
 * **RegexMatchStatement**: [RegexMatchStatement](#regexmatchstatement)
 * **RegexPatternSetReferenceStatement**: [RegexPatternSetReferenceStatement](#regexpatternsetreferencestatement)
-* **RuleGroupReferenceStatement**: [RuleGroupReferenceStatement](#rulegroupreferencestatement)
 * **SizeConstraintStatement**: [SizeConstraintStatement](#sizeconstraintstatement)
 * **SqliMatchStatement**: [SqliMatchStatement](#sqlimatchstatement)
 * **XssMatchStatement**: [XssMatchStatement](#xssmatchstatement)
@@ -852,11 +850,13 @@
 * **GeoMatchStatement**: [GeoMatchStatement](#geomatchstatement)
 * **IPSetReferenceStatement**: [IPSetReferenceStatement](#ipsetreferencestatement)
 * **LabelMatchStatement**: [LabelMatchStatement](#labelmatchstatement)
+* **ManagedRuleGroupStatement**: [ManagedRuleGroupStatement](#managedrulegroupstatement)
 * **NotStatement**: [NotStatement](#notstatement)
 * **OrStatement**: [OrStatement](#orstatement)
 * **RateBasedStatement**: [RateBasedStatement](#ratebasedstatement)
 * **RegexMatchStatement**: [RegexMatchStatement](#regexmatchstatement)
 * **RegexPatternSetReferenceStatement**: [RegexPatternSetReferenceStatement](#regexpatternsetreferencestatement)
+* **RuleGroupReferenceStatement**: [RuleGroupReferenceStatement](#rulegroupreferencestatement)
 * **SizeConstraintStatement**: [SizeConstraintStatement](#sizeconstraintstatement)
 * **SqliMatchStatement**: [SqliMatchStatement](#sqlimatchstatement)
 * **XssMatchStatement**: [XssMatchStatement](#xssmatchstatement)

@@ -79,33 +79,33 @@
     "properties": {
       "AmiDistributionConfiguration": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/0"
         },
         "flags": 0
       },
       "ContainerDistributionConfiguration": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "FastLaunchConfigurations": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The Windows faster-launching configurations to use for AMI distribution."
       },
       "LaunchTemplateConfigurations": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "A group of launchTemplateConfiguration settings that apply to image distribution."
       },
       "LicenseConfigurationArns": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "The License Manager Configuration to associate with the AMI in the specified Region."
@@ -132,7 +132,7 @@
       },
       "Enabled": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "A Boolean that represents the current state of faster launching for the Windows AMI. Set to true to start using Windows faster launching, or false to stop using it."
@@ -146,7 +146,7 @@
       },
       "MaxParallelLaunches": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "The maximum number of parallel instances that are launched for creating resources."
@@ -193,7 +193,7 @@
     "properties": {
       "TargetResourceCount": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "The number of pre-provisioned snapshots to keep on hand for a fast-launch enabled Windows AMI."
@@ -206,28 +206,28 @@
     "properties": {
       "OrganizationArns": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "The ARN for an Amazon Web Services Organization that you want to share your AMI with."
       },
       "OrganizationalUnitArns": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "The ARN for an Organizations organizational unit (OU) that you want to share your AMI with."
       },
       "UserGroups": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "The name of the group."
       },
       "UserIds": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "The AWS account ID."
@@ -254,7 +254,7 @@
       },
       "SetDefaultVersion": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Set the specified EC2 launch template as the default launch template for the specified account."
@@ -304,80 +304,6 @@
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/11"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AmiDistributionConfiguration",
-    "properties": {
-      "AmiTags": {
-        "type": {
-          "$ref": "#/10"
-        },
-        "flags": 0,
-        "description": "The tags to apply to AMIs distributed to this Region."
-      },
-      "Description": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The description of the AMI distribution configuration."
-      },
-      "KmsKeyId": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The KMS key identifier used to encrypt the distributed image."
-      },
-      "LaunchPermissionConfiguration": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The name of the AMI distribution configuration."
-      },
-      "TargetAccountIds": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0,
-        "description": "The ID of accounts to which you want to distribute an image."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ContainerDistributionConfiguration",
-    "properties": {
-      "ContainerTags": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0,
-        "description": "Tags that are attached to the container distribution configuration."
-      },
-      "Description": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The description of the container distribution configuration."
-      },
-      "TargetRepository": {
-        "type": {
-          "$ref": "#/9"
-        },
-        "flags": 0,
-        "description": "The destination repository for the container distribution configuration."
-      }
     }
   },
   {
@@ -433,55 +359,9 @@
     "value": "AWS.ImageBuilder/DistributionConfigurationProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "Distribution",
-    "properties": {
-      "AmiDistributionConfiguration": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0
-      },
-      "ContainerDistributionConfiguration": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0
-      },
-      "FastLaunchConfigurations": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "The Windows faster-launching configurations to use for AMI distribution."
-      },
-      "LaunchTemplateConfigurations": {
-        "type": {
-          "$ref": "#/17"
-        },
-        "flags": 0,
-        "description": "A group of launchTemplateConfiguration settings that apply to image distribution."
-      },
-      "LicenseConfigurationArns": {
-        "type": {
-          "$ref": "#/18"
-        },
-        "flags": 0,
-        "description": "The License Manager Configuration to associate with the AMI in the specified Region."
-      },
-      "Region": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 1,
-        "description": "region"
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/2"
     }
   },
   {
@@ -509,7 +389,7 @@
       },
       "Distributions": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The distributions of the distribution configuration."
@@ -523,7 +403,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The tags associated with the component."
@@ -545,14 +425,14 @@
         "type": {
           "$ref": "#/11"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/26"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -562,7 +442,7 @@
     "name": "AWS.ImageBuilder/DistributionConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/30"
+      "$ref": "#/27"
     },
     "flags": 0
   },
@@ -572,7 +452,7 @@
     "properties": {
       "ContainerTags": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "Tags for Image Builder to apply the output container image that is scanned. Tags can help you identify and manage your scanned images."
@@ -592,14 +472,14 @@
     "properties": {
       "EcrConfiguration": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "Contains ECR settings for vulnerability scans."
       },
       "ImageScanningEnabled": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "This sets whether Image Builder keeps a snapshot of the vulnerability scans that Amazon Inspector runs against the build instance when you create a new image."
@@ -612,14 +492,14 @@
     "properties": {
       "ImageTestsEnabled": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Defines if tests should be executed when building this image."
       },
       "TimeoutMinutes": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "The maximum time in minutes that tests are permitted to run."
@@ -666,7 +546,7 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "The parameters associated with the workflow"
@@ -692,7 +572,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/38"
         },
         "flags": 0
       }
@@ -710,29 +590,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "EcrConfiguration",
-    "properties": {
-      "ContainerTags": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0,
-        "description": "Tags for Image Builder to apply the output container image that is scanned. Tags can help you identify and manage your scanned images."
-      },
-      "RepositoryName": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The name of the container repository that Amazon Inspector scans to identify findings for your container images. The name includes the path for the repository location. If you don't provide this information, Image Builder creates a repository in your account named image-builder-image-scanning-repository to use for vulnerability scans for your output container images."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/37"
+      "$ref": "#/34"
     }
   },
   {
@@ -747,107 +607,13 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ImageScanningConfiguration",
-    "properties": {
-      "EcrConfiguration": {
-        "type": {
-          "$ref": "#/40"
-        },
-        "flags": 0,
-        "description": "Contains ECR settings for vulnerability scans."
-      },
-      "ImageScanningEnabled": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "This sets whether Image Builder keeps a snapshot of the vulnerability scans that Amazon Inspector runs against the build instance when you create a new image."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ImageTestsConfiguration",
-    "properties": {
-      "ImageTestsEnabled": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "Defines if tests should be executed when building this image."
-      },
-      "TimeoutMinutes": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 0,
-        "description": "The maximum time in minutes that tests are permitted to run."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Schedule",
-    "properties": {
-      "PipelineExecutionStartCondition": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The condition configures when the pipeline should trigger a new image build."
-      },
-      "ScheduleExpression": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The expression determines how often EC2 Image Builder evaluates your pipelineExecutionStartCondition."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "ImagePipeline_Tags",
     "properties": {}
   },
   {
-    "$type": "ObjectType",
-    "name": "WorkflowConfiguration",
-    "properties": {
-      "OnFailure": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "Define execution decision in case of workflow failure"
-      },
-      "ParallelGroup": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The parallel group name"
-      },
-      "Parameters": {
-        "type": {
-          "$ref": "#/41"
-        },
-        "flags": 0,
-        "description": "The parameters associated with the workflow"
-      },
-      "WorkflowArn": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The Amazon Resource Name (ARN) of the workflow"
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/48"
+      "$ref": "#/33"
     }
   },
   {
@@ -884,7 +650,7 @@
       },
       "EnhancedImageMetadataEnabled": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Collects additional information about the image being created, including the operating system (OS) version and package list."
@@ -905,14 +671,14 @@
       },
       "ImageScanningConfiguration": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "Contains settings for vulnerability scans."
       },
       "ImageTestsConfiguration": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "The image tests configuration of the image pipeline."
@@ -933,7 +699,7 @@
       },
       "Schedule": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "The schedule of the image pipeline."
@@ -947,14 +713,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The tags of this image pipeline."
       },
       "Workflows": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "Workflows to define the image build process"
@@ -976,14 +742,14 @@
         "type": {
           "$ref": "#/11"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/42"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -993,7 +759,7 @@
     "name": "AWS.ImageBuilder/ImagePipeline@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/51"
+      "$ref": "#/43"
     },
     "flags": 0
   },
@@ -1003,7 +769,7 @@
     "properties": {
       "HttpPutResponseHopLimit": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "Limit the number of hops that an instance metadata request can traverse to reach its destination."
@@ -1023,7 +789,7 @@
     "properties": {
       "S3Logs": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/47"
         },
         "flags": 0
       }
@@ -1074,41 +840,9 @@
     "value": "AWS.ImageBuilder/InfrastructureConfigurationProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "InstanceMetadataOptions",
-    "properties": {
-      "HttpPutResponseHopLimit": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 0,
-        "description": "Limit the number of hops that an instance metadata request can traverse to reach its destination."
-      },
-      "HttpTokens": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "Indicates whether a signed token header is required for instance metadata retrieval requests. The values affect the response as follows: "
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/11"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Logging",
-    "properties": {
-      "S3Logs": {
-        "type": {
-          "$ref": "#/55"
-        },
-        "flags": 0
-      }
     }
   },
   {
@@ -1147,7 +881,7 @@
       },
       "InstanceMetadataOptions": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "The instance metadata option settings for the infrastructure configuration."
@@ -1161,7 +895,7 @@
       },
       "InstanceTypes": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "The instance types of the infrastructure configuration."
@@ -1175,7 +909,7 @@
       },
       "Logging": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "The logging configuration of the infrastructure configuration."
@@ -1189,14 +923,14 @@
       },
       "ResourceTags": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "The tags attached to the resource created by Image Builder."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "The security group IDs of the infrastructure configuration."
@@ -1217,14 +951,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "The tags associated with the component."
       },
       "TerminateInstanceOnFailure": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "The terminate instance on failure configuration of the infrastructure configuration."
@@ -1246,14 +980,14 @@
         "type": {
           "$ref": "#/11"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/54"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1263,7 +997,7 @@
     "name": "AWS.ImageBuilder/InfrastructureConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/65"
+      "$ref": "#/55"
     },
     "flags": 0
   },
@@ -1273,7 +1007,7 @@
     "properties": {
       "IncludeResources": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/61"
         },
         "flags": 0
       },
@@ -1292,35 +1026,35 @@
     "properties": {
       "IsPublic": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Use to apply lifecycle policy actions on whether the AMI is public."
       },
       "LastLaunched": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "Use to apply lifecycle policy actions on AMIs launched before a certain time."
       },
       "Regions": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "Use to apply lifecycle policy actions on AMIs distributed to a set of regions."
       },
       "SharedAccounts": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "Use to apply lifecycle policy actions on AMIs shared with a set of regions."
       },
       "TagMap": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "The AMIs to select by tag."
@@ -1333,13 +1067,13 @@
     "properties": {
       "Amis": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/58"
         },
         "flags": 0
       },
       "TagMap": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "The Image Builder tags to filter on."
@@ -1352,7 +1086,7 @@
     "properties": {
       "RetainAtLeast": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "The minimum number of Image Builder resources to retain."
@@ -1373,7 +1107,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/18"
         },
         "flags": 1,
         "description": "The filter value."
@@ -1386,21 +1120,21 @@
     "properties": {
       "Amis": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Use to configure lifecycle actions on AMIs."
       },
       "Containers": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Use to configure lifecycle actions on containers."
       },
       "Snapshots": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Use to configure lifecycle actions on snapshots."
@@ -1420,7 +1154,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/18"
         },
         "flags": 1,
         "description": "The last launched value."
@@ -1433,19 +1167,19 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/57"
         },
         "flags": 1
       },
       "ExclusionRules": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/59"
         },
         "flags": 0
       },
       "Filter": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/60"
         },
         "flags": 1
       }
@@ -1477,14 +1211,14 @@
     "properties": {
       "Recipes": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "The recipes to select."
       },
       "TagMap": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "The Image Builder resources to select by tag."
@@ -1515,146 +1249,13 @@
   },
   {
     "$type": "ObjectType",
-    "name": "AmiExclusionRules",
-    "properties": {
-      "IsPublic": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "Use to apply lifecycle policy actions on whether the AMI is public."
-      },
-      "LastLaunched": {
-        "type": {
-          "$ref": "#/72"
-        },
-        "flags": 0,
-        "description": "Use to apply lifecycle policy actions on AMIs launched before a certain time."
-      },
-      "Regions": {
-        "type": {
-          "$ref": "#/77"
-        },
-        "flags": 0,
-        "description": "Use to apply lifecycle policy actions on AMIs distributed to a set of regions."
-      },
-      "SharedAccounts": {
-        "type": {
-          "$ref": "#/78"
-        },
-        "flags": 0,
-        "description": "Use to apply lifecycle policy actions on AMIs shared with a set of regions."
-      },
-      "TagMap": {
-        "type": {
-          "$ref": "#/79"
-        },
-        "flags": 0,
-        "description": "The AMIs to select by tag."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "LifecyclePolicy_TagMap",
     "properties": {}
   },
   {
-    "$type": "ObjectType",
-    "name": "Action",
-    "properties": {
-      "IncludeResources": {
-        "type": {
-          "$ref": "#/71"
-        },
-        "flags": 0
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 1,
-        "description": "The action type of the policy detail."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ExclusionRules",
-    "properties": {
-      "Amis": {
-        "type": {
-          "$ref": "#/80"
-        },
-        "flags": 0
-      },
-      "TagMap": {
-        "type": {
-          "$ref": "#/81"
-        },
-        "flags": 0,
-        "description": "The Image Builder tags to filter on."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Filter",
-    "properties": {
-      "RetainAtLeast": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 0,
-        "description": "The minimum number of Image Builder resources to retain."
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 1,
-        "description": "The filter type."
-      },
-      "Unit": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "The value's time unit."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 1,
-        "description": "The filter value."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RecipeSelection",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 1,
-        "description": "The recipe name."
-      },
-      "SemanticVersion": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 1,
-        "description": "The recipe version."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/85"
+      "$ref": "#/64"
     }
   },
   {
@@ -1667,53 +1268,9 @@
     "value": "AWS.ImageBuilder/LifecyclePolicyProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "PolicyDetail",
-    "properties": {
-      "Action": {
-        "type": {
-          "$ref": "#/82"
-        },
-        "flags": 1
-      },
-      "ExclusionRules": {
-        "type": {
-          "$ref": "#/83"
-        },
-        "flags": 0
-      },
-      "Filter": {
-        "type": {
-          "$ref": "#/84"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/89"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ResourceSelection",
-    "properties": {
-      "Recipes": {
-        "type": {
-          "$ref": "#/86"
-        },
-        "flags": 0,
-        "description": "The recipes to select."
-      },
-      "TagMap": {
-        "type": {
-          "$ref": "#/87"
-        },
-        "flags": 0,
-        "description": "The Image Builder resources to select by tag."
-      }
+      "$ref": "#/63"
     }
   },
   {
@@ -1755,14 +1312,14 @@
       },
       "PolicyDetails": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/74"
         },
         "flags": 1,
         "description": "The policy details of the lifecycle policy."
       },
       "ResourceSelection": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/65"
         },
         "flags": 1,
         "description": "The resource selection of the lifecycle policy."
@@ -1783,7 +1340,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "The tags associated with the lifecycle policy."
@@ -1805,14 +1362,14 @@
         "type": {
           "$ref": "#/11"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/76"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1822,7 +1379,7 @@
     "name": "AWS.ImageBuilder/LifecyclePolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/94"
+      "$ref": "#/77"
     },
     "flags": 0
   }

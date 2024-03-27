@@ -3,37 +3,37 @@
 ## Resource AWS.AutoScaling/AutoScalingGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AutoScaling/AutoScalingGroupProperties](#awsautoscalingautoscalinggroupproperties) (Required): properties of the resource
+* **properties**: [AWS.AutoScaling/AutoScalingGroupProperties](#awsautoscalingautoscalinggroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AutoScaling/LifecycleHook@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AutoScaling/LifecycleHookProperties](#awsautoscalinglifecyclehookproperties) (Required): properties of the resource
+* **properties**: [AWS.AutoScaling/LifecycleHookProperties](#awsautoscalinglifecyclehookproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AutoScaling/ScalingPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AutoScaling/ScalingPolicyProperties](#awsautoscalingscalingpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.AutoScaling/ScalingPolicyProperties](#awsautoscalingscalingpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AutoScaling/ScheduledAction@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AutoScaling/ScheduledActionProperties](#awsautoscalingscheduledactionproperties) (Required): properties of the resource
+* **properties**: [AWS.AutoScaling/ScheduledActionProperties](#awsautoscalingscheduledactionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AutoScaling/WarmPool@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AutoScaling/WarmPoolProperties](#awsautoscalingwarmpoolproperties) (Required): properties of the resource
+* **properties**: [AWS.AutoScaling/WarmPoolProperties](#awsautoscalingwarmpoolproperties) (Required, Identifier): properties of the resource
 
 ## AcceleratorCountRequest
 ### Properties

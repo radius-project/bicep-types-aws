@@ -3,16 +3,16 @@
 ## Resource AWS.CodeArtifact/Domain@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CodeArtifact/DomainProperties](#awscodeartifactdomainproperties) (Required): properties of the resource
+* **properties**: [AWS.CodeArtifact/DomainProperties](#awscodeartifactdomainproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CodeArtifact/Repository@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CodeArtifact/RepositoryProperties](#awscodeartifactrepositoryproperties) (Required): properties of the resource
+* **properties**: [AWS.CodeArtifact/RepositoryProperties](#awscodeartifactrepositoryproperties) (Required, Identifier): properties of the resource
 
 ## AWS.CodeArtifact/DomainProperties
 ### Properties

@@ -3,16 +3,16 @@
 ## Resource AWS.NeptuneGraph/Graph@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NeptuneGraph/GraphProperties](#awsneptunegraphgraphproperties) (Required): properties of the resource
+* **properties**: [AWS.NeptuneGraph/GraphProperties](#awsneptunegraphgraphproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NeptuneGraph/PrivateGraphEndpoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NeptuneGraph/PrivateGraphEndpointProperties](#awsneptunegraphprivategraphendpointproperties) (Required): properties of the resource
+* **properties**: [AWS.NeptuneGraph/PrivateGraphEndpointProperties](#awsneptunegraphprivategraphendpointproperties) (Required, Identifier): properties of the resource
 
 ## AWS.NeptuneGraph/GraphProperties
 ### Properties

@@ -3,30 +3,30 @@
 ## Resource AWS.Omics/AnnotationStore@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Omics/AnnotationStoreProperties](#awsomicsannotationstoreproperties) (Required): properties of the resource
+* **properties**: [AWS.Omics/AnnotationStoreProperties](#awsomicsannotationstoreproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Omics/RunGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Omics/RunGroupProperties](#awsomicsrungroupproperties): properties of the resource
+* **properties**: [AWS.Omics/RunGroupProperties](#awsomicsrungroupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Omics/VariantStore@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Omics/VariantStoreProperties](#awsomicsvariantstoreproperties) (Required): properties of the resource
+* **properties**: [AWS.Omics/VariantStoreProperties](#awsomicsvariantstoreproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Omics/Workflow@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Omics/WorkflowProperties](#awsomicsworkflowproperties): properties of the resource
+* **properties**: [AWS.Omics/WorkflowProperties](#awsomicsworkflowproperties) (Identifier): properties of the resource
 
 ## AWS.Omics/AnnotationStoreProperties
 ### Properties

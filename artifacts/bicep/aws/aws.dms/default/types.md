@@ -3,30 +3,30 @@
 ## Resource AWS.DMS/DataProvider@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DMS/DataProviderProperties](#awsdmsdataproviderproperties) (Required): properties of the resource
+* **properties**: [AWS.DMS/DataProviderProperties](#awsdmsdataproviderproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DMS/InstanceProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DMS/InstanceProfileProperties](#awsdmsinstanceprofileproperties): properties of the resource
+* **properties**: [AWS.DMS/InstanceProfileProperties](#awsdmsinstanceprofileproperties) (Identifier): properties of the resource
 
 ## Resource AWS.DMS/MigrationProject@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DMS/MigrationProjectProperties](#awsdmsmigrationprojectproperties): properties of the resource
+* **properties**: [AWS.DMS/MigrationProjectProperties](#awsdmsmigrationprojectproperties) (Identifier): properties of the resource
 
 ## Resource AWS.DMS/ReplicationConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DMS/ReplicationConfigProperties](#awsdmsreplicationconfigproperties): properties of the resource
+* **properties**: [AWS.DMS/ReplicationConfigProperties](#awsdmsreplicationconfigproperties) (Identifier): properties of the resource
 
 ## AWS.DMS/DataProviderProperties
 ### Properties

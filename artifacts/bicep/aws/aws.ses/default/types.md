@@ -3,51 +3,51 @@
 ## Resource AWS.SES/ConfigurationSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SES/ConfigurationSetProperties](#awssesconfigurationsetproperties): properties of the resource
+* **properties**: [AWS.SES/ConfigurationSetProperties](#awssesconfigurationsetproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SES/ConfigurationSetEventDestination@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SES/ConfigurationSetEventDestinationProperties](#awssesconfigurationseteventdestinationproperties) (Required): properties of the resource
+* **properties**: [AWS.SES/ConfigurationSetEventDestinationProperties](#awssesconfigurationseteventdestinationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SES/ContactList@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SES/ContactListProperties](#awssescontactlistproperties): properties of the resource
+* **properties**: [AWS.SES/ContactListProperties](#awssescontactlistproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SES/DedicatedIpPool@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SES/DedicatedIpPoolProperties](#awssesdedicatedippoolproperties): properties of the resource
+* **properties**: [AWS.SES/DedicatedIpPoolProperties](#awssesdedicatedippoolproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SES/EmailIdentity@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SES/EmailIdentityProperties](#awssesemailidentityproperties) (Required): properties of the resource
+* **properties**: [AWS.SES/EmailIdentityProperties](#awssesemailidentityproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SES/Template@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SES/TemplateProperties](#awssestemplateproperties): properties of the resource
+* **properties**: [AWS.SES/TemplateProperties](#awssestemplateproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SES/VdmAttributes@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SES/VdmAttributesProperties](#awssesvdmattributesproperties): properties of the resource
+* **properties**: [AWS.SES/VdmAttributesProperties](#awssesvdmattributesproperties) (Identifier): properties of the resource
 
 ## AWS.SES/ConfigurationSetEventDestinationProperties
 ### Properties

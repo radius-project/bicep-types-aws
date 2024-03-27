@@ -27,29 +27,9 @@
     "value": "AWS.MemoryDB/ACLProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with 'aws:'. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/0"
     }
   },
   {
@@ -85,14 +65,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this cluster."
       },
       "UserNames": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "List of users associated to this acl."
@@ -114,14 +94,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/5"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -131,7 +111,7 @@
     "name": "AWS.MemoryDB/ACL@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/7"
+      "$ref": "#/6"
     },
     "flags": 0
   },
@@ -153,63 +133,11 @@
       },
       "Port": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/11"
         },
         "flags": 2,
         "description": "The port number that the engine is listening on. "
       }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "IntegerType"
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.MemoryDB/ClusterProperties"
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Endpoint",
-    "properties": {
-      "Address": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 2,
-        "description": "The DNS address of the primary read-write node."
-      },
-      "Port": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 2,
-        "description": "The port number that the engine is listening on. "
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Cluster_DataTieringStatus",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
     }
   },
   {
@@ -233,9 +161,36 @@
     }
   },
   {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MemoryDB/ClusterProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Cluster_DataTieringStatus",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
     }
   },
   {
@@ -258,14 +213,14 @@
       },
       "AutoMinorVersionUpgrade": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "A flag that enables automatic minor version upgrade when set to true.\n\nYou cannot modify the value of AutoMinorVersionUpgrade after the cluster is created. To enable AutoMinorVersionUpgrade on a cluster you must set AutoMinorVersionUpgrade to true when you create a cluster."
       },
       "ClusterEndpoint": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "The cluster endpoint."
@@ -279,7 +234,7 @@
       },
       "DataTiering": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Enables data tiering. Data tiering is only supported for clusters using the r6gd node type. This parameter must be set when using r6gd nodes."
@@ -328,14 +283,14 @@
       },
       "NumReplicasPerShard": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The number of replicas to apply to each shard. The limit is 5."
       },
       "NumShards": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The number of shards the cluster will contain."
@@ -356,21 +311,21 @@
       },
       "Port": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The port number on which each member of the cluster accepts connections."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "One or more Amazon VPC security groups associated with this cluster."
       },
       "SnapshotArns": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/16"
         },
         "flags": 4,
         "description": "A list of Amazon Resource Names (ARN) that uniquely identify the RDB snapshot files stored in Amazon S3. The snapshot files are used to populate the new cluster. The Amazon S3 object name in the ARN cannot contain any commas."
@@ -384,7 +339,7 @@
       },
       "SnapshotRetentionLimit": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The number of days for which MemoryDB retains automatic snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot that was taken today is retained for 5 days before being deleted."
@@ -426,14 +381,14 @@
       },
       "TLSEnabled": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "A flag that enables in-transit encryption when set to true.\n\nYou cannot modify the value of TransitEncryptionEnabled after the cluster is created. To enable in-transit encryption on a cluster you must set TransitEncryptionEnabled to true when you create a cluster."
       },
       "Tags": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this cluster."
@@ -455,14 +410,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/18"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -472,23 +427,9 @@
     "name": "AWS.MemoryDB/Cluster@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/22"
+      "$ref": "#/19"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.MemoryDB/ParameterGroupProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ParameterGroup_Parameters",
-    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -511,9 +452,18 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.MemoryDB/ParameterGroupProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParameterGroup_Parameters",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/21"
     }
   },
   {
@@ -550,14 +500,14 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/23"
         },
         "flags": 4,
         "description": "An map of parameter names and values for the parameter update. You must supply at least one parameter name and value; subsequent arguments are optional."
       },
       "Tags": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this parameter group."
@@ -579,14 +529,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/25"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -596,24 +546,9 @@
     "name": "AWS.MemoryDB/ParameterGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/30"
+      "$ref": "#/26"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.MemoryDB/SubnetGroupProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
   },
   {
     "$type": "ObjectType",
@@ -636,9 +571,19 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.MemoryDB/SubnetGroupProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
     }
   },
   {
@@ -668,14 +613,14 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/30"
         },
         "flags": 1,
         "description": "A list of VPC subnet IDs for the subnet group."
       },
       "Tags": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this subnet group."
@@ -697,14 +642,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/32"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -714,44 +659,9 @@
     "name": "AWS.MemoryDB/SubnetGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/38"
+      "$ref": "#/33"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.MemoryDB/UserProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "User_AuthenticationMode",
-    "properties": {
-      "Passwords": {
-        "type": {
-          "$ref": "#/42"
-        },
-        "flags": 0,
-        "description": "Passwords used for this user account. You can create up to two passwords for each user."
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "Type of authentication strategy for this user."
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -774,9 +684,39 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.MemoryDB/UserProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/44"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "User_AuthenticationMode",
+    "properties": {
+      "Passwords": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0,
+        "description": "Passwords used for this user account. You can create up to two passwords for each user."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Type of authentication strategy for this user."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/35"
     }
   },
   {
@@ -799,7 +739,7 @@
       },
       "AuthenticationMode": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/38"
         },
         "flags": 4
       },
@@ -812,7 +752,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this user."
@@ -841,14 +781,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/40"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -858,7 +798,7 @@
     "name": "AWS.MemoryDB/User@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/47"
+      "$ref": "#/41"
     },
     "flags": 0
   }

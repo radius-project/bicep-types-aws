@@ -66,27 +66,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/7"
     }
   },
   {
@@ -138,7 +120,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/11"
         },
         "flags": 0
       }
@@ -159,14 +141,14 @@
         "type": {
           "$ref": "#/8"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/12"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -176,7 +158,7 @@
     "name": "AWS.WAFv2/IPSet@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/14"
+      "$ref": "#/13"
     },
     "flags": 0
   },
@@ -186,14 +168,14 @@
     "properties": {
       "ActionCondition": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "A single action condition."
       },
       "LabelNameCondition": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "A single label name condition."
@@ -204,76 +186,33 @@
     "$type": "ObjectType",
     "name": "FieldToMatch",
     "properties": {
-      "AllQueryArguments": {
-        "type": {
-          "$ref": "#/335"
-        },
-        "flags": 0,
-        "description": "All query arguments of a web request."
-      },
-      "Body": {
-        "type": {
-          "$ref": "#/336"
-        },
-        "flags": 0
-      },
-      "Cookies": {
-        "type": {
-          "$ref": "#/337"
-        },
-        "flags": 0
-      },
-      "Headers": {
-        "type": {
-          "$ref": "#/338"
-        },
-        "flags": 0
-      },
-      "JA3Fingerprint": {
-        "type": {
-          "$ref": "#/339"
-        },
-        "flags": 0
-      },
-      "JsonBody": {
-        "type": {
-          "$ref": "#/340"
-        },
-        "flags": 0
-      },
       "Method": {
         "type": {
-          "$ref": "#/341"
+          "$ref": "#/20"
         },
         "flags": 0,
-        "description": "The HTTP method of a web request. The method indicates the type of operation that the request is asking the origin to perform."
+        "description": "Inspect the HTTP method. The method indicates the type of operation that the request is asking the origin to perform. "
       },
       "QueryString": {
         "type": {
-          "$ref": "#/342"
+          "$ref": "#/21"
         },
         "flags": 0,
-        "description": "The query string of a web request. This is the part of a URL that appears after a ? character, if any."
+        "description": "Inspect the query string. This is the part of a URL that appears after a ? character, if any. "
       },
       "SingleHeader": {
         "type": {
-          "$ref": "#/343"
-        },
-        "flags": 0
-      },
-      "SingleQueryArgument": {
-        "type": {
-          "$ref": "#/344"
+          "$ref": "#/22"
         },
         "flags": 0,
-        "description": "One query argument in a web request, identified by name, for example UserName or SalesRegion. The name can be up to 30 characters long and isn't case sensitive."
+        "description": "Inspect a single header. Provide the name of the header to inspect, for example, User-Agent or Referer. This setting isn't case sensitive."
       },
       "UriPath": {
         "type": {
-          "$ref": "#/345"
+          "$ref": "#/23"
         },
         "flags": 0,
-        "description": "The path component of the URI of a web request. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg."
+        "description": "Inspect the request URI path. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg. "
       }
     }
   },
@@ -290,7 +229,7 @@
       },
       "Conditions": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Match conditions for the filter."
@@ -359,29 +298,9 @@
     "properties": {}
   },
   {
-    "$type": "ObjectType",
-    "name": "Condition",
-    "properties": {
-      "ActionCondition": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "A single action condition."
-      },
-      "LabelNameCondition": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 0,
-        "description": "A single label name condition."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/15"
     }
   },
   {
@@ -395,36 +314,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Filter",
-    "properties": {
-      "Behavior": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1,
-        "description": "How to handle logs that satisfy the filter's conditions and requirement. "
-      },
-      "Conditions": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1,
-        "description": "Match conditions for the filter."
-      },
-      "Requirement": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1,
-        "description": "Logic to apply to the filtering conditions. You can specify that, in order to satisfy the filter, a log must match all conditions or must match at least one condition."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/29"
+      "$ref": "#/17"
     }
   },
   {
@@ -440,7 +332,7 @@
       },
       "Filters": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The filters that you want to apply to the logs."
@@ -451,43 +343,9 @@
     "$type": "BooleanType"
   },
   {
-    "$type": "ObjectType",
-    "name": "FieldToMatch",
-    "properties": {
-      "Method": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0,
-        "description": "Inspect the HTTP method. The method indicates the type of operation that the request is asking the origin to perform. "
-      },
-      "QueryString": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0,
-        "description": "Inspect the query string. This is the part of a URL that appears after a ? character, if any. "
-      },
-      "SingleHeader": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "Inspect a single header. Provide the name of the header to inspect, for example, User-Agent or Referer. This setting isn't case sensitive."
-      },
-      "UriPath": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0,
-        "description": "Inspect the request URI path. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg. "
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/33"
+      "$ref": "#/16"
     }
   },
   {
@@ -496,28 +354,28 @@
     "properties": {
       "LogDestinationConfigs": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/26"
         },
         "flags": 1,
         "description": "The Amazon Resource Names (ARNs) of the logging destinations that you want to associate with the web ACL."
       },
       "LoggingFilter": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "Filtering that specifies which web requests are kept in the logs and which are dropped. You can filter on the rule action and on the web request labels that were applied by matching rules during web ACL evaluation."
       },
       "ManagedByFirewallManager": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/29"
         },
         "flags": 2,
         "description": "Indicates whether the logging configuration was created by AWS Firewall Manager, as part of an AWS WAF policy configuration. If true, only Firewall Manager can modify or delete the configuration."
       },
       "RedactedFields": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "The parts of the request that you want to keep out of the logs. For example, if you redact the HEADER field, the HEADER field in the firehose will be xxx."
@@ -546,14 +404,14 @@
         "type": {
           "$ref": "#/8"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/31"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -563,24 +421,9 @@
     "name": "AWS.WAFv2/LoggingConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/36"
+      "$ref": "#/32"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.WAFv2/RegexPatternSetProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/8"
-    }
   },
   {
     "$type": "ObjectType",
@@ -601,9 +444,19 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.WAFv2/RegexPatternSetProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/41"
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/34"
     }
   },
   {
@@ -640,7 +493,7 @@
       },
       "RegularExpressionList": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/36"
         },
         "flags": 1
       },
@@ -653,7 +506,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/37"
         },
         "flags": 0
       }
@@ -674,14 +527,14 @@
         "type": {
           "$ref": "#/8"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/38"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -691,7 +544,7 @@
     "name": "AWS.WAFv2/RegexPatternSet@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/44"
+      "$ref": "#/39"
     },
     "flags": 0
   },
@@ -701,7 +554,7 @@
     "properties": {
       "CustomRequestHandling": {
         "type": {
-          "$ref": "#/317"
+          "$ref": "#/57"
         },
         "flags": 0
       }
@@ -713,7 +566,7 @@
     "properties": {
       "Statements": {
         "type": {
-          "$ref": "#/319"
+          "$ref": "#/124"
         },
         "flags": 1
       }
@@ -725,7 +578,7 @@
     "properties": {
       "CustomResponse": {
         "type": {
-          "$ref": "#/320"
+          "$ref": "#/58"
         },
         "flags": 0
       }
@@ -754,7 +607,7 @@
     "properties": {
       "FieldToMatch": {
         "type": {
-          "$ref": "#/163"
+          "$ref": "#/65"
         },
         "flags": 1
       },
@@ -778,7 +631,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/321"
+          "$ref": "#/125"
         },
         "flags": 1
       }
@@ -790,7 +643,7 @@
     "properties": {
       "CustomRequestHandling": {
         "type": {
-          "$ref": "#/317"
+          "$ref": "#/57"
         },
         "flags": 0
       }
@@ -802,7 +655,7 @@
     "properties": {
       "ImmunityTimeProperty": {
         "type": {
-          "$ref": "#/322"
+          "$ref": "#/72"
         },
         "flags": 0
       }
@@ -814,7 +667,7 @@
     "properties": {
       "CustomRequestHandling": {
         "type": {
-          "$ref": "#/317"
+          "$ref": "#/57"
         },
         "flags": 0
       }
@@ -826,7 +679,7 @@
     "properties": {
       "ImmunityTimeProperty": {
         "type": {
-          "$ref": "#/322"
+          "$ref": "#/72"
         },
         "flags": 0
       }
@@ -838,20 +691,20 @@
     "properties": {
       "All": {
         "type": {
-          "$ref": "#/323"
+          "$ref": "#/126"
         },
         "flags": 0,
         "description": "Inspect all parts of the web request cookies."
       },
       "ExcludedCookies": {
         "type": {
-          "$ref": "#/324"
+          "$ref": "#/127"
         },
         "flags": 0
       },
       "IncludedCookies": {
         "type": {
-          "$ref": "#/325"
+          "$ref": "#/128"
         },
         "flags": 0
       }
@@ -863,7 +716,7 @@
     "properties": {
       "MatchPattern": {
         "type": {
-          "$ref": "#/326"
+          "$ref": "#/51"
         },
         "flags": 1
       },
@@ -887,7 +740,7 @@
     "properties": {
       "CustomRequestHandling": {
         "type": {
-          "$ref": "#/317"
+          "$ref": "#/57"
         },
         "flags": 0
       }
@@ -927,7 +780,7 @@
     "properties": {
       "InsertHeaders": {
         "type": {
-          "$ref": "#/328"
+          "$ref": "#/129"
         },
         "flags": 1,
         "description": "Collection of HTTP headers."
@@ -947,13 +800,13 @@
       },
       "ResponseCode": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/130"
         },
         "flags": 1
       },
       "ResponseHeaders": {
         "type": {
-          "$ref": "#/329"
+          "$ref": "#/131"
         },
         "flags": 0,
         "description": "Collection of HTTP headers."
@@ -1006,7 +859,79 @@
   {
     "$type": "ObjectType",
     "name": "FieldToMatch",
-    "properties": {}
+    "properties": {
+      "AllQueryArguments": {
+        "type": {
+          "$ref": "#/132"
+        },
+        "flags": 0,
+        "description": "All query arguments of a web request."
+      },
+      "Body": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "Cookies": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0
+      },
+      "Headers": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0
+      },
+      "JA3Fingerprint": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "JsonBody": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0
+      },
+      "Method": {
+        "type": {
+          "$ref": "#/133"
+        },
+        "flags": 0,
+        "description": "The HTTP method of a web request. The method indicates the type of operation that the request is asking the origin to perform."
+      },
+      "QueryString": {
+        "type": {
+          "$ref": "#/134"
+        },
+        "flags": 0,
+        "description": "The query string of a web request. This is the part of a URL that appears after a ? character, if any."
+      },
+      "SingleHeader": {
+        "type": {
+          "$ref": "#/135"
+        },
+        "flags": 0
+      },
+      "SingleQueryArgument": {
+        "type": {
+          "$ref": "#/136"
+        },
+        "flags": 0,
+        "description": "One query argument in a web request, identified by name, for example UserName or SalesRegion. The name can be up to 30 characters long and isn't case sensitive."
+      },
+      "UriPath": {
+        "type": {
+          "$ref": "#/137"
+        },
+        "flags": 0,
+        "description": "The path component of the URI of a web request. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1032,13 +957,13 @@
     "properties": {
       "CountryCodes": {
         "type": {
-          "$ref": "#/346"
+          "$ref": "#/138"
         },
         "flags": 0
       },
       "ForwardedIPConfig": {
         "type": {
-          "$ref": "#/347"
+          "$ref": "#/66"
         },
         "flags": 0
       }
@@ -1050,20 +975,20 @@
     "properties": {
       "All": {
         "type": {
-          "$ref": "#/348"
+          "$ref": "#/139"
         },
         "flags": 0,
         "description": "Inspect all parts of the web request headers."
       },
       "ExcludedHeaders": {
         "type": {
-          "$ref": "#/349"
+          "$ref": "#/140"
         },
         "flags": 0
       },
       "IncludedHeaders": {
         "type": {
-          "$ref": "#/350"
+          "$ref": "#/141"
         },
         "flags": 0
       }
@@ -1075,7 +1000,7 @@
     "properties": {
       "MatchPattern": {
         "type": {
-          "$ref": "#/351"
+          "$ref": "#/68"
         },
         "flags": 1
       },
@@ -1129,7 +1054,7 @@
       },
       "IPSetForwardedIPConfig": {
         "type": {
-          "$ref": "#/352"
+          "$ref": "#/70"
         },
         "flags": 0
       }
@@ -1141,7 +1066,7 @@
     "properties": {
       "ImmunityTime": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/130"
         },
         "flags": 1
       }
@@ -1171,7 +1096,7 @@
       },
       "MatchPattern": {
         "type": {
-          "$ref": "#/353"
+          "$ref": "#/75"
         },
         "flags": 1
       },
@@ -1195,14 +1120,14 @@
     "properties": {
       "All": {
         "type": {
-          "$ref": "#/354"
+          "$ref": "#/142"
         },
         "flags": 0,
         "description": "Inspect all parts of the web request's JSON body."
       },
       "IncludedPaths": {
         "type": {
-          "$ref": "#/355"
+          "$ref": "#/143"
         },
         "flags": 0
       }
@@ -1286,7 +1211,7 @@
     "properties": {
       "Statement": {
         "type": {
-          "$ref": "#/318"
+          "$ref": "#/117"
         },
         "flags": 1
       }
@@ -1298,7 +1223,7 @@
     "properties": {
       "Statements": {
         "type": {
-          "$ref": "#/364"
+          "$ref": "#/144"
         },
         "flags": 1
       }
@@ -1326,32 +1251,32 @@
       },
       "CustomKeys": {
         "type": {
-          "$ref": "#/368"
+          "$ref": "#/145"
         },
         "flags": 0,
         "description": "Specifies the aggregate keys to use in a rate-base rule."
       },
       "EvaluationWindowSec": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/130"
         },
         "flags": 0
       },
       "ForwardedIPConfig": {
         "type": {
-          "$ref": "#/347"
+          "$ref": "#/66"
         },
         "flags": 0
       },
       "Limit": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/130"
         },
         "flags": 1
       },
       "ScopeDownStatement": {
         "type": {
-          "$ref": "#/318"
+          "$ref": "#/117"
         },
         "flags": 0
       }
@@ -1363,55 +1288,55 @@
     "properties": {
       "Cookie": {
         "type": {
-          "$ref": "#/369"
+          "$ref": "#/92"
         },
         "flags": 0
       },
       "ForwardedIP": {
         "type": {
-          "$ref": "#/370"
+          "$ref": "#/93"
         },
         "flags": 0
       },
       "HTTPMethod": {
         "type": {
-          "$ref": "#/371"
+          "$ref": "#/94"
         },
         "flags": 0
       },
       "Header": {
         "type": {
-          "$ref": "#/372"
+          "$ref": "#/95"
         },
         "flags": 0
       },
       "IP": {
         "type": {
-          "$ref": "#/373"
+          "$ref": "#/96"
         },
         "flags": 0
       },
       "LabelNamespace": {
         "type": {
-          "$ref": "#/374"
+          "$ref": "#/97"
         },
         "flags": 0
       },
       "QueryArgument": {
         "type": {
-          "$ref": "#/375"
+          "$ref": "#/98"
         },
         "flags": 0
       },
       "QueryString": {
         "type": {
-          "$ref": "#/376"
+          "$ref": "#/99"
         },
         "flags": 0
       },
       "UriPath": {
         "type": {
-          "$ref": "#/377"
+          "$ref": "#/100"
         },
         "flags": 0
       }
@@ -1435,7 +1360,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/378"
+          "$ref": "#/146"
         },
         "flags": 1
       }
@@ -1464,7 +1389,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/379"
+          "$ref": "#/147"
         },
         "flags": 1
       }
@@ -1501,7 +1426,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/380"
+          "$ref": "#/148"
         },
         "flags": 1
       }
@@ -1513,7 +1438,7 @@
     "properties": {
       "TextTransformations": {
         "type": {
-          "$ref": "#/381"
+          "$ref": "#/149"
         },
         "flags": 1
       }
@@ -1525,7 +1450,7 @@
     "properties": {
       "TextTransformations": {
         "type": {
-          "$ref": "#/382"
+          "$ref": "#/150"
         },
         "flags": 1
       }
@@ -1537,7 +1462,7 @@
     "properties": {
       "FieldToMatch": {
         "type": {
-          "$ref": "#/383"
+          "$ref": "#/65"
         },
         "flags": 1
       },
@@ -1549,7 +1474,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/384"
+          "$ref": "#/151"
         },
         "flags": 1
       }
@@ -1567,13 +1492,13 @@
       },
       "FieldToMatch": {
         "type": {
-          "$ref": "#/383"
+          "$ref": "#/65"
         },
         "flags": 1
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/385"
+          "$ref": "#/152"
         },
         "flags": 1
       }
@@ -1605,19 +1530,19 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/398"
+          "$ref": "#/108"
         },
         "flags": 0
       },
       "CaptchaConfig": {
         "type": {
-          "$ref": "#/399"
+          "$ref": "#/48"
         },
         "flags": 0
       },
       "ChallengeConfig": {
         "type": {
-          "$ref": "#/400"
+          "$ref": "#/50"
         },
         "flags": 0
       },
@@ -1627,34 +1552,28 @@
         },
         "flags": 17
       },
-      "OverrideAction": {
-        "type": {
-          "$ref": "#/401"
-        },
-        "flags": 0
-      },
       "Priority": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/130"
         },
         "flags": 1
       },
       "RuleLabels": {
         "type": {
-          "$ref": "#/403"
+          "$ref": "#/153"
         },
         "flags": 0,
         "description": "Collection of Rule Labels."
       },
       "Statement": {
         "type": {
-          "$ref": "#/318"
+          "$ref": "#/117"
         },
         "flags": 1
       },
       "VisibilityConfig": {
         "type": {
-          "$ref": "#/201"
+          "$ref": "#/122"
         },
         "flags": 1
       }
@@ -1666,31 +1585,31 @@
     "properties": {
       "Allow": {
         "type": {
-          "$ref": "#/331"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "Block": {
         "type": {
-          "$ref": "#/332"
+          "$ref": "#/43"
         },
         "flags": 0
       },
       "Captcha": {
         "type": {
-          "$ref": "#/404"
+          "$ref": "#/47"
         },
         "flags": 0
       },
       "Challenge": {
         "type": {
-          "$ref": "#/405"
+          "$ref": "#/49"
         },
         "flags": 0
       },
       "Count": {
         "type": {
-          "$ref": "#/406"
+          "$ref": "#/53"
         },
         "flags": 0
       }
@@ -1708,7 +1627,7 @@
       },
       "Capacity": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/130"
         },
         "flags": 0
       },
@@ -1732,14 +1651,14 @@
       },
       "Rules": {
         "type": {
-          "$ref": "#/176"
+          "$ref": "#/154"
         },
         "flags": 0,
         "description": "Collection of Rules."
       },
       "VisibilityConfig": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/122"
         },
         "flags": 0
       }
@@ -1782,19 +1701,19 @@
       },
       "FieldToMatch": {
         "type": {
-          "$ref": "#/383"
+          "$ref": "#/65"
         },
         "flags": 1
       },
       "Size": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/130"
         },
         "flags": 1
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/413"
+          "$ref": "#/155"
         },
         "flags": 1
       }
@@ -1806,7 +1725,7 @@
     "properties": {
       "FieldToMatch": {
         "type": {
-          "$ref": "#/383"
+          "$ref": "#/65"
         },
         "flags": 1
       },
@@ -1818,7 +1737,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/414"
+          "$ref": "#/156"
         },
         "flags": 1
       }
@@ -1830,91 +1749,79 @@
     "properties": {
       "AndStatement": {
         "type": {
-          "$ref": "#/415"
+          "$ref": "#/42"
         },
         "flags": 0
       },
       "ByteMatchStatement": {
         "type": {
-          "$ref": "#/416"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "GeoMatchStatement": {
         "type": {
-          "$ref": "#/417"
+          "$ref": "#/67"
         },
         "flags": 0
       },
       "IPSetReferenceStatement": {
         "type": {
-          "$ref": "#/418"
+          "$ref": "#/71"
         },
         "flags": 0
       },
       "LabelMatchStatement": {
         "type": {
-          "$ref": "#/419"
-        },
-        "flags": 0
-      },
-      "ManagedRuleGroupStatement": {
-        "type": {
-          "$ref": "#/420"
+          "$ref": "#/81"
         },
         "flags": 0
       },
       "NotStatement": {
         "type": {
-          "$ref": "#/421"
+          "$ref": "#/85"
         },
         "flags": 0
       },
       "OrStatement": {
         "type": {
-          "$ref": "#/422"
+          "$ref": "#/86"
         },
         "flags": 0
       },
       "RateBasedStatement": {
         "type": {
-          "$ref": "#/423"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "RegexMatchStatement": {
         "type": {
-          "$ref": "#/424"
+          "$ref": "#/101"
         },
         "flags": 0
       },
       "RegexPatternSetReferenceStatement": {
         "type": {
-          "$ref": "#/425"
-        },
-        "flags": 0
-      },
-      "RuleGroupReferenceStatement": {
-        "type": {
-          "$ref": "#/426"
+          "$ref": "#/102"
         },
         "flags": 0
       },
       "SizeConstraintStatement": {
         "type": {
-          "$ref": "#/427"
+          "$ref": "#/115"
         },
         "flags": 0
       },
       "SqliMatchStatement": {
         "type": {
-          "$ref": "#/428"
+          "$ref": "#/116"
         },
         "flags": 0
       },
       "XssMatchStatement": {
         "type": {
-          "$ref": "#/429"
+          "$ref": "#/123"
         },
         "flags": 0
       }
@@ -1923,7 +1830,20 @@
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1931,7 +1851,7 @@
     "properties": {
       "Priority": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/130"
         },
         "flags": 1
       },
@@ -1959,7 +1879,7 @@
     "properties": {
       "CloudWatchMetricsEnabled": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/29"
         },
         "flags": 1
       },
@@ -1971,7 +1891,7 @@
       },
       "SampledRequestsEnabled": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/29"
         },
         "flags": 1
       }
@@ -1983,13 +1903,13 @@
     "properties": {
       "FieldToMatch": {
         "type": {
-          "$ref": "#/383"
+          "$ref": "#/65"
         },
         "flags": 1
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/432"
+          "$ref": "#/157"
         },
         "flags": 1
       }
@@ -1998,13 +1918,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/122"
+      "$ref": "#/117"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/124"
+      "$ref": "#/119"
     }
   },
   {
@@ -2025,52 +1945,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "CookieMatchPattern",
-    "properties": {
-      "All": {
-        "type": {
-          "$ref": "#/131"
-        },
-        "flags": 0,
-        "description": "Inspect all parts of the web request cookies."
-      },
-      "ExcludedCookies": {
-        "type": {
-          "$ref": "#/132"
-        },
-        "flags": 0
-      },
-      "IncludedCookies": {
-        "type": {
-          "$ref": "#/133"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomHTTPHeader",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 17
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/135"
+      "$ref": "#/54"
     }
   },
   {
@@ -2079,49 +1956,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/135"
+      "$ref": "#/54"
     }
   },
   {
     "$type": "ObjectType",
     "name": "RuleGroup_AllQueryArguments",
     "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Body",
-    "properties": {
-      "OversizeHandling": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Cookies",
-    "properties": {
-      "MatchPattern": {
-        "type": {
-          "$ref": "#/134"
-        },
-        "flags": 1
-      },
-      "MatchScope": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "OversizeHandling": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -2170,24 +2011,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ForwardedIPConfiguration",
-    "properties": {
-      "FallbackBehavior": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "HeaderName": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "RuleGroup_All",
     "properties": {}
   },
@@ -2205,55 +2028,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "HeaderMatchPattern",
-    "properties": {
-      "All": {
-        "type": {
-          "$ref": "#/149"
-        },
-        "flags": 0,
-        "description": "Inspect all parts of the web request headers."
-      },
-      "ExcludedHeaders": {
-        "type": {
-          "$ref": "#/150"
-        },
-        "flags": 0
-      },
-      "IncludedHeaders": {
-        "type": {
-          "$ref": "#/151"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "IPSetForwardedIPConfiguration",
-    "properties": {
-      "FallbackBehavior": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "HeaderName": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "Position": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "RuleGroup_All",
     "properties": {}
   },
@@ -2266,602 +2040,85 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/122"
+      "$ref": "#/117"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/95"
+      "$ref": "#/90"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/124"
+      "$ref": "#/119"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/124"
+      "$ref": "#/119"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/124"
+      "$ref": "#/119"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/124"
+      "$ref": "#/119"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/124"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "FieldToMatch",
-    "properties": {
-      "AllQueryArguments": {
-        "type": {
-          "$ref": "#/139"
-        },
-        "flags": 0,
-        "description": "All query arguments of a web request."
-      },
-      "Body": {
-        "type": {
-          "$ref": "#/140"
-        },
-        "flags": 0
-      },
-      "Cookies": {
-        "type": {
-          "$ref": "#/141"
-        },
-        "flags": 0
-      },
-      "Headers": {
-        "type": {
-          "$ref": "#/74"
-        },
-        "flags": 0
-      },
-      "JA3Fingerprint": {
-        "type": {
-          "$ref": "#/78"
-        },
-        "flags": 0
-      },
-      "JsonBody": {
-        "type": {
-          "$ref": "#/79"
-        },
-        "flags": 0
-      },
-      "Method": {
-        "type": {
-          "$ref": "#/142"
-        },
-        "flags": 0,
-        "description": "The HTTP method of a web request. The method indicates the type of operation that the request is asking the origin to perform."
-      },
-      "QueryString": {
-        "type": {
-          "$ref": "#/143"
-        },
-        "flags": 0,
-        "description": "The query string of a web request. This is the part of a URL that appears after a ? character, if any."
-      },
-      "SingleHeader": {
-        "type": {
-          "$ref": "#/144"
-        },
-        "flags": 0
-      },
-      "SingleQueryArgument": {
-        "type": {
-          "$ref": "#/145"
-        },
-        "flags": 0,
-        "description": "One query argument in a web request, identified by name, for example UserName or SalesRegion. The name can be up to 30 characters long and isn't case sensitive."
-      },
-      "UriPath": {
-        "type": {
-          "$ref": "#/146"
-        },
-        "flags": 0,
-        "description": "The path component of the URI of a web request. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg."
-      }
+      "$ref": "#/119"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/124"
+      "$ref": "#/119"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/124"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CaptchaConfig",
-    "properties": {
-      "ImmunityTimeProperty": {
-        "type": {
-          "$ref": "#/77"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ChallengeConfig",
-    "properties": {
-      "ImmunityTimeProperty": {
-        "type": {
-          "$ref": "#/77"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Label",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 17
-      }
+      "$ref": "#/119"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/168"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AllowAction",
-    "properties": {
-      "CustomRequestHandling": {
-        "type": {
-          "$ref": "#/62"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "BlockAction",
-    "properties": {
-      "CustomResponse": {
-        "type": {
-          "$ref": "#/63"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CaptchaAction",
-    "properties": {
-      "CustomRequestHandling": {
-        "type": {
-          "$ref": "#/62"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ChallengeAction",
-    "properties": {
-      "CustomRequestHandling": {
-        "type": {
-          "$ref": "#/62"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CountAction",
-    "properties": {
-      "CustomRequestHandling": {
-        "type": {
-          "$ref": "#/62"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Rule",
-    "properties": {
-      "Action": {
-        "type": {
-          "$ref": "#/113"
-        },
-        "flags": 0
-      },
-      "CaptchaConfig": {
-        "type": {
-          "$ref": "#/166"
-        },
-        "flags": 0
-      },
-      "ChallengeConfig": {
-        "type": {
-          "$ref": "#/167"
-        },
-        "flags": 0
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 17
-      },
-      "Priority": {
-        "type": {
-          "$ref": "#/137"
-        },
-        "flags": 1
-      },
-      "RuleLabels": {
-        "type": {
-          "$ref": "#/169"
-        },
-        "flags": 0,
-        "description": "Collection of Rule Labels."
-      },
-      "Statement": {
-        "type": {
-          "$ref": "#/122"
-        },
-        "flags": 1
-      },
-      "VisibilityConfig": {
-        "type": {
-          "$ref": "#/127"
-        },
-        "flags": 1
-      }
+      "$ref": "#/78"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/175"
+      "$ref": "#/107"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/124"
+      "$ref": "#/119"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/124"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AndStatement",
-    "properties": {
-      "Statements": {
-        "type": {
-          "$ref": "#/129"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ByteMatchStatement",
-    "properties": {
-      "FieldToMatch": {
-        "type": {
-          "$ref": "#/33"
-        },
-        "flags": 1
-      },
-      "PositionalConstraint": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "SearchString": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "SearchStringBase64": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/130"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "GeoMatchStatement",
-    "properties": {
-      "CountryCodes": {
-        "type": {
-          "$ref": "#/147"
-        },
-        "flags": 0
-      },
-      "ForwardedIPConfig": {
-        "type": {
-          "$ref": "#/148"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "IPSetReferenceStatement",
-    "properties": {
-      "Arn": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "IPSetForwardedIPConfig": {
-        "type": {
-          "$ref": "#/153"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "LabelMatchStatement",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "Scope": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 17
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "NotStatement",
-    "properties": {
-      "Statement": {
-        "type": {
-          "$ref": "#/122"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "OrStatement",
-    "properties": {
-      "Statements": {
-        "type": {
-          "$ref": "#/156"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RateBasedStatement",
-    "properties": {
-      "AggregateKeyType": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "CustomKeys": {
-        "type": {
-          "$ref": "#/157"
-        },
-        "flags": 0,
-        "description": "Specifies the aggregate keys to use in a rate-base rule."
-      },
-      "EvaluationWindowSec": {
-        "type": {
-          "$ref": "#/137"
-        },
-        "flags": 0
-      },
-      "ForwardedIPConfig": {
-        "type": {
-          "$ref": "#/148"
-        },
-        "flags": 0
-      },
-      "Limit": {
-        "type": {
-          "$ref": "#/137"
-        },
-        "flags": 1
-      },
-      "ScopeDownStatement": {
-        "type": {
-          "$ref": "#/122"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RegexMatchStatement",
-    "properties": {
-      "FieldToMatch": {
-        "type": {
-          "$ref": "#/163"
-        },
-        "flags": 1
-      },
-      "RegexString": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/164"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RegexPatternSetReferenceStatement",
-    "properties": {
-      "Arn": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "FieldToMatch": {
-        "type": {
-          "$ref": "#/163"
-        },
-        "flags": 1
-      },
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/165"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SizeConstraintStatement",
-    "properties": {
-      "ComparisonOperator": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "FieldToMatch": {
-        "type": {
-          "$ref": "#/163"
-        },
-        "flags": 1
-      },
-      "Size": {
-        "type": {
-          "$ref": "#/137"
-        },
-        "flags": 1
-      },
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/177"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SqliMatchStatement",
-    "properties": {
-      "FieldToMatch": {
-        "type": {
-          "$ref": "#/163"
-        },
-        "flags": 1
-      },
-      "SensitivityLevel": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/178"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TextTransformation",
-    "properties": {
-      "Priority": {
-        "type": {
-          "$ref": "#/137"
-        },
-        "flags": 1
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
+      "$ref": "#/119"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/191"
+      "$ref": "#/119"
     }
   },
   {
@@ -2869,86 +2126,27 @@
     "value": "AWS.WAFv2/RuleGroupProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "LabelSummary",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 16
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/83"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/194"
+      "$ref": "#/83"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/194"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomResponseBodies",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/175"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      }
+      "$ref": "#/107"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/199"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "VisibilityConfig",
-    "properties": {
-      "CloudWatchMetricsEnabled": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 1
-      },
-      "MetricName": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "SampledRequestsEnabled": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 1
-      }
+      "$ref": "#/118"
     }
   },
   {
@@ -2963,27 +2161,27 @@
       },
       "AvailableLabels": {
         "type": {
-          "$ref": "#/195"
+          "$ref": "#/159"
         },
         "flags": 2,
         "description": "Collection of Available Labels."
       },
       "Capacity": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/130"
         },
         "flags": 1
       },
       "ConsumedLabels": {
         "type": {
-          "$ref": "#/196"
+          "$ref": "#/160"
         },
         "flags": 2,
         "description": "Collection of Consumed Labels."
       },
       "CustomResponseBodies": {
         "type": {
-          "$ref": "#/197"
+          "$ref": "#/59"
         },
         "flags": 0
       },
@@ -3013,7 +2211,7 @@
       },
       "Rules": {
         "type": {
-          "$ref": "#/198"
+          "$ref": "#/161"
         },
         "flags": 0,
         "description": "Collection of Rules."
@@ -3026,13 +2224,13 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/200"
+          "$ref": "#/162"
         },
         "flags": 0
       },
       "VisibilityConfig": {
         "type": {
-          "$ref": "#/201"
+          "$ref": "#/122"
         },
         "flags": 1
       }
@@ -3053,14 +2251,14 @@
         "type": {
           "$ref": "#/8"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/202"
+          "$ref": "#/163"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -3070,7 +2268,7 @@
     "name": "AWS.WAFv2/RuleGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/203"
+      "$ref": "#/164"
     },
     "flags": 0
   },
@@ -3086,7 +2284,7 @@
       },
       "EnableRegexInPath": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/29"
         },
         "flags": 0
       },
@@ -3098,13 +2296,13 @@
       },
       "RequestInspection": {
         "type": {
-          "$ref": "#/283"
+          "$ref": "#/244"
         },
         "flags": 1
       },
       "ResponseInspection": {
         "type": {
-          "$ref": "#/287"
+          "$ref": "#/248"
         },
         "flags": 0
       }
@@ -3116,7 +2314,7 @@
     "properties": {
       "EnableRegexInPath": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/29"
         },
         "flags": 0
       },
@@ -3128,13 +2326,13 @@
       },
       "RequestInspection": {
         "type": {
-          "$ref": "#/282"
+          "$ref": "#/243"
         },
         "flags": 0
       },
       "ResponseInspection": {
         "type": {
-          "$ref": "#/287"
+          "$ref": "#/248"
         },
         "flags": 0
       }
@@ -3146,7 +2344,7 @@
     "properties": {
       "EnableMachineLearning": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/29"
         },
         "flags": 0
       },
@@ -3166,12 +2364,26 @@
   {
     "$type": "ObjectType",
     "name": "AllowAction",
-    "properties": {}
+    "properties": {
+      "CustomRequestHandling": {
+        "type": {
+          "$ref": "#/187"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "AndStatement",
-    "properties": {}
+    "properties": {
+      "Statements": {
+        "type": {
+          "$ref": "#/278"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3179,7 +2391,7 @@
     "properties": {
       "RequestBody": {
         "type": {
-          "$ref": "#/280"
+          "$ref": "#/241"
         },
         "flags": 0
       }
@@ -3188,12 +2400,26 @@
   {
     "$type": "ObjectType",
     "name": "BlockAction",
-    "properties": {}
+    "properties": {
+      "CustomResponse": {
+        "type": {
+          "$ref": "#/188"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Body",
-    "properties": {}
+    "properties": {
+      "OversizeHandling": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3203,47 +2429,165 @@
   {
     "$type": "ObjectType",
     "name": "ByteMatchStatement",
-    "properties": {}
+    "properties": {
+      "FieldToMatch": {
+        "type": {
+          "$ref": "#/199"
+        },
+        "flags": 1
+      },
+      "PositionalConstraint": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "SearchString": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "SearchStringBase64": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "TextTransformations": {
+        "type": {
+          "$ref": "#/279"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "CaptchaAction",
-    "properties": {}
+    "properties": {
+      "CustomRequestHandling": {
+        "type": {
+          "$ref": "#/187"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "CaptchaConfig",
-    "properties": {}
+    "properties": {
+      "ImmunityTimeProperty": {
+        "type": {
+          "$ref": "#/206"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "ChallengeAction",
-    "properties": {}
+    "properties": {
+      "CustomRequestHandling": {
+        "type": {
+          "$ref": "#/187"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "ChallengeConfig",
-    "properties": {}
+    "properties": {
+      "ImmunityTimeProperty": {
+        "type": {
+          "$ref": "#/206"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "CookieMatchPattern",
-    "properties": {}
+    "properties": {
+      "All": {
+        "type": {
+          "$ref": "#/280"
+        },
+        "flags": 0,
+        "description": "Inspect all parts of the web request cookies."
+      },
+      "ExcludedCookies": {
+        "type": {
+          "$ref": "#/281"
+        },
+        "flags": 0
+      },
+      "IncludedCookies": {
+        "type": {
+          "$ref": "#/282"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Cookies",
-    "properties": {}
+    "properties": {
+      "MatchPattern": {
+        "type": {
+          "$ref": "#/181"
+        },
+        "flags": 1
+      },
+      "MatchScope": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "OversizeHandling": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "CountAction",
-    "properties": {}
+    "properties": {
+      "CustomRequestHandling": {
+        "type": {
+          "$ref": "#/187"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "CustomHTTPHeader",
-    "properties": {}
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3258,12 +2602,41 @@
   {
     "$type": "ObjectType",
     "name": "CustomRequestHandling",
-    "properties": {}
+    "properties": {
+      "InsertHeaders": {
+        "type": {
+          "$ref": "#/283"
+        },
+        "flags": 1,
+        "description": "Collection of HTTP headers."
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "CustomResponse",
-    "properties": {}
+    "properties": {
+      "CustomResponseBodyKey": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Custom response body key."
+      },
+      "ResponseCode": {
+        "type": {
+          "$ref": "#/130"
+        },
+        "flags": 1
+      },
+      "ResponseHeaders": {
+        "type": {
+          "$ref": "#/284"
+        },
+        "flags": 0,
+        "description": "Collection of HTTP headers."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3273,7 +2646,20 @@
   {
     "$type": "ObjectType",
     "name": "CustomResponseBody",
-    "properties": {}
+    "properties": {
+      "Content": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "ContentType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3281,13 +2667,13 @@
     "properties": {
       "Allow": {
         "type": {
-          "$ref": "#/331"
+          "$ref": "#/170"
         },
         "flags": 0
       },
       "Block": {
         "type": {
-          "$ref": "#/332"
+          "$ref": "#/173"
         },
         "flags": 0
       }
@@ -3345,57 +2731,279 @@
   {
     "$type": "ObjectType",
     "name": "FieldToMatch",
-    "properties": {}
+    "properties": {
+      "AllQueryArguments": {
+        "type": {
+          "$ref": "#/286"
+        },
+        "flags": 0,
+        "description": "All query arguments of a web request."
+      },
+      "Body": {
+        "type": {
+          "$ref": "#/174"
+        },
+        "flags": 0
+      },
+      "Cookies": {
+        "type": {
+          "$ref": "#/182"
+        },
+        "flags": 0
+      },
+      "Headers": {
+        "type": {
+          "$ref": "#/203"
+        },
+        "flags": 0
+      },
+      "JA3Fingerprint": {
+        "type": {
+          "$ref": "#/207"
+        },
+        "flags": 0
+      },
+      "JsonBody": {
+        "type": {
+          "$ref": "#/208"
+        },
+        "flags": 0
+      },
+      "Method": {
+        "type": {
+          "$ref": "#/287"
+        },
+        "flags": 0,
+        "description": "The HTTP method of a web request. The method indicates the type of operation that the request is asking the origin to perform."
+      },
+      "QueryString": {
+        "type": {
+          "$ref": "#/288"
+        },
+        "flags": 0,
+        "description": "The query string of a web request. This is the part of a URL that appears after a ? character, if any."
+      },
+      "SingleHeader": {
+        "type": {
+          "$ref": "#/289"
+        },
+        "flags": 0
+      },
+      "SingleQueryArgument": {
+        "type": {
+          "$ref": "#/290"
+        },
+        "flags": 0,
+        "description": "One query argument in a web request, identified by name, for example UserName or SalesRegion. The name can be up to 30 characters long and isn't case sensitive."
+      },
+      "UriPath": {
+        "type": {
+          "$ref": "#/291"
+        },
+        "flags": 0,
+        "description": "The path component of the URI of a web request. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg."
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "ForwardedIPConfiguration",
-    "properties": {}
+    "properties": {
+      "FallbackBehavior": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "HeaderName": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "GeoMatchStatement",
-    "properties": {}
+    "properties": {
+      "CountryCodes": {
+        "type": {
+          "$ref": "#/292"
+        },
+        "flags": 0
+      },
+      "ForwardedIPConfig": {
+        "type": {
+          "$ref": "#/200"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "HeaderMatchPattern",
-    "properties": {}
+    "properties": {
+      "All": {
+        "type": {
+          "$ref": "#/293"
+        },
+        "flags": 0,
+        "description": "Inspect all parts of the web request headers."
+      },
+      "ExcludedHeaders": {
+        "type": {
+          "$ref": "#/294"
+        },
+        "flags": 0
+      },
+      "IncludedHeaders": {
+        "type": {
+          "$ref": "#/295"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Headers",
-    "properties": {}
+    "properties": {
+      "MatchPattern": {
+        "type": {
+          "$ref": "#/202"
+        },
+        "flags": 1
+      },
+      "MatchScope": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "OversizeHandling": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "IPSetForwardedIPConfiguration",
-    "properties": {}
+    "properties": {
+      "FallbackBehavior": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "HeaderName": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "Position": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "IPSetReferenceStatement",
-    "properties": {}
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "IPSetForwardedIPConfig": {
+        "type": {
+          "$ref": "#/204"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "ImmunityTimeProperty",
-    "properties": {}
+    "properties": {
+      "ImmunityTime": {
+        "type": {
+          "$ref": "#/130"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "JA3Fingerprint",
-    "properties": {}
+    "properties": {
+      "FallbackBehavior": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "JsonBody",
-    "properties": {}
+    "properties": {
+      "InvalidFallbackBehavior": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "MatchPattern": {
+        "type": {
+          "$ref": "#/209"
+        },
+        "flags": 1
+      },
+      "MatchScope": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "OversizeHandling": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "JsonMatchPattern",
-    "properties": {}
+    "properties": {
+      "All": {
+        "type": {
+          "$ref": "#/296"
+        },
+        "flags": 0,
+        "description": "Inspect all parts of the web request's JSON body."
+      },
+      "IncludedPaths": {
+        "type": {
+          "$ref": "#/297"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3410,7 +3018,14 @@
   {
     "$type": "ObjectType",
     "name": "Label",
-    "properties": {}
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3425,7 +3040,20 @@
   {
     "$type": "ObjectType",
     "name": "LabelMatchStatement",
-    "properties": {}
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "Scope": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3438,19 +3066,19 @@
     "properties": {
       "AWSManagedRulesACFPRuleSet": {
         "type": {
-          "$ref": "#/356"
+          "$ref": "#/166"
         },
         "flags": 0
       },
       "AWSManagedRulesATPRuleSet": {
         "type": {
-          "$ref": "#/357"
+          "$ref": "#/167"
         },
         "flags": 0
       },
       "AWSManagedRulesBotControlRuleSet": {
         "type": {
-          "$ref": "#/358"
+          "$ref": "#/168"
         },
         "flags": 0
       },
@@ -3462,7 +3090,7 @@
       },
       "PasswordField": {
         "type": {
-          "$ref": "#/359"
+          "$ref": "#/198"
         },
         "flags": 0
       },
@@ -3474,7 +3102,7 @@
       },
       "UsernameField": {
         "type": {
-          "$ref": "#/359"
+          "$ref": "#/198"
         },
         "flags": 0
       }
@@ -3486,13 +3114,13 @@
     "properties": {
       "ExcludedRules": {
         "type": {
-          "$ref": "#/360"
+          "$ref": "#/298"
         },
         "flags": 0
       },
       "ManagedRuleGroupConfigs": {
         "type": {
-          "$ref": "#/362"
+          "$ref": "#/299"
         },
         "flags": 0,
         "description": "Collection of ManagedRuleGroupConfig."
@@ -3505,14 +3133,14 @@
       },
       "RuleActionOverrides": {
         "type": {
-          "$ref": "#/363"
+          "$ref": "#/300"
         },
         "flags": 0,
         "description": "Action overrides for rules in the rule group."
       },
       "ScopeDownStatement": {
         "type": {
-          "$ref": "#/318"
+          "$ref": "#/269"
         },
         "flags": 0
       },
@@ -3538,12 +3166,26 @@
   {
     "$type": "ObjectType",
     "name": "NotStatement",
-    "properties": {}
+    "properties": {
+      "Statement": {
+        "type": {
+          "$ref": "#/269"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "OrStatement",
-    "properties": {}
+    "properties": {
+      "Statements": {
+        "type": {
+          "$ref": "#/301"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3551,14 +3193,14 @@
     "properties": {
       "Count": {
         "type": {
-          "$ref": "#/365"
+          "$ref": "#/302"
         },
         "flags": 0,
         "description": "Count traffic towards application."
       },
       "None": {
         "type": {
-          "$ref": "#/366"
+          "$ref": "#/303"
         },
         "flags": 0,
         "description": "Keep the RuleGroup or ManagedRuleGroup behavior as is."
@@ -3588,12 +3230,105 @@
   {
     "$type": "ObjectType",
     "name": "RateBasedStatement",
-    "properties": {}
+    "properties": {
+      "AggregateKeyType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "CustomKeys": {
+        "type": {
+          "$ref": "#/304"
+        },
+        "flags": 0,
+        "description": "Specifies the aggregate keys to use in a rate-base rule."
+      },
+      "EvaluationWindowSec": {
+        "type": {
+          "$ref": "#/130"
+        },
+        "flags": 0
+      },
+      "ForwardedIPConfig": {
+        "type": {
+          "$ref": "#/200"
+        },
+        "flags": 0
+      },
+      "Limit": {
+        "type": {
+          "$ref": "#/130"
+        },
+        "flags": 1
+      },
+      "ScopeDownStatement": {
+        "type": {
+          "$ref": "#/269"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "RateBasedStatementCustomKey",
-    "properties": {}
+    "properties": {
+      "Cookie": {
+        "type": {
+          "$ref": "#/230"
+        },
+        "flags": 0
+      },
+      "ForwardedIP": {
+        "type": {
+          "$ref": "#/231"
+        },
+        "flags": 0
+      },
+      "HTTPMethod": {
+        "type": {
+          "$ref": "#/232"
+        },
+        "flags": 0
+      },
+      "Header": {
+        "type": {
+          "$ref": "#/233"
+        },
+        "flags": 0
+      },
+      "IP": {
+        "type": {
+          "$ref": "#/234"
+        },
+        "flags": 0
+      },
+      "LabelNamespace": {
+        "type": {
+          "$ref": "#/235"
+        },
+        "flags": 0
+      },
+      "QueryArgument": {
+        "type": {
+          "$ref": "#/236"
+        },
+        "flags": 0
+      },
+      "QueryString": {
+        "type": {
+          "$ref": "#/237"
+        },
+        "flags": 0
+      },
+      "UriPath": {
+        "type": {
+          "$ref": "#/238"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3603,7 +3338,21 @@
   {
     "$type": "ObjectType",
     "name": "RateLimitCookie",
-    "properties": {}
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "The name of the cookie to use."
+      },
+      "TextTransformations": {
+        "type": {
+          "$ref": "#/305"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3618,7 +3367,21 @@
   {
     "$type": "ObjectType",
     "name": "RateLimitHeader",
-    "properties": {}
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "The name of the header to use."
+      },
+      "TextTransformations": {
+        "type": {
+          "$ref": "#/306"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3628,32 +3391,106 @@
   {
     "$type": "ObjectType",
     "name": "RateLimitLabelNamespace",
-    "properties": {}
+    "properties": {
+      "Namespace": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The namespace to use for aggregation."
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "RateLimitQueryArgument",
-    "properties": {}
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "The name of the query argument to use."
+      },
+      "TextTransformations": {
+        "type": {
+          "$ref": "#/307"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "RateLimitQueryString",
-    "properties": {}
+    "properties": {
+      "TextTransformations": {
+        "type": {
+          "$ref": "#/308"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "RateLimitUriPath",
-    "properties": {}
+    "properties": {
+      "TextTransformations": {
+        "type": {
+          "$ref": "#/309"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "RegexMatchStatement",
-    "properties": {}
+    "properties": {
+      "FieldToMatch": {
+        "type": {
+          "$ref": "#/199"
+        },
+        "flags": 1
+      },
+      "RegexString": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "TextTransformations": {
+        "type": {
+          "$ref": "#/310"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "RegexPatternSetReferenceStatement",
-    "properties": {}
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "FieldToMatch": {
+        "type": {
+          "$ref": "#/199"
+        },
+        "flags": 1
+      },
+      "TextTransformations": {
+        "type": {
+          "$ref": "#/311"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3678,7 +3515,7 @@
     "properties": {
       "PasswordField": {
         "type": {
-          "$ref": "#/359"
+          "$ref": "#/198"
         },
         "flags": 1
       },
@@ -3690,7 +3527,7 @@
       },
       "UsernameField": {
         "type": {
-          "$ref": "#/359"
+          "$ref": "#/198"
         },
         "flags": 1
       }
@@ -3702,19 +3539,19 @@
     "properties": {
       "AddressFields": {
         "type": {
-          "$ref": "#/387"
+          "$ref": "#/313"
         },
         "flags": 0
       },
       "EmailField": {
         "type": {
-          "$ref": "#/359"
+          "$ref": "#/198"
         },
         "flags": 0
       },
       "PasswordField": {
         "type": {
-          "$ref": "#/359"
+          "$ref": "#/198"
         },
         "flags": 0
       },
@@ -3726,13 +3563,13 @@
       },
       "PhoneNumberFields": {
         "type": {
-          "$ref": "#/389"
+          "$ref": "#/315"
         },
         "flags": 0
       },
       "UsernameField": {
         "type": {
-          "$ref": "#/359"
+          "$ref": "#/198"
         },
         "flags": 0
       }
@@ -3759,25 +3596,25 @@
     "properties": {
       "BodyContains": {
         "type": {
-          "$ref": "#/288"
+          "$ref": "#/249"
         },
         "flags": 0
       },
       "Header": {
         "type": {
-          "$ref": "#/289"
+          "$ref": "#/250"
         },
         "flags": 0
       },
       "Json": {
         "type": {
-          "$ref": "#/290"
+          "$ref": "#/251"
         },
         "flags": 0
       },
       "StatusCode": {
         "type": {
-          "$ref": "#/291"
+          "$ref": "#/252"
         },
         "flags": 0
       }
@@ -3789,13 +3626,13 @@
     "properties": {
       "FailureStrings": {
         "type": {
-          "$ref": "#/390"
+          "$ref": "#/316"
         },
         "flags": 1
       },
       "SuccessStrings": {
         "type": {
-          "$ref": "#/391"
+          "$ref": "#/317"
         },
         "flags": 1
       }
@@ -3807,7 +3644,7 @@
     "properties": {
       "FailureValues": {
         "type": {
-          "$ref": "#/392"
+          "$ref": "#/318"
         },
         "flags": 1
       },
@@ -3819,7 +3656,7 @@
       },
       "SuccessValues": {
         "type": {
-          "$ref": "#/393"
+          "$ref": "#/319"
         },
         "flags": 1
       }
@@ -3831,7 +3668,7 @@
     "properties": {
       "FailureValues": {
         "type": {
-          "$ref": "#/394"
+          "$ref": "#/320"
         },
         "flags": 1
       },
@@ -3843,7 +3680,7 @@
       },
       "SuccessValues": {
         "type": {
-          "$ref": "#/395"
+          "$ref": "#/321"
         },
         "flags": 1
       }
@@ -3855,13 +3692,13 @@
     "properties": {
       "FailureCodes": {
         "type": {
-          "$ref": "#/396"
+          "$ref": "#/322"
         },
         "flags": 1
       },
       "SuccessCodes": {
         "type": {
-          "$ref": "#/397"
+          "$ref": "#/323"
         },
         "flags": 1
       }
@@ -3875,12 +3712,99 @@
   {
     "$type": "ObjectType",
     "name": "Rule",
-    "properties": {}
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/255"
+        },
+        "flags": 0
+      },
+      "CaptchaConfig": {
+        "type": {
+          "$ref": "#/178"
+        },
+        "flags": 0
+      },
+      "ChallengeConfig": {
+        "type": {
+          "$ref": "#/180"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17
+      },
+      "OverrideAction": {
+        "type": {
+          "$ref": "#/222"
+        },
+        "flags": 0
+      },
+      "Priority": {
+        "type": {
+          "$ref": "#/130"
+        },
+        "flags": 1
+      },
+      "RuleLabels": {
+        "type": {
+          "$ref": "#/324"
+        },
+        "flags": 0,
+        "description": "Collection of Rule Labels."
+      },
+      "Statement": {
+        "type": {
+          "$ref": "#/269"
+        },
+        "flags": 1
+      },
+      "VisibilityConfig": {
+        "type": {
+          "$ref": "#/276"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "RuleAction",
-    "properties": {}
+    "properties": {
+      "Allow": {
+        "type": {
+          "$ref": "#/170"
+        },
+        "flags": 0
+      },
+      "Block": {
+        "type": {
+          "$ref": "#/173"
+        },
+        "flags": 0
+      },
+      "Captcha": {
+        "type": {
+          "$ref": "#/177"
+        },
+        "flags": 0
+      },
+      "Challenge": {
+        "type": {
+          "$ref": "#/179"
+        },
+        "flags": 0
+      },
+      "Count": {
+        "type": {
+          "$ref": "#/183"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3888,7 +3812,7 @@
     "properties": {
       "ActionToUse": {
         "type": {
-          "$ref": "#/407"
+          "$ref": "#/255"
         },
         "flags": 1
       },
@@ -3912,13 +3836,13 @@
       },
       "ExcludedRules": {
         "type": {
-          "$ref": "#/408"
+          "$ref": "#/325"
         },
         "flags": 0
       },
       "RuleActionOverrides": {
         "type": {
-          "$ref": "#/410"
+          "$ref": "#/326"
         },
         "flags": 0,
         "description": "Action overrides for rules in the rule group."
@@ -3982,7 +3906,32 @@
   {
     "$type": "ObjectType",
     "name": "SizeConstraintStatement",
-    "properties": {}
+    "properties": {
+      "ComparisonOperator": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "FieldToMatch": {
+        "type": {
+          "$ref": "#/199"
+        },
+        "flags": 1
+      },
+      "Size": {
+        "type": {
+          "$ref": "#/130"
+        },
+        "flags": 1
+      },
+      "TextTransformations": {
+        "type": {
+          "$ref": "#/328"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3992,22 +3941,158 @@
   {
     "$type": "ObjectType",
     "name": "SqliMatchStatement",
-    "properties": {}
+    "properties": {
+      "FieldToMatch": {
+        "type": {
+          "$ref": "#/199"
+        },
+        "flags": 1
+      },
+      "SensitivityLevel": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "TextTransformations": {
+        "type": {
+          "$ref": "#/329"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Statement",
-    "properties": {}
+    "properties": {
+      "AndStatement": {
+        "type": {
+          "$ref": "#/171"
+        },
+        "flags": 0
+      },
+      "ByteMatchStatement": {
+        "type": {
+          "$ref": "#/176"
+        },
+        "flags": 0
+      },
+      "GeoMatchStatement": {
+        "type": {
+          "$ref": "#/201"
+        },
+        "flags": 0
+      },
+      "IPSetReferenceStatement": {
+        "type": {
+          "$ref": "#/205"
+        },
+        "flags": 0
+      },
+      "LabelMatchStatement": {
+        "type": {
+          "$ref": "#/215"
+        },
+        "flags": 0
+      },
+      "ManagedRuleGroupStatement": {
+        "type": {
+          "$ref": "#/218"
+        },
+        "flags": 0
+      },
+      "NotStatement": {
+        "type": {
+          "$ref": "#/220"
+        },
+        "flags": 0
+      },
+      "OrStatement": {
+        "type": {
+          "$ref": "#/221"
+        },
+        "flags": 0
+      },
+      "RateBasedStatement": {
+        "type": {
+          "$ref": "#/227"
+        },
+        "flags": 0
+      },
+      "RegexMatchStatement": {
+        "type": {
+          "$ref": "#/239"
+        },
+        "flags": 0
+      },
+      "RegexPatternSetReferenceStatement": {
+        "type": {
+          "$ref": "#/240"
+        },
+        "flags": 0
+      },
+      "RuleGroupReferenceStatement": {
+        "type": {
+          "$ref": "#/257"
+        },
+        "flags": 0
+      },
+      "SizeConstraintStatement": {
+        "type": {
+          "$ref": "#/266"
+        },
+        "flags": 0
+      },
+      "SqliMatchStatement": {
+        "type": {
+          "$ref": "#/268"
+        },
+        "flags": 0
+      },
+      "XssMatchStatement": {
+        "type": {
+          "$ref": "#/277"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "TextTransformation",
-    "properties": {}
+    "properties": {
+      "Priority": {
+        "type": {
+          "$ref": "#/130"
+        },
+        "flags": 1
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -4032,158 +4117,55 @@
   {
     "$type": "ObjectType",
     "name": "VisibilityConfig",
-    "properties": {}
+    "properties": {
+      "CloudWatchMetricsEnabled": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 1
+      },
+      "MetricName": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "SampledRequestsEnabled": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "XssMatchStatement",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomRequestHandling",
     "properties": {
-      "InsertHeaders": {
+      "FieldToMatch": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/199"
         },
-        "flags": 1,
-        "description": "Collection of HTTP headers."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Statement",
-    "properties": {
-      "AndStatement": {
-        "type": {
-          "$ref": "#/179"
-        },
-        "flags": 0
+        "flags": 1
       },
-      "ByteMatchStatement": {
+      "TextTransformations": {
         "type": {
-          "$ref": "#/180"
+          "$ref": "#/331"
         },
-        "flags": 0
-      },
-      "GeoMatchStatement": {
-        "type": {
-          "$ref": "#/181"
-        },
-        "flags": 0
-      },
-      "IPSetReferenceStatement": {
-        "type": {
-          "$ref": "#/182"
-        },
-        "flags": 0
-      },
-      "LabelMatchStatement": {
-        "type": {
-          "$ref": "#/183"
-        },
-        "flags": 0
-      },
-      "NotStatement": {
-        "type": {
-          "$ref": "#/184"
-        },
-        "flags": 0
-      },
-      "OrStatement": {
-        "type": {
-          "$ref": "#/185"
-        },
-        "flags": 0
-      },
-      "RateBasedStatement": {
-        "type": {
-          "$ref": "#/186"
-        },
-        "flags": 0
-      },
-      "RegexMatchStatement": {
-        "type": {
-          "$ref": "#/187"
-        },
-        "flags": 0
-      },
-      "RegexPatternSetReferenceStatement": {
-        "type": {
-          "$ref": "#/188"
-        },
-        "flags": 0
-      },
-      "SizeConstraintStatement": {
-        "type": {
-          "$ref": "#/189"
-        },
-        "flags": 0
-      },
-      "SqliMatchStatement": {
-        "type": {
-          "$ref": "#/190"
-        },
-        "flags": 0
-      },
-      "XssMatchStatement": {
-        "type": {
-          "$ref": "#/128"
-        },
-        "flags": 0
+        "flags": 1
       }
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/318"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomResponse",
-    "properties": {
-      "CustomResponseBodyKey": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0,
-        "description": "Custom response body key."
-      },
-      "ResponseCode": {
-        "type": {
-          "$ref": "#/137"
-        },
-        "flags": 1
-      },
-      "ResponseHeaders": {
-        "type": {
-          "$ref": "#/138"
-        },
-        "flags": 0,
-        "description": "Collection of HTTP headers."
-      }
+      "$ref": "#/269"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/191"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ImmunityTimeProperty",
-    "properties": {
-      "ImmunityTime": {
-        "type": {
-          "$ref": "#/137"
-        },
-        "flags": 1
-      }
+      "$ref": "#/271"
     }
   },
   {
@@ -4204,226 +4186,27 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "CookieMatchPattern",
-    "properties": {
-      "All": {
-        "type": {
-          "$ref": "#/323"
-        },
-        "flags": 0,
-        "description": "Inspect all parts of the web request cookies."
-      },
-      "ExcludedCookies": {
-        "type": {
-          "$ref": "#/324"
-        },
-        "flags": 0
-      },
-      "IncludedCookies": {
-        "type": {
-          "$ref": "#/325"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomHTTPHeader",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 17
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/184"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/327"
+      "$ref": "#/184"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/327"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomResponseBody",
-    "properties": {
-      "Content": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "ContentType": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AllowAction",
-    "properties": {
-      "CustomRequestHandling": {
-        "type": {
-          "$ref": "#/317"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "BlockAction",
-    "properties": {
-      "CustomResponse": {
-        "type": {
-          "$ref": "#/320"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ExcludedRule",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 17
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/333"
+      "$ref": "#/196"
     }
   },
   {
     "$type": "ObjectType",
     "name": "WebACL_AllQueryArguments",
     "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Body",
-    "properties": {
-      "OversizeHandling": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Cookies",
-    "properties": {
-      "MatchPattern": {
-        "type": {
-          "$ref": "#/326"
-        },
-        "flags": 1
-      },
-      "MatchScope": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "OversizeHandling": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Headers",
-    "properties": {
-      "MatchPattern": {
-        "type": {
-          "$ref": "#/152"
-        },
-        "flags": 1
-      },
-      "MatchScope": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "OversizeHandling": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "JA3Fingerprint",
-    "properties": {
-      "FallbackBehavior": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "JsonBody",
-    "properties": {
-      "InvalidFallbackBehavior": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "MatchPattern": {
-        "type": {
-          "$ref": "#/80"
-        },
-        "flags": 1
-      },
-      "MatchScope": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "OversizeHandling": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -4472,24 +4255,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ForwardedIPConfiguration",
-    "properties": {
-      "FallbackBehavior": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "HeaderName": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "WebACL_All",
     "properties": {}
   },
@@ -4507,74 +4272,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "HeaderMatchPattern",
-    "properties": {
-      "All": {
-        "type": {
-          "$ref": "#/348"
-        },
-        "flags": 0,
-        "description": "Inspect all parts of the web request headers."
-      },
-      "ExcludedHeaders": {
-        "type": {
-          "$ref": "#/349"
-        },
-        "flags": 0
-      },
-      "IncludedHeaders": {
-        "type": {
-          "$ref": "#/350"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "IPSetForwardedIPConfiguration",
-    "properties": {
-      "FallbackBehavior": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "HeaderName": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "Position": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "JsonMatchPattern",
-    "properties": {
-      "All": {
-        "type": {
-          "$ref": "#/154"
-        },
-        "flags": 0,
-        "description": "Inspect all parts of the web request's JSON body."
-      },
-      "IncludedPaths": {
-        "type": {
-          "$ref": "#/155"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "WebACL_All",
     "properties": {}
   },
@@ -4585,171 +4282,27 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "AWSManagedRulesACFPRuleSet",
-    "properties": {
-      "CreationPath": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "EnableRegexInPath": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0
-      },
-      "RegistrationPagePath": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "RequestInspection": {
-        "type": {
-          "$ref": "#/283"
-        },
-        "flags": 1
-      },
-      "ResponseInspection": {
-        "type": {
-          "$ref": "#/287"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWSManagedRulesATPRuleSet",
-    "properties": {
-      "EnableRegexInPath": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0
-      },
-      "LoginPath": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "RequestInspection": {
-        "type": {
-          "$ref": "#/282"
-        },
-        "flags": 0
-      },
-      "ResponseInspection": {
-        "type": {
-          "$ref": "#/287"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWSManagedRulesBotControlRuleSet",
-    "properties": {
-      "EnableMachineLearning": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0
-      },
-      "InspectionLevel": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "FieldIdentifier",
-    "properties": {
-      "Identifier": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/196"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/333"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ManagedRuleGroupConfig",
-    "properties": {
-      "AWSManagedRulesACFPRuleSet": {
-        "type": {
-          "$ref": "#/356"
-        },
-        "flags": 0
-      },
-      "AWSManagedRulesATPRuleSet": {
-        "type": {
-          "$ref": "#/357"
-        },
-        "flags": 0
-      },
-      "AWSManagedRulesBotControlRuleSet": {
-        "type": {
-          "$ref": "#/358"
-        },
-        "flags": 0
-      },
-      "LoginPath": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "PasswordField": {
-        "type": {
-          "$ref": "#/359"
-        },
-        "flags": 0
-      },
-      "PayloadType": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "UsernameField": {
-        "type": {
-          "$ref": "#/359"
-        },
-        "flags": 0
-      }
+      "$ref": "#/217"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/361"
+      "$ref": "#/256"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/295"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/318"
+      "$ref": "#/269"
     }
   },
   {
@@ -4763,297 +4316,51 @@
     "properties": {}
   },
   {
-    "$type": "ObjectType",
-    "name": "RateBasedStatementCustomKey",
-    "properties": {
-      "Cookie": {
-        "type": {
-          "$ref": "#/97"
-        },
-        "flags": 0
-      },
-      "ForwardedIP": {
-        "type": {
-          "$ref": "#/98"
-        },
-        "flags": 0
-      },
-      "HTTPMethod": {
-        "type": {
-          "$ref": "#/99"
-        },
-        "flags": 0
-      },
-      "Header": {
-        "type": {
-          "$ref": "#/100"
-        },
-        "flags": 0
-      },
-      "IP": {
-        "type": {
-          "$ref": "#/101"
-        },
-        "flags": 0
-      },
-      "LabelNamespace": {
-        "type": {
-          "$ref": "#/102"
-        },
-        "flags": 0
-      },
-      "QueryArgument": {
-        "type": {
-          "$ref": "#/103"
-        },
-        "flags": 0
-      },
-      "QueryString": {
-        "type": {
-          "$ref": "#/104"
-        },
-        "flags": 0
-      },
-      "UriPath": {
-        "type": {
-          "$ref": "#/105"
-        },
-        "flags": 0
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/228"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/367"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RateLimitCookie",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 17,
-        "description": "The name of the cookie to use."
-      },
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/158"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RateLimitForwardedIP",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RateLimitHTTPMethod",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RateLimitHeader",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 17,
-        "description": "The name of the header to use."
-      },
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/159"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RateLimitIP",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RateLimitLabelNamespace",
-    "properties": {
-      "Namespace": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1,
-        "description": "The namespace to use for aggregation."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RateLimitQueryArgument",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 17,
-        "description": "The name of the query argument to use."
-      },
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/160"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RateLimitQueryString",
-    "properties": {
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/161"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RateLimitUriPath",
-    "properties": {
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/162"
-        },
-        "flags": 1
-      }
+      "$ref": "#/271"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/191"
+      "$ref": "#/271"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/191"
+      "$ref": "#/271"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/191"
+      "$ref": "#/271"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/191"
+      "$ref": "#/271"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/191"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "FieldToMatch",
-    "properties": {
-      "AllQueryArguments": {
-        "type": {
-          "$ref": "#/335"
-        },
-        "flags": 0,
-        "description": "All query arguments of a web request."
-      },
-      "Body": {
-        "type": {
-          "$ref": "#/336"
-        },
-        "flags": 0
-      },
-      "Cookies": {
-        "type": {
-          "$ref": "#/337"
-        },
-        "flags": 0
-      },
-      "Headers": {
-        "type": {
-          "$ref": "#/338"
-        },
-        "flags": 0
-      },
-      "JA3Fingerprint": {
-        "type": {
-          "$ref": "#/339"
-        },
-        "flags": 0
-      },
-      "JsonBody": {
-        "type": {
-          "$ref": "#/340"
-        },
-        "flags": 0
-      },
-      "Method": {
-        "type": {
-          "$ref": "#/341"
-        },
-        "flags": 0,
-        "description": "The HTTP method of a web request. The method indicates the type of operation that the request is asking the origin to perform."
-      },
-      "QueryString": {
-        "type": {
-          "$ref": "#/342"
-        },
-        "flags": 0,
-        "description": "The query string of a web request. This is the part of a URL that appears after a ? character, if any."
-      },
-      "SingleHeader": {
-        "type": {
-          "$ref": "#/343"
-        },
-        "flags": 0
-      },
-      "SingleQueryArgument": {
-        "type": {
-          "$ref": "#/344"
-        },
-        "flags": 0,
-        "description": "One query argument in a web request, identified by name, for example UserName or SalesRegion. The name can be up to 30 characters long and isn't case sensitive."
-      },
-      "UriPath": {
-        "type": {
-          "$ref": "#/345"
-        },
-        "flags": 0,
-        "description": "The path component of the URI of a web request. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg."
-      }
+      "$ref": "#/271"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/191"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/191"
+      "$ref": "#/271"
     }
   },
   {
@@ -5064,7 +4371,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/386"
+      "$ref": "#/312"
     }
   },
   {
@@ -5075,7 +4382,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/388"
+      "$ref": "#/314"
     }
   },
   {
@@ -5117,656 +4424,49 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/137"
+      "$ref": "#/130"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/137"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RuleAction",
-    "properties": {
-      "Allow": {
-        "type": {
-          "$ref": "#/170"
-        },
-        "flags": 0
-      },
-      "Block": {
-        "type": {
-          "$ref": "#/171"
-        },
-        "flags": 0
-      },
-      "Captcha": {
-        "type": {
-          "$ref": "#/172"
-        },
-        "flags": 0
-      },
-      "Challenge": {
-        "type": {
-          "$ref": "#/173"
-        },
-        "flags": 0
-      },
-      "Count": {
-        "type": {
-          "$ref": "#/174"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CaptchaConfig",
-    "properties": {
-      "ImmunityTimeProperty": {
-        "type": {
-          "$ref": "#/322"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ChallengeConfig",
-    "properties": {
-      "ImmunityTimeProperty": {
-        "type": {
-          "$ref": "#/322"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "OverrideAction",
-    "properties": {
-      "Count": {
-        "type": {
-          "$ref": "#/365"
-        },
-        "flags": 0,
-        "description": "Count traffic towards application."
-      },
-      "None": {
-        "type": {
-          "$ref": "#/366"
-        },
-        "flags": 0,
-        "description": "Keep the RuleGroup or ManagedRuleGroup behavior as is."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Label",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 17
-      }
+      "$ref": "#/130"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/402"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CaptchaAction",
-    "properties": {
-      "CustomRequestHandling": {
-        "type": {
-          "$ref": "#/317"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ChallengeAction",
-    "properties": {
-      "CustomRequestHandling": {
-        "type": {
-          "$ref": "#/317"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CountAction",
-    "properties": {
-      "CustomRequestHandling": {
-        "type": {
-          "$ref": "#/317"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RuleAction",
-    "properties": {
-      "Allow": {
-        "type": {
-          "$ref": "#/331"
-        },
-        "flags": 0
-      },
-      "Block": {
-        "type": {
-          "$ref": "#/332"
-        },
-        "flags": 0
-      },
-      "Captcha": {
-        "type": {
-          "$ref": "#/404"
-        },
-        "flags": 0
-      },
-      "Challenge": {
-        "type": {
-          "$ref": "#/405"
-        },
-        "flags": 0
-      },
-      "Count": {
-        "type": {
-          "$ref": "#/406"
-        },
-        "flags": 0
-      }
+      "$ref": "#/212"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/333"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RuleActionOverride",
-    "properties": {
-      "ActionToUse": {
-        "type": {
-          "$ref": "#/407"
-        },
-        "flags": 1
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 17
-      }
+      "$ref": "#/196"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/409"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Rule",
-    "properties": {
-      "Action": {
-        "type": {
-          "$ref": "#/398"
-        },
-        "flags": 0
-      },
-      "CaptchaConfig": {
-        "type": {
-          "$ref": "#/399"
-        },
-        "flags": 0
-      },
-      "ChallengeConfig": {
-        "type": {
-          "$ref": "#/400"
-        },
-        "flags": 0
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 17
-      },
-      "OverrideAction": {
-        "type": {
-          "$ref": "#/401"
-        },
-        "flags": 0
-      },
-      "Priority": {
-        "type": {
-          "$ref": "#/137"
-        },
-        "flags": 1
-      },
-      "RuleLabels": {
-        "type": {
-          "$ref": "#/403"
-        },
-        "flags": 0,
-        "description": "Collection of Rule Labels."
-      },
-      "Statement": {
-        "type": {
-          "$ref": "#/318"
-        },
-        "flags": 1
-      },
-      "VisibilityConfig": {
-        "type": {
-          "$ref": "#/201"
-        },
-        "flags": 1
-      }
+      "$ref": "#/256"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/411"
+      "$ref": "#/254"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/191"
+      "$ref": "#/271"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/191"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AndStatement",
-    "properties": {
-      "Statements": {
-        "type": {
-          "$ref": "#/319"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ByteMatchStatement",
-    "properties": {
-      "FieldToMatch": {
-        "type": {
-          "$ref": "#/163"
-        },
-        "flags": 1
-      },
-      "PositionalConstraint": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "SearchString": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "SearchStringBase64": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/321"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "GeoMatchStatement",
-    "properties": {
-      "CountryCodes": {
-        "type": {
-          "$ref": "#/346"
-        },
-        "flags": 0
-      },
-      "ForwardedIPConfig": {
-        "type": {
-          "$ref": "#/347"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "IPSetReferenceStatement",
-    "properties": {
-      "Arn": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "IPSetForwardedIPConfig": {
-        "type": {
-          "$ref": "#/352"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "LabelMatchStatement",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "Scope": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 17
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ManagedRuleGroupStatement",
-    "properties": {
-      "ExcludedRules": {
-        "type": {
-          "$ref": "#/360"
-        },
-        "flags": 0
-      },
-      "ManagedRuleGroupConfigs": {
-        "type": {
-          "$ref": "#/362"
-        },
-        "flags": 0,
-        "description": "Collection of ManagedRuleGroupConfig."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 17
-      },
-      "RuleActionOverrides": {
-        "type": {
-          "$ref": "#/363"
-        },
-        "flags": 0,
-        "description": "Action overrides for rules in the rule group."
-      },
-      "ScopeDownStatement": {
-        "type": {
-          "$ref": "#/318"
-        },
-        "flags": 0
-      },
-      "VendorName": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "Version": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "NotStatement",
-    "properties": {
-      "Statement": {
-        "type": {
-          "$ref": "#/318"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "OrStatement",
-    "properties": {
-      "Statements": {
-        "type": {
-          "$ref": "#/364"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RateBasedStatement",
-    "properties": {
-      "AggregateKeyType": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "CustomKeys": {
-        "type": {
-          "$ref": "#/368"
-        },
-        "flags": 0,
-        "description": "Specifies the aggregate keys to use in a rate-base rule."
-      },
-      "EvaluationWindowSec": {
-        "type": {
-          "$ref": "#/137"
-        },
-        "flags": 0
-      },
-      "ForwardedIPConfig": {
-        "type": {
-          "$ref": "#/347"
-        },
-        "flags": 0
-      },
-      "Limit": {
-        "type": {
-          "$ref": "#/137"
-        },
-        "flags": 1
-      },
-      "ScopeDownStatement": {
-        "type": {
-          "$ref": "#/318"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RegexMatchStatement",
-    "properties": {
-      "FieldToMatch": {
-        "type": {
-          "$ref": "#/383"
-        },
-        "flags": 1
-      },
-      "RegexString": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/384"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RegexPatternSetReferenceStatement",
-    "properties": {
-      "Arn": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "FieldToMatch": {
-        "type": {
-          "$ref": "#/383"
-        },
-        "flags": 1
-      },
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/385"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RuleGroupReferenceStatement",
-    "properties": {
-      "Arn": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "ExcludedRules": {
-        "type": {
-          "$ref": "#/408"
-        },
-        "flags": 0
-      },
-      "RuleActionOverrides": {
-        "type": {
-          "$ref": "#/410"
-        },
-        "flags": 0,
-        "description": "Action overrides for rules in the rule group."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SizeConstraintStatement",
-    "properties": {
-      "ComparisonOperator": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "FieldToMatch": {
-        "type": {
-          "$ref": "#/383"
-        },
-        "flags": 1
-      },
-      "Size": {
-        "type": {
-          "$ref": "#/137"
-        },
-        "flags": 1
-      },
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/413"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SqliMatchStatement",
-    "properties": {
-      "FieldToMatch": {
-        "type": {
-          "$ref": "#/383"
-        },
-        "flags": 1
-      },
-      "SensitivityLevel": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/414"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "XssMatchStatement",
-    "properties": {
-      "FieldToMatch": {
-        "type": {
-          "$ref": "#/163"
-        },
-        "flags": 1
-      },
-      "TextTransformations": {
-        "type": {
-          "$ref": "#/192"
-        },
-        "flags": 1
-      }
+      "$ref": "#/271"
     }
   },
   {
@@ -5776,27 +4476,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "TextTransformation",
-    "properties": {
-      "Priority": {
-        "type": {
-          "$ref": "#/137"
-        },
-        "flags": 1
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/431"
+      "$ref": "#/271"
     }
   },
   {
@@ -5804,98 +4486,21 @@
     "value": "AWS.WAFv2/WebACLProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "AssociationConfig",
-    "properties": {
-      "RequestBody": {
-        "type": {
-          "$ref": "#/280"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CustomResponseBodies",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DefaultAction",
-    "properties": {
-      "Allow": {
-        "type": {
-          "$ref": "#/331"
-        },
-        "flags": 0
-      },
-      "Block": {
-        "type": {
-          "$ref": "#/332"
-        },
-        "flags": 0
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/254"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/411"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/438"
+      "$ref": "#/270"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/8"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "VisibilityConfig",
-    "properties": {
-      "CloudWatchMetricsEnabled": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 1
-      },
-      "MetricName": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "SampledRequestsEnabled": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 1
-      }
     }
   },
   {
@@ -5910,37 +4515,37 @@
       },
       "AssociationConfig": {
         "type": {
-          "$ref": "#/434"
+          "$ref": "#/172"
         },
         "flags": 0
       },
       "Capacity": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/130"
         },
         "flags": 2
       },
       "CaptchaConfig": {
         "type": {
-          "$ref": "#/399"
+          "$ref": "#/178"
         },
         "flags": 0
       },
       "ChallengeConfig": {
         "type": {
-          "$ref": "#/400"
+          "$ref": "#/180"
         },
         "flags": 0
       },
       "CustomResponseBodies": {
         "type": {
-          "$ref": "#/435"
+          "$ref": "#/189"
         },
         "flags": 0
       },
       "DefaultAction": {
         "type": {
-          "$ref": "#/436"
+          "$ref": "#/191"
         },
         "flags": 1
       },
@@ -5970,7 +4575,7 @@
       },
       "Rules": {
         "type": {
-          "$ref": "#/437"
+          "$ref": "#/333"
         },
         "flags": 0,
         "description": "Collection of Rules."
@@ -5983,19 +4588,19 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/439"
+          "$ref": "#/334"
         },
         "flags": 0
       },
       "TokenDomains": {
         "type": {
-          "$ref": "#/440"
+          "$ref": "#/335"
         },
         "flags": 0
       },
       "VisibilityConfig": {
         "type": {
-          "$ref": "#/441"
+          "$ref": "#/276"
         },
         "flags": 1
       }
@@ -6016,14 +4621,14 @@
         "type": {
           "$ref": "#/8"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/442"
+          "$ref": "#/336"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -6033,7 +4638,7 @@
     "name": "AWS.WAFv2/WebACL@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/443"
+      "$ref": "#/337"
     },
     "flags": 0
   },
@@ -6079,14 +4684,14 @@
         "type": {
           "$ref": "#/8"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/447"
+          "$ref": "#/341"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -6096,7 +4701,7 @@
     "name": "AWS.WAFv2/WebACLAssociation@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/448"
+      "$ref": "#/342"
     },
     "flags": 0
   }

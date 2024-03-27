@@ -3,9 +3,9 @@
 ## Resource AWS.RUM/AppMonitor@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RUM/AppMonitorProperties](#awsrumappmonitorproperties) (Required): properties of the resource
+* **properties**: [AWS.RUM/AppMonitorProperties](#awsrumappmonitorproperties) (Required, Identifier): properties of the resource
 
 ## AppMonitor_DimensionKeys
 ### Properties

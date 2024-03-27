@@ -3,23 +3,23 @@
 ## Resource AWS.ACMPCA/Certificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ACMPCA/CertificateProperties](#awsacmpcacertificateproperties) (Required): properties of the resource
+* **properties**: [AWS.ACMPCA/CertificateProperties](#awsacmpcacertificateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ACMPCA/CertificateAuthority@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ACMPCA/CertificateAuthorityProperties](#awsacmpcacertificateauthorityproperties) (Required): properties of the resource
+* **properties**: [AWS.ACMPCA/CertificateAuthorityProperties](#awsacmpcacertificateauthorityproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ACMPCA/CertificateAuthorityActivation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ACMPCA/CertificateAuthorityActivationProperties](#awsacmpcacertificateauthorityactivationproperties) (Required): properties of the resource
+* **properties**: [AWS.ACMPCA/CertificateAuthorityActivationProperties](#awsacmpcacertificateauthorityactivationproperties) (Required, Identifier): properties of the resource
 
 ## AccessDescription
 ### Properties
@@ -111,13 +111,13 @@
 
 ## EdiPartyName
 ### Properties
-* **NameAssigner**: string (Required)
-* **PartyName**: string (Required)
+* **NameAssigner**: string (Required): Specifies the name assigner.
+* **PartyName**: string (Required): Specifies the party name.
 
 ## EdiPartyName
 ### Properties
-* **NameAssigner**: string (Required): Specifies the name assigner.
-* **PartyName**: string (Required): Specifies the party name.
+* **NameAssigner**: string (Required)
+* **PartyName**: string (Required)
 
 ## ExtendedKeyUsage
 ### Properties
@@ -135,17 +135,6 @@
 
 ## GeneralName
 ### Properties
-* **DirectoryName**: [Subject](#subject)
-* **DnsName**: string
-* **EdiPartyName**: [EdiPartyName](#edipartyname)
-* **IpAddress**: string
-* **OtherName**: [OtherName](#othername)
-* **RegisteredId**: string
-* **Rfc822Name**: string
-* **UniformResourceIdentifier**: string
-
-## GeneralName
-### Properties
 * **DirectoryName**: [Subject](#subject): Contains information about the certificate subject. The certificate can be one issued by your private certificate authority (CA) or it can be your private CA certificate. The Subject field in the certificate identifies the entity that owns or controls the public key in the certificate. The entity can be a user, computer, device, or service. The Subject must contain an X.500 distinguished name (DN). A DN is a sequence of relative distinguished names (RDNs). The RDNs are separated by commas in the certificate. The DN must be unique for each entity, but your private CA can issue more than one certificate with the same DN to the same entity.
 * **DnsName**: string: Represents ``GeneralName`` as a DNS name.
 * **EdiPartyName**: [EdiPartyName](#edipartyname): Represents ``GeneralName`` as an ``EdiPartyName`` object.
@@ -155,17 +144,16 @@
 * **Rfc822Name**: string: Represents ``GeneralName`` as an [RFC 822](https://docs.aws.amazon.com/https://datatracker.ietf.org/doc/html/rfc822) email address.
 * **UniformResourceIdentifier**: string: Represents ``GeneralName`` as a URI.
 
-## KeyUsage
+## GeneralName
 ### Properties
-* **CRLSign**: bool
-* **DataEncipherment**: bool
-* **DecipherOnly**: bool
-* **DigitalSignature**: bool
-* **EncipherOnly**: bool
-* **KeyAgreement**: bool
-* **KeyCertSign**: bool
-* **KeyEncipherment**: bool
-* **NonRepudiation**: bool
+* **DirectoryName**: [Subject](#subject)
+* **DnsName**: string
+* **EdiPartyName**: [EdiPartyName](#edipartyname)
+* **IpAddress**: string
+* **OtherName**: [OtherName](#othername)
+* **RegisteredId**: string
+* **Rfc822Name**: string
+* **UniformResourceIdentifier**: string
 
 ## KeyUsage
 ### Properties
@@ -178,6 +166,18 @@
 * **KeyCertSign**: bool: Key can be used to sign certificates.
 * **KeyEncipherment**: bool: Key can be used to encipher data.
 * **NonRepudiation**: bool: Key can be used for non-repudiation.
+
+## KeyUsage
+### Properties
+* **CRLSign**: bool
+* **DataEncipherment**: bool
+* **DecipherOnly**: bool
+* **DigitalSignature**: bool
+* **EncipherOnly**: bool
+* **KeyAgreement**: bool
+* **KeyCertSign**: bool
+* **KeyEncipherment**: bool
+* **NonRepudiation**: bool
 
 ## OcspConfiguration
 ### Properties

@@ -3,163 +3,163 @@
 ## Resource AWS.Connect/ApprovedOrigin@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/ApprovedOriginProperties](#awsconnectapprovedoriginproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/ApprovedOriginProperties](#awsconnectapprovedoriginproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/ContactFlow@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/ContactFlowProperties](#awsconnectcontactflowproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/ContactFlowProperties](#awsconnectcontactflowproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/ContactFlowModule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/ContactFlowModuleProperties](#awsconnectcontactflowmoduleproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/ContactFlowModuleProperties](#awsconnectcontactflowmoduleproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/EvaluationForm@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/EvaluationFormProperties](#awsconnectevaluationformproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/EvaluationFormProperties](#awsconnectevaluationformproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/HoursOfOperation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/HoursOfOperationProperties](#awsconnecthoursofoperationproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/HoursOfOperationProperties](#awsconnecthoursofoperationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/Instance@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/InstanceProperties](#awsconnectinstanceproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/InstanceProperties](#awsconnectinstanceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/InstanceStorageConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/InstanceStorageConfigProperties](#awsconnectinstancestorageconfigproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/InstanceStorageConfigProperties](#awsconnectinstancestorageconfigproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/IntegrationAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/IntegrationAssociationProperties](#awsconnectintegrationassociationproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/IntegrationAssociationProperties](#awsconnectintegrationassociationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/PhoneNumber@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/PhoneNumberProperties](#awsconnectphonenumberproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/PhoneNumberProperties](#awsconnectphonenumberproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/PredefinedAttribute@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/PredefinedAttributeProperties](#awsconnectpredefinedattributeproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/PredefinedAttributeProperties](#awsconnectpredefinedattributeproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/Prompt@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/PromptProperties](#awsconnectpromptproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/PromptProperties](#awsconnectpromptproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/Queue@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/QueueProperties](#awsconnectqueueproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/QueueProperties](#awsconnectqueueproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/QuickConnect@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/QuickConnectProperties](#awsconnectquickconnectproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/QuickConnectProperties](#awsconnectquickconnectproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/RoutingProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/RoutingProfileProperties](#awsconnectroutingprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/RoutingProfileProperties](#awsconnectroutingprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/Rule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/RuleProperties](#awsconnectruleproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/RuleProperties](#awsconnectruleproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/SecurityKey@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/SecurityKeyProperties](#awsconnectsecuritykeyproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/SecurityKeyProperties](#awsconnectsecuritykeyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/SecurityProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/SecurityProfileProperties](#awsconnectsecurityprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/SecurityProfileProperties](#awsconnectsecurityprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/TaskTemplate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/TaskTemplateProperties](#awsconnecttasktemplateproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/TaskTemplateProperties](#awsconnecttasktemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/TrafficDistributionGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/TrafficDistributionGroupProperties](#awsconnecttrafficdistributiongroupproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/TrafficDistributionGroupProperties](#awsconnecttrafficdistributiongroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/User@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/UserProperties](#awsconnectuserproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/UserProperties](#awsconnectuserproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/UserHierarchyGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/UserHierarchyGroupProperties](#awsconnectuserhierarchygroupproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/UserHierarchyGroupProperties](#awsconnectuserhierarchygroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/View@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/ViewProperties](#awsconnectviewproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/ViewProperties](#awsconnectviewproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/ViewVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Connect/ViewVersionProperties](#awsconnectviewversionproperties) (Required): properties of the resource
+* **properties**: [AWS.Connect/ViewVersionProperties](#awsconnectviewversionproperties) (Required, Identifier): properties of the resource
 
 ## Actions
 ### Properties
@@ -521,15 +521,15 @@
 
 ## Field
 ### Properties
+* **Id**: string (Required): The Id of the field
+* **Value**: [FieldValue](#fieldvalue) (Required)
+
+## Field
+### Properties
 * **Description**: string: The description of the task template's field
 * **Id**: [FieldIdentifier](#fieldidentifier) (Required)
 * **SingleSelectOptions**: string[]: list of field options to be used with single select
 * **Type**: string (Required)
-
-## Field
-### Properties
-* **Id**: string (Required): The Id of the field
-* **Value**: [FieldValue](#fieldvalue) (Required)
 
 ## FieldIdentifier
 ### Properties

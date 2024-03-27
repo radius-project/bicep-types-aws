@@ -3,16 +3,16 @@
 ## Resource AWS.ResilienceHub/App@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ResilienceHub/AppProperties](#awsresiliencehubappproperties) (Required): properties of the resource
+* **properties**: [AWS.ResilienceHub/AppProperties](#awsresiliencehubappproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ResilienceHub/ResiliencyPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ResilienceHub/ResiliencyPolicyProperties](#awsresiliencehubresiliencypolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.ResilienceHub/ResiliencyPolicyProperties](#awsresiliencehubresiliencypolicyproperties) (Required, Identifier): properties of the resource
 
 ## AWS.ResilienceHub/AppProperties
 ### Properties

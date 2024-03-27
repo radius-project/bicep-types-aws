@@ -3,51 +3,51 @@
 ## Resource AWS.FraudDetector/Detector@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FraudDetector/DetectorProperties](#awsfrauddetectordetectorproperties) (Required): properties of the resource
+* **properties**: [AWS.FraudDetector/DetectorProperties](#awsfrauddetectordetectorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.FraudDetector/EntityType@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FraudDetector/EntityTypeProperties](#awsfrauddetectorentitytypeproperties) (Required): properties of the resource
+* **properties**: [AWS.FraudDetector/EntityTypeProperties](#awsfrauddetectorentitytypeproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.FraudDetector/EventType@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FraudDetector/EventTypeProperties](#awsfrauddetectoreventtypeproperties) (Required): properties of the resource
+* **properties**: [AWS.FraudDetector/EventTypeProperties](#awsfrauddetectoreventtypeproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.FraudDetector/Label@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FraudDetector/LabelProperties](#awsfrauddetectorlabelproperties) (Required): properties of the resource
+* **properties**: [AWS.FraudDetector/LabelProperties](#awsfrauddetectorlabelproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.FraudDetector/List@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FraudDetector/ListProperties](#awsfrauddetectorlistproperties) (Required): properties of the resource
+* **properties**: [AWS.FraudDetector/ListProperties](#awsfrauddetectorlistproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.FraudDetector/Outcome@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FraudDetector/OutcomeProperties](#awsfrauddetectoroutcomeproperties) (Required): properties of the resource
+* **properties**: [AWS.FraudDetector/OutcomeProperties](#awsfrauddetectoroutcomeproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.FraudDetector/Variable@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FraudDetector/VariableProperties](#awsfrauddetectorvariableproperties) (Required): properties of the resource
+* **properties**: [AWS.FraudDetector/VariableProperties](#awsfrauddetectorvariableproperties) (Required, Identifier): properties of the resource
 
 ## AWS.FraudDetector/DetectorProperties
 ### Properties
@@ -163,6 +163,20 @@
 ## EventVariable
 ### Properties
 * **Arn**: string (Identifier)
+* **CreatedTime**: string: The time when the event variable was created.
+* **DataSource**: string
+* **DataType**: string
+* **DefaultValue**: string
+* **Description**: string: The description.
+* **Inline**: bool
+* **LastUpdatedTime**: string: The time when the event variable was last updated.
+* **Name**: string
+* **Tags**: [Tag](#tag)[]: Tags associated with this event variable.
+* **VariableType**: string
+
+## EventVariable
+### Properties
+* **Arn**: string (Identifier)
 * **CreatedTime**: string: The time when the event type was created.
 * **DataSource**: string
 * **DataType**: string
@@ -173,6 +187,16 @@
 * **Name**: string
 * **Tags**: [Tag](#tag)[]: Tags associated with this event type.
 * **VariableType**: string
+
+## Label
+### Properties
+* **Arn**: string (Identifier)
+* **CreatedTime**: string: The time when the label was created.
+* **Description**: string: The description.
+* **Inline**: bool
+* **LastUpdatedTime**: string: The time when the label was last updated.
+* **Name**: string
+* **Tags**: [Tag](#tag)[]: Tags associated with this label.
 
 ## Label
 ### Properties
@@ -234,13 +258,13 @@
 
 ## Tag
 ### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

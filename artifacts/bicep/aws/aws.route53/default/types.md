@@ -3,30 +3,30 @@
 ## Resource AWS.Route53/CidrCollection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Route53/CidrCollectionProperties](#awsroute53cidrcollectionproperties) (Required): properties of the resource
+* **properties**: [AWS.Route53/CidrCollectionProperties](#awsroute53cidrcollectionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Route53/HealthCheck@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Route53/HealthCheckProperties](#awsroute53healthcheckproperties) (Required): properties of the resource
+* **properties**: [AWS.Route53/HealthCheckProperties](#awsroute53healthcheckproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Route53/HostedZone@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Route53/HostedZoneProperties](#awsroute53hostedzoneproperties): properties of the resource
+* **properties**: [AWS.Route53/HostedZoneProperties](#awsroute53hostedzoneproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Route53/KeySigningKey@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Route53/KeySigningKeyProperties](#awsroute53keysigningkeyproperties) (Required): properties of the resource
+* **properties**: [AWS.Route53/KeySigningKeyProperties](#awsroute53keysigningkeyproperties) (Required, Identifier): properties of the resource
 
 ## AlarmIdentifier
 ### Properties

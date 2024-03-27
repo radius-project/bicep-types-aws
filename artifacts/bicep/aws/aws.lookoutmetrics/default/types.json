@@ -120,7 +120,7 @@
     "properties": {
       "CsvFormatDescriptor": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/7"
         },
         "flags": 0
       },
@@ -181,14 +181,14 @@
     "properties": {
       "DimensionList": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "Dimensions for this MetricSet."
       },
       "MetricList": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/29"
         },
         "flags": 1,
         "description": "Metrics captured by this MetricSet."
@@ -247,13 +247,13 @@
     "properties": {
       "AppFlowConfig": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "CloudwatchConfig": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/5"
         },
         "flags": 0
       },
@@ -391,13 +391,13 @@
     "properties": {
       "FileFormatDescriptor": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "HistoricalDataPathList": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/30"
         },
         "flags": 0
       },
@@ -409,7 +409,7 @@
       },
       "TemplatedPathList": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/31"
         },
         "flags": 0
       }
@@ -460,13 +460,13 @@
     "properties": {
       "SecurityGroupIdList": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/34"
         },
         "flags": 1
       },
       "SubnetIdList": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/35"
         },
         "flags": 1
       }
@@ -488,130 +488,15 @@
     "$type": "IntegerType"
   },
   {
-    "$type": "ObjectType",
-    "name": "CsvFormatDescriptor",
-    "properties": {
-      "Charset": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0
-      },
-      "ContainsHeader": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 0
-      },
-      "Delimiter": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0
-      },
-      "FileCompression": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0
-      },
-      "HeaderList": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "QuoteSymbol": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/24"
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Metric",
-    "properties": {
-      "AggregationFunction": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 1,
-        "description": "Operator used to aggregate metric values"
-      },
-      "MetricName": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 1
-      },
-      "Namespace": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AppFlowConfig",
-    "properties": {
-      "FlowName": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 1
-      },
-      "RoleArn": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CloudwatchConfig",
-    "properties": {
-      "RoleArn": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "FileFormatDescriptor",
-    "properties": {
-      "CsvFormatDescriptor": {
-        "type": {
-          "$ref": "#/28"
-        },
-        "flags": 0
-      },
-      "JsonFormatDescriptor": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0
-      }
+      "$ref": "#/12"
     }
   },
   {
@@ -655,88 +540,9 @@
     "value": "AWS.LookoutMetrics/AnomalyDetectorProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "AnomalyDetectorConfig",
-    "properties": {
-      "AnomalyDetectorFrequency": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 1,
-        "description": "Frequency of anomaly detection"
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "MetricSet",
-    "properties": {
-      "DimensionList": {
-        "type": {
-          "$ref": "#/29"
-        },
-        "flags": 0,
-        "description": "Dimensions for this MetricSet."
-      },
-      "MetricList": {
-        "type": {
-          "$ref": "#/31"
-        },
-        "flags": 1,
-        "description": "Metrics captured by this MetricSet."
-      },
-      "MetricSetDescription": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0,
-        "description": "A description for the MetricSet."
-      },
-      "MetricSetFrequency": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0,
-        "description": "A frequency period to aggregate the data"
-      },
-      "MetricSetName": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 1,
-        "description": "The name of the MetricSet."
-      },
-      "MetricSource": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1
-      },
-      "Offset": {
-        "type": {
-          "$ref": "#/27"
-        },
-        "flags": 0,
-        "description": "Offset, in seconds, between the frequency interval and the time at which the metrics are available."
-      },
-      "TimestampColumn": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0
-      },
-      "Timezone": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/13"
     }
   },
   {
@@ -745,7 +551,7 @@
     "properties": {
       "AnomalyDetectorConfig": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/0"
         },
         "flags": 1,
         "description": "Configuration options for the AnomalyDetector"
@@ -779,7 +585,7 @@
       },
       "MetricSetList": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/37"
         },
         "flags": 1,
         "description": "List of metric sets for anomaly detection"
@@ -801,14 +607,14 @@
         "type": {
           "$ref": "#/24"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/38"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -818,7 +624,7 @@
     "name": "AWS.LookoutMetrics/AnomalyDetector@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/46"
+      "$ref": "#/39"
     },
     "flags": 0
   }

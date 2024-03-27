@@ -3,37 +3,37 @@
 ## Resource AWS.ElasticLoadBalancingV2/Listener@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ElasticLoadBalancingV2/ListenerProperties](#awselasticloadbalancingv2listenerproperties) (Required): properties of the resource
+* **properties**: [AWS.ElasticLoadBalancingV2/ListenerProperties](#awselasticloadbalancingv2listenerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ElasticLoadBalancingV2/ListenerRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ElasticLoadBalancingV2/ListenerRuleProperties](#awselasticloadbalancingv2listenerruleproperties) (Required): properties of the resource
+* **properties**: [AWS.ElasticLoadBalancingV2/ListenerRuleProperties](#awselasticloadbalancingv2listenerruleproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ElasticLoadBalancingV2/LoadBalancer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ElasticLoadBalancingV2/LoadBalancerProperties](#awselasticloadbalancingv2loadbalancerproperties): properties of the resource
+* **properties**: [AWS.ElasticLoadBalancingV2/LoadBalancerProperties](#awselasticloadbalancingv2loadbalancerproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ElasticLoadBalancingV2/TargetGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ElasticLoadBalancingV2/TargetGroupProperties](#awselasticloadbalancingv2targetgroupproperties): properties of the resource
+* **properties**: [AWS.ElasticLoadBalancingV2/TargetGroupProperties](#awselasticloadbalancingv2targetgroupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ElasticLoadBalancingV2/TrustStore@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ElasticLoadBalancingV2/TrustStoreProperties](#awselasticloadbalancingv2truststoreproperties): properties of the resource
+* **properties**: [AWS.ElasticLoadBalancingV2/TrustStoreProperties](#awselasticloadbalancingv2truststoreproperties) (Identifier): properties of the resource
 
 ## Action
 ### Properties
@@ -56,21 +56,6 @@
 * **RedirectConfig**: [RedirectConfig](#redirectconfig): [Application Load Balancer] Information for creating a redirect action. Specify only when ``Type`` is ``redirect``.
 * **TargetGroupArn**: string: The Amazon Resource Name (ARN) of the target group. Specify only when ``Type`` is ``forward`` and you want to route to a single target group. To route to one or more target groups, use ``ForwardConfig`` instead.
 * **Type**: string (Required): The type of action.
-
-## AuthenticateCognitoConfig
-### Properties
-* **AuthenticationRequestExtraParams**: [ListenerRule_AuthenticationRequestExtraParams](#listenerruleauthenticationrequestextraparams): The query parameters (up to 10) to include in the redirect request to the authorization endpoint.
-* **OnUnauthenticatedRequest**: string: The behavior if the user is not authenticated. The following are possible values:
-  +  deny```` - Return an HTTP 401 Unauthorized error.
-  +  allow```` - Allow the request to be forwarded to the target.
-  +  authenticate```` - Redirect the request to the IdP authorization endpoint. This is the default value.
-* **Scope**: string: The set of user claims to be requested from the IdP. The default is ``openid``.
- To verify which scope values your IdP supports and how to separate multiple values, see the documentation for your IdP.
-* **SessionCookieName**: string: The name of the cookie used to maintain session information. The default is AWSELBAuthSessionCookie.
-* **SessionTimeout**: int: The maximum duration of the authentication session, in seconds. The default is 604800 seconds (7 days).
-* **UserPoolArn**: string (Required): The Amazon Resource Name (ARN) of the Amazon Cognito user pool.
-* **UserPoolClientId**: string (Required): The ID of the Amazon Cognito user pool client.
-* **UserPoolDomain**: string (Required): The domain prefix or fully-qualified domain name of the Amazon Cognito user pool.
 
 ## AuthenticateCognitoConfig
 ### Properties
@@ -87,9 +72,24 @@
 * **UserPoolClientId**: string (Required): The ID of the Amazon Cognito user pool client.
 * **UserPoolDomain**: string (Required): The domain prefix or fully-qualified domain name of the Amazon Cognito user pool.
 
-## AuthenticateOidcConfig
+## AuthenticateCognitoConfig
 ### Properties
 * **AuthenticationRequestExtraParams**: [ListenerRule_AuthenticationRequestExtraParams](#listenerruleauthenticationrequestextraparams): The query parameters (up to 10) to include in the redirect request to the authorization endpoint.
+* **OnUnauthenticatedRequest**: string: The behavior if the user is not authenticated. The following are possible values:
+  +  deny```` - Return an HTTP 401 Unauthorized error.
+  +  allow```` - Allow the request to be forwarded to the target.
+  +  authenticate```` - Redirect the request to the IdP authorization endpoint. This is the default value.
+* **Scope**: string: The set of user claims to be requested from the IdP. The default is ``openid``.
+ To verify which scope values your IdP supports and how to separate multiple values, see the documentation for your IdP.
+* **SessionCookieName**: string: The name of the cookie used to maintain session information. The default is AWSELBAuthSessionCookie.
+* **SessionTimeout**: int: The maximum duration of the authentication session, in seconds. The default is 604800 seconds (7 days).
+* **UserPoolArn**: string (Required): The Amazon Resource Name (ARN) of the Amazon Cognito user pool.
+* **UserPoolClientId**: string (Required): The ID of the Amazon Cognito user pool client.
+* **UserPoolDomain**: string (Required): The domain prefix or fully-qualified domain name of the Amazon Cognito user pool.
+
+## AuthenticateOidcConfig
+### Properties
+* **AuthenticationRequestExtraParams**: [Listener_AuthenticationRequestExtraParams](#listenerauthenticationrequestextraparams): The query parameters (up to 10) to include in the redirect request to the authorization endpoint.
 * **AuthorizationEndpoint**: string (Required): The authorization endpoint of the IdP. This must be a full URL, including the HTTPS protocol, the domain, and the path.
 * **ClientId**: string (Required): The OAuth 2.0 client identifier.
 * **ClientSecret**: string: The OAuth 2.0 client secret. This parameter is required if you are creating a rule. If you are modifying a rule, you can omit this parameter if you set ``UseExistingClientSecret`` to true.
@@ -101,14 +101,14 @@
 * **Scope**: string: The set of user claims to be requested from the IdP. The default is ``openid``.
  To verify which scope values your IdP supports and how to separate multiple values, see the documentation for your IdP.
 * **SessionCookieName**: string: The name of the cookie used to maintain session information. The default is AWSELBAuthSessionCookie.
-* **SessionTimeout**: int: The maximum duration of the authentication session, in seconds. The default is 604800 seconds (7 days).
+* **SessionTimeout**: string: The maximum duration of the authentication session, in seconds. The default is 604800 seconds (7 days).
 * **TokenEndpoint**: string (Required): The token endpoint of the IdP. This must be a full URL, including the HTTPS protocol, the domain, and the path.
 * **UseExistingClientSecret**: bool: Indicates whether to use the existing client secret when modifying a rule. If you are creating a rule, you can omit this parameter or set it to false.
 * **UserInfoEndpoint**: string (Required): The user info endpoint of the IdP. This must be a full URL, including the HTTPS protocol, the domain, and the path.
 
 ## AuthenticateOidcConfig
 ### Properties
-* **AuthenticationRequestExtraParams**: [Listener_AuthenticationRequestExtraParams](#listenerauthenticationrequestextraparams): The query parameters (up to 10) to include in the redirect request to the authorization endpoint.
+* **AuthenticationRequestExtraParams**: [ListenerRule_AuthenticationRequestExtraParams](#listenerruleauthenticationrequestextraparams): The query parameters (up to 10) to include in the redirect request to the authorization endpoint.
 * **AuthorizationEndpoint**: string (Required): The authorization endpoint of the IdP. This must be a full URL, including the HTTPS protocol, the domain, and the path.
 * **ClientId**: string (Required): The OAuth 2.0 client identifier.
 * **ClientSecret**: string: The OAuth 2.0 client secret. This parameter is required if you are creating a rule. If you are modifying a rule, you can omit this parameter if you set ``UseExistingClientSecret`` to true.
@@ -120,7 +120,7 @@
 * **Scope**: string: The set of user claims to be requested from the IdP. The default is ``openid``.
  To verify which scope values your IdP supports and how to separate multiple values, see the documentation for your IdP.
 * **SessionCookieName**: string: The name of the cookie used to maintain session information. The default is AWSELBAuthSessionCookie.
-* **SessionTimeout**: string: The maximum duration of the authentication session, in seconds. The default is 604800 seconds (7 days).
+* **SessionTimeout**: int: The maximum duration of the authentication session, in seconds. The default is 604800 seconds (7 days).
 * **TokenEndpoint**: string (Required): The token endpoint of the IdP. This must be a full URL, including the HTTPS protocol, the domain, and the path.
 * **UseExistingClientSecret**: bool: Indicates whether to use the existing client secret when modifying a rule. If you are creating a rule, you can omit this parameter or set it to false.
 * **UserInfoEndpoint**: string (Required): The user info endpoint of the IdP. This must be a full URL, including the HTTPS protocol, the domain, and the path.

@@ -3,16 +3,16 @@
 ## Resource AWS.InspectorV2/CisScanConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.InspectorV2/CisScanConfigurationProperties](#awsinspectorv2cisscanconfigurationproperties): properties of the resource
+* **properties**: [AWS.InspectorV2/CisScanConfigurationProperties](#awsinspectorv2cisscanconfigurationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.InspectorV2/Filter@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.InspectorV2/FilterProperties](#awsinspectorv2filterproperties) (Required): properties of the resource
+* **properties**: [AWS.InspectorV2/FilterProperties](#awsinspectorv2filterproperties) (Required, Identifier): properties of the resource
 
 ## AWS.InspectorV2/CisScanConfigurationProperties
 ### Properties

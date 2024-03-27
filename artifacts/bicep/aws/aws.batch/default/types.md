@@ -3,23 +3,23 @@
 ## Resource AWS.Batch/ComputeEnvironment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Batch/ComputeEnvironmentProperties](#awsbatchcomputeenvironmentproperties) (Required): properties of the resource
+* **properties**: [AWS.Batch/ComputeEnvironmentProperties](#awsbatchcomputeenvironmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Batch/JobQueue@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Batch/JobQueueProperties](#awsbatchjobqueueproperties) (Required): properties of the resource
+* **properties**: [AWS.Batch/JobQueueProperties](#awsbatchjobqueueproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Batch/SchedulingPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Batch/SchedulingPolicyProperties](#awsbatchschedulingpolicyproperties): properties of the resource
+* **properties**: [AWS.Batch/SchedulingPolicyProperties](#awsbatchschedulingpolicyproperties) (Identifier): properties of the resource
 
 ## AWS.Batch/ComputeEnvironmentProperties
 ### Properties

@@ -3,23 +3,23 @@
 ## Resource AWS.Panorama/ApplicationInstance@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Panorama/ApplicationInstanceProperties](#awspanoramaapplicationinstanceproperties) (Required): properties of the resource
+* **properties**: [AWS.Panorama/ApplicationInstanceProperties](#awspanoramaapplicationinstanceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Panorama/Package@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Panorama/PackageProperties](#awspanoramapackageproperties) (Required): properties of the resource
+* **properties**: [AWS.Panorama/PackageProperties](#awspanoramapackageproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Panorama/PackageVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Panorama/PackageVersionProperties](#awspanoramapackageversionproperties) (Required): properties of the resource
+* **properties**: [AWS.Panorama/PackageVersionProperties](#awspanoramapackageversionproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Panorama/ApplicationInstanceProperties
 ### Properties

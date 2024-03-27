@@ -8,33 +8,6 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
-      }
-    }
-  },
-  {
-    "$type": "StringType"
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.RDS/CustomDBEngineVersionProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
@@ -47,9 +20,16 @@
     }
   },
   {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.RDS/CustomDBEngineVersionProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/0"
     }
   },
   {
@@ -121,7 +101,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -143,14 +123,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -160,7 +140,7 @@
     "name": "AWS.RDS/CustomDBEngineVersion@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/6"
+      "$ref": "#/5"
     },
     "flags": 0
   },
@@ -182,187 +162,6 @@
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the IAM role that is associated with the DB cluster."
       }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Endpoint",
-    "properties": {
-      "Address": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 2,
-        "description": "Specifies the DNS address of the DB instance."
-      },
-      "HostedZoneId": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 2,
-        "description": "Specifies the ID that Amazon Route 53 assigns when you create a hosted zone."
-      },
-      "Port": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 2,
-        "description": "Specifies the port that the database engine is listening on."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "MasterUserSecret",
-    "properties": {
-      "KmsKeyId": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The AWS KMS key identifier that is used to encrypt the secret."
-      },
-      "SecretArn": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 2,
-        "description": "The Amazon Resource Name (ARN) of the secret."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ReadEndpoint",
-    "properties": {
-      "Address": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 2,
-        "description": "The reader endpoint for the DB cluster."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ScalingConfiguration",
-    "properties": {
-      "AutoPause": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0,
-        "description": "A value that indicates whether to allow or disallow automatic pause for an Aurora DB cluster in serverless DB engine mode. A DB cluster can be paused only when it's idle (it has no connections)."
-      },
-      "MaxCapacity": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "The maximum capacity for an Aurora DB cluster in serverless DB engine mode.\nFor Aurora MySQL, valid capacity values are 1, 2, 4, 8, 16, 32, 64, 128, and 256.\nFor Aurora PostgreSQL, valid capacity values are 2, 4, 8, 16, 32, 64, 192, and 384.\nThe maximum capacity must be greater than or equal to the minimum capacity."
-      },
-      "MinCapacity": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "The minimum capacity for an Aurora DB cluster in serverless DB engine mode.\nFor Aurora MySQL, valid capacity values are 1, 2, 4, 8, 16, 32, 64, 128, and 256.\nFor Aurora PostgreSQL, valid capacity values are 2, 4, 8, 16, 32, 64, 192, and 384.\nThe minimum capacity must be less than or equal to the maximum capacity."
-      },
-      "SecondsBeforeTimeout": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "The amount of time, in seconds, that Aurora Serverless v1 tries to find a scaling point to perform seamless scaling before enforcing the timeout action.\nThe default is 300."
-      },
-      "SecondsUntilAutoPause": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "The time, in seconds, before an Aurora DB cluster in serverless mode is paused."
-      },
-      "TimeoutAction": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The action to take when the timeout is reached, either ForceApplyCapacityChange or RollbackCapacityChange.\nForceApplyCapacityChange sets the capacity to the specified value as soon as possible.\nRollbackCapacityChange, the default, ignores the capacity change if a scaling point isn't found in the timeout period.\n\nFor more information, see Autoscaling for Aurora Serverless v1 in the Amazon Aurora User Guide."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ServerlessV2ScalingConfiguration",
-    "properties": {
-      "MaxCapacity": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "The maximum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 40, 40.5, 41, and so on. The largest value that you can use is 128."
-      },
-      "MinCapacity": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "The minimum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 8, 8.5, 9, and so on. The smallest value that you can use is 0.5."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "IntegerType"
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.RDS/DBClusterProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DBClusterRole",
-    "properties": {
-      "FeatureName": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The name of the feature associated with the AWS Identity and Access Management (IAM) role. For the list of supported feature names, see DBEngineVersion in the Amazon RDS API Reference."
-      },
-      "RoleArn": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the IAM role that is associated with the DB cluster."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/18"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
     }
   },
   {
@@ -424,35 +223,35 @@
     "properties": {
       "AutoPause": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A value that indicates whether to allow or disallow automatic pause for an Aurora DB cluster in serverless DB engine mode. A DB cluster can be paused only when it's idle (it has no connections)."
       },
       "MaxCapacity": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The maximum capacity for an Aurora DB cluster in serverless DB engine mode.\nFor Aurora MySQL, valid capacity values are 1, 2, 4, 8, 16, 32, 64, 128, and 256.\nFor Aurora PostgreSQL, valid capacity values are 2, 4, 8, 16, 32, 64, 192, and 384.\nThe maximum capacity must be greater than or equal to the minimum capacity."
       },
       "MinCapacity": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The minimum capacity for an Aurora DB cluster in serverless DB engine mode.\nFor Aurora MySQL, valid capacity values are 1, 2, 4, 8, 16, 32, 64, 128, and 256.\nFor Aurora PostgreSQL, valid capacity values are 2, 4, 8, 16, 32, 64, 192, and 384.\nThe minimum capacity must be less than or equal to the maximum capacity."
       },
       "SecondsBeforeTimeout": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The amount of time, in seconds, that Aurora Serverless v1 tries to find a scaling point to perform seamless scaling before enforcing the timeout action.\nThe default is 300."
       },
       "SecondsUntilAutoPause": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The time, in seconds, before an Aurora DB cluster in serverless mode is paused."
@@ -472,14 +271,14 @@
     "properties": {
       "MaxCapacity": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The maximum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 40, 40.5, 41, and so on. The largest value that you can use is 128."
       },
       "MinCapacity": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The minimum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 8, 8.5, 9, and so on. The smallest value that you can use is 0.5."
@@ -507,9 +306,37 @@
     }
   },
   {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.RDS/DBClusterProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
     }
   },
   {
@@ -524,49 +351,49 @@
     "properties": {
       "AllocatedStorage": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The amount of storage in gibibytes (GiB) to allocate to each DB instance in the Multi-AZ DB cluster."
       },
       "AssociatedRoles": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Provides a list of the AWS Identity and Access Management (IAM) roles that are associated with the DB cluster. IAM roles that are associated with a DB cluster grant permission for the DB cluster to access other AWS services on your behalf."
       },
       "AutoMinorVersionUpgrade": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A value that indicates whether minor engine upgrades are applied automatically to the DB cluster during the maintenance window. By default, minor engine upgrades are applied automatically."
       },
       "AvailabilityZones": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "A list of Availability Zones (AZs) where instances in the DB cluster can be created. For information on AWS Regions and Availability Zones, see Choosing the Regions and Availability Zones in the Amazon Aurora User Guide."
       },
       "BacktrackWindow": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The target backtrack window, in seconds. To disable backtracking, set this value to 0."
       },
       "BackupRetentionPeriod": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The number of days for which automated backups are retained."
       },
       "CopyTagsToSnapshot": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A value that indicates whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them."
@@ -636,7 +463,7 @@
       },
       "DeletionProtection": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled."
@@ -657,35 +484,35 @@
       },
       "EnableCloudwatchLogsExports": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "The list of log types that need to be enabled for exporting to CloudWatch Logs. The values in the list depend on the DB engine being used. For more information, see Publishing Database Logs to Amazon CloudWatch Logs in the Amazon Aurora User Guide."
       },
       "EnableGlobalWriteForwarding": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Specifies whether to enable this DB cluster to forward write operations to the primary cluster of a global cluster (Aurora global database). By default, write operations are not allowed on Aurora DB clusters that are secondary clusters in an Aurora global database."
       },
       "EnableHttpEndpoint": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A value that indicates whether to enable the HTTP endpoint for DB cluster. By default, the HTTP endpoint is disabled."
       },
       "EnableIAMDatabaseAuthentication": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A value that indicates whether to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts. By default, mapping is disabled."
       },
       "Endpoint": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 2
       },
@@ -719,7 +546,7 @@
       },
       "Iops": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The amount of Provisioned IOPS (input/output operations per second) to be initially allocated for each DB instance in the Multi-AZ DB cluster."
@@ -733,7 +560,7 @@
       },
       "ManageMasterUserPassword": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A value that indicates whether to manage the master user password with AWS Secrets Manager."
@@ -747,7 +574,7 @@
       },
       "MasterUserSecret": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "Contains the secret managed by RDS in AWS Secrets Manager for the master user password."
@@ -761,7 +588,7 @@
       },
       "MonitoringInterval": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB cluster. To turn off collecting Enhanced Monitoring metrics, specify 0. The default is 0."
@@ -782,7 +609,7 @@
       },
       "PerformanceInsightsEnabled": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A value that indicates whether to turn on Performance Insights for the DB cluster."
@@ -796,14 +623,14 @@
       },
       "PerformanceInsightsRetentionPeriod": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The amount of time, in days, to retain Performance Insights data."
       },
       "Port": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The port number on which the instances in the DB cluster accept connections. Default: 3306 if engine is set as aurora or 5432 if set to aurora-postgresql."
@@ -824,14 +651,14 @@
       },
       "PubliclyAccessible": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A value that indicates whether the DB cluster is publicly accessible."
       },
       "ReadEndpoint": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/10"
         },
         "flags": 0
       },
@@ -858,14 +685,14 @@
       },
       "ScalingConfiguration": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The ScalingConfiguration property type specifies the scaling configuration of an Aurora Serverless DB cluster."
       },
       "ServerlessV2ScalingConfiguration": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "Contains the scaling configuration of an Aurora Serverless v2 DB cluster."
@@ -893,14 +720,14 @@
       },
       "StorageEncrypted": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Indicates whether the DB instance is encrypted.\nIf you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceIdentifier property, don't specify this property. The value is inherited from the cluster, snapshot, or source DB instance."
       },
       "StorageThroughput": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 2,
         "description": "Specifies the storage throughput value for the DB cluster. This setting applies only to the gp3 storage type."
@@ -914,21 +741,21 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "UseLatestRestorableTime": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 4,
         "description": "A value that indicates whether to restore the DB cluster to the latest restorable backup time. By default, the DB cluster is not restored to the latest restorable backup time."
       },
       "VpcSecurityGroupIds": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "A list of EC2 VPC security groups to associate with this DB cluster."
@@ -950,14 +777,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/22"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -967,23 +794,9 @@
     "name": "AWS.RDS/DBCluster@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/31"
+      "$ref": "#/23"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.RDS/DBClusterParameterGroupProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DBClusterParameterGroup_Parameters",
-    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1006,9 +819,18 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.RDS/DBClusterParameterGroupProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DBClusterParameterGroup_Parameters",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
+      "$ref": "#/25"
     }
   },
   {
@@ -1037,14 +859,14 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "An array of parameters to be modified. A maximum of 20 parameters can be modified in a single request."
       },
       "Tags": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "The list of tags for the cluster parameter group."
@@ -1066,14 +888,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/29"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1083,7 +905,7 @@
     "name": "AWS.RDS/DBClusterParameterGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/39"
+      "$ref": "#/30"
     },
     "flags": 0
   },
@@ -1125,109 +947,6 @@
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the IAM role that is associated with the DB instance."
       }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Endpoint",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "MasterUserSecret",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ProcessorFeature",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The name of the processor feature. Valid names are ``coreCount`` and ``threadsPerCore``."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The value of a processor feature name."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.RDS/DBInstanceProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DBInstanceRole",
-    "properties": {
-      "FeatureName": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The name of the feature associated with the AWS Identity and Access Management (IAM) role. IAM roles that are associated with a DB instance grant permission for the DB instance to access other AWS services on your behalf. For the list of supported feature names, see the ``SupportedFeatureNames`` description in [DBEngineVersion](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DBEngineVersion.html) in the *Amazon RDS API Reference*."
-      },
-      "RoleArn": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the IAM role that is associated with the DB instance."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/48"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CertificateDetails",
-    "properties": {
-      "CAIdentifier": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 2,
-        "description": "The CA identifier of the CA certificate used for the DB instance's server certificate."
-      },
-      "ValidTill": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 2,
-        "description": "The expiration date of the DB instance?s server certificate."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
     }
   },
   {
@@ -1298,12 +1017,6 @@
     }
   },
   {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/56"
-    }
-  },
-  {
     "$type": "ObjectType",
     "name": "Tag",
     "properties": {
@@ -1324,9 +1037,43 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.RDS/DBInstanceProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/33"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/36"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/37"
     }
   },
   {
@@ -1348,21 +1095,21 @@
       },
       "AllowMajorVersionUpgrade": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 4,
         "description": "A value that indicates whether major version upgrades are allowed. Changing this parameter doesn't result in an outage and the change is asynchronously applied as soon as possible.\n Constraints: Major version upgrades must be allowed when specifying a value for the ``EngineVersion`` parameter that is a different major version than the DB instance's current version."
       },
       "AssociatedRoles": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "The IAMlong (IAM) roles associated with the DB instance. \n  *Amazon Aurora* \n Not applicable. The associated roles are managed by the DB cluster."
       },
       "AutoMinorVersionUpgrade": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A value that indicates whether minor engine upgrades are applied automatically to the DB instance during the maintenance window. By default, minor engine upgrades are applied automatically."
@@ -1383,7 +1130,7 @@
       },
       "BackupRetentionPeriod": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The number of days for which automated backups are retained. Setting this parameter to a positive number enables backups. Setting this parameter to 0 disables automated backups.\n *Amazon Aurora*\n Not applicable. The retention period for automated backups is managed by the DB cluster.\n Default: 1\n Constraints:\n  +  Must be a value from 0 to 35\n  +  Can't be set to 0 if the DB instance is a source to read replicas"
@@ -1397,14 +1144,14 @@
       },
       "CertificateDetails": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "The details of the DB instance's server certificate."
       },
       "CertificateRotationRestart": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 4,
         "description": "Specifies whether the DB instance is restarted when you rotate your SSL/TLS certificate.\n By default, the DB instance is restarted when you rotate your SSL/TLS certificate. The certificate is not updated until the DB instance is restarted.\n  Set this parameter only if you are *not* using SSL/TLS to connect to the DB instance.\n  If you are using SSL/TLS to connect to the DB instance, follow the appropriate instructions for your DB engine to rotate your SSL/TLS certificate:\n  +  For more information about rotating your SSL/TLS certificate for RDS DB engines, see [Rotating Your SSL/TLS Certificate.](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL-certificate-rotation.html) in the *Amazon RDS User Guide.* \n  +  For more information about rotating your SSL/TLS certificate for Aurora DB engines, see [Rotating Your SSL/TLS Certificate](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.SSL-certificate-rotation.html) in the *Amazon Aurora User Gui"
@@ -1418,7 +1165,7 @@
       },
       "CopyTagsToSnapshot": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Specifies whether to copy tags from the DB instance to snapshots of the DB instance. By default, tags are not copied.\n This setting doesn't apply to Amazon Aurora DB instances. Copying tags to snapshots is managed by the DB cluster. Setting this value for an Aurora DB instance has no effect on the DB cluster setting."
@@ -1481,7 +1228,7 @@
       },
       "DBSecurityGroups": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "A list of the DB security groups to assign to the DB instance. The list can include both the name of existing DB security groups or references to AWS::RDS::DBSecurityGroup resources created in the template.\n  If you set DBSecurityGroups, you must not set VPCSecurityGroups, and vice versa. Also, note that the DBSecurityGroups property exists only for backwards compatibility with older regions and is no longer recommended for providing security information to an RDS DB instance. Instead, use VPCSecurityGroups.\n  If you specify this property, AWS CloudFormation sends only the following properties (if specified) to Amazon RDS during create operations:\n  +  ``AllocatedStorage``\n  +  ``AutoMinorVersionUpgrade``\n  +  ``AvailabilityZone``\n  +  ``BackupRetentionPeriod``\n  +  ``CharacterSetName``\n  +  ``DBInstanceClass``\n  +  ``DBName``\n  +  ``DBParameterGroupName``\n  +  ``DBSecurityGroups``\n  +  ``DBSubnetGroupName``\n  +  ``Engine``\n  +  ``EngineVersion``\n  +  ``Iops``\n  +  ``LicenseModel``\n  +"
@@ -1516,21 +1263,21 @@
       },
       "DedicatedLogVolume": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Indicates whether the DB instance has a dedicated log volume (DLV) enabled."
       },
       "DeleteAutomatedBackups": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 4,
         "description": "A value that indicates whether to remove automated backups immediately after the DB instance is deleted. This parameter isn't case-sensitive. The default is to remove automated backups immediately after the DB instance is deleted.\n *Amazon Aurora*\n Not applicable. When you delete a DB cluster, all automated backups for that DB cluster are deleted and can't be recovered. Manual DB cluster snapshots of the DB cluster are not deleted."
       },
       "DeletionProtection": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A value that indicates whether the DB instance has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled. For more information, see [Deleting a DB Instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html). \n  *Amazon Aurora* \n Not applicable. You can enable or disable deletion protection for the DB cluster. For more information, see ``CreateDBCluster``. DB instances in a DB cluster can be deleted even when deletion protection is enabled for the DB cluster."
@@ -1551,7 +1298,7 @@
       },
       "DomainDnsIps": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The IPv4 DNS IP addresses of your primary and secondary Active Directory domain controllers.\n Constraints:\n  +  Two IP addresses must be provided. If there isn't a secondary domain controller, use the IP address of the primary domain controller for both entries in the list.\n  \n Example: ``123.124.125.126,234.235.236.237``"
@@ -1579,28 +1326,28 @@
       },
       "EnableCloudwatchLogsExports": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The list of log types that need to be enabled for exporting to CloudWatch Logs. The values in the list depend on the DB engine being used. For more information, see [Publishing Database Logs to Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch) in the *Amazon Relational Database Service User Guide*.\n  *Amazon Aurora* \n Not applicable. CloudWatch Logs exports are managed by the DB cluster. \n  *Db2* \n Valid values: ``diag.log``, ``notify.log`` \n  *MariaDB* \n Valid values: ``audit``, ``error``, ``general``, ``slowquery`` \n  *Microsoft SQL Server* \n Valid values: ``agent``, ``error`` \n *MySQL* \n Valid values: ``audit``, ``error``, ``general``, ``slowquery`` \n  *Oracle* \n Valid values: ``alert``, ``audit``, ``listener``, ``trace``, ``oemagent`` \n  *PostgreSQL* \n Valid values: ``postgresql``, ``upgrade``"
       },
       "EnableIAMDatabaseAuthentication": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A value that indicates whether to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts. By default, mapping is disabled.\n This property is supported for RDS for MariaDB, RDS for MySQL, and RDS for PostgreSQL. For more information, see [IAM Database Authentication for MariaDB, MySQL, and PostgreSQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html) in the *Amazon RDS User Guide.* \n  *Amazon Aurora* \n Not applicable. Mapping AWS IAM accounts to database accounts is managed by the DB cluster."
       },
       "EnablePerformanceInsights": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Specifies whether to enable Performance Insights for the DB instance. For more information, see [Using Amazon Performance Insights](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html) in the *Amazon RDS User Guide*.\n This setting doesn't apply to RDS Custom DB instances."
       },
       "Endpoint": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The connection endpoint for the DB instance.\n  The endpoint might not be shown for instances with the status of ``creating``."
@@ -1621,7 +1368,7 @@
       },
       "Iops": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The number of I/O operations per second (IOPS) that the database provisions. The value must be equal to or greater than 1000. \n If you specify this property, you must follow the range of allowed ratios of your requested IOPS rate to the amount of storage that you allocate (IOPS to allocated storage). For example, you can provision an Oracle database instance with 1000 IOPS and 200 GiB of storage (a ratio of 5:1), or specify 2000 IOPS with 200 GiB of storage (a ratio of 10:1). For more information, see [Amazon RDS Provisioned IOPS Storage to Improve Performance](https://docs.aws.amazon.com/AmazonRDS/latest/DeveloperGuide/CHAP_Storage.html#USER_PIOPS) in the *Amazon RDS User Guide*.\n  If you specify ``io1`` for the ``StorageType`` property, then you must also specify the ``Iops`` property.\n  Constraints:\n  + For RDS for Db2, MariaDB, MySQL, Oracle, and PostgreSQL - Must be a multiple between .5 and 50 of the storage amount for the DB instance.\n + For RDS for SQL Server - Must be a multip"
@@ -1642,7 +1389,7 @@
       },
       "ManageMasterUserPassword": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Specifies whether to manage the master user password with AWS Secrets Manager.\n For more information, see [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html) in the *Amazon RDS User Guide.* \n Constraints:\n  +  Can't manage the master user password with AWS Secrets Manager if ``MasterUserPassword`` is specified."
@@ -1656,7 +1403,7 @@
       },
       "MasterUserSecret": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "The secret managed by RDS in AWS Secrets Manager for the master user password.\n For more information, see [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html) in the *Amazon RDS User Guide.*"
@@ -1670,14 +1417,14 @@
       },
       "MaxAllocatedStorage": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The upper limit in gibibytes (GiB) to which Amazon RDS can automatically scale the storage of the DB instance.\n For more information about this setting, including limitations that apply to it, see [Managing capacity automatically with Amazon RDS storage autoscaling](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling) in the *Amazon RDS User Guide*.\n This setting doesn't apply to the following DB instances:\n  +  Amazon Aurora (Storage is managed by the DB cluster.)\n  +  RDS Custom"
       },
       "MonitoringInterval": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collection of Enhanced Monitoring metrics, specify 0. The default is 0.\n If ``MonitoringRoleArn`` is specified, then you must set ``MonitoringInterval`` to a value other than 0.\n This setting doesn't apply to RDS Custom.\n Valid Values: ``0, 1, 5, 10, 15, 30, 60``"
@@ -1691,7 +1438,7 @@
       },
       "MultiAZ": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Specifies whether the database instance is a Multi-AZ DB instance deployment. You can't set the ``AvailabilityZone`` parameter if the ``MultiAZ`` parameter is set to true. \n  For more information, see [Multi-AZ deployments for high availability](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html) in the *Amazon RDS User Guide*.\n  *Amazon Aurora* \n Not applicable. Amazon Aurora storage is replicated across all of the Availability Zones and doesn't require the ``MultiAZ`` option to be set."
@@ -1726,7 +1473,7 @@
       },
       "PerformanceInsightsRetentionPeriod": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The number of days to retain Performance Insights data.\n This setting doesn't apply to RDS Custom DB instances.\n Valid Values:\n  +   ``7`` \n  +   *month* * 31, where *month* is a number of months from 1-23. Examples: ``93`` (3 months * 31), ``341`` (11 months * 31), ``589`` (19 months * 31)\n  +   ``731`` \n  \n Default: ``7`` days\n If you specify a retention period that isn't valid, such as ``94``, Amazon RDS returns an error."
@@ -1754,21 +1501,21 @@
       },
       "ProcessorFeatures": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The number of CPU cores and the number of threads per core for the DB instance class of the DB instance.\n This setting doesn't apply to Amazon Aurora or RDS Custom DB instances."
       },
       "PromotionTier": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The order of priority in which an Aurora Replica is promoted to the primary instance after a failure of the existing primary instance. For more information, see [Fault Tolerance for an Aurora DB Cluster](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance) in the *Amazon Aurora User Guide*.\n This setting doesn't apply to RDS Custom DB instances.\n Default: ``1`` \n Valid Values: ``0 - 15``"
       },
       "PubliclyAccessible": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Indicates whether the DB instance is an internet-facing instance. If you specify true, AWS CloudFormation creates an instance with a publicly resolvable DNS name, which resolves to a public IP address. If you specify false, AWS CloudFormation creates an internal instance with a DNS name that resolves to a private IP address. \n The default behavior value depends on your VPC setup and the database subnet group. For more information, see the ``PubliclyAccessible`` parameter in the [CreateDBInstance](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html) in the *Amazon RDS API Reference*."
@@ -1824,14 +1571,14 @@
       },
       "StorageEncrypted": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A value that indicates whether the DB instance is encrypted. By default, it isn't encrypted.\n If you specify the ``KmsKeyId`` property, then you must enable encryption.\n If you specify the ``SourceDBInstanceIdentifier`` property, don't specify this property. The value is inherited from the source DB instance, and if the DB instance is encrypted, the specified ``KmsKeyId`` property is used.\n If you specify the ``DBSnapshotIdentifier`` and the specified snapshot is encrypted, don't specify this property. The value is inherited from the snapshot, and the specified ``KmsKeyId`` property is used.\n If you specify the ``DBSnapshotIdentifier`` and the specified snapshot isn't encrypted, you can use this property to specify that the restored DB instance is encrypted. Specify the ``KmsKeyId`` property for the KMS key to use for encryption. If you don't want the restored DB instance to be encrypted, then don't set this property or set it to ``false``.\n *Amazon Aurora*\n Not applicable. The encrypt"
       },
       "StorageThroughput": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "Specifies the storage throughput value for the DB instance. This setting applies only to the ``gp3`` storage type. \n This setting doesn't apply to RDS Custom or Amazon Aurora."
@@ -1845,7 +1592,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "An optional array of key-value pairs to apply to this DB instance."
@@ -1873,21 +1620,21 @@
       },
       "UseDefaultProcessorFeatures": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 4,
         "description": "Specifies whether the DB instance class of the DB instance uses its default processor features.\n This setting doesn't apply to RDS Custom DB instances."
       },
       "UseLatestRestorableTime": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 4,
         "description": "Specifies whether the DB instance is restored from the latest backup time. By default, the DB instance isn't restored from the latest backup time.\n Constraints:\n  +  Can't be specified if the ``RestoreTime`` parameter is provided."
       },
       "VPCSecurityGroups": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "A list of the VPC security group IDs to assign to the DB instance. The list can include both the physical IDs of existing VPC security groups and references to [AWS::EC2::SecurityGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resources created in the template.\n If you plan to update the resource, don't specify VPC security groups in a shared VPC.\n  If you set ``VPCSecurityGroups``, you must not set [DBSecurityGroups](https://docs.aws.amazon.com//AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-dbsecuritygroups), and vice versa.\n  You can migrate a DB instance in your stack from an RDS DB security group to a VPC security group, but keep the following in mind:\n  +  You can't revert to using an RDS security group after you establish a VPC security group membership.\n  +  When you migrate your DB instance to VPC security groups, if your stack update rolls back because the DB instanc"
@@ -1909,14 +1656,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/46"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -1926,23 +1673,9 @@
     "name": "AWS.RDS/DBInstance@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/62"
+      "$ref": "#/47"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.RDS/DBParameterGroupProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DBParameterGroup_Parameters",
-    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1965,9 +1698,18 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.RDS/DBParameterGroupProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DBParameterGroup_Parameters",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/67"
+      "$ref": "#/49"
     }
   },
   {
@@ -1997,14 +1739,14 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "An array of parameter names and values for the parameter update. At least one parameter name and value must be supplied. Subsequent arguments are optional.\n RDS for Db2 requires you to bring your own Db2 license. You must enter your IBM customer ID (``rds.ibm_customer_id``) and site number (``rds.ibm_site_id``) before starting a Db2 instance.\n For more information about DB parameters and DB parameter groups for Amazon RDS DB engines, see [Working with DB Parameter Groups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html) in the *Amazon RDS User Guide*.\n For more information about DB cluster and DB instance parameters and parameter groups for Amazon Aurora DB engines, see [Working with DB Parameter Groups and DB Cluster Parameter Groups](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_WorkingWithParamGroups.html) in the *Amazon Aurora User Guide*.\n  AWS CloudFormation doesn't support specifying an apply method for each individual "
       },
       "Tags": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "An optional array of key-value pairs to apply to this DB parameter group.\n  Currently, this is the only property that supports drift detection."
@@ -2026,14 +1768,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/53"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -2043,7 +1785,7 @@
     "name": "AWS.RDS/DBParameterGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/70"
+      "$ref": "#/54"
     },
     "flags": 0
   },
@@ -2111,74 +1853,15 @@
     "value": "AWS.RDS/DBProxyProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "AuthFormat",
-    "properties": {
-      "AuthScheme": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The type of authentication that the proxy uses for connections from the proxy to the underlying database. "
-      },
-      "ClientPasswordAuthType": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The type of authentication the proxy uses for connections from clients."
-      },
-      "Description": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "A user-specified description about the authentication used by a proxy to log in as a specific database user. "
-      },
-      "IAMAuth": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "Whether to require or disallow Amazon Web Services Identity and Access Management (IAM) authentication for connections to the proxy. The ENABLED value is valid only for proxies with RDS for Microsoft SQL Server."
-      },
-      "SecretArn": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The Amazon Resource Name (ARN) representing the secret that the proxy uses to authenticate to the RDS DB instance or Aurora DB cluster. These secrets are stored within Amazon Secrets Manager. "
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/56"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/75"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TagFormat",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/77"
+      "$ref": "#/57"
     }
   },
   {
@@ -2199,7 +1882,7 @@
     "properties": {
       "Auth": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/59"
         },
         "flags": 1,
         "description": "The authorization mechanism that the proxy uses."
@@ -2220,7 +1903,7 @@
       },
       "DebugLogging": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Whether the proxy includes detailed information about SQL statements in its logs."
@@ -2241,14 +1924,14 @@
       },
       "IdleClientTimeout": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The number of seconds that a connection to the proxy can be inactive before the proxy disconnects it."
       },
       "RequireTLS": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A Boolean parameter that specifies whether Transport Layer Security (TLS) encryption is required for connections to the proxy."
@@ -2262,7 +1945,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "An optional set of key-value pairs to associate arbitrary data of your choosing with the proxy."
@@ -2276,14 +1959,14 @@
       },
       "VpcSecurityGroupIds": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "VPC security group IDs to associate with the new proxy."
       },
       "VpcSubnetIds": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/62"
         },
         "flags": 1,
         "description": "VPC subnet IDs to associate with the new proxy."
@@ -2305,14 +1988,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/63"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -2322,18 +2005,9 @@
     "name": "AWS.RDS/DBProxy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/82"
+      "$ref": "#/64"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TagFormat",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.RDS/DBProxyEndpointProperties"
   },
   {
     "$type": "ObjectType",
@@ -2354,9 +2028,13 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.RDS/DBProxyEndpointProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/86"
+      "$ref": "#/66"
     }
   },
   {
@@ -2405,14 +2083,14 @@
       },
       "IsDefault": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 2,
         "description": "A value that indicates whether this endpoint is the default endpoint for the associated DB proxy. Default DB proxy endpoints always have read/write capability. Other endpoints that you associate with the DB proxy can be either read/write or read-only."
       },
       "Tags": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "An optional set of key-value pairs to associate arbitrary data of your choosing with the DB proxy endpoint."
@@ -2433,14 +2111,14 @@
       },
       "VpcSecurityGroupIds": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "VPC security group IDs to associate with the new DB proxy endpoint."
       },
       "VpcSubnetIds": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/70"
         },
         "flags": 1,
         "description": "VPC subnet IDs to associate with the new DB proxy endpoint."
@@ -2462,14 +2140,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/71"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -2479,7 +2157,7 @@
     "name": "AWS.RDS/DBProxyEndpoint@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/91"
+      "$ref": "#/72"
     },
     "flags": 0
   },
@@ -2489,7 +2167,7 @@
     "properties": {
       "ConnectionBorrowTimeout": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The number of seconds for a proxy to wait for a connection to become available in the connection pool."
@@ -2503,21 +2181,21 @@
       },
       "MaxConnectionsPercent": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The maximum size of the connection pool for each target in a target group."
       },
       "MaxIdleConnectionsPercent": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "Controls how actively the proxy closes idle database connections in the connection pool."
       },
       "SessionPinningFilters": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "Each item in the list represents a class of SQL operations that normally cause all later statements in a session using a proxy to be pinned to the same underlying database connection."
@@ -2533,47 +2211,6 @@
   {
     "$type": "StringLiteralType",
     "value": "AWS.RDS/DBProxyTargetGroupProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ConnectionPoolConfigurationInfoFormat",
-    "properties": {
-      "ConnectionBorrowTimeout": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "The number of seconds for a proxy to wait for a connection to become available in the connection pool."
-      },
-      "InitQuery": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "One or more SQL statements for the proxy to run when opening each new database connection."
-      },
-      "MaxConnectionsPercent": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "The maximum size of the connection pool for each target in a target group."
-      },
-      "MaxIdleConnectionsPercent": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "Controls how actively the proxy closes idle database connections in the connection pool."
-      },
-      "SessionPinningFilters": {
-        "type": {
-          "$ref": "#/94"
-        },
-        "flags": 0,
-        "description": "Each item in the list represents a class of SQL operations that normally cause all later statements in a session using a proxy to be pinned to the same underlying database connection."
-      }
-    }
   },
   {
     "$type": "ArrayType",
@@ -2593,19 +2230,19 @@
     "properties": {
       "ConnectionPoolConfigurationInfo": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/74"
         },
         "flags": 0
       },
       "DBClusterIdentifiers": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/77"
         },
         "flags": 0
       },
       "DBInstanceIdentifiers": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/78"
         },
         "flags": 0
       },
@@ -2647,14 +2284,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/79"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -2664,24 +2301,9 @@
     "name": "AWS.RDS/DBProxyTargetGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/100"
+      "$ref": "#/80"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.RDS/DBSubnetGroupProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
   },
   {
     "$type": "ObjectType",
@@ -2704,9 +2326,19 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.RDS/DBSubnetGroupProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/82"
     }
   },
   {
@@ -2729,14 +2361,14 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/84"
         },
         "flags": 5,
         "description": "The EC2 Subnet IDs for the DB subnet group."
       },
       "Tags": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/85"
         },
         "flags": 0,
         "description": "An optional array of key-value pairs to apply to this DB subnet group."
@@ -2758,14 +2390,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/86"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -2775,30 +2407,9 @@
     "name": "AWS.RDS/DBSubnetGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/108"
+      "$ref": "#/87"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.RDS/EventSubscriptionProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
   },
   {
     "$type": "ObjectType",
@@ -2821,9 +2432,25 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.RDS/EventSubscriptionProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/114"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/89"
     }
   },
   {
@@ -2832,14 +2459,14 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A Boolean value; set to true to activate the subscription, set to false to create the subscription but not active it."
       },
       "EventCategories": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "A list of event categories for a SourceType that you want to subscribe to. You can see a list of the categories for a given SourceType in the Events topic in the Amazon RDS User Guide or by using the DescribeEventCategories action."
@@ -2853,7 +2480,7 @@
       },
       "SourceIds": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/92"
         },
         "flags": 0,
         "description": "The list of identifiers of the event sources for which events will be returned. If not specified, then all sources are included in the response. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it cannot end with a hyphen or contain two consecutive hyphens."
@@ -2874,7 +2501,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2896,14 +2523,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/94"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -2913,7 +2540,7 @@
     "name": "AWS.RDS/EventSubscription@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/117"
+      "$ref": "#/95"
     },
     "flags": 0
   },
@@ -2927,7 +2554,7 @@
     "properties": {
       "DeletionProtection": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The deletion protection setting for the new global database. The global database can't be deleted when deletion protection is enabled."
@@ -2962,7 +2589,7 @@
       },
       "StorageEncrypted": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": " The storage encryption setting for the new global database cluster.\nIf you specify the SourceDBClusterIdentifier property, don't specify this property. The value is inherited from the cluster."
@@ -2984,14 +2611,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/98"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -3001,23 +2628,13 @@
     "name": "AWS.RDS/GlobalCluster@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/121"
+      "$ref": "#/99"
     },
     "flags": 0
   },
   {
     "$type": "ObjectType",
     "name": "EncryptionContextMap",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tags",
     "properties": {}
   },
   {
@@ -3041,9 +2658,14 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/126"
+      "$ref": "#/102"
     }
   },
   {
@@ -3051,14 +2673,9 @@
     "value": "AWS.RDS/IntegrationProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "EncryptionContextMap",
-    "properties": {}
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/126"
+      "$ref": "#/102"
     }
   },
   {
@@ -3067,7 +2684,7 @@
     "properties": {
       "AdditionalEncryptionContext": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/101"
         },
         "flags": 0
       },
@@ -3107,7 +2724,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/106"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -3136,14 +2753,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/107"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -3153,7 +2770,7 @@
     "name": "AWS.RDS/Integration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/132"
+      "$ref": "#/108"
     },
     "flags": 0
   },
@@ -3163,7 +2780,7 @@
     "properties": {
       "DBSecurityGroupMemberships": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "A list of DBSecurityGroupMembership name strings used for this option."
@@ -3177,7 +2794,7 @@
       },
       "OptionSettings": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/114"
         },
         "flags": 0,
         "description": "The option settings to include in an option group."
@@ -3191,14 +2808,14 @@
       },
       "Port": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The optional port for the option."
       },
       "VpcSecurityGroupMemberships": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "A list of VpcSecurityGroupMembership name strings used for this option."
@@ -3228,87 +2845,6 @@
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/135"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.RDS/OptionGroupProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "OptionConfiguration",
-    "properties": {
-      "DBSecurityGroupMemberships": {
-        "type": {
-          "$ref": "#/137"
-        },
-        "flags": 0,
-        "description": "A list of DBSecurityGroupMembership name strings used for this option."
-      },
-      "OptionName": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The configuration of options to include in a group."
-      },
-      "OptionSettings": {
-        "type": {
-          "$ref": "#/138"
-        },
-        "flags": 0,
-        "description": "The option settings to include in an option group."
-      },
-      "OptionVersion": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The version for the option."
-      },
-      "Port": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "The optional port for the option."
-      },
-      "VpcSecurityGroupMemberships": {
-        "type": {
-          "$ref": "#/139"
-        },
-        "flags": 0,
-        "description": "A list of VpcSecurityGroupMembership name strings used for this option."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/141"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
     "properties": {
       "Key": {
         "type": {
@@ -3329,7 +2865,35 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/143"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/111"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.RDS/OptionGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/110"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/112"
     }
   },
   {
@@ -3352,7 +2916,7 @@
       },
       "OptionConfigurations": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/117"
         },
         "flags": 0,
         "description": "Indicates what options are available in the option group."
@@ -3373,7 +2937,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -3395,14 +2959,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/119"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -3412,7 +2976,7 @@
     "name": "AWS.RDS/OptionGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/146"
+      "$ref": "#/120"
     },
     "flags": 0
   }

@@ -3,16 +3,16 @@
 ## Resource AWS.Comprehend/DocumentClassifier@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Comprehend/DocumentClassifierProperties](#awscomprehenddocumentclassifierproperties) (Required): properties of the resource
+* **properties**: [AWS.Comprehend/DocumentClassifierProperties](#awscomprehenddocumentclassifierproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Comprehend/Flywheel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Comprehend/FlywheelProperties](#awscomprehendflywheelproperties) (Required): properties of the resource
+* **properties**: [AWS.Comprehend/FlywheelProperties](#awscomprehendflywheelproperties) (Required, Identifier): properties of the resource
 
 ## AugmentedManifestsListItem
 ### Properties
@@ -110,6 +110,11 @@
 * **DocumentClassificationConfig**: [DocumentClassificationConfig](#documentclassificationconfig)
 * **EntityRecognitionConfig**: [EntityRecognitionConfig](#entityrecognitionconfig)
 * **LanguageCode**: string (Required)
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required)
+* **Subnets**: string[] (Required)
 
 ## VpcConfig
 ### Properties

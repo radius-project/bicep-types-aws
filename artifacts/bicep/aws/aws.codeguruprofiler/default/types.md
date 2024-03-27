@@ -3,9 +3,9 @@
 ## Resource AWS.CodeGuruProfiler/ProfilingGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CodeGuruProfiler/ProfilingGroupProperties](#awscodeguruprofilerprofilinggroupproperties) (Required): properties of the resource
+* **properties**: [AWS.CodeGuruProfiler/ProfilingGroupProperties](#awscodeguruprofilerprofilinggroupproperties) (Required, Identifier): properties of the resource
 
 ## AWS.CodeGuruProfiler/ProfilingGroupProperties
 ### Properties

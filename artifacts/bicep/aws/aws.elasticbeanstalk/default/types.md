@@ -3,30 +3,30 @@
 ## Resource AWS.ElasticBeanstalk/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ElasticBeanstalk/ApplicationProperties](#awselasticbeanstalkapplicationproperties): properties of the resource
+* **properties**: [AWS.ElasticBeanstalk/ApplicationProperties](#awselasticbeanstalkapplicationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ElasticBeanstalk/ApplicationVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ElasticBeanstalk/ApplicationVersionProperties](#awselasticbeanstalkapplicationversionproperties) (Required): properties of the resource
+* **properties**: [AWS.ElasticBeanstalk/ApplicationVersionProperties](#awselasticbeanstalkapplicationversionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ElasticBeanstalk/ConfigurationTemplate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ElasticBeanstalk/ConfigurationTemplateProperties](#awselasticbeanstalkconfigurationtemplateproperties) (Required): properties of the resource
+* **properties**: [AWS.ElasticBeanstalk/ConfigurationTemplateProperties](#awselasticbeanstalkconfigurationtemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ElasticBeanstalk/Environment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ElasticBeanstalk/EnvironmentProperties](#awselasticbeanstalkenvironmentproperties) (Required): properties of the resource
+* **properties**: [AWS.ElasticBeanstalk/EnvironmentProperties](#awselasticbeanstalkenvironmentproperties) (Required, Identifier): properties of the resource
 
 ## ApplicationResourceLifecycleConfig
 ### Properties

@@ -15,7 +15,7 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 0 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+        "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       }
     }
   },
@@ -27,29 +27,9 @@
     "value": "AWS.Config/AggregationAuthorizationProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/0"
     }
   },
   {
@@ -79,7 +59,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The tags for the AggregationAuthorization."
@@ -101,14 +81,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -118,7 +98,7 @@
     "name": "AWS.Config/AggregationAuthorization@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/6"
+      "$ref": "#/5"
     },
     "flags": 0
   },
@@ -128,7 +108,7 @@
     "properties": {
       "EnableDebugLogDelivery": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The boolean expression for enabling debug logging for your CC Custom Policy rule. The default value is ``false``."
@@ -175,7 +155,7 @@
       },
       "ComplianceResourceTypes": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "The resource types of only those AWS resources that you want to trigger an evaluation for the rule. You can only specify one type if you also specify a resource ID for ``ComplianceResourceId``."
@@ -202,7 +182,7 @@
     "properties": {
       "CustomPolicyDetails": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "Provides the runtime system, policy definition, and whether debug logging is enabled. Required when owner is set to ``CUSTOM_POLICY``."
@@ -216,7 +196,7 @@
       },
       "SourceDetails": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Provides the source and the message types that cause CC to evaluate your AWS resources against a rule. It also provides the frequency with which you want CC to run evaluations for the rule if the trigger type is periodic.\n If the owner is set to ``CUSTOM_POLICY``, the only acceptable values for the CC rule trigger message type are ``ConfigurationItemChangeNotification`` and ``OversizedConfigurationItemChangeNotification``."
@@ -267,36 +247,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "CustomPolicyDetails",
-    "properties": {
-      "EnableDebugLogDelivery": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0,
-        "description": "The boolean expression for enabling debug logging for your CC Custom Policy rule. The default value is ``false``."
-      },
-      "PolicyRuntime": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The runtime system for your CC Custom Policy rule. Guard is a policy-as-code language that allows you to write policies that are enforced by CC Custom Policy rules. For more information about Guard, see the [Guard GitHub Repository](https://docs.aws.amazon.com/https://github.com/aws-cloudformation/cloudformation-guard)."
-      },
-      "PolicyText": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 4,
-        "description": "The policy definition containing the logic for your CC Custom Policy rule."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/11"
     }
   },
   {
@@ -317,22 +270,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "EvaluationModeConfiguration",
-    "properties": {
-      "Mode": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The mode of an evaluation. The valid values are Detective or Proactive."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/8"
     }
   },
   {
@@ -347,77 +287,9 @@
         "$ref": "#/1"
       },
       {
-        "$ref": "#/21"
+        "$ref": "#/18"
       }
     ]
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Scope",
-    "properties": {
-      "ComplianceResourceId": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The ID of the only AWS resource that you want to trigger an evaluation for the rule. If you specify a resource ID, you must specify one resource type for ``ComplianceResourceTypes``."
-      },
-      "ComplianceResourceTypes": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The resource types of only those AWS resources that you want to trigger an evaluation for the rule. You can only specify one type if you also specify a resource ID for ``ComplianceResourceId``."
-      },
-      "TagKey": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The tag key that is applied to only those AWS resources that you want to trigger an evaluation for the rule."
-      },
-      "TagValue": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The tag value applied to only those AWS resources that you want to trigger an evaluation for the rule. If you specify a value for ``TagValue``, you must also specify a value for ``TagKey``."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Source",
-    "properties": {
-      "CustomPolicyDetails": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0,
-        "description": "Provides the runtime system, policy definition, and whether debug logging is enabled. Required when owner is set to ``CUSTOM_POLICY``."
-      },
-      "Owner": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "Indicates whether AWS or the customer owns and manages the CC rule.\n  CC Managed Rules are predefined rules owned by AWS. For more information, see [Managed Rules](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html) in the *developer guide*.\n  CC Custom Rules are rules that you can develop either with Guard (``CUSTOM_POLICY``) or LAMlong (``CUSTOM_LAMBDA``). For more information, see [Custom Rules](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules.html) in the *developer guide*."
-      },
-      "SourceDetails": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "Provides the source and the message types that cause CC to evaluate your AWS resources against a rule. It also provides the frequency with which you want CC to run evaluations for the rule if the trigger type is periodic.\n If the owner is set to ``CUSTOM_POLICY``, the only acceptable values for the CC rule trigger message type are ``ConfigurationItemChangeNotification`` and ``OversizedConfigurationItemChangeNotification``."
-      },
-      "SourceIdentifier": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "For CC Managed rules, a predefined identifier from a list. For example, ``IAM_PASSWORD_POLICY`` is a managed rule. To reference a managed rule, see [List of Managed Rules](https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html).\n For CC Custom Lambda rules, the identifier is the Amazon Resource Name (ARN) of the rule's LAMlong function, such as ``arn:aws:lambda:us-east-2:123456789012:function:custom_rule_name``.\n For CC Custom Policy rules, this field will be ignored."
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -432,7 +304,7 @@
       },
       "Compliance": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "Indicates whether an AWS resource or CC rule is compliant and provides the number of contributors that affect the compliance."
@@ -460,14 +332,14 @@
       },
       "EvaluationModes": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "The modes the CC rule can be evaluated in. The valid values are distinct objects. By default, the value is Detective evaluation mode only."
       },
       "InputParameters": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "A string, in JSON format, that is passed to the CC rule Lambda function."
@@ -481,14 +353,14 @@
       },
       "Scope": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "Defines which resources can trigger an evaluation for the rule. The scope can include one or more resource types, a combination of one resource type and one resource ID, or a combination of a tag key and value. Specify a scope to constrain the resources that can trigger an evaluation for the rule. If you do not specify a scope, evaluations are triggered when any resource in the recording group changes.\n  The scope can be empty."
       },
       "Source": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Provides the rule owner (```` for managed rules, ``CUSTOM_POLICY`` for Custom Policy rules, and ``CUSTOM_LAMBDA`` for Custom Lambda rules), the rule identifier, and the notifications that cause the function to evaluate your AWS resources."
@@ -510,14 +382,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/20"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -527,7 +399,7 @@
     "name": "AWS.Config/ConfigRule@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/26"
+      "$ref": "#/21"
     },
     "flags": 0
   },
@@ -537,19 +409,19 @@
     "properties": {
       "AccountIds": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/26"
         },
         "flags": 1
       },
       "AllAwsRegions": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/12"
         },
         "flags": 0
       },
       "AwsRegions": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 0
       }
@@ -561,94 +433,13 @@
     "properties": {
       "AllAwsRegions": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/12"
         },
         "flags": 0
       },
       "AwsRegions": {
         "type": {
-          "$ref": "#/33"
-        },
-        "flags": 0
-      },
-      "RoleArn": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Config/ConfigurationAggregatorProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AccountAggregationSource",
-    "properties": {
-      "AccountIds": {
-        "type": {
-          "$ref": "#/31"
-        },
-        "flags": 1
-      },
-      "AllAwsRegions": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0
-      },
-      "AwsRegions": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/35"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "OrganizationAggregationSource",
-    "properties": {
-      "AllAwsRegions": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0
-      },
-      "AwsRegions": {
-        "type": {
-          "$ref": "#/33"
+          "$ref": "#/28"
         },
         "flags": 0
       },
@@ -683,7 +474,35 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Config/ConfigurationAggregatorProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/25"
     }
   },
   {
@@ -692,7 +511,7 @@
     "properties": {
       "AccountAggregationSources": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/30"
         },
         "flags": 0
       },
@@ -712,13 +531,13 @@
       },
       "OrganizationAggregationSource": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "The tags for the configuration aggregator."
@@ -740,14 +559,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/32"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -757,7 +576,7 @@
     "name": "AWS.Config/ConfigurationAggregator@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/41"
+      "$ref": "#/33"
     },
     "flags": 0
   },
@@ -794,27 +613,9 @@
     "value": "AWS.Config/ConformancePackProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "ConformancePackInputParameter",
-    "properties": {
-      "ParameterName": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      },
-      "ParameterValue": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
+      "$ref": "#/35"
     }
   },
   {
@@ -841,7 +642,7 @@
     "properties": {
       "ConformancePackInputParameters": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "A list of ConformancePackInputParameter objects."
@@ -883,7 +684,7 @@
       },
       "TemplateSSMDocumentDetails": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/40"
         },
         "flags": 4,
         "description": "The TemplateSSMDocumentDetails object contains the name of the SSM document and the version of the SSM document."
@@ -905,14 +706,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/41"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -922,7 +723,7 @@
     "name": "AWS.Config/ConformancePack@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/51"
+      "$ref": "#/42"
     },
     "flags": 0
   },
@@ -930,25 +731,6 @@
     "$type": "ObjectType",
     "name": "AccountId",
     "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ConformancePackInputParameter",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ParameterName",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ParameterValue",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Config/OrganizationConformancePackProperties"
   },
   {
     "$type": "ObjectType",
@@ -969,9 +751,23 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "ParameterName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParameterValue",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Config/OrganizationConformancePackProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/45"
     }
   },
   {
@@ -986,7 +782,7 @@
     "properties": {
       "ConformancePackInputParameters": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "A list of ConformancePackInputParameter objects."
@@ -1007,7 +803,7 @@
       },
       "ExcludedAccounts": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "A list of AWS accounts to be excluded from an organization conformance pack while deploying a conformance pack."
@@ -1050,14 +846,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/51"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1067,18 +863,9 @@
     "name": "AWS.Config/OrganizationConformancePack@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/62"
+      "$ref": "#/52"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Config/StoredQueryProperties"
   },
   {
     "$type": "ObjectType",
@@ -1101,9 +888,13 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.Config/StoredQueryProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/54"
     }
   },
   {
@@ -1142,7 +933,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "The tags for the stored query."
@@ -1164,14 +955,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/57"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1181,7 +972,7 @@
     "name": "AWS.Config/StoredQuery@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/69"
+      "$ref": "#/58"
     },
     "flags": 0
   }

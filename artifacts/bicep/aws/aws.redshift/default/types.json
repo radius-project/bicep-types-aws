@@ -44,14 +44,14 @@
           "$ref": "#/3"
         },
         "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+        "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
           "$ref": "#/3"
         },
         "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+        "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       }
     }
   },
@@ -75,45 +75,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Endpoint",
-    "properties": {
-      "Address": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 2
-      },
-      "Port": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 2
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/3"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "LoggingProperties",
-    "properties": {
-      "BucketName": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0
-      },
-      "S3KeyPrefix": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0
-      }
     }
   },
   {
@@ -122,29 +86,9 @@
     "properties": {}
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/2"
     }
   },
   {
@@ -320,7 +264,7 @@
       },
       "Endpoint": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/0"
         },
         "flags": 0
       },
@@ -347,7 +291,7 @@
       },
       "IamRoles": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "A list of AWS Identity and Access Management (IAM) roles that can be used by the cluster to access other AWS services. You must supply the IAM roles in their Amazon Resource Name (ARN) format. You can supply up to 50 IAM roles in a single request"
@@ -361,7 +305,7 @@
       },
       "LoggingProperties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/1"
         },
         "flags": 0
       },
@@ -423,7 +367,7 @@
       },
       "NamespaceResourcePolicy": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "The namespace resource policy document that will be attached to a Redshift cluster."
@@ -527,14 +471,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The list of tags for the cluster parameter group."
       },
       "VpcSecurityGroupIds": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "A list of Virtual Private Cloud (VPC) security groups to be associated with the cluster."
@@ -556,14 +500,14 @@
         "type": {
           "$ref": "#/3"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/12"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -573,7 +517,7 @@
     "name": "AWS.Redshift/Cluster@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/16"
+      "$ref": "#/13"
     },
     "flags": 0
   },
@@ -600,41 +544,6 @@
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Redshift/ClusterParameterGroupProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Parameter",
-    "properties": {
-      "ParameterName": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The name of the parameter."
-      },
-      "ParameterValue": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The value of the parameter. If `ParameterName` is `wlm_json_configuration`, then the maximum size of `ParameterValue` is 8000 characters."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/21"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
     "properties": {
       "Key": {
         "type": {
@@ -653,9 +562,19 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.Redshift/ClusterParameterGroupProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
     }
   },
   {
@@ -685,14 +604,14 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "An array of parameters to be modified. A maximum of 20 parameters can be modified in a single request."
       },
       "Tags": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/19"
         },
         "flags": 4,
         "description": "An array of key-value pairs to apply to this resource."
@@ -714,14 +633,14 @@
         "type": {
           "$ref": "#/3"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/20"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -731,24 +650,9 @@
     "name": "AWS.Redshift/ClusterParameterGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/26"
+      "$ref": "#/21"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Redshift/ClusterSubnetGroupProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/3"
-    }
   },
   {
     "$type": "ObjectType",
@@ -771,9 +675,19 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.Redshift/ClusterSubnetGroupProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
     }
   },
   {
@@ -796,14 +710,14 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "The list of VPC subnet IDs"
       },
       "Tags": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/26"
         },
         "flags": 4,
         "description": "The list of tags for the cluster parameter group."
@@ -825,14 +739,14 @@
         "type": {
           "$ref": "#/3"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/27"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -842,7 +756,7 @@
     "name": "AWS.Redshift/ClusterSubnetGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/28"
     },
     "flags": 0
   },
@@ -905,43 +819,9 @@
     "value": "AWS.Redshift/EndpointAccessProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "NetworkInterface",
-    "properties": {
-      "AvailabilityZone": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The Availability Zone."
-      },
-      "NetworkInterfaceId": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The network interface identifier."
-      },
-      "PrivateIpAddress": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The IPv4 address of the network interface within the subnet."
-      },
-      "SubnetId": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The subnet identifier."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/30"
     }
   },
   {
@@ -950,7 +830,7 @@
     "properties": {
       "NetworkInterfaces": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/33"
         },
         "flags": 2,
         "description": "One or more network interfaces of the endpoint. Also known as an interface endpoint."
@@ -978,29 +858,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "VpcSecurityGroup",
-    "properties": {
-      "Status": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The status of the VPC security group."
-      },
-      "VpcSecurityGroupId": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The identifier of the VPC security group."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/31"
     }
   },
   {
@@ -1065,21 +925,21 @@
       },
       "VpcEndpoint": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/34"
         },
         "flags": 2,
         "description": "The connection endpoint for connecting to an Amazon Redshift cluster through the proxy."
       },
       "VpcSecurityGroupIds": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/35"
         },
         "flags": 1,
         "description": "A list of vpc security group ids to apply to the created endpoint access."
       },
       "VpcSecurityGroups": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/36"
         },
         "flags": 2,
         "description": "A list of Virtual Private Cloud (VPC) security groups to be associated with the endpoint."
@@ -1101,14 +961,14 @@
         "type": {
           "$ref": "#/3"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/37"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1118,7 +978,7 @@
     "name": "AWS.Redshift/EndpointAccess@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/46"
+      "$ref": "#/38"
     },
     "flags": 0
   },
@@ -1168,7 +1028,7 @@
       },
       "AllowedVPCs": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/43"
         },
         "flags": 2,
         "description": "The VPCs allowed access to the cluster."
@@ -1231,7 +1091,7 @@
       },
       "VpcIds": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "The virtual private cloud (VPC) identifiers to grant or revoke access to."
@@ -1253,14 +1113,14 @@
         "type": {
           "$ref": "#/3"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/45"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1270,14 +1130,29 @@
     "name": "AWS.Redshift/EndpointAuthorization@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/54"
+      "$ref": "#/46"
     },
     "flags": 0
   },
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
   },
   {
     "$type": "StringLiteralType",
@@ -1308,29 +1183,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/62"
+      "$ref": "#/48"
     }
   },
   {
@@ -1360,14 +1215,14 @@
       },
       "EventCategories": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Specifies the Amazon Redshift event categories to be published by the event notification subscription."
       },
       "EventCategoriesList": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/51"
         },
         "flags": 2,
         "description": "The list of Amazon Redshift event categories specified in the event notification subscription."
@@ -1388,14 +1243,14 @@
       },
       "SourceIds": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "A list of one or more identifiers of Amazon Redshift source objects."
       },
       "SourceIdsList": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/53"
         },
         "flags": 2,
         "description": "A list of the sources that publish events to the Amazon Redshift event notification subscription."
@@ -1430,7 +1285,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/54"
         },
         "flags": 4,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1452,14 +1307,14 @@
         "type": {
           "$ref": "#/3"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/55"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1469,7 +1324,7 @@
     "name": "AWS.Redshift/EventSubscription@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/65"
+      "$ref": "#/56"
     },
     "flags": 0
   },
@@ -1539,19 +1394,19 @@
     "properties": {
       "ResizeCluster": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/59"
         },
         "flags": 0
       },
       "PauseCluster": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/58"
         },
         "flags": 0
       },
       "ResumeCluster": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/60"
         },
         "flags": 0
       }
@@ -1563,101 +1418,6 @@
     "properties": {}
   },
   {
-    "$type": "ObjectType",
-    "name": "ResizeClusterMessage",
-    "properties": {
-      "Classic": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0
-      },
-      "ClusterIdentifier": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1
-      },
-      "ClusterType": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0
-      },
-      "NodeType": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0
-      },
-      "NumberOfNodes": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ScheduledActionType",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PauseClusterMessage",
-    "properties": {
-      "ClusterIdentifier": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ScheduledActionType",
-    "properties": {
-      "ResizeCluster": {
-        "type": {
-          "$ref": "#/72"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ResumeClusterMessage",
-    "properties": {
-      "ClusterIdentifier": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ScheduledActionType",
-    "properties": {
-      "ResizeCluster": {
-        "type": {
-          "$ref": "#/72"
-        },
-        "flags": 0
-      },
-      "PauseCluster": {
-        "type": {
-          "$ref": "#/74"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.Redshift/ScheduledActionProperties"
   },
@@ -1665,30 +1425,6 @@
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/3"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ScheduledActionType",
-    "properties": {
-      "ResizeCluster": {
-        "type": {
-          "$ref": "#/72"
-        },
-        "flags": 0
-      },
-      "PauseCluster": {
-        "type": {
-          "$ref": "#/74"
-        },
-        "flags": 0
-      },
-      "ResumeCluster": {
-        "type": {
-          "$ref": "#/76"
-        },
-        "flags": 0
-      }
     }
   },
   {
@@ -1718,7 +1454,7 @@
       },
       "NextInvocations": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/64"
         },
         "flags": 2,
         "description": "List of times when the scheduled action will run."
@@ -1760,7 +1496,7 @@
       },
       "TargetAction": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "A JSON format string of the Amazon Redshift API operation with input parameters."
@@ -1782,14 +1518,14 @@
         "type": {
           "$ref": "#/3"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/65"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1799,7 +1535,7 @@
     "name": "AWS.Redshift/ScheduledAction@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/82"
+      "$ref": "#/66"
     },
     "flags": 0
   }

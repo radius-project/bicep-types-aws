@@ -3,44 +3,44 @@
 ## Resource AWS.OpenSearchServerless/AccessPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.OpenSearchServerless/AccessPolicyProperties](#awsopensearchserverlessaccesspolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.OpenSearchServerless/AccessPolicyProperties](#awsopensearchserverlessaccesspolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.OpenSearchServerless/Collection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.OpenSearchServerless/CollectionProperties](#awsopensearchserverlesscollectionproperties) (Required): properties of the resource
+* **properties**: [AWS.OpenSearchServerless/CollectionProperties](#awsopensearchserverlesscollectionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.OpenSearchServerless/LifecyclePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.OpenSearchServerless/LifecyclePolicyProperties](#awsopensearchserverlesslifecyclepolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.OpenSearchServerless/LifecyclePolicyProperties](#awsopensearchserverlesslifecyclepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.OpenSearchServerless/SecurityConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.OpenSearchServerless/SecurityConfigProperties](#awsopensearchserverlesssecurityconfigproperties): properties of the resource
+* **properties**: [AWS.OpenSearchServerless/SecurityConfigProperties](#awsopensearchserverlesssecurityconfigproperties) (Identifier): properties of the resource
 
 ## Resource AWS.OpenSearchServerless/SecurityPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.OpenSearchServerless/SecurityPolicyProperties](#awsopensearchserverlesssecuritypolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.OpenSearchServerless/SecurityPolicyProperties](#awsopensearchserverlesssecuritypolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.OpenSearchServerless/VpcEndpoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.OpenSearchServerless/VpcEndpointProperties](#awsopensearchserverlessvpcendpointproperties) (Required): properties of the resource
+* **properties**: [AWS.OpenSearchServerless/VpcEndpointProperties](#awsopensearchserverlessvpcendpointproperties) (Required, Identifier): properties of the resource
 
 ## AWS.OpenSearchServerless/AccessPolicyProperties
 ### Properties

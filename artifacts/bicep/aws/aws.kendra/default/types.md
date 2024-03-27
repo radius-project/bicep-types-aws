@@ -3,23 +3,23 @@
 ## Resource AWS.Kendra/DataSource@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Kendra/DataSourceProperties](#awskendradatasourceproperties) (Required): properties of the resource
+* **properties**: [AWS.Kendra/DataSourceProperties](#awskendradatasourceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Kendra/Faq@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Kendra/FaqProperties](#awskendrafaqproperties) (Required): properties of the resource
+* **properties**: [AWS.Kendra/FaqProperties](#awskendrafaqproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Kendra/Index@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Kendra/IndexProperties](#awskendraindexproperties) (Required): properties of the resource
+* **properties**: [AWS.Kendra/IndexProperties](#awskendraindexproperties) (Required, Identifier): properties of the resource
 
 ## AccessControlListConfiguration
 ### Properties

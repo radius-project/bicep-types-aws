@@ -33,29 +33,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The key identifier, or name, of the tag."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The string value that's associated with the key of the tag. You can set the value of a tag to an empty string, but you can't set the value of a tag to null."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/0"
     }
   },
   {
@@ -127,7 +107,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A list of tags that you want to attach to the newly created account. For each tag in the list, you must specify both a tag key and a value."
@@ -149,14 +129,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/5"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -166,7 +146,7 @@
     "name": "AWS.Organizations/Account@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/7"
+      "$ref": "#/6"
     },
     "flags": 0
   },
@@ -244,14 +224,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -261,18 +241,9 @@
     "name": "AWS.Organizations/Organization@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/10"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Organizations/OrganizationalUnitProperties"
   },
   {
     "$type": "ObjectType",
@@ -295,9 +266,13 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.Organizations/OrganizationalUnitProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/15"
+      "$ref": "#/12"
     }
   },
   {
@@ -334,7 +309,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A list of tags that you want to attach to the newly created OU."
@@ -356,14 +331,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/15"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -373,37 +348,9 @@
     "name": "AWS.Organizations/OrganizationalUnit@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/18"
+      "$ref": "#/16"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Organizations/PolicyProperties"
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Policy_Content",
-    "properties": {}
-  },
-  {
-    "$type": "UnionType",
-    "elements": [
-      {
-        "$ref": "#/23"
-      },
-      {
-        "$ref": "#/1"
-      }
-    ]
   },
   {
     "$type": "ObjectType",
@@ -426,9 +373,32 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.Organizations/PolicyProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Policy_Content",
+    "properties": {}
+  },
+  {
+    "$type": "UnionType",
+    "elements": [
+      {
+        "$ref": "#/21"
+      },
+      {
+        "$ref": "#/1"
+      }
+    ]
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/18"
     }
   },
   {
@@ -450,14 +420,14 @@
       },
       "AwsManaged": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/20"
         },
         "flags": 2,
         "description": "A boolean value that indicates whether the specified policy is an AWS managed policy. If true, then you can attach the policy to roots, OUs, or accounts, but you cannot edit it."
       },
       "Content": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/22"
         },
         "flags": 1,
         "description": "The Policy text content. For AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it."
@@ -485,14 +455,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "A list of tags that you want to attach to the newly created policy. For each tag in the list, you must specify both a tag key and a value. You can set the value to an empty string, but you can't set it to null."
       },
       "TargetIds": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "List of unique identifiers (IDs) of the root, OU, or account that you want to attach the policy to"
@@ -521,14 +491,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/25"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -538,34 +508,9 @@
     "name": "AWS.Organizations/Policy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/29"
+      "$ref": "#/26"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Organizations/ResourcePolicyProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ResourcePolicy_Content",
-    "properties": {}
-  },
-  {
-    "$type": "UnionType",
-    "elements": [
-      {
-        "$ref": "#/33"
-      },
-      {
-        "$ref": "#/1"
-      }
-    ]
   },
   {
     "$type": "ObjectType",
@@ -588,9 +533,29 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.Organizations/ResourcePolicyProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourcePolicy_Content",
+    "properties": {}
+  },
+  {
+    "$type": "UnionType",
+    "elements": [
+      {
+        "$ref": "#/30"
+      },
+      {
+        "$ref": "#/1"
+      }
+    ]
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/28"
     }
   },
   {
@@ -606,7 +571,7 @@
       },
       "Content": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/31"
         },
         "flags": 1,
         "description": "The policy document. For AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it."
@@ -620,7 +585,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "A list of tags that you want to attach to the resource policy"
@@ -642,14 +607,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/33"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -659,7 +624,7 @@
     "name": "AWS.Organizations/ResourcePolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/38"
+      "$ref": "#/34"
     },
     "flags": 0
   }

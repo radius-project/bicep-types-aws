@@ -104,13 +104,13 @@
     "properties": {
       "IntermediateSourceConfiguration": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "ProviderConfiguration": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "Additional Provider configuration that would be required for the provider service. The Configuration must be in JSON string format"
@@ -120,7 +120,7 @@
           "$ref": "#/14"
         },
         "flags": 1,
-        "description": "Arn of the Provider service being used."
+        "description": "Arn of the Provider Service being used."
       }
     }
   },
@@ -159,19 +159,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "IntermediateSourceConfiguration",
-    "properties": {
-      "IntermediateS3Path": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The s3 path that would be used to stage the intermediate data being generated during workflow execution."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "IdMappingWorkflow_ProviderConfiguration",
     "properties": {}
   },
@@ -180,97 +167,21 @@
     "value": "AWS.EntityResolution/IdMappingWorkflowProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "IdMappingTechniques",
-    "properties": {
-      "IdMappingType": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0
-      },
-      "ProviderProperties": {
-        "type": {
-          "$ref": "#/10"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "IdMappingWorkflowInputSource",
-    "properties": {
-      "InputSourceARN": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "An Glue table ARN for the input source table"
-      },
-      "SchemaArn": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "IdMappingWorkflowOutputSource",
-    "properties": {
-      "KMSArn": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0
-      },
-      "OutputS3Path": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The S3 path to which Entity Resolution will write the output table"
-      }
+      "$ref": "#/7"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/21"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/12"
     }
   },
   {
@@ -292,19 +203,19 @@
       },
       "IdMappingTechniques": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "InputSourceConfig": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "OutputSourceConfig": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/18"
         },
         "flags": 1
       },
@@ -316,7 +227,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/19"
         },
         "flags": 0
       },
@@ -356,14 +267,14 @@
         "type": {
           "$ref": "#/14"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/20"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -373,7 +284,7 @@
     "name": "AWS.EntityResolution/IdMappingWorkflow@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/26"
+      "$ref": "#/21"
     },
     "flags": 0
   },
@@ -403,7 +314,7 @@
     "properties": {
       "ApplyNormalization": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/40"
         },
         "flags": 0
       },
@@ -425,7 +336,15 @@
   {
     "$type": "ObjectType",
     "name": "IntermediateSourceConfiguration",
-    "properties": {}
+    "properties": {
+      "IntermediateS3Path": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The s3 path that would be used to stage the intermediate data being generated during workflow execution."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -443,7 +362,7 @@
     "properties": {
       "Hashed": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/40"
         },
         "flags": 0
       },
@@ -461,7 +380,7 @@
     "properties": {
       "ApplyNormalization": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/40"
         },
         "flags": 0
       },
@@ -473,7 +392,7 @@
       },
       "Output": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/41"
         },
         "flags": 1
       },
@@ -489,7 +408,28 @@
   {
     "$type": "ObjectType",
     "name": "ProviderProperties",
-    "properties": {}
+    "properties": {
+      "IntermediateSourceConfiguration": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0
+      },
+      "ProviderConfiguration": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "Additional Provider configuration that would be required for the provider service. The Configuration must be in JSON string format"
+      },
+      "ProviderServiceArn": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "Arn of the Provider service being used."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -497,7 +437,7 @@
     "properties": {
       "ProviderProperties": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/33"
         },
         "flags": 0
       },
@@ -509,7 +449,7 @@
       },
       "RuleBasedProperties": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/36"
         },
         "flags": 0
       }
@@ -521,7 +461,7 @@
     "properties": {
       "MatchingKeys": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/43"
         },
         "flags": 1
       },
@@ -545,7 +485,7 @@
       },
       "Rules": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/44"
         },
         "flags": 1
       }
@@ -555,239 +495,6 @@
     "$type": "ObjectType",
     "name": "SchemaMappingArn",
     "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "UpdatedAt",
-    "properties": {}
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "OutputAttribute",
-    "properties": {
-      "Hashed": {
-        "type": {
-          "$ref": "#/45"
-        },
-        "flags": 0
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/46"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "IntermediateSourceConfiguration",
-    "properties": {
-      "IntermediateS3Path": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The s3 path that would be used to stage the intermediate data being generated during workflow execution."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "MatchingWorkflow_ProviderConfiguration",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ProviderProperties",
-    "properties": {
-      "IntermediateSourceConfiguration": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0
-      },
-      "ProviderConfiguration": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "Additional Provider configuration that would be required for the provider service. The Configuration must be in JSON string format"
-      },
-      "ProviderServiceArn": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "Arn of the Provider Service being used."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ProviderProperties",
-    "properties": {
-      "IntermediateSourceConfiguration": {
-        "type": {
-          "$ref": "#/48"
-        },
-        "flags": 0
-      },
-      "ProviderConfiguration": {
-        "type": {
-          "$ref": "#/49"
-        },
-        "flags": 0,
-        "description": "Additional Provider configuration that would be required for the provider service. The Configuration must be in JSON string format"
-      },
-      "ProviderServiceArn": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "Arn of the Provider service being used."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/14"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Rule",
-    "properties": {
-      "MatchingKeys": {
-        "type": {
-          "$ref": "#/52"
-        },
-        "flags": 1
-      },
-      "RuleName": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/53"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.EntityResolution/MatchingWorkflowProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "InputSource",
-    "properties": {
-      "ApplyNormalization": {
-        "type": {
-          "$ref": "#/45"
-        },
-        "flags": 0
-      },
-      "InputSourceARN": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "An Glue table ARN for the input source table"
-      },
-      "SchemaArn": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/56"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "OutputSource",
-    "properties": {
-      "ApplyNormalization": {
-        "type": {
-          "$ref": "#/45"
-        },
-        "flags": 0
-      },
-      "KMSArn": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0
-      },
-      "Output": {
-        "type": {
-          "$ref": "#/47"
-        },
-        "flags": 1
-      },
-      "OutputS3Path": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1,
-        "description": "The S3 path to which Entity Resolution will write the output table"
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/58"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ResolutionTechniques",
-    "properties": {
-      "ProviderProperties": {
-        "type": {
-          "$ref": "#/51"
-        },
-        "flags": 0
-      },
-      "ResolutionType": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0
-      },
-      "RuleBasedProperties": {
-        "type": {
-          "$ref": "#/41"
-        },
-        "flags": 0
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -810,9 +517,56 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "UpdatedAt",
+    "properties": {}
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/61"
+      "$ref": "#/31"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MatchingWorkflow_ProviderConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/35"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EntityResolution/MatchingWorkflowProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/27"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/32"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/38"
     }
   },
   {
@@ -834,19 +588,19 @@
       },
       "InputSourceConfig": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/46"
         },
         "flags": 1
       },
       "OutputSourceConfig": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/47"
         },
         "flags": 1
       },
       "ResolutionTechniques": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/34"
         },
         "flags": 1
       },
@@ -858,7 +612,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/48"
         },
         "flags": 0
       },
@@ -898,14 +652,14 @@
         "type": {
           "$ref": "#/14"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/49"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -915,7 +669,7 @@
     "name": "AWS.EntityResolution/MatchingWorkflow@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/64"
+      "$ref": "#/50"
     },
     "flags": 0
   },
@@ -999,69 +753,6 @@
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "UpdatedAt",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/73"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.EntityResolution/SchemaMappingProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SchemaInputAttribute",
-    "properties": {
-      "FieldName": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1
-      },
-      "GroupName": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0
-      },
-      "MatchKey": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0
-      },
-      "SubType": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "The subtype of the Attribute. Would be required only when type is PROVIDER_ID"
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/79"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
     "properties": {
       "Key": {
         "type": {
@@ -1080,9 +771,30 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "UpdatedAt",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/81"
+      "$ref": "#/59"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EntityResolution/SchemaMappingProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/59"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/61"
     }
   },
   {
@@ -1104,13 +816,13 @@
       },
       "HasWorkflows": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/40"
         },
         "flags": 2
       },
       "MappedInputFields": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/65"
         },
         "flags": 1,
         "description": "The SchemaMapping attributes input"
@@ -1130,7 +842,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/66"
         },
         "flags": 0
       },
@@ -1157,14 +869,14 @@
         "type": {
           "$ref": "#/14"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/67"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1174,7 +886,7 @@
     "name": "AWS.EntityResolution/SchemaMapping@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/84"
+      "$ref": "#/68"
     },
     "flags": 0
   }

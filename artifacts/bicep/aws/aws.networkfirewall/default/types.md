@@ -3,37 +3,37 @@
 ## Resource AWS.NetworkFirewall/Firewall@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkFirewall/FirewallProperties](#awsnetworkfirewallfirewallproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkFirewall/FirewallProperties](#awsnetworkfirewallfirewallproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkFirewall/FirewallPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkFirewall/FirewallPolicyProperties](#awsnetworkfirewallfirewallpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkFirewall/FirewallPolicyProperties](#awsnetworkfirewallfirewallpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkFirewall/LoggingConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkFirewall/LoggingConfigurationProperties](#awsnetworkfirewallloggingconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkFirewall/LoggingConfigurationProperties](#awsnetworkfirewallloggingconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkFirewall/RuleGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkFirewall/RuleGroupProperties](#awsnetworkfirewallrulegroupproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkFirewall/RuleGroupProperties](#awsnetworkfirewallrulegroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkFirewall/TLSInspectionConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NetworkFirewall/TLSInspectionConfigurationProperties](#awsnetworkfirewalltlsinspectionconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.NetworkFirewall/TLSInspectionConfigurationProperties](#awsnetworkfirewalltlsinspectionconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## ActionDefinition
 ### Properties
@@ -171,6 +171,11 @@
 * **FromPort**: int (Required)
 * **ToPort**: int (Required)
 
+## PortRange
+### Properties
+* **FromPort**: int (Required)
+* **ToPort**: int (Required)
+
 ## PublishMetricAction
 ### Properties
 * **Dimensions**: [Dimension](#dimension)[] (Required)
@@ -224,11 +229,11 @@
 
 ## RuleVariables
 ### Properties
-* **IPSets**: [RuleGroup_IPSets](#rulegroupipsets)
-* **PortSets**: [RuleGroup_PortSets](#rulegroupportsets)
 
 ## RuleVariables
 ### Properties
+* **IPSets**: [RuleGroup_IPSets](#rulegroupipsets)
+* **PortSets**: [RuleGroup_PortSets](#rulegroupportsets)
 
 ## ServerCertificate
 ### Properties

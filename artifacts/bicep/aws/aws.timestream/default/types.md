@@ -3,23 +3,23 @@
 ## Resource AWS.Timestream/Database@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Timestream/DatabaseProperties](#awstimestreamdatabaseproperties): properties of the resource
+* **properties**: [AWS.Timestream/DatabaseProperties](#awstimestreamdatabaseproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Timestream/ScheduledQuery@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Timestream/ScheduledQueryProperties](#awstimestreamscheduledqueryproperties) (Required): properties of the resource
+* **properties**: [AWS.Timestream/ScheduledQueryProperties](#awstimestreamscheduledqueryproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Timestream/Table@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Timestream/TableProperties](#awstimestreamtableproperties) (Required): properties of the resource
+* **properties**: [AWS.Timestream/TableProperties](#awstimestreamtableproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Timestream/DatabaseProperties
 ### Properties

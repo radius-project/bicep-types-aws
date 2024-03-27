@@ -23,7 +23,7 @@
     "properties": {
       "AdvancedBackupSettings": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/7"
         },
         "flags": 0
       },
@@ -35,7 +35,7 @@
       },
       "BackupPlanRule": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/8"
         },
         "flags": 1
       }
@@ -47,19 +47,19 @@
     "properties": {
       "CompletionWindowMinutes": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "CopyActions": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "EnableContinuousBackup": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/11"
         },
         "flags": 0
       },
@@ -71,7 +71,7 @@
       },
       "RecoveryPointTags": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/12"
         },
         "flags": 0
       },
@@ -95,7 +95,7 @@
       },
       "StartWindowMinutes": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
         "flags": 0
       },
@@ -131,19 +131,19 @@
     "properties": {
       "DeleteAfterDays": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "MoveToColdStorageAfterDays": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "OptInToArchiveForSupportedResources": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/11"
         },
         "flags": 0
       }
@@ -158,27 +158,9 @@
     "$type": "StringType"
   },
   {
-    "$type": "ObjectType",
-    "name": "AdvancedBackupSettingResourceType",
-    "properties": {
-      "BackupOptions": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1
-      },
-      "ResourceType": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/0"
     }
   },
   {
@@ -210,30 +192,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "BackupPlanResourceType",
-    "properties": {
-      "AdvancedBackupSettings": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "BackupPlanName": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1
-      },
-      "BackupPlanRule": {
-        "type": {
-          "$ref": "#/9"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "BackupPlan_BackupPlanTags",
     "properties": {}
   },
@@ -243,7 +201,7 @@
     "properties": {
       "BackupPlan": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/1"
         },
         "flags": 1
       },
@@ -261,7 +219,7 @@
       },
       "BackupPlanTags": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/14"
         },
         "flags": 0
       },
@@ -288,14 +246,14 @@
         "type": {
           "$ref": "#/6"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/15"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -305,7 +263,7 @@
     "name": "AWS.Backup/BackupPlan@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/18"
+      "$ref": "#/16"
     },
     "flags": 0
   },
@@ -320,19 +278,19 @@
     "properties": {
       "ChangeableForDays": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
         "flags": 4
       },
       "MaxRetentionDays": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "MinRetentionDays": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
         "flags": 1
       }
@@ -344,7 +302,7 @@
     "properties": {
       "BackupVaultEvents": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/21"
         },
         "flags": 1
       },
@@ -375,7 +333,7 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/25"
+        "$ref": "#/23"
       },
       {
         "$ref": "#/6"
@@ -389,53 +347,11 @@
   },
   {
     "$type": "ObjectType",
-    "name": "LockConfigurationType",
-    "properties": {
-      "ChangeableForDays": {
-        "type": {
-          "$ref": "#/10"
-        },
-        "flags": 4
-      },
-      "MaxRetentionDays": {
-        "type": {
-          "$ref": "#/10"
-        },
-        "flags": 0
-      },
-      "MinRetentionDays": {
-        "type": {
-          "$ref": "#/10"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "NotificationObjectType",
-    "properties": {
-      "BackupVaultEvents": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1
-      },
-      "SNSTopicArn": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "AWS.Backup/BackupVaultProperties",
     "properties": {
       "AccessPolicy": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/24"
         },
         "flags": 0
       },
@@ -453,7 +369,7 @@
       },
       "BackupVaultTags": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/25"
         },
         "flags": 0
       },
@@ -465,13 +381,13 @@
       },
       "LockConfiguration": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/19"
         },
         "flags": 0
       },
       "Notifications": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/20"
         },
         "flags": 0
       }
@@ -492,14 +408,14 @@
         "type": {
           "$ref": "#/6"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/26"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -509,7 +425,7 @@
     "name": "AWS.Backup/BackupVault@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/31"
+      "$ref": "#/27"
     },
     "flags": 0
   },
@@ -537,7 +453,7 @@
     "properties": {
       "ControlInputParameters": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "A list of ParameterName and ParameterValue pairs."
@@ -551,7 +467,7 @@
       },
       "ControlScope": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "The scope of a control. The control scope defines what the control will evaluate. Three examples of control scopes are: a specific backup plan, all backup plans with a specific tag, or all backup plans."
@@ -566,40 +482,22 @@
         "type": {
           "$ref": "#/6"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
           "$ref": "#/6"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       }
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "ControlInputParameter",
-    "properties": {
-      "ParameterName": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1
-      },
-      "ParameterValue": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
+      "$ref": "#/29"
     }
   },
   {
@@ -617,7 +515,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/31"
     }
   },
   {
@@ -626,21 +524,21 @@
     "properties": {
       "ComplianceResourceIds": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The ID of the only AWS resource that you want your control scope to contain."
       },
       "ComplianceResourceTypes": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "Describes whether the control scope includes one or more types of resources, such as `EFS` or `RDS`."
       },
       "Tags": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "Describes whether the control scope includes resources with one or more tags. Each tag is a key-value pair."
@@ -652,62 +550,15 @@
     "value": "AWS.Backup/FrameworkProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "FrameworkControl",
-    "properties": {
-      "ControlInputParameters": {
-        "type": {
-          "$ref": "#/37"
-        },
-        "flags": 0,
-        "description": "A list of ParameterName and ParameterValue pairs."
-      },
-      "ControlName": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1,
-        "description": "The name of a control. This name is between 1 and 256 characters."
-      },
-      "ControlScope": {
-        "type": {
-          "$ref": "#/41"
-        },
-        "flags": 0,
-        "description": "The scope of a control. The control scope defines what the control will evaluate. Three examples of control scopes are: a specific backup plan, all backup plans with a specific tag, or all backup plans."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/30"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/45"
+      "$ref": "#/31"
     }
   },
   {
@@ -737,7 +588,7 @@
       },
       "FrameworkControls": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/38"
         },
         "flags": 1,
         "description": "Contains detailed information about all of the controls of a framework. Each framework must contain at least one control."
@@ -765,7 +616,7 @@
       },
       "FrameworkTags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "Metadata that you can assign to help organize the frameworks that you create. Each tag is a key-value pair."
@@ -787,14 +638,14 @@
         "type": {
           "$ref": "#/6"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/40"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -804,51 +655,9 @@
     "name": "AWS.Backup/Framework@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/48"
+      "$ref": "#/41"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Backup/ReportPlanProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/6"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ReportPlan_ReportDeliveryChannel",
-    "properties": {
-      "Formats": {
-        "type": {
-          "$ref": "#/52"
-        },
-        "flags": 0,
-        "description": "A list of the format of your reports: CSV, JSON, or both. If not specified, the default format is CSV."
-      },
-      "S3BucketName": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1,
-        "description": "The unique name of the S3 bucket that receives your reports."
-      },
-      "S3KeyPrefix": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0,
-        "description": "The prefix for where AWS Backup Audit Manager delivers your reports to Amazon S3. The prefix is this part of the following path: s3://your-bucket-name/prefix/Backup/us-west-2/year/month/day/report-name. If not specified, there is no prefix."
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -871,9 +680,46 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.Backup/ReportPlanProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReportPlan_ReportDeliveryChannel",
+    "properties": {
+      "Formats": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "A list of the format of your reports: CSV, JSON, or both. If not specified, the default format is CSV."
+      },
+      "S3BucketName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The unique name of the S3 bucket that receives your reports."
+      },
+      "S3KeyPrefix": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The prefix for where AWS Backup Audit Manager delivers your reports to Amazon S3. The prefix is this part of the following path: s3://your-bucket-name/prefix/Backup/us-west-2/year/month/day/report-name. If not specified, there is no prefix."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/43"
     }
   },
   {
@@ -906,28 +752,28 @@
     "properties": {
       "Accounts": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "The list of AWS accounts that a report covers."
       },
       "FrameworkArns": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "The Amazon Resource Names (ARNs) of the frameworks a report covers."
       },
       "OrganizationUnits": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "The list of AWS organization units that a report covers."
       },
       "Regions": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "The list of AWS regions that a report covers."
@@ -947,7 +793,7 @@
     "properties": {
       "ReportDeliveryChannel": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/46"
         },
         "flags": 1,
         "description": "A structure that contains information about where and how to deliver your reports, specifically your Amazon S3 bucket name, S3 key prefix, and the formats of your reports."
@@ -975,14 +821,14 @@
       },
       "ReportPlanTags": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "Metadata that you can assign to help organize the report plans that you create. Each tag is a key-value pair."
       },
       "ReportSetting": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/52"
         },
         "flags": 1,
         "description": "Identifies the report template for the report. Reports are built using a report template."
@@ -1004,14 +850,14 @@
         "type": {
           "$ref": "#/6"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/53"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1021,7 +867,7 @@
     "name": "AWS.Backup/ReportPlan@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/62"
+      "$ref": "#/54"
     },
     "flags": 0
   },
@@ -1037,25 +883,25 @@
       },
       "ExcludeVaults": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/60"
         },
         "flags": 0
       },
       "IncludeVaults": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/61"
         },
         "flags": 1
       },
       "RecoveryPointTypes": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/62"
         },
         "flags": 1
       },
       "SelectionWindowDays": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
         "flags": 0
       }
@@ -1070,69 +916,6 @@
     "$type": "ObjectType",
     "name": "RestoreTestingRecoveryPointType",
     "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/6"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/6"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/6"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Backup/RestoreTestingPlanProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RestoreTestingRecoveryPointSelection",
-    "properties": {
-      "Algorithm": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1
-      },
-      "ExcludeVaults": {
-        "type": {
-          "$ref": "#/68"
-        },
-        "flags": 0
-      },
-      "IncludeVaults": {
-        "type": {
-          "$ref": "#/69"
-        },
-        "flags": 1
-      },
-      "RecoveryPointTypes": {
-        "type": {
-          "$ref": "#/70"
-        },
-        "flags": 1
-      },
-      "SelectionWindowDays": {
-        "type": {
-          "$ref": "#/10"
-        },
-        "flags": 0
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -1157,7 +940,29 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/73"
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Backup/RestoreTestingPlanProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/59"
     }
   },
   {
@@ -1166,7 +971,7 @@
     "properties": {
       "RecoveryPointSelection": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/56"
         },
         "flags": 1
       },
@@ -1196,13 +1001,13 @@
       },
       "StartWindowHours": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/64"
         },
         "flags": 0
       }
@@ -1223,14 +1028,14 @@
         "type": {
           "$ref": "#/6"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/65"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1240,7 +1045,7 @@
     "name": "AWS.Backup/RestoreTestingPlan@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/76"
+      "$ref": "#/66"
     },
     "flags": 0
   },
@@ -1268,13 +1073,13 @@
     "properties": {
       "StringEquals": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/71"
         },
         "flags": 0
       },
       "StringNotEquals": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/72"
         },
         "flags": 0
       }
@@ -1286,33 +1091,15 @@
     "properties": {}
   },
   {
-    "$type": "ObjectType",
-    "name": "KeyValue",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/68"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/81"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/81"
+      "$ref": "#/68"
     }
   },
   {
@@ -1327,29 +1114,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ProtectedResourceConditions",
-    "properties": {
-      "StringEquals": {
-        "type": {
-          "$ref": "#/82"
-        },
-        "flags": 0
-      },
-      "StringNotEquals": {
-        "type": {
-          "$ref": "#/83"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SensitiveStringMap",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
     "name": "AWS.Backup/RestoreTestingSelectionProperties",
     "properties": {
       "IamRoleArn": {
@@ -1360,13 +1124,13 @@
       },
       "ProtectedResourceArns": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/74"
         },
         "flags": 0
       },
       "ProtectedResourceConditions": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/69"
         },
         "flags": 0
       },
@@ -1378,7 +1142,7 @@
       },
       "RestoreMetadataOverrides": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/70"
         },
         "flags": 0
       },
@@ -1396,7 +1160,7 @@
       },
       "ValidationWindowHours": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
         "flags": 0
       }
@@ -1417,14 +1181,14 @@
         "type": {
           "$ref": "#/6"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/75"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1434,7 +1198,7 @@
     "name": "AWS.Backup/RestoreTestingSelection@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/89"
+      "$ref": "#/76"
     },
     "flags": 0
   }

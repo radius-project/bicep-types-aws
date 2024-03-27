@@ -3,23 +3,23 @@
 ## Resource AWS.AmplifyUIBuilder/Component@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AmplifyUIBuilder/ComponentProperties](#awsamplifyuibuildercomponentproperties): properties of the resource
+* **properties**: [AWS.AmplifyUIBuilder/ComponentProperties](#awsamplifyuibuildercomponentproperties) (Identifier): properties of the resource
 
 ## Resource AWS.AmplifyUIBuilder/Form@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AmplifyUIBuilder/FormProperties](#awsamplifyuibuilderformproperties): properties of the resource
+* **properties**: [AWS.AmplifyUIBuilder/FormProperties](#awsamplifyuibuilderformproperties) (Identifier): properties of the resource
 
 ## Resource AWS.AmplifyUIBuilder/Theme@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AmplifyUIBuilder/ThemeProperties](#awsamplifyuibuilderthemeproperties): properties of the resource
+* **properties**: [AWS.AmplifyUIBuilder/ThemeProperties](#awsamplifyuibuilderthemeproperties) (Identifier): properties of the resource
 
 ## AWS.AmplifyUIBuilder/ComponentProperties
 ### Properties

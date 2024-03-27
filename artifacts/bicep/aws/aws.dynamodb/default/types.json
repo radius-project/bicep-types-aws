@@ -7,15 +7,13 @@
         "type": {
           "$ref": "#/19"
         },
-        "flags": 1,
-        "description": "A name for the attribute."
+        "flags": 1
       },
       "AttributeType": {
         "type": {
           "$ref": "#/19"
         },
-        "flags": 1,
-        "description": "The data type for the attribute, where:\n  +   ``S`` - the attribute is of type String\n  +   ``N`` - the attribute is of type Number\n  +   ``B`` - the attribute is of type Binary"
+        "flags": 1
       }
     }
   },
@@ -57,8 +55,637 @@
         "type": {
           "$ref": "#/21"
         },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GlobalSecondaryIndex",
+    "properties": {
+      "IndexName": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      },
+      "KeySchema": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "Projection": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "WriteProvisionedThroughputSettings": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KeySchema",
+    "properties": {
+      "AttributeName": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      },
+      "KeyType": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KinesisStreamSpecification",
+    "properties": {
+      "ApproximateCreationDateTimePrecision": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
+      "StreamArn": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LocalSecondaryIndex",
+    "properties": {
+      "IndexName": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      },
+      "KeySchema": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1
+      },
+      "Projection": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PointInTimeRecoverySpecification",
+    "properties": {
+      "PointInTimeRecoveryEnabled": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Projection",
+    "properties": {
+      "NonKeyAttributes": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "ProjectionType": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReadProvisionedThroughputSettings",
+    "properties": {
+      "ReadCapacityAutoScalingSettings": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ReadCapacityUnits": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReplicaGlobalSecondaryIndexSpecification",
+    "properties": {
+      "ContributorInsightsSpecification": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "IndexName": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      },
+      "ReadProvisionedThroughputSettings": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReplicaSSESpecification",
+    "properties": {
+      "KMSMasterKeyId": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReplicaSpecification",
+    "properties": {
+      "ContributorInsightsSpecification": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "DeletionProtectionEnabled": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
+      "GlobalSecondaryIndexes": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "KinesisStreamSpecification": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "PointInTimeRecoverySpecification": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "ReadProvisionedThroughputSettings": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      },
+      "SSESpecification": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      },
+      "TableClass": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SSESpecification",
+    "properties": {
+      "SSEEnabled": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1
+      },
+      "SSEType": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StreamSpecification",
+    "properties": {
+      "StreamViewType": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TargetTrackingScalingPolicyConfiguration",
+    "properties": {
+      "DisableScaleIn": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
+      "ScaleInCooldown": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "ScaleOutCooldown": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "TargetValue": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TimeToLiveSpecification",
+    "properties": {
+      "AttributeName": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WriteProvisionedThroughputSettings",
+    "properties": {
+      "WriteCapacityAutoScalingSettings": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DynamoDB/GlobalTableProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DynamoDB/GlobalTableProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 2
+      },
+      "AttributeDefinitions": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 1
+      },
+      "BillingMode": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
+      "GlobalSecondaryIndexes": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 4
+      },
+      "KeySchema": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1
+      },
+      "LocalSecondaryIndexes": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0
+      },
+      "Replicas": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 5
+      },
+      "SSESpecification": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "StreamArn": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 2
+      },
+      "StreamSpecification": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      },
+      "TableId": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 2
+      },
+      "TableName": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 16
+      },
+      "TimeToLiveSpecification": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "WriteProvisionedThroughputSettings": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DynamoDB/GlobalTable",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DynamoDB/GlobalTable@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/34"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AttributeDefinition",
+    "properties": {
+      "AttributeName": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1,
+        "description": "A name for the attribute."
+      },
+      "AttributeType": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1,
+        "description": "The data type for the attribute, where:\n  +   ``S`` - the attribute is of type String\n  +   ``N`` - the attribute is of type Number\n  +   ``B`` - the attribute is of type Binary"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ContributorInsightsSpecification",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/21"
+        },
         "flags": 1,
         "description": "Indicates whether CloudWatch Contributor Insights are to be enabled (true) or disabled (false)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Csv",
+    "properties": {
+      "Delimiter": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "The delimiter used for separating items in the CSV file being imported."
+      },
+      "HeaderList": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 0,
+        "description": "List of the headers used to specify a common header for all source CSV files being imported. If this field is specified then the first line of each CSV file is treated as data instead of the header. If this field is not specified the the first line of each CSV file is treated as the header."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeprecatedHashKeyElement",
+    "properties": {
+      "AttributeName": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      },
+      "AttributeType": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeprecatedKeySchema",
+    "properties": {
+      "HashKeyElement": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 1
       }
     }
   },
@@ -68,7 +695,7 @@
     "properties": {
       "ContributorInsightsSpecification": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "The settings used to enable or disable CloudWatch Contributor Insights for the specified global secondary index."
@@ -82,24 +709,71 @@
       },
       "KeySchema": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/56"
         },
         "flags": 1,
         "description": "The complete key schema for a global secondary index, which consists of one or more pairs of attribute names and key types:\n  +   ``HASH`` - partition key\n  +   ``RANGE`` - sort key\n  \n  The partition key of an item is also known as its *hash attribute*. The term \"hash attribute\" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values.\n The sort key of an item is also known as its *range attribute*. The term \"range attribute\" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value."
       },
       "Projection": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/48"
         },
         "flags": 1,
         "description": "Represents attributes that are copied (projected) from the table into the global secondary index. These are in addition to the primary key attributes and index key attributes, which are automatically projected."
       },
       "ProvisionedThroughput": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "Represents the provisioned throughput settings for the specified global secondary index.\n For current minimum and maximum provisioned throughput values, see [Service, Account, and Table Quotas](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html) in the *Amazon DynamoDB Developer Guide*."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImportSourceSpecification",
+    "properties": {
+      "InputCompressionType": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "Type of compression to be used on the input coming from the imported table."
+      },
+      "InputFormat": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1,
+        "description": "The format of the source data. Valid values for ``ImportFormat`` are ``CSV``, ``DYNAMODB_JSON`` or ``ION``."
+      },
+      "InputFormatOptions": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "Additional properties that specify how the input is formatted,"
+      },
+      "S3BucketSource": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 1,
+        "description": "The S3 bucket that provides the source for the import."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputFormatOptions",
+    "properties": {
+      "Csv": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "The options for imported source files in CSV format. The values are Delimiter and HeaderList."
       }
     }
   },
@@ -156,14 +830,14 @@
       },
       "KeySchema": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/57"
         },
         "flags": 1,
         "description": "The complete key schema for the local secondary index, consisting of one or more pairs of attribute names and key types:\n  +   ``HASH`` - partition key\n  +   ``RANGE`` - sort key\n  \n  The partition key of an item is also known as its *hash attribute*. The term \"hash attribute\" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values.\n The sort key of an item is also known as its *range attribute*. The term \"range attribute\" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value."
       },
       "Projection": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/48"
         },
         "flags": 1,
         "description": "Represents attributes that are copied (projected) from the table into the local secondary index. These are in addition to the primary key attributes and index key attributes, which are automatically projected."
@@ -189,7 +863,7 @@
     "properties": {
       "NonKeyAttributes": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "Represents the non-key attribute names which will be projected into the index.\n For local secondary indexes, the total count of ``NonKeyAttributes`` summed across all of the local secondary indexes, must not exceed 100. If you project the same attribute into two different indexes, this counts as two distinct attributes when determining the total."
@@ -202,926 +876,6 @@
         "description": "The set of attributes that are projected into the index:\n  +   ``KEYS_ONLY`` - Only the index and primary keys are projected into the index.\n  +   ``INCLUDE`` - In addition to the attributes described in ``KEYS_ONLY``, the secondary index will include other non-key attributes that you specify.\n  +   ``ALL`` - All of the table attributes are projected into the index.\n  \n When using the DynamoDB console, ``ALL`` is selected by default."
       }
     }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ReadProvisionedThroughputSettings",
-    "properties": {
-      "ReadCapacityAutoScalingSettings": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "ReadCapacityUnits": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ReplicaGlobalSecondaryIndexSpecification",
-    "properties": {
-      "ContributorInsightsSpecification": {
-        "type": {
-          "$ref": "#/27"
-        },
-        "flags": 0
-      },
-      "IndexName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      },
-      "ReadProvisionedThroughputSettings": {
-        "type": {
-          "$ref": "#/28"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ReplicaSSESpecification",
-    "properties": {
-      "KMSMasterKeyId": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ReplicaSpecification",
-    "properties": {
-      "ContributorInsightsSpecification": {
-        "type": {
-          "$ref": "#/27"
-        },
-        "flags": 0
-      },
-      "DeletionProtectionEnabled": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      },
-      "GlobalSecondaryIndexes": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0
-      },
-      "KinesisStreamSpecification": {
-        "type": {
-          "$ref": "#/31"
-        },
-        "flags": 0
-      },
-      "PointInTimeRecoverySpecification": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0
-      },
-      "ReadProvisionedThroughputSettings": {
-        "type": {
-          "$ref": "#/28"
-        },
-        "flags": 0
-      },
-      "Region": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      },
-      "SSESpecification": {
-        "type": {
-          "$ref": "#/33"
-        },
-        "flags": 0
-      },
-      "TableClass": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0
-      },
-      "Tags": {
-        "type": {
-          "$ref": "#/34"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SSESpecification",
-    "properties": {
-      "KMSMasterKeyId": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "The KMS key that should be used for the KMS encryption. To specify a key, use its key ID, Amazon Resource Name (ARN), alias name, or alias ARN. Note that you should only provide this parameter if the key is different from the default DynamoDB key ``alias/aws/dynamodb``."
-      },
-      "SSEEnabled": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "Indicates whether server-side encryption is done using an AWS managed key or an AWS owned key. If enabled (true), server-side encryption type is set to ``KMS`` and an AWS managed key is used (KMS charges apply). If disabled (false) or not specified, server-side encryption is set to AWS owned key."
-      },
-      "SSEType": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "Server-side encryption type. The only supported value is:\n  +   ``KMS`` - Server-side encryption that uses KMSlong. The key is stored in your account and is managed by KMS (KMS charges apply)."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "StreamSpecification",
-    "properties": {
-      "StreamViewType": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1,
-        "description": "When an item in the table is modified, ``StreamViewType`` determines what information is written to the stream for this table. Valid values for ``StreamViewType`` are:\n  +   ``KEYS_ONLY`` - Only the key attributes of the modified item are written to the stream.\n  +   ``NEW_IMAGE`` - The entire item, as it appears after it was modified, is written to the stream.\n  +   ``OLD_IMAGE`` - The entire item, as it appeared before it was modified, is written to the stream.\n  +   ``NEW_AND_OLD_IMAGES`` - Both the new and the old item images of the item are written to the stream."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1,
-        "description": "The key of the tag. Tag keys are case sensitive. Each DynamoDB table can only have up to one tag with the same key. If you try to add an existing tag (same key), the existing tag value will be updated to the new value."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1,
-        "description": "The value of the tag. Tag values are case-sensitive and can be null."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TargetTrackingScalingPolicyConfiguration",
-    "properties": {
-      "DisableScaleIn": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      },
-      "ScaleInCooldown": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 0
-      },
-      "ScaleOutCooldown": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 0
-      },
-      "TargetValue": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TimeToLiveSpecification",
-    "properties": {
-      "AttributeName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "The name of the TTL attribute used to store the expiration time for items in the table.\n   + The ``AttributeName`` property is required when enabling the TTL, or when TTL is already enabled.\n  +  To update this property, you must first disable TTL and then enable TTL with the new attribute name."
-      },
-      "Enabled": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "Indicates whether TTL is to be enabled (true) or disabled (false) on the table."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "WriteProvisionedThroughputSettings",
-    "properties": {
-      "WriteCapacityAutoScalingSettings": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "StringType"
-  },
-  {
-    "$type": "IntegerType"
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "KeySchema",
-    "properties": {
-      "AttributeName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      },
-      "KeyType": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/23"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/19"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CapacityAutoScalingSettings",
-    "properties": {
-      "MaxCapacity": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 1
-      },
-      "MinCapacity": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 1
-      },
-      "SeedCapacity": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 4
-      },
-      "TargetTrackingScalingPolicyConfiguration": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ContributorInsightsSpecification",
-    "properties": {
-      "Enabled": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ReadProvisionedThroughputSettings",
-    "properties": {
-      "ReadCapacityAutoScalingSettings": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      },
-      "ReadCapacityUnits": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ReplicaGlobalSecondaryIndexSpecification",
-    "properties": {
-      "ContributorInsightsSpecification": {
-        "type": {
-          "$ref": "#/27"
-        },
-        "flags": 0
-      },
-      "IndexName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      },
-      "ReadProvisionedThroughputSettings": {
-        "type": {
-          "$ref": "#/28"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/29"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "KinesisStreamSpecification",
-    "properties": {
-      "ApproximateCreationDateTimePrecision": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0
-      },
-      "StreamArn": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PointInTimeRecoverySpecification",
-    "properties": {
-      "PointInTimeRecoveryEnabled": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ReplicaSSESpecification",
-    "properties": {
-      "KMSMasterKeyId": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/15"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.DynamoDB/GlobalTableProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AttributeDefinition",
-    "properties": {
-      "AttributeName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      },
-      "AttributeType": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/36"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "GlobalSecondaryIndex",
-    "properties": {
-      "IndexName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      },
-      "KeySchema": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 1
-      },
-      "Projection": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      },
-      "WriteProvisionedThroughputSettings": {
-        "type": {
-          "$ref": "#/18"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/38"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/23"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "LocalSecondaryIndex",
-    "properties": {
-      "IndexName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      },
-      "KeySchema": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 1
-      },
-      "Projection": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/41"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ReplicaSpecification",
-    "properties": {
-      "ContributorInsightsSpecification": {
-        "type": {
-          "$ref": "#/27"
-        },
-        "flags": 0
-      },
-      "DeletionProtectionEnabled": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      },
-      "GlobalSecondaryIndexes": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0
-      },
-      "KinesisStreamSpecification": {
-        "type": {
-          "$ref": "#/31"
-        },
-        "flags": 0
-      },
-      "PointInTimeRecoverySpecification": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0
-      },
-      "ReadProvisionedThroughputSettings": {
-        "type": {
-          "$ref": "#/28"
-        },
-        "flags": 0
-      },
-      "Region": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      },
-      "SSESpecification": {
-        "type": {
-          "$ref": "#/33"
-        },
-        "flags": 0
-      },
-      "TableClass": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0
-      },
-      "Tags": {
-        "type": {
-          "$ref": "#/34"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/43"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SSESpecification",
-    "properties": {
-      "SSEEnabled": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      },
-      "SSEType": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "StreamSpecification",
-    "properties": {
-      "StreamViewType": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TimeToLiveSpecification",
-    "properties": {
-      "AttributeName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0
-      },
-      "Enabled": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "WriteProvisionedThroughputSettings",
-    "properties": {
-      "WriteCapacityAutoScalingSettings": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.DynamoDB/GlobalTableProperties",
-    "properties": {
-      "Arn": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 2
-      },
-      "AttributeDefinitions": {
-        "type": {
-          "$ref": "#/37"
-        },
-        "flags": 1
-      },
-      "BillingMode": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0
-      },
-      "GlobalSecondaryIndexes": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 4
-      },
-      "KeySchema": {
-        "type": {
-          "$ref": "#/40"
-        },
-        "flags": 1
-      },
-      "LocalSecondaryIndexes": {
-        "type": {
-          "$ref": "#/42"
-        },
-        "flags": 0
-      },
-      "Replicas": {
-        "type": {
-          "$ref": "#/44"
-        },
-        "flags": 5
-      },
-      "SSESpecification": {
-        "type": {
-          "$ref": "#/45"
-        },
-        "flags": 0
-      },
-      "StreamArn": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 2
-      },
-      "StreamSpecification": {
-        "type": {
-          "$ref": "#/46"
-        },
-        "flags": 0
-      },
-      "TableId": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 2
-      },
-      "TableName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 16
-      },
-      "TimeToLiveSpecification": {
-        "type": {
-          "$ref": "#/47"
-        },
-        "flags": 0
-      },
-      "WriteProvisionedThroughputSettings": {
-        "type": {
-          "$ref": "#/48"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.DynamoDB/GlobalTable",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/49"
-        },
-        "flags": 1,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.DynamoDB/GlobalTable@default",
-    "scopeType": 0,
-    "body": {
-      "$ref": "#/50"
-    },
-    "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AttributeDefinition",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ContributorInsightsSpecification",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Csv",
-    "properties": {
-      "Delimiter": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "The delimiter used for separating items in the CSV file being imported."
-      },
-      "HeaderList": {
-        "type": {
-          "$ref": "#/71"
-        },
-        "flags": 0,
-        "description": "List of the headers used to specify a common header for all source CSV files being imported. If this field is specified then the first line of each CSV file is treated as data instead of the header. If this field is not specified the the first line of each CSV file is treated as the header."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DeprecatedHashKeyElement",
-    "properties": {
-      "AttributeName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      },
-      "AttributeType": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DeprecatedKeySchema",
-    "properties": {
-      "HashKeyElement": {
-        "type": {
-          "$ref": "#/72"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "GlobalSecondaryIndex",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ImportSourceSpecification",
-    "properties": {
-      "InputCompressionType": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "Type of compression to be used on the input coming from the imported table."
-      },
-      "InputFormat": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1,
-        "description": "The format of the source data. Valid values for ``ImportFormat`` are ``CSV``, ``DYNAMODB_JSON`` or ``ION``."
-      },
-      "InputFormatOptions": {
-        "type": {
-          "$ref": "#/59"
-        },
-        "flags": 0,
-        "description": "Additional properties that specify how the input is formatted,"
-      },
-      "S3BucketSource": {
-        "type": {
-          "$ref": "#/66"
-        },
-        "flags": 1,
-        "description": "The S3 bucket that provides the source for the import."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "InputFormatOptions",
-    "properties": {
-      "Csv": {
-        "type": {
-          "$ref": "#/76"
-        },
-        "flags": 0,
-        "description": "The options for imported source files in CSV format. The values are Delimiter and HeaderList."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "KeySchema",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "KinesisStreamSpecification",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "LocalSecondaryIndex",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PointInTimeRecoverySpecification",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Projection",
-    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1173,359 +927,6 @@
   {
     "$type": "ObjectType",
     "name": "SSESpecification",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "StreamSpecification",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TimeToLiveSpecification",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/19"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DeprecatedHashKeyElement",
-    "properties": {
-      "AttributeName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      },
-      "AttributeType": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ContributorInsightsSpecification",
-    "properties": {
-      "Enabled": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "Indicates whether CloudWatch Contributor Insights are to be enabled (true) or disabled (false)."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/23"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Projection",
-    "properties": {
-      "NonKeyAttributes": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 0
-      },
-      "ProjectionType": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Csv",
-    "properties": {
-      "Delimiter": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "The delimiter used for separating items in the CSV file being imported."
-      },
-      "HeaderList": {
-        "type": {
-          "$ref": "#/71"
-        },
-        "flags": 0,
-        "description": "List of the headers used to specify a common header for all source CSV files being imported. If this field is specified then the first line of each CSV file is treated as data instead of the header. If this field is not specified the the first line of each CSV file is treated as the header."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "KeySchema",
-    "properties": {
-      "AttributeName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1,
-        "description": "The name of a key attribute."
-      },
-      "KeyType": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1,
-        "description": "The role that this key attribute will assume:\n  +   ``HASH`` - partition key\n  +   ``RANGE`` - sort key\n  \n  The partition key of an item is also known as its *hash attribute*. The term \"hash attribute\" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values.\n The sort key of an item is also known as its *range attribute*. The term \"range attribute\" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/77"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/19"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.DynamoDB/TableProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AttributeDefinition",
-    "properties": {
-      "AttributeName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1,
-        "description": "A name for the attribute."
-      },
-      "AttributeType": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1,
-        "description": "The data type for the attribute, where:\n  +   ``S`` - the attribute is of type String\n  +   ``N`` - the attribute is of type Number\n  +   ``B`` - the attribute is of type Binary"
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/82"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "GlobalSecondaryIndex",
-    "properties": {
-      "ContributorInsightsSpecification": {
-        "type": {
-          "$ref": "#/73"
-        },
-        "flags": 0,
-        "description": "The settings used to enable or disable CloudWatch Contributor Insights for the specified global secondary index."
-      },
-      "IndexName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1,
-        "description": "The name of the global secondary index. The name must be unique among all other indexes on this table."
-      },
-      "KeySchema": {
-        "type": {
-          "$ref": "#/74"
-        },
-        "flags": 1,
-        "description": "The complete key schema for a global secondary index, which consists of one or more pairs of attribute names and key types:\n  +   ``HASH`` - partition key\n  +   ``RANGE`` - sort key\n  \n  The partition key of an item is also known as its *hash attribute*. The term \"hash attribute\" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values.\n The sort key of an item is also known as its *range attribute*. The term \"range attribute\" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value."
-      },
-      "Projection": {
-        "type": {
-          "$ref": "#/75"
-        },
-        "flags": 1,
-        "description": "Represents attributes that are copied (projected) from the table into the global secondary index. These are in addition to the primary key attributes and index key attributes, which are automatically projected."
-      },
-      "ProvisionedThroughput": {
-        "type": {
-          "$ref": "#/65"
-        },
-        "flags": 0,
-        "description": "Represents the provisioned throughput settings for the specified global secondary index.\n For current minimum and maximum provisioned throughput values, see [Service, Account, and Table Quotas](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html) in the *Amazon DynamoDB Developer Guide*."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/84"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ImportSourceSpecification",
-    "properties": {
-      "InputCompressionType": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "Type of compression to be used on the input coming from the imported table."
-      },
-      "InputFormat": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1,
-        "description": "The format of the source data. Valid values for ``ImportFormat`` are ``CSV``, ``DYNAMODB_JSON`` or ``ION``."
-      },
-      "InputFormatOptions": {
-        "type": {
-          "$ref": "#/59"
-        },
-        "flags": 0,
-        "description": "Additional properties that specify how the input is formatted,"
-      },
-      "S3BucketSource": {
-        "type": {
-          "$ref": "#/66"
-        },
-        "flags": 1,
-        "description": "The S3 bucket that provides the source for the import."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Table_KeySchema",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "KinesisStreamSpecification",
-    "properties": {
-      "ApproximateCreationDateTimePrecision": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "The precision for the time and date that the stream was created."
-      },
-      "StreamArn": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1,
-        "description": "The ARN for a specific Kinesis data stream.\n Length Constraints: Minimum length of 37. Maximum length of 1024."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "LocalSecondaryIndex",
-    "properties": {
-      "IndexName": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 1,
-        "description": "The name of the local secondary index. The name must be unique among all other indexes on this table."
-      },
-      "KeySchema": {
-        "type": {
-          "$ref": "#/78"
-        },
-        "flags": 1,
-        "description": "The complete key schema for the local secondary index, consisting of one or more pairs of attribute names and key types:\n  +   ``HASH`` - partition key\n  +   ``RANGE`` - sort key\n  \n  The partition key of an item is also known as its *hash attribute*. The term \"hash attribute\" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values.\n The sort key of an item is also known as its *range attribute*. The term \"range attribute\" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value."
-      },
-      "Projection": {
-        "type": {
-          "$ref": "#/75"
-        },
-        "flags": 1,
-        "description": "Represents attributes that are copied (projected) from the table into the local secondary index. These are in addition to the primary key attributes and index key attributes, which are automatically projected."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/89"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PointInTimeRecoverySpecification",
-    "properties": {
-      "PointInTimeRecoveryEnabled": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0,
-        "description": "Indicates whether point in time recovery is enabled (true) or disabled (false) on the table."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ProvisionedThroughput",
-    "properties": {
-      "ReadCapacityUnits": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 1,
-        "description": "The maximum number of strongly consistent reads consumed per second before DynamoDB returns a ``ThrottlingException``. For more information, see [Specifying Read and Write Requirements](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html) in the *Amazon DynamoDB Developer Guide*.\n If read/write capacity mode is ``PAY_PER_REQUEST`` the value is set to 0."
-      },
-      "WriteCapacityUnits": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 1,
-        "description": "The maximum number of writes consumed per second before DynamoDB returns a ``ThrottlingException``. For more information, see [Specifying Read and Write Requirements](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html) in the *Amazon DynamoDB Developer Guide*.\n If read/write capacity mode is ``PAY_PER_REQUEST`` the value is set to 0."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SSESpecification",
     "properties": {
       "KMSMasterKeyId": {
         "type": {
@@ -1584,12 +985,6 @@
     }
   },
   {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/95"
-    }
-  },
-  {
     "$type": "ObjectType",
     "name": "TimeToLiveSpecification",
     "properties": {
@@ -1610,6 +1005,63 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/44"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/44"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DynamoDB/TableProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/36"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/41"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Table_KeySchema",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/46"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/53"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.DynamoDB/TableProperties",
     "properties": {
@@ -1622,7 +1074,7 @@
       },
       "AttributeDefinitions": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "A list of attributes that describe the key schema for the table and indexes.\n This property is required to create a DDB table.\n Update requires: [Some interruptions](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-some-interrupt). Replacement if you edit an existing AttributeDefinition."
@@ -1636,7 +1088,7 @@
       },
       "ContributorInsightsSpecification": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "The settings used to enable or disable CloudWatch Contributor Insights for the specified table."
@@ -1650,56 +1102,56 @@
       },
       "GlobalSecondaryIndexes": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "Global secondary indexes to be created on the table. You can create up to 20 global secondary indexes.\n  If you update a table to include a new global secondary index, CFNlong initiates the index creation and then proceeds with the stack update. CFNlong doesn't wait for the index to complete creation because the backfilling phase can take a long time, depending on the size of the table. You can't use the index or update the table until the index's status is ``ACTIVE``. You can track its status by using the DynamoDB [DescribeTable](https://docs.aws.amazon.com/cli/latest/reference/dynamodb/describe-table.html) command.\n If you add or delete an index during an update, we recommend that you don't update any other resources. If your stack fails to update and is rolled back while adding a new index, you must manually delete the index. \n Updates are not supported. The following are exceptions:\n  +  If you update either the contributor insights specification or the provisioned throughput values of global secondary indexes, you can update the table without interruption.\n  +  You can delete or add one global secondary index without interruption. If you do both in the same update (for example, by changing the index's logical ID), the update fails."
       },
       "ImportSourceSpecification": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/42"
         },
         "flags": 4,
         "description": "Specifies the properties of data being imported from the S3 bucket source to the table.\n  If you specify the ``ImportSourceSpecification`` property, and also specify either the ``StreamSpecification``, the ``TableClass`` property, or the ``DeletionProtectionEnabled`` property, the IAM entity creating/updating stack must have ``UpdateTable`` permission."
       },
       "KeySchema": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/62"
         },
         "flags": 1,
         "description": "Specifies the attributes that make up the primary key for the table. The attributes in the ``KeySchema`` property must also be defined in the ``AttributeDefinitions`` property."
       },
       "KinesisStreamSpecification": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "The Kinesis Data Streams configuration for the specified table."
       },
       "LocalSecondaryIndexes": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "Local secondary indexes to be created on the table. You can create up to 5 local secondary indexes. Each index is scoped to a given hash key value. The size of each hash key can be up to 10 gigabytes."
       },
       "PointInTimeRecoverySpecification": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "The settings used to enable point in time recovery."
       },
       "ProvisionedThroughput": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "Throughput for the specified table, which consists of values for ``ReadCapacityUnits`` and ``WriteCapacityUnits``. For more information about the contents of a provisioned throughput structure, see [Amazon DynamoDB Table ProvisionedThroughput](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ProvisionedThroughput.html). \n If you set ``BillingMode`` as ``PROVISIONED``, you must specify this property. If you set ``BillingMode`` as ``PAY_PER_REQUEST``, you cannot specify this property."
       },
       "SSESpecification": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "Specifies the settings to enable server-side encryption."
@@ -1713,7 +1165,7 @@
       },
       "StreamSpecification": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "The settings for the DDB table stream, which capture changes to items stored in the table."
@@ -1734,14 +1186,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource.\n For more information, see [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)."
       },
       "TimeToLiveSpecification": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "Specifies the Time to Live (TTL) settings for the table.\n  For detailed information about the limits in DynamoDB, see [Limits in Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html) in the Amazon DynamoDB Developer Guide."
@@ -1763,14 +1215,14 @@
         "type": {
           "$ref": "#/19"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/65"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1780,7 +1232,7 @@
     "name": "AWS.DynamoDB/Table@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/99"
+      "$ref": "#/66"
     },
     "flags": 0
   }

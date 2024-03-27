@@ -3,16 +3,16 @@
 ## Resource AWS.Oam/Link@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Oam/LinkProperties](#awsoamlinkproperties) (Required): properties of the resource
+* **properties**: [AWS.Oam/LinkProperties](#awsoamlinkproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Oam/Sink@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Oam/SinkProperties](#awsoamsinkproperties) (Required): properties of the resource
+* **properties**: [AWS.Oam/SinkProperties](#awsoamsinkproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Oam/LinkProperties
 ### Properties

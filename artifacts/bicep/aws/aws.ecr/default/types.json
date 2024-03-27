@@ -116,14 +116,14 @@
         "type": {
           "$ref": "#/6"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
           "$ref": "#/8"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -186,14 +186,14 @@
         "type": {
           "$ref": "#/6"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
           "$ref": "#/14"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -264,14 +264,14 @@
     "properties": {
       "Destinations": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/26"
         },
         "flags": 1,
         "description": "An array of objects representing the details of a replication destination."
       },
       "RepositoryFilters": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "An array of objects representing the details of a repository filter."
@@ -303,27 +303,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "ReplicationDestination",
-    "properties": {
-      "Region": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1
-      },
-      "RegistryId": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 17
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/22"
     }
   },
   {
@@ -338,19 +320,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ReplicationConfiguration",
-    "properties": {
-      "Rules": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 1,
-        "description": "An array of objects representing the replication rules for a replication configuration. A replication configuration may contain a maximum of 10 rules."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "AWS.ECR/ReplicationConfigurationProperties",
     "properties": {
       "RegistryId": {
@@ -362,7 +331,7 @@
       },
       "ReplicationConfiguration": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/21"
         },
         "flags": 1
       }
@@ -383,14 +352,14 @@
         "type": {
           "$ref": "#/6"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/29"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -400,7 +369,7 @@
     "name": "AWS.ECR/ReplicationConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/32"
+      "$ref": "#/30"
     },
     "flags": 0
   },
@@ -440,7 +409,7 @@
     "properties": {
       "ScanOnPush": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The setting that determines whether images are scanned after being pushed to a repository. If set to ``true``, images will be scanned after being pushed. If this parameter is not specified, it will default to ``false`` and images will not be scanned unless a scan is manually started."
@@ -516,59 +485,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "EncryptionConfiguration",
-    "properties": {
-      "EncryptionType": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1,
-        "description": "The encryption type to use.\n If you use the ``KMS`` encryption type, the contents of the repository will be encrypted using server-side encryption with KMSlong key stored in KMS. When you use KMS to encrypt your data, you can either use the default AWS managed KMS key for Amazon ECR, or specify your own KMS key, which you already created. For more information, see [Protecting data using server-side encryption with an key stored in (SSE-KMS)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) in the *Amazon Simple Storage Service Console Developer Guide*.\n If you use the ``AES256`` encryption type, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts the images in the repository using an AES-256 encryption algorithm. For more information, see [Protecting data using server-side encryption with Amazon S3-managed encryption keys (SSE-S3)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html) in the *Ama"
-      },
-      "KmsKey": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0,
-        "description": "If you use the ``KMS`` encryption type, specify the KMS key to use for encryption. The alias, key ID, or full ARN of the KMS key can be specified. The key must exist in the same Region as the repository. If no key is specified, the default AWS managed KMS key for Amazon ECR will be used."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ImageScanningConfiguration",
-    "properties": {
-      "ScanOnPush": {
-        "type": {
-          "$ref": "#/44"
-        },
-        "flags": 0,
-        "description": "The setting that determines whether images are scanned after being pushed to a repository. If set to ``true``, images will be scanned after being pushed. If this parameter is not specified, it will default to ``false`` and images will not be scanned unless a scan is manually started."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "LifecyclePolicy",
-    "properties": {
-      "LifecyclePolicyText": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0,
-        "description": "The JSON repository policy text to apply to the repository."
-      },
-      "RegistryId": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0,
-        "description": "The AWS account ID associated with the registry that contains the repository. If you do? not specify a registry, the default registry is assumed."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "Repository_RepositoryPolicyText",
     "properties": {}
   },
@@ -576,7 +492,7 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/49"
+        "$ref": "#/44"
       },
       {
         "$ref": "#/6"
@@ -584,29 +500,9 @@
     ]
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1,
-        "description": "One part of a key-value pair that make up a tag. A ``key`` is a general label that acts like a category for more specific tag values."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1,
-        "description": "A ``value`` acts as a descriptor within a tag category (key)."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/51"
+      "$ref": "#/41"
     }
   },
   {
@@ -622,21 +518,21 @@
       },
       "EmptyOnDelete": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/42"
         },
         "flags": 4,
         "description": "If true, deleting the repository force deletes the contents of the repository. If false, the repository must be empty before attempting to delete it."
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest."
       },
       "ImageScanningConfiguration": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "The image scanning configuration for the repository. This determines whether images are scanned for known vulnerabilities after being pushed to the repository."
@@ -650,7 +546,7 @@
       },
       "LifecyclePolicy": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "Creates or updates a lifecycle policy. For information about lifecycle policy syntax, see [Lifecycle policy template](https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html)."
@@ -664,7 +560,7 @@
       },
       "RepositoryPolicyText": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "The JSON repository policy text to apply to the repository. For more information, see [Amazon ECR repository policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policy-examples.html) in the *Amazon Elastic Container Registry User Guide*."
@@ -678,7 +574,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -700,14 +596,14 @@
         "type": {
           "$ref": "#/6"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/47"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -717,7 +613,7 @@
     "name": "AWS.ECR/Repository@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/54"
+      "$ref": "#/48"
     },
     "flags": 0
   }

@@ -3,51 +3,51 @@
 ## Resource AWS.ECS/CapacityProvider@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ECS/CapacityProviderProperties](#awsecscapacityproviderproperties) (Required): properties of the resource
+* **properties**: [AWS.ECS/CapacityProviderProperties](#awsecscapacityproviderproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ECS/Cluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ECS/ClusterProperties](#awsecsclusterproperties): properties of the resource
+* **properties**: [AWS.ECS/ClusterProperties](#awsecsclusterproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ECS/ClusterCapacityProviderAssociations@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ECS/ClusterCapacityProviderAssociationsProperties](#awsecsclustercapacityproviderassociationsproperties) (Required): properties of the resource
+* **properties**: [AWS.ECS/ClusterCapacityProviderAssociationsProperties](#awsecsclustercapacityproviderassociationsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ECS/PrimaryTaskSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ECS/PrimaryTaskSetProperties](#awsecsprimarytasksetproperties) (Required): properties of the resource
+* **properties**: [AWS.ECS/PrimaryTaskSetProperties](#awsecsprimarytasksetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ECS/Service@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ECS/ServiceProperties](#awsecsserviceproperties): properties of the resource
+* **properties**: [AWS.ECS/ServiceProperties](#awsecsserviceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ECS/TaskDefinition@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ECS/TaskDefinitionProperties](#awsecstaskdefinitionproperties): properties of the resource
+* **properties**: [AWS.ECS/TaskDefinitionProperties](#awsecstaskdefinitionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ECS/TaskSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ECS/TaskSetProperties](#awsecstasksetproperties) (Required): properties of the resource
+* **properties**: [AWS.ECS/TaskSetProperties](#awsecstasksetproperties) (Required, Identifier): properties of the resource
 
 ## AuthorizationConfig
 ### Properties
@@ -576,6 +576,17 @@
 * **Options**: [Service_Options](#serviceoptions): The configuration options to send to the log driver. This parameter requires version 1.19 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'``
 * **SecretOptions**: [Secret](#secret)[]: The secrets to pass to the log configuration. For more information, see [Specifying sensitive data](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html) in the *Amazon Elastic Container Service Developer Guide*.
 
+## LogConfiguration
+### Properties
+* **LogDriver**: string (Required): The log driver to use for the container.
+ For tasks on FARGATElong, the supported log drivers are ``awslogs``, ``splunk``, and ``awsfirelens``.
+ For tasks hosted on Amazon EC2 instances, the supported log drivers are ``awslogs``, ``fluentd``, ``gelf``, ``json-file``, ``journald``, ``logentries``,``syslog``, ``splunk``, and ``awsfirelens``.
+ For more information about using the ``awslogs`` log driver, see [Using the awslogs log driver](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html) in the *Amazon Elastic Container Service Developer Guide*.
+ For more information about using the ``awsfirelens`` log driver, see [Custom log routing](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_firelens.html) in the *Amazon Elastic Container Service Developer Guide*.
+  If you have a custom driver that isn't listed, you can fork the Amazon ECS container agent project that's [available on GitHub](https://docs.aws.amazon.com/https://github.com/aws/amazon-ecs
+* **Options**: [TaskDefinition_Options](#taskdefinitionoptions): The configuration options to send to the log driver. This parameter requires version 1.19 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'``
+* **SecretOptions**: [Secret](#secret)[]: The secrets to pass to the log configuration. For more information, see [Specifying sensitive data](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html) in the *Amazon Elastic Container Service Developer Guide*.
+
 ## ManagedScaling
 ### Properties
 * **InstanceWarmupPeriod**: int
@@ -842,6 +853,9 @@
 ### Properties
 
 ## TaskDefinition_Labels
+### Properties
+
+## TaskDefinition_Options
 ### Properties
 
 ## TaskDefinition_Options

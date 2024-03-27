@@ -26,19 +26,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "VpcConfiguration",
-    "properties": {
-      "VpcId": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "Virtual Private Cloud (VPC) Id from which AccessPoint will allow requests."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "AWS.S3Outposts/AccessPointProperties",
     "properties": {
       "Arn": {
@@ -71,7 +58,7 @@
       },
       "VpcConfiguration": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/0"
         },
         "flags": 1,
         "description": "Virtual Private Cloud (VPC) from which requests can be made to the AccessPoint."
@@ -93,14 +80,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -110,7 +97,7 @@
     "name": "AWS.S3Outposts/AccessPoint@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/6"
+      "$ref": "#/5"
     },
     "flags": 0
   },
@@ -120,7 +107,7 @@
     "properties": {
       "DaysAfterInitiation": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 1,
         "description": "Specifies the number of days after which Amazon S3Outposts aborts an incomplete multipart upload."
@@ -161,7 +148,7 @@
     "properties": {
       "Rules": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/17"
         },
         "flags": 1,
         "description": "A list of lifecycle rules for individual objects in an Amazon S3Outposts bucket."
@@ -174,7 +161,7 @@
     "properties": {
       "AbortIncompleteMultipartUpload": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "Specifies a lifecycle rule that stops incomplete multipart uploads to an Amazon S3Outposts bucket."
@@ -188,14 +175,14 @@
       },
       "ExpirationInDays": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "Indicates the number of days after creation when objects are deleted from Amazon S3Outposts."
       },
       "Filter": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "The container for the filter of the lifecycle rule."
@@ -249,38 +236,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AbortIncompleteMultipartUpload",
-    "properties": {
-      "DaysAfterInitiation": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 1,
-        "description": "Specifies the number of days after which Amazon S3Outposts aborts an incomplete multipart upload."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "FilterTag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      }
+      "$ref": "#/12"
     }
   },
   {
@@ -289,7 +245,7 @@
     "properties": {
       "AndOperator": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "The container for the AND condition for the lifecycle rule. A combination of Prefix and 1 or more Tags OR a minimum of 2 or more tags."
@@ -303,7 +259,7 @@
       },
       "Tag": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Specifies a tag used to identify a subset of objects for an Amazon S3Outposts bucket."
@@ -315,40 +271,9 @@
     "value": "AWS.S3Outposts/BucketProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "LifecycleConfiguration",
-    "properties": {
-      "Rules": {
-        "type": {
-          "$ref": "#/18"
-        },
-        "flags": 1,
-        "description": "A list of lifecycle rules for individual objects in an Amazon S3Outposts bucket."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/13"
     }
   },
   {
@@ -371,7 +296,7 @@
       },
       "LifecycleConfiguration": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "Rules that define how Amazon S3Outposts manages objects during their lifetime."
@@ -385,7 +310,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this S3Outposts bucket."
@@ -407,14 +332,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/21"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -424,7 +349,7 @@
     "name": "AWS.S3Outposts/Bucket@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/27"
+      "$ref": "#/22"
     },
     "flags": 0
   },
@@ -450,7 +375,7 @@
       },
       "PolicyDocument": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "A policy document containing permissions to add to the specified bucket."
@@ -472,14 +397,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/26"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -489,7 +414,7 @@
     "name": "AWS.S3Outposts/BucketPolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/32"
+      "$ref": "#/27"
     },
     "flags": 0
   }

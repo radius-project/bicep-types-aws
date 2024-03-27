@@ -3,37 +3,37 @@
 ## Resource AWS.Organizations/Account@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Organizations/AccountProperties](#awsorganizationsaccountproperties) (Required): properties of the resource
+* **properties**: [AWS.Organizations/AccountProperties](#awsorganizationsaccountproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Organizations/Organization@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Organizations/OrganizationProperties](#awsorganizationsorganizationproperties): properties of the resource
+* **properties**: [AWS.Organizations/OrganizationProperties](#awsorganizationsorganizationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Organizations/OrganizationalUnit@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Organizations/OrganizationalUnitProperties](#awsorganizationsorganizationalunitproperties) (Required): properties of the resource
+* **properties**: [AWS.Organizations/OrganizationalUnitProperties](#awsorganizationsorganizationalunitproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Organizations/Policy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Organizations/PolicyProperties](#awsorganizationspolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.Organizations/PolicyProperties](#awsorganizationspolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Organizations/ResourcePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Organizations/ResourcePolicyProperties](#awsorganizationsresourcepolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.Organizations/ResourcePolicyProperties](#awsorganizationsresourcepolicyproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Organizations/AccountProperties
 ### Properties

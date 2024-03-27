@@ -3,58 +3,58 @@
 ## Resource AWS.MediaConnect/Bridge@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaConnect/BridgeProperties](#awsmediaconnectbridgeproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaConnect/BridgeProperties](#awsmediaconnectbridgeproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaConnect/BridgeOutput@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaConnect/BridgeOutputProperties](#awsmediaconnectbridgeoutputproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaConnect/BridgeOutputProperties](#awsmediaconnectbridgeoutputproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaConnect/BridgeSource@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaConnect/BridgeSourceProperties](#awsmediaconnectbridgesourceproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaConnect/BridgeSourceProperties](#awsmediaconnectbridgesourceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaConnect/Flow@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaConnect/FlowProperties](#awsmediaconnectflowproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaConnect/FlowProperties](#awsmediaconnectflowproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaConnect/FlowEntitlement@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaConnect/FlowEntitlementProperties](#awsmediaconnectflowentitlementproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaConnect/FlowEntitlementProperties](#awsmediaconnectflowentitlementproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaConnect/FlowOutput@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaConnect/FlowOutputProperties](#awsmediaconnectflowoutputproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaConnect/FlowOutputProperties](#awsmediaconnectflowoutputproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaConnect/FlowSource@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaConnect/FlowSourceProperties](#awsmediaconnectflowsourceproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaConnect/FlowSourceProperties](#awsmediaconnectflowsourceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaConnect/FlowVpcInterface@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaConnect/FlowVpcInterfaceProperties](#awsmediaconnectflowvpcinterfaceproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaConnect/FlowVpcInterfaceProperties](#awsmediaconnectflowvpcinterfaceproperties) (Required, Identifier): properties of the resource
 
 ## AWS.MediaConnect/BridgeOutputProperties
 ### Properties
@@ -325,4 +325,8 @@
 ## VpcInterfaceAttachment
 ### Properties
 * **VpcInterfaceName**: string: The name of the VPC interface to use for this output.
+
+## VpcInterfaceAttachment
+### Properties
+* **VpcInterfaceName**: string: The name of the VPC interface to use for this resource.
 

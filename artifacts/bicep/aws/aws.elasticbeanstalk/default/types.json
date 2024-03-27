@@ -108,26 +108,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ApplicationResourceLifecycleConfig",
-    "properties": {
-      "ServiceRole": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The ARN of an IAM service role that Elastic Beanstalk has permission to assume. The ServiceRole property is required the first time that you provide a ResourceLifecycleConfig for the application. After you provide it once, Elastic Beanstalk persists the Service Role with the application, and you don't need to specify it again. You can, however, specify it in subsequent updates to change the Service Role to another value."
-      },
-      "VersionLifecycleConfig": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "Defines lifecycle settings for application versions."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "AWS.ElasticBeanstalk/ApplicationProperties",
     "properties": {
       "ApplicationName": {
@@ -146,7 +126,7 @@
       },
       "ResourceLifecycleConfig": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/0"
         },
         "flags": 0,
         "description": "Specifies an application resource lifecycle configuration to prevent your application from accumulating too many versions."
@@ -168,14 +148,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/8"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -185,7 +165,7 @@
     "name": "AWS.ElasticBeanstalk/Application@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/10"
+      "$ref": "#/9"
     },
     "flags": 0
   },
@@ -215,26 +195,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "SourceBundle",
-    "properties": {
-      "S3Bucket": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The Amazon S3 bucket where the data is located."
-      },
-      "S3Key": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The Amazon S3 key where the data is located."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "AWS.ElasticBeanstalk/ApplicationVersionProperties",
     "properties": {
       "ApplicationName": {
@@ -259,7 +219,7 @@
       },
       "SourceBundle": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/11"
         },
         "flags": 1,
         "description": "The Amazon S3 bucket and key that identify the location of the source bundle for this version. "
@@ -281,14 +241,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/13"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -298,7 +258,7 @@
     "name": "AWS.ElasticBeanstalk/ApplicationVersion@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/16"
+      "$ref": "#/14"
     },
     "flags": 0
   },
@@ -361,63 +321,9 @@
     "value": "AWS.ElasticBeanstalk/ConfigurationTemplateProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "ConfigurationOptionSetting",
-    "properties": {
-      "Namespace": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "A unique namespace that identifies the option's associated AWS resource."
-      },
-      "OptionName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The name of the configuration option."
-      },
-      "ResourceName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "A unique resource name for the option setting. Use it for a time–based scaling configuration option. "
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The current value for the configuration option."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/21"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SourceConfiguration",
-    "properties": {
-      "ApplicationName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 21,
-        "description": "The name of the application associated with the configuration."
-      },
-      "TemplateName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 21,
-        "description": "The name of the configuration template."
-      }
+      "$ref": "#/16"
     }
   },
   {
@@ -447,7 +353,7 @@
       },
       "OptionSettings": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "Option values for the Elastic Beanstalk configuration, such as the instance type. If specified, these values override the values obtained from the solution stack or the source configuration template. For a complete list of Elastic Beanstalk configuration options, see [Option Values](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options.html) in the AWS Elastic Beanstalk Developer Guide. "
@@ -468,7 +374,7 @@
       },
       "SourceConfiguration": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "An Elastic Beanstalk configuration template to base this one on. If specified, Elastic Beanstalk uses the configuration values from the specified configuration template to create a new configuration.\n\nValues specified in OptionSettings override any values obtained from the SourceConfiguration.\n\nYou must specify SourceConfiguration if you don't specify PlatformArn, EnvironmentId, or SolutionStackName.\n\nConstraint: If both solution stack name and source configuration are specified, the solution stack of the source configuration template must match the specified solution stack name. "
@@ -497,14 +403,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/20"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -514,7 +420,7 @@
     "name": "AWS.ElasticBeanstalk/ConfigurationTemplate@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/25"
+      "$ref": "#/21"
     },
     "flags": 0
   },
@@ -604,96 +510,15 @@
     "value": "AWS.ElasticBeanstalk/EnvironmentProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "OptionSetting",
-    "properties": {
-      "Namespace": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "A unique namespace that identifies the option's associated AWS resource."
-      },
-      "OptionName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The name of the configuration option."
-      },
-      "ResourceName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "A unique resource name for the option setting. Use it for a time–based scaling configuration option."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The current value for the configuration option."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The key name of the tag."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The value for the tag."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/33"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tier",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The name of this environment tier."
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The type of this environment tier."
-      },
-      "Version": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The version of this environment tier. When you don't set a value to it, Elastic Beanstalk uses the latest compatible worker tier version."
-      }
+      "$ref": "#/24"
     }
   },
   {
@@ -743,7 +568,7 @@
       },
       "OptionSettings": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/27"
         },
         "flags": 4,
         "description": "Key-value pairs defining configuration options for this environment, such as the instance type."
@@ -764,7 +589,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "Specifies the tags applied to resources in the environment."
@@ -778,7 +603,7 @@
       },
       "Tier": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "Specifies the tier to use in creating this environment. The environment tier that you choose determines whether Elastic Beanstalk provisions resources to support a web application that handles HTTP(S) requests or a web application that handles background-processing tasks."
@@ -807,14 +632,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/29"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -824,7 +649,7 @@
     "name": "AWS.ElasticBeanstalk/Environment@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/37"
+      "$ref": "#/30"
     },
     "flags": 0
   }

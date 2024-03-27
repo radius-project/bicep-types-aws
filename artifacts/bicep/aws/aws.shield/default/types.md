@@ -3,30 +3,30 @@
 ## Resource AWS.Shield/DRTAccess@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Shield/DRTAccessProperties](#awsshielddrtaccessproperties) (Required): properties of the resource
+* **properties**: [AWS.Shield/DRTAccessProperties](#awsshielddrtaccessproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Shield/ProactiveEngagement@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Shield/ProactiveEngagementProperties](#awsshieldproactiveengagementproperties) (Required): properties of the resource
+* **properties**: [AWS.Shield/ProactiveEngagementProperties](#awsshieldproactiveengagementproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Shield/Protection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Shield/ProtectionProperties](#awsshieldprotectionproperties) (Required): properties of the resource
+* **properties**: [AWS.Shield/ProtectionProperties](#awsshieldprotectionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Shield/ProtectionGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Shield/ProtectionGroupProperties](#awsshieldprotectiongroupproperties) (Required): properties of the resource
+* **properties**: [AWS.Shield/ProtectionGroupProperties](#awsshieldprotectiongroupproperties) (Required, Identifier): properties of the resource
 
 ## ApplicationLayerAutomaticResponseConfiguration
 ### Properties

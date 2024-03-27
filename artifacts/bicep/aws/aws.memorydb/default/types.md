@@ -3,37 +3,37 @@
 ## Resource AWS.MemoryDB/ACL@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MemoryDB/ACLProperties](#awsmemorydbaclproperties) (Required): properties of the resource
+* **properties**: [AWS.MemoryDB/ACLProperties](#awsmemorydbaclproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MemoryDB/Cluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MemoryDB/ClusterProperties](#awsmemorydbclusterproperties) (Required): properties of the resource
+* **properties**: [AWS.MemoryDB/ClusterProperties](#awsmemorydbclusterproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MemoryDB/ParameterGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MemoryDB/ParameterGroupProperties](#awsmemorydbparametergroupproperties) (Required): properties of the resource
+* **properties**: [AWS.MemoryDB/ParameterGroupProperties](#awsmemorydbparametergroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MemoryDB/SubnetGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MemoryDB/SubnetGroupProperties](#awsmemorydbsubnetgroupproperties) (Required): properties of the resource
+* **properties**: [AWS.MemoryDB/SubnetGroupProperties](#awsmemorydbsubnetgroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MemoryDB/User@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MemoryDB/UserProperties](#awsmemorydbuserproperties) (Required): properties of the resource
+* **properties**: [AWS.MemoryDB/UserProperties](#awsmemorydbuserproperties) (Required, Identifier): properties of the resource
 
 ## AWS.MemoryDB/ACLProperties
 ### Properties

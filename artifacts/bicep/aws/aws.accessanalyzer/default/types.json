@@ -126,78 +126,26 @@
   },
   {
     "$type": "ObjectType",
-    "name": "UnusedAccessConfiguration",
-    "properties": {
-      "UnusedAccessAge": {
-        "type": {
-          "$ref": "#/10"
-        },
-        "flags": 0,
-        "description": "The specified access age in days for which to generate findings for unused access. For example, if you specify 90 days, the analyzer will generate findings for IAM entities within the accounts of the selected organization for any access that hasn't been used in 90 or more days since the analyzer's last scan. You can choose a value between 1 and 180 days."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "Analyzer_AnalyzerConfiguration",
     "properties": {
       "UnusedAccessConfiguration": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/3"
         },
         "flags": 0
       }
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "ArchiveRule",
-    "properties": {
-      "Filter": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1
-      },
-      "RuleName": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "The archive rule name"
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/14"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/16"
+      "$ref": "#/2"
     }
   },
   {
@@ -206,7 +154,7 @@
     "properties": {
       "AnalyzerConfiguration": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The configuration for the analyzer"
@@ -220,7 +168,7 @@
       },
       "ArchiveRules": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/13"
         },
         "flags": 0
       },
@@ -233,7 +181,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -262,14 +210,14 @@
         "type": {
           "$ref": "#/5"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/15"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -279,7 +227,7 @@
     "name": "AWS.AccessAnalyzer/Analyzer@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/19"
+      "$ref": "#/16"
     },
     "flags": 0
   }

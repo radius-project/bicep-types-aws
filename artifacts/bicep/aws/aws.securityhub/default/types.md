@@ -3,23 +3,23 @@
 ## Resource AWS.SecurityHub/AutomationRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SecurityHub/AutomationRuleProperties](#awssecurityhubautomationruleproperties): properties of the resource
+* **properties**: [AWS.SecurityHub/AutomationRuleProperties](#awssecurityhubautomationruleproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SecurityHub/Hub@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SecurityHub/HubProperties](#awssecurityhubhubproperties): properties of the resource
+* **properties**: [AWS.SecurityHub/HubProperties](#awssecurityhubhubproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SecurityHub/Standard@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SecurityHub/StandardProperties](#awssecurityhubstandardproperties) (Required): properties of the resource
+* **properties**: [AWS.SecurityHub/StandardProperties](#awssecurityhubstandardproperties) (Required, Identifier): properties of the resource
 
 ## AutomationRule_arnOrId
 ### Properties

@@ -3,44 +3,44 @@
 ## Resource AWS.Backup/BackupPlan@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Backup/BackupPlanProperties](#awsbackupbackupplanproperties) (Required): properties of the resource
+* **properties**: [AWS.Backup/BackupPlanProperties](#awsbackupbackupplanproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Backup/BackupVault@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Backup/BackupVaultProperties](#awsbackupbackupvaultproperties) (Required): properties of the resource
+* **properties**: [AWS.Backup/BackupVaultProperties](#awsbackupbackupvaultproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Backup/Framework@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Backup/FrameworkProperties](#awsbackupframeworkproperties) (Required): properties of the resource
+* **properties**: [AWS.Backup/FrameworkProperties](#awsbackupframeworkproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Backup/ReportPlan@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Backup/ReportPlanProperties](#awsbackupreportplanproperties) (Required): properties of the resource
+* **properties**: [AWS.Backup/ReportPlanProperties](#awsbackupreportplanproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Backup/RestoreTestingPlan@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Backup/RestoreTestingPlanProperties](#awsbackuprestoretestingplanproperties) (Required): properties of the resource
+* **properties**: [AWS.Backup/RestoreTestingPlanProperties](#awsbackuprestoretestingplanproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Backup/RestoreTestingSelection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Backup/RestoreTestingSelectionProperties](#awsbackuprestoretestingselectionproperties) (Required): properties of the resource
+* **properties**: [AWS.Backup/RestoreTestingSelectionProperties](#awsbackuprestoretestingselectionproperties) (Required, Identifier): properties of the resource
 
 ## AdvancedBackupSettingResourceType
 ### Properties
@@ -221,16 +221,16 @@
 
 ## Tag
 ### Properties
+* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
-## Tag
-### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
-## Tag
-### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 

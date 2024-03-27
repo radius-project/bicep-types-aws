@@ -3,44 +3,44 @@
 ## Resource AWS.DataBrew/Dataset@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DataBrew/DatasetProperties](#awsdatabrewdatasetproperties) (Required): properties of the resource
+* **properties**: [AWS.DataBrew/DatasetProperties](#awsdatabrewdatasetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataBrew/Job@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DataBrew/JobProperties](#awsdatabrewjobproperties) (Required): properties of the resource
+* **properties**: [AWS.DataBrew/JobProperties](#awsdatabrewjobproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataBrew/Project@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DataBrew/ProjectProperties](#awsdatabrewprojectproperties) (Required): properties of the resource
+* **properties**: [AWS.DataBrew/ProjectProperties](#awsdatabrewprojectproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataBrew/Recipe@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DataBrew/RecipeProperties](#awsdatabrewrecipeproperties) (Required): properties of the resource
+* **properties**: [AWS.DataBrew/RecipeProperties](#awsdatabrewrecipeproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataBrew/Ruleset@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DataBrew/RulesetProperties](#awsdatabrewrulesetproperties) (Required): properties of the resource
+* **properties**: [AWS.DataBrew/RulesetProperties](#awsdatabrewrulesetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataBrew/Schedule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DataBrew/ScheduleProperties](#awsdatabrewscheduleproperties) (Required): properties of the resource
+* **properties**: [AWS.DataBrew/ScheduleProperties](#awsdatabrewscheduleproperties) (Required, Identifier): properties of the resource
 
 ## Action
 ### Properties
@@ -307,11 +307,6 @@
 * **Name**: string (Required, Identifier): Name of the rule
 * **SubstitutionMap**: [SubstitutionValue](#substitutionvalue)[]
 * **Threshold**: [Threshold](#threshold)
-
-## S3Location
-### Properties
-* **Bucket**: string (Required)
-* **Key**: string
 
 ## S3Location
 ### Properties

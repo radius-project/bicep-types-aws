@@ -3,93 +3,93 @@
 ## Resource AWS.RDS/CustomDBEngineVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RDS/CustomDBEngineVersionProperties](#awsrdscustomdbengineversionproperties) (Required): properties of the resource
+* **properties**: [AWS.RDS/CustomDBEngineVersionProperties](#awsrdscustomdbengineversionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.RDS/DBCluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RDS/DBClusterProperties](#awsrdsdbclusterproperties): properties of the resource
+* **properties**: [AWS.RDS/DBClusterProperties](#awsrdsdbclusterproperties) (Identifier): properties of the resource
 
 ## Resource AWS.RDS/DBClusterParameterGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RDS/DBClusterParameterGroupProperties](#awsrdsdbclusterparametergroupproperties) (Required): properties of the resource
+* **properties**: [AWS.RDS/DBClusterParameterGroupProperties](#awsrdsdbclusterparametergroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.RDS/DBInstance@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RDS/DBInstanceProperties](#awsrdsdbinstanceproperties): properties of the resource
+* **properties**: [AWS.RDS/DBInstanceProperties](#awsrdsdbinstanceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.RDS/DBParameterGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RDS/DBParameterGroupProperties](#awsrdsdbparametergroupproperties) (Required): properties of the resource
+* **properties**: [AWS.RDS/DBParameterGroupProperties](#awsrdsdbparametergroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.RDS/DBProxy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RDS/DBProxyProperties](#awsrdsdbproxyproperties) (Required): properties of the resource
+* **properties**: [AWS.RDS/DBProxyProperties](#awsrdsdbproxyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.RDS/DBProxyEndpoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RDS/DBProxyEndpointProperties](#awsrdsdbproxyendpointproperties) (Required): properties of the resource
+* **properties**: [AWS.RDS/DBProxyEndpointProperties](#awsrdsdbproxyendpointproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.RDS/DBProxyTargetGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RDS/DBProxyTargetGroupProperties](#awsrdsdbproxytargetgroupproperties) (Required): properties of the resource
+* **properties**: [AWS.RDS/DBProxyTargetGroupProperties](#awsrdsdbproxytargetgroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.RDS/DBSubnetGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RDS/DBSubnetGroupProperties](#awsrdsdbsubnetgroupproperties) (Required): properties of the resource
+* **properties**: [AWS.RDS/DBSubnetGroupProperties](#awsrdsdbsubnetgroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.RDS/EventSubscription@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RDS/EventSubscriptionProperties](#awsrdseventsubscriptionproperties) (Required): properties of the resource
+* **properties**: [AWS.RDS/EventSubscriptionProperties](#awsrdseventsubscriptionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.RDS/GlobalCluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RDS/GlobalClusterProperties](#awsrdsglobalclusterproperties): properties of the resource
+* **properties**: [AWS.RDS/GlobalClusterProperties](#awsrdsglobalclusterproperties) (Identifier): properties of the resource
 
 ## Resource AWS.RDS/Integration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RDS/IntegrationProperties](#awsrdsintegrationproperties) (Required): properties of the resource
+* **properties**: [AWS.RDS/IntegrationProperties](#awsrdsintegrationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.RDS/OptionGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RDS/OptionGroupProperties](#awsrdsoptiongroupproperties) (Required): properties of the resource
+* **properties**: [AWS.RDS/OptionGroupProperties](#awsrdsoptiongroupproperties) (Required, Identifier): properties of the resource
 
 ## AuthFormat
 ### Properties

@@ -3,9 +3,9 @@
 ## Resource AWS.LookoutMetrics/AnomalyDetector@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.LookoutMetrics/AnomalyDetectorProperties](#awslookoutmetricsanomalydetectorproperties) (Required): properties of the resource
+* **properties**: [AWS.LookoutMetrics/AnomalyDetectorProperties](#awslookoutmetricsanomalydetectorproperties) (Required, Identifier): properties of the resource
 
 ## AnomalyDetectorConfig
 ### Properties

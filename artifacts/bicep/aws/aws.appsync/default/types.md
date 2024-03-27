@@ -3,37 +3,37 @@
 ## Resource AWS.AppSync/DomainName@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppSync/DomainNameProperties](#awsappsyncdomainnameproperties) (Required): properties of the resource
+* **properties**: [AWS.AppSync/DomainNameProperties](#awsappsyncdomainnameproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppSync/DomainNameApiAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppSync/DomainNameApiAssociationProperties](#awsappsyncdomainnameapiassociationproperties) (Required): properties of the resource
+* **properties**: [AWS.AppSync/DomainNameApiAssociationProperties](#awsappsyncdomainnameapiassociationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppSync/FunctionConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppSync/FunctionConfigurationProperties](#awsappsyncfunctionconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.AppSync/FunctionConfigurationProperties](#awsappsyncfunctionconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppSync/Resolver@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppSync/ResolverProperties](#awsappsyncresolverproperties) (Required): properties of the resource
+* **properties**: [AWS.AppSync/ResolverProperties](#awsappsyncresolverproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppSync/SourceApiAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppSync/SourceApiAssociationProperties](#awsappsyncsourceapiassociationproperties): properties of the resource
+* **properties**: [AWS.AppSync/SourceApiAssociationProperties](#awsappsyncsourceapiassociationproperties) (Identifier): properties of the resource
 
 ## AppSyncRuntime
 ### Properties

@@ -3,9 +3,9 @@
 ## Resource AWS.CodeDeploy/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CodeDeploy/ApplicationProperties](#awscodedeployapplicationproperties): properties of the resource
+* **properties**: [AWS.CodeDeploy/ApplicationProperties](#awscodedeployapplicationproperties) (Identifier): properties of the resource
 
 ## AWS.CodeDeploy/ApplicationProperties
 ### Properties

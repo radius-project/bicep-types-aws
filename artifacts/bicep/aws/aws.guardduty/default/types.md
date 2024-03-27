@@ -3,37 +3,37 @@
 ## Resource AWS.GuardDuty/Detector@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GuardDuty/DetectorProperties](#awsguarddutydetectorproperties) (Required): properties of the resource
+* **properties**: [AWS.GuardDuty/DetectorProperties](#awsguarddutydetectorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GuardDuty/Filter@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GuardDuty/FilterProperties](#awsguarddutyfilterproperties) (Required): properties of the resource
+* **properties**: [AWS.GuardDuty/FilterProperties](#awsguarddutyfilterproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GuardDuty/IPSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GuardDuty/IPSetProperties](#awsguarddutyipsetproperties) (Required): properties of the resource
+* **properties**: [AWS.GuardDuty/IPSetProperties](#awsguarddutyipsetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GuardDuty/Member@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GuardDuty/MemberProperties](#awsguarddutymemberproperties) (Required): properties of the resource
+* **properties**: [AWS.GuardDuty/MemberProperties](#awsguarddutymemberproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GuardDuty/ThreatIntelSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GuardDuty/ThreatIntelSetProperties](#awsguarddutythreatintelsetproperties) (Required): properties of the resource
+* **properties**: [AWS.GuardDuty/ThreatIntelSetProperties](#awsguarddutythreatintelsetproperties) (Required, Identifier): properties of the resource
 
 ## AWS.GuardDuty/DetectorProperties
 ### Properties

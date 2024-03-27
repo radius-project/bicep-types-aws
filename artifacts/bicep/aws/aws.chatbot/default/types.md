@@ -3,16 +3,16 @@
 ## Resource AWS.Chatbot/MicrosoftTeamsChannelConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Chatbot/MicrosoftTeamsChannelConfigurationProperties](#awschatbotmicrosoftteamschannelconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.Chatbot/MicrosoftTeamsChannelConfigurationProperties](#awschatbotmicrosoftteamschannelconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Chatbot/SlackChannelConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Chatbot/SlackChannelConfigurationProperties](#awschatbotslackchannelconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.Chatbot/SlackChannelConfigurationProperties](#awschatbotslackchannelconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Chatbot/MicrosoftTeamsChannelConfigurationProperties
 ### Properties

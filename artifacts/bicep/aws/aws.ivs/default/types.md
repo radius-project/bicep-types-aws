@@ -3,37 +3,37 @@
 ## Resource AWS.IVS/Channel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IVS/ChannelProperties](#awsivschannelproperties): properties of the resource
+* **properties**: [AWS.IVS/ChannelProperties](#awsivschannelproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IVS/PlaybackKeyPair@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IVS/PlaybackKeyPairProperties](#awsivsplaybackkeypairproperties): properties of the resource
+* **properties**: [AWS.IVS/PlaybackKeyPairProperties](#awsivsplaybackkeypairproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IVS/RecordingConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IVS/RecordingConfigurationProperties](#awsivsrecordingconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.IVS/RecordingConfigurationProperties](#awsivsrecordingconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IVS/Stage@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IVS/StageProperties](#awsivsstageproperties): properties of the resource
+* **properties**: [AWS.IVS/StageProperties](#awsivsstageproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IVS/StreamKey@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IVS/StreamKeyProperties](#awsivsstreamkeyproperties) (Required): properties of the resource
+* **properties**: [AWS.IVS/StreamKeyProperties](#awsivsstreamkeyproperties) (Required, Identifier): properties of the resource
 
 ## AWS.IVS/ChannelProperties
 ### Properties

@@ -3,9 +3,9 @@
 ## Resource AWS.OpsWorksCM/Server@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.OpsWorksCM/ServerProperties](#awsopsworkscmserverproperties) (Required): properties of the resource
+* **properties**: [AWS.OpsWorksCM/ServerProperties](#awsopsworkscmserverproperties) (Required, Identifier): properties of the resource
 
 ## AWS.OpsWorksCM/ServerProperties
 ### Properties

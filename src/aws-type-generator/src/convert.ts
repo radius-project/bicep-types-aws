@@ -2,7 +2,7 @@ import { Dictionary } from "lodash";
 import { boolean } from "yargs";
 import { Context, SchemaDefinition, SchemaRecord } from "./schemarecord";
 import { TypeBaseKind, TypeFactory, ObjectTypeProperty, ObjectTypePropertyFlags, ObjectType, ResourceType, ScopeType, BicepType, TypeReference, ResourceFlags } from "bicep-types";
-
+// import { TypeFactory } from "./lib/types";
 
 export function convertSchemaRecordToTypes(records: SchemaRecord[]): BicepType[] {
     const factory = new TypeFactory()
@@ -102,8 +102,8 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
         typeName,
         {
             name: {type: factory.addStringType(), flags: ObjectTypePropertyFlags.None, description: "the resource name"},
-            alias: {type: factory.addStringType(), flags: ObjectTypePropertyFlags.Required, description: "the resource alias"},
-            properties: {type: properties, flags: propertiesFlags, description: "properties of the resource"} as ObjectTypeProperty 
+            alias: {type: factory.addStringType(), flags: ObjectTypePropertyFlags.Required | ObjectTypePropertyFlags.Identifier, description: "the resource alias"},
+            properties: {type: properties, flags: propertiesFlags | ObjectTypePropertyFlags.Identifier, description: "properties of the resource"} as ObjectTypeProperty 
         },
         undefined)
 
@@ -179,7 +179,7 @@ function visitDefinitions(context: Context, factory: TypeFactory, record: Schema
         return
     }
 
-    Object.entries(record.schema.definitions).forEach(([name, _]) => {
+    Object.entries(record.schema.definitions).forEach(([name]) => {
         // Predeclare types so we can support circular references
         factory.addObjectType(name, {})
     })
@@ -238,13 +238,15 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
         if (!schema.additionalProperties && !schema.items && !schema.properties && !schema.required && !schema.type) {
             // Object type is already defined
             if (definition.type === 'object') {
-                const obj = factory.types.find(t => (t as ObjectType) != undefined && (t as ObjectType).type === TypeBaseKind.ObjectType 
-                    && (t as ObjectType).name === parts[0]) as ObjectType;
-                if (!obj) {
+                // const existing = factory.types.find(t => (t as ObjectType) != undefined && (t as ObjectType).type === TypeBaseKind.ObjectType 
+                //     && (t as ObjectType).name === parts[0]) as ObjectType;
+                const possible = factory.types.filter(t => (t as ObjectType) !== undefined && (t as ObjectType).type === TypeBaseKind.ObjectType && (t as ObjectType).name === parts[0]);
+                if (possible.length < 1) {
                     throw new Error(`type ${parts[0]} is missing`)
                 }
-                const reference = factory.addType(obj)
-                return reference
+                const existing = possible[possible.length - 1]
+                const reference = factory.types.indexOf(existing)
+                return new TypeReference(reference)
             }
         }
 
@@ -307,21 +309,27 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
             }
 
             if (typeName) {
-                const existing = factory.types.find(t => (t as ObjectType) !== undefined && (t as ObjectType).type === TypeBaseKind.ObjectType && (t as ObjectType).name === typeName) as ObjectType;
-                
+                const possible = factory.types.filter(t => (t as ObjectType) !== undefined && (t as ObjectType).type === TypeBaseKind.ObjectType && (t as ObjectType).name === typeName);
+                const existing = possible[possible.length - 1]
                 // NOTE: This won't work because it'll still have duplicate definitions because we check typetotypeReference, not types[] for existing types 
-                if(existing) { 
-                    const reference = factory.addType(existing)
-                    const type: BicepType = {
-                        type: TypeBaseKind.ObjectType,
-                        name: typeName,
-                        properties: properties,
-                        additionalProperties: visitAdditionalProperties(context, factory, record, schema),
-                        sensitive: undefined,
-                    }
-                    factory.types[factory.types.indexOf(existing)] = type
-                    // factory.typeToTypeReference.set(type, reference) -- NOTE: Even if this was a public variable, I don't think this is right either because there'll still be duplicate definitions since the object names might match but not the rest of the property or we'll be overriding the last definition which we don't want
-                return reference
+                if (existing !== undefined) {
+                    const reference = factory.types.indexOf(existing)
+                    if(reference !== -1) { 
+                        const type: ObjectType = {
+                            type: TypeBaseKind.ObjectType,
+                            name: typeName,
+                            properties: properties,
+                            additionalProperties: visitAdditionalProperties(context, factory, record, schema),
+                            sensitive: undefined,
+                        }
+                        factory.types[reference]= type as ObjectType
+                        return new TypeReference(reference)
+                } else {
+                    return factory.addObjectType(
+                        typeName,
+                        properties,
+                        visitAdditionalProperties(context, factory, record, schema))
+                }
             } else {
                 return factory.addObjectType(
                     typeName,

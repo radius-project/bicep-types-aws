@@ -3,30 +3,30 @@
 ## Resource AWS.ImageBuilder/DistributionConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ImageBuilder/DistributionConfigurationProperties](#awsimagebuilderdistributionconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.ImageBuilder/DistributionConfigurationProperties](#awsimagebuilderdistributionconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ImageBuilder/ImagePipeline@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ImageBuilder/ImagePipelineProperties](#awsimagebuilderimagepipelineproperties) (Required): properties of the resource
+* **properties**: [AWS.ImageBuilder/ImagePipelineProperties](#awsimagebuilderimagepipelineproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ImageBuilder/InfrastructureConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ImageBuilder/InfrastructureConfigurationProperties](#awsimagebuilderinfrastructureconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.ImageBuilder/InfrastructureConfigurationProperties](#awsimagebuilderinfrastructureconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ImageBuilder/LifecyclePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ImageBuilder/LifecyclePolicyProperties](#awsimagebuilderlifecyclepolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.ImageBuilder/LifecyclePolicyProperties](#awsimagebuilderlifecyclepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Action
 ### Properties

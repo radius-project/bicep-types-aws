@@ -3,177 +3,177 @@
 ## Resource AWS.IoT/AccountAuditConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/AccountAuditConfigurationProperties](#awsiotaccountauditconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/AccountAuditConfigurationProperties](#awsiotaccountauditconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/Authorizer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/AuthorizerProperties](#awsiotauthorizerproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/AuthorizerProperties](#awsiotauthorizerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/BillingGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/BillingGroupProperties](#awsiotbillinggroupproperties): properties of the resource
+* **properties**: [AWS.IoT/BillingGroupProperties](#awsiotbillinggroupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoT/CACertificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/CACertificateProperties](#awsiotcacertificateproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/CACertificateProperties](#awsiotcacertificateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/Certificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/CertificateProperties](#awsiotcertificateproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/CertificateProperties](#awsiotcertificateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/CertificateProvider@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/CertificateProviderProperties](#awsiotcertificateproviderproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/CertificateProviderProperties](#awsiotcertificateproviderproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/CustomMetric@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/CustomMetricProperties](#awsiotcustommetricproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/CustomMetricProperties](#awsiotcustommetricproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/Dimension@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/DimensionProperties](#awsiotdimensionproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/DimensionProperties](#awsiotdimensionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/DomainConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/DomainConfigurationProperties](#awsiotdomainconfigurationproperties): properties of the resource
+* **properties**: [AWS.IoT/DomainConfigurationProperties](#awsiotdomainconfigurationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoT/FleetMetric@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/FleetMetricProperties](#awsiotfleetmetricproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/FleetMetricProperties](#awsiotfleetmetricproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/Logging@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/LoggingProperties](#awsiotloggingproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/LoggingProperties](#awsiotloggingproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/MitigationAction@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/MitigationActionProperties](#awsiotmitigationactionproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/MitigationActionProperties](#awsiotmitigationactionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/Policy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/PolicyProperties](#awsiotpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/PolicyProperties](#awsiotpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/ProvisioningTemplate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/ProvisioningTemplateProperties](#awsiotprovisioningtemplateproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/ProvisioningTemplateProperties](#awsiotprovisioningtemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/ResourceSpecificLogging@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/ResourceSpecificLoggingProperties](#awsiotresourcespecificloggingproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/ResourceSpecificLoggingProperties](#awsiotresourcespecificloggingproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/RoleAlias@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/RoleAliasProperties](#awsiotrolealiasproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/RoleAliasProperties](#awsiotrolealiasproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/ScheduledAudit@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/ScheduledAuditProperties](#awsiotscheduledauditproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/ScheduledAuditProperties](#awsiotscheduledauditproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/SecurityProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/SecurityProfileProperties](#awsiotsecurityprofileproperties): properties of the resource
+* **properties**: [AWS.IoT/SecurityProfileProperties](#awsiotsecurityprofileproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoT/SoftwarePackage@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/SoftwarePackageProperties](#awsiotsoftwarepackageproperties): properties of the resource
+* **properties**: [AWS.IoT/SoftwarePackageProperties](#awsiotsoftwarepackageproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoT/SoftwarePackageVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/SoftwarePackageVersionProperties](#awsiotsoftwarepackageversionproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/SoftwarePackageVersionProperties](#awsiotsoftwarepackageversionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/Thing@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/ThingProperties](#awsiotthingproperties): properties of the resource
+* **properties**: [AWS.IoT/ThingProperties](#awsiotthingproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoT/ThingGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/ThingGroupProperties](#awsiotthinggroupproperties): properties of the resource
+* **properties**: [AWS.IoT/ThingGroupProperties](#awsiotthinggroupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoT/ThingType@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/ThingTypeProperties](#awsiotthingtypeproperties): properties of the resource
+* **properties**: [AWS.IoT/ThingTypeProperties](#awsiotthingtypeproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoT/TopicRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/TopicRuleProperties](#awsiottopicruleproperties) (Required): properties of the resource
+* **properties**: [AWS.IoT/TopicRuleProperties](#awsiottopicruleproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/TopicRuleDestination@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoT/TopicRuleDestinationProperties](#awsiottopicruledestinationproperties): properties of the resource
+* **properties**: [AWS.IoT/TopicRuleDestinationProperties](#awsiottopicruledestinationproperties) (Identifier): properties of the resource
 
 ## Action
 ### Properties

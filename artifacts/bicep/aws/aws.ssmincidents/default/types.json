@@ -37,7 +37,7 @@
     "properties": {
       "RegionConfiguration": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/2"
         },
         "flags": 0
       },
@@ -80,67 +80,19 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "RegionConfiguration",
-    "properties": {
-      "SseKmsKeyId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.SSMIncidents/ReplicationSetProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "ReplicationRegion",
-    "properties": {
-      "RegionConfiguration": {
-        "type": {
-          "$ref": "#/10"
-        },
-        "flags": 0
-      },
-      "RegionName": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/6"
     }
   },
   {
@@ -162,14 +114,14 @@
       },
       "Regions": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/11"
         },
         "flags": 1,
         "description": "The ReplicationSet configuration."
       },
       "Tags": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The tags to apply to the replication set."
@@ -191,14 +143,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/13"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -208,7 +160,7 @@
     "name": "AWS.SSMIncidents/ReplicationSet@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/14"
     },
     "flags": 0
   },
@@ -218,7 +170,7 @@
     "properties": {
       "SsmAutomation": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/28"
         },
         "flags": 0
       }
@@ -230,7 +182,7 @@
     "properties": {
       "ChatbotSns": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/33"
         },
         "flags": 0
       }
@@ -253,7 +205,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/20"
         },
         "flags": 1
       }
@@ -284,21 +236,21 @@
       },
       "Impact": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/35"
         },
         "flags": 1,
         "description": "The impact value."
       },
       "IncidentTags": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "Tags that get applied to incidents created by the StartIncident API action."
       },
       "NotificationTargets": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "The list of notification targets."
@@ -325,7 +277,7 @@
     "properties": {
       "PagerDutyConfiguration": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -356,7 +308,7 @@
       },
       "PagerDutyIncidentConfiguration": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/25"
         },
         "flags": 1
       },
@@ -412,14 +364,14 @@
       },
       "DynamicParameters": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "The parameters with dynamic values to set when starting the SSM automation document."
       },
       "Parameters": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The parameters to set when starting the SSM automation document."
@@ -452,7 +404,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/41"
         },
         "flags": 1
       }
@@ -466,7 +418,20 @@
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -491,13 +456,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/31"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/23"
     }
   },
   {
@@ -506,25 +471,7 @@
     "properties": {
       "PagerDutyConfiguration": {
         "type": {
-          "$ref": "#/27"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DynamicSsmParameter",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -533,13 +480,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/42"
+      "$ref": "#/19"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/32"
+      "$ref": "#/29"
     }
   },
   {
@@ -553,33 +500,9 @@
     "value": "AWS.SSMIncidents/ResponsePlanProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "Action",
-    "properties": {
-      "SsmAutomation": {
-        "type": {
-          "$ref": "#/31"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ChatChannel",
-    "properties": {
-      "ChatbotSns": {
-        "type": {
-          "$ref": "#/36"
-        },
-        "flags": 0
-      }
+      "$ref": "#/16"
     }
   },
   {
@@ -589,81 +512,15 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "IncidentTemplate",
-    "properties": {
-      "DedupeString": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The deduplication string."
-      },
-      "Impact": {
-        "type": {
-          "$ref": "#/38"
-        },
-        "flags": 1,
-        "description": "The impact value."
-      },
-      "IncidentTags": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0,
-        "description": "Tags that get applied to incidents created by the StartIncident API action."
-      },
-      "NotificationTargets": {
-        "type": {
-          "$ref": "#/40"
-        },
-        "flags": 0,
-        "description": "The list of notification targets."
-      },
-      "Summary": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The summary string."
-      },
-      "Title": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "The title string."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/41"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/53"
+      "$ref": "#/31"
     }
   },
   {
@@ -672,7 +529,7 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The list of actions."
@@ -686,7 +543,7 @@
       },
       "ChatChannel": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/17"
         },
         "flags": 0
       },
@@ -699,20 +556,20 @@
       },
       "Engagements": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "The list of engagements to use."
       },
       "IncidentTemplate": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/21"
         },
         "flags": 1
       },
       "Integrations": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "The list of integrations."
@@ -726,7 +583,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "The tags to apply to the response plan."
@@ -748,14 +605,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/47"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -765,7 +622,7 @@
     "name": "AWS.SSMIncidents/ResponsePlan@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/56"
+      "$ref": "#/48"
     },
     "flags": 0
   }

@@ -3,9 +3,9 @@
 ## Resource AWS.Grafana/Workspace@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Grafana/WorkspaceProperties](#awsgrafanaworkspaceproperties) (Required): properties of the resource
+* **properties**: [AWS.Grafana/WorkspaceProperties](#awsgrafanaworkspaceproperties) (Required, Identifier): properties of the resource
 
 ## AssertionAttributes
 ### Properties

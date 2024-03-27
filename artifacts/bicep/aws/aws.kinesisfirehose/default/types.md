@@ -3,9 +3,9 @@
 ## Resource AWS.KinesisFirehose/DeliveryStream@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.KinesisFirehose/DeliveryStreamProperties](#awskinesisfirehosedeliverystreamproperties): properties of the resource
+* **properties**: [AWS.KinesisFirehose/DeliveryStreamProperties](#awskinesisfirehosedeliverystreamproperties) (Identifier): properties of the resource
 
 ## AmazonOpenSearchServerlessBufferingHints
 ### Properties

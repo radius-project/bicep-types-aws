@@ -115,48 +115,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "AccessPolicyIdentity",
-    "properties": {
-      "IamRole": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0
-      },
-      "IamUser": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0
-      },
-      "User": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AccessPolicyResource",
-    "properties": {
-      "Portal": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0
-      },
-      "Project": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "AWS.IoTSiteWise/AccessPolicyProperties",
     "properties": {
       "AccessPolicyArn": {
@@ -175,7 +133,7 @@
       },
       "AccessPolicyIdentity": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/0"
         },
         "flags": 1,
         "description": "The identity for this access policy. Choose either a user or a group but not both."
@@ -189,7 +147,7 @@
       },
       "AccessPolicyResource": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The AWS IoT SiteWise Monitor resource for this access policy. Choose either portal or project but not both."
@@ -211,14 +169,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/9"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -228,7 +186,7 @@
     "name": "AWS.IoTSiteWise/AccessPolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/12"
+      "$ref": "#/10"
     },
     "flags": 0
   },
@@ -337,121 +295,21 @@
     "value": "AWS.IoTSiteWise/AssetProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "AssetHierarchy",
-    "properties": {
-      "ChildAssetId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "The ID of the child asset to be associated."
-      },
-      "ExternalId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "String-friendly customer provided external ID"
-      },
-      "Id": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Customer provided actual UUID for property"
-      },
-      "LogicalId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The LogicalID of a hierarchy in the parent asset's model."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/18"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AssetProperty",
-    "properties": {
-      "Alias": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The property alias that identifies the property."
-      },
-      "ExternalId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "String-friendly customer provided external ID"
-      },
-      "Id": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Customer provided actual UUID for property"
-      },
-      "LogicalId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Customer provided ID for property."
-      },
-      "NotificationState": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The MQTT notification state (ENABLED or DISABLED) for this asset property."
-      },
-      "Unit": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The unit of measure (such as Newtons or RPM) of the asset property. If you don't specify a value for this parameter, the service uses the value of the assetModelProperty in the asset model."
-      }
+      "$ref": "#/13"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/14"
     }
   },
   {
@@ -481,7 +339,7 @@
       },
       "AssetHierarchies": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/16"
         },
         "flags": 2
       },
@@ -508,13 +366,13 @@
       },
       "AssetProperties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the asset."
@@ -536,14 +394,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/19"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -553,7 +411,7 @@
     "name": "AWS.IoTSiteWise/Asset@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/25"
+      "$ref": "#/20"
     },
     "flags": 0
   },
@@ -570,7 +428,7 @@
       },
       "CompositeModelProperties": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The property definitions of the asset model. You can specify up to 200 properties per asset model."
@@ -612,7 +470,7 @@
       },
       "Path": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The path of the composite model. This is only for derived composite models"
@@ -715,7 +573,7 @@
       },
       "Type": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/34"
         },
         "flags": 1,
         "description": "The property type"
@@ -764,7 +622,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/39"
         },
         "flags": 1,
         "description": "The variable that identifies an asset property from which to use values."
@@ -789,14 +647,14 @@
       },
       "Variables": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/42"
         },
         "flags": 1,
         "description": "The list of variables used in the expression."
       },
       "Window": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/31"
         },
         "flags": 1,
         "description": "The window (time interval) over which AWS IoT SiteWise computes the metric's aggregation expression"
@@ -809,7 +667,7 @@
     "properties": {
       "Tumbling": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/37"
         },
         "flags": 0
       }
@@ -839,19 +697,19 @@
     "properties": {
       "Attribute": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "Metric": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "Transform": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/36"
         },
         "flags": 0
       },
@@ -866,7 +724,20 @@
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -881,7 +752,7 @@
       },
       "Variables": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The list of variables used in the expression."
@@ -957,7 +828,7 @@
       },
       "PropertyPath": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "The path of the property that is trying to be referenced"
@@ -967,7 +838,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/29"
+      "$ref": "#/24"
     }
   },
   {
@@ -977,93 +848,21 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "ExpressionVariable",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "The friendly name of the variable to be used in the expression."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/44"
-        },
-        "flags": 1,
-        "description": "The variable that identifies an asset property from which to use values."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Attribute",
-    "properties": {
-      "DefaultValue": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Metric",
-    "properties": {
-      "Expression": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "The mathematical expression that defines the metric aggregation function. You can specify up to 10 functions per expression."
-      },
-      "Variables": {
-        "type": {
-          "$ref": "#/48"
-        },
-        "flags": 1,
-        "description": "The list of variables used in the expression."
-      },
-      "Window": {
-        "type": {
-          "$ref": "#/36"
-        },
-        "flags": 1,
-        "description": "The window (time interval) over which AWS IoT SiteWise computes the metric's aggregation expression"
-      }
+      "$ref": "#/28"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PropertyPathDefinition",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "The name of the property"
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/33"
     }
   },
   {
@@ -1071,217 +870,27 @@
     "value": "AWS.IoTSiteWise/AssetModelProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "AssetModelCompositeModel",
-    "properties": {
-      "ComposedAssetModelId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The component model ID for which the composite model is composed of"
-      },
-      "CompositeModelProperties": {
-        "type": {
-          "$ref": "#/45"
-        },
-        "flags": 0,
-        "description": "The property definitions of the asset model. You can specify up to 200 properties per asset model."
-      },
-      "Description": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "A description for the asset composite model."
-      },
-      "ExternalId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The External ID of the composite model"
-      },
-      "Id": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The Actual ID of the composite model"
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "A unique, friendly name for the asset composite model."
-      },
-      "ParentAssetModelCompositeModelExternalId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The parent composite model External ID"
-      },
-      "Path": {
-        "type": {
-          "$ref": "#/46"
-        },
-        "flags": 0,
-        "description": "The path of the composite model. This is only for derived composite models"
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "The type of the composite model. For alarm composite models, this type is AWS/ALARM"
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/55"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AssetModelHierarchy",
-    "properties": {
-      "ChildAssetModelId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "The ID of the asset model. All assets in this hierarchy must be instances of the child AssetModelId asset model."
-      },
-      "ExternalId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Customer provided external ID for hierarchy"
-      },
-      "Id": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Customer provided actual ID for hierarchy"
-      },
-      "LogicalId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Customer provided logical ID for hierarchy."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "The name of the asset model hierarchy."
-      }
+      "$ref": "#/23"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/57"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AssetModelProperty",
-    "properties": {
-      "DataType": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "The data type of the asset model property."
-      },
-      "DataTypeSpec": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The data type of the structure for this property."
-      },
-      "ExternalId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The External ID of the Asset Model Property"
-      },
-      "Id": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The ID of the Asset Model Property"
-      },
-      "LogicalId": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Customer provided Logical ID for property."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "The name of the asset model property."
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 1,
-        "description": "The property type"
-      },
-      "Unit": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The unit of the asset model property, such as Newtons or RPM."
-      }
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/59"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/61"
+      "$ref": "#/35"
     }
   },
   {
@@ -1297,7 +906,7 @@
       },
       "AssetModelCompositeModels": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/46"
         },
         "flags": 6,
         "description": "The composite asset models that are part of this asset model. Composite asset models are asset models that contain specific properties."
@@ -1318,7 +927,7 @@
       },
       "AssetModelHierarchies": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/47"
         },
         "flags": 2,
         "description": "The hierarchy definitions of the asset model. Each hierarchy specifies an asset model whose assets can be children of any other assets created from this asset model. You can specify up to 10 hierarchies per asset model."
@@ -1339,7 +948,7 @@
       },
       "AssetModelProperties": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/48"
         },
         "flags": 6,
         "description": "The property definitions of the asset model. You can specify up to 200 properties per asset model."
@@ -1353,7 +962,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the asset model."
@@ -1375,14 +984,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/50"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1392,18 +1001,9 @@
     "name": "AWS.IoTSiteWise/AssetModel@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/64"
+      "$ref": "#/51"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.IoTSiteWise/DashboardProperties"
   },
   {
     "$type": "ObjectType",
@@ -1424,9 +1024,13 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.IoTSiteWise/DashboardProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/68"
+      "$ref": "#/53"
     }
   },
   {
@@ -1477,7 +1081,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the dashboard."
@@ -1499,14 +1103,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/56"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1516,7 +1120,7 @@
     "name": "AWS.IoTSiteWise/Dashboard@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/71"
+      "$ref": "#/57"
     },
     "flags": 0
   },
@@ -1554,14 +1158,14 @@
     "properties": {
       "Greengrass": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "A gateway that runs on AWS IoT Greengrass V1."
       },
       "GreengrassV2": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "A gateway that runs on AWS IoT Greengrass V2."
@@ -1597,59 +1201,6 @@
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "GatewayPlatform",
-    "properties": {
-      "Greengrass": {
-        "type": {
-          "$ref": "#/77"
-        },
-        "flags": 0,
-        "description": "A gateway that runs on AWS IoT Greengrass V1."
-      },
-      "GreengrassV2": {
-        "type": {
-          "$ref": "#/78"
-        },
-        "flags": 0,
-        "description": "A gateway that runs on AWS IoT Greengrass V2."
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.IoTSiteWise/GatewayProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "GatewayCapabilitySummary",
-    "properties": {
-      "CapabilityConfiguration": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "CapabilityNamespace": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/82"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
     "properties": {
       "Key": {
         "type": {
@@ -1666,9 +1217,39 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "GatewayPlatform",
+    "properties": {
+      "Greengrass": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0,
+        "description": "A gateway that runs on AWS IoT Greengrass V1."
+      },
+      "GreengrassV2": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 0,
+        "description": "A gateway that runs on AWS IoT Greengrass V2."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IoTSiteWise/GatewayProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/84"
+      "$ref": "#/61"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/65"
     }
   },
   {
@@ -1677,7 +1258,7 @@
     "properties": {
       "GatewayCapabilitySummaries": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "A list of gateway capability summaries that each contain a namespace and status."
@@ -1698,14 +1279,14 @@
       },
       "GatewayPlatform": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/62"
         },
         "flags": 1,
         "description": "The gateway's platform. You can only specify one platform in a gateway."
       },
       "Tags": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the gateway."
@@ -1727,14 +1308,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/70"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1744,14 +1325,27 @@
     "name": "AWS.IoTSiteWise/Gateway@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/87"
+      "$ref": "#/71"
     },
     "flags": 0
   },
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "StringLiteralType",
@@ -1778,27 +1372,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/92"
+      "$ref": "#/73"
     }
   },
   {
@@ -1807,7 +1383,7 @@
     "properties": {
       "Alarms": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "Contains the configuration information of an alarm created in an AWS IoT SiteWise Monitor portal. You can use the alarm to monitor an asset property and get notified when the asset property value is outside a specified range."
@@ -1884,7 +1460,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/76"
         },
         "flags": 4,
         "description": "A list of key-value pairs that contain metadata for the portal."
@@ -1906,14 +1482,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/77"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1923,7 +1499,7 @@
     "name": "AWS.IoTSiteWise/Portal@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/95"
+      "$ref": "#/78"
     },
     "flags": 0
   },
@@ -1931,21 +1507,6 @@
     "$type": "ObjectType",
     "name": "AssetId",
     "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.IoTSiteWise/ProjectProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/7"
-    }
   },
   {
     "$type": "ObjectType",
@@ -1966,9 +1527,19 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.IoTSiteWise/ProjectProperties"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/101"
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/81"
     }
   },
   {
@@ -1977,7 +1548,7 @@
     "properties": {
       "AssetIds": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "The IDs of the assets to be associated to the project."
@@ -2019,7 +1590,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/84"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the project."
@@ -2041,14 +1612,14 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/85"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -2058,7 +1629,7 @@
     "name": "AWS.IoTSiteWise/Project@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/104"
+      "$ref": "#/86"
     },
     "flags": 0
   }

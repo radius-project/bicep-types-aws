@@ -3,16 +3,16 @@
 ## Resource AWS.DevOpsGuru/LogAnomalyDetectionIntegration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DevOpsGuru/LogAnomalyDetectionIntegrationProperties](#awsdevopsguruloganomalydetectionintegrationproperties): properties of the resource
+* **properties**: [AWS.DevOpsGuru/LogAnomalyDetectionIntegrationProperties](#awsdevopsguruloganomalydetectionintegrationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.DevOpsGuru/ResourceCollection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DevOpsGuru/ResourceCollectionProperties](#awsdevopsgururesourcecollectionproperties) (Required): properties of the resource
+* **properties**: [AWS.DevOpsGuru/ResourceCollectionProperties](#awsdevopsgururesourcecollectionproperties) (Required, Identifier): properties of the resource
 
 ## AWS.DevOpsGuru/LogAnomalyDetectionIntegrationProperties
 ### Properties

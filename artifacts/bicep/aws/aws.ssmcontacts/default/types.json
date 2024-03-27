@@ -47,12 +47,19 @@
         "type": {
           "$ref": "#/5"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The time to wait until beginning the next stage."
+      },
+      "RotationIds": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "List of Rotation Ids to associate with Contact"
       },
       "Targets": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "The contacts or contact methods that the escalation plan or engagement plan is engaging."
@@ -65,13 +72,13 @@
     "properties": {
       "ChannelTargetInfo": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/0"
         },
         "flags": 0
       },
       "ContactTargetInfo": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -127,57 +134,17 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ChannelTargetInfo",
-    "properties": {
-      "ChannelId": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the contact channel."
-      },
-      "RetryIntervalInMinutes": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "The number of minutes to wait to retry sending engagement in the case the engagement initially fails."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ContactTargetInfo",
-    "properties": {
-      "ContactId": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the contact."
-      },
-      "IsEssential": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1,
-        "description": "A Boolean value determining if the contact's acknowledgement stops the progress of stages in the plan."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "Targets",
     "properties": {
       "ChannelTargetInfo": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/0"
         },
         "flags": 0
       },
       "ContactTargetInfo": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -190,7 +157,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/9"
+      "$ref": "#/2"
     }
   },
   {
@@ -220,7 +187,7 @@
       },
       "Plan": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/12"
         },
         "flags": 4,
         "description": "The stages that an escalation plan or engagement plan engages contacts and contact methods in."
@@ -249,14 +216,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/13"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -266,7 +233,7 @@
     "name": "AWS.SSMContacts/Contact@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/16"
+      "$ref": "#/14"
     },
     "flags": 0
   },
@@ -337,14 +304,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/17"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -354,35 +321,9 @@
     "name": "AWS.SSMContacts/ContactChannel@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/18"
     },
     "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ChannelTargetInfo",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ContactTargetInfo",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Stage",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Targets",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
-    }
   },
   {
     "$type": "ObjectType",
@@ -426,20 +367,46 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Stage",
+    "properties": {
+      "DurationInMinutes": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The time to wait until beginning the next stage."
+      },
+      "Targets": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "The contacts or contact methods that the escalation plan or engagement plan is engaging."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Targets",
     "properties": {
       "ChannelTargetInfo": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "ContactTargetInfo": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/21"
         },
         "flags": 0
       }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
     }
   },
   {
@@ -453,29 +420,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Stage",
-    "properties": {
-      "DurationInMinutes": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "The time to wait until beginning the next stage."
-      },
-      "Targets": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "The contacts or contact methods that the escalation plan or engagement plan is engaging."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/32"
+      "$ref": "#/22"
     }
   },
   {
@@ -498,14 +445,14 @@
       },
       "RotationIds": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/26"
         },
         "flags": 4,
         "description": "Rotation Ids to associate with Oncall Contact for engagement."
       },
       "Stages": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "The stages that an escalation plan or engagement plan engages contacts and contact methods in."
@@ -527,14 +474,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/28"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -544,7 +491,7 @@
     "name": "AWS.SSMContacts/Plan@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/35"
+      "$ref": "#/29"
     },
     "flags": 0
   },
@@ -613,14 +560,14 @@
     "properties": {
       "DailySettings": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "Information about on-call rotations that recur daily."
       },
       "MonthlySettings": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "Information about on-call rotations that recur monthly."
@@ -641,14 +588,14 @@
       },
       "ShiftCoverages": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "Information about the days of the week included in on-call rotation coverage."
       },
       "WeeklySettings": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "Information about on-call rotations that recur weekly."
@@ -661,7 +608,7 @@
     "properties": {
       "CoverageTimes": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/45"
         },
         "flags": 1,
         "description": "Information about when an on-call shift begins and ends."
@@ -719,40 +666,21 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "MonthlySetting",
-    "properties": {
-      "DayOfMonth": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "The day of the month when monthly recurring on-call rotations begin."
-      },
-      "HandOffTime": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/35"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
+      "$ref": "#/37"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/45"
+      "$ref": "#/39"
     }
   },
   {
@@ -761,14 +689,14 @@
     "properties": {
       "DailySettings": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "Information about on-call rotations that recur daily."
       },
       "MonthlySettings": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "Information about on-call rotations that recur monthly."
@@ -789,14 +717,14 @@
       },
       "ShiftCoverages": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "Information about the days of the week included in on-call rotation coverage."
       },
       "WeeklySettings": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "Information about on-call rotations that recur weekly."
@@ -804,27 +732,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "CoverageTime",
-    "properties": {
-      "EndTime": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1
-      },
-      "StartTime": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/31"
     }
   },
   {
@@ -838,29 +748,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The key name of the tag"
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The value for the tag."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/56"
+      "$ref": "#/38"
     }
   },
   {
@@ -876,7 +766,7 @@
       },
       "ContactIds": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/47"
         },
         "flags": 1,
         "description": "Members of the rotation"
@@ -890,7 +780,7 @@
       },
       "Recurrence": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/36"
         },
         "flags": 1
       },
@@ -903,7 +793,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/48"
         },
         "flags": 0
       },
@@ -931,14 +821,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/49"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -948,7 +838,7 @@
     "name": "AWS.SSMContacts/Rotation@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/59"
+      "$ref": "#/50"
     },
     "flags": 0
   }

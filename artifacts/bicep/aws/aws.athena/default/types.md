@@ -3,30 +3,30 @@
 ## Resource AWS.Athena/CapacityReservation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Athena/CapacityReservationProperties](#awsathenacapacityreservationproperties) (Required): properties of the resource
+* **properties**: [AWS.Athena/CapacityReservationProperties](#awsathenacapacityreservationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Athena/DataCatalog@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Athena/DataCatalogProperties](#awsathenadatacatalogproperties) (Required): properties of the resource
+* **properties**: [AWS.Athena/DataCatalogProperties](#awsathenadatacatalogproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Athena/PreparedStatement@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Athena/PreparedStatementProperties](#awsathenapreparedstatementproperties) (Required): properties of the resource
+* **properties**: [AWS.Athena/PreparedStatementProperties](#awsathenapreparedstatementproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Athena/WorkGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Athena/WorkGroupProperties](#awsathenaworkgroupproperties) (Required): properties of the resource
+* **properties**: [AWS.Athena/WorkGroupProperties](#awsathenaworkgroupproperties) (Required, Identifier): properties of the resource
 
 ## AclConfiguration
 ### Properties

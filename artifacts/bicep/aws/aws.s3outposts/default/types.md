@@ -3,23 +3,23 @@
 ## Resource AWS.S3Outposts/AccessPoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.S3Outposts/AccessPointProperties](#awss3outpostsaccesspointproperties) (Required): properties of the resource
+* **properties**: [AWS.S3Outposts/AccessPointProperties](#awss3outpostsaccesspointproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.S3Outposts/Bucket@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.S3Outposts/BucketProperties](#awss3outpostsbucketproperties) (Required): properties of the resource
+* **properties**: [AWS.S3Outposts/BucketProperties](#awss3outpostsbucketproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.S3Outposts/BucketPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.S3Outposts/BucketPolicyProperties](#awss3outpostsbucketpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.S3Outposts/BucketPolicyProperties](#awss3outpostsbucketpolicyproperties) (Required, Identifier): properties of the resource
 
 ## AbortIncompleteMultipartUpload
 ### Properties

@@ -3,44 +3,44 @@
 ## Resource AWS.Events/ApiDestination@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Events/ApiDestinationProperties](#awseventsapidestinationproperties) (Required): properties of the resource
+* **properties**: [AWS.Events/ApiDestinationProperties](#awseventsapidestinationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Events/Archive@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Events/ArchiveProperties](#awseventsarchiveproperties) (Required): properties of the resource
+* **properties**: [AWS.Events/ArchiveProperties](#awseventsarchiveproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Events/Connection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Events/ConnectionProperties](#awseventsconnectionproperties) (Required): properties of the resource
+* **properties**: [AWS.Events/ConnectionProperties](#awseventsconnectionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Events/Endpoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Events/EndpointProperties](#awseventsendpointproperties) (Required): properties of the resource
+* **properties**: [AWS.Events/EndpointProperties](#awseventsendpointproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Events/EventBus@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Events/EventBusProperties](#awseventseventbusproperties) (Required): properties of the resource
+* **properties**: [AWS.Events/EventBusProperties](#awseventseventbusproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Events/Rule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Events/RuleProperties](#awseventsruleproperties): properties of the resource
+* **properties**: [AWS.Events/RuleProperties](#awseventsruleproperties) (Identifier): properties of the resource
 
 ## ApiKeyAuthParameters
 ### Properties
@@ -305,6 +305,11 @@ Targets are the resources that are invoked when a rule is triggered.
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string
+* **Value**: string
 
 ## Target
 ### Properties

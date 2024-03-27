@@ -3,23 +3,23 @@
 ## Resource AWS.Route53RecoveryControl/ControlPanel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Route53RecoveryControl/ControlPanelProperties](#awsroute53recoverycontrolcontrolpanelproperties) (Required): properties of the resource
+* **properties**: [AWS.Route53RecoveryControl/ControlPanelProperties](#awsroute53recoverycontrolcontrolpanelproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Route53RecoveryControl/RoutingControl@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Route53RecoveryControl/RoutingControlProperties](#awsroute53recoverycontrolroutingcontrolproperties) (Required): properties of the resource
+* **properties**: [AWS.Route53RecoveryControl/RoutingControlProperties](#awsroute53recoverycontrolroutingcontrolproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Route53RecoveryControl/SafetyRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Route53RecoveryControl/SafetyRuleProperties](#awsroute53recoverycontrolsafetyruleproperties) (Required): properties of the resource
+* **properties**: [AWS.Route53RecoveryControl/SafetyRuleProperties](#awsroute53recoverycontrolsafetyruleproperties) (Required, Identifier): properties of the resource
 
 ## AssertionRule
 ### Properties

@@ -242,159 +242,8 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ComputeResources",
-    "properties": {
-      "AllocationStrategy": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0
-      },
-      "BidPercentage": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0
-      },
-      "DesiredvCpus": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0
-      },
-      "Ec2Configuration": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "Ec2KeyPair": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0
-      },
-      "ImageId": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0
-      },
-      "InstanceRole": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0
-      },
-      "InstanceTypes": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "LaunchTemplate": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0
-      },
-      "MaxvCpus": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1
-      },
-      "MinvCpus": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0
-      },
-      "PlacementGroup": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0
-      },
-      "SecurityGroupIds": {
-        "type": {
-          "$ref": "#/9"
-        },
-        "flags": 0
-      },
-      "SpotIamFleetRole": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0
-      },
-      "Subnets": {
-        "type": {
-          "$ref": "#/10"
-        },
-        "flags": 1
-      },
-      "Tags": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": "A key-value pair to associate with a resource."
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1
-      },
-      "UpdateToLatestImageVersion": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 4
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "EksConfiguration",
-    "properties": {
-      "EksClusterArn": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1
-      },
-      "KubernetesNamespace": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "ComputeEnvironment_Tags",
     "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "UpdatePolicy",
-    "properties": {
-      "JobExecutionTimeoutMinutes": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0
-      },
-      "TerminateJobsOnUpdate": {
-        "type": {
-          "$ref": "#/12"
-        },
-        "flags": 0
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -414,13 +263,13 @@
       },
       "ComputeResources": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/0"
         },
         "flags": 0
       },
       "EksConfiguration": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/2"
         },
         "flags": 0
       },
@@ -444,7 +293,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "A key-value pair to associate with a resource."
@@ -463,7 +312,7 @@
       },
       "UpdatePolicy": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/4"
         },
         "flags": 4
       }
@@ -484,14 +333,14 @@
         "type": {
           "$ref": "#/5"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/15"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -501,7 +350,7 @@
     "name": "AWS.Batch/ComputeEnvironment@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/19"
+      "$ref": "#/16"
     },
     "flags": 0
   },
@@ -563,63 +412,15 @@
     "value": "AWS.Batch/JobQueueProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "ComputeEnvironmentOrder",
-    "properties": {
-      "ComputeEnvironment": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1
-      },
-      "Order": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "JobStateTimeLimitAction",
-    "properties": {
-      "Action": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1
-      },
-      "MaxTimeSeconds": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 1
-      },
-      "Reason": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1
-      },
-      "State": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/19"
     }
   },
   {
@@ -633,7 +434,7 @@
     "properties": {
       "ComputeEnvironmentOrder": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/22"
         },
         "flags": 1
       },
@@ -651,7 +452,7 @@
       },
       "JobStateTimeLimitActions": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/23"
         },
         "flags": 0
       },
@@ -675,7 +476,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "A key-value pair to associate with a resource."
@@ -697,14 +498,14 @@
         "type": {
           "$ref": "#/5"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/25"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -714,7 +515,7 @@
     "name": "AWS.Batch/JobQueue@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/31"
+      "$ref": "#/26"
     },
     "flags": 0
   },
@@ -736,7 +537,7 @@
       },
       "ShareDistribution": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "List of Share Attributes"
@@ -769,37 +570,12 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/30"
     }
   },
   {
     "$type": "StringLiteralType",
     "value": "AWS.Batch/SchedulingPolicyProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "FairsharePolicy",
-    "properties": {
-      "ComputeReservation": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0
-      },
-      "ShareDecaySeconds": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0
-      },
-      "ShareDistribution": {
-        "type": {
-          "$ref": "#/36"
-        },
-        "flags": 0,
-        "description": "List of Share Attributes"
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -818,7 +594,7 @@
       },
       "FairsharePolicy": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/28"
         },
         "flags": 0
       },
@@ -831,7 +607,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "A key-value pair to associate with a resource."
@@ -853,14 +629,14 @@
         "type": {
           "$ref": "#/5"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/34"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -870,7 +646,7 @@
     "name": "AWS.Batch/SchedulingPolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/41"
+      "$ref": "#/35"
     },
     "flags": 0
   }

@@ -50,7 +50,7 @@
     "properties": {
       "ObjectCount": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 0
       },
@@ -105,7 +105,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 1
       }
@@ -134,13 +134,15 @@
         "type": {
           "$ref": "#/21"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
           "$ref": "#/21"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       }
     }
   },
@@ -187,50 +189,18 @@
     "$type": "StringType"
   },
   {
-    "$type": "ObjectType",
-    "name": "AttributeItem",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "IntegerType"
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/15"
     }
   },
   {
@@ -238,51 +208,9 @@
     "value": "AWS.CustomerProfiles/CalculatedAttributeDefinitionProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "AttributeDetails",
-    "properties": {
-      "Attributes": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 1
-      },
-      "Expression": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Conditions",
-    "properties": {
-      "ObjectCount": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0
-      },
-      "Range": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0
-      },
-      "Threshold": {
-        "type": {
-          "$ref": "#/17"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/15"
     }
   },
   {
@@ -291,7 +219,7 @@
     "properties": {
       "AttributeDetails": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/0"
         },
         "flags": 1
       },
@@ -303,7 +231,7 @@
       },
       "Conditions": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/5"
         },
         "flags": 0
       },
@@ -347,7 +275,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/26"
         },
         "flags": 0
       }
@@ -368,14 +296,14 @@
         "type": {
           "$ref": "#/21"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/27"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -385,7 +313,7 @@
     "name": "AWS.CustomerProfiles/CalculatedAttributeDefinition@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/32"
+      "$ref": "#/28"
     },
     "flags": 0
   },
@@ -395,7 +323,7 @@
     "properties": {
       "Address": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "The Address type. You can choose from Address, BusinessAddress, MaillingAddress, and ShippingAddress. You only can use the Address type in the MatchingRule. For example, if you want to match profile based on BusinessAddress.City or MaillingAddress.City, you need to choose the BusinessAddress and the MaillingAddress to represent the Address type and specify the Address.City on the matching rule."
@@ -409,14 +337,14 @@
       },
       "EmailAddress": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "The Email type. You can choose from EmailAddress, BusinessEmailAddress and PersonalEmailAddress. You only can use the EmailAddress type in the MatchingRule. For example, if you want to match profile based on PersonalEmailAddress or BusinessEmailAddress, you need to choose the PersonalEmailAddress and the BusinessEmailAddress to represent the EmailAddress type and only specify the EmailAddress on the matching rule."
       },
       "PhoneNumber": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "The PhoneNumber type. You can choose from PhoneNumber, HomePhoneNumber, and MobilePhoneNumber. You only can use the PhoneNumber type in the MatchingRule. For example, if you want to match a profile based on Phone or HomePhone, you need to choose the Phone and the HomePhone to represent the PhoneNumber type and only specify the PhoneNumber on the matching rule."
@@ -429,26 +357,26 @@
     "properties": {
       "ConflictResolution": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/32"
         },
         "flags": 0
       },
       "Consolidation": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/33"
         },
         "flags": 0
       },
       "Enabled": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/47"
         },
         "flags": 1,
         "description": "The flag that enables the auto-merging of duplicate profiles."
       },
       "MinAllowedConfidenceScoreForMerging": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "A number between 0 and 1 that represents the minimum confidence score required for profiles within a matching group to be merged during the auto-merge process. A higher score means higher similarity required to merge profiles."
@@ -481,7 +409,7 @@
     "properties": {
       "MatchingAttributesList": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/49"
         },
         "flags": 1,
         "description": "A list of matching criteria."
@@ -494,28 +422,28 @@
     "properties": {
       "MeteringProfileCount": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The number of profiles that you are currently paying for in the domain. If you have more than 100 objects associated with a single profile, that profile counts as two profiles. If you have more than 200 objects, that profile counts as three, and so on."
       },
       "ObjectCount": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The total number of objects in domain."
       },
       "ProfileCount": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The total number of profiles currently in the domain."
       },
       "TotalSize": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The total size, in bytes, of all objects in the domain."
@@ -528,7 +456,7 @@
     "properties": {
       "S3Exporting": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/42"
         },
         "flags": 0
       }
@@ -560,26 +488,26 @@
     "properties": {
       "AutoMerging": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/31"
         },
         "flags": 0
       },
       "Enabled": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/47"
         },
         "flags": 1,
         "description": "The flag that enables the matching process of duplicate profiles."
       },
       "ExportingConfig": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/35"
         },
         "flags": 0
       },
       "JobSchedule": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/36"
         },
         "flags": 0
       }
@@ -596,7 +524,7 @@
     "properties": {
       "Rule": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/51"
         },
         "flags": 1
       }
@@ -613,46 +541,46 @@
     "properties": {
       "AttributeTypesSelector": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "ConflictResolution": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/32"
         },
         "flags": 0
       },
       "Enabled": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/47"
         },
         "flags": 1,
         "description": "The flag that enables the rule-based matching process of duplicate profiles."
       },
       "ExportingConfig": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/35"
         },
         "flags": 0
       },
       "MatchingRules": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "Configures how the rule-based matching process should match profiles. You can have up to 15 MatchingRule in the MatchingRules."
       },
       "MaxAllowedRuleLevelForMatching": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "Indicates the maximum allowed rule level for matching."
       },
       "MaxAllowedRuleLevelForMerging": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "Indicates the maximum allowed rule level for merging."
@@ -688,7 +616,20 @@
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ArrayType",
@@ -720,71 +661,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AutoMerging",
-    "properties": {
-      "ConflictResolution": {
-        "type": {
-          "$ref": "#/36"
-        },
-        "flags": 0
-      },
-      "Consolidation": {
-        "type": {
-          "$ref": "#/37"
-        },
-        "flags": 0
-      },
-      "Enabled": {
-        "type": {
-          "$ref": "#/51"
-        },
-        "flags": 1,
-        "description": "The flag that enables the auto-merging of duplicate profiles."
-      },
-      "MinAllowedConfidenceScoreForMerging": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0,
-        "description": "A number between 0 and 1 that represents the minimum confidence score required for profiles within a matching group to be merged during the auto-merge process. A higher score means higher similarity required to merge profiles."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ExportingConfig",
-    "properties": {
-      "S3Exporting": {
-        "type": {
-          "$ref": "#/46"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "JobSchedule",
-    "properties": {
-      "DayOfTheWeek": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "The day when the Identity Resolution Job should run every week."
-      },
-      "Time": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "The time when the Identity Resolution Job should run every week."
-      }
+      "$ref": "#/48"
     }
   },
   {
@@ -806,75 +683,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "AttributeTypesSelector",
-    "properties": {
-      "Address": {
-        "type": {
-          "$ref": "#/48"
-        },
-        "flags": 0,
-        "description": "The Address type. You can choose from Address, BusinessAddress, MaillingAddress, and ShippingAddress. You only can use the Address type in the MatchingRule. For example, if you want to match profile based on BusinessAddress.City or MaillingAddress.City, you need to choose the BusinessAddress and the MaillingAddress to represent the Address type and specify the Address.City on the matching rule."
-      },
-      "AttributeMatchingModel": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "Configures the AttributeMatchingModel, you can either choose ONE_TO_ONE or MANY_TO_MANY."
-      },
-      "EmailAddress": {
-        "type": {
-          "$ref": "#/49"
-        },
-        "flags": 0,
-        "description": "The Email type. You can choose from EmailAddress, BusinessEmailAddress and PersonalEmailAddress. You only can use the EmailAddress type in the MatchingRule. For example, if you want to match profile based on PersonalEmailAddress or BusinessEmailAddress, you need to choose the PersonalEmailAddress and the BusinessEmailAddress to represent the EmailAddress type and only specify the EmailAddress on the matching rule."
-      },
-      "PhoneNumber": {
-        "type": {
-          "$ref": "#/50"
-        },
-        "flags": 0,
-        "description": "The PhoneNumber type. You can choose from PhoneNumber, HomePhoneNumber, and MobilePhoneNumber. You only can use the PhoneNumber type in the MatchingRule. For example, if you want to match a profile based on Phone or HomePhone, you need to choose the Phone and the HomePhone to represent the PhoneNumber type and only specify the PhoneNumber on the matching rule."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ConflictResolution",
-    "properties": {
-      "ConflictResolvingModel": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "How the auto-merging process should resolve conflicts between different profiles."
-      },
-      "SourceName": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0,
-        "description": "The ObjectType name that is used to resolve profile merging conflicts when choosing SOURCE as the ConflictResolvingModel."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "MatchingRule",
-    "properties": {
-      "Rule": {
-        "type": {
-          "$ref": "#/58"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/62"
+      "$ref": "#/39"
     }
   },
   {
@@ -882,150 +693,9 @@
     "value": "AWS.CustomerProfiles/DomainProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "Matching",
-    "properties": {
-      "AutoMerging": {
-        "type": {
-          "$ref": "#/54"
-        },
-        "flags": 0
-      },
-      "Enabled": {
-        "type": {
-          "$ref": "#/51"
-        },
-        "flags": 1,
-        "description": "The flag that enables the matching process of duplicate profiles."
-      },
-      "ExportingConfig": {
-        "type": {
-          "$ref": "#/55"
-        },
-        "flags": 0
-      },
-      "JobSchedule": {
-        "type": {
-          "$ref": "#/56"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RuleBasedMatching",
-    "properties": {
-      "AttributeTypesSelector": {
-        "type": {
-          "$ref": "#/60"
-        },
-        "flags": 0
-      },
-      "ConflictResolution": {
-        "type": {
-          "$ref": "#/61"
-        },
-        "flags": 0
-      },
-      "Enabled": {
-        "type": {
-          "$ref": "#/51"
-        },
-        "flags": 1,
-        "description": "The flag that enables the rule-based matching process of duplicate profiles."
-      },
-      "ExportingConfig": {
-        "type": {
-          "$ref": "#/55"
-        },
-        "flags": 0
-      },
-      "MatchingRules": {
-        "type": {
-          "$ref": "#/63"
-        },
-        "flags": 0,
-        "description": "Configures how the rule-based matching process should match profiles. You can have up to 15 MatchingRule in the MatchingRules."
-      },
-      "MaxAllowedRuleLevelForMatching": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0,
-        "description": "Indicates the maximum allowed rule level for matching."
-      },
-      "MaxAllowedRuleLevelForMerging": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0,
-        "description": "Indicates the maximum allowed rule level for merging."
-      },
-      "Status": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 2
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DomainStats",
-    "properties": {
-      "MeteringProfileCount": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0,
-        "description": "The number of profiles that you are currently paying for in the domain. If you have more than 100 objects associated with a single profile, that profile counts as two profiles. If you have more than 200 objects, that profile counts as three, and so on."
-      },
-      "ObjectCount": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0,
-        "description": "The total number of objects in domain."
-      },
-      "ProfileCount": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0,
-        "description": "The total number of profiles currently in the domain."
-      },
-      "TotalSize": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0,
-        "description": "The total size, in bytes, of all objects in the domain."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/68"
+      "$ref": "#/43"
     }
   },
   {
@@ -1055,7 +725,7 @@
       },
       "DefaultExpirationDays": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "The default number of days until the data within the domain expires."
@@ -1076,25 +746,25 @@
       },
       "Matching": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/37"
         },
         "flags": 0
       },
       "RuleBasedMatching": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "Stats": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/34"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "The tags (keys and values) associated with the domain"
@@ -1116,14 +786,14 @@
         "type": {
           "$ref": "#/21"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/56"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1133,7 +803,7 @@
     "name": "AWS.CustomerProfiles/Domain@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/71"
+      "$ref": "#/57"
     },
     "flags": 0
   },
@@ -1145,7 +815,22 @@
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1175,29 +860,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/78"
+      "$ref": "#/60"
     }
   },
   {
@@ -1213,7 +878,7 @@
       },
       "DestinationDetails": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/63"
         },
         "flags": 2,
         "description": "Details regarding the Kinesis stream."
@@ -1248,7 +913,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "The tags used to organize, track, or control access for this resource."
@@ -1276,14 +941,14 @@
         "type": {
           "$ref": "#/21"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/65"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -1293,7 +958,7 @@
     "name": "AWS.CustomerProfiles/EventStream@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/81"
+      "$ref": "#/66"
     },
     "flags": 0
   },
@@ -1372,19 +1037,19 @@
       },
       "SourceFlowConfig": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/88"
         },
         "flags": 1
       },
       "Tasks": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/98"
         },
         "flags": 1
       },
       "TriggerConfig": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/93"
         },
         "flags": 1
       }
@@ -1486,13 +1151,13 @@
     "properties": {
       "EnableDynamicFieldUpdate": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/47"
         },
         "flags": 0
       },
       "IncludeDeletedRecords": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/47"
         },
         "flags": 0
       },
@@ -1516,13 +1181,13 @@
       },
       "FirstExecutionFrom": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "ScheduleEndTime": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 0
       },
@@ -1534,13 +1199,13 @@
       },
       "ScheduleOffset": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "ScheduleStartTime": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 0
       },
@@ -1575,31 +1240,31 @@
     "properties": {
       "Marketo": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/75"
         },
         "flags": 0
       },
       "S3": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/81"
         },
         "flags": 0
       },
       "Salesforce": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/83"
         },
         "flags": 0
       },
       "ServiceNow": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/86"
         },
         "flags": 0
       },
       "Zendesk": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/97"
         },
         "flags": 0
       }
@@ -1623,13 +1288,13 @@
       },
       "IncrementalPullConfig": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/73"
         },
         "flags": 0
       },
       "SourceConnectorProperties": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/87"
         },
         "flags": 1
       }
@@ -1638,7 +1303,20 @@
   {
     "$type": "ObjectType",
     "name": "Tag",
-    "properties": {}
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1646,7 +1324,7 @@
     "properties": {
       "ConnectorOperator": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/68"
         },
         "flags": 0
       },
@@ -1658,13 +1336,13 @@
       },
       "SourceFields": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/99"
         },
         "flags": 1
       },
       "TaskProperties": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/100"
         },
         "flags": 0
       },
@@ -1705,7 +1383,7 @@
     "properties": {
       "TriggerProperties": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/94"
         },
         "flags": 0
       },
@@ -1723,7 +1401,7 @@
     "properties": {
       "Scheduled": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/84"
         },
         "flags": 0
       }
@@ -1754,157 +1432,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "MarketoSourceProperties",
-    "properties": {
-      "Object": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "S3SourceProperties",
-    "properties": {
-      "BucketName": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      },
-      "BucketPrefix": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SalesforceSourceProperties",
-    "properties": {
-      "EnableDynamicFieldUpdate": {
-        "type": {
-          "$ref": "#/51"
-        },
-        "flags": 0
-      },
-      "IncludeDeletedRecords": {
-        "type": {
-          "$ref": "#/51"
-        },
-        "flags": 0
-      },
-      "Object": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ServiceNowSourceProperties",
-    "properties": {
-      "Object": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "IncrementalPullConfig",
-    "properties": {
-      "DatetimeTypeFieldName": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SourceConnectorProperties",
-    "properties": {
-      "Marketo": {
-        "type": {
-          "$ref": "#/114"
-        },
-        "flags": 0
-      },
-      "S3": {
-        "type": {
-          "$ref": "#/115"
-        },
-        "flags": 0
-      },
-      "Salesforce": {
-        "type": {
-          "$ref": "#/116"
-        },
-        "flags": 0
-      },
-      "ServiceNow": {
-        "type": {
-          "$ref": "#/117"
-        },
-        "flags": 0
-      },
-      "Zendesk": {
-        "type": {
-          "$ref": "#/112"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ConnectorOperator",
-    "properties": {
-      "Marketo": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      },
-      "S3": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      },
-      "Salesforce": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      },
-      "ServiceNow": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      },
-      "Zendesk": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      }
+      "$ref": "#/90"
     }
   },
   {
@@ -1916,55 +1444,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/106"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ScheduledTriggerProperties",
-    "properties": {
-      "DataPullMode": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      },
-      "FirstExecutionFrom": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0
-      },
-      "ScheduleEndTime": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0
-      },
-      "ScheduleExpression": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      },
-      "ScheduleOffset": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0
-      },
-      "ScheduleStartTime": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0
-      },
-      "Timezone": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      }
+      "$ref": "#/91"
     }
   },
   {
@@ -1972,93 +1452,15 @@
     "value": "AWS.CustomerProfiles/IntegrationProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "FlowDefinition",
-    "properties": {
-      "Description": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      },
-      "FlowName": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      },
-      "KmsArn": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      },
-      "SourceFlowConfig": {
-        "type": {
-          "$ref": "#/103"
-        },
-        "flags": 1
-      },
-      "Tasks": {
-        "type": {
-          "$ref": "#/113"
-        },
-        "flags": 1
-      },
-      "TriggerConfig": {
-        "type": {
-          "$ref": "#/108"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ObjectTypeMapping",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/77"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/126"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/128"
+      "$ref": "#/89"
     }
   },
   {
@@ -2081,7 +1483,7 @@
       },
       "FlowDefinition": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/72"
         },
         "flags": 4
       },
@@ -2101,14 +1503,14 @@
       },
       "ObjectTypeNames": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/102"
         },
         "flags": 0,
         "description": "The mapping between 3rd party event types and ObjectType names"
       },
       "Tags": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/103"
         },
         "flags": 0,
         "description": "The tags (keys and values) associated with the integration"
@@ -2137,14 +1539,14 @@
         "type": {
           "$ref": "#/21"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/104"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -2154,7 +1556,7 @@
     "name": "AWS.CustomerProfiles/Integration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/131"
+      "$ref": "#/105"
     },
     "flags": 0
   },
@@ -2170,7 +1572,7 @@
       },
       "ObjectTypeField": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/109"
         },
         "flags": 0
       }
@@ -2188,7 +1590,7 @@
       },
       "ObjectTypeKeyList": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/112"
         },
         "flags": 0
       }
@@ -2227,93 +1629,18 @@
     "properties": {
       "FieldNames": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "The reference for the key name of the fields map. "
       },
       "StandardIdentifiers": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/114"
         },
         "flags": 0,
         "description": "The types of keys that a ProfileObject can have. Each ProfileObject can have only 1 UNIQUE key but multiple PROFILE keys. PROFILE means that this key can be used to tie an object to a PROFILE. UNIQUE means that it can be used to uniquely identify an object. If a key a is marked as SECONDARY, it will be used to search for profiles after all other PROFILE keys have been searched. A LOOKUP_ONLY key is only used to match a profile but is not persisted to be used for searching of the profile. A NEW_ONLY key is only used if the profile does not already exist before the object is ingested, otherwise it is only used for matching objects to profiles."
       }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/136"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/21"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/21"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.CustomerProfiles/ObjectTypeProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "FieldMap",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      },
-      "ObjectTypeField": {
-        "type": {
-          "$ref": "#/135"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/142"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "KeyMap",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0
-      },
-      "ObjectTypeKeyList": {
-        "type": {
-          "$ref": "#/138"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/144"
     }
   },
   {
@@ -2337,7 +1664,41 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/146"
+      "$ref": "#/110"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/21"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/21"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CustomerProfiles/ObjectTypeProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/107"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/108"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/111"
     }
   },
   {
@@ -2346,7 +1707,7 @@
     "properties": {
       "AllowProfileCreation": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "Indicates whether a profile should be created when data is received."
@@ -2381,21 +1742,21 @@
       },
       "ExpirationDays": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The default number of days until the data within the domain expires."
       },
       "Fields": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/116"
         },
         "flags": 0,
         "description": "A list of the name and ObjectType field."
       },
       "Keys": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/117"
         },
         "flags": 0,
         "description": "A list of unique keys that can be used to map data to the profile."
@@ -2423,7 +1784,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": "The tags (keys and values) associated with the integration."
@@ -2452,14 +1813,14 @@
         "type": {
           "$ref": "#/21"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/119"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -2469,7 +1830,7 @@
     "name": "AWS.CustomerProfiles/ObjectType@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/149"
+      "$ref": "#/120"
     },
     "flags": 0
   }

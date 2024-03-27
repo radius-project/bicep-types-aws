@@ -3,37 +3,37 @@
 ## Resource AWS.MediaPackageV2/Channel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaPackageV2/ChannelProperties](#awsmediapackagev2channelproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaPackageV2/ChannelProperties](#awsmediapackagev2channelproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaPackageV2/ChannelGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaPackageV2/ChannelGroupProperties](#awsmediapackagev2channelgroupproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaPackageV2/ChannelGroupProperties](#awsmediapackagev2channelgroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaPackageV2/ChannelPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaPackageV2/ChannelPolicyProperties](#awsmediapackagev2channelpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaPackageV2/ChannelPolicyProperties](#awsmediapackagev2channelpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaPackageV2/OriginEndpoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaPackageV2/OriginEndpointProperties](#awsmediapackagev2originendpointproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaPackageV2/OriginEndpointProperties](#awsmediapackagev2originendpointproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaPackageV2/OriginEndpointPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaPackageV2/OriginEndpointPolicyProperties](#awsmediapackagev2originendpointpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaPackageV2/OriginEndpointPolicyProperties](#awsmediapackagev2originendpointpolicyproperties) (Required, Identifier): properties of the resource
 
 ## AWS.MediaPackageV2/ChannelGroupProperties
 ### Properties

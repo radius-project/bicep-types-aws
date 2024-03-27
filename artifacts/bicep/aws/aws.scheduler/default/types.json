@@ -76,21 +76,21 @@
     "properties": {
       "CapacityProviderStrategy": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "The capacity provider strategy to use for the task."
       },
       "EnableECSManagedTags": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "Specifies whether to enable Amazon ECS managed tags for the task. For more information, see Tagging Your Amazon ECS Resources in the Amazon Elastic Container Service Developer Guide."
       },
       "EnableExecuteCommand": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "Whether or not to enable the execute command functionality for the containers in this task. If true, this enables execute command functionality on all containers in the task."
@@ -116,14 +116,14 @@
       },
       "PlacementConstraints": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "An array of placement constraint objects to use for the task. You can specify up to 10 constraints per task (including constraints in the task definition and those specified at runtime)."
       },
       "PlacementStrategy": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "The placement strategy objects to use for the task. You can specify a maximum of five strategy rules per task."
@@ -150,7 +150,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "The metadata that you apply to the task to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. To learn more, see RunTask in the Amazon ECS API Reference."
@@ -239,7 +239,7 @@
     "properties": {
       "AwsvpcConfiguration": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -344,7 +344,7 @@
     "properties": {
       "PipelineParameterList": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "List of Parameter names and values for SageMaker Model Building Pipeline execution."
@@ -387,19 +387,19 @@
       },
       "DeadLetterConfig": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "EcsParameters": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "EventBridgeParameters": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/5"
         },
         "flags": 0
       },
@@ -412,13 +412,13 @@
       },
       "KinesisParameters": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "RetryPolicy": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/16"
         },
         "flags": 0
       },
@@ -431,13 +431,13 @@
       },
       "SageMakerPipelineParameters": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "SqsParameters": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/20"
         },
         "flags": 0
       }
@@ -462,36 +462,9 @@
     "$type": "IntegerType"
   },
   {
-    "$type": "ObjectType",
-    "name": "CapacityProviderStrategyItem",
-    "properties": {
-      "Base": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "The base value designates how many tasks, at a minimum, to run on the specified capacity provider. Only one capacity provider in a capacity provider strategy can have a base defined. If no value is specified, the default value of 0 is used."
-      },
-      "CapacityProvider": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1,
-        "description": "The short name of the capacity provider."
-      },
-      "Weight": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "The weight value designates the relative percentage of the total number of tasks launched that should use the specified capacity provider. The weight value is taken into consideration after the base value, if defined, is satisfied."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/2"
     }
   },
   {
@@ -516,341 +489,14 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "AwsVpcConfiguration",
-    "properties": {
-      "AssignPublicIp": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0
-      },
-      "SecurityGroups": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0,
-        "description": "Specifies the security groups associated with the task. These security groups must all be in the same VPC. You can specify as many as five security groups. If you do not specify a security group, the default security group for the VPC is used."
-      },
-      "Subnets": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 1,
-        "description": "Specifies the subnets associated with the task. These subnets must all be in the same VPC. You can specify as many as 16 subnets."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SageMakerPipelineParameter",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 17,
-        "description": "Name of parameter to start execution of a SageMaker Model Building Pipeline."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1,
-        "description": "Value of parameter to start execution of a SageMaker Model Building Pipeline."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/34"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DeadLetterConfig",
-    "properties": {
-      "Arn": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "The ARN of the SQS queue specified as the target for the dead-letter queue."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "EcsParameters",
-    "properties": {
-      "CapacityProviderStrategy": {
-        "type": {
-          "$ref": "#/28"
-        },
-        "flags": 0,
-        "description": "The capacity provider strategy to use for the task."
-      },
-      "EnableECSManagedTags": {
-        "type": {
-          "$ref": "#/29"
-        },
-        "flags": 0,
-        "description": "Specifies whether to enable Amazon ECS managed tags for the task. For more information, see Tagging Your Amazon ECS Resources in the Amazon Elastic Container Service Developer Guide."
-      },
-      "EnableExecuteCommand": {
-        "type": {
-          "$ref": "#/29"
-        },
-        "flags": 0,
-        "description": "Whether or not to enable the execute command functionality for the containers in this task. If true, this enables execute command functionality on all containers in the task."
-      },
-      "Group": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "Specifies an ECS task group for the task. The maximum length is 255 characters."
-      },
-      "LaunchType": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0
-      },
-      "NetworkConfiguration": {
-        "type": {
-          "$ref": "#/10"
-        },
-        "flags": 0
-      },
-      "PlacementConstraints": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0,
-        "description": "An array of placement constraint objects to use for the task. You can specify up to 10 constraints per task (including constraints in the task definition and those specified at runtime)."
-      },
-      "PlacementStrategy": {
-        "type": {
-          "$ref": "#/31"
-        },
-        "flags": 0,
-        "description": "The placement strategy objects to use for the task. You can specify a maximum of five strategy rules per task."
-      },
-      "PlatformVersion": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "Specifies the platform version for the task. Specify only the numeric portion of the platform version, such as 1.1.0."
-      },
-      "PropagateTags": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0
-      },
-      "ReferenceId": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "The reference ID to use for the task."
-      },
-      "Tags": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0,
-        "description": "The metadata that you apply to the task to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. To learn more, see RunTask in the Amazon ECS API Reference."
-      },
-      "TaskCount": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "The number of tasks to create based on TaskDefinition. The default is 1."
-      },
-      "TaskDefinitionArn": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1,
-        "description": "The ARN of the task definition to use if the event target is an Amazon ECS task."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "EventBridgeParameters",
-    "properties": {
-      "DetailType": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1,
-        "description": "Free-form string, with a maximum of 128 characters, used to decide what fields to expect in the event detail."
-      },
-      "Source": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1,
-        "description": "The source of the event."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "KinesisParameters",
-    "properties": {
-      "PartitionKey": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1,
-        "description": "The custom parameter used as the Kinesis partition key. For more information, see Amazon Kinesis Streams Key Concepts in the Amazon Kinesis Streams Developer Guide."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RetryPolicy",
-    "properties": {
-      "MaximumEventAgeInSeconds": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "The maximum amount of time, in seconds, to continue to make retry attempts."
-      },
-      "MaximumRetryAttempts": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "The maximum number of retry attempts to make before the request fails. Retry attempts with exponential backoff continue until either the maximum number of attempts is made or until the duration of the MaximumEventAgeInSeconds is reached."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SageMakerPipelineParameters",
-    "properties": {
-      "PipelineParameterList": {
-        "type": {
-          "$ref": "#/35"
-        },
-        "flags": 0,
-        "description": "List of Parameter names and values for SageMaker Model Building Pipeline execution."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SqsParameters",
-    "properties": {
-      "MessageGroupId": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "The FIFO message group ID to use as the target."
-      }
+      "$ref": "#/17"
     }
   },
   {
     "$type": "StringLiteralType",
     "value": "AWS.Scheduler/ScheduleProperties"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "FlexibleTimeWindow",
-    "properties": {
-      "MaximumWindowInMinutes": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "The maximum time window during which a schedule can be invoked."
-      },
-      "Mode": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Target",
-    "properties": {
-      "Arn": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the target."
-      },
-      "DeadLetterConfig": {
-        "type": {
-          "$ref": "#/36"
-        },
-        "flags": 0
-      },
-      "EcsParameters": {
-        "type": {
-          "$ref": "#/37"
-        },
-        "flags": 0
-      },
-      "EventBridgeParameters": {
-        "type": {
-          "$ref": "#/38"
-        },
-        "flags": 0
-      },
-      "Input": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "The text, or well-formed JSON, passed to the target. If you are configuring a templated Lambda, AWS Step Functions, or Amazon EventBridge target, the input must be a well-formed JSON. For all other target types, a JSON is not required. If you do not specify anything for this field, EventBridge Scheduler delivers a default notification to the target."
-      },
-      "KinesisParameters": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0
-      },
-      "RetryPolicy": {
-        "type": {
-          "$ref": "#/40"
-        },
-        "flags": 0
-      },
-      "RoleArn": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the IAM role to be used for this target when the schedule is triggered."
-      },
-      "SageMakerPipelineParameters": {
-        "type": {
-          "$ref": "#/41"
-        },
-        "flags": 0
-      },
-      "SqsParameters": {
-        "type": {
-          "$ref": "#/42"
-        },
-        "flags": 0
-      }
-    }
   },
   {
     "$type": "ObjectType",
@@ -879,7 +525,7 @@
       },
       "FlexibleTimeWindow": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/6"
         },
         "flags": 1
       },
@@ -932,7 +578,7 @@
       },
       "Target": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/22"
         },
         "flags": 1
       }
@@ -953,14 +599,14 @@
         "type": {
           "$ref": "#/23"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/34"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -970,7 +616,7 @@
     "name": "AWS.Scheduler/Schedule@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/47"
+      "$ref": "#/35"
     },
     "flags": 0
   },
@@ -1004,29 +650,9 @@
     "value": "AWS.Scheduler/ScheduleGroupProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1,
-        "description": "Key for the tag"
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1,
-        "description": "Value for the tag"
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/38"
     }
   },
   {
@@ -1068,7 +694,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The list of tags to associate with the schedule group."
@@ -1090,14 +716,14 @@
         "type": {
           "$ref": "#/23"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/41"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -1107,7 +733,7 @@
     "name": "AWS.Scheduler/ScheduleGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/55"
+      "$ref": "#/42"
     },
     "flags": 0
   }

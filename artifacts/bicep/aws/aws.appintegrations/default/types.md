@@ -3,16 +3,16 @@
 ## Resource AWS.AppIntegrations/DataIntegration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppIntegrations/DataIntegrationProperties](#awsappintegrationsdataintegrationproperties) (Required): properties of the resource
+* **properties**: [AWS.AppIntegrations/DataIntegrationProperties](#awsappintegrationsdataintegrationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppIntegrations/EventIntegration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppIntegrations/EventIntegrationProperties](#awsappintegrationseventintegrationproperties) (Required): properties of the resource
+* **properties**: [AWS.AppIntegrations/EventIntegrationProperties](#awsappintegrationseventintegrationproperties) (Required, Identifier): properties of the resource
 
 ## AWS.AppIntegrations/DataIntegrationProperties
 ### Properties

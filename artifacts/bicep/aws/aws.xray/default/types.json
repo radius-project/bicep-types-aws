@@ -51,29 +51,9 @@
     "$type": "StringType"
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The key name of the tag."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The value for the tag."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/1"
     }
   },
   {
@@ -81,29 +61,9 @@
     "value": "AWS.XRay/GroupProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "InsightsConfiguration",
-    "properties": {
-      "InsightsEnabled": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "Set the InsightsEnabled value to true to enable insights or false to disable insights."
-      },
-      "NotificationsEnabled": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "Set the NotificationsEnabled value to true to enable insights notifications. Notifications can only be enabled on a group with InsightsEnabled set to true."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/1"
     }
   },
   {
@@ -133,13 +93,13 @@
       },
       "InsightsConfiguration": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/0"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/7"
         },
         "flags": 0
       }
@@ -160,14 +120,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/8"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -177,7 +137,7 @@
     "name": "AWS.XRay/Group@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/9"
     },
     "flags": 0
   },
@@ -227,14 +187,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/12"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -244,7 +204,7 @@
     "name": "AWS.XRay/ResourcePolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/13"
     },
     "flags": 0
   },
@@ -264,14 +224,14 @@
     "properties": {
       "Attributes": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "Matches attributes derived from the request."
       },
       "FixedRate": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "The percentage of matching requests to instrument, after the reservoir is exhausted."
@@ -292,14 +252,14 @@
       },
       "Priority": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "The priority of the sampling rule."
       },
       "ReservoirSize": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "A fixed number of matching requests to instrument per second, prior to applying the fixed rate. The reservoir is not used directly by services, but applies to all services using the rule collectively."
@@ -346,7 +306,7 @@
       },
       "Version": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The version of the sampling rule format (1)"
@@ -373,7 +333,7 @@
       },
       "SamplingRule": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -385,112 +345,6 @@
     "properties": {
       "Attributes": {
         "type": {
-          "$ref": "#/27"
-        },
-        "flags": 0,
-        "description": "Matches attributes derived from the request."
-      },
-      "FixedRate": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 0,
-        "description": "The percentage of matching requests to instrument, after the reservoir is exhausted."
-      },
-      "HTTPMethod": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Matches the HTTP method from a request URL."
-      },
-      "Host": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Matches the hostname from a request URL."
-      },
-      "Priority": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 0,
-        "description": "The priority of the sampling rule."
-      },
-      "ReservoirSize": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 0,
-        "description": "A fixed number of matching requests to instrument per second, prior to applying the fixed rate. The reservoir is not used directly by services, but applies to all services using the rule collectively."
-      },
-      "ResourceARN": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Matches the ARN of the AWS resource on which the service runs."
-      },
-      "RuleARN": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 16
-      },
-      "RuleName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0
-      },
-      "ServiceName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Matches the name that the service uses to identify itself in segments."
-      },
-      "ServiceType": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Matches the origin that the service uses to identify its type in segments."
-      },
-      "URLPath": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Matches the path from a request URL."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tags",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SamplingRule_Attributes",
-    "properties": {}
-  },
-  {
-    "$type": "IntegerType"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SamplingRule",
-    "properties": {
-      "Attributes": {
-        "type": {
           "$ref": "#/24"
         },
         "flags": 0,
@@ -498,44 +352,44 @@
       },
       "FixedRate": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/23"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The percentage of matching requests to instrument, after the reservoir is exhausted."
       },
       "HTTPMethod": {
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "Matches the HTTP method from a request URL."
       },
       "Host": {
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "Matches the hostname from a request URL."
       },
       "Priority": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/23"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The priority of the sampling rule."
       },
       "ReservoirSize": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/23"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "A fixed number of matching requests to instrument per second, prior to applying the fixed rate. The reservoir is not used directly by services, but applies to all services using the rule collectively."
       },
       "ResourceARN": {
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "Matches the ARN of the AWS resource on which the service runs."
       },
       "RuleARN": {
@@ -554,36 +408,24 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "Matches the name that the service uses to identify itself in segments."
       },
       "ServiceType": {
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "Matches the origin that the service uses to identify its type in segments."
       },
       "URLPath": {
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
-        "description": "Matches the path from a request URL."
-      },
-      "Version": {
-        "type": {
-          "$ref": "#/25"
-        },
         "flags": 0,
-        "description": "The version of the sampling rule format (1)"
+        "description": "Matches the path from a request URL."
       }
     }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SamplingRule_Attributes",
-    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -606,9 +448,27 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SamplingRule_Attributes",
+    "properties": {}
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SamplingRule_Attributes",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/20"
     }
   },
   {
@@ -616,123 +476,9 @@
     "value": "AWS.XRay/SamplingRuleProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "SamplingRuleRecord",
-    "properties": {
-      "CreatedAt": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "When the rule was created, in Unix time seconds."
-      },
-      "ModifiedAt": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "When the rule was modified, in Unix time seconds."
-      },
-      "SamplingRule": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SamplingRuleUpdate",
-    "properties": {
-      "Attributes": {
-        "type": {
-          "$ref": "#/27"
-        },
-        "flags": 0,
-        "description": "Matches attributes derived from the request."
-      },
-      "FixedRate": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 0,
-        "description": "The percentage of matching requests to instrument, after the reservoir is exhausted."
-      },
-      "HTTPMethod": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Matches the HTTP method from a request URL."
-      },
-      "Host": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Matches the hostname from a request URL."
-      },
-      "Priority": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 0,
-        "description": "The priority of the sampling rule."
-      },
-      "ReservoirSize": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 0,
-        "description": "A fixed number of matching requests to instrument per second, prior to applying the fixed rate. The reservoir is not used directly by services, but applies to all services using the rule collectively."
-      },
-      "ResourceARN": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Matches the ARN of the AWS resource on which the service runs."
-      },
-      "RuleARN": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 16
-      },
-      "RuleName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0
-      },
-      "ServiceName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Matches the name that the service uses to identify itself in segments."
-      },
-      "ServiceType": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Matches the origin that the service uses to identify its type in segments."
-      },
-      "URLPath": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Matches the path from a request URL."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/20"
     }
   },
   {
@@ -753,25 +499,25 @@
       },
       "SamplingRule": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "SamplingRuleRecord": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "SamplingRuleUpdate": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/19"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/27"
         },
         "flags": 0
       }
@@ -792,14 +538,14 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/28"
         },
-        "flags": 0,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -809,7 +555,7 @@
     "name": "AWS.XRay/SamplingRule@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/35"
+      "$ref": "#/29"
     },
     "flags": 0
   }

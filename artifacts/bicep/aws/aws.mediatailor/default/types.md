@@ -3,44 +3,44 @@
 ## Resource AWS.MediaTailor/Channel@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaTailor/ChannelProperties](#awsmediatailorchannelproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaTailor/ChannelProperties](#awsmediatailorchannelproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaTailor/ChannelPolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaTailor/ChannelPolicyProperties](#awsmediatailorchannelpolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaTailor/ChannelPolicyProperties](#awsmediatailorchannelpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaTailor/LiveSource@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaTailor/LiveSourceProperties](#awsmediatailorlivesourceproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaTailor/LiveSourceProperties](#awsmediatailorlivesourceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaTailor/PlaybackConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaTailor/PlaybackConfigurationProperties](#awsmediatailorplaybackconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaTailor/PlaybackConfigurationProperties](#awsmediatailorplaybackconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaTailor/SourceLocation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaTailor/SourceLocationProperties](#awsmediatailorsourcelocationproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaTailor/SourceLocationProperties](#awsmediatailorsourcelocationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaTailor/VodSource@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MediaTailor/VodSourceProperties](#awsmediatailorvodsourceproperties) (Required): properties of the resource
+* **properties**: [AWS.MediaTailor/VodSourceProperties](#awsmediatailorvodsourceproperties) (Required, Identifier): properties of the resource
 
 ## AccessConfiguration
 ### Properties

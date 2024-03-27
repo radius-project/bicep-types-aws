@@ -3,16 +3,16 @@
 ## Resource AWS.APS/RuleGroupsNamespace@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.APS/RuleGroupsNamespaceProperties](#awsapsrulegroupsnamespaceproperties) (Required): properties of the resource
+* **properties**: [AWS.APS/RuleGroupsNamespaceProperties](#awsapsrulegroupsnamespaceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.APS/Workspace@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.APS/WorkspaceProperties](#awsapsworkspaceproperties): properties of the resource
+* **properties**: [AWS.APS/WorkspaceProperties](#awsapsworkspaceproperties) (Identifier): properties of the resource
 
 ## AWS.APS/RuleGroupsNamespaceProperties
 ### Properties

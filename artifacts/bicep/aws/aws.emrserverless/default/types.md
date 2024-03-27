@@ -3,9 +3,9 @@
 ## Resource AWS.EMRServerless/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EMRServerless/ApplicationProperties](#awsemrserverlessapplicationproperties) (Required): properties of the resource
+* **properties**: [AWS.EMRServerless/ApplicationProperties](#awsemrserverlessapplicationproperties) (Required, Identifier): properties of the resource
 
 ## Application_Properties
 ### Properties

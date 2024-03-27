@@ -53,29 +53,9 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "Key of the tag. Value can be 1 to 127 characters."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "Value for the tag. Value can be 1 to 255 characters."
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/1"
     }
   },
   {
@@ -147,7 +127,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/8"
         },
         "flags": 0
       }
@@ -168,14 +148,14 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -185,7 +165,7 @@
     "name": "AWS.GlobalAccelerator/Accelerator@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/10"
     },
     "flags": 0
   },
@@ -216,7 +196,7 @@
       },
       "Weight": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The weight for the endpoint."
@@ -234,13 +214,13 @@
     "properties": {
       "EndpointPort": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 1
       },
       "ListenerPort": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 1
       }
@@ -254,67 +234,15 @@
     "value": "AWS.GlobalAccelerator/EndpointGroupProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "EndpointConfiguration",
-    "properties": {
-      "AttachmentArn": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "Attachment ARN that provides access control to the cross account endpoint. Not required for resources hosted in the same account as the endpoint group."
-      },
-      "ClientIPPreservationEnabled": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "true if client ip should be preserved"
-      },
-      "EndpointId": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "Id of the endpoint. For Network/Application Load Balancer this value is the ARN.  For EIP, this value is the allocation ID.  For EC2 instances, this is the EC2 instance ID"
-      },
-      "Weight": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "The weight for the endpoint."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/18"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PortOverride",
-    "properties": {
-      "EndpointPort": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 1
-      },
-      "ListenerPort": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/14"
     }
   },
   {
@@ -323,7 +251,7 @@
     "properties": {
       "EndpointConfigurations": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/17"
         },
         "flags": 4,
         "description": "The list of endpoint objects."
@@ -344,7 +272,7 @@
       },
       "HealthCheckIntervalSeconds": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The time in seconds between each health check for an endpoint. Must be a value of 10 or 30"
@@ -358,7 +286,7 @@
       },
       "HealthCheckPort": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The port that AWS Global Accelerator uses to check the health of endpoints in this endpoint group."
@@ -379,20 +307,20 @@
       },
       "PortOverrides": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "ThresholdCount": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The number of consecutive health checks required to set the state of the endpoint to unhealthy."
       },
       "TrafficDialPercentage": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "The percentage of traffic to sent to an AWS Region"
@@ -414,14 +342,14 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/19"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -431,7 +359,7 @@
     "name": "AWS.GlobalAccelerator/EndpointGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/23"
+      "$ref": "#/20"
     },
     "flags": 0
   },
@@ -446,13 +374,13 @@
     "properties": {
       "FromPort": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 1
       },
       "ToPort": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 1
       }
@@ -463,27 +391,9 @@
     "value": "AWS.GlobalAccelerator/ListenerProperties"
   },
   {
-    "$type": "ObjectType",
-    "name": "PortRange",
-    "properties": {
-      "FromPort": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 1
-      },
-      "ToPort": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/23"
     }
   },
   {
@@ -513,7 +423,7 @@
       },
       "PortRanges": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/25"
         },
         "flags": 1
       },
@@ -541,14 +451,14 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/26"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -558,7 +468,7 @@
     "name": "AWS.GlobalAccelerator/Listener@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/31"
+      "$ref": "#/27"
     },
     "flags": 0
   }
