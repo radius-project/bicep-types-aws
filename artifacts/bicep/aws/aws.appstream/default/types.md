@@ -105,8 +105,11 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
 
 ## VpcConfig
 ### Properties

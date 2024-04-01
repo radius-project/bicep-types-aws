@@ -1797,6 +1797,20 @@
         "flags": 17,
         "description": "The identifier of the Amazon Connect instance."
       },
+      "LastModifiedRegion": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Last modified region."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 2,
+        "description": "Last modified time."
+      },
       "Name": {
         "type": {
           "$ref": "#/2"
@@ -3309,6 +3323,31 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Application",
+    "properties": {
+      "ApplicationPermissions": {
+        "type": {
+          "$ref": "#/229"
+        },
+        "flags": 1,
+        "description": "The permissions that the agent is granted on the application"
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "Namespace of the application that you want to give access to."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ApplicationPermission",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Permission",
     "properties": {}
   },
@@ -3338,13 +3377,25 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.Connect/SecurityProfileProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/226"
+      "$ref": "#/228"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/224"
     }
   },
   {
@@ -3362,19 +3413,39 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/226"
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/228"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.Connect/SecurityProfileProperties",
     "properties": {
+      "AllowedAccessControlHierarchyGroupId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The identifier of the hierarchy group that a security profile uses to restrict access to resources in Amazon Connect."
+      },
       "AllowedAccessControlTags": {
         "type": {
-          "$ref": "#/228"
+          "$ref": "#/231"
         },
         "flags": 0,
         "description": "The list of tags that a security profile uses to restrict access to resources in Amazon Connect."
+      },
+      "Applications": {
+        "type": {
+          "$ref": "#/232"
+        },
+        "flags": 0,
+        "description": "A list of third-party applications that the security profile will give access to."
       },
       "Description": {
         "type": {
@@ -3383,6 +3454,13 @@
         "flags": 0,
         "description": "The description of the security profile."
       },
+      "HierarchyRestrictedResources": {
+        "type": {
+          "$ref": "#/233"
+        },
+        "flags": 0,
+        "description": "The list of resources that a security profile applies hierarchy restrictions to in Amazon Connect."
+      },
       "InstanceArn": {
         "type": {
           "$ref": "#/2"
@@ -3390,9 +3468,23 @@
         "flags": 1,
         "description": "The identifier of the Amazon Connect instance."
       },
+      "LastModifiedRegion": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The AWS Region where this resource was last modified."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 2,
+        "description": "The timestamp when this resource was last modified."
+      },
       "Permissions": {
         "type": {
-          "$ref": "#/229"
+          "$ref": "#/234"
         },
         "flags": 0,
         "description": "Permissions assigned to the security profile."
@@ -3413,14 +3505,14 @@
       },
       "TagRestrictedResources": {
         "type": {
-          "$ref": "#/230"
+          "$ref": "#/235"
         },
         "flags": 0,
         "description": "The list of resources that a security profile applies tag restrictions to in Amazon Connect."
       },
       "Tags": {
         "type": {
-          "$ref": "#/231"
+          "$ref": "#/236"
         },
         "flags": 0,
         "description": "The tags used to organize, track, or control access for this resource."
@@ -3447,7 +3539,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/232"
+          "$ref": "#/237"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3459,7 +3551,7 @@
     "name": "AWS.Connect/SecurityProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/233"
+      "$ref": "#/238"
     },
     "flags": 0
   },
@@ -3480,7 +3572,7 @@
       },
       "Id": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/243"
         },
         "flags": 1
       }
@@ -3499,13 +3591,13 @@
       },
       "Id": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/243"
         },
         "flags": 1
       },
       "SingleSelectOptions": {
         "type": {
-          "$ref": "#/250"
+          "$ref": "#/255"
         },
         "flags": 0,
         "description": "list of field options to be used with single select"
@@ -3552,7 +3644,7 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/243"
         },
         "flags": 1
       }
@@ -3569,7 +3661,7 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/243"
         },
         "flags": 1
       }
@@ -3586,7 +3678,7 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/243"
         },
         "flags": 1
       }
@@ -3631,19 +3723,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/242"
+      "$ref": "#/247"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/244"
+      "$ref": "#/249"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/246"
+      "$ref": "#/251"
     }
   },
   {
@@ -3653,19 +3745,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/242"
+      "$ref": "#/247"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/244"
+      "$ref": "#/249"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/246"
+      "$ref": "#/251"
     }
   },
   {
@@ -3674,19 +3766,19 @@
     "properties": {
       "InvisibleFields": {
         "type": {
-          "$ref": "#/255"
+          "$ref": "#/260"
         },
         "flags": 0
       },
       "ReadOnlyFields": {
         "type": {
-          "$ref": "#/256"
+          "$ref": "#/261"
         },
         "flags": 0
       },
       "RequiredFields": {
         "type": {
-          "$ref": "#/257"
+          "$ref": "#/262"
         },
         "flags": 0
       }
@@ -3695,19 +3787,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/236"
+      "$ref": "#/241"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/237"
+      "$ref": "#/242"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/249"
+      "$ref": "#/254"
     }
   },
   {
@@ -3729,7 +3821,7 @@
       },
       "Constraints": {
         "type": {
-          "$ref": "#/258"
+          "$ref": "#/263"
         },
         "flags": 0,
         "description": "The constraints for the task template"
@@ -3743,7 +3835,7 @@
       },
       "Defaults": {
         "type": {
-          "$ref": "#/259"
+          "$ref": "#/264"
         },
         "flags": 0,
         "description": ""
@@ -3757,7 +3849,7 @@
       },
       "Fields": {
         "type": {
-          "$ref": "#/260"
+          "$ref": "#/265"
         },
         "flags": 0,
         "description": "The list of task template's fields"
@@ -3784,7 +3876,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/261"
+          "$ref": "#/266"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -3811,7 +3903,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/262"
+          "$ref": "#/267"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3823,7 +3915,7 @@
     "name": "AWS.Connect/TaskTemplate@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/263"
+      "$ref": "#/268"
     },
     "flags": 0
   },
@@ -3854,7 +3946,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/265"
+      "$ref": "#/270"
     }
   },
   {
@@ -3898,7 +3990,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/267"
+          "$ref": "#/272"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -3932,7 +4024,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/268"
+          "$ref": "#/273"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3944,7 +4036,7 @@
     "name": "AWS.Connect/TrafficDistributionGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/269"
+      "$ref": "#/274"
     },
     "flags": 0
   },
@@ -4136,13 +4228,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/284"
+      "$ref": "#/289"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/287"
+      "$ref": "#/292"
     }
   },
   {
@@ -4165,7 +4257,7 @@
       },
       "IdentityInfo": {
         "type": {
-          "$ref": "#/285"
+          "$ref": "#/290"
         },
         "flags": 0,
         "description": "The information about the identity of the user."
@@ -4186,7 +4278,7 @@
       },
       "PhoneConfig": {
         "type": {
-          "$ref": "#/286"
+          "$ref": "#/291"
         },
         "flags": 1,
         "description": "The phone settings for the user."
@@ -4200,14 +4292,14 @@
       },
       "SecurityProfileArns": {
         "type": {
-          "$ref": "#/289"
+          "$ref": "#/294"
         },
         "flags": 1,
         "description": "One or more security profile arns for the user"
       },
       "Tags": {
         "type": {
-          "$ref": "#/290"
+          "$ref": "#/295"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -4221,7 +4313,7 @@
       },
       "UserProficiencies": {
         "type": {
-          "$ref": "#/291"
+          "$ref": "#/296"
         },
         "flags": 0,
         "description": "One or more predefined attributes assigned to a user, with a level that indicates how skilled they are."
@@ -4255,7 +4347,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/292"
+          "$ref": "#/297"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4267,7 +4359,7 @@
     "name": "AWS.Connect/User@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/293"
+      "$ref": "#/298"
     },
     "flags": 0
   },
@@ -4303,7 +4395,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/295"
+      "$ref": "#/300"
     }
   },
   {
@@ -4333,7 +4425,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/298"
+          "$ref": "#/303"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -4367,7 +4459,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/299"
+          "$ref": "#/304"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4379,7 +4471,7 @@
     "name": "AWS.Connect/UserHierarchyGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/300"
+      "$ref": "#/305"
     },
     "flags": 0
   },
@@ -4416,7 +4508,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/302"
+      "$ref": "#/307"
     }
   },
   {
@@ -4430,7 +4522,7 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/304"
+          "$ref": "#/309"
         },
         "flags": 1,
         "description": "The actions of the view in an array."
@@ -4458,14 +4550,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/305"
+          "$ref": "#/310"
         },
         "flags": 0,
         "description": "One or more tags."
       },
       "Template": {
         "type": {
-          "$ref": "#/306"
+          "$ref": "#/311"
         },
         "flags": 1,
         "description": "The template of the view as JSON."
@@ -4513,7 +4605,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/307"
+          "$ref": "#/312"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4525,7 +4617,7 @@
     "name": "AWS.Connect/View@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/308"
+      "$ref": "#/313"
     },
     "flags": 0
   },
@@ -4594,7 +4686,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/311"
+          "$ref": "#/316"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4606,7 +4698,7 @@
     "name": "AWS.Connect/ViewVersion@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/312"
+      "$ref": "#/317"
     },
     "flags": 0
   }

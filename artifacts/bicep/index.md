@@ -143,6 +143,9 @@
 * **Link**: [default](aws/aws.appflow/default/types.md#resource-awsappflowflowdefault)
 
 ## aws.appintegrations
+### aws.appintegrations/application
+* **Link**: [default](aws/aws.appintegrations/default/types.md#resource-awsappintegrationsapplicationdefault)
+
 ### aws.appintegrations/dataintegration
 * **Link**: [default](aws/aws.appintegrations/default/types.md#resource-awsappintegrationsdataintegrationdefault)
 
@@ -199,6 +202,9 @@
 ## aws.aps
 ### aws.aps/rulegroupsnamespace
 * **Link**: [default](aws/aws.aps/default/types.md#resource-awsapsrulegroupsnamespacedefault)
+
+### aws.aps/scraper
+* **Link**: [default](aws/aws.aps/default/types.md#resource-awsapsscraperdefault)
 
 ### aws.aps/workspace
 * **Link**: [default](aws/aws.aps/default/types.md#resource-awsapsworkspacedefault)
@@ -285,6 +291,13 @@
 
 ### aws.batch/schedulingpolicy
 * **Link**: [default](aws/aws.batch/default/types.md#resource-awsbatchschedulingpolicydefault)
+
+## aws.bedrock
+### aws.bedrock/agent
+* **Link**: [default](aws/aws.bedrock/default/types.md#resource-awsbedrockagentdefault)
+
+### aws.bedrock/agentalias
+* **Link**: [default](aws/aws.bedrock/default/types.md#resource-awsbedrockagentaliasdefault)
 
 ## aws.budgets
 ### aws.budgets/budgetsaction
@@ -417,12 +430,19 @@
 ### aws.codeartifact/domain
 * **Link**: [default](aws/aws.codeartifact/default/types.md#resource-awscodeartifactdomaindefault)
 
+### aws.codeartifact/packagegroup
+* **Link**: [default](aws/aws.codeartifact/default/types.md#resource-awscodeartifactpackagegroupdefault)
+
 ### aws.codeartifact/repository
 * **Link**: [default](aws/aws.codeartifact/default/types.md#resource-awscodeartifactrepositorydefault)
 
 ## aws.codebuild
 ### aws.codebuild/fleet
 * **Link**: [default](aws/aws.codebuild/default/types.md#resource-awscodebuildfleetdefault)
+
+## aws.codeconnections
+### aws.codeconnections/connection
+* **Link**: [default](aws/aws.codeconnections/default/types.md#resource-awscodeconnectionsconnectiondefault)
 
 ## aws.codedeploy
 ### aws.codedeploy/application
@@ -1516,6 +1536,12 @@
 ### aws.kafkaconnect/connector
 * **Link**: [default](aws/aws.kafkaconnect/default/types.md#resource-awskafkaconnectconnectordefault)
 
+### aws.kafkaconnect/customplugin
+* **Link**: [default](aws/aws.kafkaconnect/default/types.md#resource-awskafkaconnectcustomplugindefault)
+
+### aws.kafkaconnect/workerconfiguration
+* **Link**: [default](aws/aws.kafkaconnect/default/types.md#resource-awskafkaconnectworkerconfigurationdefault)
+
 ## aws.kendra
 ### aws.kendra/datasource
 * **Link**: [default](aws/aws.kendra/default/types.md#resource-awskendradatasourcedefault)
@@ -2353,6 +2379,16 @@
 
 ### aws.securityhub/standard
 * **Link**: [default](aws/aws.securityhub/default/types.md#resource-awssecurityhubstandarddefault)
+
+## aws.securitylake
+### aws.securitylake/awslogsource
+* **Link**: [default](aws/aws.securitylake/default/types.md#resource-awssecuritylakeawslogsourcedefault)
+
+### aws.securitylake/datalake
+* **Link**: [default](aws/aws.securitylake/default/types.md#resource-awssecuritylakedatalakedefault)
+
+### aws.securitylake/subscriber
+* **Link**: [default](aws/aws.securitylake/default/types.md#resource-awssecuritylakesubscriberdefault)
 
 ## aws.servicecatalog
 ### aws.servicecatalog/cloudformationprovisionedproduct

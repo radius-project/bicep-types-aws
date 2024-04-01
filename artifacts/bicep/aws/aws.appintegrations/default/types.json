@@ -1,18 +1,183 @@
 [
   {
     "$type": "ObjectType",
+    "name": "ApprovedOrigins",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExternalUrlConfig",
+    "properties": {
+      "AccessUrl": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      },
+      "ApprovedOrigins": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "A key to identify the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "Corresponding tag value for the key."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AppIntegrations/ApplicationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Application_ApplicationSourceConfig",
+    "properties": {
+      "ExternalUrlConfig": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppIntegrations/ApplicationProperties",
+    "properties": {
+      "ApplicationArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the application."
+      },
+      "ApplicationSourceConfig": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Application source config"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The application description."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The id of the application."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The name of the application."
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The namespace of the application."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The tags (keys and values) associated with the application."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppIntegrations/Application",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AppIntegrations/Application@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/9"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "FileConfiguration",
     "properties": {
       "Filters": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "Restrictions for what files should be pulled from the source."
       },
       "Folders": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "Identifiers for the source folders to pull all files from recursively."
@@ -30,21 +195,21 @@
     "properties": {
       "FirstExecutionFrom": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The start date for objects to import in the first flow run. Epoch or ISO timestamp format is supported."
       },
       "Object": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The name of the object to pull from the data source."
       },
       "ScheduleExpression": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "How often the data should be pulled from data source."
@@ -57,14 +222,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "A key to identify the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "Corresponding tag value for the key."
@@ -77,12 +242,9 @@
     "properties": {}
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/3"
     }
   },
   {
@@ -92,7 +254,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/14"
     }
   },
   {
@@ -101,70 +263,70 @@
     "properties": {
       "DataIntegrationArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the data integration."
       },
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The data integration description."
       },
       "FileConfiguration": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The configuration for what files should be pulled from the source."
       },
       "Id": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 18,
         "description": "The unique identifer of the data integration."
       },
       "KmsKey": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The KMS key of the data integration."
       },
       "Name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The name of the data integration."
       },
       "ObjectConfiguration": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The configuration for what data should be pulled from the source."
       },
       "ScheduleConfig": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "The name of the data and how often it should be pulled from the source."
       },
       "SourceURI": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The URI of the data source."
       },
       "Tags": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "The tags (keys and values) associated with the data integration."
@@ -177,21 +339,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/19"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -203,7 +365,7 @@
     "name": "AWS.AppIntegrations/DataIntegration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/10"
+      "$ref": "#/20"
     },
     "flags": 0
   },
@@ -213,7 +375,7 @@
     "properties": {
       "Source": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The source of the events."
@@ -226,14 +388,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "A key to identify the metadata."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "Corresponding metadata value for the key."
@@ -246,14 +408,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "A key to identify the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "Corresponding tag value for the key."
@@ -267,7 +429,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/24"
     }
   },
   {
@@ -276,42 +438,42 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The event integration description."
       },
       "EventBridgeBus": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The Amazon Eventbridge bus for the event integration."
       },
       "EventFilter": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/22"
         },
         "flags": 1,
         "description": "The EventFilter (source) associated with the event integration."
       },
       "EventIntegrationArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the event integration."
       },
       "Name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "The name of the event integration."
       },
       "Tags": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "The tags (keys and values) associated with the event integration."
@@ -324,21 +486,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/27"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -350,7 +512,7 @@
     "name": "AWS.AppIntegrations/EventIntegration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/18"
+      "$ref": "#/28"
     },
     "flags": 0
   }

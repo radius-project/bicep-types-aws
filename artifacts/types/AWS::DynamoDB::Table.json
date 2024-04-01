@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DynamoDB-Table",
   "type": "AWS::DynamoDB::Table",
-  "time": "2024-03-15T00:04:30.009Z",
+  "time": "2024-03-25T15:56:40.866Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -283,6 +283,19 @@
         ],
         "type": "object"
       },
+      "ResourcePolicy": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "PolicyDocument": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "PolicyDocument"
+        ],
+        "type": "object"
+      },
       "S3BucketSource": {
         "additionalProperties": false,
         "description": "The S3 bucket that is being imported from.",
@@ -331,6 +344,10 @@
         "additionalProperties": false,
         "description": "Represents the DynamoDB Streams configuration for a table in DynamoDB.",
         "properties": {
+          "ResourcePolicy": {
+            "$ref": "#/definitions/ResourcePolicy",
+            "description": ""
+          },
           "StreamViewType": {
             "description": "When an item in the table is modified, ``StreamViewType`` determines what information is written to the stream for this table. Valid values for ``StreamViewType`` are:\n  +   ``KEYS_ONLY`` - Only the key attributes of the modified item are written to the stream.\n  +   ``NEW_IMAGE`` - The entire item, as it appears after it was modified, is written to the stream.\n  +   ``OLD_IMAGE`` - The entire item, as it appeared before it was modified, is written to the stream.\n  +   ``NEW_AND_OLD_IMAGES`` - Both the new and the old item images of the item are written to the stream.",
             "type": "string"
@@ -549,6 +566,10 @@
       "ProvisionedThroughput": {
         "$ref": "#/definitions/ProvisionedThroughput",
         "description": "Throughput for the specified table, which consists of values for ``ReadCapacityUnits`` and ``WriteCapacityUnits``. For more information about the contents of a provisioned throughput structure, see [Amazon DynamoDB Table ProvisionedThroughput](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ProvisionedThroughput.html). \n If you set ``BillingMode`` as ``PROVISIONED``, you must specify this property. If you set ``BillingMode`` as ``PAY_PER_REQUEST``, you cannot specify this property."
+      },
+      "ResourcePolicy": {
+        "$ref": "#/definitions/ResourcePolicy",
+        "description": ""
       },
       "SSESpecification": {
         "$ref": "#/definitions/SSESpecification",

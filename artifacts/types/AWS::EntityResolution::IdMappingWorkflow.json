@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EntityResolution-IdMappingWorkflow",
   "type": "AWS::EntityResolution::IdMappingWorkflow",
-  "time": "2024-03-05T17:08:54.996Z",
+  "time": "2024-03-28T00:25:51.708Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -53,18 +53,24 @@
         "additionalProperties": false,
         "properties": {
           "InputSourceARN": {
-            "description": "An Glue table ARN for the input source table",
+            "description": "An Glue table ARN for the input source table or IdNamespace ARN",
             "pattern": "arn:(aws|aws-us-gov|aws-cn):.*:.*:[0-9]+:.*$",
             "type": "string"
           },
           "SchemaArn": {
             "$ref": "#/definitions/SchemaMappingArn",
             "type": "string"
+          },
+          "Type": {
+            "enum": [
+              "SOURCE",
+              "TARGET"
+            ],
+            "type": "string"
           }
         },
         "required": [
-          "InputSourceARN",
-          "SchemaArn"
+          "InputSourceARN"
         ],
         "type": "object"
       },
@@ -270,7 +276,6 @@
     "required": [
       "WorkflowName",
       "InputSourceConfig",
-      "OutputSourceConfig",
       "IdMappingTechniques",
       "RoleArn"
     ],

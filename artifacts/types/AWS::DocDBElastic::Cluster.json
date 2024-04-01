@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DocDBElastic-Cluster",
   "type": "AWS::DocDBElastic::Cluster",
-  "time": "2023-03-02T02:56:17.925Z",
+  "time": "2024-03-23T00:01:50.055Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -38,6 +38,9 @@
       "create": {
         "permissions": [
           "docdb-elastic:CreateCluster",
+          "docdb-elastic:TagResource",
+          "docdb-elastic:GetCluster",
+          "docdb-elastic:ListTagsForResource",
           "ec2:CreateVpcEndpoint",
           "ec2:DescribeVpcEndpoints",
           "ec2:DeleteVpcEndpoints",
@@ -62,6 +65,7 @@
       "delete": {
         "permissions": [
           "docdb-elastic:DeleteCluster",
+          "docdb-elastic:GetCluster",
           "ec2:DescribeVpcEndpoints",
           "ec2:DeleteVpcEndpoints",
           "ec2:ModifyVpcEndpoint",
@@ -88,6 +92,8 @@
           "docdb-elastic:UpdateCluster",
           "docdb-elastic:TagResource",
           "docdb-elastic:UntagResource",
+          "docdb-elastic:GetCluster",
+          "docdb-elastic:ListTagsForResource",
           "ec2:CreateVpcEndpoint",
           "ec2:DescribeVpcEndpoints",
           "ec2:DeleteVpcEndpoints",
@@ -122,6 +128,9 @@
       "AuthType": {
         "type": "string"
       },
+      "BackupRetentionPeriod": {
+        "type": "integer"
+      },
       "ClusterArn": {
         "type": "string"
       },
@@ -137,6 +146,9 @@
       "KmsKeyId": {
         "type": "string"
       },
+      "PreferredBackupWindow": {
+        "type": "string"
+      },
       "PreferredMaintenanceWindow": {
         "type": "string"
       },
@@ -144,6 +156,9 @@
         "type": "integer"
       },
       "ShardCount": {
+        "type": "integer"
+      },
+      "ShardInstanceCount": {
         "type": "integer"
       },
       "SubnetIds": {

@@ -27,7 +27,7 @@
 * **Description**: string: The description of the IdMappingWorkflow
 * **IdMappingTechniques**: [IdMappingTechniques](#idmappingtechniques) (Required)
 * **InputSourceConfig**: [IdMappingWorkflowInputSource](#idmappingworkflowinputsource)[] (Required)
-* **OutputSourceConfig**: [IdMappingWorkflowOutputSource](#idmappingworkflowoutputsource)[] (Required)
+* **OutputSourceConfig**: [IdMappingWorkflowOutputSource](#idmappingworkflowoutputsource)[]
 * **RoleArn**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **UpdatedAt**: string (ReadOnly)
@@ -68,8 +68,9 @@
 
 ## IdMappingWorkflowInputSource
 ### Properties
-* **InputSourceARN**: string (Required): An Glue table ARN for the input source table
-* **SchemaArn**: string (Required)
+* **InputSourceARN**: string (Required): An Glue table ARN for the input source table or IdNamespace ARN
+* **SchemaArn**: string
+* **Type**: string
 
 ## IdMappingWorkflowOutputSource
 ### Properties

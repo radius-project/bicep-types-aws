@@ -1,13 +1,28 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VerifiedPermissions-IdentitySource",
   "type": "AWS::VerifiedPermissions::IdentitySource",
-  "time": "2024-03-06T16:22:21.678Z",
+  "time": "2024-04-01T16:13:07.389Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/PolicyStoreId"
     ],
     "definitions": {
+      "CognitoGroupConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "GroupEntityType": {
+            "maxLength": 200,
+            "minLength": 1,
+            "pattern": "^([_a-zA-Z][_a-zA-Z0-9]*::)*[_a-zA-Z][_a-zA-Z0-9]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "GroupEntityType"
+        ],
+        "type": "object"
+      },
       "CognitoUserPoolConfiguration": {
         "additionalProperties": false,
         "properties": {
@@ -22,6 +37,9 @@
             "maxItems": 1000,
             "minItems": 0,
             "type": "array"
+          },
+          "GroupConfiguration": {
+            "$ref": "#/definitions/CognitoGroupConfiguration"
           },
           "UserPoolArn": {
             "maxLength": 255,
@@ -88,6 +106,9 @@
         "type": "string"
       }
     },
+    "deprecatedProperties": [
+      "/properties/Details"
+    ],
     "description": "Definition of AWS::VerifiedPermissions::IdentitySource Resource Type",
     "handlers": {
       "create": {

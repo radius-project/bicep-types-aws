@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-PredefinedAttribute",
   "type": "AWS::Connect::PredefinedAttribute",
-  "time": "2023-12-22T06:17:14.647Z",
+  "time": "2024-03-25T21:57:32.237Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -74,6 +74,15 @@
         "pattern": "^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*$",
         "type": "string"
       },
+      "LastModifiedRegion": {
+        "description": "Last modified region.",
+        "pattern": "[a-z]{2}(-[a-z]+){1,2}(-[0-9])?",
+        "type": "string"
+      },
+      "LastModifiedTime": {
+        "description": "Last modified time.",
+        "type": "number"
+      },
       "Name": {
         "description": "The name of the predefined attribute.",
         "maxLength": 64,
@@ -91,6 +100,10 @@
         "type": "object"
       }
     },
+    "readOnlyProperties": [
+      "/properties/LastModifiedRegion",
+      "/properties/LastModifiedTime"
+    ],
     "required": [
       "InstanceArn",
       "Name",

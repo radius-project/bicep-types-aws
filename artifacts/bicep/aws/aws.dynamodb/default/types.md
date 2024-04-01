@@ -72,6 +72,7 @@
 * **PointInTimeRecoverySpecification**: [PointInTimeRecoverySpecification](#pointintimerecoveryspecification): The settings used to enable point in time recovery.
 * **ProvisionedThroughput**: [ProvisionedThroughput](#provisionedthroughput): Throughput for the specified table, which consists of values for ``ReadCapacityUnits`` and ``WriteCapacityUnits``. For more information about the contents of a provisioned throughput structure, see [Amazon DynamoDB Table ProvisionedThroughput](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ProvisionedThroughput.html). 
  If you set ``BillingMode`` as ``PROVISIONED``, you must specify this property. If you set ``BillingMode`` as ``PAY_PER_REQUEST``, you cannot specify this property.
+* **ResourcePolicy**: [ResourcePolicy](#resourcepolicy)
 * **SSESpecification**: [SSESpecification](#ssespecification): Specifies the settings to enable server-side encryption.
 * **StreamArn**: string (ReadOnly)
 * **StreamSpecification**: [StreamSpecification](#streamspecification): The settings for the DDB table stream, which capture changes to items stored in the table.
@@ -123,6 +124,9 @@
 * **Projection**: [Projection](#projection) (Required): Represents attributes that are copied (projected) from the table into the global secondary index. These are in addition to the primary key attributes and index key attributes, which are automatically projected.
 * **ProvisionedThroughput**: [ProvisionedThroughput](#provisionedthroughput): Represents the provisioned throughput settings for the specified global secondary index.
  For current minimum and maximum provisioned throughput values, see [Service, Account, and Table Quotas](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html) in the *Amazon DynamoDB Developer Guide*.
+
+## GlobalTable_PolicyDocument
+### Properties
 
 ## ImportSourceSpecification
 ### Properties
@@ -229,6 +233,8 @@
 * **PointInTimeRecoverySpecification**: [PointInTimeRecoverySpecification](#pointintimerecoveryspecification)
 * **ReadProvisionedThroughputSettings**: [ReadProvisionedThroughputSettings](#readprovisionedthroughputsettings)
 * **Region**: string (Required)
+* **ReplicaStreamSpecification**: [ReplicaStreamSpecification](#replicastreamspecification)
+* **ResourcePolicy**: [ResourcePolicy](#resourcepolicy)
 * **SSESpecification**: [ReplicaSSESpecification](#replicassespecification)
 * **TableClass**: string
 * **Tags**: [Tag](#tag)[]
@@ -236,6 +242,18 @@
 ## ReplicaSSESpecification
 ### Properties
 * **KMSMasterKeyId**: string (Required)
+
+## ReplicaStreamSpecification
+### Properties
+* **ResourcePolicy**: [ResourcePolicy](#resourcepolicy) (Required)
+
+## ResourcePolicy
+### Properties
+* **PolicyDocument**: [GlobalTable_PolicyDocument](#globaltablepolicydocument) (Required)
+
+## ResourcePolicy
+### Properties
+* **PolicyDocument**: [Table_PolicyDocument](#tablepolicydocument) (Required)
 
 ## S3BucketSource
 ### Properties
@@ -261,6 +279,7 @@
 
 ## StreamSpecification
 ### Properties
+* **ResourcePolicy**: [ResourcePolicy](#resourcepolicy)
 * **StreamViewType**: string (Required): When an item in the table is modified, ``StreamViewType`` determines what information is written to the stream for this table. Valid values for ``StreamViewType`` are:
   +   ``KEYS_ONLY`` - Only the key attributes of the modified item are written to the stream.
   +   ``NEW_IMAGE`` - The entire item, as it appears after it was modified, is written to the stream.
@@ -268,6 +287,9 @@
   +   ``NEW_AND_OLD_IMAGES`` - Both the new and the old item images of the item are written to the stream.
 
 ## Table_KeySchema
+### Properties
+
+## Table_PolicyDocument
 ### Properties
 
 ## Tag

@@ -90,7 +90,7 @@
   +   *UNIT*: A UNIT resolver type. A UNIT resolver is the default resolver type. You can use a UNIT resolver to run a GraphQL query against a single data source.
   +   *PIPELINE*: A PIPELINE resolver type. You can use a PIPELINE resolver to invoke a series of ``Function`` objects in a serial manner. You can use a pipeline resolver to run a GraphQL query against multiple data sources.
 * **MaxBatchSize**: int: The maximum number of resolver request inputs that will be sent to a single LAMlong function in a ``BatchInvoke`` operation.
-* **MetricsConfig**: string
+* **MetricsConfig**: string: Enables or disables enhanced resolver metrics for specified resolvers. Note that ``MetricsConfig`` won't be used unless the ``resolverLevelMetricsBehavior`` value is set to ``PER_RESOLVER_METRICS``. If the ``resolverLevelMetricsBehavior`` is set to ``FULL_REQUEST_RESOLVER_METRICS`` instead, ``MetricsConfig`` will be ignored. However, you can still set its value.
 * **PipelineConfig**: [PipelineConfig](#pipelineconfig): Functions linked with the pipeline resolver.
 * **RequestMappingTemplate**: string: The request mapping template.
  Request mapping templates are optional when using a Lambda data source. For all other data sources, a request mapping template is required.

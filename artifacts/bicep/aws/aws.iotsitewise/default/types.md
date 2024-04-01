@@ -201,6 +201,7 @@
 ### Properties
 * **Greengrass**: [Greengrass](#greengrass): A gateway that runs on AWS IoT Greengrass V1.
 * **GreengrassV2**: [GreengrassV2](#greengrassv2): A gateway that runs on AWS IoT Greengrass V2.
+* **SiemensIE**: [SiemensIE](#siemensie): A gateway that runs on Siemens Industrial Edge.
 
 ## Greengrass
 ### Properties
@@ -251,6 +252,10 @@
 * **Metric**: [Metric](#metric)
 * **Transform**: [Transform](#transform)
 * **TypeName**: string (Required)
+
+## SiemensIE
+### Properties
+* **IotCoreThingName**: string (Required): The name of the IoT Core Thing.
 
 ## Tag
 ### Properties

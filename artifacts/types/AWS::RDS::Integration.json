@@ -1,15 +1,14 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-Integration",
   "type": "AWS::RDS::Integration",
-  "time": "2024-02-28T22:14:01.002Z",
+  "time": "2024-03-27T00:24:52.019Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/SourceArn",
       "/properties/TargetArn",
       "/properties/KMSKeyId",
-      "/properties/AdditionalEncryptionContext",
-      "/properties/IntegrationName"
+      "/properties/AdditionalEncryptionContext"
     ],
     "definitions": {
       "EncryptionContextMap": {
@@ -89,7 +88,8 @@
         "permissions": [
           "rds:DescribeIntegrations",
           "rds:AddTagsToResource",
-          "rds:RemoveTagsFromResource"
+          "rds:RemoveTagsFromResource",
+          "rds:ModifyIntegration"
         ]
       }
     },
@@ -101,6 +101,19 @@
         "$ref": "#/definitions/EncryptionContextMap"
       },
       "CreateTime": {
+        "type": "string"
+      },
+      "DataFilter": {
+        "description": "The data filter for the integration.",
+        "maxLength": 25600,
+        "minLength": 1,
+        "pattern": "[a-zA-Z0-9_ \"\\\\\\-$,*.:?+\\/]*",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the integration.",
+        "maxLength": 1000,
+        "minLength": 1,
         "type": "string"
       },
       "IntegrationArn": {

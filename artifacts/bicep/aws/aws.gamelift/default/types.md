@@ -126,19 +126,19 @@ Note: It is not currently possible to use the !Ref command to reference a script
 ## AWS.GameLift/GameServerGroupProperties
 ### Properties
 * **AutoScalingGroupArn**: string (ReadOnly): A generated unique ID for the EC2 Auto Scaling group that is associated with this game server group.
-* **AutoScalingPolicy**: [AutoScalingPolicy](#autoscalingpolicy) (WriteOnly): Configuration settings to define a scaling policy for the Auto Scaling group that is optimized for game hosting
+* **AutoScalingPolicy**: [AutoScalingPolicy](#autoscalingpolicy) (WriteOnly): Configuration settings to define a scaling policy for the Auto Scaling group that is optimized for game hosting. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.
 * **BalancingStrategy**: string: The fallback balancing method to use for the game server group when Spot Instances in a Region become unavailable or are not viable for game hosting.
 * **DeleteOption**: string (WriteOnly): The type of delete to perform.
 * **GameServerGroupArn**: string (ReadOnly, Identifier): A generated unique ID for the game server group.
 * **GameServerGroupName**: string (Required): An identifier for the new game server group.
 * **GameServerProtectionPolicy**: string: A flag that indicates whether instances in the game server group are protected from early termination.
 * **InstanceDefinitions**: [InstanceDefinition](#instancedefinition)[] (Required): A set of EC2 instance types to use when creating instances in the group.
-* **LaunchTemplate**: [LaunchTemplate](#launchtemplate) (WriteOnly): The EC2 launch template that contains configuration settings and game server code to be deployed to all instances in the game server group.
-* **MaxSize**: int (WriteOnly): The maximum number of instances allowed in the EC2 Auto Scaling group.
-* **MinSize**: int (WriteOnly): The minimum number of instances allowed in the EC2 Auto Scaling group.
+* **LaunchTemplate**: [LaunchTemplate](#launchtemplate) (WriteOnly): The EC2 launch template that contains configuration settings and game server code to be deployed to all instances in the game server group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.
+* **MaxSize**: int (WriteOnly): The maximum number of instances allowed in the EC2 Auto Scaling group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.
+* **MinSize**: int (WriteOnly): The minimum number of instances allowed in the EC2 Auto Scaling group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.
 * **RoleArn**: string (Required): The Amazon Resource Name (ARN) for an IAM role that allows Amazon GameLift to access your EC2 Auto Scaling groups.
-* **Tags**: [Tag](#tag)[] (WriteOnly): A list of labels to assign to the new game server group resource.
-* **VpcSubnets**: string[] (WriteOnly): A list of virtual private cloud (VPC) subnets to use with instances in the game server group.
+* **Tags**: [Tag](#tag)[] (WriteOnly): A list of labels to assign to the new game server group resource. Updating game server group tags with CloudFormation will not take effect. Please update this property using AWS GameLift APIs instead.
+* **VpcSubnets**: string[] (WriteOnly): A list of virtual private cloud (VPC) subnets to use with instances in the game server group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.
 
 ## AWS.GameLift/GameSessionQueueProperties
 ### Properties

@@ -58,9 +58,14 @@
 * **PolicyTemplateId**: string (ReadOnly, Identifier)
 * **Statement**: string (Required)
 
+## CognitoGroupConfiguration
+### Properties
+* **GroupEntityType**: string (Required)
+
 ## CognitoUserPoolConfiguration
 ### Properties
 * **ClientIds**: string[]
+* **GroupConfiguration**: [CognitoGroupConfiguration](#cognitogroupconfiguration)
 * **UserPoolArn**: string (Required)
 
 ## IdentitySourceConfiguration

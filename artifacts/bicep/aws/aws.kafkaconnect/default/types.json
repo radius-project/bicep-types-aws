@@ -81,7 +81,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "Specifies whether the logs get sent to the specified CloudWatch Logs destination."
@@ -128,7 +128,7 @@
       },
       "Enabled": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "Specifies whether the logs get sent to the specified Kinesis Data Firehose delivery stream."
@@ -238,7 +238,7 @@
       },
       "Enabled": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "Specifies whether the logs get sent to the specified Amazon S3 destination."
@@ -302,14 +302,14 @@
     "properties": {
       "SecurityGroups": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The AWS security groups to associate with the elastic network interfaces in order to specify what the connector has access to."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "The list of subnets to connect to in the virtual private cloud (VPC). AWS creates elastic network interfaces inside these subnets."
@@ -367,24 +367,6 @@
     "$type": "IntegerType"
   },
   {
-    "$type": "ObjectType",
-    "name": "Capacity",
-    "properties": {
-      "AutoScaling": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "ProvisionedCapacity": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
     "$type": "BooleanType"
   },
   {
@@ -439,7 +421,7 @@
       },
       "ConnectorConfiguration": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The configuration for the connector."
@@ -491,7 +473,7 @@
       },
       "Plugins": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/28"
         },
         "flags": 1,
         "description": "List of plugins to use with the connector."
@@ -505,7 +487,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "A collection of tags associated with a resource"
@@ -538,7 +520,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/30"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -550,7 +532,304 @@
     "name": "AWS.KafkaConnect/Connector@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/32"
+      "$ref": "#/31"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomPluginFileDescription",
+    "properties": {
+      "FileMd5": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The hex-encoded MD5 checksum of the custom plugin file. You can use it to validate the file."
+      },
+      "FileSize": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The size in bytes of the custom plugin file. You can use it to validate the file."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomPluginLocation",
+    "properties": {
+      "S3Location": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Location",
+    "properties": {
+      "BucketArn": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of an S3 bucket."
+      },
+      "FileKey": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The file key for an object in an S3 bucket."
+      },
+      "ObjectVersion": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The version of an object in an S3 bucket."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.KafkaConnect/CustomPluginProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/36"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.KafkaConnect/CustomPluginProperties",
+    "properties": {
+      "ContentType": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The type of the plugin file."
+      },
+      "CustomPluginArn": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the custom plugin to use."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "A summary description of the custom plugin."
+      },
+      "FileDescription": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 2
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The name of the custom plugin."
+      },
+      "Revision": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The revision of the custom plugin."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.KafkaConnect/CustomPlugin",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.KafkaConnect/CustomPlugin@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/40"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.KafkaConnect/WorkerConfigurationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/42"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.KafkaConnect/WorkerConfigurationProperties",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "A summary description of the worker configuration."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The name of the worker configuration."
+      },
+      "PropertiesFileContent": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "Base64 encoded contents of connect-distributed.properties file."
+      },
+      "Revision": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The description of a revision of the worker configuration."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "A collection of tags associated with a resource"
+      },
+      "WorkerConfigurationArn": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the custom configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.KafkaConnect/WorkerConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.KafkaConnect/WorkerConfiguration@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/46"
     },
     "flags": 0
   }

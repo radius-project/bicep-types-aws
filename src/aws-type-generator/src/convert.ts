@@ -18,7 +18,7 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
     parts.splice(0, 2, `${parts[0]}.${parts[1]}`)
     const typeName = parts.join("/")
 
-    const context = new Context(parts.slice(1))
+    const context = new Context(parts.slice(1), {})
 
     visitDefinitions(context, factory, record)
 
@@ -35,18 +35,21 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
             let property: ObjectTypeProperty | undefined
             let current = factory.lookupType(properties) as ObjectType
             parts.forEach(part => {
+                if (current.type !== TypeBaseKind.ObjectType) {
+                    return;
+                }
                 if (!current.properties) {
-                    console.warn(`could not resolve property ${p}`)
-                    return
+                    console.warn(`could not resolve property ${p}`);
+                    return;
                 }
 
-                property = current.properties[part]
+                property = current.properties[part];
                 if (!property) {
-                    console.warn(`could not resolve property ${p}`)
-                    return
+                    console.warn(`could not resolve property ${p}`);
+                    return;
                 }
 
-                current = factory.lookupType(property.type) as ObjectType
+                current = factory.lookupType(property.type) as ObjectType;
             })
 
             if (property) {
@@ -62,6 +65,9 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
             let property: ObjectTypeProperty | undefined
             let current = factory.lookupType(properties) as ObjectType
             parts.forEach(part => {
+                if (current.type !== TypeBaseKind.ObjectType) {
+                    return;
+                }
                 if (!current.properties) {
                     console.warn(`could not resolve property ${p}`)
                     return
@@ -181,7 +187,8 @@ function visitDefinitions(context: Context, factory: TypeFactory, record: Schema
 
     Object.entries(record.schema.definitions).forEach(([name]) => {
         // Predeclare types so we can support circular references
-        factory.addObjectType(name, {})
+        const reference = factory.addObjectType(name, {})
+        context.definitions[name] = {index: reference.index, TypeReference: reference}
     })
 
     Object.entries(record.schema.definitions).forEach(([name, schema]) => {
@@ -195,10 +202,9 @@ function visitDefinitions(context: Context, factory: TypeFactory, record: Schema
             // Merge all oneOf properties into the schema and move it one level up
             for (const oneOfObj of schema.oneOf) {
                 if (oneOfObj.required) {
-                    let obj = factory.types.find(t => (t as ObjectType) != undefined && (t as ObjectType).type === TypeBaseKind.ObjectType && (t as ObjectType).name === name) as ObjectType;
-                    if (obj) {
-                        let typeName = factory.addType(obj)
-                        convertOneOfPropertiesToUnion(context, factory, record, typeName, name, true)
+                    let typeName = context.definitions[name]
+                    if (typeName) {
+                        convertOneOfPropertiesToUnion(context, factory, record, typeName.TypeReference, name, true)
                     }
                     break
                 }
@@ -238,15 +244,11 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
         if (!schema.additionalProperties && !schema.items && !schema.properties && !schema.required && !schema.type) {
             // Object type is already defined
             if (definition.type === 'object') {
-                // const existing = factory.types.find(t => (t as ObjectType) != undefined && (t as ObjectType).type === TypeBaseKind.ObjectType 
-                //     && (t as ObjectType).name === parts[0]) as ObjectType;
-                const possible = factory.types.filter(t => (t as ObjectType) !== undefined && (t as ObjectType).type === TypeBaseKind.ObjectType && (t as ObjectType).name === parts[0]);
-                if (possible.length < 1) {
+                const existing = context.definitions[parts[0]]
+                if (!existing) {
                     throw new Error(`type ${parts[0]} is missing`)
                 }
-                const existing = possible[possible.length - 1]
-                const reference = factory.types.indexOf(existing)
-                return new TypeReference(reference)
+                return existing.TypeReference
             }
         }
 
@@ -309,33 +311,22 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
             }
 
             if (typeName) {
-                const possible = factory.types.filter(t => (t as ObjectType) !== undefined && (t as ObjectType).type === TypeBaseKind.ObjectType && (t as ObjectType).name === typeName);
-                const existing = possible[possible.length - 1]
-                // NOTE: This won't work because it'll still have duplicate definitions because we check typetotypeReference, not types[] for existing types 
-                if (existing !== undefined) {
-                    const reference = factory.types.indexOf(existing)
-                    if(reference !== -1) { 
-                        const type: ObjectType = {
-                            type: TypeBaseKind.ObjectType,
-                            name: typeName,
-                            properties: properties,
-                            additionalProperties: visitAdditionalProperties(context, factory, record, schema),
-                            sensitive: undefined,
-                        }
-                        factory.types[reference]= type as ObjectType
-                        return new TypeReference(reference)
-                } else {
-                    return factory.addObjectType(
-                        typeName,
-                        properties,
-                        visitAdditionalProperties(context, factory, record, schema))
+                const existing = context.definitions[typeName]
+                if (existing) {
+                    const type: ObjectType = {
+                        type: TypeBaseKind.ObjectType,
+                        name: typeName,
+                        properties: properties,
+                        additionalProperties: visitAdditionalProperties(context, factory, record, schema),
+                        sensitive: undefined,
+                    }
+                    factory.types[existing.index]= type as ObjectType
+                    return existing.TypeReference
                 }
-            } else {
                 return factory.addObjectType(
                     typeName,
                     properties,
                     visitAdditionalProperties(context, factory, record, schema))
-            }
             } else {
                 return factory.addObjectType(
                     context.toString(),

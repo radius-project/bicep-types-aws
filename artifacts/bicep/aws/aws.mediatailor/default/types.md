@@ -64,6 +64,7 @@
 ## AWS.MediaTailor/ChannelProperties
 ### Properties
 * **Arn**: string (ReadOnly): <p>The ARN of the channel.</p>
+* **Audiences**: string[]: <p>The list of audiences defined in channel.</p>
 * **ChannelName**: string (Required, Identifier)
 * **FillerSlate**: [SlateSource](#slatesource)
 * **LogConfiguration**: [LogConfigurationForChannel](#logconfigurationforchannel)

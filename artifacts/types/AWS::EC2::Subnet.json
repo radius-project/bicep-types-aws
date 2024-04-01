@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-Subnet",
   "type": "AWS::EC2::Subnet",
-  "time": "2024-03-07T16:39:08.795Z",
+  "time": "2024-03-28T15:39:13.01Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -103,6 +103,10 @@
         "description": "Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations. For more information, see [DNS64 and NAT64](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-nat64-dns64) in the *User Guide*.",
         "type": "boolean"
       },
+      "EnableLniAtDeviceIndex": {
+        "description": "Indicates the device position for local network interfaces in this subnet. For example, ``1`` indicates local network interfaces in this subnet are the secondary network interface (eth1).",
+        "type": "integer"
+      },
       "Ipv4IpamPoolId": {
         "description": "An IPv4 IPAM pool ID for the subnet.",
         "type": "string"
@@ -136,7 +140,7 @@
         "type": "integer"
       },
       "MapPublicIpOnLaunch": {
-        "description": "Indicates whether instances launched in this subnet receive a public IPv4 address. The default value is ``false``.\n AWS charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the *Public IPv4 Address* tab on the [VPC pricing page](https://docs.aws.amazon.com/vpc/pricing/).",
+        "description": "Indicates whether instances launched in this subnet receive a public IPv4 address. The default value is ``false``.\n  AWS charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the *Public IPv4 Address* tab on the [VPC pricing page](https://docs.aws.amazon.com/vpc/pricing/).",
         "type": "boolean"
       },
       "NetworkAclAssociationId": {
@@ -149,7 +153,7 @@
       },
       "PrivateDnsNameOptionsOnLaunch": {
         "additionalProperties": false,
-        "description": "The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see [Amazon EC2 instance hostname types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html) in the *User Guide*.\n Available options:\n  + EnableResourceNameDnsAAAARecord (true | false)\n + EnableResourceNameDnsARecord (true | false)\n + HostnameType (ip-name | resource-name)",
+        "description": "The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see [Amazon EC2 instance hostname types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html) in the *User Guide*.\n Available options:\n  +  EnableResourceNameDnsAAAARecord (true | false)\n  +  EnableResourceNameDnsARecord (true | false)\n  +  HostnameType (ip-name | resource-name)",
         "properties": {
           "EnableResourceNameDnsAAAARecord": {
             "type": "boolean"
@@ -196,6 +200,7 @@
     },
     "typeName": "AWS::EC2::Subnet",
     "writeOnlyProperties": [
+      "/properties/EnableLniAtDeviceIndex",
       "/properties/Ipv4IpamPoolId",
       "/properties/Ipv4NetmaskLength",
       "/properties/Ipv6IpamPoolId",

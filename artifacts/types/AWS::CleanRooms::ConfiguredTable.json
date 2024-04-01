@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CleanRooms-ConfiguredTable",
   "type": "AWS::CleanRooms::ConfiguredTable",
-  "time": "2024-03-11T21:08:40.409Z",
+  "time": "2024-03-27T18:33:18.631Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -194,6 +194,9 @@
           },
           "AllowedAnalysisProviders": {
             "$ref": "#/definitions/AllowedAnalysisProviders"
+          },
+          "DifferentialPrivacy": {
+            "$ref": "#/definitions/DifferentialPrivacy"
           }
         },
         "required": [
@@ -298,6 +301,35 @@
         ],
         "type": "string"
       },
+      "DifferentialPrivacy": {
+        "additionalProperties": false,
+        "properties": {
+          "Columns": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/DifferentialPrivacyColumn"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "Columns"
+        ],
+        "type": "object"
+      },
+      "DifferentialPrivacyColumn": {
+        "additionalProperties": false,
+        "properties": {
+          "Name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name"
+        ],
+        "type": "object"
+      },
       "GlueTableReference": {
         "additionalProperties": false,
         "properties": {
@@ -345,7 +377,18 @@
           "LOWER",
           "RTRIM",
           "UPPER",
-          "COALESCE"
+          "COALESCE",
+          "CONVERT",
+          "CURRENT_DATE",
+          "DATEADD",
+          "EXTRACT",
+          "GETDATE",
+          "SUBSTRING",
+          "TO_CHAR",
+          "TO_DATE",
+          "TO_NUMBER",
+          "TO_TIMESTAMP",
+          "TRIM"
         ],
         "type": "string"
       },

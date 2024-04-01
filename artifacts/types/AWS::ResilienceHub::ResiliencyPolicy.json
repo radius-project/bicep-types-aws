@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ResilienceHub-ResiliencyPolicy",
   "type": "AWS::ResilienceHub::ResiliencyPolicy",
-  "time": "2024-03-12T15:56:44.56Z",
+  "time": "2024-03-28T15:51:53.666Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -26,11 +26,25 @@
       },
       "PolicyMap": {
         "additionalProperties": false,
-        "patternProperties": {
-          ".*{1,8}": {
+        "properties": {
+          "AZ": {
+            "$ref": "#/definitions/FailurePolicy"
+          },
+          "Hardware": {
+            "$ref": "#/definitions/FailurePolicy"
+          },
+          "Region": {
+            "$ref": "#/definitions/FailurePolicy"
+          },
+          "Software": {
             "$ref": "#/definitions/FailurePolicy"
           }
         },
+        "required": [
+          "AZ",
+          "Hardware",
+          "Software"
+        ],
         "type": "object"
       },
       "TagMap": {

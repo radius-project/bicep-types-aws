@@ -108,12 +108,14 @@
 
 ## DataStorage
 ### Properties
-* **Maximum**: int (Required): The maximum cached data capacity of the Serverless Cache.
-* **Unit**: string (Required): The unix of cached data capacity of the Serverless Cache.
+* **Maximum**: int: The maximum cached data capacity of the Serverless Cache.
+* **Minimum**: int: The minimum cached data capacity of the Serverless Cache.
+* **Unit**: string (Required): The unit of cached data capacity of the Serverless Cache.
 
 ## ECPUPerSecond
 ### Properties
-* **Maximum**: int (Required): The maximum ECPU per second of the Serverless Cache.
+* **Maximum**: int: The maximum ECPU per second of the Serverless Cache.
+* **Minimum**: int: The minimum ECPU per second of the Serverless Cache.
 
 ## Endpoint
 ### Properties

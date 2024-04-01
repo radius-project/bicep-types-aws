@@ -44,6 +44,11 @@
 * **Name**: string (Required): Unique name to identify an event subscription.
 * **SnsTopicArn**: string: Amazon Resource Name (ARN) of the Amazon Simple Notification Service topic.
 
+## FailurePolicy
+### Properties
+* **RpoInSecs**: int (Required): RPO in seconds.
+* **RtoInSecs**: int (Required): RTO in seconds.
+
 ## PermissionModel
 ### Properties
 * **CrossAccountRoleArns**: string[]: Defines a list of role Amazon Resource Names (ARNs) to be used in other accounts. These ARNs are used for querying purposes while importing resources and assessing your application.
@@ -59,6 +64,10 @@
 
 ## PolicyMap
 ### Properties
+* **AZ**: [FailurePolicy](#failurepolicy) (Required)
+* **Hardware**: [FailurePolicy](#failurepolicy) (Required)
+* **Region**: [FailurePolicy](#failurepolicy)
+* **Software**: [FailurePolicy](#failurepolicy) (Required)
 
 ## ResourceMapping
 ### Properties

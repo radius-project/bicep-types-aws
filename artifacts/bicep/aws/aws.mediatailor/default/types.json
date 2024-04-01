@@ -194,6 +194,12 @@
   {
     "$type": "ArrayType",
     "itemType": {
+      "$ref": "#/11"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
       "$ref": "#/6"
     }
   },
@@ -213,6 +219,13 @@
         },
         "flags": 2,
         "description": "<p>The ARN of the channel.</p>"
+      },
+      "Audiences": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "<p>The list of audiences defined in channel.</p>"
       },
       "ChannelName": {
         "type": {
@@ -234,7 +247,7 @@
       },
       "Outputs": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 5,
         "description": "<p>The channel's output properties.</p>"
@@ -247,7 +260,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "The tags to assign to the channel."
@@ -286,7 +299,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/19"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -298,7 +311,7 @@
     "name": "AWS.MediaTailor/Channel@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/19"
+      "$ref": "#/20"
     },
     "flags": 0
   },
@@ -315,7 +328,7 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/22"
+        "$ref": "#/23"
       },
       {
         "$ref": "#/11"
@@ -334,7 +347,7 @@
       },
       "Policy": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "<p>The IAM policy for the channel. IAM policies are used to control access to your channel.</p>"
@@ -361,7 +374,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -373,7 +386,7 @@
     "name": "AWS.MediaTailor/ChannelPolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/25"
+      "$ref": "#/26"
     },
     "flags": 0
   },
@@ -433,13 +446,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/28"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/29"
     }
   },
   {
@@ -455,7 +468,7 @@
       },
       "HttpPackageConfigurations": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/32"
         },
         "flags": 1,
         "description": "<p>A list of HTTP package configuration parameters for this live source.</p>"
@@ -474,7 +487,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The tags to assign to the live source."
@@ -501,7 +514,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/34"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -513,7 +526,7 @@
     "name": "AWS.MediaTailor/LiveSource@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/35"
     },
     "flags": 0
   },
@@ -523,7 +536,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "Enables ad marker passthrough for your configuration."
@@ -661,7 +674,7 @@
     "properties": {
       "AdMarkerPassthrough": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "For HLS, when set to true, MediaTailor passes through EXT-X-CUE-IN, EXT-X-CUE-OUT, and EXT-X-SPLICEPOINT-SCTE35 ad markers from the origin manifest to the MediaTailor personalized manifest. No logic is applied to these ad markers. For example, if EXT-X-CUE-OUT has a value of 60, but no ads are filled for that ad break, MediaTailor will not set the value to 0."
@@ -696,7 +709,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/45"
+      "$ref": "#/46"
     }
   },
   {
@@ -712,56 +725,56 @@
       },
       "AvailSuppression": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "The configuration for avail suppression, also known as ad suppression. For more information about ad suppression, see Ad Suppression (https://docs.aws.amazon.com/mediatailor/latest/ug/ad-behavior.html)."
       },
       "Bumper": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "The configuration for bumpers. Bumpers are short audio or video clips that play at the start or before the end of an ad break. To learn more about bumpers, see Bumpers (https://docs.aws.amazon.com/mediatailor/latest/ug/bumpers.html)."
       },
       "CdnConfiguration": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The configuration for using a content delivery network (CDN), like Amazon CloudFront, for content and ad segment management."
       },
       "ConfigurationAliases": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The player parameters and aliases used as dynamic variables during session initialization. For more information, see Domain Variables. "
       },
       "DashConfiguration": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The configuration for DASH content."
       },
       "HlsConfiguration": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The configuration for HLS content."
       },
       "LivePreRollConfiguration": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "The configuration for pre-roll ad insertion."
       },
       "ManifestProcessingRules": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "The configuration for manifest processing rules. Manifest processing rules enable customization of the personalized manifests created by MediaTailor."
@@ -810,7 +823,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "The tags to assign to the playback configuration."
@@ -851,7 +864,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/50"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -863,7 +876,7 @@
     "name": "AWS.MediaTailor/PlaybackConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/50"
+      "$ref": "#/51"
     },
     "flags": 0
   },
@@ -879,7 +892,7 @@
       },
       "SecretsManagerAccessTokenConfiguration": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/57"
         },
         "flags": 0
       }
@@ -988,13 +1001,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/57"
+      "$ref": "#/58"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/59"
     }
   },
   {
@@ -1003,7 +1016,7 @@
     "properties": {
       "AccessConfiguration": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/53"
         },
         "flags": 0
       },
@@ -1016,19 +1029,19 @@
       },
       "DefaultSegmentDeliveryConfiguration": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/55"
         },
         "flags": 0
       },
       "HttpConfiguration": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/56"
         },
         "flags": 1
       },
       "SegmentDeliveryConfigurations": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "<p>A list of the segment delivery configurations associated with this resource.</p>"
@@ -1041,7 +1054,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "The tags to assign to the source location."
@@ -1068,7 +1081,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/63"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1080,7 +1093,7 @@
     "name": "AWS.MediaTailor/SourceLocation@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/63"
+      "$ref": "#/64"
     },
     "flags": 0
   },
@@ -1140,13 +1153,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/65"
+      "$ref": "#/66"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/67"
     }
   },
   {
@@ -1162,7 +1175,7 @@
       },
       "HttpPackageConfigurations": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/70"
         },
         "flags": 1,
         "description": "<p>A list of HTTP package configuration parameters for this VOD source.</p>"
@@ -1175,7 +1188,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "The tags to assign to the VOD source."
@@ -1208,7 +1221,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/72"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1220,7 +1233,7 @@
     "name": "AWS.MediaTailor/VodSource@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/72"
+      "$ref": "#/73"
     },
     "flags": 0
   }

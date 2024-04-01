@@ -725,7 +725,7 @@
 
 ## AWS.EC2/InternetGatewayProperties
 ### Properties
-* **InternetGatewayId**: string (ReadOnly, Identifier): ID of internet gateway.
+* **InternetGatewayId**: string (ReadOnly, Identifier)
 * **Tags**: [Tag](#tag)[]: Any tags to assign to the internet gateway.
 
 ## AWS.EC2/IPAMPoolProperties
@@ -1092,6 +1092,7 @@ Use this for ICMP and any protocol that uses ports.
 * **CidrBlock**: string: The IPv4 CIDR block assigned to the subnet.
  If you update this property, we create a new subnet, and then delete the existing one.
 * **EnableDns64**: bool: Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations. For more information, see [DNS64 and NAT64](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-nat64-dns64) in the *User Guide*.
+* **EnableLniAtDeviceIndex**: int (WriteOnly): Indicates the device position for local network interfaces in this subnet. For example, ``1`` indicates local network interfaces in this subnet are the secondary network interface (eth1).
 * **Ipv4IpamPoolId**: string (WriteOnly): An IPv4 IPAM pool ID for the subnet.
 * **Ipv4NetmaskLength**: int (WriteOnly): An IPv4 netmask length for the subnet.
 * **Ipv6CidrBlock**: string: The IPv6 CIDR block.
@@ -1101,14 +1102,14 @@ Use this for ICMP and any protocol that uses ports.
 * **Ipv6Native**: bool: Indicates whether this is an IPv6 only subnet. For more information, see [Subnet basics](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics) in the *User Guide*.
 * **Ipv6NetmaskLength**: int (WriteOnly): An IPv6 netmask length for the subnet.
 * **MapPublicIpOnLaunch**: bool: Indicates whether instances launched in this subnet receive a public IPv4 address. The default value is ``false``.
- AWS charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the *Public IPv4 Address* tab on the [VPC pricing page](https://docs.aws.amazon.com/vpc/pricing/).
+  AWS charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the *Public IPv4 Address* tab on the [VPC pricing page](https://docs.aws.amazon.com/vpc/pricing/).
 * **NetworkAclAssociationId**: string (ReadOnly)
 * **OutpostArn**: string: The Amazon Resource Name (ARN) of the Outpost.
 * **PrivateDnsNameOptionsOnLaunch**: [Subnet_PrivateDnsNameOptionsOnLaunch](#subnetprivatednsnameoptionsonlaunch): The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see [Amazon EC2 instance hostname types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html) in the *User Guide*.
  Available options:
-  + EnableResourceNameDnsAAAARecord (true | false)
- + EnableResourceNameDnsARecord (true | false)
- + HostnameType (ip-name | resource-name)
+  +  EnableResourceNameDnsAAAARecord (true | false)
+  +  EnableResourceNameDnsARecord (true | false)
+  +  HostnameType (ip-name | resource-name)
 * **SubnetId**: string (ReadOnly, Identifier)
 * **Tags**: [Tag](#tag)[]: Any tags assigned to the subnet.
 * **VpcId**: string (Required): The ID of the VPC the subnet is in.
@@ -1524,7 +1525,7 @@ Use this for ICMP and any protocol that uses ports.
   +   ``io2``: 4 - 65,536 GiB
   +   ``st1`` and ``sc1``: 125 - 16,384 GiB
   +   ``standard``: 1 - 1024 GiB
-* **VolumeType**: string: The volume type. For more information, see [Amazon EBS volume types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html) in the *Amazon Elastic Compute Cloud User Guide*.
+* **VolumeType**: string: The volume type. For more information, see [Amazon EBS volume types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html) in the *Amazon EBS User Guide*.
 
 ## EbsBlockDevice
 ### Properties
@@ -1544,7 +1545,6 @@ Use this for ICMP and any protocol that uses ports.
 * **DestinationSecurityGroupId**: string
 * **FromPort**: int
 * **IpProtocol**: string (Required)
-* **SourceSecurityGroupId**: string
 * **ToPort**: int
 
 ## ElasticGpuSpecification
@@ -1854,8 +1854,8 @@ Use this for ICMP and any protocol that uses ports.
  Default: ``hdd`` and ``ssd``
 * **MaxSpotPriceAsPercentageOfOptimalOnDemandPrice**: int: [Price protection] The price protection threshold for Spot Instances, as a percentage of an identified On-Demand price. The identified On-Demand price is the price of the lowest priced current generation C, M, or R instance type with your specified attributes. If no current generation C, M, or R instance type matches your attributes, then the identified price is from the lowest priced current generation instance types, and failing that, from the lowest priced previous generation instance types that match your attributes. When Amazon EC2 selects instance types with your attributes, it will exclude instance types whose price exceeds your specified threshold.
  The parameter accepts an integer, which Amazon EC2 interprets as a percentage.
- To indicate no price protection threshold, specify a high value, such as ``999999``.
- If you set ``DesiredCapacityType`` to ``vcpu`` or ``memory-mib``, the price protection threshold is based on the per vCPU or per memory price instead of the per instanc
+ If you set ``DesiredCapacityType`` to ``vcpu`` or ``memory-mib``, the price protection threshold is based on the per vCPU or per memory price instead of the per instance price.
+  Only one of ``SpotMaxPricePercentageOverLowestPrice`` or ``MaxSpotPriceAsPercentageOfOptimalOnDemandPrice`` can be specified. If you don't specify either, Amazon EC2 will automatically apply optimal price protection to consistently select from a wide range of instance types. To indicate no price protection threshold for Spot Instances, meaning you want to consider all instance types that match your attributes, include one of these parameters and specify a high value, such as ``999999``.
 * **MemoryGiBPerVCpu**: [MemoryGiBPerVCpu](#memorygibpervcpu): The minimum and maximum amount of memory per vCPU, in GiB.
  Default: No minimum or maximum limits
 * **MemoryMiB**: [MemoryMiB](#memorymib): The minimum and maximum amount of memory, in MiB.
@@ -1867,14 +1867,17 @@ Use this for ICMP and any protocol that uses ports.
  The parameter accepts an integer, which Amazon EC2 interprets as a percentage.
  To turn off price protection, specify a high value, such as ``999999``.
  This parameter is not supported for [GetSpotPlacementScores](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetSpotPlacementScores.html) and [GetInstanceTypesFromInstanceRequirements](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetInstanceTypesFromInstanceRequirements.html).
-  If you set ``TargetCapacityUnitType`` to ``vcpu`` or ``memory-mib``, the price protection threshold is applied based on the per-
+  If you set ``TargetCapacityUnitType`` to ``vcpu`` or ``memory-mib``, the price protection threshold is applied based on the per-vCPU or per-memory price instead of the per-instance price.
+  Default: ``20``
 * **RequireHibernateSupport**: bool: Indicates whether instance types must support hibernation for On-Demand Instances.
  This parameter is not supported for [GetSpotPlacementScores](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetSpotPlacementScores.html).
  Default: ``false``
 * **SpotMaxPricePercentageOverLowestPrice**: int: [Price protection] The price protection threshold for Spot Instances, as a percentage higher than an identified Spot price. The identified Spot price is the Spot price of the lowest priced current generation C, M, or R instance type with your specified attributes. If no current generation C, M, or R instance type matches your attributes, then the identified Spot price is from the lowest priced current generation instance types, and failing that, from the lowest priced previous generation instance types that match your attributes. When Amazon EC2 selects instance types with your attributes, it will exclude instance types whose Spot price exceeds your specified threshold.
  The parameter accepts an integer, which Amazon EC2 interprets as a percentage.
- To indicate no price protection threshold, specify a high value, such as ``999999``.
- If you set ``TargetCapacityUnitType`` to ``vcpu`` or ``memory-mib``, the price protection threshold is applied based on the per-vCPU or per-memory price i
+ If you set ``TargetCapacityUnitType`` to ``vcpu`` or ``memory-mib``, the price protection threshold is applied based on the per-vCPU or per-memory price instead of the per-instance price.
+ This parameter is not supported for [GetSpotPlacementScores](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetSpotPlacementScores.html) and [GetInstanceTypesFromInstanceRequirements](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetInstanceTypesFromInstanceRequirements.html).
+  Only one of ``SpotMaxPricePercentageOverLowestPrice`` or ``MaxSpotPriceAsPercentageOfOptimalOnDemandPrice`` can be specified. If you don't specify either, Amazon EC2 will automatically apply optimal price protection to consistently select from a wide range of instance types. To indicate no price protection threshold for Spot Instances, meaning you want to consider all instance types that match your attributes, include one of these parameters and specify a high value, such as ``999999``.
+  Default: ``100``
 * **TotalLocalStorageGB**: [TotalLocalStorageGB](#totallocalstoragegb): The minimum and maximum amount of total local storage, in GB.
  Default: No minimum or maximum limits
 * **VCpuCount**: [VCpuCount](#vcpucount): The minimum and maximum number of vCPUs.
@@ -2012,7 +2015,9 @@ Use this for ICMP and any protocol that uses ports.
   +   ``AllowedInstanceTypes`` - The instance types to include in the list. All other instance types are ignored, even if they match your specified attributes.
   +   ``ExcludedInstanceTypes`` - The instance types to exclude from the list, even if they match your specified attributes.
   
-  If you specify ``InstanceReq
+  If you specify ``InstanceRequirements``, you can't specify ``InstanceType``.
+ Attribute-based instance type selection is only supported when using Auto Scaling groups, EC2 Fleet, and Spot Fleet to launch instances. If you plan to use the launch template in the [launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html), or with the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API or [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) AWS CloudFormation resource, you can't specify ``InstanceRequirements``.
+  For more information, see [Attribute-based instance type selection for EC2 Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html), [Attribute-based instance type selection for Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html), and [Spot placement score](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html) in the *Amazon EC2 User Guide*.
 * **InstanceType**: string: The instance type. For more information, see [Instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the *Amazon Elastic Compute Cloud User Guide*.
  If you specify ``InstanceType``, you can't specify ``InstanceRequirements``.
 * **KernelId**: string: The ID of the kernel.
@@ -2080,7 +2085,6 @@ Use this for ICMP and any protocol that uses ports.
 ## MaintenanceOptions
 ### Properties
 * **AutoRecovery**: string: Disables the automatic recovery behavior of your instance or sets it to default.
-* **RebootMigration**: string
 
 ## MaintenanceStrategies
 ### Properties
@@ -2430,7 +2434,7 @@ Use this for ICMP and any protocol that uses ports.
 * **MaxPrice**: string: The maximum hourly price you're willing to pay for the Spot Instances. We do not recommend using this parameter because it can lead to increased interruptions. If you do not specify this parameter, you will pay the current Spot price.
   If you specify a maximum price, your Spot Instances will be interrupted more frequently than if you do not specify this parameter.
 * **SpotInstanceType**: string: The Spot Instance request type.
- If you are using Spot Instances with an Auto Scaling group, use ``one-time`` requests, as the Amazon EC2 Auto Scaling service handles requesting new Spot Instances whenever the group is below its desired capacity.
+ If you are using Spot Instances with an Auto Scaling group, use ``one-time`` requests, as the ASlong service handles requesting new Spot Instances whenever the group is below its desired capacity.
 * **ValidUntil**: string: The end date of the request, in UTC format (*YYYY-MM-DD*T*HH:MM:SS*Z). Supported only for persistent requests.
   +  For a persistent request, the request remains active until the ``ValidUntil`` date and time is reached. Otherwise, the request remains active until you cancel it.
   +  For a one-time request, ``ValidUntil`` is not supported. The request remains active until all instances launch or you cancel the request.
@@ -2527,8 +2531,8 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
 
 ## Tag
 ### Properties

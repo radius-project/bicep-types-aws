@@ -1169,6 +1169,13 @@
         },
         "flags": 0,
         "description": "A gateway that runs on AWS IoT Greengrass V2."
+      },
+      "SiemensIE": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0,
+        "description": "A gateway that runs on Siemens Industrial Edge."
       }
     }
   },
@@ -1200,6 +1207,19 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SiemensIE",
+    "properties": {
+      "IotCoreThingName": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The name of the IoT Core Thing."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
@@ -1217,26 +1237,6 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "GatewayPlatform",
-    "properties": {
-      "Greengrass": {
-        "type": {
-          "$ref": "#/63"
-        },
-        "flags": 0,
-        "description": "A gateway that runs on AWS IoT Greengrass V1."
-      },
-      "GreengrassV2": {
-        "type": {
-          "$ref": "#/64"
-        },
-        "flags": 0,
-        "description": "A gateway that runs on AWS IoT Greengrass V2."
-      }
-    }
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.IoTSiteWise/GatewayProperties"
   },
@@ -1249,7 +1249,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/65"
+      "$ref": "#/66"
     }
   },
   {

@@ -12,13 +12,16 @@
 * **AdminUserName**: string (Required)
 * **AdminUserPassword**: string (WriteOnly)
 * **AuthType**: string (Required)
+* **BackupRetentionPeriod**: int
 * **ClusterArn**: string (ReadOnly, Identifier)
 * **ClusterEndpoint**: string (ReadOnly)
 * **ClusterName**: string (Required)
 * **KmsKeyId**: string
+* **PreferredBackupWindow**: string
 * **PreferredMaintenanceWindow**: string
 * **ShardCapacity**: int (Required)
 * **ShardCount**: int (Required)
+* **ShardInstanceCount**: int
 * **SubnetIds**: string[]
 * **Tags**: [Tag](#tag)[]
 * **VpcSecurityGroupIds**: string[]

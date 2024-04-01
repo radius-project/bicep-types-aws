@@ -1,5 +1,12 @@
 # AWS.AppIntegrations @ default
 
+## Resource AWS.AppIntegrations/Application@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppIntegrations/ApplicationProperties](#awsappintegrationsapplicationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.AppIntegrations/DataIntegration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -13,6 +20,20 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppIntegrations/EventIntegrationProperties](#awsappintegrationseventintegrationproperties) (Required, Identifier): properties of the resource
+
+## Application_ApplicationSourceConfig
+### Properties
+* **ExternalUrlConfig**: [ExternalUrlConfig](#externalurlconfig) (Required)
+
+## AWS.AppIntegrations/ApplicationProperties
+### Properties
+* **ApplicationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the application.
+* **ApplicationSourceConfig**: [Application_ApplicationSourceConfig](#applicationapplicationsourceconfig) (Required): Application source config
+* **Description**: string (Required): The application description.
+* **Id**: string (ReadOnly): The id of the application.
+* **Name**: string (Required): The name of the application.
+* **Namespace**: string: The namespace of the application.
+* **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the application.
 
 ## AWS.AppIntegrations/DataIntegrationProperties
 ### Properties
@@ -43,6 +64,11 @@
 ### Properties
 * **Source**: string (Required): The source of the events.
 
+## ExternalUrlConfig
+### Properties
+* **AccessUrl**: string (Required)
+* **ApprovedOrigins**: string[] (Required)
+
 ## FileConfiguration
 ### Properties
 * **Filters**: [DataIntegration_Filters](#dataintegrationfilters): Restrictions for what files should be pulled from the source.
@@ -56,6 +82,11 @@
 * **FirstExecutionFrom**: string: The start date for objects to import in the first flow run. Epoch or ISO timestamp format is supported.
 * **Object**: string: The name of the object to pull from the data source.
 * **ScheduleExpression**: string (Required): How often the data should be pulled from data source.
+
+## Tag
+### Properties
+* **Key**: string (Required): A key to identify the tag.
+* **Value**: string (Required): Corresponding tag value for the key.
 
 ## Tag
 ### Properties

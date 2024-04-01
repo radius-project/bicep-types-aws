@@ -171,6 +171,11 @@
 * **TaskActions**: [TaskAction](#taskaction)[]
 * **UpdateCaseActions**: [UpdateCaseAction](#updatecaseaction)[]
 
+## Application
+### Properties
+* **ApplicationPermissions**: string[] (Required): The permissions that the agent is granted on the application
+* **Namespace**: string (Required): Namespace of the application that you want to give access to.
+
 ## AssignContactCategoryAction
 ### Properties
 
@@ -278,6 +283,8 @@
 ## AWS.Connect/PredefinedAttributeProperties
 ### Properties
 * **InstanceArn**: string (Required, Identifier): The identifier of the Amazon Connect instance.
+* **LastModifiedRegion**: string (ReadOnly): Last modified region.
+* **LastModifiedTime**: int (ReadOnly): Last modified time.
 * **Name**: string (Required, Identifier): The name of the predefined attribute.
 * **Values**: [PredefinedAttribute_Values](#predefinedattributevalues) (Required): The values of a predefined attribute.
 
@@ -345,9 +352,14 @@
 
 ## AWS.Connect/SecurityProfileProperties
 ### Properties
+* **AllowedAccessControlHierarchyGroupId**: string: The identifier of the hierarchy group that a security profile uses to restrict access to resources in Amazon Connect.
 * **AllowedAccessControlTags**: [Tag](#tag)[]: The list of tags that a security profile uses to restrict access to resources in Amazon Connect.
+* **Applications**: [Application](#application)[]: A list of third-party applications that the security profile will give access to.
 * **Description**: string: The description of the security profile.
+* **HierarchyRestrictedResources**: string[]: The list of resources that a security profile applies hierarchy restrictions to in Amazon Connect.
 * **InstanceArn**: string (Required): The identifier of the Amazon Connect instance.
+* **LastModifiedRegion**: string (ReadOnly): The AWS Region where this resource was last modified.
+* **LastModifiedTime**: int (ReadOnly): The timestamp when this resource was last modified.
 * **Permissions**: string[]: Permissions assigned to the security profile.
 * **SecurityProfileArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the security profile.
 * **SecurityProfileName**: string (Required): The name of the security profile.

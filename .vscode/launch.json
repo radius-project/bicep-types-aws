@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
       {
-        "name": "Debug Jest Tests",
+        "name": "Debug generator",
         "type": "node",
         "request": "launch",
         "runtimeExecutable": "npm",
@@ -14,11 +14,26 @@
           "start",
           "--",
           "--input", 
-          "../../artifacts/test",
+          "../../artifacts/types",
           "--output",
           "../../artifacts/bicep"
         ],
         "cwd": "${workspaceFolder}",
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+        "sourceMaps": true
+      },
+      {
+        "name": "Debug Jest Tests",
+        "type": "node",
+        "request": "launch",
+        "runtimeArgs": [
+          "--inspect-brk",
+          "${workspaceRoot}/src/aws-type-generator/node_modules/.bin/jest",
+          "--runInBand",
+          "--no-cache"
+        ],
+        "cwd": "${workspaceFolder}/src/aws-type-generator/",
         "console": "integratedTerminal",
         "internalConsoleOptions": "neverOpen",
         "sourceMaps": true

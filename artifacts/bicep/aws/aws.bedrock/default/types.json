@@ -1,0 +1,692 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "APISchema",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ActionGroupExecutor",
+    "properties": {
+      "Lambda": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "ARN of a Lambda."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ActionGroupSignature",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ActionGroupState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentActionGroup",
+    "properties": {
+      "ActionGroupExecutor": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ActionGroupName": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "Name of the action group"
+      },
+      "ActionGroupState": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "ApiSchema": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Description of action group"
+      },
+      "ParentActionGroupSignature": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "SkipResourceInUseCheckOnDelete": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Specifies whether to allow deleting action group while it is in use."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentKnowledgeBase",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "Description of the Resource."
+      },
+      "KnowledgeBaseId": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "Identifier for a resource."
+      },
+      "KnowledgeBaseState": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CreationMode",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InferenceConfiguration",
+    "properties": {
+      "MaximumLength": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Maximum length of output"
+      },
+      "StopSequences": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "List of stop sequences"
+      },
+      "Temperature": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Controls randomness, higher values increase diversity"
+      },
+      "TopK": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Sample from the k most likely next tokens"
+      },
+      "TopP": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Cumulative probability cutoff for token selection"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KnowledgeBaseState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PromptConfiguration",
+    "properties": {
+      "BasePromptTemplate": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Base Prompt Template."
+      },
+      "InferenceConfiguration": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "ParserMode": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "PromptCreationMode": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "PromptState": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "PromptType": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PromptOverrideConfiguration",
+    "properties": {
+      "OverrideLambda": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "ARN of a Lambda."
+      },
+      "PromptConfigurations": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1,
+        "description": "List of BasePromptConfiguration"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PromptState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PromptType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Identifier",
+    "properties": {
+      "S3BucketName": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "A bucket in S3."
+      },
+      "S3ObjectKey": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "A object key in S3."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagsMap",
+    "properties": {}
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Bedrock/AgentProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Bedrock/AgentProperties",
+    "properties": {
+      "ActionGroups": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 4,
+        "description": "List of ActionGroups"
+      },
+      "AgentArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Arn representation of the Agent."
+      },
+      "AgentId": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 18,
+        "description": "Identifier for a resource."
+      },
+      "AgentName": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "Name for a resource."
+      },
+      "AgentResourceRoleArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "ARN of a IAM role."
+      },
+      "AgentStatus": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2
+      },
+      "AgentVersion": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Draft Agent Version."
+      },
+      "AutoPrepare": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 4,
+        "description": "Specifies whether to automatically prepare after creating or updating the agent."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Time Stamp."
+      },
+      "CustomerEncryptionKeyArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "A KMS key ARN"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Description of the Resource."
+      },
+      "FailureReasons": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 2,
+        "description": "Failure Reasons for Error."
+      },
+      "FoundationModel": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "ARN or name of a Bedrock model."
+      },
+      "IdleSessionTTLInSeconds": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Max Session Time."
+      },
+      "Instruction": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Instruction for the agent."
+      },
+      "KnowledgeBases": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "List of Agent Knowledge Bases"
+      },
+      "PreparedAt": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Time Stamp."
+      },
+      "PromptOverrideConfiguration": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      },
+      "RecommendedActions": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 2,
+        "description": "The recommended actions users can take to resolve an error in failureReasons."
+      },
+      "SkipResourceInUseCheckOnDelete": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 4,
+        "description": "Specifies whether to allow deleting agent while it is in use."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Time Stamp."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Bedrock/Agent",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Bedrock/Agent@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/27"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentAliasHistoryEvent",
+    "properties": {
+      "EndDate": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Time Stamp."
+      },
+      "RoutingConfiguration": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 0,
+        "description": "Routing configuration for an Agent alias."
+      },
+      "StartDate": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Time Stamp."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentAliasRoutingConfigurationListItem",
+    "properties": {
+      "AgentVersion": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "Agent Version."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentAliasStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagsMap",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/30"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Bedrock/AgentAliasProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/29"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/30"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Bedrock/AgentAliasProperties",
+    "properties": {
+      "AgentAliasArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Arn representation of the Agent Alias."
+      },
+      "AgentAliasHistoryEvents": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 2,
+        "description": "The list of history events for an alias for an Agent."
+      },
+      "AgentAliasId": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 18,
+        "description": "Id for an Agent Alias generated at the server side."
+      },
+      "AgentAliasName": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "Name for a resource."
+      },
+      "AgentAliasStatus": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2
+      },
+      "AgentId": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 17,
+        "description": "Identifier for a resource."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Time Stamp."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Description of the Resource."
+      },
+      "RoutingConfiguration": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Routing configuration for an Agent alias."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Time Stamp."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Bedrock/AgentAlias",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Bedrock/AgentAlias@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/38"
+    },
+    "flags": 0
+  }
+]
