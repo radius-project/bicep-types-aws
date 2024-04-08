@@ -139,6 +139,7 @@
 ### Properties
 * **AppImageConfigArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the AppImageConfig.
 * **AppImageConfigName**: string (Required, Identifier): The Name of the AppImageConfig.
+* **CodeEditorAppImageConfig**: [CodeEditorAppImageConfig](#codeeditorappimageconfig): The CodeEditorAppImageConfig.
 * **JupyterLabAppImageConfig**: [JupyterLabAppImageConfig](#jupyterlabappimageconfig): The JupyterLabAppImageConfig.
 * **KernelGatewayImageConfig**: [KernelGatewayImageConfig](#kernelgatewayimageconfig): The KernelGatewayImageConfig.
 * **Tags**: [Tag](#tag)[] (WriteOnly): A list of tags to apply to the AppImageConfig.
@@ -406,13 +407,19 @@
 * **VolumeKmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the model monitoring job.
 * **VolumeSizeInGB**: int (Required): The size of the ML storage volume, in gigabytes, that you want to provision. You must specify sufficient ML storage for your scenario.
 
+## CodeEditorAppImageConfig
+### Properties
+* **ContainerConfig**: [ContainerConfig](#containerconfig): The container configuration for a SageMaker image.
+
 ## CodeEditorAppSettings
 ### Properties
+* **CustomImages**: [CustomImage](#customimage)[]: A list of custom images for use for CodeEditor apps.
 * **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the CodeEditor app.
 * **LifecycleConfigArns**: string[]: A list of LifecycleConfigArns available for use with CodeEditor apps.
 
 ## CodeEditorAppSettings
 ### Properties
+* **CustomImages**: [CustomImage](#customimage)[]: A list of custom images for use for CodeEditor apps.
 * **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the CodeEditor app.
 * **LifecycleConfigArns**: string[]: A list of LifecycleConfigArns available for use with CodeEditor apps.
 

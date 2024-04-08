@@ -688,5 +688,692 @@
       "$ref": "#/38"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ChunkingConfiguration",
+    "properties": {
+      "ChunkingStrategy": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      },
+      "FixedSizeChunkingConfiguration": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ChunkingStrategy",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataSourceConfiguration",
+    "properties": {
+      "S3Configuration": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 1
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataSourceStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataSourceType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FixedSizeChunkingConfiguration",
+    "properties": {
+      "MaxTokens": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1,
+        "description": "The maximum number of tokens to include in a chunk."
+      },
+      "OverlapPercentage": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1,
+        "description": "The percentage of overlap between adjacent chunks of a data source."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3DataSourceConfiguration",
+    "properties": {
+      "BucketArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The ARN of the bucket that contains the data source."
+      },
+      "InclusionPrefixes": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0,
+        "description": "A list of S3 prefixes that define the object containing the data sources."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServerSideEncryptionConfiguration",
+    "properties": {
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The ARN of the AWS KMS key used to encrypt the resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VectorIngestionConfiguration",
+    "properties": {
+      "ChunkingConfiguration": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Bedrock/DataSourceProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Bedrock/DataSourceProperties",
+    "properties": {
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The time at which the data source was created."
+      },
+      "DataSourceConfiguration": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 1
+      },
+      "DataSourceId": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 18,
+        "description": "Identifier for a resource."
+      },
+      "DataSourceStatus": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Description of the Resource."
+      },
+      "KnowledgeBaseId": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 17,
+        "description": "The unique identifier of the knowledge base to which to add the data source."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the data source."
+      },
+      "ServerSideEncryptionConfiguration": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The time at which the knowledge base was last updated."
+      },
+      "VectorIngestionConfiguration": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Bedrock/DataSource",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Bedrock/DataSource@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/52"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KnowledgeBaseConfiguration",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      },
+      "VectorKnowledgeBaseConfiguration": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KnowledgeBaseStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KnowledgeBaseStorageType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KnowledgeBaseType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OpenSearchServerlessConfiguration",
+    "properties": {
+      "CollectionArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The ARN of the OpenSearch Service vector store."
+      },
+      "FieldMapping": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 1
+      },
+      "VectorIndexName": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the vector store."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OpenSearchServerlessFieldMapping",
+    "properties": {
+      "MetadataField": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the field in which Amazon Bedrock stores metadata about the vector store."
+      },
+      "TextField": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose."
+      },
+      "VectorField": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PineconeConfiguration",
+    "properties": {
+      "ConnectionString": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The endpoint URL for your index management page."
+      },
+      "CredentialsSecretArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The ARN of the secret that you created in AWS Secrets Manager that is linked to your Pinecone API key."
+      },
+      "FieldMapping": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 1
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The namespace to be used to write new data to your database."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PineconeFieldMapping",
+    "properties": {
+      "MetadataField": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the field in which Amazon Bedrock stores metadata about the vector store."
+      },
+      "TextField": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RdsConfiguration",
+    "properties": {
+      "CredentialsSecretArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The ARN of the secret that you created in AWS Secrets Manager that is linked to your Amazon RDS database."
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of your Amazon RDS database."
+      },
+      "FieldMapping": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 1
+      },
+      "ResourceArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The ARN of the vector store."
+      },
+      "TableName": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the table in the database."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RdsFieldMapping",
+    "properties": {
+      "MetadataField": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the field in which Amazon Bedrock stores metadata about the vector store."
+      },
+      "PrimaryKeyField": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the field in which Amazon Bedrock stores the ID for each entry."
+      },
+      "TextField": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose."
+      },
+      "VectorField": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedisEnterpriseCloudConfiguration",
+    "properties": {
+      "CredentialsSecretArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The ARN of the secret that you created in AWS Secrets Manager that is linked to your Redis Enterprise Cloud database."
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The endpoint URL of the Redis Enterprise Cloud database."
+      },
+      "FieldMapping": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 1
+      },
+      "VectorIndexName": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the vector index."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedisEnterpriseCloudFieldMapping",
+    "properties": {
+      "MetadataField": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the field in which Amazon Bedrock stores metadata about the vector store."
+      },
+      "TextField": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose."
+      },
+      "VectorField": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageConfiguration",
+    "properties": {
+      "OpensearchServerlessConfiguration": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0
+      },
+      "PineconeConfiguration": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 0
+      },
+      "RdsConfiguration": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagsMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VectorKnowledgeBaseConfiguration",
+    "properties": {
+      "EmbeddingModelArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The ARN of the model used to create vector embeddings for the knowledge base."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Bedrock/KnowledgeBaseProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Bedrock/KnowledgeBaseProperties",
+    "properties": {
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The time at which the knowledge base was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Description of the Resource."
+      },
+      "FailureReasons": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 2,
+        "description": "A list of reasons that the API operation on the knowledge base failed."
+      },
+      "KnowledgeBaseArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The ARN of the knowledge base."
+      },
+      "KnowledgeBaseConfiguration": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 1
+      },
+      "KnowledgeBaseId": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 18,
+        "description": "The unique identifier of the knowledge base."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The name of the knowledge base."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The ARN of the IAM role with permissions to invoke API operations on the knowledge base. The ARN must begin with AmazonBedrockExecutionRoleForKnowledgeBase_"
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2
+      },
+      "StorageConfiguration": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The time at which the knowledge base was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Bedrock/KnowledgeBase",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Bedrock/KnowledgeBase@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/72"
+    },
+    "flags": 0
   }
 ]

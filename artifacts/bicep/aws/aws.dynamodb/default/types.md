@@ -72,7 +72,8 @@
 * **PointInTimeRecoverySpecification**: [PointInTimeRecoverySpecification](#pointintimerecoveryspecification): The settings used to enable point in time recovery.
 * **ProvisionedThroughput**: [ProvisionedThroughput](#provisionedthroughput): Throughput for the specified table, which consists of values for ``ReadCapacityUnits`` and ``WriteCapacityUnits``. For more information about the contents of a provisioned throughput structure, see [Amazon DynamoDB Table ProvisionedThroughput](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ProvisionedThroughput.html). 
  If you set ``BillingMode`` as ``PROVISIONED``, you must specify this property. If you set ``BillingMode`` as ``PAY_PER_REQUEST``, you cannot specify this property.
-* **ResourcePolicy**: [ResourcePolicy](#resourcepolicy)
+* **ResourcePolicy**: [ResourcePolicy](#resourcepolicy): A resource-based policy document that contains permissions to add to the specified table. In a CFNshort template, you can provide the policy in JSON or YAML format because CFNshort converts YAML to JSON before submitting it to DDB. For more information about resource-based policies, see [Using resource-based policies for](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/access-control-resource-based.html) and [Resource-based policy examples](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-examples.html).
+ When you attach a resource-based policy while creating a table, the policy creation is *strongly consistent*. For information about the considerations that you should keep in mind while attaching a resource-based policy, see [Resource-based policy considerations](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-considerations.html).
 * **SSESpecification**: [SSESpecification](#ssespecification): Specifies the settings to enable server-side encryption.
 * **StreamArn**: string (ReadOnly)
 * **StreamSpecification**: [StreamSpecification](#streamspecification): The settings for the DDB table stream, which capture changes to items stored in the table.
@@ -253,7 +254,7 @@
 
 ## ResourcePolicy
 ### Properties
-* **PolicyDocument**: [Table_PolicyDocument](#tablepolicydocument) (Required)
+* **PolicyDocument**: [Table_PolicyDocument](#tablepolicydocument) (Required): A resource-based policy document that contains permissions to add to the specified DDB table, index, or both. In a CFNshort template, you can provide the policy in JSON or YAML format because CFNshort converts YAML to JSON before submitting it to DDB. For more information about resource-based policies, see [Using resource-based policies for](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/access-control-resource-based.html) and [Resource-based policy examples](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-examples.html).
 
 ## S3BucketSource
 ### Properties
@@ -279,7 +280,8 @@
 
 ## StreamSpecification
 ### Properties
-* **ResourcePolicy**: [ResourcePolicy](#resourcepolicy)
+* **ResourcePolicy**: [ResourcePolicy](#resourcepolicy): Creates or updates a resource-based policy document that contains the permissions for DDB resources, such as a table's streams. Resource-based policies let you define access permissions by specifying who has access to each resource, and the actions they are allowed to perform on each resource.
+ In a CFNshort template, you can provide the policy in JSON or YAML format because CFNshort converts YAML to JSON before submitting it to DDB. For more information about resource-based policies, see [Using resource-based policies for](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/access-control-resource-based.html) and [Resource-based policy examples](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-examples.html).
 * **StreamViewType**: string (Required): When an item in the table is modified, ``StreamViewType`` determines what information is written to the stream for this table. Valid values for ``StreamViewType`` are:
   +   ``KEYS_ONLY`` - Only the key attributes of the modified item are written to the stream.
   +   ``NEW_IMAGE`` - The entire item, as it appears after it was modified, is written to the stream.
@@ -317,7 +319,7 @@
 ## TimeToLiveSpecification
 ### Properties
 * **AttributeName**: string: The name of the TTL attribute used to store the expiration time for items in the table.
-   + The ``AttributeName`` property is required when enabling the TTL, or when TTL is already enabled.
+   +  The ``AttributeName`` property is required when enabling the TTL, or when TTL is already enabled.
   +  To update this property, you must first disable TTL and then enable TTL with the new attribute name.
 * **Enabled**: bool (Required): Indicates whether TTL is to be enabled (true) or disabled (false) on the table.
 

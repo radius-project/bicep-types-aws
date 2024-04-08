@@ -580,11 +580,13 @@
 ## AWS.EC2/CustomerGatewayProperties
 ### Properties
 * **BgpAsn**: int (Required): For devices that support BGP, the customer gateway's BGP ASN.
-* **CustomerGatewayId**: string (ReadOnly, Identifier): CustomerGateway ID generated after customer gateway is created. Each customer gateway has a unique ID.
-* **DeviceName**: string: A name for the customer gateway device.
-* **IpAddress**: string (Required): The internet-routable IP address for the customer gateway's outside interface. The address must be static.
+ Default: 65000
+* **CertificateArn**: string
+* **CustomerGatewayId**: string (ReadOnly, Identifier)
+* **DeviceName**: string: The name of customer gateway device.
+* **IpAddress**: string (Required): IPv4 address for the customer gateway device's outside interface. The address must be static.
 * **Tags**: [Tag](#tag)[]: One or more tags for the customer gateway.
-* **Type**: string (Required): The type of VPN connection that this customer gateway supports.
+* **Type**: string (Required): The type of VPN connection that this customer gateway supports (``ipsec.1``).
 
 ## AWS.EC2/DHCPOptionsProperties
 ### Properties
@@ -868,9 +870,9 @@
 * **PrivateIpAddress**: string: The private IPv4 address to assign to the NAT gateway. If you don't provide an address, a private IPv4 address will be automatically assigned.
 * **SecondaryAllocationIds**: string[]: Secondary EIP allocation IDs. For more information, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating) in the *Amazon VPC User Guide*.
 * **SecondaryPrivateIpAddressCount**: int: [Private NAT gateway only] The number of secondary private IPv4 addresses you want to assign to the NAT gateway. For more information about secondary addresses, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating) in the *Amazon Virtual Private Cloud User Guide*.
- ``SecondaryPrivateIpAddressCount`` and ``SecondaryPrivateIpAddresses`` cannot be set at the same time.
+  ``SecondaryPrivateIpAddressCount`` and ``SecondaryPrivateIpAddresses`` cannot be set at the same time.
 * **SecondaryPrivateIpAddresses**: string[]: Secondary private IPv4 addresses. For more information about secondary addresses, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating) in the *Amazon Virtual Private Cloud User Guide*.
- ``SecondaryPrivateIpAddressCount`` and ``SecondaryPrivateIpAddresses`` cannot be set at the same time.
+  ``SecondaryPrivateIpAddressCount`` and ``SecondaryPrivateIpAddresses`` cannot be set at the same time.
 * **SubnetId**: string (Required): The ID of the subnet in which the NAT gateway is located.
 * **Tags**: [Tag](#tag)[]: The tags for the NAT gateway.
 
@@ -1013,17 +1015,17 @@
 ## AWS.EC2/SecurityGroupEgressProperties
 ### Properties
 * **CidrIp**: string: The IPv4 address range, in CIDR format.
- You must specify a destination security group (``DestinationPrefixListId`` or ``DestinationSecurityGroupId``) or a CIDR range (``CidrIp`` or ``CidrIpv6``).
+ You must specify exactly one of the following: ``CidrIp``, ``CidrIpv6``, ``DestinationPrefixListId``, or ``DestinationSecurityGroupId``.
  For examples of rules that you can add to security groups for specific access scenarios, see [Security group rules for different use cases](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html) in the *User Guide*.
 * **CidrIpv6**: string: The IPv6 address range, in CIDR format.
- You must specify a destination security group (``DestinationPrefixListId`` or ``DestinationSecurityGroupId``) or a CIDR range (``CidrIp`` or ``CidrIpv6``).
+ You must specify exactly one of the following: ``CidrIp``, ``CidrIpv6``, ``DestinationPrefixListId``, or ``DestinationSecurityGroupId``.
  For examples of rules that you can add to security groups for specific access scenarios, see [Security group rules for different use cases](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html) in the *User Guide*.
 * **Description**: string: The description of an egress (outbound) security group rule.
  Constraints: Up to 255 characters in length. Allowed characters are a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*
-* **DestinationPrefixListId**: string: The prefix list IDs for an AWS service. This is the AWS service that you want to access through a VPC endpoint from instances associated with the security group.
- You must specify a destination security group (``DestinationPrefixListId`` or ``DestinationSecurityGroupId``) or a CIDR range (``CidrIp`` or ``CidrIpv6``).
+* **DestinationPrefixListId**: string: The prefix list IDs for an AWS service. This is the AWS service to access through a VPC endpoint from instances associated with the security group.
+ You must specify exactly one of the following: ``CidrIp``, ``CidrIpv6``, ``DestinationPrefixListId``, or ``DestinationSecurityGroupId``.
 * **DestinationSecurityGroupId**: string: The ID of the security group.
- You must specify a destination security group (``DestinationPrefixListId`` or ``DestinationSecurityGroupId``) or a CIDR range (``CidrIp`` or ``CidrIpv6``).
+ You must specify exactly one of the following: ``CidrIp``, ``CidrIpv6``, ``DestinationPrefixListId``, or ``DestinationSecurityGroupId``.
 * **FromPort**: int: If the protocol is TCP or UDP, this is the start of the port range. If the protocol is ICMP or ICMPv6, this is the ICMP type or -1 (all ICMP types).
 * **GroupId**: string (Required): The ID of the security group. You must specify either the security group ID or the security group name in the request. For security groups in a nondefault VPC, you must specify the security group ID.
 * **Id**: string (ReadOnly, Identifier)
@@ -2496,8 +2498,8 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
 
 ## Tag
 ### Properties

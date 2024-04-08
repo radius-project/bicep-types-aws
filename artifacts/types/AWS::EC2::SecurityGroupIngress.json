@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-SecurityGroupIngress",
   "type": "AWS::EC2::SecurityGroupIngress",
-  "time": "2024-03-14T16:52:44.337Z",
+  "time": "2024-04-02T17:21:11.776Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -104,6 +104,11 @@
         "description": "The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of -1 indicates all ICMP/ICMPv6 codes for the specified ICMP type. If you specify all ICMP/ICMPv6 types, you must specify all codes.\n\nUse this for ICMP and any protocol that uses ports.",
         "type": "integer"
       }
+    },
+    "propertyTransform": {
+      "/properties/FromPort": "($mapVal := $lookup({'1': 'icmp','6': 'tcp','17': 'udp','58': 'icmpv6'}, IpProtocol);$ipProtocol := $mapVal ? $mapVal : $lowercase(IpProtocol);$ipProtocol in ['imcp', 'tcp', 'udp', 'imcp'] ? FromPort : -1)",
+      "/properties/IpProtocol": "($mapVal := $lookup({'1': 'icmp','6': 'tcp','17': 'udp','58': 'icmpv6'}, IpProtocol);$mapVal ? $mapVal : $lowercase(IpProtocol))",
+      "/properties/ToPort": "($mapVal := $lookup({'1': 'icmp','6': 'tcp','17': 'udp','58': 'icmpv6'}, IpProtocol);$ipProtocol := $mapVal ? $mapVal : $lowercase(IpProtocol);$ipProtocol in ['imcp', 'tcp', 'udp', 'imcp'] ? ToPort : -1)"
     },
     "readOnlyProperties": [
       "/properties/Id"

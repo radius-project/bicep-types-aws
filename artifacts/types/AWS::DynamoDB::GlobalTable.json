@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DynamoDB-GlobalTable",
   "type": "AWS::DynamoDB::GlobalTable",
-  "time": "2024-03-25T15:54:47.279Z",
+  "time": "2024-04-08T18:12:38.436Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -134,6 +134,10 @@
             "type": "string"
           },
           "StreamArn": {
+            "relationshipRef": {
+              "propertyPath": "/properties/Arn",
+              "typeName": "AWS::Kinesis::Stream"
+            },
             "type": "string"
           }
         },
@@ -233,6 +237,26 @@
         "additionalProperties": false,
         "properties": {
           "KMSMasterKeyId": {
+            "anyOf": [
+              {
+                "relationshipRef": {
+                  "propertyPath": "/properties/Arn",
+                  "typeName": "AWS::KMS::Key"
+                }
+              },
+              {
+                "relationshipRef": {
+                  "propertyPath": "/properties/KeyId",
+                  "typeName": "AWS::KMS::Key"
+                }
+              },
+              {
+                "relationshipRef": {
+                  "propertyPath": "/properties/AliasName",
+                  "typeName": "AWS::KMS::Alias"
+                }
+              }
+            ],
             "type": "string"
           }
         },

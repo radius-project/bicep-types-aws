@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-AppImageConfig",
   "type": "AWS::SageMaker::AppImageConfig",
-  "time": "2024-03-27T15:58:19.227Z",
+  "time": "2024-04-03T16:02:41.566Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,17 @@
       "/properties/Tags"
     ],
     "definitions": {
+      "CodeEditorAppImageConfig": {
+        "additionalProperties": false,
+        "description": "The configuration for the kernels in a SageMaker image running as a CodeEditor app.",
+        "properties": {
+          "ContainerConfig": {
+            "$ref": "#/definitions/ContainerConfig",
+            "description": "The container configuration for a SageMaker image."
+          }
+        },
+        "type": "object"
+      },
       "ContainerConfig": {
         "additionalProperties": false,
         "description": "The container configuration for a SageMaker image.",
@@ -232,6 +243,10 @@
         "minLength": 1,
         "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}",
         "type": "string"
+      },
+      "CodeEditorAppImageConfig": {
+        "$ref": "#/definitions/CodeEditorAppImageConfig",
+        "description": "The CodeEditorAppImageConfig."
       },
       "JupyterLabAppImageConfig": {
         "$ref": "#/definitions/JupyterLabAppImageConfig",

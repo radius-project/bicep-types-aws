@@ -7,12 +7,26 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EntityResolution/IdMappingWorkflowProperties](#awsentityresolutionidmappingworkflowproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EntityResolution/IdNamespace@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EntityResolution/IdNamespaceProperties](#awsentityresolutionidnamespaceproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EntityResolution/MatchingWorkflow@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EntityResolution/MatchingWorkflowProperties](#awsentityresolutionmatchingworkflowproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EntityResolution/PolicyStatement@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EntityResolution/PolicyStatementProperties](#awsentityresolutionpolicystatementproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EntityResolution/SchemaMapping@default
 * **Valid Scope(s)**: Unknown
@@ -34,6 +48,19 @@
 * **WorkflowArn**: string (ReadOnly)
 * **WorkflowName**: string (Required, Identifier): The name of the IdMappingWorkflow
 
+## AWS.EntityResolution/IdNamespaceProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): The date and time when the IdNamespace was created
+* **Description**: string
+* **IdMappingWorkflowProperties**: [IdNamespaceIdMappingWorkflowProperties](#idnamespaceidmappingworkflowproperties)[]
+* **IdNamespaceArn**: string (ReadOnly): The arn associated with the IdNamespace
+* **IdNamespaceName**: string (Required, Identifier)
+* **InputSourceConfig**: [IdNamespaceInputSource](#idnamespaceinputsource)[]
+* **RoleArn**: string
+* **Tags**: [Tag](#tag)[]
+* **Type**: string (Required)
+* **UpdatedAt**: string (ReadOnly): The date and time when the IdNamespace was updated
+
 ## AWS.EntityResolution/MatchingWorkflowProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly)
@@ -46,6 +73,15 @@
 * **UpdatedAt**: string (ReadOnly)
 * **WorkflowArn**: string (ReadOnly)
 * **WorkflowName**: string (Required, Identifier): The name of the MatchingWorkflow
+
+## AWS.EntityResolution/PolicyStatementProperties
+### Properties
+* **Action**: string[]
+* **Arn**: string (Required, Identifier)
+* **Condition**: string
+* **Effect**: string
+* **Principal**: string[]
+* **StatementId**: string (Required, Identifier)
 
 ## AWS.EntityResolution/SchemaMappingProperties
 ### Properties
@@ -77,6 +113,19 @@
 * **KMSArn**: string
 * **OutputS3Path**: string (Required): The S3 path to which Entity Resolution will write the output table
 
+## IdNamespace_ProviderConfiguration
+### Properties
+
+## IdNamespaceIdMappingWorkflowProperties
+### Properties
+* **IdMappingType**: string (Required)
+* **ProviderProperties**: [NamespaceProviderProperties](#namespaceproviderproperties)
+
+## IdNamespaceInputSource
+### Properties
+* **InputSourceARN**: string (Required)
+* **SchemaName**: string
+
 ## InputSource
 ### Properties
 * **ApplyNormalization**: bool
@@ -93,6 +142,11 @@
 
 ## MatchingWorkflow_ProviderConfiguration
 ### Properties
+
+## NamespaceProviderProperties
+### Properties
+* **ProviderConfiguration**: [IdNamespace_ProviderConfiguration](#idnamespaceproviderconfiguration): Additional Provider configuration that would be required for the provider service. The Configuration must be in JSON string format.
+* **ProviderServiceArn**: string (Required)
 
 ## OutputAttribute
 ### Properties
@@ -141,6 +195,11 @@
 * **MatchKey**: string
 * **SubType**: string: The subtype of the Attribute. Would be required only when type is PROVIDER_ID
 * **Type**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties

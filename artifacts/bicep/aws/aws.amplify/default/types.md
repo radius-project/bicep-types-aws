@@ -81,15 +81,15 @@
 * **Arn**: string (ReadOnly, Identifier)
 * **AutoSubDomainCreationPatterns**: string[]
 * **AutoSubDomainIAMRole**: string
-* **Certificate**: [Certificate](#certificate)
+* **Certificate**: [Certificate](#certificate) (ReadOnly)
 * **CertificateRecord**: string (ReadOnly)
-* **CertificateSettings**: [CertificateSettings](#certificatesettings)
+* **CertificateSettings**: [CertificateSettings](#certificatesettings) (WriteOnly)
 * **DomainName**: string (Required)
 * **DomainStatus**: string (ReadOnly)
 * **EnableAutoSubDomain**: bool
 * **StatusReason**: string (ReadOnly)
 * **SubDomainSettings**: [SubDomainSetting](#subdomainsetting)[] (Required)
-* **UpdateStatus**: string
+* **UpdateStatus**: string (ReadOnly)
 
 ## Backend
 ### Properties

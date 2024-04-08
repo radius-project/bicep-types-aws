@@ -33,6 +33,9 @@
     }
   },
   {
+    "$type": "BooleanType"
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.RDS/CustomDBEngineVersionProperties",
     "properties": {
@@ -47,7 +50,7 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The name of an Amazon S3 bucket that contains database installation files for your CEV. For example, a valid bucket name is `my-custom-installation-files`."
       },
       "DatabaseInstallationFilesS3Prefix": {
@@ -78,6 +81,13 @@
         "flags": 17,
         "description": "The name of your CEV. The name format is 19.customized_string . For example, a valid name is 19.my_cev1. This setting is required for RDS Custom for Oracle, but optional for Amazon RDS. The combination of Engine and EngineVersion is unique per customer per Region."
       },
+      "ImageId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The identifier of Amazon Machine Image (AMI) used for CEV."
+      },
       "KMSKeyId": {
         "type": {
           "$ref": "#/1"
@@ -92,6 +102,13 @@
         "flags": 4,
         "description": "The CEV manifest, which is a JSON document that describes the installation .zip files stored in Amazon S3. Specify the name/value pairs in a file or a quoted string. RDS Custom applies the patches in the order in which they are listed."
       },
+      "SourceCustomDbEngineVersionIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The identifier of the source custom engine version."
+      },
       "Status": {
         "type": {
           "$ref": "#/1"
@@ -105,6 +122,13 @@
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
+      },
+      "UseAwsProvidedLatestImage": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 4,
+        "description": "A value that indicates whether AWS provided latest image is applied automatically to the Custom Engine Version. By default, AWS provided latest image is applied automatically. This value is only applied on create."
       }
     }
   },
@@ -128,7 +152,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -140,7 +164,7 @@
     "name": "AWS.RDS/CustomDBEngineVersion@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/5"
+      "$ref": "#/6"
     },
     "flags": 0
   },
@@ -223,7 +247,7 @@
     "properties": {
       "AutoPause": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A value that indicates whether to allow or disallow automatic pause for an Aurora DB cluster in serverless DB engine mode. A DB cluster can be paused only when it's idle (it has no connections)."
@@ -306,9 +330,6 @@
     }
   },
   {
-    "$type": "BooleanType"
-  },
-  {
     "$type": "IntegerType"
   },
   {
@@ -318,7 +339,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/8"
     }
   },
   {
@@ -336,7 +357,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/14"
     }
   },
   {
@@ -365,7 +386,7 @@
       },
       "AutoMinorVersionUpgrade": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A value that indicates whether minor engine upgrades are applied automatically to the DB cluster during the maintenance window. By default, minor engine upgrades are applied automatically."
@@ -393,7 +414,7 @@
       },
       "CopyTagsToSnapshot": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A value that indicates whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them."
@@ -463,7 +484,7 @@
       },
       "DeletionProtection": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled."
@@ -491,28 +512,28 @@
       },
       "EnableGlobalWriteForwarding": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "Specifies whether to enable this DB cluster to forward write operations to the primary cluster of a global cluster (Aurora global database). By default, write operations are not allowed on Aurora DB clusters that are secondary clusters in an Aurora global database."
       },
       "EnableHttpEndpoint": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A value that indicates whether to enable the HTTP endpoint for DB cluster. By default, the HTTP endpoint is disabled."
       },
       "EnableIAMDatabaseAuthentication": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A value that indicates whether to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts. By default, mapping is disabled."
       },
       "Endpoint": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/9"
         },
         "flags": 2
       },
@@ -560,7 +581,7 @@
       },
       "ManageMasterUserPassword": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A value that indicates whether to manage the master user password with AWS Secrets Manager."
@@ -574,7 +595,7 @@
       },
       "MasterUserSecret": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Contains the secret managed by RDS in AWS Secrets Manager for the master user password."
@@ -609,7 +630,7 @@
       },
       "PerformanceInsightsEnabled": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A value that indicates whether to turn on Performance Insights for the DB cluster."
@@ -651,14 +672,14 @@
       },
       "PubliclyAccessible": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A value that indicates whether the DB cluster is publicly accessible."
       },
       "ReadEndpoint": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 0
       },
@@ -685,14 +706,14 @@
       },
       "ScalingConfiguration": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The ScalingConfiguration property type specifies the scaling configuration of an Aurora Serverless DB cluster."
       },
       "ServerlessV2ScalingConfiguration": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "Contains the scaling configuration of an Aurora Serverless v2 DB cluster."
@@ -720,7 +741,7 @@
       },
       "StorageEncrypted": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "Indicates whether the DB instance is encrypted.\nIf you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceIdentifier property, don't specify this property. The value is inherited from the cluster, snapshot, or source DB instance."
@@ -748,7 +769,7 @@
       },
       "UseLatestRestorableTime": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 4,
         "description": "A value that indicates whether to restore the DB cluster to the latest restorable backup time. By default, the DB cluster is not restored to the latest restorable backup time."
@@ -1095,7 +1116,7 @@
       },
       "AllowMajorVersionUpgrade": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 4,
         "description": "A value that indicates whether major version upgrades are allowed. Changing this parameter doesn't result in an outage and the change is asynchronously applied as soon as possible.\n Constraints: Major version upgrades must be allowed when specifying a value for the ``EngineVersion`` parameter that is a different major version than the DB instance's current version."
@@ -1109,7 +1130,7 @@
       },
       "AutoMinorVersionUpgrade": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A value that indicates whether minor engine upgrades are applied automatically to the DB instance during the maintenance window. By default, minor engine upgrades are applied automatically."
@@ -1151,7 +1172,7 @@
       },
       "CertificateRotationRestart": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 4,
         "description": "Specifies whether the DB instance is restarted when you rotate your SSL/TLS certificate.\n By default, the DB instance is restarted when you rotate your SSL/TLS certificate. The certificate is not updated until the DB instance is restarted.\n  Set this parameter only if you are *not* using SSL/TLS to connect to the DB instance.\n  If you are using SSL/TLS to connect to the DB instance, follow the appropriate instructions for your DB engine to rotate your SSL/TLS certificate:\n  +  For more information about rotating your SSL/TLS certificate for RDS DB engines, see [Rotating Your SSL/TLS Certificate.](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL-certificate-rotation.html) in the *Amazon RDS User Guide.* \n  +  For more information about rotating your SSL/TLS certificate for Aurora DB engines, see [Rotating Your SSL/TLS Certificate](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.SSL-certificate-rotation.html) in the *Amazon Aurora User Gui"
@@ -1165,7 +1186,7 @@
       },
       "CopyTagsToSnapshot": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "Specifies whether to copy tags from the DB instance to snapshots of the DB instance. By default, tags are not copied.\n This setting doesn't apply to Amazon Aurora DB instances. Copying tags to snapshots is managed by the DB cluster. Setting this value for an Aurora DB instance has no effect on the DB cluster setting."
@@ -1263,21 +1284,21 @@
       },
       "DedicatedLogVolume": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "Indicates whether the DB instance has a dedicated log volume (DLV) enabled."
       },
       "DeleteAutomatedBackups": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 4,
         "description": "A value that indicates whether to remove automated backups immediately after the DB instance is deleted. This parameter isn't case-sensitive. The default is to remove automated backups immediately after the DB instance is deleted.\n *Amazon Aurora*\n Not applicable. When you delete a DB cluster, all automated backups for that DB cluster are deleted and can't be recovered. Manual DB cluster snapshots of the DB cluster are not deleted."
       },
       "DeletionProtection": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A value that indicates whether the DB instance has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled. For more information, see [Deleting a DB Instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html). \n  *Amazon Aurora* \n Not applicable. You can enable or disable deletion protection for the DB cluster. For more information, see ``CreateDBCluster``. DB instances in a DB cluster can be deleted even when deletion protection is enabled for the DB cluster."
@@ -1333,14 +1354,14 @@
       },
       "EnableIAMDatabaseAuthentication": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A value that indicates whether to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts. By default, mapping is disabled.\n This property is supported for RDS for MariaDB, RDS for MySQL, and RDS for PostgreSQL. For more information, see [IAM Database Authentication for MariaDB, MySQL, and PostgreSQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html) in the *Amazon RDS User Guide.* \n  *Amazon Aurora* \n Not applicable. Mapping AWS IAM accounts to database accounts is managed by the DB cluster."
       },
       "EnablePerformanceInsights": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "Specifies whether to enable Performance Insights for the DB instance. For more information, see [Using Amazon Performance Insights](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html) in the *Amazon RDS User Guide*.\n This setting doesn't apply to RDS Custom DB instances."
@@ -1389,7 +1410,7 @@
       },
       "ManageMasterUserPassword": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "Specifies whether to manage the master user password with AWS Secrets Manager.\n For more information, see [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html) in the *Amazon RDS User Guide.* \n Constraints:\n  +  Can't manage the master user password with AWS Secrets Manager if ``MasterUserPassword`` is specified."
@@ -1438,7 +1459,7 @@
       },
       "MultiAZ": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "Specifies whether the database instance is a Multi-AZ DB instance deployment. You can't set the ``AvailabilityZone`` parameter if the ``MultiAZ`` parameter is set to true. \n  For more information, see [Multi-AZ deployments for high availability](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html) in the *Amazon RDS User Guide*.\n  *Amazon Aurora* \n Not applicable. Amazon Aurora storage is replicated across all of the Availability Zones and doesn't require the ``MultiAZ`` option to be set."
@@ -1515,7 +1536,7 @@
       },
       "PubliclyAccessible": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "Indicates whether the DB instance is an internet-facing instance. If you specify true, AWS CloudFormation creates an instance with a publicly resolvable DNS name, which resolves to a public IP address. If you specify false, AWS CloudFormation creates an internal instance with a DNS name that resolves to a private IP address. \n The default behavior value depends on your VPC setup and the database subnet group. For more information, see the ``PubliclyAccessible`` parameter in the [CreateDBInstance](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html) in the *Amazon RDS API Reference*."
@@ -1571,7 +1592,7 @@
       },
       "StorageEncrypted": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A value that indicates whether the DB instance is encrypted. By default, it isn't encrypted.\n If you specify the ``KmsKeyId`` property, then you must enable encryption.\n If you specify the ``SourceDBInstanceIdentifier`` property, don't specify this property. The value is inherited from the source DB instance, and if the DB instance is encrypted, the specified ``KmsKeyId`` property is used.\n If you specify the ``DBSnapshotIdentifier`` and the specified snapshot is encrypted, don't specify this property. The value is inherited from the snapshot, and the specified ``KmsKeyId`` property is used.\n If you specify the ``DBSnapshotIdentifier`` and the specified snapshot isn't encrypted, you can use this property to specify that the restored DB instance is encrypted. Specify the ``KmsKeyId`` property for the KMS key to use for encryption. If you don't want the restored DB instance to be encrypted, then don't set this property or set it to ``false``.\n *Amazon Aurora*\n Not applicable. The encrypt"
@@ -1620,14 +1641,14 @@
       },
       "UseDefaultProcessorFeatures": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 4,
         "description": "Specifies whether the DB instance class of the DB instance uses its default processor features.\n This setting doesn't apply to RDS Custom DB instances."
       },
       "UseLatestRestorableTime": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 4,
         "description": "Specifies whether the DB instance is restored from the latest backup time. By default, the DB instance isn't restored from the latest backup time.\n Constraints:\n  +  Can't be specified if the ``RestoreTime`` parameter is provided."
@@ -1903,7 +1924,7 @@
       },
       "DebugLogging": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "Whether the proxy includes detailed information about SQL statements in its logs."
@@ -1931,7 +1952,7 @@
       },
       "RequireTLS": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A Boolean parameter that specifies whether Transport Layer Security (TLS) encryption is required for connections to the proxy."
@@ -2083,7 +2104,7 @@
       },
       "IsDefault": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "A value that indicates whether this endpoint is the default endpoint for the associated DB proxy. Default DB proxy endpoints always have read/write capability. Other endpoints that you associate with the DB proxy can be either read/write or read-only."
@@ -2459,7 +2480,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "A Boolean value; set to true to activate the subscription, set to false to create the subscription but not active it."
@@ -2554,7 +2575,7 @@
     "properties": {
       "DeletionProtection": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The deletion protection setting for the new global database. The global database can't be deleted when deletion protection is enabled."
@@ -2589,7 +2610,7 @@
       },
       "StorageEncrypted": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": " The storage encryption setting for the new global database cluster.\nIf you specify the SourceDBClusterIdentifier property, don't specify this property. The value is inherited from the cluster."

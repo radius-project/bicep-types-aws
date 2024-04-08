@@ -530,13 +530,15 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The tag key."
       },
       "Value": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The tag value."
       }
     }
   },
@@ -559,28 +561,35 @@
           "$ref": "#/5"
         },
         "flags": 1,
-        "description": "For devices that support BGP, the customer gateway's BGP ASN."
+        "description": "For devices that support BGP, the customer gateway's BGP ASN.\n Default: 65000"
+      },
+      "CertificateArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": ""
       },
       "CustomerGatewayId": {
         "type": {
           "$ref": "#/2"
         },
         "flags": 18,
-        "description": "CustomerGateway ID generated after customer gateway is created. Each customer gateway has a unique ID."
+        "description": ""
       },
       "DeviceName": {
         "type": {
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "A name for the customer gateway device."
+        "description": "The name of customer gateway device."
       },
       "IpAddress": {
         "type": {
           "$ref": "#/2"
         },
         "flags": 1,
-        "description": "The internet-routable IP address for the customer gateway's outside interface. The address must be static."
+        "description": "IPv4 address for the customer gateway device's outside interface. The address must be static."
       },
       "Tags": {
         "type": {
@@ -594,7 +603,7 @@
           "$ref": "#/2"
         },
         "flags": 1,
-        "description": "The type of VPN connection that this customer gateway supports."
+        "description": "The type of VPN connection that this customer gateway supports (``ipsec.1``)."
       }
     }
   },
@@ -6448,14 +6457,14 @@
           "$ref": "#/5"
         },
         "flags": 0,
-        "description": "[Private NAT gateway only] The number of secondary private IPv4 addresses you want to assign to the NAT gateway. For more information about secondary addresses, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating) in the *Amazon Virtual Private Cloud User Guide*.\n ``SecondaryPrivateIpAddressCount`` and ``SecondaryPrivateIpAddresses`` cannot be set at the same time."
+        "description": "[Private NAT gateway only] The number of secondary private IPv4 addresses you want to assign to the NAT gateway. For more information about secondary addresses, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating) in the *Amazon Virtual Private Cloud User Guide*.\n  ``SecondaryPrivateIpAddressCount`` and ``SecondaryPrivateIpAddresses`` cannot be set at the same time."
       },
       "SecondaryPrivateIpAddresses": {
         "type": {
           "$ref": "#/297"
         },
         "flags": 0,
-        "description": "Secondary private IPv4 addresses. For more information about secondary addresses, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating) in the *Amazon Virtual Private Cloud User Guide*.\n ``SecondaryPrivateIpAddressCount`` and ``SecondaryPrivateIpAddresses`` cannot be set at the same time."
+        "description": "Secondary private IPv4 addresses. For more information about secondary addresses, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating) in the *Amazon Virtual Private Cloud User Guide*.\n  ``SecondaryPrivateIpAddressCount`` and ``SecondaryPrivateIpAddresses`` cannot be set at the same time."
       },
       "SubnetId": {
         "type": {
@@ -9511,14 +9520,14 @@
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The IPv4 address range, in CIDR format.\n You must specify a destination security group (``DestinationPrefixListId`` or ``DestinationSecurityGroupId``) or a CIDR range (``CidrIp`` or ``CidrIpv6``).\n For examples of rules that you can add to security groups for specific access scenarios, see [Security group rules for different use cases](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html) in the *User Guide*."
+        "description": "The IPv4 address range, in CIDR format.\n You must specify exactly one of the following: ``CidrIp``, ``CidrIpv6``, ``DestinationPrefixListId``, or ``DestinationSecurityGroupId``.\n For examples of rules that you can add to security groups for specific access scenarios, see [Security group rules for different use cases](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html) in the *User Guide*."
       },
       "CidrIpv6": {
         "type": {
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The IPv6 address range, in CIDR format.\n You must specify a destination security group (``DestinationPrefixListId`` or ``DestinationSecurityGroupId``) or a CIDR range (``CidrIp`` or ``CidrIpv6``).\n For examples of rules that you can add to security groups for specific access scenarios, see [Security group rules for different use cases](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html) in the *User Guide*."
+        "description": "The IPv6 address range, in CIDR format.\n You must specify exactly one of the following: ``CidrIp``, ``CidrIpv6``, ``DestinationPrefixListId``, or ``DestinationSecurityGroupId``.\n For examples of rules that you can add to security groups for specific access scenarios, see [Security group rules for different use cases](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html) in the *User Guide*."
       },
       "Description": {
         "type": {
@@ -9532,14 +9541,14 @@
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The prefix list IDs for an AWS service. This is the AWS service that you want to access through a VPC endpoint from instances associated with the security group.\n You must specify a destination security group (``DestinationPrefixListId`` or ``DestinationSecurityGroupId``) or a CIDR range (``CidrIp`` or ``CidrIpv6``)."
+        "description": "The prefix list IDs for an AWS service. This is the AWS service to access through a VPC endpoint from instances associated with the security group.\n You must specify exactly one of the following: ``CidrIp``, ``CidrIpv6``, ``DestinationPrefixListId``, or ``DestinationSecurityGroupId``."
       },
       "DestinationSecurityGroupId": {
         "type": {
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The ID of the security group.\n You must specify a destination security group (``DestinationPrefixListId`` or ``DestinationSecurityGroupId``) or a CIDR range (``CidrIp`` or ``CidrIpv6``)."
+        "description": "The ID of the security group.\n You must specify exactly one of the following: ``CidrIp``, ``CidrIpv6``, ``DestinationPrefixListId``, or ``DestinationSecurityGroupId``."
       },
       "FromPort": {
         "type": {

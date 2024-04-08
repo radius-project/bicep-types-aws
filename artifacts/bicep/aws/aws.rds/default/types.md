@@ -101,16 +101,19 @@
 
 ## AWS.RDS/CustomDBEngineVersionProperties
 ### Properties
-* **DatabaseInstallationFilesS3BucketName**: string (Required): The name of an Amazon S3 bucket that contains database installation files for your CEV. For example, a valid bucket name is `my-custom-installation-files`.
+* **DatabaseInstallationFilesS3BucketName**: string: The name of an Amazon S3 bucket that contains database installation files for your CEV. For example, a valid bucket name is `my-custom-installation-files`.
 * **DatabaseInstallationFilesS3Prefix**: string: The Amazon S3 directory that contains the database installation files for your CEV. For example, a valid bucket name is `123456789012/cev1`. If this setting isn't specified, no prefix is assumed.
 * **DBEngineVersionArn**: string (ReadOnly): The ARN of the custom engine version.
 * **Description**: string: An optional description of your CEV.
 * **Engine**: string (Required, Identifier): The database engine to use for your custom engine version (CEV). The only supported value is `custom-oracle-ee`.
 * **EngineVersion**: string (Required, Identifier): The name of your CEV. The name format is 19.customized_string . For example, a valid name is 19.my_cev1. This setting is required for RDS Custom for Oracle, but optional for Amazon RDS. The combination of Engine and EngineVersion is unique per customer per Region.
+* **ImageId**: string: The identifier of Amazon Machine Image (AMI) used for CEV.
 * **KMSKeyId**: string: The AWS KMS key identifier for an encrypted CEV. A symmetric KMS key is required for RDS Custom, but optional for Amazon RDS.
 * **Manifest**: string (WriteOnly): The CEV manifest, which is a JSON document that describes the installation .zip files stored in Amazon S3. Specify the name/value pairs in a file or a quoted string. RDS Custom applies the patches in the order in which they are listed.
+* **SourceCustomDbEngineVersionIdentifier**: string (WriteOnly): The identifier of the source custom engine version.
 * **Status**: string: The availability status to be assigned to the CEV.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **UseAwsProvidedLatestImage**: bool (WriteOnly): A value that indicates whether AWS provided latest image is applied automatically to the Custom Engine Version. By default, AWS provided latest image is applied automatically. This value is only applied on create.
 
 ## AWS.RDS/DBClusterParameterGroupProperties
 ### Properties

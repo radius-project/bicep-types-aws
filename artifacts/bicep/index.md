@@ -299,6 +299,12 @@
 ### aws.bedrock/agentalias
 * **Link**: [default](aws/aws.bedrock/default/types.md#resource-awsbedrockagentaliasdefault)
 
+### aws.bedrock/datasource
+* **Link**: [default](aws/aws.bedrock/default/types.md#resource-awsbedrockdatasourcedefault)
+
+### aws.bedrock/knowledgebase
+* **Link**: [default](aws/aws.bedrock/default/types.md#resource-awsbedrockknowledgebasedefault)
+
 ## aws.budgets
 ### aws.budgets/budgetsaction
 * **Link**: [default](aws/aws.budgets/default/types.md#resource-awsbudgetsbudgetsactiondefault)
@@ -346,6 +352,10 @@
 
 ### aws.cleanrooms/membership
 * **Link**: [default](aws/aws.cleanrooms/default/types.md#resource-awscleanroomsmembershipdefault)
+
+## aws.cleanroomsml
+### aws.cleanroomsml/trainingdataset
+* **Link**: [default](aws/aws.cleanroomsml/default/types.md#resource-awscleanroomsmltrainingdatasetdefault)
 
 ## aws.cloudformation
 ### aws.cloudformation/hookdefaultversion
@@ -708,6 +718,22 @@
 
 ### aws.datazone/subscriptiontarget
 * **Link**: [default](aws/aws.datazone/default/types.md#resource-awsdatazonesubscriptiontargetdefault)
+
+## aws.deadline
+### aws.deadline/farm
+* **Link**: [default](aws/aws.deadline/default/types.md#resource-awsdeadlinefarmdefault)
+
+### aws.deadline/fleet
+* **Link**: [default](aws/aws.deadline/default/types.md#resource-awsdeadlinefleetdefault)
+
+### aws.deadline/queue
+* **Link**: [default](aws/aws.deadline/default/types.md#resource-awsdeadlinequeuedefault)
+
+### aws.deadline/queueenvironment
+* **Link**: [default](aws/aws.deadline/default/types.md#resource-awsdeadlinequeueenvironmentdefault)
+
+### aws.deadline/storageprofile
+* **Link**: [default](aws/aws.deadline/default/types.md#resource-awsdeadlinestorageprofiledefault)
 
 ## aws.detective
 ### aws.detective/graph
@@ -1091,8 +1117,14 @@
 ### aws.entityresolution/idmappingworkflow
 * **Link**: [default](aws/aws.entityresolution/default/types.md#resource-awsentityresolutionidmappingworkflowdefault)
 
+### aws.entityresolution/idnamespace
+* **Link**: [default](aws/aws.entityresolution/default/types.md#resource-awsentityresolutionidnamespacedefault)
+
 ### aws.entityresolution/matchingworkflow
 * **Link**: [default](aws/aws.entityresolution/default/types.md#resource-awsentityresolutionmatchingworkflowdefault)
+
+### aws.entityresolution/policystatement
+* **Link**: [default](aws/aws.entityresolution/default/types.md#resource-awsentityresolutionpolicystatementdefault)
 
 ### aws.entityresolution/schemamapping
 * **Link**: [default](aws/aws.entityresolution/default/types.md#resource-awsentityresolutionschemamappingdefault)
@@ -1513,14 +1545,23 @@
 ### aws.ivs/channel
 * **Link**: [default](aws/aws.ivs/default/types.md#resource-awsivschanneldefault)
 
+### aws.ivs/encoderconfiguration
+* **Link**: [default](aws/aws.ivs/default/types.md#resource-awsivsencoderconfigurationdefault)
+
 ### aws.ivs/playbackkeypair
 * **Link**: [default](aws/aws.ivs/default/types.md#resource-awsivsplaybackkeypairdefault)
+
+### aws.ivs/playbackrestrictionpolicy
+* **Link**: [default](aws/aws.ivs/default/types.md#resource-awsivsplaybackrestrictionpolicydefault)
 
 ### aws.ivs/recordingconfiguration
 * **Link**: [default](aws/aws.ivs/default/types.md#resource-awsivsrecordingconfigurationdefault)
 
 ### aws.ivs/stage
 * **Link**: [default](aws/aws.ivs/default/types.md#resource-awsivsstagedefault)
+
+### aws.ivs/storageconfiguration
+* **Link**: [default](aws/aws.ivs/default/types.md#resource-awsivsstorageconfigurationdefault)
 
 ### aws.ivs/streamkey
 * **Link**: [default](aws/aws.ivs/default/types.md#resource-awsivsstreamkeydefault)
@@ -2376,6 +2417,9 @@
 
 ### aws.securityhub/hub
 * **Link**: [default](aws/aws.securityhub/default/types.md#resource-awssecurityhubhubdefault)
+
+### aws.securityhub/insight
+* **Link**: [default](aws/aws.securityhub/default/types.md#resource-awssecurityhubinsightdefault)
 
 ### aws.securityhub/standard
 * **Link**: [default](aws/aws.securityhub/default/types.md#resource-awssecurityhubstandarddefault)
