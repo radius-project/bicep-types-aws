@@ -1,13 +1,59 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaConnect-FlowOutput",
   "type": "AWS::MediaConnect::FlowOutput",
-  "time": "2023-10-19T21:14:53.093Z",
+  "time": "2024-05-28T21:32:29.51Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name"
     ],
     "definitions": {
+      "DestinationConfiguration": {
+        "additionalProperties": false,
+        "description": "The definition of a media stream that is associated with the output.",
+        "properties": {
+          "DestinationIp": {
+            "description": "The IP address where contents of the media stream will be sent.",
+            "type": "string"
+          },
+          "DestinationPort": {
+            "description": "The port to use when the content of the media stream is distributed to the output.",
+            "type": "integer"
+          },
+          "Interface": {
+            "$ref": "#/definitions/Interface",
+            "description": "The VPC interface that is used for the media stream associated with the output."
+          }
+        },
+        "required": [
+          "DestinationIp",
+          "DestinationPort",
+          "Interface"
+        ],
+        "type": "object"
+      },
+      "EncodingParameters": {
+        "additionalProperties": false,
+        "description": "A collection of parameters that determine how MediaConnect will convert the content. These fields only apply to outputs on flows that have a CDI source.",
+        "properties": {
+          "CompressionFactor": {
+            "description": "A value that is used to calculate compression for an output. The bitrate of the output is calculated as follows: Output bitrate = (1 / compressionFactor) * (source bitrate) This property only applies to outputs that use the ST 2110 JPEG XS protocol, with a flow source that uses the CDI protocol. Valid values are in the range of 3.0 to 10.0, inclusive.",
+            "type": "number"
+          },
+          "EncoderProfile": {
+            "description": "A setting on the encoder that drives compression settings. This property only applies to video media streams associated with outputs that use the ST 2110 JPEG XS protocol, with a flow source that uses the CDI protocol.",
+            "enum": [
+              "main",
+              "high"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "CompressionFactor"
+        ],
+        "type": "object"
+      },
       "Encryption": {
         "additionalProperties": false,
         "description": "Information about the encryption of the flow.",
@@ -42,6 +88,56 @@
         "required": [
           "RoleArn",
           "SecretArn"
+        ],
+        "type": "object"
+      },
+      "Interface": {
+        "additionalProperties": false,
+        "description": "The VPC interface that you want to use for the media stream associated with the output.",
+        "properties": {
+          "Name": {
+            "description": "The name of the VPC interface that you want to use for the media stream associated with the output.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name"
+        ],
+        "type": "object"
+      },
+      "MediaStreamOutputConfiguration": {
+        "additionalProperties": false,
+        "description": "The media stream that is associated with the output, and the parameters for that association.",
+        "properties": {
+          "DestinationConfigurations": {
+            "description": "The media streams that you want to associate with the output.",
+            "items": {
+              "$ref": "#/definitions/DestinationConfiguration"
+            },
+            "type": "array"
+          },
+          "EncodingName": {
+            "description": "The format that will be used to encode the data. For ancillary data streams, set the encoding name to smpte291. For audio streams, set the encoding name to pcm. For video streams on sources or outputs that use the CDI protocol, set the encoding name to raw. For video streams on sources or outputs that use the ST 2110 JPEG XS protocol, set the encoding name to jxsv.",
+            "enum": [
+              "jxsv",
+              "raw",
+              "smpte291",
+              "pcm"
+            ],
+            "type": "string"
+          },
+          "EncodingParameters": {
+            "$ref": "#/definitions/EncodingParameters",
+            "description": "A collection of parameters that determine how MediaConnect will convert the content. These fields only apply to outputs on flows that have a CDI source."
+          },
+          "MediaStreamName": {
+            "description": "A name that helps you distinguish one media stream from another.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "EncodingName",
+          "MediaStreamName"
         ],
         "type": "object"
       },
@@ -119,6 +215,13 @@
         "description": "The maximum latency in milliseconds. This parameter applies only to RIST-based and Zixi-based streams.",
         "type": "integer"
       },
+      "MediaStreamOutputConfigurations": {
+        "description": "The definition for each media stream that is associated with the output.",
+        "items": {
+          "$ref": "#/definitions/MediaStreamOutputConfiguration"
+        },
+        "type": "array"
+      },
       "MinLatency": {
         "description": "The minimum latency in milliseconds.",
         "type": "integer"
@@ -145,7 +248,9 @@
           "rist",
           "fujitsu-qos",
           "srt-listener",
-          "srt-caller"
+          "srt-caller",
+          "st2110-jpegxs",
+          "cdi"
         ],
         "type": "string"
       },

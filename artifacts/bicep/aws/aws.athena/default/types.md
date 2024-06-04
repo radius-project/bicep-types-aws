@@ -3,30 +3,34 @@
 ## Resource AWS.Athena/CapacityReservation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Athena/CapacityReservationProperties](#awsathenacapacityreservationproperties) (Required): properties of the resource
+* **properties**: [AWS.Athena/CapacityReservationProperties](#awsathenacapacityreservationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Athena/DataCatalog@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Athena/DataCatalogProperties](#awsathenadatacatalogproperties) (Required): properties of the resource
+* **properties**: [AWS.Athena/DataCatalogProperties](#awsathenadatacatalogproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Athena/PreparedStatement@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Athena/PreparedStatementProperties](#awsathenapreparedstatementproperties) (Required): properties of the resource
+* **properties**: [AWS.Athena/PreparedStatementProperties](#awsathenapreparedstatementproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Athena/WorkGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Athena/WorkGroupProperties](#awsathenaworkgroupproperties) (Required): properties of the resource
+* **properties**: [AWS.Athena/WorkGroupProperties](#awsathenaworkgroupproperties) (Required, Identifier): properties of the resource
+
+## AclConfiguration
+### Properties
+* **S3AclOption**: string (Required)
 
 ## AWS.Athena/CapacityReservationProperties
 ### Properties
@@ -40,19 +44,6 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TargetDpus**: int (Required): The number of DPUs to request to be allocated to the reservation.
 
-## CapacityAssignmentConfiguration
-### Properties
-* **CapacityAssignments**: [CapacityAssignment](#capacityassignment)[] (Required)
-
-## CapacityAssignment
-### Properties
-* **WorkgroupNames**: string[] (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.Athena/DataCatalogProperties
 ### Properties
 * **Description**: string: A description of the data catalog to be created. 
@@ -60,14 +51,6 @@
 * **Parameters**: [DataCatalog_Parameters](#datacatalogparameters): Specifies the Lambda function or functions to use for creating the data catalog. This is a mapping whose values depend on the catalog type. 
 * **Tags**: [Tag](#tag)[]: A list of comma separated tags to add to the data catalog that is created. 
 * **Type**: string (Required): The type of data catalog to create: LAMBDA for a federated catalog, GLUE for AWS Glue Catalog, or HIVE for an external hive metastore. 
-
-## DataCatalog_Parameters
-### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 
 ## AWS.Athena/PreparedStatementProperties
 ### Properties
@@ -87,6 +70,59 @@
 * **WorkGroupConfiguration**: [WorkGroupConfiguration](#workgroupconfiguration): The workgroup configuration
 * **WorkGroupConfigurationUpdates**: [WorkGroupConfigurationUpdates](#workgroupconfigurationupdates) (WriteOnly): The workgroup configuration update object
 
+## CapacityAssignment
+### Properties
+* **WorkgroupNames**: string[] (Required)
+
+## CapacityAssignmentConfiguration
+### Properties
+* **CapacityAssignments**: [CapacityAssignment](#capacityassignment)[] (Required)
+
+## CustomerContentEncryptionConfiguration
+### Properties
+* **KmsKey**: string (Required)
+
+## DataCatalog_Parameters
+### Properties
+
+## EncryptionConfiguration
+### Properties
+* **EncryptionOption**: string (Required)
+* **KmsKey**: string
+
+## EngineVersion
+### Properties
+* **EffectiveEngineVersion**: string (ReadOnly)
+* **SelectedEngineVersion**: string
+
+## ResultConfiguration
+### Properties
+* **AclConfiguration**: [AclConfiguration](#aclconfiguration)
+* **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
+* **ExpectedBucketOwner**: string
+* **OutputLocation**: string
+
+## ResultConfigurationUpdates
+### Properties
+* **AclConfiguration**: [AclConfiguration](#aclconfiguration)
+* **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
+* **ExpectedBucketOwner**: string
+* **OutputLocation**: string
+* **RemoveAclConfiguration**: bool
+* **RemoveEncryptionConfiguration**: bool
+* **RemoveExpectedBucketOwner**: bool
+* **RemoveOutputLocation**: bool
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
 ## Tag
 ### Properties
 * **Key**: string (Required)
@@ -104,31 +140,6 @@
 * **RequesterPaysEnabled**: bool
 * **ResultConfiguration**: [ResultConfiguration](#resultconfiguration)
 
-## CustomerContentEncryptionConfiguration
-### Properties
-* **KmsKey**: string (Required)
-
-## EngineVersion
-### Properties
-* **EffectiveEngineVersion**: string (ReadOnly)
-* **SelectedEngineVersion**: string
-
-## ResultConfiguration
-### Properties
-* **AclConfiguration**: [AclConfiguration](#aclconfiguration)
-* **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
-* **ExpectedBucketOwner**: string
-* **OutputLocation**: string
-
-## AclConfiguration
-### Properties
-* **S3AclOption**: string (Required)
-
-## EncryptionConfiguration
-### Properties
-* **EncryptionOption**: string (Required)
-* **KmsKey**: string
-
 ## WorkGroupConfigurationUpdates
 ### Properties
 * **AdditionalConfiguration**: string
@@ -142,15 +153,4 @@
 * **RemoveCustomerContentEncryptionConfiguration**: bool
 * **RequesterPaysEnabled**: bool
 * **ResultConfigurationUpdates**: [ResultConfigurationUpdates](#resultconfigurationupdates)
-
-## ResultConfigurationUpdates
-### Properties
-* **AclConfiguration**: [AclConfiguration](#aclconfiguration)
-* **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
-* **ExpectedBucketOwner**: string
-* **OutputLocation**: string
-* **RemoveAclConfiguration**: bool
-* **RemoveEncryptionConfiguration**: bool
-* **RemoveExpectedBucketOwner**: bool
-* **RemoveOutputLocation**: bool
 

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ApiGateway-RestApi",
   "type": "AWS::ApiGateway::RestApi",
-  "time": "2023-12-01T18:14:35.586Z",
+  "time": "2024-05-23T15:40:22.846Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -20,6 +20,10 @@
           "VpcEndpointIds": {
             "description": "A list of VpcEndpointIds of an API (RestApi) against which to create Route53 ALIASes. It is only supported for ``PRIVATE`` endpoint type.",
             "items": {
+              "relationshipRef": {
+                "propertyPath": "/properties/Id",
+                "typeName": "AWS::EC2::VPCEndpoint"
+              },
               "type": "string"
             },
             "type": "array",
@@ -34,6 +38,10 @@
         "properties": {
           "Bucket": {
             "description": "The name of the S3 bucket where the OpenAPI file is stored.",
+            "relationshipRef": {
+              "propertyPath": "/properties/BucketName",
+              "typeName": "AWS::S3::Bucket"
+            },
             "type": "string"
           },
           "ETag": {
@@ -212,6 +220,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "apigateway:PUT",
+        "apigateway:DELETE",
+        "apigateway:GET"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

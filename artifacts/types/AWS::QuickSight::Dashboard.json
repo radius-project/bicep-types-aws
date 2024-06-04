@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-Dashboard",
   "type": "AWS::QuickSight::Dashboard",
-  "time": "2024-01-04T17:31:33.29Z",
+  "time": "2024-05-23T15:50:55.112Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -11,6 +11,7 @@
     "definitions": {
       "AdHocFilteringOption": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eAn ad hoc (one-time) filtering option.\u003c/p\u003e",
         "properties": {
           "AvailabilityStatus": {
             "$ref": "#/definitions/DashboardBehavior"
@@ -526,7 +527,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -589,7 +590,7 @@
           "SectionId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Style": {
@@ -765,7 +766,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -935,10 +936,13 @@
           "Configuration": {
             "$ref": "#/definitions/CategoryFilterConfiguration"
           },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          },
           "FilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -1332,7 +1336,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -1614,7 +1618,7 @@
             "type": "string"
           },
           "Symbol": {
-            "pattern": "[A-Z]{3}",
+            "pattern": "^[A-Z]{3}$",
             "type": "string"
           }
         },
@@ -1762,7 +1766,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -1908,15 +1912,18 @@
       },
       "DashboardError": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eDashboard error.\u003c/p\u003e",
         "properties": {
           "Message": {
-            "pattern": ".*\\S.*",
+            "description": "\u003cp\u003eMessage.\u003c/p\u003e",
+            "pattern": "\\S",
             "type": "string"
           },
           "Type": {
             "$ref": "#/definitions/DashboardErrorType"
           },
           "ViolatedEntities": {
+            "description": "\u003cp\u003eLists the violated entities that caused the dashboard error.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/Entity"
             },
@@ -1944,6 +1951,7 @@
       },
       "DashboardPublishOptions": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eDashboard publish options.\u003c/p\u003e",
         "properties": {
           "AdHocFilteringOption": {
             "$ref": "#/definitions/AdHocFilteringOption"
@@ -1983,6 +1991,7 @@
       },
       "DashboardSourceEntity": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eDashboard source entity.\u003c/p\u003e",
         "properties": {
           "SourceTemplate": {
             "$ref": "#/definitions/DashboardSourceTemplate"
@@ -1992,11 +2001,14 @@
       },
       "DashboardSourceTemplate": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eDashboard source template.\u003c/p\u003e",
         "properties": {
           "Arn": {
+            "description": "\u003cp\u003eThe Amazon Resource Name (ARN) of the resource.\u003c/p\u003e",
             "type": "string"
           },
           "DataSetReferences": {
+            "description": "\u003cp\u003eDataset references.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/DataSetReference"
             },
@@ -2019,15 +2031,19 @@
       },
       "DashboardVersion": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eDashboard version.\u003c/p\u003e",
         "properties": {
           "Arn": {
+            "description": "\u003cp\u003eThe Amazon Resource Name (ARN) of the resource.\u003c/p\u003e",
             "type": "string"
           },
           "CreatedTime": {
+            "description": "\u003cp\u003eThe time that this dashboard version was created.\u003c/p\u003e",
             "format": "date-time",
             "type": "string"
           },
           "DataSetArns": {
+            "description": "\u003cp\u003eThe Amazon Resource Numbers (ARNs) for the datasets that are associated with this\n            version of the dashboard.\u003c/p\u003e",
             "items": {
               "type": "string"
             },
@@ -2036,11 +2052,13 @@
             "type": "array"
           },
           "Description": {
+            "description": "\u003cp\u003eDescription.\u003c/p\u003e",
             "maxLength": 512,
             "minLength": 1,
             "type": "string"
           },
           "Errors": {
+            "description": "\u003cp\u003eErrors associated with this dashboard version.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/DashboardError"
             },
@@ -2048,6 +2066,7 @@
             "type": "array"
           },
           "Sheets": {
+            "description": "\u003cp\u003eA list of the associated sheets with the unique identifier and name of each sheet.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/Sheet"
             },
@@ -2056,15 +2075,18 @@
             "type": "array"
           },
           "SourceEntityArn": {
+            "description": "\u003cp\u003eSource entity ARN.\u003c/p\u003e",
             "type": "string"
           },
           "Status": {
             "$ref": "#/definitions/ResourceStatus"
           },
           "ThemeArn": {
+            "description": "\u003cp\u003eThe ARN of the theme associated with a version of the dashboard.\u003c/p\u003e",
             "type": "string"
           },
           "VersionNumber": {
+            "description": "\u003cp\u003eVersion number for this version of the dashboard.\u003c/p\u003e",
             "minimum": 1,
             "type": "number"
           }
@@ -2089,7 +2111,7 @@
             "items": {
               "$ref": "#/definitions/ColumnConfiguration"
             },
-            "maxItems": 200,
+            "maxItems": 2000,
             "minItems": 0,
             "type": "array"
           },
@@ -2136,6 +2158,7 @@
       },
       "DashboardVisualPublishOptions": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe visual publish options of a visual in a dashboard\u003c/p\u003e",
         "properties": {
           "ExportHiddenFieldsOption": {
             "$ref": "#/definitions/ExportHiddenFieldsOption"
@@ -2382,6 +2405,7 @@
       },
       "DataPointDrillUpDownOption": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe drill down options for data points in a dashbaord.\u003c/p\u003e",
         "properties": {
           "AvailabilityStatus": {
             "$ref": "#/definitions/DashboardBehavior"
@@ -2391,6 +2415,7 @@
       },
       "DataPointMenuLabelOption": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe data point menu options of a dashboard.\u003c/p\u003e",
         "properties": {
           "AvailabilityStatus": {
             "$ref": "#/definitions/DashboardBehavior"
@@ -2400,6 +2425,7 @@
       },
       "DataPointTooltipOption": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe data point tooltip options.\u003c/p\u003e",
         "properties": {
           "AvailabilityStatus": {
             "$ref": "#/definitions/DashboardBehavior"
@@ -2427,12 +2453,15 @@
       },
       "DataSetReference": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eDataset reference.\u003c/p\u003e",
         "properties": {
           "DataSetArn": {
+            "description": "\u003cp\u003eDataset Amazon Resource Name (ARN).\u003c/p\u003e",
             "type": "string"
           },
           "DataSetPlaceholder": {
-            "pattern": ".*\\S.*",
+            "description": "\u003cp\u003eDataset placeholder.\u003c/p\u003e",
+            "pattern": "\\S",
             "type": "string"
           }
         },
@@ -2575,12 +2604,15 @@
       },
       "DateTimeParameter": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eA date-time parameter.\u003c/p\u003e",
         "properties": {
           "Name": {
-            "pattern": ".*\\S.*",
+            "description": "\u003cp\u003eA display name for the date-time parameter.\u003c/p\u003e",
+            "pattern": "\\S",
             "type": "string"
           },
           "Values": {
+            "description": "\u003cp\u003eThe values for the date-time parameter.\u003c/p\u003e",
             "items": {
               "type": "string"
             },
@@ -2686,12 +2718,15 @@
       },
       "DecimalParameter": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eA decimal parameter.\u003c/p\u003e",
         "properties": {
           "Name": {
-            "pattern": ".*\\S.*",
+            "description": "\u003cp\u003eA display name for the decimal parameter.\u003c/p\u003e",
+            "pattern": "\\S",
             "type": "string"
           },
           "Values": {
+            "description": "\u003cp\u003eThe values for the decimal parameter.\u003c/p\u003e",
             "items": {
               "default": 0,
               "type": "number"
@@ -2765,6 +2800,93 @@
         },
         "type": "object"
       },
+      "DefaultDateTimePickerControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DisplayOptions": {
+            "$ref": "#/definitions/DateTimePickerControlDisplayOptions"
+          },
+          "Type": {
+            "$ref": "#/definitions/SheetControlDateTimePickerType"
+          }
+        },
+        "type": "object"
+      },
+      "DefaultFilterControlConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "ControlOptions": {
+            "$ref": "#/definitions/DefaultFilterControlOptions"
+          },
+          "Title": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "ControlOptions",
+          "Title"
+        ],
+        "type": "object"
+      },
+      "DefaultFilterControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DefaultDateTimePickerOptions": {
+            "$ref": "#/definitions/DefaultDateTimePickerControlOptions"
+          },
+          "DefaultDropdownOptions": {
+            "$ref": "#/definitions/DefaultFilterDropDownControlOptions"
+          },
+          "DefaultListOptions": {
+            "$ref": "#/definitions/DefaultFilterListControlOptions"
+          },
+          "DefaultRelativeDateTimeOptions": {
+            "$ref": "#/definitions/DefaultRelativeDateTimeControlOptions"
+          },
+          "DefaultSliderOptions": {
+            "$ref": "#/definitions/DefaultSliderControlOptions"
+          },
+          "DefaultTextAreaOptions": {
+            "$ref": "#/definitions/DefaultTextAreaControlOptions"
+          },
+          "DefaultTextFieldOptions": {
+            "$ref": "#/definitions/DefaultTextFieldControlOptions"
+          }
+        },
+        "type": "object"
+      },
+      "DefaultFilterDropDownControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DisplayOptions": {
+            "$ref": "#/definitions/DropDownControlDisplayOptions"
+          },
+          "SelectableValues": {
+            "$ref": "#/definitions/FilterSelectableValues"
+          },
+          "Type": {
+            "$ref": "#/definitions/SheetControlListType"
+          }
+        },
+        "type": "object"
+      },
+      "DefaultFilterListControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DisplayOptions": {
+            "$ref": "#/definitions/ListControlDisplayOptions"
+          },
+          "SelectableValues": {
+            "$ref": "#/definitions/FilterSelectableValues"
+          },
+          "Type": {
+            "$ref": "#/definitions/SheetControlListType"
+          }
+        },
+        "type": "object"
+      },
       "DefaultFreeFormLayoutConfiguration": {
         "additionalProperties": false,
         "properties": {
@@ -2825,6 +2947,15 @@
         },
         "type": "object"
       },
+      "DefaultRelativeDateTimeControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DisplayOptions": {
+            "$ref": "#/definitions/RelativeDateTimeControlDisplayOptions"
+          }
+        },
+        "type": "object"
+      },
       "DefaultSectionBasedLayoutConfiguration": {
         "additionalProperties": false,
         "properties": {
@@ -2835,6 +2966,58 @@
         "required": [
           "CanvasSizeOptions"
         ],
+        "type": "object"
+      },
+      "DefaultSliderControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DisplayOptions": {
+            "$ref": "#/definitions/SliderControlDisplayOptions"
+          },
+          "MaximumValue": {
+            "default": 0,
+            "type": "number"
+          },
+          "MinimumValue": {
+            "default": 0,
+            "type": "number"
+          },
+          "StepSize": {
+            "default": 0,
+            "type": "number"
+          },
+          "Type": {
+            "$ref": "#/definitions/SheetControlSliderType"
+          }
+        },
+        "required": [
+          "MaximumValue",
+          "MinimumValue",
+          "StepSize"
+        ],
+        "type": "object"
+      },
+      "DefaultTextAreaControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "Delimiter": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          },
+          "DisplayOptions": {
+            "$ref": "#/definitions/TextAreaControlDisplayOptions"
+          }
+        },
+        "type": "object"
+      },
+      "DefaultTextFieldControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DisplayOptions": {
+            "$ref": "#/definitions/TextFieldControlDisplayOptions"
+          }
+        },
         "type": "object"
       },
       "DestinationParameterValueConfiguration": {
@@ -2963,7 +3146,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -2977,7 +3160,7 @@
         "additionalProperties": false,
         "properties": {
           "Path": {
-            "pattern": ".*\\S.*",
+            "pattern": "\\S",
             "type": "string"
           }
         },
@@ -3036,6 +3219,7 @@
       },
       "ExportHiddenFieldsOption": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eDetermines if hidden fields are included in an exported dashboard.\u003c/p\u003e",
         "properties": {
           "AvailabilityStatus": {
             "$ref": "#/definitions/DashboardBehavior"
@@ -3045,6 +3229,7 @@
       },
       "ExportToCSVOption": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eExport to .csv option.\u003c/p\u003e",
         "properties": {
           "AvailabilityStatus": {
             "$ref": "#/definitions/DashboardBehavior"
@@ -3054,6 +3239,7 @@
       },
       "ExportWithHiddenFieldsOption": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eDetermines whether or not hidden fields are visible on exported dashbaords.\u003c/p\u003e",
         "properties": {
           "AvailabilityStatus": {
             "$ref": "#/definitions/DashboardBehavior"
@@ -3315,7 +3501,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -3354,6 +3540,9 @@
       "FilterControl": {
         "additionalProperties": false,
         "properties": {
+          "CrossSheet": {
+            "$ref": "#/definitions/FilterCrossSheetControl"
+          },
           "DateTimePicker": {
             "$ref": "#/definitions/FilterDateTimePickerControl"
           },
@@ -3378,6 +3567,31 @@
         },
         "type": "object"
       },
+      "FilterCrossSheetControl": {
+        "additionalProperties": false,
+        "properties": {
+          "CascadingControlConfiguration": {
+            "$ref": "#/definitions/CascadingControlConfiguration"
+          },
+          "FilterControlId": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[\\w\\-]+$",
+            "type": "string"
+          },
+          "SourceFilterId": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[\\w\\-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "FilterControlId",
+          "SourceFilterId"
+        ],
+        "type": "object"
+      },
       "FilterDateTimePickerControl": {
         "additionalProperties": false,
         "properties": {
@@ -3387,13 +3601,13 @@
           "FilterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceFilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Title": {
@@ -3424,7 +3638,7 @@
           "FilterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SelectableValues": {
@@ -3433,7 +3647,7 @@
           "SourceFilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Title": {
@@ -3461,7 +3675,7 @@
           "FilterGroupId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Filters": {
@@ -3527,7 +3741,7 @@
           "FilterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SelectableValues": {
@@ -3536,7 +3750,7 @@
           "SourceFilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Title": {
@@ -3567,6 +3781,7 @@
         "additionalProperties": false,
         "properties": {
           "SelectedColumns": {
+            "description": "\u003cp\u003eThe selected columns of a dataset.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/ColumnIdentifier"
             },
@@ -3608,13 +3823,13 @@
           "FilterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceFilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Title": {
@@ -3665,7 +3880,7 @@
           "FilterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "MaximumValue": {
@@ -3679,7 +3894,7 @@
           "SourceFilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "StepSize": {
@@ -3719,13 +3934,13 @@
           "FilterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceFilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Title": {
@@ -3750,13 +3965,13 @@
           "FilterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceFilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Title": {
@@ -3846,7 +4061,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "CustomSeasonalityValue": {
@@ -3983,7 +4198,7 @@
           "ElementId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "ElementType": {
@@ -4233,7 +4448,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -4379,7 +4594,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -4562,7 +4777,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -4698,7 +4913,7 @@
           "ElementId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "ElementType": {
@@ -4745,7 +4960,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -4778,7 +4993,7 @@
           "SectionId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Style": {
@@ -4919,7 +5134,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -5030,7 +5245,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -5124,7 +5339,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -5153,12 +5368,15 @@
       },
       "IntegerParameter": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eAn integer parameter.\u003c/p\u003e",
         "properties": {
           "Name": {
-            "pattern": ".*\\S.*",
+            "description": "\u003cp\u003eThe name of the integer parameter.\u003c/p\u003e",
+            "pattern": "\\S",
             "type": "string"
           },
           "Values": {
+            "description": "\u003cp\u003eThe values for the integer parameter.\u003c/p\u003e",
             "items": {
               "default": 0,
               "type": "number"
@@ -5463,7 +5681,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -5676,7 +5894,7 @@
             "items": {
               "$ref": "#/definitions/SeriesItem"
             },
-            "maxItems": 10,
+            "maxItems": 2000,
             "minItems": 0,
             "type": "array"
           },
@@ -5867,7 +6085,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -5966,7 +6184,7 @@
           "TargetSheetId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -6034,7 +6252,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -6087,7 +6305,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "FromValue": {
@@ -6256,10 +6474,13 @@
           "Column": {
             "$ref": "#/definitions/ColumnIdentifier"
           },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          },
           "FilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "MatchOperator": {
@@ -6327,10 +6548,13 @@
           "Column": {
             "$ref": "#/definitions/ColumnIdentifier"
           },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          },
           "FilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "IncludeMaximum": {
@@ -6600,7 +6824,7 @@
           "ParameterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceParameterName": {
@@ -6652,7 +6876,7 @@
           "ParameterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SelectableValues": {
@@ -6692,7 +6916,7 @@
           "ParameterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SelectableValues": {
@@ -6754,7 +6978,7 @@
           "ParameterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceParameterName": {
@@ -6797,7 +7021,7 @@
           "ParameterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceParameterName": {
@@ -6828,7 +7052,7 @@
           "ParameterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceParameterName": {
@@ -6859,8 +7083,10 @@
       },
       "Parameters": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eA list of Amazon QuickSight parameters and the list's override values.\u003c/p\u003e",
         "properties": {
           "DateTimeParameters": {
+            "description": "\u003cp\u003eThe parameters that have a data type of date-time.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/DateTimeParameter"
             },
@@ -6869,6 +7095,7 @@
             "type": "array"
           },
           "DecimalParameters": {
+            "description": "\u003cp\u003eThe parameters that have a data type of decimal.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/DecimalParameter"
             },
@@ -6877,6 +7104,7 @@
             "type": "array"
           },
           "IntegerParameters": {
+            "description": "\u003cp\u003eThe parameters that have a data type of integer.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/IntegerParameter"
             },
@@ -6885,6 +7113,7 @@
             "type": "array"
           },
           "StringParameters": {
+            "description": "\u003cp\u003eThe parameters that have a data type of string.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/StringParameter"
             },
@@ -6958,7 +7187,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -6982,7 +7211,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -7145,7 +7374,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -7237,7 +7466,7 @@
             "items": {
               "$ref": "#/definitions/PivotTableConditionalFormattingOption"
             },
-            "maxItems": 100,
+            "maxItems": 500,
             "minItems": 0,
             "type": "array"
           }
@@ -7600,7 +7829,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -7878,7 +8107,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -7921,7 +8150,7 @@
         "additionalProperties": false,
         "properties": {
           "CustomLabel": {
-            "pattern": ".*\\S.*",
+            "pattern": "\\S",
             "type": "string"
           }
         },
@@ -8103,13 +8332,16 @@
           "Column": {
             "$ref": "#/definitions/ColumnIdentifier"
           },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          },
           "ExcludePeriodConfiguration": {
             "$ref": "#/definitions/ExcludePeriodConfiguration"
           },
           "FilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "MinimumGranularity": {
@@ -8164,8 +8396,10 @@
       },
       "ResourcePermission": {
         "additionalProperties": false,
+        "description": "\u003cp\u003ePermission for the resource.\u003c/p\u003e",
         "properties": {
           "Actions": {
+            "description": "\u003cp\u003eThe IAM action to grant or revoke permissions on.\u003c/p\u003e",
             "items": {
               "type": "string"
             },
@@ -8174,6 +8408,7 @@
             "type": "array"
           },
           "Principal": {
+            "description": "\u003cp\u003eThe Amazon Resource Name (ARN) of the principal. This can be one of the\n            following:\u003c/p\u003e\n         \u003cul\u003e\n            \u003cli\u003e\n               \u003cp\u003eThe ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)\u003c/p\u003e\n            \u003c/li\u003e\n            \u003cli\u003e\n               \u003cp\u003eThe ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)\u003c/p\u003e\n            \u003c/li\u003e\n            \u003cli\u003e\n               \u003cp\u003eThe ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight\n                    ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.\n                    (This is less common.) \u003c/p\u003e\n            \u003c/li\u003e\n         \u003c/ul\u003e",
             "maxLength": 256,
             "minLength": 1,
             "type": "string"
@@ -8247,7 +8482,7 @@
             "items": {
               "maxLength": 512,
               "minLength": 1,
-              "pattern": "[\\w\\-]+",
+              "pattern": "^[\\w\\-]+$",
               "type": "string"
             },
             "maxItems": 50,
@@ -8354,7 +8589,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -8531,7 +8766,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -8752,16 +8987,19 @@
       },
       "Sheet": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eA \u003ci\u003esheet\u003c/i\u003e, which is an object that contains a set of visuals that\n            are viewed together on one page in Amazon QuickSight. Every analysis and dashboard\n            contains at least one sheet. Each sheet contains at least one visualization widget, for\n            example a chart, pivot table, or narrative insight. Sheets can be associated with other\n            components, such as controls, filters, and so on.\u003c/p\u003e",
         "properties": {
           "Name": {
+            "description": "\u003cp\u003eThe name of a sheet. This name is displayed on the sheet's tab in the Amazon QuickSight\n            console.\u003c/p\u003e",
             "maxLength": 2048,
             "minLength": 1,
             "type": "string"
           },
           "SheetId": {
+            "description": "\u003cp\u003eThe unique identifier associated with a sheet.\u003c/p\u003e",
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -8832,6 +9070,7 @@
       },
       "SheetControlsOption": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eSheet controls option.\u003c/p\u003e",
         "properties": {
           "VisibilityState": {
             "$ref": "#/definitions/DashboardUIState"
@@ -8890,7 +9129,7 @@
           "SheetId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "TextBoxes": {
@@ -8949,6 +9188,7 @@
       },
       "SheetLayoutElementMaximizationOption": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe sheet layout maximization options of a dashbaord.\u003c/p\u003e",
         "properties": {
           "AvailabilityStatus": {
             "$ref": "#/definitions/DashboardBehavior"
@@ -8967,7 +9207,7 @@
           "SheetTextBoxId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -8985,14 +9225,14 @@
           "SheetId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "VisualIds": {
             "items": {
               "maxLength": 512,
               "minLength": 1,
-              "pattern": "[\\w\\-]+",
+              "pattern": "^[\\w\\-]+$",
               "type": "string"
             },
             "maxItems": 50,
@@ -9196,12 +9436,15 @@
       },
       "StringParameter": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eA string parameter.\u003c/p\u003e",
         "properties": {
           "Name": {
-            "pattern": ".*\\S.*",
+            "description": "\u003cp\u003eA display name for a string parameter.\u003c/p\u003e",
+            "pattern": "\\S",
             "type": "string"
           },
           "Values": {
+            "description": "\u003cp\u003eThe values of a string parameter.\u003c/p\u003e",
             "items": {
               "type": "string"
             },
@@ -9428,7 +9671,7 @@
             "items": {
               "$ref": "#/definitions/TableConditionalFormattingOption"
             },
-            "maxItems": 100,
+            "maxItems": 500,
             "minItems": 0,
             "type": "array"
           }
@@ -9808,7 +10051,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -9819,13 +10062,16 @@
       },
       "Tag": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe key or keys of the key-value pairs for the resource tag or tags assigned to the\n            resource.\u003c/p\u003e",
         "properties": {
           "Key": {
+            "description": "\u003cp\u003eTag key.\u003c/p\u003e",
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
           },
           "Value": {
+            "description": "\u003cp\u003eTag value.\u003c/p\u003e",
             "maxLength": 256,
             "minLength": 1,
             "type": "string"
@@ -9956,10 +10202,13 @@
           "Column": {
             "$ref": "#/definitions/ColumnIdentifier"
           },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          },
           "FilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "ParameterName": {
@@ -10031,13 +10280,16 @@
           "Column": {
             "$ref": "#/definitions/ColumnIdentifier"
           },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          },
           "ExcludePeriodConfiguration": {
             "$ref": "#/definitions/ExcludePeriodConfiguration"
           },
           "FilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "IncludeMaximum": {
@@ -10142,10 +10394,13 @@
           "Column": {
             "$ref": "#/definitions/ColumnIdentifier"
           },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          },
           "FilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Limit": {
@@ -10178,7 +10433,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "MoverSize": {
@@ -10218,7 +10473,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -10256,7 +10511,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -10447,7 +10702,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -10503,7 +10758,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -10517,6 +10772,7 @@
       },
       "ValidationStrategy": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe option to relax the validation that is required to create and update analyses, dashboards, and templates with definition objects. When you set this value to \u003ccode\u003eLENIENT\u003c/code\u003e, validation is skipped for specific errors.\u003c/p\u003e",
         "properties": {
           "Mode": {
             "$ref": "#/definitions/ValidationStrategyMode"
@@ -10664,7 +10920,7 @@
           "CustomActionId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -10793,6 +11049,15 @@
         },
         "type": "object"
       },
+      "WaterfallChartColorConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "GroupColorConfiguration": {
+            "$ref": "#/definitions/WaterfallChartGroupColorConfiguration"
+          }
+        },
+        "type": "object"
+      },
       "WaterfallChartConfiguration": {
         "additionalProperties": false,
         "properties": {
@@ -10801,6 +11066,9 @@
           },
           "CategoryAxisLabelOptions": {
             "$ref": "#/definitions/ChartAxisLabelOptions"
+          },
+          "ColorConfiguration": {
+            "$ref": "#/definitions/WaterfallChartColorConfiguration"
           },
           "DataLabels": {
             "$ref": "#/definitions/DataLabelOptions"
@@ -10834,6 +11102,24 @@
         "properties": {
           "WaterfallChartAggregatedFieldWells": {
             "$ref": "#/definitions/WaterfallChartAggregatedFieldWells"
+          }
+        },
+        "type": "object"
+      },
+      "WaterfallChartGroupColorConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "NegativeBarColor": {
+            "pattern": "^#[A-F0-9]{6}$",
+            "type": "string"
+          },
+          "PositiveBarColor": {
+            "pattern": "^#[A-F0-9]{6}$",
+            "type": "string"
+          },
+          "TotalBarColor": {
+            "pattern": "^#[A-F0-9]{6}$",
+            "type": "string"
           }
         },
         "type": "object"
@@ -10895,7 +11181,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -11082,7 +11368,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -11170,6 +11456,7 @@
           "quicksight:DescribeDashboard",
           "quicksight:DescribeDashboardPermissions",
           "quicksight:UpdateDashboard",
+          "quicksight:UpdateDashboardLinks",
           "quicksight:UpdateDashboardPermissions",
           "quicksight:UpdateDashboardPublishedVersion",
           "quicksight:DescribeTemplate",
@@ -11187,6 +11474,7 @@
     ],
     "properties": {
       "Arn": {
+        "description": "\u003cp\u003eThe Amazon Resource Name (ARN) of the resource.\u003c/p\u003e",
         "type": "string"
       },
       "AwsAccountId": {
@@ -11196,13 +11484,14 @@
         "type": "string"
       },
       "CreatedTime": {
+        "description": "\u003cp\u003eThe time that this dashboard was created.\u003c/p\u003e",
         "format": "date-time",
         "type": "string"
       },
       "DashboardId": {
         "maxLength": 512,
         "minLength": 1,
-        "pattern": "[\\w\\-]+",
+        "pattern": "^[\\w\\-]+$",
         "type": "string"
       },
       "DashboardPublishOptions": {
@@ -11212,12 +11501,25 @@
         "$ref": "#/definitions/DashboardVersionDefinition"
       },
       "LastPublishedTime": {
+        "description": "\u003cp\u003eThe last time that this dashboard was published.\u003c/p\u003e",
         "format": "date-time",
         "type": "string"
       },
       "LastUpdatedTime": {
+        "description": "\u003cp\u003eThe last time that this dashboard was updated.\u003c/p\u003e",
         "format": "date-time",
         "type": "string"
+      },
+      "LinkEntities": {
+        "items": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "pattern": "^arn:aws[\\w\\-]*:quicksight:[\\w\\-]+:\\d+:analysis/[\\w\\-]{1,512}$",
+          "type": "string"
+        },
+        "maxItems": 5,
+        "minItems": 0,
+        "type": "array"
       },
       "LinkSharingConfiguration": {
         "$ref": "#/definitions/LinkSharingConfiguration"

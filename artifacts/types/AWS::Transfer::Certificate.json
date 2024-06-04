@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Transfer-Certificate",
   "type": "AWS::Transfer::Certificate",
-  "time": "2024-01-03T14:25:17.86Z",
+  "time": "2024-05-10T13:35:35.428Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -84,14 +84,14 @@
         "description": "Specifies the certificate body to be imported.",
         "maxLength": 16384,
         "minLength": 1,
-        "pattern": "^[\t\n\r -ÿ]*",
+        "pattern": "^[\\t\\n\\r\\u0020-\\u00FF]+$",
         "type": "string"
       },
       "CertificateChain": {
         "description": "Specifies the certificate chain to be imported.",
         "maxLength": 2097152,
         "minLength": 1,
-        "pattern": "^[\t\n\r -ÿ]*",
+        "pattern": "^[\\t\\n\\r\\u0020-\\u00FF]+$",
         "type": "string"
       },
       "CertificateId": {
@@ -105,7 +105,7 @@
         "description": "A textual description for the certificate.",
         "maxLength": 200,
         "minLength": 1,
-        "pattern": "^[\\w\\- ]*$",
+        "pattern": "^[\\u0021-\\u007E]+$",
         "type": "string"
       },
       "InactiveDate": {
@@ -124,14 +124,14 @@
         "description": "Specifies the private key for the certificate.",
         "maxLength": 16384,
         "minLength": 1,
-        "pattern": "^[\t\n\r -ÿ]*",
+        "pattern": "^[\\t\\n\\r\\u0020-\\u00FF]+$",
         "type": "string"
       },
       "Serial": {
         "description": "Specifies Certificate's serial.",
         "maxLength": 48,
         "minLength": 0,
-        "pattern": "^[\\p{XDigit}{2}:?]*",
+        "pattern": "^[0-9a-fA-F{}:?]*$",
         "type": "string"
       },
       "Status": {
@@ -165,7 +165,8 @@
         "description": "Specifies the usage type for the certificate.",
         "enum": [
           "SIGNING",
-          "ENCRYPTION"
+          "ENCRYPTION",
+          "TLS"
         ],
         "type": "string"
       }

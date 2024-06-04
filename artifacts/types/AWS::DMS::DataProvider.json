@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DMS-DataProvider",
   "type": "AWS::DMS::DataProvider",
-  "time": "2023-12-14T05:32:52.489Z",
+  "time": "2024-05-30T04:57:48.146Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -14,8 +14,8 @@
         "enum": [
           "none",
           "require",
-          "verify_ca",
-          "verify_full"
+          "verify-ca",
+          "verify-full"
         ],
         "type": "string"
       },
@@ -120,7 +120,7 @@
       "Engine": {
         "description": "The property describes a data engine for the data provider.",
         "enum": [
-          "postgresql",
+          "postgres",
           "mysql",
           "oracle",
           "sqlserver",
@@ -135,137 +135,159 @@
         "type": "boolean"
       },
       "Settings": {
+        "additionalProperties": false,
+        "anyOf": [
+          {
+            "required": [
+              "PostgreSqlSettings"
+            ]
+          },
+          {
+            "required": [
+              "MySqlSettings"
+            ]
+          },
+          {
+            "required": [
+              "OracleSettings"
+            ]
+          },
+          {
+            "required": [
+              "MicrosoftSqlServerSettings"
+            ]
+          }
+        ],
         "description": "The property identifies the exact type of settings for the data provider.",
-        "oneOf": [
-          {
-            "additionalProperties": false,
-            "description": "PostgreSqlSettings property identifier.",
-            "properties": {
-              "PostgreSqlSettings": {
-                "additionalProperties": false,
-                "properties": {
-                  "CertificateArn": {
-                    "type": "string"
-                  },
-                  "DatabaseName": {
-                    "type": "string"
-                  },
-                  "Port": {
-                    "type": "integer"
-                  },
-                  "ServerName": {
-                    "type": "string"
-                  },
-                  "SslMode": {
-                    "$ref": "#/definitions/DmsSslModeValue",
-                    "type": "object"
-                  }
-                },
-                "type": "object"
-              }
-            },
-            "type": "object"
-          },
-          {
-            "additionalProperties": false,
-            "description": "MySqlSettings property identifier.",
-            "properties": {
-              "MySqlSettings": {
-                "additionalProperties": false,
-                "properties": {
-                  "CertificateArn": {
-                    "type": "string"
-                  },
-                  "Port": {
-                    "type": "integer"
-                  },
-                  "ServerName": {
-                    "type": "string"
-                  },
-                  "SslMode": {
-                    "$ref": "#/definitions/DmsSslModeValue",
-                    "type": "object"
-                  }
-                },
-                "type": "object"
-              }
-            },
-            "type": "object"
-          },
-          {
-            "additionalProperties": false,
-            "description": "OracleSettings property identifier.",
-            "properties": {
-              "OracleSettings": {
-                "additionalProperties": false,
-                "properties": {
-                  "AsmServer": {
-                    "type": "string"
-                  },
-                  "CertificateArn": {
-                    "type": "string"
-                  },
-                  "DatabaseName": {
-                    "type": "string"
-                  },
-                  "Port": {
-                    "type": "integer"
-                  },
-                  "SecretsManagerOracleAsmAccessRoleArn": {
-                    "type": "string"
-                  },
-                  "SecretsManagerOracleAsmSecretId": {
-                    "type": "string"
-                  },
-                  "SecretsManagerSecurityDbEncryptionAccessRoleArn": {
-                    "type": "string"
-                  },
-                  "SecretsManagerSecurityDbEncryptionSecretId": {
-                    "type": "string"
-                  },
-                  "ServerName": {
-                    "type": "string"
-                  },
-                  "SslMode": {
-                    "$ref": "#/definitions/DmsSslModeValue",
-                    "type": "object"
-                  }
-                },
-                "type": "object"
-              }
-            },
-            "type": "object"
-          },
-          {
+        "properties": {
+          "MicrosoftSqlServerSettings": {
             "additionalProperties": false,
             "description": "MicrosoftSqlServerSettings property identifier.",
             "properties": {
-              "MicrosoftSqlServerSettings": {
-                "additionalProperties": false,
-                "properties": {
-                  "CertificateArn": {
-                    "type": "string"
-                  },
-                  "DatabaseName": {
-                    "type": "string"
-                  },
-                  "Port": {
-                    "type": "integer"
-                  },
-                  "ServerName": {
-                    "type": "string"
-                  },
-                  "SslMode": {
-                    "$ref": "#/definitions/DmsSslModeValue",
-                    "type": "object"
-                  }
-                },
+              "CertificateArn": {
+                "type": "string"
+              },
+              "DatabaseName": {
+                "type": "string"
+              },
+              "Port": {
+                "type": "integer"
+              },
+              "ServerName": {
+                "type": "string"
+              },
+              "SslMode": {
+                "$ref": "#/definitions/DmsSslModeValue",
                 "type": "object"
               }
             },
+            "required": [
+              "ServerName",
+              "Port",
+              "SslMode",
+              "DatabaseName"
+            ],
+            "type": "object"
+          },
+          "MySqlSettings": {
+            "additionalProperties": false,
+            "description": "MySqlSettings property identifier.",
+            "properties": {
+              "CertificateArn": {
+                "type": "string"
+              },
+              "Port": {
+                "type": "integer"
+              },
+              "ServerName": {
+                "type": "string"
+              },
+              "SslMode": {
+                "$ref": "#/definitions/DmsSslModeValue",
+                "type": "object"
+              }
+            },
+            "required": [
+              "ServerName",
+              "Port",
+              "SslMode"
+            ],
+            "type": "object"
+          },
+          "OracleSettings": {
+            "additionalProperties": false,
+            "description": "OracleSettings property identifier.",
+            "properties": {
+              "AsmServer": {
+                "type": "string"
+              },
+              "CertificateArn": {
+                "type": "string"
+              },
+              "DatabaseName": {
+                "type": "string"
+              },
+              "Port": {
+                "type": "integer"
+              },
+              "SecretsManagerOracleAsmAccessRoleArn": {
+                "type": "string"
+              },
+              "SecretsManagerOracleAsmSecretId": {
+                "type": "string"
+              },
+              "SecretsManagerSecurityDbEncryptionAccessRoleArn": {
+                "type": "string"
+              },
+              "SecretsManagerSecurityDbEncryptionSecretId": {
+                "type": "string"
+              },
+              "ServerName": {
+                "type": "string"
+              },
+              "SslMode": {
+                "$ref": "#/definitions/DmsSslModeValue",
+                "type": "object"
+              }
+            },
+            "required": [
+              "ServerName",
+              "Port",
+              "SslMode",
+              "DatabaseName"
+            ],
+            "type": "object"
+          },
+          "PostgreSqlSettings": {
+            "additionalProperties": false,
+            "description": "PostgreSqlSettings property identifier.",
+            "properties": {
+              "CertificateArn": {
+                "type": "string"
+              },
+              "DatabaseName": {
+                "type": "string"
+              },
+              "Port": {
+                "type": "integer"
+              },
+              "ServerName": {
+                "type": "string"
+              },
+              "SslMode": {
+                "$ref": "#/definitions/DmsSslModeValue",
+                "type": "object"
+              }
+            },
+            "required": [
+              "ServerName",
+              "Port",
+              "SslMode",
+              "DatabaseName"
+            ],
             "type": "object"
           }
-        ],
+        },
         "type": "object"
       },
       "Tags": {

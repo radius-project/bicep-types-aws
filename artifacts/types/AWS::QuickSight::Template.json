@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-Template",
   "type": "AWS::QuickSight::Template",
-  "time": "2024-01-04T17:35:37.277Z",
+  "time": "2024-05-23T15:53:20.126Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -517,7 +517,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -580,7 +580,7 @@
           "SectionId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Style": {
@@ -756,7 +756,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -926,10 +926,13 @@
           "Configuration": {
             "$ref": "#/definitions/CategoryFilterConfiguration"
           },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          },
           "FilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -1078,8 +1081,10 @@
       },
       "ColumnGroupColumnSchema": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eA structure describing the name, data type, and geographic role of the columns.\u003c/p\u003e",
         "properties": {
           "Name": {
+            "description": "\u003cp\u003eThe name of the column group's column schema.\u003c/p\u003e",
             "type": "string"
           }
         },
@@ -1087,8 +1092,10 @@
       },
       "ColumnGroupSchema": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe column group schema.\u003c/p\u003e",
         "properties": {
           "ColumnGroupColumnSchemaList": {
+            "description": "\u003cp\u003eA structure containing the list of schemas for column group columns.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/ColumnGroupColumnSchema"
             },
@@ -1097,6 +1104,7 @@
             "type": "array"
           },
           "Name": {
+            "description": "\u003cp\u003eThe name of the column group schema.\u003c/p\u003e",
             "type": "string"
           }
         },
@@ -1146,14 +1154,18 @@
       },
       "ColumnSchema": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe column schema.\u003c/p\u003e",
         "properties": {
           "DataType": {
+            "description": "\u003cp\u003eThe data type of the column schema.\u003c/p\u003e",
             "type": "string"
           },
           "GeographicRole": {
+            "description": "\u003cp\u003eThe geographic role of the column schema.\u003c/p\u003e",
             "type": "string"
           },
           "Name": {
+            "description": "\u003cp\u003eThe name of the column schema.\u003c/p\u003e",
             "type": "string"
           }
         },
@@ -1364,7 +1376,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -1646,7 +1658,7 @@
             "type": "string"
           },
           "Symbol": {
-            "pattern": "[A-Z]{3}",
+            "pattern": "^[A-Z]{3}$",
             "type": "string"
           }
         },
@@ -1794,7 +1806,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -2170,8 +2182,10 @@
       },
       "DataSetConfiguration": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eDataset configuration.\u003c/p\u003e",
         "properties": {
           "ColumnGroupSchemaList": {
+            "description": "\u003cp\u003eA structure containing the list of column group schemas.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/ColumnGroupSchema"
             },
@@ -2183,6 +2197,7 @@
             "$ref": "#/definitions/DataSetSchema"
           },
           "Placeholder": {
+            "description": "\u003cp\u003ePlaceholder.\u003c/p\u003e",
             "type": "string"
           }
         },
@@ -2190,12 +2205,15 @@
       },
       "DataSetReference": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eDataset reference.\u003c/p\u003e",
         "properties": {
           "DataSetArn": {
+            "description": "\u003cp\u003eDataset Amazon Resource Name (ARN).\u003c/p\u003e",
             "type": "string"
           },
           "DataSetPlaceholder": {
-            "pattern": ".*\\S.*",
+            "description": "\u003cp\u003eDataset placeholder.\u003c/p\u003e",
+            "pattern": "\\S",
             "type": "string"
           }
         },
@@ -2207,8 +2225,10 @@
       },
       "DataSetSchema": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eDataset schema.\u003c/p\u003e",
         "properties": {
           "ColumnSchemaList": {
+            "description": "\u003cp\u003eA structure containing the list of column schemas.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/ColumnSchema"
             },
@@ -2501,6 +2521,93 @@
         },
         "type": "object"
       },
+      "DefaultDateTimePickerControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DisplayOptions": {
+            "$ref": "#/definitions/DateTimePickerControlDisplayOptions"
+          },
+          "Type": {
+            "$ref": "#/definitions/SheetControlDateTimePickerType"
+          }
+        },
+        "type": "object"
+      },
+      "DefaultFilterControlConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "ControlOptions": {
+            "$ref": "#/definitions/DefaultFilterControlOptions"
+          },
+          "Title": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "ControlOptions",
+          "Title"
+        ],
+        "type": "object"
+      },
+      "DefaultFilterControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DefaultDateTimePickerOptions": {
+            "$ref": "#/definitions/DefaultDateTimePickerControlOptions"
+          },
+          "DefaultDropdownOptions": {
+            "$ref": "#/definitions/DefaultFilterDropDownControlOptions"
+          },
+          "DefaultListOptions": {
+            "$ref": "#/definitions/DefaultFilterListControlOptions"
+          },
+          "DefaultRelativeDateTimeOptions": {
+            "$ref": "#/definitions/DefaultRelativeDateTimeControlOptions"
+          },
+          "DefaultSliderOptions": {
+            "$ref": "#/definitions/DefaultSliderControlOptions"
+          },
+          "DefaultTextAreaOptions": {
+            "$ref": "#/definitions/DefaultTextAreaControlOptions"
+          },
+          "DefaultTextFieldOptions": {
+            "$ref": "#/definitions/DefaultTextFieldControlOptions"
+          }
+        },
+        "type": "object"
+      },
+      "DefaultFilterDropDownControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DisplayOptions": {
+            "$ref": "#/definitions/DropDownControlDisplayOptions"
+          },
+          "SelectableValues": {
+            "$ref": "#/definitions/FilterSelectableValues"
+          },
+          "Type": {
+            "$ref": "#/definitions/SheetControlListType"
+          }
+        },
+        "type": "object"
+      },
+      "DefaultFilterListControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DisplayOptions": {
+            "$ref": "#/definitions/ListControlDisplayOptions"
+          },
+          "SelectableValues": {
+            "$ref": "#/definitions/FilterSelectableValues"
+          },
+          "Type": {
+            "$ref": "#/definitions/SheetControlListType"
+          }
+        },
+        "type": "object"
+      },
       "DefaultFreeFormLayoutConfiguration": {
         "additionalProperties": false,
         "properties": {
@@ -2561,6 +2668,15 @@
         },
         "type": "object"
       },
+      "DefaultRelativeDateTimeControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DisplayOptions": {
+            "$ref": "#/definitions/RelativeDateTimeControlDisplayOptions"
+          }
+        },
+        "type": "object"
+      },
       "DefaultSectionBasedLayoutConfiguration": {
         "additionalProperties": false,
         "properties": {
@@ -2571,6 +2687,58 @@
         "required": [
           "CanvasSizeOptions"
         ],
+        "type": "object"
+      },
+      "DefaultSliderControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DisplayOptions": {
+            "$ref": "#/definitions/SliderControlDisplayOptions"
+          },
+          "MaximumValue": {
+            "default": 0,
+            "type": "number"
+          },
+          "MinimumValue": {
+            "default": 0,
+            "type": "number"
+          },
+          "StepSize": {
+            "default": 0,
+            "type": "number"
+          },
+          "Type": {
+            "$ref": "#/definitions/SheetControlSliderType"
+          }
+        },
+        "required": [
+          "MaximumValue",
+          "MinimumValue",
+          "StepSize"
+        ],
+        "type": "object"
+      },
+      "DefaultTextAreaControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "Delimiter": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          },
+          "DisplayOptions": {
+            "$ref": "#/definitions/TextAreaControlDisplayOptions"
+          }
+        },
+        "type": "object"
+      },
+      "DefaultTextFieldControlOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DisplayOptions": {
+            "$ref": "#/definitions/TextFieldControlDisplayOptions"
+          }
+        },
         "type": "object"
       },
       "DestinationParameterValueConfiguration": {
@@ -2699,7 +2867,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -2713,7 +2881,7 @@
         "additionalProperties": false,
         "properties": {
           "Path": {
-            "pattern": ".*\\S.*",
+            "pattern": "\\S",
             "type": "string"
           }
         },
@@ -3024,7 +3192,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -3063,6 +3231,9 @@
       "FilterControl": {
         "additionalProperties": false,
         "properties": {
+          "CrossSheet": {
+            "$ref": "#/definitions/FilterCrossSheetControl"
+          },
           "DateTimePicker": {
             "$ref": "#/definitions/FilterDateTimePickerControl"
           },
@@ -3087,6 +3258,31 @@
         },
         "type": "object"
       },
+      "FilterCrossSheetControl": {
+        "additionalProperties": false,
+        "properties": {
+          "CascadingControlConfiguration": {
+            "$ref": "#/definitions/CascadingControlConfiguration"
+          },
+          "FilterControlId": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[\\w\\-]+$",
+            "type": "string"
+          },
+          "SourceFilterId": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[\\w\\-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "FilterControlId",
+          "SourceFilterId"
+        ],
+        "type": "object"
+      },
       "FilterDateTimePickerControl": {
         "additionalProperties": false,
         "properties": {
@@ -3096,13 +3292,13 @@
           "FilterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceFilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Title": {
@@ -3133,7 +3329,7 @@
           "FilterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SelectableValues": {
@@ -3142,7 +3338,7 @@
           "SourceFilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Title": {
@@ -3170,7 +3366,7 @@
           "FilterGroupId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Filters": {
@@ -3236,7 +3432,7 @@
           "FilterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SelectableValues": {
@@ -3245,7 +3441,7 @@
           "SourceFilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Title": {
@@ -3276,6 +3472,7 @@
         "additionalProperties": false,
         "properties": {
           "SelectedColumns": {
+            "description": "\u003cp\u003eThe selected columns of a dataset.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/ColumnIdentifier"
             },
@@ -3317,13 +3514,13 @@
           "FilterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceFilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Title": {
@@ -3374,7 +3571,7 @@
           "FilterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "MaximumValue": {
@@ -3388,7 +3585,7 @@
           "SourceFilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "StepSize": {
@@ -3428,13 +3625,13 @@
           "FilterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceFilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Title": {
@@ -3459,13 +3656,13 @@
           "FilterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceFilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Title": {
@@ -3555,7 +3752,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "CustomSeasonalityValue": {
@@ -3692,7 +3889,7 @@
           "ElementId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "ElementType": {
@@ -3942,7 +4139,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -4088,7 +4285,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -4271,7 +4468,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -4407,7 +4604,7 @@
           "ElementId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "ElementType": {
@@ -4454,7 +4651,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -4487,7 +4684,7 @@
           "SectionId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Style": {
@@ -4628,7 +4825,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -4739,7 +4936,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -4833,7 +5030,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -5151,7 +5348,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -5364,7 +5561,7 @@
             "items": {
               "$ref": "#/definitions/SeriesItem"
             },
-            "maxItems": 10,
+            "maxItems": 2000,
             "minItems": 0,
             "type": "array"
           },
@@ -5555,7 +5752,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -5640,7 +5837,7 @@
           "TargetSheetId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -5708,7 +5905,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -5761,7 +5958,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "FromValue": {
@@ -5930,10 +6127,13 @@
           "Column": {
             "$ref": "#/definitions/ColumnIdentifier"
           },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          },
           "FilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "MatchOperator": {
@@ -6001,10 +6201,13 @@
           "Column": {
             "$ref": "#/definitions/ColumnIdentifier"
           },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          },
           "FilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "IncludeMaximum": {
@@ -6274,7 +6477,7 @@
           "ParameterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceParameterName": {
@@ -6326,7 +6529,7 @@
           "ParameterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SelectableValues": {
@@ -6366,7 +6569,7 @@
           "ParameterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SelectableValues": {
@@ -6428,7 +6631,7 @@
           "ParameterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceParameterName": {
@@ -6471,7 +6674,7 @@
           "ParameterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceParameterName": {
@@ -6502,7 +6705,7 @@
           "ParameterControlId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "SourceParameterName": {
@@ -6594,7 +6797,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -6618,7 +6821,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -6781,7 +6984,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -6873,7 +7076,7 @@
             "items": {
               "$ref": "#/definitions/PivotTableConditionalFormattingOption"
             },
-            "maxItems": 100,
+            "maxItems": 500,
             "minItems": 0,
             "type": "array"
           }
@@ -7236,7 +7439,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -7514,7 +7717,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -7557,7 +7760,7 @@
         "additionalProperties": false,
         "properties": {
           "CustomLabel": {
-            "pattern": ".*\\S.*",
+            "pattern": "\\S",
             "type": "string"
           }
         },
@@ -7739,13 +7942,16 @@
           "Column": {
             "$ref": "#/definitions/ColumnIdentifier"
           },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          },
           "ExcludePeriodConfiguration": {
             "$ref": "#/definitions/ExcludePeriodConfiguration"
           },
           "FilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "MinimumGranularity": {
@@ -7800,8 +8006,10 @@
       },
       "ResourcePermission": {
         "additionalProperties": false,
+        "description": "\u003cp\u003ePermission for the resource.\u003c/p\u003e",
         "properties": {
           "Actions": {
+            "description": "\u003cp\u003eThe IAM action to grant or revoke permissions on.\u003c/p\u003e",
             "items": {
               "type": "string"
             },
@@ -7810,6 +8018,7 @@
             "type": "array"
           },
           "Principal": {
+            "description": "\u003cp\u003eThe Amazon Resource Name (ARN) of the principal. This can be one of the\n            following:\u003c/p\u003e\n         \u003cul\u003e\n            \u003cli\u003e\n               \u003cp\u003eThe ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)\u003c/p\u003e\n            \u003c/li\u003e\n            \u003cli\u003e\n               \u003cp\u003eThe ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)\u003c/p\u003e\n            \u003c/li\u003e\n            \u003cli\u003e\n               \u003cp\u003eThe ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight\n                    ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.\n                    (This is less common.) \u003c/p\u003e\n            \u003c/li\u003e\n         \u003c/ul\u003e",
             "maxLength": 256,
             "minLength": 1,
             "type": "string"
@@ -7883,7 +8092,7 @@
             "items": {
               "maxLength": 512,
               "minLength": 1,
-              "pattern": "[\\w\\-]+",
+              "pattern": "^[\\w\\-]+$",
               "type": "string"
             },
             "maxItems": 50,
@@ -7990,7 +8199,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -8167,7 +8376,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -8388,16 +8597,19 @@
       },
       "Sheet": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eA \u003ci\u003esheet\u003c/i\u003e, which is an object that contains a set of visuals that\n            are viewed together on one page in Amazon QuickSight. Every analysis and dashboard\n            contains at least one sheet. Each sheet contains at least one visualization widget, for\n            example a chart, pivot table, or narrative insight. Sheets can be associated with other\n            components, such as controls, filters, and so on.\u003c/p\u003e",
         "properties": {
           "Name": {
+            "description": "\u003cp\u003eThe name of a sheet. This name is displayed on the sheet's tab in the Amazon QuickSight\n            console.\u003c/p\u003e",
             "maxLength": 2048,
             "minLength": 1,
             "type": "string"
           },
           "SheetId": {
+            "description": "\u003cp\u003eThe unique identifier associated with a sheet.\u003c/p\u003e",
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -8517,7 +8729,7 @@
           "SheetId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "TextBoxes": {
@@ -8585,7 +8797,7 @@
           "SheetTextBoxId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -8603,14 +8815,14 @@
           "SheetId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "VisualIds": {
             "items": {
               "maxLength": 512,
               "minLength": 1,
-              "pattern": "[\\w\\-]+",
+              "pattern": "^[\\w\\-]+$",
               "type": "string"
             },
             "maxItems": 50,
@@ -9026,7 +9238,7 @@
             "items": {
               "$ref": "#/definitions/TableConditionalFormattingOption"
             },
-            "maxItems": 100,
+            "maxItems": 500,
             "minItems": 0,
             "type": "array"
           }
@@ -9406,7 +9618,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -9417,13 +9629,16 @@
       },
       "Tag": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe key or keys of the key-value pairs for the resource tag or tags assigned to the\n            resource.\u003c/p\u003e",
         "properties": {
           "Key": {
+            "description": "\u003cp\u003eTag key.\u003c/p\u003e",
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
           },
           "Value": {
+            "description": "\u003cp\u003eTag value.\u003c/p\u003e",
             "maxLength": 256,
             "minLength": 1,
             "type": "string"
@@ -9443,15 +9658,18 @@
       },
       "TemplateError": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eList of errors that occurred when the template version creation failed.\u003c/p\u003e",
         "properties": {
           "Message": {
-            "pattern": ".*\\S.*",
+            "description": "\u003cp\u003eDescription of the error type.\u003c/p\u003e",
+            "pattern": "\\S",
             "type": "string"
           },
           "Type": {
             "$ref": "#/definitions/TemplateErrorType"
           },
           "ViolatedEntities": {
+            "description": "\u003cp\u003eAn error path that shows which entities caused the template error.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/Entity"
             },
@@ -9473,11 +9691,14 @@
       },
       "TemplateSourceAnalysis": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe source analysis of the template.\u003c/p\u003e",
         "properties": {
           "Arn": {
+            "description": "\u003cp\u003eThe Amazon Resource Name (ARN) of the resource.\u003c/p\u003e",
             "type": "string"
           },
           "DataSetReferences": {
+            "description": "\u003cp\u003eA structure containing information about the dataset references used as placeholders\n            in the template.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/DataSetReference"
             },
@@ -9493,6 +9714,7 @@
       },
       "TemplateSourceEntity": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe source entity of the template.\u003c/p\u003e",
         "properties": {
           "SourceAnalysis": {
             "$ref": "#/definitions/TemplateSourceAnalysis"
@@ -9505,8 +9727,10 @@
       },
       "TemplateSourceTemplate": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe source template of the template.\u003c/p\u003e",
         "properties": {
           "Arn": {
+            "description": "\u003cp\u003eThe Amazon Resource Name (ARN) of the resource.\u003c/p\u003e",
             "type": "string"
           }
         },
@@ -9517,12 +9741,15 @@
       },
       "TemplateVersion": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eA version of a template.\u003c/p\u003e",
         "properties": {
           "CreatedTime": {
+            "description": "\u003cp\u003eThe time that this template version was created.\u003c/p\u003e",
             "format": "date-time",
             "type": "string"
           },
           "DataSetConfigurations": {
+            "description": "\u003cp\u003eSchema of the dataset identified by the placeholder. Any dashboard created from this\n            template should be bound to new datasets matching the same schema described through this\n            API operation.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/DataSetConfiguration"
             },
@@ -9531,11 +9758,13 @@
             "type": "array"
           },
           "Description": {
+            "description": "\u003cp\u003eThe description of the template.\u003c/p\u003e",
             "maxLength": 512,
             "minLength": 1,
             "type": "string"
           },
           "Errors": {
+            "description": "\u003cp\u003eErrors associated with this template version.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/TemplateError"
             },
@@ -9543,6 +9772,7 @@
             "type": "array"
           },
           "Sheets": {
+            "description": "\u003cp\u003eA list of the associated sheets with the unique identifier and name of each sheet.\u003c/p\u003e",
             "items": {
               "$ref": "#/definitions/Sheet"
             },
@@ -9551,15 +9781,18 @@
             "type": "array"
           },
           "SourceEntityArn": {
+            "description": "\u003cp\u003eThe Amazon Resource Name (ARN) of an analysis or template that was used to create this\n            template.\u003c/p\u003e",
             "type": "string"
           },
           "Status": {
             "$ref": "#/definitions/ResourceStatus"
           },
           "ThemeArn": {
+            "description": "\u003cp\u003eThe ARN of the theme associated with this version of the template.\u003c/p\u003e",
             "type": "string"
           },
           "VersionNumber": {
+            "description": "\u003cp\u003eThe version number of the template version.\u003c/p\u003e",
             "minimum": 1,
             "type": "number"
           }
@@ -9584,7 +9817,7 @@
             "items": {
               "$ref": "#/definitions/ColumnConfiguration"
             },
-            "maxItems": 200,
+            "maxItems": 2000,
             "minItems": 0,
             "type": "array"
           },
@@ -9742,10 +9975,13 @@
           "Column": {
             "$ref": "#/definitions/ColumnIdentifier"
           },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          },
           "FilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "ParameterName": {
@@ -9817,13 +10053,16 @@
           "Column": {
             "$ref": "#/definitions/ColumnIdentifier"
           },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          },
           "ExcludePeriodConfiguration": {
             "$ref": "#/definitions/ExcludePeriodConfiguration"
           },
           "FilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "IncludeMaximum": {
@@ -9928,10 +10167,13 @@
           "Column": {
             "$ref": "#/definitions/ColumnIdentifier"
           },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          },
           "FilterId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Limit": {
@@ -9964,7 +10206,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "MoverSize": {
@@ -10004,7 +10246,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -10042,7 +10284,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -10233,7 +10475,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -10289,7 +10531,7 @@
           "ComputationId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -10303,6 +10545,7 @@
       },
       "ValidationStrategy": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe option to relax the validation that is required to create and update analyses, dashboards, and templates with definition objects. When you set this value to \u003ccode\u003eLENIENT\u003c/code\u003e, validation is skipped for specific errors.\u003c/p\u003e",
         "properties": {
           "Mode": {
             "$ref": "#/definitions/ValidationStrategyMode"
@@ -10441,7 +10684,7 @@
           "CustomActionId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           },
           "Name": {
@@ -10561,6 +10804,15 @@
         },
         "type": "object"
       },
+      "WaterfallChartColorConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "GroupColorConfiguration": {
+            "$ref": "#/definitions/WaterfallChartGroupColorConfiguration"
+          }
+        },
+        "type": "object"
+      },
       "WaterfallChartConfiguration": {
         "additionalProperties": false,
         "properties": {
@@ -10569,6 +10821,9 @@
           },
           "CategoryAxisLabelOptions": {
             "$ref": "#/definitions/ChartAxisLabelOptions"
+          },
+          "ColorConfiguration": {
+            "$ref": "#/definitions/WaterfallChartColorConfiguration"
           },
           "DataLabels": {
             "$ref": "#/definitions/DataLabelOptions"
@@ -10602,6 +10857,24 @@
         "properties": {
           "WaterfallChartAggregatedFieldWells": {
             "$ref": "#/definitions/WaterfallChartAggregatedFieldWells"
+          }
+        },
+        "type": "object"
+      },
+      "WaterfallChartGroupColorConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "NegativeBarColor": {
+            "pattern": "^#[A-F0-9]{6}$",
+            "type": "string"
+          },
+          "PositiveBarColor": {
+            "pattern": "^#[A-F0-9]{6}$",
+            "type": "string"
+          },
+          "TotalBarColor": {
+            "pattern": "^#[A-F0-9]{6}$",
+            "type": "string"
           }
         },
         "type": "object"
@@ -10663,7 +10936,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -10850,7 +11123,7 @@
           "VisualId": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "[\\w\\-]+",
+            "pattern": "^[\\w\\-]+$",
             "type": "string"
           }
         },
@@ -10950,6 +11223,7 @@
     ],
     "properties": {
       "Arn": {
+        "description": "\u003cp\u003eThe Amazon Resource Name (ARN) of the template.\u003c/p\u003e",
         "type": "string"
       },
       "AwsAccountId": {
@@ -10959,6 +11233,7 @@
         "type": "string"
       },
       "CreatedTime": {
+        "description": "\u003cp\u003eTime when this was created.\u003c/p\u003e",
         "format": "date-time",
         "type": "string"
       },
@@ -10966,6 +11241,7 @@
         "$ref": "#/definitions/TemplateVersionDefinition"
       },
       "LastUpdatedTime": {
+        "description": "\u003cp\u003eTime when this was last updated.\u003c/p\u003e",
         "format": "date-time",
         "type": "string"
       },
@@ -10996,7 +11272,7 @@
       "TemplateId": {
         "maxLength": 512,
         "minLength": 1,
-        "pattern": "[\\w\\-]+",
+        "pattern": "^[\\w\\-]+$",
         "type": "string"
       },
       "ValidationStrategy": {

@@ -3,23 +3,23 @@
 ## Resource AWS.XRay/Group@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.XRay/GroupProperties](#awsxraygroupproperties) (Required): properties of the resource
+* **properties**: [AWS.XRay/GroupProperties](#awsxraygroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.XRay/ResourcePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.XRay/ResourcePolicyProperties](#awsxrayresourcepolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.XRay/ResourcePolicyProperties](#awsxrayresourcepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.XRay/SamplingRule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.XRay/SamplingRuleProperties](#awsxraysamplingruleproperties): properties of the resource
+* **properties**: [AWS.XRay/SamplingRuleProperties](#awsxraysamplingruleproperties) (Identifier): properties of the resource
 
 ## AWS.XRay/GroupProperties
 ### Properties
@@ -28,16 +28,6 @@
 * **GroupName**: string (Required): The case-sensitive name of the new group. Names must be unique.
 * **InsightsConfiguration**: [InsightsConfiguration](#insightsconfiguration)
 * **Tags**: [Tag](#tag)[]
-
-## InsightsConfiguration
-### Properties
-* **InsightsEnabled**: bool: Set the InsightsEnabled value to true to enable insights or false to disable insights.
-* **NotificationsEnabled**: bool: Set the NotificationsEnabled value to true to enable insights notifications. Notifications can only be enabled on a group with InsightsEnabled set to true.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag.
-* **Value**: string (Required): The value for the tag.
 
 ## AWS.XRay/ResourcePolicyProperties
 ### Properties
@@ -54,6 +44,11 @@
 * **SamplingRuleUpdate**: [SamplingRuleUpdate](#samplingruleupdate)
 * **Tags**: [Tag](#tag)[]
 
+## InsightsConfiguration
+### Properties
+* **InsightsEnabled**: bool: Set the InsightsEnabled value to true to enable insights or false to disable insights.
+* **NotificationsEnabled**: bool: Set the NotificationsEnabled value to true to enable insights notifications. Notifications can only be enabled on a group with InsightsEnabled set to true.
+
 ## SamplingRule
 ### Properties
 * **Attributes**: [SamplingRule_Attributes](#samplingruleattributes): Matches attributes derived from the request.
@@ -69,6 +64,9 @@
 * **ServiceType**: string (Required): Matches the origin that the service uses to identify its type in segments.
 * **URLPath**: string (Required): Matches the path from a request URL.
 * **Version**: int: The version of the sampling rule format (1)
+
+## SamplingRule_Attributes
+### Properties
 
 ## SamplingRule_Attributes
 ### Properties
@@ -94,8 +92,10 @@
 * **ServiceType**: string: Matches the origin that the service uses to identify its type in segments.
 * **URLPath**: string: Matches the path from a request URL.
 
-## SamplingRule_Attributes
+## Tag
 ### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties

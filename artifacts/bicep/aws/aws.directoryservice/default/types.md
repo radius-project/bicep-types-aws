@@ -3,9 +3,9 @@
 ## Resource AWS.DirectoryService/SimpleAD@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DirectoryService/SimpleADProperties](#awsdirectoryservicesimpleadproperties) (Required): properties of the resource
+* **properties**: [AWS.DirectoryService/SimpleADProperties](#awsdirectoryservicesimpleadproperties) (Required, Identifier): properties of the resource
 
 ## AWS.DirectoryService/SimpleADProperties
 ### Properties

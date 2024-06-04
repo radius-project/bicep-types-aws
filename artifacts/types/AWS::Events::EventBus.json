@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Events-EventBus",
   "type": "AWS::Events::EventBus",
-  "time": "2023-12-21T16:47:30.93Z",
+  "time": "2024-06-03T16:20:50.542Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -33,12 +33,19 @@
           "events:DescribeEventBus",
           "events:PutPermission",
           "events:ListTagsForResource",
-          "events:TagResource"
+          "events:TagResource",
+          "kms:DescribeKey",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
         ]
       },
       "delete": {
         "permissions": [
           "events:DescribeEventBus",
+          "events:UpdateEventBus",
+          "events:ListTagsForResource",
+          "events:UntagResource",
+          "events:RemovePermission",
           "events:DeleteEventBus"
         ]
       },
@@ -59,7 +66,11 @@
           "events:TagResource",
           "events:UntagResource",
           "events:PutPermission",
-          "events:DescribeEventBus"
+          "events:DescribeEventBus",
+          "events:UpdateEventBus",
+          "kms:DescribeKey",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
         ]
       }
     },
@@ -71,8 +82,26 @@
         "description": "The Amazon Resource Name (ARN) for the event bus.",
         "type": "string"
       },
+      "DeadLetterConfig": {
+        "additionalProperties": false,
+        "description": "Dead Letter Queue for the event bus.",
+        "properties": {
+          "Arn": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Description": {
+        "description": "The description of the event bus.",
+        "type": "string"
+      },
       "EventSourceName": {
         "description": "If you are creating a partner event bus, this specifies the partner event source that the new event bus will be matched with.",
+        "type": "string"
+      },
+      "KmsKeyIdentifier": {
+        "description": "Kms Key Identifier used to encrypt events at rest in the event bus.",
         "type": "string"
       },
       "Name": {

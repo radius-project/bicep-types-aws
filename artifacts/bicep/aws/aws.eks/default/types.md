@@ -3,51 +3,66 @@
 ## Resource AWS.EKS/AccessEntry@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EKS/AccessEntryProperties](#awseksaccessentryproperties) (Required): properties of the resource
+* **properties**: [AWS.EKS/AccessEntryProperties](#awseksaccessentryproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EKS/Addon@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EKS/AddonProperties](#awseksaddonproperties) (Required): properties of the resource
+* **properties**: [AWS.EKS/AddonProperties](#awseksaddonproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EKS/Cluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EKS/ClusterProperties](#awseksclusterproperties) (Required): properties of the resource
+* **properties**: [AWS.EKS/ClusterProperties](#awseksclusterproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EKS/FargateProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EKS/FargateProfileProperties](#awseksfargateprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.EKS/FargateProfileProperties](#awseksfargateprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EKS/IdentityProviderConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EKS/IdentityProviderConfigProperties](#awseksidentityproviderconfigproperties) (Required): properties of the resource
+* **properties**: [AWS.EKS/IdentityProviderConfigProperties](#awseksidentityproviderconfigproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EKS/Nodegroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EKS/NodegroupProperties](#awseksnodegroupproperties) (Required): properties of the resource
+* **properties**: [AWS.EKS/NodegroupProperties](#awseksnodegroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EKS/PodIdentityAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EKS/PodIdentityAssociationProperties](#awsekspodidentityassociationproperties) (Required): properties of the resource
+* **properties**: [AWS.EKS/PodIdentityAssociationProperties](#awsekspodidentityassociationproperties) (Required, Identifier): properties of the resource
+
+## AccessConfig
+### Properties
+* **AuthenticationMode**: string: Specify the authentication mode that should be used to create your cluster.
+* **BootstrapClusterCreatorAdminPermissions**: bool (WriteOnly): Set this value to false to avoid creating a default cluster admin Access Entry using the IAM principal used to create the cluster.
+
+## AccessPolicy
+### Properties
+* **AccessScope**: [AccessScope](#accessscope) (Required)
+* **PolicyArn**: string (Required): The ARN of the access policy to add to the access entry.
+
+## AccessScope
+### Properties
+* **Namespaces**: string[]: The namespaces to associate with the access scope. Only specify if Type is set to 'namespace'.
+* **Type**: string (Required): The type of the access scope.
 
 ## AWS.EKS/AccessEntryProperties
 ### Properties
@@ -60,21 +75,6 @@
 * **Type**: string: The node type to associate with the access entry.
 * **Username**: string: The Kubernetes user that the access entry is associated with.
 
-## AccessPolicy
-### Properties
-* **AccessScope**: [AccessScope](#accessscope) (Required)
-* **PolicyArn**: string (Required): The ARN of the access policy to add to the access entry.
-
-## AccessScope
-### Properties
-* **Namespaces**: string[]: The namespaces to associate with the access scope. Only specify if Type is set to 'namespace'.
-* **Type**: string (Required): The type of the access scope.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.EKS/AddonProperties
 ### Properties
 * **AddonName**: string (Required, Identifier): Name of Addon
@@ -82,15 +82,11 @@
 * **Arn**: string (ReadOnly): Amazon Resource Name (ARN) of the add-on
 * **ClusterName**: string (Required, Identifier): Name of Cluster
 * **ConfigurationValues**: string: The configuration values to use with the add-on
+* **PodIdentityAssociations**: [PodIdentityAssociation](#podidentityassociation)[] (WriteOnly): An array of pod identities to apply to this add-on.
 * **PreserveOnDelete**: bool (WriteOnly): PreserveOnDelete parameter value
 * **ResolveConflicts**: string (WriteOnly): Resolve parameter value conflicts
 * **ServiceAccountRoleArn**: string: IAM role to bind to the add-on's service account
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## AWS.EKS/ClusterProperties
 ### Properties
@@ -112,61 +108,6 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Version**: string: The desired Kubernetes version for your cluster. If you don't specify a value here, the latest version available in Amazon EKS is used.
 
-## AccessConfig
-### Properties
-* **AuthenticationMode**: string: Specify the authentication mode that should be used to create your cluster.
-* **BootstrapClusterCreatorAdminPermissions**: bool (WriteOnly): Set this value to false to avoid creating a default cluster admin Access Entry using the IAM principal used to create the cluster.
-
-## EncryptionConfig
-### Properties
-* **Provider**: [Provider](#provider): The encryption provider for the cluster.
-* **Resources**: string[]: Specifies the resources to be encrypted. The only supported value is "secrets".
-
-## Provider
-### Properties
-* **KeyArn**: string: Amazon Resource Name (ARN) or alias of the KMS key. The KMS key must be symmetric, created in the same region as the cluster, and if the KMS key was created in a different account, the user must have access to the KMS key.
-
-## KubernetesNetworkConfig
-### Properties
-* **IpFamily**: string: Ipv4 or Ipv6. You can only specify ipv6 for 1.21 and later clusters that use version 1.10.1 or later of the Amazon VPC CNI add-on
-* **ServiceIpv4Cidr**: string: The CIDR block to assign Kubernetes service IP addresses from. If you don't specify a block, Kubernetes assigns addresses from either the 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. We recommend that you specify a block that does not overlap with resources in other networks that are peered or connected to your VPC. 
-* **ServiceIpv6Cidr**: string (ReadOnly): The CIDR block to assign Kubernetes service IP addresses from.
-
-## Logging
-### Properties
-* **ClusterLogging**: [ClusterLogging](#clusterlogging): The cluster control plane logging configuration for your cluster. 
-
-## ClusterLogging
-### Properties
-* **EnabledTypes**: [LoggingTypeConfig](#loggingtypeconfig)[]
-
-## LoggingTypeConfig
-### Properties
-* **Type**: string: name of the log type
-
-## OutpostConfig
-### Properties
-* **ControlPlaneInstanceType**: string (Required): Specify the Instance type of the machines that should be used to create your cluster.
-* **ControlPlanePlacement**: [ControlPlanePlacement](#controlplaneplacement): Specify the placement group of the control plane machines for your cluster.
-* **OutpostArns**: string[] (Required): Specify one or more Arn(s) of Outpost(s) on which you would like to create your cluster.
-
-## ControlPlanePlacement
-### Properties
-* **GroupName**: string: Specify the placement group name of the control place machines for your cluster.
-
-## ResourcesVpcConfig
-### Properties
-* **EndpointPrivateAccess**: bool: Set this value to true to enable private access for your cluster's Kubernetes API server endpoint. If you enable private access, Kubernetes API requests from within your cluster's VPC use the private VPC endpoint. The default value for this parameter is false, which disables private access for your Kubernetes API server. If you disable private access and you have nodes or AWS Fargate pods in the cluster, then ensure that publicAccessCidrs includes the necessary CIDR blocks for communication with the nodes or Fargate pods.
-* **EndpointPublicAccess**: bool: Set this value to false to disable public access to your cluster's Kubernetes API server endpoint. If you disable public access, your cluster's Kubernetes API server can only receive requests from within the cluster VPC. The default value for this parameter is true, which enables public access for your Kubernetes API server.
-* **PublicAccessCidrs**: string[]: The CIDR blocks that are allowed access to your cluster's public Kubernetes API server endpoint. Communication to the endpoint from addresses outside of the CIDR blocks that you specify is denied. The default value is 0.0.0.0/0. If you've disabled private endpoint access and you have nodes or AWS Fargate pods in the cluster, then ensure that you specify the necessary CIDR blocks.
-* **SecurityGroupIds**: string[]: Specify one or more security groups for the cross-account elastic network interfaces that Amazon EKS creates to use to allow communication between your worker nodes and the Kubernetes control plane. If you don't specify a security group, the default security group for your VPC is used.
-* **SubnetIds**: string[] (Required): Specify subnets for your Amazon EKS nodes. Amazon EKS creates cross-account elastic network interfaces in these subnets to allow communication between your nodes and the Kubernetes control plane.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.EKS/FargateProfileProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -177,21 +118,6 @@
 * **Subnets**: string[]
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## Selector
-### Properties
-* **Labels**: [Label](#label)[]
-* **Namespace**: string (Required)
-
-## Label
-### Properties
-* **Key**: string (Required): The key name of the label.
-* **Value**: string (Required): The value for the label. 
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-
 ## AWS.EKS/IdentityProviderConfigProperties
 ### Properties
 * **ClusterName**: string (Required, Identifier): The name of the identity provider configuration.
@@ -200,26 +126,6 @@
 * **Oidc**: [OidcIdentityProviderConfig](#oidcidentityproviderconfig)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Type**: string (Required, Identifier): The type of the identity provider configuration.
-
-## OidcIdentityProviderConfig
-### Properties
-* **ClientId**: string (Required): This is also known as audience. The ID for the client application that makes authentication requests to the OpenID identity provider.
-* **GroupsClaim**: string: The JWT claim that the provider uses to return your groups.
-* **GroupsPrefix**: string: The prefix that is prepended to group claims to prevent clashes with existing names (such as system: groups).
-* **IssuerUrl**: string (Required): The URL of the OpenID identity provider that allows the API server to discover public signing keys for verifying tokens.
-* **RequiredClaims**: [RequiredClaim](#requiredclaim)[]
-* **UsernameClaim**: string: The JSON Web Token (JWT) claim to use as the username. The default is sub, which is expected to be a unique identifier of the end user. You can choose other claims, such as email or name, depending on the OpenID identity provider. Claims other than email are prefixed with the issuer URL to prevent naming clashes with other plug-ins.
-* **UsernamePrefix**: string: The prefix that is prepended to username claims to prevent clashes with existing names. If you do not provide this field, and username is a value other than email, the prefix defaults to issuerurl#. You can use the value - to disable all prefixing.
-
-## RequiredClaim
-### Properties
-* **Key**: string (Required): The key of the requiredClaims.
-* **Value**: string (Required): The value for the requiredClaims.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.EKS/NodegroupProperties
 ### Properties
@@ -244,8 +150,39 @@
 * **UpdateConfig**: [UpdateConfig](#updateconfig): The node group update configuration.
 * **Version**: string: The Kubernetes version to use for your managed nodes.
 
-## Nodegroup_Labels
+## AWS.EKS/PodIdentityAssociationProperties
 ### Properties
+* **AssociationArn**: string (ReadOnly, Identifier): The ARN of the pod identity association.
+* **AssociationId**: string (ReadOnly): The ID of the pod identity association.
+* **ClusterName**: string (Required): The cluster that the pod identity association is created for.
+* **Namespace**: string (Required): The Kubernetes namespace that the pod identity association is created for.
+* **RoleArn**: string (Required): The IAM role ARN that the pod identity association is created for.
+* **ServiceAccount**: string (Required): The Kubernetes service account that the pod identity association is created for.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## ClusterLogging
+### Properties
+* **EnabledTypes**: [LoggingTypeConfig](#loggingtypeconfig)[]
+
+## ControlPlanePlacement
+### Properties
+* **GroupName**: string: Specify the placement group name of the control place machines for your cluster.
+
+## EncryptionConfig
+### Properties
+* **Provider**: [Provider](#provider): The encryption provider for the cluster.
+* **Resources**: string[]: Specifies the resources to be encrypted. The only supported value is "secrets".
+
+## KubernetesNetworkConfig
+### Properties
+* **IpFamily**: string: Ipv4 or Ipv6. You can only specify ipv6 for 1.21 and later clusters that use version 1.10.1 or later of the Amazon VPC CNI add-on
+* **ServiceIpv4Cidr**: string: The CIDR block to assign Kubernetes service IP addresses from. If you don't specify a block, Kubernetes assigns addresses from either the 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. We recommend that you specify a block that does not overlap with resources in other networks that are peered or connected to your VPC. 
+* **ServiceIpv6Cidr**: string (ReadOnly): The CIDR block to assign Kubernetes service IP addresses from.
+
+## Label
+### Properties
+* **Key**: string (Required): The key name of the label.
+* **Value**: string (Required): The value for the label. 
 
 ## LaunchTemplateSpecification
 ### Properties
@@ -253,10 +190,62 @@
 * **Name**: string
 * **Version**: string
 
+## Logging
+### Properties
+* **ClusterLogging**: [ClusterLogging](#clusterlogging): The cluster control plane logging configuration for your cluster. 
+
+## LoggingTypeConfig
+### Properties
+* **Type**: string: name of the log type
+
+## Nodegroup_Labels
+### Properties
+
+## Nodegroup_Tags
+### Properties
+
+## OidcIdentityProviderConfig
+### Properties
+* **ClientId**: string (Required): This is also known as audience. The ID for the client application that makes authentication requests to the OpenID identity provider.
+* **GroupsClaim**: string: The JWT claim that the provider uses to return your groups.
+* **GroupsPrefix**: string: The prefix that is prepended to group claims to prevent clashes with existing names (such as system: groups).
+* **IssuerUrl**: string (Required): The URL of the OpenID identity provider that allows the API server to discover public signing keys for verifying tokens.
+* **RequiredClaims**: [RequiredClaim](#requiredclaim)[]
+* **UsernameClaim**: string: The JSON Web Token (JWT) claim to use as the username. The default is sub, which is expected to be a unique identifier of the end user. You can choose other claims, such as email or name, depending on the OpenID identity provider. Claims other than email are prefixed with the issuer URL to prevent naming clashes with other plug-ins.
+* **UsernamePrefix**: string: The prefix that is prepended to username claims to prevent clashes with existing names. If you do not provide this field, and username is a value other than email, the prefix defaults to issuerurl#. You can use the value - to disable all prefixing.
+
+## OutpostConfig
+### Properties
+* **ControlPlaneInstanceType**: string (Required): Specify the Instance type of the machines that should be used to create your cluster.
+* **ControlPlanePlacement**: [ControlPlanePlacement](#controlplaneplacement): Specify the placement group of the control plane machines for your cluster.
+* **OutpostArns**: string[] (Required): Specify one or more Arn(s) of Outpost(s) on which you would like to create your cluster.
+
+## PodIdentityAssociation
+### Properties
+* **RoleArn**: string (Required): The IAM role ARN that the pod identity association is created for.
+* **ServiceAccount**: string (Required): The Kubernetes service account that the pod identity association is created for.
+
+## Provider
+### Properties
+* **KeyArn**: string: Amazon Resource Name (ARN) or alias of the KMS key. The KMS key must be symmetric, created in the same region as the cluster, and if the KMS key was created in a different account, the user must have access to the KMS key.
+
 ## RemoteAccess
 ### Properties
 * **Ec2SshKey**: string (Required)
 * **SourceSecurityGroups**: string[]
+
+## RequiredClaim
+### Properties
+* **Key**: string (Required): The key of the requiredClaims.
+* **Value**: string (Required): The value for the requiredClaims.
+
+## ResourcesVpcConfig
+### Properties
+* **EndpointPrivateAccess**: bool: Set this value to true to enable private access for your cluster's Kubernetes API server endpoint. If you enable private access, Kubernetes API requests from within your cluster's VPC use the private VPC endpoint. The default value for this parameter is false, which disables private access for your Kubernetes API server. If you disable private access and you have nodes or AWS Fargate pods in the cluster, then ensure that publicAccessCidrs includes the necessary CIDR blocks for communication with the nodes or Fargate pods.
+* **EndpointPublicAccess**: bool: Set this value to false to disable public access to your cluster's Kubernetes API server endpoint. If you disable public access, your cluster's Kubernetes API server can only receive requests from within the cluster VPC. The default value for this parameter is true, which enables public access for your Kubernetes API server.
+* **PublicAccessCidrs**: string[]: The CIDR blocks that are allowed access to your cluster's public Kubernetes API server endpoint. Communication to the endpoint from addresses outside of the CIDR blocks that you specify is denied. The default value is 0.0.0.0/0. If you've disabled private endpoint access and you have nodes or AWS Fargate pods in the cluster, then ensure that you specify the necessary CIDR blocks.
+* **SecurityGroupIds**: string[]: Specify one or more security groups for the cross-account elastic network interfaces that Amazon EKS creates to use to allow communication between your worker nodes and the Kubernetes control plane. If you don't specify a security group, the default security group for your VPC is used.
+* **SubnetIds**: string[] (Required): Specify subnets for your Amazon EKS nodes. Amazon EKS creates cross-account elastic network interfaces in these subnets to allow communication between your nodes and the Kubernetes control plane.
 
 ## ScalingConfig
 ### Properties
@@ -264,8 +253,40 @@
 * **MaxSize**: int
 * **MinSize**: int
 
-## Nodegroup_Tags
+## Selector
 ### Properties
+* **Labels**: [Label](#label)[]
+* **Namespace**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Taint
 ### Properties
@@ -277,19 +298,4 @@
 ### Properties
 * **MaxUnavailable**: int: The maximum number of nodes unavailable at once during a version update. Nodes will be updated in parallel. This value or maxUnavailablePercentage is required to have a value.The maximum number is 100. 
 * **MaxUnavailablePercentage**: int: The maximum percentage of nodes unavailable during a version update. This percentage of nodes will be updated in parallel, up to 100 nodes at once. This value or maxUnavailable is required to have a value.
-
-## AWS.EKS/PodIdentityAssociationProperties
-### Properties
-* **AssociationArn**: string (ReadOnly, Identifier): The ARN of the pod identity association.
-* **AssociationId**: string (ReadOnly): The ID of the pod identity association.
-* **ClusterName**: string (Required): The cluster that the pod identity association is created for.
-* **Namespace**: string (Required): The Kubernetes namespace that the pod identity association is created for.
-* **RoleArn**: string (Required): The IAM role ARN that the pod identity association is created for.
-* **ServiceAccount**: string (Required): The Kubernetes service account that the pod identity association is created for.
-* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 

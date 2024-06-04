@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DynamoDB-GlobalTable",
   "type": "AWS::DynamoDB::GlobalTable",
-  "time": "2024-01-04T16:30:00.043Z",
+  "time": "2024-05-29T15:58:29.99Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -94,6 +94,9 @@
           "Projection": {
             "$ref": "#/definitions/Projection"
           },
+          "WriteOnDemandThroughputSettings": {
+            "$ref": "#/definitions/WriteOnDemandThroughputSettings"
+          },
           "WriteProvisionedThroughputSettings": {
             "$ref": "#/definitions/WriteProvisionedThroughputSettings"
           }
@@ -126,7 +129,18 @@
       "KinesisStreamSpecification": {
         "additionalProperties": false,
         "properties": {
+          "ApproximateCreationDateTimePrecision": {
+            "enum": [
+              "MICROSECOND",
+              "MILLISECOND"
+            ],
+            "type": "string"
+          },
           "StreamArn": {
+            "relationshipRef": {
+              "propertyPath": "/properties/Arn",
+              "typeName": "AWS::Kinesis::Stream"
+            },
             "type": "string"
           }
         },
@@ -189,6 +203,16 @@
         },
         "type": "object"
       },
+      "ReadOnDemandThroughputSettings": {
+        "additionalProperties": false,
+        "properties": {
+          "MaxReadRequestUnits": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "ReadProvisionedThroughputSettings": {
         "additionalProperties": false,
         "properties": {
@@ -213,6 +237,9 @@
             "minLength": 3,
             "type": "string"
           },
+          "ReadOnDemandThroughputSettings": {
+            "$ref": "#/definitions/ReadOnDemandThroughputSettings"
+          },
           "ReadProvisionedThroughputSettings": {
             "$ref": "#/definitions/ReadProvisionedThroughputSettings"
           }
@@ -226,6 +253,26 @@
         "additionalProperties": false,
         "properties": {
           "KMSMasterKeyId": {
+            "anyOf": [
+              {
+                "relationshipRef": {
+                  "propertyPath": "/properties/Arn",
+                  "typeName": "AWS::KMS::Key"
+                }
+              },
+              {
+                "relationshipRef": {
+                  "propertyPath": "/properties/KeyId",
+                  "typeName": "AWS::KMS::Key"
+                }
+              },
+              {
+                "relationshipRef": {
+                  "propertyPath": "/properties/AliasName",
+                  "typeName": "AWS::KMS::Alias"
+                }
+              }
+            ],
             "type": "string"
           }
         },
@@ -257,11 +304,20 @@
           "PointInTimeRecoverySpecification": {
             "$ref": "#/definitions/PointInTimeRecoverySpecification"
           },
+          "ReadOnDemandThroughputSettings": {
+            "$ref": "#/definitions/ReadOnDemandThroughputSettings"
+          },
           "ReadProvisionedThroughputSettings": {
             "$ref": "#/definitions/ReadProvisionedThroughputSettings"
           },
           "Region": {
             "type": "string"
+          },
+          "ReplicaStreamSpecification": {
+            "$ref": "#/definitions/ReplicaStreamSpecification"
+          },
+          "ResourcePolicy": {
+            "$ref": "#/definitions/ResourcePolicy"
           },
           "SSESpecification": {
             "$ref": "#/definitions/ReplicaSSESpecification"
@@ -280,6 +336,30 @@
         },
         "required": [
           "Region"
+        ],
+        "type": "object"
+      },
+      "ReplicaStreamSpecification": {
+        "additionalProperties": false,
+        "properties": {
+          "ResourcePolicy": {
+            "$ref": "#/definitions/ResourcePolicy"
+          }
+        },
+        "required": [
+          "ResourcePolicy"
+        ],
+        "type": "object"
+      },
+      "ResourcePolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "PolicyDocument": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "PolicyDocument"
         ],
         "type": "object"
       },
@@ -365,6 +445,16 @@
         ],
         "type": "object"
       },
+      "WriteOnDemandThroughputSettings": {
+        "additionalProperties": false,
+        "properties": {
+          "MaxWriteRequestUnits": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "WriteProvisionedThroughputSettings": {
         "additionalProperties": false,
         "properties": {
@@ -398,6 +488,8 @@
           "dynamodb:DisableKinesisStreamingDestination",
           "dynamodb:UpdateTableReplicaAutoScaling",
           "dynamodb:TagResource",
+          "dynamodb:GetResourcePolicy",
+          "dynamodb:PutResourcePolicy",
           "application-autoscaling:DeleteScalingPolicy",
           "application-autoscaling:DeleteScheduledAction",
           "application-autoscaling:DeregisterScalableTarget",
@@ -439,6 +531,7 @@
       "read": {
         "permissions": [
           "dynamodb:Describe*",
+          "dynamodb:GetResourcePolicy",
           "application-autoscaling:Describe*",
           "cloudwatch:PutMetricData",
           "dynamodb:ListTagsOfResource",
@@ -469,6 +562,10 @@
           "dynamodb:EnableKinesisStreamingDestination",
           "dynamodb:DisableKinesisStreamingDestination",
           "dynamodb:UpdateTableReplicaAutoScaling",
+          "dynamodb:UpdateKinesisStreamingDestination",
+          "dynamodb:GetResourcePolicy",
+          "dynamodb:PutResourcePolicy",
+          "dynamodb:DeleteResourcePolicy",
           "application-autoscaling:DeleteScalingPolicy",
           "application-autoscaling:DeleteScheduledAction",
           "application-autoscaling:DeregisterScalableTarget",
@@ -558,6 +655,9 @@
       },
       "TimeToLiveSpecification": {
         "$ref": "#/definitions/TimeToLiveSpecification"
+      },
+      "WriteOnDemandThroughputSettings": {
+        "$ref": "#/definitions/WriteOnDemandThroughputSettings"
       },
       "WriteProvisionedThroughputSettings": {
         "$ref": "#/definitions/WriteProvisionedThroughputSettings"

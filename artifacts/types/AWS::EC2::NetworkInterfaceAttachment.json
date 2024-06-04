@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-NetworkInterfaceAttachment",
   "type": "AWS::EC2::NetworkInterfaceAttachment",
-  "time": "2023-11-02T15:28:15.605Z",
+  "time": "2024-05-21T15:33:25.84Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -14,6 +14,26 @@
       "/properties/InstanceId",
       "/properties/NetworkInterfaceId"
     ],
+    "definitions": {
+      "EnaSrdSpecification": {
+        "additionalProperties": false,
+        "properties": {
+          "EnaSrdEnabled": {
+            "type": "boolean"
+          },
+          "EnaSrdUdpSpecification": {
+            "additionalProperties": false,
+            "properties": {
+              "EnaSrdUdpEnabled": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      }
+    },
     "description": "Resource Type definition for AWS::EC2::NetworkInterfaceAttachment",
     "handlers": {
       "create": {
@@ -64,6 +84,9 @@
       "DeviceIndex": {
         "description": "The network interface's position in the attachment order. For example, the first attached network interface has a DeviceIndex of 0.",
         "type": "string"
+      },
+      "EnaSrdSpecification": {
+        "$ref": "#/definitions/EnaSrdSpecification"
       },
       "InstanceId": {
         "description": "The ID of the instance to which you will attach the ENI.",

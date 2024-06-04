@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaPackageV2-Channel",
   "type": "AWS::MediaPackageV2::Channel",
-  "time": "2024-01-04T17:23:00.473Z",
+  "time": "2024-05-30T16:18:44.105Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -17,11 +17,14 @@
     "definitions": {
       "IngestEndpoint": {
         "additionalProperties": false,
+        "description": "\u003cp\u003eThe ingest domain URL where the source stream should be sent.\u003c/p\u003e",
         "properties": {
           "Id": {
+            "description": "\u003cp\u003eThe system-generated unique identifier for the IngestEndpoint.\u003c/p\u003e",
             "type": "string"
           },
           "Url": {
+            "description": "\u003cp\u003eThe ingest domain URL where the source stream should be sent.\u003c/p\u003e",
             "type": "string"
           }
         },
@@ -40,7 +43,7 @@
         "type": "object"
       }
     },
-    "description": "Definition of AWS::MediaPackageV2::Channel Resource Type",
+    "description": "\u003cp\u003eRepresents an entry point into AWS Elemental MediaPackage for an ABR video content stream sent from an upstream encoder such as AWS Elemental MediaLive. The channel continuously analyzes the content that it receives and prepares it to be distributed to consumers via one or more origin endpoints.\u003c/p\u003e",
     "handlers": {
       "create": {
         "permissions": [
@@ -88,6 +91,7 @@
     ],
     "properties": {
       "Arn": {
+        "description": "\u003cp\u003eThe Amazon Resource Name (ARN) associated with the resource.\u003c/p\u003e",
         "type": "string"
       },
       "ChannelGroupName": {
@@ -103,21 +107,25 @@
         "type": "string"
       },
       "CreatedAt": {
+        "description": "\u003cp\u003eThe date and time the channel was created.\u003c/p\u003e",
         "format": "date-time",
         "type": "string"
       },
       "Description": {
+        "description": "\u003cp\u003eEnter any descriptive text that helps you to identify the channel.\u003c/p\u003e",
         "maxLength": 1024,
         "minLength": 0,
         "type": "string"
       },
       "IngestEndpoints": {
+        "description": "\u003cp\u003eThe list of ingest endpoints.\u003c/p\u003e",
         "items": {
           "$ref": "#/definitions/IngestEndpoint"
         },
         "type": "array"
       },
       "ModifiedAt": {
+        "description": "\u003cp\u003eThe date and time the channel was modified.\u003c/p\u003e",
         "format": "date-time",
         "type": "string"
       },
@@ -134,6 +142,10 @@
       "/properties/CreatedAt",
       "/properties/IngestEndpoints",
       "/properties/ModifiedAt"
+    ],
+    "required": [
+      "ChannelGroupName",
+      "ChannelName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-mediapackagev2",
     "tagging": {

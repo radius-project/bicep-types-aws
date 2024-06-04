@@ -3,9 +3,9 @@
 ## Resource AWS.OSIS/Pipeline@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.OSIS/PipelineProperties](#awsosispipelineproperties) (Required): properties of the resource
+* **properties**: [AWS.OSIS/PipelineProperties](#awsosispipelineproperties) (Required, Identifier): properties of the resource
 
 ## AWS.OSIS/PipelineProperties
 ### Properties
@@ -13,10 +13,10 @@
 * **EncryptionAtRestOptions**: [EncryptionAtRestOptions](#encryptionatrestoptions)
 * **IngestEndpointUrls**: string[] (ReadOnly): A list of endpoints that can be used for ingesting data into a pipeline
 * **LogPublishingOptions**: [LogPublishingOptions](#logpublishingoptions)
-* **MaxUnits**: int (Required): The maximum pipeline capacity, in Ingestion Compute Units (ICUs).
-* **MinUnits**: int (Required): The minimum pipeline capacity, in Ingestion Compute Units (ICUs).
+* **MaxUnits**: int (Required): The maximum pipeline capacity, in Ingestion OpenSearch Compute Units (OCUs).
+* **MinUnits**: int (Required): The minimum pipeline capacity, in Ingestion OpenSearch Compute Units (OCUs).
 * **PipelineArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the pipeline.
-* **PipelineConfigurationBody**: string (Required): The Data Prepper pipeline configuration in YAML format.
+* **PipelineConfigurationBody**: string (Required): The Data Prepper pipeline configuration.
 * **PipelineName**: string (Required): Name of the OpenSearch Ingestion Service pipeline to create. Pipeline names are unique across the pipelines owned by an account within an AWS Region.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **VpcEndpoints**: [VpcEndpoint](#vpcendpoint)[] (ReadOnly): The VPC interface endpoints that have access to the pipeline.

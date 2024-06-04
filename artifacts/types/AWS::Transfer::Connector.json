@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Transfer-Connector",
   "type": "AWS::Transfer::Connector",
-  "time": "2024-01-03T14:21:15.317Z",
+  "time": "2024-05-10T13:40:15.651Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -110,7 +110,8 @@
               "AES128_CBC",
               "AES192_CBC",
               "AES256_CBC",
-              "NONE"
+              "NONE",
+              "DES_EDE3_CBC"
             ],
             "type": "string"
           },
@@ -145,7 +146,7 @@
             "description": "The message subject for this AS2 connector configuration.",
             "maxLength": 1024,
             "minLength": 1,
-            "pattern": "^[\\p{Print}\\p{Blank}]+",
+            "pattern": "^[\\u0020-\\u007E\\t]+$",
             "type": "string"
           },
           "PartnerProfileId": {
@@ -182,6 +183,20 @@
         "minLength": 20,
         "pattern": "arn:.*role/.*",
         "type": "string"
+      },
+      "SecurityPolicyName": {
+        "description": "Security policy for SFTP Connector",
+        "maxLength": 50,
+        "pattern": "TransferSFTPConnectorSecurityPolicy-[A-Za-z0-9-]+",
+        "type": "string"
+      },
+      "ServiceManagedEgressIpAddresses": {
+        "description": "The list of egress IP addresses of this connector. These IP addresses are assigned automatically when you create the connector.",
+        "items": {
+          "pattern": "^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$",
+          "type": "string"
+        },
+        "type": "array"
       },
       "SftpConfig": {
         "additionalProperties": false,
@@ -224,7 +239,8 @@
     },
     "readOnlyProperties": [
       "/properties/Arn",
-      "/properties/ConnectorId"
+      "/properties/ConnectorId",
+      "/properties/ServiceManagedEgressIpAddresses"
     ],
     "required": [
       "AccessRole",

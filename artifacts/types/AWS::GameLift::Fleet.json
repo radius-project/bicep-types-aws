@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GameLift-Fleet",
   "type": "AWS::GameLift::Fleet",
-  "time": "2024-01-04T19:43:48.748Z",
+  "time": "2024-05-27T07:00:43.535Z",
   "schema": {
     "$schema": "https://schema.cloudformation.us-east-1.amazonaws.com/provider.definition.schema.v1.json",
     "additionalProperties": false,
@@ -9,6 +9,7 @@
       "/properties/ApplyCapacity",
       "/properties/BuildId",
       "/properties/CertificateConfiguration",
+      "/properties/ContainerGroupsConfiguration",
       "/properties/EC2InstanceType",
       "/properties/FleetType",
       "/properties/InstanceRoleARN",
@@ -19,7 +20,6 @@
       "/properties/ScriptId",
       "/properties/ServerLaunchParameters",
       "/properties/ServerLaunchPath",
-      "/properties/CertificateType",
       "/properties/ComputeType"
     ],
     "definitions": {
@@ -54,6 +54,78 @@
         "required": [
           "CertificateType"
         ],
+        "type": "object"
+      },
+      "ConnectionPortRange": {
+        "additionalProperties": false,
+        "description": "Defines the range of ports on the instance that allow inbound traffic to connect with containers in a fleet.",
+        "properties": {
+          "FromPort": {
+            "description": "A starting value for a range of allowed port numbers.",
+            "maximum": 60000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "ToPort": {
+            "description": "An ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than FromPort.",
+            "maximum": 60000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "FromPort",
+          "ToPort"
+        ],
+        "type": "object"
+      },
+      "ContainerGroupsConfiguration": {
+        "additionalProperties": false,
+        "description": "Specifies container groups that this instance will hold. You must specify exactly one replica group. Optionally, you may specify exactly one daemon group. You can't change this property after you create the fleet.",
+        "properties": {
+          "ConnectionPortRange": {
+            "$ref": "#/definitions/ConnectionPortRange"
+          },
+          "ContainerGroupDefinitionNames": {
+            "description": "The names of the container group definitions that will be created in an instance. You must specify exactly one REPLICA container group. You have the option to also specify one DAEMON container group.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-]+$",
+              "type": "string"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "type": "array"
+          },
+          "ContainerGroupsPerInstance": {
+            "$ref": "#/definitions/ContainerGroupsPerInstance"
+          }
+        },
+        "required": [
+          "ContainerGroupDefinitionNames",
+          "ConnectionPortRange"
+        ],
+        "type": "object"
+      },
+      "ContainerGroupsPerInstance": {
+        "additionalProperties": false,
+        "description": "The number of container groups per instance.",
+        "properties": {
+          "DesiredReplicaContainerGroupsPerInstance": {
+            "description": "Use this parameter to override the number of replica container groups GameLift will launch per instance with a number that is lower than that calculated maximum.",
+            "maximum": 5000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxReplicaContainerGroupsPerInstance": {
+            "description": "GameLift calculates the maximum number of replica container groups it can launch per instance based on instance properties such as CPU, memory, and connection ports.",
+            "maximum": 5000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
         "type": "object"
       },
       "IpPermission": {
@@ -404,7 +476,7 @@
         "description": "Configuration for Anywhere fleet."
       },
       "ApplyCapacity": {
-        "description": "ComputeType to differentiate EC2 hardware managed by GameLift and Anywhere hardware managed by the customer.",
+        "description": "Determines whether to apply fleet or location capacities on fleet creation.",
         "enum": [
           "ON_UPDATE",
           "ON_CREATE_AND_UPDATE"
@@ -424,9 +496,13 @@
         "description": "ComputeType to differentiate EC2 hardware managed by GameLift and Anywhere hardware managed by the customer.",
         "enum": [
           "EC2",
-          "ANYWHERE"
+          "ANYWHERE",
+          "CONTAINER"
         ],
         "type": "string"
+      },
+      "ContainerGroupsConfiguration": {
+        "$ref": "#/definitions/ContainerGroupsConfiguration"
       },
       "Description": {
         "description": "A human-readable description of a fleet.",
@@ -579,6 +655,7 @@
       }
     },
     "readOnlyProperties": [
+      "/properties/ContainerGroupsConfiguration/ContainerGroupsPerInstance/MaxReplicaContainerGroupsPerInstance",
       "/properties/FleetId"
     ],
     "required": [
@@ -586,6 +663,9 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-gamelift.git",
     "taggable": true,
-    "typeName": "AWS::GameLift::Fleet"
+    "typeName": "AWS::GameLift::Fleet",
+    "writeOnlyProperties": [
+      "/properties/ApplyCapacity"
+    ]
   }
 }

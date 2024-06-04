@@ -3,23 +3,37 @@
 ## Resource AWS.Amplify/App@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Amplify/AppProperties](#awsamplifyappproperties) (Required): properties of the resource
+* **properties**: [AWS.Amplify/AppProperties](#awsamplifyappproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Amplify/Branch@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Amplify/BranchProperties](#awsamplifybranchproperties) (Required): properties of the resource
+* **properties**: [AWS.Amplify/BranchProperties](#awsamplifybranchproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Amplify/Domain@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Amplify/DomainProperties](#awsamplifydomainproperties) (Required): properties of the resource
+* **properties**: [AWS.Amplify/DomainProperties](#awsamplifydomainproperties) (Required, Identifier): properties of the resource
+
+## AutoBranchCreationConfig
+### Properties
+* **AutoBranchCreationPatterns**: string[]
+* **BasicAuthConfig**: [BasicAuthConfig](#basicauthconfig)
+* **BuildSpec**: string
+* **EnableAutoBranchCreation**: bool
+* **EnableAutoBuild**: bool
+* **EnablePerformanceMode**: bool
+* **EnablePullRequestPreview**: bool
+* **EnvironmentVariables**: [EnvironmentVariable](#environmentvariable)[]
+* **Framework**: string
+* **PullRequestEnvironmentName**: string
+* **Stage**: string
 
 ## AWS.Amplify/AppProperties
 ### Properties
@@ -43,43 +57,6 @@
 * **Repository**: string
 * **Tags**: [Tag](#tag)[]
 
-## AutoBranchCreationConfig
-### Properties
-* **AutoBranchCreationPatterns**: string[]
-* **BasicAuthConfig**: [BasicAuthConfig](#basicauthconfig)
-* **BuildSpec**: string
-* **EnableAutoBranchCreation**: bool
-* **EnableAutoBuild**: bool
-* **EnablePerformanceMode**: bool
-* **EnablePullRequestPreview**: bool
-* **EnvironmentVariables**: [EnvironmentVariable](#environmentvariable)[]
-* **Framework**: string
-* **PullRequestEnvironmentName**: string
-* **Stage**: string
-
-## BasicAuthConfig
-### Properties
-* **EnableBasicAuth**: bool
-* **Password**: string
-* **Username**: string
-
-## EnvironmentVariable
-### Properties
-* **Name**: string (Required)
-* **Value**: string (Required)
-
-## CustomRule
-### Properties
-* **Condition**: string
-* **Source**: string (Required)
-* **Status**: string
-* **Target**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.Amplify/BranchProperties
 ### Properties
 * **AppId**: string (Required)
@@ -98,6 +75,22 @@
 * **Stage**: string
 * **Tags**: [Tag](#tag)[]
 
+## AWS.Amplify/DomainProperties
+### Properties
+* **AppId**: string (Required)
+* **Arn**: string (ReadOnly, Identifier)
+* **AutoSubDomainCreationPatterns**: string[]
+* **AutoSubDomainIAMRole**: string
+* **Certificate**: [Certificate](#certificate) (ReadOnly)
+* **CertificateRecord**: string (ReadOnly)
+* **CertificateSettings**: [CertificateSettings](#certificatesettings) (WriteOnly)
+* **DomainName**: string (Required)
+* **DomainStatus**: string (ReadOnly)
+* **EnableAutoSubDomain**: bool
+* **StatusReason**: string (ReadOnly)
+* **SubDomainSettings**: [SubDomainSetting](#subdomainsetting)[] (Required)
+* **UpdateStatus**: string (ReadOnly)
+
 ## Backend
 ### Properties
 * **StackArn**: string
@@ -105,34 +98,55 @@
 ## BasicAuthConfig
 ### Properties
 * **EnableBasicAuth**: bool
+* **Password**: string
+* **Username**: string
+
+## BasicAuthConfig
+### Properties
+* **EnableBasicAuth**: bool
 * **Password**: string (Required)
 * **Username**: string (Required)
+
+## Certificate
+### Properties
+* **CertificateArn**: string
+* **CertificateType**: string
+* **CertificateVerificationDNSRecord**: string
+
+## CertificateSettings
+### Properties
+* **CertificateType**: string
+* **CustomCertificateArn**: string
+
+## CustomRule
+### Properties
+* **Condition**: string
+* **Source**: string (Required)
+* **Status**: string
+* **Target**: string (Required)
 
 ## EnvironmentVariable
 ### Properties
 * **Name**: string (Required)
 * **Value**: string (Required)
 
-## Tag
+## EnvironmentVariable
 ### Properties
-* **Key**: string (Required)
+* **Name**: string (Required)
 * **Value**: string (Required)
-
-## AWS.Amplify/DomainProperties
-### Properties
-* **AppId**: string (Required)
-* **Arn**: string (ReadOnly, Identifier)
-* **AutoSubDomainCreationPatterns**: string[]
-* **AutoSubDomainIAMRole**: string
-* **CertificateRecord**: string (ReadOnly)
-* **DomainName**: string (Required)
-* **DomainStatus**: string (ReadOnly)
-* **EnableAutoSubDomain**: bool
-* **StatusReason**: string (ReadOnly)
-* **SubDomainSettings**: [SubDomainSetting](#subdomainsetting)[] (Required)
 
 ## SubDomainSetting
 ### Properties
 * **BranchName**: string (Required)
 * **Prefix**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 

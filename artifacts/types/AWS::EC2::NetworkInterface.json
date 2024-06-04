@@ -1,13 +1,14 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-NetworkInterface",
   "type": "AWS::EC2::NetworkInterface",
-  "time": "2024-01-03T19:01:38.491Z",
+  "time": "2024-03-26T15:50:33.265Z",
   "schema": {
     "$schema": "https://raw.githubusercontent.com/aws-cloudformation/cloudformation-resource-schema/master/src/main/resources/schema/provider.definition.schema.v1.json",
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
       "/properties/PrivateIpAddresses",
-      "/properties/EnablePrimaryIpv6"
+      "/properties/EnablePrimaryIpv6",
+      "/properties/ConnectionTrackingSpecification"
     ],
     "createOnlyProperties": [
       "/properties/PrivateIpAddress",
@@ -15,6 +16,21 @@
       "/properties/SubnetId"
     ],
     "definitions": {
+      "ConnectionTrackingSpecification": {
+        "additionalProperties": false,
+        "properties": {
+          "TcpEstablishedTimeout": {
+            "type": "integer"
+          },
+          "UdpStreamTimeout": {
+            "type": "integer"
+          },
+          "UdpTimeout": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "InstanceIpv6Address": {
         "additionalProperties": false,
         "properties": {
@@ -127,6 +143,9 @@
       "/properties/Id"
     ],
     "properties": {
+      "ConnectionTrackingSpecification": {
+        "$ref": "#/definitions/ConnectionTrackingSpecification"
+      },
       "Description": {
         "description": "A description for the network interface.",
         "type": "string"
@@ -241,13 +260,18 @@
         },
         "type": "array",
         "uniqueItems": false
+      },
+      "VpcId": {
+        "description": "The ID of the VPC",
+        "type": "string"
       }
     },
     "readOnlyProperties": [
       "/properties/Id",
       "/properties/SecondaryPrivateIpAddresses",
       "/properties/PrimaryPrivateIpAddress",
-      "/properties/PrimaryIpv6Address"
+      "/properties/PrimaryIpv6Address",
+      "/properties/VpcId"
     ],
     "required": [
       "SubnetId"

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-Addon",
   "type": "AWS::EKS::Addon",
-  "time": "2024-01-04T17:14:08.991Z",
+  "time": "2024-06-03T16:11:29.015Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,26 @@
       "/properties/AddonName"
     ],
     "definitions": {
+      "PodIdentityAssociation": {
+        "additionalProperties": false,
+        "description": "A pod identity to associate with an add-on.",
+        "properties": {
+          "RoleArn": {
+            "description": "The IAM role ARN that the pod identity association is created for.",
+            "pattern": "^arn:aws(-cn|-us-gov|-iso(-[a-z])?)?:iam::\\d{12}:(role)\\/*",
+            "type": "string"
+          },
+          "ServiceAccount": {
+            "description": "The Kubernetes service account that the pod identity association is created for.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ServiceAccount",
+          "RoleArn"
+        ],
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "description": "A key-value pair to associate with a resource.",
@@ -40,16 +60,29 @@
           "eks:CreateAddon",
           "eks:DescribeAddon",
           "eks:TagResource",
-          "iam:PassRole"
+          "iam:PassRole",
+          "iam:GetRole",
+          "eks:CreatePodIdentityAssociation"
         ]
       },
       "delete": {
         "permissions": [
           "eks:DeleteAddon",
-          "eks:DescribeAddon"
+          "eks:DescribeAddon",
+          "eks:DeletePodIdentityAssociation"
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "ClusterName": {
+              "$ref": "resource-schema.json#/properties/ClusterName"
+            }
+          },
+          "required": [
+            "ClusterName"
+          ]
+        },
         "permissions": [
           "eks:ListAddons"
         ]
@@ -62,12 +95,15 @@
       "update": {
         "permissions": [
           "iam:PassRole",
+          "iam:GetRole",
           "eks:UpdateAddon",
           "eks:DescribeAddon",
           "eks:DescribeUpdate",
           "eks:ListTagsForResource",
           "eks:TagResource",
-          "eks:UntagResource"
+          "eks:UntagResource",
+          "eks:CreatePodIdentityAssociation",
+          "eks:DeletePodIdentityAssociation"
         ]
       }
     },
@@ -99,6 +135,15 @@
         "description": "The configuration values to use with the add-on",
         "minLength": 1,
         "type": "string"
+      },
+      "PodIdentityAssociations": {
+        "description": "An array of pod identities to apply to this add-on.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/PodIdentityAssociation"
+        },
+        "type": "array",
+        "uniqueItems": true
       },
       "PreserveOnDelete": {
         "description": "PreserveOnDelete parameter value",
@@ -147,7 +192,8 @@
     "typeName": "AWS::EKS::Addon",
     "writeOnlyProperties": [
       "/properties/ResolveConflicts",
-      "/properties/PreserveOnDelete"
+      "/properties/PreserveOnDelete",
+      "/properties/PodIdentityAssociations"
     ]
   }
 }

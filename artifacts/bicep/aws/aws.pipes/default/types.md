@@ -3,9 +3,9 @@
 ## Resource AWS.Pipes/Pipe@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Pipes/PipeProperties](#awspipespipeproperties) (Required): properties of the resource
+* **properties**: [AWS.Pipes/PipeProperties](#awspipespipeproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Pipes/PipeProperties
 ### Properties
@@ -27,10 +27,131 @@
 * **Target**: string (Required)
 * **TargetParameters**: [PipeTargetParameters](#pipetargetparameters) (WriteOnly)
 
-## PipeEnrichmentParameters
+## AwsVpcConfiguration
 ### Properties
-* **HttpParameters**: [PipeEnrichmentHttpParameters](#pipeenrichmenthttpparameters)
-* **InputTemplate**: string
+* **AssignPublicIp**: string
+* **SecurityGroups**: string[]
+* **Subnets**: string[] (Required)
+
+## BatchArrayProperties
+### Properties
+* **Size**: int
+
+## BatchContainerOverrides
+### Properties
+* **Command**: string[]
+* **Environment**: [BatchEnvironmentVariable](#batchenvironmentvariable)[]
+* **InstanceType**: string
+* **ResourceRequirements**: [BatchResourceRequirement](#batchresourcerequirement)[]
+
+## BatchEnvironmentVariable
+### Properties
+* **Name**: string (Identifier)
+* **Value**: string
+
+## BatchJobDependency
+### Properties
+* **JobId**: string
+* **Type**: string
+
+## BatchParametersMap
+### Properties
+
+## BatchResourceRequirement
+### Properties
+* **Type**: string (Required)
+* **Value**: string (Required)
+
+## BatchRetryStrategy
+### Properties
+* **Attempts**: int
+
+## CapacityProviderStrategyItem
+### Properties
+* **Base**: int
+* **CapacityProvider**: string (Required)
+* **Weight**: int
+
+## CloudwatchLogsLogDestination
+### Properties
+* **LogGroupArn**: string
+
+## DeadLetterConfig
+### Properties
+* **Arn**: string
+
+## EcsContainerOverride
+### Properties
+* **Command**: string[]
+* **Cpu**: int
+* **Environment**: [EcsEnvironmentVariable](#ecsenvironmentvariable)[]
+* **EnvironmentFiles**: [EcsEnvironmentFile](#ecsenvironmentfile)[]
+* **Memory**: int
+* **MemoryReservation**: int
+* **Name**: string (Identifier)
+* **ResourceRequirements**: [EcsResourceRequirement](#ecsresourcerequirement)[]
+
+## EcsEnvironmentFile
+### Properties
+* **Type**: string (Required)
+* **Value**: string (Required)
+
+## EcsEnvironmentVariable
+### Properties
+* **Name**: string (Identifier)
+* **Value**: string
+
+## EcsEphemeralStorage
+### Properties
+* **SizeInGiB**: int (Required)
+
+## EcsInferenceAcceleratorOverride
+### Properties
+* **DeviceName**: string
+* **DeviceType**: string
+
+## EcsResourceRequirement
+### Properties
+* **Type**: string (Required)
+* **Value**: string (Required)
+
+## EcsTaskOverride
+### Properties
+* **ContainerOverrides**: [EcsContainerOverride](#ecscontaineroverride)[]
+* **Cpu**: string
+* **EphemeralStorage**: [EcsEphemeralStorage](#ecsephemeralstorage)
+* **ExecutionRoleArn**: string
+* **InferenceAcceleratorOverrides**: [EcsInferenceAcceleratorOverride](#ecsinferenceacceleratoroverride)[]
+* **Memory**: string
+* **TaskRoleArn**: string
+
+## Filter
+### Properties
+* **Pattern**: string
+
+## FilterCriteria
+### Properties
+* **Filters**: [Filter](#filter)[]
+
+## FirehoseLogDestination
+### Properties
+* **DeliveryStreamArn**: string
+
+## HeaderParametersMap
+### Properties
+
+## MQBrokerAccessCredentials
+### Properties
+
+## MSKAccessCredentials
+### Properties
+
+## NetworkConfiguration
+### Properties
+* **AwsvpcConfiguration**: [AwsVpcConfiguration](#awsvpcconfiguration)
+
+## Pipe_SelfManagedKafkaAccessConfigurationCredentials
+### Properties
 
 ## PipeEnrichmentHttpParameters
 ### Properties
@@ -38,11 +159,10 @@
 * **PathParameterValues**: string[]
 * **QueryStringParameters**: [QueryStringParametersMap](#querystringparametersmap)
 
-## HeaderParametersMap
+## PipeEnrichmentParameters
 ### Properties
-
-## QueryStringParametersMap
-### Properties
+* **HttpParameters**: [PipeEnrichmentHttpParameters](#pipeenrichmenthttpparameters)
+* **InputTemplate**: string
 
 ## PipeLogConfiguration
 ### Properties
@@ -52,41 +172,12 @@
 * **Level**: string
 * **S3LogDestination**: [S3LogDestination](#s3logdestination)
 
-## CloudwatchLogsLogDestination
-### Properties
-* **LogGroupArn**: string
-
-## FirehoseLogDestination
-### Properties
-* **DeliveryStreamArn**: string
-
-## S3LogDestination
-### Properties
-* **BucketName**: string
-* **BucketOwner**: string
-* **OutputFormat**: string
-* **Prefix**: string
-
-## PipeSourceParameters
-### Properties
-* **ActiveMQBrokerParameters**: [PipeSourceActiveMQBrokerParameters](#pipesourceactivemqbrokerparameters)
-* **DynamoDBStreamParameters**: [PipeSourceDynamoDBStreamParameters](#pipesourcedynamodbstreamparameters)
-* **FilterCriteria**: [FilterCriteria](#filtercriteria)
-* **KinesisStreamParameters**: [PipeSourceKinesisStreamParameters](#pipesourcekinesisstreamparameters)
-* **ManagedStreamingKafkaParameters**: [PipeSourceManagedStreamingKafkaParameters](#pipesourcemanagedstreamingkafkaparameters)
-* **RabbitMQBrokerParameters**: [PipeSourceRabbitMQBrokerParameters](#pipesourcerabbitmqbrokerparameters)
-* **SelfManagedKafkaParameters**: [PipeSourceSelfManagedKafkaParameters](#pipesourceselfmanagedkafkaparameters)
-* **SqsQueueParameters**: [PipeSourceSqsQueueParameters](#pipesourcesqsqueueparameters)
-
 ## PipeSourceActiveMQBrokerParameters
 ### Properties
 * **BatchSize**: int
 * **Credentials**: [MQBrokerAccessCredentials](#mqbrokeraccesscredentials) (Required)
 * **MaximumBatchingWindowInSeconds**: int
 * **QueueName**: string (Required)
-
-## MQBrokerAccessCredentials
-### Properties
 
 ## PipeSourceDynamoDBStreamParameters
 ### Properties
@@ -98,18 +189,6 @@
 * **OnPartialBatchItemFailure**: string
 * **ParallelizationFactor**: int
 * **StartingPosition**: string (Required)
-
-## DeadLetterConfig
-### Properties
-* **Arn**: string
-
-## FilterCriteria
-### Properties
-* **Filters**: [Filter](#filter)[]
-
-## Filter
-### Properties
-* **Pattern**: string
 
 ## PipeSourceKinesisStreamParameters
 ### Properties
@@ -132,8 +211,16 @@
 * **StartingPosition**: string
 * **TopicName**: string (Required)
 
-## MSKAccessCredentials
+## PipeSourceParameters
 ### Properties
+* **ActiveMQBrokerParameters**: [PipeSourceActiveMQBrokerParameters](#pipesourceactivemqbrokerparameters)
+* **DynamoDBStreamParameters**: [PipeSourceDynamoDBStreamParameters](#pipesourcedynamodbstreamparameters)
+* **FilterCriteria**: [FilterCriteria](#filtercriteria)
+* **KinesisStreamParameters**: [PipeSourceKinesisStreamParameters](#pipesourcekinesisstreamparameters)
+* **ManagedStreamingKafkaParameters**: [PipeSourceManagedStreamingKafkaParameters](#pipesourcemanagedstreamingkafkaparameters)
+* **RabbitMQBrokerParameters**: [PipeSourceRabbitMQBrokerParameters](#pipesourcerabbitmqbrokerparameters)
+* **SelfManagedKafkaParameters**: [PipeSourceSelfManagedKafkaParameters](#pipesourceselfmanagedkafkaparameters)
+* **SqsQueueParameters**: [PipeSourceSqsQueueParameters](#pipesourcesqsqueueparameters)
 
 ## PipeSourceRabbitMQBrokerParameters
 ### Properties
@@ -155,36 +242,10 @@
 * **TopicName**: string (Required)
 * **Vpc**: [SelfManagedKafkaAccessConfigurationVpc](#selfmanagedkafkaaccessconfigurationvpc)
 
-## Pipe_SelfManagedKafkaAccessConfigurationCredentials
-### Properties
-
-## SelfManagedKafkaAccessConfigurationVpc
-### Properties
-* **SecurityGroup**: string[]: List of SecurityGroupId.
-* **Subnets**: string[]: List of SubnetId.
-
 ## PipeSourceSqsQueueParameters
 ### Properties
 * **BatchSize**: int
 * **MaximumBatchingWindowInSeconds**: int
-
-## TagMap
-### Properties
-
-## PipeTargetParameters
-### Properties
-* **BatchJobParameters**: [PipeTargetBatchJobParameters](#pipetargetbatchjobparameters)
-* **CloudWatchLogsParameters**: [PipeTargetCloudWatchLogsParameters](#pipetargetcloudwatchlogsparameters)
-* **EcsTaskParameters**: [PipeTargetEcsTaskParameters](#pipetargetecstaskparameters)
-* **EventBridgeEventBusParameters**: [PipeTargetEventBridgeEventBusParameters](#pipetargeteventbridgeeventbusparameters)
-* **HttpParameters**: [PipeTargetHttpParameters](#pipetargethttpparameters)
-* **InputTemplate**: string
-* **KinesisStreamParameters**: [PipeTargetKinesisStreamParameters](#pipetargetkinesisstreamparameters)
-* **LambdaFunctionParameters**: [PipeTargetLambdaFunctionParameters](#pipetargetlambdafunctionparameters)
-* **RedshiftDataParameters**: [PipeTargetRedshiftDataParameters](#pipetargetredshiftdataparameters)
-* **SageMakerPipelineParameters**: [PipeTargetSageMakerPipelineParameters](#pipetargetsagemakerpipelineparameters)
-* **SqsQueueParameters**: [PipeTargetSqsQueueParameters](#pipetargetsqsqueueparameters)
-* **StepFunctionStateMachineParameters**: [PipeTargetStateMachineParameters](#pipetargetstatemachineparameters)
 
 ## PipeTargetBatchJobParameters
 ### Properties
@@ -195,39 +256,6 @@
 * **JobName**: string (Required)
 * **Parameters**: [BatchParametersMap](#batchparametersmap)
 * **RetryStrategy**: [BatchRetryStrategy](#batchretrystrategy)
-
-## BatchArrayProperties
-### Properties
-* **Size**: int
-
-## BatchContainerOverrides
-### Properties
-* **Command**: string[]
-* **Environment**: [BatchEnvironmentVariable](#batchenvironmentvariable)[]
-* **InstanceType**: string
-* **ResourceRequirements**: [BatchResourceRequirement](#batchresourcerequirement)[]
-
-## BatchEnvironmentVariable
-### Properties
-* **Name**: string (Identifier)
-* **Value**: string
-
-## BatchResourceRequirement
-### Properties
-* **Type**: string (Required)
-* **Value**: string (Required)
-
-## BatchJobDependency
-### Properties
-* **JobId**: string
-* **Type**: string
-
-## BatchParametersMap
-### Properties
-
-## BatchRetryStrategy
-### Properties
-* **Attempts**: int
 
 ## PipeTargetCloudWatchLogsParameters
 ### Properties
@@ -252,82 +280,6 @@
 * **TaskCount**: int
 * **TaskDefinitionArn**: string (Required)
 
-## CapacityProviderStrategyItem
-### Properties
-* **Base**: int
-* **CapacityProvider**: string (Required)
-* **Weight**: int
-
-## NetworkConfiguration
-### Properties
-* **AwsvpcConfiguration**: [AwsVpcConfiguration](#awsvpcconfiguration)
-
-## AwsVpcConfiguration
-### Properties
-* **AssignPublicIp**: string
-* **SecurityGroups**: string[]
-* **Subnets**: string[] (Required)
-
-## EcsTaskOverride
-### Properties
-* **ContainerOverrides**: [EcsContainerOverride](#ecscontaineroverride)[]
-* **Cpu**: string
-* **EphemeralStorage**: [EcsEphemeralStorage](#ecsephemeralstorage)
-* **ExecutionRoleArn**: string
-* **InferenceAcceleratorOverrides**: [EcsInferenceAcceleratorOverride](#ecsinferenceacceleratoroverride)[]
-* **Memory**: string
-* **TaskRoleArn**: string
-
-## EcsContainerOverride
-### Properties
-* **Command**: string[]
-* **Cpu**: int
-* **Environment**: [EcsEnvironmentVariable](#ecsenvironmentvariable)[]
-* **EnvironmentFiles**: [EcsEnvironmentFile](#ecsenvironmentfile)[]
-* **Memory**: int
-* **MemoryReservation**: int
-* **Name**: string (Identifier)
-* **ResourceRequirements**: [EcsResourceRequirement](#ecsresourcerequirement)[]
-
-## EcsEnvironmentVariable
-### Properties
-* **Name**: string (Identifier)
-* **Value**: string
-
-## EcsEnvironmentFile
-### Properties
-* **Type**: string (Required)
-* **Value**: string (Required)
-
-## EcsResourceRequirement
-### Properties
-* **Type**: string (Required)
-* **Value**: string (Required)
-
-## EcsEphemeralStorage
-### Properties
-* **SizeInGiB**: int (Required)
-
-## EcsInferenceAcceleratorOverride
-### Properties
-* **DeviceName**: string
-* **DeviceType**: string
-
-## PlacementConstraint
-### Properties
-* **Expression**: string
-* **Type**: string
-
-## PlacementStrategy
-### Properties
-* **Field**: string
-* **Type**: string
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## PipeTargetEventBridgeEventBusParameters
 ### Properties
 * **DetailType**: string
@@ -350,6 +302,21 @@
 ### Properties
 * **InvocationType**: string
 
+## PipeTargetParameters
+### Properties
+* **BatchJobParameters**: [PipeTargetBatchJobParameters](#pipetargetbatchjobparameters)
+* **CloudWatchLogsParameters**: [PipeTargetCloudWatchLogsParameters](#pipetargetcloudwatchlogsparameters)
+* **EcsTaskParameters**: [PipeTargetEcsTaskParameters](#pipetargetecstaskparameters)
+* **EventBridgeEventBusParameters**: [PipeTargetEventBridgeEventBusParameters](#pipetargeteventbridgeeventbusparameters)
+* **HttpParameters**: [PipeTargetHttpParameters](#pipetargethttpparameters)
+* **InputTemplate**: string
+* **KinesisStreamParameters**: [PipeTargetKinesisStreamParameters](#pipetargetkinesisstreamparameters)
+* **LambdaFunctionParameters**: [PipeTargetLambdaFunctionParameters](#pipetargetlambdafunctionparameters)
+* **RedshiftDataParameters**: [PipeTargetRedshiftDataParameters](#pipetargetredshiftdataparameters)
+* **SageMakerPipelineParameters**: [PipeTargetSageMakerPipelineParameters](#pipetargetsagemakerpipelineparameters)
+* **SqsQueueParameters**: [PipeTargetSqsQueueParameters](#pipetargetsqsqueueparameters)
+* **StepFunctionStateMachineParameters**: [PipeTargetStateMachineParameters](#pipetargetstatemachineparameters)
+
 ## PipeTargetRedshiftDataParameters
 ### Properties
 * **Database**: string (Required): Redshift Database
@@ -363,11 +330,6 @@
 ### Properties
 * **PipelineParameterList**: [SageMakerPipelineParameter](#sagemakerpipelineparameter)[]
 
-## SageMakerPipelineParameter
-### Properties
-* **Name**: string (Required, Identifier)
-* **Value**: string (Required)
-
 ## PipeTargetSqsQueueParameters
 ### Properties
 * **MessageDeduplicationId**: string
@@ -376,4 +338,42 @@
 ## PipeTargetStateMachineParameters
 ### Properties
 * **InvocationType**: string
+
+## PlacementConstraint
+### Properties
+* **Expression**: string
+* **Type**: string
+
+## PlacementStrategy
+### Properties
+* **Field**: string
+* **Type**: string
+
+## QueryStringParametersMap
+### Properties
+
+## S3LogDestination
+### Properties
+* **BucketName**: string
+* **BucketOwner**: string
+* **OutputFormat**: string
+* **Prefix**: string
+
+## SageMakerPipelineParameter
+### Properties
+* **Name**: string (Required, Identifier)
+* **Value**: string (Required)
+
+## SelfManagedKafkaAccessConfigurationVpc
+### Properties
+* **SecurityGroup**: string[]: List of SecurityGroupId.
+* **Subnets**: string[]: List of SubnetId.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## TagMap
+### Properties
 

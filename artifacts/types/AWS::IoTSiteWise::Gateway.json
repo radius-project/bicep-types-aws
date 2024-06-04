@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTSiteWise-Gateway",
   "type": "AWS::IoTSiteWise::Gateway",
-  "time": "2024-01-04T16:08:23.905Z",
+  "time": "2024-05-06T15:07:33.791Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -45,6 +45,11 @@
             "required": [
               "GreengrassV2"
             ]
+          },
+          {
+            "required": [
+              "SiemensIE"
+            ]
           }
         ],
         "properties": {
@@ -55,6 +60,10 @@
           "GreengrassV2": {
             "$ref": "#/definitions/GreengrassV2",
             "description": "A gateway that runs on AWS IoT Greengrass V2."
+          },
+          "SiemensIE": {
+            "$ref": "#/definitions/SiemensIE",
+            "description": "A gateway that runs on Siemens Industrial Edge."
           }
         },
         "type": "object"
@@ -84,6 +93,20 @@
         },
         "required": [
           "CoreDeviceThingName"
+        ],
+        "type": "object"
+      },
+      "SiemensIE": {
+        "additionalProperties": false,
+        "description": "Contains the IotCoreThingName of AWS IoT Thing that the gateway runs on.",
+        "properties": {
+          "IotCoreThingName": {
+            "description": "The name of the IoT Core Thing.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "IotCoreThingName"
         ],
         "type": "object"
       },

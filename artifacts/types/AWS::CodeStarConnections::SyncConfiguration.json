@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CodeStarConnections-SyncConfiguration",
   "type": "AWS::CodeStarConnections::SyncConfiguration",
-  "time": "2023-12-18T16:40:25.846Z",
+  "time": "2024-04-04T15:40:02.791Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -63,7 +63,21 @@
       },
       "ProviderType": {
         "description": "The name of the external provider where your third-party code repository is configured.",
-        "pattern": "^(GitHub|Bitbucket|GitHubEnterprise|GitLab)$",
+        "enum": [
+          "GitHub",
+          "Bitbucket",
+          "GitHubEnterprise",
+          "GitLab",
+          "GitLabSelfManaged"
+        ],
+        "type": "string"
+      },
+      "PublishDeploymentStatus": {
+        "description": "Whether to enable or disable publishing of deployment status to source providers.",
+        "enum": [
+          "ENABLED",
+          "DISABLED"
+        ],
         "type": "string"
       },
       "RepositoryLinkId": {
@@ -87,6 +101,14 @@
       },
       "SyncType": {
         "description": "The type of resource synchronization service that is to be configured, for example, CFN_STACK_SYNC.",
+        "type": "string"
+      },
+      "TriggerResourceUpdateOn": {
+        "description": "When to trigger Git sync to begin the stack update.",
+        "enum": [
+          "ANY_CHANGE",
+          "FILE_CHANGE"
+        ],
         "type": "string"
       }
     },

@@ -1,13 +1,28 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VerifiedPermissions-IdentitySource",
   "type": "AWS::VerifiedPermissions::IdentitySource",
-  "time": "2023-12-19T16:28:50.269Z",
+  "time": "2024-05-22T13:25:36.033Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/PolicyStoreId"
     ],
     "definitions": {
+      "CognitoGroupConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "GroupEntityType": {
+            "maxLength": 200,
+            "minLength": 1,
+            "pattern": "^([_a-zA-Z][_a-zA-Z0-9]*::)*[_a-zA-Z][_a-zA-Z0-9]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "GroupEntityType"
+        ],
+        "type": "object"
+      },
       "CognitoUserPoolConfiguration": {
         "additionalProperties": false,
         "properties": {
@@ -23,6 +38,9 @@
             "minItems": 0,
             "type": "array"
           },
+          "GroupConfiguration": {
+            "$ref": "#/definitions/CognitoGroupConfiguration"
+          },
           "UserPoolArn": {
             "maxLength": 255,
             "minLength": 1,
@@ -36,17 +54,21 @@
         "type": "object"
       },
       "IdentitySourceConfiguration": {
-        "additionalProperties": false,
-        "properties": {
-          "CognitoUserPoolConfiguration": {
-            "$ref": "#/definitions/CognitoUserPoolConfiguration"
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "CognitoUserPoolConfiguration": {
+                "$ref": "#/definitions/CognitoUserPoolConfiguration"
+              }
+            },
+            "required": [
+              "CognitoUserPoolConfiguration"
+            ],
+            "title": "CognitoUserPoolConfiguration",
+            "type": "object"
           }
-        },
-        "required": [
-          "CognitoUserPoolConfiguration"
-        ],
-        "title": "CognitoUserPoolConfiguration",
-        "type": "object"
+        ]
       },
       "IdentitySourceDetails": {
         "additionalProperties": false,
@@ -88,26 +110,23 @@
         "type": "string"
       }
     },
+    "deprecatedProperties": [
+      "/properties/Details"
+    ],
     "description": "Definition of AWS::VerifiedPermissions::IdentitySource Resource Type",
     "handlers": {
       "create": {
         "permissions": [
           "verifiedpermissions:CreateIdentitySource",
           "verifiedpermissions:GetIdentitySource",
-          "verifiedpermissions:UpdateIdentitySource",
-          "verifiedpermissions:DeleteIdentitySource",
-          "verifiedpermissions:ListIdentitySources",
           "cognito-idp:DescribeUserPool",
           "cognito-idp:ListUserPoolClients"
         ]
       },
       "delete": {
         "permissions": [
-          "verifiedpermissions:CreateIdentitySource",
-          "verifiedpermissions:GetIdentitySource",
-          "verifiedpermissions:UpdateIdentitySource",
           "verifiedpermissions:DeleteIdentitySource",
-          "verifiedpermissions:ListIdentitySources",
+          "verifiedpermissions:GetIdentitySource",
           "cognito-idp:DescribeUserPool",
           "cognito-idp:ListUserPoolClients"
         ]
@@ -124,33 +143,23 @@
           ]
         },
         "permissions": [
-          "verifiedpermissions:CreateIdentitySource",
-          "verifiedpermissions:GetIdentitySource",
-          "verifiedpermissions:UpdateIdentitySource",
-          "verifiedpermissions:DeleteIdentitySource",
           "verifiedpermissions:ListIdentitySources",
+          "verifiedpermissions:GetIdentitySource",
           "cognito-idp:DescribeUserPool",
           "cognito-idp:ListUserPoolClients"
         ]
       },
       "read": {
         "permissions": [
-          "verifiedpermissions:CreateIdentitySource",
           "verifiedpermissions:GetIdentitySource",
-          "verifiedpermissions:UpdateIdentitySource",
-          "verifiedpermissions:DeleteIdentitySource",
-          "verifiedpermissions:ListIdentitySources",
           "cognito-idp:DescribeUserPool",
           "cognito-idp:ListUserPoolClients"
         ]
       },
       "update": {
         "permissions": [
-          "verifiedpermissions:CreateIdentitySource",
-          "verifiedpermissions:GetIdentitySource",
           "verifiedpermissions:UpdateIdentitySource",
-          "verifiedpermissions:DeleteIdentitySource",
-          "verifiedpermissions:ListIdentitySources",
+          "verifiedpermissions:GetIdentitySource",
           "cognito-idp:DescribeUserPool",
           "cognito-idp:ListUserPoolClients"
         ]
@@ -191,7 +200,8 @@
       "/properties/IdentitySourceId"
     ],
     "required": [
-      "Configuration"
+      "Configuration",
+      "PolicyStoreId"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-avp",
     "tagging": {

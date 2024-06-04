@@ -3,44 +3,63 @@
 ## Resource AWS.Events/ApiDestination@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Events/ApiDestinationProperties](#awseventsapidestinationproperties) (Required): properties of the resource
+* **properties**: [AWS.Events/ApiDestinationProperties](#awseventsapidestinationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Events/Archive@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Events/ArchiveProperties](#awseventsarchiveproperties) (Required): properties of the resource
+* **properties**: [AWS.Events/ArchiveProperties](#awseventsarchiveproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Events/Connection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Events/ConnectionProperties](#awseventsconnectionproperties) (Required): properties of the resource
+* **properties**: [AWS.Events/ConnectionProperties](#awseventsconnectionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Events/Endpoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Events/EndpointProperties](#awseventsendpointproperties) (Required): properties of the resource
+* **properties**: [AWS.Events/EndpointProperties](#awseventsendpointproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Events/EventBus@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Events/EventBusProperties](#awseventseventbusproperties) (Required): properties of the resource
+* **properties**: [AWS.Events/EventBusProperties](#awseventseventbusproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Events/Rule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Events/RuleProperties](#awseventsruleproperties): properties of the resource
+* **properties**: [AWS.Events/RuleProperties](#awseventsruleproperties) (Identifier): properties of the resource
+
+## ApiKeyAuthParameters
+### Properties
+* **ApiKeyName**: string (Required)
+* **ApiKeyValue**: string (Required)
+
+## AppSyncParameters
+### Properties
+* **GraphQLOperation**: string (Required)
+
+## Archive_EventPattern
+### Properties
+
+## AuthParameters
+### Properties
+* **ApiKeyAuthParameters**: [ApiKeyAuthParameters](#apikeyauthparameters)
+* **BasicAuthParameters**: [BasicAuthParameters](#basicauthparameters)
+* **InvocationHttpParameters**: [ConnectionHttpParameters](#connectionhttpparameters)
+* **OAuthParameters**: [OAuthParameters](#oauthparameters)
 
 ## AWS.Events/ApiDestinationProperties
 ### Properties
@@ -61,9 +80,6 @@
 * **RetentionDays**: int
 * **SourceArn**: string (Required)
 
-## Archive_EventPattern
-### Properties
-
 ## AWS.Events/ConnectionProperties
 ### Properties
 * **Arn**: string (ReadOnly): The arn of the connection resource.
@@ -72,47 +88,6 @@
 * **Description**: string: Description of the connection.
 * **Name**: string (Identifier): Name of the connection.
 * **SecretArn**: string (ReadOnly): The arn of the secrets manager secret created in the customer account.
-
-## AuthParameters
-### Properties
-* **ApiKeyAuthParameters**: [ApiKeyAuthParameters](#apikeyauthparameters)
-* **BasicAuthParameters**: [BasicAuthParameters](#basicauthparameters)
-* **InvocationHttpParameters**: [ConnectionHttpParameters](#connectionhttpparameters)
-* **OAuthParameters**: [OAuthParameters](#oauthparameters)
-
-## ApiKeyAuthParameters
-### Properties
-* **ApiKeyName**: string (Required)
-* **ApiKeyValue**: string (Required)
-
-## BasicAuthParameters
-### Properties
-* **Password**: string (Required)
-* **Username**: string (Required)
-
-## ConnectionHttpParameters
-### Properties
-* **BodyParameters**: [Parameter](#parameter)[]
-* **HeaderParameters**: [Parameter](#parameter)[]
-* **QueryStringParameters**: [Parameter](#parameter)[]
-
-## Parameter
-### Properties
-* **IsValueSecret**: bool
-* **Key**: string (Required)
-* **Value**: string (Required)
-
-## OAuthParameters
-### Properties
-* **AuthorizationEndpoint**: string (Required)
-* **ClientParameters**: [ClientParameters](#clientparameters) (Required)
-* **HttpMethod**: string (Required)
-* **OAuthHttpParameters**: [ConnectionHttpParameters](#connectionhttpparameters)
-
-## ClientParameters
-### Properties
-* **ClientID**: string (Required)
-* **ClientSecret**: string (Required)
 
 ## AWS.Events/EndpointProperties
 ### Properties
@@ -128,43 +103,16 @@
 * **State**: string (ReadOnly)
 * **StateReason**: string (ReadOnly)
 
-## EndpointEventBus
-### Properties
-* **EventBusArn**: string (Required)
-
-## ReplicationConfig
-### Properties
-* **State**: string (Required)
-
-## RoutingConfig
-### Properties
-* **FailoverConfig**: [FailoverConfig](#failoverconfig) (Required)
-
-## FailoverConfig
-### Properties
-* **Primary**: [Primary](#primary) (Required)
-* **Secondary**: [Secondary](#secondary) (Required)
-
-## Primary
-### Properties
-* **HealthCheck**: string (Required)
-
-## Secondary
-### Properties
-* **Route**: string (Required)
-
 ## AWS.Events/EventBusProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) for the event bus.
+* **DeadLetterConfig**: [EventBus_DeadLetterConfig](#eventbusdeadletterconfig): Dead Letter Queue for the event bus.
+* **Description**: string: The description of the event bus.
 * **EventSourceName**: string (WriteOnly): If you are creating a partner event bus, this specifies the partner event source that the new event bus will be matched with.
+* **KmsKeyIdentifier**: string: Kms Key Identifier used to encrypt events at rest in the event bus.
 * **Name**: string (Required, Identifier): The name of the event bus.
 * **Policy**: [EventBus_Policy](#eventbuspolicy) | string: A JSON string that describes the permission policy statement for the event bus.
 * **Tags**: [Tag](#tag)[]: Any tags assigned to the event bus.
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 
 ## AWS.Events/RuleProperties
 ### Properties
@@ -179,29 +127,20 @@
 * **Targets**: [Target](#target)[]: Adds the specified targets to the specified rule, or updates the targets if they are already associated with the rule.
 Targets are the resources that are invoked when a rule is triggered.
 
-## Target
+## AwsVpcConfiguration
 ### Properties
-* **AppSyncParameters**: [AppSyncParameters](#appsyncparameters)
-* **Arn**: string (Required, Identifier)
-* **BatchParameters**: [BatchParameters](#batchparameters)
-* **DeadLetterConfig**: [DeadLetterConfig](#deadletterconfig)
-* **EcsParameters**: [EcsParameters](#ecsparameters)
-* **HttpParameters**: [HttpParameters](#httpparameters)
-* **Id**: string (Required)
-* **Input**: string
-* **InputPath**: string
-* **InputTransformer**: [InputTransformer](#inputtransformer)
-* **KinesisParameters**: [KinesisParameters](#kinesisparameters)
-* **RedshiftDataParameters**: [RedshiftDataParameters](#redshiftdataparameters)
-* **RetryPolicy**: [RetryPolicy](#retrypolicy)
-* **RoleArn**: string
-* **RunCommandParameters**: [RunCommandParameters](#runcommandparameters)
-* **SageMakerPipelineParameters**: [SageMakerPipelineParameters](#sagemakerpipelineparameters)
-* **SqsParameters**: [SqsParameters](#sqsparameters)
+* **AssignPublicIp**: string
+* **SecurityGroups**: string[]
+* **Subnets**: string[] (Required)
 
-## AppSyncParameters
+## BasicAuthParameters
 ### Properties
-* **GraphQLOperation**: string (Required)
+* **Password**: string (Required)
+* **Username**: string (Required)
+
+## BatchArrayProperties
+### Properties
+* **Size**: int
 
 ## BatchParameters
 ### Properties
@@ -210,13 +149,26 @@ Targets are the resources that are invoked when a rule is triggered.
 * **JobName**: string (Required)
 * **RetryStrategy**: [BatchRetryStrategy](#batchretrystrategy)
 
-## BatchArrayProperties
-### Properties
-* **Size**: int
-
 ## BatchRetryStrategy
 ### Properties
 * **Attempts**: int
+
+## CapacityProviderStrategyItem
+### Properties
+* **Base**: int
+* **CapacityProvider**: string (Required)
+* **Weight**: int
+
+## ClientParameters
+### Properties
+* **ClientID**: string (Required)
+* **ClientSecret**: string (Required)
+
+## ConnectionHttpParameters
+### Properties
+* **BodyParameters**: [Parameter](#parameter)[]
+* **HeaderParameters**: [Parameter](#parameter)[]
+* **QueryStringParameters**: [Parameter](#parameter)[]
 
 ## DeadLetterConfig
 ### Properties
@@ -239,21 +191,50 @@ Targets are the resources that are invoked when a rule is triggered.
 * **TaskCount**: int
 * **TaskDefinitionArn**: string (Required)
 
-## CapacityProviderStrategyItem
+## EndpointEventBus
 ### Properties
-* **Base**: int
-* **CapacityProvider**: string (Required)
-* **Weight**: int
+* **EventBusArn**: string (Required)
+
+## EventBus_DeadLetterConfig
+### Properties
+* **Arn**: string
+
+## FailoverConfig
+### Properties
+* **Primary**: [Primary](#primary) (Required)
+* **Secondary**: [Secondary](#secondary) (Required)
+
+## HttpParameters
+### Properties
+* **HeaderParameters**: [Rule_HeaderParameters](#ruleheaderparameters)
+* **PathParameterValues**: string[]
+* **QueryStringParameters**: [Rule_QueryStringParameters](#rulequerystringparameters)
+
+## InputTransformer
+### Properties
+* **InputPathsMap**: [Rule_InputPathsMap](#ruleinputpathsmap)
+* **InputTemplate**: string (Required)
+
+## KinesisParameters
+### Properties
+* **PartitionKeyPath**: string (Required)
 
 ## NetworkConfiguration
 ### Properties
 * **AwsVpcConfiguration**: [AwsVpcConfiguration](#awsvpcconfiguration)
 
-## AwsVpcConfiguration
+## OAuthParameters
 ### Properties
-* **AssignPublicIp**: string
-* **SecurityGroups**: string[]
-* **Subnets**: string[] (Required)
+* **AuthorizationEndpoint**: string (Required)
+* **ClientParameters**: [ClientParameters](#clientparameters) (Required)
+* **HttpMethod**: string (Required)
+* **OAuthHttpParameters**: [ConnectionHttpParameters](#connectionhttpparameters)
+
+## Parameter
+### Properties
+* **IsValueSecret**: bool
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## PlacementConstraint
 ### Properties
@@ -265,34 +246,9 @@ Targets are the resources that are invoked when a rule is triggered.
 * **Field**: string
 * **Type**: string
 
-## Tag
+## Primary
 ### Properties
-* **Key**: string
-* **Value**: string
-
-## HttpParameters
-### Properties
-* **HeaderParameters**: [Rule_HeaderParameters](#ruleheaderparameters)
-* **PathParameterValues**: string[]
-* **QueryStringParameters**: [Rule_QueryStringParameters](#rulequerystringparameters)
-
-## Rule_HeaderParameters
-### Properties
-
-## Rule_QueryStringParameters
-### Properties
-
-## InputTransformer
-### Properties
-* **InputPathsMap**: [Rule_InputPathsMap](#ruleinputpathsmap)
-* **InputTemplate**: string (Required)
-
-## Rule_InputPathsMap
-### Properties
-
-## KinesisParameters
-### Properties
-* **PartitionKeyPath**: string (Required)
+* **HealthCheck**: string (Required)
 
 ## RedshiftDataParameters
 ### Properties
@@ -304,10 +260,27 @@ Targets are the resources that are invoked when a rule is triggered.
 * **StatementName**: string
 * **WithEvent**: bool
 
+## ReplicationConfig
+### Properties
+* **State**: string (Required)
+
 ## RetryPolicy
 ### Properties
 * **MaximumEventAgeInSeconds**: int
 * **MaximumRetryAttempts**: int
+
+## RoutingConfig
+### Properties
+* **FailoverConfig**: [FailoverConfig](#failoverconfig) (Required)
+
+## Rule_HeaderParameters
+### Properties
+
+## Rule_InputPathsMap
+### Properties
+
+## Rule_QueryStringParameters
+### Properties
 
 ## RunCommandParameters
 ### Properties
@@ -318,16 +291,50 @@ Targets are the resources that are invoked when a rule is triggered.
 * **Key**: string (Required)
 * **Values**: string[] (Required)
 
-## SageMakerPipelineParameters
-### Properties
-* **PipelineParameterList**: [SageMakerPipelineParameter](#sagemakerpipelineparameter)[]
-
 ## SageMakerPipelineParameter
 ### Properties
 * **Name**: string (Required)
 * **Value**: string (Required)
 
+## SageMakerPipelineParameters
+### Properties
+* **PipelineParameterList**: [SageMakerPipelineParameter](#sagemakerpipelineparameter)[]
+
+## Secondary
+### Properties
+* **Route**: string (Required)
+
 ## SqsParameters
 ### Properties
 * **MessageGroupId**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string
+* **Value**: string
+
+## Target
+### Properties
+* **AppSyncParameters**: [AppSyncParameters](#appsyncparameters)
+* **Arn**: string (Required, Identifier)
+* **BatchParameters**: [BatchParameters](#batchparameters)
+* **DeadLetterConfig**: [DeadLetterConfig](#deadletterconfig)
+* **EcsParameters**: [EcsParameters](#ecsparameters)
+* **HttpParameters**: [HttpParameters](#httpparameters)
+* **Id**: string (Required)
+* **Input**: string
+* **InputPath**: string
+* **InputTransformer**: [InputTransformer](#inputtransformer)
+* **KinesisParameters**: [KinesisParameters](#kinesisparameters)
+* **RedshiftDataParameters**: [RedshiftDataParameters](#redshiftdataparameters)
+* **RetryPolicy**: [RetryPolicy](#retrypolicy)
+* **RoleArn**: string
+* **RunCommandParameters**: [RunCommandParameters](#runcommandparameters)
+* **SageMakerPipelineParameters**: [SageMakerPipelineParameters](#sagemakerpipelineparameters)
+* **SqsParameters**: [SqsParameters](#sqsparameters)
 

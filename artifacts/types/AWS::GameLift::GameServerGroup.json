@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GameLift-GameServerGroup",
   "type": "AWS::GameLift::GameServerGroup",
-  "time": "2024-01-04T19:44:48.346Z",
+  "time": "2024-05-27T08:03:42.141Z",
   "schema": {
     "$schema": "https://schema.cloudformation.us-east-1.amazonaws.com/provider.definition.schema.v1.json",
     "additionalProperties": false,
@@ -15,7 +15,7 @@
       },
       "AutoScalingPolicy": {
         "additionalProperties": false,
-        "description": "Configuration settings to define a scaling policy for the Auto Scaling group that is optimized for game hosting",
+        "description": "Configuration settings to define a scaling policy for the Auto Scaling group that is optimized for game hosting. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.",
         "properties": {
           "EstimatedInstanceWarmup": {
             "$ref": "#/definitions/EstimatedInstanceWarmup"
@@ -156,7 +156,7 @@
       },
       "LaunchTemplate": {
         "additionalProperties": false,
-        "description": "The EC2 launch template that contains configuration settings and game server code to be deployed to all instances in the game server group.",
+        "description": "The EC2 launch template that contains configuration settings and game server code to be deployed to all instances in the game server group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.",
         "properties": {
           "LaunchTemplateId": {
             "$ref": "#/definitions/LaunchTemplateId"
@@ -179,12 +179,12 @@
         "type": "string"
       },
       "MaxSize": {
-        "description": "The maximum number of instances allowed in the EC2 Auto Scaling group.",
+        "description": "The maximum number of instances allowed in the EC2 Auto Scaling group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.",
         "minimum": 1,
         "type": "number"
       },
       "MinSize": {
-        "description": "The minimum number of instances allowed in the EC2 Auto Scaling group.",
+        "description": "The minimum number of instances allowed in the EC2 Auto Scaling group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.",
         "minimum": 0,
         "type": "number"
       },
@@ -238,7 +238,7 @@
         "type": "object"
       },
       "Tags": {
-        "description": "A list of labels to assign to the new game server group resource.",
+        "description": "A list of labels to assign to the new game server group resource. Updating game server group tags with CloudFormation will not take effect. Please update this property using AWS GameLift APIs instead.",
         "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/Tag"
@@ -269,7 +269,7 @@
         "type": "string"
       },
       "VpcSubnets": {
-        "description": "A list of virtual private cloud (VPC) subnets to use with instances in the game server group.",
+        "description": "A list of virtual private cloud (VPC) subnets to use with instances in the game server group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.",
         "insertionOrder": false,
         "items": {
           "maxLength": 24,
@@ -374,7 +374,7 @@
       },
       "AutoScalingPolicy": {
         "$ref": "#/definitions/AutoScalingPolicy",
-        "description": "Configuration settings to define a scaling policy for the Auto Scaling group that is optimized for game hosting"
+        "description": "Configuration settings to define a scaling policy for the Auto Scaling group that is optimized for game hosting. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource."
       },
       "BalancingStrategy": {
         "$ref": "#/definitions/BalancingStrategy",
@@ -402,15 +402,15 @@
       },
       "LaunchTemplate": {
         "$ref": "#/definitions/LaunchTemplate",
-        "description": "The EC2 launch template that contains configuration settings and game server code to be deployed to all instances in the game server group."
+        "description": "The EC2 launch template that contains configuration settings and game server code to be deployed to all instances in the game server group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource."
       },
       "MaxSize": {
         "$ref": "#/definitions/MaxSize",
-        "description": "The maximum number of instances allowed in the EC2 Auto Scaling group."
+        "description": "The maximum number of instances allowed in the EC2 Auto Scaling group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource."
       },
       "MinSize": {
         "$ref": "#/definitions/MinSize",
-        "description": "The minimum number of instances allowed in the EC2 Auto Scaling group."
+        "description": "The minimum number of instances allowed in the EC2 Auto Scaling group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource."
       },
       "RoleArn": {
         "$ref": "#/definitions/RoleArn",
@@ -418,11 +418,11 @@
       },
       "Tags": {
         "$ref": "#/definitions/Tags",
-        "description": "A list of labels to assign to the new game server group resource."
+        "description": "A list of labels to assign to the new game server group resource. Updating game server group tags with CloudFormation will not take effect. Please update this property using AWS GameLift APIs instead."
       },
       "VpcSubnets": {
         "$ref": "#/definitions/VpcSubnets",
-        "description": "A list of virtual private cloud (VPC) subnets to use with instances in the game server group."
+        "description": "A list of virtual private cloud (VPC) subnets to use with instances in the game server group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource."
       }
     },
     "readOnlyProperties": [

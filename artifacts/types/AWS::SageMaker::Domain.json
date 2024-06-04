@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-Domain",
   "type": "AWS::SageMaker::Domain",
-  "time": "2023-12-12T01:00:49.946Z",
+  "time": "2024-06-04T16:06:22.732Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -17,6 +17,16 @@
         "additionalProperties": false,
         "description": "The CodeEditor app settings.",
         "properties": {
+          "CustomImages": {
+            "description": "A list of custom images for use for CodeEditor apps.",
+            "items": {
+              "$ref": "#/definitions/CustomImage"
+            },
+            "maxItems": 30,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false
+          },
           "DefaultResourceSpec": {
             "$ref": "#/definitions/ResourceSpec",
             "description": "The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the CodeEditor app."
@@ -129,12 +139,29 @@
         "additionalProperties": false,
         "description": "A collection of settings that apply to spaces of Amazon SageMaker Studio. These settings are specified when the Create/Update Domain API is called.",
         "properties": {
+          "CustomFileSystemConfigs": {
+            "items": {
+              "$ref": "#/definitions/CustomFileSystemConfig"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "CustomPosixUserConfig": {
+            "$ref": "#/definitions/CustomPosixUserConfig",
+            "description": "The Jupyter lab's custom posix user configurations."
+          },
           "ExecutionRole": {
             "description": "The execution role for the space.",
             "maxLength": 2048,
             "minLength": 20,
             "pattern": "^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$",
             "type": "string"
+          },
+          "JupyterLabAppSettings": {
+            "$ref": "#/definitions/JupyterLabAppSettings",
+            "description": "The Jupyter lab's app settings."
           },
           "JupyterServerAppSettings": {
             "$ref": "#/definitions/JupyterServerAppSettings",
@@ -156,6 +183,10 @@
             "minItems": 0,
             "type": "array",
             "uniqueItems": false
+          },
+          "SpaceStorageSettings": {
+            "$ref": "#/definitions/DefaultSpaceStorageSettings",
+            "description": "The Jupyter lab's space storage settings."
           }
         },
         "required": [
@@ -173,10 +204,41 @@
         },
         "type": "object"
       },
+      "DockerSettings": {
+        "additionalProperties": false,
+        "description": "A collection of settings that are required to start docker-proxy server.",
+        "properties": {
+          "EnableDockerAccess": {
+            "description": "The flag to enable/disable docker-proxy server",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
+          "VpcOnlyTrustedAccounts": {
+            "description": "A list of account id's that would be used to pull images from in VpcOnly mode",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 12,
+              "pattern": "^[0-9]$",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "type": "object"
+      },
       "DomainSettings": {
         "additionalProperties": false,
         "description": "A collection of Domain settings.",
         "properties": {
+          "DockerSettings": {
+            "$ref": "#/definitions/DockerSettings"
+          },
           "RStudioServerProDomainSettings": {
             "$ref": "#/definitions/RStudioServerProDomainSettings"
           },

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Budgets-BudgetsAction",
   "type": "AWS::Budgets::BudgetsAction",
-  "time": "2023-02-07T16:44:46.958Z",
+  "time": "2024-05-23T15:36:00.787Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -77,6 +77,22 @@
         },
         "required": [
           "PolicyArn"
+        ],
+        "type": "object"
+      },
+      "ResourceTag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
         ],
         "type": "object"
       },
@@ -156,7 +172,8 @@
       "create": {
         "permissions": [
           "budgets:CreateBudgetAction",
-          "iam:PassRole"
+          "iam:PassRole",
+          "budgets:TagResource"
         ]
       },
       "delete": {
@@ -172,13 +189,17 @@
       },
       "read": {
         "permissions": [
-          "budgets:DescribeBudgetAction"
+          "budgets:DescribeBudgetAction",
+          "budgets:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "budgets:UpdateBudgetAction",
-          "iam:PassRole"
+          "iam:PassRole",
+          "budgets:TagResource",
+          "budgets:UntagResource",
+          "budgets:ListTagsForResource"
         ]
       }
     },
@@ -224,6 +245,12 @@
         ],
         "type": "string"
       },
+      "ResourceTags": {
+        "items": {
+          "$ref": "#/definitions/ResourceTag"
+        },
+        "type": "array"
+      },
       "Subscribers": {
         "items": {
           "$ref": "#/definitions/Subscriber"
@@ -246,6 +273,13 @@
       "Subscribers"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/ResourceTags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Budgets::BudgetsAction"
   }
 }

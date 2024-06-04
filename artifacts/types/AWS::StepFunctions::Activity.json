@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-StepFunctions-Activity",
   "type": "AWS::StepFunctions::Activity",
-  "time": "2024-01-04T10:48:16.18Z",
+  "time": "2024-05-31T22:31:06.406Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -33,12 +33,19 @@
     "handlers": {
       "create": {
         "permissions": [
-          "states:CreateActivity"
+          "states:CreateActivity",
+          "states:TagResource"
         ]
       },
       "delete": {
         "permissions": [
+          "states:DescribeActivity",
           "states:DeleteActivity"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "states:ListActivities"
         ]
       },
       "read": {
