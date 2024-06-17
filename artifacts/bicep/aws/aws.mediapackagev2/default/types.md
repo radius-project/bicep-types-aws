@@ -59,6 +59,7 @@
 * **CreatedAt**: string (ReadOnly): <p>The date and time the channel was created.</p>
 * **Description**: string: <p>Enter any descriptive text that helps you to identify the channel.</p>
 * **IngestEndpoints**: [IngestEndpoint](#ingestendpoint)[] (ReadOnly): <p>The list of ingest endpoints.</p>
+* **IngestEndpointUrls**: string[] (ReadOnly)
 * **ModifiedAt**: string (ReadOnly): <p>The date and time the channel was modified.</p>
 * **Tags**: [Tag](#tag)[]
 
@@ -77,9 +78,12 @@
 * **ContainerType**: string
 * **CreatedAt**: string (ReadOnly): <p>The date and time the origin endpoint was created.</p>
 * **DashManifests**: [DashManifestConfiguration](#dashmanifestconfiguration)[]: <p>A DASH manifest configuration.</p>
+* **DashManifestUrls**: string[] (ReadOnly)
 * **Description**: string: <p>Enter any descriptive text that helps you to identify the origin endpoint.</p>
 * **HlsManifests**: [HlsManifestConfiguration](#hlsmanifestconfiguration)[] (ReadOnly): <p>An HTTP live streaming (HLS) manifest configuration.</p>
+* **HlsManifestUrls**: string[] (ReadOnly)
 * **LowLatencyHlsManifests**: [LowLatencyHlsManifestConfiguration](#lowlatencyhlsmanifestconfiguration)[] (ReadOnly): <p>A low-latency HLS manifest configuration.</p>
+* **LowLatencyHlsManifestUrls**: string[] (ReadOnly)
 * **ModifiedAt**: string (ReadOnly): <p>The date and time the origin endpoint was modified.</p>
 * **OriginEndpointName**: string (Required)
 * **Segment**: [Segment](#segment)

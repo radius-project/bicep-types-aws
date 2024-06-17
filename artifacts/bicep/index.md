@@ -101,6 +101,9 @@
 ### aws.apigatewayv2/domainname
 * **Link**: [default](aws/aws.apigatewayv2/default/types.md#resource-awsapigatewayv2domainnamedefault)
 
+### aws.apigatewayv2/integration
+* **Link**: [default](aws/aws.apigatewayv2/default/types.md#resource-awsapigatewayv2integrationdefault)
+
 ### aws.apigatewayv2/integrationresponse
 * **Link**: [default](aws/aws.apigatewayv2/default/types.md#resource-awsapigatewayv2integrationresponsedefault)
 
@@ -162,6 +165,10 @@
 ## aws.applicationinsights
 ### aws.applicationinsights/application
 * **Link**: [default](aws/aws.applicationinsights/default/types.md#resource-awsapplicationinsightsapplicationdefault)
+
+## aws.applicationsignals
+### aws.applicationsignals/servicelevelobjective
+* **Link**: [default](aws/aws.applicationsignals/default/types.md#resource-awsapplicationsignalsservicelevelobjectivedefault)
 
 ## aws.apprunner
 ### aws.apprunner/service
@@ -508,6 +515,9 @@
 ### aws.cognito/userpoolgroup
 * **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitouserpoolgroupdefault)
 
+### aws.cognito/userpoolresourceserver
+* **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitouserpoolresourceserverdefault)
+
 ### aws.cognito/userpoolriskconfigurationattachment
 * **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitouserpoolriskconfigurationattachmentdefault)
 
@@ -740,6 +750,12 @@
 
 ### aws.deadline/fleet
 * **Link**: [default](aws/aws.deadline/default/types.md#resource-awsdeadlinefleetdefault)
+
+### aws.deadline/licenseendpoint
+* **Link**: [default](aws/aws.deadline/default/types.md#resource-awsdeadlinelicenseendpointdefault)
+
+### aws.deadline/monitor
+* **Link**: [default](aws/aws.deadline/default/types.md#resource-awsdeadlinemonitordefault)
 
 ### aws.deadline/queue
 * **Link**: [default](aws/aws.deadline/default/types.md#resource-awsdeadlinequeuedefault)
@@ -1324,6 +1340,9 @@
 
 ### aws.guardduty/ipset
 * **Link**: [default](aws/aws.guardduty/default/types.md#resource-awsguarddutyipsetdefault)
+
+### aws.guardduty/malwareprotectionplan
+* **Link**: [default](aws/aws.guardduty/default/types.md#resource-awsguarddutymalwareprotectionplandefault)
 
 ### aws.guardduty/member
 * **Link**: [default](aws/aws.guardduty/default/types.md#resource-awsguarddutymemberdefault)

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaPackageV2-OriginEndpoint",
   "type": "AWS::MediaPackageV2::OriginEndpoint",
-  "time": "2024-05-30T16:46:13.779Z",
+  "time": "2024-06-13T18:26:09.931Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -586,6 +586,12 @@
         "format": "date-time",
         "type": "string"
       },
+      "DashManifestUrls": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
       "DashManifests": {
         "description": "\u003cp\u003eA DASH manifest configuration.\u003c/p\u003e",
         "items": {
@@ -599,10 +605,22 @@
         "minLength": 0,
         "type": "string"
       },
+      "HlsManifestUrls": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
       "HlsManifests": {
         "description": "\u003cp\u003eAn HTTP live streaming (HLS) manifest configuration.\u003c/p\u003e",
         "items": {
           "$ref": "#/definitions/HlsManifestConfiguration"
+        },
+        "type": "array"
+      },
+      "LowLatencyHlsManifestUrls": {
+        "items": {
+          "type": "string"
         },
         "type": "array"
       },
@@ -644,6 +662,9 @@
     "readOnlyProperties": [
       "/properties/Arn",
       "/properties/CreatedAt",
+      "/properties/DashManifestUrls",
+      "/properties/HlsManifestUrls",
+      "/properties/LowLatencyHlsManifestUrls",
       "/properties/ModifiedAt",
       "/properties/LowLatencyHlsManifests/*/Url",
       "/properties/HlsManifests/*/Url"

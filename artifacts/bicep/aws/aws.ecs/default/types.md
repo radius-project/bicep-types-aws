@@ -285,6 +285,7 @@
 ## ClusterConfiguration
 ### Properties
 * **ExecuteCommandConfiguration**: [ExecuteCommandConfiguration](#executecommandconfiguration): The details of the execute command configuration.
+* **ManagedStorageConfiguration**: [ManagedStorageConfiguration](#managedstorageconfiguration)
 
 ## ClusterSettings
 ### Properties
@@ -653,6 +654,11 @@
 * **MinimumScalingStepSize**: int
 * **Status**: string
 * **TargetCapacity**: int
+
+## ManagedStorageConfiguration
+### Properties
+* **FargateEphemeralStorageKmsKeyId**: string
+* **KmsKeyId**: string
 
 ## MountPoint
 ### Properties

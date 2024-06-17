@@ -80,6 +80,12 @@
 ### Properties
 * **Arn**: string
 
+## DimensionMapping
+### Properties
+* **DimensionName**: string (Required)
+* **DimensionValue**: string (Required)
+* **DimensionValueType**: string (Required)
+
 ## EcsContainerOverride
 ### Properties
 * **Command**: string[]
@@ -145,6 +151,17 @@
 
 ## MSKAccessCredentials
 ### Properties
+
+## MultiMeasureAttributeMapping
+### Properties
+* **MeasureValue**: string (Required)
+* **MeasureValueType**: string (Required)
+* **MultiMeasureAttributeName**: string (Required)
+
+## MultiMeasureMapping
+### Properties
+* **MultiMeasureAttributeMappings**: [MultiMeasureAttributeMapping](#multimeasureattributemapping)[] (Required)
+* **MultiMeasureName**: string (Required)
 
 ## NetworkConfiguration
 ### Properties
@@ -316,6 +333,7 @@
 * **SageMakerPipelineParameters**: [PipeTargetSageMakerPipelineParameters](#pipetargetsagemakerpipelineparameters)
 * **SqsQueueParameters**: [PipeTargetSqsQueueParameters](#pipetargetsqsqueueparameters)
 * **StepFunctionStateMachineParameters**: [PipeTargetStateMachineParameters](#pipetargetstatemachineparameters)
+* **TimestreamParameters**: [PipeTargetTimestreamParameters](#pipetargettimestreamparameters)
 
 ## PipeTargetRedshiftDataParameters
 ### Properties
@@ -338,6 +356,17 @@
 ## PipeTargetStateMachineParameters
 ### Properties
 * **InvocationType**: string
+
+## PipeTargetTimestreamParameters
+### Properties
+* **DimensionMappings**: [DimensionMapping](#dimensionmapping)[] (Required)
+* **EpochTimeUnit**: string
+* **MultiMeasureMappings**: [MultiMeasureMapping](#multimeasuremapping)[]
+* **SingleMeasureMappings**: [SingleMeasureMapping](#singlemeasuremapping)[]
+* **TimeFieldType**: string
+* **TimestampFormat**: string
+* **TimeValue**: string (Required)
+* **VersionValue**: string (Required)
 
 ## PlacementConstraint
 ### Properties
@@ -368,6 +397,12 @@
 ### Properties
 * **SecurityGroup**: string[]: List of SecurityGroupId.
 * **Subnets**: string[]: List of SubnetId.
+
+## SingleMeasureMapping
+### Properties
+* **MeasureName**: string (Required)
+* **MeasureValue**: string (Required)
+* **MeasureValueType**: string (Required)
 
 ## Tag
 ### Properties

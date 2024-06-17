@@ -20,6 +20,7 @@
 * **PipelineName**: string (Required): Name of the OpenSearch Ingestion Service pipeline to create. Pipeline names are unique across the pipelines owned by an account within an AWS Region.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **VpcEndpoints**: [VpcEndpoint](#vpcendpoint)[] (ReadOnly): The VPC interface endpoints that have access to the pipeline.
+* **VpcEndpointService**: string (ReadOnly): The VPC endpoint service name for the pipeline.
 * **VpcOptions**: [VpcOptions](#vpcoptions) (WriteOnly)
 
 ## BufferOptions
@@ -54,4 +55,5 @@
 ### Properties
 * **SecurityGroupIds**: string[]: A list of security groups associated with the VPC endpoint.
 * **SubnetIds**: string[] (Required): A list of subnet IDs associated with the VPC endpoint.
+* **VpcEndpointManagement**: string: Defines whether you or Amazon OpenSearch Ingestion service create and manage the VPC endpoint configured for the pipeline.
 

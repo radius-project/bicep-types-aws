@@ -8,16 +8,17 @@ import { convertSchemaRecordToTypes } from "./convert";
 import { logOut, ILogger, defaultLogger, findRecursive } from './utils';
 import { writeFile, readFile } from 'fs/promises';
 import { TypeFile, buildIndex, readTypesJson, writeIndexJson, writeIndexMarkdown, TypeSettings } from 'bicep-types'; 
-import { exec } from 'child_process';
 
 const parser = yargs(process.argv.slice(2)).options({
     input: { type: 'string', demandOption: true },
     output: { type: 'string', demandOption: true },
+    releaseVersion: { type: 'string', default: 'latest' }
 }).argv;
 
 interface Args {
     input: string
     output: string
+    releaseVersion: string
 }
 
 async function main() {
@@ -59,7 +60,7 @@ async function main() {
             fs.writeFileSync(`${outFolder}/types.md`, writeMarkdown(definition.types, `${definition.namespace} @ ${definition.apiVersion}`))
         })
 
-        await buildTypeIndex(defaultLogger, argv.output)
+        await buildTypeIndex(defaultLogger, argv.output, argv.releaseVersion)
 
         console.info(`generator took ${Date.now() - start}ms`);
     } catch (err) {
@@ -76,7 +77,7 @@ const groupBy = <T, K extends keyof any, V>(list: T[], getKey: (item: T) => K, g
         return previous;
     }, {} as Record<K, V[]>);
 
-async function buildTypeIndex(logger: ILogger, baseDir: string) {
+async function buildTypeIndex(logger: ILogger, baseDir: string, version: string) {
   const typesPaths = await findRecursive(baseDir, filePath => {
     return path.basename(filePath) === 'types.json';
   });
@@ -89,40 +90,10 @@ async function buildTypeIndex(logger: ILogger, baseDir: string) {
       types: readTypesJson(content),
     });
   }
-  const indexContent = await buildIndex(typeFiles,  log => logOut(logger, log),  {name: "aws", version: await getRadiusRelease(), isSingleton: false} as TypeSettings);
+  const indexContent = await buildIndex(typeFiles,  log => logOut(logger, log),  {name: "aws", version: version, isSingleton: false} as TypeSettings);
 
   await writeFile(`${baseDir}/index.json`, writeIndexJson(indexContent));
   await writeFile(`${baseDir}/index.md`, writeIndexMarkdown(indexContent));
 }
 
 main()
-
-function getRadiusRelease(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      exec('rad version', (error, stdout, stderr) => {
-        if (error) {
-          reject(`error: ${error.message}`);
-          return;
-        }
-        if (stderr) {
-          reject(`stderr: ${stderr}`);
-          return;
-        }
-        const lines = stdout.split('\n');
-        if (lines.length < 2) {
-          reject('Unexpected output format');
-          return;
-        }
-        const columns = lines[1].split(/\s+/);
-        if (columns.length < 4) {
-          reject('Unexpected output format');
-          return;
-        }
-        let release = columns[0];
-        if (release === 'edge') {
-          release = 'latest';
-        }
-        resolve(release);
-      });
-    });
-  }

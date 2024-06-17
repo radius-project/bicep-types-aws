@@ -168,6 +168,7 @@
 * **EndAssociatedTasksActions**: [EndAssociatedTasksAction](#endassociatedtasksaction)[]
 * **EventBridgeActions**: [EventBridgeAction](#eventbridgeaction)[]
 * **SendNotificationActions**: [SendNotificationAction](#sendnotificationaction)[]
+* **SubmitAutoEvaluationActions**: [SubmitAutoEvaluationAction](#submitautoevaluationaction)[]
 * **TaskActions**: [TaskAction](#taskaction)[]
 * **UpdateCaseActions**: [UpdateCaseAction](#updatecaseaction)[]
 
@@ -681,6 +682,10 @@
 * **Category**: string (Required): The category name as defined in Rules.
 * **Condition**: string (Required): The automation condition applied on contact categories.
 * **OptionRefId**: string (Required): The option identifier referencing the option to be selected when the automation option is triggered.
+
+## SubmitAutoEvaluationAction
+### Properties
+* **EvaluationFormArn**: string (Required): The Amazon Resource Name (ARN) of the evaluation form.
 
 ## Tag
 ### Properties

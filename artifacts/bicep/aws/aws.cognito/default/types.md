@@ -49,6 +49,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/UserPoolGroupProperties](#awscognitouserpoolgroupproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Cognito/UserPoolResourceServer@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cognito/UserPoolResourceServerProperties](#awscognitouserpoolresourceserverproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Cognito/UserPoolRiskConfigurationAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -192,6 +199,13 @@
 * **UserPoolName**: string
 * **UserPoolTags**: [UserPool_UserPoolTags](#userpooluserpooltags)
 * **VerificationMessageTemplate**: [VerificationMessageTemplate](#verificationmessagetemplate)
+
+## AWS.Cognito/UserPoolResourceServerProperties
+### Properties
+* **Identifier**: string (Required, Identifier)
+* **Name**: string (Required)
+* **Scopes**: [ResourceServerScopeType](#resourceserverscopetype)[]
+* **UserPoolId**: string (Required, Identifier)
 
 ## AWS.Cognito/UserPoolRiskConfigurationAttachmentProperties
 ### Properties
@@ -340,6 +354,11 @@
 ### Properties
 * **Name**: string
 * **Priority**: int
+
+## ResourceServerScopeType
+### Properties
+* **ScopeDescription**: string (Required)
+* **ScopeName**: string (Required)
 
 ## RiskExceptionConfigurationType
 ### Properties

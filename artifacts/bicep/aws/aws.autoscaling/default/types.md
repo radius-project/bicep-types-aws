@@ -158,9 +158,10 @@
 ## CustomizedMetricSpecification
 ### Properties
 * **Dimensions**: [MetricDimension](#metricdimension)[]
-* **MetricName**: string (Required)
-* **Namespace**: string (Required)
-* **Statistic**: string (Required)
+* **MetricName**: string
+* **Metrics**: [TargetTrackingMetricDataQuery](#targettrackingmetricdataquery)[]
+* **Namespace**: string
+* **Statistic**: string
 * **Unit**: string
 
 ## InstanceMaintenancePolicy
@@ -484,6 +485,20 @@
 * **DisableScaleIn**: bool
 * **PredefinedMetricSpecification**: [PredefinedMetricSpecification](#predefinedmetricspecification)
 * **TargetValue**: int (Required)
+
+## TargetTrackingMetricDataQuery
+### Properties
+* **Expression**: string
+* **Id**: string (Required)
+* **Label**: string
+* **MetricStat**: [TargetTrackingMetricStat](#targettrackingmetricstat)
+* **ReturnData**: bool
+
+## TargetTrackingMetricStat
+### Properties
+* **Metric**: [Metric](#metric) (Required)
+* **Stat**: string (Required)
+* **Unit**: string
 
 ## TotalLocalStorageGBRequest
 ### Properties

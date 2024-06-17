@@ -596,6 +596,229 @@
     "flags": 0
   },
   {
+    "$type": "ObjectType",
+    "name": "CFNActions",
+    "properties": {
+      "Tagging": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "Indicates whether the scanned S3 object will have tags about the scan result."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CFNProtectedResource",
+    "properties": {
+      "S3Bucket": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 1,
+        "description": "Information about the protected S3 bucket resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CFNStatusReasons",
+    "properties": {
+      "Code": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Issue code."
+      },
+      "Message": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Issue message that specifies the reason."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CFNTagging",
+    "properties": {
+      "Status": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Indicates whether or not the tags will added."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagItem",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/9"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MalwareProtectionPlan_S3Bucket",
+    "properties": {
+      "BucketName": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Name of the S3 bucket."
+      },
+      "ObjectPrefixes": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "Information about the specified object prefixes. The S3 object will be scanned only if it belongs to any of the specified object prefixes."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.GuardDuty/MalwareProtectionPlanProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/42"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GuardDuty/MalwareProtectionPlanProperties",
+    "properties": {
+      "Actions": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "Information about whether the tags will be added to the S3 object after scanning."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "Amazon Resource Name (ARN) of the protected resource."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The timestamp when the Malware Protection plan resource was created."
+      },
+      "MalwareProtectionPlanId": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 18,
+        "description": "A unique identifier associated with Malware Protection plan resource."
+      },
+      "ProtectedResource": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 1,
+        "description": "Information about the protected resource that is associated with the created Malware Protection plan. Presently, S3Bucket is the only supported protected resource."
+      },
+      "Role": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "IAM role that includes the permissions required to scan and add tags to the associated protected resource."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "Malware Protection plan status."
+      },
+      "StatusReasons": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 2,
+        "description": "Information about the issue code and message associated to the status of your Malware Protection plan."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GuardDuty/MalwareProtectionPlan",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.GuardDuty/MalwareProtectionPlan@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/49"
+    },
+    "flags": 0
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.GuardDuty/MemberProperties"
   },
@@ -661,7 +884,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/52"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -673,7 +896,7 @@
     "name": "AWS.GuardDuty/Member@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/40"
+      "$ref": "#/53"
     },
     "flags": 0
   },
@@ -702,7 +925,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/42"
+      "$ref": "#/55"
     }
   },
   {
@@ -747,7 +970,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/57"
         },
         "flags": 0
       }
@@ -773,7 +996,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/58"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -785,7 +1008,7 @@
     "name": "AWS.GuardDuty/ThreatIntelSet@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/46"
+      "$ref": "#/59"
     },
     "flags": 0
   }

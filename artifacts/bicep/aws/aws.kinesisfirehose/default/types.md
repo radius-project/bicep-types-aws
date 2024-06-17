@@ -200,6 +200,7 @@
 * **RoleARN**: string
 * **S3BackupMode**: string
 * **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
+* **SecretsManagerConfiguration**: [SecretsManagerConfiguration](#secretsmanagerconfiguration)
 
 ## HttpEndpointRequestConfiguration
 ### Properties
@@ -277,14 +278,15 @@
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **ClusterJDBCURL**: string (Required)
 * **CopyCommand**: [CopyCommand](#copycommand) (Required)
-* **Password**: string (Required)
+* **Password**: string
 * **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration)
 * **RetryOptions**: [RedshiftRetryOptions](#redshiftretryoptions)
 * **RoleARN**: string (Required)
 * **S3BackupConfiguration**: [S3DestinationConfiguration](#s3destinationconfiguration)
 * **S3BackupMode**: string
 * **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
-* **Username**: string (Required)
+* **SecretsManagerConfiguration**: [SecretsManagerConfiguration](#secretsmanagerconfiguration)
+* **Username**: string
 
 ## RedshiftRetryOptions
 ### Properties
@@ -314,6 +316,12 @@
 * **TableName**: string
 * **VersionId**: string
 
+## SecretsManagerConfiguration
+### Properties
+* **Enabled**: bool (Required)
+* **RoleARN**: string
+* **SecretARN**: string
+
 ## Serializer
 ### Properties
 * **OrcSerDe**: [OrcSerDe](#orcserde)
@@ -328,17 +336,18 @@
 * **DataLoadingOption**: string
 * **KeyPassphrase**: string
 * **MetaDataColumnName**: string
-* **PrivateKey**: string (Required)
+* **PrivateKey**: string
 * **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration)
 * **RetryOptions**: [SnowflakeRetryOptions](#snowflakeretryoptions)
 * **RoleARN**: string (Required)
 * **S3BackupMode**: string
 * **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
 * **Schema**: string (Required)
+* **SecretsManagerConfiguration**: [SecretsManagerConfiguration](#secretsmanagerconfiguration)
 * **SnowflakeRoleConfiguration**: [SnowflakeRoleConfiguration](#snowflakeroleconfiguration)
 * **SnowflakeVpcConfiguration**: [SnowflakeVpcConfiguration](#snowflakevpcconfiguration)
 * **Table**: string (Required)
-* **User**: string (Required)
+* **User**: string
 
 ## SnowflakeRetryOptions
 ### Properties
@@ -365,11 +374,12 @@
 * **HECAcknowledgmentTimeoutInSeconds**: int
 * **HECEndpoint**: string (Required)
 * **HECEndpointType**: string (Required)
-* **HECToken**: string (Required)
+* **HECToken**: string
 * **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration)
 * **RetryOptions**: [SplunkRetryOptions](#splunkretryoptions)
 * **S3BackupMode**: string
 * **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
+* **SecretsManagerConfiguration**: [SecretsManagerConfiguration](#secretsmanagerconfiguration)
 
 ## SplunkRetryOptions
 ### Properties

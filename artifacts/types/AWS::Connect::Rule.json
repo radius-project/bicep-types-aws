@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-Rule",
   "type": "AWS::Connect::Rule",
-  "time": "2024-04-16T21:27:18.699Z",
+  "time": "2024-06-05T21:29:28.675Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -27,6 +27,9 @@
           },
           "SendNotificationActions": {
             "$ref": "#/definitions/SendNotificationActions"
+          },
+          "SubmitAutoEvaluationActions": {
+            "$ref": "#/definitions/SubmitAutoEvaluationActions"
           },
           "TaskActions": {
             "$ref": "#/definitions/TaskActions"
@@ -306,6 +309,32 @@
         "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/SendNotificationAction"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "SubmitAutoEvaluationAction": {
+        "additionalProperties": false,
+        "description": "The definition of submit auto evaluation action.",
+        "properties": {
+          "EvaluationFormArn": {
+            "description": "The Amazon Resource Name (ARN) of the evaluation form.",
+            "pattern": "^$|arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/evaluation-form/[-a-zA-Z0-9]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "EvaluationFormArn"
+        ],
+        "type": "object"
+      },
+      "SubmitAutoEvaluationActions": {
+        "description": "This action will submit an auto contact evaluation when a rule is triggered.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/SubmitAutoEvaluationAction"
         },
         "maxItems": 1,
         "minItems": 1,

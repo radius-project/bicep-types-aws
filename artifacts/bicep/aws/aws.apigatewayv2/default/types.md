@@ -35,6 +35,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGatewayV2/DomainNameProperties](#awsapigatewayv2domainnameproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.ApiGatewayV2/Integration@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGatewayV2/IntegrationProperties](#awsapigatewayv2integrationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.ApiGatewayV2/IntegrationResponse@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -139,6 +146,28 @@
 * **RegionalHostedZoneId**: string (ReadOnly)
 * **Tags**: [DomainName_Tags](#domainnametags): The collection of tags associated with a domain name.
 
+## AWS.ApiGatewayV2/IntegrationProperties
+### Properties
+* **ApiId**: string (Required)
+* **ConnectionId**: string
+* **ConnectionType**: string
+* **ContentHandlingStrategy**: string
+* **CredentialsArn**: string
+* **Description**: string
+* **Id**: string (ReadOnly, Identifier)
+* **IntegrationMethod**: string
+* **IntegrationSubtype**: string
+* **IntegrationType**: string (Required)
+* **IntegrationUri**: string
+* **PassthroughBehavior**: string
+* **PayloadFormatVersion**: string
+* **RequestParameters**: [Integration_RequestParameters](#integrationrequestparameters)
+* **RequestTemplates**: [Integration_RequestTemplates](#integrationrequesttemplates)
+* **ResponseParameters**: [Integration_ResponseParameters](#integrationresponseparameters)
+* **TemplateSelectionExpression**: string
+* **TimeoutInMillis**: int
+* **TlsConfig**: [TlsConfig](#tlsconfig)
+
 ## AWS.ApiGatewayV2/IntegrationResponseProperties
 ### Properties
 * **ApiId**: string (Required, Identifier): The API identifier.
@@ -223,6 +252,15 @@
 * **OwnershipVerificationCertificateArn**: string: The Amazon resource name (ARN) for the public certificate issued by ACMlong. This ARN is used to validate custom domain ownership. It's required only if you configure mutual TLS and use either an ACM-imported or a private CA certificate ARN as the regionalCertificateArn.
 * **SecurityPolicy**: string: The Transport Layer Security (TLS) version of the security policy for this domain name. The valid values are ``TLS_1_0`` and ``TLS_1_2``.
 
+## Integration_RequestParameters
+### Properties
+
+## Integration_RequestTemplates
+### Properties
+
+## Integration_ResponseParameters
+### Properties
+
 ## IntegrationResponse_ResponseParameters
 ### Properties
 
@@ -253,6 +291,10 @@
 
 ## RouteResponse_ResponseModels
 ### Properties
+
+## TlsConfig
+### Properties
+* **ServerNameToVerify**: string
 
 ## VpcLink_Tags
 ### Properties
