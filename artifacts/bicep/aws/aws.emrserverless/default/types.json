@@ -10,7 +10,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "If set to true, the Application will automatically start. Defaults to true."
@@ -23,14 +23,14 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "If set to true, the Application will automatically stop after being idle. Defaults to true."
       },
       "IdleTimeoutMinutes": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "The amount of time [in minutes] to wait before auto stopping the Application when idle. Defaults to 15 minutes."
@@ -48,35 +48,35 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "If set to false, CloudWatch logging will be turned off. Defaults to false."
       },
       "EncryptionKeyArn": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "KMS key ARN to encrypt the logs stored in given CloudWatch log-group."
       },
       "LogGroupName": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "Log-group name to produce log-streams on CloudWatch. If undefined, logs will be produced in a default log-group /aws/emr-serverless"
       },
       "LogStreamNamePrefix": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "Log-stream name prefix by which log-stream names will start in the CloudWatch Log-group."
       },
       "LogTypeMap": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "The specific log-streams which need to be uploaded to CloudWatch."
@@ -94,20 +94,20 @@
     "properties": {
       "Classification": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 1,
         "description": "String with a maximum length of 1024."
       },
       "Configurations": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "Properties": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/42"
         },
         "flags": 0
       }
@@ -125,6 +125,11 @@
   },
   {
     "$type": "ObjectType",
+    "name": "DiskType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "EncryptionKeyArn",
     "properties": {}
   },
@@ -134,7 +139,7 @@
     "properties": {
       "ImageUri": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "The URI of an image in the Amazon ECR registry. This field is required when you create a new application. If you leave this field blank in an update, Amazon EMR will remove the image configuration."
@@ -147,13 +152,13 @@
     "properties": {
       "WorkerConfiguration": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/32"
         },
         "flags": 1
       },
       "WorkerCount": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/38"
         },
         "flags": 1,
         "description": "Initial count of workers to be initialized when an Application is started. This count will be continued to be maintained until the Application is stopped"
@@ -166,14 +171,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 1,
         "description": "Worker type for an analytics framework."
       },
       "Value": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 1
       }
@@ -205,13 +210,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 1
       }
@@ -228,14 +233,14 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "If set to false, managed logging will be turned off. Defaults to true."
       },
       "EncryptionKeyArn": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "KMS key ARN to encrypt the logs stored in managed persistence"
@@ -248,21 +253,21 @@
     "properties": {
       "Cpu": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 1,
         "description": "Per worker CPU resource. vCPU is the only supported unit and specifying vCPU is optional."
       },
       "Disk": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "Per worker Disk resource. GB is the only supported unit and specifying GB is optional"
       },
       "Memory": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 1,
         "description": "Per worker memory resource. GB is the only supported unit and specifying GB is optional."
@@ -287,14 +292,14 @@
       },
       "ManagedPersistenceMonitoringConfiguration": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "Managed log persistence configurations for a JobRun."
       },
       "S3MonitoringConfiguration": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "S3 monitoring configurations for a JobRun."
@@ -307,14 +312,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "The ID of the security groups in the VPC to which you want to connect your job or application."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "The ID of the subnets in the VPC to which you want to connect your job or application."
@@ -327,14 +332,14 @@
     "properties": {
       "EncryptionKeyArn": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "KMS key ARN to encrypt the logs stored in given s3"
       },
       "LogUri": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0
       }
@@ -366,14 +371,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 128 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
@@ -391,21 +396,28 @@
     "properties": {
       "Cpu": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 1,
         "description": "Per worker CPU resource. vCPU is the only supported unit and specifying vCPU is optional."
       },
       "Disk": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "Per worker Disk resource. GB is the only supported unit and specifying GB is optional"
       },
+      "DiskType": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Per worker DiskType resource. Shuffle optimized and Standard are only supported types and specifying diskType is optional"
+      },
       "Memory": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 1,
         "description": "Per worker memory resource. GB is the only supported unit and specifying GB is optional."
@@ -418,7 +430,7 @@
     "properties": {
       "ImageConfiguration": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 0
       }
@@ -446,7 +458,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/18"
     }
   },
   {
@@ -469,19 +481,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/13"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/36"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/36"
     }
   },
   {
@@ -490,14 +502,14 @@
     "properties": {
       "EncryptionKeyArn": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "KMS key ARN to encrypt the logs stored in given s3"
       },
       "LogUri": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0
       }
@@ -506,13 +518,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/36"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/36"
     }
   },
   {
@@ -522,7 +534,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/13"
     }
   },
   {
@@ -534,7 +546,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/29"
+      "$ref": "#/30"
     }
   },
   {
@@ -543,20 +555,20 @@
     "properties": {
       "ApplicationId": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 18,
         "description": "The ID of the EMR Serverless Application."
       },
       "Architecture": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0
       },
       "Arn": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the EMR Serverless Application."
@@ -577,74 +589,74 @@
       },
       "ImageConfiguration": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 0
       },
       "InitialCapacity": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Initial capacity initialized when an Application is started."
       },
       "MaximumCapacity": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "Maximum allowed cumulative resources for an Application. No new resources will be created once the limit is hit."
       },
       "MonitoringConfiguration": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "User friendly Application name."
       },
       "NetworkConfiguration": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Network Configuration for customer VPC connectivity."
       },
       "ReleaseLabel": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 1,
         "description": "EMR release label."
       },
       "RuntimeConfiguration": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "Tag map with key and value"
       },
       "Type": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 1,
         "description": "The type of the application"
       },
       "WorkerTypeSpecifications": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The key-value pairs that specify worker type to WorkerTypeSpecificationInput. This parameter must contain all valid worker types for a Spark or Hive application. Valid worker types include Driver and Executor for Spark applications and HiveDriver and TezTask for Hive applications. You can either set image details in this parameter for each worker type, or in imageConfiguration for all worker types."
@@ -657,21 +669,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/53"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -683,7 +695,7 @@
     "name": "AWS.EMRServerless/Application@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/53"
+      "$ref": "#/54"
     },
     "flags": 0
   }

@@ -55,9 +55,9 @@
 ### Properties
 * **Action**: string
 * **Description**: string
-* **DetectorId**: string (Identifier)
+* **DetectorId**: string (Required, Identifier)
 * **FindingCriteria**: [FindingCriteria](#findingcriteria) (Required)
-* **Name**: string (Identifier)
+* **Name**: string (Required, Identifier)
 * **Rank**: int
 * **Tags**: [TagItem](#tagitem)[]
 

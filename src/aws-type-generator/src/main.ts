@@ -90,7 +90,7 @@ async function buildTypeIndex(logger: ILogger, baseDir: string, version: string)
       types: readTypesJson(content),
     });
   }
-  const indexContent = await buildIndex(typeFiles,  log => logOut(logger, log),  {name: "aws", version: version, isSingleton: false} as TypeSettings);
+  const indexContent = await buildIndex(typeFiles,  log => logOut(logger, log),  {name: "AWS", version: (version == "edge" ? "latest" : version), isSingleton: false} as TypeSettings);
 
   await writeFile(`${baseDir}/index.json`, writeIndexJson(indexContent));
   await writeFile(`${baseDir}/index.md`, writeIndexMarkdown(indexContent));

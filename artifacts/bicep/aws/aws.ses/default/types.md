@@ -140,10 +140,15 @@
 * **DomainSigningSelector**: string (WriteOnly): [Bring Your Own DKIM] A string that's used to identify a public key in the DNS configuration for a domain.
 * **NextSigningKeyLength**: string: [Easy DKIM] The key length of the future DKIM key pair to be generated. This can be changed at most once per day.
 
+## EventBridgeDestination
+### Properties
+* **EventBusArn**: string (Required)
+
 ## EventDestination
 ### Properties
 * **CloudWatchDestination**: [CloudWatchDestination](#cloudwatchdestination): An object that contains the names, default values, and sources of the dimensions associated with an Amazon CloudWatch event destination.
 * **Enabled**: bool: Sets whether Amazon SES publishes events to this destination when you send an email with the associated configuration set. Set to true to enable publishing to this destination; set to false to prevent publishing to this destination. The default value is false.   
+* **EventBridgeDestination**: [EventBridgeDestination](#eventbridgedestination): An object that contains Event bus ARN associated with the event bridge destination.
 * **KinesisFirehoseDestination**: [KinesisFirehoseDestination](#kinesisfirehosedestination): An object that contains the delivery stream ARN and the IAM role ARN associated with an Amazon Kinesis Firehose event destination.
 * **MatchingEventTypes**: string[] (Required): The type of email sending events, send, reject, bounce, complaint, delivery, open, click, renderingFailure, deliveryDelay, and subscription.
 * **Name**: string: The name of the event destination set.

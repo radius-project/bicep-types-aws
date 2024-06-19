@@ -107,6 +107,7 @@
 ### Properties
 * **Cpu**: string (Required): Per worker CPU resource. vCPU is the only supported unit and specifying vCPU is optional.
 * **Disk**: string: Per worker Disk resource. GB is the only supported unit and specifying GB is optional
+* **DiskType**: string: Per worker DiskType resource. Shuffle optimized and Standard are only supported types and specifying diskType is optional
 * **Memory**: string (Required): Per worker memory resource. GB is the only supported unit and specifying GB is optional.
 
 ## WorkerTypeSpecificationInputMap

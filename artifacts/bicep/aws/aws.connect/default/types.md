@@ -220,13 +220,17 @@
 ## AWS.Connect/EvaluationFormProperties
 ### Properties
 * **Description**: string: The description of the evaluation form.
-* **EvaluationFormArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the evaluation form.
-* **InstanceArn**: string (Required): The Amazon Resource Name (ARN) of the instance.
-* **Items**: [EvaluationFormBaseItem](#evaluationformbaseitem)[] (Required): The list of evaluation form items.
-* **ScoringStrategy**: [ScoringStrategy](#scoringstrategy): The scoring strategy.
+  *Length Constraints*: Minimum length of 0. Maximum length of 1024.
+* **EvaluationFormArn**: string (ReadOnly, Identifier)
+* **InstanceArn**: string (Required): The identifier of the Amazon Connect instance.
+* **Items**: [EvaluationFormBaseItem](#evaluationformbaseitem)[] (Required): Items that are part of the evaluation form. The total number of sections and questions must not exceed 100 each. Questions must be contained in a section.
+  *Minimum size*: 1
+  *Maximum size*: 100
+* **ScoringStrategy**: [ScoringStrategy](#scoringstrategy): A scoring strategy of the evaluation form.
 * **Status**: string (Required): The status of the evaluation form.
-* **Tags**: [Tag](#tag)[]: One or more tags.
-* **Title**: string (Required): The title of the evaluation form.
+  *Allowed values*: ``DRAFT`` | ``ACTIVE``
+* **Tags**: [Tag](#tag)[]: The tags used to organize, track, or control access for this resource. For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+* **Title**: string (Required): A title of the evaluation form.
 
 ## AWS.Connect/HoursOfOperationProperties
 ### Properties
@@ -458,75 +462,98 @@
 
 ## EvaluationFormBaseItem
 ### Properties
-* **Section**: [EvaluationFormSection](#evaluationformsection) (Required): The evaluation form section item
+* **Section**: [EvaluationFormSection](#evaluationformsection) (Required): A subsection or inner section of an item.
 
 ## EvaluationFormItem
 ### Properties
-* **Question**: [EvaluationFormQuestion](#evaluationformquestion): The evaluation form question item
-* **Section**: [EvaluationFormSection](#evaluationformsection): The evaluation form section item
+* **Question**: [EvaluationFormQuestion](#evaluationformquestion): The information of the question.
+* **Section**: [EvaluationFormSection](#evaluationformsection): The information of the section.
 
 ## EvaluationFormNumericQuestionAutomation
 ### Properties
-* **PropertyValue**: [NumericQuestionPropertyValueAutomation](#numericquestionpropertyvalueautomation) (Required): The automation property name of the question.
+* **PropertyValue**: [NumericQuestionPropertyValueAutomation](#numericquestionpropertyvalueautomation) (Required): The property value of the automation.
 
 ## EvaluationFormNumericQuestionOption
 ### Properties
-* **AutomaticFail**: bool: The flag to mark the option as automatic fail.
-* **MaxValue**: int (Required): The maximum value of the option range.
-* **MinValue**: int (Required): The minimum value of the option range.
-* **Score**: int: The score of the option range.
+* **AutomaticFail**: bool: The flag to mark the option as automatic fail. If an automatic fail answer is provided, the overall evaluation gets a score of 0.
+* **MaxValue**: int (Required): The maximum answer value of the range option.
+* **MinValue**: int (Required): The minimum answer value of the range option.
+* **Score**: int: The score assigned to answer values within the range option.
+  *Minimum*: 0
+  *Maximum*: 10
 
 ## EvaluationFormNumericQuestionProperties
 ### Properties
-* **Automation**: [EvaluationFormNumericQuestionAutomation](#evaluationformnumericquestionautomation): The automation properties for the numeric question.
-* **MaxValue**: int (Required): The maximum value for answers of the question.
-* **MinValue**: int (Required): The minimum value for answers of the question.
-* **Options**: [EvaluationFormNumericQuestionOption](#evaluationformnumericquestionoption)[]: The list of option ranges used for scoring.
+* **Automation**: [EvaluationFormNumericQuestionAutomation](#evaluationformnumericquestionautomation): The automation properties of the numeric question.
+* **MaxValue**: int (Required): The maximum answer value.
+* **MinValue**: int (Required): The minimum answer value.
+* **Options**: [EvaluationFormNumericQuestionOption](#evaluationformnumericquestionoption)[]: The scoring options of the numeric question.
 
 ## EvaluationFormQuestion
 ### Properties
-* **Instructions**: string: The instructions for the question.
+* **Instructions**: string: The instructions of the section.
+  *Length Constraints*: Minimum length of 0. Maximum length of 1024.
 * **NotApplicableEnabled**: bool: The flag to enable not applicable answers to the question.
 * **QuestionType**: string (Required): The type of the question.
-* **QuestionTypeProperties**: [EvaluationFormQuestionTypeProperties](#evaluationformquestiontypeproperties): The properties of the question
-* **RefId**: string (Required): The identifier used to reference the question.
+  *Allowed values*: ``NUMERIC`` | ``SINGLESELECT`` | ``TEXT``
+* **QuestionTypeProperties**: [EvaluationFormQuestionTypeProperties](#evaluationformquestiontypeproperties): The properties of the type of question. Text questions do not have to define question type properties.
+* **RefId**: string (Required): The identifier of the question. An identifier must be unique within the evaluation form.
+  *Length Constraints*: Minimum length of 1. Maximum length of 40.
 * **Title**: string (Required): The title of the question.
-* **Weight**: int: The question weight used for scoring.
+  *Length Constraints*: Minimum length of 1. Maximum length of 350.
+* **Weight**: int: The scoring weight of the section.
+  *Minimum*: 0
+  *Maximum*: 100
 
 ## EvaluationFormQuestionTypeProperties
 ### Properties
 * **Numeric**: [EvaluationFormNumericQuestionProperties](#evaluationformnumericquestionproperties): The properties of the numeric question.
-* **SingleSelect**: [EvaluationFormSingleSelectQuestionProperties](#evaluationformsingleselectquestionproperties): The properties of the single-select question.
+* **SingleSelect**: [EvaluationFormSingleSelectQuestionProperties](#evaluationformsingleselectquestionproperties): The properties of the numeric question.
 
 ## EvaluationFormSection
 ### Properties
-* **Instructions**: string: The instructions for the section.
-* **Items**: [EvaluationFormItem](#evaluationformitem)[]: The list of section items.
-* **RefId**: string (Required): The identifier to reference the section.
+* **Instructions**: string: The instructions of the section.
+* **Items**: [EvaluationFormItem](#evaluationformitem)[]: The items of the section.
+  *Minimum*: 1
+* **RefId**: string (Required): The identifier of the section. An identifier must be unique within the evaluation form.
+  *Length Constraints*: Minimum length of 1. Maximum length of 40.
 * **Title**: string (Required): The title of the section.
-* **Weight**: int: The item weight used for scoring.
+  *Length Constraints*: Minimum length of 1. Maximum length of 128.
+* **Weight**: int: The scoring weight of the section.
+  *Minimum*: 0 
+  *Maximum*: 100
 
 ## EvaluationFormSingleSelectQuestionAutomation
 ### Properties
-* **DefaultOptionRefId**: string: The option reference identifier of the default answer.
-* **Options**: [EvaluationFormSingleSelectQuestionAutomationOption](#evaluationformsingleselectquestionautomationoption)[] (Required): The answer options for the automation.
+* **DefaultOptionRefId**: string: The identifier of the default answer option, when none of the automation options match the criteria.
+  *Length Constraints*: Minimum length of 1. Maximum length of 40.
+* **Options**: [EvaluationFormSingleSelectQuestionAutomationOption](#evaluationformsingleselectquestionautomationoption)[] (Required): The automation options of the single select question.
+  *Minimum*: 1
+  *Maximum*: 20
 
 ## EvaluationFormSingleSelectQuestionAutomationOption
 ### Properties
-* **RuleCategory**: [SingleSelectQuestionRuleCategoryAutomation](#singleselectquestionrulecategoryautomation) (Required): The automation option based on Rules categories.
+* **RuleCategory**: [SingleSelectQuestionRuleCategoryAutomation](#singleselectquestionrulecategoryautomation) (Required): The automation option based on a rule category for the single select question.
 
 ## EvaluationFormSingleSelectQuestionOption
 ### Properties
-* **AutomaticFail**: bool: The flag to mark the option as automatic fail.
-* **RefId**: string (Required): The identifier used to reference the option.
-* **Score**: int: The score of the option.
-* **Text**: string (Required): The title of the option.
+* **AutomaticFail**: bool: The flag to mark the option as automatic fail. If an automatic fail answer is provided, the overall evaluation gets a score of 0.
+* **RefId**: string (Required): The identifier of the answer option. An identifier must be unique within the question.
+  *Length Constraints*: Minimum length of 1. Maximum length of 40.
+* **Score**: int: The score assigned to the answer option.
+  *Minimum*: 0
+  *Maximum*: 10
+* **Text**: string (Required): The title of the answer option.
+  *Length Constraints*: Minimum length of 1. Maximum length of 128.
 
 ## EvaluationFormSingleSelectQuestionProperties
 ### Properties
-* **Automation**: [EvaluationFormSingleSelectQuestionAutomation](#evaluationformsingleselectquestionautomation): The automation properties for the single-select question.
-* **DisplayAs**: string: The display mode of the single-select question.
-* **Options**: [EvaluationFormSingleSelectQuestionOption](#evaluationformsingleselectquestionoption)[] (Required): The list of options for the question.
+* **Automation**: [EvaluationFormSingleSelectQuestionAutomation](#evaluationformsingleselectquestionautomation): The display mode of the single select question.
+* **DisplayAs**: string: The display mode of the single select question.
+  *Allowed values*: ``DROPDOWN`` | ``RADIO``
+* **Options**: [EvaluationFormSingleSelectQuestionOption](#evaluationformsingleselectquestionoption)[] (Required): The answer options of the single select question.
+  *Minimum*: 2
+  *Maximum*: 256
 
 ## EventBridgeAction
 ### Properties
@@ -597,7 +624,7 @@
 
 ## NumericQuestionPropertyValueAutomation
 ### Properties
-* **Label**: string (Required): The automation property label.
+* **Label**: string (Required): The property label of the automation.
 
 ## OutboundCallerConfig
 ### Properties
@@ -666,8 +693,10 @@
 
 ## ScoringStrategy
 ### Properties
-* **Mode**: string (Required): The scoring mode.
-* **Status**: string (Required): The scoring status.
+* **Mode**: string (Required): The scoring mode of the evaluation form.
+  *Allowed values*: ``QUESTION_ONLY`` | ``SECTION_ONLY``
+* **Status**: string (Required): The scoring status of the evaluation form.
+  *Allowed values*: ``ENABLED`` | ``DISABLED``
 
 ## SendNotificationAction
 ### Properties
@@ -679,9 +708,14 @@
 
 ## SingleSelectQuestionRuleCategoryAutomation
 ### Properties
-* **Category**: string (Required): The category name as defined in Rules.
-* **Condition**: string (Required): The automation condition applied on contact categories.
-* **OptionRefId**: string (Required): The option identifier referencing the option to be selected when the automation option is triggered.
+* **Category**: string (Required): The category name, as defined in Rules.
+  *Minimum*: 1
+  *Maximum*: 50
+* **Condition**: string (Required): The condition to apply for the automation option. If the condition is PRESENT, then the option is applied when the contact data includes the category. Similarly, if the condition is NOT_PRESENT, then the option is applied when the contact data does not include the category.
+  *Allowed values*: ``PRESENT`` | ``NOT_PRESENT`` 
+  *Maximum*: 50
+* **OptionRefId**: string (Required): The identifier of the answer option. An identifier must be unique within the question.
+  *Length Constraints*: Minimum length of 1. Maximum length of 40.
 
 ## SubmitAutoEvaluationAction
 ### Properties
@@ -699,8 +733,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that's 1 to 256 characters in length.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -
 
 ## Tag
 ### Properties

@@ -97,6 +97,7 @@
 * **Description**: string: Description of the Resource.
 * **FailureReasons**: string[] (ReadOnly): Failure Reasons for Error.
 * **FoundationModel**: string: ARN or name of a Bedrock model.
+* **GuardrailConfiguration**: [GuardrailConfiguration](#guardrailconfiguration)
 * **IdleSessionTTLInSeconds**: int: Max Session Time.
 * **Instruction**: string: Instruction for the agent.
 * **KnowledgeBases**: [AgentKnowledgeBase](#agentknowledgebase)[]: List of Agent Knowledge Bases
@@ -193,6 +194,11 @@
 ## FunctionSchema
 ### Properties
 * **Functions**: [Function](#function)[] (Required): List of Function definitions
+
+## GuardrailConfiguration
+### Properties
+* **GuardrailIdentifier**: string: Identifier for the guardrail, could be the id or the arn
+* **GuardrailVersion**: string: Version of the guardrail
 
 ## InferenceConfiguration
 ### Properties
