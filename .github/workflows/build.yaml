@@ -16,7 +16,7 @@ jobs:
       - name: 'Setup Node'
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 18.x
       - name: 'Checkout'
         uses: actions/checkout@v1
       - name: 'Build aws-type-downloader'
@@ -30,7 +30,7 @@ jobs:
           version: latest
           working-directory: 'src/aws-type-downloader'
       - run: git submodule update --init --recursive
-      - run: npm install && ci
+      - run: npm ci
         working-directory: 'bicep-types/src/bicep-types'
       - run: npm run build
         working-directory: 'bicep-types/src/bicep-types'
