@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-OpenSearchService-Domain",
   "type": "AWS::OpenSearchService::Domain",
-  "time": "2023-12-21T03:41:36.56Z",
+  "time": "2024-06-05T03:41:23.926Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -39,6 +39,9 @@
       "ClusterConfig": {
         "additionalProperties": false,
         "properties": {
+          "ColdStorageOptions": {
+            "$ref": "#/definitions/ColdStorageOptions"
+          },
           "DedicatedMasterCount": {
             "type": "integer"
           },
@@ -89,6 +92,15 @@
           },
           "UserPoolId": {
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ColdStorageOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "Enabled": {
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -401,7 +413,7 @@
           "es:ListTags",
           "es:DescribeDomainChangeProgress"
         ],
-        "timeoutInMinutes": 780
+        "timeoutInMinutes": 2160
       }
     },
     "primaryIdentifier": [

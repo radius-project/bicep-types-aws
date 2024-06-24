@@ -1,11 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AmplifyUIBuilder-Theme",
   "type": "AWS::AmplifyUIBuilder::Theme",
-  "time": "2023-12-26T21:30:20.493Z",
+  "time": "2024-06-18T15:38:48.392Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/Tags"
+      "/properties/AppId",
+      "/properties/EnvironmentName"
     ],
     "definitions": {
       "Tags": {
@@ -23,7 +24,6 @@
         "additionalProperties": false,
         "properties": {
           "Children": {
-            "insertionOrder": false,
             "items": {
               "$ref": "#/definitions/ThemeValues"
             },
@@ -53,15 +53,14 @@
       "create": {
         "permissions": [
           "amplify:GetApp",
-          "amplifyuibuilder:GetTheme",
           "amplifyuibuilder:CreateTheme",
+          "amplifyuibuilder:GetTheme",
           "amplifyuibuilder:TagResource"
         ]
       },
       "delete": {
         "permissions": [
           "amplify:GetApp",
-          "amplifyuibuilder:GetTheme",
           "amplifyuibuilder:DeleteTheme",
           "amplifyuibuilder:UntagResource"
         ]
@@ -83,7 +82,6 @@
         },
         "permissions": [
           "amplify:GetApp",
-          "amplifyuibuilder:GetTheme",
           "amplifyuibuilder:ListThemes"
         ]
       },
@@ -97,8 +95,9 @@
         "permissions": [
           "amplify:GetApp",
           "amplifyuibuilder:GetTheme",
-          "amplifyuibuilder:UpdateTheme",
-          "amplifyuibuilder:TagResource"
+          "amplifyuibuilder:TagResource",
+          "amplifyuibuilder:UntagResource",
+          "amplifyuibuilder:UpdateTheme"
         ]
       }
     },
@@ -111,10 +110,18 @@
       "AppId": {
         "type": "string"
       },
+      "CreatedAt": {
+        "format": "date-time",
+        "type": "string"
+      },
       "EnvironmentName": {
         "type": "string"
       },
       "Id": {
+        "type": "string"
+      },
+      "ModifiedAt": {
+        "format": "date-time",
         "type": "string"
       },
       "Name": {
@@ -123,7 +130,6 @@
         "type": "string"
       },
       "Overrides": {
-        "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/ThemeValues"
         },
@@ -133,7 +139,6 @@
         "$ref": "#/definitions/Tags"
       },
       "Values": {
-        "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/ThemeValues"
         },
@@ -141,14 +146,18 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/Id"
-    ],
-    "required": [
-      "Name",
-      "Values"
+      "/properties/CreatedAt",
+      "/properties/Id",
+      "/properties/ModifiedAt"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-amplifyuibuilder",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::AmplifyUIBuilder::Theme"
   }
 }

@@ -3,9 +3,9 @@
 ## Resource AWS.WorkSpacesThinClient/Environment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.WorkSpacesThinClient/EnvironmentProperties](#awsworkspacesthinclientenvironmentproperties) (Required): properties of the resource
+* **properties**: [AWS.WorkSpacesThinClient/EnvironmentProperties](#awsworkspacesthinclientenvironmentproperties) (Required, Identifier): properties of the resource
 
 ## AWS.WorkSpacesThinClient/EnvironmentProperties
 ### Properties

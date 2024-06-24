@@ -1,1 +1,673 @@
-[{"1":{"Kind":1}},{"1":{"Kind":2}},{"1":{"Kind":3}},{"1":{"Kind":4}},{"1":{"Kind":5}},{"1":{"Kind":6}},{"1":{"Kind":7}},{"1":{"Kind":8}},{"2":{"Name":"ScalableTargetAction","Properties":{"MaxCapacity":{"Type":3,"Flags":0},"MinCapacity":{"Type":3,"Flags":0}}}},{"2":{"Name":"ScheduledAction","Properties":{"EndTime":{"Type":4,"Flags":0},"ScalableTargetAction":{"Type":8,"Flags":0},"Schedule":{"Type":4,"Flags":1},"ScheduledActionName":{"Type":4,"Flags":1},"StartTime":{"Type":4,"Flags":0},"Timezone":{"Type":4,"Flags":0}}}},{"2":{"Name":"SuspendedState","Properties":{"DynamicScalingInSuspended":{"Type":2,"Flags":0},"DynamicScalingOutSuspended":{"Type":2,"Flags":0},"ScheduledScalingSuspended":{"Type":2,"Flags":0}}}},{"2":{"Name":"AWS.ApplicationAutoScaling/ScalableTargetProperties","Properties":{"Id":{"Type":4,"Flags":2,"Description":"This value can be returned by using the Ref function. Ref returns the Cloudformation generated ID of the resource in format - ResourceId|ScalableDimension|ServiceNamespace"},"MaxCapacity":{"Type":3,"Flags":1,"Description":"The maximum value that you plan to scale in to. When a scaling policy is in effect, Application Auto Scaling can scale in (contract) as needed to the minimum capacity limit in response to changing demand"},"MinCapacity":{"Type":3,"Flags":1,"Description":"The minimum value that you plan to scale in to. When a scaling policy is in effect, Application Auto Scaling can scale in (contract) as needed to the minimum capacity limit in response to changing demand"},"ResourceId":{"Type":4,"Flags":17,"Description":"The identifier of the resource associated with the scalable target"},"RoleARN":{"Type":4,"Flags":4,"Description":"Specify the Amazon Resource Name (ARN) of an Identity and Access Management (IAM) role that allows Application Auto Scaling to modify the scalable target on your behalf. "},"ScalableDimension":{"Type":4,"Flags":17,"Description":"The scalable dimension associated with the scalable target. This string consists of the service namespace, resource type, and scaling property"},"ScheduledActions":{"Type":12,"Flags":0,"Description":"The scheduled actions for the scalable target. Duplicates aren't allowed."},"ServiceNamespace":{"Type":4,"Flags":17,"Description":"The namespace of the AWS service that provides the resource, or a custom-resource"},"SuspendedState":{"Type":10,"Flags":0,"Description":"An embedded object that contains attributes and attribute values that are used to suspend and resume automatic scaling. Setting the value of an attribute to true suspends the specified scaling activities. Setting it to false (default) resumes the specified scaling activities."}}}},{"3":{"ItemType":9}},{"2":{"Name":"AWS.ApplicationAutoScaling/ScalableTarget","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":11,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.ApplicationAutoScaling/ScalableTarget@default","ScopeType":0,"Body":13}},{"2":{"Name":"CustomizedMetricSpecification","Properties":{"Dimensions":{"Type":25,"Flags":0,"Description":"The dimensions of the metric."},"MetricName":{"Type":4,"Flags":0,"Description":"The name of the metric. To get the exact metric name, namespace, and dimensions, inspect the Metric object that is returned by a call to ListMetrics."},"Metrics":{"Type":26,"Flags":0,"Description":"The metrics to include in the target tracking scaling policy, as a metric data query. This can include both raw metric and metric math expressions."},"Namespace":{"Type":4,"Flags":0,"Description":"The namespace of the metric."},"Statistic":{"Type":4,"Flags":0,"Description":"The statistic of the metric."},"Unit":{"Type":4,"Flags":0,"Description":"The unit of the metric. For a complete list of the units that CloudWatch supports, see the MetricDatum data type in the Amazon CloudWatch API Reference."}}}},{"2":{"Name":"MetricDimension","Properties":{"Name":{"Type":4,"Flags":1,"Description":"The name of the dimension."},"Value":{"Type":4,"Flags":1,"Description":"The value of the dimension."}}}},{"2":{"Name":"PredefinedMetricSpecification","Properties":{"PredefinedMetricType":{"Type":4,"Flags":1,"Description":"The metric type. The ALBRequestCountPerTarget metric type applies only to Spot Fleets and ECS services."},"ResourceLabel":{"Type":4,"Flags":4,"Description":"Identifies the resource associated with the metric type. You can't specify a resource label unless the metric type is ALBRequestCountPerTarget and there is a target group attached to the Spot Fleet or ECS service."}}}},{"2":{"Name":"StepAdjustment","Properties":{"MetricIntervalLowerBound":{"Type":3,"Flags":0,"Description":"The lower bound for the difference between the alarm threshold and the CloudWatch metric. If the metric value is above the breach threshold, the lower bound is inclusive (the metric must be greater than or equal to the threshold plus the lower bound). Otherwise, it is exclusive (the metric must be greater than the threshold plus the lower bound). A null value indicates negative infinity."},"MetricIntervalUpperBound":{"Type":3,"Flags":0,"Description":"The upper bound for the difference between the alarm threshold and the CloudWatch metric. If the metric value is above the breach threshold, the upper bound is exclusive (the metric must be less than the threshold plus the upper bound). Otherwise, it is inclusive (the metric must be less than or equal to the threshold plus the upper bound). A null value indicates positive infinity."},"ScalingAdjustment":{"Type":3,"Flags":1,"Description":"The amount by which to scale, based on the specified adjustment type. A positive value adds to the current capacity while a negative number removes from the current capacity. For exact capacity, you must specify a positive value."}}}},{"2":{"Name":"StepScalingPolicyConfiguration","Properties":{"AdjustmentType":{"Type":4,"Flags":0,"Description":"Specifies how the ScalingAdjustment value in a StepAdjustment is interpreted."},"Cooldown":{"Type":3,"Flags":0,"Description":"The amount of time, in seconds, to wait for a previous scaling activity to take effect."},"MetricAggregationType":{"Type":4,"Flags":0,"Description":"The aggregation type for the CloudWatch metrics. Valid values are Minimum, Maximum, and Average. If the aggregation type is null, the value is treated as Average"},"MinAdjustmentMagnitude":{"Type":3,"Flags":0,"Description":"The minimum value to scale by when the adjustment type is PercentChangeInCapacity."},"StepAdjustments":{"Type":27,"Flags":0,"Description":"A set of adjustments that enable you to scale based on the size of the alarm breach."}}}},{"2":{"Name":"TargetTrackingMetric","Properties":{"Dimensions":{"Type":28,"Flags":0,"Description":"The dimensions for the metric."},"MetricName":{"Type":4,"Flags":0,"Description":"The name of the metric."},"Namespace":{"Type":4,"Flags":0,"Description":"The namespace of the metric."}}}},{"2":{"Name":"TargetTrackingMetricDataQuery","Properties":{"Expression":{"Type":4,"Flags":0,"Description":"The math expression to perform on the returned data, if this object is performing a math expression."},"Id":{"Type":4,"Flags":0,"Description":"A short name that identifies the object's results in the response."},"Label":{"Type":4,"Flags":0,"Description":"A human-readable label for this metric or expression. This is especially useful if this is a math expression, so that you know what the value represents."},"MetricStat":{"Type":23,"Flags":0,"Description":"Information about the metric data to return."},"ReturnData":{"Type":2,"Flags":0,"Description":"Indicates whether to return the timestamps and raw data values of this metric."}}}},{"2":{"Name":"TargetTrackingMetricDimension","Properties":{"Name":{"Type":4,"Flags":0,"Description":"The name of the dimension."},"Value":{"Type":4,"Flags":0,"Description":"The value of the dimension."}}}},{"2":{"Name":"TargetTrackingMetricStat","Properties":{"Metric":{"Type":20,"Flags":0,"Description":"The CloudWatch metric to return, including the metric name, namespace, and dimensions. "},"Stat":{"Type":4,"Flags":0,"Description":"The statistic to return. It can include any CloudWatch statistic or extended statistic."},"Unit":{"Type":4,"Flags":0,"Description":"The unit to use for the returned data points."}}}},{"2":{"Name":"TargetTrackingScalingPolicyConfiguration","Properties":{"CustomizedMetricSpecification":{"Type":15,"Flags":0,"Description":"A customized metric. You can specify either a predefined metric or a customized metric."},"DisableScaleIn":{"Type":2,"Flags":0,"Description":"Indicates whether scale in by the target tracking scaling policy is disabled. If the value is true, scale in is disabled and the target tracking scaling policy won't remove capacity from the scalable target. Otherwise, scale in is enabled and the target tracking scaling policy can remove capacity from the scalable target. The default value is false."},"PredefinedMetricSpecification":{"Type":17,"Flags":0,"Description":"A predefined metric. You can specify either a predefined metric or a customized metric."},"ScaleInCooldown":{"Type":3,"Flags":0,"Description":"The amount of time, in seconds, after a scale-in activity completes before another scale-in activity can start."},"ScaleOutCooldown":{"Type":3,"Flags":0,"Description":"The amount of time, in seconds, to wait for a previous scale-out activity to take effect."},"TargetValue":{"Type":3,"Flags":1,"Description":"The target value for the metric. Although this property accepts numbers of type Double, it won't accept values that are either too small or too large. Values must be in the range of -2^360 to 2^360. The value must be a valid number based on the choice of metric. For example, if the metric is CPU utilization, then the target value is a percent value that represents how much of the CPU can be used before scaling out."}}}},{"3":{"ItemType":16}},{"3":{"ItemType":21}},{"3":{"ItemType":18}},{"3":{"ItemType":22}},{"2":{"Name":"AWS.ApplicationAutoScaling/ScalingPolicyProperties","Properties":{"Arn":{"Type":4,"Flags":18,"Description":"ARN is a read only property for the resource."},"PolicyName":{"Type":4,"Flags":1,"Description":"The name of the scaling policy.\n\nUpdates to the name of a target tracking scaling policy are not supported, unless you also update the metric used for scaling. To change only a target tracking scaling policy's name, first delete the policy by removing the existing AWS::ApplicationAutoScaling::ScalingPolicy resource from the template and updating the stack. Then, recreate the resource with the same settings and a different name."},"PolicyType":{"Type":4,"Flags":1,"Description":"The scaling policy type.\n\nThe following policy types are supported:\n\nTargetTrackingScaling Not supported for Amazon EMR\n\nStepScaling Not supported for DynamoDB, Amazon Comprehend, Lambda, Amazon Keyspaces, Amazon MSK, Amazon ElastiCache, or Neptune."},"ResourceId":{"Type":4,"Flags":0,"Description":"The identifier of the resource associated with the scaling policy. This string consists of the resource type and unique identifier."},"ScalableDimension":{"Type":4,"Flags":16,"Description":"The scalable dimension. This string consists of the service namespace, resource type, and scaling property."},"ScalingTargetId":{"Type":4,"Flags":4,"Description":"The CloudFormation-generated ID of an Application Auto Scaling scalable target. For more information about the ID, see the Return Value section of the AWS::ApplicationAutoScaling::ScalableTarget resource."},"ServiceNamespace":{"Type":4,"Flags":0,"Description":"The namespace of the AWS service that provides the resource, or a custom-resource."},"StepScalingPolicyConfiguration":{"Type":19,"Flags":0,"Description":"A step scaling policy."},"TargetTrackingScalingPolicyConfiguration":{"Type":24,"Flags":0,"Description":"A target tracking scaling policy."}}}},{"2":{"Name":"AWS.ApplicationAutoScaling/ScalingPolicy","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":29,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.ApplicationAutoScaling/ScalingPolicy@default","ScopeType":0,"Body":30}}]
+[
+  {
+    "$type": "ObjectType",
+    "name": "ScalableTargetAction",
+    "properties": {
+      "MaxCapacity": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The maximum capacity."
+      },
+      "MinCapacity": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The minimum capacity."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScheduledAction",
+    "properties": {
+      "EndTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The date and time that the action is scheduled to end, in UTC."
+      },
+      "ScalableTargetAction": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0,
+        "description": "The new minimum and maximum capacity. You can set both values or just one. At the scheduled time, if the current capacity is below the minimum capacity, Application Auto Scaling scales out to the minimum capacity. If the current capacity is above the maximum capacity, Application Auto Scaling scales in to the maximum capacity."
+      },
+      "Schedule": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The schedule for this action. The following formats are supported:\n  +  At expressions - \"``at(yyyy-mm-ddThh:mm:ss)``\"\n  +  Rate expressions - \"``rate(value unit)``\"\n  +  Cron expressions - \"``cron(fields)``\"\n  \n At expressions are useful for one-time schedules. Cron expressions are useful for scheduled actions that run periodically at a specified date and time, and rate expressions are useful for scheduled actions that run at a regular interval.\n At and cron expressions use Universal Coordinated Time (UTC) by default.\n The cron format consists of six fields separated by white spaces: [Minutes] [Hours] [Day_of_Month] [Month] [Day_of_Week] [Year].\n For rate expressions, *value* is a positive integer and *unit* is ``minute`` | ``minutes`` | ``hour`` | ``hours`` | ``day`` | ``days``."
+      },
+      "ScheduledActionName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name of the scheduled action. This name must be unique among all other scheduled actions on the specified scalable target."
+      },
+      "StartTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The date and time that the action is scheduled to begin, in UTC."
+      },
+      "Timezone": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The time zone used when referring to the date and time of a scheduled action, when the scheduled action uses an at or cron expression."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SuspendedState",
+    "properties": {
+      "DynamicScalingInSuspended": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Whether scale in by a target tracking scaling policy or a step scaling policy is suspended. Set the value to ``true`` if you don't want Application Auto Scaling to remove capacity when a scaling policy is triggered. The default is ``false``."
+      },
+      "DynamicScalingOutSuspended": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Whether scale out by a target tracking scaling policy or a step scaling policy is suspended. Set the value to ``true`` if you don't want Application Auto Scaling to add capacity when a scaling policy is triggered. The default is ``false``."
+      },
+      "ScheduledScalingSuspended": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Whether scheduled scaling is suspended. Set the value to ``true`` if you don't want Application Auto Scaling to add or remove capacity by initiating scheduled actions. The default is ``false``."
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ApplicationAutoScaling/ScalableTargetProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ApplicationAutoScaling/ScalableTargetProperties",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "MaxCapacity": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The maximum value that you plan to scale out to. When a scaling policy is in effect, Application Auto Scaling can scale out (expand) as needed to the maximum capacity limit in response to changing demand."
+      },
+      "MinCapacity": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The minimum value that you plan to scale in to. When a scaling policy is in effect, Application Auto Scaling can scale in (contract) as needed to the minimum capacity limit in response to changing demand."
+      },
+      "ResourceId": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "The identifier of the resource associated with the scalable target. This string consists of the resource type and unique identifier.\n  +  ECS service - The resource type is ``service`` and the unique identifier is the cluster name and service name. Example: ``service/my-cluster/my-service``.\n  +  Spot Fleet - The resource type is ``spot-fleet-request`` and the unique identifier is the Spot Fleet request ID. Example: ``spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE``.\n  +  EMR cluster - The resource type is ``instancegroup`` and the unique identifier is the cluster ID and instance group ID. Example: ``instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0``.\n  +  AppStream 2.0 fleet - The resource type is ``fleet`` and the unique identifier is the fleet name. Example: ``fleet/sample-fleet``.\n  +  DynamoDB table - The resource type is ``table`` and the unique identifier is the table name. Example: ``table/my-table``.\n  +  DynamoDB global secondary index - The resource type is ``index`` and the unique identifier is the index name. Example: ``table/my-table/index/my-table-index``.\n  +  Aurora DB cluster - The resource type is ``cluster`` and the unique identifier is the cluster name. Example: ``cluster:my-db-cluster``.\n  +  SageMaker endpoint variant - The resource type is ``variant`` and the unique identifier is the resource ID. Example: ``endpoint/my-end-point/variant/KMeansClustering``.\n  +  Custom resources are not supported with a resource type. This parameter must specify the ``OutputValue`` from the CloudFormation template stack used to access the resources. The unique identifier is defined by the service provider. More information is available in our [GitHub repository](https://docs.aws.amazon.com/https://github.com/aws/aws-auto-scaling-custom-resource).\n  +  Amazon Comprehend document classification endpoint - The resource type and unique identifier are specified using the endpoint ARN. Example: ``arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE``.\n  +  Amazon Comprehend entity recognizer endpoint - The resource type and unique identifier are specified using the endpoint ARN. Example: ``arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE``.\n  +  Lambda provisioned concurrency - The resource type is ``function`` and the unique identifier is the function name with a function version or alias name suffix that is not ``$LATEST``. Example: ``function:my-function:prod`` or ``function:my-function:1``.\n  +  Amazon Keyspaces table - The resource type is ``table`` and the unique identifier is the table name. Example: ``keyspace/mykeyspace/table/mytable``.\n  +  Amazon MSK cluster - The resource type and unique identifier are specified using the cluster ARN. Example: ``arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5``.\n  +  Amazon ElastiCache replication group - The resource type is ``replication-group`` and the unique identifier is the replication group name. Example: ``replication-group/mycluster``.\n  +  Neptune cluster - The resource type is ``cluster`` and the unique identifier is the cluster name. Example: ``cluster:mycluster``.\n  +  SageMaker serverless endpoint - The resource type is ``variant`` and the unique identifier is the resource ID. Example: ``endpoint/my-end-point/variant/KMeansClustering``.\n  +  SageMaker inference component - The resource type is ``inference-component`` and the unique identifier is the resource ID. Example: ``inference-component/my-inference-component``."
+      },
+      "RoleARN": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 4,
+        "description": "Specify the Amazon Resource Name (ARN) of an Identity and Access Management (IAM) role that allows Application Auto Scaling to modify the scalable target on your behalf. This can be either an IAM service role that Application Auto Scaling can assume to make calls to other AWS resources on your behalf, or a service-linked role for the specified service. For more information, see [How Application Auto Scaling works with IAM](https://docs.aws.amazon.com/autoscaling/application/userguide/security_iam_service-with-iam.html) in the *Application Auto Scaling User Guide*.\n To automatically create a service-linked role (recommended), specify the full ARN of the service-linked role in your stack template. To find the exact ARN of the service-linked role for your AWS or custom resource, see the [Service-linked roles](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-service-linked-roles.html) topic in the *Application Auto Scaling User Guide*. Look for the ARN in the table at the bottom of the page."
+      },
+      "ScalableDimension": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "The scalable dimension associated with the scalable target. This string consists of the service namespace, resource type, and scaling property.\n  +   ``ecs:service:DesiredCount`` - The desired task count of an ECS service.\n  +   ``elasticmapreduce:instancegroup:InstanceCount`` - The instance count of an EMR Instance Group.\n  +   ``ec2:spot-fleet-request:TargetCapacity`` - The target capacity of a Spot Fleet.\n  +   ``appstream:fleet:DesiredCapacity`` - The desired capacity of an AppStream 2.0 fleet.\n  +   ``dynamodb:table:ReadCapacityUnits`` - The provisioned read capacity for a DynamoDB table.\n  +   ``dynamodb:table:WriteCapacityUnits`` - The provisioned write capacity for a DynamoDB table.\n  +   ``dynamodb:index:ReadCapacityUnits`` - The provisioned read capacity for a DynamoDB global secondary index.\n  +   ``dynamodb:index:WriteCapacityUnits`` - The provisioned write capacity for a DynamoDB global secondary index.\n  +   ``rds:cluster:ReadReplicaCount`` - The count of Aurora Replicas in an Aurora DB cluster. Available for Aurora MySQL-compatible edition and Aurora PostgreSQL-compatible edition.\n  +   ``sagemaker:variant:DesiredInstanceCount`` - The number of EC2 instances for a SageMaker model endpoint variant.\n  +   ``custom-resource:ResourceType:Property`` - The scalable dimension for a custom resource provided by your own application or service.\n  +   ``comprehend:document-classifier-endpoint:DesiredInferenceUnits`` - The number of inference units for an Amazon Comprehend document classification endpoint.\n  +   ``comprehend:entity-recognizer-endpoint:DesiredInferenceUnits`` - The number of inference units for an Amazon Comprehend entity recognizer endpoint.\n  +   ``lambda:function:ProvisionedConcurrency`` - The provisioned concurrency for a Lambda function.\n  +   ``cassandra:table:ReadCapacityUnits`` - The provisioned read capacity for an Amazon Keyspaces table.\n  +   ``cassandra:table:WriteCapacityUnits`` - The provisioned write capacity for an Amazon Keyspaces table.\n  +   ``kafka:broker-storage:VolumeSize`` - The provisioned volume size (in GiB) for brokers in an Amazon MSK cluster.\n  +   ``elasticache:replication-group:NodeGroups`` - The number of node groups for an Amazon ElastiCache replication group.\n  +   ``elasticache:replication-group:Replicas`` - The number of replicas per node group for an Amazon ElastiCache replication group.\n  +   ``neptune:cluster:ReadReplicaCount`` - The count of read replicas in an Amazon Neptune DB cluster.\n  +   ``sagemaker:variant:DesiredProvisionedConcurrency`` - The provisioned concurrency for a SageMaker serverless endpoint.\n  +   ``sagemaker:inference-component:DesiredCopyCount`` - The number of copies across an endpoint for a SageMaker inference component."
+      },
+      "ScheduledActions": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The scheduled actions for the scalable target. Duplicates aren't allowed."
+      },
+      "ServiceNamespace": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "The namespace of the AWS service that provides the resource, or a ``custom-resource``."
+      },
+      "SuspendedState": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "An embedded object that contains attributes and attribute values that are used to suspend and resume automatic scaling. Setting the value of an attribute to ``true`` suspends the specified scaling activities. Setting it to ``false`` (default) resumes the specified scaling activities. \n  *Suspension Outcomes* \n  +  For ``DynamicScalingInSuspended``, while a suspension is in effect, all scale-in activities that are triggered by a scaling policy are suspended.\n  +  For ``DynamicScalingOutSuspended``, while a suspension is in effect, all scale-out activities that are triggered by a scaling policy are suspended.\n  +  For ``ScheduledScalingSuspended``, while a suspension is in effect, all scaling activities that involve scheduled actions are suspended."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ApplicationAutoScaling/ScalableTarget",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ApplicationAutoScaling/ScalableTarget@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/9"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomizedMetricSpecification",
+    "properties": {
+      "Dimensions": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The dimensions of the metric."
+      },
+      "MetricName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name of the metric. To get the exact metric name, namespace, and dimensions, inspect the Metric object that is returned by a call to ListMetrics."
+      },
+      "Metrics": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The metrics to include in the target tracking scaling policy, as a metric data query. This can include both raw metric and metric math expressions."
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The namespace of the metric."
+      },
+      "Statistic": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The statistic of the metric."
+      },
+      "Unit": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The unit of the metric. For a complete list of the units that CloudWatch supports, see the MetricDatum data type in the Amazon CloudWatch API Reference."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricDimension",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name of the dimension."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The value of the dimension."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PredefinedMetricSpecification",
+    "properties": {
+      "PredefinedMetricType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The metric type. The ALBRequestCountPerTarget metric type applies only to Spot Fleets and ECS services."
+      },
+      "ResourceLabel": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 4,
+        "description": "Identifies the resource associated with the metric type. You can't specify a resource label unless the metric type is ALBRequestCountPerTarget and there is a target group attached to the Spot Fleet or ECS service."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StepAdjustment",
+    "properties": {
+      "MetricIntervalLowerBound": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The lower bound for the difference between the alarm threshold and the CloudWatch metric. If the metric value is above the breach threshold, the lower bound is inclusive (the metric must be greater than or equal to the threshold plus the lower bound). Otherwise, it is exclusive (the metric must be greater than the threshold plus the lower bound). A null value indicates negative infinity."
+      },
+      "MetricIntervalUpperBound": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The upper bound for the difference between the alarm threshold and the CloudWatch metric. If the metric value is above the breach threshold, the upper bound is exclusive (the metric must be less than the threshold plus the upper bound). Otherwise, it is inclusive (the metric must be less than or equal to the threshold plus the upper bound). A null value indicates positive infinity."
+      },
+      "ScalingAdjustment": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The amount by which to scale, based on the specified adjustment type. A positive value adds to the current capacity while a negative number removes from the current capacity. For exact capacity, you must specify a positive value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StepScalingPolicyConfiguration",
+    "properties": {
+      "AdjustmentType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies how the ScalingAdjustment value in a StepAdjustment is interpreted."
+      },
+      "Cooldown": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The amount of time, in seconds, to wait for a previous scaling activity to take effect."
+      },
+      "MetricAggregationType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The aggregation type for the CloudWatch metrics. Valid values are Minimum, Maximum, and Average. If the aggregation type is null, the value is treated as Average"
+      },
+      "MinAdjustmentMagnitude": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The minimum value to scale by when the adjustment type is PercentChangeInCapacity."
+      },
+      "StepAdjustments": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "A set of adjustments that enable you to scale based on the size of the alarm breach."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TargetTrackingMetric",
+    "properties": {
+      "Dimensions": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "The dimensions for the metric."
+      },
+      "MetricName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name of the metric."
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The namespace of the metric."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TargetTrackingMetricDataQuery",
+    "properties": {
+      "Expression": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The math expression to perform on the returned data, if this object is performing a math expression."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A short name that identifies the object's results in the response."
+      },
+      "Label": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A human-readable label for this metric or expression. This is especially useful if this is a math expression, so that you know what the value represents."
+      },
+      "MetricStat": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "Information about the metric data to return."
+      },
+      "ReturnData": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Indicates whether to return the timestamps and raw data values of this metric."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TargetTrackingMetricDimension",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name of the dimension."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The value of the dimension."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TargetTrackingMetricStat",
+    "properties": {
+      "Metric": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The CloudWatch metric to return, including the metric name, namespace, and dimensions. "
+      },
+      "Stat": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The statistic to return. It can include any CloudWatch statistic or extended statistic."
+      },
+      "Unit": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The unit to use for the returned data points."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TargetTrackingScalingPolicyConfiguration",
+    "properties": {
+      "CustomizedMetricSpecification": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "A customized metric. You can specify either a predefined metric or a customized metric."
+      },
+      "DisableScaleIn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Indicates whether scale in by the target tracking scaling policy is disabled. If the value is true, scale in is disabled and the target tracking scaling policy won't remove capacity from the scalable target. Otherwise, scale in is enabled and the target tracking scaling policy can remove capacity from the scalable target. The default value is false."
+      },
+      "PredefinedMetricSpecification": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "A predefined metric. You can specify either a predefined metric or a customized metric."
+      },
+      "ScaleInCooldown": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The amount of time, in seconds, after a scale-in activity completes before another scale-in activity can start."
+      },
+      "ScaleOutCooldown": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The amount of time, in seconds, to wait for a previous scale-out activity to take effect."
+      },
+      "TargetValue": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The target value for the metric. Although this property accepts numbers of type Double, it won't accept values that are either too small or too large. Values must be in the range of -2^360 to 2^360. The value must be a valid number based on the choice of metric. For example, if the metric is CPU utilization, then the target value is a percent value that represents how much of the CPU can be used before scaling out."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ApplicationAutoScaling/ScalingPolicyProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ApplicationAutoScaling/ScalingPolicyProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18,
+        "description": "ARN is a read only property for the resource."
+      },
+      "PolicyName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name of the scaling policy.\n\nUpdates to the name of a target tracking scaling policy are not supported, unless you also update the metric used for scaling. To change only a target tracking scaling policy's name, first delete the policy by removing the existing AWS::ApplicationAutoScaling::ScalingPolicy resource from the template and updating the stack. Then, recreate the resource with the same settings and a different name."
+      },
+      "PolicyType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The scaling policy type.\n\nThe following policy types are supported:\n\nTargetTrackingScaling Not supported for Amazon EMR\n\nStepScaling Not supported for DynamoDB, Amazon Comprehend, Lambda, Amazon Keyspaces, Amazon MSK, Amazon ElastiCache, or Neptune."
+      },
+      "ResourceId": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The identifier of the resource associated with the scaling policy. This string consists of the resource type and unique identifier."
+      },
+      "ScalableDimension": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 16,
+        "description": "The scalable dimension. This string consists of the service namespace, resource type, and scaling property."
+      },
+      "ScalingTargetId": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 4,
+        "description": "The CloudFormation-generated ID of an Application Auto Scaling scalable target. For more information about the ID, see the Return Value section of the AWS::ApplicationAutoScaling::ScalableTarget resource."
+      },
+      "ServiceNamespace": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The namespace of the AWS service that provides the resource, or a custom-resource."
+      },
+      "StepScalingPolicyConfiguration": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "A step scaling policy."
+      },
+      "TargetTrackingScalingPolicyConfiguration": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "A target tracking scaling policy."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ApplicationAutoScaling/ScalingPolicy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ApplicationAutoScaling/ScalingPolicy@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/27"
+    },
+    "flags": 0
+  }
+]

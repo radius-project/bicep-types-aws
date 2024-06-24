@@ -3,9 +3,9 @@
 ## Resource AWS.IoTCoreDeviceAdvisor/SuiteDefinition@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IoTCoreDeviceAdvisor/SuiteDefinitionProperties](#awsiotcoredeviceadvisorsuitedefinitionproperties) (Required): properties of the resource
+* **properties**: [AWS.IoTCoreDeviceAdvisor/SuiteDefinitionProperties](#awsiotcoredeviceadvisorsuitedefinitionproperties) (Required, Identifier): properties of the resource
 
 ## AWS.IoTCoreDeviceAdvisor/SuiteDefinitionProperties
 ### Properties
@@ -15,6 +15,11 @@
 * **SuiteDefinitionVersion**: string (ReadOnly): The suite definition version of a test suite.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## DeviceUnderTest
+### Properties
+* **CertificateArn**: string
+* **ThingArn**: string
+
 ## SuiteDefinition_SuiteDefinitionConfiguration
 ### Properties
 * **DevicePermissionRoleArn**: string (Required)
@@ -22,11 +27,6 @@
 * **IntendedForQualification**: bool
 * **RootGroup**: string (Required)
 * **SuiteDefinitionName**: string
-
-## DeviceUnderTest
-### Properties
-* **CertificateArn**: string
-* **ThingArn**: string
 
 ## Tag
 ### Properties

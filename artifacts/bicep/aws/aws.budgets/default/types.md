@@ -3,9 +3,14 @@
 ## Resource AWS.Budgets/BudgetsAction@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Budgets/BudgetsActionProperties](#awsbudgetsbudgetsactionproperties) (Required): properties of the resource
+* **properties**: [AWS.Budgets/BudgetsActionProperties](#awsbudgetsbudgetsactionproperties) (Required, Identifier): properties of the resource
+
+## ActionThreshold
+### Properties
+* **Type**: string (Required)
+* **Value**: int (Required)
 
 ## AWS.Budgets/BudgetsActionProperties
 ### Properties
@@ -17,12 +22,8 @@
 * **Definition**: [Definition](#definition) (Required)
 * **ExecutionRoleArn**: string (Required)
 * **NotificationType**: string (Required)
+* **ResourceTags**: [ResourceTag](#resourcetag)[]
 * **Subscribers**: [Subscriber](#subscriber)[] (Required)
-
-## ActionThreshold
-### Properties
-* **Type**: string (Required)
-* **Value**: int (Required)
 
 ## Definition
 ### Properties
@@ -36,6 +37,11 @@
 * **PolicyArn**: string (Required)
 * **Roles**: string[]
 * **Users**: string[]
+
+## ResourceTag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## ScpActionDefinition
 ### Properties

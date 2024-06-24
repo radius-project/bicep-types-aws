@@ -3,9 +3,27 @@
 ## Resource AWS.FSx/DataRepositoryAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FSx/DataRepositoryAssociationProperties](#awsfsxdatarepositoryassociationproperties) (Required): properties of the resource
+* **properties**: [AWS.FSx/DataRepositoryAssociationProperties](#awsfsxdatarepositoryassociationproperties) (Required, Identifier): properties of the resource
+
+## AutoExportPolicy
+### Properties
+* **Events**: string[] (Required): The ``AutoExportPolicy`` can have the following event values:
+  +   ``NEW`` - New files and directories are automatically exported to the data repository as they are added to the file system.
+  +   ``CHANGED`` - Changes to files and directories on the file system are automatically exported to the data repository.
+  +   ``DELETED`` - Files and directories are automatically deleted on the data repository when they are deleted on the file system.
+  
+ You can define any combination of event types for your ``AutoExportPolicy``.
+
+## AutoImportPolicy
+### Properties
+* **Events**: string[] (Required): The ``AutoImportPolicy`` can have the following event values:
+  +   ``NEW`` - Amazon FSx automatically imports metadata of files added to the linked S3 bucket that do not currently exist in the FSx file system.
+  +   ``CHANGED`` - Amazon FSx automatically updates file metadata and invalidates existing file content on the file system as files change in the data repository.
+  +   ``DELETED`` - Amazon FSx automatically deletes files on the file system as corresponding files are deleted in the data repository.
+  
+ You can define any combination of event types for your ``AutoImportPolicy``.
 
 ## AWS.FSx/DataRepositoryAssociationProperties
 ### Properties
@@ -29,24 +47,6 @@
  The ``AutoExportPolicy`` is only supported on Amazon FSx for Lustre file systems with a data repository association.
 * **AutoImportPolicy**: [AutoImportPolicy](#autoimportpolicy): Describes the data repository association's automatic import policy. The AutoImportPolicy defines how Amazon FSx keeps your file metadata and directory listings up to date by importing changes to your Amazon FSx for Lustre file system as you modify objects in a linked S3 bucket.
  The ``AutoImportPolicy`` is only supported on Amazon FSx for Lustre file systems with a data repository association.
-
-## AutoExportPolicy
-### Properties
-* **Events**: string[] (Required): The ``AutoExportPolicy`` can have the following event values:
-  +   ``NEW`` - New files and directories are automatically exported to the data repository as they are added to the file system.
-  +   ``CHANGED`` - Changes to files and directories on the file system are automatically exported to the data repository.
-  +   ``DELETED`` - Files and directories are automatically deleted on the data repository when they are deleted on the file system.
-  
- You can define any combination of event types for your ``AutoExportPolicy``.
-
-## AutoImportPolicy
-### Properties
-* **Events**: string[] (Required): The ``AutoImportPolicy`` can have the following event values:
-  +   ``NEW`` - Amazon FSx automatically imports metadata of files added to the linked S3 bucket that do not currently exist in the FSx file system.
-  +   ``CHANGED`` - Amazon FSx automatically updates file metadata and invalidates existing file content on the file system as files change in the data repository.
-  +   ``DELETED`` - Amazon FSx automatically deletes files on the file system as corresponding files are deleted in the data repository.
-  
- You can define any combination of event types for your ``AutoImportPolicy``.
 
 ## Tag
 ### Properties

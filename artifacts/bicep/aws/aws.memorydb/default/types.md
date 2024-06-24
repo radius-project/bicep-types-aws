@@ -3,37 +3,37 @@
 ## Resource AWS.MemoryDB/ACL@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MemoryDB/ACLProperties](#awsmemorydbaclproperties) (Required): properties of the resource
+* **properties**: [AWS.MemoryDB/ACLProperties](#awsmemorydbaclproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MemoryDB/Cluster@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MemoryDB/ClusterProperties](#awsmemorydbclusterproperties) (Required): properties of the resource
+* **properties**: [AWS.MemoryDB/ClusterProperties](#awsmemorydbclusterproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MemoryDB/ParameterGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MemoryDB/ParameterGroupProperties](#awsmemorydbparametergroupproperties) (Required): properties of the resource
+* **properties**: [AWS.MemoryDB/ParameterGroupProperties](#awsmemorydbparametergroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MemoryDB/SubnetGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MemoryDB/SubnetGroupProperties](#awsmemorydbsubnetgroupproperties) (Required): properties of the resource
+* **properties**: [AWS.MemoryDB/SubnetGroupProperties](#awsmemorydbsubnetgroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MemoryDB/User@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MemoryDB/UserProperties](#awsmemorydbuserproperties) (Required): properties of the resource
+* **properties**: [AWS.MemoryDB/UserProperties](#awsmemorydbuserproperties) (Required, Identifier): properties of the resource
 
 ## AWS.MemoryDB/ACLProperties
 ### Properties
@@ -42,11 +42,6 @@
 * **Status**: string (ReadOnly): Indicates acl status. Can be "creating", "active", "modifying", "deleting".
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this cluster.
 * **UserNames**: string[]: List of users associated to this acl.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with 'aws:'. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.MemoryDB/ClusterProperties
 ### Properties
@@ -83,19 +78,6 @@ You cannot modify the value of AutoMinorVersionUpgrade after the cluster is crea
 
 You cannot modify the value of TransitEncryptionEnabled after the cluster is created. To enable in-transit encryption on a cluster you must set TransitEncryptionEnabled to true when you create a cluster.
 
-## Endpoint
-### Properties
-* **Address**: string (ReadOnly): The DNS address of the primary read-write node.
-* **Port**: int (ReadOnly): The port number that the engine is listening on. 
-
-## Cluster_DataTieringStatus
-### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required): The key for the tag. May not be null.
-* **Value**: string (Required): The tag's value. May be null.
-
 ## AWS.MemoryDB/ParameterGroupProperties
 ### Properties
 * **ARN**: string (ReadOnly): The Amazon Resource Name (ARN) of the parameter group.
@@ -105,14 +87,6 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 * **Parameters**: [ParameterGroup_Parameters](#parametergroupparameters) (WriteOnly): An map of parameter names and values for the parameter update. You must supply at least one parameter name and value; subsequent arguments are optional.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this parameter group.
 
-## ParameterGroup_Parameters
-### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required): The key for the tag. May not be null.
-* **Value**: string (Required): The tag's value. May be null.
-
 ## AWS.MemoryDB/SubnetGroupProperties
 ### Properties
 * **ARN**: string (ReadOnly): The Amazon Resource Name (ARN) of the subnet group.
@@ -120,11 +94,6 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 * **SubnetGroupName**: string (Required, Identifier): The name of the subnet group. This value must be unique as it also serves as the subnet group identifier.
 * **SubnetIds**: string[] (Required): A list of VPC subnet IDs for the subnet group.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this subnet group.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key for the tag. May not be null.
-* **Value**: string (Required): The tag's value. May be null.
 
 ## AWS.MemoryDB/UserProperties
 ### Properties
@@ -135,13 +104,44 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this user.
 * **UserName**: string (Required, Identifier): The name of the user.
 
-## User_AuthenticationMode
+## Cluster_DataTieringStatus
 ### Properties
-* **Passwords**: string[]: Passwords used for this user account. You can create up to two passwords for each user.
-* **Type**: string: Type of authentication strategy for this user.
+
+## Endpoint
+### Properties
+* **Address**: string (ReadOnly): The DNS address of the primary read-write node.
+* **Port**: int (ReadOnly): The port number that the engine is listening on. 
+
+## ParameterGroup_Parameters
+### Properties
 
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with 'aws:'. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for the tag. May not be null.
+* **Value**: string (Required): The tag's value. May be null.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for the tag. May not be null.
+* **Value**: string (Required): The tag's value. May be null.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for the tag. May not be null.
+* **Value**: string (Required): The tag's value. May be null.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with 'aws:'. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## User_AuthenticationMode
+### Properties
+* **Passwords**: string[]: Passwords used for this user account. You can create up to two passwords for each user.
+* **Type**: string: Type of authentication strategy for this user.
 

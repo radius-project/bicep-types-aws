@@ -1,9 +1,32 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ARCZonalShift-ZonalAutoshiftConfiguration",
   "type": "AWS::ARCZonalShift::ZonalAutoshiftConfiguration",
-  "time": "2024-01-04T17:06:05.287Z",
+  "time": "2024-06-18T15:44:28.221Z",
   "schema": {
     "additionalProperties": false,
+    "allOf": [
+      {
+        "allOf": [
+          {
+            "required": [
+              "ResourceIdentifier"
+            ]
+          }
+        ],
+        "anyOf": [
+          {
+            "required": [
+              "ZonalAutoshiftStatus"
+            ]
+          },
+          {
+            "required": [
+              "PracticeRunConfiguration"
+            ]
+          }
+        ]
+      }
+    ],
     "createOnlyProperties": [
       "/properties/ResourceIdentifier"
     ],
@@ -86,8 +109,7 @@
       },
       "ZonalAutoshiftStatus": {
         "enum": [
-          "ENABLED",
-          "DISABLED"
+          "ENABLED"
         ],
         "type": "string"
       }
@@ -142,12 +164,7 @@
         "type": "string"
       },
       "ZonalAutoshiftStatus": {
-        "$ref": "#/definitions/ZonalAutoshiftStatus",
-        "dependencies": {
-          "ZonalAutoshiftStatus": [
-            "PracticeRunConfiguration"
-          ]
-        }
+        "$ref": "#/definitions/ZonalAutoshiftStatus"
       }
     },
     "tagging": {
