@@ -3,9 +3,9 @@
 ## Resource AWS.FinSpace/Environment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FinSpace/EnvironmentProperties](#awsfinspaceenvironmentproperties) (Required): properties of the resource
+* **properties**: [AWS.FinSpace/EnvironmentProperties](#awsfinspaceenvironmentproperties) (Required, Identifier): properties of the resource
 
 ## AWS.FinSpace/EnvironmentProperties
 ### Properties
@@ -25,6 +25,11 @@
 * **SuperuserParameters**: [SuperuserParameters](#superuserparameters) (WriteOnly)
 * **Tags**: [Tag](#tag)[] (WriteOnly): An array of key-value pairs to apply to this resource.
 
+## Environment_AttributeMap
+### Properties
+* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
 ## FederationParameters
 ### Properties
 * **ApplicationCallBackURL**: string: SAML metadata URL to link with the Environment
@@ -33,11 +38,6 @@
 * **FederationURN**: string: SAML metadata URL to link with the Environment
 * **SamlMetadataDocument**: string: SAML metadata document to link the federation provider to the Environment
 * **SamlMetadataURL**: string: SAML metadata URL to link with the Environment
-
-## Environment_AttributeMap
-### Properties
-* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## SuperuserParameters
 ### Properties

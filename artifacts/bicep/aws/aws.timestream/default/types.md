@@ -3,23 +3,30 @@
 ## Resource AWS.Timestream/Database@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Timestream/DatabaseProperties](#awstimestreamdatabaseproperties): properties of the resource
+* **properties**: [AWS.Timestream/DatabaseProperties](#awstimestreamdatabaseproperties) (Identifier): properties of the resource
+
+## Resource AWS.Timestream/InfluxDBInstance@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Timestream/InfluxDBInstanceProperties](#awstimestreaminfluxdbinstanceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Timestream/ScheduledQuery@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Timestream/ScheduledQueryProperties](#awstimestreamscheduledqueryproperties) (Required): properties of the resource
+* **properties**: [AWS.Timestream/ScheduledQueryProperties](#awstimestreamscheduledqueryproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Timestream/Table@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Timestream/TableProperties](#awstimestreamtableproperties) (Required): properties of the resource
+* **properties**: [AWS.Timestream/TableProperties](#awstimestreamtableproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Timestream/DatabaseProperties
 ### Properties
@@ -28,10 +35,30 @@
 * **KmsKeyId**: string: The KMS key for the database. If the KMS key is not specified, the database will be encrypted with a Timestream managed KMS key located in your account.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## Tag
+## AWS.Timestream/InfluxDBInstanceProperties
 ### Properties
-* **Key**: string
-* **Value**: string
+* **AllocatedStorage**: int: The allocated storage for the InfluxDB instance.
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) that is associated with the InfluxDB instance.
+* **AvailabilityZone**: string (ReadOnly): The Availability Zone (AZ) where the InfluxDB instance is created.
+* **Bucket**: string (WriteOnly): The bucket for the InfluxDB instance.
+* **DbInstanceType**: string: The compute instance of the InfluxDB instance.
+* **DbParameterGroupIdentifier**: string: The name of an existing InfluxDB parameter group.
+* **DbStorageType**: string: The storage type of the InfluxDB instance.
+* **DeploymentType**: string: Deployment type of the InfluxDB Instance.
+* **Endpoint**: string (ReadOnly): The connection endpoint for the InfluxDB instance.
+* **Id**: string (ReadOnly, Identifier): The service generated unique identifier for InfluxDB instance.
+* **InfluxAuthParametersSecretArn**: string (ReadOnly): The Auth parameters secret Amazon Resource name (ARN) that is associated with the InfluxDB instance.
+* **LogDeliveryConfiguration**: [InfluxDBInstance_LogDeliveryConfiguration](#influxdbinstancelogdeliveryconfiguration): Configuration for sending logs to customer account from the InfluxDB instance.
+* **Name**: string: The unique name that is associated with the InfluxDB instance.
+* **Organization**: string (WriteOnly): The organization for the InfluxDB instance.
+* **Password**: string (WriteOnly): The password for the InfluxDB instance.
+* **PubliclyAccessible**: bool: Attach a public IP to the customer ENI.
+* **SecondaryAvailabilityZone**: string (ReadOnly): The Secondary Availability Zone (AZ) where the InfluxDB instance is created, if DeploymentType is set as WITH_MULTIAZ_STANDBY.
+* **Status**: string (ReadOnly): Status of the InfluxDB Instance.
+* **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this DB instance.
+* **Username**: string (WriteOnly): The username for the InfluxDB instance.
+* **VpcSecurityGroupIds**: string[]: A list of Amazon EC2 VPC security groups to associate with this InfluxDB instance.
+* **VpcSubnetIds**: string[]: A list of EC2 subnet IDs for this InfluxDB instance.
 
 ## AWS.Timestream/ScheduledQueryProperties
 ### Properties
@@ -55,51 +82,34 @@
 * **Tags**: [Tag](#tag)[]
 * **TargetConfiguration**: [TargetConfiguration](#targetconfiguration)
 
-## ErrorReportConfiguration
+## AWS.Timestream/TableProperties
 ### Properties
-* **S3Configuration**: [S3Configuration](#s3configuration) (Required)
-
-## S3Configuration
-### Properties
-* **BucketName**: string (Required)
-* **EncryptionOption**: string
-* **ObjectKeyPrefix**: string
-
-## NotificationConfiguration
-### Properties
-* **SnsConfiguration**: [SnsConfiguration](#snsconfiguration) (Required)
-
-## SnsConfiguration
-### Properties
-* **TopicArn**: string (Required)
-
-## ScheduleConfiguration
-### Properties
-* **ScheduleExpression**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
-## TargetConfiguration
-### Properties
-* **TimestreamConfiguration**: [TimestreamConfiguration](#timestreamconfiguration) (Required)
-
-## TimestreamConfiguration
-### Properties
-* **DatabaseName**: string (Required)
-* **DimensionMappings**: [DimensionMapping](#dimensionmapping)[] (Required)
-* **MeasureNameColumn**: string
-* **MixedMeasureMappings**: [MixedMeasureMapping](#mixedmeasuremapping)[]
-* **MultiMeasureMappings**: [MultiMeasureMappings](#multimeasuremappings)
-* **TableName**: string (Required)
-* **TimeColumn**: string (Required)
+* **Arn**: string (ReadOnly)
+* **DatabaseName**: string (Required, Identifier): The name for the database which the table to be created belongs to.
+* **MagneticStoreWriteProperties**: [Table_MagneticStoreWriteProperties](#tablemagneticstorewriteproperties): The properties that determine whether magnetic store writes are enabled.
+* **Name**: string (ReadOnly): The table name exposed as a read-only attribute.
+* **RetentionProperties**: [Table_RetentionProperties](#tableretentionproperties): The retention duration of the memory store and the magnetic store.
+* **Schema**: [Table_Schema](#tableschema): A Schema specifies the expected data model of the table.
+* **TableName**: string (Identifier): The name for the table. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the table name.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## DimensionMapping
 ### Properties
 * **DimensionValueType**: string (Required)
 * **Name**: string (Required)
+
+## ErrorReportConfiguration
+### Properties
+* **S3Configuration**: [S3Configuration](#s3configuration) (Required)
+
+## InfluxDBInstance_LogDeliveryConfiguration
+### Properties
+* **S3Configuration**: [InfluxDBInstance_LogDeliveryConfiguration_S3Configuration](#influxdbinstancelogdeliveryconfigurations3configuration) (Required): S3 configuration for sending logs to customer account from the InfluxDB instance.
+
+## InfluxDBInstance_LogDeliveryConfiguration_S3Configuration
+### Properties
+* **BucketName**: string (Required): The bucket name for logs to be sent from the InfluxDB instance
+* **Enabled**: bool (Required): Specifies whether logging to customer specified bucket is enabled.
 
 ## MixedMeasureMapping
 ### Properties
@@ -120,16 +130,29 @@
 * **MultiMeasureAttributeMappings**: [MultiMeasureAttributeMapping](#multimeasureattributemapping)[] (Required)
 * **TargetMultiMeasureName**: string
 
-## AWS.Timestream/TableProperties
+## NotificationConfiguration
 ### Properties
-* **Arn**: string (ReadOnly)
-* **DatabaseName**: string (Required, Identifier): The name for the database which the table to be created belongs to.
-* **MagneticStoreWriteProperties**: [Table_MagneticStoreWriteProperties](#tablemagneticstorewriteproperties): The properties that determine whether magnetic store writes are enabled.
-* **Name**: string (ReadOnly): The table name exposed as a read-only attribute.
-* **RetentionProperties**: [Table_RetentionProperties](#tableretentionproperties): The retention duration of the memory store and the magnetic store.
-* **Schema**: [Table_Schema](#tableschema): A Schema specifies the expected data model of the table.
-* **TableName**: string (Identifier): The name for the table. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the table name.
-* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **SnsConfiguration**: [SnsConfiguration](#snsconfiguration) (Required)
+
+## PartitionKey
+### Properties
+* **EnforcementInRecord**: string
+* **Name**: string
+* **Type**: string (Required)
+
+## S3Configuration
+### Properties
+* **BucketName**: string (Required)
+* **EncryptionOption**: string
+* **ObjectKeyPrefix**: string
+
+## ScheduleConfiguration
+### Properties
+* **ScheduleExpression**: string (Required)
+
+## SnsConfiguration
+### Properties
+* **TopicArn**: string (Required)
 
 ## Table_MagneticStoreWriteProperties
 ### Properties
@@ -156,14 +179,37 @@
 ### Properties
 * **CompositePartitionKey**: [PartitionKey](#partitionkey)[]
 
-## PartitionKey
+## Tag
 ### Properties
-* **EnforcementInRecord**: string
-* **Name**: string
-* **Type**: string (Required)
+* **Key**: string
+* **Value**: string
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
 * **Key**: string
 * **Value**: string
+
+## TargetConfiguration
+### Properties
+* **TimestreamConfiguration**: [TimestreamConfiguration](#timestreamconfiguration) (Required)
+
+## TimestreamConfiguration
+### Properties
+* **DatabaseName**: string (Required)
+* **DimensionMappings**: [DimensionMapping](#dimensionmapping)[] (Required)
+* **MeasureNameColumn**: string
+* **MixedMeasureMappings**: [MixedMeasureMapping](#mixedmeasuremapping)[]
+* **MultiMeasureMappings**: [MultiMeasureMappings](#multimeasuremappings)
+* **TableName**: string (Required)
+* **TimeColumn**: string (Required)
 

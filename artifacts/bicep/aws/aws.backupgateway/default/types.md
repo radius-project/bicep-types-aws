@@ -3,9 +3,9 @@
 ## Resource AWS.BackupGateway/Hypervisor@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.BackupGateway/HypervisorProperties](#awsbackupgatewayhypervisorproperties): properties of the resource
+* **properties**: [AWS.BackupGateway/HypervisorProperties](#awsbackupgatewayhypervisorproperties) (Identifier): properties of the resource
 
 ## AWS.BackupGateway/HypervisorProperties
 ### Properties

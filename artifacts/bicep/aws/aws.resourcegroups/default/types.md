@@ -3,9 +3,9 @@
 ## Resource AWS.ResourceGroups/Group@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ResourceGroups/GroupProperties](#awsresourcegroupsgroupproperties) (Required): properties of the resource
+* **properties**: [AWS.ResourceGroups/GroupProperties](#awsresourcegroupsgroupproperties) (Required, Identifier): properties of the resource
 
 ## AWS.ResourceGroups/GroupProperties
 ### Properties
@@ -27,24 +27,24 @@
 * **Name**: string (Identifier)
 * **Values**: string[]
 
-## ResourceQuery
-### Properties
-* **Query**: [Query](#query)
-* **Type**: string
-
 ## Query
 ### Properties
 * **ResourceTypeFilters**: string[]
 * **StackIdentifier**: string
 * **TagFilters**: [TagFilter](#tagfilter)[]
 
-## TagFilter
+## ResourceQuery
 ### Properties
-* **Key**: string
-* **Values**: string[]
+* **Query**: [Query](#query)
+* **Type**: string
 
 ## Tag
 ### Properties
 * **Key**: string
 * **Value**: string
+
+## TagFilter
+### Properties
+* **Key**: string
+* **Values**: string[]
 

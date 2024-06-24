@@ -1,11 +1,27 @@
 # AWS.InspectorV2 @ default
 
+## Resource AWS.InspectorV2/CisScanConfiguration@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.InspectorV2/CisScanConfigurationProperties](#awsinspectorv2cisscanconfigurationproperties) (Identifier): properties of the resource
+
 ## Resource AWS.InspectorV2/Filter@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.InspectorV2/FilterProperties](#awsinspectorv2filterproperties) (Required): properties of the resource
+* **properties**: [AWS.InspectorV2/FilterProperties](#awsinspectorv2filterproperties) (Required, Identifier): properties of the resource
+
+## AWS.InspectorV2/CisScanConfigurationProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): CIS Scan configuration unique identifier
+* **ScanName**: string: Name of the scan
+* **Schedule**: [Schedule](#schedule)
+* **SecurityLevel**: string
+* **Tags**: [CisTagMap](#cistagmap)
+* **Targets**: [CisTargets](#cistargets)
 
 ## AWS.InspectorV2/FilterProperties
 ### Properties
@@ -14,6 +30,26 @@
 * **FilterAction**: string (Required): Findings filter action.
 * **FilterCriteria**: [FilterCriteria](#filtercriteria) (Required): Findings filter criteria.
 * **Name**: string (Required): Findings filter name.
+
+## CisScanConfiguration_TargetResourceTags
+### Properties
+
+## CisTagMap
+### Properties
+
+## CisTargets
+### Properties
+* **AccountIds**: string[] (Required)
+* **TargetResourceTags**: [CisScanConfiguration_TargetResourceTags](#cisscanconfigurationtargetresourcetags)
+
+## DailySchedule
+### Properties
+* **StartTime**: [Time](#time) (Required)
+
+## DateFilter
+### Properties
+* **EndInclusive**: int
+* **StartInclusive**: int
 
 ## FilterCriteria
 ### Properties
@@ -49,31 +85,24 @@
 * **VulnerabilitySource**: [StringFilter](#stringfilter)[]
 * **VulnerablePackages**: [PackageFilter](#packagefilter)[]
 
-## StringFilter
+## MapFilter
 ### Properties
 * **Comparison**: string (Required)
-* **Value**: string (Required)
+* **Key**: string
+* **Value**: string
 
-## DateFilter
+## MonthlySchedule
 ### Properties
-* **EndInclusive**: int
-* **StartInclusive**: int
+* **Day**: string (Required)
+* **StartTime**: [Time](#time) (Required)
 
 ## NumberFilter
 ### Properties
 * **LowerInclusive**: int
 * **UpperInclusive**: int
 
-## PortRangeFilter
+## OneTimeSchedule
 ### Properties
-* **BeginInclusive**: int
-* **EndInclusive**: int
-
-## MapFilter
-### Properties
-* **Comparison**: string (Required)
-* **Key**: string
-* **Value**: string
 
 ## PackageFilter
 ### Properties
@@ -83,4 +112,31 @@
 * **Release**: [StringFilter](#stringfilter)
 * **SourceLayerHash**: [StringFilter](#stringfilter)
 * **Version**: [StringFilter](#stringfilter)
+
+## PortRangeFilter
+### Properties
+* **BeginInclusive**: int
+* **EndInclusive**: int
+
+## Schedule
+### Properties
+* **Daily**: [DailySchedule](#dailyschedule)
+* **Monthly**: [MonthlySchedule](#monthlyschedule)
+* **OneTime**: [OneTimeSchedule](#onetimeschedule)
+* **Weekly**: [WeeklySchedule](#weeklyschedule)
+
+## StringFilter
+### Properties
+* **Comparison**: string (Required)
+* **Value**: string (Required)
+
+## Time
+### Properties
+* **TimeOfDay**: string (Required)
+* **TimeZone**: string (Required)
+
+## WeeklySchedule
+### Properties
+* **Days**: string[] (Required)
+* **StartTime**: [Time](#time) (Required)
 

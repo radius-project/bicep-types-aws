@@ -3,30 +3,30 @@
 ## Resource AWS.NimbleStudio/LaunchProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NimbleStudio/LaunchProfileProperties](#awsnimblestudiolaunchprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.NimbleStudio/LaunchProfileProperties](#awsnimblestudiolaunchprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NimbleStudio/StreamingImage@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NimbleStudio/StreamingImageProperties](#awsnimblestudiostreamingimageproperties) (Required): properties of the resource
+* **properties**: [AWS.NimbleStudio/StreamingImageProperties](#awsnimblestudiostreamingimageproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NimbleStudio/Studio@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NimbleStudio/StudioProperties](#awsnimblestudiostudioproperties) (Required): properties of the resource
+* **properties**: [AWS.NimbleStudio/StudioProperties](#awsnimblestudiostudioproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NimbleStudio/StudioComponent@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NimbleStudio/StudioComponentProperties](#awsnimblestudiostudiocomponentproperties) (Required): properties of the resource
+* **properties**: [AWS.NimbleStudio/StudioComponentProperties](#awsnimblestudiostudiocomponentproperties) (Required, Identifier): properties of the resource
 
 ## AWS.NimbleStudio/LaunchProfileProperties
 ### Properties
@@ -42,6 +42,53 @@
             launch profile.</p>
 * **StudioId**: string (Required, Identifier): <p>The studio ID. </p>
 * **Tags**: [Tags](#tags)
+
+## AWS.NimbleStudio/StreamingImageProperties
+### Properties
+* **Description**: string: <p>A human-readable description of the streaming image.</p>
+* **Ec2ImageId**: string (Required): <p>The ID of an EC2 machine image with which to create this streaming image.</p>
+* **EncryptionConfiguration**: [StreamingImageEncryptionConfiguration](#streamingimageencryptionconfiguration) (ReadOnly)
+* **EulaIds**: string[] (ReadOnly): <p>The list of EULAs that must be accepted before a Streaming Session can be started using this streaming image.</p>
+* **Name**: string (Required): <p>A friendly name for a streaming image resource.</p>
+* **Owner**: string (ReadOnly): <p>The owner of the streaming image, either the studioId that contains the streaming image, or 'amazon' for images that are provided by Amazon Nimble Studio.</p>
+* **Platform**: string (ReadOnly): <p>The platform of the streaming image, either WINDOWS or LINUX.</p>
+* **StreamingImageId**: string (ReadOnly, Identifier)
+* **StudioId**: string (Required, Identifier): <p>The studioId. </p>
+* **Tags**: [Tags](#tags)
+
+## AWS.NimbleStudio/StudioComponentProperties
+### Properties
+* **Configuration**: [StudioComponentConfiguration](#studiocomponentconfiguration)
+* **Description**: string: <p>The description.</p>
+* **Ec2SecurityGroupIds**: string[]: <p>The EC2 security groups that control access to the studio component.</p>
+* **InitializationScripts**: [StudioComponentInitializationScript](#studiocomponentinitializationscript)[]: <p>Initialization scripts for studio components.</p>
+* **Name**: string (Required): <p>The name for the studio component.</p>
+* **RuntimeRoleArn**: string
+* **ScriptParameters**: [ScriptParameterKeyValue](#scriptparameterkeyvalue)[]: <p>Parameters for the studio component scripts.</p>
+* **SecureInitializationRoleArn**: string
+* **StudioComponentId**: string (ReadOnly, Identifier)
+* **StudioId**: string (Required, Identifier): <p>The studio ID. </p>
+* **Subtype**: string
+* **Tags**: [Tags](#tags)
+* **Type**: string (Required)
+
+## AWS.NimbleStudio/StudioProperties
+### Properties
+* **AdminRoleArn**: string (Required): <p>The IAM role that Studio Admins will assume when logging in to the Nimble Studio portal.</p>
+* **DisplayName**: string (Required): <p>A friendly name for the studio.</p>
+* **HomeRegion**: string (ReadOnly): <p>The Amazon Web Services Region where the studio resource is located.</p>
+* **SsoClientId**: string (ReadOnly): <p>The Amazon Web Services SSO application client ID used to integrate with Amazon Web Services SSO to enable Amazon Web Services SSO users to log in to Nimble Studio portal.</p>
+* **StudioEncryptionConfiguration**: [StudioEncryptionConfiguration](#studioencryptionconfiguration)
+* **StudioId**: string (ReadOnly, Identifier)
+* **StudioName**: string (Required): <p>The studio name that is used in the URL of the Nimble Studio portal when accessed by Nimble Studio users.</p>
+* **StudioUrl**: string (ReadOnly): <p>The address of the web page for the studio.</p>
+* **Tags**: [Tags](#tags)
+* **UserRoleArn**: string (Required): <p>The IAM role that Studio Users will assume when logging in to the Nimble Studio portal.</p>
+
+## ScriptParameterKeyValue
+### Properties
+* **Key**: string: <p>A script parameter key.</p>
+* **Value**: string: <p>A script parameter value.</p>
 
 ## StreamConfiguration
 ### Properties
@@ -88,80 +135,15 @@
                 <code>UPLOAD</code>.</p>
 * **Root**: [StreamingSessionStorageRoot](#streamingsessionstorageroot)
 
-## StreamingSessionStorageRoot
-### Properties
-* **Linux**: string: <p>The folder path in Linux workstations where files are uploaded.</p>
-* **Windows**: string: <p>The folder path in Windows workstations where files are uploaded.</p>
-
-## VolumeConfiguration
-### Properties
-* **Iops**: int: <p>The number of I/O operations per second for the root volume that is attached to
-            streaming session.</p>
-* **Size**: int: <p>The size of the root volume that is attached to the streaming session. The root volume
-            size is measured in GiBs.</p>
-* **Throughput**: int: <p>The throughput to provision for the root volume that is attached to the streaming
-            session. The throughput is measured in MiB/s.</p>
-
-## Tags
-### Properties
-
-## AWS.NimbleStudio/StreamingImageProperties
-### Properties
-* **Description**: string: <p>A human-readable description of the streaming image.</p>
-* **Ec2ImageId**: string (Required): <p>The ID of an EC2 machine image with which to create this streaming image.</p>
-* **EncryptionConfiguration**: [StreamingImageEncryptionConfiguration](#streamingimageencryptionconfiguration) (ReadOnly)
-* **EulaIds**: string[] (ReadOnly): <p>The list of EULAs that must be accepted before a Streaming Session can be started using this streaming image.</p>
-* **Name**: string (Required): <p>A friendly name for a streaming image resource.</p>
-* **Owner**: string (ReadOnly): <p>The owner of the streaming image, either the studioId that contains the streaming image, or 'amazon' for images that are provided by Amazon Nimble Studio.</p>
-* **Platform**: string (ReadOnly): <p>The platform of the streaming image, either WINDOWS or LINUX.</p>
-* **StreamingImageId**: string (ReadOnly, Identifier)
-* **StudioId**: string (Required, Identifier): <p>The studioId. </p>
-* **Tags**: [Tags](#tags)
-
 ## StreamingImageEncryptionConfiguration
 ### Properties
 * **KeyArn**: string: <p>The ARN for a KMS key that is used to encrypt studio data.</p>
 * **KeyType**: string (Required)
 
-## Tags
+## StreamingSessionStorageRoot
 ### Properties
-
-## AWS.NimbleStudio/StudioProperties
-### Properties
-* **AdminRoleArn**: string (Required): <p>The IAM role that Studio Admins will assume when logging in to the Nimble Studio portal.</p>
-* **DisplayName**: string (Required): <p>A friendly name for the studio.</p>
-* **HomeRegion**: string (ReadOnly): <p>The Amazon Web Services Region where the studio resource is located.</p>
-* **SsoClientId**: string (ReadOnly): <p>The Amazon Web Services SSO application client ID used to integrate with Amazon Web Services SSO to enable Amazon Web Services SSO users to log in to Nimble Studio portal.</p>
-* **StudioEncryptionConfiguration**: [StudioEncryptionConfiguration](#studioencryptionconfiguration)
-* **StudioId**: string (ReadOnly, Identifier)
-* **StudioName**: string (Required): <p>The studio name that is used in the URL of the Nimble Studio portal when accessed by Nimble Studio users.</p>
-* **StudioUrl**: string (ReadOnly): <p>The address of the web page for the studio.</p>
-* **Tags**: [Tags](#tags)
-* **UserRoleArn**: string (Required): <p>The IAM role that Studio Users will assume when logging in to the Nimble Studio portal.</p>
-
-## StudioEncryptionConfiguration
-### Properties
-* **KeyArn**: string: <p>The ARN for a KMS key that is used to encrypt studio data.</p>
-* **KeyType**: string (Required)
-
-## Tags
-### Properties
-
-## AWS.NimbleStudio/StudioComponentProperties
-### Properties
-* **Configuration**: [StudioComponentConfiguration](#studiocomponentconfiguration)
-* **Description**: string: <p>The description.</p>
-* **Ec2SecurityGroupIds**: string[]: <p>The EC2 security groups that control access to the studio component.</p>
-* **InitializationScripts**: [StudioComponentInitializationScript](#studiocomponentinitializationscript)[]: <p>Initialization scripts for studio components.</p>
-* **Name**: string (Required): <p>The name for the studio component.</p>
-* **RuntimeRoleArn**: string
-* **ScriptParameters**: [ScriptParameterKeyValue](#scriptparameterkeyvalue)[]: <p>Parameters for the studio component scripts.</p>
-* **SecureInitializationRoleArn**: string
-* **StudioComponentId**: string (ReadOnly, Identifier)
-* **StudioId**: string (Required, Identifier): <p>The studio ID. </p>
-* **Subtype**: string
-* **Tags**: [Tags](#tags)
-* **Type**: string (Required)
+* **Linux**: string: <p>The folder path in Linux workstations where files are uploaded.</p>
+* **Windows**: string: <p>The folder path in Windows workstations where files are uploaded.</p>
 
 ## StudioComponentConfiguration
 ### Properties
@@ -174,11 +156,29 @@
 * **RunContext**: string
 * **Script**: string: <p>The initialization script.</p>
 
-## ScriptParameterKeyValue
+## StudioEncryptionConfiguration
 ### Properties
-* **Key**: string: <p>A script parameter key.</p>
-* **Value**: string: <p>A script parameter value.</p>
+* **KeyArn**: string: <p>The ARN for a KMS key that is used to encrypt studio data.</p>
+* **KeyType**: string (Required)
 
 ## Tags
 ### Properties
+
+## Tags
+### Properties
+
+## Tags
+### Properties
+
+## Tags
+### Properties
+
+## VolumeConfiguration
+### Properties
+* **Iops**: int: <p>The number of I/O operations per second for the root volume that is attached to
+            streaming session.</p>
+* **Size**: int: <p>The size of the root volume that is attached to the streaming session. The root volume
+            size is measured in GiBs.</p>
+* **Throughput**: int: <p>The throughput to provision for the root volume that is attached to the streaming
+            session. The throughput is measured in MiB/s.</p>
 
