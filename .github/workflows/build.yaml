@@ -29,6 +29,11 @@ jobs:
         with:
           version: latest
           working-directory: 'src/aws-type-downloader'
+      - run: git submodule update --init --recursive
+      - run: npm ci
+        working-directory: 'bicep-types/src/bicep-types'
+      - run: npm run build
+        working-directory: 'bicep-types/src/bicep-types'
       - run: npm ci
         working-directory: 'src/aws-type-generator'
       - run: npm run build
