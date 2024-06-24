@@ -3,30 +3,30 @@
 ## Resource AWS.Omics/AnnotationStore@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Omics/AnnotationStoreProperties](#awsomicsannotationstoreproperties) (Required): properties of the resource
+* **properties**: [AWS.Omics/AnnotationStoreProperties](#awsomicsannotationstoreproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Omics/RunGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Omics/RunGroupProperties](#awsomicsrungroupproperties): properties of the resource
+* **properties**: [AWS.Omics/RunGroupProperties](#awsomicsrungroupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Omics/VariantStore@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Omics/VariantStoreProperties](#awsomicsvariantstoreproperties) (Required): properties of the resource
+* **properties**: [AWS.Omics/VariantStoreProperties](#awsomicsvariantstoreproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Omics/Workflow@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Omics/WorkflowProperties](#awsomicsworkflowproperties): properties of the resource
+* **properties**: [AWS.Omics/WorkflowProperties](#awsomicsworkflowproperties) (Identifier): properties of the resource
 
 ## AWS.Omics/AnnotationStoreProperties
 ### Properties
@@ -45,21 +45,6 @@
 * **Tags**: [TagMap](#tagmap)
 * **UpdateTime**: string (ReadOnly)
 
-## ReferenceItem
-### Properties
-* **ReferenceArn**: string (Required)
-
-## SseConfig
-### Properties
-* **KeyArn**: string
-* **Type**: string (Required)
-
-## StoreOptions
-### Properties
-
-## TagMap
-### Properties
-
 ## AWS.Omics/RunGroupProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -71,9 +56,6 @@
 * **MaxRuns**: int
 * **Name**: string
 * **Tags**: [TagMap](#tagmap)
-
-## TagMap
-### Properties
 
 ## AWS.Omics/VariantStoreProperties
 ### Properties
@@ -89,18 +71,6 @@
 * **StoreSizeBytes**: int (ReadOnly)
 * **Tags**: [TagMap](#tagmap)
 * **UpdateTime**: string (ReadOnly)
-
-## ReferenceItem
-### Properties
-* **ReferenceArn**: string (Required)
-
-## SseConfig
-### Properties
-* **KeyArn**: string
-* **Type**: string (Required)
-
-## TagMap
-### Properties
 
 ## AWS.Omics/WorkflowProperties
 ### Properties
@@ -119,9 +89,39 @@
 * **Tags**: [TagMap](#tagmap)
 * **Type**: string (ReadOnly)
 
-## WorkflowParameterTemplate
+## ReferenceItem
+### Properties
+* **ReferenceArn**: string (Required)
+
+## ReferenceItem
+### Properties
+* **ReferenceArn**: string (Required)
+
+## SseConfig
+### Properties
+* **KeyArn**: string
+* **Type**: string (Required)
+
+## SseConfig
+### Properties
+* **KeyArn**: string
+* **Type**: string (Required)
+
+## StoreOptions
 ### Properties
 
 ## TagMap
+### Properties
+
+## TagMap
+### Properties
+
+## TagMap
+### Properties
+
+## TagMap
+### Properties
+
+## WorkflowParameterTemplate
 ### Properties
 

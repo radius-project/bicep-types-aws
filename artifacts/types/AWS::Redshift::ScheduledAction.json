@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Redshift-ScheduledAction",
   "type": "AWS::Redshift::ScheduledAction",
-  "time": "2024-01-04T18:20:40.228Z",
+  "time": "2024-06-24T17:51:17.126Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -13,6 +13,10 @@
         "description": "Describes a pause cluster operation. For example, a scheduled action to run the `PauseCluster` API operation.",
         "properties": {
           "ClusterIdentifier": {
+            "relationshipRef": {
+              "propertyPath": "/properties/ClusterIdentifier",
+              "typeName": "AWS::Redshift::Cluster"
+            },
             "type": "string"
           }
         },
@@ -29,15 +33,31 @@
             "type": "boolean"
           },
           "ClusterIdentifier": {
+            "relationshipRef": {
+              "propertyPath": "/properties/ClusterIdentifier",
+              "typeName": "AWS::Redshift::Cluster"
+            },
             "type": "string"
           },
           "ClusterType": {
+            "relationshipRef": {
+              "propertyPath": "/properties/ClusterType",
+              "typeName": "AWS::Redshift::Cluster"
+            },
             "type": "string"
           },
           "NodeType": {
+            "relationshipRef": {
+              "propertyPath": "/properties/NodeType",
+              "typeName": "AWS::Redshift::Cluster"
+            },
             "type": "string"
           },
           "NumberOfNodes": {
+            "relationshipRef": {
+              "propertyPath": "/properties/NumberOfNodes",
+              "typeName": "AWS::Redshift::Cluster"
+            },
             "type": "integer"
           }
         },
@@ -51,6 +71,10 @@
         "description": "Describes a resume cluster operation. For example, a scheduled action to run the `ResumeCluster` API operation.",
         "properties": {
           "ClusterIdentifier": {
+            "relationshipRef": {
+              "propertyPath": "/properties/ClusterIdentifier",
+              "typeName": "AWS::Redshift::Cluster"
+            },
             "type": "string"
           }
         },
@@ -166,12 +190,10 @@
       },
       "ScheduledActionDescription": {
         "description": "The description of the scheduled action.",
-        "pattern": "^(?=^[\\x09\\x0a\\x0d\\x20-\\xff]*$).{1,255}$",
         "type": "string"
       },
       "ScheduledActionName": {
         "description": "The name of the scheduled action. The name must be unique within an account.",
-        "pattern": "^(?=^[a-z][a-z0-9]*(-[a-z0-9]+)*$).{1,60}$",
         "type": "string"
       },
       "StartTime": {

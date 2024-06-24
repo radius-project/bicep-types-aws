@@ -3,44 +3,53 @@
 ## Resource AWS.SSM/Association@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSM/AssociationProperties](#awsssmassociationproperties) (Required): properties of the resource
+* **properties**: [AWS.SSM/AssociationProperties](#awsssmassociationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSM/Document@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSM/DocumentProperties](#awsssmdocumentproperties) (Required): properties of the resource
+* **properties**: [AWS.SSM/DocumentProperties](#awsssmdocumentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSM/Parameter@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSM/ParameterProperties](#awsssmparameterproperties) (Required): properties of the resource
+* **properties**: [AWS.SSM/ParameterProperties](#awsssmparameterproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSM/PatchBaseline@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSM/PatchBaselineProperties](#awsssmpatchbaselineproperties) (Required): properties of the resource
+* **properties**: [AWS.SSM/PatchBaselineProperties](#awsssmpatchbaselineproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSM/ResourceDataSync@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSM/ResourceDataSyncProperties](#awsssmresourcedatasyncproperties) (Required): properties of the resource
+* **properties**: [AWS.SSM/ResourceDataSyncProperties](#awsssmresourcedatasyncproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSM/ResourcePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SSM/ResourcePolicyProperties](#awsssmresourcepolicyproperties) (Required): properties of the resource
+* **properties**: [AWS.SSM/ResourcePolicyProperties](#awsssmresourcepolicyproperties) (Required, Identifier): properties of the resource
+
+## Association_Parameters
+### Properties
+
+## AttachmentsSource
+### Properties
+* **Key**: string: The key of a key-value pair that identifies the location of an attachment to a document.
+* **Name**: string (Identifier): The name of the document attachment file.
+* **Values**: string[]: The value of a key-value pair that identifies the location of an attachment to a document. The format for Value depends on the type of key you specify.
 
 ## AWS.SSM/AssociationProperties
 ### Properties
@@ -63,24 +72,6 @@
 * **Targets**: [Target](#target)[]: The targets that the SSM document sends commands to.
 * **WaitForSuccessTimeoutSeconds**: int (WriteOnly)
 
-## InstanceAssociationOutputLocation
-### Properties
-* **S3Location**: [S3OutputLocation](#s3outputlocation)
-
-## S3OutputLocation
-### Properties
-* **OutputS3BucketName**: string
-* **OutputS3KeyPrefix**: string
-* **OutputS3Region**: string
-
-## Association_Parameters
-### Properties
-
-## Target
-### Properties
-* **Key**: string (Required)
-* **Values**: string[] (Required)
-
 ## AWS.SSM/DocumentProperties
 ### Properties
 * **Attachments**: [AttachmentsSource](#attachmentssource)[] (WriteOnly): A list of key and value pairs that describe attachments to a version of a document.
@@ -94,36 +85,20 @@
 * **UpdateMethod**: string (WriteOnly): Update method - when set to 'Replace', the update will replace the existing document; when set to 'NewVersion', the update will create a new version.
 * **VersionName**: string: An optional field specifying the version of the artifact you are creating with the document. This value is unique across all versions of a document, and cannot be changed.
 
-## AttachmentsSource
-### Properties
-* **Key**: string: The key of a key-value pair that identifies the location of an attachment to a document.
-* **Name**: string (Identifier): The name of the document attachment file.
-* **Values**: string[]: The value of a key-value pair that identifies the location of an attachment to a document. The format for Value depends on the type of key you specify.
-
-## DocumentRequires
-### Properties
-* **Name**: string (Identifier): The name of the required SSM document. The name can be an Amazon Resource Name (ARN).
-* **Version**: string: The document version required by the current document.
-
-## Tag
-### Properties
-* **Key**: string: The name of the tag.
-* **Value**: string: The value of the tag.
-
 ## AWS.SSM/ParameterProperties
 ### Properties
-* **AllowedPattern**: string (WriteOnly): The regular expression used to validate the parameter value.
-* **DataType**: string: The corresponding DataType of the parameter.
-* **Description**: string (WriteOnly): The information about the parameter.
+* **AllowedPattern**: string (WriteOnly): A regular expression used to validate the parameter value. For example, for ``String`` types with values restricted to numbers, you can specify the following: ``AllowedPattern=^\d+$``
+* **DataType**: string: The data type of the parameter, such as ``text`` or ``aws:ec2:image``. The default is ``text``.
+* **Description**: string (WriteOnly): Information about the parameter.
 * **Name**: string (Identifier): The name of the parameter.
-* **Policies**: string (WriteOnly): The policies attached to the parameter.
-* **Tags**: [Parameter_Tags](#parametertags) (WriteOnly): A key-value pair to associate with a resource.
-* **Tier**: string (WriteOnly): The corresponding tier of the parameter.
-* **Type**: string (Required): The type of the parameter.
-* **Value**: string (Required): The value associated with the parameter.
-
-## Parameter_Tags
-### Properties
+  The maximum length constraint listed below includes capacity for additional system attributes that aren't part of the name. The maximum length for a parameter name, including the full length of the parameter Amazon Resource Name (ARN), is 1011 characters. For example, the length of the following parameter name is 65 characters, not 20 characters: ``arn:aws:ssm:us-east-2:111222333444:parameter/ExampleParameterName``
+* **Policies**: string (WriteOnly): Information about the policies assigned to a parameter.
+  [Assigning parameter policies](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-policies.html) in the *User Guide*.
+* **Tags**: [Parameter_Tags](#parametertags) (WriteOnly): Optional metadata that you assign to a resource in the form of an arbitrary set of tags (key-value pairs). Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag a SYS parameter to identify the type of resource to which it applies, the environment, or the type of configuration data referenced by the parameter.
+* **Tier**: string (WriteOnly): The parameter tier.
+* **Type**: string (Required): The type of parameter.
+* **Value**: string (Required): The parameter value.
+  If type is ``StringList``, the system returns a comma-separated string with no spaces between commas in the ``Value`` field.
 
 ## AWS.SSM/PatchBaselineProperties
 ### Properties
@@ -143,38 +118,6 @@
 * **Sources**: [PatchSource](#patchsource)[]: Information about the patches to use to update the instances, including target operating systems and source repository. Applies to Linux instances only.
 * **Tags**: [Tag](#tag)[]: Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways.
 
-## RuleGroup
-### Properties
-* **PatchRules**: [Rule](#rule)[]
-
-## Rule
-### Properties
-* **ApproveAfterDays**: int
-* **ApproveUntilDate**: string
-* **ComplianceLevel**: string
-* **EnableNonSecurity**: bool
-* **PatchFilterGroup**: [PatchFilterGroup](#patchfiltergroup)
-
-## PatchFilterGroup
-### Properties
-* **PatchFilters**: [PatchFilter](#patchfilter)[]
-
-## PatchFilter
-### Properties
-* **Key**: string
-* **Values**: string[]
-
-## PatchSource
-### Properties
-* **Configuration**: string
-* **Name**: string
-* **Products**: string[]
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.SSM/ResourceDataSyncProperties
 ### Properties
 * **BucketName**: string
@@ -187,6 +130,57 @@
 * **SyncSource**: [SyncSource](#syncsource)
 * **SyncType**: string
 
+## AWS.SSM/ResourcePolicyProperties
+### Properties
+* **Policy**: [ResourcePolicy_Policy](#resourcepolicypolicy) | string (Required): Actual policy statement.
+* **PolicyHash**: string (ReadOnly): A snapshot identifier for the policy over time.
+* **PolicyId**: string (ReadOnly, Identifier): An unique identifier within the policies of a resource. 
+* **ResourceArn**: string (Required, Identifier): Arn of OpsItemGroup etc.
+
+## AwsOrganizationsSource
+### Properties
+* **OrganizationalUnits**: string[]
+* **OrganizationSourceType**: string (Required)
+
+## DocumentRequires
+### Properties
+* **Name**: string (Identifier): The name of the required SSM document. The name can be an Amazon Resource Name (ARN).
+* **Version**: string: The document version required by the current document.
+
+## InstanceAssociationOutputLocation
+### Properties
+* **S3Location**: [S3OutputLocation](#s3outputlocation)
+
+## Parameter_Tags
+### Properties
+
+## PatchFilter
+### Properties
+* **Key**: string
+* **Values**: string[]
+
+## PatchFilterGroup
+### Properties
+* **PatchFilters**: [PatchFilter](#patchfilter)[]
+
+## PatchSource
+### Properties
+* **Configuration**: string
+* **Name**: string
+* **Products**: string[]
+
+## Rule
+### Properties
+* **ApproveAfterDays**: int
+* **ApproveUntilDate**: string
+* **ComplianceLevel**: string
+* **EnableNonSecurity**: bool
+* **PatchFilterGroup**: [PatchFilterGroup](#patchfiltergroup)
+
+## RuleGroup
+### Properties
+* **PatchRules**: [Rule](#rule)[]
+
 ## S3Destination
 ### Properties
 * **BucketName**: string (Required)
@@ -195,6 +189,12 @@
 * **KMSKeyArn**: string
 * **SyncFormat**: string (Required)
 
+## S3OutputLocation
+### Properties
+* **OutputS3BucketName**: string
+* **OutputS3KeyPrefix**: string
+* **OutputS3Region**: string
+
 ## SyncSource
 ### Properties
 * **AwsOrganizationsSource**: [AwsOrganizationsSource](#awsorganizationssource)
@@ -202,15 +202,18 @@
 * **SourceRegions**: string[] (Required)
 * **SourceType**: string (Required)
 
-## AwsOrganizationsSource
+## Tag
 ### Properties
-* **OrganizationalUnits**: string[]
-* **OrganizationSourceType**: string (Required)
+* **Key**: string: The name of the tag.
+* **Value**: string: The value of the tag.
 
-## AWS.SSM/ResourcePolicyProperties
+## Tag
 ### Properties
-* **Policy**: [ResourcePolicy_Policy](#resourcepolicypolicy) | string (Required): Actual policy statement.
-* **PolicyHash**: string (ReadOnly): A snapshot identifier for the policy over time.
-* **PolicyId**: string (ReadOnly, Identifier): An unique identifier within the policies of a resource. 
-* **ResourceArn**: string (Required, Identifier): Arn of OpsItemGroup etc.
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Target
+### Properties
+* **Key**: string (Required)
+* **Values**: string[] (Required)
 

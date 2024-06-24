@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ElasticBeanstalk-Environment",
   "type": "AWS::ElasticBeanstalk::Environment",
-  "time": "2023-07-26T17:36:15.302Z",
+  "time": "2024-06-24T19:36:13.772Z",
   "schema": {
     "$schema": "https://raw.githubusercontent.com/aws-cloudformation/cloudformation-resource-schema/master/src/main/resources/schema/provider.definition.schema.v1.json",
     "additionalProperties": false,
@@ -83,6 +83,8 @@
         "permissions": [
           "elasticbeanstalk:DescribeEnvironments",
           "elasticbeanstalk:CreateEnvironment",
+          "elasticbeanstalk:AddTags",
+          "elasticbeanstalk:ListTagsForResource",
           "iam:PassRole"
         ],
         "timeoutInMinutes": 120
@@ -96,7 +98,8 @@
       },
       "list": {
         "permissions": [
-          "elasticbeanstalk:DescribeEnvironments"
+          "elasticbeanstalk:DescribeEnvironments",
+          "elasticbeanstalk:ListTagsForResource"
         ]
       },
       "read": {
@@ -113,6 +116,8 @@
           "elasticbeanstalk:UpdateTagsForResource",
           "elasticbeanstalk:AssociateEnvironmentOperationsRole",
           "elasticbeanstalk:DisassociateEnvironmentOperationsRole",
+          "elasticbeanstalk:AddTags",
+          "elasticbeanstalk:ListTagsForResource",
           "iam:PassRole"
         ],
         "timeoutInMinutes": 300

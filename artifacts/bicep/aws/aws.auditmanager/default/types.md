@@ -3,9 +3,14 @@
 ## Resource AWS.AuditManager/Assessment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AuditManager/AssessmentProperties](#awsauditmanagerassessmentproperties): properties of the resource
+* **properties**: [AWS.AuditManager/AssessmentProperties](#awsauditmanagerassessmentproperties) (Identifier): properties of the resource
+
+## AssessmentReportsDestination
+### Properties
+* **Destination**: string
+* **DestinationType**: string
 
 ## AWS.AuditManager/AssessmentProperties
 ### Properties
@@ -23,16 +28,15 @@
 * **Status**: string
 * **Tags**: [Tag](#tag)[]: The tags associated with the assessment.
 
-## AssessmentReportsDestination
-### Properties
-* **Destination**: string
-* **DestinationType**: string
-
 ## AWSAccount
 ### Properties
 * **EmailAddress**: string
 * **Id**: string
 * **Name**: string
+
+## AWSService
+### Properties
+* **ServiceName**: string
 
 ## Delegation
 ### Properties
@@ -57,10 +61,6 @@
 ### Properties
 * **AwsAccounts**: [AWSAccount](#awsaccount)[]: The AWS accounts included in scope.
 * **AwsServices**: [AWSService](#awsservice)[]: The AWS services included in scope.
-
-## AWSService
-### Properties
-* **ServiceName**: string
 
 ## Tag
 ### Properties

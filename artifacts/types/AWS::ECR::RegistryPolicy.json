@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECR-RegistryPolicy",
   "type": "AWS::ECR::RegistryPolicy",
-  "time": "2024-01-04T18:14:45.892Z",
+  "time": "2024-05-24T17:33:05.903Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -13,7 +13,7 @@
         "type": "string"
       }
     },
-    "description": "The AWS::ECR::RegistryPolicy is used to specify permissions for another AWS account and is used when configuring cross-account replication. For more information, see Registry permissions in the Amazon Elastic Container Registry User Guide: https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html",
+    "description": "The ``AWS::ECR::RegistryPolicy`` resource creates or updates the permissions policy for a private registry.\n A private registry policy is used to specify permissions for another AWS-account and is used when configuring cross-account replication. For more information, see [Registry permissions](https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html) in the *Amazon Elastic Container Registry User Guide*.",
     "handlers": {
       "create": {
         "permissions": [
@@ -48,11 +48,12 @@
     ],
     "properties": {
       "PolicyText": {
-        "description": "The JSON policy text to apply to your registry. The policy text follows the same format as IAM policy text. For more information, see Registry permissions (https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html) in the Amazon Elastic Container Registry User Guide.",
+        "description": "The JSON policy text for your registry.",
         "type": "object"
       },
       "RegistryId": {
-        "$ref": "#/definitions/RegistryId"
+        "$ref": "#/definitions/RegistryId",
+        "description": ""
       }
     },
     "readOnlyProperties": [
@@ -62,6 +63,9 @@
       "PolicyText"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ecr.git",
+    "tagging": {
+      "taggable": false
+    },
     "typeName": "AWS::ECR::RegistryPolicy"
   }
 }

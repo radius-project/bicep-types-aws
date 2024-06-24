@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VoiceID-Domain",
   "type": "AWS::VoiceID::Domain",
-  "time": "2024-01-03T16:41:26.804Z",
+  "time": "2024-06-19T15:46:15.943Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -46,27 +46,45 @@
     "handlers": {
       "create": {
         "permissions": [
-          "voiceid:CreateDomain"
+          "voiceid:CreateDomain",
+          "voiceid:DescribeDomain",
+          "voiceid:TagResource",
+          "voiceid:ListTagsForResource",
+          "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:Decrypt"
         ]
       },
       "delete": {
         "permissions": [
-          "voiceid:DeleteDomain"
+          "voiceid:DeleteDomain",
+          "voiceid:DescribeDomain",
+          "kms:Decrypt"
         ]
       },
       "list": {
         "permissions": [
-          "voiceid:ListDomains"
+          "voiceid:ListDomains",
+          "kms:Decrypt"
         ]
       },
       "read": {
         "permissions": [
-          "voiceid:DescribeDomain"
+          "voiceid:DescribeDomain",
+          "voiceid:ListTagsForResource",
+          "kms:Decrypt"
         ]
       },
       "update": {
         "permissions": [
-          "voiceid:UpdateDomain"
+          "voiceid:DescribeDomain",
+          "voiceid:UpdateDomain",
+          "voiceid:TagResource",
+          "voiceid:UntagResource",
+          "voiceid:ListTagsForResource",
+          "kms:CreateGrant",
+          "kms:Decrypt",
+          "kms:DescribeKey"
         ]
       }
     },

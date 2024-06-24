@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MWAA-Environment",
   "type": "AWS::MWAA::Environment",
-  "time": "2024-01-04T16:33:53.878Z",
+  "time": "2024-06-17T17:43:32.053Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -197,9 +197,19 @@
         ],
         "type": "string"
       },
+      "MaxWebservers": {
+        "description": "Maximum webserver compute units.",
+        "minimum": 2,
+        "type": "integer"
+      },
       "MaxWorkers": {
         "description": "Maximum worker compute units.",
         "minimum": 1,
+        "type": "integer"
+      },
+      "MinWebservers": {
+        "description": "Minimum webserver compute units.",
+        "minimum": 2,
         "type": "integer"
       },
       "MinWorkers": {
@@ -428,8 +438,14 @@
       "LoggingConfiguration": {
         "$ref": "#/definitions/LoggingConfiguration"
       },
+      "MaxWebservers": {
+        "$ref": "#/definitions/MaxWebservers"
+      },
       "MaxWorkers": {
         "$ref": "#/definitions/MaxWorkers"
+      },
+      "MinWebservers": {
+        "$ref": "#/definitions/MinWebservers"
       },
       "MinWorkers": {
         "$ref": "#/definitions/MinWorkers"

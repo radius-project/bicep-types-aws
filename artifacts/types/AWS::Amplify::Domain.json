@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Amplify-Domain",
   "type": "AWS::Amplify::Domain",
-  "time": "2023-10-25T22:41:47.988Z",
+  "time": "2024-06-12T17:29:13.025Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,44 @@
       "/properties/DomainName"
     ],
     "definitions": {
+      "Certificate": {
+        "additionalProperties": false,
+        "properties": {
+          "CertificateArn": {
+            "pattern": "\"^arn:aws:acm:[a-z0-9-]+:\\d{12}:certificate\\/.+$\"",
+            "type": "string"
+          },
+          "CertificateType": {
+            "enum": [
+              "AMPLIFY_MANAGED",
+              "CUSTOM"
+            ],
+            "type": "string"
+          },
+          "CertificateVerificationDNSRecord": {
+            "maxLength": 1000,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CertificateSettings": {
+        "additionalProperties": false,
+        "properties": {
+          "CertificateType": {
+            "enum": [
+              "AMPLIFY_MANAGED",
+              "CUSTOM"
+            ],
+            "type": "string"
+          },
+          "CustomCertificateArn": {
+            "pattern": "^arn:aws:acm:[a-z0-9-]+:\\d{12}:certificate\\/.+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "SubDomainSetting": {
         "additionalProperties": false,
         "properties": {
@@ -106,9 +144,15 @@
         "pattern": "^$|^arn:.+:iam::\\d{12}:role.+",
         "type": "string"
       },
+      "Certificate": {
+        "$ref": "#/definitions/Certificate"
+      },
       "CertificateRecord": {
         "maxLength": 1000,
         "type": "string"
+      },
+      "CertificateSettings": {
+        "$ref": "#/definitions/CertificateSettings"
       },
       "DomainName": {
         "maxLength": 255,
@@ -132,19 +176,27 @@
         "maxItems": 255,
         "type": "array",
         "uniqueItems": false
+      },
+      "UpdateStatus": {
+        "type": "string"
       }
     },
     "readOnlyProperties": [
       "/properties/Arn",
       "/properties/DomainStatus",
       "/properties/StatusReason",
-      "/properties/CertificateRecord"
+      "/properties/CertificateRecord",
+      "/properties/Certificate",
+      "/properties/UpdateStatus"
     ],
     "required": [
       "AppId",
       "DomainName",
       "SubDomainSettings"
     ],
-    "typeName": "AWS::Amplify::Domain"
+    "typeName": "AWS::Amplify::Domain",
+    "writeOnlyProperties": [
+      "/properties/CertificateSettings"
+    ]
   }
 }
