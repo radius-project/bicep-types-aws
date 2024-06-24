@@ -92,6 +92,7 @@
 ### Properties
 * **AccessConfig**: [AccessConfig](#accessconfig)
 * **Arn**: string (ReadOnly): The ARN of the cluster, such as arn:aws:eks:us-west-2:666666666666:cluster/prod.
+* **BootstrapSelfManagedAddons**: bool (WriteOnly): Set this value to false to avoid creating the default networking addons when the cluster is created.
 * **CertificateAuthorityData**: string (ReadOnly): The certificate-authority-data for your cluster.
 * **ClusterSecurityGroupId**: string (ReadOnly): The cluster security group that was created by Amazon EKS for the cluster. Managed node groups use this security group for control plane to data plane communication.
 * **EncryptionConfig**: [EncryptionConfig](#encryptionconfig)[]

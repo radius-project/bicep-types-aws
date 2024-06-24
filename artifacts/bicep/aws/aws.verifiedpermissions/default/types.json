@@ -5,7 +5,7 @@
     "properties": {
       "GroupEntityType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -17,7 +17,7 @@
     "properties": {
       "ClientIds": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/11"
         },
         "flags": 0
       },
@@ -29,7 +29,7 @@
       },
       "UserPoolArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -46,29 +46,118 @@
     "properties": {
       "ClientIds": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/12"
         },
         "flags": 0
       },
       "DiscoveryUrl": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "OpenIdIssuer": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "UserPoolArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OpenIdConnectAccessTokenConfiguration",
+    "properties": {
+      "Audiences": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "PrincipalIdClaim": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OpenIdConnectConfiguration",
+    "properties": {
+      "EntityIdPrefix": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "GroupConfiguration": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "Issuer": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "TokenSelection": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OpenIdConnectGroupConfiguration",
+    "properties": {
+      "GroupClaim": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "GroupEntityType": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OpenIdConnectIdentityTokenConfiguration",
+    "properties": {
+      "ClientIds": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "PrincipalIdClaim": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OpenIdConnectTokenSelection",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -81,13 +170,30 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/10"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IdentitySource_OpenIdConnectTokenSelection",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
     }
   },
   {
@@ -112,19 +218,19 @@
       },
       "IdentitySourceId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "PolicyStoreId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17
       },
       "PrincipalEntityType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -136,21 +242,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -162,7 +268,7 @@
     "name": "AWS.VerifiedPermissions/IdentitySource@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/10"
+      "$ref": "#/18"
     },
     "flags": 0
   },
@@ -172,13 +278,13 @@
     "properties": {
       "EntityId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "EntityType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -200,13 +306,13 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Statement": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -218,19 +324,19 @@
     "properties": {
       "PolicyTemplateId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Principal": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "Resource": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/20"
         },
         "flags": 0
       }
@@ -246,25 +352,25 @@
     "properties": {
       "Definition": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/21"
         },
         "flags": 1
       },
       "PolicyId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "PolicyStoreId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17
       },
       "PolicyType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       }
@@ -276,21 +382,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/26"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -302,7 +408,7 @@
     "name": "AWS.VerifiedPermissions/Policy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/19"
+      "$ref": "#/27"
     },
     "flags": 0
   },
@@ -312,7 +418,7 @@
     "properties": {
       "CedarJson": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -334,7 +440,7 @@
     "properties": {
       "Mode": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -350,31 +456,31 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "PolicyStoreId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "Schema": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/29"
         },
         "flags": 0
       },
       "ValidationSettings": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/32"
         },
         "flags": 1
       }
@@ -386,21 +492,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/34"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -412,7 +518,7 @@
     "name": "AWS.VerifiedPermissions/PolicyStore@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/27"
+      "$ref": "#/35"
     },
     "flags": 0
   },
@@ -426,25 +532,25 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "PolicyStoreId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17
       },
       "PolicyTemplateId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "Statement": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -456,21 +562,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/38"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -482,7 +588,7 @@
     "name": "AWS.VerifiedPermissions/PolicyTemplate@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/31"
+      "$ref": "#/39"
     },
     "flags": 0
   }

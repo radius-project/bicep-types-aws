@@ -19,6 +19,7 @@
 ### Properties
 * **ApplicationCodeConfiguration**: [ApplicationCodeConfiguration](#applicationcodeconfiguration): The code location and type parameters for a Flink-based Kinesis Data Analytics application.
 * **ApplicationSnapshotConfiguration**: [ApplicationSnapshotConfiguration](#applicationsnapshotconfiguration): Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.
+* **ApplicationSystemRollbackConfiguration**: [ApplicationSystemRollbackConfiguration](#applicationsystemrollbackconfiguration): Describes whether system initiated rollbacks are enabled for a Flink-based Kinesis Data Analytics application.
 * **EnvironmentProperties**: [EnvironmentProperties](#environmentproperties) (WriteOnly): Describes execution properties for a Flink-based Kinesis Data Analytics application.
 * **FlinkApplicationConfiguration**: [FlinkApplicationConfiguration](#flinkapplicationconfiguration): The creation and update parameters for a Flink-based Kinesis Data Analytics application.
 * **SqlApplicationConfiguration**: [SqlApplicationConfiguration](#sqlapplicationconfiguration): The creation and update parameters for a SQL-based Kinesis Data Analytics application.
@@ -37,6 +38,10 @@
 ## ApplicationSnapshotConfiguration
 ### Properties
 * **SnapshotsEnabled**: bool (Required): Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.
+
+## ApplicationSystemRollbackConfiguration
+### Properties
+* **RollbackEnabled**: bool (Required): Describes whether system initiated rollbacks are enabled for a Flink-based Kinesis Data Analytics application.
 
 ## AWS.KinesisAnalyticsV2/ApplicationProperties
 ### Properties

@@ -73,15 +73,15 @@
 
 ## AWS.GuardDuty/MalwareProtectionPlanProperties
 ### Properties
-* **Actions**: [CFNActions](#cfnactions): Information about whether the tags will be added to the S3 object after scanning.
+* **Actions**: [CFNActions](#cfnactions): Specifies the action that is to be applied to the Malware Protection plan resource.
 * **Arn**: string (ReadOnly): Amazon Resource Name (ARN) of the protected resource.
 * **CreatedAt**: string (ReadOnly): The timestamp when the Malware Protection plan resource was created.
 * **MalwareProtectionPlanId**: string (ReadOnly, Identifier): A unique identifier associated with Malware Protection plan resource.
-* **ProtectedResource**: [CFNProtectedResource](#cfnprotectedresource) (Required): Information about the protected resource that is associated with the created Malware Protection plan. Presently, S3Bucket is the only supported protected resource.
-* **Role**: string (Required): IAM role that includes the permissions required to scan and add tags to the associated protected resource.
-* **Status**: string (ReadOnly): Malware Protection plan status.
-* **StatusReasons**: [CFNStatusReasons](#cfnstatusreasons)[] (ReadOnly): Information about the issue code and message associated to the status of your Malware Protection plan.
-* **Tags**: [TagItem](#tagitem)[]
+* **ProtectedResource**: [CFNProtectedResource](#cfnprotectedresource) (Required): Information about the protected resource. Presently, S3Bucket is the only supported protected resource.
+* **Role**: string (Required): IAM role that includes the permissions required to scan and (optionally) add tags to the associated protected resource.
+* **Status**: string (ReadOnly): Status of the Malware Protection plan resource.
+* **StatusReasons**: [CFNStatusReasons](#cfnstatusreasons)[] (ReadOnly): Status details associated with the Malware Protection plan resource status.
+* **Tags**: [TagItem](#tagitem)[]: The tags to be added to the created Malware Protection plan resource. Each tag consists of a key and an optional value, both of which you need to specify.
 
 ## AWS.GuardDuty/MemberProperties
 ### Properties
@@ -104,7 +104,7 @@
 
 ## CFNActions
 ### Properties
-* **Tagging**: [CFNTagging](#cfntagging): Indicates whether the scanned S3 object will have tags about the scan result.
+* **Tagging**: [CFNTagging](#cfntagging): Contains information about tagging status of the Malware Protection plan resource.
 
 ## CFNDataSourceConfigurations
 ### Properties
@@ -149,12 +149,12 @@
 
 ## CFNStatusReasons
 ### Properties
-* **Code**: string: Issue code.
+* **Code**: string: The status code of the Malware Protection plan.
 * **Message**: string: Issue message that specifies the reason.
 
 ## CFNTagging
 ### Properties
-* **Status**: string: Indicates whether or not the tags will added.
+* **Status**: string: Indicates whether or not you chose GuardDuty to add a predefined tag to the scanned S3 object.
 
 ## Filter_Criterion
 ### Properties

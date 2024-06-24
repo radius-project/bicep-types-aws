@@ -148,6 +148,7 @@
 * **EnableGlobalWriteForwarding**: bool: Specifies whether to enable this DB cluster to forward write operations to the primary cluster of a global cluster (Aurora global database). By default, write operations are not allowed on Aurora DB clusters that are secondary clusters in an Aurora global database.
 * **EnableHttpEndpoint**: bool: A value that indicates whether to enable the HTTP endpoint for DB cluster. By default, the HTTP endpoint is disabled.
 * **EnableIAMDatabaseAuthentication**: bool: A value that indicates whether to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts. By default, mapping is disabled.
+* **EnableLocalWriteForwarding**: bool: Specifies whether read replicas can forward write operations to the writer DB instance in the DB cluster. By default, write operations aren't allowed on reader DB instances.
 * **Endpoint**: [Endpoint](#endpoint) (ReadOnly)
 * **Engine**: string: The name of the database engine to be used for this DB cluster. Valid Values: aurora (for MySQL 5.6-compatible Aurora), aurora-mysql (for MySQL 5.7-compatible Aurora), and aurora-postgresql
 * **EngineLifecycleSupport**: string: The life cycle type of the DB cluster. You can use this setting to enroll your DB cluster into Amazon RDS Extended Support.
@@ -802,6 +803,7 @@ If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceI
 * **DeletionProtection**: bool: The deletion protection setting for the new global database. The global database can't be deleted when deletion protection is enabled.
 * **Engine**: string: The name of the database engine to be used for this DB cluster. Valid Values: aurora (for MySQL 5.6-compatible Aurora), aurora-mysql (for MySQL 5.7-compatible Aurora).
 If you specify the SourceDBClusterIdentifier property, don't specify this property. The value is inherited from the cluster.
+* **EngineLifecycleSupport**: string: The life cycle type of the global cluster. You can use this setting to enroll your global cluster into Amazon RDS Extended Support.
 * **EngineVersion**: string: The version number of the database engine to use. If you specify the SourceDBClusterIdentifier property, don't specify this property. The value is inherited from the cluster.
 * **GlobalClusterIdentifier**: string (Identifier): The cluster identifier of the new global database cluster. This parameter is stored as a lowercase string.
 * **SourceDBClusterIdentifier**: string: The Amazon Resource Name (ARN) to use as the primary cluster of the global database. This parameter is optional. This parameter is stored as a lowercase string.
@@ -833,7 +835,7 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 ## CertificateDetails
 ### Properties
 * **CAIdentifier**: string (ReadOnly): The CA identifier of the CA certificate used for the DB instance's server certificate.
-* **ValidTill**: string (ReadOnly): The expiration date of the DB instance’s server certificate.
+* **ValidTill**: string (ReadOnly): The expiration date of the DB instance?s server certificate.
 
 ## ConnectionPoolConfigurationInfoFormat
 ### Properties

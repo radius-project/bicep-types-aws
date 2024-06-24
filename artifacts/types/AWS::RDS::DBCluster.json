@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBCluster",
   "type": "AWS::RDS::DBCluster",
-  "time": "2024-06-18T23:43:50.728Z",
+  "time": "2024-06-21T12:00:51.146Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -37,10 +37,6 @@
           },
           "RoleArn": {
             "description": "The Amazon Resource Name (ARN) of the IAM role that is associated with the DB cluster.",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           }
         },
@@ -67,20 +63,6 @@
         "additionalProperties": false,
         "properties": {
           "KmsKeyId": {
-            "anyOf": [
-              {
-                "relationshipRef": {
-                  "propertyPath": "/properties/KeyId",
-                  "typeName": "AWS::KMS::Key"
-                }
-              },
-              {
-                "relationshipRef": {
-                  "propertyPath": "/properties/Arn",
-                  "typeName": "AWS::KMS::Key"
-                }
-              }
-            ],
             "description": "The AWS KMS key identifier that is used to encrypt the secret.",
             "type": "string"
           },
@@ -181,6 +163,8 @@
           "rds:CreateDBCluster",
           "rds:CreateDBInstance",
           "rds:DescribeDBClusters",
+          "rds:DescribeDBClusterSnapshots",
+          "rds:DescribeDBSnapshots",
           "rds:DescribeEvents",
           "rds:EnableHttpEndpoint",
           "rds:ModifyDBCluster",
@@ -350,6 +334,10 @@
         "description": "A value that indicates whether to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts. By default, mapping is disabled.",
         "type": "boolean"
       },
+      "EnableLocalWriteForwarding": {
+        "description": "Specifies whether read replicas can forward write operations to the writer DB instance in the DB cluster. By default, write operations aren't allowed on reader DB instances.",
+        "type": "boolean"
+      },
       "Endpoint": {
         "$ref": "#/definitions/Endpoint"
       },
@@ -381,20 +369,6 @@
         "type": "integer"
       },
       "KmsKeyId": {
-        "anyOf": [
-          {
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::KMS::Key"
-            }
-          },
-          {
-            "relationshipRef": {
-              "propertyPath": "/properties/KeyId",
-              "typeName": "AWS::KMS::Key"
-            }
-          }
-        ],
         "description": "The Amazon Resource Name (ARN) of the AWS Key Management Service master key that is used to encrypt the database instances in the DB cluster, such as arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef. If you enable the StorageEncrypted property but don't specify this property, the default master key is used. If you specify this property, you must set the StorageEncrypted property to true.",
         "type": "string"
       },
@@ -522,20 +496,6 @@
       "VpcSecurityGroupIds": {
         "description": "A list of EC2 VPC security groups to associate with this DB cluster.",
         "items": {
-          "anyOf": [
-            {
-              "relationshipRef": {
-                "propertyPath": "/properties/GroupId",
-                "typeName": "AWS::EC2::SecurityGroup"
-              }
-            },
-            {
-              "relationshipRef": {
-                "propertyPath": "/properties/Id",
-                "typeName": "AWS::EC2::SecurityGroup"
-              }
-            }
-          ],
           "type": "string"
         },
         "type": "array",

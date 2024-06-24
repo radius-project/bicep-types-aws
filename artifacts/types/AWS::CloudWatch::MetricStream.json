@@ -1,10 +1,10 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudWatch-MetricStream",
   "type": "AWS::CloudWatch::MetricStream",
-  "time": "2023-12-21T17:19:14.055Z",
+  "time": "2024-06-20T22:56:25.831Z",
   "schema": {
     "additionalProperties": false,
-    "anyOf": [
+    "allOf": [
       {
         "required": [
           "FirehoseArn",
@@ -13,25 +13,11 @@
         ]
       },
       {
-        "allOf": [
-          {
-            "required": [
-              "FirehoseArn",
-              "RoleArn",
-              "OutputFormat"
-            ]
-          }
-        ]
-      },
-      {
         "oneOf": [
+          {},
           {
             "required": [
-              "IncludeFilters"
-            ]
-          },
-          {
-            "required": [
+              "IncludeFilters",
               "ExcludeFilters"
             ]
           }
@@ -133,7 +119,7 @@
           "Value": {
             "description": "String which you can use to describe or define the tag.",
             "maxLength": 256,
-            "minLength": 1,
+            "minLength": 0,
             "type": "string"
           }
         },
@@ -290,11 +276,6 @@
       "/properties/CreationDate",
       "/properties/LastUpdateDate",
       "/properties/State"
-    ],
-    "required": [
-      "FirehoseArn",
-      "RoleArn",
-      "OutputFormat"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-cloudwatch.git",
     "taggable": true,

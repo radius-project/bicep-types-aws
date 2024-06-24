@@ -19,7 +19,7 @@
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudWatch/MetricStreamProperties](#awscloudwatchmetricstreamproperties) (Required, Identifier): properties of the resource
+* **properties**: [AWS.CloudWatch/MetricStreamProperties](#awscloudwatchmetricstreamproperties) (Identifier): properties of the resource
 
 ## AWS.CloudWatch/AlarmProperties
 ### Properties
@@ -80,13 +80,13 @@
 * **Arn**: string (ReadOnly): Amazon Resource Name of the metric stream.
 * **CreationDate**: string (ReadOnly): The date of creation of the metric stream.
 * **ExcludeFilters**: [MetricStreamFilter](#metricstreamfilter)[]: Define which metrics will be not streamed. Metrics matched by multiple instances of MetricStreamFilter are joined with an OR operation by default. If both IncludeFilters and ExcludeFilters are omitted, all metrics in the account will be streamed. IncludeFilters and ExcludeFilters are mutually exclusive. Default to null.
-* **FirehoseArn**: string (Required): The ARN of the Kinesis Firehose where to stream the data.
+* **FirehoseArn**: string: The ARN of the Kinesis Firehose where to stream the data.
 * **IncludeFilters**: [MetricStreamFilter](#metricstreamfilter)[]: Define which metrics will be streamed. Metrics matched by multiple instances of MetricStreamFilter are joined with an OR operation by default. If both IncludeFilters and ExcludeFilters are omitted, all metrics in the account will be streamed. IncludeFilters and ExcludeFilters are mutually exclusive. Default to null.
 * **IncludeLinkedAccountsMetrics**: bool: If you are creating a metric stream in a monitoring account, specify true to include metrics from source accounts that are linked to this monitoring account, in the metric stream. The default is false.
 * **LastUpdateDate**: string (ReadOnly): The date of the last update of the metric stream.
 * **Name**: string (Identifier): Name of the metric stream.
-* **OutputFormat**: string (Required): The output format of the data streamed to the Kinesis Firehose.
-* **RoleArn**: string (Required): The ARN of the role that provides access to the Kinesis Firehose.
+* **OutputFormat**: string: The output format of the data streamed to the Kinesis Firehose.
+* **RoleArn**: string: The ARN of the role that provides access to the Kinesis Firehose.
 * **State**: string (ReadOnly): Displays the state of the Metric Stream.
 * **StatisticsConfigurations**: [MetricStreamStatisticsConfiguration](#metricstreamstatisticsconfiguration)[]: By default, a metric stream always sends the MAX, MIN, SUM, and SAMPLECOUNT statistics for each metric that is streamed. You can use this parameter to have the metric stream also send additional statistics in the stream. This array can have up to 100 members.
 * **Tags**: [Tag](#tag)[] (WriteOnly): A set of tags to assign to the delivery stream.

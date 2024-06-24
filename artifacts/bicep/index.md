@@ -2791,6 +2791,10 @@
 ### aws.wisdom/knowledgebase
 * **Link**: [default](aws/aws.wisdom/default/types.md#resource-awswisdomknowledgebasedefault)
 
+## aws.workspaces
+### aws.workspaces/workspacespool
+* **Link**: [default](aws/aws.workspaces/default/types.md#resource-awsworkspacesworkspacespooldefault)
+
 ## aws.workspacesthinclient
 ### aws.workspacesthinclient/environment
 * **Link**: [default](aws/aws.workspacesthinclient/default/types.md#resource-awsworkspacesthinclientenvironmentdefault)
