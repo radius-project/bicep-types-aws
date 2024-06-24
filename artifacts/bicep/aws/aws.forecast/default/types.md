@@ -3,9 +3,9 @@
 ## Resource AWS.Forecast/DatasetGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Forecast/DatasetGroupProperties](#awsforecastdatasetgroupproperties) (Required): properties of the resource
+* **properties**: [AWS.Forecast/DatasetGroupProperties](#awsforecastdatasetgroupproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Forecast/DatasetGroupProperties
 ### Properties

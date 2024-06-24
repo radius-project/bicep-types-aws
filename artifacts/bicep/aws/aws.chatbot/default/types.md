@@ -3,16 +3,16 @@
 ## Resource AWS.Chatbot/MicrosoftTeamsChannelConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Chatbot/MicrosoftTeamsChannelConfigurationProperties](#awschatbotmicrosoftteamschannelconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.Chatbot/MicrosoftTeamsChannelConfigurationProperties](#awschatbotmicrosoftteamschannelconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Chatbot/SlackChannelConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Chatbot/SlackChannelConfigurationProperties](#awschatbotslackchannelconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.Chatbot/SlackChannelConfigurationProperties](#awschatbotslackchannelconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Chatbot/MicrosoftTeamsChannelConfigurationProperties
 ### Properties
@@ -22,6 +22,7 @@
 * **IamRoleArn**: string (Required): The ARN of the IAM role that defines the permissions for AWS Chatbot
 * **LoggingLevel**: string: Specifies the logging level for this configuration:ERROR,INFO or NONE. This property affects the log entries pushed to Amazon CloudWatch logs
 * **SnsTopicArns**: string[]: ARNs of SNS topics which delivers notifications to AWS Chatbot, for example CloudWatch alarm notifications.
+* **Tags**: [Tag](#tag)[]: The tags to add to the configuration
 * **TeamId**: string (Required): The id of the Microsoft Teams team
 * **TeamsChannelId**: string (Required): The id of the Microsoft Teams channel
 * **TeamsTenantId**: string (Required): The id of the Microsoft Teams tenant
@@ -37,5 +38,16 @@
 * **SlackChannelId**: string (Required): The id of the Slack channel
 * **SlackWorkspaceId**: string (Required): The id of the Slack workspace
 * **SnsTopicArns**: string[]: ARNs of SNS topics which delivers notifications to AWS Chatbot, for example CloudWatch alarm notifications.
+* **Tags**: [Tag](#tag)[]: The tags to add to the configuration
 * **UserRoleRequired**: bool: Enables use of a user role requirement in your chat configuration
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 

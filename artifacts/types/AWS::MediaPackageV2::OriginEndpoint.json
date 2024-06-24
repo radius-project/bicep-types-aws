@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaPackageV2-OriginEndpoint",
   "type": "AWS::MediaPackageV2::OriginEndpoint",
-  "time": "2024-01-04T17:54:27.66Z",
+  "time": "2024-06-13T18:26:09.931Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -17,6 +17,13 @@
       "/properties/OriginEndpointName"
     ],
     "definitions": {
+      "AdMarkerDash": {
+        "enum": [
+          "BINARY",
+          "XML"
+        ],
+        "type": "string"
+      },
       "AdMarkerHls": {
         "enum": [
           "DATERANGE"
@@ -34,6 +41,111 @@
         "enum": [
           "TS",
           "CMAF"
+        ],
+        "type": "string"
+      },
+      "DashDrmSignaling": {
+        "enum": [
+          "INDIVIDUAL",
+          "REFERENCED"
+        ],
+        "type": "string"
+      },
+      "DashManifestConfiguration": {
+        "additionalProperties": false,
+        "description": "\u003cp\u003eRetrieve the DASH manifest configuration.\u003c/p\u003e",
+        "properties": {
+          "DrmSignaling": {
+            "$ref": "#/definitions/DashDrmSignaling"
+          },
+          "FilterConfiguration": {
+            "$ref": "#/definitions/FilterConfiguration"
+          },
+          "ManifestName": {
+            "description": "\u003cp\u003eA short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. \u003c/p\u003e",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "type": "string"
+          },
+          "ManifestWindowSeconds": {
+            "description": "\u003cp\u003eThe total duration (in seconds) of the manifest's content.\u003c/p\u003e",
+            "type": "integer"
+          },
+          "MinBufferTimeSeconds": {
+            "description": "\u003cp\u003eMinimum amount of content (in seconds) that a player must keep available in the buffer.\u003c/p\u003e",
+            "type": "integer"
+          },
+          "MinUpdatePeriodSeconds": {
+            "description": "\u003cp\u003eMinimum amount of time (in seconds) that the player should wait before requesting updates to the manifest.\u003c/p\u003e",
+            "type": "integer"
+          },
+          "PeriodTriggers": {
+            "description": "\u003cp\u003eA list of triggers that controls when AWS Elemental MediaPackage separates the MPEG-DASH manifest into multiple periods. Leave this value empty to indicate that the manifest is contained all in one period.\n         For more information about periods in the DASH manifest, see \u003ca href=\"https://docs.aws.amazon.com/mediapackage/latest/userguide/multi-period.html\"\u003eMulti-period DASH in AWS Elemental MediaPackage\u003c/a\u003e.\u003c/p\u003e",
+            "items": {
+              "$ref": "#/definitions/DashPeriodTrigger"
+            },
+            "maxItems": 100,
+            "minItems": 0,
+            "type": "array"
+          },
+          "ScteDash": {
+            "$ref": "#/definitions/ScteDash"
+          },
+          "SegmentTemplateFormat": {
+            "$ref": "#/definitions/DashSegmentTemplateFormat"
+          },
+          "SuggestedPresentationDelaySeconds": {
+            "description": "\u003cp\u003eThe amount of time (in seconds) that the player should be from the end of the manifest.\u003c/p\u003e",
+            "type": "integer"
+          },
+          "UtcTiming": {
+            "$ref": "#/definitions/DashUtcTiming"
+          }
+        },
+        "required": [
+          "ManifestName"
+        ],
+        "type": "object"
+      },
+      "DashPeriodTrigger": {
+        "enum": [
+          "AVAILS",
+          "DRM_KEY_ROTATION",
+          "SOURCE_CHANGES",
+          "SOURCE_DISRUPTIONS",
+          "NONE"
+        ],
+        "type": "string"
+      },
+      "DashSegmentTemplateFormat": {
+        "enum": [
+          "NUMBER_WITH_TIMELINE"
+        ],
+        "type": "string"
+      },
+      "DashUtcTiming": {
+        "additionalProperties": false,
+        "description": "\u003cp\u003eDetermines the type of UTC timing included in the DASH Media Presentation Description (MPD).\u003c/p\u003e",
+        "properties": {
+          "TimingMode": {
+            "$ref": "#/definitions/DashUtcTimingMode"
+          },
+          "TimingSource": {
+            "description": "\u003cp\u003eThe the method that the player uses to synchronize to coordinated universal time (UTC) wall clock time.\u003c/p\u003e",
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "DashUtcTimingMode": {
+        "enum": [
+          "HTTP_HEAD",
+          "HTTP_ISO",
+          "HTTP_XSDATE",
+          "UTC_DIRECT"
         ],
         "type": "string"
       },
@@ -260,6 +372,16 @@
         },
         "type": "object"
       },
+      "ScteDash": {
+        "additionalProperties": false,
+        "description": "\u003cp\u003eThe SCTE configuration.\u003c/p\u003e",
+        "properties": {
+          "AdMarkerDash": {
+            "$ref": "#/definitions/AdMarkerDash"
+          }
+        },
+        "type": "object"
+      },
       "ScteFilter": {
         "enum": [
           "SPLICE_INSERT",
@@ -464,16 +586,41 @@
         "format": "date-time",
         "type": "string"
       },
+      "DashManifestUrls": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "DashManifests": {
+        "description": "\u003cp\u003eA DASH manifest configuration.\u003c/p\u003e",
+        "items": {
+          "$ref": "#/definitions/DashManifestConfiguration"
+        },
+        "type": "array"
+      },
       "Description": {
         "description": "\u003cp\u003eEnter any descriptive text that helps you to identify the origin endpoint.\u003c/p\u003e",
         "maxLength": 1024,
         "minLength": 0,
         "type": "string"
       },
+      "HlsManifestUrls": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
       "HlsManifests": {
         "description": "\u003cp\u003eAn HTTP live streaming (HLS) manifest configuration.\u003c/p\u003e",
         "items": {
           "$ref": "#/definitions/HlsManifestConfiguration"
+        },
+        "type": "array"
+      },
+      "LowLatencyHlsManifestUrls": {
+        "items": {
+          "type": "string"
         },
         "type": "array"
       },
@@ -515,12 +662,17 @@
     "readOnlyProperties": [
       "/properties/Arn",
       "/properties/CreatedAt",
+      "/properties/DashManifestUrls",
+      "/properties/HlsManifestUrls",
+      "/properties/LowLatencyHlsManifestUrls",
       "/properties/ModifiedAt",
       "/properties/LowLatencyHlsManifests/*/Url",
       "/properties/HlsManifests/*/Url"
     ],
     "required": [
-      "ContainerType"
+      "ChannelGroupName",
+      "ChannelName",
+      "OriginEndpointName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-mediapackagev2",
     "tagging": {

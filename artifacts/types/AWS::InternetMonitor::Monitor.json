@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-InternetMonitor-Monitor",
   "type": "AWS::InternetMonitor::Monitor",
-  "time": "2024-01-04T16:22:09.911Z",
+  "time": "2024-06-18T15:53:23.505Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -188,8 +188,17 @@
       "HealthEventsConfig": {
         "$ref": "#/definitions/HealthEventsConfig"
       },
+      "IncludeLinkedAccounts": {
+        "type": "boolean"
+      },
       "InternetMeasurementsLogDelivery": {
         "$ref": "#/definitions/InternetMeasurementsLogDelivery"
+      },
+      "LinkedAccountId": {
+        "maxLength": 12,
+        "minLength": 12,
+        "pattern": "^(\\d{12})$",
+        "type": "string"
       },
       "MaxCityNetworksToMonitor": {
         "maximum": 500000,
@@ -281,7 +290,9 @@
     "typeName": "AWS::InternetMonitor::Monitor",
     "writeOnlyProperties": [
       "/properties/ResourcesToAdd",
-      "/properties/ResourcesToRemove"
+      "/properties/ResourcesToRemove",
+      "/properties/LinkedAccountId",
+      "/properties/IncludeLinkedAccounts"
     ]
   }
 }

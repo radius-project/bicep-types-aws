@@ -3,9 +3,9 @@
 ## Resource AWS.MWAA/Environment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.MWAA/EnvironmentProperties](#awsmwaaenvironmentproperties) (Required): properties of the resource
+* **properties**: [AWS.MWAA/EnvironmentProperties](#awsmwaaenvironmentproperties) (Required, Identifier): properties of the resource
 
 ## AWS.MWAA/EnvironmentProperties
 ### Properties
@@ -28,7 +28,9 @@
 * **ExecutionRoleArn**: string
 * **KmsKey**: string
 * **LoggingConfiguration**: [LoggingConfiguration](#loggingconfiguration)
+* **MaxWebservers**: int
 * **MaxWorkers**: int
+* **MinWebservers**: int
 * **MinWorkers**: int
 * **Name**: string (Required, Identifier)
 * **NetworkConfiguration**: [NetworkConfiguration](#networkconfiguration)
@@ -49,6 +51,9 @@
 ## Environment_AirflowConfigurationOptions
 ### Properties
 
+## Environment_Tags
+### Properties
+
 ## LoggingConfiguration
 ### Properties
 * **DagProcessingLogs**: [ModuleLoggingConfiguration](#moduleloggingconfiguration)
@@ -67,7 +72,4 @@
 ### Properties
 * **SecurityGroupIds**: string[]: A list of security groups to use for the environment.
 * **SubnetIds**: string[]: A list of subnets to use for the environment. These must be private subnets, in the same VPC, in two different availability zones.
-
-## Environment_Tags
-### Properties
 

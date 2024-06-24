@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ACMPCA-CertificateAuthority",
   "type": "AWS::ACMPCA::CertificateAuthority",
-  "time": "2023-12-27T15:53:02.297Z",
+  "time": "2024-06-24T13:37:40.379Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -55,6 +55,9 @@
         "additionalProperties": false,
         "description": "Your certificate authority can create and maintain a certificate revocation list (CRL). A CRL contains information about certificates that have been revoked.",
         "properties": {
+          "CrlDistributionPointExtensionConfiguration": {
+            "$ref": "#/definitions/CrlDistributionPointExtensionConfiguration"
+          },
           "CustomCname": {
             "type": "string"
           },
@@ -71,6 +74,22 @@
             "type": "string"
           }
         },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "CrlDistributionPointExtensionConfiguration": {
+        "additionalProperties": false,
+        "description": "Configures the default behavior of the CRL Distribution Point extension for certificates issued by your certificate authority",
+        "properties": {
+          "OmitExtension": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "OmitExtension"
+        ],
         "type": "object"
       },
       "CsrExtensions": {
@@ -130,8 +149,7 @@
           }
         },
         "required": [
-          "PartyName",
-          "NameAssigner"
+          "PartyName"
         ],
         "type": "object"
       },
@@ -224,6 +242,9 @@
             "type": "string"
           }
         },
+        "required": [
+          "Enabled"
+        ],
         "type": "object"
       },
       "OtherName": {
@@ -329,6 +350,9 @@
             "type": "string"
           }
         },
+        "required": [
+          "Key"
+        ],
         "type": "object"
       },
       "UniformResourceIdentifier": {
@@ -347,7 +371,8 @@
       },
       "delete": {
         "permissions": [
-          "acm-pca:DeleteCertificateAuthority"
+          "acm-pca:DeleteCertificateAuthority",
+          "acm-pca:DescribeCertificateAuthority"
         ]
       },
       "list": {
@@ -436,9 +461,21 @@
       "Subject"
     ],
     "sourceUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_ACMPCA.html",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::ACMPCA::CertificateAuthority",
     "writeOnlyProperties": [
-      "/properties/Subject"
+      "/properties/Subject",
+      "/properties/Subject",
+      "/properties/CsrExtensions",
+      "/properties/Tags",
+      "/properties/RevocationConfiguration",
+      "/properties/KeyStorageSecurityStandard"
     ]
   }
 }

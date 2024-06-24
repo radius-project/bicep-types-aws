@@ -1,0 +1,465 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "CalendarInterval",
+    "properties": {
+      "Duration": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      },
+      "DurationUnit": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "StartTime": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "Epoch time in seconds you want the first interval to start. Be sure to choose a time that configures the intervals the way that you want. For example, if you want weekly intervals starting on Mondays at 6 a.m., be sure to specify a start time that is a Monday at 6 a.m.\nAs soon as one calendar interval ends, another automatically begins."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Dimension",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The name of the dimension. Dimension names must contain only ASCII characters, must include at least one non-whitespace character, and cannot start with a colon (:). ASCII control characters are not supported as part of dimension names."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The value of the dimension. Dimension values must contain only ASCII characters and must include at least one non-whitespace character. ASCII control characters are not supported as part of dimension values"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Duration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DurationUnit",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Goal",
+    "properties": {
+      "AttainmentGoal": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The threshold that determines if the goal is being met. An attainment goal is the ratio of good periods that meet the threshold requirements to the total periods within the interval. For example, an attainment goal of 99.9% means that within your interval, you are targeting 99.9% of the periods to be in healthy state.\nIf you omit this parameter, 99 is used to represent 99% as the attainment goal."
+      },
+      "Interval": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "WarningThreshold": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The percentage of remaining budget over total budget that you want to get warnings for. If you omit this parameter, the default of 50.0 is used."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Interval",
+    "properties": {
+      "CalendarInterval": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
+      "RollingInterval": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KeyAttributes",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Metric",
+    "properties": {
+      "Dimensions": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "An array of one or more dimensions to use to define the metric that you want to use."
+      },
+      "MetricName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The name of the metric to use."
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The namespace of the metric."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricDataQueries",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricDataQuery",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The ID of the account where the metrics are located, if this is a cross-account alarm."
+      },
+      "Expression": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The math expression to be performed on the returned data."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "A short name used to tie this object to the results in the response."
+      },
+      "MetricStat": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "A metric to be used directly for the SLO, or to be used in the math expression that will be used for the SLO. Within one MetricDataQuery, you must specify either Expression or MetricStat but not both."
+      },
+      "ReturnData": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "This option indicates whether to return the timestamps and raw data values of this metric."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricStat",
+    "properties": {
+      "Metric": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "Period": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The granularity, in seconds, to be used for the metric."
+      },
+      "Stat": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The statistic to use for comparison to the threshold. It can be any CloudWatch statistic or extended statistic."
+      },
+      "Unit": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "If you omit Unit then all data that was collected with any unit is returned, along with the corresponding units that were specified when the data was reported to CloudWatch. If you specify a unit, the operation returns only data that was collected with that unit specified. If you specify a unit that does not match the data collected, the results of the operation are null. CloudWatch does not perform unit conversions."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RollingInterval",
+    "properties": {
+      "Duration": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      },
+      "DurationUnit": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Sli",
+    "properties": {
+      "ComparisonOperator": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The arithmetic operation used when comparing the specified metric to the threshold."
+      },
+      "MetricThreshold": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The value that the SLI metric is compared to."
+      },
+      "SliMetric": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SliMetric",
+    "properties": {
+      "KeyAttributes": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "MetricDataQueries": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
+      "MetricType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "If the SLO monitors either the LATENCY or AVAILABILITY metric that Application Signals collects, this field displays which of those metrics is used."
+      },
+      "OperationName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "If the SLO monitors a specific operation of the service, this field displays that operation name."
+      },
+      "PeriodSeconds": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of seconds to use as the period for SLO evaluation. Your application's performance is compared to the SLI during each period. For each period, the application is determined to have either achieved or not achieved the necessary performance."
+      },
+      "Statistic": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The statistic to use for comparison to the threshold. It can be any CloudWatch statistic or extended statistic"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "A string that you can use to assign a value. The combination of tag keys and values can help you organize and categorize your resources."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The value for the specified tag key."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/9"
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/9"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ApplicationSignals/ServiceLevelObjectiveProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ApplicationSignals/ServiceLevelObjectiveProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 18,
+        "description": "The ARN of this SLO."
+      },
+      "CreatedTime": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Epoch time in seconds of the time that this SLO was created"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "An optional description for this SLO. Default is 'No description'"
+      },
+      "Goal": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "LastUpdatedTime": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Epoch time in seconds of the time that this SLO was most recently updated"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The name of this SLO."
+      },
+      "Sli": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ApplicationSignals/ServiceLevelObjective",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ApplicationSignals/ServiceLevelObjective@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/26"
+    },
+    "flags": 0
+  }
+]

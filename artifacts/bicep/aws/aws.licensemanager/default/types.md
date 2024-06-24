@@ -3,16 +3,16 @@
 ## Resource AWS.LicenseManager/Grant@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.LicenseManager/GrantProperties](#awslicensemanagergrantproperties): properties of the resource
+* **properties**: [AWS.LicenseManager/GrantProperties](#awslicensemanagergrantproperties) (Identifier): properties of the resource
 
 ## Resource AWS.LicenseManager/License@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.LicenseManager/LicenseProperties](#awslicensemanagerlicenseproperties) (Required): properties of the resource
+* **properties**: [AWS.LicenseManager/LicenseProperties](#awslicensemanagerlicenseproperties) (Required, Identifier): properties of the resource
 
 ## AWS.LicenseManager/GrantProperties
 ### Properties
@@ -41,20 +41,16 @@
 * **Validity**: [ValidityDateFormat](#validitydateformat) (Required)
 * **Version**: string (ReadOnly): The version of the license.
 
-## ConsumptionConfiguration
-### Properties
-* **BorrowConfiguration**: [BorrowConfiguration](#borrowconfiguration)
-* **ProvisionalConfiguration**: [ProvisionalConfiguration](#provisionalconfiguration)
-* **RenewType**: string
-
 ## BorrowConfiguration
 ### Properties
 * **AllowEarlyCheckIn**: bool (Required)
 * **MaxTimeToLiveInMinutes**: int (Required)
 
-## ProvisionalConfiguration
+## ConsumptionConfiguration
 ### Properties
-* **MaxTimeToLiveInMinutes**: int (Required)
+* **BorrowConfiguration**: [BorrowConfiguration](#borrowconfiguration)
+* **ProvisionalConfiguration**: [ProvisionalConfiguration](#provisionalconfiguration)
+* **RenewType**: string
 
 ## Entitlement
 ### Properties
@@ -74,6 +70,10 @@
 ### Properties
 * **Name**: string (Required)
 * **Value**: string (Required)
+
+## ProvisionalConfiguration
+### Properties
+* **MaxTimeToLiveInMinutes**: int (Required)
 
 ## ValidityDateFormat
 ### Properties

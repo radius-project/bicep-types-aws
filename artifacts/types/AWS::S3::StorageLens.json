@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-S3-StorageLens",
   "type": "AWS::S3::StorageLens",
-  "time": "2023-11-10T19:08:16.062Z",
+  "time": "2024-04-08T15:53:00.409Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -243,6 +243,10 @@
           },
           "Arn": {
             "description": "The ARN of the bucket to which Amazon S3 Storage Lens exports will be placed.",
+            "relationshipRef": {
+              "propertyPath": "/properties/Arn",
+              "typeName": "AWS::S3::Bucket"
+            },
             "type": "string"
           },
           "Encryption": {
@@ -390,13 +394,13 @@
           "Key": {
             "maxLength": 127,
             "minLength": 1,
-            "pattern": "^(?!aws:.*)[a-zA-Z0-9\\s\\_\\.\\/\\=\\+\\-]+$",
+            "pattern": "^(?!aws:.*)[a-zA-Z0-9\\s\\_\\.\\/\\=\\+\\-\\@\\:]+$",
             "type": "string"
           },
           "Value": {
             "maxLength": 255,
             "minLength": 1,
-            "pattern": "^(?!aws:.*)[a-zA-Z0-9\\s\\_\\.\\/\\=\\+\\-\\@]+$",
+            "pattern": "^(?!aws:.*)[a-zA-Z0-9\\s\\_\\.\\/\\=\\+\\-\\@\\:]+$",
             "type": "string"
           }
         },
@@ -478,6 +482,13 @@
       "StorageLensConfiguration"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-s3-storagelens",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::S3::StorageLens"
   }
 }

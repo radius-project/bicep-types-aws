@@ -1,0 +1,697 @@
+[
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityLake/AwsLogSourceProperties"
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityLake/AwsLogSourceProperties",
+    "properties": {
+      "Accounts": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "AWS account where you want to collect logs from."
+      },
+      "DataLakeArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ARN for the data lake."
+      },
+      "SourceName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The name for a AWS source. This must be a Regionally unique value."
+      },
+      "SourceVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The version for a AWS source. This must be a Regionally unique value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityLake/AwsLogSource",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityLake/AwsLogSource@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/4"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Days",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionConfiguration",
+    "properties": {
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The id of KMS encryption key used by Amazon Security Lake to encrypt the Security Lake object."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Expiration",
+    "properties": {
+      "Days": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LifecycleConfiguration",
+    "properties": {
+      "Expiration": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Transitions": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Provides data storage transition details of Amazon Security Lake object."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Regions",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReplicationConfiguration",
+    "properties": {
+      "Regions": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Replication settings for the Amazon S3 buckets. This parameter uses the AWS Identity and Access Management (IAM) role you created that is managed by Security Lake, to ensure the replication setting is correct."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, `_`, `.`, `/`, `=`, `+`, and `-`."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 characters in length."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transitions",
+    "properties": {
+      "Days": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "Number of days before data transitions to a different S3 Storage Class in the Amazon Security Lake object."
+      },
+      "StorageClass": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The range of storage classes that you can choose from based on the data access, resiliency, and cost requirements of your workloads."
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityLake/DataLakeProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityLake/DataLakeProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) created by you to provide to the subscriber."
+      },
+      "EncryptionConfiguration": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "LifecycleConfiguration": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "MetaStoreManagerRoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The Amazon Resource Name (ARN) used to index AWS Glue table partitions that are generated by the ingestion and normalization of AWS log sources and custom sources."
+      },
+      "ReplicationConfiguration": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      },
+      "S3BucketArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ARN for the Amazon Security Lake Amazon S3 bucket."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityLake/DataLake",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityLake/DataLake@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/21"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AccessTypes",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AwsLogSource",
+    "properties": {
+      "SourceName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name for a AWS source. This must be a Regionally unique value."
+      },
+      "SourceVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The version for a AWS source. This must be a Regionally unique value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomLogSource",
+    "properties": {
+      "SourceName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name for a third-party custom source. This must be a Regionally unique value."
+      },
+      "SourceVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The version for a third-party custom source. This must be a Regionally unique value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Source",
+    "properties": {
+      "AwsLogSource": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "CustomLogSource": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the tag. This is a general label that acts as a category for a more specific tag value (value)."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value that is associated with the specified tag key (key). This value acts as a descriptor for the tag key. A tag value cannot be null, but it can be an empty string."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityLake/SubscriberProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/26"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Subscriber_SubscriberIdentity",
+    "properties": {
+      "ExternalId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The external ID used to establish trust relationship with the AWS identity."
+      },
+      "Principal": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The AWS identity principal."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/27"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityLake/SubscriberProperties",
+    "properties": {
+      "AccessTypes": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1
+      },
+      "DataLakeArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ARN for the data lake."
+      },
+      "ResourceShareArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "ResourceShareName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "S3BucketArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "Sources": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 1,
+        "description": "The supported AWS services from which logs and events are collected."
+      },
+      "SubscriberArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18
+      },
+      "SubscriberDescription": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description for your subscriber account in Security Lake."
+      },
+      "SubscriberIdentity": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 1,
+        "description": "The AWS identity used to access your data."
+      },
+      "SubscriberName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of your Security Lake subscriber account."
+      },
+      "SubscriberRoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 0,
+        "description": "An array of objects, one for each tag to associate with the subscriber. For each tag, you must specify both a tag key and a tag value. A tag value cannot be null, but it can be an empty string."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityLake/Subscriber",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityLake/Subscriber@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/35"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HttpsNotificationConfiguration",
+    "properties": {
+      "AuthorizationApiKeyName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The key name for the notification subscription."
+      },
+      "AuthorizationApiKeyValue": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The key value for the notification subscription."
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 5,
+        "description": "The subscription endpoint in Security Lake."
+      },
+      "HttpMethod": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The HTTPS method used for the notification subscription."
+      },
+      "TargetRoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 5,
+        "description": "The Amazon Resource Name (ARN) of the EventBridge API destinations IAM role that you created."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NotificationConfiguration",
+    "properties": {
+      "HttpsNotificationConfiguration": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0
+      },
+      "SqsNotificationConfiguration": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SqsNotificationConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityLake/SubscriberNotificationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityLake/SubscriberNotificationProperties",
+    "properties": {
+      "NotificationConfiguration": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 1
+      },
+      "SubscriberArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The ARN for the subscriber"
+      },
+      "SubscriberEndpoint": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The endpoint the subscriber should listen to for notifications"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityLake/SubscriberNotification",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityLake/SubscriberNotification@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/42"
+    },
+    "flags": 0
+  }
+]

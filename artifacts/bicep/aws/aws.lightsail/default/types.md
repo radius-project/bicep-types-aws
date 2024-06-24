@@ -3,72 +3,97 @@
 ## Resource AWS.Lightsail/Alarm@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lightsail/AlarmProperties](#awslightsailalarmproperties) (Required): properties of the resource
+* **properties**: [AWS.Lightsail/AlarmProperties](#awslightsailalarmproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/Bucket@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lightsail/BucketProperties](#awslightsailbucketproperties) (Required): properties of the resource
+* **properties**: [AWS.Lightsail/BucketProperties](#awslightsailbucketproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/Certificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lightsail/CertificateProperties](#awslightsailcertificateproperties) (Required): properties of the resource
+* **properties**: [AWS.Lightsail/CertificateProperties](#awslightsailcertificateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/Container@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lightsail/ContainerProperties](#awslightsailcontainerproperties) (Required): properties of the resource
+* **properties**: [AWS.Lightsail/ContainerProperties](#awslightsailcontainerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/Database@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lightsail/DatabaseProperties](#awslightsaildatabaseproperties) (Required): properties of the resource
+* **properties**: [AWS.Lightsail/DatabaseProperties](#awslightsaildatabaseproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/Disk@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lightsail/DiskProperties](#awslightsaildiskproperties) (Required): properties of the resource
+* **properties**: [AWS.Lightsail/DiskProperties](#awslightsaildiskproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/Instance@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lightsail/InstanceProperties](#awslightsailinstanceproperties) (Required): properties of the resource
+* **properties**: [AWS.Lightsail/InstanceProperties](#awslightsailinstanceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/LoadBalancer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lightsail/LoadBalancerProperties](#awslightsailloadbalancerproperties) (Required): properties of the resource
+* **properties**: [AWS.Lightsail/LoadBalancerProperties](#awslightsailloadbalancerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/LoadBalancerTlsCertificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lightsail/LoadBalancerTlsCertificateProperties](#awslightsailloadbalancertlscertificateproperties) (Required): properties of the resource
+* **properties**: [AWS.Lightsail/LoadBalancerTlsCertificateProperties](#awslightsailloadbalancertlscertificateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/StaticIp@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Lightsail/StaticIpProperties](#awslightsailstaticipproperties) (Required): properties of the resource
+* **properties**: [AWS.Lightsail/StaticIpProperties](#awslightsailstaticipproperties) (Required, Identifier): properties of the resource
+
+## AccessRules
+### Properties
+* **AllowPublicOverrides**: bool: A Boolean value that indicates whether the access control list (ACL) permissions that are applied to individual objects override the getObject option that is currently specified.
+* **GetObject**: string: Specifies the anonymous access to all objects in a bucket.
+
+## AddOn
+### Properties
+* **AddOnType**: string (Required): The add-on type
+* **AutoSnapshotAddOnRequest**: [AutoSnapshotAddOn](#autosnapshotaddon)
+* **Status**: string: Status of the Addon
+
+## AddOn
+### Properties
+* **AddOnType**: string (Required): The add-on type
+* **AutoSnapshotAddOnRequest**: [AutoSnapshotAddOn](#autosnapshotaddon)
+* **Status**: string: Status of the Addon
+
+## AutoSnapshotAddOn
+### Properties
+* **SnapshotTimeOfDay**: string: The daily time when an automatic snapshot will be created.
+
+## AutoSnapshotAddOn
+### Properties
+* **SnapshotTimeOfDay**: string: The daily time when an automatic snapshot will be created.
 
 ## AWS.Lightsail/AlarmProperties
 ### Properties
@@ -99,16 +124,6 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Url**: string (ReadOnly): The URL of the bucket.
 
-## AccessRules
-### Properties
-* **AllowPublicOverrides**: bool: A Boolean value that indicates whether the access control list (ACL) permissions that are applied to individual objects override the getObject option that is currently specified.
-* **GetObject**: string: Specifies the anonymous access to all objects in a bucket.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.Lightsail/CertificateProperties
 ### Properties
 * **CertificateArn**: string (ReadOnly)
@@ -117,11 +132,6 @@
 * **Status**: string (ReadOnly): The validation status of the certificate.
 * **SubjectAlternativeNames**: string[]: An array of strings that specify the alternate domains (e.g., example2.com) and subdomains (e.g., blog.example.com) for the certificate.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.Lightsail/ContainerProperties
 ### Properties
@@ -136,63 +146,6 @@
 * **ServiceName**: string (Required, Identifier): The name for the container service.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Url**: string (ReadOnly): The publicly accessible URL of the container service.
-
-## ContainerServiceDeployment
-### Properties
-* **Containers**: [Container](#container)[]: An object that describes the configuration for the containers of the deployment.
-* **PublicEndpoint**: [PublicEndpoint](#publicendpoint): An object that describes the endpoint of the deployment.
-
-## Container
-### Properties
-* **Command**: string[]: The launch command for the container.
-* **ContainerName**: string: The name of the container.
-* **Environment**: [EnvironmentVariable](#environmentvariable)[]: The environment variables of the container.
-* **Image**: string: The name of the image used for the container.
-* **Ports**: [PortInfo](#portinfo)[]: The open firewall ports of the container.
-
-## EnvironmentVariable
-### Properties
-* **Value**: string
-* **Variable**: string
-
-## PortInfo
-### Properties
-* **Port**: string
-* **Protocol**: string
-
-## PublicEndpoint
-### Properties
-* **ContainerName**: string: The name of the container for the endpoint.
-* **ContainerPort**: int: The port of the container to which traffic is forwarded to.
-* **HealthCheckConfig**: [HealthCheckConfig](#healthcheckconfig): An object that describes the health check configuration of the container.
-
-## HealthCheckConfig
-### Properties
-* **HealthyThreshold**: int: The number of consecutive health checks successes required before moving the container to the Healthy state. The default value is 2.
-* **IntervalSeconds**: int: The approximate interval, in seconds, between health checks of an individual container. You can specify between 5 and 300 seconds. The default value is 5.
-* **Path**: string: The path on the container on which to perform the health check. The default value is /.
-* **SuccessCodes**: string: The HTTP codes to use when checking for a successful response from a container. You can specify values between 200 and 499. You can specify multiple values (for example, 200,202) or a range of values (for example, 200-299).
-* **TimeoutSeconds**: int: The amount of time, in seconds, during which no response means a failed health check. You can specify between 2 and 60 seconds. The default value is 2.
-* **UnhealthyThreshold**: int: The number of consecutive health check failures required before moving the container to the Unhealthy state. The default value is 2.
-
-## PrivateRegistryAccess
-### Properties
-* **EcrImagePullerRole**: [Container_EcrImagePullerRole](#containerecrimagepullerrole): An object to describe a request to activate or deactivate the role that you can use to grant an Amazon Lightsail container service access to Amazon Elastic Container Registry (Amazon ECR) private repositories.
-
-## Container_EcrImagePullerRole
-### Properties
-* **IsActive**: bool: A Boolean value that indicates whether to activate the role.
-* **PrincipalArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the role, if it is activated.
-
-## PublicDomainName
-### Properties
-* **CertificateName**: string
-* **DomainNames**: string[]: An object that describes the configuration for the containers of the deployment.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.Lightsail/DatabaseProperties
 ### Properties
@@ -213,22 +166,6 @@
 * **RotateMasterUserPassword**: bool (WriteOnly): When true, the master user password is changed to a new strong password generated by Lightsail. Use the get relational database master user password operation to get the new password.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## RelationalDatabaseParameter
-### Properties
-* **AllowedValues**: string: Specifies the valid range of values for the parameter.
-* **ApplyMethod**: string: Indicates when parameter updates are applied. Can be immediate or pending-reboot.
-* **ApplyType**: string: Specifies the engine-specific parameter type.
-* **DataType**: string: Specifies the valid data type for the parameter.
-* **Description**: string: Provides a description of the parameter.
-* **IsModifiable**: bool: A Boolean value indicating whether the parameter can be modified.
-* **ParameterName**: string: Specifies the name of the parameter.
-* **ParameterValue**: string: Specifies the value of the parameter.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.Lightsail/DiskProperties
 ### Properties
 * **AddOns**: [AddOn](#addon)[]: An array of objects representing the add-ons to enable for the new instance.
@@ -247,26 +184,6 @@
 * **SupportCode**: string (ReadOnly): Support code to help identify any issues
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## AddOn
-### Properties
-* **AddOnType**: string (Required): The add-on type
-* **AutoSnapshotAddOnRequest**: [AutoSnapshotAddOn](#autosnapshotaddon)
-* **Status**: string: Status of the Addon
-
-## AutoSnapshotAddOn
-### Properties
-* **SnapshotTimeOfDay**: string: The daily time when an automatic snapshot will be created.
-
-## Location
-### Properties
-* **AvailabilityZone**: string (ReadOnly): The Availability Zone in which to create your disk. Use the following format: us-east-2a (case sensitive). Be sure to add the include Availability Zones parameter to your request.
-* **RegionName**: string (ReadOnly): The Region Name in which to create your disk.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.Lightsail/InstanceProperties
 ### Properties
 * **AddOns**: [AddOn](#addon)[]: An array of objects representing the add-ons to enable for the new instance.
@@ -276,6 +193,7 @@
 * **Hardware**: [Hardware](#hardware)
 * **InstanceArn**: string (ReadOnly)
 * **InstanceName**: string (Required, Identifier): The names to use for your new Lightsail instance.
+* **Ipv6Addresses**: string[] (ReadOnly): IPv6 addresses of the instance
 * **IsStaticIp**: bool (ReadOnly): Is the IP Address of the Instance is the static IP
 * **KeyPairName**: string: The name of your key pair.
 * **Location**: [Location](#location)
@@ -290,69 +208,6 @@
 * **UserData**: string (WriteOnly): A launch script you can create that configures a server with additional user data. For example, you might want to run apt-get -y update.
 * **UserName**: string (ReadOnly): Username of the  Lightsail instance.
 
-## AddOn
-### Properties
-* **AddOnType**: string (Required): The add-on type
-* **AutoSnapshotAddOnRequest**: [AutoSnapshotAddOn](#autosnapshotaddon)
-* **Status**: string: Status of the Addon
-
-## AutoSnapshotAddOn
-### Properties
-* **SnapshotTimeOfDay**: string: The daily time when an automatic snapshot will be created.
-
-## Hardware
-### Properties
-* **CpuCount**: int (ReadOnly): CPU count of the Instance.
-* **Disks**: [Disk](#disk)[]: Disks attached to the Instance.
-* **RamSizeInGb**: int (ReadOnly): RAM Size of the Instance.
-
-## Disk
-### Properties
-* **AttachedTo**: string: Instance attached to the disk.
-* **AttachmentState**: string: Attachment state of the disk.
-* **DiskName**: string (Required): The names to use for your new Lightsail disk.
-* **IOPS**: int: IOPS of disk.
-* **IsSystemDisk**: bool: Is the Attached disk is the system disk of the Instance.
-* **Path**: string (Required): Path of the disk attached to the instance.
-* **SizeInGb**: string: Size of the disk attached to the Instance.
-
-## Location
-### Properties
-* **AvailabilityZone**: string (ReadOnly): The Availability Zone in which to create your instance. Use the following format: us-east-2a (case sensitive). Be sure to add the include Availability Zones parameter to your request.
-* **RegionName**: string (ReadOnly): The Region Name in which to create your instance.
-
-## Networking
-### Properties
-* **MonthlyTransfer**: [MonthlyTransfer](#monthlytransfer)
-* **Ports**: [Port](#port)[] (Required): Ports to the Instance.
-
-## MonthlyTransfer
-### Properties
-* **GbPerMonthAllocated**: string (ReadOnly): GbPerMonthAllocated of the Instance.
-
-## Port
-### Properties
-* **AccessDirection**: string: Access Direction for Protocol of the Instance(inbound/outbound).
-* **AccessFrom**: string: Access From Protocol of the Instance.
-* **AccessType**: string: Access Type Protocol of the Instance.
-* **CidrListAliases**: string[]
-* **Cidrs**: string[]
-* **CommonName**: string: CommonName for Protocol of the Instance.
-* **FromPort**: int: From Port of the Instance.
-* **Ipv6Cidrs**: string[]
-* **Protocol**: string: Port Protocol of the Instance.
-* **ToPort**: int: To Port of the Instance.
-
-## State
-### Properties
-* **Code**: int (ReadOnly): Status code of the Instance.
-* **Name**: string (ReadOnly): Status code of the Instance.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.Lightsail/LoadBalancerProperties
 ### Properties
 * **AttachedInstances**: string[]: The names of the instances attached to the load balancer.
@@ -365,11 +220,6 @@
 * **SessionStickinessLBCookieDurationSeconds**: string: Configuration option to adjust session stickiness cookie duration parameter.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TlsPolicyName**: string: The name of the TLS policy to apply to the load balancer.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.Lightsail/LoadBalancerTlsCertificateProperties
 ### Properties
@@ -389,4 +239,155 @@
 * **IsAttached**: bool (ReadOnly): A Boolean value indicating whether the static IP is attached.
 * **StaticIpArn**: string (ReadOnly)
 * **StaticIpName**: string (Required, Identifier): The name of the static IP address.
+
+## Container
+### Properties
+* **Command**: string[]: The launch command for the container.
+* **ContainerName**: string: The name of the container.
+* **Environment**: [EnvironmentVariable](#environmentvariable)[]: The environment variables of the container.
+* **Image**: string: The name of the image used for the container.
+* **Ports**: [PortInfo](#portinfo)[]: The open firewall ports of the container.
+
+## Container_EcrImagePullerRole
+### Properties
+* **IsActive**: bool: A Boolean value that indicates whether to activate the role.
+* **PrincipalArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the role, if it is activated.
+
+## ContainerServiceDeployment
+### Properties
+* **Containers**: [Container](#container)[]: An object that describes the configuration for the containers of the deployment.
+* **PublicEndpoint**: [PublicEndpoint](#publicendpoint): An object that describes the endpoint of the deployment.
+
+## Disk
+### Properties
+* **AttachedTo**: string: Instance attached to the disk.
+* **AttachmentState**: string: Attachment state of the disk.
+* **DiskName**: string (Required): The names to use for your new Lightsail disk.
+* **IOPS**: int: IOPS of disk.
+* **IsSystemDisk**: bool: Is the Attached disk is the system disk of the Instance.
+* **Path**: string (Required): Path of the disk attached to the instance.
+* **SizeInGb**: string: Size of the disk attached to the Instance.
+
+## EnvironmentVariable
+### Properties
+* **Value**: string
+* **Variable**: string
+
+## Hardware
+### Properties
+* **CpuCount**: int (ReadOnly): CPU count of the Instance.
+* **Disks**: [Disk](#disk)[]: Disks attached to the Instance.
+* **RamSizeInGb**: int (ReadOnly): RAM Size of the Instance.
+
+## HealthCheckConfig
+### Properties
+* **HealthyThreshold**: int: The number of consecutive health checks successes required before moving the container to the Healthy state. The default value is 2.
+* **IntervalSeconds**: int: The approximate interval, in seconds, between health checks of an individual container. You can specify between 5 and 300 seconds. The default value is 5.
+* **Path**: string: The path on the container on which to perform the health check. The default value is /.
+* **SuccessCodes**: string: The HTTP codes to use when checking for a successful response from a container. You can specify values between 200 and 499. You can specify multiple values (for example, 200,202) or a range of values (for example, 200-299).
+* **TimeoutSeconds**: int: The amount of time, in seconds, during which no response means a failed health check. You can specify between 2 and 60 seconds. The default value is 2.
+* **UnhealthyThreshold**: int: The number of consecutive health check failures required before moving the container to the Unhealthy state. The default value is 2.
+
+## Location
+### Properties
+* **AvailabilityZone**: string (ReadOnly): The Availability Zone in which to create your disk. Use the following format: us-east-2a (case sensitive). Be sure to add the include Availability Zones parameter to your request.
+* **RegionName**: string (ReadOnly): The Region Name in which to create your disk.
+
+## Location
+### Properties
+* **AvailabilityZone**: string (ReadOnly): The Availability Zone in which to create your instance. Use the following format: us-east-2a (case sensitive). Be sure to add the include Availability Zones parameter to your request.
+* **RegionName**: string (ReadOnly): The Region Name in which to create your instance.
+
+## MonthlyTransfer
+### Properties
+* **GbPerMonthAllocated**: string (ReadOnly): GbPerMonthAllocated of the Instance.
+
+## Networking
+### Properties
+* **MonthlyTransfer**: [MonthlyTransfer](#monthlytransfer)
+* **Ports**: [Port](#port)[] (Required): Ports to the Instance.
+
+## Port
+### Properties
+* **AccessDirection**: string: Access Direction for Protocol of the Instance(inbound/outbound).
+* **AccessFrom**: string: Access From Protocol of the Instance.
+* **AccessType**: string: Access Type Protocol of the Instance.
+* **CidrListAliases**: string[]
+* **Cidrs**: string[]
+* **CommonName**: string: CommonName for Protocol of the Instance.
+* **FromPort**: int: From Port of the Instance.
+* **Ipv6Cidrs**: string[]
+* **Protocol**: string: Port Protocol of the Instance.
+* **ToPort**: int: To Port of the Instance.
+
+## PortInfo
+### Properties
+* **Port**: string
+* **Protocol**: string
+
+## PrivateRegistryAccess
+### Properties
+* **EcrImagePullerRole**: [Container_EcrImagePullerRole](#containerecrimagepullerrole): An object to describe a request to activate or deactivate the role that you can use to grant an Amazon Lightsail container service access to Amazon Elastic Container Registry (Amazon ECR) private repositories.
+
+## PublicDomainName
+### Properties
+* **CertificateName**: string
+* **DomainNames**: string[]: An object that describes the configuration for the containers of the deployment.
+
+## PublicEndpoint
+### Properties
+* **ContainerName**: string: The name of the container for the endpoint.
+* **ContainerPort**: int: The port of the container to which traffic is forwarded to.
+* **HealthCheckConfig**: [HealthCheckConfig](#healthcheckconfig): An object that describes the health check configuration of the container.
+
+## RelationalDatabaseParameter
+### Properties
+* **AllowedValues**: string: Specifies the valid range of values for the parameter.
+* **ApplyMethod**: string: Indicates when parameter updates are applied. Can be immediate or pending-reboot.
+* **ApplyType**: string: Specifies the engine-specific parameter type.
+* **DataType**: string: Specifies the valid data type for the parameter.
+* **Description**: string: Provides a description of the parameter.
+* **IsModifiable**: bool: A Boolean value indicating whether the parameter can be modified.
+* **ParameterName**: string: Specifies the name of the parameter.
+* **ParameterValue**: string: Specifies the value of the parameter.
+
+## State
+### Properties
+* **Code**: int (ReadOnly): Status code of the Instance.
+* **Name**: string (ReadOnly): Status code of the Instance.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 

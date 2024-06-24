@@ -3,23 +3,23 @@
 ## Resource AWS.Proton/EnvironmentAccountConnection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Proton/EnvironmentAccountConnectionProperties](#awsprotonenvironmentaccountconnectionproperties): properties of the resource
+* **properties**: [AWS.Proton/EnvironmentAccountConnectionProperties](#awsprotonenvironmentaccountconnectionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Proton/EnvironmentTemplate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Proton/EnvironmentTemplateProperties](#awsprotonenvironmenttemplateproperties): properties of the resource
+* **properties**: [AWS.Proton/EnvironmentTemplateProperties](#awsprotonenvironmenttemplateproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Proton/ServiceTemplate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Proton/ServiceTemplateProperties](#awsprotonservicetemplateproperties): properties of the resource
+* **properties**: [AWS.Proton/ServiceTemplateProperties](#awsprotonservicetemplateproperties) (Identifier): properties of the resource
 
 ## AWS.Proton/EnvironmentAccountConnectionProperties
 ### Properties
@@ -36,11 +36,6 @@
          <p>For more information, see <a href="https://docs.aws.amazon.com/proton/latest/userguide/resources.html">Proton resources and tagging</a> in the
         <i>Proton User Guide</i>.</p>
 
-## Tag
-### Properties
-* **Key**: string (Required): <p>The key of the resource tag.</p>
-* **Value**: string (Required): <p>The value of the resource tag.</p>
-
 ## AWS.Proton/EnvironmentTemplateProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): <p>The Amazon Resource Name (ARN) of the environment template.</p>
@@ -53,11 +48,6 @@
          <p>For more information, see <a href="https://docs.aws.amazon.com/proton/latest/userguide/resources.html">Proton resources and tagging</a> in the
         <i>Proton User Guide</i>.</p>
 
-## Tag
-### Properties
-* **Key**: string (Required): <p>The key of the resource tag.</p>
-* **Value**: string (Required): <p>The value of the resource tag.</p>
-
 ## AWS.Proton/ServiceTemplateProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): <p>The Amazon Resource Name (ARN) of the service template.</p>
@@ -69,6 +59,16 @@
 * **Tags**: [Tag](#tag)[]: <p>An optional list of metadata items that you can associate with the Proton service template. A tag is a key-value pair.</p>
          <p>For more information, see <a href="https://docs.aws.amazon.com/proton/latest/userguide/resources.html">Proton resources and tagging</a> in the
         <i>Proton User Guide</i>.</p>
+
+## Tag
+### Properties
+* **Key**: string (Required): <p>The key of the resource tag.</p>
+* **Value**: string (Required): <p>The value of the resource tag.</p>
+
+## Tag
+### Properties
+* **Key**: string (Required): <p>The key of the resource tag.</p>
+* **Value**: string (Required): <p>The value of the resource tag.</p>
 
 ## Tag
 ### Properties

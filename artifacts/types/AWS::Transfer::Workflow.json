@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Transfer-Workflow",
   "type": "AWS::Transfer::Workflow",
-  "time": "2024-01-03T14:21:15.396Z",
+  "time": "2024-06-10T18:43:27.176Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -228,6 +228,10 @@
                 "type": "string"
               }
             },
+            "required": [
+              "DestinationFileLocation",
+              "Type"
+            ],
             "type": "object"
           },
           "DeleteStepDetails": {
@@ -389,7 +393,13 @@
     "required": [
       "Steps"
     ],
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Transfer::Workflow"
   }
 }

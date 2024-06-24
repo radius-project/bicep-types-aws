@@ -3,65 +3,81 @@
 ## Resource AWS.GameLift/Alias@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/AliasProperties](#awsgameliftaliasproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/AliasProperties](#awsgameliftaliasproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/Build@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/BuildProperties](#awsgameliftbuildproperties): properties of the resource
+* **properties**: [AWS.GameLift/BuildProperties](#awsgameliftbuildproperties) (Identifier): properties of the resource
+
+## Resource AWS.GameLift/ContainerGroupDefinition@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.GameLift/ContainerGroupDefinitionProperties](#awsgameliftcontainergroupdefinitionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/Fleet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/FleetProperties](#awsgameliftfleetproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/FleetProperties](#awsgameliftfleetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/GameServerGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/GameServerGroupProperties](#awsgameliftgameservergroupproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/GameServerGroupProperties](#awsgameliftgameservergroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/GameSessionQueue@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/GameSessionQueueProperties](#awsgameliftgamesessionqueueproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/GameSessionQueueProperties](#awsgameliftgamesessionqueueproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/Location@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/LocationProperties](#awsgameliftlocationproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/LocationProperties](#awsgameliftlocationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/MatchmakingConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/MatchmakingConfigurationProperties](#awsgameliftmatchmakingconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/MatchmakingConfigurationProperties](#awsgameliftmatchmakingconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/MatchmakingRuleSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/MatchmakingRuleSetProperties](#awsgameliftmatchmakingrulesetproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/MatchmakingRuleSetProperties](#awsgameliftmatchmakingrulesetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GameLift/Script@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GameLift/ScriptProperties](#awsgameliftscriptproperties) (Required): properties of the resource
+* **properties**: [AWS.GameLift/ScriptProperties](#awsgameliftscriptproperties) (Required, Identifier): properties of the resource
+
+## AnywhereConfiguration
+### Properties
+* **Cost**: string (Required): Cost of compute can be specified on Anywhere Fleets to prioritize placement across Queue destinations based on Cost.
+
+## AutoScalingPolicy
+### Properties
+* **EstimatedInstanceWarmup**: int
+* **TargetTrackingConfiguration**: [TargetTrackingConfiguration](#targettrackingconfiguration) (Required)
 
 ## AWS.GameLift/AliasProperties
 ### Properties
@@ -69,12 +85,6 @@
 * **Description**: string: A human-readable description of the alias.
 * **Name**: string (Required): A descriptive label that is associated with an alias. Alias names do not need to be unique.
 * **RoutingStrategy**: [RoutingStrategy](#routingstrategy) (Required): A routing configuration that specifies where traffic is directed for this alias, such as to a fleet or to a message.
-
-## RoutingStrategy
-### Properties
-* **FleetId**: string: A unique identifier for a fleet that the alias points to. If you specify SIMPLE for the Type property, you must specify this property.
-* **Message**: string: The message text to be used with a terminal routing strategy. If you specify TERMINAL for the Type property, you must specify this property.
-* **Type**: string (Required): Simple routing strategy. The alias resolves to one specific fleet. Use this type when routing to active fleets.
 
 ## AWS.GameLift/BuildProperties
 ### Properties
@@ -85,20 +95,26 @@
 * **StorageLocation**: [StorageLocation](#storagelocation) (WriteOnly): Information indicating where your game build files are stored. Use this parameter only when creating a build with files stored in an Amazon S3 bucket that you own. The storage location must specify an Amazon S3 bucket name and key. The location must also specify a role ARN that you set up to allow Amazon GameLift to access your Amazon S3 bucket. The S3 bucket and your new build must be in the same Region.
 * **Version**: string: Version information that is associated with this build. Version strings do not need to be unique.
 
-## StorageLocation
+## AWS.GameLift/ContainerGroupDefinitionProperties
 ### Properties
-* **Bucket**: string (Required): An Amazon S3 bucket identifier. This is the name of the S3 bucket.
-* **Key**: string (Required): The name of the zip file that contains the build files or script files.
-* **ObjectVersion**: string: The version of the file, if object versioning is turned on for the bucket. Amazon GameLift uses this information when retrieving files from your S3 bucket. To retrieve a specific version of the file, provide an object version. To retrieve the latest version of the file, do not set this parameter.
-* **RoleArn**: string (Required): The Amazon Resource Name (ARN) for an IAM role that allows Amazon GameLift to access the S3 bucket.
+* **ContainerDefinitions**: [ContainerDefinition](#containerdefinition)[] (Required, ReadOnly): A collection of container definitions that define the containers in this group.
+* **ContainerGroupDefinitionArn**: string (ReadOnly): The Amazon Resource Name (ARN) that is assigned to a Amazon GameLift container group resource and uniquely identifies it across all AWS Regions.
+* **CreationTime**: string (ReadOnly): A time stamp indicating when this data object was created. Format is a number expressed in Unix time as milliseconds (for example "1469498468.057").
+* **Name**: string (Required, Identifier): A descriptive label for the container group definition.
+* **OperatingSystem**: string (Required): The operating system of the container group
+* **SchedulingStrategy**: string: Specifies whether the container group includes replica or daemon containers.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **TotalCpuLimit**: int (Required): The maximum number of CPU units reserved for this container group. The value is expressed as an integer amount of CPU units. (1 vCPU is equal to 1024 CPU units.)
+* **TotalMemoryLimit**: int (Required): The maximum amount of memory (in MiB) to allocate for this container group.
 
 ## AWS.GameLift/FleetProperties
 ### Properties
 * **AnywhereConfiguration**: [AnywhereConfiguration](#anywhereconfiguration): Configuration for Anywhere fleet.
-* **ApplyCapacity**: string: ComputeType to differentiate EC2 hardware managed by GameLift and Anywhere hardware managed by the customer.
+* **ApplyCapacity**: string (WriteOnly): Determines whether to apply fleet or location capacities on fleet creation.
 * **BuildId**: string: A unique identifier for a build to be deployed on the new fleet. If you are deploying the fleet with a custom game build, you must specify this property. The build must have been successfully uploaded to Amazon GameLift and be in a READY status. This fleet setting cannot be changed once the fleet is created.
 * **CertificateConfiguration**: [CertificateConfiguration](#certificateconfiguration): Indicates whether to generate a TLS/SSL certificate for the new fleet. TLS certificates are used for encrypting traffic between game clients and game servers running on GameLift. If this parameter is not set, certificate generation is disabled. This fleet setting cannot be changed once the fleet is created.
 * **ComputeType**: string: ComputeType to differentiate EC2 hardware managed by GameLift and Anywhere hardware managed by the customer.
+* **ContainerGroupsConfiguration**: [ContainerGroupsConfiguration](#containergroupsconfiguration)
 * **Description**: string: A human-readable description of a fleet.
 * **DesiredEC2Instances**: int: [DEPRECATED] The number of EC2 instances that you want this fleet to host. When creating a new fleet, GameLift automatically sets this value to "1" and initiates a single instance. Once the fleet is active, update this value to trigger GameLift to add or remove instances from the fleet.
 * **EC2InboundPermissions**: [IpPermission](#ippermission)[]: A range of IP addresses and port settings that allow inbound traffic to connect to server processes on an Amazon GameLift server.
@@ -127,113 +143,22 @@ Note: It is not currently possible to use the !Ref command to reference a script
 * **ServerLaunchParameters**: string: This parameter is no longer used but is retained for backward compatibility. Instead, specify server launch parameters in the RuntimeConfiguration parameter. A request must specify either a runtime configuration or values for both ServerLaunchParameters and ServerLaunchPath.
 * **ServerLaunchPath**: string: This parameter is no longer used. Instead, specify a server launch path using the RuntimeConfiguration parameter. Requests that specify a server launch path and launch parameters instead of a runtime configuration will continue to work.
 
-## AnywhereConfiguration
-### Properties
-* **Cost**: string (Required): Cost of compute can be specified on Anywhere Fleets to prioritize placement across Queue destinations based on Cost.
-
-## CertificateConfiguration
-### Properties
-* **CertificateType**: string (Required)
-
-## IpPermission
-### Properties
-* **FromPort**: int (Required): A starting value for a range of allowed port numbers.
-* **IpRange**: string (Required): A range of allowed IP addresses. This value must be expressed in CIDR notation. Example: "000.000.000.000/[subnet mask]" or optionally the shortened version "0.0.0.0/[subnet mask]".
-* **Protocol**: string (Required): The network communication protocol used by the fleet.
-* **ToPort**: int (Required): An ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than FromPort.
-
-## LocationConfiguration
-### Properties
-* **Location**: string (Required)
-* **LocationCapacity**: [LocationCapacity](#locationcapacity)
-
-## LocationCapacity
-### Properties
-* **DesiredEC2Instances**: int (Required): The number of EC2 instances you want to maintain in the specified fleet location. This value must fall between the minimum and maximum size limits.
-* **MaxSize**: int (Required): The maximum value that is allowed for the fleet's instance count for a location. When creating a new fleet, GameLift automatically sets this value to "1". Once the fleet is active, you can change this value.
-* **MinSize**: int (Required): The minimum value allowed for the fleet's instance count for a location. When creating a new fleet, GameLift automatically sets this value to "0". After the fleet is active, you can change this value.
-
-## ResourceCreationLimitPolicy
-### Properties
-* **NewGameSessionsPerCreator**: int: The maximum number of game sessions that an individual can create during the policy period.
-* **PolicyPeriodInMinutes**: int: The time span used in evaluating the resource creation limit policy.
-
-## RuntimeConfiguration
-### Properties
-* **GameSessionActivationTimeoutSeconds**: int: The maximum amount of time (in seconds) that a game session can remain in status ACTIVATING. If the game session is not active before the timeout, activation is terminated and the game session status is changed to TERMINATED.
-* **MaxConcurrentGameSessionActivations**: int: The maximum number of game sessions with status ACTIVATING to allow on an instance simultaneously. This setting limits the amount of instance resources that can be used for new game activations at any one time.
-* **ServerProcesses**: [ServerProcess](#serverprocess)[]: A collection of server process configurations that describe which server processes to run on each instance in a fleet.
-
-## ServerProcess
-### Properties
-* **ConcurrentExecutions**: int (Required): The number of server processes that use this configuration to run concurrently on an instance.
-* **LaunchPath**: string (Required): The location of the server executable in a custom game build or the name of the Realtime script file that contains the Init() function. Game builds and Realtime scripts are installed on instances at the root:
-
-Windows (for custom game builds only): C:\game. Example: "C:\game\MyGame\server.exe"
-
-Linux: /local/game. Examples: "/local/game/MyGame/server.exe" or "/local/game/MyRealtimeScript.js"
-* **Parameters**: string: An optional list of parameters to pass to the server executable or Realtime script on launch.
-
-## ScalingPolicy
-### Properties
-* **ComparisonOperator**: string: Comparison operator to use when measuring a metric against the threshold value.
-* **EvaluationPeriods**: int: Length of time (in minutes) the metric must be at or beyond the threshold before a scaling event is triggered.
-* **Location**: string
-* **MetricName**: string (Required): Name of the Amazon GameLift-defined metric that is used to trigger a scaling adjustment.
-* **Name**: string (Required): A descriptive label that is associated with a fleet's scaling policy. Policy names do not need to be unique.
-* **PolicyType**: string: The type of scaling policy to create. For a target-based policy, set the parameter MetricName to 'PercentAvailableGameSessions' and specify a TargetConfiguration. For a rule-based policy set the following parameters: MetricName, ComparisonOperator, Threshold, EvaluationPeriods, ScalingAdjustmentType, and ScalingAdjustment.
-* **ScalingAdjustment**: int: Amount of adjustment to make, based on the scaling adjustment type.
-* **ScalingAdjustmentType**: string: The type of adjustment to make to a fleet's instance count.
-* **Status**: string: Current status of the scaling policy. The scaling policy can be in force only when in an ACTIVE status. Scaling policies can be suspended for individual fleets. If the policy is suspended for a fleet, the policy status does not change.
-* **TargetConfiguration**: [TargetConfiguration](#targetconfiguration): An object that contains settings for a target-based scaling policy.
-* **Threshold**: int: Metric value used to trigger a scaling event.
-* **UpdateStatus**: string: The current status of the fleet's scaling policies in a requested fleet location. The status PENDING_UPDATE indicates that an update was requested for the fleet but has not yet been completed for the location.
-
-## TargetConfiguration
-### Properties
-* **TargetValue**: int (Required): Desired value to use with a target-based scaling policy. The value must be relevant for whatever metric the scaling policy is using. For example, in a policy using the metric PercentAvailableGameSessions, the target value should be the preferred size of the fleet's buffer (the percent of capacity that should be idle and ready for new game sessions).
-
 ## AWS.GameLift/GameServerGroupProperties
 ### Properties
 * **AutoScalingGroupArn**: string (ReadOnly): A generated unique ID for the EC2 Auto Scaling group that is associated with this game server group.
-* **AutoScalingPolicy**: [AutoScalingPolicy](#autoscalingpolicy) (WriteOnly): Configuration settings to define a scaling policy for the Auto Scaling group that is optimized for game hosting
+* **AutoScalingPolicy**: [AutoScalingPolicy](#autoscalingpolicy) (WriteOnly): Configuration settings to define a scaling policy for the Auto Scaling group that is optimized for game hosting. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.
 * **BalancingStrategy**: string: The fallback balancing method to use for the game server group when Spot Instances in a Region become unavailable or are not viable for game hosting.
 * **DeleteOption**: string (WriteOnly): The type of delete to perform.
 * **GameServerGroupArn**: string (ReadOnly, Identifier): A generated unique ID for the game server group.
 * **GameServerGroupName**: string (Required): An identifier for the new game server group.
 * **GameServerProtectionPolicy**: string: A flag that indicates whether instances in the game server group are protected from early termination.
 * **InstanceDefinitions**: [InstanceDefinition](#instancedefinition)[] (Required): A set of EC2 instance types to use when creating instances in the group.
-* **LaunchTemplate**: [LaunchTemplate](#launchtemplate) (WriteOnly): The EC2 launch template that contains configuration settings and game server code to be deployed to all instances in the game server group.
-* **MaxSize**: int (WriteOnly): The maximum number of instances allowed in the EC2 Auto Scaling group.
-* **MinSize**: int (WriteOnly): The minimum number of instances allowed in the EC2 Auto Scaling group.
+* **LaunchTemplate**: [LaunchTemplate](#launchtemplate) (WriteOnly): The EC2 launch template that contains configuration settings and game server code to be deployed to all instances in the game server group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.
+* **MaxSize**: int (WriteOnly): The maximum number of instances allowed in the EC2 Auto Scaling group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.
+* **MinSize**: int (WriteOnly): The minimum number of instances allowed in the EC2 Auto Scaling group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.
 * **RoleArn**: string (Required): The Amazon Resource Name (ARN) for an IAM role that allows Amazon GameLift to access your EC2 Auto Scaling groups.
-* **Tags**: [Tag](#tag)[] (WriteOnly): A list of labels to assign to the new game server group resource.
-* **VpcSubnets**: string[] (WriteOnly): A list of virtual private cloud (VPC) subnets to use with instances in the game server group.
-
-## AutoScalingPolicy
-### Properties
-* **EstimatedInstanceWarmup**: int
-* **TargetTrackingConfiguration**: [TargetTrackingConfiguration](#targettrackingconfiguration) (Required)
-
-## TargetTrackingConfiguration
-### Properties
-* **TargetValue**: int (Required)
-
-## InstanceDefinition
-### Properties
-* **InstanceType**: string (Required)
-* **WeightedCapacity**: string
-
-## LaunchTemplate
-### Properties
-* **LaunchTemplateId**: string
-* **LaunchTemplateName**: string
-* **Version**: string
-
-## Tag
-### Properties
-* **Key**: string: The key for a developer-defined key:value pair for tagging an AWS resource.
-* **Value**: string: The value for a developer-defined key:value pair for tagging an AWS resource.
+* **Tags**: [Tag](#tag)[] (WriteOnly): A list of labels to assign to the new game server group resource. Updating game server group tags with CloudFormation will not take effect. Please update this property using AWS GameLift APIs instead.
+* **VpcSubnets**: string[] (WriteOnly): A list of virtual private cloud (VPC) subnets to use with instances in the game server group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource.
 
 ## AWS.GameLift/GameSessionQueueProperties
 ### Properties
@@ -248,39 +173,11 @@ Linux: /local/game. Examples: "/local/game/MyGame/server.exe" or "/local/game/My
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TimeoutInSeconds**: int: The maximum time, in seconds, that a new game session placement request remains in the queue.
 
-## GameSessionQueueDestination
-### Properties
-* **DestinationArn**: string
-
-## GameSessionQueue_FilterConfiguration
-### Properties
-* **AllowedLocations**: string[]
-
-## PlayerLatencyPolicy
-### Properties
-* **MaximumIndividualPlayerLatencyMilliseconds**: int: The maximum latency value that is allowed for any player, in milliseconds. All policies must have a value set for this property.
-* **PolicyDurationSeconds**: int: The length of time, in seconds, that the policy is enforced while placing a new game session.
-
-## GameSessionQueue_PriorityConfiguration
-### Properties
-* **LocationOrder**: string[]
-* **PriorityOrder**: string[]
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length.
-
 ## AWS.GameLift/LocationProperties
 ### Properties
 * **LocationArn**: string (ReadOnly)
 * **LocationName**: string (Required, Identifier)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length.
 
 ## AWS.GameLift/MatchmakingConfigurationProperties
 ### Properties
@@ -303,16 +200,6 @@ Linux: /local/game. Examples: "/local/game/MyGame/server.exe" or "/local/game/My
 * **RuleSetName**: string (Required): A unique identifier for the matchmaking rule set to use with this configuration.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
-## GameProperty
-### Properties
-* **Key**: string (Required): The game property identifier.
-* **Value**: string (Required): The game property value.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length.
-
 ## AWS.GameLift/MatchmakingRuleSetProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) that is assigned to a Amazon GameLift matchmaking rule set resource and uniquely identifies it.
@@ -320,11 +207,6 @@ Linux: /local/game. Examples: "/local/game/MyGame/server.exe" or "/local/game/My
 * **Name**: string (Required, Identifier): A unique identifier for the matchmaking rule set.
 * **RuleSetBody**: string (Required): A collection of matchmaking rules, formatted as a JSON string.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length.
 
 ## AWS.GameLift/ScriptProperties
 ### Properties
@@ -337,6 +219,159 @@ Linux: /local/game. Examples: "/local/game/MyGame/server.exe" or "/local/game/My
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Version**: string: The version that is associated with a script. Version strings do not need to be unique.
 
+## CertificateConfiguration
+### Properties
+* **CertificateType**: string (Required)
+
+## ConnectionPortRange
+### Properties
+* **FromPort**: int (Required): A starting value for a range of allowed port numbers.
+* **ToPort**: int (Required): An ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than FromPort.
+
+## ContainerDefinition
+### Properties
+* **Command**: string[]: The command that's passed to the container.
+* **ContainerName**: string (Required): A descriptive label for the container definition. Container definition names must be unique with a container group definition.
+* **Cpu**: int: The maximum number of CPU units reserved for this container. The value is expressed as an integer amount of CPU units. 1 vCPU is equal to 1024 CPU units
+* **DependsOn**: [ContainerDependency](#containerdependency)[]: A list of container dependencies that determines when this container starts up and shuts down. For container groups with multiple containers, dependencies let you define a startup/shutdown sequence across the containers.
+* **EntryPoint**: string[]: The entry point that's passed to the container so that it will run as an executable. If there are multiple arguments, each argument is a string in the array.
+* **Environment**: [ContainerEnvironment](#containerenvironment)[]: The environment variables to pass to a container.
+* **Essential**: bool: Specifies if the container is essential. If an essential container fails a health check, then all containers in the container group will be restarted. You must specify exactly 1 essential container in a container group.
+* **HealthCheck**: [ContainerHealthCheck](#containerhealthcheck): Specifies how the health of the containers will be checked.
+* **ImageUri**: string (Required): Specifies the image URI of this container.
+* **MemoryLimits**: [MemoryLimits](#memorylimits): Specifies how much memory is available to the container. You must specify at least this parameter or the TotalMemoryLimit parameter of the ContainerGroupDefinition.
+* **PortConfiguration**: [PortConfiguration](#portconfiguration): Defines the ports on the container.
+* **ResolvedImageDigest**: string: The digest of the container image.
+* **WorkingDirectory**: string: The working directory to run commands inside the container in.
+
+## ContainerDependency
+### Properties
+* **Condition**: string (Required): The type of dependency.
+* **ContainerName**: string (Required): A descriptive label for the container definition. The container being defined depends on this container's condition.
+
+## ContainerEnvironment
+### Properties
+* **Name**: string (Required, Identifier): The environment variable name.
+* **Value**: string (Required): The environment variable value.
+
+## ContainerGroupsConfiguration
+### Properties
+* **ConnectionPortRange**: [ConnectionPortRange](#connectionportrange) (Required)
+* **ContainerGroupDefinitionNames**: string[] (Required): The names of the container group definitions that will be created in an instance. You must specify exactly one REPLICA container group. You have the option to also specify one DAEMON container group.
+* **ContainerGroupsPerInstance**: [ContainerGroupsPerInstance](#containergroupsperinstance)
+
+## ContainerGroupsPerInstance
+### Properties
+* **DesiredReplicaContainerGroupsPerInstance**: int: Use this parameter to override the number of replica container groups GameLift will launch per instance with a number that is lower than that calculated maximum.
+* **MaxReplicaContainerGroupsPerInstance**: int (ReadOnly): GameLift calculates the maximum number of replica container groups it can launch per instance based on instance properties such as CPU, memory, and connection ports.
+
+## ContainerHealthCheck
+### Properties
+* **Command**: string[] (Required): A string array representing the command that the container runs to determine if it is healthy.
+* **Interval**: int: How often (in seconds) the health is checked.
+* **Retries**: int: How many times the process manager will retry the command after a timeout. (The first run of the command does not count as a retry.)
+* **StartPeriod**: int: The optional grace period (in seconds) to give a container time to boostrap before teh health check is declared failed.
+* **Timeout**: int: How many seconds the process manager allows the command to run before canceling it.
+
+## ContainerPortRange
+### Properties
+* **FromPort**: int (Required): A starting value for the range of allowed port numbers.
+* **Protocol**: string (Required): Defines the protocol of these ports.
+* **ToPort**: int (Required): An ending value for the range of allowed port numbers. Port numbers are end-inclusive. This value must be equal to or greater than FromPort.
+
+## GameProperty
+### Properties
+* **Key**: string (Required): The game property identifier.
+* **Value**: string (Required): The game property value.
+
+## GameSessionQueue_FilterConfiguration
+### Properties
+* **AllowedLocations**: string[]
+
+## GameSessionQueue_PriorityConfiguration
+### Properties
+* **LocationOrder**: string[]
+* **PriorityOrder**: string[]
+
+## GameSessionQueueDestination
+### Properties
+* **DestinationArn**: string
+
+## InstanceDefinition
+### Properties
+* **InstanceType**: string (Required)
+* **WeightedCapacity**: string
+
+## IpPermission
+### Properties
+* **FromPort**: int (Required): A starting value for a range of allowed port numbers.
+* **IpRange**: string (Required): A range of allowed IP addresses. This value must be expressed in CIDR notation. Example: "000.000.000.000/[subnet mask]" or optionally the shortened version "0.0.0.0/[subnet mask]".
+* **Protocol**: string (Required): The network communication protocol used by the fleet.
+* **ToPort**: int (Required): An ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than FromPort.
+
+## LaunchTemplate
+### Properties
+* **LaunchTemplateId**: string
+* **LaunchTemplateName**: string
+* **Version**: string
+
+## LocationCapacity
+### Properties
+* **DesiredEC2Instances**: int (Required): The number of EC2 instances you want to maintain in the specified fleet location. This value must fall between the minimum and maximum size limits.
+* **MaxSize**: int (Required): The maximum value that is allowed for the fleet's instance count for a location. When creating a new fleet, GameLift automatically sets this value to "1". Once the fleet is active, you can change this value.
+* **MinSize**: int (Required): The minimum value allowed for the fleet's instance count for a location. When creating a new fleet, GameLift automatically sets this value to "0". After the fleet is active, you can change this value.
+
+## LocationConfiguration
+### Properties
+* **Location**: string (Required)
+* **LocationCapacity**: [LocationCapacity](#locationcapacity)
+
+## MemoryLimits
+### Properties
+* **HardLimit**: int: The hard limit of memory to reserve for the container.
+* **SoftLimit**: int: The amount of memory that is reserved for the container.
+
+## PlayerLatencyPolicy
+### Properties
+* **MaximumIndividualPlayerLatencyMilliseconds**: int: The maximum latency value that is allowed for any player, in milliseconds. All policies must have a value set for this property.
+* **PolicyDurationSeconds**: int: The length of time, in seconds, that the policy is enforced while placing a new game session.
+
+## PortConfiguration
+### Properties
+* **ContainerPortRanges**: [ContainerPortRange](#containerportrange)[] (Required): Specifies one or more ranges of ports on a container.
+
+## ResourceCreationLimitPolicy
+### Properties
+* **NewGameSessionsPerCreator**: int: The maximum number of game sessions that an individual can create during the policy period.
+* **PolicyPeriodInMinutes**: int: The time span used in evaluating the resource creation limit policy.
+
+## RoutingStrategy
+### Properties
+* **FleetId**: string: A unique identifier for a fleet that the alias points to. If you specify SIMPLE for the Type property, you must specify this property.
+* **Message**: string: The message text to be used with a terminal routing strategy. If you specify TERMINAL for the Type property, you must specify this property.
+* **Type**: string (Required): Simple routing strategy. The alias resolves to one specific fleet. Use this type when routing to active fleets.
+
+## RuntimeConfiguration
+### Properties
+* **GameSessionActivationTimeoutSeconds**: int: The maximum amount of time (in seconds) that a game session can remain in status ACTIVATING. If the game session is not active before the timeout, activation is terminated and the game session status is changed to TERMINATED.
+* **MaxConcurrentGameSessionActivations**: int: The maximum number of game sessions with status ACTIVATING to allow on an instance simultaneously. This setting limits the amount of instance resources that can be used for new game activations at any one time.
+* **ServerProcesses**: [ServerProcess](#serverprocess)[]: A collection of server process configurations that describe which server processes to run on each instance in a fleet.
+
+## ScalingPolicy
+### Properties
+* **ComparisonOperator**: string: Comparison operator to use when measuring a metric against the threshold value.
+* **EvaluationPeriods**: int: Length of time (in minutes) the metric must be at or beyond the threshold before a scaling event is triggered.
+* **Location**: string
+* **MetricName**: string (Required): Name of the Amazon GameLift-defined metric that is used to trigger a scaling adjustment.
+* **Name**: string (Required): A descriptive label that is associated with a fleet's scaling policy. Policy names do not need to be unique.
+* **PolicyType**: string: The type of scaling policy to create. For a target-based policy, set the parameter MetricName to 'PercentAvailableGameSessions' and specify a TargetConfiguration. For a rule-based policy set the following parameters: MetricName, ComparisonOperator, Threshold, EvaluationPeriods, ScalingAdjustmentType, and ScalingAdjustment.
+* **ScalingAdjustment**: int: Amount of adjustment to make, based on the scaling adjustment type.
+* **ScalingAdjustmentType**: string: The type of adjustment to make to a fleet's instance count.
+* **Status**: string: Current status of the scaling policy. The scaling policy can be in force only when in an ACTIVE status. Scaling policies can be suspended for individual fleets. If the policy is suspended for a fleet, the policy status does not change.
+* **TargetConfiguration**: [TargetConfiguration](#targetconfiguration): An object that contains settings for a target-based scaling policy.
+* **Threshold**: int: Metric value used to trigger a scaling event.
+* **UpdateStatus**: string: The current status of the fleet's scaling policies in a requested fleet location. The status PENDING_UPDATE indicates that an update was requested for the fleet but has not yet been completed for the location.
+
 ## Script_S3Location
 ### Properties
 * **Bucket**: string (Required): An Amazon S3 bucket identifier. This is the name of the S3 bucket.
@@ -344,8 +379,63 @@ Linux: /local/game. Examples: "/local/game/MyGame/server.exe" or "/local/game/My
 * **ObjectVersion**: string: The version of the file, if object versioning is turned on for the bucket. Amazon GameLift uses this information when retrieving files from your S3 bucket. To retrieve a specific version of the file, provide an object version. To retrieve the latest version of the file, do not set this parameter.
 * **RoleArn**: string (Required): The Amazon Resource Name (ARN) for an IAM role that allows Amazon GameLift to access the S3 bucket.
 
+## ServerProcess
+### Properties
+* **ConcurrentExecutions**: int (Required): The number of server processes that use this configuration to run concurrently on an instance.
+* **LaunchPath**: string (Required): The location of the server executable in a custom game build or the name of the Realtime script file that contains the Init() function. Game builds and Realtime scripts are installed on instances at the root:
+
+Windows (for custom game builds only): C:\game. Example: "C:\game\MyGame\server.exe"
+
+Linux: /local/game. Examples: "/local/game/MyGame/server.exe" or "/local/game/MyRealtimeScript.js"
+* **Parameters**: string: An optional list of parameters to pass to the server executable or Realtime script on launch.
+
+## StorageLocation
+### Properties
+* **Bucket**: string (Required): An Amazon S3 bucket identifier. This is the name of the S3 bucket.
+* **Key**: string (Required): The name of the zip file that contains the build files or script files.
+* **ObjectVersion**: string: The version of the file, if object versioning is turned on for the bucket. Amazon GameLift uses this information when retrieving files from your S3 bucket. To retrieve a specific version of the file, provide an object version. To retrieve the latest version of the file, do not set this parameter.
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) for an IAM role that allows Amazon GameLift to access the S3 bucket.
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length.
+
+## Tag
+### Properties
+* **Key**: string: The key for a developer-defined key:value pair for tagging an AWS resource.
+* **Value**: string: The value for a developer-defined key:value pair for tagging an AWS resource.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length.
+
+## TargetConfiguration
+### Properties
+* **TargetValue**: int (Required): Desired value to use with a target-based scaling policy. The value must be relevant for whatever metric the scaling policy is using. For example, in a policy using the metric PercentAvailableGameSessions, the target value should be the preferred size of the fleet's buffer (the percent of capacity that should be idle and ready for new game sessions).
+
+## TargetTrackingConfiguration
+### Properties
+* **TargetValue**: int (Required)
 

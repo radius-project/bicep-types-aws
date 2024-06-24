@@ -1,18 +1,37 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Chatbot-SlackChannelConfiguration",
   "type": "AWS::Chatbot::SlackChannelConfiguration",
-  "time": "2024-01-04T19:09:53.179Z",
+  "time": "2024-06-24T19:57:27.352Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/SlackWorkspaceId",
       "/properties/ConfigurationName"
     ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      }
+    },
     "description": "Resource schema for AWS::Chatbot::SlackChannelConfiguration.",
     "handlers": {
       "create": {
         "permissions": [
           "chatbot:CreateSlackChannelConfiguration",
+          "chatbot:TagResource",
           "iam:PassRole",
           "iam:CreateServiceLinkedRole"
         ]
@@ -35,6 +54,9 @@
       "update": {
         "permissions": [
           "chatbot:UpdateSlackChannelConfiguration",
+          "chatbot:TagResource",
+          "chatbot:UntagResource",
+          "chatbot:ListTagsForResource",
           "iam:PassRole"
         ]
       }
@@ -98,6 +120,15 @@
         },
         "type": "array"
       },
+      "Tags": {
+        "description": "The tags to add to the configuration",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
       "UserRoleRequired": {
         "default": false,
         "description": "Enables use of a user role requirement in your chat configuration",
@@ -114,6 +145,13 @@
       "IamRoleArn"
     ],
     "sourceUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-chatbot-slackchannelconfiguration.html",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Chatbot::SlackChannelConfiguration"
   }
 }

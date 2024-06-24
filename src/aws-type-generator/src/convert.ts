@@ -1,16 +1,15 @@
-import { Dictionary, property } from "lodash";
+import { Dictionary } from "lodash";
 import { boolean } from "yargs";
 import { Context, SchemaDefinition, SchemaRecord } from "./schemarecord";
-import { ArrayType, BuiltInType, BuiltInTypeKind, DiscriminatedObjectType, ObjectProperty, ObjectPropertyFlags, ObjectType, ResourceType, ScopeType, TypeBase, TypeFactory, TypeReference, UnionType } from "./lib/types";
-import { type } from "os";
-import { json } from "stream/consumers";
+import { TypeBaseKind, TypeFactory, ObjectTypeProperty, ObjectTypePropertyFlags, ObjectType, ResourceType, ScopeType, BicepType, TypeReference, ResourceFlags } from "bicep-types";
 
-export function convertSchemaRecordToTypes(records: SchemaRecord[]): TypeBase[] {
+export function convertSchemaRecordToTypes(records: SchemaRecord[]): BicepType[] {
     const factory = new TypeFactory()
     records.forEach(record => {
         visitSchemaRecord(factory, record)
     })
-    return factory.getTypes()
+
+    return factory.types
 }
 
 function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): ResourceType {
@@ -18,11 +17,11 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
     parts.splice(0, 2, `${parts[0]}.${parts[1]}`)
     const typeName = parts.join("/")
 
-    const context = new Context(parts.slice(1))
+    const context = new Context(parts.slice(1), {})
 
     visitDefinitions(context, factory, record)
 
-    factory.declareType(`${typeName}Properties`)
+    factory.addStringLiteralType(`${typeName}Properties`)
     const properties = visitSchema(context, factory, record, `${typeName}Properties`, record.schema)
 
     // Because createOnlyProperties and readOnlyProperties can be nested, we need to traverse the type
@@ -32,25 +31,28 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
             const parts = p.split('/').filter(s => s.length > 0)
             parts.shift()
 
-            let property: ObjectProperty | undefined
+            let property: ObjectTypeProperty | undefined
             let current = factory.lookupType(properties) as ObjectType
             parts.forEach(part => {
-                if (!current.Properties) {
-                    console.warn(`could not resolve property ${p}`)
-                    return
+                if (current.type !== TypeBaseKind.ObjectType) {
+                    return;
+                }
+                if (!current.properties) {
+                    console.warn(`could not resolve property ${p}`);
+                    return;
                 }
 
-                property = current.Properties[part]
+                property = current.properties[part];
                 if (!property) {
-                    console.warn(`could not resolve property ${p}`)
-                    return
+                    console.warn(`could not resolve property ${p}`);
+                    return;
                 }
 
-                current = factory.lookupType(property.Type) as ObjectType
+                current = factory.lookupType(property.type) as ObjectType;
             })
 
             if (property) {
-                property.Flags |= ObjectPropertyFlags.ReadOnly
+                property.flags |= ObjectTypePropertyFlags.ReadOnly
             }
         })
     }
@@ -59,25 +61,28 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
             const parts = p.split('/').filter(s => s.length > 0)
             parts.shift()
 
-            let property: ObjectProperty | undefined
+            let property: ObjectTypeProperty | undefined
             let current = factory.lookupType(properties) as ObjectType
             parts.forEach(part => {
-                if (!current.Properties) {
+                if (current.type !== TypeBaseKind.ObjectType) {
+                    return;
+                }
+                if (!current.properties) {
                     console.warn(`could not resolve property ${p}`)
                     return
                 }
 
-                property = current.Properties[part]
+                property = current.properties[part]
                 if (!property) {
                     console.warn(`could not resolve property ${p}`)
                     return
                 }
 
-                current = factory.lookupType(property.Type) as ObjectType
+                current = factory.lookupType(property.type) as ObjectType
             })
 
             if (property) {
-                property.Flags |= ObjectPropertyFlags.WriteOnly
+                property.flags |= ObjectTypePropertyFlags.WriteOnly
             }
         })
     }
@@ -88,27 +93,27 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
     }
 
     // properties is required if anything inside it is required
-    let propertiesFlags = ObjectPropertyFlags.None
-    const propertiesType = factory.lookupType<ObjectType>(properties)
-    Object.entries(propertiesType.Properties).forEach(([name, property]) => {
-        if ((property.Flags & ObjectPropertyFlags.Required) != 0) {
-            propertiesFlags |= ObjectPropertyFlags.Required
-        }
+    let propertiesFlags = ObjectTypePropertyFlags.None
+    const propertiesType = factory.lookupType(properties) as ObjectType
+    Object.entries(propertiesType).forEach(([name, property]) => {
+        Object.entries(propertiesType.properties).forEach(([_, property]) => {
+            if ((property.flags & ObjectTypePropertyFlags.Required) != 0) {
+                propertiesFlags |= ObjectTypePropertyFlags.Required
+            }
+        });
     })
 
-    const body = factory.addType(new ObjectType(
+    const body = factory.addObjectType(
         typeName,
         {
-            name: new ObjectProperty(factory.lookupBuiltInType(BuiltInTypeKind.String), ObjectPropertyFlags.None, "the resource name"),
-            alias: new ObjectProperty(factory.lookupBuiltInType(BuiltInTypeKind.String), ObjectPropertyFlags.Required, "the resource alias"),
-            properties: new ObjectProperty(properties, propertiesFlags, "properties of the resource")
+            name: {type: factory.addStringType(), flags: ObjectTypePropertyFlags.None, description: "the resource name"},
+            alias: {type: factory.addStringType(), flags: ObjectTypePropertyFlags.Required | ObjectTypePropertyFlags.Identifier, description: "the resource alias"},
+            properties: {type: properties, flags: propertiesFlags | ObjectTypePropertyFlags.Identifier, description: "properties of the resource"} as ObjectTypeProperty 
         },
-        undefined))
+        undefined)
 
-    const resourceType = new ResourceType(`${typeName}@default`, ScopeType.Unknown, body)
-    factory.addType(resourceType)
-
-    return resourceType
+    factory.addResourceType(`${typeName}@default`,  ScopeType.Unknown, undefined, body, ResourceFlags.None)
+    return {type: TypeBaseKind.ResourceType, name: `${typeName}@default`, scopeType: ScopeType.Unknown, readOnlyScopes: undefined, body: body, flags: ResourceFlags.None}
 }
 
 function convertOneOfPropertiesToUnion(context: Context, factory: TypeFactory, record: SchemaRecord, properties: TypeReference, typeName: string, oneofInDefinitions: boolean) {
@@ -142,19 +147,22 @@ function convertOneOfPropertiesToUnion(context: Context, factory: TypeFactory, r
             // Lookup each property in the intersection and if it is, mark it as required
             // Else clear the required flag on the property
             for (const [_, key] of oneOfObj.required.entries()) {
-                let property: ObjectProperty | undefined
+                let property: ObjectTypeProperty | undefined
                 let current = factory.lookupType(properties) as ObjectType
-                property = current.Properties[key]
+                if (current.properties != undefined) {
+                    property = current.properties[key] 
+                }
                 // Mark all other properties as not required
                 if (property) {
                     if (intersection.includes(key)) {
-                        property.Flags |= ObjectPropertyFlags.Required;
+                        property.flags |= ObjectTypePropertyFlags.Required;
                     } else {
-                        property.Flags &= ~ObjectPropertyFlags.Required;
+                        property.flags &= ~ObjectTypePropertyFlags.Required;
                     }
                 }
             }
         } else {
+            // TODO: check cases for "allOf" and "anyOf"
             console.error("Found a new case of oneOf which is not handled!!")
         }
     }
@@ -175,9 +183,10 @@ function visitDefinitions(context: Context, factory: TypeFactory, record: Schema
         return
     }
 
-    Object.entries(record.schema.definitions).forEach(([name, _]) => {
+    Object.entries(record.schema.definitions).forEach(([name]) => {
         // Predeclare types so we can support circular references
-        factory.declareType(name)
+        const reference = factory.addObjectType(name, {})
+        context.definitions[name] = {index: reference.index, TypeReference: reference}
     })
 
     Object.entries(record.schema.definitions).forEach(([name, schema]) => {
@@ -191,9 +200,9 @@ function visitDefinitions(context: Context, factory: TypeFactory, record: Schema
             // Merge all oneOf properties into the schema and move it one level up
             for (const oneOfObj of schema.oneOf) {
                 if (oneOfObj.required) {
-                    let typeName = factory.getNamedType(name)
+                    let typeName = context.definitions[name]
                     if (typeName) {
-                        convertOneOfPropertiesToUnion(context, factory, record, typeName, name, true)
+                        convertOneOfPropertiesToUnion(context, factory, record, typeName.TypeReference, name, true)
                     }
                     break
                 }
@@ -233,12 +242,11 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
         if (!schema.additionalProperties && !schema.items && !schema.properties && !schema.required && !schema.type) {
             // Object type is already defined
             if (definition.type === 'object') {
-                const reference = factory.getNamedType(parts[0])
-                if (!reference) {
+                const existing = context.definitions[parts[0]]
+                if (!existing) {
                     throw new Error(`type ${parts[0]} is missing`)
                 }
-
-                return reference
+                return existing.TypeReference
             }
         }
 
@@ -266,50 +274,62 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
 
     const createType = function (type: string): TypeReference {
         if (type === 'boolean') {
-            return factory.lookupBuiltInType(BuiltInTypeKind.Bool)
+            return factory.addBooleanType()
         } else if (type === 'number' || type === 'integer') {
-            return factory.lookupBuiltInType(BuiltInTypeKind.Int)
+            return factory.addIntegerType()
         } else if (type === 'string') {
-            return factory.lookupBuiltInType(BuiltInTypeKind.String)
+            return factory.addStringType()
         } else if (type === 'null') {
-            return factory.lookupBuiltInType(BuiltInTypeKind.Null)
+            return factory.addNullType()
         } else if (type === 'array') {
             if (schema.items) {
                 const itemType = visitSchema(context, factory, record, undefined, schema.items)
-                return factory.addType(new ArrayType(itemType))
+                return factory.addArrayType(itemType)
             }
 
-            return factory.addType(new ArrayType(factory.lookupBuiltInType(BuiltInTypeKind.Any)))
+            return factory.addArrayType(factory.addAnyType())
         } else if (type === 'object') {
-            const properties: Dictionary<ObjectProperty> = {}
+            const properties: Dictionary<ObjectTypeProperty> = {}
             if (schema.properties) {
                 Object.entries(schema.properties).forEach(([name, propertySchema], _) => {
                     const type = visitSchema(context.push(name), factory, record, undefined, propertySchema)
 
-                    let flags = ObjectPropertyFlags.None
+                    let flags = ObjectTypePropertyFlags.None
                     if (schema.required && schema.required.includes(name)) {
-                        flags |= ObjectPropertyFlags.Required
+                        flags |= ObjectTypePropertyFlags.Required
                     }
 
                     let primaryIdentifiers = record.schema.primaryIdentifier
                     if (primaryIdentifiers && primaryIdentifiers.includes(`/properties/${name}`)) {
-                        flags |= ObjectPropertyFlags.Identifier
+                        flags |= ObjectTypePropertyFlags.Identifier
                     }
 
-                    properties[name] = new ObjectProperty(type, flags, propertySchema.description)
+                    properties[name] = {type: type, flags: flags, description: propertySchema.description}
                 })
             }
 
             if (typeName) {
-                return factory.defineType(typeName, new ObjectType(
+                const existing = context.definitions[typeName]
+                if (existing) {
+                    const type: ObjectType = {
+                        type: TypeBaseKind.ObjectType,
+                        name: typeName,
+                        properties: properties,
+                        additionalProperties: visitAdditionalProperties(context, factory, record, schema),
+                        sensitive: undefined,
+                    }
+                    factory.types[existing.index]= type as ObjectType
+                    return existing.TypeReference
+                }
+                return factory.addObjectType(
                     typeName,
                     properties,
-                    visitAdditionalProperties(context, factory, record, schema)))
+                    visitAdditionalProperties(context, factory, record, schema))
             } else {
-                return factory.addType(new ObjectType(
+                return factory.addObjectType(
                     context.toString(),
                     properties,
-                    visitAdditionalProperties(context, factory, record, schema)))
+                    visitAdditionalProperties(context, factory, record, schema))
             }
         } else {
             throw new Error(`unknown type ${type} ${context}`)
@@ -320,7 +340,7 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
         return createType(schema.type as string)
     } else if (schema.type instanceof Array) {
         const types = schema.type.map(createType)
-        return factory.addType(new UnionType(types))
+        return factory.addUnionType(types)
     } else {
         throw new Error(`unknown type ${schema.type} ${context}`)
     }
@@ -328,7 +348,7 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
 
 function visitAdditionalProperties(context: Context, factory: TypeFactory, record: SchemaRecord, schema: SchemaDefinition): TypeReference | undefined {
     if (schema.additionalProperties instanceof boolean && schema.additionalProperties) {
-        return factory.lookupBuiltInType(BuiltInTypeKind.Any)
+        return factory.addAnyType()
     } else if (schema.additionalProperties instanceof boolean) {
         return undefined
     } else if (schema.additionalProperties instanceof Object) {

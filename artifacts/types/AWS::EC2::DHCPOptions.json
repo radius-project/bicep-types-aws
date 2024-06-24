@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-DHCPOptions",
   "type": "AWS::EC2::DHCPOptions",
-  "time": "2024-01-02T21:06:22.382Z",
+  "time": "2024-06-03T17:44:43.551Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,7 +9,8 @@
       "/properties/NetbiosNodeType",
       "/properties/NtpServers",
       "/properties/DomainName",
-      "/properties/DomainNameServers"
+      "/properties/DomainNameServers",
+      "/properties/Ipv6AddressPreferredLeaseTime"
     ],
     "definitions": {
       "Tag": {
@@ -87,6 +88,10 @@
         "type": "array",
         "uniqueItems": true
       },
+      "Ipv6AddressPreferredLeaseTime": {
+        "description": "The preferred Lease Time for ipV6 address in seconds.",
+        "type": "integer"
+      },
       "NetbiosNameServers": {
         "description": "The IPv4 addresses of up to four NetBIOS name servers.",
         "items": {
@@ -120,7 +125,13 @@
     "readOnlyProperties": [
       "/properties/DhcpOptionsId"
     ],
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::EC2::DHCPOptions"
   }
 }

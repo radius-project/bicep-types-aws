@@ -1,1 +1,617 @@
-[{"1":{"Kind":1}},{"1":{"Kind":2}},{"1":{"Kind":3}},{"1":{"Kind":4}},{"1":{"Kind":5}},{"1":{"Kind":6}},{"1":{"Kind":7}},{"1":{"Kind":8}},{"2":{"Name":"AirflowArn"}},{"2":{"Name":"AirflowVersion"}},{"2":{"Name":"CeleryExecutorQueue"}},{"2":{"Name":"CloudWatchLogGroupArn"}},{"2":{"Name":"ConfigKey"}},{"2":{"Name":"ConfigValue"}},{"2":{"Name":"CreatedAt"}},{"2":{"Name":"DatabaseVpcEndpointService"}},{"2":{"Name":"EndpointManagement"}},{"2":{"Name":"EnvironmentArn"}},{"2":{"Name":"EnvironmentClass"}},{"2":{"Name":"EnvironmentName"}},{"2":{"Name":"EnvironmentStatus"}},{"2":{"Name":"ErrorCode"}},{"2":{"Name":"ErrorMessage"}},{"2":{"Name":"ExecutionRoleArn"}},{"2":{"Name":"KmsKey"}},{"2":{"Name":"LastUpdate","Properties":{"CreatedAt":{"Type":4,"Flags":0},"Error":{"Type":43,"Flags":0},"Status":{"Type":4,"Flags":0}}}},{"2":{"Name":"LoggingConfiguration","Properties":{"DagProcessingLogs":{"Type":32,"Flags":0},"SchedulerLogs":{"Type":32,"Flags":0},"TaskLogs":{"Type":32,"Flags":0},"WebserverLogs":{"Type":32,"Flags":0},"WorkerLogs":{"Type":32,"Flags":0}}}},{"2":{"Name":"LoggingConfigurationInput","Properties":{"DagProcessingLogs":{"Type":33,"Flags":0},"SchedulerLogs":{"Type":33,"Flags":0},"TaskLogs":{"Type":33,"Flags":0},"WebserverLogs":{"Type":33,"Flags":0},"WorkerLogs":{"Type":33,"Flags":0}}}},{"2":{"Name":"LoggingEnabled"}},{"2":{"Name":"LoggingLevel"}},{"2":{"Name":"MaxWorkers"}},{"2":{"Name":"MinWorkers"}},{"2":{"Name":"ModuleLoggingConfiguration","Properties":{"CloudWatchLogGroupArn":{"Type":4,"Flags":2},"Enabled":{"Type":2,"Flags":0},"LogLevel":{"Type":4,"Flags":0}}}},{"2":{"Name":"ModuleLoggingConfigurationInput","Properties":{"Enabled":{"Type":2,"Flags":0},"LogLevel":{"Type":4,"Flags":0}}}},{"2":{"Name":"NetworkConfiguration","Properties":{"SecurityGroupIds":{"Type":49,"Flags":0,"Description":"A list of security groups to use for the environment."},"SubnetIds":{"Type":50,"Flags":0,"Description":"A list of subnets to use for the environment. These must be private subnets, in the same VPC, in two different availability zones."}}}},{"2":{"Name":"RelativePath"}},{"2":{"Name":"S3BucketArn"}},{"2":{"Name":"S3ObjectVersion"}},{"2":{"Name":"Schedulers"}},{"2":{"Name":"SecurityGroupId"}},{"2":{"Name":"ServiceRoleArn"}},{"2":{"Name":"SubnetId"}},{"2":{"Name":"UpdateCreatedAt"}},{"2":{"Name":"UpdateError","Properties":{"ErrorCode":{"Type":4,"Flags":0},"ErrorMessage":{"Type":4,"Flags":0}}}},{"2":{"Name":"UpdateStatus"}},{"2":{"Name":"WebserverAccessMode"}},{"2":{"Name":"WebserverUrl"}},{"2":{"Name":"WebserverVpcEndpointService"}},{"2":{"Name":"WeeklyMaintenanceWindowStart"}},{"3":{"ItemType":4}},{"3":{"ItemType":4}},{"2":{"Name":"AWS.MWAA/EnvironmentProperties","Properties":{"AirflowConfigurationOptions":{"Type":52,"Flags":0,"Description":"Key/value pairs representing Airflow configuration variables.\n    Keys are prefixed by their section:\n\n    [core]\n    dags_folder={AIRFLOW_HOME}/dags\n\n    Would be represented as\n\n    \"core.dags_folder\": \"{AIRFLOW_HOME}/dags\""},"AirflowVersion":{"Type":4,"Flags":0},"Arn":{"Type":4,"Flags":2},"CeleryExecutorQueue":{"Type":4,"Flags":2},"DagS3Path":{"Type":4,"Flags":0},"DatabaseVpcEndpointService":{"Type":4,"Flags":2},"EndpointManagement":{"Type":4,"Flags":0},"EnvironmentClass":{"Type":4,"Flags":0},"ExecutionRoleArn":{"Type":4,"Flags":0},"KmsKey":{"Type":4,"Flags":0},"LoggingConfiguration":{"Type":26,"Flags":0},"MaxWorkers":{"Type":3,"Flags":0},"MinWorkers":{"Type":3,"Flags":0},"Name":{"Type":4,"Flags":17},"NetworkConfiguration":{"Type":34,"Flags":0},"PluginsS3ObjectVersion":{"Type":4,"Flags":0},"PluginsS3Path":{"Type":4,"Flags":0},"RequirementsS3ObjectVersion":{"Type":4,"Flags":0},"RequirementsS3Path":{"Type":4,"Flags":0},"Schedulers":{"Type":3,"Flags":0},"SourceBucketArn":{"Type":4,"Flags":0},"StartupScriptS3ObjectVersion":{"Type":4,"Flags":0},"StartupScriptS3Path":{"Type":4,"Flags":0},"Tags":{"Type":53,"Flags":0,"Description":"A map of tags for the environment."},"WebserverAccessMode":{"Type":4,"Flags":0},"WebserverUrl":{"Type":4,"Flags":2},"WebserverVpcEndpointService":{"Type":4,"Flags":2},"WeeklyMaintenanceWindowStart":{"Type":4,"Flags":0}}}},{"2":{"Name":"Environment_AirflowConfigurationOptions","Properties":{}}},{"2":{"Name":"Environment_Tags","Properties":{}}},{"2":{"Name":"AWS.MWAA/Environment","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":51,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.MWAA/Environment@default","ScopeType":0,"Body":54}}]
+[
+  {
+    "$type": "ObjectType",
+    "name": "AirflowArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AirflowVersion",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CeleryExecutorQueue",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudWatchLogGroupArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfigKey",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfigValue",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CreatedAt",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DatabaseVpcEndpointService",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointManagement",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EnvironmentArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EnvironmentClass",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EnvironmentName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EnvironmentStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ErrorCode",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ErrorMessage",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExecutionRoleArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KmsKey",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LastUpdate",
+    "properties": {
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "Error": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LoggingConfiguration",
+    "properties": {
+      "DagProcessingLogs": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
+      "SchedulerLogs": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
+      "TaskLogs": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
+      "WebserverLogs": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
+      "WorkerLogs": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LoggingConfigurationInput",
+    "properties": {
+      "DagProcessingLogs": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      },
+      "SchedulerLogs": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      },
+      "TaskLogs": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      },
+      "WebserverLogs": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      },
+      "WorkerLogs": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LoggingEnabled",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LoggingLevel",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MaxWebservers",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MaxWorkers",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MinWebservers",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MinWorkers",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ModuleLoggingConfiguration",
+    "properties": {
+      "CloudWatchLogGroupArn": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 2
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "LogLevel": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ModuleLoggingConfigurationInput",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "LogLevel": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkConfiguration",
+    "properties": {
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "A list of security groups to use for the environment."
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0,
+        "description": "A list of subnets to use for the environment. These must be private subnets, in the same VPC, in two different availability zones."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RelativePath",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3BucketArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3ObjectVersion",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Schedulers",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SecurityGroupId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceRoleArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SubnetId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UpdateCreatedAt",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UpdateError",
+    "properties": {
+      "ErrorCode": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "ErrorMessage": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UpdateStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebserverAccessMode",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebserverUrl",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebserverVpcEndpointService",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WeeklyMaintenanceWindowStart",
+    "properties": {}
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/43"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/43"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MWAA/EnvironmentProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Environment_AirflowConfigurationOptions",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Environment_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MWAA/EnvironmentProperties",
+    "properties": {
+      "AirflowConfigurationOptions": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0,
+        "description": "Key/value pairs representing Airflow configuration variables.\n    Keys are prefixed by their section:\n\n    [core]\n    dags_folder={AIRFLOW_HOME}/dags\n\n    Would be represented as\n\n    \"core.dags_folder\": \"{AIRFLOW_HOME}/dags\""
+      },
+      "AirflowVersion": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 2
+      },
+      "CeleryExecutorQueue": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 2
+      },
+      "DagS3Path": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "DatabaseVpcEndpointService": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 2
+      },
+      "EndpointManagement": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "EnvironmentClass": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "ExecutionRoleArn": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "KmsKey": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "LoggingConfiguration": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      },
+      "MaxWebservers": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      },
+      "MaxWorkers": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      },
+      "MinWebservers": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      },
+      "MinWorkers": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 17
+      },
+      "NetworkConfiguration": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0
+      },
+      "PluginsS3ObjectVersion": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "PluginsS3Path": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "RequirementsS3ObjectVersion": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "RequirementsS3Path": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "Schedulers": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      },
+      "SourceBucketArn": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "StartupScriptS3ObjectVersion": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "StartupScriptS3Path": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0,
+        "description": "A map of tags for the environment."
+      },
+      "WebserverAccessMode": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "WebserverUrl": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 2
+      },
+      "WebserverVpcEndpointService": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 2
+      },
+      "WeeklyMaintenanceWindowStart": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MWAA/Environment",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MWAA/Environment@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/52"
+    },
+    "flags": 0
+  }
+]

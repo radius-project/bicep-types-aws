@@ -3,23 +3,31 @@
 ## Resource AWS.Kendra/DataSource@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Kendra/DataSourceProperties](#awskendradatasourceproperties) (Required): properties of the resource
+* **properties**: [AWS.Kendra/DataSourceProperties](#awskendradatasourceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Kendra/Faq@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Kendra/FaqProperties](#awskendrafaqproperties) (Required): properties of the resource
+* **properties**: [AWS.Kendra/FaqProperties](#awskendrafaqproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Kendra/Index@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Kendra/IndexProperties](#awskendraindexproperties) (Required): properties of the resource
+* **properties**: [AWS.Kendra/IndexProperties](#awskendraindexproperties) (Required, Identifier): properties of the resource
+
+## AccessControlListConfiguration
+### Properties
+* **KeyPath**: string
+
+## AclConfiguration
+### Properties
+* **AllowedGroupsColumnName**: string (Required)
 
 ## AWS.Kendra/DataSourceProperties
 ### Properties
@@ -36,69 +44,46 @@
 * **Tags**: [Tag](#tag)[]: Tags for labeling the data source
 * **Type**: string (Required)
 
-## CustomDocumentEnrichmentConfiguration
+## AWS.Kendra/FaqProperties
 ### Properties
-* **InlineConfigurations**: [InlineCustomDocumentEnrichmentConfiguration](#inlinecustomdocumentenrichmentconfiguration)[]
-* **PostExtractionHookConfiguration**: [HookConfiguration](#hookconfiguration)
-* **PreExtractionHookConfiguration**: [HookConfiguration](#hookconfiguration)
-* **RoleArn**: string
+* **Arn**: string (ReadOnly)
+* **Description**: string: FAQ description
+* **FileFormat**: string: FAQ file format
+* **Id**: string (ReadOnly, Identifier)
+* **IndexId**: string (Required, Identifier): Index ID
+* **LanguageCode**: string
+* **Name**: string (Required): FAQ name
+* **RoleArn**: string (Required): FAQ role ARN
+* **S3Path**: [S3Path](#s3path) (Required): FAQ S3 path
+* **Tags**: [Tag](#tag)[]: Tags for labeling the FAQ
 
-## InlineCustomDocumentEnrichmentConfiguration
+## AWS.Kendra/IndexProperties
 ### Properties
-* **Condition**: [DocumentAttributeCondition](#documentattributecondition)
-* **DocumentContentDeletion**: bool
-* **Target**: [DocumentAttributeTarget](#documentattributetarget)
+* **Arn**: string (ReadOnly)
+* **CapacityUnits**: [CapacityUnitsConfiguration](#capacityunitsconfiguration): Capacity units
+* **Description**: string: A description for the index
+* **DocumentMetadataConfigurations**: [DocumentMetadataConfiguration](#documentmetadataconfiguration)[]: Document metadata configurations
+* **Edition**: string (Required)
+* **Id**: string (ReadOnly, Identifier)
+* **Name**: string (Required)
+* **RoleArn**: string (Required)
+* **ServerSideEncryptionConfiguration**: [ServerSideEncryptionConfiguration](#serversideencryptionconfiguration): Server side encryption configuration
+* **Tags**: [Tag](#tag)[]: Tags for labeling the index
+* **UserContextPolicy**: string
+* **UserTokenConfigurations**: [UserTokenConfiguration](#usertokenconfiguration)[]
 
-## DocumentAttributeCondition
+## CapacityUnitsConfiguration
 ### Properties
-* **ConditionDocumentAttributeKey**: string (Required)
-* **ConditionOnValue**: [DocumentAttributeValue](#documentattributevalue)
-* **Operator**: string (Required)
+* **QueryCapacityUnits**: int (Required)
+* **StorageCapacityUnits**: int (Required)
 
-## DocumentAttributeValue
+## ColumnConfiguration
 ### Properties
-* **DateValue**: string
-* **LongValue**: int
-* **StringListValue**: string[]
-* **StringValue**: string
-
-## DocumentAttributeTarget
-### Properties
-* **TargetDocumentAttributeKey**: string (Required)
-* **TargetDocumentAttributeValue**: [DocumentAttributeValue](#documentattributevalue)
-* **TargetDocumentAttributeValueDeletion**: bool
-
-## HookConfiguration
-### Properties
-* **InvocationCondition**: [DocumentAttributeCondition](#documentattributecondition)
-* **LambdaArn**: string (Required)
-* **S3Bucket**: string (Required)
-
-## DataSourceConfiguration
-### Properties
-* **ConfluenceConfiguration**: [ConfluenceConfiguration](#confluenceconfiguration)
-* **DatabaseConfiguration**: [DatabaseConfiguration](#databaseconfiguration)
-* **GoogleDriveConfiguration**: [GoogleDriveConfiguration](#googledriveconfiguration)
-* **OneDriveConfiguration**: [OneDriveConfiguration](#onedriveconfiguration)
-* **S3Configuration**: [S3DataSourceConfiguration](#s3datasourceconfiguration)
-* **SalesforceConfiguration**: [SalesforceConfiguration](#salesforceconfiguration)
-* **ServiceNowConfiguration**: [ServiceNowConfiguration](#servicenowconfiguration)
-* **SharePointConfiguration**: [SharePointConfiguration](#sharepointconfiguration)
-* **WebCrawlerConfiguration**: [WebCrawlerConfiguration](#webcrawlerconfiguration)
-* **WorkDocsConfiguration**: [WorkDocsConfiguration](#workdocsconfiguration)
-
-## ConfluenceConfiguration
-### Properties
-* **AttachmentConfiguration**: [ConfluenceAttachmentConfiguration](#confluenceattachmentconfiguration)
-* **BlogConfiguration**: [ConfluenceBlogConfiguration](#confluenceblogconfiguration)
-* **ExclusionPatterns**: string[]
-* **InclusionPatterns**: string[]
-* **PageConfiguration**: [ConfluencePageConfiguration](#confluencepageconfiguration)
-* **SecretArn**: string (Required)
-* **ServerUrl**: string (Required)
-* **SpaceConfiguration**: [ConfluenceSpaceConfiguration](#confluencespaceconfiguration)
-* **Version**: string (Required)
-* **VpcConfiguration**: [DataSourceVpcConfiguration](#datasourcevpcconfiguration)
+* **ChangeDetectingColumns**: string[] (Required)
+* **DocumentDataColumnName**: string (Required)
+* **DocumentIdColumnName**: string (Required)
+* **DocumentTitleColumnName**: string
+* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
 
 ## ConfluenceAttachmentConfiguration
 ### Properties
@@ -120,6 +105,19 @@
 * **DataSourceFieldName**: string (Required)
 * **DateFieldFormat**: string
 * **IndexFieldName**: string (Required)
+
+## ConfluenceConfiguration
+### Properties
+* **AttachmentConfiguration**: [ConfluenceAttachmentConfiguration](#confluenceattachmentconfiguration)
+* **BlogConfiguration**: [ConfluenceBlogConfiguration](#confluenceblogconfiguration)
+* **ExclusionPatterns**: string[]
+* **InclusionPatterns**: string[]
+* **PageConfiguration**: [ConfluencePageConfiguration](#confluencepageconfiguration)
+* **SecretArn**: string (Required)
+* **ServerUrl**: string (Required)
+* **SpaceConfiguration**: [ConfluenceSpaceConfiguration](#confluencespaceconfiguration)
+* **Version**: string (Required)
+* **VpcConfiguration**: [DataSourceVpcConfiguration](#datasourcevpcconfiguration)
 
 ## ConfluencePageConfiguration
 ### Properties
@@ -145,10 +143,20 @@
 * **DateFieldFormat**: string
 * **IndexFieldName**: string (Required)
 
-## DataSourceVpcConfiguration
+## ConnectionConfiguration
 ### Properties
-* **SecurityGroupIds**: string[] (Required)
-* **SubnetIds**: string[] (Required)
+* **DatabaseHost**: string (Required)
+* **DatabaseName**: string (Required)
+* **DatabasePort**: int (Required)
+* **SecretArn**: string (Required)
+* **TableName**: string (Required)
+
+## CustomDocumentEnrichmentConfiguration
+### Properties
+* **InlineConfigurations**: [InlineCustomDocumentEnrichmentConfiguration](#inlinecustomdocumentenrichmentconfiguration)[]
+* **PostExtractionHookConfiguration**: [HookConfiguration](#hookconfiguration)
+* **PreExtractionHookConfiguration**: [HookConfiguration](#hookconfiguration)
+* **RoleArn**: string
 
 ## DatabaseConfiguration
 ### Properties
@@ -159,17 +167,18 @@
 * **SqlConfiguration**: [SqlConfiguration](#sqlconfiguration)
 * **VpcConfiguration**: [DataSourceVpcConfiguration](#datasourcevpcconfiguration)
 
-## AclConfiguration
+## DataSourceConfiguration
 ### Properties
-* **AllowedGroupsColumnName**: string (Required)
-
-## ColumnConfiguration
-### Properties
-* **ChangeDetectingColumns**: string[] (Required)
-* **DocumentDataColumnName**: string (Required)
-* **DocumentIdColumnName**: string (Required)
-* **DocumentTitleColumnName**: string
-* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
+* **ConfluenceConfiguration**: [ConfluenceConfiguration](#confluenceconfiguration)
+* **DatabaseConfiguration**: [DatabaseConfiguration](#databaseconfiguration)
+* **GoogleDriveConfiguration**: [GoogleDriveConfiguration](#googledriveconfiguration)
+* **OneDriveConfiguration**: [OneDriveConfiguration](#onedriveconfiguration)
+* **S3Configuration**: [S3DataSourceConfiguration](#s3datasourceconfiguration)
+* **SalesforceConfiguration**: [SalesforceConfiguration](#salesforceconfiguration)
+* **ServiceNowConfiguration**: [ServiceNowConfiguration](#servicenowconfiguration)
+* **SharePointConfiguration**: [SharePointConfiguration](#sharepointconfiguration)
+* **WebCrawlerConfiguration**: [WebCrawlerConfiguration](#webcrawlerconfiguration)
+* **WorkDocsConfiguration**: [WorkDocsConfiguration](#workdocsconfiguration)
 
 ## DataSourceToIndexFieldMapping
 ### Properties
@@ -177,17 +186,40 @@
 * **DateFieldFormat**: string
 * **IndexFieldName**: string (Required)
 
-## ConnectionConfiguration
+## DataSourceVpcConfiguration
 ### Properties
-* **DatabaseHost**: string (Required)
-* **DatabaseName**: string (Required)
-* **DatabasePort**: int (Required)
-* **SecretArn**: string (Required)
-* **TableName**: string (Required)
+* **SecurityGroupIds**: string[] (Required)
+* **SubnetIds**: string[] (Required)
 
-## SqlConfiguration
+## DocumentAttributeCondition
 ### Properties
-* **QueryIdentifiersEnclosingOption**: string
+* **ConditionDocumentAttributeKey**: string (Required)
+* **ConditionOnValue**: [DocumentAttributeValue](#documentattributevalue)
+* **Operator**: string (Required)
+
+## DocumentAttributeTarget
+### Properties
+* **TargetDocumentAttributeKey**: string (Required)
+* **TargetDocumentAttributeValue**: [DocumentAttributeValue](#documentattributevalue)
+* **TargetDocumentAttributeValueDeletion**: bool
+
+## DocumentAttributeValue
+### Properties
+* **DateValue**: string
+* **LongValue**: int
+* **StringListValue**: string[]
+* **StringValue**: string
+
+## DocumentMetadataConfiguration
+### Properties
+* **Name**: string (Required)
+* **Relevance**: [Relevance](#relevance)
+* **Search**: [Search](#search)
+* **Type**: string (Required)
+
+## DocumentsMetadataConfiguration
+### Properties
+* **S3Prefix**: string
 
 ## GoogleDriveConfiguration
 ### Properties
@@ -198,6 +230,33 @@
 * **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
 * **InclusionPatterns**: string[]
 * **SecretArn**: string (Required)
+
+## HookConfiguration
+### Properties
+* **InvocationCondition**: [DocumentAttributeCondition](#documentattributecondition)
+* **LambdaArn**: string (Required)
+* **S3Bucket**: string (Required)
+
+## InlineCustomDocumentEnrichmentConfiguration
+### Properties
+* **Condition**: [DocumentAttributeCondition](#documentattributecondition)
+* **DocumentContentDeletion**: bool
+* **Target**: [DocumentAttributeTarget](#documentattributetarget)
+
+## JsonTokenTypeConfiguration
+### Properties
+* **GroupAttributeField**: string (Required)
+* **UserNameAttributeField**: string (Required)
+
+## JwtTokenTypeConfiguration
+### Properties
+* **ClaimRegex**: string
+* **GroupAttributeField**: string
+* **Issuer**: string
+* **KeyLocation**: string (Required)
+* **SecretManagerArn**: string
+* **URL**: string
+* **UserNameAttributeField**: string
 
 ## OneDriveConfiguration
 ### Properties
@@ -214,10 +273,19 @@
 * **OneDriveUserList**: string[]
 * **OneDriveUserS3Path**: [S3Path](#s3path)
 
-## S3Path
+## ProxyConfiguration
 ### Properties
-* **Bucket**: string (Required)
-* **Key**: string (Required)
+* **Credentials**: string
+* **Host**: string (Required)
+* **Port**: int (Required)
+
+## Relevance
+### Properties
+* **Duration**: string
+* **Freshness**: bool
+* **Importance**: int
+* **RankOrder**: string
+* **ValueImportanceItems**: [ValueImportanceItem](#valueimportanceitem)[]
 
 ## S3DataSourceConfiguration
 ### Properties
@@ -228,13 +296,22 @@
 * **InclusionPatterns**: string[]
 * **InclusionPrefixes**: string[]
 
-## AccessControlListConfiguration
+## S3Path
 ### Properties
-* **KeyPath**: string
+* **Bucket**: string (Required)
+* **Key**: string (Required)
 
-## DocumentsMetadataConfiguration
+## S3Path
 ### Properties
-* **S3Prefix**: string
+* **Bucket**: string (Required)
+* **Key**: string (Required)
+
+## SalesforceChatterFeedConfiguration
+### Properties
+* **DocumentDataFieldName**: string (Required)
+* **DocumentTitleFieldName**: string
+* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
+* **IncludeFilterTypes**: string[]
 
 ## SalesforceConfiguration
 ### Properties
@@ -248,25 +325,18 @@
 * **StandardObjectAttachmentConfiguration**: [SalesforceStandardObjectAttachmentConfiguration](#salesforcestandardobjectattachmentconfiguration)
 * **StandardObjectConfigurations**: [SalesforceStandardObjectConfiguration](#salesforcestandardobjectconfiguration)[]
 
-## SalesforceChatterFeedConfiguration
-### Properties
-* **DocumentDataFieldName**: string (Required)
-* **DocumentTitleFieldName**: string
-* **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
-* **IncludeFilterTypes**: string[]
-
-## SalesforceKnowledgeArticleConfiguration
-### Properties
-* **CustomKnowledgeArticleTypeConfigurations**: [SalesforceCustomKnowledgeArticleTypeConfiguration](#salesforcecustomknowledgearticletypeconfiguration)[]
-* **IncludedStates**: string[] (Required)
-* **StandardKnowledgeArticleTypeConfiguration**: [SalesforceStandardKnowledgeArticleTypeConfiguration](#salesforcestandardknowledgearticletypeconfiguration)
-
 ## SalesforceCustomKnowledgeArticleTypeConfiguration
 ### Properties
 * **DocumentDataFieldName**: string (Required)
 * **DocumentTitleFieldName**: string
 * **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
 * **Name**: string (Required)
+
+## SalesforceKnowledgeArticleConfiguration
+### Properties
+* **CustomKnowledgeArticleTypeConfigurations**: [SalesforceCustomKnowledgeArticleTypeConfiguration](#salesforcecustomknowledgearticletypeconfiguration)[]
+* **IncludedStates**: string[] (Required)
+* **StandardKnowledgeArticleTypeConfiguration**: [SalesforceStandardKnowledgeArticleTypeConfiguration](#salesforcestandardknowledgearticletypeconfiguration)
 
 ## SalesforceStandardKnowledgeArticleTypeConfiguration
 ### Properties
@@ -285,6 +355,17 @@
 * **DocumentTitleFieldName**: string
 * **FieldMappings**: [DataSourceToIndexFieldMapping](#datasourcetoindexfieldmapping)[]
 * **Name**: string (Required)
+
+## Search
+### Properties
+* **Displayable**: bool
+* **Facetable**: bool
+* **Searchable**: bool
+* **Sortable**: bool
+
+## ServerSideEncryptionConfiguration
+### Properties
+* **KmsKeyId**: string
 
 ## ServiceNowConfiguration
 ### Properties
@@ -329,6 +410,45 @@
 * **UseChangeLog**: bool
 * **VpcConfiguration**: [DataSourceVpcConfiguration](#datasourcevpcconfiguration)
 
+## SqlConfiguration
+### Properties
+* **QueryIdentifiersEnclosingOption**: string
+
+## Tag
+### Properties
+* **Key**: string (Required): A string used to identify this tag
+* **Value**: string (Required): A string containing the value for the tag
+
+## Tag
+### Properties
+* **Key**: string (Required): A string used to identify this tag
+* **Value**: string (Required): A string containing the value for the tag
+
+## Tag
+### Properties
+* **Key**: string (Required): A string used to identify this tag
+* **Value**: string (Required): A string containing the value for the tag
+
+## UserTokenConfiguration
+### Properties
+* **JsonTokenTypeConfiguration**: [JsonTokenTypeConfiguration](#jsontokentypeconfiguration)
+* **JwtTokenTypeConfiguration**: [JwtTokenTypeConfiguration](#jwttokentypeconfiguration)
+
+## ValueImportanceItem
+### Properties
+* **Key**: string
+* **Value**: int
+
+## WebCrawlerAuthenticationConfiguration
+### Properties
+* **BasicAuthentication**: [WebCrawlerBasicAuthentication](#webcrawlerbasicauthentication)[]
+
+## WebCrawlerBasicAuthentication
+### Properties
+* **Credentials**: string (Required)
+* **Host**: string (Required)
+* **Port**: int (Required)
+
 ## WebCrawlerConfiguration
 ### Properties
 * **AuthenticationConfiguration**: [WebCrawlerAuthenticationConfiguration](#webcrawlerauthenticationconfiguration)
@@ -341,27 +461,6 @@
 * **UrlInclusionPatterns**: string[]
 * **Urls**: [WebCrawlerUrls](#webcrawlerurls) (Required)
 
-## WebCrawlerAuthenticationConfiguration
-### Properties
-* **BasicAuthentication**: [WebCrawlerBasicAuthentication](#webcrawlerbasicauthentication)[]
-
-## WebCrawlerBasicAuthentication
-### Properties
-* **Credentials**: string (Required)
-* **Host**: string (Required)
-* **Port**: int (Required)
-
-## ProxyConfiguration
-### Properties
-* **Credentials**: string
-* **Host**: string (Required)
-* **Port**: int (Required)
-
-## WebCrawlerUrls
-### Properties
-* **SeedUrlConfiguration**: [WebCrawlerSeedUrlConfiguration](#webcrawlerseedurlconfiguration)
-* **SiteMapsConfiguration**: [WebCrawlerSiteMapsConfiguration](#webcrawlersitemapsconfiguration)
-
 ## WebCrawlerSeedUrlConfiguration
 ### Properties
 * **SeedUrls**: string[] (Required)
@@ -371,6 +470,11 @@
 ### Properties
 * **SiteMaps**: string[] (Required)
 
+## WebCrawlerUrls
+### Properties
+* **SeedUrlConfiguration**: [WebCrawlerSeedUrlConfiguration](#webcrawlerseedurlconfiguration)
+* **SiteMapsConfiguration**: [WebCrawlerSiteMapsConfiguration](#webcrawlersitemapsconfiguration)
+
 ## WorkDocsConfiguration
 ### Properties
 * **CrawlComments**: bool
@@ -379,107 +483,4 @@
 * **InclusionPatterns**: string[]
 * **OrganizationId**: string (Required)
 * **UseChangeLog**: bool
-
-## Tag
-### Properties
-* **Key**: string (Required): A string used to identify this tag
-* **Value**: string (Required): A string containing the value for the tag
-
-## AWS.Kendra/FaqProperties
-### Properties
-* **Arn**: string (ReadOnly)
-* **Description**: string: FAQ description
-* **FileFormat**: string: FAQ file format
-* **Id**: string (ReadOnly, Identifier)
-* **IndexId**: string (Required, Identifier): Index ID
-* **Name**: string (Required): FAQ name
-* **RoleArn**: string (Required): FAQ role ARN
-* **S3Path**: [S3Path](#s3path) (Required): FAQ S3 path
-* **Tags**: [Tag](#tag)[]: Tags for labeling the FAQ
-
-## S3Path
-### Properties
-* **Bucket**: string (Required)
-* **Key**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required): A string used to identify this tag
-* **Value**: string (Required): A string containing the value for the tag
-
-## AWS.Kendra/IndexProperties
-### Properties
-* **Arn**: string (ReadOnly)
-* **CapacityUnits**: [CapacityUnitsConfiguration](#capacityunitsconfiguration): Capacity units
-* **Description**: string: A description for the index
-* **DocumentMetadataConfigurations**: [DocumentMetadataConfiguration](#documentmetadataconfiguration)[]: Document metadata configurations
-* **Edition**: string (Required)
-* **Id**: string (ReadOnly, Identifier)
-* **Name**: string (Required)
-* **RoleArn**: string (Required)
-* **ServerSideEncryptionConfiguration**: [ServerSideEncryptionConfiguration](#serversideencryptionconfiguration): Server side encryption configuration
-* **Tags**: [Tag](#tag)[]: Tags for labeling the index
-* **UserContextPolicy**: string
-* **UserTokenConfigurations**: [UserTokenConfiguration](#usertokenconfiguration)[]
-
-## CapacityUnitsConfiguration
-### Properties
-* **QueryCapacityUnits**: int (Required)
-* **StorageCapacityUnits**: int (Required)
-
-## DocumentMetadataConfiguration
-### Properties
-* **Name**: string (Required)
-* **Relevance**: [Relevance](#relevance)
-* **Search**: [Search](#search)
-* **Type**: string (Required)
-
-## Relevance
-### Properties
-* **Duration**: string
-* **Freshness**: bool
-* **Importance**: int
-* **RankOrder**: string
-* **ValueImportanceItems**: [ValueImportanceItem](#valueimportanceitem)[]
-
-## ValueImportanceItem
-### Properties
-* **Key**: string
-* **Value**: int
-
-## Search
-### Properties
-* **Displayable**: bool
-* **Facetable**: bool
-* **Searchable**: bool
-* **Sortable**: bool
-
-## ServerSideEncryptionConfiguration
-### Properties
-* **KmsKeyId**: string
-
-## Tag
-### Properties
-* **Key**: string (Required): A string used to identify this tag
-* **Value**: string (Required): A string containing the value for the tag
-
-## UserTokenConfiguration
-### Properties
-* **JsonTokenTypeConfiguration**: [JsonTokenTypeConfiguration](#jsontokentypeconfiguration)
-* **JwtTokenTypeConfiguration**: [JwtTokenTypeConfiguration](#jwttokentypeconfiguration)
-
-## JsonTokenTypeConfiguration
-### Properties
-* **GroupAttributeField**: string (Required)
-* **UserNameAttributeField**: string (Required)
-
-## JwtTokenTypeConfiguration
-### Properties
-* **ClaimRegex**: string
-* **GroupAttributeField**: string
-* **Issuer**: string
-* **KeyLocation**: string (Required)
-* **SecretManagerArn**: string
-* **URL**: string
-* **UserNameAttributeField**: string
 

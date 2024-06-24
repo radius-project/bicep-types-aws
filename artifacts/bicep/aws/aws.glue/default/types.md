@@ -3,16 +3,16 @@
 ## Resource AWS.Glue/Registry@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Glue/RegistryProperties](#awsglueregistryproperties) (Required): properties of the resource
+* **properties**: [AWS.Glue/RegistryProperties](#awsglueregistryproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Glue/Schema@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Glue/SchemaProperties](#awsglueschemaproperties) (Required): properties of the resource
+* **properties**: [AWS.Glue/SchemaProperties](#awsglueschemaproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Glue/RegistryProperties
 ### Properties
@@ -20,11 +20,6 @@
 * **Description**: string: A description of the registry. If description is not provided, there will not be any default value for this.
 * **Name**: string (Required): Name of the registry to be created of max length of 255, and may only contain letters, numbers, hyphen, underscore, dollar sign, or hash mark.  No whitespace.
 * **Tags**: [Tag](#tag)[]: List of tags to tag the Registry
-
-## Tag
-### Properties
-* **Key**: string (Required): A key to identify the tag.
-* **Value**: string (Required): Corresponding tag value for the key.
 
 ## AWS.Glue/SchemaProperties
 ### Properties
@@ -39,15 +34,20 @@
 * **SchemaDefinition**: string (Required, WriteOnly): Definition for the initial schema version in plain-text.
 * **Tags**: [Tag](#tag)[]: List of tags to tag the schema
 
+## Registry
+### Properties
+* **Arn**: string (Identifier): Amazon Resource Name for the Registry.
+* **Name**: string: Name of the registry in which the schema will be created.
+
 ## SchemaVersion
 ### Properties
 * **IsLatest**: bool: Indicates if the latest version needs to be updated.
 * **VersionNumber**: int: Indicates the version number in the schema to update.
 
-## Registry
+## Tag
 ### Properties
-* **Arn**: string (Identifier): Amazon Resource Name for the Registry.
-* **Name**: string: Name of the registry in which the schema will be created.
+* **Key**: string (Required): A key to identify the tag.
+* **Value**: string (Required): Corresponding tag value for the key.
 
 ## Tag
 ### Properties

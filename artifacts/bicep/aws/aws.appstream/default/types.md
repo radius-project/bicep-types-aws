@@ -3,30 +3,40 @@
 ## Resource AWS.AppStream/AppBlockBuilder@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppStream/AppBlockBuilderProperties](#awsappstreamappblockbuilderproperties) (Required): properties of the resource
+* **properties**: [AWS.AppStream/AppBlockBuilderProperties](#awsappstreamappblockbuilderproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppStream/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppStream/ApplicationProperties](#awsappstreamapplicationproperties) (Required): properties of the resource
+* **properties**: [AWS.AppStream/ApplicationProperties](#awsappstreamapplicationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppStream/DirectoryConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppStream/DirectoryConfigProperties](#awsappstreamdirectoryconfigproperties) (Required): properties of the resource
+* **properties**: [AWS.AppStream/DirectoryConfigProperties](#awsappstreamdirectoryconfigproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppStream/Entitlement@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.AppStream/EntitlementProperties](#awsappstreamentitlementproperties) (Required): properties of the resource
+* **properties**: [AWS.AppStream/EntitlementProperties](#awsappstreamentitlementproperties) (Required, Identifier): properties of the resource
+
+## AccessEndpoint
+### Properties
+* **EndpointType**: string (Required)
+* **VpceId**: string (Required)
+
+## Attribute
+### Properties
+* **Name**: string (Required, Identifier)
+* **Value**: string (Required)
 
 ## AWS.AppStream/AppBlockBuilderProperties
 ### Properties
@@ -43,21 +53,6 @@
 * **Platform**: string (Required)
 * **Tags**: [Tag](#tag)[] (WriteOnly)
 * **VpcConfig**: [VpcConfig](#vpcconfig) (Required)
-
-## AccessEndpoint
-### Properties
-* **EndpointType**: string (Required)
-* **VpceId**: string (Required)
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
-## VpcConfig
-### Properties
-* **SecurityGroupIds**: string[]
-* **SubnetIds**: string[]
 
 ## AWS.AppStream/ApplicationProperties
 ### Properties
@@ -76,30 +71,12 @@
 * **Tags**: [Tag](#tag)[] (WriteOnly)
 * **WorkingDirectory**: string
 
-## S3Location
-### Properties
-* **S3Bucket**: string (Required)
-* **S3Key**: string (Required)
-
-## Tag
-### Properties
-
 ## AWS.AppStream/DirectoryConfigProperties
 ### Properties
 * **CertificateBasedAuthProperties**: [CertificateBasedAuthProperties](#certificatebasedauthproperties)
 * **DirectoryName**: string (Required, Identifier)
 * **OrganizationalUnitDistinguishedNames**: string[] (Required)
 * **ServiceAccountCredentials**: [ServiceAccountCredentials](#serviceaccountcredentials) (Required)
-
-## CertificateBasedAuthProperties
-### Properties
-* **CertificateAuthorityArn**: string
-* **Status**: string
-
-## ServiceAccountCredentials
-### Properties
-* **AccountName**: string (Required)
-* **AccountPassword**: string (Required, WriteOnly)
 
 ## AWS.AppStream/EntitlementProperties
 ### Properties
@@ -111,8 +88,31 @@
 * **Name**: string (Required, Identifier)
 * **StackName**: string (Required, Identifier)
 
-## Attribute
+## CertificateBasedAuthProperties
 ### Properties
-* **Name**: string (Required, Identifier)
+* **CertificateAuthorityArn**: string
+* **Status**: string
+
+## S3Location
+### Properties
+* **S3Bucket**: string (Required)
+* **S3Key**: string (Required)
+
+## ServiceAccountCredentials
+### Properties
+* **AccountName**: string (Required)
+* **AccountPassword**: string (Required, WriteOnly)
+
+## Tag
+### Properties
+* **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[]
+* **SubnetIds**: string[]
 

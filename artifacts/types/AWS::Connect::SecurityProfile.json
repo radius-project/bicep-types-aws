@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-SecurityProfile",
   "type": "AWS::Connect::SecurityProfile",
-  "time": "2023-12-14T23:25:43.816Z",
+  "time": "2024-06-06T21:23:12.223Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,39 @@
       "/properties/InstanceArn"
     ],
     "definitions": {
+      "Application": {
+        "additionalProperties": false,
+        "description": "A third-party application's metadata.",
+        "properties": {
+          "ApplicationPermissions": {
+            "description": "The permissions that the agent is granted on the application",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/ApplicationPermission"
+            },
+            "maxItems": 10,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "Namespace": {
+            "description": "Namespace of the application that you want to give access to.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "ApplicationPermissions",
+          "Namespace"
+        ],
+        "type": "object"
+      },
+      "ApplicationPermission": {
+        "description": "The permissions that the agent is granted on the application.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
       "Permission": {
         "description": "A permission associated with the security profile.",
         "maxLength": 128,
@@ -16,7 +49,7 @@
         "type": "string"
       },
       "ResourceName": {
-        "description": "A resource that a security profile applies tag restrictions to in Amazon Connect.",
+        "description": "A resource that a security profile applies tag or hierarchy restrictions to in Amazon Connect.",
         "maxLength": 128,
         "minLength": 1,
         "type": "string"
@@ -78,6 +111,7 @@
       "read": {
         "permissions": [
           "connect:DescribeSecurityProfile",
+          "connect:ListSecurityProfileApplications",
           "connect:ListSecurityProfilePermissions"
         ]
       },
@@ -93,6 +127,13 @@
       "/properties/SecurityProfileArn"
     ],
     "properties": {
+      "AllowedAccessControlHierarchyGroupId": {
+        "description": "The identifier of the hierarchy group that a security profile uses to restrict access to resources in Amazon Connect.",
+        "maxLength": 127,
+        "minLength": 0,
+        "pattern": "^[a-zA-Z0-9-]+$",
+        "type": "string"
+      },
       "AllowedAccessControlTags": {
         "description": "The list of tags that a security profile uses to restrict access to resources in Amazon Connect.",
         "insertionOrder": false,
@@ -103,16 +144,45 @@
         "type": "array",
         "uniqueItems": true
       },
+      "Applications": {
+        "description": "A list of third-party applications that the security profile will give access to.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Application"
+        },
+        "maxItems": 10,
+        "type": "array",
+        "uniqueItems": true
+      },
       "Description": {
         "description": "The description of the security profile.",
         "maxLength": 250,
         "minLength": 0,
         "type": "string"
       },
+      "HierarchyRestrictedResources": {
+        "description": "The list of resources that a security profile applies hierarchy restrictions to in Amazon Connect.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ResourceName"
+        },
+        "maxItems": 10,
+        "type": "array",
+        "uniqueItems": true
+      },
       "InstanceArn": {
         "description": "The identifier of the Amazon Connect instance.",
         "pattern": "^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*$",
         "type": "string"
+      },
+      "LastModifiedRegion": {
+        "description": "The AWS Region where this resource was last modified.",
+        "pattern": "[a-z]{2}(-[a-z]+){1,2}(-[0-9])?",
+        "type": "string"
+      },
+      "LastModifiedTime": {
+        "description": "The timestamp when this resource was last modified.",
+        "type": "number"
       },
       "Permissions": {
         "description": "Permissions assigned to the security profile.",
@@ -158,7 +228,9 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/SecurityProfileArn"
+      "/properties/SecurityProfileArn",
+      "/properties/LastModifiedRegion",
+      "/properties/LastModifiedTime"
     ],
     "required": [
       "InstanceArn",

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Oam-Link",
   "type": "AWS::Oam::Link",
-  "time": "2024-01-02T17:19:00.939Z",
+  "time": "2024-06-19T11:57:16.545Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,12 +9,39 @@
       "/properties/LabelTemplate"
     ],
     "definitions": {
+      "LinkConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "LogGroupConfiguration": {
+            "$ref": "#/definitions/LinkFilter"
+          },
+          "MetricConfiguration": {
+            "$ref": "#/definitions/LinkFilter"
+          }
+        },
+        "type": "object"
+      },
+      "LinkFilter": {
+        "additionalProperties": false,
+        "properties": {
+          "Filter": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Filter"
+        ],
+        "type": "object"
+      },
       "ResourceType": {
         "enum": [
           "AWS::CloudWatch::Metric",
           "AWS::Logs::LogGroup",
           "AWS::XRay::Trace",
-          "AWS::ApplicationInsights::Application"
+          "AWS::ApplicationInsights::Application",
+          "AWS::InternetMonitor::Monitor"
         ],
         "type": "string"
       }
@@ -28,7 +55,8 @@
           "cloudwatch:Link",
           "logs:Link",
           "xray:Link",
-          "applicationinsights:Link"
+          "applicationinsights:Link",
+          "internetmonitor:Link"
         ]
       },
       "delete": {
@@ -55,6 +83,7 @@
           "logs:Link",
           "xray:Link",
           "applicationinsights:Link",
+          "internetmonitor:Link",
           "oam:TagResource",
           "oam:UntagResource"
         ]
@@ -76,6 +105,9 @@
         "minLength": 1,
         "type": "string"
       },
+      "LinkConfiguration": {
+        "$ref": "#/definitions/LinkConfiguration"
+      },
       "ResourceTypes": {
         "insertionOrder": false,
         "items": {
@@ -95,11 +127,11 @@
         "additionalProperties": false,
         "description": "Tags to apply to the link",
         "patternProperties": {
-          "^(?!aws:.*)[a-zA-Z0-9\\s\\_\\.\\/\\=\\+\\-]{1,128}$": {
-            "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.",
+          "^(?!aws:.*).{1,128}$": {
+            "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:.",
             "maxLength": 256,
             "minLength": 0,
-            "pattern": "^(?!aws:.*)[a-zA-Z0-9\\s\\_\\.\\/\\=\\+\\-]{0,256}$",
+            "pattern": "^(?!aws:.*).{0,256}$",
             "type": "string"
           }
         },

@@ -3,9 +3,9 @@
 ## Resource AWS.CertificateManager/Account@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CertificateManager/AccountProperties](#awscertificatemanageraccountproperties) (Required): properties of the resource
+* **properties**: [AWS.CertificateManager/AccountProperties](#awscertificatemanageraccountproperties) (Required, Identifier): properties of the resource
 
 ## AWS.CertificateManager/AccountProperties
 ### Properties

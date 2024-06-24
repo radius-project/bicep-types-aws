@@ -3,16 +3,16 @@
 ## Resource AWS.NeptuneGraph/Graph@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NeptuneGraph/GraphProperties](#awsneptunegraphgraphproperties) (Required): properties of the resource
+* **properties**: [AWS.NeptuneGraph/GraphProperties](#awsneptunegraphgraphproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NeptuneGraph/PrivateGraphEndpoint@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.NeptuneGraph/PrivateGraphEndpointProperties](#awsneptunegraphprivategraphendpointproperties) (Required): properties of the resource
+* **properties**: [AWS.NeptuneGraph/PrivateGraphEndpointProperties](#awsneptunegraphprivategraphendpointproperties) (Required, Identifier): properties of the resource
 
 ## AWS.NeptuneGraph/GraphProperties
 ### Properties
@@ -43,15 +43,6 @@ _Default_: If not specified, the default value is 1.
 * **Tags**: [Tag](#tag)[]: The tags associated with this graph.
 * **VectorSearchConfiguration**: [VectorSearchConfiguration](#vectorsearchconfiguration): Vector Search Configuration
 
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-
-## VectorSearchConfiguration
-### Properties
-* **VectorSearchDimension**: int (Required): The vector search dimension
-
 ## AWS.NeptuneGraph/PrivateGraphEndpointProperties
 ### Properties
 * **GraphIdentifier**: string (Required, WriteOnly): The auto-generated Graph Id assigned by the service.
@@ -62,4 +53,13 @@ _Default_: If not specified, the default value is 1.
 * **SubnetIds**: string[]: The subnet Ids associated with the VPC where you want the private graph endpoint to be created, ie, the graph will be reachable from within the VPC.
 * **VpcEndpointId**: string (ReadOnly): VPC endpoint that provides a private connection between the Graph and specified VPC.
 * **VpcId**: string (Required): The VPC where you want the private graph endpoint to be created, ie, the graph will be reachable from within the VPC.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## VectorSearchConfiguration
+### Properties
+* **VectorSearchDimension**: int (Required): The vector search dimension
 

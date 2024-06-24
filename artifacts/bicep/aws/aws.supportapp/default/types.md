@@ -3,23 +3,23 @@
 ## Resource AWS.SupportApp/AccountAlias@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SupportApp/AccountAliasProperties](#awssupportappaccountaliasproperties) (Required): properties of the resource
+* **properties**: [AWS.SupportApp/AccountAliasProperties](#awssupportappaccountaliasproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SupportApp/SlackChannelConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SupportApp/SlackChannelConfigurationProperties](#awssupportappslackchannelconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.SupportApp/SlackChannelConfigurationProperties](#awssupportappslackchannelconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SupportApp/SlackWorkspaceConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.SupportApp/SlackWorkspaceConfigurationProperties](#awssupportappslackworkspaceconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.SupportApp/SlackWorkspaceConfigurationProperties](#awssupportappslackworkspaceconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## AWS.SupportApp/AccountAliasProperties
 ### Properties

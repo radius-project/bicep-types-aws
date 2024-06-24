@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-S3Outposts-Bucket",
   "type": "AWS::S3Outposts::Bucket",
-  "time": "2023-12-04T15:17:14.51Z",
+  "time": "2024-05-22T14:28:23.492Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -227,6 +227,16 @@
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "OutpostId": {
+              "$ref": "resource-schema.json#/properties/OutpostId"
+            }
+          },
+          "required": [
+            "OutpostId"
+          ]
+        },
         "permissions": [
           "s3-outposts:ListRegionalBuckets"
         ]
@@ -291,7 +301,13 @@
       "OutpostId"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-s3outposts.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::S3Outposts::Bucket"
   }
 }

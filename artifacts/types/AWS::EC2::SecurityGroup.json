@@ -1,8 +1,9 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-SecurityGroup",
   "type": "AWS::EC2::SecurityGroup",
-  "time": "2023-11-16T16:52:44.738Z",
+  "time": "2024-04-01T16:25:54.57Z",
   "schema": {
+    "$schema": "https://raw.githubusercontent.com/aws-cloudformation/cloudformation-resource-schema/master/src/main/resources/schema/provider.definition.schema.v1.json",
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/GroupDescription",
@@ -99,24 +100,72 @@
         "type": "object"
       }
     },
+    "deprecatedProperties": [
+      "/properties/SecurityGroupEgress/*/SourceSecurityGroupId"
+    ],
     "description": "Resource Type definition for AWS::EC2::SecurityGroup",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ec2:CreateSecurityGroup",
+          "ec2:DescribeSecurityGroups",
+          "ec2:RevokeSecurityGroupEgress",
+          "ec2:AuthorizeSecurityGroupEgress",
+          "ec2:AuthorizeSecurityGroupIngress",
+          "ec2:CreateTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ec2:DeleteSecurityGroup",
+          "ec2:DescribeInstances"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ec2:DescribeSecurityGroups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeSecurityGroups"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ec2:RevokeSecurityGroupEgress",
+          "ec2:RevokeSecurityGroupIngress",
+          "ec2:DescribeSecurityGroups",
+          "ec2:AuthorizeSecurityGroupEgress",
+          "ec2:AuthorizeSecurityGroupIngress",
+          "ec2:CreateTags",
+          "ec2:DeleteTags"
+        ]
+      }
+    },
     "primaryIdentifier": [
       "/properties/Id"
     ],
     "properties": {
       "GroupDescription": {
+        "description": "A description for the security group.",
         "type": "string"
       },
       "GroupId": {
+        "description": "The group ID of the specified security group.",
         "type": "string"
       },
       "GroupName": {
+        "description": "The name of the security group.",
         "type": "string"
       },
       "Id": {
+        "description": "The group name or group ID depending on whether the SG is created in default or specific VPC",
         "type": "string"
       },
       "SecurityGroupEgress": {
+        "description": "[VPC only] The outbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.",
+        "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/Egress"
         },
@@ -124,6 +173,8 @@
         "uniqueItems": false
       },
       "SecurityGroupIngress": {
+        "description": "The inbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.",
+        "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/Ingress"
         },
@@ -131,6 +182,8 @@
         "uniqueItems": false
       },
       "Tags": {
+        "description": "Any tags assigned to the security group.",
+        "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/Tag"
         },
@@ -138,8 +191,17 @@
         "uniqueItems": false
       },
       "VpcId": {
+        "description": "The ID of the VPC for the security group.",
         "type": "string"
       }
+    },
+    "propertyTransform": {
+      "/properties/SecurityGroupEgress/*/FromPort": "($mapVal := $lookup({'1': 'icmp','6': 'tcp','17': 'udp','58': 'icmpv6'}, IpProtocol);$ipProtocol := $mapVal ? $mapVal : $lowercase(IpProtocol);$ipProtocol in ['imcp', 'tcp', 'udp', 'imcp'] ? FromPort : -1)",
+      "/properties/SecurityGroupEgress/*/IpProtocol": "($mapVal := $lookup({'1': 'icmp','6': 'tcp','17': 'udp','58': 'icmpv6'}, IpProtocol);$mapVal ? $mapVal : $lowercase(IpProtocol))",
+      "/properties/SecurityGroupEgress/*/ToPort": "($mapVal := $lookup({'1': 'icmp','6': 'tcp','17': 'udp','58': 'icmpv6'}, IpProtocol);$ipProtocol := $mapVal ? $mapVal : $lowercase(IpProtocol);$ipProtocol in ['imcp', 'tcp', 'udp', 'imcp'] ? ToPort : -1)",
+      "/properties/SecurityGroupIngress/*/FromPort": "($mapVal := $lookup({'1': 'icmp','6': 'tcp','17': 'udp','58': 'icmpv6'}, IpProtocol);$ipProtocol := $mapVal ? $mapVal : $lowercase(IpProtocol);$ipProtocol in ['imcp', 'tcp', 'udp', 'imcp'] ? FromPort : -1)",
+      "/properties/SecurityGroupIngress/*/IpProtocol": "($mapVal := $lookup({'1': 'icmp','6': 'tcp','17': 'udp','58': 'icmpv6'}, IpProtocol);$mapVal ? $mapVal : $lowercase(IpProtocol))",
+      "/properties/SecurityGroupIngress/*/ToPort": "($mapVal := $lookup({'1': 'icmp','6': 'tcp','17': 'udp','58': 'icmpv6'}, IpProtocol);$ipProtocol := $mapVal ? $mapVal : $lowercase(IpProtocol);$ipProtocol in ['imcp', 'tcp', 'udp', 'imcp'] ? ToPort : -1)"
     },
     "readOnlyProperties": [
       "/properties/Id",
@@ -148,6 +210,16 @@
     "required": [
       "GroupDescription"
     ],
-    "typeName": "AWS::EC2::SecurityGroup"
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::SecurityGroup",
+    "writeOnlyProperties": [
+      "/properties/SecurityGroupIngress/*/SourceSecurityGroupName"
+    ]
   }
 }

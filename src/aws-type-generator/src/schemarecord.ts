@@ -1,3 +1,5 @@
+import { TypeReference } from "bicep-types"
+
 // Based on: https://github.com/aws-cloudformation/cloudformation-cli/blob/master/src/rpdk/core/data/schema/provider.definition.schema.v1.json
 export interface SchemaRecord {
     arn: string
@@ -35,24 +37,31 @@ export interface SchemaDefinition {
 
 export type TypeName = 'boolean' | 'number' | 'integer' | 'string' | 'object' | 'array' | 'null'
 
+export interface IndexReference {
+    index: number
+    TypeReference: TypeReference
+}
+
 export class Context {
     parts: string[]
+    definitions: {[name: string] : IndexReference}
     readonly base: string[]
 
-    constructor(base: string[]) {
+    constructor(base: string[], definitions: {[name: string] : IndexReference}) {
         this.parts = base.slice()
         this.base = base.slice()
+        this.definitions = definitions
     }
 
     public push(part: string): Context {
-        const c = new Context(this.base)
+        const c = new Context(this.base, this.definitions)
         c.parts = this.parts.slice()
         c.parts.push(part)
         return c
     }
 
     public create(part: string): Context {
-        const c = new Context(this.base)
+        const c = new Context(this.base, this.definitions)
         c.parts.push(part)
         return c
     }

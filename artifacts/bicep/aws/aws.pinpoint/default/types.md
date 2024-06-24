@@ -3,9 +3,9 @@
 ## Resource AWS.Pinpoint/InAppTemplate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Pinpoint/InAppTemplateProperties](#awspinpointinapptemplateproperties) (Required): properties of the resource
+* **properties**: [AWS.Pinpoint/InAppTemplateProperties](#awspinpointinapptemplateproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Pinpoint/InAppTemplateProperties
 ### Properties
@@ -17,25 +17,10 @@
 * **TemplateDescription**: string
 * **TemplateName**: string (Required, Identifier)
 
-## InAppMessageContent
-### Properties
-* **BackgroundColor**: string
-* **BodyConfig**: [BodyConfig](#bodyconfig)
-* **HeaderConfig**: [HeaderConfig](#headerconfig)
-* **ImageUrl**: string
-* **PrimaryBtn**: [ButtonConfig](#buttonconfig)
-* **SecondaryBtn**: [ButtonConfig](#buttonconfig)
-
 ## BodyConfig
 ### Properties
 * **Alignment**: string
 * **Body**: string
-* **TextColor**: string
-
-## HeaderConfig
-### Properties
-* **Alignment**: string
-* **Header**: string
 * **TextColor**: string
 
 ## ButtonConfig
@@ -44,11 +29,6 @@
 * **DefaultConfig**: [DefaultButtonConfiguration](#defaultbuttonconfiguration)
 * **IOS**: [OverrideButtonConfiguration](#overridebuttonconfiguration)
 * **Web**: [OverrideButtonConfiguration](#overridebuttonconfiguration)
-
-## OverrideButtonConfiguration
-### Properties
-* **ButtonAction**: string
-* **Link**: string
 
 ## DefaultButtonConfiguration
 ### Properties
@@ -59,9 +39,29 @@
 * **Text**: string
 * **TextColor**: string
 
+## HeaderConfig
+### Properties
+* **Alignment**: string
+* **Header**: string
+* **TextColor**: string
+
+## InAppMessageContent
+### Properties
+* **BackgroundColor**: string
+* **BodyConfig**: [BodyConfig](#bodyconfig)
+* **HeaderConfig**: [HeaderConfig](#headerconfig)
+* **ImageUrl**: string
+* **PrimaryBtn**: [ButtonConfig](#buttonconfig)
+* **SecondaryBtn**: [ButtonConfig](#buttonconfig)
+
 ## InAppTemplate_CustomConfig
 ### Properties
 
 ## InAppTemplate_Tags
 ### Properties
+
+## OverrideButtonConfiguration
+### Properties
+* **ButtonAction**: string
+* **Link**: string
 

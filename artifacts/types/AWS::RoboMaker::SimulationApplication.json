@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RoboMaker-SimulationApplication",
   "type": "AWS::RoboMaker::SimulationApplication",
-  "time": "2023-06-20T15:37:56.619Z",
+  "time": "2024-02-20T16:54:42.074Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -146,11 +146,19 @@
     "handlers": {
       "create": {
         "permissions": [
-          "robomaker:CreateSimulationApplication"
+          "robomaker:CreateSimulationApplication",
+          "robomaker:TagResource",
+          "robomaker:UntagResource",
+          "ecr:BatchGetImage",
+          "ecr:GetAuthorizationToken",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr-public:GetAuthorizationToken",
+          "sts:GetServiceBearerToken"
         ]
       },
       "delete": {
         "permissions": [
+          "robomaker:DescribeSimulationApplication",
           "robomaker:DeleteSimulationApplication"
         ]
       },
@@ -168,7 +176,11 @@
         "permissions": [
           "robomaker:TagResource",
           "robomaker:UntagResource",
-          "robomaker:UpdateSimulationApplication"
+          "robomaker:UpdateSimulationApplication",
+          "ecr:BatchGetImage",
+          "ecr:GetAuthorizationToken",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr-public:GetAuthorizationToken"
         ]
       }
     },

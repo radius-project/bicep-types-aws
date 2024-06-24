@@ -3,30 +3,30 @@
 ## Resource AWS.B2BI/Capability@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.B2BI/CapabilityProperties](#awsb2bicapabilityproperties) (Required): properties of the resource
+* **properties**: [AWS.B2BI/CapabilityProperties](#awsb2bicapabilityproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.B2BI/Partnership@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.B2BI/PartnershipProperties](#awsb2bipartnershipproperties) (Required): properties of the resource
+* **properties**: [AWS.B2BI/PartnershipProperties](#awsb2bipartnershipproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.B2BI/Profile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.B2BI/ProfileProperties](#awsb2biprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.B2BI/ProfileProperties](#awsb2biprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.B2BI/Transformer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.B2BI/TransformerProperties](#awsb2bitransformerproperties) (Required): properties of the resource
+* **properties**: [AWS.B2BI/TransformerProperties](#awsb2bitransformerproperties) (Required, Identifier): properties of the resource
 
 ## AWS.B2BI/CapabilityProperties
 ### Properties
@@ -39,19 +39,6 @@
 * **Name**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **Type**: string (Required)
-
-## CapabilityConfiguration
-### Properties
-
-## S3Location
-### Properties
-* **BucketName**: string
-* **Key**: string
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
 
 ## AWS.B2BI/PartnershipProperties
 ### Properties
@@ -67,11 +54,6 @@
 * **Tags**: [Tag](#tag)[]
 * **TradingPartnerId**: string (ReadOnly)
 
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.B2BI/ProfileProperties
 ### Properties
 * **BusinessName**: string (Required)
@@ -86,18 +68,13 @@
 * **ProfileId**: string (ReadOnly, Identifier)
 * **Tags**: [Tag](#tag)[]
 
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.B2BI/TransformerProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly)
 * **EdiType**: [EdiType](#editype) (Required)
 * **FileFormat**: string (Required)
 * **MappingTemplate**: string (Required)
-* **ModifiedAt**: string
+* **ModifiedAt**: string (ReadOnly)
 * **Name**: string (Required)
 * **SampleDocument**: string
 * **Status**: string (Required)
@@ -105,8 +82,31 @@
 * **TransformerArn**: string (ReadOnly)
 * **TransformerId**: string (ReadOnly, Identifier)
 
+## CapabilityConfiguration
+### Properties
+
 ## EdiType
 ### Properties
+
+## S3Location
+### Properties
+* **BucketName**: string
+* **Key**: string
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

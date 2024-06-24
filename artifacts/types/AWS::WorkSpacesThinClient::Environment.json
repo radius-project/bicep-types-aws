@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WorkSpacesThinClient-Environment",
   "type": "AWS::WorkSpacesThinClient::Environment",
-  "time": "2024-01-04T10:24:13.827Z",
+  "time": "2024-06-21T01:26:40.228Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -119,16 +119,16 @@
           "workspaces-web:GetPortal",
           "workspaces-web:GetUserSettings",
           "kms:DescribeKey",
-          "kms:Encrypt",
-          "kms:Decrypt",
-          "kms:CreateGrant"
+          "kms:CreateGrant",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
         ]
       },
       "delete": {
         "permissions": [
           "thinclient:DeleteEnvironment",
           "thinclient:UntagResource",
-          "kms:DescribeKey",
+          "kms:Decrypt",
           "kms:RetireGrant"
         ]
       },
@@ -136,8 +136,6 @@
         "permissions": [
           "thinclient:ListEnvironment",
           "thinclient:ListTagsForResource",
-          "kms:DescribeKey",
-          "kms:Encrypt",
           "kms:Decrypt"
         ]
       },
@@ -145,8 +143,6 @@
         "permissions": [
           "thinclient:GetEnvironment",
           "thinclient:ListTagsForResource",
-          "kms:DescribeKey",
-          "kms:Encrypt",
           "kms:Decrypt"
         ]
       },
@@ -157,15 +153,11 @@
           "workspaces-web:GetPortal",
           "workspaces-web:GetUserSettings",
           "thinclient:UpdateEnvironment",
-          "thinclient:GetEnvironment",
+          "thinclient:ListTagsForResource",
           "thinclient:TagResource",
           "thinclient:UntagResource",
-          "thinclient:ListTagsForResource",
-          "kms:DescribeKey",
-          "kms:Encrypt",
           "kms:Decrypt",
-          "kms:CreateGrant",
-          "kms:RetireGrant"
+          "kms:GenerateDataKey"
         ]
       }
     },
@@ -285,7 +277,7 @@
         "items": {
           "$ref": "#/definitions/Tag"
         },
-        "maxItems": 20,
+        "maxItems": 50,
         "type": "array",
         "uniqueItems": true
       },

@@ -3,16 +3,32 @@
 ## Resource AWS.GroundStation/Config@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GroundStation/ConfigProperties](#awsgroundstationconfigproperties) (Required): properties of the resource
+* **properties**: [AWS.GroundStation/ConfigProperties](#awsgroundstationconfigproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GroundStation/MissionProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.GroundStation/MissionProfileProperties](#awsgroundstationmissionprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.GroundStation/MissionProfileProperties](#awsgroundstationmissionprofileproperties) (Required, Identifier): properties of the resource
+
+## AntennaDownlinkConfig
+### Properties
+* **SpectrumConfig**: [SpectrumConfig](#spectrumconfig)
+
+## AntennaDownlinkDemodDecodeConfig
+### Properties
+* **DecodeConfig**: [DecodeConfig](#decodeconfig)
+* **DemodulationConfig**: [DemodulationConfig](#demodulationconfig)
+* **SpectrumConfig**: [SpectrumConfig](#spectrumconfig)
+
+## AntennaUplinkConfig
+### Properties
+* **SpectrumConfig**: [UplinkSpectrumConfig](#uplinkspectrumconfig)
+* **TargetEirp**: [Eirp](#eirp)
+* **TransmitDisabled**: bool
 
 ## AWS.GroundStation/ConfigProperties
 ### Properties
@@ -22,91 +38,6 @@
 * **Name**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **Type**: string (ReadOnly)
-
-## ConfigData
-### Properties
-* **AntennaDownlinkConfig**: [AntennaDownlinkConfig](#antennadownlinkconfig)
-* **AntennaDownlinkDemodDecodeConfig**: [AntennaDownlinkDemodDecodeConfig](#antennadownlinkdemoddecodeconfig)
-* **AntennaUplinkConfig**: [AntennaUplinkConfig](#antennauplinkconfig)
-* **DataflowEndpointConfig**: [DataflowEndpointConfig](#dataflowendpointconfig)
-* **S3RecordingConfig**: [S3RecordingConfig](#s3recordingconfig)
-* **TrackingConfig**: [TrackingConfig](#trackingconfig)
-* **UplinkEchoConfig**: [UplinkEchoConfig](#uplinkechoconfig)
-
-## AntennaDownlinkConfig
-### Properties
-* **SpectrumConfig**: [SpectrumConfig](#spectrumconfig)
-
-## SpectrumConfig
-### Properties
-* **Bandwidth**: [FrequencyBandwidth](#frequencybandwidth)
-* **CenterFrequency**: [Frequency](#frequency)
-* **Polarization**: string
-
-## FrequencyBandwidth
-### Properties
-* **Units**: string
-* **Value**: int
-
-## Frequency
-### Properties
-* **Units**: string
-* **Value**: int
-
-## AntennaDownlinkDemodDecodeConfig
-### Properties
-* **DecodeConfig**: [DecodeConfig](#decodeconfig)
-* **DemodulationConfig**: [DemodulationConfig](#demodulationconfig)
-* **SpectrumConfig**: [SpectrumConfig](#spectrumconfig)
-
-## DecodeConfig
-### Properties
-* **UnvalidatedJSON**: string
-
-## DemodulationConfig
-### Properties
-* **UnvalidatedJSON**: string
-
-## AntennaUplinkConfig
-### Properties
-* **SpectrumConfig**: [UplinkSpectrumConfig](#uplinkspectrumconfig)
-* **TargetEirp**: [Eirp](#eirp)
-* **TransmitDisabled**: bool
-
-## UplinkSpectrumConfig
-### Properties
-* **CenterFrequency**: [Frequency](#frequency)
-* **Polarization**: string
-
-## Eirp
-### Properties
-* **Units**: string
-* **Value**: int
-
-## DataflowEndpointConfig
-### Properties
-* **DataflowEndpointName**: string
-* **DataflowEndpointRegion**: string
-
-## S3RecordingConfig
-### Properties
-* **BucketArn**: string
-* **Prefix**: string
-* **RoleArn**: string
-
-## TrackingConfig
-### Properties
-* **Autotrack**: string
-
-## UplinkEchoConfig
-### Properties
-* **AntennaUplinkConfigArn**: string
-* **Enabled**: bool
-
-## Tag
-### Properties
-* **Key**: string
-* **Value**: string
 
 ## AWS.GroundStation/MissionProfileProperties
 ### Properties
@@ -123,10 +54,60 @@
 * **Tags**: [Tag](#tag)[]
 * **TrackingConfigArn**: string (Required)
 
+## ConfigData
+### Properties
+* **AntennaDownlinkConfig**: [AntennaDownlinkConfig](#antennadownlinkconfig)
+* **AntennaDownlinkDemodDecodeConfig**: [AntennaDownlinkDemodDecodeConfig](#antennadownlinkdemoddecodeconfig)
+* **AntennaUplinkConfig**: [AntennaUplinkConfig](#antennauplinkconfig)
+* **DataflowEndpointConfig**: [DataflowEndpointConfig](#dataflowendpointconfig)
+* **S3RecordingConfig**: [S3RecordingConfig](#s3recordingconfig)
+* **TrackingConfig**: [TrackingConfig](#trackingconfig)
+* **UplinkEchoConfig**: [UplinkEchoConfig](#uplinkechoconfig)
+
 ## DataflowEdge
 ### Properties
 * **Destination**: string
 * **Source**: string
+
+## DataflowEndpointConfig
+### Properties
+* **DataflowEndpointName**: string
+* **DataflowEndpointRegion**: string
+
+## DecodeConfig
+### Properties
+* **UnvalidatedJSON**: string
+
+## DemodulationConfig
+### Properties
+* **UnvalidatedJSON**: string
+
+## Eirp
+### Properties
+* **Units**: string
+* **Value**: int
+
+## Frequency
+### Properties
+* **Units**: string
+* **Value**: int
+
+## FrequencyBandwidth
+### Properties
+* **Units**: string
+* **Value**: int
+
+## S3RecordingConfig
+### Properties
+* **BucketArn**: string
+* **Prefix**: string
+* **RoleArn**: string
+
+## SpectrumConfig
+### Properties
+* **Bandwidth**: [FrequencyBandwidth](#frequencybandwidth)
+* **CenterFrequency**: [Frequency](#frequency)
+* **Polarization**: string
 
 ## StreamsKmsKey
 ### Properties
@@ -135,6 +116,25 @@
 
 ## Tag
 ### Properties
+* **Key**: string
+* **Value**: string
+
+## Tag
+### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## TrackingConfig
+### Properties
+* **Autotrack**: string
+
+## UplinkEchoConfig
+### Properties
+* **AntennaUplinkConfigArn**: string
+* **Enabled**: bool
+
+## UplinkSpectrumConfig
+### Properties
+* **CenterFrequency**: [Frequency](#frequency)
+* **Polarization**: string
 

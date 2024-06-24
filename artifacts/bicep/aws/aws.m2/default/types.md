@@ -3,16 +3,16 @@
 ## Resource AWS.M2/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.M2/ApplicationProperties](#awsm2applicationproperties) (Required): properties of the resource
+* **properties**: [AWS.M2/ApplicationProperties](#awsm2applicationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.M2/Environment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.M2/EnvironmentProperties](#awsm2environmentproperties) (Required): properties of the resource
+* **properties**: [AWS.M2/EnvironmentProperties](#awsm2environmentproperties) (Required, Identifier): properties of the resource
 
 ## AWS.M2/ApplicationProperties
 ### Properties
@@ -25,12 +25,6 @@
 * **Name**: string (Required)
 * **RoleArn**: string
 * **Tags**: [TagMap](#tagmap)
-
-## Definition
-### Properties
-
-## TagMap
-### Properties
 
 ## AWS.M2/EnvironmentProperties
 ### Properties
@@ -50,11 +44,17 @@
 * **SubnetIds**: string[]: The unique identifiers of the subnets assigned to this runtime environment.
 * **Tags**: [TagMap](#tagmap): Tags associated to this environment.
 
+## Definition
+### Properties
+
 ## HighAvailabilityConfig
 ### Properties
 * **DesiredCapacity**: int (Required)
 
 ## StorageConfiguration
+### Properties
+
+## TagMap
 ### Properties
 
 ## TagMap

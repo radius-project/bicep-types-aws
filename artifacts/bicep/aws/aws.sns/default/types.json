@@ -1,1 +1,312 @@
-[{"1":{"Kind":1}},{"1":{"Kind":2}},{"1":{"Kind":3}},{"1":{"Kind":4}},{"1":{"Kind":5}},{"1":{"Kind":6}},{"1":{"Kind":7}},{"1":{"Kind":8}},{"2":{"Name":"LoggingConfig","Properties":{"FailureFeedbackRoleArn":{"Type":4,"Flags":0,"Description":"The IAM role ARN to be used when logging failed message deliveries in Amazon CloudWatch"},"Protocol":{"Type":4,"Flags":1,"Description":"Indicates one of the supported protocols for the SNS topic"},"SuccessFeedbackRoleArn":{"Type":4,"Flags":0,"Description":"The IAM role ARN to be used when logging successful message deliveries in Amazon CloudWatch"},"SuccessFeedbackSampleRate":{"Type":4,"Flags":0,"Description":"The percentage of successful message deliveries to be logged in Amazon CloudWatch. Valid percentage values range from 0 to 100"}}}},{"2":{"Name":"Subscription","Properties":{"Endpoint":{"Type":4,"Flags":1},"Protocol":{"Type":4,"Flags":1}}}},{"2":{"Name":"Tag","Properties":{"Key":{"Type":4,"Flags":1,"Description":"The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, `_`, `.`, `/`, `=`, `+`, and `-`."},"Value":{"Type":4,"Flags":1,"Description":"The value for the tag. You can specify a value that is 0 to 256 characters in length."}}}},{"2":{"Name":"AWS.SNS/TopicProperties","Properties":{"ArchivePolicy":{"Type":12,"Flags":0,"Description":"The archive policy determines the number of days Amazon SNS retains messages. You can set a retention period from 1 to 365 days."},"ContentBasedDeduplication":{"Type":2,"Flags":0,"Description":"Enables content-based deduplication for FIFO topics. By default, ContentBasedDeduplication is set to false. If you create a FIFO topic and this attribute is false, you must specify a value for the MessageDeduplicationId parameter for the Publish action.\n\nWhen you set ContentBasedDeduplication to true, Amazon SNS uses a SHA-256 hash to generate the MessageDeduplicationId using the body of the message (but not the attributes of the message).\n\n(Optional) To override the generated value, you can specify a value for the the MessageDeduplicationId parameter for the Publish action.\n\n"},"DataProtectionPolicy":{"Type":13,"Flags":0,"Description":"The body of the policy document you want to use for this topic.\n\nYou can only add one policy per topic.\n\nThe policy must be in JSON string format.\n\nLength Constraints: Maximum length of 30720"},"DeliveryStatusLogging":{"Type":14,"Flags":0,"Description":"Delivery status logging configuration for supported protocols for an Amazon SNS topic."},"DisplayName":{"Type":4,"Flags":0,"Description":"The display name to use for an Amazon SNS topic with SMS subscriptions."},"FifoTopic":{"Type":2,"Flags":0,"Description":"Set to true to create a FIFO topic."},"KmsMasterKeyId":{"Type":4,"Flags":0,"Description":"The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK. For more information, see Key Terms. For more examples, see KeyId in the AWS Key Management Service API Reference.\n\nThis property applies only to [server-side-encryption](https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html)."},"SignatureVersion":{"Type":4,"Flags":0,"Description":"Version of the Amazon SNS signature used. If the SignatureVersion is 1, Signature is a Base64-encoded SHA1withRSA signature of the Message, MessageId, Type, Timestamp, and TopicArn values. If the SignatureVersion is 2, Signature is a Base64-encoded SHA256withRSA signature of the Message, MessageId, Type, Timestamp, and TopicArn values."},"Subscription":{"Type":15,"Flags":0,"Description":"The SNS subscriptions (endpoints) for this topic."},"Tags":{"Type":16,"Flags":0},"TopicArn":{"Type":4,"Flags":18},"TopicName":{"Type":4,"Flags":0,"Description":"The name of the topic you want to create. Topic names must include only uppercase and lowercase ASCII letters, numbers, underscores, and hyphens, and must be between 1 and 256 characters long. FIFO topic names must end with .fifo.\n\nIf you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the topic name. For more information, see Name Type."},"TracingConfig":{"Type":4,"Flags":0,"Description":"Tracing mode of an Amazon SNS topic. By default TracingConfig is set to PassThrough, and the topic passes through the tracing header it receives from an SNS publisher to its subscriptions. If set to Active, SNS will vend X-Ray segment data to topic owner account if the sampled flag in the tracing header is true. Only supported on standard topics."}}}},{"2":{"Name":"Topic_ArchivePolicy","Properties":{}}},{"2":{"Name":"Topic_DataProtectionPolicy","Properties":{}}},{"3":{"ItemType":8}},{"3":{"ItemType":9}},{"3":{"ItemType":10}},{"2":{"Name":"AWS.SNS/Topic","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":11,"Flags":0,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.SNS/Topic@default","ScopeType":0,"Body":17}},{"2":{"Name":"AWS.SNS/TopicInlinePolicyProperties","Properties":{"PolicyDocument":{"Type":20,"Flags":1,"Description":"A policy document that contains permissions to add to the specified SNS topics."},"TopicArn":{"Type":4,"Flags":17,"Description":"The Amazon Resource Name (ARN) of the topic to which you want to add the policy."}}}},{"2":{"Name":"TopicInlinePolicy_PolicyDocument","Properties":{}}},{"2":{"Name":"AWS.SNS/TopicInlinePolicy","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":19,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.SNS/TopicInlinePolicy@default","ScopeType":0,"Body":21}}]
+[
+  {
+    "$type": "ObjectType",
+    "name": "LoggingConfig",
+    "properties": {
+      "FailureFeedbackRoleArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "Protocol": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": ""
+      },
+      "SuccessFeedbackRoleArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "SuccessFeedbackSampleRate": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": ""
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Subscription",
+    "properties": {
+      "Endpoint": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The endpoint that receives notifications from the SNS topic. The endpoint value depends on the protocol that you specify. For more information, see the ``Endpoint`` parameter of the ``Subscribe`` action in the *API Reference*."
+      },
+      "Protocol": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The subscription's protocol. For more information, see the ``Protocol`` parameter of the ``Subscribe`` action in the *API Reference*."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The required key portion of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The optional value portion of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SNS/TopicProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Topic_ArchivePolicy",
+    "properties": {}
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Topic_DataProtectionPolicy",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SNS/TopicProperties",
+    "properties": {
+      "ArchivePolicy": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The archive policy determines the number of days SNS retains messages. You can set a retention period from 1 to 365 days."
+      },
+      "ContentBasedDeduplication": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Enables content-based deduplication for FIFO topics.\n  +  By default, ``ContentBasedDeduplication`` is set to ``false``. If you create a FIFO topic and this attribute is ``false``, you must specify a value for the ``MessageDeduplicationId`` parameter for the [Publish](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html) action. \n  +  When you set ``ContentBasedDeduplication`` to ``true``, SNS uses a SHA-256 hash to generate the ``MessageDeduplicationId`` using the body of the message (but not the attributes of the message).\n (Optional) To override the generated value, you can specify a value for the the ``MessageDeduplicationId`` parameter for the ``Publish`` action."
+      },
+      "DataProtectionPolicy": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The body of the policy document you want to use for this topic.\n You can only add one policy per topic.\n The policy must be in JSON string format.\n Length Constraints: Maximum length of 30,720."
+      },
+      "DeliveryStatusLogging": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "DisplayName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The display name to use for an SNS topic with SMS subscriptions. The display name must be maximum 100 characters long, including hyphens (-), underscores (_), spaces, and tabs."
+      },
+      "FifoTopic": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Set to true to create a FIFO topic."
+      },
+      "KmsMasterKeyId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The ID of an AWS managed customer master key (CMK) for SNS or a custom CMK. For more information, see [Key terms](https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms). For more examples, see ``KeyId`` in the *API Reference*.\n This property applies only to [server-side-encryption](https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html)."
+      },
+      "SignatureVersion": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The signature version corresponds to the hashing algorithm used while creating the signature of the notifications, subscription confirmations, or unsubscribe confirmation messages sent by Amazon SNS. By default, ``SignatureVersion`` is set to ``1``."
+      },
+      "Subscription": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The SNS subscriptions (endpoints) for this topic.\n  If you specify the ``Subscription`` property in the ``AWS::SNS::Topic`` resource and it creates an associated subscription resource, the associated subscription is not deleted when the ``AWS::SNS::Topic`` resource is deleted."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The list of tags to add to a new topic.\n  To be able to tag a topic on creation, you must have the ``sns:CreateTopic`` and ``sns:TagResource`` permissions."
+      },
+      "TopicArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": ""
+      },
+      "TopicName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The name of the topic you want to create. Topic names must include only uppercase and lowercase ASCII letters, numbers, underscores, and hyphens, and must be between 1 and 256 characters long. FIFO topic names must end with ``.fifo``.\n If you don't specify a name, CFN generates a unique physical ID and uses that ID for the topic name. For more information, see [Name type](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-name.html).\n  If you specify a name, you can't perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name."
+      },
+      "TracingConfig": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Tracing mode of an SNS topic. By default ``TracingConfig`` is set to ``PassThrough``, and the topic passes through the tracing header it receives from an SNS publisher to its subscriptions. If set to ``Active``, SNS will vend X-Ray segment data to topic owner account if the sampled flag in the tracing header is true."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SNS/Topic",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SNS/Topic@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/12"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SNS/TopicInlinePolicyProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TopicInlinePolicy_PolicyDocument",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SNS/TopicInlinePolicyProperties",
+    "properties": {
+      "PolicyDocument": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "A policy document that contains permissions to add to the specified SNS topics."
+      },
+      "TopicArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "The Amazon Resource Name (ARN) of the topic to which you want to add the policy."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SNS/TopicInlinePolicy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SNS/TopicInlinePolicy@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/17"
+    },
+    "flags": 0
+  }
+]

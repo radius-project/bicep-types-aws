@@ -1,1 +1,765 @@
-[{"1":{"Kind":1}},{"1":{"Kind":2}},{"1":{"Kind":3}},{"1":{"Kind":4}},{"1":{"Kind":5}},{"1":{"Kind":6}},{"1":{"Kind":7}},{"1":{"Kind":8}},{"2":{"Name":"Tag","Properties":{"Key":{"Type":4,"Flags":1,"Description":"The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "},"Value":{"Type":4,"Flags":1,"Description":"The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "}}}},{"2":{"Name":"AWS.CodeArtifact/DomainProperties","Properties":{"Arn":{"Type":4,"Flags":18,"Description":"The ARN of the domain."},"DomainName":{"Type":4,"Flags":1,"Description":"The name of the domain."},"EncryptionKey":{"Type":4,"Flags":2,"Description":"The ARN of an AWS Key Management Service (AWS KMS) key associated with a domain."},"Name":{"Type":4,"Flags":2,"Description":"The name of the domain. This field is used for GetAtt"},"Owner":{"Type":4,"Flags":2,"Description":"The 12-digit account ID of the AWS account that owns the domain. This field is used for GetAtt"},"PermissionsPolicyDocument":{"Type":10,"Flags":0,"Description":"The access control resource policy on the provided domain."},"Tags":{"Type":11,"Flags":0,"Description":"An array of key-value pairs to apply to this resource."}}}},{"2":{"Name":"Domain_PermissionsPolicyDocument","Properties":{}}},{"3":{"ItemType":8}},{"2":{"Name":"AWS.CodeArtifact/Domain","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":9,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.CodeArtifact/Domain@default","ScopeType":0,"Body":12}},{"2":{"Name":"Tag","Properties":{"Key":{"Type":4,"Flags":1,"Description":"The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "},"Value":{"Type":4,"Flags":1,"Description":"The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "}}}},{"2":{"Name":"AWS.CodeArtifact/RepositoryProperties","Properties":{"Arn":{"Type":4,"Flags":18,"Description":"The ARN of the repository."},"Description":{"Type":4,"Flags":0,"Description":"A text description of the repository."},"DomainName":{"Type":4,"Flags":1,"Description":"The name of the domain that contains the repository."},"DomainOwner":{"Type":4,"Flags":2,"Description":"The 12-digit account ID of the AWS account that owns the domain."},"ExternalConnections":{"Type":16,"Flags":0,"Description":"A list of external connections associated with the repository."},"Name":{"Type":4,"Flags":2,"Description":"The name of the repository. This is used for GetAtt"},"PermissionsPolicyDocument":{"Type":17,"Flags":0,"Description":"The access control resource policy on the provided repository."},"RepositoryName":{"Type":4,"Flags":1,"Description":"The name of the repository."},"Tags":{"Type":18,"Flags":0,"Description":"An array of key-value pairs to apply to this resource."},"Upstreams":{"Type":19,"Flags":0,"Description":"A list of upstream repositories associated with the repository."}}}},{"3":{"ItemType":4}},{"2":{"Name":"Repository_PermissionsPolicyDocument","Properties":{}}},{"3":{"ItemType":14}},{"3":{"ItemType":4}},{"2":{"Name":"AWS.CodeArtifact/Repository","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":15,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.CodeArtifact/Repository@default","ScopeType":0,"Body":20}}]
+[
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CodeArtifact/DomainProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Domain_PermissionsPolicyDocument",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeArtifact/DomainProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The ARN of the domain."
+      },
+      "DomainName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the domain."
+      },
+      "EncryptionKey": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ARN of an AWS Key Management Service (AWS KMS) key associated with a domain."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The name of the domain. This field is used for GetAtt"
+      },
+      "Owner": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The 12-digit account ID of the AWS account that owns the domain. This field is used for GetAtt"
+      },
+      "PermissionsPolicyDocument": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The access control resource policy on the provided domain."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeArtifact/Domain",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CodeArtifact/Domain@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/6"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OriginConfiguration",
+    "properties": {
+      "Restrictions": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1,
+        "description": "The origin configuration that is applied to the package group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RestrictionType",
+    "properties": {
+      "Repositories": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
+      "RestrictionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Restrictions",
+    "properties": {
+      "ExternalUpstream": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The external upstream restriction determines if new package versions can be ingested or retained from external connections."
+      },
+      "InternalUpstream": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "The internal upstream restriction determines if new package versions can be ingested or retained from upstream repositories."
+      },
+      "Publish": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "The publish restriction determines if new package versions can be published."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageGroup_RestrictionType",
+    "properties": {
+      "Repositories": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "RestrictionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageGroup_RestrictionType",
+    "properties": {
+      "Repositories": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      },
+      "RestrictionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageGroup_RestrictionType",
+    "properties": {
+      "Repositories": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "RestrictionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageGroup_Restrictions",
+    "properties": {
+      "ExternalUpstream": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The external upstream restriction determines if new package versions can be ingested or retained from external connections."
+      },
+      "InternalUpstream": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The internal upstream restriction determines if new package versions can be ingested or retained from upstream repositories."
+      },
+      "Publish": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The publish restriction determines if new package versions can be published."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageGroup_RestrictionType",
+    "properties": {
+      "Repositories": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "RestrictionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageGroup_RestrictionType",
+    "properties": {
+      "Repositories": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      },
+      "RestrictionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageGroup_RestrictionType",
+    "properties": {
+      "Repositories": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "RestrictionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CodeArtifact/PackageGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageGroup_RestrictionType",
+    "properties": {
+      "Repositories": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      },
+      "RestrictionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageGroup_RestrictionType",
+    "properties": {
+      "Repositories": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0
+      },
+      "RestrictionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageGroup_RestrictionType",
+    "properties": {
+      "Repositories": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0
+      },
+      "RestrictionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageGroup_Restrictions",
+    "properties": {
+      "ExternalUpstream": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "The external upstream restriction determines if new package versions can be ingested or retained from external connections."
+      },
+      "InternalUpstream": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0,
+        "description": "The internal upstream restriction determines if new package versions can be ingested or retained from upstream repositories."
+      },
+      "Publish": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0,
+        "description": "The publish restriction determines if new package versions can be published."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageGroup_OriginConfiguration",
+    "properties": {
+      "Restrictions": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 1,
+        "description": "The origin configuration that is applied to the package group."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/11"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeArtifact/PackageGroupProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The ARN of the package group."
+      },
+      "ContactInfo": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The contact info of the package group."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The text description of the package group."
+      },
+      "DomainName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the domain that contains the package group."
+      },
+      "DomainOwner": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The 12-digit account ID of the AWS account that owns the domain."
+      },
+      "OriginConfiguration": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "The package origin configuration of the package group."
+      },
+      "Pattern": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The package group pattern that is used to gather packages."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to the package group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeArtifact/PackageGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CodeArtifact/PackageGroup@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/37"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CodeArtifact/RepositoryProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Repository_PermissionsPolicyDocument",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/39"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeArtifact/RepositoryProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The ARN of the repository."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A text description of the repository."
+      },
+      "DomainName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the domain that contains the repository."
+      },
+      "DomainOwner": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The 12-digit account ID of the AWS account that owns the domain."
+      },
+      "ExternalConnections": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "A list of external connections associated with the repository."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The name of the repository. This is used for GetAtt"
+      },
+      "PermissionsPolicyDocument": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "The access control resource policy on the provided repository."
+      },
+      "RepositoryName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the repository."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "Upstreams": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "A list of upstream repositories associated with the repository."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeArtifact/Repository",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CodeArtifact/Repository@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/46"
+    },
+    "flags": 0
+  }
+]

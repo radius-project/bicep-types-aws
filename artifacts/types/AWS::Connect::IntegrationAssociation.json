@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-IntegrationAssociation",
   "type": "AWS::Connect::IntegrationAssociation",
-  "time": "2023-12-11T19:28:40.64Z",
+  "time": "2024-04-16T21:35:10.161Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -67,6 +67,7 @@
           "lex:CreateResourcePolicyStatement",
           "lambda:AddPermission",
           "app-integrations:GetApplication",
+          "app-integrations:CreateApplicationAssociation",
           "iam:AttachRolePolicy",
           "iam:CreateServiceLinkedRole",
           "iam:GetRolePolicy",
@@ -78,6 +79,7 @@
           "connect:DescribeInstance",
           "ds:DescribeDirectories",
           "app-integrations:DeleteEventIntegrationAssociation",
+          "app-integrations:DeleteApplicationAssociation",
           "events:ListTargetsByRule",
           "events:RemoveTargets",
           "events:DeleteRule",
@@ -96,6 +98,16 @@
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "InstanceId": {
+              "$ref": "resource-schema.json#/properties/InstanceId"
+            }
+          },
+          "required": [
+            "InstanceId"
+          ]
+        },
         "permissions": [
           "connect:ListBots",
           "connect:ListLambdaFunctions",

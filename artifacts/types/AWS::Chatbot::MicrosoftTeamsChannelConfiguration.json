@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Chatbot-MicrosoftTeamsChannelConfiguration",
   "type": "AWS::Chatbot::MicrosoftTeamsChannelConfiguration",
-  "time": "2024-01-04T19:09:41.286Z",
+  "time": "2024-06-24T19:57:31.828Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,11 +9,30 @@
       "/properties/TeamsTenantId",
       "/properties/ConfigurationName"
     ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      }
+    },
     "description": "Resource schema for AWS::Chatbot::MicrosoftTeamsChannelConfiguration.",
     "handlers": {
       "create": {
         "permissions": [
           "chatbot:CreateMicrosoftTeamsChannelConfiguration",
+          "chatbot:TagResource",
           "iam:PassRole",
           "iam:CreateServiceLinkedRole"
         ]
@@ -37,6 +56,9 @@
       "update": {
         "permissions": [
           "chatbot:UpdateMicrosoftTeamsChannelConfiguration",
+          "chatbot:TagResource",
+          "chatbot:UntagResource",
+          "chatbot:ListTagsForResource",
           "iam:PassRole"
         ]
       }
@@ -86,6 +108,15 @@
         },
         "type": "array"
       },
+      "Tags": {
+        "description": "The tags to add to the configuration",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
       "TeamId": {
         "description": "The id of the Microsoft Teams team",
         "maxLength": 36,
@@ -125,7 +156,11 @@
     ],
     "sourceUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-chatbot-microsoftteamschannelconfiguration.html",
     "tagging": {
-      "taggable": false
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
     },
     "typeName": "AWS::Chatbot::MicrosoftTeamsChannelConfiguration"
   }

@@ -3,9 +3,18 @@
 ## Resource AWS.ConnectCampaigns/Campaign@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ConnectCampaigns/CampaignProperties](#awsconnectcampaignscampaignproperties) (Required): properties of the resource
+* **properties**: [AWS.ConnectCampaigns/CampaignProperties](#awsconnectcampaignscampaignproperties) (Required, Identifier): properties of the resource
+
+## AgentlessDialerConfig
+### Properties
+* **DialingCapacity**: int: Allocates dialing capacity for this campaign between multiple active campaigns.
+
+## AnswerMachineDetectionConfig
+### Properties
+* **AwaitAnswerMachinePrompt**: bool: Enables detection of prompts (e.g., beep after after a voicemail greeting)
+* **EnableAnswerMachineDetection**: bool (Required): Flag to decided whether outbound calls should have answering machine detection enabled or not
 
 ## AWS.ConnectCampaigns/CampaignProperties
 ### Properties
@@ -22,9 +31,12 @@
 * **PredictiveDialerConfig**: [PredictiveDialerConfig](#predictivedialerconfig)
 * **ProgressiveDialerConfig**: [ProgressiveDialerConfig](#progressivedialerconfig)
 
-## AgentlessDialerConfig
+## OutboundCallConfig
 ### Properties
-* **DialingCapacity**: int: Allocates dialing capacity for this campaign between multiple active campaigns.
+* **AnswerMachineDetectionConfig**: [AnswerMachineDetectionConfig](#answermachinedetectionconfig)
+* **ConnectContactFlowArn**: string (Required): The identifier of the contact flow for the outbound call.
+* **ConnectQueueArn**: string: The queue for the call. If you specify a queue, the phone displayed for caller ID is the phone number specified in the queue. If you do not specify a queue, the queue defined in the contact flow is used. If you do not specify a queue, you must specify a source phone number.
+* **ConnectSourcePhoneNumber**: string: The phone number associated with the Amazon Connect instance, in E.164 format. If you do not specify a source phone number, you must specify a queue.
 
 ## PredictiveDialerConfig
 ### Properties
@@ -35,17 +47,6 @@
 ### Properties
 * **BandwidthAllocation**: int (Required): The bandwidth allocation of a queue resource.
 * **DialingCapacity**: int: Allocates dialing capacity for this campaign between multiple active campaigns.
-
-## OutboundCallConfig
-### Properties
-* **AnswerMachineDetectionConfig**: [AnswerMachineDetectionConfig](#answermachinedetectionconfig)
-* **ConnectContactFlowArn**: string (Required): The identifier of the contact flow for the outbound call.
-* **ConnectQueueArn**: string: The queue for the call. If you specify a queue, the phone displayed for caller ID is the phone number specified in the queue. If you do not specify a queue, the queue defined in the contact flow is used. If you do not specify a queue, you must specify a source phone number.
-* **ConnectSourcePhoneNumber**: string: The phone number associated with the Amazon Connect instance, in E.164 format. If you do not specify a source phone number, you must specify a queue.
-
-## AnswerMachineDetectionConfig
-### Properties
-* **EnableAnswerMachineDetection**: bool (Required): Flag to decided whether outbound calls should have answering machine detection enabled or not
 
 ## Tag
 ### Properties

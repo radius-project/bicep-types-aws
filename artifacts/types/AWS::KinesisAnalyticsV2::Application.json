@@ -1,13 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-KinesisAnalyticsV2-Application",
   "type": "AWS::KinesisAnalyticsV2::Application",
-  "time": "2023-12-22T19:01:42.243Z",
+  "time": "2024-06-19T17:40:48.025Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/ApplicationName",
-      "/properties/ApplicationMode",
-      "/properties/RuntimeEnvironment"
+      "/properties/ApplicationMode"
     ],
     "definitions": {
       "ApplicationCodeConfiguration": {
@@ -44,6 +43,10 @@
           "ApplicationSnapshotConfiguration": {
             "$ref": "#/definitions/ApplicationSnapshotConfiguration",
             "description": "Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application."
+          },
+          "ApplicationSystemRollbackConfiguration": {
+            "$ref": "#/definitions/ApplicationSystemRollbackConfiguration",
+            "description": "Describes whether system initiated rollbacks are enabled for a Flink-based Kinesis Data Analytics application."
           },
           "EnvironmentProperties": {
             "$ref": "#/definitions/EnvironmentProperties",
@@ -120,6 +123,20 @@
         },
         "required": [
           "SnapshotsEnabled"
+        ],
+        "type": "object"
+      },
+      "ApplicationSystemRollbackConfiguration": {
+        "additionalProperties": false,
+        "description": "Describes whether system initiated rollbacks are enabled for a Flink-based Kinesis Data Analytics application.",
+        "properties": {
+          "RollbackEnabled": {
+            "description": "Describes whether system initiated rollbacks are enabled for a Flink-based Kinesis Data Analytics application.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "RollbackEnabled"
         ],
         "type": "object"
       },

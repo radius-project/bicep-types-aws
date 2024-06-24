@@ -3,9 +3,14 @@
 ## Resource AWS.CodePipeline/CustomActionType@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CodePipeline/CustomActionTypeProperties](#awscodepipelinecustomactiontypeproperties) (Required): properties of the resource
+* **properties**: [AWS.CodePipeline/CustomActionTypeProperties](#awscodepipelinecustomactiontypeproperties) (Required, Identifier): properties of the resource
+
+## ArtifactDetails
+### Properties
+* **MaximumCount**: int (Required): The maximum number of artifacts allowed for the action type.
+* **MinimumCount**: int (Required): The minimum number of artifacts allowed for the action type.
 
 ## AWS.CodePipeline/CustomActionTypeProperties
 ### Properties
@@ -28,11 +33,6 @@
 * **Required**: bool (Required): Whether the configuration property is a required value.
 * **Secret**: bool (Required): Whether the configuration property is secret. Secrets are hidden from all calls except for GetJobDetails, GetThirdPartyJobDetails, PollForJobs, and PollForThirdPartyJobs.
 * **Type**: string: The type of the configuration property.
-
-## ArtifactDetails
-### Properties
-* **MaximumCount**: int (Required): The maximum number of artifacts allowed for the action type.
-* **MinimumCount**: int (Required): The minimum number of artifacts allowed for the action type.
 
 ## Settings
 ### Properties

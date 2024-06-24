@@ -1,1 +1,973 @@
-[{"1":{"Kind":1}},{"1":{"Kind":2}},{"1":{"Kind":3}},{"1":{"Kind":4}},{"1":{"Kind":5}},{"1":{"Kind":6}},{"1":{"Kind":7}},{"1":{"Kind":8}},{"2":{"Name":"DateFilter","Properties":{"EndInclusive":{"Type":3,"Flags":0},"StartInclusive":{"Type":3,"Flags":0}}}},{"2":{"Name":"DateFilterList"}},{"2":{"Name":"FilterAction"}},{"2":{"Name":"FilterCriteria","Properties":{"AwsAccountId":{"Type":30,"Flags":0},"ComponentId":{"Type":31,"Flags":0},"ComponentType":{"Type":32,"Flags":0},"Ec2InstanceImageId":{"Type":33,"Flags":0},"Ec2InstanceSubnetId":{"Type":34,"Flags":0},"Ec2InstanceVpcId":{"Type":35,"Flags":0},"EcrImageArchitecture":{"Type":36,"Flags":0},"EcrImageHash":{"Type":37,"Flags":0},"EcrImagePushedAt":{"Type":38,"Flags":0},"EcrImageRegistry":{"Type":39,"Flags":0},"EcrImageRepositoryName":{"Type":40,"Flags":0},"EcrImageTags":{"Type":41,"Flags":0},"FindingArn":{"Type":42,"Flags":0},"FindingStatus":{"Type":43,"Flags":0},"FindingType":{"Type":44,"Flags":0},"FirstObservedAt":{"Type":45,"Flags":0},"InspectorScore":{"Type":46,"Flags":0},"LastObservedAt":{"Type":47,"Flags":0},"NetworkProtocol":{"Type":48,"Flags":0},"PortRange":{"Type":49,"Flags":0},"RelatedVulnerabilities":{"Type":50,"Flags":0},"ResourceId":{"Type":51,"Flags":0},"ResourceTags":{"Type":52,"Flags":0},"ResourceType":{"Type":53,"Flags":0},"Severity":{"Type":54,"Flags":0},"Title":{"Type":55,"Flags":0},"UpdatedAt":{"Type":56,"Flags":0},"VendorSeverity":{"Type":57,"Flags":0},"VulnerabilityId":{"Type":58,"Flags":0},"VulnerabilitySource":{"Type":59,"Flags":0},"VulnerablePackages":{"Type":60,"Flags":0}}}},{"2":{"Name":"MapComparison"}},{"2":{"Name":"MapFilter","Properties":{"Comparison":{"Type":4,"Flags":1},"Key":{"Type":4,"Flags":0},"Value":{"Type":4,"Flags":0}}}},{"2":{"Name":"MapFilterList"}},{"2":{"Name":"MapKey"}},{"2":{"Name":"MapValue"}},{"2":{"Name":"NumberFilter","Properties":{"LowerInclusive":{"Type":3,"Flags":0},"UpperInclusive":{"Type":3,"Flags":0}}}},{"2":{"Name":"NumberFilterList"}},{"2":{"Name":"PackageFilter","Properties":{"Architecture":{"Type":25,"Flags":0},"Epoch":{"Type":17,"Flags":0},"Name":{"Type":25,"Flags":0},"Release":{"Type":25,"Flags":0},"SourceLayerHash":{"Type":25,"Flags":0},"Version":{"Type":25,"Flags":0}}}},{"2":{"Name":"PackageFilterList"}},{"2":{"Name":"Port"}},{"2":{"Name":"PortRangeFilter","Properties":{"BeginInclusive":{"Type":3,"Flags":0},"EndInclusive":{"Type":3,"Flags":0}}}},{"2":{"Name":"PortRangeFilterList"}},{"2":{"Name":"StringComparison"}},{"2":{"Name":"StringFilter","Properties":{"Comparison":{"Type":4,"Flags":1},"Value":{"Type":4,"Flags":1}}}},{"2":{"Name":"StringFilterList"}},{"2":{"Name":"StringInput"}},{"2":{"Name":"Timestamp"}},{"3":{"ItemType":8}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":8}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":8}},{"3":{"ItemType":17}},{"3":{"ItemType":8}},{"3":{"ItemType":25}},{"3":{"ItemType":22}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":13}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":8}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":25}},{"3":{"ItemType":19}},{"3":{"ItemType":13}},{"3":{"ItemType":17}},{"3":{"ItemType":19}},{"3":{"ItemType":22}},{"3":{"ItemType":25}},{"2":{"Name":"AWS.InspectorV2/FilterProperties","Properties":{"Arn":{"Type":4,"Flags":18,"Description":"Findings filter ARN."},"Description":{"Type":4,"Flags":0,"Description":"Findings filter description."},"FilterAction":{"Type":4,"Flags":1,"Description":"Findings filter action."},"FilterCriteria":{"Type":11,"Flags":1,"Description":"Findings filter criteria."},"Name":{"Type":4,"Flags":1,"Description":"Findings filter name."}}}},{"2":{"Name":"AWS.InspectorV2/Filter","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":66,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.InspectorV2/Filter@default","ScopeType":0,"Body":67}}]
+[
+  {
+    "$type": "ObjectType",
+    "name": "CisSecurityLevel",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CisTagMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CisTargets",
+    "properties": {
+      "AccountIds": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      },
+      "TargetResourceTags": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DailySchedule",
+    "properties": {
+      "StartTime": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Day",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DaysList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MonthlySchedule",
+    "properties": {
+      "Day": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "StartTime": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OneTimeSchedule",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Schedule",
+    "properties": {
+      "Daily": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "Monthly": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "OneTime": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "Weekly": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagValueList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TargetResourceTags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Time",
+    "properties": {
+      "TimeOfDay": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "TimeZone": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WeeklySchedule",
+    "properties": {
+      "Days": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1
+      },
+      "StartTime": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CisScanConfiguration_TargetResourceTags",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.InspectorV2/CisScanConfigurationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.InspectorV2/CisScanConfigurationProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 18,
+        "description": "CIS Scan configuration unique identifier"
+      },
+      "ScanName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Name of the scan"
+      },
+      "Schedule": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "SecurityLevel": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Targets": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.InspectorV2/CisScanConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.InspectorV2/CisScanConfiguration@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/21"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DateFilter",
+    "properties": {
+      "EndInclusive": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "StartInclusive": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DateFilterList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FilterAction",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FilterCriteria",
+    "properties": {
+      "AwsAccountId": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0
+      },
+      "ComponentId": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0
+      },
+      "ComponentType": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0
+      },
+      "Ec2InstanceImageId": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0
+      },
+      "Ec2InstanceSubnetId": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0
+      },
+      "Ec2InstanceVpcId": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 0
+      },
+      "EcrImageArchitecture": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0
+      },
+      "EcrImageHash": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0
+      },
+      "EcrImagePushedAt": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0
+      },
+      "EcrImageRegistry": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 0
+      },
+      "EcrImageRepositoryName": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0
+      },
+      "EcrImageTags": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 0
+      },
+      "FindingArn": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0
+      },
+      "FindingStatus": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0
+      },
+      "FindingType": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 0
+      },
+      "FirstObservedAt": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0
+      },
+      "InspectorScore": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 0
+      },
+      "LastObservedAt": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0
+      },
+      "NetworkProtocol": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 0
+      },
+      "PortRange": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      },
+      "RelatedVulnerabilities": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0
+      },
+      "ResourceId": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0
+      },
+      "ResourceTags": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 0
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0
+      },
+      "Severity": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 0
+      },
+      "Title": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 0
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 0
+      },
+      "VendorSeverity": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "VulnerabilityId": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0
+      },
+      "VulnerabilitySource": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 0
+      },
+      "VulnerablePackages": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MapComparison",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MapFilter",
+    "properties": {
+      "Comparison": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "Key": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MapFilterList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MapKey",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MapValue",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NumberFilter",
+    "properties": {
+      "LowerInclusive": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "UpperInclusive": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NumberFilterList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageFilter",
+    "properties": {
+      "Architecture": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
+      "Epoch": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
+      "Release": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
+      "SourceLayerHash": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageFilterList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Port",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PortRangeFilter",
+    "properties": {
+      "BeginInclusive": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "EndInclusive": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PortRangeFilterList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StringComparison",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StringFilter",
+    "properties": {
+      "Comparison": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StringFilterList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StringInput",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Timestamp",
+    "properties": {}
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/32"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/37"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/34"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/32"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/34"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/37"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.InspectorV2/FilterProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.InspectorV2/FilterProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 18,
+        "description": "Findings filter ARN."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Findings filter description."
+      },
+      "FilterAction": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "Findings filter action."
+      },
+      "FilterCriteria": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1,
+        "description": "Findings filter criteria."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "Findings filter name."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.InspectorV2/Filter",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.InspectorV2/Filter@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/84"
+    },
+    "flags": 0
+  }
+]

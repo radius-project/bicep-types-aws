@@ -3,9 +3,9 @@
 ## Resource AWS.HealthLake/FHIRDatastore@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.HealthLake/FHIRDatastoreProperties](#awshealthlakefhirdatastoreproperties) (Required): properties of the resource
+* **properties**: [AWS.HealthLake/FHIRDatastoreProperties](#awshealthlakefhirdatastoreproperties) (Required, Identifier): properties of the resource
 
 ## AWS.HealthLake/FHIRDatastoreProperties
 ### Properties
@@ -33,6 +33,11 @@
 * **IdpLambdaArn**: string: The Amazon Resource Name (ARN) of the Lambda function that will be used to decode the access token created by the authorization server.
 * **Metadata**: string: The JSON metadata elements for identity provider configuration.
 
+## KmsEncryptionConfig
+### Properties
+* **CmkType**: string (Required): The type of customer-managed-key (CMK) used for encryption. The two types of supported CMKs are customer owned CMKs and AWS owned CMKs.
+* **KmsKeyId**: string: The KMS encryption key id/alias used to encrypt the Data Store contents at rest.
+
 ## PreloadDataConfig
 ### Properties
 * **PreloadDataType**: string (Required): The type of preloaded data. Only Synthea preloaded data is supported.
@@ -40,11 +45,6 @@
 ## SseConfiguration
 ### Properties
 * **KmsEncryptionConfig**: [KmsEncryptionConfig](#kmsencryptionconfig) (Required)
-
-## KmsEncryptionConfig
-### Properties
-* **CmkType**: string (Required): The type of customer-managed-key (CMK) used for encryption. The two types of supported CMKs are customer owned CMKs and AWS owned CMKs.
-* **KmsKeyId**: string: The KMS encryption key id/alias used to encrypt the Data Store contents at rest.
 
 ## Tag
 ### Properties

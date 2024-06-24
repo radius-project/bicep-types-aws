@@ -1,1 +1,1042 @@
-[{"1":{"Kind":1}},{"1":{"Kind":2}},{"1":{"Kind":3}},{"1":{"Kind":4}},{"1":{"Kind":5}},{"1":{"Kind":6}},{"1":{"Kind":7}},{"1":{"Kind":8}},{"2":{"Name":"Tag","Properties":{"Key":{"Type":4,"Flags":1},"Value":{"Type":4,"Flags":1}}}},{"2":{"Name":"AWS.IVS/ChannelProperties","Properties":{"Arn":{"Type":4,"Flags":18,"Description":"Channel ARN is automatically generated on creation and assigned as the unique identifier."},"Authorized":{"Type":2,"Flags":0,"Description":"Whether the channel is authorized."},"IngestEndpoint":{"Type":4,"Flags":2,"Description":"Channel ingest endpoint, part of the definition of an ingest server, used when you set up streaming software."},"InsecureIngest":{"Type":2,"Flags":0,"Description":"Whether the channel allows insecure ingest."},"LatencyMode":{"Type":4,"Flags":0,"Description":"Channel latency mode."},"Name":{"Type":4,"Flags":0,"Description":"Channel"},"PlaybackUrl":{"Type":4,"Flags":2,"Description":"Channel Playback URL."},"Preset":{"Type":4,"Flags":0,"Description":"Optional transcode preset for the channel. This is selectable only for ADVANCED_HD and ADVANCED_SD channel types. For those channel types, the default preset is HIGHER_BANDWIDTH_DELIVERY. For other channel types (BASIC and STANDARD), preset is the empty string (\"\")."},"RecordingConfigurationArn":{"Type":4,"Flags":0,"Description":"Recording Configuration ARN. A value other than an empty string indicates that recording is enabled. Default: \"\" (recording is disabled)."},"Tags":{"Type":10,"Flags":0,"Description":"A list of key-value pairs that contain metadata for the asset model."},"Type":{"Type":4,"Flags":0,"Description":"Channel type, which determines the allowable resolution and bitrate. If you exceed the allowable resolution or bitrate, the stream probably will disconnect immediately."}}}},{"3":{"ItemType":8}},{"2":{"Name":"AWS.IVS/Channel","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":9,"Flags":0,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.IVS/Channel@default","ScopeType":0,"Body":11}},{"2":{"Name":"Tag","Properties":{"Key":{"Type":4,"Flags":1},"Value":{"Type":4,"Flags":1}}}},{"2":{"Name":"AWS.IVS/PlaybackKeyPairProperties","Properties":{"Arn":{"Type":4,"Flags":18,"Description":"Key-pair identifier."},"Fingerprint":{"Type":4,"Flags":2,"Description":"Key-pair identifier."},"Name":{"Type":4,"Flags":0,"Description":"An arbitrary string (a nickname) assigned to a playback key pair that helps the customer identify that resource. The value does not need to be unique."},"PublicKeyMaterial":{"Type":4,"Flags":4,"Description":"The public portion of a customer-generated key pair."},"Tags":{"Type":15,"Flags":0,"Description":"A list of key-value pairs that contain metadata for the asset model."}}}},{"3":{"ItemType":13}},{"2":{"Name":"AWS.IVS/PlaybackKeyPair","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":14,"Flags":0,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.IVS/PlaybackKeyPair@default","ScopeType":0,"Body":16}},{"2":{"Name":"DestinationConfiguration","Properties":{"S3":{"Type":20,"Flags":0}}}},{"2":{"Name":"RenditionConfiguration","Properties":{"RenditionSelection":{"Type":4,"Flags":0,"Description":"Resolution Selection indicates which set of renditions are recorded for a stream."},"Renditions":{"Type":23,"Flags":0,"Description":"Renditions indicates which renditions are recorded for a stream."}}}},{"2":{"Name":"S3DestinationConfiguration","Properties":{"BucketName":{"Type":4,"Flags":1}}}},{"2":{"Name":"Tag","Properties":{"Key":{"Type":4,"Flags":1},"Value":{"Type":4,"Flags":1}}}},{"2":{"Name":"ThumbnailConfiguration","Properties":{"RecordingMode":{"Type":4,"Flags":0,"Description":"Thumbnail Recording Mode, which determines whether thumbnails are recorded at an interval or are disabled."},"Resolution":{"Type":4,"Flags":0,"Description":"Resolution indicates the desired resolution of recorded thumbnails."},"Storage":{"Type":24,"Flags":0,"Description":"Storage indicates the format in which thumbnails are recorded."},"TargetIntervalSeconds":{"Type":3,"Flags":0,"Description":"Target Interval Seconds defines the interval at which thumbnails are recorded. This field is required if RecordingMode is INTERVAL."}}}},{"3":{"ItemType":4}},{"3":{"ItemType":4}},{"2":{"Name":"AWS.IVS/RecordingConfigurationProperties","Properties":{"Arn":{"Type":4,"Flags":18,"Description":"Recording Configuration ARN is automatically generated on creation and assigned as the unique identifier."},"DestinationConfiguration":{"Type":18,"Flags":1},"Name":{"Type":4,"Flags":0,"Description":"Recording Configuration Name."},"RecordingReconnectWindowSeconds":{"Type":3,"Flags":0,"Description":"Recording Reconnect Window Seconds. (0 means disabled)"},"RenditionConfiguration":{"Type":19,"Flags":0},"State":{"Type":4,"Flags":2,"Description":"Recording Configuration State."},"Tags":{"Type":26,"Flags":0,"Description":"A list of key-value pairs that contain metadata for the asset model."},"ThumbnailConfiguration":{"Type":22,"Flags":0}}}},{"3":{"ItemType":21}},{"2":{"Name":"AWS.IVS/RecordingConfiguration","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":25,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.IVS/RecordingConfiguration@default","ScopeType":0,"Body":27}},{"2":{"Name":"Tag","Properties":{"Key":{"Type":4,"Flags":1},"Value":{"Type":4,"Flags":1}}}},{"2":{"Name":"AWS.IVS/StreamKeyProperties","Properties":{"Arn":{"Type":4,"Flags":18,"Description":"Stream Key ARN is automatically generated on creation and assigned as the unique identifier."},"ChannelArn":{"Type":4,"Flags":1,"Description":"Channel ARN for the stream."},"Tags":{"Type":31,"Flags":0,"Description":"A list of key-value pairs that contain metadata for the asset model."},"Value":{"Type":4,"Flags":2,"Description":"Stream-key value."}}}},{"3":{"ItemType":29}},{"2":{"Name":"AWS.IVS/StreamKey","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":30,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.IVS/StreamKey@default","ScopeType":0,"Body":32}}]
+[
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IVS/ChannelProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/ChannelProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Channel ARN is automatically generated on creation and assigned as the unique identifier."
+      },
+      "Authorized": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Whether the channel is authorized."
+      },
+      "IngestEndpoint": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Channel ingest endpoint, part of the definition of an ingest server, used when you set up streaming software."
+      },
+      "InsecureIngest": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Whether the channel allows insecure ingest."
+      },
+      "LatencyMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Channel latency mode."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Channel"
+      },
+      "PlaybackUrl": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Channel Playback URL."
+      },
+      "Preset": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Optional transcode preset for the channel. This is selectable only for ADVANCED_HD and ADVANCED_SD channel types. For those channel types, the default preset is HIGHER_BANDWIDTH_DELIVERY. For other channel types (BASIC and STANDARD), preset is the empty string (\"\")."
+      },
+      "RecordingConfigurationArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Recording Configuration ARN. A value other than an empty string indicates that recording is enabled. Default: \"\" (recording is disabled)."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A list of key-value pairs that contain metadata for the asset model."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Channel type, which determines the allowable resolution and bitrate. If you exceed the allowable resolution or bitrate, the stream probably will disconnect immediately."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/Channel",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IVS/Channel@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/6"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IVS/EncoderConfigurationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncoderConfiguration_Video",
+    "properties": {
+      "Bitrate": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "Bitrate for generated output, in bps. Default: 2500000."
+      },
+      "Framerate": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "Video frame rate, in fps. Default: 30."
+      },
+      "Height": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "Video-resolution height. Note that the maximum value is determined by width times height, such that the maximum total pixels is 2073600 (1920x1080 or 1080x1920). Default: 720."
+      },
+      "Width": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "Video-resolution width. Note that the maximum value is determined by width times height, such that the maximum total pixels is 2073600 (1920x1080 or 1080x1920). Default: 1280."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/EncoderConfigurationProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Encoder configuration identifier."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Encoder configuration name."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "Video": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "Video configuration. Default: video resolution 1280x720, bitrate 2500 kbps, 30 fps"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/EncoderConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IVS/EncoderConfiguration@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/14"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IVS/PlaybackKeyPairProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/PlaybackKeyPairProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Key-pair identifier."
+      },
+      "Fingerprint": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Key-pair identifier."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "An arbitrary string (a nickname) assigned to a playback key pair that helps the customer identify that resource. The value does not need to be unique."
+      },
+      "PublicKeyMaterial": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The public portion of a customer-generated key pair."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "A list of key-value pairs that contain metadata for the asset model."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/PlaybackKeyPair",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IVS/PlaybackKeyPair@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/20"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IVS/PlaybackRestrictionPolicyProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/PlaybackRestrictionPolicyProperties",
+    "properties": {
+      "AllowedCountries": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1,
+        "description": "A list of country codes that control geoblocking restriction. Allowed values are the officially assigned ISO 3166-1 alpha-2 codes. Default: All countries (an empty array)."
+      },
+      "AllowedOrigins": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1,
+        "description": "A list of origin sites that control CORS restriction. Allowed values are the same as valid values of the Origin header defined at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin"
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Playback-restriction-policy identifier."
+      },
+      "EnableStrictOriginEnforcement": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Whether channel playback is constrained by origin site."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Playback-restriction-policy name."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/PlaybackRestrictionPolicy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IVS/PlaybackRestrictionPolicy@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/28"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DestinationConfiguration",
+    "properties": {
+      "S3": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RenditionConfiguration",
+    "properties": {
+      "RenditionSelection": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Resolution Selection indicates which set of renditions are recorded for a stream."
+      },
+      "Renditions": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "Renditions indicates which renditions are recorded for a stream."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3DestinationConfiguration",
+    "properties": {
+      "BucketName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ThumbnailConfiguration",
+    "properties": {
+      "RecordingMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Thumbnail Recording Mode, which determines whether thumbnails are recorded at an interval or are disabled."
+      },
+      "Resolution": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Resolution indicates the desired resolution of recorded thumbnails."
+      },
+      "Storage": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Storage indicates the format in which thumbnails are recorded."
+      },
+      "TargetIntervalSeconds": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "Target Interval Seconds defines the interval at which thumbnails are recorded. This field is required if RecordingMode is INTERVAL."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IVS/RecordingConfigurationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/33"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/RecordingConfigurationProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Recording Configuration ARN is automatically generated on creation and assigned as the unique identifier."
+      },
+      "DestinationConfiguration": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Recording Configuration Name."
+      },
+      "RecordingReconnectWindowSeconds": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "Recording Reconnect Window Seconds. (0 means disabled)"
+      },
+      "RenditionConfiguration": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0
+      },
+      "State": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Recording Configuration State."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "A list of key-value pairs that contain metadata for the asset model."
+      },
+      "ThumbnailConfiguration": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/RecordingConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IVS/RecordingConfiguration@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/40"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IVS/StageProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/42"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/StageProperties",
+    "properties": {
+      "ActiveSessionId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "ID of the active session within the stage."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Stage ARN is automatically generated on creation and assigned as the unique identifier."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Stage name"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/Stage",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IVS/Stage@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/46"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3StorageConfiguration",
+    "properties": {
+      "BucketName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Location (S3 bucket name) where recorded videos will be stored. Note that the StorageConfiguration and S3 bucket must be in the same region as the Composition."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IVS/StorageConfigurationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/49"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/StorageConfigurationProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Storage Configuration ARN is automatically generated on creation and assigned as the unique identifier."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Storage Configuration Name."
+      },
+      "S3": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 0,
+        "description": "A list of key-value pairs that contain metadata for the asset model."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/StorageConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IVS/StorageConfiguration@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/53"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IVS/StreamKeyProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/55"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/StreamKeyProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Stream Key ARN is automatically generated on creation and assigned as the unique identifier."
+      },
+      "ChannelArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Channel ARN for the stream."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 0,
+        "description": "A list of key-value pairs that contain metadata for the asset model."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Stream-key value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/StreamKey",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IVS/StreamKey@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/59"
+    },
+    "flags": 0
+  }
+]

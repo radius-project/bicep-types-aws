@@ -3,16 +3,19 @@
 ## Resource AWS.ServiceCatalogAppRegistry/Application@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ServiceCatalogAppRegistry/ApplicationProperties](#awsservicecatalogappregistryapplicationproperties) (Required): properties of the resource
+* **properties**: [AWS.ServiceCatalogAppRegistry/ApplicationProperties](#awsservicecatalogappregistryapplicationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ServiceCatalogAppRegistry/AttributeGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.ServiceCatalogAppRegistry/AttributeGroupProperties](#awsservicecatalogappregistryattributegroupproperties) (Required): properties of the resource
+* **properties**: [AWS.ServiceCatalogAppRegistry/AttributeGroupProperties](#awsservicecatalogappregistryattributegroupproperties) (Required, Identifier): properties of the resource
+
+## AttributeGroup_Attributes
+### Properties
 
 ## AWS.ServiceCatalogAppRegistry/ApplicationProperties
 ### Properties
@@ -25,9 +28,6 @@
 * **Name**: string (Required): The name of the application. 
 * **Tags**: [Tags](#tags)
 
-## Tags
-### Properties
-
 ## AWS.ServiceCatalogAppRegistry/AttributeGroupProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -37,7 +37,7 @@
 * **Name**: string (Required): The name of the attribute group. 
 * **Tags**: [Tags](#tags)
 
-## AttributeGroup_Attributes
+## Tags
 ### Properties
 
 ## Tags

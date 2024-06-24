@@ -3,44 +3,49 @@
 ## Resource AWS.CloudFormation/HookDefaultVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudFormation/HookDefaultVersionProperties](#awscloudformationhookdefaultversionproperties): properties of the resource
+* **properties**: [AWS.CloudFormation/HookDefaultVersionProperties](#awscloudformationhookdefaultversionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/HookTypeConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudFormation/HookTypeConfigProperties](#awscloudformationhooktypeconfigproperties) (Required): properties of the resource
+* **properties**: [AWS.CloudFormation/HookTypeConfigProperties](#awscloudformationhooktypeconfigproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/ResourceDefaultVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudFormation/ResourceDefaultVersionProperties](#awscloudformationresourcedefaultversionproperties): properties of the resource
+* **properties**: [AWS.CloudFormation/ResourceDefaultVersionProperties](#awscloudformationresourcedefaultversionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/Stack@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudFormation/StackProperties](#awscloudformationstackproperties) (Required): properties of the resource
+* **properties**: [AWS.CloudFormation/StackProperties](#awscloudformationstackproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/StackSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudFormation/StackSetProperties](#awscloudformationstacksetproperties) (Required): properties of the resource
+* **properties**: [AWS.CloudFormation/StackSetProperties](#awscloudformationstacksetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/TypeActivation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CloudFormation/TypeActivationProperties](#awscloudformationtypeactivationproperties): properties of the resource
+* **properties**: [AWS.CloudFormation/TypeActivationProperties](#awscloudformationtypeactivationproperties) (Identifier): properties of the resource
+
+## AutoDeployment
+### Properties
+* **Enabled**: bool: If set to true, StackSets automatically deploys additional stack instances to AWS Organizations accounts that are added to a target organization or organizational unit (OU) in the specified Regions. If an account is removed from a target organization or OU, StackSets deletes stack instances from the account in the specified Regions.
+* **RetainStacksOnAccountRemoval**: bool: If set to true, stack resources are retained when an account is removed from a target organization or OU. If set to false, stack resources are deleted. Specify only if Enabled is set to True.
 
 ## AWS.CloudFormation/HookDefaultVersionProperties
 ### Properties
@@ -96,27 +101,6 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **TemplateURL**: string (WriteOnly)
 * **TimeoutInMinutes**: int
 
-## Output
-### Properties
-* **Description**: string
-* **ExportName**: string
-* **OutputKey**: string
-* **OutputValue**: string
-
-## Stack_Parameters
-### Properties
-
-## Stack_StackPolicyBody
-### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
-## Stack_TemplateBody
-### Properties
-
 ## AWS.CloudFormation/StackSetProperties
 ### Properties
 * **AdministrationRoleARN**: string: The Amazon Resource Number (ARN) of the IAM role to use to create this stack set. Specify an IAM role only if you are using customized administrator roles to control which users or groups can manage specific stack sets within the same administrator account.
@@ -136,47 +120,6 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **TemplateBody**: string: The structure that contains the template body, with a minimum length of 1 byte and a maximum length of 51,200 bytes.
 * **TemplateURL**: string (WriteOnly): Location of file containing the template body. The URL must point to a template (max size: 460,800 bytes) that is located in an Amazon S3 bucket.
 
-## AutoDeployment
-### Properties
-* **Enabled**: bool: If set to true, StackSets automatically deploys additional stack instances to AWS Organizations accounts that are added to a target organization or organizational unit (OU) in the specified Regions. If an account is removed from a target organization or OU, StackSets deletes stack instances from the account in the specified Regions.
-* **RetainStacksOnAccountRemoval**: bool: If set to true, stack resources are retained when an account is removed from a target organization or OU. If set to false, stack resources are deleted. Specify only if Enabled is set to True.
-
-## StackSet_ManagedExecution
-### Properties
-* **Active**: bool
-
-## OperationPreferences
-### Properties
-* **FailureToleranceCount**: int
-* **FailureTolerancePercentage**: int
-* **MaxConcurrentCount**: int
-* **MaxConcurrentPercentage**: int
-* **RegionConcurrencyType**: string
-* **RegionOrder**: string[]
-
-## Parameter
-### Properties
-* **ParameterKey**: string (Required): The key associated with the parameter. If you don't specify a key and value for a particular parameter, AWS CloudFormation uses the default value that is specified in your template.
-* **ParameterValue**: string (Required): The input value associated with the parameter.
-
-## StackInstances
-### Properties
-* **DeploymentTargets**: [DeploymentTargets](#deploymenttargets) (Required)
-* **ParameterOverrides**: [Parameter](#parameter)[]: A list of stack set parameters whose values you want to override in the selected stack instances.
-* **Regions**: string[] (Required): The names of one or more Regions where you want to create stack instances using the specified AWS account(s).
-
-## DeploymentTargets
-### Properties
-* **AccountFilterType**: string: The filter type you want to apply on organizational units and accounts.
-* **Accounts**: string[]: AWS accounts that you want to create stack instances in the specified Region(s) for.
-* **AccountsUrl**: string: Returns the value of the AccountsUrl property.
-* **OrganizationalUnitIds**: string[]: The organization root ID or organizational unit (OU) IDs to which StackSets deploys.
-
-## Tag
-### Properties
-* **Key**: string (Required): A string used to identify this tag. You can specify a maximum of 127 characters for a tag key.
-* **Value**: string (Required): A string containing the value for this tag. You can specify a maximum of 256 characters for a tag value.
-
 ## AWS.CloudFormation/TypeActivationProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the extension.
@@ -193,8 +136,65 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **TypeNameAlias**: string: An alias to assign to the public extension in this account and region. If you specify an alias for the extension, you must then use the alias to refer to the extension in your templates.
 * **VersionBump**: string (WriteOnly): Manually updates a previously-enabled type to a new major or minor version, if available. You can also use this parameter to update the value of AutoUpdateEnabled
 
+## DeploymentTargets
+### Properties
+* **AccountFilterType**: string: The filter type you want to apply on organizational units and accounts.
+* **Accounts**: string[]: AWS accounts that you want to create stack instances in the specified Region(s) for.
+* **AccountsUrl**: string: Returns the value of the AccountsUrl property.
+* **OrganizationalUnitIds**: string[]: The organization root ID or organizational unit (OU) IDs to which StackSets deploys.
+
 ## LoggingConfig
 ### Properties
 * **LogGroupName**: string: The Amazon CloudWatch log group to which CloudFormation sends error logging information when invoking the type's handlers.
 * **LogRoleArn**: string: The ARN of the role that CloudFormation should assume when sending log entries to CloudWatch logs.
+
+## OperationPreferences
+### Properties
+* **FailureToleranceCount**: int
+* **FailureTolerancePercentage**: int
+* **MaxConcurrentCount**: int
+* **MaxConcurrentPercentage**: int
+* **RegionConcurrencyType**: string
+* **RegionOrder**: string[]
+
+## Output
+### Properties
+* **Description**: string
+* **ExportName**: string
+* **OutputKey**: string
+* **OutputValue**: string
+
+## Parameter
+### Properties
+* **ParameterKey**: string (Required): The key associated with the parameter. If you don't specify a key and value for a particular parameter, AWS CloudFormation uses the default value that is specified in your template.
+* **ParameterValue**: string (Required): The input value associated with the parameter.
+
+## Stack_Parameters
+### Properties
+
+## Stack_StackPolicyBody
+### Properties
+
+## Stack_TemplateBody
+### Properties
+
+## StackInstances
+### Properties
+* **DeploymentTargets**: [DeploymentTargets](#deploymenttargets) (Required)
+* **ParameterOverrides**: [Parameter](#parameter)[]: A list of stack set parameters whose values you want to override in the selected stack instances.
+* **Regions**: string[] (Required): The names of one or more Regions where you want to create stack instances using the specified AWS account(s).
+
+## StackSet_ManagedExecution
+### Properties
+* **Active**: bool
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): A string used to identify this tag. You can specify a maximum of 127 characters for a tag key.
+* **Value**: string (Required): A string containing the value for this tag. You can specify a maximum of 256 characters for a tag value.
 

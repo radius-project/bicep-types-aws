@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Logs-AccountPolicy",
   "type": "AWS::Logs::AccountPolicy",
-  "time": "2023-07-19T00:29:55.788Z",
+  "time": "2024-06-20T00:07:27.598Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -17,14 +17,19 @@
           "logs:DescribeAccountPolicies",
           "logs:CreateLogDelivery",
           "s3:REST.PUT.OBJECT",
-          "firehose:TagDeliveryStream"
+          "firehose:TagDeliveryStream",
+          "logs:PutSubscriptionFilter",
+          "logs:DeleteSubscriptionFilter",
+          "iam:PassRole"
         ]
       },
       "delete": {
         "permissions": [
           "logs:DeleteAccountPolicy",
           "logs:DeleteDataProtectionPolicy",
-          "logs:DescribeAccountPolicies"
+          "logs:DescribeAccountPolicies",
+          "logs:DeleteSubscriptionFilter",
+          "iam:PassRole"
         ]
       },
       "list": {
@@ -55,8 +60,11 @@
           "logs:DeleteAccountPolicy",
           "logs:DeleteDataProtectionPolicy",
           "logs:CreateLogDelivery",
+          "logs:PutSubscriptionFilter",
+          "logs:DeleteSubscriptionFilter",
           "s3:REST.PUT.OBJECT",
-          "firehose:TagDeliveryStream"
+          "firehose:TagDeliveryStream",
+          "iam:PassRole"
         ]
       }
     },
@@ -87,7 +95,8 @@
       "PolicyType": {
         "description": "Type of the policy.",
         "enum": [
-          "DATA_PROTECTION_POLICY"
+          "DATA_PROTECTION_POLICY",
+          "SUBSCRIPTION_FILTER_POLICY"
         ],
         "type": "string"
       },
@@ -96,6 +105,10 @@
         "enum": [
           "ALL"
         ],
+        "type": "string"
+      },
+      "SelectionCriteria": {
+        "description": "Log group  selection criteria to apply policy only to a subset of log groups. SelectionCriteria string can be up to 25KB and cloudwatchlogs determines the length of selectionCriteria by using its UTF-8 bytes",
         "type": "string"
       }
     },

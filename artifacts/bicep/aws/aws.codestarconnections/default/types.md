@@ -3,23 +3,23 @@
 ## Resource AWS.CodeStarConnections/Connection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CodeStarConnections/ConnectionProperties](#awscodestarconnectionsconnectionproperties) (Required): properties of the resource
+* **properties**: [AWS.CodeStarConnections/ConnectionProperties](#awscodestarconnectionsconnectionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CodeStarConnections/RepositoryLink@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CodeStarConnections/RepositoryLinkProperties](#awscodestarconnectionsrepositorylinkproperties) (Required): properties of the resource
+* **properties**: [AWS.CodeStarConnections/RepositoryLinkProperties](#awscodestarconnectionsrepositorylinkproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CodeStarConnections/SyncConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.CodeStarConnections/SyncConfigurationProperties](#awscodestarconnectionssyncconfigurationproperties) (Required): properties of the resource
+* **properties**: [AWS.CodeStarConnections/SyncConfigurationProperties](#awscodestarconnectionssyncconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## AWS.CodeStarConnections/ConnectionProperties
 ### Properties
@@ -30,11 +30,6 @@
 * **OwnerAccountId**: string (ReadOnly): The name of the external provider where your third-party code repository is configured. For Bitbucket, this is the account ID of the owner of the Bitbucket repository.
 * **ProviderType**: string: The name of the external provider where your third-party code repository is configured. You must specify either a ProviderType or a HostArn.
 * **Tags**: [Tag](#tag)[]: Specifies the tags applied to a connection.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## AWS.CodeStarConnections/RepositoryLinkProperties
 ### Properties
@@ -47,20 +42,27 @@
 * **RepositoryName**: string (Required): The repository for which the link is being created.
 * **Tags**: [Tag](#tag)[]: Specifies the tags applied to a RepositoryLink.
 
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, , ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, , ., /, =, +, and -. 
-
 ## AWS.CodeStarConnections/SyncConfigurationProperties
 ### Properties
 * **Branch**: string (Required): The name of the branch of the repository from which resources are to be synchronized,
 * **ConfigFile**: string (Required): The source provider repository path of the sync configuration file of the respective SyncType.
 * **OwnerId**: string (ReadOnly): the ID of the entity that owns the repository.
 * **ProviderType**: string (ReadOnly): The name of the external provider where your third-party code repository is configured.
+* **PublishDeploymentStatus**: string: Whether to enable or disable publishing of deployment status to source providers.
 * **RepositoryLinkId**: string (Required): A UUID that uniquely identifies the RepositoryLink that the SyncConfig is associated with.
 * **RepositoryName**: string (ReadOnly): The name of the repository that is being synced to.
 * **ResourceName**: string (Required, Identifier): The name of the resource that is being synchronized to the repository.
 * **RoleArn**: string (Required): The IAM Role that allows AWS to update CloudFormation stacks based on content in the specified repository.
 * **SyncType**: string (Required, Identifier): The type of resource synchronization service that is to be configured, for example, CFN_STACK_SYNC.
+* **TriggerResourceUpdateOn**: string: When to trigger Git sync to begin the stack update.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, , ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, , ., /, =, +, and -. 
 

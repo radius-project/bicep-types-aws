@@ -1,1 +1,306 @@
-[{"1":{"Kind":1}},{"1":{"Kind":2}},{"1":{"Kind":3}},{"1":{"Kind":4}},{"1":{"Kind":5}},{"1":{"Kind":6}},{"1":{"Kind":7}},{"1":{"Kind":8}},{"2":{"Name":"Tag","Properties":{"Key":{"Type":4,"Flags":1,"Description":"The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."},"Value":{"Type":4,"Flags":1,"Description":"The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."}}}},{"2":{"Name":"AWS.SQS/QueueProperties","Properties":{"Arn":{"Type":4,"Flags":2,"Description":"Amazon Resource Name (ARN) of the queue."},"ContentBasedDeduplication":{"Type":2,"Flags":0,"Description":"For first-in-first-out (FIFO) queues, specifies whether to enable content-based deduplication. During the deduplication interval, Amazon SQS treats messages that are sent with identical content as duplicates and delivers only one copy of the message."},"DeduplicationScope":{"Type":4,"Flags":0,"Description":"Specifies whether message deduplication occurs at the message group or queue level. Valid values are messageGroup and queue."},"DelaySeconds":{"Type":3,"Flags":0,"Description":"The time in seconds for which the delivery of all messages in the queue is delayed. You can specify an integer value of 0 to 900 (15 minutes). The default value is 0."},"FifoQueue":{"Type":2,"Flags":0,"Description":"If set to true, creates a FIFO queue. If you don't specify this property, Amazon SQS creates a standard queue."},"FifoThroughputLimit":{"Type":4,"Flags":0,"Description":"Specifies whether the FIFO queue throughput quota applies to the entire queue or per message group. Valid values are perQueue and perMessageGroupId. The perMessageGroupId value is allowed only when the value for DeduplicationScope is messageGroup."},"KmsDataKeyReusePeriodSeconds":{"Type":3,"Flags":0,"Description":"The length of time in seconds for which Amazon SQS can reuse a data key to encrypt or decrypt messages before calling AWS KMS again. The value must be an integer between 60 (1 minute) and 86,400 (24 hours). The default is 300 (5 minutes)."},"KmsMasterKeyId":{"Type":4,"Flags":0,"Description":"The ID of an AWS managed customer master key (CMK) for Amazon SQS or a custom CMK. To use the AWS managed CMK for Amazon SQS, specify the (default) alias alias/aws/sqs."},"MaximumMessageSize":{"Type":3,"Flags":0,"Description":"The limit of how many bytes that a message can contain before Amazon SQS rejects it. You can specify an integer value from 1,024 bytes (1 KiB) to 262,144 bytes (256 KiB). The default value is 262,144 (256 KiB)."},"MessageRetentionPeriod":{"Type":3,"Flags":0,"Description":"The number of seconds that Amazon SQS retains a message. You can specify an integer value from 60 seconds (1 minute) to 1,209,600 seconds (14 days). The default value is 345,600 seconds (4 days)."},"QueueName":{"Type":4,"Flags":0,"Description":"A name for the queue. To create a FIFO queue, the name of your FIFO queue must end with the .fifo suffix."},"QueueUrl":{"Type":4,"Flags":18,"Description":"URL of the source queue."},"ReceiveMessageWaitTimeSeconds":{"Type":3,"Flags":0,"Description":"Specifies the duration, in seconds, that the ReceiveMessage action call waits until a message is in the queue in order to include it in the response, rather than returning an empty response if a message isn't yet available. You can specify an integer from 1 to 20. Short polling is used as the default or when you specify 0 for this property."},"RedriveAllowPolicy":{"Type":11,"Flags":0,"Description":"The string that includes the parameters for the permissions for the dead-letter queue redrive permission and which source queues can specify dead-letter queues as a JSON object."},"RedrivePolicy":{"Type":13,"Flags":0,"Description":"A string that includes the parameters for the dead-letter queue functionality (redrive policy) of the source queue."},"SqsManagedSseEnabled":{"Type":2,"Flags":0,"Description":"Enables server-side queue encryption using SQS owned encryption keys. Only one server-side encryption option is supported per queue (e.g. SSE-KMS or SSE-SQS )."},"Tags":{"Type":14,"Flags":0,"Description":"The tags that you attach to this queue."},"VisibilityTimeout":{"Type":3,"Flags":0,"Description":"The length of time during which a message will be unavailable after a message is delivered from the queue. This blocks other components from receiving the same message and gives the initial component time to process and delete the message from the queue. Values must be from 0 to 43,200 seconds (12 hours). If you don't specify a value, AWS CloudFormation uses the default value of 30 seconds."}}}},{"2":{"Name":"Queue_RedriveAllowPolicy","Properties":{}}},{"5":{"Elements":[10,4]}},{"2":{"Name":"Queue_RedrivePolicy","Properties":{}}},{"5":{"Elements":[12,4]}},{"3":{"ItemType":8}},{"2":{"Name":"AWS.SQS/Queue","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":9,"Flags":0,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.SQS/Queue@default","ScopeType":0,"Body":15}},{"2":{"Name":"AWS.SQS/QueueInlinePolicyProperties","Properties":{"PolicyDocument":{"Type":18,"Flags":1,"Description":"A policy document that contains permissions to add to the specified SQS queue"},"Queue":{"Type":4,"Flags":17,"Description":"The URL of the SQS queue."}}}},{"2":{"Name":"QueueInlinePolicy_PolicyDocument","Properties":{}}},{"2":{"Name":"AWS.SQS/QueueInlinePolicy","Properties":{"name":{"Type":4,"Flags":0,"Description":"the resource name"},"alias":{"Type":4,"Flags":1,"Description":"the resource alias"},"properties":{"Type":17,"Flags":1,"Description":"properties of the resource"}}}},{"4":{"Name":"AWS.SQS/QueueInlinePolicy@default","ScopeType":0,"Body":19}}]
+[
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SQS/QueueProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Queue_RedriveAllowPolicy",
+    "properties": {}
+  },
+  {
+    "$type": "UnionType",
+    "elements": [
+      {
+        "$ref": "#/5"
+      },
+      {
+        "$ref": "#/1"
+      }
+    ]
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Queue_RedrivePolicy",
+    "properties": {}
+  },
+  {
+    "$type": "UnionType",
+    "elements": [
+      {
+        "$ref": "#/7"
+      },
+      {
+        "$ref": "#/1"
+      }
+    ]
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SQS/QueueProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "ContentBasedDeduplication": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "For first-in-first-out (FIFO) queues, specifies whether to enable content-based deduplication. During the deduplication interval, SQS treats messages that are sent with identical content as duplicates and delivers only one copy of the message. For more information, see the ``ContentBasedDeduplication`` attribute for the ``CreateQueue`` action in the *API Reference*."
+      },
+      "DeduplicationScope": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "For high throughput for FIFO queues, specifies whether message deduplication occurs at the message group or queue level. Valid values are ``messageGroup`` and ``queue``.\n To enable high throughput for a FIFO queue, set this attribute to ``messageGroup`` *and* set the ``FifoThroughputLimit`` attribute to ``perMessageGroupId``. If you set these attributes to anything other than these values, normal throughput is in effect and deduplication occurs as specified. For more information, see [High throughput for FIFO queues](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/high-throughput-fifo.html) and [Quotas related to messages](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) in the *Developer Guide*."
+      },
+      "DelaySeconds": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The time in seconds for which the delivery of all messages in the queue is delayed. You can specify an integer value of ``0`` to ``900`` (15 minutes). The default value is ``0``."
+      },
+      "FifoQueue": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "If set to true, creates a FIFO queue. If you don't specify this property, SQS creates a standard queue. For more information, see [FIFO queues](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html) in the *Developer Guide*."
+      },
+      "FifoThroughputLimit": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "For high throughput for FIFO queues, specifies whether the FIFO queue throughput quota applies to the entire queue or per message group. Valid values are ``perQueue`` and ``perMessageGroupId``.\n To enable high throughput for a FIFO queue, set this attribute to ``perMessageGroupId`` *and* set the ``DeduplicationScope`` attribute to ``messageGroup``. If you set these attributes to anything other than these values, normal throughput is in effect and deduplication occurs as specified. For more information, see [High throughput for FIFO queues](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/high-throughput-fifo.html) and [Quotas related to messages](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) in the *Developer Guide*."
+      },
+      "KmsDataKeyReusePeriodSeconds": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The length of time in seconds for which SQS can reuse a data key to encrypt or decrypt messages before calling KMS again. The value must be an integer between 60 (1 minute) and 86,400 (24 hours). The default is 300 (5 minutes).\n  A shorter time period provides better security, but results in more calls to KMS, which might incur charges after Free Tier. For more information, see [Encryption at rest](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work) in the *Developer Guide*."
+      },
+      "KmsMasterKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of an AWS Key Management Service (KMS) for SQS, or a custom KMS. To use the AWS managed KMS for SQS, specify a (default) alias ARN, alias name (e.g. ``alias/aws/sqs``), key ARN, or key ID. For more information, see the following:\n  +   [Encryption at rest](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html) in the *Developer Guide* \n  +   [CreateQueue](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html) in the *API Reference* \n  +   [Request Parameters](https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters) in the *Key Management Service API Reference* \n  +   The Key Management Service (KMS) section of the [Best Practices](https://docs.aws.amazon.com/https://d0.awsstatic.com/whitepapers/aws-kms-best-practices.pdf) whitepaper"
+      },
+      "MaximumMessageSize": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The limit of how many bytes that a message can contain before SQS rejects it. You can specify an integer value from ``1,024`` bytes (1 KiB) to ``262,144`` bytes (256 KiB). The default value is ``262,144`` (256 KiB)."
+      },
+      "MessageRetentionPeriod": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The number of seconds that SQS retains a message. You can specify an integer value from ``60`` seconds (1 minute) to ``1,209,600`` seconds (14 days). The default value is ``345,600`` seconds (4 days)."
+      },
+      "QueueName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A name for the queue. To create a FIFO queue, the name of your FIFO queue must end with the ``.fifo`` suffix. For more information, see [FIFO queues](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html) in the *Developer Guide*.\n If you don't specify a name, CFN generates a unique physical ID and uses that ID for the queue name. For more information, see [Name type](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-name.html) in the *User Guide*. \n  If you specify a name, you can't perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name."
+      },
+      "QueueUrl": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": ""
+      },
+      "ReceiveMessageWaitTimeSeconds": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies the duration, in seconds, that the ReceiveMessage action call waits until a message is in the queue in order to include it in the response, rather than returning an empty response if a message isn't yet available. You can specify an integer from 1 to 20. Short polling is used as the default or when you specify 0 for this property. For more information, see [Consuming messages using long polling](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-short-and-long-polling.html#sqs-long-polling) in the *Developer Guide*."
+      },
+      "RedriveAllowPolicy": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The string that includes the parameters for the permissions for the dead-letter queue redrive permission and which source queues can specify dead-letter queues as a JSON object. The parameters are as follows:\n  +  ``redrivePermission``: The permission type that defines which source queues can specify the current queue as the dead-letter queue. Valid values are:\n  +  ``allowAll``: (Default) Any source queues in this AWS account in the same Region can specify this queue as the dead-letter queue.\n  +  ``denyAll``: No source queues can specify this queue as the dead-letter queue.\n  +  ``byQueue``: Only queues specified by the ``sourceQueueArns`` parameter can specify this queue as the dead-letter queue.\n  \n  +  ``sourceQueueArns``: The Amazon Resource Names (ARN)s of the source queues that can specify this queue as the dead-letter queue and redrive messages. You can specify this parameter only when the ``redrivePermission`` parameter is set to ``byQueue``. You can specify up to 10 source queue ARNs. To allow more than 10 source queues to specify dead-letter queues, set the ``redrivePermission`` parameter to ``allowAll``."
+      },
+      "RedrivePolicy": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The string that includes the parameters for the dead-letter queue functionality of the source queue as a JSON object. The parameters are as follows:\n  +  ``deadLetterTargetArn``: The Amazon Resource Name (ARN) of the dead-letter queue to which SQS moves messages after the value of ``maxReceiveCount`` is exceeded.\n  +  ``maxReceiveCount``: The number of times a message is delivered to the source queue before being moved to the dead-letter queue. When the ``ReceiveCount`` for a message exceeds the ``maxReceiveCount`` for a queue, SQS moves the message to the dead-letter-queue.\n  \n  The dead-letter queue of a FIFO queue must also be a FIFO queue. Similarly, the dead-letter queue of a standard queue must also be a standard queue.\n   *JSON* \n  ``{ \"deadLetterTargetArn\" : String, \"maxReceiveCount\" : Integer }`` \n  *YAML* \n  ``deadLetterTargetArn : String`` \n  ``maxReceiveCount : Integer``"
+      },
+      "SqsManagedSseEnabled": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Enables server-side queue encryption using SQS owned encryption keys. Only one server-side encryption option is supported per queue (for example, [SSE-KMS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html) or [SSE-SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html)). When ``SqsManagedSseEnabled`` is not defined, ``SSE-SQS`` encryption is enabled by default."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The tags that you attach to this queue. For more information, see [Resource tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html) in the *User Guide*."
+      },
+      "VisibilityTimeout": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The length of time during which a message will be unavailable after a message is delivered from the queue. This blocks other components from receiving the same message and gives the initial component time to process and delete the message from the queue.\n Values must be from 0 to 43,200 seconds (12 hours). If you don't specify a value, AWS CloudFormation uses the default value of 30 seconds.\n For more information about SQS queue visibility timeouts, see [Visibility timeout](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html) in the *Developer Guide*."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SQS/Queue",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SQS/Queue@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/11"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SQS/QueueInlinePolicyProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueueInlinePolicy_PolicyDocument",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SQS/QueueInlinePolicyProperties",
+    "properties": {
+      "PolicyDocument": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "A policy document that contains permissions to add to the specified SQS queue"
+      },
+      "Queue": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The URL of the SQS queue."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SQS/QueueInlinePolicy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SQS/QueueInlinePolicy@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/16"
+    },
+    "flags": 0
+  }
+]

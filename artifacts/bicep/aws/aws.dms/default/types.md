@@ -3,30 +3,30 @@
 ## Resource AWS.DMS/DataProvider@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DMS/DataProviderProperties](#awsdmsdataproviderproperties) (Required): properties of the resource
+* **properties**: [AWS.DMS/DataProviderProperties](#awsdmsdataproviderproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DMS/InstanceProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DMS/InstanceProfileProperties](#awsdmsinstanceprofileproperties): properties of the resource
+* **properties**: [AWS.DMS/InstanceProfileProperties](#awsdmsinstanceprofileproperties) (Identifier): properties of the resource
 
 ## Resource AWS.DMS/MigrationProject@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DMS/MigrationProjectProperties](#awsdmsmigrationprojectproperties): properties of the resource
+* **properties**: [AWS.DMS/MigrationProjectProperties](#awsdmsmigrationprojectproperties) (Identifier): properties of the resource
 
 ## Resource AWS.DMS/ReplicationConfig@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DMS/ReplicationConfigProperties](#awsdmsreplicationconfigproperties): properties of the resource
+* **properties**: [AWS.DMS/ReplicationConfigProperties](#awsdmsreplicationconfigproperties) (Identifier): properties of the resource
 
 ## AWS.DMS/DataProviderProperties
 ### Properties
@@ -39,14 +39,6 @@
 * **ExactSettings**: bool (WriteOnly): The property describes the exact settings which can be modified
 * **Settings**: [DataProvider_Settings](#dataprovidersettings): The property identifies the exact type of settings for the data provider.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-
-## DataProvider_Settings
-### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## AWS.DMS/InstanceProfileProperties
 ### Properties
@@ -63,11 +55,6 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **VpcSecurityGroups**: string[]: The property describes vps security groups for the instance profile.
 
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
 ## AWS.DMS/MigrationProjectProperties
 ### Properties
 * **Description**: string: The optional description of the migration project.
@@ -83,24 +70,6 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TargetDataProviderDescriptors**: [DataProviderDescriptor](#dataproviderdescriptor)[] (WriteOnly): The property describes target data provider descriptors for the migration project.
 * **TransformationRules**: string: The property describes transformation rules for the migration project.
-
-## MigrationProject_SchemaConversionApplicationAttributes
-### Properties
-* **S3BucketPath**: string
-* **S3BucketRoleArn**: string
-
-## DataProviderDescriptor
-### Properties
-* **DataProviderArn**: string
-* **DataProviderIdentifier**: string
-* **DataProviderName**: string
-* **SecretsManagerAccessRoleArn**: string
-* **SecretsManagerSecretId**: string
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, , and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, , and -.
 
 ## AWS.DMS/ReplicationConfigProperties
 ### Properties
@@ -128,6 +97,74 @@
 * **ReplicationSubnetGroupId**: string
 * **VpcSecurityGroupIds**: string[]
 
+## DataProvider_DmsSslModeValue
+### Properties
+
+## DataProvider_DmsSslModeValue
+### Properties
+
+## DataProvider_DmsSslModeValue
+### Properties
+
+## DataProvider_DmsSslModeValue
+### Properties
+
+## DataProvider_Settings
+### Properties
+* **MicrosoftSqlServerSettings**: [DataProvider_Settings_MicrosoftSqlServerSettings](#dataprovidersettingsmicrosoftsqlserversettings): MicrosoftSqlServerSettings property identifier.
+* **MySqlSettings**: [DataProvider_Settings_MySqlSettings](#dataprovidersettingsmysqlsettings): MySqlSettings property identifier.
+* **OracleSettings**: [DataProvider_Settings_OracleSettings](#dataprovidersettingsoraclesettings): OracleSettings property identifier.
+* **PostgreSqlSettings**: [DataProvider_Settings_PostgreSqlSettings](#dataprovidersettingspostgresqlsettings): PostgreSqlSettings property identifier.
+
+## DataProvider_Settings_MicrosoftSqlServerSettings
+### Properties
+* **CertificateArn**: string
+* **DatabaseName**: string (Required)
+* **Port**: int (Required)
+* **ServerName**: string (Required)
+* **SslMode**: [DataProvider_DmsSslModeValue](#dataproviderdmssslmodevalue) (Required)
+
+## DataProvider_Settings_MySqlSettings
+### Properties
+* **CertificateArn**: string
+* **Port**: int (Required)
+* **ServerName**: string (Required)
+* **SslMode**: [DataProvider_DmsSslModeValue](#dataproviderdmssslmodevalue) (Required)
+
+## DataProvider_Settings_OracleSettings
+### Properties
+* **AsmServer**: string
+* **CertificateArn**: string
+* **DatabaseName**: string (Required)
+* **Port**: int (Required)
+* **SecretsManagerOracleAsmAccessRoleArn**: string
+* **SecretsManagerOracleAsmSecretId**: string
+* **SecretsManagerSecurityDbEncryptionAccessRoleArn**: string
+* **SecretsManagerSecurityDbEncryptionSecretId**: string
+* **ServerName**: string (Required)
+* **SslMode**: [DataProvider_DmsSslModeValue](#dataproviderdmssslmodevalue) (Required)
+
+## DataProvider_Settings_PostgreSqlSettings
+### Properties
+* **CertificateArn**: string
+* **DatabaseName**: string (Required)
+* **Port**: int (Required)
+* **ServerName**: string (Required)
+* **SslMode**: [DataProvider_DmsSslModeValue](#dataproviderdmssslmodevalue) (Required)
+
+## DataProviderDescriptor
+### Properties
+* **DataProviderArn**: string
+* **DataProviderIdentifier**: string
+* **DataProviderName**: string
+* **SecretsManagerAccessRoleArn**: string
+* **SecretsManagerSecretId**: string
+
+## MigrationProject_SchemaConversionApplicationAttributes
+### Properties
+* **S3BucketPath**: string
+* **S3BucketRoleArn**: string
+
 ## ReplicationConfig_ReplicationSettings
 ### Properties
 
@@ -136,6 +173,21 @@
 
 ## ReplicationConfig_TableMappings
 ### Properties
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, , and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, , and -.
 
 ## Tag
 ### Properties

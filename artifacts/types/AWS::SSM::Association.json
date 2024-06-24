@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSM-Association",
   "type": "AWS::SSM::Association",
-  "time": "2024-01-03T19:15:53.572Z",
+  "time": "2024-05-29T15:44:48.22Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -23,6 +23,10 @@
       "S3BucketName": {
         "maxLength": 63,
         "minLength": 3,
+        "relationshipRef": {
+          "propertyPath": "/properties/BucketName",
+          "typeName": "AWS::S3::Bucket"
+        },
         "type": "string"
       },
       "S3KeyPrefix": {
@@ -58,6 +62,14 @@
           },
           "Values": {
             "items": {
+              "anyOf": [
+                {
+                  "relationshipRef": {
+                    "propertyPath": "/properties/Id",
+                    "typeName": "AWS::EC2::Instance"
+                  }
+                }
+              ],
               "type": "string"
             },
             "maxItems": 50,
@@ -211,7 +223,7 @@
         "additionalProperties": false,
         "description": "Parameter values that the SSM document uses at runtime.",
         "patternProperties": {
-          ".*{1,255}": {
+          ".{1,255}": {
             "$ref": "#/definitions/ParameterValues"
           }
         },

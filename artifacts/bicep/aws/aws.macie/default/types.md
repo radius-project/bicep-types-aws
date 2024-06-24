@@ -3,30 +3,30 @@
 ## Resource AWS.Macie/AllowList@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Macie/AllowListProperties](#awsmacieallowlistproperties) (Required): properties of the resource
+* **properties**: [AWS.Macie/AllowListProperties](#awsmacieallowlistproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Macie/CustomDataIdentifier@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Macie/CustomDataIdentifierProperties](#awsmaciecustomdataidentifierproperties) (Required): properties of the resource
+* **properties**: [AWS.Macie/CustomDataIdentifierProperties](#awsmaciecustomdataidentifierproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Macie/FindingsFilter@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Macie/FindingsFilterProperties](#awsmaciefindingsfilterproperties) (Required): properties of the resource
+* **properties**: [AWS.Macie/FindingsFilterProperties](#awsmaciefindingsfilterproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Macie/Session@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Macie/SessionProperties](#awsmaciesessionproperties): properties of the resource
+* **properties**: [AWS.Macie/SessionProperties](#awsmaciesessionproperties) (Identifier): properties of the resource
 
 ## AWS.Macie/AllowListProperties
 ### Properties
@@ -37,14 +37,6 @@
 * **Name**: string (Required): Name of AllowList.
 * **Status**: string (ReadOnly): AllowList status.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
-
-## Criteria
-### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required): The tag's key.
-* **Value**: string (Required): The tag's value.
 
 ## AWS.Macie/CustomDataIdentifierProperties
 ### Properties
@@ -58,11 +50,6 @@
 * **Regex**: string (Required): Regular expression for custom data identifier.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
-## Tag
-### Properties
-* **Key**: string (Required): The tag's key.
-* **Value**: string (Required): The tag's value.
-
 ## AWS.Macie/FindingsFilterProperties
 ### Properties
 * **Action**: string: Findings filter action.
@@ -74,22 +61,35 @@
 * **Position**: int: Findings filter position.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
-## FindingCriteria
-### Properties
-* **Criterion**: [Criterion](#criterion)
-
-## Criterion
-### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required): The tag's key.
-* **Value**: string (Required): The tag's value.
-
 ## AWS.Macie/SessionProperties
 ### Properties
 * **AwsAccountId**: string (ReadOnly, Identifier): AWS account ID of customer
 * **FindingPublishingFrequency**: string: A enumeration value that specifies how frequently finding updates are published.
 * **ServiceRole**: string (ReadOnly): Service role used by Macie
 * **Status**: string: A enumeration value that specifies the status of the Macie Session.
+
+## Criteria
+### Properties
+
+## Criterion
+### Properties
+
+## FindingCriteria
+### Properties
+* **Criterion**: [Criterion](#criterion)
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
 
