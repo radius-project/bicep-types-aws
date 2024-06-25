@@ -43,6 +43,11 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '18'
+      - name: 'Build aws-type-downloader'
+        env:
+          GOPROXY: "https://proxy.golang.org"
+        working-directory: 'src/aws-type-downloader'
+        run: go build .
       - name: Download AWS specs from CloudControl 
         run: |
           go run ./src/aws-type-downloader/main.go --output ./artifacts/types --clean
