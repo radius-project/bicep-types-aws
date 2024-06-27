@@ -25,6 +25,7 @@ on:
 env: 
   # bicep-types ACR url for uploading AWS Bicep types
   BICEP_TYPES_REGISTRY: 'biceptypes.azurecr.io'
+  AWS_REGION: us-west-2
 
 jobs:
   build-and-push-bicep-types:
@@ -43,6 +44,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '18'
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
       - name: 'Build aws-type-downloader'
         env:
           GOPROXY: "https://proxy.golang.org"
