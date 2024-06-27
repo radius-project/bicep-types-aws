@@ -50,9 +50,13 @@ jobs:
         run: go build .
       - name: Download AWS specs from CloudControl 
         run: |
-          go run ./src/aws-type-downloader/main.go --output ./artifacts/types --clean
+          cd src/aws-type-downloader && go run main.go --output ../../artifacts/types --clean
+      - name: 'Initialize submodule'
+        run: | 
+          git submodule update --init --recursive
+          npm ci && npm run build
       - name: Generate Bicep extensibility types for AWS
-        run: npm run --prefix ./src/aws-type-generator start -- --input ../../artifacts/types --output ../../artifacts/bicep --release-version ${{ env.REL_VERSION == 'edge' && 'latest' || env.REL_VERSION }}
+        run: cd ../.. && npm run --prefix ./src/aws-type-generator start -- --input ../../artifacts/types --output ../../artifacts/bicep --release-version ${{ env.REL_VERSION == 'edge' && 'latest' || env.REL_VERSION }}
       - name: Upload AWS Bicep types artifacts
         uses: actions/upload-artifact@v4
         with:
