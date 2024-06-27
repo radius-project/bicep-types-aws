@@ -61,7 +61,7 @@ jobs:
       - name: 'Initialize submodule'
         run: | 
           git submodule update --init --recursive
-          npm ci && npm run build
+          npm --prefix bicep-types/src/bicep-types ci && npm --prefix bicep-types/src/bicep-types run build; \
       - name: Generate Bicep extensibility types for AWS
         run: cd ../.. && npm run --prefix ./src/aws-type-generator start -- --input ../../artifacts/types --output ../../artifacts/bicep --release-version ${{ env.REL_VERSION == 'edge' && 'latest' || env.REL_VERSION }}
       - name: Upload AWS Bicep types artifacts
