@@ -100,9 +100,9 @@ jobs:
       - id: get_commit_hash
         name: Get commit hash (radius-project/bicep-types-aws)
         run: |
-          echo "::set-output name=commit_hash_short::$(git rev-parse HEAD --short)"
-          echo "::set-output name=gh_uri::https://github.com/radius-project/bicep-types-aws/tree/$(git rev-parse HEAD)/artifacts/bicep"
-
+          echo "commit_hash_short=$(git rev-parse HEAD --short)" >> $GITHUB_OUTPUT
+          echo "gh_uri=https://github.com/radius-project/bicep-types-aws/tree/$(git rev-parse HEAD)/artifacts/bicep" >> $GITHUB_OUTPUT
+          
       - name: Clone https://github.com/radius-project/bicep
         uses: actions/checkout@v3
         with:
