@@ -88,6 +88,7 @@ jobs:
         run: |
           bicep publish-provider ./artifacts/bicep/index.json --target br:${{ env.BICEP_TYPES_REGISTRY }}/aws:${{ env.REL_VERSION == 'edge' && 'latest' || env.REL_VERSION }} --force
   update-types:
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
     name: Update Bicep extensibility provider types
     runs-on: ubuntu-latest
     timeout-minutes: 10
