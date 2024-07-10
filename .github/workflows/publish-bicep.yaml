@@ -22,9 +22,9 @@ on:
     branches: [ main ]
   workflow_dispatch:
     inputs: {}
-  # Dispatch on external events
-  repository_dispatch:
-    types: [release-bicep-types-aws]
+  create:
+    tags:
+      - v*
 env: 
   # bicep-types ACR url for uploading AWS Bicep types
   BICEP_TYPES_REGISTRY: 'biceptypes.azurecr.io'
@@ -67,7 +67,7 @@ jobs:
           npm --prefix bicep-types/src/bicep-types ci && npm --prefix bicep-types/src/bicep-types run build; \
       - name: Generate Bicep extensibility types for AWS
         env:
-          VERSION: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.release_version || (env.REL_CHANNEL == 'edge' && 'latest' || env.REL_CHANNEL) }}
+          VERSION: ${{ env.REL_CHANNEL == 'edge' && 'latest' || env.REL_CHANNEL }}
         run: |
           npm --prefix ./src/aws-type-generator install
           npm run --prefix ./src/aws-type-generator start -- --input ../../artifacts/types --output ../../artifacts/bicep --release-version ${{ env.VERSION }}
@@ -78,20 +78,20 @@ jobs:
           path: ./artifacts/bicep
           if-no-files-found: error
       - name: 'Login via Azure CLI'
-        if: (github.repository == 'radius-project/bicep-types-aws' && github.ref == 'refs/heads/main') || github.event_name == 'repository_dispatch'
+        if: (github.repository == 'radius-project/bicep-types-aws' && github.ref == 'refs/heads/main') || env.UPDATE_RELEASE == 'true'
         uses: azure/login@v1
         with:
           creds: ${{ secrets.BICEP_TYPES_AZURE_CREDENTIALS }}
       - name: Setup and verify bicep CLI
-        if: (github.repository == 'radius-project/bicep-types-aws' && github.ref == 'refs/heads/main') || github.event_name == 'repository_dispatch'
+        if: (github.repository == 'radius-project/bicep-types-aws' && github.ref == 'refs/heads/main') || env.UPDATE_RELEASE == 'true'
         run: |
           curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
           chmod +x ./bicep
           bicep --version
       - name: Publish bicep types 
-        if: (github.repository == 'radius-project/bicep-types-aws' && github.ref == 'refs/heads/main') || github.event_name == 'repository_dispatch'
+        if: (github.repository == 'radius-project/bicep-types-aws' && github.ref == 'refs/heads/main') || env.UPDATE_RELEASE == 'true'
         env: 
-          VERSION: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.release_version || (env.REL_CHANNEL == 'edge' && 'latest' || env.REL_CHANNEL) }}
+          VERSION: ${{ env.REL_CHANNEL == 'edge' && 'latest' || env.REL_CHANNEL }}
         run: |
           bicep publish-extension ./artifacts/bicep/index.json --target br:${{ env.BICEP_TYPES_REGISTRY }}/aws:${{ env.VERSION }} --force
   update-types:
