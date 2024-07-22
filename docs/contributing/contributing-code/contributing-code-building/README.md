@@ -12,7 +12,7 @@ Once you have the prerequisites installed, you can build the repository with bel
 
 1. Clone this repository
 2. [Configure the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
-3. Run `go run ./src/aws-type-downloader/main.go --output ./artifacts/types --clean`
-4. Run `npm run --prefix ./src/aws-type-generator start -- --input ../../artifacts/types --output ../../artifacts/bicep`
+3. Run `go run main.go --output ../../artifacts/types --clean` in the `src/aws-type-downloader` folder
+4. Run `npm run --prefix ./src/aws-type-generator start -- --input ../../artifacts/types --output ../../artifacts/bicep` in the root folder
 
 Note: `npm run --prefix` does not preserve the current working directory, so the extra `../..` is needed.
