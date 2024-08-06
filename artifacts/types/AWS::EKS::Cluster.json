@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-Cluster",
   "type": "AWS::EKS::Cluster",
-  "time": "2023-12-16T08:51:00.432Z",
+  "time": "2024-06-19T19:46:41.798Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -10,7 +10,8 @@
       "/properties/KubernetesNetworkConfig",
       "/properties/AccessConfig/BootstrapClusterCreatorAdminPermissions",
       "/properties/Name",
-      "/properties/RoleArn"
+      "/properties/RoleArn",
+      "/properties/BootstrapSelfManagedAddons"
     ],
     "definitions": {
       "AccessConfig": {
@@ -303,6 +304,10 @@
         "description": "The ARN of the cluster, such as arn:aws:eks:us-west-2:666666666666:cluster/prod.",
         "type": "string"
       },
+      "BootstrapSelfManagedAddons": {
+        "description": "Set this value to false to avoid creating the default networking addons when the cluster is created.",
+        "type": "boolean"
+      },
       "CertificateAuthorityData": {
         "description": "The certificate-authority-data for your cluster.",
         "type": "string"
@@ -397,7 +402,8 @@
     },
     "typeName": "AWS::EKS::Cluster",
     "writeOnlyProperties": [
-      "/properties/AccessConfig/BootstrapClusterCreatorAdminPermissions"
+      "/properties/AccessConfig/BootstrapClusterCreatorAdminPermissions",
+      "/properties/BootstrapSelfManagedAddons"
     ]
   }
 }

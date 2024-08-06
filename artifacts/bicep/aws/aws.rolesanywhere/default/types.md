@@ -3,23 +3,28 @@
 ## Resource AWS.RolesAnywhere/CRL@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RolesAnywhere/CRLProperties](#awsrolesanywherecrlproperties) (Required): properties of the resource
+* **properties**: [AWS.RolesAnywhere/CRLProperties](#awsrolesanywherecrlproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.RolesAnywhere/Profile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RolesAnywhere/ProfileProperties](#awsrolesanywhereprofileproperties) (Required): properties of the resource
+* **properties**: [AWS.RolesAnywhere/ProfileProperties](#awsrolesanywhereprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.RolesAnywhere/TrustAnchor@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.RolesAnywhere/TrustAnchorProperties](#awsrolesanywheretrustanchorproperties) (Required): properties of the resource
+* **properties**: [AWS.RolesAnywhere/TrustAnchorProperties](#awsrolesanywheretrustanchorproperties) (Required, Identifier): properties of the resource
+
+## AttributeMapping
+### Properties
+* **CertificateField**: string (Required)
+* **MappingRules**: [MappingRule](#mappingrule)[] (Required)
 
 ## AWS.RolesAnywhere/CRLProperties
 ### Properties
@@ -30,13 +35,9 @@
 * **Tags**: [Tag](#tag)[]
 * **TrustAnchorArn**: string
 
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.RolesAnywhere/ProfileProperties
 ### Properties
+* **AttributeMappings**: [AttributeMapping](#attributemapping)[]
 * **DurationSeconds**: int
 * **Enabled**: bool
 * **ManagedPolicyArns**: string[]
@@ -48,11 +49,6 @@
 * **SessionPolicy**: string
 * **Tags**: [Tag](#tag)[]
 
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
-
 ## AWS.RolesAnywhere/TrustAnchorProperties
 ### Properties
 * **Enabled**: bool
@@ -62,6 +58,10 @@
 * **Tags**: [Tag](#tag)[]
 * **TrustAnchorArn**: string (ReadOnly)
 * **TrustAnchorId**: string (ReadOnly, Identifier)
+
+## MappingRule
+### Properties
+* **Specifier**: string (Required)
 
 ## NotificationSetting
 ### Properties
@@ -75,11 +75,21 @@
 * **SourceData**: [TrustAnchor_SourceData](#trustanchorsourcedata)
 * **SourceType**: string
 
-## TrustAnchor_SourceData
+## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## TrustAnchor_SourceData
+### Properties
 

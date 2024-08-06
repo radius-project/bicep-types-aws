@@ -61,6 +61,17 @@
           uses: actions/setup-node@v2
           with:
             node-version: '18'
+
+        - name: Init bicep-types submodule
+          run: |
+            git submodule update --init --recursive 
+
+        - name: Build bicep-types
+          run: |
+            pushd ./bicep-types/src/bicep-types
+            npm ci
+            npm run build
+            popd  
         
         - name: Download AWS types
           run: |

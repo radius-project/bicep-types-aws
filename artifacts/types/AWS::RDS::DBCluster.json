@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBCluster",
   "type": "AWS::RDS::DBCluster",
-  "time": "2023-12-18T10:26:08.782Z",
+  "time": "2024-06-21T12:00:51.146Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -120,14 +120,10 @@
         "properties": {
           "MaxCapacity": {
             "description": "The maximum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 40, 40.5, 41, and so on. The largest value that you can use is 128.",
-            "maximum": 128,
-            "minimum": 0.5,
             "type": "number"
           },
           "MinCapacity": {
             "description": "The minimum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 8, 8.5, 9, and so on. The smallest value that you can use is 0.5.",
-            "maximum": 128,
-            "minimum": 0.5,
             "type": "number"
           }
         },
@@ -167,7 +163,10 @@
           "rds:CreateDBCluster",
           "rds:CreateDBInstance",
           "rds:DescribeDBClusters",
+          "rds:DescribeDBClusterSnapshots",
+          "rds:DescribeDBSnapshots",
           "rds:DescribeEvents",
+          "rds:EnableHttpEndpoint",
           "rds:ModifyDBCluster",
           "rds:RestoreDBClusterFromSnapshot",
           "rds:RestoreDBClusterToPointInTime",
@@ -206,6 +205,8 @@
           "rds:DescribeDBSubnetGroups",
           "rds:DescribeEvents",
           "rds:DescribeGlobalClusters",
+          "rds:DisableHttpEndpoint",
+          "rds:EnableHttpEndpoint",
           "rds:ModifyDBCluster",
           "rds:ModifyDBInstance",
           "rds:RemoveFromGlobalCluster",
@@ -326,11 +327,15 @@
         "type": "boolean"
       },
       "EnableHttpEndpoint": {
-        "description": "A value that indicates whether to enable the HTTP endpoint for an Aurora Serverless DB cluster. By default, the HTTP endpoint is disabled.",
+        "description": "A value that indicates whether to enable the HTTP endpoint for DB cluster. By default, the HTTP endpoint is disabled.",
         "type": "boolean"
       },
       "EnableIAMDatabaseAuthentication": {
         "description": "A value that indicates whether to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts. By default, mapping is disabled.",
+        "type": "boolean"
+      },
+      "EnableLocalWriteForwarding": {
+        "description": "Specifies whether read replicas can forward write operations to the writer DB instance in the DB cluster. By default, write operations aren't allowed on reader DB instances.",
         "type": "boolean"
       },
       "Endpoint": {
@@ -338,6 +343,10 @@
       },
       "Engine": {
         "description": "The name of the database engine to be used for this DB cluster. Valid Values: aurora (for MySQL 5.6-compatible Aurora), aurora-mysql (for MySQL 5.7-compatible Aurora), and aurora-postgresql",
+        "type": "string"
+      },
+      "EngineLifecycleSupport": {
+        "description": "The life cycle type of the DB cluster. You can use this setting to enroll your DB cluster into Amazon RDS Extended Support.",
         "type": "string"
       },
       "EngineMode": {
@@ -462,6 +471,10 @@
         "description": "Indicates whether the DB instance is encrypted.\nIf you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceIdentifier property, don't specify this property. The value is inherited from the cluster, snapshot, or source DB instance.",
         "type": "boolean"
       },
+      "StorageThroughput": {
+        "description": "Specifies the storage throughput value for the DB cluster. This setting applies only to the gp3 storage type.",
+        "type": "integer"
+      },
       "StorageType": {
         "description": "Specifies the storage type to be associated with the DB cluster.",
         "type": "string"
@@ -493,7 +506,7 @@
       "/properties/DBClusterIdentifier": "$lowercase(DBClusterIdentifier)",
       "/properties/DBClusterParameterGroupName": "$lowercase(DBClusterParameterGroupName)",
       "/properties/DBSubnetGroupName": "$lowercase(DBSubnetGroupName)",
-      "/properties/EnableHttpEndpoint": "$lowercase($string(EngineMode)) = 'serverless' ? EnableHttpEndpoint : false",
+      "/properties/EnableHttpEndpoint": "$lowercase($string(EngineMode)) = 'serverless' ? EnableHttpEndpoint : ($lowercase($string(Engine)) = 'aurora-postgresql' ? EnableHttpEndpoint : false )",
       "/properties/Engine": "$lowercase(Engine)",
       "/properties/EngineVersion": "$join([$string(EngineVersion), \".*\"])",
       "/properties/KmsKeyId": "$join([\"arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-3]{1}:[0-9]{12}[:]{1}key\\/\", KmsKeyId])",
@@ -513,7 +526,8 @@
       "/properties/Endpoint/Port",
       "/properties/ReadEndpoint/Port",
       "/properties/ReadEndpoint/Address",
-      "/properties/MasterUserSecret/SecretArn"
+      "/properties/MasterUserSecret/SecretArn",
+      "/properties/StorageThroughput"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-rds",
     "typeName": "AWS::RDS::DBCluster",

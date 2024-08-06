@@ -3,30 +3,35 @@
 ## Resource AWS.Shield/DRTAccess@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Shield/DRTAccessProperties](#awsshielddrtaccessproperties) (Required): properties of the resource
+* **properties**: [AWS.Shield/DRTAccessProperties](#awsshielddrtaccessproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Shield/ProactiveEngagement@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Shield/ProactiveEngagementProperties](#awsshieldproactiveengagementproperties) (Required): properties of the resource
+* **properties**: [AWS.Shield/ProactiveEngagementProperties](#awsshieldproactiveengagementproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Shield/Protection@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Shield/ProtectionProperties](#awsshieldprotectionproperties) (Required): properties of the resource
+* **properties**: [AWS.Shield/ProtectionProperties](#awsshieldprotectionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Shield/ProtectionGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
-* **alias**: string (Required): the resource alias
+* **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Shield/ProtectionGroupProperties](#awsshieldprotectiongroupproperties) (Required): properties of the resource
+* **properties**: [AWS.Shield/ProtectionGroupProperties](#awsshieldprotectiongroupproperties) (Required, Identifier): properties of the resource
+
+## ApplicationLayerAutomaticResponseConfiguration
+### Properties
+* **Action**: [Protection_Action](#protectionaction) (Required): Specifies the action setting that Shield Advanced should use in the AWS WAF rules that it creates on behalf of the protected resource in response to DDoS attacks. You specify this as part of the configuration for the automatic application layer DDoS mitigation feature, when you enable or update automatic mitigation. Shield Advanced creates the AWS WAF rules in a Shield Advanced-managed rule group, inside the web ACL that you have associated with the resource.
+* **Status**: string (Required): Indicates whether automatic application layer DDoS mitigation is enabled for the protection.
 
 ## AWS.Shield/DRTAccessProperties
 ### Properties
@@ -42,35 +47,6 @@ To enable proactive engagement, the contact list must include at least one phone
 * **ProactiveEngagementStatus**: string (Required): If `ENABLED`, the Shield Response Team (SRT) will use email and phone to notify contacts about escalations to the SRT and to initiate proactive customer support.
 If `DISABLED`, the SRT will not proactively notify contacts about escalations or to initiate proactive customer support.
 
-## EmergencyContact
-### Properties
-* **ContactNotes**: string: Additional notes regarding the contact.
-* **EmailAddress**: string (Required): The email address for the contact.
-* **PhoneNumber**: string: The phone number for the contact
-
-## AWS.Shield/ProtectionProperties
-### Properties
-* **ApplicationLayerAutomaticResponseConfiguration**: [ApplicationLayerAutomaticResponseConfiguration](#applicationlayerautomaticresponseconfiguration)
-* **HealthCheckArns**: string[]: The Amazon Resource Names (ARNs) of the health check to associate with the protection.
-* **Name**: string (Required): Friendly name for the Protection.
-* **ProtectionArn**: string (ReadOnly, Identifier): The ARN (Amazon Resource Name) of the protection.
-* **ProtectionId**: string (ReadOnly): The unique identifier (ID) of the protection.
-* **ResourceArn**: string (Required): The ARN (Amazon Resource Name) of the resource to be protected.
-* **Tags**: [Tag](#tag)[]: One or more tag key-value pairs for the Protection object.
-
-## ApplicationLayerAutomaticResponseConfiguration
-### Properties
-* **Action**: [Protection_Action](#protectionaction) (Required): Specifies the action setting that Shield Advanced should use in the AWS WAF rules that it creates on behalf of the protected resource in response to DDoS attacks. You specify this as part of the configuration for the automatic application layer DDoS mitigation feature, when you enable or update automatic mitigation. Shield Advanced creates the AWS WAF rules in a Shield Advanced-managed rule group, inside the web ACL that you have associated with the resource.
-* **Status**: string (Required): Indicates whether automatic application layer DDoS mitigation is enabled for the protection.
-
-## Protection_Action
-### Properties
-
-## Tag
-### Properties
-* **Key**: string (Required): Part of the key:value pair that defines a tag. You can use a tag key to describe a category of information, such as "customer." Tag keys are case-sensitive.
-* **Value**: string (Required): Part of the key:value pair that defines a tag. You can use a tag value to describe a specific value within a category, such as "companyA" or "companyB." Tag values are case-sensitive.
-
 ## AWS.Shield/ProtectionGroupProperties
 ### Properties
 * **Aggregation**: string (Required): Defines how AWS Shield combines resource data for the group in order to detect, mitigate, and report events.
@@ -83,6 +59,30 @@ If `DISABLED`, the SRT will not proactively notify contacts about escalations or
 * **ProtectionGroupId**: string (Required): The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it.
 * **ResourceType**: string: The resource type to include in the protection group. All protected resources of this type are included in the protection group. Newly protected resources of this type are automatically added to the group. You must set this when you set `Pattern` to `BY_RESOURCE_TYPE` and you must not set it for any other `Pattern` setting.
 * **Tags**: [Tag](#tag)[]: One or more tag key-value pairs for the Protection object.
+
+## AWS.Shield/ProtectionProperties
+### Properties
+* **ApplicationLayerAutomaticResponseConfiguration**: [ApplicationLayerAutomaticResponseConfiguration](#applicationlayerautomaticresponseconfiguration)
+* **HealthCheckArns**: string[]: The Amazon Resource Names (ARNs) of the health check to associate with the protection.
+* **Name**: string (Required): Friendly name for the Protection.
+* **ProtectionArn**: string (ReadOnly, Identifier): The ARN (Amazon Resource Name) of the protection.
+* **ProtectionId**: string (ReadOnly): The unique identifier (ID) of the protection.
+* **ResourceArn**: string (Required): The ARN (Amazon Resource Name) of the resource to be protected.
+* **Tags**: [Tag](#tag)[]: One or more tag key-value pairs for the Protection object.
+
+## EmergencyContact
+### Properties
+* **ContactNotes**: string: Additional notes regarding the contact.
+* **EmailAddress**: string (Required): The email address for the contact.
+* **PhoneNumber**: string: The phone number for the contact
+
+## Protection_Action
+### Properties
+
+## Tag
+### Properties
+* **Key**: string (Required): Part of the key:value pair that defines a tag. You can use a tag key to describe a category of information, such as "customer." Tag keys are case-sensitive.
+* **Value**: string (Required): Part of the key:value pair that defines a tag. You can use a tag value to describe a specific value within a category, such as "companyA" or "companyB." Tag values are case-sensitive.
 
 ## Tag
 ### Properties
