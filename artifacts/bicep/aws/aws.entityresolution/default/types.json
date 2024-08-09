@@ -21,17 +21,53 @@
   },
   {
     "$type": "ObjectType",
+    "name": "IdMappingRuleBasedProperties",
+    "properties": {
+      "AttributeMatchingModel": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      },
+      "RecordMatchingModel": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      },
+      "RuleDefinitionType": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "Rules": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "IdMappingTechniques",
     "properties": {
       "IdMappingType": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "ProviderProperties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
+        },
+        "flags": 0
+      },
+      "RuleBasedProperties": {
+        "type": {
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -48,20 +84,20 @@
     "properties": {
       "InputSourceARN": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
-        "description": "An Glue table ARN for the input source table or IdNamespace ARN"
+        "description": "An Glue table ARN for the input source table, MatchingWorkflow arn or IdNamespace ARN"
       },
       "SchemaArn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0
       }
@@ -73,13 +109,13 @@
     "properties": {
       "KMSArn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "OutputS3Path": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The S3 path to which Entity Resolution will write the output table"
@@ -92,7 +128,7 @@
     "properties": {
       "IntermediateS3Path": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The s3 path that would be used to stage the intermediate data being generated during workflow execution."
@@ -110,23 +146,41 @@
     "properties": {
       "IntermediateSourceConfiguration": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "ProviderConfiguration": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "Additional Provider configuration that would be required for the provider service. The Configuration must be in JSON string format"
       },
       "ProviderServiceArn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "Arn of the Provider Service being used."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Rule",
+    "properties": {
+      "MatchingKeys": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      },
+      "RuleName": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
       }
     }
   },
@@ -141,14 +195,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -164,19 +218,25 @@
     "$type": "StringType"
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "IdMappingWorkflow_ProviderConfiguration",
     "properties": {}
   },
   {
-    "$type": "StringLiteralType",
-    "value": "AWS.EntityResolution/IdMappingWorkflowProperties"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/16"
     }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EntityResolution/IdMappingWorkflowProperties"
   },
   {
     "$type": "ArrayType",
@@ -187,7 +247,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
     }
   },
   {
@@ -196,62 +262,62 @@
     "properties": {
       "CreatedAt": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 2
       },
       "Description": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "The description of the IdMappingWorkflow"
       },
       "IdMappingTechniques": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "InputSourceConfig": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/21"
         },
         "flags": 1
       },
       "OutputSourceConfig": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 2
       },
       "WorkflowArn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 2
       },
       "WorkflowName": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 17,
         "description": "The name of the IdMappingWorkflow"
@@ -264,21 +330,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -290,9 +356,14 @@
     "name": "AWS.EntityResolution/IdMappingWorkflow@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/21"
+      "$ref": "#/25"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AttributeName",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -305,13 +376,19 @@
     "properties": {
       "IdMappingType": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1
       },
       "ProviderProperties": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
+        },
+        "flags": 0
+      },
+      "RuleBasedProperties": {
+        "type": {
+          "$ref": "#/32"
         },
         "flags": 0
       }
@@ -323,13 +400,13 @@
     "properties": {
       "InputSourceARN": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1
       },
       "SchemaName": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0
       }
@@ -341,16 +418,46 @@
     "properties": {
       "ProviderConfiguration": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "Additional Provider configuration that would be required for the provider service. The Configuration must be in JSON string format."
       },
       "ProviderServiceArn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NamespaceRuleBasedProperties",
+    "properties": {
+      "AttributeMatchingModel": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "RecordMatchingModels": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0
+      },
+      "RuleDefinitionTypes": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
+      "Rules": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0
       }
     }
   },
@@ -361,18 +468,46 @@
   },
   {
     "$type": "ObjectType",
+    "name": "RecordMatchingModel",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Rule",
+    "properties": {
+      "MatchingKeys": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 1
+      },
+      "RuleName": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RuleDefinitionType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -385,25 +520,49 @@
     "properties": {}
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/35"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.EntityResolution/IdNamespaceProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/29"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/30"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/37"
     }
   },
   {
@@ -412,63 +571,63 @@
     "properties": {
       "CreatedAt": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 2,
         "description": "The date and time when the IdNamespace was created"
       },
       "Description": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "IdMappingWorkflowProperties": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "IdNamespaceArn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 2,
         "description": "The arn associated with the IdNamespace"
       },
       "IdNamespaceName": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 17
       },
       "InputSourceConfig": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 2,
         "description": "The date and time when the IdNamespace was updated"
@@ -481,21 +640,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/47"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -507,7 +666,7 @@
     "name": "AWS.EntityResolution/IdNamespace@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/35"
+      "$ref": "#/48"
     },
     "flags": 0
   },
@@ -537,20 +696,20 @@
     "properties": {
       "ApplyNormalization": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "InputSourceARN": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "An Glue table ARN for the input source table"
       },
       "SchemaArn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1
       }
@@ -562,7 +721,7 @@
     "properties": {
       "IntermediateS3Path": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The s3 path that would be used to stage the intermediate data being generated during workflow execution."
@@ -585,13 +744,13 @@
     "properties": {
       "Hashed": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1
       }
@@ -603,25 +762,25 @@
     "properties": {
       "ApplyNormalization": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "KMSArn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "Output": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/69"
         },
         "flags": 1
       },
       "OutputS3Path": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The S3 path to which Entity Resolution will write the output table"
@@ -634,20 +793,20 @@
     "properties": {
       "IntermediateSourceConfiguration": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/55"
         },
         "flags": 0
       },
       "ProviderConfiguration": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "Additional Provider configuration that would be required for the provider service. The Configuration must be in JSON string format"
       },
       "ProviderServiceArn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "Arn of the Provider service being used."
@@ -660,19 +819,19 @@
     "properties": {
       "ProviderProperties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/60"
         },
         "flags": 0
       },
       "ResolutionType": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "RuleBasedProperties": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/64"
         },
         "flags": 0
       }
@@ -680,17 +839,22 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ResolutionType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Rule",
     "properties": {
       "MatchingKeys": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/71"
         },
         "flags": 1
       },
       "RuleName": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1
       }
@@ -702,13 +866,19 @@
     "properties": {
       "AttributeMatchingModel": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1
       },
+      "MatchPurpose": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
       "Rules": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/72"
         },
         "flags": 1
       }
@@ -725,14 +895,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -750,7 +920,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/45"
+      "$ref": "#/58"
     }
   },
   {
@@ -761,13 +931,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/16"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/49"
+      "$ref": "#/63"
     }
   },
   {
@@ -777,19 +947,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/41"
+      "$ref": "#/54"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/46"
+      "$ref": "#/59"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/66"
     }
   },
   {
@@ -798,62 +968,62 @@
     "properties": {
       "CreatedAt": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 2
       },
       "Description": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "The description of the MatchingWorkflow"
       },
       "InputSourceConfig": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/74"
         },
         "flags": 1
       },
       "OutputSourceConfig": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/75"
         },
         "flags": 1
       },
       "ResolutionTechniques": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/61"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/76"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 2
       },
       "WorkflowArn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 2
       },
       "WorkflowName": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 17,
         "description": "The name of the MatchingWorkflow"
@@ -866,21 +1036,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/77"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -892,7 +1062,7 @@
     "name": "AWS.EntityResolution/MatchingWorkflow@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/64"
+      "$ref": "#/78"
     },
     "flags": 0
   },
@@ -939,13 +1109,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/16"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/16"
     }
   },
   {
@@ -955,13 +1125,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/16"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/16"
     }
   },
   {
@@ -970,37 +1140,37 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/91"
         },
         "flags": 0
       },
       "Arn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 17
       },
       "Condition": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "Effect": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "Principal": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/92"
         },
         "flags": 0
       },
       "StatementId": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 17
       }
@@ -1012,21 +1182,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/93"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1038,7 +1208,7 @@
     "name": "AWS.EntityResolution/PolicyStatement@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/80"
+      "$ref": "#/94"
     },
     "flags": 0
   },
@@ -1069,6 +1239,11 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Hashed",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "MappedInputFields",
     "properties": {}
   },
@@ -1083,32 +1258,38 @@
     "properties": {
       "FieldName": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1
       },
       "GroupName": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "Hashed": {
+        "type": {
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "MatchKey": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "SubType": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "The subtype of the Attribute. Would be required only when type is PROVIDER_ID"
       },
       "Type": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1
       }
@@ -1125,14 +1306,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -1147,7 +1328,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/89"
+      "$ref": "#/104"
     }
   },
   {
@@ -1157,13 +1338,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/89"
+      "$ref": "#/104"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/91"
+      "$ref": "#/106"
     }
   },
   {
@@ -1172,52 +1353,52 @@
     "properties": {
       "CreatedAt": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 2
       },
       "Description": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "The description of the SchemaMapping"
       },
       "HasWorkflows": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/68"
         },
         "flags": 2
       },
       "MappedInputFields": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/110"
         },
         "flags": 1,
         "description": "The SchemaMapping attributes input"
       },
       "SchemaArn": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 2
       },
       "SchemaName": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 17,
         "description": "The name of the SchemaMapping"
       },
       "Tags": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/111"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 2
       }
@@ -1229,21 +1410,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/112"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1255,7 +1436,7 @@
     "name": "AWS.EntityResolution/SchemaMapping@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/98"
+      "$ref": "#/113"
     },
     "flags": 0
   }

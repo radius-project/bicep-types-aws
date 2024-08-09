@@ -21,6 +21,27 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Bedrock/DataSourceProperties](#awsbedrockdatasourceproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Bedrock/Flow@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/FlowProperties](#awsbedrockflowproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Bedrock/FlowAlias@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/FlowAliasProperties](#awsbedrockflowaliasproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Bedrock/FlowVersion@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/FlowVersionProperties](#awsbedrockflowversionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Bedrock/Guardrail@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -34,6 +55,20 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Bedrock/KnowledgeBaseProperties](#awsbedrockknowledgebaseproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Bedrock/Prompt@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/PromptProperties](#awsbedrockpromptproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Bedrock/PromptVersion@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/PromptVersionProperties](#awsbedrockpromptversionproperties) (Required, Identifier): properties of the resource
 
 ## ActionGroupExecutor
 ### Properties
@@ -124,11 +159,56 @@
 * **UpdatedAt**: string (ReadOnly): The time at which the knowledge base was last updated.
 * **VectorIngestionConfiguration**: [VectorIngestionConfiguration](#vectoringestionconfiguration)
 
+## AWS.Bedrock/FlowAliasProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): Arn of the Flow Alias
+* **CreatedAt**: string (ReadOnly): Time Stamp.
+* **Description**: string: Description of the Resource.
+* **FlowArn**: string (Required, Identifier): Arn representation of the Flow
+* **FlowId**: string (ReadOnly): Identifier for a flow resource.
+* **Id**: string (ReadOnly): Id for a Flow Alias generated at the server side.
+* **Name**: string (Required): Name for a resource.
+* **RoutingConfiguration**: [FlowAliasRoutingConfigurationListItem](#flowaliasroutingconfigurationlistitem)[] (Required): Routing configuration for a Flow alias.
+* **Tags**: [TagsMap](#tagsmap)
+* **UpdatedAt**: string (ReadOnly): Time Stamp.
+
+## AWS.Bedrock/FlowProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): Arn representation of the Flow
+* **CreatedAt**: string (ReadOnly): Time Stamp.
+* **CustomerEncryptionKeyArn**: string: A KMS key ARN
+* **Definition**: [FlowDefinition](#flowdefinition)
+* **DefinitionS3Location**: [S3Location](#s3location) (WriteOnly)
+* **DefinitionString**: string (WriteOnly): A JSON string containing a Definition with the same schema as the Definition property of this resource
+* **DefinitionSubstitutions**: [DefinitionSubstitutions](#definitionsubstitutions) (WriteOnly)
+* **Description**: string: Description of the flow
+* **ExecutionRoleArn**: string (Required): ARN of a IAM role
+* **Id**: string (ReadOnly): Identifier for a Flow
+* **Name**: string (Required): Name for the flow
+* **Status**: string (ReadOnly)
+* **Tags**: [TagsMap](#tagsmap)
+* **TestAliasTags**: [TagsMap](#tagsmap)
+* **UpdatedAt**: string (ReadOnly): Time Stamp.
+* **Version**: string (ReadOnly): Draft Version.
+
+## AWS.Bedrock/FlowVersionProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): Time Stamp.
+* **Definition**: [FlowDefinition](#flowdefinition) (ReadOnly)
+* **Description**: string: Description of the flow version
+* **ExecutionRoleArn**: string (ReadOnly): ARN of a IAM role
+* **FlowArn**: string (Required, Identifier): Arn representation of the Flow
+* **FlowId**: string (ReadOnly): Identifier for a Flow
+* **Name**: string (ReadOnly): Name for the flow
+* **Status**: string (ReadOnly)
+* **Version**: string (ReadOnly, Identifier): Numerical Version.
+
 ## AWS.Bedrock/GuardrailProperties
 ### Properties
 * **BlockedInputMessaging**: string (Required): Messaging for when violations are detected in text
 * **BlockedOutputsMessaging**: string (Required): Messaging for when violations are detected in text
 * **ContentPolicyConfig**: [ContentPolicyConfig](#contentpolicyconfig)
+* **ContextualGroundingPolicyConfig**: [ContextualGroundingPolicyConfig](#contextualgroundingpolicyconfig)
 * **CreatedAt**: string (ReadOnly): Time Stamp
 * **Description**: string: Description of the guardrail or its version
 * **FailureRecommendations**: string[] (ReadOnly): List of failure recommendations
@@ -160,6 +240,37 @@
 * **Tags**: [TagsMap](#tagsmap)
 * **UpdatedAt**: string (ReadOnly): The time at which the knowledge base was last updated.
 
+## AWS.Bedrock/PromptProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): ARN of a prompt resource possibly with a version
+* **CreatedAt**: string (ReadOnly): Time Stamp.
+* **CustomerEncryptionKeyArn**: string: A KMS key ARN
+* **DefaultVariant**: string: Name for a variant.
+* **Description**: string: Name for a prompt resource.
+* **Id**: string (ReadOnly): Identifier for a Prompt
+* **Name**: string (Required): Name for a prompt resource.
+* **Tags**: [TagsMap](#tagsmap)
+* **UpdatedAt**: string (ReadOnly): Time Stamp.
+* **Variants**: [PromptVariant](#promptvariant)[] (WriteOnly): List of prompt variants
+* **Version**: string (ReadOnly): Draft Version.
+
+## AWS.Bedrock/PromptVersionProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): ARN of a prompt version resource
+* **CreatedAt**: string (ReadOnly): Time Stamp.
+* **DefaultVariant**: string (ReadOnly): Name for a variant.
+* **Description**: string: Description for a prompt version resource.
+* **Name**: string (ReadOnly): Name for a prompt resource.
+* **PromptArn**: string (Required): ARN of a prompt resource possibly with a version
+* **PromptId**: string (ReadOnly): Identifier for a Prompt
+* **UpdatedAt**: string (ReadOnly): Time Stamp.
+* **Variants**: [PromptVariant](#promptvariant)[] (ReadOnly): List of prompt variants
+* **Version**: string (ReadOnly): Version.
+
+## BedrockEmbeddingModelConfiguration
+### Properties
+* **Dimensions**: int: The dimensions details for the vector configuration used on the Bedrock embeddings model.
+
 ## ChunkingConfiguration
 ### Properties
 * **ChunkingStrategy**: string (Required)
@@ -175,15 +286,111 @@
 ### Properties
 * **FiltersConfig**: [ContentFilterConfig](#contentfilterconfig)[] (Required): List of content filter configs in content policy.
 
+## ContextualGroundingFilterConfig
+### Properties
+* **Threshold**: int (Required): The threshold for this filter.
+* **Type**: string (Required)
+
+## ContextualGroundingPolicyConfig
+### Properties
+* **FiltersConfig**: [ContextualGroundingFilterConfig](#contextualgroundingfilterconfig)[] (Required): List of contextual grounding filter configs.
+
 ## DataSourceConfiguration
 ### Properties
 * **S3Configuration**: [S3DataSourceConfiguration](#s3datasourceconfiguration) (Required)
 * **Type**: string (Required)
 
+## DefinitionSubstitutions
+### Properties
+
+## EmbeddingModelConfiguration
+### Properties
+* **BedrockEmbeddingModelConfiguration**: [BedrockEmbeddingModelConfiguration](#bedrockembeddingmodelconfiguration)
+
 ## FixedSizeChunkingConfiguration
 ### Properties
 * **MaxTokens**: int (Required): The maximum number of tokens to include in a chunk.
 * **OverlapPercentage**: int (Required): The percentage of overlap between adjacent chunks of a data source.
+
+## Flow_FlowConnectionConfiguration
+### Properties
+
+## Flow_FlowNodeConfiguration
+### Properties
+
+## FlowAliasRoutingConfigurationListItem
+### Properties
+* **FlowVersion**: string: Version.
+
+## FlowConnection
+### Properties
+* **Configuration**: [Flow_FlowConnectionConfiguration](#flowflowconnectionconfiguration)
+* **Name**: string (Required): Name of a connection in a flow
+* **Source**: string (Required): Name of a node in a flow
+* **Target**: string (Required): Name of a node in a flow
+* **Type**: string (Required)
+
+## FlowConnection
+### Properties
+* **Configuration**: [FlowVersion_FlowConnectionConfiguration](#flowversionflowconnectionconfiguration)
+* **Name**: string (Required): Name of a connection in a flow
+* **Source**: string (Required): Name of a node in a flow
+* **Target**: string (Required): Name of a node in a flow
+* **Type**: string (Required)
+
+## FlowDefinition
+### Properties
+* **Connections**: [FlowConnection](#flowconnection)[]: List of connections
+* **Nodes**: [FlowNode](#flownode)[]: List of nodes in a flow
+
+## FlowDefinition
+### Properties
+* **Connections**: [FlowConnection](#flowconnection)[]: List of connections
+* **Nodes**: [FlowNode](#flownode)[]: List of nodes in a flow
+
+## FlowNode
+### Properties
+* **Configuration**: [Flow_FlowNodeConfiguration](#flowflownodeconfiguration)
+* **Inputs**: [FlowNodeInput](#flownodeinput)[]: List of node inputs in a flow
+* **Name**: string (Required): Name of a node in a flow
+* **Outputs**: [FlowNodeOutput](#flownodeoutput)[]: List of node outputs in a flow
+* **Type**: string (Required)
+
+## FlowNode
+### Properties
+* **Configuration**: [FlowVersion_FlowNodeConfiguration](#flowversionflownodeconfiguration)
+* **Inputs**: [FlowNodeInput](#flownodeinput)[]: List of node inputs in a flow
+* **Name**: string (Required): Name of a node in a flow
+* **Outputs**: [FlowNodeOutput](#flownodeoutput)[]: List of node outputs in a flow
+* **Type**: string (Required)
+
+## FlowNodeInput
+### Properties
+* **Expression**: string (Required): Expression for a node input in a flow
+* **Name**: string (Required): Name of a node input in a flow
+* **Type**: string (Required)
+
+## FlowNodeInput
+### Properties
+* **Expression**: string (Required): Expression for a node input in a flow
+* **Name**: string (Required): Name of a node input in a flow
+* **Type**: string (Required)
+
+## FlowNodeOutput
+### Properties
+* **Name**: string (Required): Name of a node output in a flow
+* **Type**: string (Required)
+
+## FlowNodeOutput
+### Properties
+* **Name**: string (Required): Name of a node output in a flow
+* **Type**: string (Required)
+
+## FlowVersion_FlowConnectionConfiguration
+### Properties
+
+## FlowVersion_FlowNodeConfiguration
+### Properties
 
 ## Function
 ### Properties
@@ -216,6 +423,22 @@
 ## ManagedWordsConfig
 ### Properties
 * **Type**: string (Required)
+
+## MongoDbAtlasConfiguration
+### Properties
+* **CollectionName**: string (Required): Name of the collection within MongoDB Atlas.
+* **CredentialsSecretArn**: string (Required): The ARN of the secret that you created in AWS Secrets Manager that is linked to your Amazon Mongo database.
+* **DatabaseName**: string (Required): Name of the database within MongoDB Atlas.
+* **Endpoint**: string (Required): MongoDB Atlas endpoint.
+* **EndpointServiceName**: string: MongoDB Atlas endpoint service name.
+* **FieldMapping**: [MongoDbAtlasFieldMapping](#mongodbatlasfieldmapping) (Required)
+* **VectorIndexName**: string (Required): Name of a MongoDB Atlas index.
+
+## MongoDbAtlasFieldMapping
+### Properties
+* **MetadataField**: string (Required): The name of the field in which Amazon Bedrock stores metadata about the vector store.
+* **TextField**: string (Required): The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.
+* **VectorField**: string (Required): The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.
 
 ## OpenSearchServerlessConfiguration
 ### Properties
@@ -258,10 +481,38 @@
 * **PromptState**: string
 * **PromptType**: string
 
+## PromptInferenceConfiguration
+### Properties
+
+## PromptInferenceConfiguration
+### Properties
+
 ## PromptOverrideConfiguration
 ### Properties
 * **OverrideLambda**: string: ARN of a Lambda.
 * **PromptConfigurations**: [PromptConfiguration](#promptconfiguration)[] (Required): List of BasePromptConfiguration
+
+## PromptTemplateConfiguration
+### Properties
+
+## PromptTemplateConfiguration
+### Properties
+
+## PromptVariant
+### Properties
+* **InferenceConfiguration**: [PromptInferenceConfiguration](#promptinferenceconfiguration)
+* **ModelId**: string: ARN or name of a Bedrock model.
+* **Name**: string (Required): Name for a variant.
+* **TemplateConfiguration**: [PromptTemplateConfiguration](#prompttemplateconfiguration)
+* **TemplateType**: string (Required)
+
+## PromptVariant
+### Properties
+* **InferenceConfiguration**: [PromptInferenceConfiguration](#promptinferenceconfiguration)
+* **ModelId**: string: ARN or name of a Bedrock model.
+* **Name**: string (Required): Name for a variant.
+* **TemplateConfiguration**: [PromptTemplateConfiguration](#prompttemplateconfiguration)
+* **TemplateType**: string (Required)
 
 ## RdsConfiguration
 ### Properties
@@ -291,6 +542,12 @@
 * **BucketOwnerAccountId**: string: The account ID for the owner of the S3 bucket.
 * **InclusionPrefixes**: string[]: A list of S3 prefixes that define the object containing the data sources.
 
+## S3Location
+### Properties
+* **Bucket**: string (Required): A bucket in S3
+* **Key**: string (Required): A object key in S3
+* **Version**: string: The version of the the S3 object to use
+
 ## SensitiveInformationPolicyConfig
 ### Properties
 * **PiiEntitiesConfig**: [PiiEntityConfig](#piientityconfig)[]: List of entities.
@@ -302,6 +559,7 @@
 
 ## StorageConfiguration
 ### Properties
+* **MongoDbAtlasConfiguration**: [MongoDbAtlasConfiguration](#mongodbatlasconfiguration)
 * **OpensearchServerlessConfiguration**: [OpenSearchServerlessConfiguration](#opensearchserverlessconfiguration)
 * **PineconeConfiguration**: [PineconeConfiguration](#pineconeconfiguration)
 * **RdsConfiguration**: [RdsConfiguration](#rdsconfiguration)
@@ -311,6 +569,15 @@
 ### Properties
 * **Key**: string (Required): Tag Key
 * **Value**: string (Required): Tag Value
+
+## TagsMap
+### Properties
+
+## TagsMap
+### Properties
+
+## TagsMap
+### Properties
 
 ## TagsMap
 ### Properties
@@ -339,6 +606,7 @@
 ## VectorKnowledgeBaseConfiguration
 ### Properties
 * **EmbeddingModelArn**: string (Required): The ARN of the model used to create vector embeddings for the knowledge base.
+* **EmbeddingModelConfiguration**: [EmbeddingModelConfiguration](#embeddingmodelconfiguration)
 
 ## WordConfig
 ### Properties

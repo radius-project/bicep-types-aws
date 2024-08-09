@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-ProvisioningTemplate",
   "type": "AWS::IoT::ProvisioningTemplate",
-  "time": "2024-02-29T21:01:55.62Z",
+  "time": "2024-06-25T16:16:55.601Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -10,6 +10,7 @@
     ],
     "definitions": {
       "ProvisioningHook": {
+        "additionalProperties": false,
         "properties": {
           "PayloadVersion": {
             "type": "string"
@@ -99,11 +100,12 @@
         "type": "string"
       },
       "Tags": {
-        "insertionOrder": true,
+        "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/Tag"
         },
-        "type": "array"
+        "type": "array",
+        "uniqueItems": true
       },
       "TemplateArn": {
         "type": "string"

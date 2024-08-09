@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Panorama-Package",
   "type": "AWS::Panorama::Package",
-  "time": "2024-06-11T15:22:49.918Z",
+  "time": "2024-07-30T15:22:55.695Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -27,20 +27,26 @@
       },
       "StorageLocation": {
         "additionalProperties": false,
+        "description": "A storage location.",
         "properties": {
           "BinaryPrefixLocation": {
+            "description": "The location's binary prefix.",
             "type": "string"
           },
           "Bucket": {
+            "description": "The location's bucket.",
             "type": "string"
           },
           "GeneratedPrefixLocation": {
+            "description": "The location's generated prefix.",
             "type": "string"
           },
           "ManifestPrefixLocation": {
+            "description": "The location's manifest prefix.",
             "type": "string"
           },
           "RepoPrefixLocation": {
+            "description": "The location's repo prefix.",
             "type": "string"
           }
         },
@@ -48,14 +54,17 @@
       },
       "Tag": {
         "additionalProperties": false,
+        "description": "",
         "properties": {
           "Key": {
+            "description": "",
             "maxLength": 128,
             "minLength": 1,
             "pattern": "^.+$",
             "type": "string"
           },
           "Value": {
+            "description": "",
             "maxLength": 256,
             "minLength": 0,
             "pattern": "^.+$",
@@ -80,7 +89,7 @@
         "type": "integer"
       }
     },
-    "description": "Schema for Package CloudFormation Resource",
+    "description": "Creates a package and storage location in an Amazon S3 access point.",
     "handlers": {
       "create": {
         "permissions": [
@@ -143,22 +152,28 @@
     ],
     "properties": {
       "Arn": {
-        "$ref": "#/definitions/NodePackageArn"
+        "$ref": "#/definitions/NodePackageArn",
+        "description": ""
       },
       "CreatedTime": {
-        "$ref": "#/definitions/Timestamp"
+        "$ref": "#/definitions/Timestamp",
+        "description": ""
       },
       "PackageId": {
-        "$ref": "#/definitions/NodePackageId"
+        "$ref": "#/definitions/NodePackageId",
+        "description": ""
       },
       "PackageName": {
-        "$ref": "#/definitions/NodePackageName"
+        "$ref": "#/definitions/NodePackageName",
+        "description": "A name for the package."
       },
       "StorageLocation": {
-        "$ref": "#/definitions/StorageLocation"
+        "$ref": "#/definitions/StorageLocation",
+        "description": "A storage location."
       },
       "Tags": {
-        "$ref": "#/definitions/TagList"
+        "$ref": "#/definitions/TagList",
+        "description": "Tags for the package."
       }
     },
     "readOnlyProperties": [

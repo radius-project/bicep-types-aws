@@ -702,7 +702,7 @@
 * **Ipv6Addresses**: [InstanceIpv6Address](#instanceipv6address)[] (WriteOnly): [EC2-VPC] The IPv6 addresses from the range of the subnet to associate with the primary network interface.
 * **KernelId**: string: The ID of the kernel.
 * **KeyName**: string: The name of the key pair.
-* **LaunchTemplate**: [Instance_LaunchTemplateSpecification](#instancelaunchtemplatespecification): The launch template to use to launch the instances.
+* **LaunchTemplate**: [Instance_LaunchTemplateSpecification](#instancelaunchtemplatespecification) (WriteOnly): The launch template to use to launch the instances.
 * **LicenseSpecifications**: [LicenseSpecification](#licensespecification)[]: The license configurations.
 * **Monitoring**: bool: Specifies whether detailed monitoring is enabled for the instance.
 * **NetworkInterfaces**: [NetworkInterface](#networkinterface)[]: The network interfaces to associate with the instance.
@@ -946,10 +946,10 @@
 
 ## AWS.EC2/NetworkInterfaceAttachmentProperties
 ### Properties
-* **AttachmentId**: string (ReadOnly, Identifier): The ID of the network interface attachment.
-* **DeleteOnTermination**: bool: Whether to delete the network interface when the instance terminates. By default, this value is set to true.
-* **DeviceIndex**: string (Required): The network interface's position in the attachment order. For example, the first attached network interface has a DeviceIndex of 0.
-* **EnaSrdSpecification**: [EnaSrdSpecification](#enasrdspecification)
+* **AttachmentId**: string (ReadOnly, Identifier)
+* **DeleteOnTermination**: bool: Whether to delete the network interface when the instance terminates. By default, this value is set to ``true``.
+* **DeviceIndex**: string (Required): The network interface's position in the attachment order. For example, the first attached network interface has a ``DeviceIndex`` of 0.
+* **EnaSrdSpecification**: [EnaSrdSpecification](#enasrdspecification): Configures ENA Express for the network interface that this action attaches to the instance.
 * **InstanceId**: string (Required): The ID of the instance to which you will attach the ENI.
 * **NetworkInterfaceId**: string (Required): The ID of the ENI that you want to attach.
 
@@ -1097,7 +1097,8 @@ Use this for ICMP and any protocol that uses ports.
 * **AvailabilityZoneId**: string: The AZ ID of the subnet.
 * **CidrBlock**: string: The IPv4 CIDR block assigned to the subnet.
  If you update this property, we create a new subnet, and then delete the existing one.
-* **EnableDns64**: bool: Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations. For more information, see [DNS64 and NAT64](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-nat64-dns64) in the *User Guide*.
+* **EnableDns64**: bool: Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations.
+  You must first configure a NAT gateway in a public subnet (separate from the subnet containing the IPv6-only workloads). For example, the subnet containing the NAT gateway should have a ``0.0.0.0/0`` route pointing to the internet gateway. For more information, see [Configure DNS64 and NAT64](https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-nat64-dns64.html#nat-gateway-nat64-dns64-walkthrough) in the *User Guide*.
 * **EnableLniAtDeviceIndex**: int (WriteOnly): Indicates the device position for local network interfaces in this subnet. For example, ``1`` indicates local network interfaces in this subnet are the secondary network interface (eth1).
 * **Ipv4IpamPoolId**: string (WriteOnly): An IPv4 IPAM pool ID for the subnet.
 * **Ipv4NetmaskLength**: int (WriteOnly): An IPv4 netmask length for the subnet.
@@ -1391,12 +1392,16 @@ Use this for ICMP and any protocol that uses ports.
 ## AWS.EC2/VPNConnectionProperties
 ### Properties
 * **CustomerGatewayId**: string (Required): The ID of the customer gateway at your end of the VPN connection.
-* **StaticRoutesOnly**: bool: Indicates whether the VPN connection uses static routes only.
+* **EnableAcceleration**: bool
+* **StaticRoutesOnly**: bool: Indicates whether the VPN connection uses static routes only. Static routes must be used for devices that don't support BGP.
+ If you are creating a VPN connection for a device that does not support Border Gateway Protocol (BGP), you must specify ``true``.
 * **Tags**: [Tag](#tag)[]: Any tags assigned to the VPN connection.
 * **TransitGatewayId**: string: The ID of the transit gateway associated with the VPN connection.
+ You must specify either ``TransitGatewayId`` or ``VpnGatewayId``, but not both.
 * **Type**: string (Required): The type of VPN connection.
-* **VpnConnectionId**: string (ReadOnly, Identifier): The provider-assigned unique ID for this managed resource
+* **VpnConnectionId**: string (ReadOnly, Identifier)
 * **VpnGatewayId**: string: The ID of the virtual private gateway at the AWS side of the VPN connection.
+ You must specify either ``TransitGatewayId`` or ``VpnGatewayId``, but not both.
 * **VpnTunnelOptionsSpecifications**: [VpnTunnelOptionsSpecification](#vpntunneloptionsspecification)[]: The tunnel options for the VPN connection.
 
 ## AWS.EC2/VPNGatewayProperties
@@ -1559,7 +1564,7 @@ Use this for ICMP and any protocol that uses ports.
 
 ## ElasticGpuSpecification
 ### Properties
-* **Type**: string: The type of Elastic Graphics accelerator. For more information about the values to specify for ``Type``, see [Elastic Graphics Basics](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics.html#elastic-graphics-basics), specifically the Elastic Graphics accelerator column, in the *Amazon Elastic Compute Cloud User Guide for Windows Instances*.
+* **Type**: string: The type of Elastic Graphics accelerator.
 
 ## ElasticInferenceAccelerator
 ### Properties
@@ -1573,8 +1578,8 @@ Use this for ICMP and any protocol that uses ports.
 
 ## EnaSrdSpecification
 ### Properties
-* **EnaSrdEnabled**: bool
-* **EnaSrdUdpSpecification**: [NetworkInterfaceAttachment_EnaSrdUdpSpecification](#networkinterfaceattachmentenasrdudpspecification)
+* **EnaSrdEnabled**: bool: Indicates whether ENA Express is enabled for the network interface.
+* **EnaSrdUdpSpecification**: [NetworkInterfaceAttachment_EnaSrdUdpSpecification](#networkinterfaceattachmentenasrdudpspecification): Configures ENA Express for UDP network traffic.
 
 ## EnaSrdUdpSpecification
 ### Properties
@@ -1865,7 +1870,7 @@ Use this for ICMP and any protocol that uses ports.
  Default: ``hdd`` and ``ssd``
 * **MaxSpotPriceAsPercentageOfOptimalOnDemandPrice**: int: [Price protection] The price protection threshold for Spot Instances, as a percentage of an identified On-Demand price. The identified On-Demand price is the price of the lowest priced current generation C, M, or R instance type with your specified attributes. If no current generation C, M, or R instance type matches your attributes, then the identified price is from the lowest priced current generation instance types, and failing that, from the lowest priced previous generation instance types that match your attributes. When Amazon EC2 selects instance types with your attributes, it will exclude instance types whose price exceeds your specified threshold.
  The parameter accepts an integer, which Amazon EC2 interprets as a percentage.
- If you set ``DesiredCapacityType`` to ``vcpu`` or ``memory-mib``, the price protection threshold is based on the per vCPU or per memory price instead of the per instance price.
+ If you set ``TargetCapacityUnitType`` to ``vcpu`` or ``memory-mib``, the price protection threshold is based on the per vCPU or per memory price instead of the per instance price.
   Only one of ``SpotMaxPricePercentageOverLowestPrice`` or ``MaxSpotPriceAsPercentageOfOptimalOnDemandPrice`` can be specified. If you don't specify either, Amazon EC2 will automatically apply optimal price protection to consistently select from a wide range of instance types. To indicate no price protection threshold for Spot Instances, meaning you want to consider all instance types that match your attributes, include one of these parameters and specify a high value, such as ``999999``.
 * **MemoryGiBPerVCpu**: [MemoryGiBPerVCpu](#memorygibpervcpu): The minimum and maximum amount of memory per vCPU, in GiB.
  Default: No minimum or maximum limits
@@ -1967,7 +1972,7 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Ipv4PrefixSpecification
 ### Properties
-* **Ipv4Prefix**: string: The IPv4 prefix. For information, see [Assigning prefixes to Amazon EC2 network interfaces](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html) in the *Amazon Elastic Compute Cloud User Guide*.
+* **Ipv4Prefix**: string: The IPv4 prefix. For information, see [Assigning prefixes to network interfaces](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html) in the *Amazon EC2 User Guide*.
 
 ## Ipv4PrefixSpecification
 ### Properties
@@ -1994,9 +1999,9 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **BlockDeviceMappings**: [BlockDeviceMapping](#blockdevicemapping)[]: The block device mapping.
 * **CapacityReservationSpecification**: [CapacityReservationSpecification](#capacityreservationspecification): The Capacity Reservation targeting option. If you do not specify this parameter, the instance's Capacity Reservation preference defaults to ``open``, which enables it to run in any open Capacity Reservation that has matching attributes (instance type, platform, Availability Zone).
-* **CpuOptions**: [CpuOptions](#cpuoptions): The CPU options for the instance. For more information, see [Optimizing CPU Options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html) in the *Amazon Elastic Compute Cloud User Guide*.
+* **CpuOptions**: [CpuOptions](#cpuoptions): The CPU options for the instance. For more information, see [Optimize CPU options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html) in the *Amazon EC2 User Guide*.
 * **CreditSpecification**: [CreditSpecification](#creditspecification): The credit option for CPU usage of the instance. Valid only for T instances.
-* **DisableApiStop**: bool: Indicates whether to enable the instance for stop protection. For more information, see [Stop protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection) in the *Amazon Elastic Compute Cloud User Guide*.
+* **DisableApiStop**: bool: Indicates whether to enable the instance for stop protection. For more information, see [Enable stop protection for your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-stop-protection.html) in the *Amazon EC2 User Guide*.
 * **DisableApiTermination**: bool: If you set this parameter to ``true``, you can't terminate the instance using the Amazon EC2 console, CLI, or API; otherwise, you can. To change this attribute after launch, use [ModifyInstanceAttribute](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceAttribute.html). Alternatively, if you set ``InstanceInitiatedShutdownBehavior`` to ``terminate``, you can terminate the instance by running the shutdown command from the instance.
 * **EbsOptimized**: bool: Indicates whether the instance is optimized for Amazon EBS I/O. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal Amazon EBS I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS-optimized instance.
 * **ElasticGpuSpecifications**: [ElasticGpuSpecification](#elasticgpuspecification)[]: Deprecated.
@@ -2006,11 +2011,11 @@ Use this for ICMP and any protocol that uses ports.
   Starting April 15, 2023, AWS will not onboard new customers to Amazon Elastic Inference (EI), and will help current customers migrate their workloads to options that offer better price and performance. After April 15, 2023, new customers will not be able to launch instances with Amazon EI accelerators in Amazon SageMaker, Amazon ECS, or Amazon EC2. However, customers who have used Amazon EI at least once during the past 30-day period are considered current customers and will be able to continue using the service.
 * **EnclaveOptions**: [EnclaveOptions](#enclaveoptions): Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see [What is Nitro Enclaves?](https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html) in the *Nitro Enclaves User Guide*.
  You can't enable AWS Nitro Enclaves and hibernation on the same instance.
-* **HibernationOptions**: [HibernationOptions](#hibernationoptions): Indicates whether an instance is enabled for hibernation. This parameter is valid only if the instance meets the [hibernation prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html). For more information, see [Hibernate your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html) in the *Amazon Elastic Compute Cloud User Guide*.
+* **HibernationOptions**: [HibernationOptions](#hibernationoptions): Indicates whether an instance is enabled for hibernation. This parameter is valid only if the instance meets the [hibernation prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html). For more information, see [Hibernate your Amazon EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html) in the *Amazon EC2 User Guide*.
 * **IamInstanceProfile**: [IamInstanceProfile](#iaminstanceprofile): The name or Amazon Resource Name (ARN) of an IAM instance profile.
 * **ImageId**: string: The ID of the AMI. Alternatively, you can specify a Systems Manager parameter, which will resolve to an AMI ID on launch.
  Valid formats:
-  +   ``ami-17characters00000`` 
+  +   ``ami-0ac394d6a3example`` 
   +   ``resolve:ssm:parameter-name`` 
   +   ``resolve:ssm:parameter-name:version-number`` 
   +   ``resolve:ssm:parameter-name:label`` 
@@ -2029,7 +2034,7 @@ Use this for ICMP and any protocol that uses ports.
   If you specify ``InstanceRequirements``, you can't specify ``InstanceType``.
  Attribute-based instance type selection is only supported when using Auto Scaling groups, EC2 Fleet, and Spot Fleet to launch instances. If you plan to use the launch template in the [launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html), or with the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API or [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) AWS CloudFormation resource, you can't specify ``InstanceRequirements``.
   For more information, see [Attribute-based instance type selection for EC2 Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html), [Attribute-based instance type selection for Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html), and [Spot placement score](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html) in the *Amazon EC2 User Guide*.
-* **InstanceType**: string: The instance type. For more information, see [Instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the *Amazon Elastic Compute Cloud User Guide*.
+* **InstanceType**: string: The instance type. For more information, see [Amazon EC2 instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the *Amazon EC2 User Guide*.
  If you specify ``InstanceType``, you can't specify ``InstanceRequirements``.
 * **KernelId**: string: The ID of the kernel.
  We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see [User Provided Kernels](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html) in the *Amazon EC2 User Guide*.
@@ -2037,13 +2042,13 @@ Use this for ICMP and any protocol that uses ports.
   If you do not specify a key pair, you can't connect to the instance unless you choose an AMI that is configured to allow users another way to log in.
 * **LicenseSpecifications**: [LicenseSpecification](#licensespecification)[]: The license configurations.
 * **MaintenanceOptions**: [MaintenanceOptions](#maintenanceoptions): The maintenance options of your instance.
-* **MetadataOptions**: [MetadataOptions](#metadataoptions): The metadata options for the instance. For more information, see [Instance metadata and user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the *Amazon Elastic Compute Cloud User Guide*.
+* **MetadataOptions**: [MetadataOptions](#metadataoptions): The metadata options for the instance. For more information, see [Instance metadata and user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the *Amazon EC2 User Guide*.
 * **Monitoring**: [Monitoring](#monitoring): The monitoring for the instance.
 * **NetworkInterfaces**: [NetworkInterface](#networkinterface)[]: The network interfaces for the instance.
 * **Placement**: [Placement](#placement): The placement for the instance.
 * **PrivateDnsNameOptions**: [PrivateDnsNameOptions](#privatednsnameoptions): The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries should be handled. For more information, see [Amazon EC2 instance hostname types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html) in the *User Guide*.
 * **RamDiskId**: string: The ID of the RAM disk.
-  We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see [User provided kernels](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html) in the *Amazon Elastic Compute Cloud User Guide*.
+  We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see [User provided kernels](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html) in the *Amazon EC2 User Guide*.
 * **SecurityGroupIds**: string[]: The IDs of the security groups. You can specify the IDs of existing security groups and references to resources created by the stack template.
  If you specify a network interface, you must specify any security groups as part of the network interface instead.
 * **SecurityGroups**: string[]: The names of the security groups. For a nondefault VPC, you must use security group IDs instead.
@@ -2051,7 +2056,7 @@ Use this for ICMP and any protocol that uses ports.
 * **TagSpecifications**: [TagSpecification](#tagspecification)[]: The tags to apply to the resources that are created during instance launch.
  To tag a resource after it has been created, see [CreateTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html).
  To tag the launch template itself, use [TagSpecifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html#cfn-ec2-launchtemplate-tagspecifications).
-* **UserData**: string: The user data to make available to the instance. You must provide base64-encoded text. User data is limited to 16 KB. For more information, see [Run commands on your Linux instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) (Linux) or [Work with instance user data](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instancedata-add-user-data.html) (Windows) in the *Amazon Elastic Compute Cloud User Guide*.
+* **UserData**: string: The user data to make available to the instance. You must provide base64-encoded text. User data is limited to 16 KB. For more information, see [Run commands on your Amazon EC2 instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) in the *Amazon EC2 User Guide*.
  If you are creating the launch template for use with BATCH, the user data must be provided in the [MIME multi-part archive format](https://docs.aws.amazon.com/https://cloudinit.readthedocs.io/en/latest/topics/format.html#mime-multi-part-archive). For more information, see [Amazon EC2 user data in launch templates](https://docs.aws.amazon.com/batch/latest/userguide/launch-templates.html) in the *User Guide*.
 
 ## LaunchTemplateElasticInferenceAccelerator
@@ -2072,7 +2077,7 @@ Use this for ICMP and any protocol that uses ports.
 
 ## LaunchTemplateTagSpecification
 ### Properties
-* **ResourceType**: string: The type of resource. To tag the launch template, ``ResourceType`` must be ``launch-template``.
+* **ResourceType**: string: The type of resource. To tag a launch template, ``ResourceType`` must be ``launch-template``.
 * **Tags**: [Tag](#tag)[]: The tags for the resource.
 
 ## LicenseSpecification
@@ -2197,7 +2202,7 @@ Use this for ICMP and any protocol that uses ports.
 * **DeviceIndex**: int: The device index for the network interface attachment. Each network interface requires a device index. If you create a launch template that includes secondary network interfaces but not a primary network interface, then you must add a primary network interface as a launch parameter when you launch an instance from the template.
 * **EnaSrdSpecification**: [EnaSrdSpecification](#enasrdspecification): The ENA Express configuration for the network interface.
 * **Groups**: string[]: The IDs of one or more security groups.
-* **InterfaceType**: string: The type of network interface. To create an Elastic Fabric Adapter (EFA), specify ``efa``. For more information, see [Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) in the *Amazon Elastic Compute Cloud User Guide*.
+* **InterfaceType**: string: The type of network interface. To create an Elastic Fabric Adapter (EFA), specify ``efa``. For more information, see [Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) in the *Amazon EC2 User Guide*.
  If you are not creating an EFA, specify ``interface`` or omit this parameter.
  Valid values: ``interface`` | ``efa``
 * **Ipv4PrefixCount**: int: The number of IPv4 prefixes to be automatically assigned to the network interface. You cannot use this option if you use the ``Ipv4Prefix`` option.
@@ -2719,8 +2724,8 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
 
 ## Tag
 ### Properties
@@ -2744,8 +2749,7 @@ Use this for ICMP and any protocol that uses ports.
 
 ## TagSpecification
 ### Properties
-* **ResourceType**: string: The type of resource to tag.
- Valid Values lists all resource types for Amazon EC2 that can be tagged. When you create a launch template, you can specify tags for the following resource types only: ``instance`` | ``volume`` | ``network-interface`` | ``spot-instances-request``. If the instance does not include the resource type that you specify, the instance launch fails. For example, not all instance types include a volume.
+* **ResourceType**: string: The type of resource to tag. You can specify tags for the following resource types only: ``instance`` | ``volume`` | ``network-interface`` | ``spot-instances-request``. If the instance does not include the resource type that you specify, the instance launch fails. For example, not all instance types include a volume.
  To tag a resource after it has been created, see [CreateTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html).
 * **Tags**: [Tag](#tag)[]: The tags to apply to the resource.
 
@@ -2876,6 +2880,15 @@ Use this for ICMP and any protocol that uses ports.
 
 ## VpnTunnelOptionsSpecification
 ### Properties
-* **PreSharedKey**: string
-* **TunnelInsideCidr**: string
+* **PreSharedKey**: string: The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway.
+ Constraints: Allowed characters are alphanumeric characters, periods (.), and underscores (_). Must be between 8 and 64 characters in length and cannot start with zero (0).
+* **TunnelInsideCidr**: string: The range of inside IP addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. 
+ Constraints: A size /30 CIDR block from the ``169.254.0.0/16`` range. The following CIDR blocks are reserved and cannot be used:
+  +   ``169.254.0.0/30`` 
+  +   ``169.254.1.0/30`` 
+  +   ``169.254.2.0/30`` 
+  +   ``169.254.3.0/30`` 
+  +   ``169.254.4.0/30`` 
+  +   ``169.254.5.0/30`` 
+  +   ``169.254.169.252/30``
 

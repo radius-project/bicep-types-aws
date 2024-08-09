@@ -63,6 +63,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/InferenceExperimentProperties](#awssagemakerinferenceexperimentproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SageMaker/MlflowTrackingServer@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/MlflowTrackingServerProperties](#awssagemakermlflowtrackingserverproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SageMaker/ModelCard@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -257,6 +264,18 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Type**: string (Required): The type of the inference experiment that you want to run.
 
+## AWS.SageMaker/MlflowTrackingServerProperties
+### Properties
+* **ArtifactStoreUri**: string (Required): The Amazon S3 URI for MLFlow Tracking Server artifacts.
+* **AutomaticModelRegistration**: bool: A flag to enable Automatic SageMaker Model Registration.
+* **MlflowVersion**: string: The MLFlow Version used on the MLFlow Tracking Server.
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on behalf of the customer.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **TrackingServerArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the MLFlow Tracking Server.
+* **TrackingServerName**: string (Required, Identifier): The name of the MLFlow Tracking Server.
+* **TrackingServerSize**: string: The size of the MLFlow Tracking Server.
+* **WeeklyMaintenanceWindowStart**: string: The start of the time window for maintenance of the MLFlow Tracking Server in UTC time.
+
 ## AWS.SageMaker/ModelCardProperties
 ### Properties
 * **Content**: [Content](#content) (Required)
@@ -297,6 +316,7 @@
 * **LastModifiedTime**: string
 * **MetadataProperties**: [MetadataProperties](#metadataproperties)
 * **ModelApprovalStatus**: string
+* **ModelCard**: [ModelCard](#modelcard)
 * **ModelMetrics**: [ModelMetrics](#modelmetrics)
 * **ModelPackageArn**: string (ReadOnly, Identifier)
 * **ModelPackageDescription**: string
@@ -306,8 +326,10 @@
 * **ModelPackageStatusDetails**: [ModelPackageStatusDetails](#modelpackagestatusdetails)
 * **ModelPackageVersion**: int
 * **SamplePayloadUrl**: string
+* **SecurityConfig**: [SecurityConfig](#securityconfig)
 * **SkipModelValidation**: string
 * **SourceAlgorithmSpecification**: [SourceAlgorithmSpecification](#sourcealgorithmspecification)
+* **SourceUri**: string
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Task**: string
 * **ValidationSpecification**: [ValidationSpecification](#validationspecification)
@@ -784,29 +806,35 @@
 ## JupyterServerAppSettings
 ### Properties
 * **DefaultResourceSpec**: [ResourceSpec](#resourcespec)
+* **LifecycleConfigArns**: string[]: A list of LifecycleConfigArns available for use with JupyterServer apps.
 
 ## JupyterServerAppSettings
 ### Properties
 * **DefaultResourceSpec**: [ResourceSpec](#resourcespec)
+* **LifecycleConfigArns**: string[]: A list of LifecycleConfigArns available for use with JupyterServer apps.
 
 ## JupyterServerAppSettings
 ### Properties
 * **DefaultResourceSpec**: [ResourceSpec](#resourcespec)
+* **LifecycleConfigArns**: string[]: A list of LifecycleConfigArns available for use with JupyterServer apps.
 
 ## KernelGatewayAppSettings
 ### Properties
 * **CustomImages**: [CustomImage](#customimage)[]: A list of custom SageMaker images that are configured to run as a KernelGateway app.
 * **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the KernelGateway app.
+* **LifecycleConfigArns**: string[]: A list of LifecycleConfigArns available for use with KernelGateway apps.
 
 ## KernelGatewayAppSettings
 ### Properties
 * **CustomImages**: [CustomImage](#customimage)[]: A list of custom SageMaker images that are configured to run as a KernelGateway app.
 * **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the KernelGateway app.
+* **LifecycleConfigArns**: string[]: A list of LifecycleConfigArns available for use with KernelGateway apps.
 
 ## KernelGatewayAppSettings
 ### Properties
 * **CustomImages**: [CustomImage](#customimage)[]: A list of custom SageMaker images that are configured to run as a KernelGateway app.
 * **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the KernelGateway app.
+* **LifecycleConfigArns**: string[]: A list of LifecycleConfigArns available for use with KernelGateway apps.
 
 ## KernelGatewayImageConfig
 ### Properties
@@ -835,6 +863,15 @@
 * **ContentDigest**: string: The digest of the metric source.
 * **ContentType**: string (Required): The type of content stored in the metric source.
 * **S3Uri**: string (Required): The Amazon S3 URI for the metric source.
+
+## ModelAccessConfig
+### Properties
+* **AcceptEula**: bool (Required): Specifies agreement to the model end-user license agreement (EULA).
+
+## ModelCard
+### Properties
+* **ModelCardContent**: string (Required): The content of the model card.
+* **ModelCardStatus**: string (Required): The approval status of the model card within your organization.
 
 ## ModelCard_CustomDetails
 ### Properties
@@ -874,6 +911,10 @@
 * **Constraints**: [MetricsSource](#metricssource)
 * **Statistics**: [MetricsSource](#metricssource)
 
+## ModelDataSource
+### Properties
+* **S3DataSource**: [S3ModelDataSource](#s3modeldatasource)
+
 ## ModelInfrastructureConfig
 ### Properties
 * **InfrastructureType**: string (Required): The type of the inference experiment that you want to run.
@@ -911,6 +952,7 @@
 * **FrameworkVersion**: string: The framework version of the Model Package Container Image.
 * **Image**: string (Required): The Amazon EC2 Container Registry (Amazon ECR) path where inference code is stored.
 * **ImageDigest**: string: An MD5 hash of the training algorithm that identifies the Docker image used for training.
+* **ModelDataSource**: [ModelDataSource](#modeldatasource)
 * **ModelDataUrl**: string: A structure with Model Input details.
 * **ModelInput**: [ModelPackage_ModelInput](#modelpackagemodelinput)
 * **NearestModelName**: string: The name of a pre-trained machine learning benchmarked by Amazon SageMaker Inference Recommender model that matches your model.
@@ -1073,12 +1115,14 @@
 ## ResourceSpec
 ### Properties
 * **InstanceType**: string: The instance type that the image version runs on.
+* **LifecycleConfigArn**: string: The Amazon Resource Name (ARN) of the Lifecycle Configuration to attach to the Resource.
 * **SageMakerImageArn**: string: The ARN of the SageMaker image that the image version belongs to.
 * **SageMakerImageVersionArn**: string: The ARN of the image version created on the instance.
 
 ## ResourceSpec
 ### Properties
 * **InstanceType**: string: The instance type that the image version runs on.
+* **LifecycleConfigArn**: string: The Amazon Resource Name (ARN) of the Lifecycle Configuration to attach to the Resource.
 * **SageMakerImageArn**: string: The ARN of the SageMaker image that the image version belongs to.
 * **SageMakerImageVersionArn**: string: The ARN of the image version created on the instance.
 
@@ -1109,6 +1153,13 @@
 * **S3DataType**: string (Required): The S3 Data Source Type
 * **S3Uri**: string (Required): Depending on the value specified for the S3DataType, identifies either a key name prefix or a manifest.
 
+## S3ModelDataSource
+### Properties
+* **CompressionType**: string (Required): Specifies how the ML model data is prepared.
+* **ModelAccessConfig**: [ModelAccessConfig](#modelaccessconfig)
+* **S3DataType**: string (Required): Specifies the type of ML model data to deploy.
+* **S3Uri**: string (Required): Specifies the S3 path of ML model data to deploy.
+
 ## S3Output
 ### Properties
 * **LocalPath**: string (Required): The local path to the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job. LocalPath is an absolute path for the output data.
@@ -1129,6 +1180,10 @@
 ## SecurityConfig
 ### Properties
 * **KmsKeyId**: string: A Key Management Service key ID to use for encrypting a model card.
+
+## SecurityConfig
+### Properties
+* **KmsKeyId**: string (Required): The AWS KMS Key ID (KMSKeyId) used for encryption of model package information.
 
 ## ShadowModeConfig
 ### Properties
@@ -1201,6 +1256,16 @@
 ### Properties
 * **MaxRuntimeInSeconds**: int (Required): The maximum runtime allowed in seconds.
 
+## StudioWebPortalSettings
+### Properties
+* **HiddenAppTypes**: string[]: Applications supported in Studio that are hidden from the Studio left navigation pane.
+* **HiddenMlTools**: string[]: The machine learning tools that are hidden from the Studio left navigation pane.
+
+## StudioWebPortalSettings
+### Properties
+* **HiddenAppTypes**: string[]: Applications supported in Studio that are hidden from the Studio left navigation pane.
+* **HiddenMlTools**: string[]: The machine learning tools that are hidden from the Studio left navigation pane.
+
 ## Tag
 ### Properties
 * **Key**: string (Required)
@@ -1235,6 +1300,11 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## Tag
 ### Properties
@@ -1361,6 +1431,7 @@
 * **SharingSettings**: [SharingSettings](#sharingsettings): The sharing settings.
 * **SpaceStorageSettings**: [DefaultSpaceStorageSettings](#defaultspacestoragesettings)
 * **StudioWebPortal**: string: Indicates whether the Studio experience is available to users. If not, users cannot access Studio.
+* **StudioWebPortalSettings**: [StudioWebPortalSettings](#studiowebportalsettings)
 
 ## UserSettings
 ### Properties
@@ -1377,6 +1448,7 @@
 * **SharingSettings**: [SharingSettings](#sharingsettings): The sharing settings.
 * **SpaceStorageSettings**: [DefaultSpaceStorageSettings](#defaultspacestoragesettings)
 * **StudioWebPortal**: string: Indicates whether the Studio experience is available to users. If not, users cannot access Studio.
+* **StudioWebPortalSettings**: [StudioWebPortalSettings](#studiowebportalsettings)
 
 ## ValidationProfile
 ### Properties

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Neptune-DBCluster",
   "type": "AWS::Neptune::DBCluster",
-  "time": "2024-02-28T03:02:57.355Z",
+  "time": "2024-08-07T03:31:19.476Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -86,6 +86,7 @@
       "create": {
         "permissions": [
           "iam:PassRole",
+          "iam:CreateServiceLinkedRole",
           "rds:AddRoleToDBCluster",
           "rds:AddTagsToResource",
           "rds:CreateDBCluster",
@@ -95,7 +96,8 @@
           "rds:ModifyDBCluster",
           "rds:RestoreDBClusterFromSnapshot",
           "rds:RestoreDBClusterToPointInTime",
-          "kms:*"
+          "kms:CreateGrant",
+          "kms:DescribeKey"
         ],
         "timeoutInMinutes": 2160
       },
@@ -108,7 +110,8 @@
           "rds:ListTagsForResource",
           "rds:RemoveFromGlobalCluster",
           "rds:CreateDBClusterSnapshot",
-          "kms:*"
+          "kms:CreateGrant",
+          "kms:DescribeKey"
         ],
         "timeoutInMinutes": 2160
       },
@@ -116,7 +119,8 @@
         "permissions": [
           "rds:DescribeDBClusters",
           "rds:ListTagsForResource",
-          "kms:*"
+          "kms:CreateGrant",
+          "kms:DescribeKey"
         ],
         "timeoutInMinutes": 2160
       },
@@ -124,7 +128,8 @@
         "permissions": [
           "rds:DescribeDBClusters",
           "rds:ListTagsForResource",
-          "kms:*"
+          "kms:CreateGrant",
+          "kms:DescribeKey"
         ],
         "timeoutInMinutes": 2160
       },
@@ -144,7 +149,8 @@
           "rds:RemoveFromGlobalCluster",
           "rds:RemoveRoleFromDBCluster",
           "rds:RemoveTagsFromResource",
-          "kms:*"
+          "kms:CreateGrant",
+          "kms:DescribeKey"
         ],
         "timeoutInMinutes": 2160
       }

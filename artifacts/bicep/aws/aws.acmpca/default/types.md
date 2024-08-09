@@ -50,8 +50,11 @@
 ### Properties
 * **CrlDistributionPointExtensionConfiguration**: [CrlDistributionPointExtensionConfiguration](#crldistributionpointextensionconfiguration)
 * **CustomCname**: string
+* **CustomPath**: string
 * **Enabled**: bool (Required)
 * **ExpirationInDays**: int
+* **PartitioningEnabled**: bool
+* **RetainExpiredCertificates**: bool
 * **S3BucketName**: string
 * **S3ObjectAcl**: string
 

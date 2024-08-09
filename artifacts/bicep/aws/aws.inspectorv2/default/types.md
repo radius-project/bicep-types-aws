@@ -5,7 +5,7 @@
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.InspectorV2/CisScanConfigurationProperties](#awsinspectorv2cisscanconfigurationproperties) (Identifier): properties of the resource
+* **properties**: [AWS.InspectorV2/CisScanConfigurationProperties](#awsinspectorv2cisscanconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.InspectorV2/Filter@default
 * **Valid Scope(s)**: Unknown
@@ -17,11 +17,11 @@
 ## AWS.InspectorV2/CisScanConfigurationProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): CIS Scan configuration unique identifier
-* **ScanName**: string: Name of the scan
-* **Schedule**: [Schedule](#schedule)
-* **SecurityLevel**: string
+* **ScanName**: string (Required): Name of the scan
+* **Schedule**: [Schedule](#schedule) (Required)
+* **SecurityLevel**: string (Required)
 * **Tags**: [CisTagMap](#cistagmap)
-* **Targets**: [CisTargets](#cistargets)
+* **Targets**: [CisTargets](#cistargets) (Required)
 
 ## AWS.InspectorV2/FilterProperties
 ### Properties

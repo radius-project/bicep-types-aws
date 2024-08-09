@@ -86,8 +86,10 @@
 * **CoreNetworkId**: string (Required): ID of the CoreNetwork that the attachment will be attached to.
 * **CreatedAt**: string (ReadOnly): Creation time of the attachment.
 * **EdgeLocation**: string (Required): Edge location of the attachment.
+* **NetworkFunctionGroupName**: string: The name of the network function group attachment.
 * **Options**: [ConnectAttachmentOptions](#connectattachmentoptions) (Required): Protocol options for connect attachment
 * **OwnerAccountId**: string (ReadOnly): The ID of the attachment account owner.
+* **ProposedNetworkFunctionGroupChange**: [ProposedNetworkFunctionGroupChange](#proposednetworkfunctiongroupchange): The attachment to move from one network function group to another.
 * **ProposedSegmentChange**: [ProposedSegmentChange](#proposedsegmentchange): The attachment to move from one segment to another.
 * **ResourceArn**: string (ReadOnly): The attachment resource ARN.
 * **SegmentName**: string (ReadOnly): The name of the segment attachment.
@@ -120,6 +122,7 @@
 * **Description**: string: The description of core network
 * **Edges**: [CoreNetworkEdge](#corenetworkedge)[] (ReadOnly): The edges within a core network.
 * **GlobalNetworkId**: string (Required): The ID of the global network that your core network is a part of.
+* **NetworkFunctionGroups**: [CoreNetworkNetworkFunctionGroup](#corenetworknetworkfunctiongroup)[] (ReadOnly): The network function groups within a core network.
 * **OwnerAccount**: string (ReadOnly): Owner of the core network
 * **PolicyDocument**: [CoreNetwork_PolicyDocument](#corenetworkpolicydocument): Live policy document for the core network, you must provide PolicyDocument in Json Format
 * **Segments**: [CoreNetworkSegment](#corenetworksegment)[] (ReadOnly): The segments within a core network.
@@ -186,7 +189,9 @@
 * **CoreNetworkId**: string (Required): The ID of a core network where you're creating a site-to-site VPN attachment.
 * **CreatedAt**: string (ReadOnly): Creation time of the attachment.
 * **EdgeLocation**: string (ReadOnly): The Region where the edge is located.
+* **NetworkFunctionGroupName**: string: The name of the network function group attachment.
 * **OwnerAccountId**: string (ReadOnly): Owner account of the attachment.
+* **ProposedNetworkFunctionGroupChange**: [ProposedNetworkFunctionGroupChange](#proposednetworkfunctiongroupchange): The attachment to move from one network function group to another.
 * **ProposedSegmentChange**: [ProposedSegmentChange](#proposedsegmentchange): The attachment to move from one segment to another.
 * **ResourceArn**: string (ReadOnly): The ARN of the Resource.
 * **SegmentName**: string (ReadOnly): The name of the segment that attachment is in.
@@ -238,8 +243,10 @@
 * **CoreNetworkId**: string (Required): The ID of a core network for the VPC attachment.
 * **CreatedAt**: string (ReadOnly): Creation time of the attachment.
 * **EdgeLocation**: string (ReadOnly): The Region where the edge is located.
+* **NetworkFunctionGroupName**: string (ReadOnly): The name of the network function group attachment.
 * **Options**: [VpcOptions](#vpcoptions): Vpc options of the attachment.
 * **OwnerAccountId**: string (ReadOnly): Owner account of the attachment.
+* **ProposedNetworkFunctionGroupChange**: [ProposedNetworkFunctionGroupChange](#proposednetworkfunctiongroupchange): The attachment to move from one network function group to another.
 * **ProposedSegmentChange**: [ProposedSegmentChange](#proposedsegmentchange): The attachment to move from one segment to another.
 * **ResourceArn**: string (ReadOnly): The ARN of the Resource.
 * **SegmentName**: string (ReadOnly): The name of the segment attachment..
@@ -285,11 +292,22 @@
 ## CoreNetwork_PolicyDocument
 ### Properties
 
+## CoreNetwork_Segments
+### Properties
+* **SendTo**: string[]
+* **SendVia**: string[]
+
 ## CoreNetworkEdge
 ### Properties
 * **Asn**: int: The ASN of a core network edge.
 * **EdgeLocation**: string: The Region where a core network edge is located.
 * **InsideCidrBlocks**: string[]
+
+## CoreNetworkNetworkFunctionGroup
+### Properties
+* **EdgeLocations**: string[]
+* **Name**: string: Name of network function group
+* **Segments**: [CoreNetwork_Segments](#corenetworksegments)
 
 ## CoreNetworkSegment
 ### Properties
@@ -308,6 +326,24 @@
 * **Address**: string: The physical address.
 * **Latitude**: string: The latitude.
 * **Longitude**: string: The longitude.
+
+## ProposedNetworkFunctionGroupChange
+### Properties
+* **AttachmentPolicyRuleNumber**: int: The rule number in the policy document that applies to this change.
+* **NetworkFunctionGroupName**: string: The name of the network function group to change.
+* **Tags**: [Tag](#tag)[]: The key-value tags that changed for the network function group.
+
+## ProposedNetworkFunctionGroupChange
+### Properties
+* **AttachmentPolicyRuleNumber**: int: The rule number in the policy document that applies to this change.
+* **NetworkFunctionGroupName**: string: The name of the network function group to change.
+* **Tags**: [Tag](#tag)[]: The key-value tags that changed for the network function group.
+
+## ProposedNetworkFunctionGroupChange
+### Properties
+* **AttachmentPolicyRuleNumber**: int: The rule number in the policy document that applies to this change.
+* **NetworkFunctionGroupName**: string: The name of the network function group to change.
+* **Tags**: [Tag](#tag)[]: The key-value tags that changed for the network function group.
 
 ## ProposedSegmentChange
 ### Properties

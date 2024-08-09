@@ -545,6 +545,11 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ConcurrencyMode",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "DeploymentTargets",
     "properties": {
       "AccountFilterType": {
@@ -556,7 +561,7 @@
       },
       "Accounts": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "AWS accounts that you want to create stack instances in the specified Region(s) for."
@@ -570,7 +575,7 @@
       },
       "OrganizationalUnitIds": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The organization root ID or organizational unit (OU) IDs to which StackSets deploys."
@@ -581,6 +586,12 @@
     "$type": "ObjectType",
     "name": "OperationPreferences",
     "properties": {
+      "ConcurrencyMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
       "FailureToleranceCount": {
         "type": {
           "$ref": "#/24"
@@ -613,7 +624,7 @@
       },
       "RegionOrder": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0
       }
@@ -660,20 +671,20 @@
     "properties": {
       "DeploymentTargets": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/33"
         },
         "flags": 1
       },
       "ParameterOverrides": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "A list of stack set parameters whose values you want to override in the selected stack instances."
       },
       "Regions": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 1,
         "description": "The names of one or more Regions where you want to create stack instances using the specified AWS account(s)."
@@ -721,7 +732,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/36"
     }
   },
   {
@@ -755,19 +766,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/36"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/39"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
     }
   },
   {
@@ -797,7 +808,7 @@
       },
       "Capabilities": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "In some cases, you must explicitly acknowledge that your stack set template contains certain capabilities in order for AWS CloudFormation to create the stack set and related stack instances."
@@ -818,20 +829,20 @@
       },
       "ManagedExecution": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "Describes whether StackSets performs non-conflicting operations concurrently and queues conflicting operations."
       },
       "OperationPreferences": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/34"
         },
         "flags": 4
       },
       "Parameters": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "The input parameters for the stack set template."
@@ -845,7 +856,7 @@
       },
       "StackInstancesGroup": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/50"
         },
         "flags": 4,
         "description": "A group of stack instances with parameters in some specific accounts and regions."
@@ -866,7 +877,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "The key-value pairs to associate with this stack set and the stacks created from it. AWS CloudFormation also propagates these tags to supported resources that are created in the stacks. A maximum number of 50 tags can be specified."
@@ -907,7 +918,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -919,7 +930,7 @@
     "name": "AWS.CloudFormation/StackSet@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/52"
+      "$ref": "#/53"
     },
     "flags": 0
   },
@@ -974,7 +985,7 @@
       },
       "LoggingConfig": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/55"
         },
         "flags": 4,
         "description": "Specifies logging configuration information for a type."
@@ -1050,7 +1061,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/57"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1062,7 +1073,7 @@
     "name": "AWS.CloudFormation/TypeActivation@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/57"
+      "$ref": "#/58"
     },
     "flags": 0
   }

@@ -33,6 +33,7 @@
 * **AutoStopConfiguration**: [AutoStopConfiguration](#autostopconfiguration): Configuration for Auto Stop of Application.
 * **ImageConfiguration**: [ImageConfigurationInput](#imageconfigurationinput)
 * **InitialCapacity**: [InitialCapacityConfigKeyValuePair](#initialcapacityconfigkeyvaluepair)[]: Initial capacity initialized when an Application is started.
+* **InteractiveConfiguration**: [InteractiveConfiguration](#interactiveconfiguration)
 * **MaximumCapacity**: [MaximumAllowedResources](#maximumallowedresources): Maximum allowed cumulative resources for an Application. No new resources will be created once the limit is hit.
 * **MonitoringConfiguration**: [MonitoringConfiguration](#monitoringconfiguration)
 * **Name**: string: User friendly Application name.
@@ -70,6 +71,11 @@
 ### Properties
 * **Key**: string (Required): Worker type for an analytics framework.
 * **Value**: [InitialCapacityConfig](#initialcapacityconfig) (Required)
+
+## InteractiveConfiguration
+### Properties
+* **LivyEndpointEnabled**: bool: Enables an Apache Livy endpoint that you can connect to and run interactive jobs
+* **StudioEnabled**: bool: Enabled you to connect an Application to Amazon EMR Studio to run interactive workloads in a notebook
 
 ## LogTypeMapKeyValuePair
 ### Properties

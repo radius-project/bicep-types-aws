@@ -104,6 +104,7 @@
 * **MinLatency**: int: The minimum latency in milliseconds.
 * **Name**: string: The name of the output. This value must be unique within the current flow.
 * **OutputArn**: string (ReadOnly, Identifier): The ARN of the output.
+* **OutputStatus**: string: An indication of whether the output should transmit data or not.
 * **Port**: int: The port to use when content is distributed to this output.
 * **Protocol**: string (Required): The protocol that is used by the source or output.
 * **RemoteId**: string: The remote ID for the Zixi-pull stream.

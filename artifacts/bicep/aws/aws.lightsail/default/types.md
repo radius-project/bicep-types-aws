@@ -104,7 +104,7 @@
 * **DatapointsToAlarm**: int: The number of data points that must be not within the specified threshold to trigger the alarm. If you are setting an "M out of N" alarm, this value (datapointsToAlarm) is the M.
 * **EvaluationPeriods**: int (Required): The number of most recent periods over which data is compared to the specified threshold. If you are setting an "M out of N" alarm, this value (evaluationPeriods) is the N.
 * **MetricName**: string (Required): The name of the metric to associate with the alarm.
-* **MonitoredResourceName**: string (Required): The validation status of the SSL/TLS certificate.
+* **MonitoredResourceName**: string (Required): The name of the Lightsail resource that the alarm monitors.
 * **NotificationEnabled**: bool: Indicates whether the alarm is enabled. Notifications are enabled by default if you don't specify this parameter.
 * **NotificationTriggers**: string[]: The alarm states that trigger a notification.
 * **State**: string (ReadOnly): The current state of the alarm.

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QBusiness-Application",
   "type": "AWS::QBusiness::Application",
-  "time": "2024-06-18T15:57:54.092Z",
+  "time": "2024-08-06T17:54:32.886Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -48,6 +48,25 @@
         },
         "type": "object"
       },
+      "QAppsConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "QAppsControlMode": {
+            "$ref": "#/definitions/QAppsControlMode"
+          }
+        },
+        "required": [
+          "QAppsControlMode"
+        ],
+        "type": "object"
+      },
+      "QAppsControlMode": {
+        "enum": [
+          "ENABLED",
+          "DISABLED"
+        ],
+        "type": "string"
+      },
       "Tag": {
         "additionalProperties": false,
         "properties": {
@@ -84,7 +103,8 @@
           "sso:DeleteApplication",
           "sso:PutApplicationAccessScope",
           "sso:PutApplicationAuthenticationMethod",
-          "sso:PutApplicationGrant"
+          "sso:PutApplicationGrant",
+          "sso:DescribeInstance"
         ]
       },
       "delete": {
@@ -118,7 +138,8 @@
           "sso:DeleteApplication",
           "sso:PutApplicationAccessScope",
           "sso:PutApplicationAuthenticationMethod",
-          "sso:PutApplicationGrant"
+          "sso:PutApplicationGrant",
+          "sso:DescribeInstance"
         ]
       }
     },
@@ -171,6 +192,9 @@
         "minLength": 10,
         "pattern": "^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}$",
         "type": "string"
+      },
+      "QAppsConfiguration": {
+        "$ref": "#/definitions/QAppsConfiguration"
       },
       "RoleArn": {
         "maxLength": 1284,

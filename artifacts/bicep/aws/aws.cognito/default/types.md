@@ -63,6 +63,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/UserPoolRiskConfigurationAttachmentProperties](#awscognitouserpoolriskconfigurationattachmentproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Cognito/UserPoolUICustomizationAttachment@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cognito/UserPoolUICustomizationAttachmentProperties](#awscognitouserpooluicustomizationattachmentproperties) (Required, Identifier): properties of the resource
+
 ## AccountRecoverySetting
 ### Properties
 * **RecoveryMechanisms**: [RecoveryOption](#recoveryoption)[]
@@ -89,6 +96,10 @@
 * **InviteMessageTemplate**: [InviteMessageTemplate](#invitemessagetemplate)
 * **UnusedAccountValidityDays**: int
 
+## AdvancedSecurityAdditionalFlows
+### Properties
+* **CustomAuthMode**: string
+
 ## AnalyticsConfiguration
 ### Properties
 * **ApplicationArn**: string
@@ -114,6 +125,7 @@
 * **DeveloperProviderName**: string
 * **Id**: string (ReadOnly, Identifier)
 * **IdentityPoolName**: string
+* **IdentityPoolTags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Name**: string (ReadOnly)
 * **OpenIdConnectProviderARNs**: string[]
 * **PushSync**: [PushSync](#pushsync) (WriteOnly)
@@ -215,6 +227,12 @@
 * **RiskExceptionConfiguration**: [RiskExceptionConfigurationType](#riskexceptionconfigurationtype)
 * **UserPoolId**: string (Required, Identifier)
 
+## AWS.Cognito/UserPoolUICustomizationAttachmentProperties
+### Properties
+* **ClientId**: string (Required, Identifier)
+* **CSS**: string
+* **UserPoolId**: string (Required, Identifier)
+
 ## CloudWatchLogsConfiguration
 ### Properties
 * **LogGroupArn**: string
@@ -263,6 +281,10 @@
 * **ReplyToEmailAddress**: string
 * **SourceArn**: string
 
+## FirehoseConfiguration
+### Properties
+* **StreamArn**: string
+
 ## IdentityPool_CognitoEvents
 ### Properties
 
@@ -305,7 +327,9 @@
 ### Properties
 * **CloudWatchLogsConfiguration**: [CloudWatchLogsConfiguration](#cloudwatchlogsconfiguration)
 * **EventSource**: string
+* **FirehoseConfiguration**: [FirehoseConfiguration](#firehoseconfiguration)
 * **LogLevel**: string
+* **S3Configuration**: [S3Configuration](#s3configuration)
 
 ## NotifyConfigurationType
 ### Properties
@@ -330,6 +354,7 @@
 ## PasswordPolicy
 ### Properties
 * **MinimumLength**: int
+* **PasswordHistorySize**: int
 * **RequireLowercase**: bool
 * **RequireNumbers**: bool
 * **RequireSymbols**: bool
@@ -365,6 +390,10 @@
 * **BlockedIPRangeList**: string[]
 * **SkippedIPRangeList**: string[]
 
+## S3Configuration
+### Properties
+* **BucketArn**: string
+
 ## SchemaAttribute
 ### Properties
 * **AttributeDataType**: string
@@ -386,6 +415,11 @@
 * **MaxLength**: string
 * **MinLength**: string
 
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
 ## TokenValidityUnits
 ### Properties
 * **AccessToken**: string
@@ -405,6 +439,7 @@
 
 ## UserPoolAddOns
 ### Properties
+* **AdvancedSecurityAdditionalFlows**: [AdvancedSecurityAdditionalFlows](#advancedsecurityadditionalflows)
 * **AdvancedSecurityMode**: string
 
 ## VerificationMessageTemplate

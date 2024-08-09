@@ -16,7 +16,7 @@
 
 ## AWS.MediaLive/MultiplexprogramProperties
 ### Properties
-* **ChannelId**: string: The MediaLive channel associated with the program.
+* **ChannelId**: string (ReadOnly): The MediaLive channel associated with the program.
 * **MultiplexId**: string (Identifier): The ID of the multiplex that the program belongs to.
 * **MultiplexProgramSettings**: [MultiplexProgramSettings](#multiplexprogramsettings): The settings for this multiplex program.
 * **PacketIdentifiersMap**: [MultiplexProgramPacketIdentifiersMap](#multiplexprogrampacketidentifiersmap): The packet identifier map for this multiplex program.

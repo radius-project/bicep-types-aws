@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-Cluster",
   "type": "AWS::EKS::Cluster",
-  "time": "2024-06-19T19:46:41.798Z",
+  "time": "2024-07-23T10:07:20.235Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -172,6 +172,60 @@
         },
         "type": "object"
       },
+      "RemoteNodeNetwork": {
+        "additionalProperties": false,
+        "description": "Network configuration of nodes run on-premises with EKS Hybrid Nodes.",
+        "properties": {
+          "Cidrs": {
+            "description": "Specifies the list of remote node CIDRs.",
+            "insertionOrder": false,
+            "items": {
+              "minItems": 1,
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "Cidrs"
+        ],
+        "type": "object"
+      },
+      "RemoteNodeNetworks": {
+        "description": "Network configuration of nodes run on-premises with EKS Hybrid Nodes.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/RemoteNodeNetwork"
+        },
+        "type": "array"
+      },
+      "RemotePodNetwork": {
+        "additionalProperties": false,
+        "description": "Network configuration of pods run on-premises with EKS Hybrid Nodes.",
+        "properties": {
+          "Cidrs": {
+            "description": "Specifies the list of remote pod CIDRs.",
+            "insertionOrder": false,
+            "items": {
+              "minItems": 1,
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "Cidrs"
+        ],
+        "type": "object"
+      },
+      "RemotePodNetworks": {
+        "description": "Network configuration of pods run on-premises with EKS Hybrid Nodes.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/RemotePodNetwork"
+        },
+        "type": "array"
+      },
       "ResourcesVpcConfig": {
         "additionalProperties": false,
         "description": "An object representing the VPC configuration to use for an Amazon EKS cluster.",
@@ -238,6 +292,21 @@
           "Key",
           "Value"
         ],
+        "type": "object"
+      },
+      "UpgradePolicy": {
+        "additionalProperties": false,
+        "description": "An object representing the Upgrade Policy to use for the cluster.",
+        "properties": {
+          "SupportType": {
+            "description": "Specify the support type for your cluster.",
+            "enum": [
+              "STANDARD",
+              "EXTENDED"
+            ],
+            "type": "string"
+          }
+        },
         "type": "object"
       }
     },
@@ -371,6 +440,9 @@
         },
         "type": "array",
         "uniqueItems": true
+      },
+      "UpgradePolicy": {
+        "$ref": "#/definitions/UpgradePolicy"
       },
       "Version": {
         "description": "The desired Kubernetes version for your cluster. If you don't specify a value here, the latest version available in Amazon EKS is used.",

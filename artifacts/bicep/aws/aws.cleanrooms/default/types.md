@@ -28,6 +28,20 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CleanRooms/ConfiguredTableAssociationProperties](#awscleanroomsconfiguredtableassociationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CleanRooms/IdMappingTable@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CleanRooms/IdMappingTableProperties](#awscleanroomsidmappingtableproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.CleanRooms/IdNamespaceAssociation@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CleanRooms/IdNamespaceAssociationProperties](#awscleanroomsidnamespaceassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CleanRooms/Membership@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -94,6 +108,7 @@
 ## AWS.CleanRooms/ConfiguredTableAssociationProperties
 ### Properties
 * **Arn**: string (ReadOnly)
+* **ConfiguredTableAssociationAnalysisRules**: [ConfiguredTableAssociationAnalysisRule](#configuredtableassociationanalysisrule)[]
 * **ConfiguredTableAssociationIdentifier**: string (ReadOnly, Identifier)
 * **ConfiguredTableIdentifier**: string (Required)
 * **Description**: string
@@ -113,6 +128,36 @@
 * **Name**: string (Required)
 * **TableReference**: [TableReference](#tablereference) (Required)
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration.
+
+## AWS.CleanRooms/IdMappingTableProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **CollaborationArn**: string (ReadOnly)
+* **CollaborationIdentifier**: string (ReadOnly)
+* **Description**: string
+* **IdMappingTableIdentifier**: string (ReadOnly, Identifier)
+* **InputReferenceConfig**: [IdMappingTableInputReferenceConfig](#idmappingtableinputreferenceconfig) (Required)
+* **InputReferenceProperties**: [IdMappingTableInputReferenceProperties](#idmappingtableinputreferenceproperties) (ReadOnly)
+* **KmsKeyArn**: string
+* **MembershipArn**: string (ReadOnly)
+* **MembershipIdentifier**: string (Required, Identifier)
+* **Name**: string (Required)
+* **Tags**: [Tag](#tag)[]
+
+## AWS.CleanRooms/IdNamespaceAssociationProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **CollaborationArn**: string (ReadOnly)
+* **CollaborationIdentifier**: string (ReadOnly)
+* **Description**: string
+* **IdMappingConfig**: [IdMappingConfig](#idmappingconfig)
+* **IdNamespaceAssociationIdentifier**: string (ReadOnly, Identifier)
+* **InputReferenceConfig**: [IdNamespaceAssociationInputReferenceConfig](#idnamespaceassociationinputreferenceconfig) (Required)
+* **InputReferenceProperties**: [IdNamespaceAssociationInputReferenceProperties](#idnamespaceassociationinputreferenceproperties) (ReadOnly)
+* **MembershipArn**: string (ReadOnly)
+* **MembershipIdentifier**: string (Required, Identifier)
+* **Name**: string (Required)
+* **Tags**: [Tag](#tag)[]
 
 ## AWS.CleanRooms/MembershipProperties
 ### Properties
@@ -146,6 +191,18 @@
 ### Properties
 * **V1**: [ConfiguredTable_ConfiguredTableAnalysisRulePolicyV1](#configuredtableconfiguredtableanalysisrulepolicyv1) (Required)
 
+## ConfiguredTableAssociation_ConfiguredTableAssociationAnalysisRulePolicyV1
+### Properties
+
+## ConfiguredTableAssociationAnalysisRule
+### Properties
+* **Policy**: [ConfiguredTableAssociationAnalysisRulePolicy](#configuredtableassociationanalysisrulepolicy) (Required)
+* **Type**: string (Required)
+
+## ConfiguredTableAssociationAnalysisRulePolicy
+### Properties
+* **V1**: [ConfiguredTableAssociation_ConfiguredTableAssociationAnalysisRulePolicyV1](#configuredtableassociationconfiguredtableassociationanalysisrulepolicyv1) (Required)
+
 ## DataEncryptionMetadata
 ### Properties
 * **AllowCleartext**: bool (Required)
@@ -153,10 +210,41 @@
 * **AllowJoinsOnColumnsWithDifferentNames**: bool (Required)
 * **PreserveNulls**: bool (Required)
 
+## Document
+### Properties
+
 ## GlueTableReference
 ### Properties
 * **DatabaseName**: string (Required)
 * **TableName**: string (Required)
+
+## IdMappingConfig
+### Properties
+* **AllowUseAsDimensionColumn**: bool (Required)
+
+## IdMappingTableInputReferenceConfig
+### Properties
+* **InputReferenceArn**: string (Required)
+* **ManageResourcePolicies**: bool (Required)
+
+## IdMappingTableInputReferenceProperties
+### Properties
+* **IdMappingTableInputSource**: [IdMappingTableInputSource](#idmappingtableinputsource)[] (Required)
+
+## IdMappingTableInputSource
+### Properties
+* **IdNamespaceAssociationId**: string (Required)
+* **Type**: string (Required)
+
+## IdNamespaceAssociationInputReferenceConfig
+### Properties
+* **InputReferenceArn**: string (Required)
+* **ManageResourcePolicies**: bool (Required)
+
+## IdNamespaceAssociationInputReferenceProperties
+### Properties
+* **IdMappingWorkflowsSupported**: [Document](#document)[]
+* **IdNamespaceType**: string
 
 ## MembershipPaymentConfiguration
 ### Properties
@@ -204,6 +292,16 @@
 ## TableReference
 ### Properties
 * **Glue**: [GlueTableReference](#gluetablereference) (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

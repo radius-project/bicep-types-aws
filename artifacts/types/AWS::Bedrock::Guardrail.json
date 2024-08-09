@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Bedrock-Guardrail",
   "type": "AWS::Bedrock::Guardrail",
-  "time": "2024-06-24T15:48:42.093Z",
+  "time": "2024-07-30T15:51:20.219Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -69,6 +69,51 @@
               "$ref": "#/definitions/ContentFilterConfig"
             },
             "maxItems": 6,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "FiltersConfig"
+        ],
+        "type": "object"
+      },
+      "ContextualGroundingFilterConfig": {
+        "additionalProperties": false,
+        "description": "A config for grounding filter.",
+        "properties": {
+          "Threshold": {
+            "description": "The threshold for this filter.",
+            "minimum": 0,
+            "type": "number"
+          },
+          "Type": {
+            "$ref": "#/definitions/ContextualGroundingFilterType"
+          }
+        },
+        "required": [
+          "Threshold",
+          "Type"
+        ],
+        "type": "object"
+      },
+      "ContextualGroundingFilterType": {
+        "description": "Type of contextual grounding filter",
+        "enum": [
+          "GROUNDING",
+          "RELEVANCE"
+        ],
+        "type": "string"
+      },
+      "ContextualGroundingPolicyConfig": {
+        "additionalProperties": false,
+        "description": "Contextual grounding policy config for a guardrail.",
+        "properties": {
+          "FiltersConfig": {
+            "description": "List of contextual grounding filter configs.",
+            "items": {
+              "$ref": "#/definitions/ContextualGroundingFilterConfig"
+            },
             "minItems": 1,
             "type": "array"
           }
@@ -500,6 +545,9 @@
       },
       "ContentPolicyConfig": {
         "$ref": "#/definitions/ContentPolicyConfig"
+      },
+      "ContextualGroundingPolicyConfig": {
+        "$ref": "#/definitions/ContextualGroundingPolicyConfig"
       },
       "CreatedAt": {
         "description": "Time Stamp",

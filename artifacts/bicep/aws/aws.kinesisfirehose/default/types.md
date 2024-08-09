@@ -71,6 +71,7 @@
 * **ElasticsearchDestinationConfiguration**: [ElasticsearchDestinationConfiguration](#elasticsearchdestinationconfiguration)
 * **ExtendedS3DestinationConfiguration**: [ExtendedS3DestinationConfiguration](#extendeds3destinationconfiguration)
 * **HttpEndpointDestinationConfiguration**: [HttpEndpointDestinationConfiguration](#httpendpointdestinationconfiguration)
+* **IcebergDestinationConfiguration**: [IcebergDestinationConfiguration](#icebergdestinationconfiguration)
 * **KinesisStreamSourceConfiguration**: [KinesisStreamSourceConfiguration](#kinesisstreamsourceconfiguration)
 * **MSKSourceConfiguration**: [MSKSourceConfiguration](#msksourceconfiguration)
 * **RedshiftDestinationConfiguration**: [RedshiftDestinationConfiguration](#redshiftdestinationconfiguration)
@@ -83,6 +84,10 @@
 ### Properties
 * **IntervalInSeconds**: int
 * **SizeInMBs**: int
+
+## CatalogConfiguration
+### Properties
+* **CatalogArn**: string
 
 ## CloudWatchLoggingOptions
 ### Properties
@@ -115,6 +120,13 @@
 ### Properties
 * **HiveJsonSerDe**: [HiveJsonSerDe](#hivejsonserde)
 * **OpenXJsonSerDe**: [OpenXJsonSerDe](#openxjsonserde)
+
+## DestinationTableConfiguration
+### Properties
+* **DestinationDatabaseName**: string (Required)
+* **DestinationTableName**: string (Required)
+* **S3ErrorOutputPrefix**: string
+* **UniqueKeys**: string[]
 
 ## DocumentIdOptions
 ### Properties
@@ -207,6 +219,18 @@
 * **CommonAttributes**: [HttpEndpointCommonAttribute](#httpendpointcommonattribute)[]
 * **ContentEncoding**: string
 
+## IcebergDestinationConfiguration
+### Properties
+* **BufferingHints**: [BufferingHints](#bufferinghints)
+* **CatalogConfiguration**: [CatalogConfiguration](#catalogconfiguration) (Required)
+* **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
+* **DestinationTableConfigurationList**: [DestinationTableConfiguration](#destinationtableconfiguration)[]
+* **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration)
+* **RetryOptions**: [RetryOptions](#retryoptions)
+* **RoleARN**: string (Required)
+* **s3BackupMode**: string
+* **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
+
 ## InputFormatConfiguration
 ### Properties
 * **Deserializer**: [Deserializer](#deserializer)
@@ -224,6 +248,7 @@
 ### Properties
 * **AuthenticationConfiguration**: [AuthenticationConfiguration](#authenticationconfiguration) (Required)
 * **MSKClusterARN**: string (Required)
+* **ReadFromTimestamp**: string
 * **TopicName**: string (Required)
 
 ## OpenXJsonSerDe
@@ -327,9 +352,15 @@
 * **OrcSerDe**: [OrcSerDe](#orcserde)
 * **ParquetSerDe**: [ParquetSerDe](#parquetserde)
 
+## SnowflakeBufferingHints
+### Properties
+* **IntervalInSeconds**: int
+* **SizeInMBs**: int
+
 ## SnowflakeDestinationConfiguration
 ### Properties
 * **AccountUrl**: string (Required)
+* **BufferingHints**: [SnowflakeBufferingHints](#snowflakebufferinghints)
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **ContentColumnName**: string
 * **Database**: string (Required)

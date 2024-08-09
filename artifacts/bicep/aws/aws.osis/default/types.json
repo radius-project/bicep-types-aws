@@ -109,6 +109,13 @@
         "flags": 1,
         "description": "A list of subnet IDs associated with the VPC endpoint."
       },
+      "VpcAttachmentOptions": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "Options for attaching a VPC to the pipeline."
+      },
       "VpcEndpointManagement": {
         "type": {
           "$ref": "#/7"
@@ -146,6 +153,26 @@
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Pipeline_VpcAttachmentOptions",
+    "properties": {
+      "AttachToVpc": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Whether the pipeline should be attached to the provided VPC"
+      },
+      "CidrBlock": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The CIDR block to be reserved for OpenSearch Ingestion to create elastic network interfaces (ENIs)."
+      }
     }
   },
   {
@@ -191,7 +218,7 @@
       },
       "IngestEndpointUrls": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/13"
         },
         "flags": 2,
         "description": "A list of endpoints that can be used for ingesting data into a pipeline"
@@ -204,14 +231,14 @@
       },
       "MaxUnits": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The maximum pipeline capacity, in Ingestion OpenSearch Compute Units (OCUs)."
       },
       "MinUnits": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The minimum pipeline capacity, in Ingestion OpenSearch Compute Units (OCUs)."
@@ -239,7 +266,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -253,7 +280,7 @@
       },
       "VpcEndpoints": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 2,
         "description": "The VPC interface endpoints that have access to the pipeline."
@@ -286,7 +313,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -298,7 +325,7 @@
     "name": "AWS.OSIS/Pipeline@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/18"
     },
     "flags": 0
   }

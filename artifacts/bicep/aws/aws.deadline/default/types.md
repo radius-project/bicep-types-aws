@@ -65,7 +65,7 @@
 * **Configuration**: [FleetConfiguration](#fleetconfiguration) (Required)
 * **Description**: string
 * **DisplayName**: string (Required)
-* **FarmId**: string
+* **FarmId**: string (Required)
 * **FleetId**: string (ReadOnly)
 * **MaxWorkerCount**: int (Required)
 * **MinWorkerCount**: int
@@ -114,7 +114,7 @@
 * **DefaultBudgetAction**: string
 * **Description**: string
 * **DisplayName**: string (Required)
-* **FarmId**: string
+* **FarmId**: string (Required)
 * **JobAttachmentSettings**: [JobAttachmentSettings](#jobattachmentsettings)
 * **JobRunAsUser**: [JobRunAsUser](#jobrunasuser)
 * **QueueId**: string (ReadOnly)
@@ -125,7 +125,7 @@
 ## AWS.Deadline/StorageProfileProperties
 ### Properties
 * **DisplayName**: string (Required)
-* **FarmId**: string (Identifier)
+* **FarmId**: string (Required, Identifier)
 * **FileSystemLocations**: [FileSystemLocation](#filesystemlocation)[]
 * **OsFamily**: string (Required)
 * **StorageProfileId**: string (ReadOnly, Identifier)

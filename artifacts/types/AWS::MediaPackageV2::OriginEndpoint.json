@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaPackageV2-OriginEndpoint",
   "type": "AWS::MediaPackageV2::OriginEndpoint",
-  "time": "2024-06-13T18:26:09.931Z",
+  "time": "2024-07-25T17:11:40.668Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -218,6 +218,15 @@
         },
         "type": "object"
       },
+      "EndpointErrorCondition": {
+        "enum": [
+          "STALE_MANIFEST",
+          "INCOMPLETE_MANIFEST",
+          "MISSING_DRM_KEY",
+          "SLATE_INPUT"
+        ],
+        "type": "string"
+      },
       "FilterConfiguration": {
         "additionalProperties": false,
         "description": "\u003cp\u003eFilter configuration includes settings for manifest filtering, start and end times, and time delay that apply to all of your egress requests for this manifest. \u003c/p\u003e",
@@ -243,6 +252,20 @@
             "maximum": 1209600,
             "minimum": 0,
             "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ForceEndpointErrorConfiguration": {
+        "additionalProperties": false,
+        "description": "\u003cp\u003eThe failover settings for the endpoint.\u003c/p\u003e",
+        "properties": {
+          "EndpointErrorConditions": {
+            "description": "\u003cp\u003eThe failover settings for the endpoint. The options are:\u003c/p\u003e\n         \u003cul\u003e\n            \u003cli\u003e\n               \u003cp\u003e\n                  \u003ccode\u003eSTALE_MANIFEST\u003c/code\u003e - The manifest stalled and there a no new segments or parts.\u003c/p\u003e\n            \u003c/li\u003e\n            \u003cli\u003e\n               \u003cp\u003e\n                  \u003ccode\u003eINCOMPLETE_MANIFEST\u003c/code\u003e - There is a gap in the manifest.\u003c/p\u003e\n            \u003c/li\u003e\n            \u003cli\u003e\n               \u003cp\u003e\n                  \u003ccode\u003eMISSING_DRM_KEY\u003c/code\u003e - Key rotation is enabled but we're unable to fetch the key for the current key period.\u003c/p\u003e\n            \u003c/li\u003e\n         \u003c/ul\u003e",
+            "items": {
+              "$ref": "#/definitions/EndpointErrorCondition"
+            },
+            "type": "array"
           }
         },
         "type": "object"
@@ -604,6 +627,9 @@
         "maxLength": 1024,
         "minLength": 0,
         "type": "string"
+      },
+      "ForceEndpointErrorConfiguration": {
+        "$ref": "#/definitions/ForceEndpointErrorConfiguration"
       },
       "HlsManifestUrls": {
         "items": {

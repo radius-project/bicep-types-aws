@@ -30,7 +30,14 @@
  You can only add one policy per topic.
  The policy must be in JSON string format.
  Length Constraints: Maximum length of 30,720.
-* **DeliveryStatusLogging**: [LoggingConfig](#loggingconfig)[]
+* **DeliveryStatusLogging**: [LoggingConfig](#loggingconfig)[]: The ``DeliveryStatusLogging`` configuration enables you to log the delivery status of messages sent from your Amazon SNS topic to subscribed endpoints with the following supported delivery protocols:
+  +  HTTP 
+  +  Amazon Kinesis Data Firehose
+  +   AWS Lambda
+  +  Platform application endpoint
+  +  Amazon Simple Queue Service
+  
+ Once configured, log entries are sent to Amazon CloudWatch Logs.
 * **DisplayName**: string: The display name to use for an SNS topic with SMS subscriptions. The display name must be maximum 100 characters long, including hyphens (-), underscores (_), spaces, and tabs.
 * **FifoTopic**: bool: Set to true to create a FIFO topic.
 * **KmsMasterKeyId**: string: The ID of an AWS managed customer master key (CMK) for SNS or a custom CMK. For more information, see [Key terms](https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms). For more examples, see ``KeyId`` in the *API Reference*.
@@ -48,10 +55,11 @@
 
 ## LoggingConfig
 ### Properties
-* **FailureFeedbackRoleArn**: string
-* **Protocol**: string (Required)
-* **SuccessFeedbackRoleArn**: string
-* **SuccessFeedbackSampleRate**: string
+* **FailureFeedbackRoleArn**: string: The IAM role ARN to be used when logging failed message deliveries in Amazon CloudWatch.
+* **Protocol**: string (Required): Indicates one of the supported protocols for the Amazon SNS topic.
+  At least one of the other three ``LoggingConfig`` properties is recommend along with ``Protocol``.
+* **SuccessFeedbackRoleArn**: string: The IAM role ARN to be used when logging successful message deliveries in Amazon CloudWatch.
+* **SuccessFeedbackSampleRate**: string: The percentage of successful message deliveries to be logged in Amazon CloudWatch. Valid percentage values range from 0 to 100.
 
 ## Subscription
 ### Properties

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaPackageV2-Channel",
   "type": "AWS::MediaPackageV2::Channel",
-  "time": "2024-06-13T17:55:22.21Z",
+  "time": "2024-07-25T16:41:57.685Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -12,7 +12,8 @@
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/ChannelGroupName",
-      "/properties/ChannelName"
+      "/properties/ChannelName",
+      "/properties/InputType"
     ],
     "definitions": {
       "IngestEndpoint": {
@@ -29,6 +30,13 @@
           }
         },
         "type": "object"
+      },
+      "InputType": {
+        "enum": [
+          "HLS",
+          "CMAF"
+        ],
+        "type": "string"
       },
       "Tag": {
         "additionalProperties": false,
@@ -129,6 +137,9 @@
           "$ref": "#/definitions/IngestEndpoint"
         },
         "type": "array"
+      },
+      "InputType": {
+        "$ref": "#/definitions/InputType"
       },
       "ModifiedAt": {
         "description": "\u003cp\u003eThe date and time the channel was modified.\u003c/p\u003e",

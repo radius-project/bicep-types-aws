@@ -33,7 +33,7 @@
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.IAM/OIDCProviderProperties](#awsiamoidcproviderproperties) (Required, Identifier): properties of the resource
+* **properties**: [AWS.IAM/OIDCProviderProperties](#awsiamoidcproviderproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IAM/Role@default
 * **Valid Scope(s)**: Unknown
@@ -174,7 +174,7 @@
 * **Arn**: string (ReadOnly, Identifier): Amazon Resource Name (ARN) of the OIDC provider
 * **ClientIdList**: string[]
 * **Tags**: [Tag](#tag)[]
-* **ThumbprintList**: string[] (Required)
+* **ThumbprintList**: string[]
 * **Url**: string
 
 ## AWS.IAM/RolePolicyProperties

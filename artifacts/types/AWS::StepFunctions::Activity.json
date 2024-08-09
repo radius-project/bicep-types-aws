@@ -1,13 +1,40 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-StepFunctions-Activity",
   "type": "AWS::StepFunctions::Activity",
-  "time": "2024-06-20T17:21:59.901Z",
+  "time": "2024-08-09T16:58:30.733Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/Name"
+      "/properties/Name",
+      "/properties/EncryptionConfiguration"
     ],
     "definitions": {
+      "EncryptionConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "KmsDataKeyReusePeriodSeconds": {
+            "maximum": 900,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "KmsKeyId": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Type": {
+            "enum": [
+              "CUSTOMER_MANAGED_KMS_KEY",
+              "AWS_OWNED_KEY"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
       "TagsEntry": {
         "additionalProperties": false,
         "properties": {
@@ -34,7 +61,8 @@
       "create": {
         "permissions": [
           "states:CreateActivity",
-          "states:TagResource"
+          "states:TagResource",
+          "kms:DescribeKey"
         ]
       },
       "delete": {
@@ -71,6 +99,9 @@
         "minLength": 1,
         "type": "string"
       },
+      "EncryptionConfiguration": {
+        "$ref": "#/definitions/EncryptionConfiguration"
+      },
       "Name": {
         "maxLength": 80,
         "minLength": 1,
@@ -94,6 +125,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-stepfunctions.git",
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "states:UntagResource",
+        "states:TagResource",
+        "states:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

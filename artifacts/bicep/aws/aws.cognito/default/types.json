@@ -5,19 +5,19 @@
     "properties": {
       "ClientId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "ProviderName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "ServerSideTokenCheck": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       }
@@ -29,19 +29,19 @@
     "properties": {
       "RoleArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "StreamName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "StreamingStatus": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -53,15 +53,35 @@
     "properties": {
       "ApplicationArns": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       }
     }
   },
@@ -74,7 +94,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
@@ -101,7 +121,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
     }
   },
   {
@@ -115,25 +141,25 @@
     "properties": {
       "AllowClassicFlow": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "AllowUnauthenticatedIdentities": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "CognitoEvents": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/8"
         },
         "flags": 4
       },
       "CognitoIdentityProviders": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/9"
         },
         "flags": 0
       },
@@ -145,31 +171,38 @@
       },
       "DeveloperProviderName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "Id": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 18
       },
       "IdentityPoolName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
+      "IdentityPoolTags": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
       "Name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 2
       },
       "OpenIdConnectProviderARNs": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/11"
         },
         "flags": 0
       },
@@ -181,13 +214,13 @@
       },
       "SamlProviderARNs": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/12"
         },
         "flags": 0
       },
       "SupportedLoginProviders": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/13"
         },
         "flags": 0
       }
@@ -199,21 +232,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/14"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -225,7 +258,7 @@
     "name": "AWS.Cognito/IdentityPool@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/13"
+      "$ref": "#/15"
     },
     "flags": 0
   },
@@ -244,25 +277,25 @@
     "properties": {
       "IdentityPoolId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17
       },
       "IdentityProviderName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17
       },
       "PrincipalTags": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "UseDefaults": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       }
@@ -274,21 +307,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/19"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -300,7 +333,7 @@
     "name": "AWS.Cognito/IdentityPoolPrincipalTag@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/18"
+      "$ref": "#/20"
     },
     "flags": 0
   },
@@ -310,25 +343,25 @@
     "properties": {
       "Claim": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "MatchType": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "RoleARN": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -340,25 +373,25 @@
     "properties": {
       "AmbiguousRoleResolution": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "IdentityProvider": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "RulesConfiguration": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -370,7 +403,7 @@
     "properties": {
       "Rules": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/25"
         },
         "flags": 1
       }
@@ -379,7 +412,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/22"
     }
   },
   {
@@ -402,25 +435,25 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 18
       },
       "IdentityPoolId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "RoleMappings": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/27"
         },
         "flags": 0
       },
       "Roles": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/28"
         },
         "flags": 0
       }
@@ -432,21 +465,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/29"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -458,7 +491,7 @@
     "name": "AWS.Cognito/IdentityPoolRoleAttachment@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/28"
+      "$ref": "#/30"
     },
     "flags": 0
   },
@@ -468,7 +501,19 @@
     "properties": {
       "LogGroupArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FirehoseConfiguration",
+    "properties": {
+      "StreamArn": {
+        "type": {
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -480,19 +525,31 @@
     "properties": {
       "CloudWatchLogsConfiguration": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/32"
         },
         "flags": 0
       },
       "EventSource": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "FirehoseConfiguration": {
+        "type": {
+          "$ref": "#/33"
         },
         "flags": 0
       },
       "LogLevel": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "S3Configuration": {
+        "type": {
+          "$ref": "#/36"
         },
         "flags": 0
       }
@@ -504,9 +561,21 @@
     "properties": {}
   },
   {
+    "$type": "ObjectType",
+    "name": "S3Configuration",
+    "properties": {
+      "BucketArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
+      "$ref": "#/34"
     }
   },
   {
@@ -516,7 +585,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
+      "$ref": "#/34"
     }
   },
   {
@@ -525,19 +594,19 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 18
       },
       "LogConfigurations": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/39"
         },
         "flags": 0
       },
       "UserPoolId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -549,21 +618,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/40"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -575,7 +644,7 @@
     "name": "AWS.Cognito/LogDeliveryConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/37"
+      "$ref": "#/41"
     },
     "flags": 0
   },
@@ -585,7 +654,7 @@
     "properties": {
       "RecoveryMechanisms": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/64"
         },
         "flags": 0
       }
@@ -597,19 +666,31 @@
     "properties": {
       "AllowAdminCreateUserOnly": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "InviteMessageTemplate": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/50"
         },
         "flags": 0
       },
       "UnusedAccountValidityDays": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/65"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AdvancedSecurityAdditionalFlows",
+    "properties": {
+      "CustomAuthMode": {
+        "type": {
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -621,13 +702,13 @@
     "properties": {
       "LambdaArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "LambdaVersion": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -639,13 +720,13 @@
     "properties": {
       "LambdaArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "LambdaVersion": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -657,13 +738,13 @@
     "properties": {
       "ChallengeRequiredOnNewDevice": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DeviceOnlyRememberedOnUserPrompt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       }
@@ -675,31 +756,31 @@
     "properties": {
       "ConfigurationSet": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "EmailSendingAccount": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "From": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "ReplyToEmailAddress": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "SourceArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -711,19 +792,19 @@
     "properties": {
       "EmailMessage": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "EmailSubject": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "SMSMessage": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -735,85 +816,85 @@
     "properties": {
       "CreateAuthChallenge": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "CustomEmailSender": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "CustomMessage": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "CustomSMSSender": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/47"
         },
         "flags": 0
       },
       "DefineAuthChallenge": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "KMSKeyID": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "PostAuthentication": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "PostConfirmation": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "PreAuthentication": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "PreSignUp": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "PreTokenGeneration": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "PreTokenGenerationConfig": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/55"
         },
         "flags": 0
       },
       "UserMigration": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "VerifyAuthChallengeResponse": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -825,13 +906,13 @@
     "properties": {
       "MaxValue": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "MinValue": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -843,37 +924,43 @@
     "properties": {
       "MinimumLength": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/65"
+        },
+        "flags": 0
+      },
+      "PasswordHistorySize": {
+        "type": {
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "RequireLowercase": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "RequireNumbers": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "RequireSymbols": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "RequireUppercase": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "TemporaryPasswordValidityDays": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/65"
         },
         "flags": 0
       }
@@ -885,7 +972,7 @@
     "properties": {
       "PasswordPolicy": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/53"
         },
         "flags": 0
       }
@@ -897,13 +984,13 @@
     "properties": {
       "LambdaArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "LambdaVersion": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -915,13 +1002,13 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "Priority": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/65"
         },
         "flags": 0
       }
@@ -933,43 +1020,43 @@
     "properties": {
       "AttributeDataType": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "DeveloperOnlyAttribute": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "Mutable": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "NumberAttributeConstraints": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/52"
         },
         "flags": 0
       },
       "Required": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "StringAttributeConstraints": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/59"
         },
         "flags": 0
       }
@@ -981,19 +1068,19 @@
     "properties": {
       "ExternalId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "SnsCallerArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "SnsRegion": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -1005,13 +1092,13 @@
     "properties": {
       "MaxLength": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "MinLength": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -1023,7 +1110,7 @@
     "properties": {
       "AttributesRequireVerificationBeforeUpdate": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/66"
         },
         "flags": 1
       }
@@ -1033,9 +1120,15 @@
     "$type": "ObjectType",
     "name": "UserPoolAddOns",
     "properties": {
+      "AdvancedSecurityAdditionalFlows": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      },
       "AdvancedSecurityMode": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -1047,7 +1140,7 @@
     "properties": {
       "CaseSensitive": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       }
@@ -1059,37 +1152,37 @@
     "properties": {
       "DefaultEmailOption": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "EmailMessage": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "EmailMessageByLink": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "EmailSubject": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "EmailSubjectByLink": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "SmsMessage": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -1098,7 +1191,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/51"
+      "$ref": "#/56"
     }
   },
   {
@@ -1107,7 +1200,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
@@ -1117,25 +1210,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/57"
     }
   },
   {
@@ -1146,7 +1239,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
@@ -1155,169 +1248,169 @@
     "properties": {
       "AccountRecoverySetting": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/43"
         },
         "flags": 0
       },
       "AdminCreateUserConfig": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "AliasAttributes": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "Arn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 2
       },
       "AutoVerifiedAttributes": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "DeletionProtection": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "DeviceConfiguration": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/48"
         },
         "flags": 0
       },
       "EmailConfiguration": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/49"
         },
         "flags": 0
       },
       "EmailVerificationMessage": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "EmailVerificationSubject": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "EnabledMfas": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/70"
         },
         "flags": 4
       },
       "LambdaConfig": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/51"
         },
         "flags": 0
       },
       "MfaConfiguration": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "Policies": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "ProviderName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 2
       },
       "ProviderURL": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 2
       },
       "Schema": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/71"
         },
         "flags": 0
       },
       "SmsAuthenticationMessage": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "SmsConfiguration": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/58"
         },
         "flags": 0
       },
       "SmsVerificationMessage": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "UserAttributeUpdateSettings": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/60"
         },
         "flags": 0
       },
       "UserPoolAddOns": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "UserPoolId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 18
       },
       "UserPoolName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "UserPoolTags": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/72"
         },
         "flags": 0
       },
       "UsernameAttributes": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/73"
         },
         "flags": 0
       },
       "UsernameConfiguration": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/62"
         },
         "flags": 0
       },
       "VerificationMessageTemplate": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/63"
         },
         "flags": 0
       }
@@ -1329,21 +1422,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/74"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1355,7 +1448,7 @@
     "name": "AWS.Cognito/UserPool@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/70"
+      "$ref": "#/75"
     },
     "flags": 0
   },
@@ -1365,31 +1458,31 @@
     "properties": {
       "ApplicationArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "ApplicationId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "ExternalId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "UserDataShared": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       }
@@ -1401,19 +1494,19 @@
     "properties": {
       "AccessToken": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "IdToken": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "RefreshToken": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -1426,49 +1519,49 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
@@ -1477,151 +1570,151 @@
     "properties": {
       "AccessTokenValidity": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "AllowedOAuthFlows": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/80"
         },
         "flags": 0
       },
       "AllowedOAuthFlowsUserPoolClient": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "AllowedOAuthScopes": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/81"
         },
         "flags": 0
       },
       "AnalyticsConfiguration": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/77"
         },
         "flags": 0
       },
       "AuthSessionValidity": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "CallbackURLs": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/82"
         },
         "flags": 0
       },
       "ClientId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 18
       },
       "ClientName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "ClientSecret": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 2
       },
       "DefaultRedirectURI": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "EnablePropagateAdditionalUserContextData": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "EnableTokenRevocation": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "ExplicitAuthFlows": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/83"
         },
         "flags": 0
       },
       "GenerateSecret": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "IdTokenValidity": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "LogoutURLs": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/84"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 2
       },
       "PreventUserExistenceErrors": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "ReadAttributes": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/85"
         },
         "flags": 0
       },
       "RefreshTokenValidity": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "SupportedIdentityProviders": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/86"
         },
         "flags": 0
       },
       "TokenValidityUnits": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/78"
         },
         "flags": 0
       },
       "UserPoolId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17
       },
       "WriteAttributes": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/87"
         },
         "flags": 0
       }
@@ -1633,21 +1726,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/88"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1659,7 +1752,7 @@
     "name": "AWS.Cognito/UserPoolClient@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/84"
+      "$ref": "#/89"
     },
     "flags": 0
   },
@@ -1673,31 +1766,31 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "GroupName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 16
       },
       "Precedence": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "UserPoolId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17
       }
@@ -1709,21 +1802,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/92"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1735,7 +1828,7 @@
     "name": "AWS.Cognito/UserPoolGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/88"
+      "$ref": "#/93"
     },
     "flags": 0
   },
@@ -1745,13 +1838,13 @@
     "properties": {
       "ScopeDescription": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "ScopeName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -1764,7 +1857,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/90"
+      "$ref": "#/95"
     }
   },
   {
@@ -1773,25 +1866,25 @@
     "properties": {
       "Identifier": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17
       },
       "Name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "Scopes": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/97"
         },
         "flags": 0
       },
       "UserPoolId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17
       }
@@ -1803,21 +1896,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/98"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1829,7 +1922,7 @@
     "name": "AWS.Cognito/UserPoolResourceServer@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/94"
+      "$ref": "#/99"
     },
     "flags": 0
   },
@@ -1839,13 +1932,13 @@
     "properties": {
       "EventAction": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "Notify": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -1857,19 +1950,19 @@
     "properties": {
       "HighAction": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/101"
         },
         "flags": 0
       },
       "LowAction": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/101"
         },
         "flags": 0
       },
       "MediumAction": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/101"
         },
         "flags": 0
       }
@@ -1881,13 +1974,13 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/102"
         },
         "flags": 1
       },
       "NotifyConfiguration": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/106"
         },
         "flags": 0
       }
@@ -1899,7 +1992,7 @@
     "properties": {
       "EventAction": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -1911,13 +2004,13 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/104"
         },
         "flags": 1
       },
       "EventFilter": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/109"
         },
         "flags": 0
       }
@@ -1929,37 +2022,37 @@
     "properties": {
       "BlockEmail": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/107"
         },
         "flags": 0
       },
       "From": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "MfaEmail": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/107"
         },
         "flags": 0
       },
       "NoActionEmail": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/107"
         },
         "flags": 0
       },
       "ReplyTo": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "SourceArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -1971,19 +2064,19 @@
     "properties": {
       "HtmlBody": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "Subject": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "TextBody": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -1995,13 +2088,13 @@
     "properties": {
       "BlockedIPRangeList": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/110"
         },
         "flags": 0
       },
       "SkippedIPRangeList": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/111"
         },
         "flags": 0
       }
@@ -2010,19 +2103,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
@@ -2035,31 +2128,31 @@
     "properties": {
       "AccountTakeoverRiskConfiguration": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/103"
         },
         "flags": 0
       },
       "ClientId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17
       },
       "CompromisedCredentialsRiskConfiguration": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/105"
         },
         "flags": 0
       },
       "RiskExceptionConfiguration": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/108"
         },
         "flags": 0
       },
       "UserPoolId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17
       }
@@ -2071,21 +2164,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/113"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2097,7 +2190,71 @@
     "name": "AWS.Cognito/UserPoolRiskConfigurationAttachment@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/109"
+      "$ref": "#/114"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Cognito/UserPoolUICustomizationAttachmentProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cognito/UserPoolUICustomizationAttachmentProperties",
+    "properties": {
+      "CSS": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "ClientId": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17
+      },
+      "UserPoolId": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cognito/UserPoolUICustomizationAttachment",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/117"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Cognito/UserPoolUICustomizationAttachment@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/118"
     },
     "flags": 0
   }

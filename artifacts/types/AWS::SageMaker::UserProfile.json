@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-UserProfile",
   "type": "AWS::SageMaker::UserProfile",
-  "time": "2024-06-24T15:23:49.457Z",
+  "time": "2024-07-30T21:56:55.426Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -14,6 +14,18 @@
       "/properties/Tags"
     ],
     "definitions": {
+      "AppType": {
+        "enum": [
+          "JupyterServer",
+          "TensorBoard",
+          "RStudioServerPro",
+          "JupyterLab",
+          "CodeEditor",
+          "DetailedProfiler",
+          "Canvas"
+        ],
+        "type": "string"
+      },
       "CodeEditorAppSettings": {
         "additionalProperties": false,
         "description": "The CodeEditor app settings.",
@@ -214,6 +226,16 @@
         "properties": {
           "DefaultResourceSpec": {
             "$ref": "#/definitions/ResourceSpec"
+          },
+          "LifecycleConfigArns": {
+            "description": "A list of LifecycleConfigArns available for use with JupyterServer apps.",
+            "items": {
+              "$ref": "#/definitions/StudioLifecycleConfigArn"
+            },
+            "maxItems": 30,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false
           }
         },
         "type": "object"
@@ -235,9 +257,37 @@
           "DefaultResourceSpec": {
             "$ref": "#/definitions/ResourceSpec",
             "description": "The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the KernelGateway app."
+          },
+          "LifecycleConfigArns": {
+            "description": "A list of LifecycleConfigArns available for use with KernelGateway apps.",
+            "items": {
+              "$ref": "#/definitions/StudioLifecycleConfigArn"
+            },
+            "maxItems": 30,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false
           }
         },
         "type": "object"
+      },
+      "MlTools": {
+        "enum": [
+          "DataWrangler",
+          "FeatureStore",
+          "EmrClusters",
+          "AutoMl",
+          "Experiments",
+          "Training",
+          "ModelEvaluation",
+          "Pipelines",
+          "Models",
+          "JumpStart",
+          "InferenceRecommender",
+          "Endpoints",
+          "Projects"
+        ],
+        "type": "string"
       },
       "RStudioServerProAppSettings": {
         "additionalProperties": false,
@@ -334,6 +384,12 @@
             ],
             "type": "string"
           },
+          "LifecycleConfigArn": {
+            "description": "The Amazon Resource Name (ARN) of the Lifecycle Configuration to attach to the Resource.",
+            "maxLength": 256,
+            "pattern": "arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:studio-lifecycle-config/.*",
+            "type": "string"
+          },
           "SageMakerImageArn": {
             "description": "The ARN of the SageMaker image that the image version belongs to.",
             "maxLength": 256,
@@ -386,6 +442,33 @@
         "maxLength": 256,
         "pattern": "arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:studio-lifecycle-config/.*",
         "type": "string"
+      },
+      "StudioWebPortalSettings": {
+        "additionalProperties": false,
+        "description": "Studio settings. If these settings are applied on a user level, they take priority over the settings applied on a domain level.",
+        "properties": {
+          "HiddenAppTypes": {
+            "description": "Applications supported in Studio that are hidden from the Studio left navigation pane.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/AppType"
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "HiddenMlTools": {
+            "description": "The machine learning tools that are hidden from the Studio left navigation pane.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/MlTools"
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "type": "object"
       },
       "Tag": {
         "additionalProperties": false,
@@ -478,6 +561,9 @@
               "DISABLED"
             ],
             "type": "string"
+          },
+          "StudioWebPortalSettings": {
+            "$ref": "#/definitions/StudioWebPortalSettings"
           }
         },
         "type": "object"

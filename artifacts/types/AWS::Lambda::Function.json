@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lambda-Function",
   "type": "AWS::Lambda::Function",
-  "time": "2024-06-24T18:26:58Z",
+  "time": "2024-08-08T18:42:09.565Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -33,6 +33,11 @@
             "description": "For versioned objects, the version of the deployment package object to use.",
             "maxLength": 1024,
             "minLength": 1,
+            "type": "string"
+          },
+          "SourceKMSKeyArn": {
+            "description": "",
+            "pattern": "^(arn:(aws[a-zA-Z-]*)?:[a-z0-9-.]+:.*)|()$",
             "type": "string"
           },
           "ZipFile": {
@@ -336,12 +341,7 @@
           "lambda:GetLayerVersion",
           "lambda:GetRuntimeManagementConfig",
           "lambda:PutRuntimeManagementConfig",
-          "lambda:TagResource",
-          "lambda:GetPolicy",
-          "lambda:AddPermission",
-          "lambda:RemovePermission",
-          "lambda:GetResourcePolicy",
-          "lambda:PutResourcePolicy"
+          "lambda:TagResource"
         ]
       },
       "delete": {
@@ -387,13 +387,7 @@
           "lambda:PutFunctionCodeSigningConfig",
           "lambda:DeleteFunctionCodeSigningConfig",
           "lambda:GetCodeSigningConfig",
-          "lambda:GetFunctionCodeSigningConfig",
-          "lambda:GetPolicy",
-          "lambda:AddPermission",
-          "lambda:RemovePermission",
-          "lambda:GetResourcePolicy",
-          "lambda:PutResourcePolicy",
-          "lambda:DeleteResourcePolicy"
+          "lambda:GetFunctionCodeSigningConfig"
         ]
       }
     },

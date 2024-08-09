@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECR-RepositoryCreationTemplate",
   "type": "AWS::ECR::RepositoryCreationTemplate",
-  "time": "2024-04-19T23:50:08.189Z",
+  "time": "2024-07-23T18:42:11.926Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -76,7 +76,10 @@
         "permissions": [
           "ecr:CreateRepositoryCreationTemplate",
           "ecr:PutLifecyclePolicy",
-          "ecr:SetRepositoryPolicy"
+          "ecr:SetRepositoryPolicy",
+          "ecr:CreateRepository",
+          "iam:CreateServiceLinkedRole",
+          "iam:PassRole"
         ]
       },
       "delete": {
@@ -99,7 +102,10 @@
           "ecr:DescribeRepositoryCreationTemplates",
           "ecr:UpdateRepositoryCreationTemplate",
           "ecr:PutLifecyclePolicy",
-          "ecr:SetRepositoryPolicy"
+          "ecr:SetRepositoryPolicy",
+          "ecr:CreateRepository",
+          "iam:CreateServiceLinkedRole",
+          "iam:PassRole"
         ]
       }
     },
@@ -118,6 +124,12 @@
       },
       "CreatedAt": {
         "description": "Create timestamp of the template.",
+        "type": "string"
+      },
+      "CustomRoleArn": {
+        "description": "The ARN of the role to be assumed by ECR. This role must be in the same account as the registry that you are configuring.",
+        "maxLength": 2048,
+        "pattern": "^arn:aws[-a-z0-9]*:iam::[0-9]{12}:role/[A-Za-z0-9+=,-.@_]*$",
         "type": "string"
       },
       "Description": {

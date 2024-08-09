@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkManager-CoreNetwork",
   "type": "AWS::NetworkManager::CoreNetwork",
-  "time": "2024-02-15T16:24:04.704Z",
+  "time": "2024-08-09T15:39:30.103Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -34,6 +34,46 @@
               "type": "string"
             },
             "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "CoreNetworkNetworkFunctionGroup": {
+        "additionalProperties": false,
+        "properties": {
+          "EdgeLocations": {
+            "insertionOrder": false,
+            "items": {
+              "description": "The Regions where the edges are located.",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "Name": {
+            "description": "Name of network function group",
+            "type": "string"
+          },
+          "Segments": {
+            "additionalProperties": false,
+            "properties": {
+              "SendTo": {
+                "insertionOrder": false,
+                "items": {
+                  "description": "The send-to segments.",
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "SendVia": {
+                "insertionOrder": false,
+                "items": {
+                  "description": "The send-via segments.",
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
           }
         },
         "type": "object"
@@ -164,6 +204,14 @@
         "description": "The ID of the global network that your core network is a part of.",
         "type": "string"
       },
+      "NetworkFunctionGroups": {
+        "description": "The network function groups within a core network.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/CoreNetworkNetworkFunctionGroup"
+        },
+        "type": "array"
+      },
       "OwnerAccount": {
         "description": "Owner of the core network",
         "type": "string"
@@ -201,6 +249,7 @@
       "/properties/CreatedAt",
       "/properties/State",
       "/properties/Segments",
+      "/properties/NetworkFunctionGroups",
       "/properties/Edges"
     ],
     "required": [

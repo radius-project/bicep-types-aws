@@ -14,6 +14,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudWatch/CompositeAlarmProperties](#awscloudwatchcompositealarmproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CloudWatch/Dashboard@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudWatch/DashboardProperties](#awscloudwatchdashboardproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudWatch/MetricStream@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -74,6 +81,11 @@
 * **InsufficientDataActions**: string[]: The actions to execute when this alarm transitions to the INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN).
 * **OKActions**: string[]: The actions to execute when this alarm transitions to the OK state from any other state. Each action is specified as an Amazon Resource Name (ARN).
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs to associate with the composite alarm. You can associate as many as 50 tags with an alarm.
+
+## AWS.CloudWatch/DashboardProperties
+### Properties
+* **DashboardBody**: string (Required): The detailed information about the dashboard in JSON format, including the widgets to include and their location on the dashboard
+* **DashboardName**: string (Identifier): The name of the dashboard. The name must be between 1 and 255 characters. If you do not specify a name, one will be generated automatically.
 
 ## AWS.CloudWatch/MetricStreamProperties
 ### Properties

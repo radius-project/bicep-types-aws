@@ -309,11 +309,26 @@
 ### aws.bedrock/datasource
 * **Link**: [default](aws/aws.bedrock/default/types.md#resource-awsbedrockdatasourcedefault)
 
+### aws.bedrock/flow
+* **Link**: [default](aws/aws.bedrock/default/types.md#resource-awsbedrockflowdefault)
+
+### aws.bedrock/flowalias
+* **Link**: [default](aws/aws.bedrock/default/types.md#resource-awsbedrockflowaliasdefault)
+
+### aws.bedrock/flowversion
+* **Link**: [default](aws/aws.bedrock/default/types.md#resource-awsbedrockflowversiondefault)
+
 ### aws.bedrock/guardrail
 * **Link**: [default](aws/aws.bedrock/default/types.md#resource-awsbedrockguardraildefault)
 
 ### aws.bedrock/knowledgebase
 * **Link**: [default](aws/aws.bedrock/default/types.md#resource-awsbedrockknowledgebasedefault)
+
+### aws.bedrock/prompt
+* **Link**: [default](aws/aws.bedrock/default/types.md#resource-awsbedrockpromptdefault)
+
+### aws.bedrock/promptversion
+* **Link**: [default](aws/aws.bedrock/default/types.md#resource-awsbedrockpromptversiondefault)
 
 ## aws.budgets
 ### aws.budgets/budgetsaction
@@ -359,6 +374,12 @@
 
 ### aws.cleanrooms/configuredtableassociation
 * **Link**: [default](aws/aws.cleanrooms/default/types.md#resource-awscleanroomsconfiguredtableassociationdefault)
+
+### aws.cleanrooms/idmappingtable
+* **Link**: [default](aws/aws.cleanrooms/default/types.md#resource-awscleanroomsidmappingtabledefault)
+
+### aws.cleanrooms/idnamespaceassociation
+* **Link**: [default](aws/aws.cleanrooms/default/types.md#resource-awscleanroomsidnamespaceassociationdefault)
 
 ### aws.cleanrooms/membership
 * **Link**: [default](aws/aws.cleanrooms/default/types.md#resource-awscleanroomsmembershipdefault)
@@ -446,6 +467,9 @@
 ### aws.cloudwatch/compositealarm
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchcompositealarmdefault)
 
+### aws.cloudwatch/dashboard
+* **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchdashboarddefault)
+
 ### aws.cloudwatch/metricstream
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchmetricstreamdefault)
 
@@ -478,6 +502,9 @@
 ## aws.codepipeline
 ### aws.codepipeline/customactiontype
 * **Link**: [default](aws/aws.codepipeline/default/types.md#resource-awscodepipelinecustomactiontypedefault)
+
+### aws.codepipeline/pipeline
+* **Link**: [default](aws/aws.codepipeline/default/types.md#resource-awscodepipelinepipelinedefault)
 
 ## aws.codestarconnections
 ### aws.codestarconnections/connection
@@ -520,6 +547,9 @@
 
 ### aws.cognito/userpoolriskconfigurationattachment
 * **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitouserpoolriskconfigurationattachmentdefault)
+
+### aws.cognito/userpooluicustomizationattachment
+* **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitouserpooluicustomizationattachmentdefault)
 
 ## aws.comprehend
 ### aws.comprehend/documentclassifier
@@ -1313,6 +1343,9 @@
 ### aws.glue/schema
 * **Link**: [default](aws/aws.glue/default/types.md#resource-awsglueschemadefault)
 
+### aws.glue/trigger
+* **Link**: [default](aws/aws.glue/default/types.md#resource-awsgluetriggerdefault)
+
 ## aws.grafana
 ### aws.grafana/workspace
 * **Link**: [default](aws/aws.grafana/default/types.md#resource-awsgrafanaworkspacedefault)
@@ -1677,6 +1710,9 @@
 * **Link**: [default](aws/aws.lakeformation/default/types.md#resource-awslakeformationtagdefault)
 
 ## aws.lambda
+### aws.lambda/alias
+* **Link**: [default](aws/aws.lambda/default/types.md#resource-awslambdaaliasdefault)
+
 ### aws.lambda/codesigningconfig
 * **Link**: [default](aws/aws.lambda/default/types.md#resource-awslambdacodesigningconfigdefault)
 
@@ -1691,6 +1727,10 @@
 
 ### aws.lambda/url
 * **Link**: [default](aws/aws.lambda/default/types.md#resource-awslambdaurldefault)
+
+## aws.launchwizard
+### aws.launchwizard/deployment
+* **Link**: [default](aws/aws.launchwizard/default/types.md#resource-awslaunchwizarddeploymentdefault)
 
 ## aws.lex
 ### aws.lex/bot
@@ -2455,6 +2495,9 @@
 ### aws.sagemaker/inferenceexperiment
 * **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerinferenceexperimentdefault)
 
+### aws.sagemaker/mlflowtrackingserver
+* **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakermlflowtrackingserverdefault)
+
 ### aws.sagemaker/modelcard
 * **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakermodelcarddefault)
 
@@ -2487,6 +2530,9 @@
 * **Link**: [default](aws/aws.scheduler/default/types.md#resource-awsschedulerschedulegroupdefault)
 
 ## aws.secretsmanager
+### aws.secretsmanager/resourcepolicy
+* **Link**: [default](aws/aws.secretsmanager/default/types.md#resource-awssecretsmanagerresourcepolicydefault)
+
 ### aws.secretsmanager/secret
 * **Link**: [default](aws/aws.secretsmanager/default/types.md#resource-awssecretsmanagersecretdefault)
 
@@ -2560,6 +2606,27 @@
 
 ### aws.ses/emailidentity
 * **Link**: [default](aws/aws.ses/default/types.md#resource-awssesemailidentitydefault)
+
+### aws.ses/mailmanageraddoninstance
+* **Link**: [default](aws/aws.ses/default/types.md#resource-awssesmailmanageraddoninstancedefault)
+
+### aws.ses/mailmanageraddonsubscription
+* **Link**: [default](aws/aws.ses/default/types.md#resource-awssesmailmanageraddonsubscriptiondefault)
+
+### aws.ses/mailmanagerarchive
+* **Link**: [default](aws/aws.ses/default/types.md#resource-awssesmailmanagerarchivedefault)
+
+### aws.ses/mailmanageringresspoint
+* **Link**: [default](aws/aws.ses/default/types.md#resource-awssesmailmanageringresspointdefault)
+
+### aws.ses/mailmanagerrelay
+* **Link**: [default](aws/aws.ses/default/types.md#resource-awssesmailmanagerrelaydefault)
+
+### aws.ses/mailmanagerruleset
+* **Link**: [default](aws/aws.ses/default/types.md#resource-awssesmailmanagerrulesetdefault)
+
+### aws.ses/mailmanagertrafficpolicy
+* **Link**: [default](aws/aws.ses/default/types.md#resource-awssesmailmanagertrafficpolicydefault)
 
 ### aws.ses/template
 * **Link**: [default](aws/aws.ses/default/types.md#resource-awssestemplatedefault)
