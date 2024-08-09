@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-Domain",
   "type": "AWS::SageMaker::Domain",
-  "time": "2024-06-24T15:27:14.341Z",
+  "time": "2024-07-30T22:07:59.331Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -13,6 +13,18 @@
       "/properties/Tags"
     ],
     "definitions": {
+      "AppType": {
+        "enum": [
+          "JupyterServer",
+          "TensorBoard",
+          "RStudioServerPro",
+          "JupyterLab",
+          "CodeEditor",
+          "DetailedProfiler",
+          "Canvas"
+        ],
+        "type": "string"
+      },
       "CodeEditorAppSettings": {
         "additionalProperties": false,
         "description": "The CodeEditor app settings.",
@@ -22,7 +34,7 @@
             "items": {
               "$ref": "#/definitions/CustomImage"
             },
-            "maxItems": 30,
+            "maxItems": 200,
             "minItems": 0,
             "type": "array",
             "uniqueItems": false
@@ -221,10 +233,11 @@
             "insertionOrder": false,
             "items": {
               "maxLength": 12,
-              "pattern": "^[0-9]$",
+              "minLength": 12,
+              "pattern": "^\\d+$",
               "type": "string"
             },
-            "maxItems": 10,
+            "maxItems": 20,
             "minItems": 0,
             "type": "array",
             "uniqueItems": false
@@ -298,7 +311,7 @@
             "items": {
               "$ref": "#/definitions/CustomImage"
             },
-            "maxItems": 30,
+            "maxItems": 200,
             "minItems": 0,
             "type": "array",
             "uniqueItems": false
@@ -326,6 +339,16 @@
         "properties": {
           "DefaultResourceSpec": {
             "$ref": "#/definitions/ResourceSpec"
+          },
+          "LifecycleConfigArns": {
+            "description": "A list of LifecycleConfigArns available for use with JupyterServer apps.",
+            "items": {
+              "$ref": "#/definitions/StudioLifecycleConfigArn"
+            },
+            "maxItems": 30,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false
           }
         },
         "type": "object"
@@ -340,7 +363,7 @@
             "items": {
               "$ref": "#/definitions/CustomImage"
             },
-            "maxItems": 30,
+            "maxItems": 200,
             "minItems": 0,
             "type": "array",
             "uniqueItems": false
@@ -348,9 +371,37 @@
           "DefaultResourceSpec": {
             "$ref": "#/definitions/ResourceSpec",
             "description": "The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the KernelGateway app."
+          },
+          "LifecycleConfigArns": {
+            "description": "A list of LifecycleConfigArns available for use with KernelGateway apps.",
+            "items": {
+              "$ref": "#/definitions/StudioLifecycleConfigArn"
+            },
+            "maxItems": 30,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false
           }
         },
         "type": "object"
+      },
+      "MlTools": {
+        "enum": [
+          "DataWrangler",
+          "FeatureStore",
+          "EmrClusters",
+          "AutoMl",
+          "Experiments",
+          "Training",
+          "ModelEvaluation",
+          "Pipelines",
+          "Models",
+          "JumpStart",
+          "InferenceRecommender",
+          "Endpoints",
+          "Projects"
+        ],
+        "type": "string"
       },
       "RSessionAppSettings": {
         "additionalProperties": false,
@@ -362,7 +413,7 @@
             "items": {
               "$ref": "#/definitions/CustomImage"
             },
-            "maxItems": 30,
+            "maxItems": 200,
             "minItems": 0,
             "type": "array",
             "uniqueItems": false
@@ -557,6 +608,33 @@
         "pattern": "arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:studio-lifecycle-config/.*",
         "type": "string"
       },
+      "StudioWebPortalSettings": {
+        "additionalProperties": false,
+        "description": "Studio settings. If these settings are applied on a user level, they take priority over the settings applied on a domain level.",
+        "properties": {
+          "HiddenAppTypes": {
+            "description": "Applications supported in Studio that are hidden from the Studio left navigation pane.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/AppType"
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "HiddenMlTools": {
+            "description": "The machine learning tools that are hidden from the Studio left navigation pane.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/MlTools"
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "properties": {
@@ -652,6 +730,9 @@
               "DISABLED"
             ],
             "type": "string"
+          },
+          "StudioWebPortalSettings": {
+            "$ref": "#/definitions/StudioWebPortalSettings"
           }
         },
         "required": [

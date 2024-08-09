@@ -139,6 +139,7 @@
 * **CookieSynchronizationConfiguration**: [CookieSynchronizationConfiguration](#cookiesynchronizationconfiguration)
 * **CopyAllowed**: string (Required)
 * **CustomerManagedKey**: string
+* **DeepLinkAllowed**: string
 * **DisconnectTimeoutInMinutes**: int
 * **DownloadAllowed**: string (Required)
 * **IdleDisconnectTimeoutInMinutes**: int

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Bedrock-KnowledgeBase",
   "type": "AWS::Bedrock::KnowledgeBase",
-  "time": "2024-06-11T01:12:47.122Z",
+  "time": "2024-07-23T23:53:37.455Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,29 @@
       "/properties/KnowledgeBaseConfiguration"
     ],
     "definitions": {
+      "BedrockEmbeddingModelConfiguration": {
+        "additionalProperties": false,
+        "description": "The vector configuration details for the Bedrock embeddings model.",
+        "properties": {
+          "Dimensions": {
+            "description": "The dimensions details for the vector configuration used on the Bedrock embeddings model.",
+            "maximum": 4096,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "EmbeddingModelConfiguration": {
+        "additionalProperties": false,
+        "description": "The embeddings model configuration details for the vector model used in Knowledge Base.",
+        "properties": {
+          "BedrockEmbeddingModelConfiguration": {
+            "$ref": "#/definitions/BedrockEmbeddingModelConfiguration"
+          }
+        },
+        "type": "object"
+      },
       "KnowledgeBaseConfiguration": {
         "additionalProperties": false,
         "description": "Contains details about the embeddings model used for the knowledge base.",
@@ -43,7 +66,8 @@
         "enum": [
           "OPENSEARCH_SERVERLESS",
           "PINECONE",
-          "RDS"
+          "RDS",
+          "MONGO_DB_ATLAS"
         ],
         "type": "string"
       },
@@ -53,6 +77,89 @@
           "VECTOR"
         ],
         "type": "string"
+      },
+      "MongoDbAtlasConfiguration": {
+        "additionalProperties": false,
+        "description": "Contains the storage configuration of the knowledge base in MongoDb Atlas Cloud.",
+        "properties": {
+          "CollectionName": {
+            "description": "Name of the collection within MongoDB Atlas.",
+            "maxLength": 63,
+            "pattern": "^.*$",
+            "type": "string"
+          },
+          "CredentialsSecretArn": {
+            "description": "The ARN of the secret that you created in AWS Secrets Manager that is linked to your Amazon Mongo database.",
+            "pattern": "^arn:aws(|-cn|-us-gov):secretsmanager:[a-z0-9-]{1,20}:([0-9]{12}|):secret:[a-zA-Z0-9!/_+=.@-]{1,512}$",
+            "type": "string"
+          },
+          "DatabaseName": {
+            "description": "Name of the database within MongoDB Atlas.",
+            "maxLength": 63,
+            "pattern": "^.*$",
+            "type": "string"
+          },
+          "Endpoint": {
+            "description": "MongoDB Atlas endpoint.",
+            "maxLength": 2048,
+            "pattern": "^[a-zA-Z0-9_-]+\\.[a-zA-Z0-9_-]+\\.mongodb\\.net$",
+            "type": "string"
+          },
+          "EndpointServiceName": {
+            "description": "MongoDB Atlas endpoint service name.",
+            "maxLength": 255,
+            "pattern": "^(?:arn:aws(?:-us-gov|-cn|-iso|-iso-[a-z])*:.+:.*:\\d+:.+/.+$|[a-zA-Z0-9*]+[a-zA-Z0-9._-]*)$",
+            "type": "string"
+          },
+          "FieldMapping": {
+            "$ref": "#/definitions/MongoDbAtlasFieldMapping"
+          },
+          "VectorIndexName": {
+            "description": "Name of a MongoDB Atlas index.",
+            "maxLength": 2048,
+            "pattern": "^.*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Endpoint",
+          "CredentialsSecretArn",
+          "DatabaseName",
+          "CollectionName",
+          "VectorIndexName",
+          "FieldMapping"
+        ],
+        "type": "object"
+      },
+      "MongoDbAtlasFieldMapping": {
+        "additionalProperties": false,
+        "description": "Contains the names of the fields to which to map information about the vector store.",
+        "properties": {
+          "MetadataField": {
+            "description": "The name of the field in which Amazon Bedrock stores metadata about the vector store.",
+            "maxLength": 2048,
+            "pattern": "^.*$",
+            "type": "string"
+          },
+          "TextField": {
+            "description": "The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.",
+            "maxLength": 2048,
+            "pattern": "^.*$",
+            "type": "string"
+          },
+          "VectorField": {
+            "description": "The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.",
+            "maxLength": 2048,
+            "pattern": "^.*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "VectorField",
+          "MetadataField",
+          "TextField"
+        ],
+        "type": "object"
       },
       "OpenSearchServerlessConfiguration": {
         "additionalProperties": false,
@@ -323,9 +430,17 @@
             "required": [
               "RdsConfiguration"
             ]
+          },
+          {
+            "required": [
+              "MongoDbAtlasConfiguration"
+            ]
           }
         ],
         "properties": {
+          "MongoDbAtlasConfiguration": {
+            "$ref": "#/definitions/MongoDbAtlasConfiguration"
+          },
           "OpensearchServerlessConfiguration": {
             "$ref": "#/definitions/OpenSearchServerlessConfiguration"
           },
@@ -366,8 +481,11 @@
             "description": "The ARN of the model used to create vector embeddings for the knowledge base.",
             "maxLength": 2048,
             "minLength": 20,
-            "pattern": "^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:provisioned-model/[a-z0-9]{12})))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)$",
+            "pattern": "^(arn:aws(-[^:]+)?:[a-z0-9-]+:[a-z0-9-]{1,20}:[0-9]{0,12}:[a-zA-Z0-9-:/._+]+)$",
             "type": "string"
+          },
+          "EmbeddingModelConfiguration": {
+            "$ref": "#/definitions/EmbeddingModelConfiguration"
           }
         },
         "required": [

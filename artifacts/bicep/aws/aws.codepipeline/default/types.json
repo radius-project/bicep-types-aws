@@ -254,5 +254,985 @@
       "$ref": "#/11"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ActionDeclaration",
+    "properties": {
+      "ActionTypeId": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      },
+      "Configuration": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "The action's configuration. These are key-value pairs that specify input values for an action."
+      },
+      "InputArtifacts": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The action declaration's name."
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The variable namespace associated with the action. All variables produced as output by this action fall under this namespace."
+      },
+      "OutputArtifacts": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The action declaration's AWS Region, such as us-east-1."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The ARN of the IAM service role that performs the declared action. This is assumed through the roleArn for the pipeline."
+      },
+      "RunOrder": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The order in which actions are run."
+      },
+      "TimeoutInMinutes": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A timeout duration in minutes that can be applied against the ActionType?s default timeout value specified in Quotas for AWS CodePipeline. This attribute is available only to the manual approval ActionType."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ActionTypeId",
+    "properties": {
+      "Category": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "A category defines what kind of action can be taken in the stage, and constrains the provider type for the action. Valid categories are limited to one of the values below."
+      },
+      "Owner": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The creator of the action being called. There are three valid values for the Owner field in the action category section within your pipeline structure: AWS, ThirdParty, and Custom."
+      },
+      "Provider": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The provider of the service being called by the action. Valid providers are determined by the action category. For example, an action in the Deploy category type might have a provider of CodeDeploy, which would be specified as CodeDeploy."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "A string that describes the action version."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ArtifactStore",
+    "properties": {
+      "EncryptionKey": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The S3 bucket used for storing the artifacts for a pipeline. You can specify the name of an S3 bucket but not a folder in the bucket. A folder to contain the pipeline artifacts is created for you based on the name of the pipeline. You can use any S3 bucket in the same AWS Region as the pipeline to store your pipeline artifacts."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The type of the artifact store, such as S3."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ArtifactStoreMap",
+    "properties": {
+      "ArtifactStore": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The action declaration's AWS Region, such as us-east-1."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BeforeEntryConditions",
+    "properties": {
+      "Conditions": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BlockerDeclaration",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "Reserved for future use."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "Reserved for future use."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Condition",
+    "properties": {
+      "Result": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The specified result for when the failure conditions are met, such as rolling back the stage"
+      },
+      "Rules": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionKey",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The ID used to identify the key. For an AWS KMS key, you can use the key ID, the key ARN, or the alias ARN."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The type of encryption key, such as an AWS KMS key. When creating or updating a pipeline, the value must be set to 'KMS'."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FailureConditions",
+    "properties": {
+      "Conditions": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "Result": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The specified result for when the failure conditions are met, such as rolling back the stage"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitBranchFilterCriteria",
+    "properties": {
+      "Excludes": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "The list of patterns of Git branches that, when a commit is pushed, are to be excluded from starting the pipeline."
+      },
+      "Includes": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "The list of patterns of Git branches that, when a commit is pushed, are to be included as criteria that starts the pipeline."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitConfiguration",
+    "properties": {
+      "PullRequest": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "The field where the repository event that will start the pipeline is specified as pull requests."
+      },
+      "Push": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0,
+        "description": "The field where the repository event that will start the pipeline, such as pushing Git tags, is specified with details."
+      },
+      "SourceActionName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name of the pipeline source action where the trigger configuration, such as Git tags, is specified. The trigger configuration will start the pipeline upon the specified change only."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitFilePathFilterCriteria",
+    "properties": {
+      "Excludes": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0,
+        "description": "The list of patterns of Git repository file paths that, when a commit is pushed, are to be excluded from starting the pipeline."
+      },
+      "Includes": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0,
+        "description": "The list of patterns of Git repository file paths that, when a commit is pushed, are to be included as criteria that starts the pipeline."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitPullRequestFilter",
+    "properties": {
+      "Branches": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      },
+      "Events": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0,
+        "description": "The field that specifies which pull request events to filter on (opened, updated, closed) for the trigger configuration."
+      },
+      "FilePaths": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitPushFilter",
+    "properties": {
+      "Branches": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      },
+      "FilePaths": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitTagFilterCriteria",
+    "properties": {
+      "Excludes": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 0,
+        "description": "The list of patterns of Git tags that, when pushed, are to be excluded from starting the pipeline."
+      },
+      "Includes": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0,
+        "description": "The list of patterns of Git tags that, when pushed, are to be included as criteria that starts the pipeline."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputArtifact",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The name of the artifact to be worked on (for example, \"My App\")."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OutputArtifact",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The name of the output of an artifact, such as \"My App\"."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PipelineTriggerDeclaration",
+    "properties": {
+      "GitConfiguration": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0
+      },
+      "ProviderType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The source provider for the event, such as connections configured for a repository with Git tags, for the specified trigger configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RuleDeclaration",
+    "properties": {
+      "Configuration": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0,
+        "description": "The rule's configuration. These are key-value pairs that specify input values for a rule."
+      },
+      "InputArtifacts": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 16,
+        "description": "The rule declaration's name."
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The rule declaration's AWS Region, such as us-east-1."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The ARN of the IAM service role that performs the declared rule. This is assumed through the roleArn for the pipeline."
+      },
+      "RuleTypeId": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RuleTypeId",
+    "properties": {
+      "Category": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "A category for the provider type for the rule."
+      },
+      "Owner": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The creator of the rule being called. Only AWS is supported."
+      },
+      "Provider": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The provider of the service being called by the rule."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "A string that describes the rule version."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StageDeclaration",
+    "properties": {
+      "Actions": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 1
+      },
+      "BeforeEntry": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 0,
+        "description": "The method to use before stage runs."
+      },
+      "Blockers": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The name of the stage."
+      },
+      "OnFailure": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 0,
+        "description": "The method to use when a stage has not completed successfully"
+      },
+      "OnSuccess": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 0,
+        "description": "The method to use when a stage has completed successfully"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StageTransition",
+    "properties": {
+      "Reason": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The reason given to the user that a stage is disabled, such as waiting for manual approval or manual tests. This message is displayed in the pipeline console UI."
+      },
+      "StageName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name of the stage where you want to disable the inbound or outbound transition of artifacts."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SuccessConditions",
+    "properties": {
+      "Conditions": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The tag's key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The tag's value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VariableDeclaration",
+    "properties": {
+      "DefaultValue": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The value of a pipeline-level variable."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The description of a pipeline-level variable. It's used to add additional context about the variable, and not being used at time when pipeline executes."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The name of a pipeline-level variable."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Pipeline_Configuration",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/29"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/31"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/25"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/26"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Pipeline_Configuration",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Pipeline_BeforeEntryConditions",
+    "properties": {
+      "Conditions": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Pipeline_FailureConditions",
+    "properties": {
+      "Conditions": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0
+      },
+      "Result": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The specified result for when the failure conditions are met, such as rolling back the stage"
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Pipeline_SuccessConditions",
+    "properties": {
+      "Conditions": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CodePipeline/PipelineProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/34"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/33"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/36"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/30"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/37"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodePipeline/PipelineProperties",
+    "properties": {
+      "ArtifactStore": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The S3 bucket where artifacts for the pipeline are stored."
+      },
+      "ArtifactStores": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0,
+        "description": "A mapping of artifactStore objects and their corresponding AWS Regions. There must be an artifact store for the pipeline Region and for each cross-region action in the pipeline."
+      },
+      "DisableInboundStageTransitions": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0,
+        "description": "Represents the input of a DisableStageTransition action."
+      },
+      "ExecutionMode": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The method that the pipeline will use to handle multiple executions. The default mode is SUPERSEDED."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 16,
+        "description": "The name of the pipeline."
+      },
+      "PipelineType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "CodePipeline provides the following pipeline types, which differ in characteristics and price, so that you can tailor your pipeline features and cost to the needs of your applications."
+      },
+      "RestartExecutionOnUpdate": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "Indicates whether to rerun the CodePipeline pipeline after you update it."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) for CodePipeline to use to either perform actions with no actionRoleArn, or to use to assume roles for actions with an actionRoleArn"
+      },
+      "Stages": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 1,
+        "description": "Represents information about a stage and its definition."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 0,
+        "description": "Specifies the tags applied to the pipeline."
+      },
+      "Triggers": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "The trigger configuration specifying a type of event, such as Git tags, that starts the pipeline."
+      },
+      "Variables": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 0,
+        "description": "A list that defines the pipeline variables for a pipeline resource. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9@\\-_]+."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The version of the pipeline."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodePipeline/Pipeline",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CodePipeline/Pipeline@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/72"
+    },
+    "flags": 0
   }
 ]

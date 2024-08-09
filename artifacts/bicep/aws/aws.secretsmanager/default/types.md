@@ -1,11 +1,25 @@
 # AWS.SecretsManager @ default
 
+## Resource AWS.SecretsManager/ResourcePolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SecretsManager/ResourcePolicyProperties](#awssecretsmanagerresourcepolicyproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SecretsManager/Secret@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecretsManager/SecretProperties](#awssecretsmanagersecretproperties) (Identifier): properties of the resource
+
+## AWS.SecretsManager/ResourcePolicyProperties
+### Properties
+* **BlockPublicPolicy**: bool (WriteOnly): Specifies whether to block resource-based policies that allow broad access to the secret.
+* **Id**: string (ReadOnly, Identifier): The Arn of the secret.
+* **ResourcePolicy**: [ResourcePolicy_ResourcePolicy](#resourcepolicyresourcepolicy) | string (Required): A JSON-formatted string for an AWS resource-based policy.
+* **SecretId**: string (Required): The ARN or name of the secret to attach the resource-based policy.
 
 ## AWS.SecretsManager/SecretProperties
 ### Properties

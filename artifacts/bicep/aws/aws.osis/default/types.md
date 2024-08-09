@@ -40,6 +40,11 @@
 ### Properties
 * **LogGroup**: string (Required)
 
+## Pipeline_VpcAttachmentOptions
+### Properties
+* **AttachToVpc**: bool (Required): Whether the pipeline should be attached to the provided VPC
+* **CidrBlock**: string (Required): The CIDR block to be reserved for OpenSearch Ingestion to create elastic network interfaces (ENIs).
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
@@ -55,5 +60,6 @@
 ### Properties
 * **SecurityGroupIds**: string[]: A list of security groups associated with the VPC endpoint.
 * **SubnetIds**: string[] (Required): A list of subnet IDs associated with the VPC endpoint.
+* **VpcAttachmentOptions**: [Pipeline_VpcAttachmentOptions](#pipelinevpcattachmentoptions): Options for attaching a VPC to the pipeline.
 * **VpcEndpointManagement**: string: Defines whether you or Amazon OpenSearch Ingestion service create and manage the VPC endpoint configured for the pipeline.
 

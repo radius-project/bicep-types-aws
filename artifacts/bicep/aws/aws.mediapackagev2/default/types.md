@@ -60,6 +60,7 @@
 * **Description**: string: <p>Enter any descriptive text that helps you to identify the channel.</p>
 * **IngestEndpoints**: [IngestEndpoint](#ingestendpoint)[] (ReadOnly): <p>The list of ingest endpoints.</p>
 * **IngestEndpointUrls**: string[] (ReadOnly)
+* **InputType**: string
 * **ModifiedAt**: string (ReadOnly): <p>The date and time the channel was modified.</p>
 * **Tags**: [Tag](#tag)[]
 
@@ -80,6 +81,7 @@
 * **DashManifests**: [DashManifestConfiguration](#dashmanifestconfiguration)[]: <p>A DASH manifest configuration.</p>
 * **DashManifestUrls**: string[] (ReadOnly)
 * **Description**: string: <p>Enter any descriptive text that helps you to identify the origin endpoint.</p>
+* **ForceEndpointErrorConfiguration**: [ForceEndpointErrorConfiguration](#forceendpointerrorconfiguration)
 * **HlsManifests**: [HlsManifestConfiguration](#hlsmanifestconfiguration)[] (ReadOnly): <p>An HTTP live streaming (HLS) manifest configuration.</p>
 * **HlsManifestUrls**: string[] (ReadOnly)
 * **LowLatencyHlsManifests**: [LowLatencyHlsManifestConfiguration](#lowlatencyhlsmanifestconfiguration)[] (ReadOnly): <p>A low-latency HLS manifest configuration.</p>
@@ -135,6 +137,24 @@
 * **ManifestFilter**: string: <p>Optionally specify one or more manifest filters for all of your manifest egress requests. When you include a manifest filter, note that you cannot use an identical manifest filter query parameter for this manifest's endpoint URL.</p>
 * **Start**: string: <p>Optionally specify the start time for all of your manifest egress requests. When you include start time, note that you cannot use start time query parameters for this manifest's endpoint URL.</p>
 * **TimeDelaySeconds**: int: <p>Optionally specify the time delay for all of your manifest egress requests. Enter a value that is smaller than your endpoint's startover window. When you include time delay, note that you cannot use time delay query parameters for this manifest's endpoint URL.</p>
+
+## ForceEndpointErrorConfiguration
+### Properties
+* **EndpointErrorConditions**: string[]: <p>The failover settings for the endpoint. The options are:</p>
+         <ul>
+            <li>
+               <p>
+                  <code>STALE_MANIFEST</code> - The manifest stalled and there a no new segments or parts.</p>
+            </li>
+            <li>
+               <p>
+                  <code>INCOMPLETE_MANIFEST</code> - There is a gap in the manifest.</p>
+            </li>
+            <li>
+               <p>
+                  <code>MISSING_DRM_KEY</code> - Key rotation is enabled but we're unable to fetch the key for the current key period.</p>
+            </li>
+         </ul>
 
 ## HlsManifestConfiguration
 ### Properties

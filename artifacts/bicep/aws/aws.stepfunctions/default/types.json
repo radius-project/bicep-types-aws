@@ -1,21 +1,48 @@
 [
   {
     "$type": "ObjectType",
+    "name": "EncryptionConfiguration",
+    "properties": {
+      "KmsDataKeyReusePeriodSeconds": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "TagsEntry",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 1
       }
     }
+  },
+  {
+    "$type": "IntegerType"
   },
   {
     "$type": "StringType"
@@ -27,7 +54,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/0"
+      "$ref": "#/1"
     }
   },
   {
@@ -36,19 +63,25 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 18
       },
+      "EncryptionConfiguration": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
       "Name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/5"
         },
         "flags": 0
       }
@@ -60,21 +93,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -86,7 +119,7 @@
     "name": "AWS.StepFunctions/Activity@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/5"
+      "$ref": "#/7"
     },
     "flags": 0
   },
@@ -96,7 +129,7 @@
     "properties": {
       "LogGroupArn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -114,11 +147,35 @@
   },
   {
     "$type": "ObjectType",
+    "name": "EncryptionConfiguration",
+    "properties": {
+      "KmsDataKeyReusePeriodSeconds": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "LogDestination",
     "properties": {
       "CloudWatchLogsLogGroup": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/9"
         },
         "flags": 0
       }
@@ -130,19 +187,19 @@
     "properties": {
       "Destinations": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "IncludeExecutionData": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/19"
         },
         "flags": 0
       },
       "Level": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -154,19 +211,19 @@
     "properties": {
       "Bucket": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Key": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Version": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -178,13 +235,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -196,7 +253,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/19"
         },
         "flags": 0
       }
@@ -205,7 +262,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/10"
+      "$ref": "#/13"
     }
   },
   {
@@ -218,7 +275,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/16"
     }
   },
   {
@@ -227,79 +284,85 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 18
       },
       "Definition": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 4
       },
       "DefinitionS3Location": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/15"
         },
         "flags": 4
       },
       "DefinitionString": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "DefinitionSubstitutions": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/11"
         },
         "flags": 4
       },
+      "EncryptionConfiguration": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
       "LoggingConfiguration": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/14"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 2
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "StateMachineName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "StateMachineRevisionId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 2
       },
       "StateMachineType": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/21"
         },
         "flags": 0
       },
       "TracingConfiguration": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -311,21 +374,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/22"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -337,7 +400,7 @@
     "name": "AWS.StepFunctions/StateMachine@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/23"
     },
     "flags": 0
   },
@@ -347,34 +410,34 @@
     "properties": {
       "Alarms": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "A list of CloudWatch alarm names that will be monitored during the deployment. The deployment will fail and rollback if any alarms go into ALARM state."
       },
       "Interval": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The time in minutes between each traffic shifting increment."
       },
       "Percentage": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The percentage of traffic to shift to the new version in each increment."
       },
       "StateMachineVersionArn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The type of deployment to perform."
@@ -392,14 +455,14 @@
     "properties": {
       "StateMachineVersionArn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) that identifies one or two state machine versions defined in the routing configuration."
       },
       "Weight": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The percentage of traffic you want to route to the state machine version. The sum of the weights in the routing configuration must be equal to 100."
@@ -409,16 +472,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/3"
     }
-  },
-  {
-    "$type": "IntegerType"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/27"
     }
   },
   {
@@ -428,7 +488,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/27"
     }
   },
   {
@@ -437,34 +497,34 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 18,
         "description": "The ARN of the alias."
       },
       "DeploymentPreference": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/25"
         },
         "flags": 4
       },
       "Description": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "An optional description of the alias."
       },
       "Name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The alias name."
       },
       "RoutingConfiguration": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/31"
         },
         "flags": 0
       }
@@ -476,21 +536,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/32"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -502,7 +562,7 @@
     "name": "AWS.StepFunctions/StateMachineAlias@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/31"
+      "$ref": "#/33"
     },
     "flags": 0
   }

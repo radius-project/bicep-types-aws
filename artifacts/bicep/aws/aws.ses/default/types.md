@@ -35,6 +35,55 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SES/EmailIdentityProperties](#awssesemailidentityproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SES/MailManagerAddonInstance@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SES/MailManagerAddonInstanceProperties](#awssesmailmanageraddoninstanceproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SES/MailManagerAddonSubscription@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SES/MailManagerAddonSubscriptionProperties](#awssesmailmanageraddonsubscriptionproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SES/MailManagerArchive@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SES/MailManagerArchiveProperties](#awssesmailmanagerarchiveproperties) (Identifier): properties of the resource
+
+## Resource AWS.SES/MailManagerIngressPoint@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SES/MailManagerIngressPointProperties](#awssesmailmanageringresspointproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SES/MailManagerRelay@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SES/MailManagerRelayProperties](#awssesmailmanagerrelayproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SES/MailManagerRuleSet@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SES/MailManagerRuleSetProperties](#awssesmailmanagerrulesetproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SES/MailManagerTrafficPolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SES/MailManagerTrafficPolicyProperties](#awssesmailmanagertrafficpolicyproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SES/Template@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -48,6 +97,9 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SES/VdmAttributesProperties](#awssesvdmattributesproperties) (Identifier): properties of the resource
+
+## ArchiveRetention
+### Properties
 
 ## AWS.SES/ConfigurationSetEventDestinationProperties
 ### Properties
@@ -91,6 +143,73 @@
 * **EmailIdentity**: string (Required, Identifier): The email address or domain to verify.
 * **FeedbackAttributes**: [FeedbackAttributes](#feedbackattributes)
 * **MailFromAttributes**: [MailFromAttributes](#mailfromattributes)
+
+## AWS.SES/MailManagerAddonInstanceProperties
+### Properties
+* **AddonInstanceArn**: string (ReadOnly)
+* **AddonInstanceId**: string (ReadOnly, Identifier)
+* **AddonName**: string (ReadOnly)
+* **AddonSubscriptionId**: string (Required)
+* **Tags**: [Tag](#tag)[]
+
+## AWS.SES/MailManagerAddonSubscriptionProperties
+### Properties
+* **AddonName**: string (Required)
+* **AddonSubscriptionArn**: string (ReadOnly)
+* **AddonSubscriptionId**: string (ReadOnly, Identifier)
+* **Tags**: [Tag](#tag)[]
+
+## AWS.SES/MailManagerArchiveProperties
+### Properties
+* **ArchiveArn**: string (ReadOnly)
+* **ArchiveId**: string (ReadOnly, Identifier)
+* **ArchiveName**: string
+* **ArchiveState**: string (ReadOnly)
+* **KmsKeyArn**: string
+* **Retention**: [ArchiveRetention](#archiveretention)
+* **Tags**: [Tag](#tag)[]
+
+## AWS.SES/MailManagerIngressPointProperties
+### Properties
+* **ARecord**: string (ReadOnly)
+* **IngressPointArn**: string (ReadOnly)
+* **IngressPointConfiguration**: [IngressPointConfiguration](#ingresspointconfiguration) (WriteOnly)
+* **IngressPointId**: string (ReadOnly, Identifier)
+* **IngressPointName**: string
+* **RuleSetId**: string (Required)
+* **Status**: string (ReadOnly)
+* **StatusToUpdate**: string
+* **Tags**: [Tag](#tag)[]
+* **TrafficPolicyId**: string (Required)
+* **Type**: string (Required)
+
+## AWS.SES/MailManagerRelayProperties
+### Properties
+* **Authentication**: [RelayAuthentication](#relayauthentication) (Required)
+* **RelayArn**: string (ReadOnly)
+* **RelayId**: string (ReadOnly, Identifier)
+* **RelayName**: string
+* **ServerName**: string (Required)
+* **ServerPort**: int (Required)
+* **Tags**: [Tag](#tag)[]
+
+## AWS.SES/MailManagerRuleSetProperties
+### Properties
+* **Rules**: [Rule](#rule)[] (Required)
+* **RuleSetArn**: string (ReadOnly)
+* **RuleSetId**: string (ReadOnly, Identifier)
+* **RuleSetName**: string
+* **Tags**: [Tag](#tag)[]
+
+## AWS.SES/MailManagerTrafficPolicyProperties
+### Properties
+* **DefaultAction**: string (Required)
+* **MaxMessageSizeBytes**: int
+* **PolicyStatements**: [PolicyStatement](#policystatement)[] (Required)
+* **Tags**: [Tag](#tag)[]
+* **TrafficPolicyArn**: string (ReadOnly)
+* **TrafficPolicyId**: string (ReadOnly, Identifier)
+* **TrafficPolicyName**: string
 
 ## AWS.SES/TemplateProperties
 ### Properties
@@ -166,6 +285,9 @@
 ### Properties
 * **OptimizedSharedDelivery**: string (Required): Whether emails sent with this configuration set have optimized delivery algorithm enabled.
 
+## IngressPointConfiguration
+### Properties
+
 ## KinesisFirehoseDestination
 ### Properties
 * **DeliveryStreamARN**: string (Required): The ARN of the Amazon Kinesis Firehose stream that email sending events should be published to.
@@ -176,9 +298,36 @@
 * **BehaviorOnMxFailure**: string: The action to take if the required MX record isn't found when you send an email. When you set this value to UseDefaultValue , the mail is sent using amazonses.com as the MAIL FROM domain. When you set this value to RejectMessage , the Amazon SES API v2 returns a MailFromDomainNotVerified error, and doesn't attempt to deliver the email.
 * **MailFromDomain**: string: The custom MAIL FROM domain that you want the verified identity to use
 
+## MailManagerRuleSet_RuleAction
+### Properties
+
+## MailManagerRuleSet_RuleCondition
+### Properties
+
+## MailManagerRuleSet_RuleCondition
+### Properties
+
+## PolicyCondition
+### Properties
+
+## PolicyStatement
+### Properties
+* **Action**: string (Required)
+* **Conditions**: [PolicyCondition](#policycondition)[] (Required)
+
+## RelayAuthentication
+### Properties
+
 ## ReputationOptions
 ### Properties
 * **ReputationMetricsEnabled**: bool: If true , tracking of reputation metrics is enabled for the configuration set. If false , tracking of reputation metrics is disabled for the configuration set.
+
+## Rule
+### Properties
+* **Actions**: [MailManagerRuleSet_RuleAction](#mailmanagerrulesetruleaction)[] (Required)
+* **Conditions**: [MailManagerRuleSet_RuleCondition](#mailmanagerrulesetrulecondition)[]
+* **Name**: string
+* **Unless**: [MailManagerRuleSet_RuleCondition](#mailmanagerrulesetrulecondition)[]
 
 ## SendingOptions
 ### Properties
@@ -191,6 +340,41 @@
 ## SuppressionOptions
 ### Properties
 * **SuppressedReasons**: string[]: A list that contains the reasons that email addresses are automatically added to the suppression list for your account.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

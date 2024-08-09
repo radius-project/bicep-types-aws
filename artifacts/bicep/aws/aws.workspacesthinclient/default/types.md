@@ -16,6 +16,7 @@
 * **DesktopArn**: string (Required): The Amazon Resource Name (ARN) of the desktop to stream from Amazon WorkSpaces, WorkSpaces Web, or AppStream 2.0.
 * **DesktopEndpoint**: string: The URL for the identity provider login (only for environments that use AppStream 2.0).
 * **DesktopType**: string (ReadOnly): The type of VDI.
+* **DeviceCreationTags**: [Tag](#tag)[]: An array of key-value pairs to apply to the newly created devices for this environment.
 * **Id**: string (ReadOnly, Identifier): Unique identifier of the environment.
 * **KmsKeyArn**: string: The Amazon Resource Name (ARN) of the AWS Key Management Service key used to encrypt the environment.
 * **MaintenanceWindow**: [MaintenanceWindow](#maintenancewindow): A specification for a time window to apply software updates.

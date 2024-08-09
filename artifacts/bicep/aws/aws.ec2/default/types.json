@@ -3875,7 +3875,7 @@
         "type": {
           "$ref": "#/172"
         },
-        "flags": 0,
+        "flags": 4,
         "description": "The launch template to use to launch the instances."
       },
       "LicenseSpecifications": {
@@ -4558,7 +4558,7 @@
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The type of Elastic Graphics accelerator. For more information about the values to specify for ``Type``, see [Elastic Graphics Basics](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics.html#elastic-graphics-basics), specifically the Elastic Graphics accelerator column, in the *Amazon Elastic Compute Cloud User Guide for Windows Instances*."
+        "description": "The type of Elastic Graphics accelerator."
       }
     }
   },
@@ -4768,7 +4768,7 @@
           "$ref": "#/5"
         },
         "flags": 0,
-        "description": "[Price protection] The price protection threshold for Spot Instances, as a percentage of an identified On-Demand price. The identified On-Demand price is the price of the lowest priced current generation C, M, or R instance type with your specified attributes. If no current generation C, M, or R instance type matches your attributes, then the identified price is from the lowest priced current generation instance types, and failing that, from the lowest priced previous generation instance types that match your attributes. When Amazon EC2 selects instance types with your attributes, it will exclude instance types whose price exceeds your specified threshold.\n The parameter accepts an integer, which Amazon EC2 interprets as a percentage.\n If you set ``DesiredCapacityType`` to ``vcpu`` or ``memory-mib``, the price protection threshold is based on the per vCPU or per memory price instead of the per instance price.\n  Only one of ``SpotMaxPricePercentageOverLowestPrice`` or ``MaxSpotPriceAsPercentageOfOptimalOnDemandPrice`` can be specified. If you don't specify either, Amazon EC2 will automatically apply optimal price protection to consistently select from a wide range of instance types. To indicate no price protection threshold for Spot Instances, meaning you want to consider all instance types that match your attributes, include one of these parameters and specify a high value, such as ``999999``."
+        "description": "[Price protection] The price protection threshold for Spot Instances, as a percentage of an identified On-Demand price. The identified On-Demand price is the price of the lowest priced current generation C, M, or R instance type with your specified attributes. If no current generation C, M, or R instance type matches your attributes, then the identified price is from the lowest priced current generation instance types, and failing that, from the lowest priced previous generation instance types that match your attributes. When Amazon EC2 selects instance types with your attributes, it will exclude instance types whose price exceeds your specified threshold.\n The parameter accepts an integer, which Amazon EC2 interprets as a percentage.\n If you set ``TargetCapacityUnitType`` to ``vcpu`` or ``memory-mib``, the price protection threshold is based on the per vCPU or per memory price instead of the per instance price.\n  Only one of ``SpotMaxPricePercentageOverLowestPrice`` or ``MaxSpotPriceAsPercentageOfOptimalOnDemandPrice`` can be specified. If you don't specify either, Amazon EC2 will automatically apply optimal price protection to consistently select from a wide range of instance types. To indicate no price protection threshold for Spot Instances, meaning you want to consider all instance types that match your attributes, include one of these parameters and specify a high value, such as ``999999``."
       },
       "MemoryGiBPerVCpu": {
         "type": {
@@ -4844,7 +4844,7 @@
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The IPv4 prefix. For information, see [Assigning prefixes to Amazon EC2 network interfaces](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html) in the *Amazon Elastic Compute Cloud User Guide*."
+        "description": "The IPv4 prefix. For information, see [Assigning prefixes to network interfaces](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html) in the *Amazon EC2 User Guide*."
       }
     }
   },
@@ -4897,7 +4897,7 @@
           "$ref": "#/206"
         },
         "flags": 0,
-        "description": "The CPU options for the instance. For more information, see [Optimizing CPU Options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html) in the *Amazon Elastic Compute Cloud User Guide*."
+        "description": "The CPU options for the instance. For more information, see [Optimize CPU options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html) in the *Amazon EC2 User Guide*."
       },
       "CreditSpecification": {
         "type": {
@@ -4911,7 +4911,7 @@
           "$ref": "#/6"
         },
         "flags": 0,
-        "description": "Indicates whether to enable the instance for stop protection. For more information, see [Stop protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection) in the *Amazon Elastic Compute Cloud User Guide*."
+        "description": "Indicates whether to enable the instance for stop protection. For more information, see [Enable stop protection for your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-stop-protection.html) in the *Amazon EC2 User Guide*."
       },
       "DisableApiTermination": {
         "type": {
@@ -4953,7 +4953,7 @@
           "$ref": "#/213"
         },
         "flags": 0,
-        "description": "Indicates whether an instance is enabled for hibernation. This parameter is valid only if the instance meets the [hibernation prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html). For more information, see [Hibernate your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html) in the *Amazon Elastic Compute Cloud User Guide*."
+        "description": "Indicates whether an instance is enabled for hibernation. This parameter is valid only if the instance meets the [hibernation prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html). For more information, see [Hibernate your Amazon EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html) in the *Amazon EC2 User Guide*."
       },
       "IamInstanceProfile": {
         "type": {
@@ -4967,7 +4967,7 @@
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The ID of the AMI. Alternatively, you can specify a Systems Manager parameter, which will resolve to an AMI ID on launch.\n Valid formats:\n  +   ``ami-17characters00000`` \n  +   ``resolve:ssm:parameter-name`` \n  +   ``resolve:ssm:parameter-name:version-number`` \n  +   ``resolve:ssm:parameter-name:label`` \n  \n For more information, see [Use a Systems Manager parameter to find an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html#using-systems-manager-parameter-to-find-AMI) in the *Amazon Elastic Compute Cloud User Guide*."
+        "description": "The ID of the AMI. Alternatively, you can specify a Systems Manager parameter, which will resolve to an AMI ID on launch.\n Valid formats:\n  +   ``ami-0ac394d6a3example`` \n  +   ``resolve:ssm:parameter-name`` \n  +   ``resolve:ssm:parameter-name:version-number`` \n  +   ``resolve:ssm:parameter-name:label`` \n  \n For more information, see [Use a Systems Manager parameter to find an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html#using-systems-manager-parameter-to-find-AMI) in the *Amazon Elastic Compute Cloud User Guide*."
       },
       "InstanceInitiatedShutdownBehavior": {
         "type": {
@@ -4995,7 +4995,7 @@
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The instance type. For more information, see [Instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the *Amazon Elastic Compute Cloud User Guide*.\n If you specify ``InstanceType``, you can't specify ``InstanceRequirements``."
+        "description": "The instance type. For more information, see [Amazon EC2 instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the *Amazon EC2 User Guide*.\n If you specify ``InstanceType``, you can't specify ``InstanceRequirements``."
       },
       "KernelId": {
         "type": {
@@ -5030,7 +5030,7 @@
           "$ref": "#/227"
         },
         "flags": 0,
-        "description": "The metadata options for the instance. For more information, see [Instance metadata and user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the *Amazon Elastic Compute Cloud User Guide*."
+        "description": "The metadata options for the instance. For more information, see [Instance metadata and user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the *Amazon EC2 User Guide*."
       },
       "Monitoring": {
         "type": {
@@ -5065,7 +5065,7 @@
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The ID of the RAM disk.\n  We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see [User provided kernels](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html) in the *Amazon Elastic Compute Cloud User Guide*."
+        "description": "The ID of the RAM disk.\n  We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see [User provided kernels](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html) in the *Amazon EC2 User Guide*."
       },
       "SecurityGroupIds": {
         "type": {
@@ -5093,7 +5093,7 @@
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The user data to make available to the instance. You must provide base64-encoded text. User data is limited to 16 KB. For more information, see [Run commands on your Linux instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) (Linux) or [Work with instance user data](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instancedata-add-user-data.html) (Windows) in the *Amazon Elastic Compute Cloud User Guide*.\n If you are creating the launch template for use with BATCH, the user data must be provided in the [MIME multi-part archive format](https://docs.aws.amazon.com/https://cloudinit.readthedocs.io/en/latest/topics/format.html#mime-multi-part-archive). For more information, see [Amazon EC2 user data in launch templates](https://docs.aws.amazon.com/batch/latest/userguide/launch-templates.html) in the *User Guide*."
+        "description": "The user data to make available to the instance. You must provide base64-encoded text. User data is limited to 16 KB. For more information, see [Run commands on your Amazon EC2 instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) in the *Amazon EC2 User Guide*.\n If you are creating the launch template for use with BATCH, the user data must be provided in the [MIME multi-part archive format](https://docs.aws.amazon.com/https://cloudinit.readthedocs.io/en/latest/topics/format.html#mime-multi-part-archive). For more information, see [Amazon EC2 user data in launch templates](https://docs.aws.amazon.com/batch/latest/userguide/launch-templates.html) in the *User Guide*."
       }
     }
   },
@@ -5126,7 +5126,7 @@
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The type of resource. To tag the launch template, ``ResourceType`` must be ``launch-template``."
+        "description": "The type of resource. To tag a launch template, ``ResourceType`` must be ``launch-template``."
       },
       "Tags": {
         "type": {
@@ -5342,7 +5342,7 @@
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The type of network interface. To create an Elastic Fabric Adapter (EFA), specify ``efa``. For more information, see [Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) in the *Amazon Elastic Compute Cloud User Guide*.\n If you are not creating an EFA, specify ``interface`` or omit this parameter.\n Valid values: ``interface`` | ``efa``"
+        "description": "The type of network interface. To create an Elastic Fabric Adapter (EFA), specify ``efa``. For more information, see [Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) in the *Amazon EC2 User Guide*.\n If you are not creating an EFA, specify ``interface`` or omit this parameter.\n Valid values: ``interface`` | ``efa``"
       },
       "Ipv4PrefixCount": {
         "type": {
@@ -5643,7 +5643,7 @@
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The type of resource to tag.\n Valid Values lists all resource types for Amazon EC2 that can be tagged. When you create a launch template, you can specify tags for the following resource types only: ``instance`` | ``volume`` | ``network-interface`` | ``spot-instances-request``. If the instance does not include the resource type that you specify, the instance launch fails. For example, not all instance types include a volume.\n To tag a resource after it has been created, see [CreateTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html)."
+        "description": "The type of resource to tag. You can specify tags for the following resource types only: ``instance`` | ``volume`` | ``network-interface`` | ``spot-instances-request``. If the instance does not include the resource type that you specify, the instance launch fails. For example, not all instance types include a volume.\n To tag a resource after it has been created, see [CreateTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html)."
       },
       "Tags": {
         "type": {
@@ -8786,13 +8786,15 @@
         "type": {
           "$ref": "#/6"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Indicates whether ENA Express is enabled for the network interface."
       },
       "EnaSrdUdpSpecification": {
         "type": {
           "$ref": "#/417"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Configures ENA Express for UDP network traffic."
       }
     }
   },
@@ -8821,27 +8823,28 @@
           "$ref": "#/2"
         },
         "flags": 18,
-        "description": "The ID of the network interface attachment."
+        "description": ""
       },
       "DeleteOnTermination": {
         "type": {
           "$ref": "#/6"
         },
         "flags": 0,
-        "description": "Whether to delete the network interface when the instance terminates. By default, this value is set to true."
+        "description": "Whether to delete the network interface when the instance terminates. By default, this value is set to ``true``."
       },
       "DeviceIndex": {
         "type": {
           "$ref": "#/2"
         },
         "flags": 1,
-        "description": "The network interface's position in the attachment order. For example, the first attached network interface has a DeviceIndex of 0."
+        "description": "The network interface's position in the attachment order. For example, the first attached network interface has a ``DeviceIndex`` of 0."
       },
       "EnaSrdSpecification": {
         "type": {
           "$ref": "#/416"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Configures ENA Express for the network interface that this action attaches to the instance."
       },
       "InstanceId": {
         "type": {
@@ -11187,7 +11190,7 @@
           "$ref": "#/6"
         },
         "flags": 0,
-        "description": "Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations. For more information, see [DNS64 and NAT64](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-nat64-dns64) in the *User Guide*."
+        "description": "Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations.\n  You must first configure a NAT gateway in a public subnet (separate from the subnet containing the IPv6-only workloads). For example, the subnet containing the NAT gateway should have a ``0.0.0.0/0`` route pointing to the internet gateway. For more information, see [Configure DNS64 and NAT64](https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-nat64-dns64.html#nat-gateway-nat64-dns64-walkthrough) in the *User Guide*."
       },
       "EnableLniAtDeviceIndex": {
         "type": {
@@ -13083,13 +13086,15 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The tag key."
       },
       "Value": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The tag value."
       }
     }
   },
@@ -13101,13 +13106,15 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway.\n Constraints: Allowed characters are alphanumeric characters, periods (.), and underscores (_). Must be between 8 and 64 characters in length and cannot start with zero (0)."
       },
       "TunnelInsideCidr": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The range of inside IP addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. \n Constraints: A size /30 CIDR block from the ``169.254.0.0/16`` range. The following CIDR blocks are reserved and cannot be used:\n  +   ``169.254.0.0/30`` \n  +   ``169.254.1.0/30`` \n  +   ``169.254.2.0/30`` \n  +   ``169.254.3.0/30`` \n  +   ``169.254.4.0/30`` \n  +   ``169.254.5.0/30`` \n  +   ``169.254.169.252/30``"
       }
     }
   },
@@ -13138,12 +13145,19 @@
         "flags": 1,
         "description": "The ID of the customer gateway at your end of the VPN connection."
       },
+      "EnableAcceleration": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": ""
+      },
       "StaticRoutesOnly": {
         "type": {
           "$ref": "#/6"
         },
         "flags": 0,
-        "description": "Indicates whether the VPN connection uses static routes only."
+        "description": "Indicates whether the VPN connection uses static routes only. Static routes must be used for devices that don't support BGP.\n If you are creating a VPN connection for a device that does not support Border Gateway Protocol (BGP), you must specify ``true``."
       },
       "Tags": {
         "type": {
@@ -13157,7 +13171,7 @@
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The ID of the transit gateway associated with the VPN connection."
+        "description": "The ID of the transit gateway associated with the VPN connection.\n You must specify either ``TransitGatewayId`` or ``VpnGatewayId``, but not both."
       },
       "Type": {
         "type": {
@@ -13171,14 +13185,14 @@
           "$ref": "#/2"
         },
         "flags": 18,
-        "description": "The provider-assigned unique ID for this managed resource"
+        "description": ""
       },
       "VpnGatewayId": {
         "type": {
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The ID of the virtual private gateway at the AWS side of the VPN connection."
+        "description": "The ID of the virtual private gateway at the AWS side of the VPN connection.\n You must specify either ``TransitGatewayId`` or ``VpnGatewayId``, but not both."
       },
       "VpnTunnelOptionsSpecifications": {
         "type": {

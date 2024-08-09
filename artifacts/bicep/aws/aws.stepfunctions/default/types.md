@@ -24,6 +24,7 @@
 ## AWS.StepFunctions/ActivityProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
+* **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
 * **Name**: string (Required)
 * **Tags**: [TagsEntry](#tagsentry)[]
 
@@ -42,6 +43,7 @@
 * **DefinitionS3Location**: [S3Location](#s3location) (WriteOnly)
 * **DefinitionString**: string
 * **DefinitionSubstitutions**: [DefinitionSubstitutions](#definitionsubstitutions) (WriteOnly)
+* **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
 * **LoggingConfiguration**: [LoggingConfiguration](#loggingconfiguration)
 * **Name**: string (ReadOnly)
 * **RoleArn**: string (Required)
@@ -68,6 +70,18 @@
 * **Percentage**: int: The percentage of traffic to shift to the new version in each increment.
 * **StateMachineVersionArn**: string (Required)
 * **Type**: string (Required): The type of deployment to perform.
+
+## EncryptionConfiguration
+### Properties
+* **KmsDataKeyReusePeriodSeconds**: int
+* **KmsKeyId**: string
+* **Type**: string (Required)
+
+## EncryptionConfiguration
+### Properties
+* **KmsDataKeyReusePeriodSeconds**: int
+* **KmsKeyId**: string
+* **Type**: string (Required)
 
 ## LogDestination
 ### Properties

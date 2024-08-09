@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataZone-Domain",
   "type": "AWS::DataZone::Domain",
-  "time": "2024-06-22T04:31:48.486Z",
+  "time": "2024-08-08T23:41:31.974Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -94,7 +94,9 @@
       "delete": {
         "permissions": [
           "datazone:DeleteDomain",
-          "datazone:GetDomain"
+          "datazone:GetDomain",
+          "sso:DeleteManagedApplicationInstance",
+          "sso:PutApplicationAssignmentConfiguration"
         ]
       },
       "list": {
@@ -204,6 +206,10 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "datazone:TagResource",
+        "datazone:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

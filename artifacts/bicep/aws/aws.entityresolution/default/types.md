@@ -94,17 +94,25 @@
 * **Tags**: [Tag](#tag)[]
 * **UpdatedAt**: string (ReadOnly)
 
+## IdMappingRuleBasedProperties
+### Properties
+* **AttributeMatchingModel**: string (Required)
+* **RecordMatchingModel**: string (Required)
+* **RuleDefinitionType**: string
+* **Rules**: [Rule](#rule)[]
+
 ## IdMappingTechniques
 ### Properties
 * **IdMappingType**: string
 * **ProviderProperties**: [ProviderProperties](#providerproperties)
+* **RuleBasedProperties**: [IdMappingRuleBasedProperties](#idmappingrulebasedproperties)
 
 ## IdMappingWorkflow_ProviderConfiguration
 ### Properties
 
 ## IdMappingWorkflowInputSource
 ### Properties
-* **InputSourceARN**: string (Required): An Glue table ARN for the input source table or IdNamespace ARN
+* **InputSourceARN**: string (Required): An Glue table ARN for the input source table, MatchingWorkflow arn or IdNamespace ARN
 * **SchemaArn**: string
 * **Type**: string
 
@@ -120,6 +128,7 @@
 ### Properties
 * **IdMappingType**: string (Required)
 * **ProviderProperties**: [NamespaceProviderProperties](#namespaceproviderproperties)
+* **RuleBasedProperties**: [NamespaceRuleBasedProperties](#namespacerulebasedproperties)
 
 ## IdNamespaceInputSource
 ### Properties
@@ -147,6 +156,13 @@
 ### Properties
 * **ProviderConfiguration**: [IdNamespace_ProviderConfiguration](#idnamespaceproviderconfiguration): Additional Provider configuration that would be required for the provider service. The Configuration must be in JSON string format.
 * **ProviderServiceArn**: string (Required)
+
+## NamespaceRuleBasedProperties
+### Properties
+* **AttributeMatchingModel**: string
+* **RecordMatchingModels**: string[]
+* **RuleDefinitionTypes**: string[]
+* **Rules**: [Rule](#rule)[]
 
 ## OutputAttribute
 ### Properties
@@ -183,15 +199,27 @@
 * **MatchingKeys**: string[] (Required)
 * **RuleName**: string (Required)
 
+## Rule
+### Properties
+* **MatchingKeys**: string[] (Required)
+* **RuleName**: string (Required)
+
+## Rule
+### Properties
+* **MatchingKeys**: string[] (Required)
+* **RuleName**: string (Required)
+
 ## RuleBasedProperties
 ### Properties
 * **AttributeMatchingModel**: string (Required)
+* **MatchPurpose**: string
 * **Rules**: [Rule](#rule)[] (Required)
 
 ## SchemaInputAttribute
 ### Properties
 * **FieldName**: string (Required)
 * **GroupName**: string
+* **Hashed**: bool
 * **MatchKey**: string
 * **SubType**: string: The subtype of the Attribute. Would be required only when type is PROVIDER_ID
 * **Type**: string (Required)

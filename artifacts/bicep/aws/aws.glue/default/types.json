@@ -287,5 +287,285 @@
       "$ref": "#/15"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Action",
+    "properties": {
+      "Arguments": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The job arguments used when this trigger fires. For this job run, they replace the default arguments set in the job definition itself."
+      },
+      "CrawlerName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the crawler to be used with this action."
+      },
+      "JobName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of a job to be executed."
+      },
+      "NotificationProperty": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "Specifies configuration properties of a job run notification."
+      },
+      "SecurityConfiguration": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the SecurityConfiguration structure to be used with this action."
+      },
+      "Timeout": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The JobRun timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters TIMEOUT status. The default is 2,880 minutes (48 hours). This overrides the timeout value set in the parent job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Condition",
+    "properties": {
+      "CrawlState": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The state of the crawler to which this condition applies."
+      },
+      "CrawlerName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the crawler to which this condition applies."
+      },
+      "JobName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the job whose JobRuns this condition applies to, and on which this trigger waits."
+      },
+      "LogicalOperator": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A logical operator."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The condition state. Currently, the values supported are SUCCEEDED, STOPPED, TIMEOUT, and FAILED."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EventBatchingCondition",
+    "properties": {
+      "BatchSize": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1,
+        "description": "Number of events that must be received from Amazon EventBridge before EventBridge event trigger fires."
+      },
+      "BatchWindow": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "Window of time in seconds after which EventBridge event trigger fires. Window starts when first event is received."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NotificationProperty",
+    "properties": {
+      "NotifyDelayAfter": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "After a job run starts, the number of minutes to wait before sending a job run delay notification"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Predicate",
+    "properties": {
+      "Conditions": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "A list of the conditions that determine when the trigger will fire."
+      },
+      "Logical": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "An optional field if only one condition is listed. If multiple conditions are listed, then this field is required."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Trigger_Arguments",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/TriggerProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Trigger_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/TriggerProperties",
+    "properties": {
+      "Actions": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1,
+        "description": "The actions initiated by this trigger."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description of this trigger."
+      },
+      "EventBatchingCondition": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "Batch condition that must be met (specified number of events received or batch time window expired) before EventBridge event trigger fires."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The name of the trigger."
+      },
+      "Predicate": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The predicate of this trigger, which defines when it will fire."
+      },
+      "Schedule": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A cron expression used to specify the schedule."
+      },
+      "StartOnCreation": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 4,
+        "description": "Set to true to start SCHEDULED and CONDITIONAL triggers when created. True is not supported for ON_DEMAND triggers."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "The tags to use with this trigger."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The type of trigger that this is."
+      },
+      "WorkflowName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the workflow associated with the trigger."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/Trigger",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/Trigger@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/28"
+    },
+    "flags": 0
   }
 ]

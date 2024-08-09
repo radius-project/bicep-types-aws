@@ -107,6 +107,7 @@
 * **ResourcesVpcConfig**: [ResourcesVpcConfig](#resourcesvpcconfig) (Required)
 * **RoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **UpgradePolicy**: [UpgradePolicy](#upgradepolicy)
 * **Version**: string: The desired Kubernetes version for your cluster. If you don't specify a value here, the latest version available in Amazon EKS is used.
 
 ## AWS.EKS/FargateProfileProperties
@@ -299,4 +300,8 @@
 ### Properties
 * **MaxUnavailable**: int: The maximum number of nodes unavailable at once during a version update. Nodes will be updated in parallel. This value or maxUnavailablePercentage is required to have a value.The maximum number is 100. 
 * **MaxUnavailablePercentage**: int: The maximum percentage of nodes unavailable during a version update. This percentage of nodes will be updated in parallel, up to 100 nodes at once. This value or maxUnavailable is required to have a value.
+
+## UpgradePolicy
+### Properties
+* **SupportType**: string: Specify the support type for your cluster.
 

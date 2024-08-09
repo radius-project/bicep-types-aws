@@ -150,6 +150,7 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 
 ## OperationPreferences
 ### Properties
+* **ConcurrencyMode**: string
 * **FailureToleranceCount**: int
 * **FailureTolerancePercentage**: int
 * **MaxConcurrentCount**: int

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFormation-StackSet",
   "type": "AWS::CloudFormation::StackSet",
-  "time": "2024-05-20T20:37:42.556Z",
+  "time": "2024-08-05T17:24:45.277Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -42,6 +42,14 @@
           "CAPABILITY_IAM",
           "CAPABILITY_NAMED_IAM",
           "CAPABILITY_AUTO_EXPAND"
+        ],
+        "type": "string"
+      },
+      "ConcurrencyMode": {
+        "description": "Specifies how the concurrency level behaves during the operation execution.",
+        "enum": [
+          "STRICT_FAILURE_TOLERANCE",
+          "SOFT_FAILURE_TOLERANCE"
         ],
         "type": "string"
       },
@@ -93,6 +101,9 @@
         "additionalProperties": false,
         "description": "The user-specified preferences for how AWS CloudFormation performs a stack set operation.",
         "properties": {
+          "ConcurrencyMode": {
+            "$ref": "#/definitions/ConcurrencyMode"
+          },
           "FailureToleranceCount": {
             "minimum": 0,
             "type": "integer"

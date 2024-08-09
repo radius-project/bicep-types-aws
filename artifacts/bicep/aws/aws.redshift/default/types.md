@@ -213,6 +213,8 @@ The value must be either -1 or an integer between 1 and 3,653.
 ## LoggingProperties
 ### Properties
 * **BucketName**: string
+* **LogDestinationType**: string
+* **LogExports**: string[]
 * **S3KeyPrefix**: string
 
 ## NetworkInterface

@@ -37,6 +37,7 @@
 
 ## AWS.RolesAnywhere/ProfileProperties
 ### Properties
+* **AcceptRoleSessionName**: bool
 * **AttributeMappings**: [AttributeMapping](#attributemapping)[]
 * **DurationSeconds**: int
 * **Enabled**: bool

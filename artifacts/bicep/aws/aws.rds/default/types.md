@@ -117,82 +117,346 @@
 
 ## AWS.RDS/DBClusterParameterGroupProperties
 ### Properties
-* **DBClusterParameterGroupName**: string (Identifier)
-* **Description**: string (Required): A friendly description for this DB cluster parameter group.
-* **Family**: string (Required): The DB cluster parameter group family name. A DB cluster parameter group can be associated with one and only one DB cluster parameter group family, and can be applied only to a DB cluster running a DB engine and engine version compatible with that DB cluster parameter group family.
-* **Parameters**: [DBClusterParameterGroup_Parameters](#dbclusterparametergroupparameters) (Required): An array of parameters to be modified. A maximum of 20 parameters can be modified in a single request.
-* **Tags**: [Tag](#tag)[]: The list of tags for the cluster parameter group.
+* **DBClusterParameterGroupName**: string (Identifier): The name of the DB cluster parameter group.
+ Constraints:
+  +  Must not match the name of an existing DB cluster parameter group.
+  
+  This value is stored as a lowercase string.
+* **Description**: string (Required): The description for the DB cluster parameter group.
+* **Family**: string (Required): The DB cluster parameter group family name. A DB cluster parameter group can be associated with one and only one DB cluster parameter group family, and can be applied only to a DB cluster running a database engine and engine version compatible with that DB cluster parameter group family.
+  *Aurora MySQL* 
+ Example: ``aurora-mysql5.7``, ``aurora-mysql8.0`` 
+  *Aurora PostgreSQL* 
+ Example: ``aurora-postgresql14`` 
+  *RDS for MySQL* 
+ Example: ``mysql8.0`` 
+  *RDS for PostgreSQL* 
+ Example: ``postgres13`` 
+ To list all of the available parameter group families for a DB engine, use the following command:
+  ``aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine <engine>`` 
+ For example, to list all of the available parameter group families for the Aurora PostgreSQL DB engine, use the following command:
+  ``aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine aurora-postgresql`` 
+  The output contains duplicates.
+  The following are the valid DB engine values:
+  +   ``aurora-mysql`` 
+  +   ``aurora-postgresql`` 
+  +   ``mysql`` 
+  +   ``postgres``
+* **Parameters**: [DBClusterParameterGroup_Parameters](#dbclusterparametergroupparameters) (Required): Provides a list of parameters for the DB cluster parameter group.
+* **Tags**: [Tag](#tag)[]: Tags to assign to the DB cluster parameter group.
 
 ## AWS.RDS/DBClusterProperties
 ### Properties
 * **AllocatedStorage**: int: The amount of storage in gibibytes (GiB) to allocate to each DB instance in the Multi-AZ DB cluster.
-* **AssociatedRoles**: [DBClusterRole](#dbclusterrole)[]: Provides a list of the AWS Identity and Access Management (IAM) roles that are associated with the DB cluster. IAM roles that are associated with a DB cluster grant permission for the DB cluster to access other AWS services on your behalf.
-* **AutoMinorVersionUpgrade**: bool: A value that indicates whether minor engine upgrades are applied automatically to the DB cluster during the maintenance window. By default, minor engine upgrades are applied automatically.
-* **AvailabilityZones**: string[]: A list of Availability Zones (AZs) where instances in the DB cluster can be created. For information on AWS Regions and Availability Zones, see Choosing the Regions and Availability Zones in the Amazon Aurora User Guide.
-* **BacktrackWindow**: int: The target backtrack window, in seconds. To disable backtracking, set this value to 0.
+ Valid for Cluster Type: Multi-AZ DB clusters only
+ This setting is required to create a Multi-AZ DB cluster.
+* **AssociatedRoles**: [DBClusterRole](#dbclusterrole)[]: Provides a list of the AWS Identity and Access Management (IAM) roles that are associated with the DB cluster. IAM roles that are associated with a DB cluster grant permission for the DB cluster to access other Amazon Web Services on your behalf.
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **AutoMinorVersionUpgrade**: bool: Specifies whether minor engine upgrades are applied automatically to the DB cluster during the maintenance window. By default, minor engine upgrades are applied automatically.
+ Valid for Cluster Type: Multi-AZ DB clusters only
+* **AvailabilityZones**: string[]: A list of Availability Zones (AZs) where instances in the DB cluster can be created. For information on AWS Regions and Availability Zones, see [Choosing the Regions and Availability Zones](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.RegionsAndAvailabilityZones.html) in the *Amazon Aurora User Guide*. 
+ Valid for: Aurora DB clusters only
+* **BacktrackWindow**: int: The target backtrack window, in seconds. To disable backtracking, set this value to ``0``.
+ Valid for Cluster Type: Aurora MySQL DB clusters only
+ Default: ``0`` 
+ Constraints:
+  +  If specified, this value must be set to a number from 0 to 259,200 (72 hours).
 * **BackupRetentionPeriod**: int: The number of days for which automated backups are retained.
+ Default: 1
+ Constraints:
+  +  Must be a value from 1 to 35
+  
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
 * **CopyTagsToSnapshot**: bool: A value that indicates whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.
-* **DatabaseName**: string: The name of your database. If you don't provide a name, then Amazon RDS won't create a database in this DB cluster. For naming constraints, see Naming Constraints in the Amazon RDS User Guide.
-* **DBClusterArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the DB cluster.
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **DatabaseName**: string: The name of your database. If you don't provide a name, then Amazon RDS won't create a database in this DB cluster. For naming constraints, see [Naming Constraints](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_Limits.html#RDS_Limits.Constraints) in the *Amazon Aurora User Guide*. 
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **DBClusterArn**: string (ReadOnly)
 * **DBClusterIdentifier**: string (Identifier): The DB cluster identifier. This parameter is stored as a lowercase string.
-* **DBClusterInstanceClass**: string: The compute and memory capacity of each DB instance in the Multi-AZ DB cluster, for example db.m6g.xlarge.
+ Constraints:
+  +  Must contain from 1 to 63 letters, numbers, or hyphens.
+  +  First character must be a letter.
+  +  Can't end with a hyphen or contain two consecutive hyphens.
+  
+ Example: ``my-cluster1`` 
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **DBClusterInstanceClass**: string: The compute and memory capacity of each DB instance in the Multi-AZ DB cluster, for example ``db.m6gd.xlarge``. Not all DB instance classes are available in all AWS-Regions, or for all database engines.
+ For the full list of DB instance classes and availability for your engine, see [DB instance class](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html) in the *Amazon RDS User Guide*.
+ This setting is required to create a Multi-AZ DB cluster.
+ Valid for Cluster Type: Multi-AZ DB clusters only
 * **DBClusterParameterGroupName**: string: The name of the DB cluster parameter group to associate with this DB cluster.
-* **DBClusterResourceId**: string (ReadOnly): The AWS Region-unique, immutable identifier for the DB cluster.
+  If you apply a parameter group to an existing DB cluster, then its DB instances might need to reboot. This can result in an outage while the DB instances are rebooting.
+ If you apply a change to parameter group associated with a stopped DB cluster, then the update stack waits until the DB cluster is started.
+  To list all of the available DB cluster parameter group names, use the following command:
+  ``aws rds describe-db-cluster-parameter-groups --query "DBClusterParameterGroups[].DBClusterParameterGroupName" --output text`` 
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **DBClusterResourceId**: string (ReadOnly)
 * **DBInstanceParameterGroupName**: string (WriteOnly): The name of the DB parameter group to apply to all instances of the DB cluster.
-* **DBSubnetGroupName**: string: A DB subnet group that you want to associate with this DB cluster.
+  When you apply a parameter group using the ``DBInstanceParameterGroupName`` parameter, the DB cluster isn't rebooted automatically. Also, parameter changes are applied immediately rather than during the next maintenance window.
+  Valid for Cluster Type: Aurora DB clusters only
+ Default: The existing name setting
+ Constraints:
+  +  The DB parameter group must be in the same DB parameter group family as this DB cluster.
+  +  The ``DBInstanceParameterGroupName`` parameter is valid in combination with the ``AllowMajorVersionUpgrade`` parameter for a major version upgrade only.
+* **DBSubnetGroupName**: string: A DB subnet group that you want to associate with this DB cluster. 
+ If you are restoring a DB cluster to a point in time with ``RestoreType`` set to ``copy-on-write``, and don't specify a DB subnet group name, then the DB cluster is restored with a default DB subnet group.
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
 * **DBSystemId**: string: Reserved for future use.
 * **DeletionProtection**: bool: A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled.
-* **Domain**: string: The Active Directory directory ID to create the DB cluster in.
-* **DomainIAMRoleName**: string: Specify the name of the IAM role to be used when making API calls to the Directory Service.
-* **EnableCloudwatchLogsExports**: string[]: The list of log types that need to be enabled for exporting to CloudWatch Logs. The values in the list depend on the DB engine being used. For more information, see Publishing Database Logs to Amazon CloudWatch Logs in the Amazon Aurora User Guide.
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **Domain**: string: Indicates the directory ID of the Active Directory to create the DB cluster.
+ For Amazon Aurora DB clusters, Amazon RDS can use Kerberos authentication to authenticate users that connect to the DB cluster.
+ For more information, see [Kerberos authentication](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/kerberos-authentication.html) in the *Amazon Aurora User Guide*.
+ Valid for: Aurora DB clusters only
+* **DomainIAMRoleName**: string: Specifies the name of the IAM role to use when making API calls to the Directory Service.
+ Valid for: Aurora DB clusters only
+* **EnableCloudwatchLogsExports**: string[]: The list of log types that need to be enabled for exporting to CloudWatch Logs. The values in the list depend on the DB engine being used. For more information, see [Publishing Database Logs to Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch) in the *Amazon Aurora User Guide*.
+  *Aurora MySQL* 
+ Valid values: ``audit``, ``error``, ``general``, ``slowquery`` 
+  *Aurora PostgreSQL* 
+ Valid values: ``postgresql`` 
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
 * **EnableGlobalWriteForwarding**: bool: Specifies whether to enable this DB cluster to forward write operations to the primary cluster of a global cluster (Aurora global database). By default, write operations are not allowed on Aurora DB clusters that are secondary clusters in an Aurora global database.
-* **EnableHttpEndpoint**: bool: A value that indicates whether to enable the HTTP endpoint for DB cluster. By default, the HTTP endpoint is disabled.
+ You can set this value only on Aurora DB clusters that are members of an Aurora global database. With this parameter enabled, a secondary cluster can forward writes to the current primary cluster, and the resulting changes are replicated back to this cluster. For the primary DB cluster of an Aurora global database, this value is used immediately if the primary is demoted by a global cluster API operation, but it does nothing until then.
+ Valid for Cluster Type: Aurora DB clusters only
+* **EnableHttpEndpoint**: bool: Specifies whether to enable the HTTP endpoint for the DB cluster. By default, the HTTP endpoint isn't enabled.
+ When enabled, the HTTP endpoint provides a connectionless web service API (RDS Data API) for running SQL queries on the DB cluster. You can also query your database from inside the RDS console with the RDS query editor.
+ RDS Data API is supported with the following DB clusters:
+  +  Aurora PostgreSQL Serverless v2 and provisioned
+  +  Aurora PostgreSQL and Aurora MySQL Serverless v1
+  
+ For more information, see [Using RDS Data API](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html) in the *Amazon Aurora User Guide*.
+ Valid for Cluster Type: Aurora DB clusters only
 * **EnableIAMDatabaseAuthentication**: bool: A value that indicates whether to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts. By default, mapping is disabled.
+ For more information, see [IAM Database Authentication](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html) in the *Amazon Aurora User Guide.* 
+ Valid for: Aurora DB clusters only
 * **EnableLocalWriteForwarding**: bool: Specifies whether read replicas can forward write operations to the writer DB instance in the DB cluster. By default, write operations aren't allowed on reader DB instances.
+ Valid for: Aurora DB clusters only
 * **Endpoint**: [Endpoint](#endpoint) (ReadOnly)
-* **Engine**: string: The name of the database engine to be used for this DB cluster. Valid Values: aurora (for MySQL 5.6-compatible Aurora), aurora-mysql (for MySQL 5.7-compatible Aurora), and aurora-postgresql
-* **EngineLifecycleSupport**: string: The life cycle type of the DB cluster. You can use this setting to enroll your DB cluster into Amazon RDS Extended Support.
-* **EngineMode**: string: The DB engine mode of the DB cluster, either provisioned, serverless, parallelquery, global, or multimaster.
+* **Engine**: string: The name of the database engine to be used for this DB cluster.
+ Valid Values:
+  +   ``aurora-mysql`` 
+  +   ``aurora-postgresql`` 
+  +   ``mysql`` 
+  +   ``postgres`` 
+  
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **EngineLifecycleSupport**: string: The life cycle type for this DB cluster.
+  By default, this value is set to ``open-source-rds-extended-support``, which enrolls your DB cluster into Amazon RDS Extended Support. At the end of standard support, you can avoid charges for Extended Support by setting the value to ``open-source-rds-extended-support-disabled``. In this case, creating the DB cluster will fail if the DB major version is past its end of standard support date.
+  You can use this setting to enroll your DB cluster into Amazon RDS Extended Support. With RDS Extended Support, you can run the selected major engine version on your DB cluster past the end of standard support for that engine version. For more information, see the following sections:
+  +  Amazon Aurora (PostgreSQL only) - [Using Amazon RDS Extended Support](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html) in the *Amazon Aurora User Guide* 
+  +  Amazon RDS - [Using Amazon RDS Extended Support](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html) in the *Amazon RDS User Guide* 
+  
+ Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
+ Valid Values: ``open-source-rds-extended-support | open-source-rds-extended-support-disabled`` 
+ Default: ``open-source-rds-extended-support``
+* **EngineMode**: string: The DB engine mode of the DB cluster, either ``provisioned`` or ``serverless``.
+ The ``serverless`` engine mode only applies for Aurora Serverless v1 DB clusters. Aurora Serverless v2 DB clusters use the ``provisioned`` engine mode.
+ For information about limitations and requirements for Serverless DB clusters, see the following sections in the *Amazon Aurora User Guide*:
+  +   [Limitations of Aurora Serverless v1](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html#aurora-serverless.limitations) 
+  +   [Requirements for Aurora Serverless v2](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.requirements.html) 
+  
+ Valid for Cluster Type: Aurora DB clusters only
 * **EngineVersion**: string: The version number of the database engine to use.
-* **GlobalClusterIdentifier**: string: If you are configuring an Aurora global database cluster and want your Aurora DB cluster to be a secondary member in the global database cluster, specify the global cluster ID of the global database cluster. To define the primary database cluster of the global cluster, use the AWS::RDS::GlobalCluster resource.
-
-If you aren't configuring a global database cluster, don't specify this property.
+ To list all of the available engine versions for Aurora MySQL version 2 (5.7-compatible) and version 3 (8.0-compatible), use the following command:
+  ``aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"`` 
+ You can supply either ``5.7`` or ``8.0`` to use the default engine version for Aurora MySQL version 2 or version 3, respectively.
+ To list all of the available engine versions for Aurora PostgreSQL, use the following command:
+  ``aws rds describe-db-engine-versions --engine aurora-postgresql --query "DBEngineVersions[].EngineVersion"`` 
+ To list all of the available engine versions for RDS for MySQL, use the following command:
+  ``aws rds describe-db-engine-versions --engine mysql --query "DBEngineVersions[].EngineVersion"`` 
+ To list all of the available engine versions for RDS for PostgreSQL, use the following command:
+  ``aws rds describe-db-engine-versions --engine postgres --query "DBEngineVersions[].EngineVersion"`` 
+  *Aurora MySQL* 
+ For information, see [Database engine updates for Amazon Aurora MySQL](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Updates.html) in the *Amazon Aurora User Guide*.
+  *Aurora PostgreSQL* 
+ For information, see [Amazon Aurora PostgreSQL releases and engine versions](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.Updates.20180305.html) in the *Amazon Aurora User Guide*.
+  *MySQL* 
+ For information, see [Amazon RDS for MySQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.VersionMgmt) in the *Amazon RDS User Guide*.
+  *PostgreSQL* 
+ For information, see [Amazon RDS for PostgreSQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts) in the *Amazon RDS User Guide*.
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **GlobalClusterIdentifier**: string: If you are configuring an Aurora global database cluster and want your Aurora DB cluster to be a secondary member in the global database cluster, specify the global cluster ID of the global database cluster. To define the primary database cluster of the global cluster, use the [AWS::RDS::GlobalCluster](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-globalcluster.html) resource. 
+  If you aren't configuring a global database cluster, don't specify this property. 
+  To remove the DB cluster from a global database cluster, specify an empty value for the ``GlobalClusterIdentifier`` property.
+  For information about Aurora global databases, see [Working with Amazon Aurora Global Databases](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html) in the *Amazon Aurora User Guide*.
+ Valid for: Aurora DB clusters only
 * **Iops**: int: The amount of Provisioned IOPS (input/output operations per second) to be initially allocated for each DB instance in the Multi-AZ DB cluster.
-* **KmsKeyId**: string: The Amazon Resource Name (ARN) of the AWS Key Management Service master key that is used to encrypt the database instances in the DB cluster, such as arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef. If you enable the StorageEncrypted property but don't specify this property, the default master key is used. If you specify this property, you must set the StorageEncrypted property to true.
-* **ManageMasterUserPassword**: bool: A value that indicates whether to manage the master user password with AWS Secrets Manager.
-* **MasterUsername**: string: The name of the master user for the DB cluster. You must specify MasterUsername, unless you specify SnapshotIdentifier. In that case, don't specify MasterUsername.
+ For information about valid IOPS values, see [Provisioned IOPS storage](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS) in the *Amazon RDS User Guide*.
+ This setting is required to create a Multi-AZ DB cluster.
+ Valid for Cluster Type: Multi-AZ DB clusters only
+ Constraints:
+  +  Must be a multiple between .5 and 50 of the storage amount for the DB cluster.
+* **KmsKeyId**: string: The Amazon Resource Name (ARN) of the AWS KMS key that is used to encrypt the database instances in the DB cluster, such as ``arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef``. If you enable the ``StorageEncrypted`` property but don't specify this property, the default KMS key is used. If you specify this property, you must set the ``StorageEncrypted`` property to ``true``.
+ If you specify the ``SnapshotIdentifier`` property, the ``StorageEncrypted`` property value is inherited from the snapshot, and if the DB cluster is encrypted, the specified ``KmsKeyId`` property is used.
+ If you create a read replica of an encrypted DB cluster in another AWS Region, make sure to set ``KmsKeyId`` to a KMS key identifier that is valid in the destination AWS Region. This KMS key is used to encrypt the read replica in that AWS Region.
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **ManageMasterUserPassword**: bool: Specifies whether to manage the master user password with AWS Secrets Manager.
+ For more information, see [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html) in the *Amazon RDS User Guide* and [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-secrets-manager.html) in the *Amazon Aurora User Guide.* 
+ Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
+ Constraints:
+  +  Can't manage the master user password with AWS Secrets Manager if ``MasterUserPassword`` is specified.
+* **MasterUsername**: string: The name of the master user for the DB cluster.
+  If you specify the ``SourceDBClusterIdentifier``, ``SnapshotIdentifier``, or ``GlobalClusterIdentifier`` property, don't specify this property. The value is inherited from the source DB cluster, the snapshot, or the primary DB cluster for the global database cluster, respectively.
+  Valid for: Aurora DB clusters and Multi-AZ DB clusters
 * **MasterUserPassword**: string (WriteOnly): The master password for the DB instance.
-* **MasterUserSecret**: [MasterUserSecret](#masterusersecret): Contains the secret managed by RDS in AWS Secrets Manager for the master user password.
-* **MonitoringInterval**: int: The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB cluster. To turn off collecting Enhanced Monitoring metrics, specify 0. The default is 0.
-* **MonitoringRoleArn**: string: The Amazon Resource Name (ARN) for the IAM role that permits RDS to send Enhanced Monitoring metrics to Amazon CloudWatch Logs.
+  If you specify the ``SourceDBClusterIdentifier``, ``SnapshotIdentifier``, or ``GlobalClusterIdentifier`` property, don't specify this property. The value is inherited from the source DB cluster, the snapshot, or the primary DB cluster for the global database cluster, respectively.
+  Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **MasterUserSecret**: [MasterUserSecret](#masterusersecret): The secret managed by RDS in AWS Secrets Manager for the master user password.
+ For more information, see [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html) in the *Amazon RDS User Guide* and [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-secrets-manager.html) in the *Amazon Aurora User Guide.*
+* **MonitoringInterval**: int: The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB cluster. To turn off collecting Enhanced Monitoring metrics, specify ``0``.
+ If ``MonitoringRoleArn`` is specified, also set ``MonitoringInterval`` to a value other than ``0``.
+ Valid for Cluster Type: Multi-AZ DB clusters only
+ Valid Values: ``0 | 1 | 5 | 10 | 15 | 30 | 60`` 
+ Default: ``0``
+* **MonitoringRoleArn**: string: The Amazon Resource Name (ARN) for the IAM role that permits RDS to send Enhanced Monitoring metrics to Amazon CloudWatch Logs. An example is ``arn:aws:iam:123456789012:role/emaccess``. For information on creating a monitoring role, see [Setting up and enabling Enhanced Monitoring](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html#USER_Monitoring.OS.Enabling) in the *Amazon RDS User Guide*.
+ If ``MonitoringInterval`` is set to a value other than ``0``, supply a ``MonitoringRoleArn`` value.
+ Valid for Cluster Type: Multi-AZ DB clusters only
 * **NetworkType**: string: The network type of the DB cluster.
-* **PerformanceInsightsEnabled**: bool: A value that indicates whether to turn on Performance Insights for the DB cluster.
-* **PerformanceInsightsKmsKeyId**: string: The Amazon Web Services KMS key identifier for encryption of Performance Insights data.
-* **PerformanceInsightsRetentionPeriod**: int: The amount of time, in days, to retain Performance Insights data.
-* **Port**: int: The port number on which the instances in the DB cluster accept connections. Default: 3306 if engine is set as aurora or 5432 if set to aurora-postgresql.
-* **PreferredBackupWindow**: string: The daily time range during which automated backups are created if automated backups are enabled using the BackupRetentionPeriod parameter. The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region. To see the time blocks available, see Adjusting the Preferred DB Cluster Maintenance Window in the Amazon Aurora User Guide.
-* **PreferredMaintenanceWindow**: string: The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC). The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week. To see the time blocks available, see Adjusting the Preferred DB Cluster Maintenance Window in the Amazon Aurora User Guide.
-* **PubliclyAccessible**: bool: A value that indicates whether the DB cluster is publicly accessible.
-* **ReadEndpoint**: [ReadEndpoint](#readendpoint)
-* **ReplicationSourceIdentifier**: string: The Amazon Resource Name (ARN) of the source DB instance or DB cluster if this DB cluster is created as a Read Replica.
-* **RestoreToTime**: string (WriteOnly): The date and time to restore the DB cluster to. Value must be a time in Universal Coordinated Time (UTC) format. An example: 2015-03-07T23:45:00Z
+ Valid values:
+  +   ``IPV4`` 
+  +   ``DUAL`` 
+  
+ The network type is determined by the ``DBSubnetGroup`` specified for the DB cluster. A ``DBSubnetGroup`` can support only the IPv4 protocol or the IPv4 and IPv6 protocols (``DUAL``).
+ For more information, see [Working with a DB instance in a VPC](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html) in the *Amazon Aurora User Guide.* 
+ Valid for: Aurora DB clusters only
+* **PerformanceInsightsEnabled**: bool: Specifies whether to turn on Performance Insights for the DB cluster.
+ For more information, see [Using Amazon Performance Insights](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html) in the *Amazon RDS User Guide*.
+ Valid for Cluster Type: Multi-AZ DB clusters only
+* **PerformanceInsightsKmsKeyId**: string: The AWS KMS key identifier for encryption of Performance Insights data.
+ The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key.
+ If you don't specify a value for ``PerformanceInsightsKMSKeyId``, then Amazon RDS uses your default KMS key. There is a default KMS key for your AWS-account. Your AWS-account has a different default KMS key for each AWS-Region.
+ Valid for Cluster Type: Multi-AZ DB clusters only
+* **PerformanceInsightsRetentionPeriod**: int: The number of days to retain Performance Insights data.
+ Valid for Cluster Type: Multi-AZ DB clusters only
+ Valid Values:
+  +   ``7`` 
+  +   *month* * 31, where *month* is a number of months from 1-23. Examples: ``93`` (3 months * 31), ``341`` (11 months * 31), ``589`` (19 months * 31)
+  +   ``731`` 
+  
+ Default: ``7`` days
+ If you specify a retention period that isn't valid, such as ``94``, Amazon RDS issues an error.
+* **Port**: int: The port number on which the DB instances in the DB cluster accept connections.
+ Default:
+  +  When ``EngineMode`` is ``provisioned``, ``3306`` (for both Aurora MySQL and Aurora PostgreSQL)
+  +  When ``EngineMode`` is ``serverless``:
+  +   ``3306`` when ``Engine`` is ``aurora`` or ``aurora-mysql`` 
+  +   ``5432`` when ``Engine`` is ``aurora-postgresql`` 
+  
+  
+  The ``No interruption`` on update behavior only applies to DB clusters. If you are updating a DB instance, see [Port](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-port) for the AWS::RDS::DBInstance resource.
+  Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **PreferredBackupWindow**: string: The daily time range during which automated backups are created. For more information, see [Backup Window](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.Backups.BackupWindow) in the *Amazon Aurora User Guide.* 
+ Constraints:
+  +  Must be in the format ``hh24:mi-hh24:mi``.
+  +  Must be in Universal Coordinated Time (UTC).
+  +  Must not conflict with the preferred maintenance window.
+  +  Must be at least 30 minutes.
+  
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **PreferredMaintenanceWindow**: string: The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).
+ Format: ``ddd:hh24:mi-ddd:hh24:mi`` 
+ The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week. To see the time blocks available, see [Adjusting the Preferred DB Cluster Maintenance Window](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_UpgradeDBInstance.Maintenance.html#AdjustingTheMaintenanceWindow.Aurora) in the *Amazon Aurora User Guide.* 
+ Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun.
+ Constraints: Minimum 30-minute window.
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **PubliclyAccessible**: bool: Specifies whether the DB cluster is publicly accessible.
+ When the DB cluster is publicly accessible and you connect from outside of the DB cluster's virtual private cloud (VPC), its Domain Name System (DNS) endpoint resolves to the public IP address. When you connect from within the same VPC as the DB cluster, the endpoint resolves to the private IP address. Access to the DB cluster is ultimately controlled by the security group it uses. That public access isn't permitted if the security group assigned to the DB cluster doesn't permit it.
+ When the DB cluster isn't publicly accessible, it is an internal DB cluster with a DNS name that resolves to a private IP address.
+ Valid for Cluster Type: Multi-AZ DB clusters only
+ Default: The default behavior varies depending on whether ``DBSubnetGroupName`` is specified.
+ If ``DBSubnetGroupName`` isn't specified, and ``PubliclyAccessible`` isn't specified, the following applies:
+  +  If the default VPC in the target Region doesn?t have an internet gateway attached to it, the DB cluster is private.
+  +  If the default VPC in the target Region has an internet gateway attached to it, the DB cluster is public.
+  
+ If ``DBSubnetGroupName`` is specified, and ``PubliclyAccessible`` isn't specified, the following applies:
+  +  If the subnets are part of a VPC that doesn?t have an internet gateway attached to it, the DB cluster is private.
+  +  If the subnets are part of a VPC that has an internet gateway attached to it, the DB cluster is public.
+* **ReadEndpoint**: [ReadEndpoint](#readendpoint): This data type represents the information you need to connect to an Amazon RDS DB instance. This data type is used as a response element in the following actions:
+  +   ``CreateDBInstance`` 
+  +   ``DescribeDBInstances`` 
+  +   ``DeleteDBInstance`` 
+  
+ For the data structure that represents Amazon Aurora DB cluster endpoints, see ``DBClusterEndpoint``.
+* **ReplicationSourceIdentifier**: string: The Amazon Resource Name (ARN) of the source DB instance or DB cluster if this DB cluster is created as a read replica.
+ Valid for: Aurora DB clusters only
+* **RestoreToTime**: string (WriteOnly): The date and time to restore the DB cluster to.
+ Valid Values: Value must be a time in Universal Coordinated Time (UTC) format
+ Constraints:
+  +  Must be before the latest restorable time for the DB instance
+  +  Must be specified if ``UseLatestRestorableTime`` parameter isn't provided
+  +  Can't be specified if the ``UseLatestRestorableTime`` parameter is enabled
+  +  Can't be specified if the ``RestoreType`` parameter is ``copy-on-write`` 
+  
+ This property must be used with ``SourceDBClusterIdentifier`` property. The resulting cluster will have the identifier that matches the value of the ``DBclusterIdentifier`` property.
+ Example: ``2015-03-07T23:45:00Z`` 
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
 * **RestoreType**: string (WriteOnly): The type of restore to be performed. You can specify one of the following values:
-full-copy - The new DB cluster is restored as a full copy of the source DB cluster.
-copy-on-write - The new DB cluster is restored as a clone of the source DB cluster.
-* **ScalingConfiguration**: [ScalingConfiguration](#scalingconfiguration): The ScalingConfiguration property type specifies the scaling configuration of an Aurora Serverless DB cluster.
-* **ServerlessV2ScalingConfiguration**: [ServerlessV2ScalingConfiguration](#serverlessv2scalingconfiguration): Contains the scaling configuration of an Aurora Serverless v2 DB cluster.
+  +   ``full-copy`` - The new DB cluster is restored as a full copy of the source DB cluster.
+  +   ``copy-on-write`` - The new DB cluster is restored as a clone of the source DB cluster.
+  
+ If you don't specify a ``RestoreType`` value, then the new DB cluster is restored as a full copy of the source DB cluster.
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **ScalingConfiguration**: [ScalingConfiguration](#scalingconfiguration): The scaling configuration of an Aurora Serverless v1 DB cluster.
+ This property is only supported for Aurora Serverless v1. For Aurora Serverless v2, Use the ``ServerlessV2ScalingConfiguration`` property.
+ Valid for: Aurora Serverless v1 DB clusters only
+* **ServerlessV2ScalingConfiguration**: [ServerlessV2ScalingConfiguration](#serverlessv2scalingconfiguration): The scaling configuration of an Aurora Serverless V2 DB cluster. 
+ This property is only supported for Aurora Serverless v2. For Aurora Serverless v1, Use the ``ScalingConfiguration`` property.
+ Valid for: Aurora Serverless v2 DB clusters only
 * **SnapshotIdentifier**: string (WriteOnly): The identifier for the DB snapshot or DB cluster snapshot to restore from.
-You can use either the name or the Amazon Resource Name (ARN) to specify a DB cluster snapshot. However, you can use only the ARN to specify a DB snapshot.
-After you restore a DB cluster with a SnapshotIdentifier property, you must specify the same SnapshotIdentifier property for any future updates to the DB cluster. When you specify this property for an update, the DB cluster is not restored from the snapshot again, and the data in the database is not changed. However, if you don't specify the SnapshotIdentifier property, an empty DB cluster is created, and the original DB cluster is deleted. If you specify a property that is different from the previous snapshot restore property, the DB cluster is restored from the specified SnapshotIdentifier property, and the original DB cluster is deleted.
-* **SourceDBClusterIdentifier**: string (WriteOnly): The identifier of the source DB cluster from which to restore.
-* **SourceRegion**: string (WriteOnly): The AWS Region which contains the source DB cluster when replicating a DB cluster. For example, us-east-1.
-* **StorageEncrypted**: bool: Indicates whether the DB instance is encrypted.
-If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceIdentifier property, don't specify this property. The value is inherited from the cluster, snapshot, or source DB instance.
-* **StorageThroughput**: int (ReadOnly): Specifies the storage throughput value for the DB cluster. This setting applies only to the gp3 storage type.
-* **StorageType**: string: Specifies the storage type to be associated with the DB cluster.
-* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-* **UseLatestRestorableTime**: bool (WriteOnly): A value that indicates whether to restore the DB cluster to the latest restorable backup time. By default, the DB cluster is not restored to the latest restorable backup time.
+ You can use either the name or the Amazon Resource Name (ARN) to specify a DB cluster snapshot. However, you can use only the ARN to specify a DB snapshot.
+ After you restore a DB cluster with a ``SnapshotIdentifier`` property, you must specify the same ``SnapshotIdentifier`` property for any future updates to the DB cluster. When you specify this property for an update, the DB cluster is not restored from the snapshot again, and the data in the database is not changed. However, if you don't specify the ``SnapshotIdentifier`` property, an empty DB cluster is created, and the original DB cluster is deleted. If you specify a property that is different from the previous snapshot restore property, a new DB cluster is restored from the specified ``SnapshotIdentifier`` property, and the original DB cluster is deleted.
+ If you specify the ``SnapshotIdentifier`` property to restore a DB cluster (as opposed to specifying it for DB cluster updates), then don't specify the following properties:
+  +   ``GlobalClusterIdentifier`` 
+  +   ``MasterUsername`` 
+  +   ``MasterUserPassword`` 
+  +   ``ReplicationSourceIdentifier`` 
+  +   ``RestoreType`` 
+  +   ``SourceDBClusterIdentifier`` 
+  +   ``SourceRegion`` 
+  +   ``StorageEncrypted`` (for an encrypted snapshot)
+  +   ``UseLatestRestorableTime`` 
+  
+ Constraints:
+  +  Must match the identifier of an existing Snapshot.
+  
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **SourceDBClusterIdentifier**: string (WriteOnly): When restoring a DB cluster to a point in time, the identifier of the source DB cluster from which to restore.
+ Constraints:
+  +  Must match the identifier of an existing DBCluster.
+  
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **SourceRegion**: string (WriteOnly): The AWS Region which contains the source DB cluster when replicating a DB cluster. For example, ``us-east-1``. 
+ Valid for: Aurora DB clusters only
+* **StorageEncrypted**: bool: Indicates whether the DB cluster is encrypted.
+ If you specify the ``KmsKeyId`` property, then you must enable encryption.
+ If you specify the ``SourceDBClusterIdentifier`` property, don't specify this property. The value is inherited from the source DB cluster, and if the DB cluster is encrypted, the specified ``KmsKeyId`` property is used.
+ If you specify the ``SnapshotIdentifier`` and the specified snapshot is encrypted, don't specify this property. The value is inherited from the snapshot, and the specified ``KmsKeyId`` property is used.
+ If you specify the ``SnapshotIdentifier`` and the specified snapshot isn't encrypted, you can use this property to specify that the restored DB cluster is encrypted. Specify the ``KmsKeyId`` property for the KMS key to use for encryption. If you don't want the restored DB cluster to be encrypted, then don't set this property or set it to ``false``.
+  If you specify both the ``StorageEncrypted`` and ``SnapshotIdentifier`` properties without specifying the ``KmsKeyId`` property, then the restored DB cluster inherits the encryption settings from the DB snapshot that provide.
+  Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **StorageThroughput**: int (ReadOnly)
+* **StorageType**: string: The storage type to associate with the DB cluster.
+ For information on storage types for Aurora DB clusters, see [Storage configurations for Amazon Aurora DB clusters](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html#aurora-storage-type). For information on storage types for Multi-AZ DB clusters, see [Settings for creating Multi-AZ DB clusters](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/create-multi-az-db-cluster.html#create-multi-az-db-cluster-settings).
+ This setting is required to create a Multi-AZ DB cluster.
+ When specified for a Multi-AZ DB cluster, a value for the ``Iops`` parameter is required.
+ Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
+ Valid Values:
+  +  Aurora DB clusters - ``aurora | aurora-iopt1`` 
+  +  Multi-AZ DB clusters - ``io1 | io2 | gp3`` 
+  
+ Default:
+  +  Aurora DB clusters - ``aurora`` 
+  +  Multi-AZ DB clusters - ``io1`` 
+  
+  When you create an Aurora DB cluster with the storage type set to ``aurora-iopt1``, the storage type is returned in the response. The storage type isn't returned when you set it to ``aurora``.
+* **Tags**: [Tag](#tag)[]: Tags to assign to the DB cluster.
+ Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
+* **UseLatestRestorableTime**: bool (WriteOnly): A value that indicates whether to restore the DB cluster to the latest restorable backup time. By default, the DB cluster is not restored to the latest restorable backup time. 
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
 * **VpcSecurityGroupIds**: string[]: A list of EC2 VPC security groups to associate with this DB cluster.
+ If you plan to update the resource, don't specify VPC security groups in a shared VPC.
+ Valid for: Aurora DB clusters and Multi-AZ DB clusters
 
 ## AWS.RDS/DBInstanceProperties
 ### Properties
@@ -248,7 +512,7 @@ If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceI
   *Amazon Aurora* 
  Not applicable. The associated roles are managed by the DB cluster.
 * **AutomaticBackupReplicationKmsKeyId**: string (WriteOnly): The AWS KMS key identifier for encryption of the replicated automated backups. The KMS key ID is the Amazon Resource Name (ARN) for the KMS encryption key in the destination AWS-Region, for example, ``arn:aws:kms:us-east-1:123456789012:key/AKIAIOSFODNN7EXAMPLE``.
-* **AutomaticBackupReplicationRegion**: string: The destination region for the backup replication of the DB instance. For more info, see [Replicating automated backups to another Region](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReplicateBackups.html) in the *Amazon RDS User Guide*.
+* **AutomaticBackupReplicationRegion**: string: The AWS-Region associated with the automated backup.
 * **AutoMinorVersionUpgrade**: bool: A value that indicates whether minor engine upgrades are applied automatically to the DB instance during the maintenance window. By default, minor engine upgrades are applied automatically.
 * **AvailabilityZone**: string: The Availability Zone (AZ) where the database will be created. For information on AWS-Regions and Availability Zones, see [Regions and Availability Zones](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html).
  For Amazon Aurora, each Aurora DB cluster hosts copies of its storage in three separate Availability Zones. Specify one of these Availability Zones. Aurora automatically chooses an appropriate Availability Zone if you don't specify one.
@@ -289,7 +553,8 @@ If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceI
   +  The instance profile name and the associated IAM role name must start with the prefix ``AWSRDSCustom``.
   
  For the list of permissions required for the IAM role, see [Configure IAM and your VPC](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc) in the *Amazon RDS User Guide*.
-* **DBClusterIdentifier**: string: The identifier of the DB cluster that the instance will belong to.
+* **DBClusterIdentifier**: string: The identifier of the DB cluster that this DB instance will belong to.
+ This setting doesn't apply to RDS Custom DB instances.
 * **DBClusterSnapshotIdentifier**: string: The identifier for the Multi-AZ DB cluster snapshot to restore from.
  For more information on Multi-AZ DB clusters, see [Multi-AZ DB cluster deployments](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html) in the *Amazon RDS User Guide*.
  Constraints:
@@ -381,7 +646,6 @@ If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceI
   +   ``DBClusterIdentifier`` 
   +   ``DBName`` 
   +   ``DeleteAutomatedBackups`` 
-  +   ``EnablePerformanceInsights`` 
   +   ``KmsKeyId`` 
   +   ``MasterUsername`` 
   +   ``MasterUserPassword`` 
@@ -397,17 +661,15 @@ If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceI
  Not applicable. Snapshot restore is managed by the DB cluster.
 * **DBSubnetGroupName**: string: A DB subnet group to associate with the DB instance. If you update this value, the new subnet group must be a subnet group in a new VPC. 
  If there's no DB subnet group, then the DB instance isn't a VPC DB instance.
- For more information about using Amazon RDS in a VPC, see [Using Amazon RDS with Amazon Virtual Private Cloud (VPC)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html) in the *Amazon RDS User Guide*. 
-  *Amazon Aurora* 
- Not applicable. The DB subnet group is managed by the DB cluster. If specified, the setting must match the DB cluster setting.
+ For more information about using Amazon RDS in a VPC, see [Amazon VPC and Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html) in the *Amazon RDS User Guide*. 
+ This setting doesn't apply to Amazon Aurora DB instances. The DB subnet group is managed by the DB cluster. If specified, the setting must match the DB cluster setting.
 * **DBSystemId**: string (ReadOnly): The Oracle system identifier (SID), which is the name of the Oracle database instance that manages your database files. In this context, the term "Oracle database instance" refers exclusively to the system global area (SGA) and Oracle background processes. If you don't specify a SID, the value defaults to ``RDSCDB``. The Oracle SID is also the name of your CDB.
 * **DedicatedLogVolume**: bool: Indicates whether the DB instance has a dedicated log volume (DLV) enabled.
 * **DeleteAutomatedBackups**: bool (WriteOnly): A value that indicates whether to remove automated backups immediately after the DB instance is deleted. This parameter isn't case-sensitive. The default is to remove automated backups immediately after the DB instance is deleted.
   *Amazon Aurora* 
  Not applicable. When you delete a DB cluster, all automated backups for that DB cluster are deleted and can't be recovered. Manual DB cluster snapshots of the DB cluster are not deleted.
-* **DeletionProtection**: bool: A value that indicates whether the DB instance has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled. For more information, see [Deleting a DB Instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html). 
-  *Amazon Aurora* 
- Not applicable. You can enable or disable deletion protection for the DB cluster. For more information, see ``CreateDBCluster``. DB instances in a DB cluster can be deleted even when deletion protection is enabled for the DB cluster.
+* **DeletionProtection**: bool: Specifies whether the DB instance has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection isn't enabled. For more information, see [Deleting a DB Instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
+ This setting doesn't apply to Amazon Aurora DB instances. You can enable or disable deletion protection for the DB cluster. For more information, see ``CreateDBCluster``. DB instances in a DB cluster can be deleted even when deletion protection is enabled for the DB cluster.
 * **Domain**: string: The Active Directory directory ID to create the DB instance in. Currently, only Db2, MySQL, Microsoft SQL Server, Oracle, and PostgreSQL DB instances can be created in an Active Directory Domain.
  For more information, see [Kerberos Authentication](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/kerberos-authentication.html) in the *Amazon RDS User Guide*.
 * **DomainAuthSecretArn**: string: The ARN for the Secrets Manager secret with the credentials for the user joining the domain.
@@ -479,7 +741,12 @@ If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceI
   +   ``sqlserver-se`` 
   +   ``sqlserver-ex`` 
   +   ``sqlserver-web``
-* **EngineLifecycleSupport**: string
+* **EngineLifecycleSupport**: string: The life cycle type for this DB instance.
+  By default, this value is set to ``open-source-rds-extended-support``, which enrolls your DB instance into Amazon RDS Extended Support. At the end of standard support, you can avoid charges for Extended Support by setting the value to ``open-source-rds-extended-support-disabled``. In this case, creating the DB instance will fail if the DB major version is past its end of standard support date.
+  This setting applies only to RDS for MySQL and RDS for PostgreSQL. For Amazon Aurora DB instances, the life cycle type is managed by the DB cluster.
+ You can use this setting to enroll your DB instance into Amazon RDS Extended Support. With RDS Extended Support, you can run the selected major engine version on your DB instance past the end of standard support for that engine version. For more information, see [Using Amazon RDS Extended Support](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html) in the *Amazon RDS User Guide*.
+ Valid Values: ``open-source-rds-extended-support | open-source-rds-extended-support-disabled`` 
+ Default: ``open-source-rds-extended-support``
 * **EngineVersion**: string: The version number of the database engine to use.
  For a list of valid engine versions, use the ``DescribeDBEngineVersions`` action.
  The following are the database engines and links to information about the major and minor versions that are available with Amazon RDS. Not every database engine is available for every AWS Region.
@@ -540,30 +807,30 @@ If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceI
   
   *RDS for MariaDB* 
  Constraints:
-   +  Must be 1 to 16 letters or numbers.
+  +  Must be 1 to 16 letters or numbers.
   +  Can't be a reserved word for the chosen database engine.
   
   *RDS for Microsoft SQL Server* 
  Constraints:
-   +  Must be 1 to 128 letters or numbers.
+  +  Must be 1 to 128 letters or numbers.
   +  First character must be a letter.
   +  Can't be a reserved word for the chosen database engine.
   
   *RDS for MySQL* 
  Constraints:
-   +  Must be 1 to 16 letters or numbers.
+  +  Must be 1 to 16 letters or numbers.
   +  First character must be a letter.
   +  Can't be a reserved word for the chosen database engine.
   
   *RDS for Oracle* 
  Constraints:
-   +  Must be 1 to 30 letters or numbers.
+  +  Must be 1 to 30 letters or numbers.
   +  First character must be a letter.
   +  Can't be a reserved word for the chosen database engine.
   
   *RDS for PostgreSQL* 
  Constraints:
-   +  Must be 1 to 63 letters or numbers.
+  +  Must be 1 to 63 letters or numbers.
   +  First character must be a letter.
   +  Can't be a reserved word for the chosen database engine.
 * **MasterUserPassword**: string (WriteOnly): The password for the master user. The password can include any printable ASCII character except "/", """, or "@".
@@ -588,17 +855,18 @@ If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceI
  This setting doesn't apply to the following DB instances:
   +  Amazon Aurora (Storage is managed by the DB cluster.)
   +  RDS Custom
-* **MonitoringInterval**: int: The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collection of Enhanced Monitoring metrics, specify 0. The default is 0.
- If ``MonitoringRoleArn`` is specified, then you must set ``MonitoringInterval`` to a value other than 0.
- This setting doesn't apply to RDS Custom.
- Valid Values: ``0, 1, 5, 10, 15, 30, 60``
+* **MonitoringInterval**: int: The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collection of Enhanced Monitoring metrics, specify ``0``.
+ If ``MonitoringRoleArn`` is specified, then you must set ``MonitoringInterval`` to a value other than ``0``.
+ This setting doesn't apply to RDS Custom DB instances.
+ Valid Values: ``0 | 1 | 5 | 10 | 15 | 30 | 60`` 
+ Default: ``0``
 * **MonitoringRoleArn**: string: The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to Amazon CloudWatch Logs. For example, ``arn:aws:iam:123456789012:role/emaccess``. For information on creating a monitoring role, see [Setting Up and Enabling Enhanced Monitoring](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html#USER_Monitoring.OS.Enabling) in the *Amazon RDS User Guide*.
  If ``MonitoringInterval`` is set to a value other than ``0``, then you must supply a ``MonitoringRoleArn`` value.
  This setting doesn't apply to RDS Custom DB instances.
-* **MultiAZ**: bool: Specifies whether the database instance is a Multi-AZ DB instance deployment. You can't set the ``AvailabilityZone`` parameter if the ``MultiAZ`` parameter is set to true. 
-  For more information, see [Multi-AZ deployments for high availability](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html) in the *Amazon RDS User Guide*.
-  *Amazon Aurora* 
- Not applicable. Amazon Aurora storage is replicated across all of the Availability Zones and doesn't require the ``MultiAZ`` option to be set.
+* **MultiAZ**: bool: Specifies whether the DB instance is a Multi-AZ deployment. You can't set the ``AvailabilityZone`` parameter if the DB instance is a Multi-AZ deployment.
+ This setting doesn't apply to the following DB instances:
+  +  Amazon Aurora (DB instance Availability Zones (AZs) are managed by the DB cluster.)
+  +  RDS Custom
 * **NcharCharacterSetName**: string: The name of the NCHAR character set for the Oracle DB instance.
  This setting doesn't apply to RDS Custom DB instances.
 * **NetworkType**: string: The network type of the DB instance.
@@ -624,10 +892,18 @@ If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceI
  Default: ``7`` days
  If you specify a retention period that isn't valid, such as ``94``, Amazon RDS returns an error.
 * **Port**: string (WriteOnly): The port number on which the database accepts connections.
-  *Amazon Aurora* 
- Not applicable. The port number is managed by the DB cluster.
-  *Db2* 
- Default value: ``50000``
+ This setting doesn't apply to Aurora DB instances. The port number is managed by the cluster.
+ Valid Values: ``1150-65535`` 
+ Default:
+  +  RDS for Db2 - ``50000`` 
+  +  RDS for MariaDB - ``3306`` 
+  +  RDS for Microsoft SQL Server - ``1433`` 
+  +  RDS for MySQL - ``3306`` 
+  +  RDS for Oracle - ``1521`` 
+  +  RDS for PostgreSQL - ``5432`` 
+  
+ Constraints:
+  +  For RDS for Microsoft SQL Server, the value can't be ``1234``, ``1434``, ``3260``, ``3343``, ``3389``, ``47001``, or ``49152-49156``.
 * **PreferredBackupWindow**: string: The daily time range during which automated backups are created if automated backups are enabled, using the ``BackupRetentionPeriod`` parameter. For more information, see [Backup Window](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow) in the *Amazon RDS User Guide.* 
  Constraints:
   +  Must be in the format ``hh24:mi-hh24:mi``.
@@ -695,7 +971,7 @@ If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceI
  This setting doesn't apply to Amazon Aurora DB instances. Storage is managed by the DB cluster.
  Valid Values: ``gp2 | gp3 | io1 | io2 | standard`` 
  Default: ``io1``, if the ``Iops`` parameter is specified. Otherwise, ``gp2``.
-* **Tags**: [Tag](#tag)[]: An optional array of key-value pairs to apply to this DB instance.
+* **Tags**: [Tag](#tag)[]: Tags to assign to the DB instance.
 * **TdeCredentialArn**: string
 * **TdeCredentialPassword**: string (WriteOnly)
 * **Timezone**: string: The time zone of the DB instance. The time zone parameter is currently supported only by [RDS for Db2](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/db2-time-zone) and [RDS for SQL Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone).
@@ -727,19 +1003,31 @@ If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceI
  If you don't specify a value for ``DBParameterGroupName`` property, a name is automatically created for the DB parameter group.
   This value is stored as a lowercase string.
 * **Description**: string (Required): Provides the customer-specified description for this DB parameter group.
-* **Family**: string (Required): The DB parameter group family name. A DB parameter group can be associated with one and only one DB parameter group family, and can be applied only to a DB instance running a DB engine and engine version compatible with that DB parameter group family.
-  The DB parameter group family can't be changed when updating a DB parameter group.
-  To list all of the available parameter group families, use the following command:
-  ``aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily"`` 
- The output contains duplicates.
- For more information, see ``CreateDBParameterGroup``.
-* **Parameters**: [DBParameterGroup_Parameters](#dbparametergroupparameters): An array of parameter names and values for the parameter update. At least one parameter name and value must be supplied. Subsequent arguments are optional.
- RDS for Db2 requires you to bring your own Db2 license. You must enter your IBM customer ID (``rds.ibm_customer_id``) and site number (``rds.ibm_site_id``) before starting a Db2 instance.
- For more information about DB parameters and DB parameter groups for Amazon RDS DB engines, see [Working with DB Parameter Groups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html) in the *Amazon RDS User Guide*.
- For more information about DB cluster and DB instance parameters and parameter groups for Amazon Aurora DB engines, see [Working with DB Parameter Groups and DB Cluster Parameter Groups](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_WorkingWithParamGroups.html) in the *Amazon Aurora User Guide*.
+* **Family**: string (Required): The DB parameter group family name. A DB parameter group can be associated with one and only one DB parameter group family, and can be applied only to a DB instance running a database engine and engine version compatible with that DB parameter group family.
+ To list all of the available parameter group families for a DB engine, use the following command:
+  ``aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine <engine>`` 
+ For example, to list all of the available parameter group families for the MySQL DB engine, use the following command:
+  ``aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine mysql`` 
+  The output contains duplicates.
+  The following are the valid DB engine values:
+  +   ``aurora-mysql`` 
+  +   ``aurora-postgresql`` 
+  +   ``db2-ae`` 
+  +   ``db2-se`` 
+  +   ``mysql`` 
+  +   ``oracle-ee`` 
+  +   ``oracle-ee-cdb`` 
+  +   ``oracle-se2`` 
+  +   ``oracle-se2-cdb`` 
+  +   ``postgres`` 
+  +   ``sqlserver-ee`` 
+  +   ``sqlserver-se`` 
+  +   ``sqlserver-ex`` 
+  +   ``sqlserver-web``
+* **Parameters**: [DBParameterGroup_Parameters](#dbparametergroupparameters): An array of parameter names and values for the parameter update. You must specify at least one parameter name and value.
+ For more information about parameter groups, see [Working with parameter groups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html) in the *Amazon RDS User Guide*, or [Working with parameter groups](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_WorkingWithParamGroups.html) in the *Amazon Aurora User Guide*.
    AWS CloudFormation doesn't support specifying an apply method for each individual parameter. The default apply method for each parameter is used.
-* **Tags**: [Tag](#tag)[]: An optional array of key-value pairs to apply to this DB parameter group.
-   Currently, this is the only property that supports drift detection.
+* **Tags**: [Tag](#tag)[]: Tags to assign to the DB parameter group.
 
 ## AWS.RDS/DBProxyEndpointProperties
 ### Properties
@@ -783,20 +1071,36 @@ If you specify the DBClusterIdentifier, SnapshotIdentifier, or SourceDBInstanceI
 ### Properties
 * **DBSubnetGroupDescription**: string (Required): The description for the DB subnet group.
 * **DBSubnetGroupName**: string (Identifier): The name for the DB subnet group. This value is stored as a lowercase string.
- Constraints: Must contain no more than 255 lowercase alphanumeric characters or hyphens. Must not be "Default".
- Example: ``mysubnetgroup``
+ Constraints:
+  +  Must contain no more than 255 letters, numbers, periods, underscores, spaces, or hyphens.
+  +  Must not be default.
+  +  First character must be a letter.
+  
+ Example: ``mydbsubnetgroup``
 * **SubnetIds**: string[] (Required, WriteOnly): The EC2 Subnet IDs for the DB subnet group.
-* **Tags**: [Tag](#tag)[]: An optional array of key-value pairs to apply to this DB subnet group.
+* **Tags**: [Tag](#tag)[]: Tags to assign to the DB subnet group.
 
 ## AWS.RDS/EventSubscriptionProperties
 ### Properties
-* **Enabled**: bool: A Boolean value; set to true to activate the subscription, set to false to create the subscription but not active it.
-* **EventCategories**: string[]: A list of event categories for a SourceType that you want to subscribe to. You can see a list of the categories for a given SourceType in the Events topic in the Amazon RDS User Guide or by using the DescribeEventCategories action.
-* **SnsTopicArn**: string (Required): The Amazon Resource Name (ARN) of the SNS topic created for event notification. The ARN is created by Amazon SNS when you create a topic and subscribe to it.
-* **SourceIds**: string[]: The list of identifiers of the event sources for which events will be returned. If not specified, then all sources are included in the response. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it cannot end with a hyphen or contain two consecutive hyphens.
-* **SourceType**: string: The type of source that will be generating the events. For example, if you want to be notified of events generated by a DB instance, you would set this parameter to db-instance. if this value is not specified, all events are returned.
+* **Enabled**: bool: Specifies whether to activate the subscription. If the event notification subscription isn't activated, the subscription is created but not active.
+* **EventCategories**: string[]: A list of event categories for a particular source type (``SourceType``) that you want to subscribe to. You can see a list of the categories for a given source type in the "Amazon RDS event categories and event messages" section of the [Amazon RDS User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.Messages.html) or the [Amazon Aurora User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Events.Messages.html). You can also see this list by using the ``DescribeEventCategories`` operation.
+* **SnsTopicArn**: string (Required): The Amazon Resource Name (ARN) of the SNS topic created for event notification. SNS automatically creates the ARN when you create a topic and subscribe to it.
+  RDS doesn't support FIFO (first in, first out) topics. For more information, see [Message ordering and deduplication (FIFO topics)](https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html) in the *Amazon Simple Notification Service Developer Guide*.
+* **SourceIds**: string[]: The list of identifiers of the event sources for which events are returned. If not specified, then all sources are included in the response. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens. It can't end with a hyphen or contain two consecutive hyphens.
+ Constraints:
+  +  If ``SourceIds`` are supplied, ``SourceType`` must also be provided.
+  +  If the source type is a DB instance, a ``DBInstanceIdentifier`` value must be supplied.
+  +  If the source type is a DB cluster, a ``DBClusterIdentifier`` value must be supplied.
+  +  If the source type is a DB parameter group, a ``DBParameterGroupName`` value must be supplied.
+  +  If the source type is a DB security group, a ``DBSecurityGroupName`` value must be supplied.
+  +  If the source type is a DB snapshot, a ``DBSnapshotIdentifier`` value must be supplied.
+  +  If the source type is a DB cluster snapshot, a ``DBClusterSnapshotIdentifier`` value must be supplied.
+  +  If the source type is an RDS Proxy, a ``DBProxyName`` value must be supplied.
+* **SourceType**: string: The type of source that is generating the events. For example, if you want to be notified of events generated by a DB instance, you set this parameter to ``db-instance``. For RDS Proxy events, specify ``db-proxy``. If this value isn't specified, all events are returned.
+ Valid Values:``db-instance | db-cluster | db-parameter-group | db-security-group | db-snapshot | db-cluster-snapshot | db-proxy | zero-etl | custom-engine-version | blue-green-deployment``
 * **SubscriptionName**: string (Identifier): The name of the subscription.
-* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+ Constraints: The name must be less than 255 characters.
+* **Tags**: [Tag](#tag)[]: An optional array of key-value pairs to apply to this subscription.
 
 ## AWS.RDS/GlobalClusterProperties
 ### Properties
@@ -812,25 +1116,46 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 
 ## AWS.RDS/IntegrationProperties
 ### Properties
-* **AdditionalEncryptionContext**: [EncryptionContextMap](#encryptioncontextmap)
+* **AdditionalEncryptionContext**: [EncryptionContextMap](#encryptioncontextmap): An optional set of non-secret key?value pairs that contains additional contextual information about the data. For more information, see [Encryption context](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context) in the *Key Management Service Developer Guide*.
+ You can only include this parameter if you specify the ``KMSKeyId`` parameter.
 * **CreateTime**: string (ReadOnly)
-* **DataFilter**: string: The data filter for the integration.
-* **Description**: string: The description of the integration.
-* **IntegrationArn**: string (ReadOnly, Identifier): The ARN of the integration.
+* **DataFilter**: string: Data filters for the integration. These filters determine which tables from the source database are sent to the target Amazon Redshift data warehouse.
+* **Description**: string: A description of the integration.
+* **IntegrationArn**: string (ReadOnly, Identifier)
 * **IntegrationName**: string: The name of the integration.
-* **KMSKeyId**: string: An optional AWS Key Management System (AWS KMS) key ARN for the key used to to encrypt the integration. The resource accepts the key ID and the key ARN forms. The key ID form can be used if the KMS key is owned by te same account. If the KMS key belongs to a different account than the calling account, the full key ARN must be specified. Do not use the key alias or the key alias ARN as this will cause a false drift of the resource.
-* **SourceArn**: string (Required): The Amazon Resource Name (ARN) of the Aurora DB cluster to use as the source for replication.
-* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **KMSKeyId**: string: The AWS Key Management System (AWS KMS) key identifier for the key to use to encrypt the integration. If you don't specify an encryption key, RDS uses a default AWS owned key.
+* **SourceArn**: string (Required): The Amazon Resource Name (ARN) of the database to use as the source for replication.
+* **Tags**: [Tag](#tag)[]: A list of tags. For more information, see [Tagging Amazon RDS Resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html) in the *Amazon RDS User Guide.*.
 * **TargetArn**: string (Required): The ARN of the Redshift data warehouse to use as the target for replication.
 
 ## AWS.RDS/OptionGroupProperties
 ### Properties
-* **EngineName**: string (Required): Indicates the name of the engine that this option group can be applied to.
-* **MajorEngineVersion**: string (Required): Indicates the major engine version associated with this option group.
-* **OptionConfigurations**: [OptionConfiguration](#optionconfiguration)[]: Indicates what options are available in the option group.
-* **OptionGroupDescription**: string (Required): Provides a description of the option group.
-* **OptionGroupName**: string (Identifier): Specifies the name of the option group.
-* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **EngineName**: string (Required): Specifies the name of the engine that this option group should be associated with.
+ Valid Values: 
+  +   ``mariadb`` 
+  +   ``mysql`` 
+  +   ``oracle-ee`` 
+  +   ``oracle-ee-cdb`` 
+  +   ``oracle-se2`` 
+  +   ``oracle-se2-cdb`` 
+  +   ``postgres`` 
+  +   ``sqlserver-ee`` 
+  +   ``sqlserver-se`` 
+  +   ``sqlserver-ex`` 
+  +   ``sqlserver-web``
+* **MajorEngineVersion**: string (Required): Specifies the major version of the engine that this option group should be associated with.
+* **OptionConfigurations**: [OptionConfiguration](#optionconfiguration)[]: A list of all available options for an option group.
+* **OptionGroupDescription**: string (Required): The description of the option group.
+* **OptionGroupName**: string (Identifier): The name of the option group to be created.
+ Constraints:
+  +  Must be 1 to 255 letters, numbers, or hyphens
+  +  First character must be a letter
+  +  Can't end with a hyphen or contain two consecutive hyphens
+  
+ Example: ``myoptiongroup`` 
+ If you don't specify a value for ``OptionGroupName`` property, a name is automatically created for the option group.
+  This value is stored as a lowercase string.
+* **Tags**: [Tag](#tag)[]: Tags to assign to the option group.
 
 ## CertificateDetails
 ### Properties
@@ -850,7 +1175,7 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 
 ## DBClusterRole
 ### Properties
-* **FeatureName**: string: The name of the feature associated with the AWS Identity and Access Management (IAM) role. For the list of supported feature names, see DBEngineVersion in the Amazon RDS API Reference.
+* **FeatureName**: string: The name of the feature associated with the AWS Identity and Access Management (IAM) role. IAM roles that are associated with a DB cluster grant permission for the DB cluster to access other AWS services on your behalf. For the list of supported feature names, see the ``SupportedFeatureNames`` description in [DBEngineVersion](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DBEngineVersion.html) in the *Amazon RDS API Reference*.
 * **RoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that is associated with the DB cluster.
 
 ## DBInstanceRole
@@ -866,8 +1191,8 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 
 ## Endpoint
 ### Properties
-* **Address**: string (ReadOnly): The connection endpoint for the DB cluster.
-* **Port**: string (ReadOnly): The port number that will accept connections on this DB cluster.
+* **Address**: string (ReadOnly): Specifies the connection endpoint for the primary instance of the DB cluster.
+* **Port**: string (ReadOnly): Specifies the port that the database engine is listening on.
 
 ## Endpoint
 ### Properties
@@ -878,21 +1203,21 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 ## MasterUserSecret
 ### Properties
 * **KmsKeyId**: string: The AWS KMS key identifier that is used to encrypt the secret.
-* **SecretArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the secret.
+* **SecretArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the secret. This parameter is a return value that you can retrieve using the ``Fn::GetAtt`` intrinsic function. For more information, see [Return values](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html#aws-resource-rds-dbcluster-return-values).
 
 ## MasterUserSecret
 ### Properties
 * **KmsKeyId**: string: The AWS KMS key identifier that is used to encrypt the secret.
-* **SecretArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the secret.
+* **SecretArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the secret. This parameter is a return value that you can retrieve using the ``Fn::GetAtt`` intrinsic function. For more information, see [Return values](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbinstance.html#aws-resource-rds-dbinstance-return-values).
 
 ## OptionConfiguration
 ### Properties
-* **DBSecurityGroupMemberships**: string[]: A list of DBSecurityGroupMembership name strings used for this option.
+* **DBSecurityGroupMemberships**: string[]: A list of DB security groups used for this option.
 * **OptionName**: string (Required): The configuration of options to include in a group.
 * **OptionSettings**: [OptionSetting](#optionsetting)[]: The option settings to include in an option group.
 * **OptionVersion**: string: The version for the option.
 * **Port**: int: The optional port for the option.
-* **VpcSecurityGroupMemberships**: string[]: A list of VpcSecurityGroupMembership name strings used for this option.
+* **VpcSecurityGroupMemberships**: string[]: A list of VPC security group names used for this option.
 
 ## OptionSetting
 ### Properties
@@ -902,35 +1227,39 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 ## ProcessorFeature
 ### Properties
 * **Name**: string: The name of the processor feature. Valid names are ``coreCount`` and ``threadsPerCore``.
-* **Value**: string: The value of a processor feature name.
+* **Value**: string: The value of a processor feature.
 
 ## ReadEndpoint
 ### Properties
-* **Address**: string (ReadOnly): The reader endpoint for the DB cluster.
+* **Address**: string (ReadOnly): The host address of the reader endpoint.
 
 ## ScalingConfiguration
 ### Properties
-* **AutoPause**: bool: A value that indicates whether to allow or disallow automatic pause for an Aurora DB cluster in serverless DB engine mode. A DB cluster can be paused only when it's idle (it has no connections).
-* **MaxCapacity**: int: The maximum capacity for an Aurora DB cluster in serverless DB engine mode.
-For Aurora MySQL, valid capacity values are 1, 2, 4, 8, 16, 32, 64, 128, and 256.
-For Aurora PostgreSQL, valid capacity values are 2, 4, 8, 16, 32, 64, 192, and 384.
-The maximum capacity must be greater than or equal to the minimum capacity.
-* **MinCapacity**: int: The minimum capacity for an Aurora DB cluster in serverless DB engine mode.
-For Aurora MySQL, valid capacity values are 1, 2, 4, 8, 16, 32, 64, 128, and 256.
-For Aurora PostgreSQL, valid capacity values are 2, 4, 8, 16, 32, 64, 192, and 384.
-The minimum capacity must be less than or equal to the maximum capacity.
-* **SecondsBeforeTimeout**: int: The amount of time, in seconds, that Aurora Serverless v1 tries to find a scaling point to perform seamless scaling before enforcing the timeout action.
-The default is 300.
-* **SecondsUntilAutoPause**: int: The time, in seconds, before an Aurora DB cluster in serverless mode is paused.
-* **TimeoutAction**: string: The action to take when the timeout is reached, either ForceApplyCapacityChange or RollbackCapacityChange.
-ForceApplyCapacityChange sets the capacity to the specified value as soon as possible.
-RollbackCapacityChange, the default, ignores the capacity change if a scaling point isn't found in the timeout period.
-
-For more information, see Autoscaling for Aurora Serverless v1 in the Amazon Aurora User Guide.
+* **AutoPause**: bool: Indicates whether to allow or disallow automatic pause for an Aurora DB cluster in ``serverless`` DB engine mode. A DB cluster can be paused only when it's idle (it has no connections).
+  If a DB cluster is paused for more than seven days, the DB cluster might be backed up with a snapshot. In this case, the DB cluster is restored when there is a request to connect to it.
+* **MaxCapacity**: int: The maximum capacity for an Aurora DB cluster in ``serverless`` DB engine mode.
+ For Aurora MySQL, valid capacity values are ``1``, ``2``, ``4``, ``8``, ``16``, ``32``, ``64``, ``128``, and ``256``.
+ For Aurora PostgreSQL, valid capacity values are ``2``, ``4``, ``8``, ``16``, ``32``, ``64``, ``192``, and ``384``.
+ The maximum capacity must be greater than or equal to the minimum capacity.
+* **MinCapacity**: int: The minimum capacity for an Aurora DB cluster in ``serverless`` DB engine mode.
+ For Aurora MySQL, valid capacity values are ``1``, ``2``, ``4``, ``8``, ``16``, ``32``, ``64``, ``128``, and ``256``.
+ For Aurora PostgreSQL, valid capacity values are ``2``, ``4``, ``8``, ``16``, ``32``, ``64``, ``192``, and ``384``.
+ The minimum capacity must be less than or equal to the maximum capacity.
+* **SecondsBeforeTimeout**: int: The amount of time, in seconds, that Aurora Serverless v1 tries to find a scaling point to perform seamless scaling before enforcing the timeout action. The default is 300.
+ Specify a value between 60 and 600 seconds.
+* **SecondsUntilAutoPause**: int: The time, in seconds, before an Aurora DB cluster in ``serverless`` mode is paused.
+ Specify a value between 300 and 86,400 seconds.
+* **TimeoutAction**: string: The action to take when the timeout is reached, either ``ForceApplyCapacityChange`` or ``RollbackCapacityChange``.
+  ``ForceApplyCapacityChange`` sets the capacity to the specified value as soon as possible.
+  ``RollbackCapacityChange``, the default, ignores the capacity change if a scaling point isn't found in the timeout period.
+  If you specify ``ForceApplyCapacityChange``, connections that prevent Aurora Serverless v1 from finding a scaling point might be dropped.
+  For more information, see [Autoscaling for Aurora Serverless v1](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.how-it-works.html#aurora-serverless.how-it-works.auto-scaling) in the *Amazon Aurora User Guide*.
 
 ## ServerlessV2ScalingConfiguration
 ### Properties
 * **MaxCapacity**: int: The maximum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 40, 40.5, 41, and so on. The largest value that you can use is 128.
+ The maximum capacity must be higher than 0.5 ACUs. For more information, see [Choosing the maximum Aurora Serverless v2 capacity setting for a cluster](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.setting-capacity.html#aurora-serverless-v2.max_capacity_considerations) in the *Amazon Aurora User Guide*.
+ Aurora automatically sets certain parameters for Aurora Serverless V2 DB instances to values that depend on the maximum ACU value in the capacity range. When you update the maximum capacity value, the ``ParameterApplyStatus`` value for the DB instance changes to ``pending-reboot``. You can update the parameter values by rebooting the DB instance after changing the capacity range.
 * **MinCapacity**: int: The minimum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 8, 8.5, 9, and so on. The smallest value that you can use is 0.5.
 
 ## Tag
@@ -940,13 +1269,18 @@ For more information, see Autoscaling for Aurora Serverless v1 in the Amazon Aur
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Key**: string (Required): A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
+* **Value**: string: A value is the optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
+* **Value**: string: A value is the optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
+
+## Tag
+### Properties
+* **Key**: string (Required): A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
+* **Value**: string: A value is the optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
 
 ## Tag
 ### Properties
@@ -965,18 +1299,13 @@ For more information, see Autoscaling for Aurora Serverless v1 in the Amazon Aur
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
+* **Value**: string: A value is the optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-
-## Tag
-### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Key**: string (Required): A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
+* **Value**: string: A value is the optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
 
 ## TagFormat
 ### Properties

@@ -60,6 +60,7 @@
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
 * **IdentityCenterApplicationArn**: string (ReadOnly)
 * **IdentityCenterInstanceArn**: string (WriteOnly)
+* **QAppsConfiguration**: [QAppsConfiguration](#qappsconfiguration)
 * **RoleArn**: string
 * **Status**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]
@@ -217,6 +218,10 @@
 
 ## PluginAuthConfiguration
 ### Properties
+
+## QAppsConfiguration
+### Properties
+* **QAppsControlMode**: string (Required)
 
 ## RetrieverConfiguration
 ### Properties
