@@ -1,7 +1,7 @@
 package bodydata
 
 import (
-	"io/ioutil"
+	"os"
 	"os/user"
 	"strings"
 
@@ -9,7 +9,7 @@ import (
 )
 
 func Load(f string, cfg *aws.Config) (string, error) {
-	b, err := ioutil.ReadFile(f)
+	b, err := os.ReadFile(f)
 	if err != nil {
 		return "", err
 	}
