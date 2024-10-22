@@ -28,7 +28,7 @@
         GOPROXY: https://proxy.golang.org
         AWS_REGION: us-west-2
       steps:
-        - uses: actions/checkout@v3
+        - uses: actions/checkout@v4
   
         - id: get_commit_hash
           name: Get commit hash (radius-project/bicep-types-aws)
@@ -53,12 +53,12 @@
             aws configure set output json
 
         - name: Install Go
-          uses: actions/setup-go@v4
+          uses: actions/setup-go@v5
           with:
             go-version: ${{ env.GOVER }}
         
         - name: Install node and npm
-          uses: actions/setup-node@v2
+          uses: actions/setup-node@v4
           with:
             node-version: '18'
 
@@ -91,7 +91,7 @@
             python ./.github/scripts/generate-reference-docs.py ./artifacts/types ./docs/reference/supported-resources.md
         
         - name: Create Pull Request
-          uses: peter-evans/create-pull-request@v4
+          uses: peter-evans/create-pull-request@v7
           with:
             token: ${{ secrets.GH_RAD_CI_BOT_PAT }}
             committer: rad-ci-bot <rad-ci-bot@users.noreply.github.com>
