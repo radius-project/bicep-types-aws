@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/signal"
 	"path"
@@ -50,7 +49,7 @@ func run(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	entries, err := ioutil.ReadDir(outputDirectory)
+	entries, err := os.ReadDir(outputDirectory)
 	if err != nil {
 		return err
 	}
@@ -97,7 +96,7 @@ func run(cmd *cobra.Command, args []string) error {
 			filename := *typeSummary.TypeName + ".json"
 			delete(existing, filename)
 
-			existing, err := ioutil.ReadFile(path.Join(outputDirectory, filename))
+			existing, err := os.ReadFile(path.Join(outputDirectory, filename))
 			if os.IsNotExist(err) {
 				// This is fine
 
@@ -148,7 +147,7 @@ func run(cmd *cobra.Command, args []string) error {
 				return err
 			}
 
-			err = ioutil.WriteFile(path.Join(outputDirectory, filename), result, 0644)
+			err = os.WriteFile(path.Join(outputDirectory, filename), result, 0644)
 			if err != nil {
 				return err
 			}
