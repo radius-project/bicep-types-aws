@@ -1,11 +1,930 @@
 [
   {
     "$type": "ObjectType",
+    "name": "ChannelPlacementGroupState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/ChannelPlacementGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/ChannelPlacementGroupProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The ARN of the channel placement group."
+      },
+      "Channels": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "List of channel IDs added to the channel placement group."
+      },
+      "ClusterId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "The ID of the cluster the node is on."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "Unique internal identifier."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The name of the channel placement group."
+      },
+      "Nodes": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "List of nodes added to the channel placement group"
+      },
+      "State": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "A collection of key-value pairs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/ChannelPlacementGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/ChannelPlacementGroup@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/8"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudWatchAlarmTemplateComparisonOperator",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudWatchAlarmTemplateStatistic",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudWatchAlarmTemplateTargetResourceType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudWatchAlarmTemplateTreatMissingData",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagMap",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/CloudWatchAlarmTemplateProperties"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/CloudWatchAlarmTemplateProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "A cloudwatch alarm template's ARN (Amazon Resource Name)"
+      },
+      "ComparisonOperator": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "DatapointsToAlarm": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of datapoints within the evaluation period that must be breaching to trigger the alarm."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "A resource's optional description."
+      },
+      "EvaluationPeriods": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The number of periods over which data is compared to the specified threshold."
+      },
+      "GroupId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "A cloudwatch alarm template group's id. AWS provided template groups have ids that start with `aws-`"
+      },
+      "GroupIdentifier": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 5,
+        "description": "A cloudwatch alarm template group's identifier. Can be either be its id or current name."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "A cloudwatch alarm template's id. AWS provided templates have ids that start with `aws-`"
+      },
+      "Identifier": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18
+      },
+      "MetricName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name of the metric associated with the alarm. Must be compatible with targetResourceType."
+      },
+      "ModifiedAt": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "A resource's name. Names must be unique within the scope of a resource type in a specific region."
+      },
+      "Period": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The period, in seconds, over which the specified statistic is applied."
+      },
+      "Statistic": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      },
+      "TargetResourceType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      },
+      "Threshold": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The threshold value to compare with the specified statistic."
+      },
+      "TreatMissingData": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/CloudWatchAlarmTemplate",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/CloudWatchAlarmTemplate@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/18"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagMap",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/CloudWatchAlarmTemplateGroupProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/CloudWatchAlarmTemplateGroupProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "A cloudwatch alarm template group's ARN (Amazon Resource Name)"
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "A resource's optional description."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "A cloudwatch alarm template group's id. AWS provided template groups have ids that start with `aws-`"
+      },
+      "Identifier": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18
+      },
+      "ModifiedAt": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "A resource's name. Names must be unique within the scope of a resource type in a specific region."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/CloudWatchAlarmTemplateGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/CloudWatchAlarmTemplateGroup@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/23"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ClusterNetworkSettings",
+    "properties": {
+      "DefaultRoute": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Default value if the customer does not define it in channel Output API"
+      },
+      "InterfaceMappings": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "Network mappings for the cluster"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ClusterState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ClusterType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InterfaceMapping",
+    "properties": {
+      "LogicalInterfaceName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "logical interface name, unique in the list"
+      },
+      "NetworkId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Network Id to be associated with the logical interface name, can be duplicated in list"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InterfaceNetworkMapping",
+    "properties": {
+      "LogicalInterfaceName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "logical interface name, unique in the list"
+      },
+      "NetworkId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Network Id to be associated with the logical interface name, can be duplicated in list"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/ClusterProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/30"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/ClusterProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The ARN of the Cluster."
+      },
+      "ChannelIds": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 2,
+        "description": "The MediaLive Channels that are currently running on Nodes in this Cluster."
+      },
+      "ClusterType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The unique ID of the Cluster."
+      },
+      "InstanceRoleArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The IAM role your nodes will use."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The user-specified name of the Cluster to be created."
+      },
+      "NetworkSettings": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "State": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "A collection of key-value pairs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/Cluster",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/Cluster@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/36"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EventBridgeRuleTemplateEventType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EventBridgeRuleTemplateTarget",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "Target ARNs must be either an SNS topic or CloudWatch log group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagMap",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/EventBridgeRuleTemplateProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/39"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/EventBridgeRuleTemplateProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "An eventbridge rule template's ARN (Amazon Resource Name)"
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Placeholder documentation for __timestampIso8601"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "A resource's optional description."
+      },
+      "EventTargets": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "Placeholder documentation for __listOfEventBridgeRuleTemplateTarget"
+      },
+      "EventType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      },
+      "GroupId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "An eventbridge rule template group's id. AWS provided template groups have ids that start with `aws-`"
+      },
+      "GroupIdentifier": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 5,
+        "description": "An eventbridge rule template group's identifier. Can be either be its id or current name."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "An eventbridge rule template's id. AWS provided templates have ids that start with `aws-`"
+      },
+      "Identifier": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "Placeholder documentation for __string"
+      },
+      "ModifiedAt": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Placeholder documentation for __timestampIso8601"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "A resource's name. Names must be unique within the scope of a resource type in a specific region."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/EventBridgeRuleTemplate",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/EventBridgeRuleTemplate@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/44"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagMap",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/EventBridgeRuleTemplateGroupProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/EventBridgeRuleTemplateGroupProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "An eventbridge rule template group's ARN (Amazon Resource Name)"
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "A resource's optional description."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "An eventbridge rule template group's id. AWS provided template groups have ids that start with `aws-`"
+      },
+      "Identifier": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18
+      },
+      "ModifiedAt": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "A resource's name. Names must be unique within the scope of a resource type in a specific region."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/EventBridgeRuleTemplateGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/EventBridgeRuleTemplateGroup@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/49"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "MultiplexOutputDestination",
     "properties": {
       "MultiplexMediaConnectOutputDestinationSettings": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "Multiplex MediaConnect output destination settings."
@@ -18,28 +937,28 @@
     "properties": {
       "MaximumVideoBufferDelayMilliseconds": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "Maximum video buffer delay in milliseconds."
       },
       "TransportStreamBitrate": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "Transport stream bit rate."
       },
       "TransportStreamId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "Transport stream ID."
       },
       "TransportStreamReservedBitrate": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "Transport stream reserved bit rate."
@@ -52,20 +971,17 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 0
       }
     }
-  },
-  {
-    "$type": "StringType"
   },
   {
     "$type": "ObjectType",
@@ -73,15 +989,12 @@
     "properties": {
       "EntitlementArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The MediaConnect entitlement ARN available as a Flow source."
       }
     }
-  },
-  {
-    "$type": "IntegerType"
   },
   {
     "$type": "StringLiteralType",
@@ -90,19 +1003,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/0"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/51"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/53"
     }
   },
   {
@@ -111,69 +1024,69 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 2,
         "description": "The unique arn of the multiplex."
       },
       "AvailabilityZones": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/56"
         },
         "flags": 1,
         "description": "A list of availability zones for the multiplex."
       },
       "Destinations": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "A list of the multiplex output destinations."
       },
       "Id": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 18,
         "description": "The unique id of the multiplex."
       },
       "MultiplexSettings": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/52"
         },
         "flags": 1,
         "description": "Configuration for a multiplex event."
       },
       "Name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Name of multiplex."
       },
       "PipelinesRunningCount": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 2,
         "description": "The number of currently healthy pipelines."
       },
       "ProgramCount": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 2,
         "description": "The number of programs in the multiplex."
       },
       "State": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "A collection of key-value pairs."
@@ -186,21 +1099,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/59"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -212,7 +1125,7 @@
     "name": "AWS.MediaLive/Multiplex@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/60"
     },
     "flags": 0
   },
@@ -222,79 +1135,79 @@
     "properties": {
       "AudioPids": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "DvbSubPids": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "DvbTeletextPid": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "EtvPlatformPid": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "EtvSignalPid": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "KlvDataPids": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/71"
         },
         "flags": 0
       },
       "PcrPid": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "PmtPid": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "PrivateMetadataPid": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "Scte27Pids": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/72"
         },
         "flags": 0
       },
       "Scte35Pid": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "TimedMetadataPid": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "VideoPid": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 0
       }
@@ -306,14 +1219,14 @@
     "properties": {
       "ActiveChannelPipeline": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "Identifies the channel pipeline that is currently active for the pipeline (identified by PipelineId) in the multiplex."
       },
       "PipelineId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "Identifies a specific pipeline in the multiplex."
@@ -326,14 +1239,14 @@
     "properties": {
       "ProviderName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Name of the provider."
       },
       "ServiceName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Name of the service."
@@ -346,27 +1259,27 @@
     "properties": {
       "PreferredChannelPipeline": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "ProgramNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "Unique program number."
       },
       "ServiceDescriptor": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "Transport stream service descriptor configuration for the Multiplex program."
       },
       "VideoSettings": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "Program video settings configuration."
@@ -379,21 +1292,21 @@
     "properties": {
       "MaximumBitrate": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "Maximum statmux bitrate."
       },
       "MinimumBitrate": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "Minimum statmux bitrate."
       },
       "Priority": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "The purpose of the priority is to use a combination of the\\nmultiplex rate control algorithm and the QVBR capability of the\\nencoder to prioritize the video quality of some channels in a\\nmultiplex over others.  Channels that have a higher priority will\\nget higher video quality at the expense of the video quality of\\nother channels in the multiplex with lower priority."
@@ -413,25 +1326,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/16"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/16"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/16"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/16"
     }
   },
   {
@@ -441,7 +1354,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/63"
     }
   },
   {
@@ -450,49 +1363,49 @@
     "properties": {
       "ChannelId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 2,
         "description": "The MediaLive channel associated with the program."
       },
       "MultiplexId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 16,
         "description": "The ID of the multiplex that the program belongs to."
       },
       "MultiplexProgramSettings": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "The settings for this multiplex program."
       },
       "PacketIdentifiersMap": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "The packet identifier map for this multiplex program."
       },
       "PipelineDetails": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "Contains information about the current sources for the specified program in the specified multiplex. Keep in mind that each multiplex pipeline connects to both pipelines in a given source channel (the channel identified by the program). But only one of those channel pipelines is ever active at one time."
       },
       "PreferredChannelPipeline": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 4,
         "description": "The settings for this multiplex program."
       },
       "ProgramName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 16,
         "description": "The name of the multiplex program."
@@ -505,21 +1418,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/75"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -531,7 +1444,677 @@
     "name": "AWS.MediaLive/Multiplexprogram@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/27"
+      "$ref": "#/76"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IpPool",
+    "properties": {
+      "Cidr": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "IP address cidr pool"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Route",
+    "properties": {
+      "Cidr": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Ip address cidr"
+      },
+      "Gateway": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "IP address for the route packet paths"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/NetworkProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/78"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/80"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/81"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/NetworkProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The ARN of the Network."
+      },
+      "AssociatedClusterIds": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 2
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The unique ID of the Network."
+      },
+      "IpPools": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 1,
+        "description": "The list of IP address cidr pools for the network"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The user-specified name of the Network to be created."
+      },
+      "Routes": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0,
+        "description": "The routes for the network"
+      },
+      "State": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The current state of the Network."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 0,
+        "description": "A collection of key-value pairs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/Network",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/Network@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/88"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SdiSourceMode",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SdiSourceState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SdiSourceType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/SdiSourceProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/93"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/SdiSourceProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The unique arn of the SdiSource."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The unique identifier of the SdiSource."
+      },
+      "Inputs": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 2,
+        "description": "The list of inputs currently using this SDI source."
+      },
+      "Mode": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name of the SdiSource."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/96"
+        },
+        "flags": 0,
+        "description": "A collection of key-value pairs."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/SdiSource",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/97"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/SdiSource@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/98"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FailedMediaResourceMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MediaResource",
+    "properties": {
+      "Destinations": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The logical name of an AWS media resource."
+      },
+      "Sources": {
+        "type": {
+          "$ref": "#/111"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MediaResourceMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MediaResourceNeighbor",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ARN of a resource used in AWS media workflows."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The logical name of an AWS media resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MonitorDeployment",
+    "properties": {
+      "DetailsUri": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "URI associated with a signal map's monitor deployment."
+      },
+      "ErrorMessage": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Error message associated with a failed monitor deployment of a signal map."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SignalMapMonitorDeploymentStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SignalMapStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SuccessfulMonitorDeployment",
+    "properties": {
+      "DetailsUri": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "URI associated with a signal map's monitor deployment."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Unit",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/103"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/103"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/SignalMapProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/SignalMapProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "A signal map's ARN (Amazon Resource Name)"
+      },
+      "CloudWatchAlarmTemplateGroupIdentifiers": {
+        "type": {
+          "$ref": "#/113"
+        },
+        "flags": 4
+      },
+      "CloudWatchAlarmTemplateGroupIds": {
+        "type": {
+          "$ref": "#/114"
+        },
+        "flags": 2
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "A resource's optional description."
+      },
+      "DiscoveryEntryPointArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "A top-level supported AWS resource ARN to discovery a signal map from."
+      },
+      "ErrorMessage": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Error message associated with a failed creation or failed update attempt of a signal map."
+      },
+      "EventBridgeRuleTemplateGroupIdentifiers": {
+        "type": {
+          "$ref": "#/115"
+        },
+        "flags": 4
+      },
+      "EventBridgeRuleTemplateGroupIds": {
+        "type": {
+          "$ref": "#/116"
+        },
+        "flags": 2
+      },
+      "FailedMediaResourceMap": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 2
+      },
+      "ForceRediscovery": {
+        "type": {
+          "$ref": "#/117"
+        },
+        "flags": 4,
+        "description": "If true, will force a rediscovery of a signal map if an unchanged discoveryEntryPointArn is provided."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "A signal map's id."
+      },
+      "Identifier": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18
+      },
+      "LastDiscoveredAt": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "LastSuccessfulMonitorDeployment": {
+        "type": {
+          "$ref": "#/107"
+        },
+        "flags": 2
+      },
+      "MediaResourceMap": {
+        "type": {
+          "$ref": "#/102"
+        },
+        "flags": 2
+      },
+      "ModifiedAt": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "MonitorChangesPendingDeployment": {
+        "type": {
+          "$ref": "#/117"
+        },
+        "flags": 2,
+        "description": "If true, there are pending monitor changes for this signal map that can be deployed."
+      },
+      "MonitorDeployment": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 2
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "A resource's name. Names must be unique within the scope of a resource type in a specific region."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/SignalMap",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/118"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/SignalMap@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/119"
     },
     "flags": 0
   }

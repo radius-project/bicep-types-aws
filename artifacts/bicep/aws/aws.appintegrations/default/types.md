@@ -32,7 +32,7 @@
 * **Description**: string (Required): The application description.
 * **Id**: string (ReadOnly): The id of the application.
 * **Name**: string (Required): The name of the application.
-* **Namespace**: string: The namespace of the application.
+* **Namespace**: string (Required): The namespace of the application.
 * **Permissions**: string[]: The configuration of events or requests that the application has access to.
 * **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the application.
 

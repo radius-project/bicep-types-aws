@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-DataSet",
   "type": "AWS::QuickSight::DataSet",
-  "time": "2024-05-22T17:50:56.056Z",
+  "time": "2024-10-21T17:33:45.873Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -27,7 +27,7 @@
           },
           "Expression": {
             "description": "\u003cp\u003eAn expression that defines the calculated column.\u003c/p\u003e",
-            "maxLength": 4096,
+            "maxLength": 250000,
             "minLength": 1,
             "type": "string"
           }
@@ -201,7 +201,6 @@
           }
         },
         "required": [
-          "Columns",
           "DataSourceArn",
           "Name",
           "SqlQuery"
@@ -223,9 +222,6 @@
             "$ref": "#/definitions/RefreshConfiguration"
           }
         },
-        "required": [
-          "RefreshConfiguration"
-        ],
         "type": "object"
       },
       "DataSetUsageConfiguration": {
@@ -687,8 +683,7 @@
           }
         },
         "required": [
-          "Alias",
-          "Source"
+          "Alias"
         ],
         "type": "object"
       },
@@ -957,7 +952,6 @@
         },
         "required": [
           "DataSourceArn",
-          "InputColumns",
           "Name"
         ],
         "type": "object"
@@ -1103,7 +1097,7 @@
             "type": "string"
           },
           "MatchAllValue": {
-            "description": "\u003cp\u003eA string that you want to use to filter by all the values in a column in the dataset and don?t want to list the values one by one. For example, you can use an asterisk as your match all value.\u003c/p\u003e",
+            "description": "\u003cp\u003eA string that you want to use to filter by all the values in a column in the dataset and don’t want to list the values one by one. For example, you can use an asterisk as your match all value.\u003c/p\u003e",
             "maxLength": 256,
             "minLength": 1,
             "type": "string"
@@ -1380,7 +1374,10 @@
           "quicksight:TagResource",
           "quicksight:ListTagsForResource",
           "quicksight:DescribeDataSetRefreshProperties",
-          "quicksight:PutDataSetRefreshProperties"
+          "quicksight:PutDataSetRefreshProperties",
+          "quicksight:CreateFolderMembership",
+          "quicksight:DeleteFolderMembership",
+          "quicksight:ListFoldersForResource"
         ]
       },
       "delete": {
@@ -1418,6 +1415,9 @@
           "quicksight:DescribeIngestion",
           "quicksight:ListIngestions",
           "quicksight:CancelIngestion",
+          "quicksight:CreateFolderMembership",
+          "quicksight:DeleteFolderMembership",
+          "quicksight:ListFoldersForResource",
           "quicksight:TagResource",
           "quicksight:UntagResource",
           "quicksight:ListTagsForResource",
@@ -1489,6 +1489,15 @@
       },
       "FieldFolders": {
         "$ref": "#/definitions/FieldFolderMap"
+      },
+      "FolderArns": {
+        "description": "\u003cp\u003eWhen you create the dataset, Amazon QuickSight adds the dataset to these folders.\u003c/p\u003e",
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 10,
+        "minItems": 0,
+        "type": "array"
       },
       "ImportMode": {
         "$ref": "#/definitions/DataSetImportMode"
@@ -1562,7 +1571,8 @@
     "typeName": "AWS::QuickSight::DataSet",
     "writeOnlyProperties": [
       "/properties/FieldFolders",
-      "/properties/IngestionWaitPolicy"
+      "/properties/IngestionWaitPolicy",
+      "/properties/FolderArns"
     ]
   }
 }

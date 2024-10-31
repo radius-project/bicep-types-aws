@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-S3-AccessGrantsLocation",
   "type": "AWS::S3::AccessGrantsLocation",
-  "time": "2024-03-25T16:09:31.836Z",
+  "time": "2024-10-29T21:49:50.402Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -46,13 +46,15 @@
       },
       "read": {
         "permissions": [
-          "s3:GetAccessGrantsLocation"
+          "s3:GetAccessGrantsLocation",
+          "s3:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "s3:UpdateAccessGrantsLocation",
           "s3:TagResource",
+          "s3:UntagResource",
           "iam:PassRole"
         ]
       }
@@ -102,14 +104,17 @@
     "required": [],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-s3",
     "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "s3:UntagResource",
+        "s3:TagResource",
+        "s3:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::S3::AccessGrantsLocation",
-    "writeOnlyProperties": [
-      "/properties/Tags"
-    ]
+    "typeName": "AWS::S3::AccessGrantsLocation"
   }
 }

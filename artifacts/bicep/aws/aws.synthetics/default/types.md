@@ -28,6 +28,7 @@
 * **FailureRetentionPeriod**: int: Retention period of failed canary runs represented in number of days
 * **Id**: string (ReadOnly): Id of the canary
 * **Name**: string (Required, Identifier): Name of the canary.
+* **ResourcesToReplicateTags**: string[] (WriteOnly): List of resources which canary tags should be replicated to.
 * **RunConfig**: [RunConfig](#runconfig): Provide canary run configuration
 * **RuntimeVersion**: string (Required): Runtime version of Synthetics Library
 * **Schedule**: [Schedule](#schedule) (Required): Frequency to run your canaries

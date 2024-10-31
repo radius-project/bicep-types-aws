@@ -49,17 +49,27 @@
 ### Properties
 * **AttachmentsControlMode**: string (Required)
 
+## AutoSubscriptionConfiguration
+### Properties
+* **AutoSubscribe**: string (Required)
+* **DefaultSubscriptionType**: string
+
 ## AWS.QBusiness/ApplicationProperties
 ### Properties
 * **ApplicationArn**: string (ReadOnly)
 * **ApplicationId**: string (ReadOnly, Identifier)
 * **AttachmentsConfiguration**: [AttachmentsConfiguration](#attachmentsconfiguration)
+* **AutoSubscriptionConfiguration**: [AutoSubscriptionConfiguration](#autosubscriptionconfiguration)
+* **ClientIdsForOIDC**: string[]
 * **CreatedAt**: string (ReadOnly)
 * **Description**: string
 * **DisplayName**: string (Required)
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
+* **IamIdentityProviderArn**: string
 * **IdentityCenterApplicationArn**: string (ReadOnly)
 * **IdentityCenterInstanceArn**: string (WriteOnly)
+* **IdentityType**: string
+* **PersonalizationConfiguration**: [PersonalizationConfiguration](#personalizationconfiguration)
 * **QAppsConfiguration**: [QAppsConfiguration](#qappsconfiguration)
 * **RoleArn**: string
 * **Status**: string (ReadOnly)
@@ -136,6 +146,8 @@
 * **ApplicationId**: string (Required, Identifier)
 * **CreatedAt**: string (ReadOnly)
 * **DefaultEndpoint**: string (ReadOnly)
+* **IdentityProviderConfiguration**: [IdentityProviderConfiguration](#identityproviderconfiguration)
+* **Origins**: string[]
 * **RoleArn**: string
 * **SamplePromptsControlMode**: string
 * **Status**: string (ReadOnly)
@@ -202,6 +214,9 @@
 * **RoleArn**: string
 * **S3BucketName**: string
 
+## IdentityProviderConfiguration
+### Properties
+
 ## IndexCapacityConfiguration
 ### Properties
 * **Units**: int
@@ -215,6 +230,10 @@
 * **Condition**: [DocumentAttributeCondition](#documentattributecondition)
 * **DocumentContentOperator**: string
 * **Target**: [DocumentAttributeTarget](#documentattributetarget)
+
+## PersonalizationConfiguration
+### Properties
+* **PersonalizationControlMode**: string (Required)
 
 ## PluginAuthConfiguration
 ### Properties

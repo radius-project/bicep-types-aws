@@ -1,14 +1,16 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-EIP",
   "type": "AWS::EC2::EIP",
-  "time": "2024-06-13T15:30:37.17Z",
+  "time": "2024-10-24T15:31:20.579Z",
   "schema": {
     "$schema": "https://raw.githubusercontent.com/aws-cloudformation/cloudformation-resource-schema/blob/master/src/main/resources/schema/provider.definition.schema.v1.json",
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Domain",
       "/properties/NetworkBorderGroup",
-      "/properties/TransferAddress"
+      "/properties/TransferAddress",
+      "/properties/IpamPoolId",
+      "/properties/Address"
     ],
     "definitions": {
       "Tag": {
@@ -74,6 +76,10 @@
       "/properties/AllocationId"
     ],
     "properties": {
+      "Address": {
+        "description": "",
+        "type": "string"
+      },
       "AllocationId": {
         "description": "",
         "type": "string"
@@ -84,6 +90,10 @@
       },
       "InstanceId": {
         "description": "The ID of the instance.\n  Updates to the ``InstanceId`` property may require *some interruptions*. Updates on an EIP reassociates the address on its associated resource.",
+        "type": "string"
+      },
+      "IpamPoolId": {
+        "description": "",
         "type": "string"
       },
       "NetworkBorderGroup": {
@@ -129,7 +139,9 @@
     },
     "typeName": "AWS::EC2::EIP",
     "writeOnlyProperties": [
-      "/properties/TransferAddress"
+      "/properties/TransferAddress",
+      "/properties/IpamPoolId",
+      "/properties/Address"
     ]
   }
 }

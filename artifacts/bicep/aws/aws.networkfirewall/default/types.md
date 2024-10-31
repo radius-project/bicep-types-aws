@@ -131,6 +131,10 @@
 * **StatelessRuleGroupReferences**: [StatelessRuleGroupReference](#statelessrulegroupreference)[]
 * **TLSInspectionConfigurationArn**: string
 
+## FirewallPolicy_FlowTimeouts
+### Properties
+* **TcpIdleTimeoutSeconds**: int
+
 ## FirewallPolicy_PolicyVariables
 ### Properties
 * **RuleVariables**: [RuleVariables](#rulevariables)
@@ -256,6 +260,7 @@
 
 ## StatefulEngineOptions
 ### Properties
+* **FlowTimeouts**: [FirewallPolicy_FlowTimeouts](#firewallpolicyflowtimeouts)
 * **RuleOrder**: string
 * **StreamExceptionPolicy**: string
 

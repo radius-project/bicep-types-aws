@@ -35,17 +35,17 @@
 
 ## AWS.PCAConnectorAD/ConnectorProperties
 ### Properties
-* **CertificateAuthorityArn**: string (Required, WriteOnly)
+* **CertificateAuthorityArn**: string (Required)
 * **ConnectorArn**: string (ReadOnly, Identifier)
-* **DirectoryId**: string (Required, WriteOnly)
-* **Tags**: [Tags](#tags) (WriteOnly)
-* **VpcInformation**: [VpcInformation](#vpcinformation) (Required, WriteOnly)
+* **DirectoryId**: string (Required)
+* **Tags**: [Tags](#tags)
+* **VpcInformation**: [VpcInformation](#vpcinformation) (Required)
 
 ## AWS.PCAConnectorAD/DirectoryRegistrationProperties
 ### Properties
-* **DirectoryId**: string (Required, WriteOnly)
+* **DirectoryId**: string (Required)
 * **DirectoryRegistrationArn**: string (ReadOnly, Identifier)
-* **Tags**: [Tags](#tags) (WriteOnly)
+* **Tags**: [Tags](#tags)
 
 ## AWS.PCAConnectorAD/TemplateGroupAccessControlEntryProperties
 ### Properties
@@ -56,11 +56,11 @@
 
 ## AWS.PCAConnectorAD/TemplateProperties
 ### Properties
-* **ConnectorArn**: string (Required, WriteOnly)
-* **Definition**: [TemplateDefinition](#templatedefinition) (Required, WriteOnly)
-* **Name**: string (Required, WriteOnly)
+* **ConnectorArn**: string (Required)
+* **Definition**: [TemplateDefinition](#templatedefinition) (Required)
+* **Name**: string (Required)
 * **ReenrollAllCertificateHolders**: bool (WriteOnly)
-* **Tags**: [Tags](#tags) (WriteOnly)
+* **Tags**: [Tags](#tags)
 * **TemplateArn**: string (ReadOnly, Identifier)
 
 ## Tags

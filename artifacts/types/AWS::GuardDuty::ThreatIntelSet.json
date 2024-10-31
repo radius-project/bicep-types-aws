@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GuardDuty-ThreatIntelSet",
   "type": "AWS::GuardDuty::ThreatIntelSet",
-  "time": "2024-07-09T15:47:56.788Z",
+  "time": "2024-10-31T21:07:35.706Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -71,7 +71,9 @@
           "guardduty:UpdateThreatIntelSet",
           "guardduty:GetThreatIntelSet",
           "guardduty:ListThreatIntelSets",
-          "iam:PutRolePolicy"
+          "iam:PutRolePolicy",
+          "guardduty:TagResource",
+          "guardduty:UntagResource"
         ]
       }
     },
@@ -121,8 +123,14 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-guardduty",
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "guardduty:TagResource",
+        "guardduty:UntagResource",
+        "guardduty:ListTagsForResource"
+      ],
       "tagOnCreate": true,
-      "tagUpdatable": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::GuardDuty::ThreatIntelSet",

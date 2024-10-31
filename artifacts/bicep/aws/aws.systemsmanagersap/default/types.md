@@ -11,8 +11,9 @@
 ### Properties
 * **ApplicationId**: string (Required)
 * **ApplicationType**: string (Required)
-* **Arn**: string (ReadOnly, Identifier): The ARN of the Helix application
+* **Arn**: string (ReadOnly, Identifier): The ARN of the SSM-SAP application
 * **Credentials**: [Credential](#credential)[] (WriteOnly)
+* **DatabaseArn**: string (WriteOnly): The ARN of the SAP HANA database
 * **Instances**: string[] (WriteOnly)
 * **SapInstanceNumber**: string (WriteOnly)
 * **Sid**: string (WriteOnly)

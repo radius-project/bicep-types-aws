@@ -102,7 +102,6 @@
 ## AWS.Route53Resolver/ResolverRuleProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the resolver rule.
-* **DelegationRecord**: string: The name server domain for queries to be delegated to if a query matches the delegation record.
 * **DomainName**: string: DNS queries for this domain name are forwarded to the IP addresses that are specified in TargetIps
 * **Name**: string: The name for the Resolver rule
 * **ResolverEndpointId**: string: The ID of the endpoint that the rule is associated with.
@@ -154,4 +153,5 @@
 * **Ipv6**: string: One IPv6 address that you want to forward DNS queries to. You can specify only IPv6 addresses. 
 * **Port**: string: The port at Ip that you want to forward DNS queries to. 
 * **Protocol**: string: The protocol that you want to use to forward DNS queries. 
+* **ServerNameIndication**: string: The SNI of the target name servers for DoH/DoH-FIPS outbound endpoints
 

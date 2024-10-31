@@ -65,6 +65,7 @@
 ### Properties
 * **CreatedAt**: string (ReadOnly)
 * **Description**: string: The description of the MatchingWorkflow
+* **IncrementalRunConfig**: [IncrementalRunConfig](#incrementalrunconfig)
 * **InputSourceConfig**: [InputSource](#inputsource)[] (Required)
 * **OutputSourceConfig**: [OutputSource](#outputsource)[] (Required)
 * **ResolutionTechniques**: [ResolutionTechniques](#resolutiontechniques) (Required)
@@ -134,6 +135,10 @@
 ### Properties
 * **InputSourceARN**: string (Required)
 * **SchemaName**: string
+
+## IncrementalRunConfig
+### Properties
+* **IncrementalRunType**: string (Required)
 
 ## InputSource
 ### Properties

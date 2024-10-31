@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VpcLattice-ServiceNetworkServiceAssociation",
   "type": "AWS::VpcLattice::ServiceNetworkServiceAssociation",
-  "time": "2024-08-08T17:43:26.972Z",
+  "time": "2024-09-25T17:16:58.258Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -64,7 +64,8 @@
       "delete": {
         "permissions": [
           "vpc-lattice:DeleteServiceNetworkServiceAssociation",
-          "vpc-lattice:GetServiceNetworkServiceAssociation"
+          "vpc-lattice:GetServiceNetworkServiceAssociation",
+          "vpc-lattice:UntagResource"
         ]
       },
       "list": {
@@ -211,6 +212,11 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "vpc-lattice:UntagResource",
+        "vpc-lattice:TagResource",
+        "vpc-lattice:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

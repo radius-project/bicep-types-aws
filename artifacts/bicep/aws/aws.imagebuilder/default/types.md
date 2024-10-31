@@ -86,6 +86,7 @@
 * **KeyPair**: string: The EC2 key pair of the infrastructure configuration..
 * **Logging**: [Logging](#logging): The logging configuration of the infrastructure configuration.
 * **Name**: string (Required): The name of the infrastructure configuration.
+* **Placement**: [Placement](#placement): The placement option settings for the infrastructure configuration.
 * **ResourceTags**: [InfrastructureConfiguration_ResourceTags](#infrastructureconfigurationresourcetags): The tags attached to the resource created by Image Builder.
 * **SecurityGroupIds**: string[]: The security group IDs of the infrastructure configuration.
 * **SnsTopicArn**: string: The SNS Topic Amazon Resource Name (ARN) of the infrastructure configuration.
@@ -224,6 +225,13 @@
 ## Logging
 ### Properties
 * **S3Logs**: [S3Logs](#s3logs)
+
+## Placement
+### Properties
+* **AvailabilityZone**: string: AvailabilityZone
+* **HostId**: string: HostId
+* **HostResourceGroupArn**: string: HostResourceGroupArn
+* **Tenancy**: string: Tenancy
 
 ## PolicyDetail
 ### Properties

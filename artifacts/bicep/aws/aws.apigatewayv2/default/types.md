@@ -139,7 +139,7 @@
 
 ## AWS.ApiGatewayV2/DomainNameProperties
 ### Properties
-* **DomainName**: string (Required, Identifier): The custom domain name for your API in Amazon API Gateway. Uppercase letters are not supported.
+* **DomainName**: string (Required, Identifier): The custom domain name for your API in Amazon API Gateway. Uppercase letters and the underscore (``_``) character are not supported.
 * **DomainNameConfigurations**: [DomainNameConfiguration](#domainnameconfiguration)[]: The domain name configurations.
 * **MutualTlsAuthentication**: [MutualTlsAuthentication](#mutualtlsauthentication): The mutual TLS authentication configuration for a custom domain name.
 * **RegionalDomainName**: string (ReadOnly)
@@ -148,25 +148,25 @@
 
 ## AWS.ApiGatewayV2/IntegrationProperties
 ### Properties
-* **ApiId**: string (Required)
-* **ConnectionId**: string
-* **ConnectionType**: string
-* **ContentHandlingStrategy**: string
-* **CredentialsArn**: string
-* **Description**: string
-* **Id**: string (ReadOnly, Identifier)
-* **IntegrationMethod**: string
-* **IntegrationSubtype**: string
-* **IntegrationType**: string (Required)
-* **IntegrationUri**: string
-* **PassthroughBehavior**: string
-* **PayloadFormatVersion**: string
-* **RequestParameters**: [Integration_RequestParameters](#integrationrequestparameters)
-* **RequestTemplates**: [Integration_RequestTemplates](#integrationrequesttemplates)
-* **ResponseParameters**: [Integration_ResponseParameters](#integrationresponseparameters)
-* **TemplateSelectionExpression**: string
-* **TimeoutInMillis**: int
-* **TlsConfig**: [TlsConfig](#tlsconfig)
+* **ApiId**: string (Required, Identifier): The API identifier.
+* **ConnectionId**: string: The ID of the VPC link for a private integration. Supported only for HTTP APIs.
+* **ConnectionType**: string: The type of the network connection to the integration endpoint. Specify INTERNET for connections through the public routable internet or VPC_LINK for private connections between API Gateway and resources in a VPC. The default value is INTERNET.
+* **ContentHandlingStrategy**: string: Supported only for WebSocket APIs. Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT.
+* **CredentialsArn**: string: Specifies the credentials required for the integration, if any. For AWS integrations, three options are available. To specify an IAM Role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To require that the caller's identity be passed through from the request, specify the string arn:aws:iam::*:user/*. To use resource-based permissions on supported AWS services, don't specify this parameter.
+* **Description**: string: The description of the integration.
+* **IntegrationId**: string (ReadOnly, Identifier): The integration ID.
+* **IntegrationMethod**: string: Specifies the integration's HTTP method type.
+* **IntegrationSubtype**: string: Supported only for HTTP API AWS_PROXY integrations. Specifies the AWS service action to invoke.
+* **IntegrationType**: string (Required): The integration type of an integration.
+* **IntegrationUri**: string: For a Lambda integration, specify the URI of a Lambda function. For an HTTP integration, specify a fully-qualified URL. For an HTTP API private integration, specify the ARN of an Application Load Balancer listener, Network Load Balancer listener, or AWS Cloud Map service.
+* **PassthroughBehavior**: string: Specifies the pass-through behavior for incoming requests based on the Content-Type header in the request, and the available mapping templates specified as the requestTemplates property on the Integration resource. There are three valid values: WHEN_NO_MATCH, WHEN_NO_TEMPLATES, and NEVER. Supported only for WebSocket APIs.
+* **PayloadFormatVersion**: string: Specifies the format of the payload sent to an integration. Required for HTTP APIs. For HTTP APIs, supported values for Lambda proxy integrations are 1.0 and 2.0 For all other integrations, 1.0 is the only supported value.
+* **RequestParameters**: [Integration_RequestParameters](#integrationrequestparameters): A key-value map specifying parameters.
+* **RequestTemplates**: [Integration_RequestTemplates](#integrationrequesttemplates): A map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client.
+* **ResponseParameters**: [Integration_ResponseParameters](#integrationresponseparameters): Parameters that transform the HTTP response from a backend integration before returning the response to clients. Supported only for HTTP APIs.
+* **TemplateSelectionExpression**: string: The template selection expression for the integration. Supported only for WebSocket APIs.
+* **TimeoutInMillis**: int: Custom timeout between 50 and 29000 milliseconds for WebSocket APIs and between 50 and 30000 milliseconds for HTTP APIs. The default timeout is 29 seconds for WebSocket APIs and 30 seconds for HTTP APIs.
+* **TlsConfig**: [TlsConfig](#tlsconfig): The TLS configuration for a private integration. If you specify a TLS configuration, private integration traffic uses the HTTPS protocol. Supported only for HTTP APIs.
 
 ## AWS.ApiGatewayV2/IntegrationResponseProperties
 ### Properties
@@ -219,10 +219,10 @@
 
 ## AWS.ApiGatewayV2/VpcLinkProperties
 ### Properties
-* **Name**: string (Required)
-* **SecurityGroupIds**: string[]
-* **SubnetIds**: string[] (Required)
-* **Tags**: [VpcLink_Tags](#vpclinktags): This resource type use map for Tags, suggest to use List of Tag
+* **Name**: string (Required): The name of the VPC link.
+* **SecurityGroupIds**: string[]: A list of security group IDs for the VPC link.
+* **SubnetIds**: string[] (Required): A list of subnet IDs to include in the VPC link.
+* **Tags**: [VpcLink_Tags](#vpclinktags): The collection of tags. Each tag element is associated with a given resource.
 * **VpcLinkId**: string (ReadOnly, Identifier)
 
 ## BodyS3Location

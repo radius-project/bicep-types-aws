@@ -52,5 +52,5 @@
 ## Tag
 ### Properties
 * **Key**: string (Required)
-* **Value**: string
+* **Value**: string (Required)
 

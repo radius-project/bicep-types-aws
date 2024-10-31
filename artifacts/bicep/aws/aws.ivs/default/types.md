@@ -28,6 +28,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IVS/PlaybackRestrictionPolicyProperties](#awsivsplaybackrestrictionpolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.IVS/PublicKey@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IVS/PublicKeyProperties](#awsivspublickeyproperties) (Identifier): properties of the resource
+
 ## Resource AWS.IVS/RecordingConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -55,6 +62,11 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IVS/StreamKeyProperties](#awsivsstreamkeyproperties) (Required, Identifier): properties of the resource
+
+## AutoParticipantRecordingConfiguration
+### Properties
+* **MediaTypes**: string[]: Types of media to be recorded. Default: AUDIO_VIDEO.
+* **StorageConfigurationArn**: string (Required): ARN of the StorageConfiguration resource to use for individual participant recording.
 
 ## AWS.IVS/ChannelProperties
 ### Properties
@@ -94,6 +106,14 @@
 * **Name**: string: Playback-restriction-policy name.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## AWS.IVS/PublicKeyProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): Key-pair identifier.
+* **Fingerprint**: string (ReadOnly): Key-pair identifier.
+* **Name**: string: Name of the public key to be imported. The value does not need to be unique.
+* **PublicKeyMaterial**: string: The public portion of a customer-generated key pair.
+* **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
+
 ## AWS.IVS/RecordingConfigurationProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): Recording Configuration ARN is automatically generated on creation and assigned as the unique identifier.
@@ -109,6 +129,7 @@
 ### Properties
 * **ActiveSessionId**: string (ReadOnly): ID of the active session within the stage.
 * **Arn**: string (ReadOnly, Identifier): Stage ARN is automatically generated on creation and assigned as the unique identifier.
+* **AutoParticipantRecordingConfiguration**: [AutoParticipantRecordingConfiguration](#autoparticipantrecordingconfiguration)
 * **Name**: string: Stage name
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
@@ -134,8 +155,8 @@
 ### Properties
 * **Bitrate**: int: Bitrate for generated output, in bps. Default: 2500000.
 * **Framerate**: int: Video frame rate, in fps. Default: 30.
-* **Height**: int: Video-resolution height. Note that the maximum value is determined by width times height, such that the maximum total pixels is 2073600 (1920x1080 or 1080x1920). Default: 720.
-* **Width**: int: Video-resolution width. Note that the maximum value is determined by width times height, such that the maximum total pixels is 2073600 (1920x1080 or 1080x1920). Default: 1280.
+* **Height**: int: Video-resolution height. This must be an even number. Note that the maximum value is determined by width times height, such that the maximum total pixels is 2073600 (1920x1080 or 1080x1920). Default: 720.
+* **Width**: int: Video-resolution width. This must be an even number. Note that the maximum value is determined by width times height, such that the maximum total pixels is 2073600 (1920x1080 or 1080x1920). Default: 1280.
 
 ## RenditionConfiguration
 ### Properties
@@ -169,6 +190,11 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

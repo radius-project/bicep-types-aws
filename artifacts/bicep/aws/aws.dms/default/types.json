@@ -1,6 +1,224 @@
 [
   {
     "$type": "ObjectType",
+    "name": "DataMigrationSettings",
+    "properties": {
+      "CloudwatchLogsEnabled": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The property specifies whether to enable the Cloudwatch log."
+      },
+      "NumberOfJobs": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The number of parallel jobs that trigger parallel threads to unload the tables from the source, and then load them to the target."
+      },
+      "SelectionRules": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The property specifies the rules of selecting objects for data migration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceDataSettings",
+    "properties": {
+      "CDCStartPosition": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The property is a point in the database engine's log that defines a time where you can begin CDC."
+      },
+      "CDCStartTime": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The property indicates the start time for a change data capture (CDC) operation. The value is server time in UTC format."
+      },
+      "CDCStopTime": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The property indicates the stop time for a change data capture (CDC) operation. The value is server time in UTC format."
+      },
+      "SlotName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The property sets the name of a previously created logical replication slot for a change data capture (CDC) load of the source instance."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DMS/DataMigrationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DMS/DataMigrationProperties",
+    "properties": {
+      "DataMigrationArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The property describes an ARN of the data migration."
+      },
+      "DataMigrationCreateTime": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The property describes the create time of the data migration."
+      },
+      "DataMigrationIdentifier": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The property describes an ARN of the data migration."
+      },
+      "DataMigrationName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The property describes a name to identify the data migration."
+      },
+      "DataMigrationSettings": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0,
+        "description": "The property describes the settings for the data migration."
+      },
+      "DataMigrationType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The property describes the type of migration."
+      },
+      "MigrationProjectIdentifier": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The property describes an identifier for the migration project. It is used for describing/deleting/modifying can be name/arn"
+      },
+      "ServiceAccessRoleArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The property describes Amazon Resource Name (ARN) of the service access role."
+      },
+      "SourceDataSettings": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The property describes the settings for the data migration."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DMS/DataMigration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DMS/DataMigration@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/10"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "DmsSslModeValue",
     "properties": {}
   },
@@ -10,14 +228,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -25,17 +243,8 @@
     }
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.DMS/DataProviderProperties"
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "IntegerType"
   },
   {
     "$type": "ObjectType",
@@ -48,31 +257,31 @@
     "properties": {
       "CertificateArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DatabaseName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Port": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "ServerName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "SslMode": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/15"
         },
         "flags": 1
       }
@@ -89,25 +298,25 @@
     "properties": {
       "CertificateArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "Port": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "ServerName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "SslMode": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -124,61 +333,61 @@
     "properties": {
       "AsmServer": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "CertificateArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DatabaseName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Port": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "SecretsManagerOracleAsmAccessRoleArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "SecretsManagerOracleAsmSecretId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "SecretsManagerSecurityDbEncryptionAccessRoleArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "SecretsManagerSecurityDbEncryptionSecretId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "ServerName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "SslMode": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/19"
         },
         "flags": 1
       }
@@ -195,31 +404,31 @@
     "properties": {
       "CertificateArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DatabaseName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Port": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "ServerName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "SslMode": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/21"
         },
         "flags": 1
       }
@@ -231,28 +440,28 @@
     "properties": {
       "MicrosoftSqlServerSettings": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "MicrosoftSqlServerSettings property identifier."
       },
       "MySqlSettings": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "MySqlSettings property identifier."
       },
       "OracleSettings": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "OracleSettings property identifier."
       },
       "PostgreSqlSettings": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "PostgreSqlSettings property identifier."
@@ -262,7 +471,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/13"
     }
   },
   {
@@ -271,63 +480,63 @@
     "properties": {
       "DataProviderArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The data provider ARN."
       },
       "DataProviderCreationTime": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The data provider creation time."
       },
       "DataProviderIdentifier": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 4,
         "description": "The property describes an identifier for the data provider. It is used for describing/deleting/modifying can be name/arn"
       },
       "DataProviderName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The property describes a name to identify the data provider."
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The optional description of the data provider."
       },
       "Engine": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The property describes a data engine for the data provider."
       },
       "ExactSettings": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 4,
         "description": "The property describes the exact settings which can be modified"
       },
       "Settings": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The property identifies the exact type of settings for the data provider."
       },
       "Tags": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -340,21 +549,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/25"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -366,7 +575,7 @@
     "name": "AWS.DMS/DataProvider@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/26"
     },
     "flags": 0
   },
@@ -376,14 +585,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -397,13 +606,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/28"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
@@ -412,84 +621,84 @@
     "properties": {
       "AvailabilityZone": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The property describes an availability zone of the instance profile."
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The optional description of the instance profile."
       },
       "InstanceProfileArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The property describes an ARN of the instance profile."
       },
       "InstanceProfileCreationTime": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The property describes a creating time of the instance profile."
       },
       "InstanceProfileIdentifier": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 4,
         "description": "The property describes an identifier for the instance profile. It is used for describing/deleting/modifying. Can be name/arn"
       },
       "InstanceProfileName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The property describes a name for the instance profile."
       },
       "KmsKeyArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The property describes kms key arn for the instance profile."
       },
       "NetworkType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The property describes a network type for the instance profile."
       },
       "PubliclyAccessible": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The property describes the publicly accessible of the instance profile"
       },
       "SubnetGroupIdentifier": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The property describes a subnet group identifier for the instance profile."
       },
       "Tags": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "VpcSecurityGroups": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "The property describes vps security groups for the instance profile."
@@ -502,21 +711,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/32"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -528,7 +737,7 @@
     "name": "AWS.DMS/InstanceProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/24"
+      "$ref": "#/33"
     },
     "flags": 0
   },
@@ -538,31 +747,31 @@
     "properties": {
       "DataProviderArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DataProviderIdentifier": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DataProviderName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "SecretsManagerAccessRoleArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "SecretsManagerSecretId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       }
@@ -574,14 +783,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, , and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, , and -."
@@ -598,13 +807,13 @@
     "properties": {
       "S3BucketPath": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "S3BucketRoleArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       }
@@ -613,19 +822,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/35"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/36"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/35"
     }
   },
   {
@@ -634,91 +843,91 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The optional description of the migration project."
       },
       "InstanceProfileArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The property describes an instance profile arn for the migration project. For read"
       },
       "InstanceProfileIdentifier": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 4,
         "description": "The property describes an instance profile identifier for the migration project. For create"
       },
       "InstanceProfileName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The property describes an instance profile name for the migration project. For read"
       },
       "MigrationProjectArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The property describes an ARN of the migration project."
       },
       "MigrationProjectCreationTime": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The property describes a creating time of the migration project."
       },
       "MigrationProjectIdentifier": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 4,
         "description": "The property describes an identifier for the migration project. It is used for describing/deleting/modifying can be name/arn"
       },
       "MigrationProjectName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The property describes a name to identify the migration project."
       },
       "SchemaConversionApplicationAttributes": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "The property describes schema conversion application attributes for the migration project."
       },
       "SourceDataProviderDescriptors": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/39"
         },
         "flags": 4,
         "description": "The property describes source data provider descriptors for the migration project."
       },
       "Tags": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "TargetDataProviderDescriptors": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/41"
         },
         "flags": 4,
         "description": "The property describes target data provider descriptors for the migration project."
       },
       "TransformationRules": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The property describes transformation rules for the migration project."
@@ -731,21 +940,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/42"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -757,7 +966,7 @@
     "name": "AWS.DMS/MigrationProject@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/43"
     },
     "flags": 0
   },
@@ -767,55 +976,55 @@
     "properties": {
       "AvailabilityZone": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DnsNameServers": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "KmsKeyId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "MaxCapacityUnits": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "MinCapacityUnits": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "MultiAZ": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "PreferredMaintenanceWindow": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "ReplicationSubnetGroupId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "VpcSecurityGroupIds": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/47"
         },
         "flags": 0
       }
@@ -827,14 +1036,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "<p>Tag key.</p>"
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "<p>Tag value.</p>"
@@ -844,7 +1053,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
@@ -869,7 +1078,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/37"
+      "$ref": "#/46"
     }
   },
   {
@@ -878,76 +1087,76 @@
     "properties": {
       "ComputeConfig": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/45"
         },
         "flags": 1
       },
       "ReplicationConfigArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the Replication Config"
       },
       "ReplicationConfigIdentifier": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "A unique identifier of replication configuration"
       },
       "ReplicationSettings": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "JSON settings for Servereless replications that are provisioned using this replication configuration"
       },
       "ReplicationType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The type of AWS DMS Serverless replication to provision using this replication configuration"
       },
       "ResourceIdentifier": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "A unique value or name that you get set for a given resource that can be used to construct an Amazon Resource Name (ARN) for that resource"
       },
       "SourceEndpointArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the source endpoint for this AWS DMS Serverless replication configuration"
       },
       "SupplementalSettings": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "JSON settings for specifying supplemental data"
       },
       "TableMappings": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/51"
         },
         "flags": 1,
         "description": "JSON table mappings for AWS DMS Serverless replications that are provisioned using this replication configuration"
       },
       "Tags": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "<p>Contains a map of the key-value pairs for the resource tag or tags assigned to the dataset.</p>"
       },
       "TargetEndpointArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the target endpoint for this AWS DMS Serverless replication configuration"
@@ -960,21 +1169,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/53"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -986,7 +1195,7 @@
     "name": "AWS.DMS/ReplicationConfig@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/45"
+      "$ref": "#/54"
     },
     "flags": 0
   }

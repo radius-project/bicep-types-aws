@@ -44,6 +44,7 @@
 * **AutoBranchCreationConfig**: [AutoBranchCreationConfig](#autobranchcreationconfig) (WriteOnly)
 * **BasicAuthConfig**: [BasicAuthConfig](#basicauthconfig) (WriteOnly)
 * **BuildSpec**: string
+* **CacheConfig**: [CacheConfig](#cacheconfig)
 * **CustomHeaders**: string
 * **CustomRules**: [CustomRule](#customrule)[]
 * **DefaultDomain**: string (ReadOnly)
@@ -106,6 +107,10 @@
 * **EnableBasicAuth**: bool
 * **Password**: string (Required)
 * **Username**: string (Required)
+
+## CacheConfig
+### Properties
+* **Type**: string
 
 ## Certificate
 ### Properties

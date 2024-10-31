@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBInstance",
   "type": "AWS::RDS::DBInstance",
-  "time": "2024-08-06T05:53:32.597Z",
+  "time": "2024-10-30T22:50:28.615Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -33,7 +33,6 @@
       "/properties/KmsKeyId",
       "/properties/MasterUsername",
       "/properties/NcharCharacterSetName",
-      "/properties/Port",
       "/properties/SourceRegion",
       "/properties/StorageEncrypted",
       "/properties/Timezone"
@@ -289,7 +288,6 @@
         "type": "string"
       },
       "BackupRetentionPeriod": {
-        "default": 1,
         "description": "The number of days for which automated backups are retained. Setting this parameter to a positive number enables backups. Setting this parameter to 0 disables automated backups.\n  *Amazon Aurora* \n Not applicable. The retention period for automated backups is managed by the DB cluster.\n Default: 1\n Constraints:\n  +  Must be a value from 0 to 35\n  +  Can't be set to 0 if the DB instance is a source to read replicas",
         "minimum": 0,
         "type": "integer"
@@ -358,7 +356,7 @@
         "uniqueItems": true
       },
       "DBSnapshotIdentifier": {
-        "description": "The name or Amazon Resource Name (ARN) of the DB snapshot that's used to restore the DB instance. If you're restoring from a shared manual DB snapshot, you must specify the ARN of the snapshot.\n By specifying this property, you can create a DB instance from the specified DB snapshot. If the ``DBSnapshotIdentifier`` property is an empty string or the ``AWS::RDS::DBInstance`` declaration has no ``DBSnapshotIdentifier`` property, AWS CloudFormation creates a new database. If the property contains a value (other than an empty string), AWS CloudFormation creates a database from the specified snapshot. If a snapshot with the specified name doesn't exist, AWS CloudFormation can't create the database and it rolls back the stack.\n Some DB instance properties aren't valid when you restore from a snapshot, such as the ``MasterUsername`` and ``MasterUserPassword`` properties. For information about the properties that you can specify, see the ``RestoreDBInstanceFromDBSnapshot`` action in the *Amazon RDS API Reference*.\n After you restore a DB instance with a ``DBSnapshotIdentifier`` property, you must specify the same ``DBSnapshotIdentifier`` property for any future updates to the DB instance. When you specify this property for an update, the DB instance is not restored from the DB snapshot again, and the data in the database is not changed. However, if you don't specify the ``DBSnapshotIdentifier`` property, an empty DB instance is created, and the original DB instance is deleted. If you specify a property that is different from the previous snapshot restore property, a new DB instance is restored from the specified ``DBSnapshotIdentifier`` property, and the original DB instance is deleted.\n If you specify the ``DBSnapshotIdentifier`` property to restore a DB instance (as opposed to specifying it for DB instance updates), then don't specify the following properties:\n  +   ``CharacterSetName`` \n  +   ``DBClusterIdentifier`` \n  +   ``DBName`` \n  +   ``DeleteAutomatedBackups`` \n  +   ``KmsKeyId`` \n  +   ``MasterUsername`` \n  +   ``MasterUserPassword`` \n  +   ``PerformanceInsightsKMSKeyId`` \n  +   ``PerformanceInsightsRetentionPeriod`` \n  +   ``PromotionTier`` \n  +   ``SourceDBInstanceIdentifier`` \n  +   ``SourceRegion`` \n  +   ``StorageEncrypted`` (for an encrypted snapshot)\n  +   ``Timezone`` \n  \n  *Amazon Aurora* \n Not applicable. Snapshot restore is managed by the DB cluster.",
+        "description": "The name or Amazon Resource Name (ARN) of the DB snapshot that's used to restore the DB instance. If you're restoring from a shared manual DB snapshot, you must specify the ARN of the snapshot.\n By specifying this property, you can create a DB instance from the specified DB snapshot. If the ``DBSnapshotIdentifier`` property is an empty string or the ``AWS::RDS::DBInstance`` declaration has no ``DBSnapshotIdentifier`` property, AWS CloudFormation creates a new database. If the property contains a value (other than an empty string), AWS CloudFormation creates a database from the specified snapshot. If a snapshot with the specified name doesn't exist, AWS CloudFormation can't create the database and it rolls back the stack.\n Some DB instance properties aren't valid when you restore from a snapshot, such as the ``MasterUsername`` and ``MasterUserPassword`` properties. For information about the properties that you can specify, see the ``RestoreDBInstanceFromDBSnapshot`` action in the *Amazon RDS API Reference*.\n After you restore a DB instance with a ``DBSnapshotIdentifier`` property, you must specify the same ``DBSnapshotIdentifier`` property for any future updates to the DB instance. When you specify this property for an update, the DB instance is not restored from the DB snapshot again, and the data in the database is not changed. However, if you don't specify the ``DBSnapshotIdentifier`` property, an empty DB instance is created, and the original DB instance is deleted. If you specify a property that is different from the previous snapshot restore property, a new DB instance is restored from the specified ``DBSnapshotIdentifier`` property, and the original DB instance is deleted.\n If you specify the ``DBSnapshotIdentifier`` property to restore a DB instance (as opposed to specifying it for DB instance updates), then don't specify the following properties:\n  +   ``CharacterSetName`` \n  +   ``DBClusterIdentifier`` \n  +   ``DBName`` \n  +   ``KmsKeyId`` \n  +   ``MasterUsername`` \n  +   ``MasterUserPassword`` \n  +   ``PromotionTier`` \n  +   ``SourceDBInstanceIdentifier`` \n  +   ``SourceRegion`` \n  +   ``StorageEncrypted`` (for an unencrypted snapshot)\n  +   ``Timezone`` \n  \n  *Amazon Aurora* \n Not applicable. Snapshot restore is managed by the DB cluster.",
         "type": "string"
       },
       "DBSubnetGroupName": {
@@ -479,7 +477,6 @@
         "type": "integer"
       },
       "MonitoringInterval": {
-        "default": 0,
         "description": "The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collection of Enhanced Monitoring metrics, specify ``0``.\n If ``MonitoringRoleArn`` is specified, then you must set ``MonitoringInterval`` to a value other than ``0``.\n This setting doesn't apply to RDS Custom DB instances.\n Valid Values: ``0 | 1 | 5 | 10 | 15 | 30 | 60`` \n Default: ``0``",
         "type": "integer"
       },
@@ -532,7 +529,6 @@
         "type": "array"
       },
       "PromotionTier": {
-        "default": 1,
         "description": "The order of priority in which an Aurora Replica is promoted to the primary instance after a failure of the existing primary instance. For more information, see [Fault Tolerance for an Aurora DB Cluster](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance) in the *Amazon Aurora User Guide*.\n This setting doesn't apply to RDS Custom DB instances.\n Default: ``1`` \n Valid Values: ``0 - 15``",
         "minimum": 0,
         "type": "integer"
@@ -546,7 +542,7 @@
         "type": "string"
       },
       "RestoreTime": {
-        "description": "The date and time to restore from.\n Constraints:\n  +  Must be a time in Universal Coordinated Time (UTC) format.\n  +  Must be before the latest restorable time for the DB instance.\n  +  Can't be specified if the ``UseLatestRestorableTime`` parameter is enabled.\n  \n Example: ``2009-09-07T23:45:00Z``",
+        "description": "The date and time to restore from. This parameter applies to point-in-time recovery. For more information, see [Restoring a DB instance to a specified time](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html) in the in the *Amazon RDS User Guide*.\n Constraints:\n  +  Must be a time in Universal Coordinated Time (UTC) format.\n  +  Must be before the latest restorable time for the DB instance.\n  +  Can't be specified if the ``UseLatestRestorableTime`` parameter is enabled.\n  \n Example: ``2009-09-07T23:45:00Z``",
         "format": "date-time",
         "type": "string"
       },
@@ -608,7 +604,7 @@
         "type": "boolean"
       },
       "UseLatestRestorableTime": {
-        "description": "Specifies whether the DB instance is restored from the latest backup time. By default, the DB instance isn't restored from the latest backup time.\n Constraints:\n  +  Can't be specified if the ``RestoreTime`` parameter is provided.",
+        "description": "Specifies whether the DB instance is restored from the latest backup time. By default, the DB instance isn't restored from the latest backup time. This parameter applies to point-in-time recovery. For more information, see [Restoring a DB instance to a specified time](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html) in the in the *Amazon RDS User Guide*.\n Constraints:\n  +  Can't be specified if the ``RestoreTime`` parameter is provided.",
         "type": "boolean"
       },
       "VPCSecurityGroups": {
@@ -630,11 +626,11 @@
       "/properties/DBSubnetGroupName": "$lowercase(DBSubnetGroupName)",
       "/properties/Engine": "$lowercase(Engine)",
       "/properties/EngineVersion": "$join([$string(EngineVersion), \".*\"])",
-      "/properties/KmsKeyId": "$join([\"arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-3]{1}:[0-9]{12}[:]{1}key\\/\", KmsKeyId])",
-      "/properties/MasterUserSecret/KmsKeyId": "$join([\"arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-3]{1}:[0-9]{12}[:]{1}key\\/\", MasterUserSecret.KmsKeyId])",
+      "/properties/KmsKeyId": "$join([\"arn:.+?:kms:.+?:.+?:key\\/\", KmsKeyId])",
+      "/properties/MasterUserSecret/KmsKeyId": "$join([\"arn:.+?:kms:.+?:.+?:key\\/\", MasterUserSecret.KmsKeyId])",
       "/properties/NetworkType": "$lowercase(NetworkType)",
       "/properties/OptionGroupName": "$lowercase(OptionGroupName)",
-      "/properties/PerformanceInsightsKMSKeyId": "$join([\"arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-3]{1}:[0-9]{12}[:]{1}key\\/\", PerformanceInsightsKMSKeyId])",
+      "/properties/PerformanceInsightsKMSKeyId": "$join([\"arn:.+?:kms:.+?:.+?:key\\/\", PerformanceInsightsKMSKeyId])",
       "/properties/PreferredMaintenanceWindow": "$lowercase(PreferredMaintenanceWindow)",
       "/properties/SourceDBInstanceAutomatedBackupsArn": "$lowercase(SourceDBInstanceAutomatedBackupsArn)",
       "/properties/SourceDBInstanceIdentifier": "$lowercase(SourceDBInstanceIdentifier)",
@@ -652,6 +648,17 @@
       "/properties/CertificateDetails/ValidTill"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "rds:AddTagsToResource",
+        "rds:RemoveTagsFromResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::RDS::DBInstance",
     "writeOnlyProperties": [
       "/properties/AllowMajorVersionUpgrade",
@@ -660,7 +667,6 @@
       "/properties/DBSnapshotIdentifier",
       "/properties/DeleteAutomatedBackups",
       "/properties/MasterUserPassword",
-      "/properties/Port",
       "/properties/RestoreTime",
       "/properties/SourceDBInstanceAutomatedBackupsArn",
       "/properties/SourceDBInstanceIdentifier",

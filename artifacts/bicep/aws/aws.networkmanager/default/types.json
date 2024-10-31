@@ -1932,6 +1932,33 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ProposedNetworkFunctionGroupChange",
+    "properties": {
+      "AttachmentPolicyRuleNumber": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The rule number in the policy document that applies to this change."
+      },
+      "NetworkFunctionGroupName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name of the network function group to change."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/93"
+        },
+        "flags": 0,
+        "description": "The key-value tags that changed for the network function group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "ProposedSegmentChange",
     "properties": {
       "AttachmentPolicyRuleNumber": {
@@ -1950,7 +1977,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "The key-value tags that changed for the segment."
@@ -1980,7 +2007,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/91"
+      "$ref": "#/92"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/92"
     }
   },
   {
@@ -1990,7 +2023,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/91"
+      "$ref": "#/92"
     }
   },
   {
@@ -2046,6 +2079,13 @@
         "flags": 2,
         "description": "The Region where the edge is located."
       },
+      "NetworkFunctionGroupName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name of the network function group attachment."
+      },
       "OwnerAccountId": {
         "type": {
           "$ref": "#/4"
@@ -2060,9 +2100,16 @@
         "flags": 1,
         "description": "The Id of peering between transit gateway and core network."
       },
-      "ProposedSegmentChange": {
+      "ProposedNetworkFunctionGroupChange": {
         "type": {
           "$ref": "#/90"
+        },
+        "flags": 0,
+        "description": "The attachment to move from one network function group to another."
+      },
+      "ProposedSegmentChange": {
+        "type": {
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "The attachment to move from one segment to another."
@@ -2090,7 +2137,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/96"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2131,7 +2178,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/97"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2143,7 +2190,7 @@
     "name": "AWS.NetworkManager/TransitGatewayRouteTableAttachment@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/96"
+      "$ref": "#/98"
     },
     "flags": 0
   },
@@ -2167,7 +2214,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/104"
         },
         "flags": 0,
         "description": "The key-value tags that changed for the network function group."
@@ -2194,7 +2241,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/105"
         },
         "flags": 0,
         "description": "The key-value tags that changed for the segment."
@@ -2227,14 +2274,14 @@
     "properties": {
       "ApplianceModeSupport": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/106"
         },
         "flags": 0,
         "description": "Indicates whether to enable ApplianceModeSupport Support for Vpc Attachment. Valid Values: true | false"
       },
       "Ipv6Support": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/106"
         },
         "flags": 0,
         "description": "Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable | disable"
@@ -2244,13 +2291,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/102"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/102"
     }
   },
   {
@@ -2269,7 +2316,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/102"
     }
   },
   {
@@ -2334,7 +2381,7 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/103"
         },
         "flags": 0,
         "description": "Vpc options of the attachment."
@@ -2348,14 +2395,14 @@
       },
       "ProposedNetworkFunctionGroupChange": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/100"
         },
         "flags": 0,
         "description": "The attachment to move from one network function group to another."
       },
       "ProposedSegmentChange": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/101"
         },
         "flags": 0,
         "description": "The attachment to move from one segment to another."
@@ -2383,14 +2430,14 @@
       },
       "SubnetArns": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/108"
         },
         "flags": 1,
         "description": "Subnet Arn list"
       },
       "Tags": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/109"
         },
         "flags": 0,
         "description": "Tags for the attachment."
@@ -2431,7 +2478,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/110"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2443,7 +2490,7 @@
     "name": "AWS.NetworkManager/VpcAttachment@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/109"
+      "$ref": "#/111"
     },
     "flags": 0
   }

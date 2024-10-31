@@ -76,7 +76,7 @@
 * **Arn**: string (ReadOnly, Identifier): <p>The Amazon Resource Name (ARN) associated with the resource.</p>
 * **ChannelGroupName**: string (Required)
 * **ChannelName**: string (Required)
-* **ContainerType**: string
+* **ContainerType**: string (Required)
 * **CreatedAt**: string (ReadOnly): <p>The date and time the origin endpoint was created.</p>
 * **DashManifests**: [DashManifestConfiguration](#dashmanifestconfiguration)[]: <p>A DASH manifest configuration.</p>
 * **DashManifestUrls**: string[] (ReadOnly)
@@ -133,6 +133,7 @@
 
 ## FilterConfiguration
 ### Properties
+* **ClipStartTime**: string: <p>Optionally specify the clip start time for all of your manifest egress requests. When you include clip start time, note that you cannot use clip start time query parameters for this manifest's endpoint URL.</p>
 * **End**: string: <p>Optionally specify the end time for all of your manifest egress requests. When you include end time, note that you cannot use end time query parameters for this manifest's endpoint URL.</p>
 * **ManifestFilter**: string: <p>Optionally specify one or more manifest filters for all of your manifest egress requests. When you include a manifest filter, note that you cannot use an identical manifest filter query parameter for this manifest's endpoint URL.</p>
 * **Start**: string: <p>Optionally specify the start time for all of your manifest egress requests. When you include start time, note that you cannot use start time query parameters for this manifest's endpoint URL.</p>
@@ -168,6 +169,7 @@
          ID3Timed metadata messages generate every 5 seconds whenever the content is ingested.</p>
          <p>Irrespective of this parameter, if any ID3Timed metadata is in the HLS input, it is passed through to the HLS output.</p>
 * **ScteHls**: [ScteHls](#sctehls)
+* **StartTag**: [StartTag](#starttag)
 * **Url**: string: <p>The egress domain URL for stream delivery from MediaPackage.</p>
 
 ## IngestEndpoint
@@ -187,6 +189,7 @@
          ID3Timed metadata messages generate every 5 seconds whenever the content is ingested.</p>
          <p>Irrespective of this parameter, if any ID3Timed metadata is in the HLS input, it is passed through to the HLS output.</p>
 * **ScteHls**: [ScteHls](#sctehls)
+* **StartTag**: [StartTag](#starttag)
 * **Url**: string: <p>The egress domain URL for stream delivery from MediaPackage.</p>
 
 ## Scte
@@ -224,6 +227,11 @@
 * **Url**: string (Required): <p>The URL of the API Gateway proxy that you set up to talk to your key server. The API Gateway proxy must reside in the same AWS Region as MediaPackage and must start with https://.</p>
          <p>The following example shows a URL: <code>https://1wm2dx1f33.execute-api.us-west-2.amazonaws.com/SpekeSample/copyProtection</code>
          </p>
+
+## StartTag
+### Properties
+* **Precise**: bool: <p>Specify the value for PRECISE within your EXT-X-START tag. Leave blank, or choose false, to use the default value NO. Choose yes to use the value YES.</p>
+* **TimeOffset**: int (Required): <p>Specify the value for TIME-OFFSET within your EXT-X-START tag. Enter a signed floating point value which, if positive, must be less than the configured manifest duration minus three times the configured segment target duration. If negative, the absolute value must be larger than three times the configured segment target duration, and the absolute value must be smaller than the configured manifest duration.</p>
 
 ## Tag
 ### Properties

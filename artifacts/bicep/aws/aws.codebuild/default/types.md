@@ -15,6 +15,7 @@
 * **EnvironmentType**: string
 * **FleetServiceRole**: string
 * **FleetVpcConfig**: [VpcConfig](#vpcconfig)
+* **ImageId**: string
 * **Name**: string
 * **OverflowBehavior**: string
 * **Tags**: [Tag](#tag)[]

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WAFv2-WebACL",
   "type": "AWS::WAFv2::WebACL",
-  "time": "2024-03-18T17:23:44.959Z",
+  "time": "2024-10-30T01:02:14.939Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -1011,7 +1011,7 @@
       },
       "RateLimit": {
         "maximum": 2000000000,
-        "minimum": 100,
+        "minimum": 10,
         "type": "integer"
       },
       "RateLimitCookie": {
@@ -1916,7 +1916,9 @@
         "permissions": [
           "wafv2:UpdateWebACL",
           "wafv2:GetWebACL",
-          "wafv2:ListTagsForResource"
+          "wafv2:ListTagsForResource",
+          "wafv2:TagResource",
+          "wafv2:UntagResource"
         ]
       }
     },
@@ -1997,10 +1999,11 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-wafv2.git",
     "tagging": {
-      "cloudFormationSystemTags": false,
-      "tagOnCreate": false,
-      "tagUpdatable": false,
-      "taggable": false
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
     },
     "typeName": "AWS::WAFv2::WebACL"
   }

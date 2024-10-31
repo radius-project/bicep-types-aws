@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Amplify-App",
   "type": "AWS::Amplify::App",
-  "time": "2024-08-01T15:26:19.957Z",
+  "time": "2024-10-30T17:41:53.329Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -81,6 +81,19 @@
           "Username": {
             "maxLength": 255,
             "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CacheConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "Type": {
+            "enum": [
+              "AMPLIFY_MANAGED",
+              "AMPLIFY_MANAGED_NO_COOKIES"
+            ],
             "type": "string"
           }
         },
@@ -261,6 +274,9 @@
         "pattern": "(?s).+",
         "type": "string"
       },
+      "CacheConfig": {
+        "$ref": "#/definitions/CacheConfig"
+      },
       "CustomHeaders": {
         "maxLength": 25000,
         "minLength": 0,
@@ -340,6 +356,7 @@
     "required": [
       "Name"
     ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-amplify",
     "typeName": "AWS::Amplify::App",
     "writeOnlyProperties": [
       "/properties/AccessToken",

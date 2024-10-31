@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaPackage-OriginEndpoint",
   "type": "AWS::MediaPackage::OriginEndpoint",
-  "time": "2024-08-06T18:15:37.224Z",
+  "time": "2024-10-22T18:23:28.775Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -594,6 +594,10 @@
       "update": {
         "permissions": [
           "mediapackage:UpdateOriginEndpoint",
+          "mediapackage:TagResource",
+          "mediapackage:ListTagsForResource",
+          "mediapackage:UntagResource",
+          "mediapackage:DescribeOriginEndpoint",
           "iam:PassRole"
         ]
       }
@@ -687,9 +691,13 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "mediapackage:TagResource",
+        "mediapackage:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
-      "tagUpdatable": false,
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::MediaPackage::OriginEndpoint"

@@ -16,6 +16,7 @@
 * **DesiredState**: string
 * **Enrichment**: string
 * **EnrichmentParameters**: [PipeEnrichmentParameters](#pipeenrichmentparameters)
+* **KmsKeyIdentifier**: string
 * **LastModifiedTime**: string (ReadOnly)
 * **LogConfiguration**: [PipeLogConfiguration](#pipelogconfiguration)
 * **Name**: string (Identifier)

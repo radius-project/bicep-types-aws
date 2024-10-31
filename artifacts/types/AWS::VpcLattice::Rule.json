@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VpcLattice-Rule",
   "type": "AWS::VpcLattice::Rule",
-  "time": "2024-08-08T18:08:45.316Z",
+  "time": "2024-09-25T17:46:42.282Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -236,7 +236,8 @@
       },
       "delete": {
         "permissions": [
-          "vpc-lattice:DeleteRule"
+          "vpc-lattice:DeleteRule",
+          "vpc-lattice:UntagResource"
         ]
       },
       "list": {
@@ -275,7 +276,8 @@
           "vpc-lattice:UpdateRule",
           "vpc-lattice:GetRule",
           "vpc-lattice:TagResource",
-          "vpc-lattice:UntagResource"
+          "vpc-lattice:UntagResource",
+          "vpc-lattice:ListTagsForResource"
         ]
       }
     },
@@ -349,6 +351,11 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "vpc-lattice:UntagResource",
+        "vpc-lattice:TagResource",
+        "vpc-lattice:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

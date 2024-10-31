@@ -54,6 +54,7 @@ You cannot modify the value of AutoMinorVersionUpgrade after the cluster is crea
 * **ClusterName**: string (Required, Identifier): The name of the cluster. This value must be unique as it also serves as the cluster identifier.
 * **DataTiering**: [Cluster_DataTieringStatus](#clusterdatatieringstatus): Enables data tiering. Data tiering is only supported for clusters using the r6gd node type. This parameter must be set when using r6gd nodes.
 * **Description**: string: An optional description of the cluster.
+* **Engine**: string: The engine type used by the cluster.
 * **EngineVersion**: string: The Redis engine version used by the cluster.
 * **FinalSnapshotName**: string (WriteOnly): The user-supplied name of a final cluster snapshot. This is the unique name that identifies the snapshot. MemoryDB creates the snapshot, and then deletes the cluster immediately afterward.
 * **KmsKeyId**: string: The ID of the KMS key used to encrypt the cluster.

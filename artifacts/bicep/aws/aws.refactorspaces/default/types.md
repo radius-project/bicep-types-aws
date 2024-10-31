@@ -1,11 +1,28 @@
 # AWS.RefactorSpaces @ default
 
+## Resource AWS.RefactorSpaces/Environment@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.RefactorSpaces/EnvironmentProperties](#awsrefactorspacesenvironmentproperties) (Identifier): properties of the resource
+
 ## Resource AWS.RefactorSpaces/Route@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.RefactorSpaces/RouteProperties](#awsrefactorspacesrouteproperties) (Required, Identifier): properties of the resource
+
+## AWS.RefactorSpaces/EnvironmentProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **Description**: string (WriteOnly)
+* **EnvironmentIdentifier**: string (ReadOnly, Identifier)
+* **Name**: string (WriteOnly)
+* **NetworkFabricType**: string (WriteOnly)
+* **Tags**: [Tag](#tag)[]: Metadata that you can assign to help organize the frameworks that you create. Each tag is a key-value pair.
+* **TransitGatewayId**: string (ReadOnly)
 
 ## AWS.RefactorSpaces/RouteProperties
 ### Properties
@@ -23,6 +40,11 @@
 ## DefaultRouteInput
 ### Properties
 * **ActivationState**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): A string used to identify this tag
+* **Value**: string (Required): A string containing the value for the tag
 
 ## Tag
 ### Properties

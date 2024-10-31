@@ -133,6 +133,7 @@
 * **DefaultActions**: [Action](#action)[] (Required, WriteOnly): The actions for the default rule. You cannot define a condition for a default rule.
  To create additional rules for an Application Load Balancer, use [AWS::ElasticLoadBalancingV2::ListenerRule](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html).
 * **ListenerArn**: string (ReadOnly, Identifier)
+* **ListenerAttributes**: [ListenerAttribute](#listenerattribute)[]: The listener attributes.
 * **LoadBalancerArn**: string (Required): The Amazon Resource Name (ARN) of the load balancer.
 * **MutualAuthentication**: [MutualAuthentication](#mutualauthentication): The mutual authentication configuration information.
 * **Port**: int: The port on which the load balancer is listening. You cannot specify a port for a Gateway Load Balancer.
@@ -160,7 +161,8 @@
 * **EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic**: string: Indicates whether to evaluate inbound security group rules for traffic sent to a Network Load Balancer through privatelink.
 * **IpAddressType**: string: Note: Internal load balancers must use the ``ipv4`` IP address type.
  [Application Load Balancers] The IP address type. The possible values are ``ipv4`` (for only IPv4 addresses), ``dualstack`` (for IPv4 and IPv6 addresses), and ``dualstack-without-public-ipv4`` (for IPv6 only public addresses, with private IPv4 and IPv6 addresses).
- [Network Load Balancers] The IP address type. The possible values are ``ipv4`` (for only IPv4 addresses) and ``dualstack`` (for IPv4 and IPv6 addresses). You can?t specify ``dualstack`` for a load balancer with a UDP or TCP_UDP listener.
+ Note: Application Load Balancer authentication only supports IPv4 addresses when connecting to an Identity Provider (IdP) or Amazon Cognito endpoint. Without a public IPv4 address the load balancer cannot complete the authentication process, resulting in HTTP 500 errors.
+ [Network Load Balancers] The IP address type. The possible values are ``ipv4`` (for only IPv4 addresses) and ``dualstack`` (for IPv4 and IPv6 addresses). You can’t specify ``dualstack`` for a load balancer with a UDP or TCP_UDP listener.
  [Gateway Load Balancers] The IP address type. The possible values are ``ipv4`` (for only IPv4 addresses) and ``dualstack`` (for IPv4 and IPv6 addresses).
 * **LoadBalancerArn**: string (ReadOnly, Identifier)
 * **LoadBalancerAttributes**: [LoadBalancerAttribute](#loadbalancerattribute)[]: The load balancer attributes.
@@ -275,6 +277,13 @@
 
 ## Listener_AuthenticationRequestExtraParams
 ### Properties
+
+## ListenerAttribute
+### Properties
+* **Key**: string: The name of the attribute.
+ The following attribute is supported by Network Load Balancers, and Gateway Load Balancers.
+  +   ``tcp.idle_timeout.seconds`` - The tcp idle timeout value, in seconds. The valid range is 60-6000 seconds. The default is 350 seconds.
+* **Value**: string: The value of the attribute.
 
 ## ListenerRule_AuthenticationRequestExtraParams
 ### Properties

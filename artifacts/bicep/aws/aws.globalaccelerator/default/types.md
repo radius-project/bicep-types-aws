@@ -90,7 +90,8 @@
 
 ## Resource
 ### Properties
-* **EndpointId**: string (Required)
+* **Cidr**: string
+* **EndpointId**: string
 * **Region**: string
 
 ## Tag

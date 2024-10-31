@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MemoryDB-SubnetGroup",
   "type": "AWS::MemoryDB::SubnetGroup",
-  "time": "2023-11-22T20:31:39.413Z",
+  "time": "2024-10-19T05:40:28.281Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -40,6 +40,7 @@
         "permissions": [
           "memorydb:CreateSubnetGroup",
           "memorydb:DescribeSubnetGroups",
+          "memorydb:TagResource",
           "memorydb:ListTags"
         ]
       },
@@ -115,7 +116,18 @@
       "SubnetIds"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-memorydb",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "memorydb:TagResource",
+        "memorydb:ListTags",
+        "memorydb:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::MemoryDB::SubnetGroup"
   }
 }

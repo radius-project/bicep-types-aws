@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GameLift-ContainerGroupDefinition",
   "type": "AWS::GameLift::ContainerGroupDefinition",
-  "time": "2024-08-08T21:13:00.821Z",
+  "time": "2024-10-17T18:59:36.921Z",
   "schema": {
     "$schema": "https://schema.cloudformation.us-east-1.amazonaws.com/provider.definition.schema.v1.json",
     "additionalProperties": false,
@@ -223,6 +223,38 @@
         ],
         "type": "object"
       },
+      "ContainerMountPoint": {
+        "additionalProperties": false,
+        "description": "Defines the mount point configuration within a container.",
+        "properties": {
+          "AccessLevel": {
+            "description": "The access permissions for the mounted path.",
+            "enum": [
+              "READ_ONLY",
+              "READ_AND_WRITE"
+            ],
+            "type": "string"
+          },
+          "ContainerPath": {
+            "description": "The path inside the container where the mount is accessible.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^(\\/+[^\\/]+\\/*)+$",
+            "type": "string"
+          },
+          "InstancePath": {
+            "description": "The path on the host that will be mounted in the container.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^\\/[\\s\\S]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "InstancePath"
+        ],
+        "type": "object"
+      },
       "ContainerPortRange": {
         "additionalProperties": false,
         "description": "A set of one or more port numbers that can be opened on the container.",
@@ -379,7 +411,7 @@
         "description": "The Amazon Resource Name (ARN) that is assigned to a Amazon GameLift container group resource and uniquely identifies it across all AWS Regions.",
         "maxLength": 512,
         "minLength": 1,
-        "pattern": "^arn:.*:containergroupdefinition/containergroupdefinition-[a-zA-Z0-9-]+$",
+        "pattern": "^arn:.*:containergroupdefinition/containergroupdefinition-[a-zA-Z0-9-]+$|^arn:.*:containergroupdefinition/[a-zA-Z0-9-\\:]+$",
         "type": "string"
       },
       "CreationTime": {
@@ -408,6 +440,33 @@
         ],
         "type": "string"
       },
+      "SourceVersionNumber": {
+        "description": "A specific ContainerGroupDefinition version to be updated",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "Status": {
+        "description": "A string indicating ContainerGroupDefinition status.",
+        "enum": [
+          "READY",
+          "COPYING",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "StatusReason": {
+        "description": "A string indicating the reason for ContainerGroupDefinition status.",
+        "type": "string"
+      },
+      "SupportContainerDefinitions": {
+        "description": "A collection of support container definitions that define the containers in this group.",
+        "insertionOrder": false,
+        "items": {},
+        "maxItems": 10,
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
       "Tags": {
         "description": "An array of key-value pairs to apply to this resource.",
         "insertionOrder": false,
@@ -435,7 +494,9 @@
     "readOnlyProperties": [
       "/properties/ContainerGroupDefinitionArn",
       "/properties/CreationTime",
-      "/properties/ContainerDefinitions/*/ResolvedImageDigest"
+      "/properties/ContainerDefinitions/*/ResolvedImageDigest",
+      "/properties/Status",
+      "/properties/StatusReason"
     ],
     "required": [
       "Name",
@@ -447,6 +508,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-gamelift.git",
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "gamelift:ListTagsForResource",
+        "gamelift:TagResource",
+        "gamelift:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

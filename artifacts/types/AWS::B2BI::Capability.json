@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-B2BI-Capability",
   "type": "AWS::B2BI::Capability",
-  "time": "2024-08-06T16:12:27.737Z",
+  "time": "2024-10-29T16:21:38.14Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -25,6 +25,13 @@
           }
         ]
       },
+      "CapabilityDirection": {
+        "enum": [
+          "INBOUND",
+          "OUTBOUND"
+        ],
+        "type": "string"
+      },
       "CapabilityType": {
         "enum": [
           "edi"
@@ -34,6 +41,9 @@
       "EdiConfiguration": {
         "additionalProperties": false,
         "properties": {
+          "CapabilityDirection": {
+            "$ref": "#/definitions/CapabilityDirection"
+          },
           "InputLocation": {
             "$ref": "#/definitions/S3Location"
           },
@@ -323,6 +333,11 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "b2bi:ListTagsForResource",
+        "b2bi:TagResource",
+        "b2bi:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

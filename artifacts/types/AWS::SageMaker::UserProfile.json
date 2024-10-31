@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-UserProfile",
   "type": "AWS::SageMaker::UserProfile",
-  "time": "2024-07-30T21:56:55.426Z",
+  "time": "2024-10-29T16:19:31.167Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -14,6 +14,15 @@
       "/properties/Tags"
     ],
     "definitions": {
+      "AppLifecycleManagement": {
+        "additionalProperties": false,
+        "properties": {
+          "IdleSettings": {
+            "$ref": "#/definitions/IdleSettings"
+          }
+        },
+        "type": "object"
+      },
       "AppType": {
         "enum": [
           "JupyterServer",
@@ -30,6 +39,9 @@
         "additionalProperties": false,
         "description": "The CodeEditor app settings.",
         "properties": {
+          "AppLifecycleManagement": {
+            "$ref": "#/definitions/AppLifecycleManagement"
+          },
           "CustomImages": {
             "description": "A list of custom images for use for CodeEditor apps.",
             "items": {
@@ -179,10 +191,37 @@
         ],
         "type": "object"
       },
+      "IdleSettings": {
+        "additionalProperties": false,
+        "properties": {
+          "IdleTimeoutInMinutes": {
+            "$ref": "#/definitions/IdleTimeoutInMinutes"
+          },
+          "LifecycleManagement": {
+            "$ref": "#/definitions/LifecycleManagement"
+          },
+          "MaxIdleTimeoutInMinutes": {
+            "$ref": "#/definitions/MaxIdleTimeoutInMinutes"
+          },
+          "MinIdleTimeoutInMinutes": {
+            "$ref": "#/definitions/MinIdleTimeoutInMinutes"
+          }
+        },
+        "type": "object"
+      },
+      "IdleTimeoutInMinutes": {
+        "description": "The idle timeout value set in minutes",
+        "maximum": 525600,
+        "minimum": 60,
+        "type": "integer"
+      },
       "JupyterLabAppSettings": {
         "additionalProperties": false,
         "description": "The JupyterLab app settings.",
         "properties": {
+          "AppLifecycleManagement": {
+            "$ref": "#/definitions/AppLifecycleManagement"
+          },
           "CodeRepositories": {
             "description": "A list of CodeRepositories available for use with JupyterLab apps.",
             "items": {
@@ -271,6 +310,26 @@
         },
         "type": "object"
       },
+      "LifecycleManagement": {
+        "description": "A flag to enable/disable AppLifecycleManagement settings",
+        "enum": [
+          "ENABLED",
+          "DISABLED"
+        ],
+        "type": "string"
+      },
+      "MaxIdleTimeoutInMinutes": {
+        "description": "The maximum idle timeout value set in minutes",
+        "maximum": 525600,
+        "minimum": 60,
+        "type": "integer"
+      },
+      "MinIdleTimeoutInMinutes": {
+        "description": "The minimum idle timeout value set in minutes",
+        "maximum": 525600,
+        "minimum": 60,
+        "type": "integer"
+      },
       "MlTools": {
         "enum": [
           "DataWrangler",
@@ -285,7 +344,8 @@
           "JumpStart",
           "InferenceRecommender",
           "Endpoints",
-          "Projects"
+          "Projects",
+          "InferenceOptimization"
         ],
         "type": "string"
       },

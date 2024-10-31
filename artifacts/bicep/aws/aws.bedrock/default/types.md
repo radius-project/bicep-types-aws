@@ -14,6 +14,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Bedrock/AgentAliasProperties](#awsbedrockagentaliasproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Bedrock/ApplicationInferenceProfile@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/ApplicationInferenceProfileProperties](#awsbedrockapplicationinferenceprofileproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Bedrock/DataSource@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -62,13 +69,6 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Bedrock/PromptProperties](#awsbedrockpromptproperties) (Required, Identifier): properties of the resource
-
-## Resource AWS.Bedrock/PromptVersion@default
-* **Valid Scope(s)**: Unknown
-### Properties
-* **alias**: string (Required, Identifier): the resource alias
-* **name**: string: the resource name
-* **properties**: [AWS.Bedrock/PromptVersionProperties](#awsbedrockpromptversionproperties) (Required, Identifier): properties of the resource
 
 ## ActionGroupExecutor
 ### Properties
@@ -144,6 +144,21 @@
 * **TestAliasTags**: [TagsMap](#tagsmap)
 * **UpdatedAt**: string (ReadOnly): Time Stamp.
 
+## AWS.Bedrock/ApplicationInferenceProfileProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): Time Stamp
+* **Description**: string: Description of the inference profile
+* **InferenceProfileArn**: string (ReadOnly)
+* **InferenceProfileId**: string (ReadOnly)
+* **InferenceProfileIdentifier**: string (ReadOnly, Identifier): Inference profile identifier. Supports both system-defined inference profile ids, and inference profile ARNs.
+* **InferenceProfileName**: string (Required)
+* **Models**: [InferenceProfileModel](#inferenceprofilemodel)[] (ReadOnly): List of model configuration
+* **ModelSource**: [InferenceProfileModelSource](#inferenceprofilemodelsource) (WriteOnly)
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: List of Tags
+* **Type**: string (ReadOnly)
+* **UpdatedAt**: string (ReadOnly): Time Stamp
+
 ## AWS.Bedrock/DataSourceProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly): The time at which the data source was created.
@@ -189,11 +204,13 @@
 * **Tags**: [TagsMap](#tagsmap)
 * **TestAliasTags**: [TagsMap](#tagsmap)
 * **UpdatedAt**: string (ReadOnly): Time Stamp.
+* **Validations**: [FlowValidation](#flowvalidation)[] (ReadOnly)
 * **Version**: string (ReadOnly): Draft Version.
 
 ## AWS.Bedrock/FlowVersionProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly): Time Stamp.
+* **CustomerEncryptionKeyArn**: string (ReadOnly): A KMS key ARN
 * **Definition**: [FlowDefinition](#flowdefinition) (ReadOnly)
 * **Description**: string: Description of the flow version
 * **ExecutionRoleArn**: string (ReadOnly): ARN of a IAM role
@@ -254,27 +271,37 @@
 * **Variants**: [PromptVariant](#promptvariant)[] (WriteOnly): List of prompt variants
 * **Version**: string (ReadOnly): Draft Version.
 
-## AWS.Bedrock/PromptVersionProperties
-### Properties
-* **Arn**: string (ReadOnly, Identifier): ARN of a prompt version resource
-* **CreatedAt**: string (ReadOnly): Time Stamp.
-* **DefaultVariant**: string (ReadOnly): Name for a variant.
-* **Description**: string: Description for a prompt version resource.
-* **Name**: string (ReadOnly): Name for a prompt resource.
-* **PromptArn**: string (Required): ARN of a prompt resource possibly with a version
-* **PromptId**: string (ReadOnly): Identifier for a Prompt
-* **UpdatedAt**: string (ReadOnly): Time Stamp.
-* **Variants**: [PromptVariant](#promptvariant)[] (ReadOnly): List of prompt variants
-* **Version**: string (ReadOnly): Version.
-
 ## BedrockEmbeddingModelConfiguration
 ### Properties
 * **Dimensions**: int: The dimensions details for the vector configuration used on the Bedrock embeddings model.
+
+## BedrockFoundationModelConfiguration
+### Properties
+* **ModelArn**: string (Required): The model's ARN.
+* **ParsingPrompt**: [ParsingPrompt](#parsingprompt)
 
 ## ChunkingConfiguration
 ### Properties
 * **ChunkingStrategy**: string (Required)
 * **FixedSizeChunkingConfiguration**: [FixedSizeChunkingConfiguration](#fixedsizechunkingconfiguration)
+* **HierarchicalChunkingConfiguration**: [HierarchicalChunkingConfiguration](#hierarchicalchunkingconfiguration)
+* **SemanticChunkingConfiguration**: [SemanticChunkingConfiguration](#semanticchunkingconfiguration)
+
+## ConfluenceCrawlerConfiguration
+### Properties
+* **FilterConfiguration**: [CrawlFilterConfiguration](#crawlfilterconfiguration)
+
+## ConfluenceDataSourceConfiguration
+### Properties
+* **CrawlerConfiguration**: [ConfluenceCrawlerConfiguration](#confluencecrawlerconfiguration)
+* **SourceConfiguration**: [ConfluenceSourceConfiguration](#confluencesourceconfiguration) (Required)
+
+## ConfluenceSourceConfiguration
+### Properties
+* **AuthType**: string (Required): The supported authentication type to authenticate and connect to your Confluence instance.
+* **CredentialsSecretArn**: string (Required): The Amazon Resource Name of an AWS Secrets Manager secret that stores your authentication credentials for your Confluence instance URL. For more information on the key-value pairs that must be included in your secret, depending on your authentication type, see Confluence connection configuration.
+* **HostType**: string (Required): The supported host type, whether online/cloud or server/on-premises.
+* **HostUrl**: string (Required): The Confluence host URL or instance URL.
 
 ## ContentFilterConfig
 ### Properties
@@ -295,10 +322,24 @@
 ### Properties
 * **FiltersConfig**: [ContextualGroundingFilterConfig](#contextualgroundingfilterconfig)[] (Required): List of contextual grounding filter configs.
 
+## CrawlFilterConfiguration
+### Properties
+* **PatternObjectFilter**: [PatternObjectFilterConfiguration](#patternobjectfilterconfiguration)
+* **Type**: string (Required): The crawl filter type.
+
+## CustomTransformationConfiguration
+### Properties
+* **IntermediateStorage**: [IntermediateStorage](#intermediatestorage) (Required)
+* **Transformations**: [Transformation](#transformation)[] (Required): A list of Lambda functions that process documents.
+
 ## DataSourceConfiguration
 ### Properties
-* **S3Configuration**: [S3DataSourceConfiguration](#s3datasourceconfiguration) (Required)
+* **ConfluenceConfiguration**: [ConfluenceDataSourceConfiguration](#confluencedatasourceconfiguration)
+* **S3Configuration**: [S3DataSourceConfiguration](#s3datasourceconfiguration)
+* **SalesforceConfiguration**: [SalesforceDataSourceConfiguration](#salesforcedatasourceconfiguration)
+* **SharePointConfiguration**: [SharePointDataSourceConfiguration](#sharepointdatasourceconfiguration)
 * **Type**: string (Required)
+* **WebConfiguration**: [WebDataSourceConfiguration](#webdatasourceconfiguration)
 
 ## DefinitionSubstitutions
 ### Properties
@@ -386,6 +427,10 @@
 * **Name**: string (Required): Name of a node output in a flow
 * **Type**: string (Required)
 
+## FlowValidation
+### Properties
+* **Message**: string (Required): validation message
+
 ## FlowVersion_FlowConnectionConfiguration
 ### Properties
 
@@ -407,6 +452,15 @@
 * **GuardrailIdentifier**: string: Identifier for the guardrail, could be the id or the arn
 * **GuardrailVersion**: string: Version of the guardrail
 
+## HierarchicalChunkingConfiguration
+### Properties
+* **LevelConfigurations**: [HierarchicalChunkingLevelConfiguration](#hierarchicalchunkinglevelconfiguration)[] (Required): Token settings for each layer.
+* **OverlapTokens**: int (Required): The number of tokens to repeat across chunks in the same layer.
+
+## HierarchicalChunkingLevelConfiguration
+### Properties
+* **MaxTokens**: int (Required): The maximum number of tokens that a chunk can contain in this layer.
+
 ## InferenceConfiguration
 ### Properties
 * **MaximumLength**: int: Maximum length of output
@@ -414,6 +468,17 @@
 * **Temperature**: int: Controls randomness, higher values increase diversity
 * **TopK**: int: Sample from the k most likely next tokens
 * **TopP**: int: Cumulative probability cutoff for token selection
+
+## InferenceProfileModel
+### Properties
+* **ModelArn**: string: ARN for Foundation Models in Bedrock. These models can be used as base models for model customization jobs
+
+## InferenceProfileModelSource
+### Properties
+
+## IntermediateStorage
+### Properties
+* **S3Location**: [S3Location](#s3location) (Required)
 
 ## KnowledgeBaseConfiguration
 ### Properties
@@ -455,6 +520,25 @@
 ## ParameterMap
 ### Properties
 
+## ParsingConfiguration
+### Properties
+* **BedrockFoundationModelConfiguration**: [BedrockFoundationModelConfiguration](#bedrockfoundationmodelconfiguration)
+* **ParsingStrategy**: string (Required)
+
+## ParsingPrompt
+### Properties
+* **ParsingPromptText**: string (Required): Instructions for interpreting the contents of a document.
+
+## PatternObjectFilter
+### Properties
+* **ExclusionFilters**: string[]
+* **InclusionFilters**: string[]
+* **ObjectType**: string (Required): The supported object type or content type of the data source.
+
+## PatternObjectFilterConfiguration
+### Properties
+* **Filters**: [PatternObjectFilter](#patternobjectfilter)[] (Required)
+
 ## PiiEntityConfig
 ### Properties
 * **Action**: string (Required)
@@ -484,9 +568,6 @@
 ## PromptInferenceConfiguration
 ### Properties
 
-## PromptInferenceConfiguration
-### Properties
-
 ## PromptOverrideConfiguration
 ### Properties
 * **OverrideLambda**: string: ARN of a Lambda.
@@ -495,23 +576,12 @@
 ## PromptTemplateConfiguration
 ### Properties
 
-## PromptTemplateConfiguration
-### Properties
-
 ## PromptVariant
 ### Properties
 * **InferenceConfiguration**: [PromptInferenceConfiguration](#promptinferenceconfiguration)
-* **ModelId**: string: ARN or name of a Bedrock model.
+* **ModelId**: string: ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models.
 * **Name**: string (Required): Name for a variant.
-* **TemplateConfiguration**: [PromptTemplateConfiguration](#prompttemplateconfiguration)
-* **TemplateType**: string (Required)
-
-## PromptVariant
-### Properties
-* **InferenceConfiguration**: [PromptInferenceConfiguration](#promptinferenceconfiguration)
-* **ModelId**: string: ARN or name of a Bedrock model.
-* **Name**: string (Required): Name for a variant.
-* **TemplateConfiguration**: [PromptTemplateConfiguration](#prompttemplateconfiguration)
+* **TemplateConfiguration**: [PromptTemplateConfiguration](#prompttemplateconfiguration) (Required)
 * **TemplateType**: string (Required)
 
 ## RdsConfiguration
@@ -544,9 +614,38 @@
 
 ## S3Location
 ### Properties
+* **URI**: string (Required): The location's URI
+
+## S3Location
+### Properties
 * **Bucket**: string (Required): A bucket in S3
 * **Key**: string (Required): A object key in S3
 * **Version**: string: The version of the the S3 object to use
+
+## SalesforceCrawlerConfiguration
+### Properties
+* **FilterConfiguration**: [CrawlFilterConfiguration](#crawlfilterconfiguration)
+
+## SalesforceDataSourceConfiguration
+### Properties
+* **CrawlerConfiguration**: [SalesforceCrawlerConfiguration](#salesforcecrawlerconfiguration)
+* **SourceConfiguration**: [SalesforceSourceConfiguration](#salesforcesourceconfiguration) (Required)
+
+## SalesforceSourceConfiguration
+### Properties
+* **AuthType**: string (Required): The supported authentication type to authenticate and connect to your Salesforce instance.
+* **CredentialsSecretArn**: string (Required): The Amazon Resource Name of an AWS Secrets Manager secret that stores your authentication credentials for your Salesforce instance URL. For more information on the key-value pairs that must be included in your secret, depending on your authentication type, see Salesforce connection configuration.
+* **HostUrl**: string (Required): The Salesforce host URL or instance URL.
+
+## SeedUrl
+### Properties
+* **Url**: string (Required): A web url.
+
+## SemanticChunkingConfiguration
+### Properties
+* **BreakpointPercentileThreshold**: int (Required): The dissimilarity threshold for splitting chunks.
+* **BufferSize**: int (Required): The buffer size.
+* **MaxTokens**: int (Required): The maximum number of tokens that a chunk can contain.
 
 ## SensitiveInformationPolicyConfig
 ### Properties
@@ -557,6 +656,24 @@
 ### Properties
 * **KmsKeyArn**: string: The ARN of the AWS KMS key used to encrypt the resource.
 
+## SharePointCrawlerConfiguration
+### Properties
+* **FilterConfiguration**: [CrawlFilterConfiguration](#crawlfilterconfiguration)
+
+## SharePointDataSourceConfiguration
+### Properties
+* **CrawlerConfiguration**: [SharePointCrawlerConfiguration](#sharepointcrawlerconfiguration)
+* **SourceConfiguration**: [SharePointSourceConfiguration](#sharepointsourceconfiguration) (Required)
+
+## SharePointSourceConfiguration
+### Properties
+* **AuthType**: string (Required): The supported authentication type to authenticate and connect to your SharePoint site/sites.
+* **CredentialsSecretArn**: string (Required): The Amazon Resource Name of an AWS Secrets Manager secret that stores your authentication credentials for your SharePoint site/sites. For more information on the key-value pairs that must be included in your secret, depending on your authentication type, see SharePoint connection configuration.
+* **Domain**: string (Required): The domain of your SharePoint instance or site URL/URLs.
+* **HostType**: string (Required): The supported host type, whether online/cloud or server/on-premises.
+* **SiteUrls**: string[] (Required): A list of one or more SharePoint site URLs.
+* **TenantId**: string: The identifier of your Microsoft 365 tenant.
+
 ## StorageConfiguration
 ### Properties
 * **MongoDbAtlasConfiguration**: [MongoDbAtlasConfiguration](#mongodbatlasconfiguration)
@@ -564,6 +681,11 @@
 * **PineconeConfiguration**: [PineconeConfiguration](#pineconeconfiguration)
 * **RdsConfiguration**: [RdsConfiguration](#rdsconfiguration)
 * **Type**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): Tag Key
+* **Value**: string (Required): Tag Value
 
 ## Tag
 ### Properties
@@ -599,14 +721,53 @@
 ### Properties
 * **TopicsConfig**: [TopicConfig](#topicconfig)[] (Required): List of topic configs in topic policy.
 
+## Transformation
+### Properties
+* **StepToApply**: string (Required): When the service applies the transformation.
+* **TransformationFunction**: [TransformationFunction](#transformationfunction) (Required)
+
+## TransformationFunction
+### Properties
+* **TransformationLambdaConfiguration**: [TransformationLambdaConfiguration](#transformationlambdaconfiguration) (Required)
+
+## TransformationLambdaConfiguration
+### Properties
+* **LambdaArn**: string (Required): The function's ARN identifier.
+
+## UrlConfiguration
+### Properties
+* **SeedUrls**: [SeedUrl](#seedurl)[] (Required)
+
 ## VectorIngestionConfiguration
 ### Properties
 * **ChunkingConfiguration**: [ChunkingConfiguration](#chunkingconfiguration)
+* **CustomTransformationConfiguration**: [CustomTransformationConfiguration](#customtransformationconfiguration)
+* **ParsingConfiguration**: [ParsingConfiguration](#parsingconfiguration)
 
 ## VectorKnowledgeBaseConfiguration
 ### Properties
 * **EmbeddingModelArn**: string (Required): The ARN of the model used to create vector embeddings for the knowledge base.
 * **EmbeddingModelConfiguration**: [EmbeddingModelConfiguration](#embeddingmodelconfiguration)
+
+## WebCrawlerConfiguration
+### Properties
+* **CrawlerLimits**: [WebCrawlerLimits](#webcrawlerlimits)
+* **ExclusionFilters**: string[]
+* **InclusionFilters**: string[]
+* **Scope**: string
+
+## WebCrawlerLimits
+### Properties
+* **RateLimit**: int: Rate of web URLs retrieved per minute.
+
+## WebDataSourceConfiguration
+### Properties
+* **CrawlerConfiguration**: [WebCrawlerConfiguration](#webcrawlerconfiguration)
+* **SourceConfiguration**: [WebSourceConfiguration](#websourceconfiguration) (Required)
+
+## WebSourceConfiguration
+### Properties
+* **UrlConfiguration**: [UrlConfiguration](#urlconfiguration) (Required)
 
 ## WordConfig
 ### Properties

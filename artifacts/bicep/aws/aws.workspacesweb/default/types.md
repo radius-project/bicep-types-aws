@@ -72,6 +72,7 @@
 * **IdentityProviderName**: string (Required)
 * **IdentityProviderType**: string (Required)
 * **PortalArn**: string (WriteOnly)
+* **Tags**: [Tag](#tag)[]
 
 ## AWS.WorkSpacesWeb/IpAccessSettingsProperties
 ### Properties
@@ -179,6 +180,11 @@
 ### Properties
 * **Description**: string
 * **IpRange**: string (Required): A single IP address or an IP address range in CIDR notation
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

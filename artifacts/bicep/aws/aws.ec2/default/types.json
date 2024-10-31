@@ -159,6 +159,12 @@
           "$ref": "#/5"
         },
         "flags": 2
+      },
+      "UnusedReservationBillingOwnerId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4
       }
     }
   },
@@ -1695,6 +1701,13 @@
     "$type": "ObjectType",
     "name": "AWS.EC2/EIPProperties",
     "properties": {
+      "Address": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4,
+        "description": ""
+      },
       "AllocationId": {
         "type": {
           "$ref": "#/2"
@@ -1715,6 +1728,13 @@
         },
         "flags": 0,
         "description": "The ID of the instance.\n  Updates to the ``InstanceId`` property may require *some interruptions*. Updates on an EIP reassociates the address on its associated resource."
+      },
+      "IpamPoolId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4,
+        "description": ""
       },
       "NetworkBorderGroup": {
         "type": {
@@ -2228,6 +2248,13 @@
           "$ref": "#/2"
         },
         "flags": 0
+      },
+      "EnablePrivateGua": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Enable provisioning of GUA space in private pools."
       },
       "IpamId": {
         "type": {
@@ -5886,7 +5913,7 @@
           "$ref": "#/264"
         },
         "flags": 4,
-        "description": "The tags to apply to the launch template on creation. To tag the launch template, the resource type must be ``launch-template``.\n To specify the tags for the resources that are created when an instance is launched, you must use [TagSpecifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html#cfn-ec2-launchtemplate-tagspecifications)."
+        "description": "The tags to apply to the launch template on creation. To tag the launch template, the resource type must be ``launch-template``.\n To specify the tags for the resources that are created when an instance is launched, you must use [TagSpecifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-tagspecifications)."
       },
       "VersionDescription": {
         "type": {
@@ -6504,7 +6531,7 @@
           "$ref": "#/298"
         },
         "flags": 0,
-        "description": "Secondary EIP allocation IDs. For more information, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating) in the *Amazon VPC User Guide*."
+        "description": "Secondary EIP allocation IDs. For more information, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-working-with.html) in the *Amazon VPC User Guide*."
       },
       "SecondaryPrivateIpAddressCount": {
         "type": {
@@ -11224,8 +11251,8 @@
         "type": {
           "$ref": "#/523"
         },
-        "flags": 0,
-        "description": "The IPv6 network ranges for the subnet, in CIDR notation."
+        "flags": 2,
+        "description": ""
       },
       "Ipv6IpamPoolId": {
         "type": {
@@ -11433,6 +11460,12 @@
         },
         "flags": 0
       },
+      "SecurityGroupReferencingSupport": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
       "Tags": {
         "type": {
           "$ref": "#/531"
@@ -11541,6 +11574,13 @@
         },
         "flags": 0,
         "description": "Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable | disable"
+      },
+      "SecurityGroupReferencingSupport": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Indicates whether to enable Security Group referencing support for Vpc Attachment. Valid Values: enable | disable"
       }
     }
   },
@@ -12080,6 +12120,99 @@
         "type": {
           "$ref": "#/2"
         },
+        "flags": 1,
+        "description": "The key of the associated tag key-value pair"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The value of the associated tag key-value pair"
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EC2/TransitGatewayRouteTableProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/565"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EC2/TransitGatewayRouteTableProperties",
+    "properties": {
+      "Tags": {
+        "type": {
+          "$ref": "#/567"
+        },
+        "flags": 0,
+        "description": "Tags are composed of a Key/Value pair. You can use tags to categorize and track each parameter group. The tag value null is permitted."
+      },
+      "TransitGatewayId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ID of the transit gateway."
+      },
+      "TransitGatewayRouteTableId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "Transit Gateway Route Table primary identifier"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EC2/TransitGatewayRouteTable",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/568"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EC2/TransitGatewayRouteTable@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/569"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
         "flags": 1
       },
       "Value": {
@@ -12124,6 +12257,13 @@
         },
         "flags": 0,
         "description": "Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable | disable"
+      },
+      "SecurityGroupReferencingSupport": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Indicates whether to enable Security Group referencing support for Vpc Attachment. Valid values: enable | disable"
       }
     }
   },
@@ -12142,7 +12282,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/565"
+      "$ref": "#/571"
     }
   },
   {
@@ -12151,7 +12291,7 @@
     "properties": {
       "AddSubnetIds": {
         "type": {
-          "$ref": "#/567"
+          "$ref": "#/573"
         },
         "flags": 4
       },
@@ -12163,26 +12303,26 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/568"
+          "$ref": "#/574"
         },
         "flags": 0,
         "description": "The options for the transit gateway vpc attachment."
       },
       "RemoveSubnetIds": {
         "type": {
-          "$ref": "#/569"
+          "$ref": "#/575"
         },
         "flags": 4
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/570"
+          "$ref": "#/576"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/571"
+          "$ref": "#/577"
         },
         "flags": 0
       },
@@ -12220,7 +12360,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/572"
+          "$ref": "#/578"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -12232,7 +12372,7 @@
     "name": "AWS.EC2/TransitGatewayVpcAttachment@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/573"
+      "$ref": "#/579"
     },
     "flags": 0
   },
@@ -12275,7 +12415,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/575"
+      "$ref": "#/581"
     }
   },
   {
@@ -12291,7 +12431,7 @@
       },
       "CidrBlockAssociations": {
         "type": {
-          "$ref": "#/577"
+          "$ref": "#/583"
         },
         "flags": 2,
         "description": ""
@@ -12329,7 +12469,7 @@
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The allowed tenancy of instances launched into the VPC.\n  +  ``default``: An instance launched into the VPC runs on shared hardware by default, unless you explicitly specify a different tenancy during instance launch.\n  +  ``dedicated``: An instance launched into the VPC runs on dedicated hardware by default, unless you explicitly specify a tenancy of ``host`` during instance launch. You cannot specify a tenancy of ``default`` during instance launch.\n  \n Updating ``InstanceTenancy`` requires no replacement only if you are updating its value from ``dedicated`` to ``default``. Updating ``InstanceTenancy`` from ``default`` to ``dedicated`` requires replacement."
+        "description": "The allowed tenancy of instances launched into the VPC.\n  +   ``default``: An instance launched into the VPC runs on shared hardware by default, unless you explicitly specify a different tenancy during instance launch.\n  +   ``dedicated``: An instance launched into the VPC runs on dedicated hardware by default, unless you explicitly specify a tenancy of ``host`` during instance launch. You cannot specify a tenancy of ``default`` during instance launch.\n  \n Updating ``InstanceTenancy`` requires no replacement only if you are updating its value from ``dedicated`` to ``default``. Updating ``InstanceTenancy`` from ``default`` to ``dedicated`` requires replacement."
       },
       "Ipv4IpamPoolId": {
         "type": {
@@ -12347,14 +12487,14 @@
       },
       "Ipv6CidrBlocks": {
         "type": {
-          "$ref": "#/578"
+          "$ref": "#/584"
         },
         "flags": 2,
         "description": ""
       },
       "Tags": {
         "type": {
-          "$ref": "#/579"
+          "$ref": "#/585"
         },
         "flags": 0,
         "description": "The tags for the VPC."
@@ -12388,7 +12528,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/580"
+          "$ref": "#/586"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -12400,7 +12540,7 @@
     "name": "AWS.EC2/VPC@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/581"
+      "$ref": "#/587"
     },
     "flags": 0
   },
@@ -12448,7 +12588,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/584"
+          "$ref": "#/590"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -12460,7 +12600,7 @@
     "name": "AWS.EC2/VPCDHCPOptionsAssociation@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/585"
+      "$ref": "#/591"
     },
     "flags": 0
   },
@@ -12492,7 +12632,7 @@
         "$ref": "#/2"
       },
       {
-        "$ref": "#/590"
+        "$ref": "#/596"
       }
     ]
   },
@@ -12527,7 +12667,7 @@
       },
       "DnsEntries": {
         "type": {
-          "$ref": "#/588"
+          "$ref": "#/594"
         },
         "flags": 2,
         "description": ""
@@ -12541,17 +12681,17 @@
       },
       "NetworkInterfaceIds": {
         "type": {
-          "$ref": "#/589"
+          "$ref": "#/595"
         },
         "flags": 2,
         "description": ""
       },
       "PolicyDocument": {
         "type": {
-          "$ref": "#/591"
+          "$ref": "#/597"
         },
         "flags": 0,
-        "description": "An endpoint policy, which controls access to the service from the VPC. The default endpoint policy allows full access to the service. Endpoint policies are supported only for gateway and interface endpoints.\n For CloudFormation templates in YAML, you can provide the policy in JSON or YAML format. CFNlong converts YAML policies to JSON format before calling the API to create or modify the VPC endpoint."
+        "description": "An endpoint policy, which controls access to the service from the VPC. The default endpoint policy allows full access to the service. Endpoint policies are supported only for gateway and interface endpoints.\n For CloudFormation templates in YAML, you can provide the policy in JSON or YAML format. For example, if you have a JSON policy, you can convert it to YAML before including it in the YAML template, and CFNlong converts the policy to JSON format before calling the API actions for privatelink. Alternatively, you can include the JSON directly in the YAML, as shown in the following ``Properties`` section:\n ``Properties: VpcEndpointType: 'Interface' ServiceName: !Sub 'com.amazonaws.${AWS::Region}.logs' PolicyDocument: '{ \"Version\":\"2012-10-17\", \"Statement\": [{ \"Effect\":\"Allow\", \"Principal\":\"*\", \"Action\":[\"logs:Describe*\",\"logs:Get*\",\"logs:List*\",\"logs:FilterLogEvents\"], \"Resource\":\"*\" }] }'``"
       },
       "PrivateDnsEnabled": {
         "type": {
@@ -12562,14 +12702,14 @@
       },
       "RouteTableIds": {
         "type": {
-          "$ref": "#/592"
+          "$ref": "#/598"
         },
         "flags": 0,
         "description": "The IDs of the route tables. Routing is supported only for gateway endpoints."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/593"
+          "$ref": "#/599"
         },
         "flags": 0,
         "description": "The IDs of the security groups to associate with the endpoint network interfaces. If this parameter is not specified, we use the default security group for the VPC. Security groups are supported only for interface endpoints."
@@ -12583,7 +12723,7 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/594"
+          "$ref": "#/600"
         },
         "flags": 0,
         "description": "The IDs of the subnets in which to create endpoint network interfaces. You must specify this property for an interface endpoint or a Gateway Load Balancer endpoint. You can't specify this property for a gateway endpoint. For a Gateway Load Balancer endpoint, you can specify only one subnet."
@@ -12624,7 +12764,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/595"
+          "$ref": "#/601"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -12636,7 +12776,7 @@
     "name": "AWS.EC2/VPCEndpoint@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/596"
+      "$ref": "#/602"
     },
     "flags": 0
   },
@@ -12656,7 +12796,7 @@
     "properties": {
       "ConnectionEvents": {
         "type": {
-          "$ref": "#/599"
+          "$ref": "#/605"
         },
         "flags": 1,
         "description": "The endpoint events for which to receive notifications."
@@ -12711,7 +12851,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/600"
+          "$ref": "#/606"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -12723,7 +12863,7 @@
     "name": "AWS.EC2/VPCEndpointConnectionNotification@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/601"
+      "$ref": "#/607"
     },
     "flags": 0
   },
@@ -12761,13 +12901,13 @@
       },
       "GatewayLoadBalancerArns": {
         "type": {
-          "$ref": "#/604"
+          "$ref": "#/610"
         },
         "flags": 0
       },
       "NetworkLoadBalancerArns": {
         "type": {
-          "$ref": "#/605"
+          "$ref": "#/611"
         },
         "flags": 0
       },
@@ -12805,7 +12945,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/606"
+          "$ref": "#/612"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -12817,7 +12957,7 @@
     "name": "AWS.EC2/VPCEndpointService@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/607"
+      "$ref": "#/613"
     },
     "flags": 0
   },
@@ -12837,7 +12977,7 @@
     "properties": {
       "AllowedPrincipals": {
         "type": {
-          "$ref": "#/610"
+          "$ref": "#/616"
         },
         "flags": 0
       },
@@ -12869,7 +13009,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/611"
+          "$ref": "#/617"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -12881,7 +13021,7 @@
     "name": "AWS.EC2/VPCEndpointServicePermissions@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/612"
+      "$ref": "#/618"
     },
     "flags": 0
   },
@@ -12943,7 +13083,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/615"
+          "$ref": "#/621"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -12955,7 +13095,7 @@
     "name": "AWS.EC2/VPCGatewayAttachment@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/616"
+      "$ref": "#/622"
     },
     "flags": 0
   },
@@ -12986,7 +13126,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/618"
+      "$ref": "#/624"
     }
   },
   {
@@ -13029,7 +13169,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/620"
+          "$ref": "#/626"
         },
         "flags": 0
       },
@@ -13062,7 +13202,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/621"
+          "$ref": "#/627"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -13074,9 +13214,127 @@
     "name": "AWS.EC2/VPCPeeringConnection@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/622"
+      "$ref": "#/628"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudwatchLogOptionsSpecification",
+    "properties": {
+      "LogEnabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Enable or disable VPN tunnel logging feature. Default value is ``False``.\n Valid values: ``True`` | ``False``"
+      },
+      "LogGroupArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the CloudWatch log group to send logs to."
+      },
+      "LogOutputFormat": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Set log format. Default format is ``json``.\n Valid values: ``json`` | ``text``"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IKEVersionsRequestListValue",
+    "properties": {
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The IKE version."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Phase1DHGroupNumbersRequestListValue",
+    "properties": {
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The Diffie-Hellmann group number."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Phase1EncryptionAlgorithmsRequestListValue",
+    "properties": {
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The value for the encryption algorithm."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Phase1IntegrityAlgorithmsRequestListValue",
+    "properties": {
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The value for the integrity algorithm."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Phase2DHGroupNumbersRequestListValue",
+    "properties": {
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The Diffie-Hellmann group number."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Phase2EncryptionAlgorithmsRequestListValue",
+    "properties": {
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The encryption algorithm."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Phase2IntegrityAlgorithmsRequestListValue",
+    "properties": {
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The integrity algorithm."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -13100,8 +13358,112 @@
   },
   {
     "$type": "ObjectType",
+    "name": "VpnTunnelLogOptionsSpecification",
+    "properties": {
+      "CloudwatchLogOptions": {
+        "type": {
+          "$ref": "#/630"
+        },
+        "flags": 0,
+        "description": "Options for sending VPN tunnel logs to CloudWatch."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "VpnTunnelOptionsSpecification",
     "properties": {
+      "DPDTimeoutAction": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The action to take after DPD timeout occurs. Specify ``restart`` to restart the IKE initiation. Specify ``clear`` to end the IKE session.\n Valid Values: ``clear`` | ``none`` | ``restart`` \n Default: ``clear``"
+      },
+      "DPDTimeoutSeconds": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The number of seconds after which a DPD timeout occurs.\n Constraints: A value greater than or equal to 30.\n Default: ``30``"
+      },
+      "EnableTunnelLifecycleControl": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Turn on or off tunnel endpoint lifecycle control feature."
+      },
+      "IKEVersions": {
+        "type": {
+          "$ref": "#/641"
+        },
+        "flags": 0,
+        "description": "The IKE versions that are permitted for the VPN tunnel.\n Valid values: ``ikev1`` | ``ikev2``"
+      },
+      "LogOptions": {
+        "type": {
+          "$ref": "#/639"
+        },
+        "flags": 0,
+        "description": "Options for logging VPN tunnel activity."
+      },
+      "Phase1DHGroupNumbers": {
+        "type": {
+          "$ref": "#/642"
+        },
+        "flags": 0,
+        "description": "One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 1 IKE negotiations.\n Valid values: ``2`` | ``14`` | ``15`` | ``16`` | ``17`` | ``18`` | ``19`` | ``20`` | ``21`` | ``22`` | ``23`` | ``24``"
+      },
+      "Phase1EncryptionAlgorithms": {
+        "type": {
+          "$ref": "#/643"
+        },
+        "flags": 0,
+        "description": "One or more encryption algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.\n Valid values: ``AES128`` | ``AES256`` | ``AES128-GCM-16`` | ``AES256-GCM-16``"
+      },
+      "Phase1IntegrityAlgorithms": {
+        "type": {
+          "$ref": "#/644"
+        },
+        "flags": 0,
+        "description": "One or more integrity algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.\n Valid values: ``SHA1`` | ``SHA2-256`` | ``SHA2-384`` | ``SHA2-512``"
+      },
+      "Phase1LifetimeSeconds": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The lifetime for phase 1 of the IKE negotiation, in seconds.\n Constraints: A value between 900 and 28,800.\n Default: ``28800``"
+      },
+      "Phase2DHGroupNumbers": {
+        "type": {
+          "$ref": "#/645"
+        },
+        "flags": 0,
+        "description": "One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 2 IKE negotiations.\n Valid values: ``2`` | ``5`` | ``14`` | ``15`` | ``16`` | ``17`` | ``18`` | ``19`` | ``20`` | ``21`` | ``22`` | ``23`` | ``24``"
+      },
+      "Phase2EncryptionAlgorithms": {
+        "type": {
+          "$ref": "#/646"
+        },
+        "flags": 0,
+        "description": "One or more encryption algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.\n Valid values: ``AES128`` | ``AES256`` | ``AES128-GCM-16`` | ``AES256-GCM-16``"
+      },
+      "Phase2IntegrityAlgorithms": {
+        "type": {
+          "$ref": "#/647"
+        },
+        "flags": 0,
+        "description": "One or more integrity algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.\n Valid values: ``SHA1`` | ``SHA2-256`` | ``SHA2-384`` | ``SHA2-512``"
+      },
+      "Phase2LifetimeSeconds": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The lifetime for phase 2 of the IKE negotiation, in seconds.\n Constraints: A value between 900 and 3,600. The value must be less than the value for ``Phase1LifetimeSeconds``.\n Default: ``3600``"
+      },
       "PreSharedKey": {
         "type": {
           "$ref": "#/2"
@@ -13109,13 +13471,90 @@
         "flags": 0,
         "description": "The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway.\n Constraints: Allowed characters are alphanumeric characters, periods (.), and underscores (_). Must be between 8 and 64 characters in length and cannot start with zero (0)."
       },
+      "RekeyFuzzPercentage": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The percentage of the rekey window (determined by ``RekeyMarginTimeSeconds``) during which the rekey time is randomly selected.\n Constraints: A value between 0 and 100.\n Default: ``100``"
+      },
+      "RekeyMarginTimeSeconds": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The margin time, in seconds, before the phase 2 lifetime expires, during which the AWS side of the VPN connection performs an IKE rekey. The exact time of the rekey is randomly selected based on the value for ``RekeyFuzzPercentage``.\n Constraints: A value between 60 and half of ``Phase2LifetimeSeconds``.\n Default: ``270``"
+      },
+      "ReplayWindowSize": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The number of packets in an IKE replay window.\n Constraints: A value between 64 and 2048.\n Default: ``1024``"
+      },
+      "StartupAction": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The action to take when the establishing the tunnel for the VPN connection. By default, your customer gateway device must initiate the IKE negotiation and bring up the tunnel. Specify ``start`` for AWS to initiate the IKE negotiation.\n Valid Values: ``add`` | ``start`` \n Default: ``add``"
+      },
       "TunnelInsideCidr": {
         "type": {
           "$ref": "#/2"
         },
         "flags": 0,
         "description": "The range of inside IP addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. \n Constraints: A size /30 CIDR block from the ``169.254.0.0/16`` range. The following CIDR blocks are reserved and cannot be used:\n  +   ``169.254.0.0/30`` \n  +   ``169.254.1.0/30`` \n  +   ``169.254.2.0/30`` \n  +   ``169.254.3.0/30`` \n  +   ``169.254.4.0/30`` \n  +   ``169.254.5.0/30`` \n  +   ``169.254.169.252/30``"
+      },
+      "TunnelInsideIpv6Cidr": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The range of inside IPv6 addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same transit gateway.\n Constraints: A size /126 CIDR block from the local ``fd00::/8`` range."
       }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/631"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/632"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/633"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/634"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/635"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/636"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/637"
     }
   },
   {
@@ -13125,13 +13564,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/624"
+      "$ref": "#/638"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/625"
+      "$ref": "#/640"
     }
   },
   {
@@ -13150,7 +13589,42 @@
           "$ref": "#/6"
         },
         "flags": 0,
-        "description": ""
+        "description": "Indicate whether to enable acceleration for the VPN connection.\n Default: ``false``"
+      },
+      "LocalIpv4NetworkCidr": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The IPv4 CIDR on the customer gateway (on-premises) side of the VPN connection.\n Default: ``0.0.0.0/0``"
+      },
+      "LocalIpv6NetworkCidr": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The IPv6 CIDR on the customer gateway (on-premises) side of the VPN connection.\n Default: ``::/0``"
+      },
+      "OutsideIpAddressType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The type of IPv4 address assigned to the outside interface of the customer gateway device.\n Valid values: ``PrivateIpv4`` | ``PublicIpv4`` \n Default: ``PublicIpv4``"
+      },
+      "RemoteIpv4NetworkCidr": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The IPv4 CIDR on the AWS side of the VPN connection.\n Default: ``0.0.0.0/0``"
+      },
+      "RemoteIpv6NetworkCidr": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The IPv6 CIDR on the AWS side of the VPN connection.\n Default: ``::/0``"
       },
       "StaticRoutesOnly": {
         "type": {
@@ -13161,7 +13635,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/627"
+          "$ref": "#/649"
         },
         "flags": 0,
         "description": "Any tags assigned to the VPN connection."
@@ -13172,6 +13646,20 @@
         },
         "flags": 0,
         "description": "The ID of the transit gateway associated with the VPN connection.\n You must specify either ``TransitGatewayId`` or ``VpnGatewayId``, but not both."
+      },
+      "TransportTransitGatewayAttachmentId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The transit gateway attachment ID to use for the VPN tunnel.\n Required if ``OutsideIpAddressType`` is set to ``PrivateIpv4``."
+      },
+      "TunnelInsideIpVersion": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Indicate whether the VPN tunnels process IPv4 or IPv6 traffic.\n Default: ``ipv4``"
       },
       "Type": {
         "type": {
@@ -13196,7 +13684,7 @@
       },
       "VpnTunnelOptionsSpecifications": {
         "type": {
-          "$ref": "#/628"
+          "$ref": "#/650"
         },
         "flags": 0,
         "description": "The tunnel options for the VPN connection."
@@ -13223,7 +13711,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/629"
+          "$ref": "#/651"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -13235,7 +13723,7 @@
     "name": "AWS.EC2/VPNConnection@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/630"
+      "$ref": "#/652"
     },
     "flags": 0
   },
@@ -13266,7 +13754,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/632"
+      "$ref": "#/654"
     }
   },
   {
@@ -13282,7 +13770,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/634"
+          "$ref": "#/656"
         },
         "flags": 0,
         "description": "Any tags assigned to the virtual private gateway."
@@ -13323,7 +13811,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/635"
+          "$ref": "#/657"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -13335,7 +13823,7 @@
     "name": "AWS.EC2/VPNGateway@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/636"
+      "$ref": "#/658"
     },
     "flags": 0
   },
@@ -13366,7 +13854,7 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/644"
+          "$ref": "#/666"
         },
         "flags": 0,
         "description": "The IDs of the subnets."
@@ -13469,7 +13957,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/643"
+      "$ref": "#/665"
     }
   },
   {
@@ -13548,14 +14036,14 @@
       },
       "LoadBalancerOptions": {
         "type": {
-          "$ref": "#/638"
+          "$ref": "#/660"
         },
         "flags": 0,
         "description": "The load balancer details if creating the AWS Verified Access endpoint as load-balancer type."
       },
       "NetworkInterfaceOptions": {
         "type": {
-          "$ref": "#/639"
+          "$ref": "#/661"
         },
         "flags": 0,
         "description": "The options for network-interface type endpoint."
@@ -13576,14 +14064,14 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/646"
+          "$ref": "#/668"
         },
         "flags": 0,
         "description": "The IDs of the security groups for the endpoint."
       },
       "SseSpecification": {
         "type": {
-          "$ref": "#/641"
+          "$ref": "#/663"
         },
         "flags": 0,
         "description": "The configuration options for customer provided KMS encryption."
@@ -13597,7 +14085,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/647"
+          "$ref": "#/669"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -13645,7 +14133,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/648"
+          "$ref": "#/670"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -13657,7 +14145,7 @@
     "name": "AWS.EC2/VerifiedAccessEndpoint@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/649"
+      "$ref": "#/671"
     },
     "flags": 0
   },
@@ -13708,7 +14196,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/652"
+      "$ref": "#/674"
     }
   },
   {
@@ -13759,14 +14247,14 @@
       },
       "SseSpecification": {
         "type": {
-          "$ref": "#/651"
+          "$ref": "#/673"
         },
         "flags": 0,
         "description": "The configuration options for customer provided KMS encryption."
       },
       "Tags": {
         "type": {
-          "$ref": "#/654"
+          "$ref": "#/676"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -13814,7 +14302,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/655"
+          "$ref": "#/677"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -13826,7 +14314,7 @@
     "name": "AWS.EC2/VerifiedAccessGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/656"
+      "$ref": "#/678"
     },
     "flags": 0
   },
@@ -13856,7 +14344,7 @@
     "properties": {
       "CloudWatchLogs": {
         "type": {
-          "$ref": "#/662"
+          "$ref": "#/684"
         },
         "flags": 0,
         "description": "Sends Verified Access logs to CloudWatch Logs."
@@ -13870,7 +14358,7 @@
       },
       "KinesisDataFirehose": {
         "type": {
-          "$ref": "#/663"
+          "$ref": "#/685"
         },
         "flags": 0,
         "description": "Sends Verified Access logs to Kinesis."
@@ -13884,7 +14372,7 @@
       },
       "S3": {
         "type": {
-          "$ref": "#/664"
+          "$ref": "#/686"
         },
         "flags": 0,
         "description": "Sends Verified Access logs to Amazon S3."
@@ -14018,7 +14506,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/658"
+      "$ref": "#/680"
     }
   },
   {
@@ -14030,7 +14518,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/660"
+      "$ref": "#/682"
     }
   },
   {
@@ -14067,14 +14555,14 @@
       },
       "LoggingConfigurations": {
         "type": {
-          "$ref": "#/659"
+          "$ref": "#/681"
         },
         "flags": 0,
         "description": "The configuration options for AWS Verified Access instances."
       },
       "Tags": {
         "type": {
-          "$ref": "#/666"
+          "$ref": "#/688"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -14088,14 +14576,14 @@
       },
       "VerifiedAccessTrustProviderIds": {
         "type": {
-          "$ref": "#/667"
+          "$ref": "#/689"
         },
         "flags": 0,
         "description": "The IDs of the AWS Verified Access trust providers."
       },
       "VerifiedAccessTrustProviders": {
         "type": {
-          "$ref": "#/668"
+          "$ref": "#/690"
         },
         "flags": 0,
         "description": "AWS Verified Access trust providers."
@@ -14122,7 +14610,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/669"
+          "$ref": "#/691"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -14134,7 +14622,7 @@
     "name": "AWS.EC2/VerifiedAccessInstance@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/670"
+      "$ref": "#/692"
     },
     "flags": 0
   },
@@ -14265,7 +14753,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/675"
+      "$ref": "#/697"
     }
   },
   {
@@ -14288,7 +14776,7 @@
       },
       "DeviceOptions": {
         "type": {
-          "$ref": "#/672"
+          "$ref": "#/694"
         },
         "flags": 0
       },
@@ -14308,7 +14796,7 @@
       },
       "OidcOptions": {
         "type": {
-          "$ref": "#/673"
+          "$ref": "#/695"
         },
         "flags": 0
       },
@@ -14321,14 +14809,14 @@
       },
       "SseSpecification": {
         "type": {
-          "$ref": "#/677"
+          "$ref": "#/699"
         },
         "flags": 0,
         "description": "The configuration options for customer provided KMS encryption."
       },
       "Tags": {
         "type": {
-          "$ref": "#/678"
+          "$ref": "#/700"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -14376,7 +14864,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/679"
+          "$ref": "#/701"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -14388,7 +14876,7 @@
     "name": "AWS.EC2/VerifiedAccessTrustProvider@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/680"
+      "$ref": "#/702"
     },
     "flags": 0
   },
@@ -14419,7 +14907,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/682"
+      "$ref": "#/704"
     }
   },
   {
@@ -14445,14 +14933,14 @@
           "$ref": "#/6"
         },
         "flags": 0,
-        "description": "Indicates whether the volume should be encrypted. The effect of setting the encryption state to ``true`` depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see [Encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default) in the *Amazon Elastic Compute Cloud User Guide*.\n Encrypted Amazon EBS volumes must be attached to instances that support Amazon EBS encryption. For more information, see [Supported instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances)."
+        "description": "Indicates whether the volume should be encrypted. The effect of setting the encryption state to ``true`` depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see [Encryption by default](https://docs.aws.amazon.com/ebs/latest/userguide/work-with-ebs-encr.html#encryption-by-default) in the *Amazon EBS User Guide*.\n Encrypted Amazon EBS volumes must be attached to instances that support Amazon EBS encryption. For more information, see [Supported instance types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-encryption-requirements.html#ebs-encryption_supported_instances)."
       },
       "Iops": {
         "type": {
           "$ref": "#/5"
         },
         "flags": 0,
-        "description": "The number of I/O operations per second (IOPS). For ``gp3``, ``io1``, and ``io2`` volumes, this represents the number of IOPS that are provisioned for the volume. For ``gp2`` volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting.\n The following are the supported values for each volume type:\n  +   ``gp3``: 3,000 - 16,000 IOPS\n  +   ``io1``: 100 - 64,000 IOPS\n  +   ``io2``: 100 - 256,000 IOPS\n  \n For ``io2`` volumes, you can achieve up to 256,000 IOPS on [instances built on the Nitro System](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances). On other instances, you can achieve performance up to 32,000 IOPS.\n This parameter is required for ``io1`` and ``io2`` volumes. The default for ``gp3`` volumes is 3,000 IOPS. This parameter is not supported for ``gp2``, ``st1``, ``sc1``, or ``standard`` volumes."
+        "description": "The number of I/O operations per second (IOPS). For ``gp3``, ``io1``, and ``io2`` volumes, this represents the number of IOPS that are provisioned for the volume. For ``gp2`` volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting.\n The following are the supported values for each volume type:\n  +   ``gp3``: 3,000 - 16,000 IOPS\n  +   ``io1``: 100 - 64,000 IOPS\n  +   ``io2``: 100 - 256,000 IOPS\n  \n For ``io2`` volumes, you can achieve up to 256,000 IOPS on [instances built on the Nitro System](https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-nitro-instances.html). On other instances, you can achieve performance up to 32,000 IOPS.\n This parameter is required for ``io1`` and ``io2`` volumes. The default for ``gp3`` volumes is 3,000 IOPS. This parameter is not supported for ``gp2``, ``st1``, ``sc1``, or ``standard`` volumes."
       },
       "KmsKeyId": {
         "type": {
@@ -14466,7 +14954,7 @@
           "$ref": "#/6"
         },
         "flags": 0,
-        "description": "Indicates whether Amazon EBS Multi-Attach is enabled.\n CFNlong does not currently support updating a single-attach volume to be multi-attach enabled, updating a multi-attach enabled volume to be single-attach, or updating the size or number of I/O operations per second (IOPS) of a multi-attach enabled volume."
+        "description": "Indicates whether Amazon EBS Multi-Attach is enabled.\n  CFNlong does not currently support updating a single-attach volume to be multi-attach enabled, updating a multi-attach enabled volume to be single-attach, or updating the size or number of I/O operations per second (IOPS) of a multi-attach enabled volume."
       },
       "OutpostArn": {
         "type": {
@@ -14491,7 +14979,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/684"
+          "$ref": "#/706"
         },
         "flags": 0,
         "description": "The tags to apply to the volume during creation."
@@ -14515,7 +15003,7 @@
           "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The volume type. This parameter can be one of the following values:\n  +  General Purpose SSD: ``gp2`` | ``gp3`` \n  +  Provisioned IOPS SSD: ``io1`` | ``io2`` \n  +  Throughput Optimized HDD: ``st1`` \n  +  Cold HDD: ``sc1`` \n  +  Magnetic: ``standard`` \n  \n For more information, see [Amazon EBS volume types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html) in the *Amazon Elastic Compute Cloud User Guide*.\n Default: ``gp2``"
+        "description": "The volume type. This parameter can be one of the following values:\n  +  General Purpose SSD: ``gp2`` | ``gp3`` \n  +  Provisioned IOPS SSD: ``io1`` | ``io2`` \n  +  Throughput Optimized HDD: ``st1`` \n  +  Cold HDD: ``sc1`` \n  +  Magnetic: ``standard`` \n  \n For more information, see [Amazon EBS volume types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html).\n Default: ``gp2``"
       }
     }
   },
@@ -14539,7 +15027,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/685"
+          "$ref": "#/707"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -14551,7 +15039,7 @@
     "name": "AWS.EC2/Volume@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/686"
+      "$ref": "#/708"
     },
     "flags": 0
   }

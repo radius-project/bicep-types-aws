@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-Template",
   "type": "AWS::QuickSight::Template",
-  "time": "2024-08-08T15:59:20.211Z",
+  "time": "2024-10-24T16:02:42.472Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -975,6 +975,25 @@
         ],
         "type": "string"
       },
+      "CategoryInnerFilter": {
+        "additionalProperties": false,
+        "properties": {
+          "Column": {
+            "$ref": "#/definitions/ColumnIdentifier"
+          },
+          "Configuration": {
+            "$ref": "#/definitions/CategoryFilterConfiguration"
+          },
+          "DefaultFilterControlConfiguration": {
+            "$ref": "#/definitions/DefaultFilterControlConfiguration"
+          }
+        },
+        "required": [
+          "Column",
+          "Configuration"
+        ],
+        "type": "object"
+      },
       "ChartAxisLabelOptions": {
         "additionalProperties": false,
         "properties": {
@@ -1202,6 +1221,9 @@
           "Label": {
             "type": "string"
           },
+          "TooltipTarget": {
+            "$ref": "#/definitions/TooltipTarget"
+          },
           "Visibility": {
             "$ref": "#/definitions/Visibility"
           }
@@ -1296,6 +1318,9 @@
           "SecondaryYAxisLabelOptions": {
             "$ref": "#/definitions/ChartAxisLabelOptions"
           },
+          "SingleAxisOptions": {
+            "$ref": "#/definitions/SingleAxisOptions"
+          },
           "SortConfiguration": {
             "$ref": "#/definitions/ComboChartSortConfiguration"
           },
@@ -1384,6 +1409,13 @@
           "VisualId"
         ],
         "type": "object"
+      },
+      "CommitMode": {
+        "enum": [
+          "AUTO",
+          "MANUAL"
+        ],
+        "type": "string"
       },
       "ComparisonConfiguration": {
         "additionalProperties": false,
@@ -2524,6 +2556,9 @@
       "DefaultDateTimePickerControlOptions": {
         "additionalProperties": false,
         "properties": {
+          "CommitMode": {
+            "$ref": "#/definitions/CommitMode"
+          },
           "DisplayOptions": {
             "$ref": "#/definitions/DateTimePickerControlDisplayOptions"
           },
@@ -2581,6 +2616,9 @@
       "DefaultFilterDropDownControlOptions": {
         "additionalProperties": false,
         "properties": {
+          "CommitMode": {
+            "$ref": "#/definitions/CommitMode"
+          },
           "DisplayOptions": {
             "$ref": "#/definitions/DropDownControlDisplayOptions"
           },
@@ -2671,6 +2709,9 @@
       "DefaultRelativeDateTimeControlOptions": {
         "additionalProperties": false,
         "properties": {
+          "CommitMode": {
+            "$ref": "#/definitions/CommitMode"
+          },
           "DisplayOptions": {
             "$ref": "#/definitions/RelativeDateTimeControlDisplayOptions"
           }
@@ -3034,6 +3075,9 @@
           "Label": {
             "type": "string"
           },
+          "TooltipTarget": {
+            "$ref": "#/definitions/TooltipTarget"
+          },
           "Visibility": {
             "$ref": "#/definitions/Visibility"
           }
@@ -3207,6 +3251,9 @@
           "CategoryFilter": {
             "$ref": "#/definitions/CategoryFilter"
           },
+          "NestedFilter": {
+            "$ref": "#/definitions/NestedFilter"
+          },
           "NumericEqualityFilter": {
             "$ref": "#/definitions/NumericEqualityFilter"
           },
@@ -3286,6 +3333,9 @@
       "FilterDateTimePickerControl": {
         "additionalProperties": false,
         "properties": {
+          "CommitMode": {
+            "$ref": "#/definitions/CommitMode"
+          },
           "DisplayOptions": {
             "$ref": "#/definitions/DateTimePickerControlDisplayOptions"
           },
@@ -3322,6 +3372,9 @@
         "properties": {
           "CascadingControlConfiguration": {
             "$ref": "#/definitions/CascadingControlConfiguration"
+          },
+          "CommitMode": {
+            "$ref": "#/definitions/CommitMode"
           },
           "DisplayOptions": {
             "$ref": "#/definitions/DropDownControlDisplayOptions"
@@ -3508,6 +3561,9 @@
       "FilterRelativeDateTimeControl": {
         "additionalProperties": false,
         "properties": {
+          "CommitMode": {
+            "$ref": "#/definitions/CommitMode"
+          },
           "DisplayOptions": {
             "$ref": "#/definitions/RelativeDateTimeControlDisplayOptions"
           },
@@ -4985,6 +5041,15 @@
         ],
         "type": "string"
       },
+      "InnerFilter": {
+        "additionalProperties": false,
+        "properties": {
+          "CategoryInnerFilter": {
+            "$ref": "#/definitions/CategoryInnerFilter"
+          }
+        },
+        "type": "object"
+      },
       "InsightConfiguration": {
         "additionalProperties": false,
         "properties": {
@@ -5565,6 +5630,9 @@
             "minItems": 0,
             "type": "array"
           },
+          "SingleAxisOptions": {
+            "$ref": "#/definitions/SingleAxisOptions"
+          },
           "SmallMultiplesOptions": {
             "$ref": "#/definitions/SmallMultiplesOptions"
           },
@@ -6023,6 +6091,34 @@
           "NEGATIVE"
         ],
         "type": "string"
+      },
+      "NestedFilter": {
+        "additionalProperties": false,
+        "properties": {
+          "Column": {
+            "$ref": "#/definitions/ColumnIdentifier"
+          },
+          "FilterId": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[\\w\\-]+$",
+            "type": "string"
+          },
+          "IncludeInnerSet": {
+            "default": false,
+            "type": "boolean"
+          },
+          "InnerFilter": {
+            "$ref": "#/definitions/InnerFilter"
+          }
+        },
+        "required": [
+          "Column",
+          "FilterId",
+          "IncludeInnerSet",
+          "InnerFilter"
+        ],
+        "type": "object"
       },
       "NullValueFormatConfiguration": {
         "additionalProperties": false,
@@ -6522,6 +6618,9 @@
         "properties": {
           "CascadingControlConfiguration": {
             "$ref": "#/definitions/CascadingControlConfiguration"
+          },
+          "CommitMode": {
+            "$ref": "#/definitions/CommitMode"
           },
           "DisplayOptions": {
             "$ref": "#/definitions/DropDownControlDisplayOptions"
@@ -7527,6 +7626,22 @@
         "properties": {
           "Visibility": {
             "$ref": "#/definitions/Visibility"
+          }
+        },
+        "type": "object"
+      },
+      "QueryExecutionMode": {
+        "enum": [
+          "AUTO",
+          "MANUAL"
+        ],
+        "type": "string"
+      },
+      "QueryExecutionOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "QueryExecutionMode": {
+            "$ref": "#/definitions/QueryExecutionMode"
           }
         },
         "type": "object"
@@ -8895,6 +9010,21 @@
         ],
         "type": "string"
       },
+      "SingleAxisOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "YAxisOptions": {
+            "$ref": "#/definitions/YAxisOptions"
+          }
+        },
+        "type": "object"
+      },
+      "SingleYAxisOption": {
+        "enum": [
+          "PRIMARY_Y_AXIS"
+        ],
+        "type": "string"
+      },
       "SliderControlDisplayOptions": {
         "additionalProperties": false,
         "properties": {
@@ -9848,6 +9978,9 @@
             "minItems": 0,
             "type": "array"
           },
+          "QueryExecutionOptions": {
+            "$ref": "#/definitions/QueryExecutionOptions"
+          },
           "Sheets": {
             "items": {
               "$ref": "#/definitions/SheetDefinition"
@@ -10138,6 +10271,14 @@
           }
         },
         "type": "object"
+      },
+      "TooltipTarget": {
+        "enum": [
+          "BOTH",
+          "BAR",
+          "LINE"
+        ],
+        "type": "string"
       },
       "TooltipTitleType": {
         "enum": [
@@ -11161,6 +11302,18 @@
           "NORMAL"
         ],
         "type": "string"
+      },
+      "YAxisOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "YAxis": {
+            "$ref": "#/definitions/SingleYAxisOption"
+          }
+        },
+        "required": [
+          "YAxis"
+        ],
+        "type": "object"
       }
     },
     "description": "Definition of the AWS::QuickSight::Template Resource Type.",

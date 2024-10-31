@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Synthetics-Canary",
   "type": "AWS::Synthetics::Canary",
-  "time": "2024-06-13T22:59:48.555Z",
+  "time": "2024-10-16T20:01:08.802Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -77,6 +77,13 @@
           "Handler"
         ],
         "type": "object"
+      },
+      "ResourceToTag": {
+        "description": "Specifies which resources canary tags should be replicated to.",
+        "enum": [
+          "lambda-function"
+        ],
+        "type": "string"
       },
       "RunConfig": {
         "additionalProperties": false,
@@ -229,6 +236,7 @@
           "lambda:GetLayerVersionByArn",
           "lambda:GetLayerVersion",
           "lambda:PublishLayerVersion",
+          "lambda:TagResource",
           "ec2:DescribeVpcs",
           "ec2:DescribeSubnets",
           "ec2:DescribeSecurityGroups",
@@ -276,6 +284,9 @@
           "lambda:GetLayerVersionByArn",
           "lambda:GetLayerVersion",
           "lambda:PublishLayerVersion",
+          "lambda:ListTags",
+          "lambda:TagResource",
+          "lambda:UntagResource",
           "iam:PassRole"
         ]
       }
@@ -315,8 +326,16 @@
       },
       "Name": {
         "description": "Name of the canary.",
-        "pattern": "^[0-9a-z_\\-]{1,21}$",
+        "pattern": "^[0-9a-z_\\-]{1,255}$",
         "type": "string"
+      },
+      "ResourcesToReplicateTags": {
+        "description": "List of resources which canary tags should be replicated to.",
+        "items": {
+          "$ref": "#/definitions/ResourceToTag"
+        },
+        "type": "array",
+        "uniqueItems": true
       },
       "RunConfig": {
         "$ref": "#/definitions/RunConfig",
@@ -383,6 +402,7 @@
       "/properties/Code/Script",
       "/properties/DeleteLambdaResourcesOnCanaryDeletion",
       "/properties/StartCanaryAfterCreation",
+      "/properties/ResourcesToReplicateTags",
       "/properties/RunConfig/EnvironmentVariables",
       "/properties/VisualReference"
     ]

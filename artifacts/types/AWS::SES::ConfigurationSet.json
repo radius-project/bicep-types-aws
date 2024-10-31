@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SES-ConfigurationSet",
   "type": "AWS::SES::ConfigurationSet",
-  "time": "2024-08-08T09:12:33.082Z",
+  "time": "2024-10-31T09:42:10.094Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -27,6 +27,12 @@
         "additionalProperties": false,
         "description": "An object that defines the dedicated IP pool that is used to send emails that you send using the configuration set.",
         "properties": {
+          "MaxDeliverySeconds": {
+            "description": "Specifies the maximum time until which SES will retry sending emails",
+            "maximum": 50400,
+            "minimum": 300,
+            "type": "number"
+          },
           "SendingPoolName": {
             "description": "The name of the dedicated IP pool to associate with the configuration set.",
             "type": "string"

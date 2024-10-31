@@ -87,7 +87,7 @@ jobs:
           path: ./artifacts/bicep
           if-no-files-found: error
       - name: 'Login via Azure CLI'
-        # if: ${{ env.CI_PUBLISH_LATEST == 'true' || env.CI_PUBLISH_RELEASE == 'true' }}
+        if: ${{ env.CI_PUBLISH_LATEST == 'true' || env.CI_PUBLISH_RELEASE == 'true' }}
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.BICEPTYPES_CLIENT_ID }}

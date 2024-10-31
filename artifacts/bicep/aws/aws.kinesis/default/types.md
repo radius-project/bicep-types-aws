@@ -1,11 +1,23 @@
 # AWS.Kinesis @ default
 
+## Resource AWS.Kinesis/ResourcePolicy@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Kinesis/ResourcePolicyProperties](#awskinesisresourcepolicyproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Kinesis/Stream@default
 * **Valid Scope(s)**: Unknown
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Kinesis/StreamProperties](#awskinesisstreamproperties) (Identifier): properties of the resource
+
+## AWS.Kinesis/ResourcePolicyProperties
+### Properties
+* **ResourceArn**: string (Required, Identifier): The ARN of the AWS Kinesis resource to which the policy applies.
+* **ResourcePolicy**: [ResourcePolicy_ResourcePolicy](#resourcepolicyresourcepolicy) (Required): A policy document containing permissions to add to the specified resource. In IAM, you must provide policy documents in JSON format. However, in CloudFormation you can provide the policy in JSON or YAML format because CloudFormation converts YAML to JSON before submitting it to IAM.
 
 ## AWS.Kinesis/StreamProperties
 ### Properties
@@ -16,6 +28,9 @@
 * **StreamEncryption**: [StreamEncryption](#streamencryption): When specified, enables or updates server-side encryption using an AWS KMS key for a specified stream.
 * **StreamModeDetails**: [StreamModeDetails](#streammodedetails): The mode in which the stream is running.
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key–value pairs) to associate with the Kinesis stream.
+
+## ResourcePolicy_ResourcePolicy
+### Properties
 
 ## StreamEncryption
 ### Properties

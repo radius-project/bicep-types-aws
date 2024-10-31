@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-Subnet",
   "type": "AWS::EC2::Subnet",
-  "time": "2024-08-07T19:00:04.392Z",
+  "time": "2024-10-24T17:33:25.869Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -22,7 +22,7 @@
     "definitions": {
       "Tag": {
         "additionalProperties": false,
-        "description": "Specifies a tag. For more information, see [Add tags to a resource](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#cloudformation-add-tag-specifications).",
+        "description": "Specifies a tag. For more information, see [Resource tags](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html).",
         "properties": {
           "Key": {
             "description": "The tag key.",
@@ -120,7 +120,7 @@
         "type": "string"
       },
       "Ipv6CidrBlocks": {
-        "description": "The IPv6 network ranges for the subnet, in CIDR notation.",
+        "description": "",
         "items": {
           "type": "string"
         },
@@ -186,13 +186,18 @@
     },
     "readOnlyProperties": [
       "/properties/NetworkAclAssociationId",
-      "/properties/SubnetId"
+      "/properties/SubnetId",
+      "/properties/Ipv6CidrBlocks"
     ],
     "required": [
       "VpcId"
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

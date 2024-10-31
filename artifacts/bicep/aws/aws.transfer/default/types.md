@@ -28,6 +28,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Transfer/ProfileProperties](#awstransferprofileproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Transfer/Server@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Transfer/ServerProperties](#awstransferserverproperties) (Identifier): properties of the resource
+
 ## Resource AWS.Transfer/Workflow@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -88,6 +95,28 @@
 * **ProfileType**: string (Required): Enum specifying whether the profile is local or associated with a trading partner.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## AWS.Transfer/ServerProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **As2ServiceManagedEgressIpAddresses**: string[] (ReadOnly): The list of egress IP addresses of this server. These IP addresses are only relevant for servers that use the AS2 protocol. They are used for sending asynchronous MDNs. These IP addresses are assigned automatically when you create an AS2 server. Additionally, if you update an existing server and add the AS2 protocol, static IP addresses are assigned as well.
+* **Certificate**: string
+* **Domain**: string
+* **EndpointDetails**: [EndpointDetails](#endpointdetails)
+* **EndpointType**: string
+* **IdentityProviderDetails**: [IdentityProviderDetails](#identityproviderdetails)
+* **IdentityProviderType**: string (WriteOnly)
+* **LoggingRole**: string
+* **PostAuthenticationLoginBanner**: string
+* **PreAuthenticationLoginBanner**: string
+* **ProtocolDetails**: [ProtocolDetails](#protocoldetails)
+* **Protocols**: string[]
+* **S3StorageOptions**: [S3StorageOptions](#s3storageoptions)
+* **SecurityPolicyName**: string
+* **ServerId**: string (ReadOnly)
+* **StructuredLogDestinations**: string[]
+* **Tags**: [Tag](#tag)[]
+* **WorkflowDetails**: [WorkflowDetails](#workflowdetails)
+
 ## AWS.Transfer/WorkflowProperties
 ### Properties
 * **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the workflow.
@@ -119,10 +148,33 @@
 * **FileSystemId**: string: Specifies the EFS filesystem that contains the file.
 * **Path**: string: The name assigned to the file when it was created in EFS. You use the object path to retrieve the object.
 
+## EndpointDetails
+### Properties
+* **AddressAllocationIds**: string[]
+* **SecurityGroupIds**: string[]
+* **SubnetIds**: string[]
+* **VpcEndpointId**: string
+* **VpcId**: string
+
+## IdentityProviderDetails
+### Properties
+* **DirectoryId**: string
+* **Function**: string
+* **InvocationRole**: string
+* **SftpAuthenticationMethods**: string
+* **Url**: string
+
 ## InputFileLocation
 ### Properties
 * **EfsFileLocation**: [EfsInputFileLocation](#efsinputfilelocation)
 * **S3FileLocation**: [S3InputFileLocation](#s3inputfilelocation)
+
+## ProtocolDetails
+### Properties
+* **As2Transports**: string[]
+* **PassiveIp**: string
+* **SetStatOption**: string
+* **TlsSessionResumptionMode**: string
 
 ## S3FileLocation
 ### Properties
@@ -132,6 +184,10 @@
 ### Properties
 * **Bucket**: string: Specifies the S3 bucket that contains the file.
 * **Key**: string: The name assigned to the file when it was created in S3. You use the object key to retrieve the object.
+
+## S3StorageOptions
+### Properties
+* **DirectoryListingOptimization**: string
 
 ## S3Tag
 ### Properties
@@ -157,6 +213,11 @@
 ### Properties
 * **Key**: string (Required): The name assigned to the tag that you create.
 * **Value**: string (Required): Contains one or more values that you assigned to the key name you create.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
@@ -195,6 +256,16 @@
 * **Name**: string: The name of the step, used as an identifier.
 * **SourceFileLocation**: string: Specifies which file to use as input to the workflow step.
 * **Tags**: [S3Tag](#s3tag)[]: Array that contains from 1 to 10 key/value pairs.
+
+## WorkflowDetail
+### Properties
+* **ExecutionRole**: string (Required)
+* **WorkflowId**: string (Required)
+
+## WorkflowDetails
+### Properties
+* **OnPartialUpload**: [WorkflowDetail](#workflowdetail)[]
+* **OnUpload**: [WorkflowDetail](#workflowdetail)[]
 
 ## WorkflowStep
 ### Properties

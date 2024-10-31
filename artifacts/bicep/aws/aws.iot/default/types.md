@@ -362,8 +362,11 @@
 
 ## AWS.IoT/DomainConfigurationProperties
 ### Properties
+* **ApplicationProtocol**: string
 * **Arn**: string (ReadOnly)
+* **AuthenticationType**: string
 * **AuthorizerConfig**: [AuthorizerConfig](#authorizerconfig)
+* **ClientCertificateConfig**: [ClientCertificateConfig](#clientcertificateconfig)
 * **DomainConfigurationName**: string (Identifier)
 * **DomainConfigurationStatus**: string
 * **DomainName**: string
@@ -546,6 +549,10 @@
 ## BillingGroup_BillingGroupProperties
 ### Properties
 * **BillingGroupDescription**: string
+
+## ClientCertificateConfig
+### Properties
+* **ClientCertificateCallbackArn**: string
 
 ## CloudwatchAlarmAction
 ### Properties

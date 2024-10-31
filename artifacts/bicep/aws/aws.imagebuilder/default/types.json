@@ -789,9 +789,43 @@
     "properties": {
       "S3Logs": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/48"
         },
         "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Placement",
+    "properties": {
+      "AvailabilityZone": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "AvailabilityZone"
+      },
+      "HostId": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "HostId"
+      },
+      "HostResourceGroupArn": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "HostResourceGroupArn"
+      },
+      "Tenancy": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "Tenancy"
       }
     }
   },
@@ -895,7 +929,7 @@
       },
       "InstanceTypes": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "The instance types of the infrastructure configuration."
@@ -921,16 +955,23 @@
         "flags": 1,
         "description": "The name of the infrastructure configuration."
       },
+      "Placement": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0,
+        "description": "The placement option settings for the infrastructure configuration."
+      },
       "ResourceTags": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "The tags attached to the resource created by Image Builder."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "The security group IDs of the infrastructure configuration."
@@ -951,7 +992,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "The tags associated with the component."
@@ -985,7 +1026,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/55"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -997,7 +1038,7 @@
     "name": "AWS.ImageBuilder/InfrastructureConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/55"
+      "$ref": "#/56"
     },
     "flags": 0
   },
@@ -1007,7 +1048,7 @@
     "properties": {
       "IncludeResources": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/62"
         },
         "flags": 0
       },
@@ -1033,28 +1074,28 @@
       },
       "LastLaunched": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "Use to apply lifecycle policy actions on AMIs launched before a certain time."
       },
       "Regions": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "Use to apply lifecycle policy actions on AMIs distributed to a set of regions."
       },
       "SharedAccounts": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "Use to apply lifecycle policy actions on AMIs shared with a set of regions."
       },
       "TagMap": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "The AMIs to select by tag."
@@ -1067,13 +1108,13 @@
     "properties": {
       "Amis": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/59"
         },
         "flags": 0
       },
       "TagMap": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "The Image Builder tags to filter on."
@@ -1167,19 +1208,19 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/58"
         },
         "flags": 1
       },
       "ExclusionRules": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/60"
         },
         "flags": 0
       },
       "Filter": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/61"
         },
         "flags": 1
       }
@@ -1211,14 +1252,14 @@
     "properties": {
       "Recipes": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "The recipes to select."
       },
       "TagMap": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "The Image Builder resources to select by tag."
@@ -1255,7 +1296,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/64"
+      "$ref": "#/65"
     }
   },
   {
@@ -1270,7 +1311,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/63"
+      "$ref": "#/64"
     }
   },
   {
@@ -1312,14 +1353,14 @@
       },
       "PolicyDetails": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/75"
         },
         "flags": 1,
         "description": "The policy details of the lifecycle policy."
       },
       "ResourceSelection": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/66"
         },
         "flags": 1,
         "description": "The resource selection of the lifecycle policy."
@@ -1340,7 +1381,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "The tags associated with the lifecycle policy."
@@ -1367,7 +1408,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/77"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1379,7 +1420,7 @@
     "name": "AWS.ImageBuilder/LifecyclePolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/77"
+      "$ref": "#/78"
     },
     "flags": 0
   }

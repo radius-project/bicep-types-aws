@@ -42,6 +42,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Redshift/EventSubscriptionProperties](#awsredshifteventsubscriptionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Redshift/Integration@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Redshift/IntegrationProperties](#awsredshiftintegrationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Redshift/ScheduledAction@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -183,6 +190,17 @@ The value must be either -1 or an integer between 1 and 3,653.
 * **SubscriptionName**: string (Required, Identifier): The name of the Amazon Redshift event notification subscription
 * **Tags**: [Tag](#tag)[] (WriteOnly): An array of key-value pairs to apply to this resource.
 
+## AWS.Redshift/IntegrationProperties
+### Properties
+* **AdditionalEncryptionContext**: [EncryptionContextMap](#encryptioncontextmap)
+* **CreateTime**: string (ReadOnly): The time (UTC) when the integration was created.
+* **IntegrationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the integration.
+* **IntegrationName**: string: The name of the integration.
+* **KMSKeyId**: string: An KMS key identifier for the key to use to encrypt the integration. If you don't specify an encryption key, the default AWS owned KMS key is used.
+* **SourceArn**: string (Required): The Amazon Resource Name (ARN) of the database to use as the source for replication, for example, arn:aws:dynamodb:us-east-2:123412341234:table/dynamotable
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **TargetArn**: string (Required): The Amazon Resource Name (ARN) of the Redshift data warehouse to use as the target for replication, for example, arn:aws:redshift:us-east-2:123412341234:namespace:e43aab3e-10a3-4ec4-83d4-f227ff9bfbcf
+
 ## AWS.Redshift/ScheduledActionProperties
 ### Properties
 * **Enable**: bool: If true, the schedule is enabled. If false, the scheduled action does not trigger.
@@ -197,6 +215,9 @@ The value must be either -1 or an integer between 1 and 3,653.
 * **TargetAction**: [ScheduledActionType](#scheduledactiontype): A JSON format string of the Amazon Redshift API operation with input parameters.
 
 ## Cluster_NamespaceResourcePolicy
+### Properties
+
+## EncryptionContextMap
 ### Properties
 
 ## Endpoint
@@ -270,6 +291,11 @@ The value must be either -1 or an integer between 1 and 3,653.
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## VpcSecurityGroup
 ### Properties

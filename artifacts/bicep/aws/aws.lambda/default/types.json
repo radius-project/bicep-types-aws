@@ -158,7 +158,7 @@
     "properties": {
       "SigningProfileVersionArns": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/13"
         },
         "flags": 1,
         "description": "List of Signing profile version Arns"
@@ -179,6 +179,26 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/5"
@@ -187,6 +207,12 @@
   {
     "$type": "StringLiteralType",
     "value": "AWS.Lambda/CodeSigningConfigProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
+    }
   },
   {
     "$type": "ObjectType",
@@ -226,6 +252,13 @@
         },
         "flags": 0,
         "description": "A description of the CodeSigningConfig"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "A list of tags to apply to CodeSigningConfig resource"
       }
     }
   },
@@ -249,7 +282,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -261,7 +294,7 @@
     "name": "AWS.Lambda/CodeSigningConfig@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/17"
     },
     "flags": 0
   },
@@ -271,13 +304,13 @@
     "properties": {
       "OnFailure": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "OnSuccess": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/21"
         },
         "flags": 0
       }
@@ -319,7 +352,7 @@
     "properties": {
       "DestinationConfig": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/19"
         },
         "flags": 0
       },
@@ -373,7 +406,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -385,7 +418,7 @@
     "name": "AWS.Lambda/EventInvokeConfig@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/22"
+      "$ref": "#/24"
     },
     "flags": 0
   },
@@ -413,7 +446,7 @@
     "properties": {
       "OnFailure": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The destination configuration for failed invocations."
@@ -453,7 +486,7 @@
     "properties": {
       "KafkaBootstrapServers": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The list of bootstrap servers for your Kafka brokers in the following format: ``\"KafkaBootstrapServers\": [\"abc.xyz.com:xxxx\",\"abc2.xyz.com:xxxx\"]``."
@@ -479,7 +512,7 @@
     "properties": {
       "Filters": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "A list of filters."
@@ -523,7 +556,7 @@
     "properties": {
       "Endpoints": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "The list of bootstrap servers for your Kafka brokers in the following format: ``\"KafkaBootstrapServers\": [\"abc.xyz.com:xxxx\",\"abc2.xyz.com:xxxx\"]``."
@@ -564,6 +597,26 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key for this tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The value for this tag."
+      }
+    }
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/5"
@@ -572,7 +625,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/29"
+      "$ref": "#/31"
     }
   },
   {
@@ -597,7 +650,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
+      "$ref": "#/38"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/39"
     }
   },
   {
@@ -612,7 +671,7 @@
     "properties": {
       "AmazonManagedKafkaEventSourceConfig": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "Specific configuration settings for an Amazon Managed Streaming for Apache Kafka (Amazon MSK) event source."
@@ -626,28 +685,28 @@
       },
       "BisectBatchOnFunctionError": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "(Kinesis and DynamoDB Streams only) If the function returns an error, split the batch in two and retry. The default value is false."
       },
       "DestinationConfig": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka event sources only) A configuration object that specifies the destination of an event after Lambda processes it."
       },
       "DocumentDBEventSourceConfig": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "Specific configuration settings for a DocumentDB event source."
       },
       "Enabled": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "When true, the event source mapping is active. When false, Lambda pauses polling and invocation.\n Default: True"
@@ -659,9 +718,16 @@
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the event source.\n  +   *Amazon Kinesis* – The ARN of the data stream or a stream consumer.\n  +   *Amazon DynamoDB Streams* – The ARN of the stream.\n  +   *Amazon Simple Queue Service* – The ARN of the queue.\n  +   *Amazon Managed Streaming for Apache Kafka* – The ARN of the cluster or the ARN of the VPC connection (for [cross-account event source mappings](https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#msk-multi-vpc)).\n  +   *Amazon MQ* – The ARN of the broker.\n  +   *Amazon DocumentDB* – The ARN of the DocumentDB change stream."
       },
+      "EventSourceMappingArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": ""
+      },
       "FilterCriteria": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see [Lambda event filtering](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html)."
@@ -675,10 +741,10 @@
       },
       "FunctionResponseTypes": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/44"
         },
         "flags": 0,
-        "description": "(Streams and SQS) A list of current response type enums applied to the event source mapping.\n Valid Values: ``ReportBatchItemFailures``"
+        "description": "(Kinesis, DynamoDB Streams, and SQS) A list of current response type enums applied to the event source mapping.\n Valid Values: ``ReportBatchItemFailures``"
       },
       "Id": {
         "type": {
@@ -686,6 +752,13 @@
         },
         "flags": 18,
         "description": ""
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The ARN of the KMSlong (KMS) customer managed key that Lambda uses to encrypt your function's [filter criteria](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-basics)."
       },
       "MaximumBatchingWindowInSeconds": {
         "type": {
@@ -717,35 +790,35 @@
       },
       "Queues": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "(Amazon MQ) The name of the Amazon MQ broker destination queue to consume."
       },
       "ScalingConfig": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "(Amazon SQS only) The scaling configuration for the event source. For more information, see [Configuring maximum concurrency for Amazon SQS event sources](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-max-concurrency)."
       },
       "SelfManagedEventSource": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "The self-managed Apache Kafka cluster for your event source."
       },
       "SelfManagedKafkaEventSourceConfig": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "Specific configuration settings for a self-managed Apache Kafka event source."
       },
       "SourceAccessConfigurations": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "An array of the authentication protocol, VPC components, or virtual host to secure and define your event source."
@@ -764,9 +837,16 @@
         "flags": 0,
         "description": "With ``StartingPosition`` set to ``AT_TIMESTAMP``, the time from which to start reading, in Unix time seconds. ``StartingPositionTimestamp`` cannot be in the future."
       },
+      "Tags": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0,
+        "description": "A list of tags to add to the event source mapping.\n  You must have the ``lambda:TagResource``, ``lambda:UntagResource``, and ``lambda:ListTags`` permissions for your [principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html) to manage the CFN stack. If you don't have these permissions, there might be unexpected behavior with stack-level tags propagating to the resource during resource creation and update."
+      },
       "Topics": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "The name of the Kafka topic."
@@ -800,7 +880,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/49"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -812,7 +892,7 @@
     "name": "AWS.Lambda/EventSourceMapping@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/46"
+      "$ref": "#/50"
     },
     "flags": 0
   },
@@ -883,7 +963,7 @@
     "properties": {
       "Variables": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "Environment variable key-value pairs. For more information, see [Using Lambda environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html)."
@@ -929,14 +1009,14 @@
     "properties": {
       "Command": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "Specifies parameters that you want to pass in with ENTRYPOINT. You can specify a maximum of 1,500 parameters in the list."
       },
       "EntryPoint": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "Specifies the entry point to their application, which is typically the location of the runtime executable. You can specify a maximum of 1,500 string entries in the list."
@@ -983,6 +1063,11 @@
         "description": "Set this property to filter the system logs for your function that Lambda sends to CloudWatch. Lambda only sends system logs at the selected level of detail and lower, where ``DEBUG`` is the highest level and ``WARN`` is the lowest."
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RecursiveLoop",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1076,21 +1161,21 @@
     "properties": {
       "Ipv6AllowedForDualStack": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "Allows outbound IPv6 traffic on VPC functions that are connected to dual-stack subnets."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "A list of VPC security group IDs."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "A list of VPC subnet IDs."
@@ -1139,7 +1224,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/56"
     }
   },
   {
@@ -1151,7 +1236,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/63"
     }
   },
   {
@@ -1160,7 +1245,7 @@
     "properties": {
       "Architectures": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is ``x86_64``."
@@ -1174,7 +1259,7 @@
       },
       "Code": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/52"
         },
         "flags": 5,
         "description": "The code for the function."
@@ -1188,7 +1273,7 @@
       },
       "DeadLetterConfig": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "A dead-letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing. For more information, see [Dead-letter queues](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq)."
@@ -1202,21 +1287,21 @@
       },
       "Environment": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "Environment variables that are accessible from function code during execution."
       },
       "EphemeralStorage": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "The size of the function's ``/tmp`` directory in MB. The default value is 512, but it can be any whole number between 512 and 10,240 MB."
       },
       "FileSystemConfigs": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "Connection settings for an Amazon EFS file system. To connect a function to a file system, a mount target must be available in every Availability Zone that your function connects to. If your template contains an [AWS::EFS::MountTarget](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html) resource, you must also specify a ``DependsOn`` attribute to ensure that the mount target is created or updated before the function.\n For more information about using the ``DependsOn`` attribute, see [DependsOn Attribute](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html)."
@@ -1237,7 +1322,7 @@
       },
       "ImageConfig": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "Configuration values that override the container image Dockerfile settings. For more information, see [Container image settings](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms)."
@@ -1251,14 +1336,14 @@
       },
       "Layers": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "A list of [function layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) to add to the function's execution environment. Specify each layer by its ARN, including the version."
       },
       "LoggingConfig": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "The function's Amazon CloudWatch Logs configuration settings."
@@ -1276,6 +1361,13 @@
         },
         "flags": 0,
         "description": "The type of deployment package. Set to ``Image`` for container image and set ``Zip`` for .zip file archive."
+      },
+      "RecursiveLoop": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": ""
       },
       "ReservedConcurrentExecutions": {
         "type": {
@@ -1300,28 +1392,28 @@
       },
       "RuntimeManagementConfig": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "Sets the runtime management configuration for a function's version. For more information, see [Runtime updates](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html)."
       },
       "SnapStart": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/61"
         },
         "flags": 4,
         "description": "The function's [SnapStart](https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html) setting."
       },
       "SnapStartResponse": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/62"
         },
         "flags": 2,
         "description": ""
       },
       "Tags": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "A list of [tags](https://docs.aws.amazon.com/lambda/latest/dg/tagging.html) to apply to the function."
@@ -1335,14 +1427,14 @@
       },
       "TracingConfig": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "Set ``Mode`` to ``Active`` to sample and trace a subset of incoming requests with [X-Ray](https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html)."
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "For network connectivity to AWS resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the internet only through that VPC. For more information, see [Configuring a Lambda function to access resources in a VPC](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html)."
@@ -1369,7 +1461,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/76"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1381,7 +1473,7 @@
     "name": "AWS.Lambda/Function@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/72"
+      "$ref": "#/77"
     },
     "flags": 0
   },
@@ -1406,35 +1498,35 @@
     "properties": {
       "AllowCredentials": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "Specifies whether credentials are included in the CORS request."
       },
       "AllowHeaders": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/87"
         },
         "flags": 0,
         "description": "Represents a collection of allowed headers."
       },
       "AllowMethods": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/88"
         },
         "flags": 0,
         "description": "Represents a collection of allowed HTTP methods."
       },
       "AllowOrigins": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "Represents a collection of allowed origins."
       },
       "ExposeHeaders": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/90"
         },
         "flags": 0,
         "description": "Represents a collection of exposed headers."
@@ -1517,7 +1609,7 @@
       },
       "Cors": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/82"
         },
         "flags": 0
       },
@@ -1578,7 +1670,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/93"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1590,7 +1682,7 @@
     "name": "AWS.Lambda/Url@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/89"
+      "$ref": "#/94"
     },
     "flags": 0
   }

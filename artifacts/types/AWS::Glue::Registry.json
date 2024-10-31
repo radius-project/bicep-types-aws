@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-Registry",
   "type": "AWS::Glue::Registry",
-  "time": "2024-03-01T21:57:46.696Z",
+  "time": "2024-10-15T21:33:10.124Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -37,7 +37,8 @@
         "permissions": [
           "glue:CreateRegistry",
           "glue:GetRegistry",
-          "glue:GetTags"
+          "glue:GetTags",
+          "glue:TagResource"
         ]
       },
       "delete": {
@@ -105,6 +106,18 @@
       "Name"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-glue.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "glue:GetTags",
+        "glue:TagResource",
+        "glue:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Glue::Registry"
   }
 }

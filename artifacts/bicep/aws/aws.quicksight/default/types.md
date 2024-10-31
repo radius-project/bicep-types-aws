@@ -28,6 +28,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/DataSourceProperties](#awsquicksightdatasourceproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.QuickSight/Folder@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/FolderProperties](#awsquicksightfolderproperties) (Identifier): properties of the resource
+
 ## Resource AWS.QuickSight/RefreshSchedule@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -147,6 +154,7 @@
 * **FilterGroups**: [FilterGroup](#filtergroup)[]
 * **Options**: [AssetOptions](#assetoptions)
 * **ParameterDeclarations**: [ParameterDeclaration](#parameterdeclaration)[]
+* **QueryExecutionOptions**: [QueryExecutionOptions](#queryexecutionoptions)
 * **Sheets**: [SheetDefinition](#sheetdefinition)[]
 
 ## AnalysisError
@@ -292,6 +300,7 @@
 * **DataSetArns**: string[] (ReadOnly): <p>The ARNs of the datasets of the analysis.</p>
 * **Definition**: [AnalysisDefinition](#analysisdefinition) (WriteOnly)
 * **Errors**: [AnalysisError](#analysiserror)[]: <p>Errors associated with the analysis.</p>
+* **FolderArns**: string[] (WriteOnly)
 * **LastUpdatedTime**: string (ReadOnly): <p>The time that the analysis was last updated.</p>
 * **Name**: string (Required): <p>The descriptive name of the analysis.</p>
 * **Parameters**: [Parameters](#parameters) (WriteOnly)
@@ -311,6 +320,7 @@
 * **DashboardId**: string (Required, Identifier)
 * **DashboardPublishOptions**: [DashboardPublishOptions](#dashboardpublishoptions) (WriteOnly)
 * **Definition**: [DashboardVersionDefinition](#dashboardversiondefinition) (WriteOnly)
+* **FolderArns**: string[] (WriteOnly)
 * **LastPublishedTime**: string (ReadOnly): <p>The last time that this dashboard was published.</p>
 * **LastUpdatedTime**: string (ReadOnly): <p>The last time that this dashboard was updated.</p>
 * **LinkEntities**: string[]
@@ -341,6 +351,7 @@
 * **DataSetRefreshProperties**: [DataSetRefreshProperties](#datasetrefreshproperties)
 * **DataSetUsageConfiguration**: [DataSetUsageConfiguration](#datasetusageconfiguration)
 * **FieldFolders**: [FieldFolderMap](#fieldfoldermap) (WriteOnly)
+* **FolderArns**: string[] (WriteOnly): <p>When you create the dataset, Amazon QuickSight adds the dataset to these folders.</p>
 * **ImportMode**: string
 * **IngestionWaitPolicy**: [IngestionWaitPolicy](#ingestionwaitpolicy) (WriteOnly)
 * **LastUpdatedTime**: string (ReadOnly): <p>The last time that this dataset was updated.</p>
@@ -372,6 +383,7 @@
 * **DataSourceId**: string (Identifier)
 * **DataSourceParameters**: [DataSourceParameters](#datasourceparameters)
 * **ErrorInfo**: [DataSourceErrorInfo](#datasourceerrorinfo)
+* **FolderArns**: string[] (WriteOnly)
 * **LastUpdatedTime**: string (ReadOnly): <p>The last time that this data source was updated.</p>
 * **Name**: string (Required)
 * **Permissions**: [ResourcePermission](#resourcepermission)[]
@@ -380,6 +392,20 @@
 * **Tags**: [Tag](#tag)[]
 * **Type**: string (Required)
 * **VpcConnectionProperties**: [VpcConnectionProperties](#vpcconnectionproperties)
+
+## AWS.QuickSight/FolderProperties
+### Properties
+* **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) for the folder.</p>
+* **AwsAccountId**: string (Identifier)
+* **CreatedTime**: string (ReadOnly): <p>The time that the folder was created.</p>
+* **FolderId**: string (Identifier)
+* **FolderType**: string
+* **LastUpdatedTime**: string (ReadOnly): <p>The time that the folder was last updated.</p>
+* **Name**: string
+* **ParentFolderArn**: string (WriteOnly)
+* **Permissions**: [ResourcePermission](#resourcepermission)[]
+* **SharingModel**: string
+* **Tags**: [Tag](#tag)[]
 
 ## AWS.QuickSight/RefreshScheduleProperties
 ### Properties
@@ -1124,6 +1150,24 @@
 * **CustomFilterListConfiguration**: [CustomFilterListConfiguration](#customfilterlistconfiguration)
 * **FilterListConfiguration**: [FilterListConfiguration](#filterlistconfiguration)
 
+## CategoryInnerFilter
+### Properties
+* **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **Configuration**: [CategoryFilterConfiguration](#categoryfilterconfiguration) (Required)
+* **DefaultFilterControlConfiguration**: [DefaultFilterControlConfiguration](#defaultfiltercontrolconfiguration)
+
+## CategoryInnerFilter
+### Properties
+* **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **Configuration**: [CategoryFilterConfiguration](#categoryfilterconfiguration) (Required)
+* **DefaultFilterControlConfiguration**: [DefaultFilterControlConfiguration](#defaultfiltercontrolconfiguration)
+
+## CategoryInnerFilter
+### Properties
+* **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **Configuration**: [CategoryFilterConfiguration](#categoryfilterconfiguration) (Required)
+* **DefaultFilterControlConfiguration**: [DefaultFilterControlConfiguration](#defaultfiltercontrolconfiguration)
+
 ## CellValueSynonym
 ### Properties
 * **CellValue**: string
@@ -1306,6 +1350,7 @@
 * **Aggregation**: [AggregationFunction](#aggregationfunction)
 * **Column**: [ColumnIdentifier](#columnidentifier) (Required)
 * **Label**: string
+* **TooltipTarget**: string
 * **Visibility**: string
 
 ## ColumnTooltipItem
@@ -1313,6 +1358,7 @@
 * **Aggregation**: [AggregationFunction](#aggregationfunction)
 * **Column**: [ColumnIdentifier](#columnidentifier) (Required)
 * **Label**: string
+* **TooltipTarget**: string
 * **Visibility**: string
 
 ## ColumnTooltipItem
@@ -1320,6 +1366,7 @@
 * **Aggregation**: [AggregationFunction](#aggregationfunction)
 * **Column**: [ColumnIdentifier](#columnidentifier) (Required)
 * **Label**: string
+* **TooltipTarget**: string
 * **Visibility**: string
 
 ## ComboChartAggregatedFieldWells
@@ -1358,6 +1405,7 @@
 * **ReferenceLines**: [ReferenceLine](#referenceline)[]
 * **SecondaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
 * **SecondaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
+* **SingleAxisOptions**: [SingleAxisOptions](#singleaxisoptions)
 * **SortConfiguration**: [ComboChartSortConfiguration](#combochartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
 * **VisualPalette**: [VisualPalette](#visualpalette)
@@ -1377,6 +1425,7 @@
 * **ReferenceLines**: [ReferenceLine](#referenceline)[]
 * **SecondaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
 * **SecondaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
+* **SingleAxisOptions**: [SingleAxisOptions](#singleaxisoptions)
 * **SortConfiguration**: [ComboChartSortConfiguration](#combochartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
 * **VisualPalette**: [VisualPalette](#visualpalette)
@@ -1396,6 +1445,7 @@
 * **ReferenceLines**: [ReferenceLine](#referenceline)[]
 * **SecondaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
 * **SecondaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
+* **SingleAxisOptions**: [SingleAxisOptions](#singleaxisoptions)
 * **SortConfiguration**: [ComboChartSortConfiguration](#combochartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
 * **VisualPalette**: [VisualPalette](#visualpalette)
@@ -2267,7 +2317,7 @@
 
 ## DataSetRefreshProperties
 ### Properties
-* **RefreshConfiguration**: [RefreshConfiguration](#refreshconfiguration) (Required)
+* **RefreshConfiguration**: [RefreshConfiguration](#refreshconfiguration)
 
 ## DataSetSchema
 ### Properties
@@ -2591,16 +2641,19 @@
 
 ## DefaultDateTimePickerControlOptions
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [DateTimePickerControlDisplayOptions](#datetimepickercontroldisplayoptions)
 * **Type**: string
 
 ## DefaultDateTimePickerControlOptions
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [DateTimePickerControlDisplayOptions](#datetimepickercontroldisplayoptions)
 * **Type**: string
 
 ## DefaultDateTimePickerControlOptions
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [DateTimePickerControlDisplayOptions](#datetimepickercontroldisplayoptions)
 * **Type**: string
 
@@ -2651,18 +2704,21 @@
 
 ## DefaultFilterDropDownControlOptions
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [DropDownControlDisplayOptions](#dropdowncontroldisplayoptions)
 * **SelectableValues**: [FilterSelectableValues](#filterselectablevalues)
 * **Type**: string
 
 ## DefaultFilterDropDownControlOptions
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [DropDownControlDisplayOptions](#dropdowncontroldisplayoptions)
 * **SelectableValues**: [FilterSelectableValues](#filterselectablevalues)
 * **Type**: string
 
 ## DefaultFilterDropDownControlOptions
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [DropDownControlDisplayOptions](#dropdowncontroldisplayoptions)
 * **SelectableValues**: [FilterSelectableValues](#filterselectablevalues)
 * **Type**: string
@@ -2761,14 +2817,17 @@
 
 ## DefaultRelativeDateTimeControlOptions
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [RelativeDateTimeControlDisplayOptions](#relativedatetimecontroldisplayoptions)
 
 ## DefaultRelativeDateTimeControlOptions
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [RelativeDateTimeControlDisplayOptions](#relativedatetimecontroldisplayoptions)
 
 ## DefaultRelativeDateTimeControlOptions
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [RelativeDateTimeControlDisplayOptions](#relativedatetimecontroldisplayoptions)
 
 ## DefaultSectionBasedLayoutConfiguration
@@ -3138,18 +3197,21 @@
 ### Properties
 * **FieldId**: string (Required)
 * **Label**: string
+* **TooltipTarget**: string
 * **Visibility**: string
 
 ## FieldTooltipItem
 ### Properties
 * **FieldId**: string (Required)
 * **Label**: string
+* **TooltipTarget**: string
 * **Visibility**: string
 
 ## FieldTooltipItem
 ### Properties
 * **FieldId**: string (Required)
 * **Label**: string
+* **TooltipTarget**: string
 * **Visibility**: string
 
 ## FilledMapAggregatedFieldWells
@@ -3290,6 +3352,7 @@
 ## Filter
 ### Properties
 * **CategoryFilter**: [CategoryFilter](#categoryfilter)
+* **NestedFilter**: [NestedFilter](#nestedfilter)
 * **NumericEqualityFilter**: [NumericEqualityFilter](#numericequalityfilter)
 * **NumericRangeFilter**: [NumericRangeFilter](#numericrangefilter)
 * **RelativeDatesFilter**: [RelativeDatesFilter](#relativedatesfilter)
@@ -3300,6 +3363,7 @@
 ## Filter
 ### Properties
 * **CategoryFilter**: [CategoryFilter](#categoryfilter)
+* **NestedFilter**: [NestedFilter](#nestedfilter)
 * **NumericEqualityFilter**: [NumericEqualityFilter](#numericequalityfilter)
 * **NumericRangeFilter**: [NumericRangeFilter](#numericrangefilter)
 * **RelativeDatesFilter**: [RelativeDatesFilter](#relativedatesfilter)
@@ -3310,6 +3374,7 @@
 ## Filter
 ### Properties
 * **CategoryFilter**: [CategoryFilter](#categoryfilter)
+* **NestedFilter**: [NestedFilter](#nestedfilter)
 * **NumericEqualityFilter**: [NumericEqualityFilter](#numericequalityfilter)
 * **NumericRangeFilter**: [NumericRangeFilter](#numericrangefilter)
 * **RelativeDatesFilter**: [RelativeDatesFilter](#relativedatesfilter)
@@ -3370,6 +3435,7 @@
 
 ## FilterDateTimePickerControl
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [DateTimePickerControlDisplayOptions](#datetimepickercontroldisplayoptions)
 * **FilterControlId**: string (Required)
 * **SourceFilterId**: string (Required)
@@ -3378,6 +3444,7 @@
 
 ## FilterDateTimePickerControl
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [DateTimePickerControlDisplayOptions](#datetimepickercontroldisplayoptions)
 * **FilterControlId**: string (Required)
 * **SourceFilterId**: string (Required)
@@ -3386,6 +3453,7 @@
 
 ## FilterDateTimePickerControl
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [DateTimePickerControlDisplayOptions](#datetimepickercontroldisplayoptions)
 * **FilterControlId**: string (Required)
 * **SourceFilterId**: string (Required)
@@ -3395,6 +3463,7 @@
 ## FilterDropDownControl
 ### Properties
 * **CascadingControlConfiguration**: [CascadingControlConfiguration](#cascadingcontrolconfiguration)
+* **CommitMode**: string
 * **DisplayOptions**: [DropDownControlDisplayOptions](#dropdowncontroldisplayoptions)
 * **FilterControlId**: string (Required)
 * **SelectableValues**: [FilterSelectableValues](#filterselectablevalues)
@@ -3405,6 +3474,7 @@
 ## FilterDropDownControl
 ### Properties
 * **CascadingControlConfiguration**: [CascadingControlConfiguration](#cascadingcontrolconfiguration)
+* **CommitMode**: string
 * **DisplayOptions**: [DropDownControlDisplayOptions](#dropdowncontroldisplayoptions)
 * **FilterControlId**: string (Required)
 * **SelectableValues**: [FilterSelectableValues](#filterselectablevalues)
@@ -3415,6 +3485,7 @@
 ## FilterDropDownControl
 ### Properties
 * **CascadingControlConfiguration**: [CascadingControlConfiguration](#cascadingcontrolconfiguration)
+* **CommitMode**: string
 * **DisplayOptions**: [DropDownControlDisplayOptions](#dropdowncontroldisplayoptions)
 * **FilterControlId**: string (Required)
 * **SelectableValues**: [FilterSelectableValues](#filterselectablevalues)
@@ -3529,6 +3600,7 @@
 
 ## FilterRelativeDateTimeControl
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [RelativeDateTimeControlDisplayOptions](#relativedatetimecontroldisplayoptions)
 * **FilterControlId**: string (Required)
 * **SourceFilterId**: string (Required)
@@ -3536,6 +3608,7 @@
 
 ## FilterRelativeDateTimeControl
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [RelativeDateTimeControlDisplayOptions](#relativedatetimecontroldisplayoptions)
 * **FilterControlId**: string (Required)
 * **SourceFilterId**: string (Required)
@@ -3543,6 +3616,7 @@
 
 ## FilterRelativeDateTimeControl
 ### Properties
+* **CommitMode**: string
 * **DisplayOptions**: [RelativeDateTimeControlDisplayOptions](#relativedatetimecontroldisplayoptions)
 * **FilterControlId**: string (Required)
 * **SourceFilterId**: string (Required)
@@ -4778,6 +4852,18 @@
 * **WaitForSpiceIngestion**: bool: <p>Wait for SPICE ingestion to finish to mark dataset creation/update successful. Default (true).
   Applicable only when DataSetImportMode mode is set to SPICE.</p>
 
+## InnerFilter
+### Properties
+* **CategoryInnerFilter**: [CategoryInnerFilter](#categoryinnerfilter)
+
+## InnerFilter
+### Properties
+* **CategoryInnerFilter**: [CategoryInnerFilter](#categoryinnerfilter)
+
+## InnerFilter
+### Properties
+* **CategoryInnerFilter**: [CategoryInnerFilter](#categoryinnerfilter)
+
 ## InsightConfiguration
 ### Properties
 * **Computations**: [Computation](#computation)[]
@@ -5266,6 +5352,7 @@
 * **SecondaryYAxisDisplayOptions**: [LineSeriesAxisDisplayOptions](#lineseriesaxisdisplayoptions)
 * **SecondaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **Series**: [SeriesItem](#seriesitem)[]
+* **SingleAxisOptions**: [SingleAxisOptions](#singleaxisoptions)
 * **SmallMultiplesOptions**: [SmallMultiplesOptions](#smallmultiplesoptions)
 * **SortConfiguration**: [LineChartSortConfiguration](#linechartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
@@ -5288,6 +5375,7 @@
 * **SecondaryYAxisDisplayOptions**: [LineSeriesAxisDisplayOptions](#lineseriesaxisdisplayoptions)
 * **SecondaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **Series**: [SeriesItem](#seriesitem)[]
+* **SingleAxisOptions**: [SingleAxisOptions](#singleaxisoptions)
 * **SmallMultiplesOptions**: [SmallMultiplesOptions](#smallmultiplesoptions)
 * **SortConfiguration**: [LineChartSortConfiguration](#linechartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
@@ -5310,6 +5398,7 @@
 * **SecondaryYAxisDisplayOptions**: [LineSeriesAxisDisplayOptions](#lineseriesaxisdisplayoptions)
 * **SecondaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **Series**: [SeriesItem](#seriesitem)[]
+* **SingleAxisOptions**: [SingleAxisOptions](#singleaxisoptions)
 * **SmallMultiplesOptions**: [SmallMultiplesOptions](#smallmultiplesoptions)
 * **SortConfiguration**: [LineChartSortConfiguration](#linechartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
@@ -5739,6 +5828,27 @@
 ### Properties
 * **DisplayMode**: string (Required)
 
+## NestedFilter
+### Properties
+* **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **FilterId**: string (Required)
+* **IncludeInnerSet**: bool (Required)
+* **InnerFilter**: [InnerFilter](#innerfilter) (Required)
+
+## NestedFilter
+### Properties
+* **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **FilterId**: string (Required)
+* **IncludeInnerSet**: bool (Required)
+* **InnerFilter**: [InnerFilter](#innerfilter) (Required)
+
+## NestedFilter
+### Properties
+* **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **FilterId**: string (Required)
+* **IncludeInnerSet**: bool (Required)
+* **InnerFilter**: [InnerFilter](#innerfilter) (Required)
+
 ## NetworkInterface
 ### Properties
 * **AvailabilityZone**: string: <p>The availability zone that the network interface resides in.</p>
@@ -6165,6 +6275,7 @@
 ## ParameterDropDownControl
 ### Properties
 * **CascadingControlConfiguration**: [CascadingControlConfiguration](#cascadingcontrolconfiguration)
+* **CommitMode**: string
 * **DisplayOptions**: [DropDownControlDisplayOptions](#dropdowncontroldisplayoptions)
 * **ParameterControlId**: string (Required)
 * **SelectableValues**: [ParameterSelectableValues](#parameterselectablevalues)
@@ -6175,6 +6286,7 @@
 ## ParameterDropDownControl
 ### Properties
 * **CascadingControlConfiguration**: [CascadingControlConfiguration](#cascadingcontrolconfiguration)
+* **CommitMode**: string
 * **DisplayOptions**: [DropDownControlDisplayOptions](#dropdowncontroldisplayoptions)
 * **ParameterControlId**: string (Required)
 * **SelectableValues**: [ParameterSelectableValues](#parameterselectablevalues)
@@ -6185,6 +6297,7 @@
 ## ParameterDropDownControl
 ### Properties
 * **CascadingControlConfiguration**: [CascadingControlConfiguration](#cascadingcontrolconfiguration)
+* **CommitMode**: string
 * **DisplayOptions**: [DropDownControlDisplayOptions](#dropdowncontroldisplayoptions)
 * **ParameterControlId**: string (Required)
 * **SelectableValues**: [ParameterSelectableValues](#parameterselectablevalues)
@@ -7001,6 +7114,14 @@
 ### Properties
 * **Visibility**: string
 
+## QueryExecutionOptions
+### Properties
+* **QueryExecutionMode**: string
+
+## QueryExecutionOptions
+### Properties
+* **QueryExecutionMode**: string
+
 ## RadarChartAggregatedFieldWells
 ### Properties
 * **Category**: [DimensionField](#dimensionfield)[]
@@ -7535,6 +7656,25 @@
             </li>
          </ul>
 
+## ResourcePermission
+### Properties
+* **Actions**: string[] (Required): <p>The IAM action to grant or revoke permissions on.</p>
+* **Principal**: string (Required): <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
+            following:</p>
+         <ul>
+            <li>
+               <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p>
+            </li>
+            <li>
+               <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
+            </li>
+            <li>
+               <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight
+                    ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.
+                    (This is less common.) </p>
+            </li>
+         </ul>
+
 ## RollingDateConfiguration
 ### Properties
 * **DataSetIdentifier**: string
@@ -7585,7 +7725,7 @@
 ## RowLevelPermissionTagRule
 ### Properties
 * **ColumnName**: string (Required): <p>The column name that a tag key is assigned to.</p>
-* **MatchAllValue**: string: <p>A string that you want to use to filter by all the values in a column in the dataset and don?t want to list the values one by one. For example, you can use an asterisk as your match all value.</p>
+* **MatchAllValue**: string: <p>A string that you want to use to filter by all the values in a column in the dataset and don’t want to list the values one by one. For example, you can use an asterisk as your match all value.</p>
 * **TagKey**: string (Required): <p>The unique key for a tag.</p>
 * **TagMultiValueDelimiter**: string: <p>A string that you want to use to delimit the values when you pass the values at run time. For example, you can delimit the values with a comma.</p>
 
@@ -8222,6 +8362,18 @@
 ## SimpleClusterMarker
 ### Properties
 * **Color**: string
+
+## SingleAxisOptions
+### Properties
+* **YAxisOptions**: [YAxisOptions](#yaxisoptions)
+
+## SingleAxisOptions
+### Properties
+* **YAxisOptions**: [YAxisOptions](#yaxisoptions)
+
+## SingleAxisOptions
+### Properties
+* **YAxisOptions**: [YAxisOptions](#yaxisoptions)
 
 ## SliderControlDisplayOptions
 ### Properties
@@ -8943,6 +9095,11 @@
 * **Key**: string (Required): <p>Tag key.</p>
 * **Value**: string (Required): <p>Tag value.</p>
 
+## Tag
+### Properties
+* **Key**: string (Required): <p>Tag key.</p>
+* **Value**: string (Required): <p>Tag value.</p>
+
 ## TemplateError
 ### Properties
 * **Message**: string: <p>Description of the error type.</p>
@@ -8988,6 +9145,7 @@
 * **FilterGroups**: [FilterGroup](#filtergroup)[]
 * **Options**: [AssetOptions](#assetoptions)
 * **ParameterDeclarations**: [ParameterDeclaration](#parameterdeclaration)[]
+* **QueryExecutionOptions**: [QueryExecutionOptions](#queryexecutionoptions)
 * **Sheets**: [SheetDefinition](#sheetdefinition)[]
 
 ## TeradataParameters
@@ -10254,4 +10412,16 @@
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
 * **VisualId**: string (Required)
+
+## YAxisOptions
+### Properties
+* **YAxis**: string (Required)
+
+## YAxisOptions
+### Properties
+* **YAxis**: string (Required)
+
+## YAxisOptions
+### Properties
+* **YAxis**: string (Required)
 

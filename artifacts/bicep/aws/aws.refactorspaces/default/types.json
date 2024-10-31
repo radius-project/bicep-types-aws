@@ -1,11 +1,134 @@
 [
   {
     "$type": "ObjectType",
+    "name": "NetworkFabricType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "A string used to identify this tag"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "A string containing the value for the tag"
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.RefactorSpaces/EnvironmentProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RefactorSpaces/EnvironmentProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4
+      },
+      "EnvironmentIdentifier": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4
+      },
+      "NetworkFabricType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Metadata that you can assign to help organize the frameworks that you create. Each tag is a key-value pair."
+      },
+      "TransitGatewayId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RefactorSpaces/Environment",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.RefactorSpaces/Environment@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/6"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "DefaultRouteInput",
     "properties": {
       "ActivationState": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/2"
         },
         "flags": 1
       }
@@ -32,14 +155,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "A string used to identify this tag"
       },
       "Value": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "A string containing the value for the tag"
@@ -52,38 +175,35 @@
     "properties": {
       "ActivationState": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "AppendSourcePath": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0
       },
       "IncludeChildPaths": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0
       },
       "Methods": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/15"
         },
         "flags": 0
       },
       "SourcePath": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/2"
         },
         "flags": 0
       }
     }
-  },
-  {
-    "$type": "StringType"
   },
   {
     "$type": "BooleanType"
@@ -91,7 +211,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/2"
     }
   },
   {
@@ -101,7 +221,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/12"
     }
   },
   {
@@ -110,62 +230,62 @@
     "properties": {
       "ApplicationIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/2"
         },
         "flags": 17
       },
       "Arn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "DefaultRoute": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/8"
         },
         "flags": 4
       },
       "EnvironmentIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/2"
         },
         "flags": 17
       },
       "PathResourceToId": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "RouteIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/2"
         },
         "flags": 18
       },
       "RouteType": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/2"
         },
         "flags": 5
       },
       "ServiceIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/2"
         },
         "flags": 5
       },
       "Tags": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Metadata that you can assign to help organize the frameworks that you create. Each tag is a key-value pair."
       },
       "UriPathRoute": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/13"
         },
         "flags": 4
       }
@@ -177,21 +297,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/18"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -203,7 +323,7 @@
     "name": "AWS.RefactorSpaces/Route@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/12"
+      "$ref": "#/19"
     },
     "flags": 0
   }

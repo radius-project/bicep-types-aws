@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-Schema",
   "type": "AWS::Glue::Schema",
-  "time": "2024-03-01T22:01:35.812Z",
+  "time": "2024-10-15T21:37:50.473Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -73,7 +73,8 @@
     "handlers": {
       "create": {
         "permissions": [
-          "glue:CreateSchema"
+          "glue:CreateSchema",
+          "glue:TagResource"
         ]
       },
       "delete": {
@@ -183,10 +184,21 @@
     "required": [
       "Name",
       "DataFormat",
-      "SchemaDefinition",
       "Compatibility"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-glue.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "glue:GetTags",
+        "glue:TagResource",
+        "glue:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Glue::Schema",
     "writeOnlyProperties": [
       "/properties/SchemaDefinition"

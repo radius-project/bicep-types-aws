@@ -19,7 +19,7 @@
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.Events/ConnectionProperties](#awseventsconnectionproperties) (Required, Identifier): properties of the resource
+* **properties**: [AWS.Events/ConnectionProperties](#awseventsconnectionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Events/Endpoint@default
 * **Valid Scope(s)**: Unknown
@@ -83,8 +83,8 @@
 ## AWS.Events/ConnectionProperties
 ### Properties
 * **Arn**: string (ReadOnly): The arn of the connection resource.
-* **AuthorizationType**: string (Required)
-* **AuthParameters**: [AuthParameters](#authparameters) (Required, WriteOnly)
+* **AuthorizationType**: string
+* **AuthParameters**: [AuthParameters](#authparameters) (WriteOnly)
 * **Description**: string: Description of the connection.
 * **Name**: string (Identifier): Name of the connection.
 * **SecretArn**: string (ReadOnly): The arn of the secrets manager secret created in the customer account.

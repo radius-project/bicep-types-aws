@@ -6,6 +6,11 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CapabilityDirection",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "CapabilityType",
     "properties": {}
   },
@@ -13,27 +18,33 @@
     "$type": "ObjectType",
     "name": "EdiConfiguration",
     "properties": {
+      "CapabilityDirection": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
       "InputLocation": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "OutputLocation": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "TransformerId": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 1
       }
@@ -50,13 +61,13 @@
     "properties": {
       "BucketName": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Key": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -68,13 +79,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -86,13 +97,13 @@
     "properties": {
       "TransactionSet": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Version": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -123,13 +134,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/6"
     }
   },
   {
@@ -138,13 +149,13 @@
     "properties": {
       "CapabilityArn": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "CapabilityId": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 18
       },
@@ -156,37 +167,37 @@
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "InstructionsDocuments": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "ModifiedAt": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "Name": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -198,21 +209,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -224,9 +235,26 @@
     "name": "AWS.B2BI/Capability@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/16"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CapabilityOptions",
+    "properties": {
+      "OutboundEdi": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OutboundEdiOptions",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -234,17 +262,163 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12Delimiters",
+    "properties": {
+      "ComponentSeparator": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "DataElementSeparator": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "SegmentTerminator": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12Envelope",
+    "properties": {
+      "Common": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12FunctionalGroupHeaders",
+    "properties": {
+      "ApplicationReceiverCode": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "ApplicationSenderCode": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "ResponsibleAgencyCode": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12InterchangeControlHeaders",
+    "properties": {
+      "AcknowledgmentRequestedCode": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "ReceiverId": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "ReceiverIdQualifier": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "RepetitionSeparator": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "SenderId": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "SenderIdQualifier": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "UsageIndicatorCode": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12OutboundEdiHeaders",
+    "properties": {
+      "Delimiters": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
+      "FunctionalGroupHeaders": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0
+      },
+      "InterchangeControlHeaders": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "ValidateEdi": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Partnership_OutboundEdiOptions",
+    "properties": {}
+  },
+  {
+    "$type": "BooleanType"
   },
   {
     "$type": "StringLiteralType",
@@ -253,13 +427,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/9"
+      "$ref": "#/10"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/20"
     }
   },
   {
@@ -268,67 +442,73 @@
     "properties": {
       "Capabilities": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/29"
+        },
+        "flags": 1
+      },
+      "CapabilityOptions": {
+        "type": {
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "Email": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "ModifiedAt": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "Name": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "PartnershipArn": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "PartnershipId": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "Phone": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "ProfileId": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "TradingPartnerId": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       }
@@ -340,21 +520,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/31"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -366,7 +546,7 @@
     "name": "AWS.B2BI/Partnership@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/22"
+      "$ref": "#/32"
     },
     "flags": 0
   },
@@ -381,13 +561,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -400,7 +580,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/35"
     }
   },
   {
@@ -409,67 +589,67 @@
     "properties": {
       "BusinessName": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "Email": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "LogGroupName": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "Logging": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "ModifiedAt": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "Name": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Phone": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "ProfileArn": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "ProfileId": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "Tags": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/37"
         },
         "flags": 0
       }
@@ -481,21 +661,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/38"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -507,7 +687,7 @@
     "name": "AWS.B2BI/Profile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/29"
+      "$ref": "#/39"
     },
     "flags": 0
   },
@@ -523,21 +703,131 @@
   },
   {
     "$type": "ObjectType",
+    "name": "FormatOptions",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FromFormat",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputConversion",
+    "properties": {
+      "FormatOptions": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "FromFormat": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Mapping",
+    "properties": {
+      "Template": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "TemplateLanguage": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MappingTemplateLanguage",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OutputConversion",
+    "properties": {
+      "FormatOptions": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "ToFormat": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SampleDocumentKeys",
+    "properties": {
+      "Input": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "Output": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SampleDocuments",
+    "properties": {
+      "BucketName": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Keys": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ToFormat",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -550,13 +840,13 @@
     "properties": {
       "TransactionSet": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Version": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -573,13 +863,19 @@
     "properties": {}
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/49"
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.B2BI/TransformerProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/33"
+      "$ref": "#/51"
     }
   },
   {
@@ -588,67 +884,93 @@
     "properties": {
       "CreatedAt": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "EdiType": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/41"
         },
-        "flags": 1
+        "flags": 0
       },
       "FileFormat": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
-        "flags": 1
+        "flags": 0
+      },
+      "InputConversion": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      },
+      "Mapping": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0
       },
       "MappingTemplate": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
-        "flags": 1
+        "flags": 0,
+        "description": "This shape is deprecated: This is a legacy trait. Please use input-conversion or output-conversion."
       },
       "ModifiedAt": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "Name": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
+      "OutputConversion": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0
+      },
       "SampleDocument": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "This shape is deprecated: This is a legacy trait. Please use input-conversion or output-conversion."
+      },
+      "SampleDocuments": {
+        "type": {
+          "$ref": "#/50"
         },
         "flags": 0
       },
       "Status": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/59"
         },
         "flags": 0
       },
       "TransformerArn": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "TransformerId": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 18
       }
@@ -660,21 +982,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/60"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -686,7 +1008,7 @@
     "name": "AWS.B2BI/Transformer@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/41"
+      "$ref": "#/61"
     },
     "flags": 0
   }

@@ -315,6 +315,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayPeeringAttachmentProperties](#awsec2transitgatewaypeeringattachmentproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/TransitGatewayRouteTable@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/TransitGatewayRouteTableProperties](#awsec2transitgatewayroutetableproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/TransitGatewayVpcAttachment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -568,6 +575,7 @@
 * **TagSpecifications**: [TagSpecification](#tagspecification)[]
 * **Tenancy**: string
 * **TotalInstanceCount**: int (ReadOnly)
+* **UnusedReservationBillingOwnerId**: string (WriteOnly)
 
 ## AWS.EC2/CarrierGatewayProperties
 ### Properties
@@ -620,11 +628,13 @@
 
 ## AWS.EC2/EIPProperties
 ### Properties
+* **Address**: string (WriteOnly)
 * **AllocationId**: string (ReadOnly, Identifier)
 * **Domain**: string: The network (``vpc``).
  If you define an Elastic IP address and associate it with a VPC that is defined in the same template, you must declare a dependency on the VPC-gateway attachment by using the [DependsOn Attribute](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html) on this resource.
 * **InstanceId**: string: The ID of the instance.
   Updates to the ``InstanceId`` property may require *some interruptions*. Updates on an EIP reassociates the address on its associated resource.
+* **IpamPoolId**: string (WriteOnly)
 * **NetworkBorderGroup**: string: A unique set of Availability Zones, Local Zones, or Wavelength Zones from which AWS advertises IP addresses. Use this parameter to limit the IP address to this location. IP addresses cannot move between network border groups.
  Use [DescribeAvailabilityZones](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html) to view the network border groups.
 * **PublicIp**: string (ReadOnly, Identifier)
@@ -767,6 +777,7 @@
 * **DefaultResourceDiscoveryAssociationId**: string (ReadOnly): The Id of the default association to the default resource discovery, created with this IPAM.
 * **DefaultResourceDiscoveryId**: string (ReadOnly): The Id of the default resource discovery, created with this IPAM.
 * **Description**: string
+* **EnablePrivateGua**: bool: Enable provisioning of GUA space in private pools.
 * **IpamId**: string (ReadOnly, Identifier): Id of the IPAM.
 * **OperatingRegions**: [IpamOperatingRegion](#ipamoperatingregion)[]: The regions IPAM is enabled for. Allows pools to be created in these regions, as well as enabling monitoring
 * **PrivateDefaultScopeId**: string (ReadOnly): The Id of the default scope for publicly routable IP space, created with this IPAM.
@@ -822,7 +833,7 @@
 * **LaunchTemplateId**: string (ReadOnly, Identifier)
 * **LaunchTemplateName**: string: A name for the launch template.
 * **TagSpecifications**: [LaunchTemplateTagSpecification](#launchtemplatetagspecification)[] (WriteOnly): The tags to apply to the launch template on creation. To tag the launch template, the resource type must be ``launch-template``.
- To specify the tags for the resources that are created when an instance is launched, you must use [TagSpecifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html#cfn-ec2-launchtemplate-tagspecifications).
+ To specify the tags for the resources that are created when an instance is launched, you must use [TagSpecifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-tagspecifications).
 * **VersionDescription**: string (WriteOnly): A description for the first version of the launch template.
 
 ## AWS.EC2/LocalGatewayRouteProperties
@@ -872,7 +883,7 @@
 * **MaxDrainDurationSeconds**: int (WriteOnly): The maximum amount of time to wait (in seconds) before forcibly releasing the IP addresses if connections are still in progress. Default value is 350 seconds.
 * **NatGatewayId**: string (ReadOnly, Identifier)
 * **PrivateIpAddress**: string: The private IPv4 address to assign to the NAT gateway. If you don't provide an address, a private IPv4 address will be automatically assigned.
-* **SecondaryAllocationIds**: string[]: Secondary EIP allocation IDs. For more information, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating) in the *Amazon VPC User Guide*.
+* **SecondaryAllocationIds**: string[]: Secondary EIP allocation IDs. For more information, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-working-with.html) in the *Amazon VPC User Guide*.
 * **SecondaryPrivateIpAddressCount**: int: [Private NAT gateway only] The number of secondary private IPv4 addresses you want to assign to the NAT gateway. For more information about secondary addresses, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating) in the *Amazon Virtual Private Cloud User Guide*.
   ``SecondaryPrivateIpAddressCount`` and ``SecondaryPrivateIpAddresses`` cannot be set at the same time.
 * **SecondaryPrivateIpAddresses**: string[]: Secondary private IPv4 addresses. For more information about secondary addresses, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating) in the *Amazon Virtual Private Cloud User Guide*.
@@ -1104,7 +1115,7 @@ Use this for ICMP and any protocol that uses ports.
 * **Ipv4NetmaskLength**: int (WriteOnly): An IPv4 netmask length for the subnet.
 * **Ipv6CidrBlock**: string: The IPv6 CIDR block.
  If you specify ``AssignIpv6AddressOnCreation``, you must also specify an IPv6 CIDR block.
-* **Ipv6CidrBlocks**: string[]: The IPv6 network ranges for the subnet, in CIDR notation.
+* **Ipv6CidrBlocks**: string[] (ReadOnly)
 * **Ipv6IpamPoolId**: string (WriteOnly): An IPv6 IPAM pool ID for the subnet.
 * **Ipv6Native**: bool: Indicates whether this is an IPv6 only subnet. For more information, see [Subnet basics](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics) in the *User Guide*.
 * **Ipv6NetmaskLength**: int (WriteOnly): An IPv6 netmask length for the subnet.
@@ -1175,10 +1186,17 @@ Use this for ICMP and any protocol that uses ports.
 * **Id**: string (ReadOnly, Identifier)
 * **MulticastSupport**: string
 * **PropagationDefaultRouteTableId**: string
+* **SecurityGroupReferencingSupport**: string
 * **Tags**: [Tag](#tag)[]
 * **TransitGatewayArn**: string (ReadOnly)
 * **TransitGatewayCidrBlocks**: string[]
 * **VpnEcmpSupport**: string
+
+## AWS.EC2/TransitGatewayRouteTableProperties
+### Properties
+* **Tags**: [Tag](#tag)[]: Tags are composed of a Key/Value pair. You can use tags to categorize and track each parameter group. The tag value null is permitted.
+* **TransitGatewayId**: string (Required): The ID of the transit gateway.
+* **TransitGatewayRouteTableId**: string (ReadOnly, Identifier): Transit Gateway Route Table primary identifier
 
 ## AWS.EC2/TransitGatewayVpcAttachmentProperties
 ### Properties
@@ -1260,15 +1278,15 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **AutoEnableIO**: bool: Indicates whether the volume is auto-enabled for I/O operations. By default, Amazon EBS disables I/O to the volume from attached EC2 instances when it determines that a volume's data is potentially inconsistent. If the consistency of the volume is not a concern, and you prefer that the volume be made available immediately if it's impaired, you can configure the volume to automatically enable I/O.
 * **AvailabilityZone**: string (Required): The ID of the Availability Zone in which to create the volume. For example, ``us-east-1a``.
-* **Encrypted**: bool: Indicates whether the volume should be encrypted. The effect of setting the encryption state to ``true`` depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see [Encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default) in the *Amazon Elastic Compute Cloud User Guide*.
- Encrypted Amazon EBS volumes must be attached to instances that support Amazon EBS encryption. For more information, see [Supported instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances).
+* **Encrypted**: bool: Indicates whether the volume should be encrypted. The effect of setting the encryption state to ``true`` depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see [Encryption by default](https://docs.aws.amazon.com/ebs/latest/userguide/work-with-ebs-encr.html#encryption-by-default) in the *Amazon EBS User Guide*.
+ Encrypted Amazon EBS volumes must be attached to instances that support Amazon EBS encryption. For more information, see [Supported instance types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-encryption-requirements.html#ebs-encryption_supported_instances).
 * **Iops**: int: The number of I/O operations per second (IOPS). For ``gp3``, ``io1``, and ``io2`` volumes, this represents the number of IOPS that are provisioned for the volume. For ``gp2`` volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting.
  The following are the supported values for each volume type:
   +   ``gp3``: 3,000 - 16,000 IOPS
   +   ``io1``: 100 - 64,000 IOPS
   +   ``io2``: 100 - 256,000 IOPS
   
- For ``io2`` volumes, you can achieve up to 256,000 IOPS on [instances built on the Nitro System](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances). On other instances, you can achieve performance up to 32,000 IOPS.
+ For ``io2`` volumes, you can achieve up to 256,000 IOPS on [instances built on the Nitro System](https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-nitro-instances.html). On other instances, you can achieve performance up to 32,000 IOPS.
  This parameter is required for ``io1`` and ``io2`` volumes. The default for ``gp3`` volumes is 3,000 IOPS. This parameter is not supported for ``gp2``, ``st1``, ``sc1``, or ``standard`` volumes.
 * **KmsKeyId**: string: The identifier of the kms-key-long to use for Amazon EBS encryption. If ``KmsKeyId`` is specified, the encrypted state must be ``true``.
  If you omit this property and your account is enabled for encryption by default, or *Encrypted* is set to ``true``, then the volume is encrypted using the default key specified for your account. If your account does not have a default key, then the volume is encrypted using the aws-managed-key.
@@ -1278,7 +1296,7 @@ Use this for ICMP and any protocol that uses ports.
   +  Key ARN. For example, arn:aws:kms:us-east-1:012345678910:key/1234abcd-12ab-34cd-56ef-1234567890ab.
   +  Alias ARN. For example, arn:aws:kms:us-east-1:012345678910:alias/ExampleAlias.
 * **MultiAttachEnabled**: bool: Indicates whether Amazon EBS Multi-Attach is enabled.
- CFNlong does not currently support updating a single-attach volume to be multi-attach enabled, updating a multi-attach enabled volume to be single-attach, or updating the size or number of I/O operations per second (IOPS) of a multi-attach enabled volume.
+  CFNlong does not currently support updating a single-attach volume to be multi-attach enabled, updating a multi-attach enabled volume to be single-attach, or updating the size or number of I/O operations per second (IOPS) of a multi-attach enabled volume.
 * **OutpostArn**: string: The Amazon Resource Name (ARN) of the Outpost.
 * **Size**: int: The size of the volume, in GiBs. You must specify either a snapshot ID or a volume size. If you specify a snapshot, the default is the snapshot size. You can specify a volume size that is equal to or larger than the snapshot size.
  The following are the supported volumes sizes for each volume type:
@@ -1300,7 +1318,7 @@ Use this for ICMP and any protocol that uses ports.
   +  Cold HDD: ``sc1`` 
   +  Magnetic: ``standard`` 
   
- For more information, see [Amazon EBS volume types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html) in the *Amazon Elastic Compute Cloud User Guide*.
+ For more information, see [Amazon EBS volume types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html).
  Default: ``gp2``
 
 ## AWS.EC2/VPCDHCPOptionsAssociationProperties
@@ -1323,7 +1341,8 @@ Use this for ICMP and any protocol that uses ports.
 * **Id**: string (ReadOnly, Identifier)
 * **NetworkInterfaceIds**: string[] (ReadOnly)
 * **PolicyDocument**: [VPCEndpoint_PolicyDocument](#vpcendpointpolicydocument) | string: An endpoint policy, which controls access to the service from the VPC. The default endpoint policy allows full access to the service. Endpoint policies are supported only for gateway and interface endpoints.
- For CloudFormation templates in YAML, you can provide the policy in JSON or YAML format. CFNlong converts YAML policies to JSON format before calling the API to create or modify the VPC endpoint.
+ For CloudFormation templates in YAML, you can provide the policy in JSON or YAML format. For example, if you have a JSON policy, you can convert it to YAML before including it in the YAML template, and CFNlong converts the policy to JSON format before calling the API actions for privatelink. Alternatively, you can include the JSON directly in the YAML, as shown in the following ``Properties`` section:
+ ``Properties: VpcEndpointType: 'Interface' ServiceName: !Sub 'com.amazonaws.${AWS::Region}.logs' PolicyDocument: '{ "Version":"2012-10-17", "Statement": [{ "Effect":"Allow", "Principal":"*", "Action":["logs:Describe*","logs:Get*","logs:List*","logs:FilterLogEvents"], "Resource":"*" }] }'``
 * **PrivateDnsEnabled**: bool: Indicate whether to associate a private hosted zone with the specified VPC. The private hosted zone contains a record set for the default public DNS name for the service for the Region (for example, ``kinesis.us-east-1.amazonaws.com``), which resolves to the private IP addresses of the endpoint network interfaces in the VPC. This enables you to make requests to the default public DNS name for the service instead of the public DNS names that are automatically generated by the VPC endpoint service.
  To use a private hosted zone, you must set the following VPC attributes to ``true``: ``enableDnsHostnames`` and ``enableDnsSupport``.
  This property is supported only for interface endpoints.
@@ -1378,8 +1397,8 @@ Use this for ICMP and any protocol that uses ports.
  You can only enable DNS hostnames if you've enabled DNS support.
 * **EnableDnsSupport**: bool: Indicates whether the DNS resolution is supported for the VPC. If enabled, queries to the Amazon provided DNS server at the 169.254.169.253 IP address, or the reserved IP address at the base of the VPC network range "plus two" succeed. If disabled, the Amazon provided DNS service in the VPC that resolves public DNS hostnames to IP addresses is not enabled. Enabled by default. For more information, see [DNS attributes in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support).
 * **InstanceTenancy**: string: The allowed tenancy of instances launched into the VPC.
-  +  ``default``: An instance launched into the VPC runs on shared hardware by default, unless you explicitly specify a different tenancy during instance launch.
-  +  ``dedicated``: An instance launched into the VPC runs on dedicated hardware by default, unless you explicitly specify a tenancy of ``host`` during instance launch. You cannot specify a tenancy of ``default`` during instance launch.
+  +   ``default``: An instance launched into the VPC runs on shared hardware by default, unless you explicitly specify a different tenancy during instance launch.
+  +   ``dedicated``: An instance launched into the VPC runs on dedicated hardware by default, unless you explicitly specify a tenancy of ``host`` during instance launch. You cannot specify a tenancy of ``default`` during instance launch.
   
  Updating ``InstanceTenancy`` requires no replacement only if you are updating its value from ``dedicated`` to ``default``. Updating ``InstanceTenancy`` from ``default`` to ``dedicated`` requires replacement.
 * **Ipv4IpamPoolId**: string (WriteOnly): The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR. For more information, see [What is IPAM?](https://docs.aws.amazon.com//vpc/latest/ipam/what-is-it-ipam.html) in the *Amazon VPC IPAM User Guide*.
@@ -1392,12 +1411,28 @@ Use this for ICMP and any protocol that uses ports.
 ## AWS.EC2/VPNConnectionProperties
 ### Properties
 * **CustomerGatewayId**: string (Required): The ID of the customer gateway at your end of the VPN connection.
-* **EnableAcceleration**: bool
+* **EnableAcceleration**: bool: Indicate whether to enable acceleration for the VPN connection.
+ Default: ``false``
+* **LocalIpv4NetworkCidr**: string: The IPv4 CIDR on the customer gateway (on-premises) side of the VPN connection.
+ Default: ``0.0.0.0/0``
+* **LocalIpv6NetworkCidr**: string: The IPv6 CIDR on the customer gateway (on-premises) side of the VPN connection.
+ Default: ``::/0``
+* **OutsideIpAddressType**: string: The type of IPv4 address assigned to the outside interface of the customer gateway device.
+ Valid values: ``PrivateIpv4`` | ``PublicIpv4`` 
+ Default: ``PublicIpv4``
+* **RemoteIpv4NetworkCidr**: string: The IPv4 CIDR on the AWS side of the VPN connection.
+ Default: ``0.0.0.0/0``
+* **RemoteIpv6NetworkCidr**: string: The IPv6 CIDR on the AWS side of the VPN connection.
+ Default: ``::/0``
 * **StaticRoutesOnly**: bool: Indicates whether the VPN connection uses static routes only. Static routes must be used for devices that don't support BGP.
  If you are creating a VPN connection for a device that does not support Border Gateway Protocol (BGP), you must specify ``true``.
 * **Tags**: [Tag](#tag)[]: Any tags assigned to the VPN connection.
 * **TransitGatewayId**: string: The ID of the transit gateway associated with the VPN connection.
  You must specify either ``TransitGatewayId`` or ``VpnGatewayId``, but not both.
+* **TransportTransitGatewayAttachmentId**: string: The transit gateway attachment ID to use for the VPN tunnel.
+ Required if ``OutsideIpAddressType`` is set to ``PrivateIpv4``.
+* **TunnelInsideIpVersion**: string: Indicate whether the VPN tunnels process IPv4 or IPv6 traffic.
+ Default: ``ipv4``
 * **Type**: string (Required): The type of VPN connection.
 * **VpnConnectionId**: string (ReadOnly, Identifier)
 * **VpnGatewayId**: string: The ID of the virtual private gateway at the AWS side of the VPN connection.
@@ -1475,6 +1510,14 @@ Use this for ICMP and any protocol that uses ports.
 ## ClassicLoadBalancersConfig
 ### Properties
 * **ClassicLoadBalancers**: [ClassicLoadBalancer](#classicloadbalancer)[] (Required)
+
+## CloudwatchLogOptionsSpecification
+### Properties
+* **LogEnabled**: bool: Enable or disable VPN tunnel logging feature. Default value is ``False``.
+ Valid values: ``True`` | ``False``
+* **LogGroupArn**: string: The Amazon Resource Name (ARN) of the CloudWatch log group to send logs to.
+* **LogOutputFormat**: string: Set log format. Default format is ``json``.
+ Valid values: ``json`` | ``text``
 
 ## ConnectionTrackingSpecification
 ### Properties
@@ -1704,6 +1747,10 @@ Use this for ICMP and any protocol that uses ports.
 ## IamInstanceProfileSpecification
 ### Properties
 * **Arn**: string
+
+## IKEVersionsRequestListValue
+### Properties
+* **Value**: string: The IKE version.
 
 ## Ingress
 ### Properties
@@ -2310,6 +2357,30 @@ Use this for ICMP and any protocol that uses ports.
 * **Code**: string: The status code.
 * **Message**: string: The status message, if applicable.
 
+## Phase1DHGroupNumbersRequestListValue
+### Properties
+* **Value**: int: The Diffie-Hellmann group number.
+
+## Phase1EncryptionAlgorithmsRequestListValue
+### Properties
+* **Value**: string: The value for the encryption algorithm.
+
+## Phase1IntegrityAlgorithmsRequestListValue
+### Properties
+* **Value**: string: The value for the integrity algorithm.
+
+## Phase2DHGroupNumbersRequestListValue
+### Properties
+* **Value**: int: The Diffie-Hellmann group number.
+
+## Phase2EncryptionAlgorithmsRequestListValue
+### Properties
+* **Value**: string: The encryption algorithm.
+
+## Phase2IntegrityAlgorithmsRequestListValue
+### Properties
+* **Value**: string: The integrity algorithm.
+
 ## Placement
 ### Properties
 * **Affinity**: string
@@ -2684,6 +2755,11 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The key of the associated tag key-value pair
+* **Value**: string (Required): The value of the associated tag key-value pair
+
+## Tag
+### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
 
@@ -2793,6 +2869,7 @@ Use this for ICMP and any protocol that uses ports.
 * **ApplianceModeSupport**: string: Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable | disable
 * **DnsSupport**: string: Indicates whether to enable DNS Support for Vpc Attachment. Valid Values: enable | disable
 * **Ipv6Support**: string: Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable | disable
+* **SecurityGroupReferencingSupport**: string: Indicates whether to enable Security Group referencing support for Vpc Attachment. Valid Values: enable | disable
 
 ## TransitGatewayConnectOptions
 ### Properties
@@ -2819,6 +2896,7 @@ Use this for ICMP and any protocol that uses ports.
 * **ApplianceModeSupport**: string: Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable | disable
 * **DnsSupport**: string: Indicates whether to enable DNS Support for Vpc Attachment. Valid Values: enable | disable
 * **Ipv6Support**: string: Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable | disable
+* **SecurityGroupReferencingSupport**: string: Indicates whether to enable Security Group referencing support for Vpc Attachment. Valid values: enable | disable
 
 ## VCpuCount
 ### Properties
@@ -2878,10 +2956,54 @@ Use this for ICMP and any protocol that uses ports.
 * **Device**: string (Required): The device name (for example, /dev/sdh or xvdh).
 * **VolumeId**: string (Required): The ID of the EBS volume. The volume and instance must be within the same Availability Zone.
 
+## VpnTunnelLogOptionsSpecification
+### Properties
+* **CloudwatchLogOptions**: [CloudwatchLogOptionsSpecification](#cloudwatchlogoptionsspecification): Options for sending VPN tunnel logs to CloudWatch.
+
 ## VpnTunnelOptionsSpecification
 ### Properties
+* **DPDTimeoutAction**: string: The action to take after DPD timeout occurs. Specify ``restart`` to restart the IKE initiation. Specify ``clear`` to end the IKE session.
+ Valid Values: ``clear`` | ``none`` | ``restart`` 
+ Default: ``clear``
+* **DPDTimeoutSeconds**: int: The number of seconds after which a DPD timeout occurs.
+ Constraints: A value greater than or equal to 30.
+ Default: ``30``
+* **EnableTunnelLifecycleControl**: bool: Turn on or off tunnel endpoint lifecycle control feature.
+* **IKEVersions**: [IKEVersionsRequestListValue](#ikeversionsrequestlistvalue)[]: The IKE versions that are permitted for the VPN tunnel.
+ Valid values: ``ikev1`` | ``ikev2``
+* **LogOptions**: [VpnTunnelLogOptionsSpecification](#vpntunnellogoptionsspecification): Options for logging VPN tunnel activity.
+* **Phase1DHGroupNumbers**: [Phase1DHGroupNumbersRequestListValue](#phase1dhgroupnumbersrequestlistvalue)[]: One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 1 IKE negotiations.
+ Valid values: ``2`` | ``14`` | ``15`` | ``16`` | ``17`` | ``18`` | ``19`` | ``20`` | ``21`` | ``22`` | ``23`` | ``24``
+* **Phase1EncryptionAlgorithms**: [Phase1EncryptionAlgorithmsRequestListValue](#phase1encryptionalgorithmsrequestlistvalue)[]: One or more encryption algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.
+ Valid values: ``AES128`` | ``AES256`` | ``AES128-GCM-16`` | ``AES256-GCM-16``
+* **Phase1IntegrityAlgorithms**: [Phase1IntegrityAlgorithmsRequestListValue](#phase1integrityalgorithmsrequestlistvalue)[]: One or more integrity algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.
+ Valid values: ``SHA1`` | ``SHA2-256`` | ``SHA2-384`` | ``SHA2-512``
+* **Phase1LifetimeSeconds**: int: The lifetime for phase 1 of the IKE negotiation, in seconds.
+ Constraints: A value between 900 and 28,800.
+ Default: ``28800``
+* **Phase2DHGroupNumbers**: [Phase2DHGroupNumbersRequestListValue](#phase2dhgroupnumbersrequestlistvalue)[]: One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 2 IKE negotiations.
+ Valid values: ``2`` | ``5`` | ``14`` | ``15`` | ``16`` | ``17`` | ``18`` | ``19`` | ``20`` | ``21`` | ``22`` | ``23`` | ``24``
+* **Phase2EncryptionAlgorithms**: [Phase2EncryptionAlgorithmsRequestListValue](#phase2encryptionalgorithmsrequestlistvalue)[]: One or more encryption algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.
+ Valid values: ``AES128`` | ``AES256`` | ``AES128-GCM-16`` | ``AES256-GCM-16``
+* **Phase2IntegrityAlgorithms**: [Phase2IntegrityAlgorithmsRequestListValue](#phase2integrityalgorithmsrequestlistvalue)[]: One or more integrity algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.
+ Valid values: ``SHA1`` | ``SHA2-256`` | ``SHA2-384`` | ``SHA2-512``
+* **Phase2LifetimeSeconds**: int: The lifetime for phase 2 of the IKE negotiation, in seconds.
+ Constraints: A value between 900 and 3,600. The value must be less than the value for ``Phase1LifetimeSeconds``.
+ Default: ``3600``
 * **PreSharedKey**: string: The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway.
  Constraints: Allowed characters are alphanumeric characters, periods (.), and underscores (_). Must be between 8 and 64 characters in length and cannot start with zero (0).
+* **RekeyFuzzPercentage**: int: The percentage of the rekey window (determined by ``RekeyMarginTimeSeconds``) during which the rekey time is randomly selected.
+ Constraints: A value between 0 and 100.
+ Default: ``100``
+* **RekeyMarginTimeSeconds**: int: The margin time, in seconds, before the phase 2 lifetime expires, during which the AWS side of the VPN connection performs an IKE rekey. The exact time of the rekey is randomly selected based on the value for ``RekeyFuzzPercentage``.
+ Constraints: A value between 60 and half of ``Phase2LifetimeSeconds``.
+ Default: ``270``
+* **ReplayWindowSize**: int: The number of packets in an IKE replay window.
+ Constraints: A value between 64 and 2048.
+ Default: ``1024``
+* **StartupAction**: string: The action to take when the establishing the tunnel for the VPN connection. By default, your customer gateway device must initiate the IKE negotiation and bring up the tunnel. Specify ``start`` for AWS to initiate the IKE negotiation.
+ Valid Values: ``add`` | ``start`` 
+ Default: ``add``
 * **TunnelInsideCidr**: string: The range of inside IP addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. 
  Constraints: A size /30 CIDR block from the ``169.254.0.0/16`` range. The following CIDR blocks are reserved and cannot be used:
   +   ``169.254.0.0/30`` 
@@ -2891,4 +3013,6 @@ Use this for ICMP and any protocol that uses ports.
   +   ``169.254.4.0/30`` 
   +   ``169.254.5.0/30`` 
   +   ``169.254.169.252/30``
+* **TunnelInsideIpv6Cidr**: string: The range of inside IPv6 addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same transit gateway.
+ Constraints: A size /126 CIDR block from the local ``fd00::/8`` range.
 

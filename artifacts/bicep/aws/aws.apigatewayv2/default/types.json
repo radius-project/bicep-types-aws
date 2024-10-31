@@ -705,7 +705,7 @@
           "$ref": "#/2"
         },
         "flags": 17,
-        "description": "The custom domain name for your API in Amazon API Gateway. Uppercase letters are not supported."
+        "description": "The custom domain name for your API in Amazon API Gateway. Uppercase letters and the underscore (``_``) character are not supported."
       },
       "DomainNameConfigurations": {
         "type": {
@@ -782,6 +782,61 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ResponseParameter",
+    "properties": {
+      "Destination": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResponseParameterList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResponseParameterMap",
+    "properties": {
+      "ResponseParameters": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "TlsConfig",
     "properties": {
       "ServerNameToVerify": {
@@ -790,6 +845,18 @@
         },
         "flags": 0
       }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/38"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/38"
     }
   },
   {
@@ -819,115 +886,134 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1
+        "flags": 17,
+        "description": "The API identifier."
       },
       "ConnectionId": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The ID of the VPC link for a private integration. Supported only for HTTP APIs."
       },
       "ConnectionType": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The type of the network connection to the integration endpoint. Specify INTERNET for connections through the public routable internet or VPC_LINK for private connections between API Gateway and resources in a VPC. The default value is INTERNET."
       },
       "ContentHandlingStrategy": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Supported only for WebSocket APIs. Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT."
       },
       "CredentialsArn": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Specifies the credentials required for the integration, if any. For AWS integrations, three options are available. To specify an IAM Role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To require that the caller's identity be passed through from the request, specify the string arn:aws:iam::*:user/*. To use resource-based permissions on supported AWS services, don't specify this parameter."
       },
       "Description": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The description of the integration."
       },
-      "Id": {
+      "IntegrationId": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 18
+        "flags": 18,
+        "description": "The integration ID."
       },
       "IntegrationMethod": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Specifies the integration's HTTP method type."
       },
       "IntegrationSubtype": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Supported only for HTTP API AWS_PROXY integrations. Specifies the AWS service action to invoke."
       },
       "IntegrationType": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The integration type of an integration."
       },
       "IntegrationUri": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "For a Lambda integration, specify the URI of a Lambda function. For an HTTP integration, specify a fully-qualified URL. For an HTTP API private integration, specify the ARN of an Application Load Balancer listener, Network Load Balancer listener, or AWS Cloud Map service."
       },
       "PassthroughBehavior": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Specifies the pass-through behavior for incoming requests based on the Content-Type header in the request, and the available mapping templates specified as the requestTemplates property on the Integration resource. There are three valid values: WHEN_NO_MATCH, WHEN_NO_TEMPLATES, and NEVER. Supported only for WebSocket APIs."
       },
       "PayloadFormatVersion": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Specifies the format of the payload sent to an integration. Required for HTTP APIs. For HTTP APIs, supported values for Lambda proxy integrations are 1.0 and 2.0 For all other integrations, 1.0 is the only supported value."
       },
       "RequestParameters": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/46"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "A key-value map specifying parameters."
       },
       "RequestTemplates": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/47"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "A map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client."
       },
       "ResponseParameters": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/48"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Parameters that transform the HTTP response from a backend integration before returning the response to clients. Supported only for HTTP APIs."
       },
       "TemplateSelectionExpression": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The template selection expression for the integration. Supported only for WebSocket APIs."
       },
       "TimeoutInMillis": {
         "type": {
           "$ref": "#/8"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Custom timeout between 50 and 29000 milliseconds for WebSocket APIs and between 50 and 30000 milliseconds for HTTP APIs. The default timeout is 29 seconds for WebSocket APIs and 30 seconds for HTTP APIs."
       },
       "TlsConfig": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/42"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The TLS configuration for a private integration. If you specify a TLS configuration, private integration traffic uses the HTTPS protocol. Supported only for HTTP APIs."
       }
     }
   },
@@ -951,7 +1037,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/49"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -963,7 +1049,7 @@
     "name": "AWS.ApiGatewayV2/Integration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/44"
+      "$ref": "#/50"
     },
     "flags": 0
   },
@@ -1022,14 +1108,14 @@
       },
       "ResponseParameters": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "A key-value map specifying response parameters that are passed to the method response from the backend. The key is a method response header parameter name and the mapped value is an integration response header value, a static value enclosed within a pair of single quotes, or a JSON expression from the integration response body. The mapping key must match the pattern of ``method.response.header.{name}``, where name is a valid and unique header name. The mapped non-static value must match the pattern of ``integration.response.header.{name}`` or ``integration.response.body.{JSON-expression}``, where ``{name}`` is a valid and unique response header name and ``{JSON-expression}`` is a valid JSON expression without the ``$`` prefix."
       },
       "ResponseTemplates": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "The collection of response templates for the integration response as a string-to-string map of key-value pairs. Response templates are represented as a key/value map, with a content-type as the key and a template as the value."
@@ -1063,7 +1149,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/55"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1075,7 +1161,7 @@
     "name": "AWS.ApiGatewayV2/IntegrationResponse@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/50"
+      "$ref": "#/56"
     },
     "flags": 0
   },
@@ -1129,7 +1215,7 @@
       },
       "Schema": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/59"
         },
         "flags": 1,
         "description": "The schema for the model. For application/json models, this should be JSON schema draft 4 model."
@@ -1156,7 +1242,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/60"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1168,7 +1254,7 @@
     "name": "AWS.ApiGatewayV2/Model@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/55"
+      "$ref": "#/61"
     },
     "flags": 0
   },
@@ -1224,7 +1310,7 @@
       },
       "AuthorizationScopes": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "The authorization scopes supported by this route."
@@ -1259,14 +1345,14 @@
       },
       "RequestModels": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "The request models for the route. Supported only for WebSocket APIs."
       },
       "RequestParameters": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/67"
         },
         "flags": 4,
         "description": "The request parameters for the route. Supported only for WebSocket APIs."
@@ -1321,7 +1407,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/68"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1333,7 +1419,7 @@
     "name": "AWS.ApiGatewayV2/Route@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/63"
+      "$ref": "#/69"
     },
     "flags": 0
   },
@@ -1384,14 +1470,14 @@
       },
       "ResponseModels": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "The response models for the route response."
       },
       "ResponseParameters": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "The route response parameters."
@@ -1439,7 +1525,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/75"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1451,7 +1537,7 @@
     "name": "AWS.ApiGatewayV2/RouteResponse@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/70"
+      "$ref": "#/76"
     },
     "flags": 0
   },
@@ -1484,32 +1570,36 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The name of the VPC link."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/79"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "A list of security group IDs for the VPC link."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/80"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "A list of subnet IDs to include in the VPC link."
       },
       "Tags": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/81"
         },
         "flags": 0,
-        "description": "This resource type use map for Tags, suggest to use List of Tag"
+        "description": "The collection of tags. Each tag element is associated with a given resource."
       },
       "VpcLinkId": {
         "type": {
           "$ref": "#/2"
         },
-        "flags": 18
+        "flags": 18,
+        "description": ""
       }
     }
   },
@@ -1533,7 +1623,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/82"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1545,7 +1635,7 @@
     "name": "AWS.ApiGatewayV2/VpcLink@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/77"
+      "$ref": "#/83"
     },
     "flags": 0
   }

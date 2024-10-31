@@ -21,6 +21,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.DataZone/EnvironmentProperties](#awsdatazoneenvironmentproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.DataZone/EnvironmentActions@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DataZone/EnvironmentActionsProperties](#awsdatazoneenvironmentactionsproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.DataZone/EnvironmentBlueprintConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -111,6 +118,18 @@
 * **Status**: string (ReadOnly): The status of the Amazon DataZone domain.
 * **Tags**: [Tag](#tag)[]: The tags specified for the Amazon DataZone domain.
 
+## AWS.DataZone/EnvironmentActionsProperties
+### Properties
+* **Description**: string: The description of the Amazon DataZone environment action.
+* **DomainId**: string (ReadOnly, Identifier): The identifier of the Amazon DataZone domain in which the environment is created.
+* **DomainIdentifier**: string (WriteOnly): The identifier of the Amazon DataZone domain in which the environment would be created.
+* **EnvironmentId**: string (ReadOnly, Identifier): The identifier of the Amazon DataZone environment in which the action is taking place
+* **EnvironmentIdentifier**: string (WriteOnly): The identifier of the Amazon DataZone environment in which the action is taking place
+* **Id**: string (ReadOnly, Identifier): The ID of the Amazon DataZone environment action.
+* **Identifier**: string (WriteOnly): The ID of the Amazon DataZone environment action.
+* **Name**: string (Required): The name of the environment action.
+* **Parameters**: [AwsConsoleLinkParameters](#awsconsolelinkparameters): The parameters of the environment action.
+
 ## AWS.DataZone/EnvironmentBlueprintConfigurationProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly)
@@ -151,9 +170,12 @@
 * **Description**: string: The description of the Amazon DataZone environment.
 * **DomainId**: string (ReadOnly, Identifier): The identifier of the Amazon DataZone domain in which the environment is created.
 * **DomainIdentifier**: string (Required, WriteOnly): The identifier of the Amazon DataZone domain in which the environment would be created.
+* **EnvironmentAccountIdentifier**: string (WriteOnly): The AWS account in which the Amazon DataZone environment is created.
+* **EnvironmentAccountRegion**: string (WriteOnly): The AWS region in which the Amazon DataZone environment is created.
 * **EnvironmentBlueprintId**: string (ReadOnly): The ID of the blueprint with which the Amazon DataZone environment was created.
 * **EnvironmentProfileId**: string (ReadOnly): The ID of the environment profile with which the Amazon DataZone environment was created.
-* **EnvironmentProfileIdentifier**: string (Required, WriteOnly): The ID of the environment profile with which the Amazon DataZone environment would be created.
+* **EnvironmentProfileIdentifier**: string (WriteOnly): The ID of the environment profile with which the Amazon DataZone environment would be created.
+* **EnvironmentRoleArn**: string (WriteOnly): Environment role arn for custom aws environment permissions
 * **GlossaryTerms**: string[]: The glossary terms that can be used in the Amazon DataZone environment.
 * **Id**: string (ReadOnly, Identifier): The ID of the Amazon DataZone environment.
 * **Name**: string (Required): The name of the environment.
@@ -222,6 +244,10 @@
 * **Type**: string (ReadOnly)
 * **UserIdentifier**: string (Required, WriteOnly): The ID of the user.
 * **UserType**: string (WriteOnly)
+
+## AwsConsoleLinkParameters
+### Properties
+* **Uri**: string
 
 ## DataSource_RedshiftStorage
 ### Properties

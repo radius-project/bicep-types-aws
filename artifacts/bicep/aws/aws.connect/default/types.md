@@ -1,5 +1,12 @@
 # AWS.Connect @ default
 
+## Resource AWS.Connect/AgentStatus@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Connect/AgentStatusProperties](#awsconnectagentstatusproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Connect/ApprovedOrigin@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -147,6 +154,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Connect/UserHierarchyGroupProperties](#awsconnectuserhierarchygroupproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Connect/UserHierarchyStructure@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Connect/UserHierarchyStructureProperties](#awsconnectuserhierarchystructureproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Connect/View@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -189,6 +203,20 @@
 * **InboundCalls**: bool (Required)
 * **OutboundCalls**: bool (Required)
 * **UseCustomTTSVoices**: bool
+
+## AWS.Connect/AgentStatusProperties
+### Properties
+* **AgentStatusArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the agent status.
+* **Description**: string: The description of the status.
+* **DisplayOrder**: int: The display order of the status.
+* **InstanceArn**: string (Required): The identifier of the Amazon Connect instance.
+* **LastModifiedRegion**: string (ReadOnly): Last modified region.
+* **LastModifiedTime**: int (ReadOnly): Last modified time.
+* **Name**: string (Required): The name of the status.
+* **ResetOrderNumber**: bool: A number indicating the reset order of the agent status.
+* **State**: string (Required): The state of the status.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **Type**: string: The type of agent status.
 
 ## AWS.Connect/ApprovedOriginProperties
 ### Properties
@@ -403,6 +431,12 @@
 * **Tags**: [Tag](#tag)[]: One or more tags.
 * **UserHierarchyGroupArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the user hierarchy group.
 
+## AWS.Connect/UserHierarchyStructureProperties
+### Properties
+* **InstanceArn**: string (Required): The identifier of the Amazon Connect instance.
+* **UserHierarchyStructure**: [UserHierarchyStructure_UserHierarchyStructure](#userhierarchystructureuserhierarchystructure): Information about the hierarchy structure.
+* **UserHierarchyStructureArn**: string (ReadOnly, Identifier): The identifier of the User Hierarchy Structure.
+
 ## AWS.Connect/UserProperties
 ### Properties
 * **DirectoryUserId**: string: The identifier of the user account in the directory used for identity management.
@@ -611,6 +645,36 @@
 * **Prefix**: string (Required)
 * **RetentionPeriodHours**: int (Required)
 
+## LevelFive
+### Properties
+* **HierarchyLevelArn**: string
+* **HierarchyLevelId**: string
+* **Name**: string (Required)
+
+## LevelFour
+### Properties
+* **HierarchyLevelArn**: string
+* **HierarchyLevelId**: string
+* **Name**: string (Required)
+
+## LevelOne
+### Properties
+* **HierarchyLevelArn**: string
+* **HierarchyLevelId**: string
+* **Name**: string (Required)
+
+## LevelThree
+### Properties
+* **HierarchyLevelArn**: string
+* **HierarchyLevelId**: string
+* **Name**: string (Required)
+
+## LevelTwo
+### Properties
+* **HierarchyLevelArn**: string
+* **HierarchyLevelId**: string
+* **Name**: string (Required)
+
 ## MediaConcurrency
 ### Properties
 * **Channel**: string (Required)
@@ -723,6 +787,11 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string (Required): The value for the tag. . You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
@@ -822,6 +891,14 @@
 ## UpdateCaseAction
 ### Properties
 * **Fields**: [Field](#field)[] (Required)
+
+## UserHierarchyStructure_UserHierarchyStructure
+### Properties
+* **LevelFive**: [LevelFive](#levelfive)
+* **LevelFour**: [LevelFour](#levelfour)
+* **LevelOne**: [LevelOne](#levelone)
+* **LevelThree**: [LevelThree](#levelthree)
+* **LevelTwo**: [LevelTwo](#leveltwo)
 
 ## UserIdentityInfo
 ### Properties

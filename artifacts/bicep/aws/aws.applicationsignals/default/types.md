@@ -12,10 +12,12 @@
 * **Arn**: string (ReadOnly, Identifier): The ARN of this SLO.
 * **CreatedTime**: int (ReadOnly): Epoch time in seconds of the time that this SLO was created
 * **Description**: string: An optional description for this SLO. Default is 'No description'
+* **EvaluationType**: string (ReadOnly): Displays whether this is a period-based SLO or a request-based SLO.
 * **Goal**: [Goal](#goal)
 * **LastUpdatedTime**: int (ReadOnly): Epoch time in seconds of the time that this SLO was most recently updated
 * **Name**: string (Required): The name of this SLO.
-* **Sli**: [Sli](#sli) (Required)
+* **RequestBasedSli**: [RequestBasedSli](#requestbasedsli)
+* **Sli**: [Sli](#sli)
 * **Tags**: [Tag](#tag)[]
 
 ## CalendarInterval
@@ -65,6 +67,25 @@ If you omit this parameter, 99 is used to represent 99% as the attainment goal.
 * **Period**: int (Required): The granularity, in seconds, to be used for the metric.
 * **Stat**: string (Required): The statistic to use for comparison to the threshold. It can be any CloudWatch statistic or extended statistic.
 * **Unit**: string: If you omit Unit then all data that was collected with any unit is returned, along with the corresponding units that were specified when the data was reported to CloudWatch. If you specify a unit, the operation returns only data that was collected with that unit specified. If you specify a unit that does not match the data collected, the results of the operation are null. CloudWatch does not perform unit conversions.
+
+## MonitoredRequestCountMetric
+### Properties
+* **BadCountMetric**: [MetricDataQuery](#metricdataquery)[]: If you want to count "bad requests" to determine the percentage of successful requests for this request-based SLO, specify the metric to use as "bad requests" in this structure.
+* **GoodCountMetric**: [MetricDataQuery](#metricdataquery)[]: If you want to count "good requests" to determine the percentage of successful requests for this request-based SLO, specify the metric to use as "good requests" in this structure.
+
+## RequestBasedSli
+### Properties
+* **ComparisonOperator**: string: The arithmetic operation used when comparing the specified metric to the threshold.
+* **MetricThreshold**: int: The value that the SLI metric is compared to.
+* **RequestBasedSliMetric**: [RequestBasedSliMetric](#requestbasedslimetric) (Required)
+
+## RequestBasedSliMetric
+### Properties
+* **KeyAttributes**: [KeyAttributes](#keyattributes)
+* **MetricType**: string: If the SLO monitors either the LATENCY or AVAILABILITY metric that Application Signals collects, this field displays which of those metrics is used.
+* **MonitoredRequestCountMetric**: [MonitoredRequestCountMetric](#monitoredrequestcountmetric)
+* **OperationName**: string: If the SLO monitors a specific operation of the service, this field displays that operation name.
+* **TotalRequestCountMetric**: [MetricDataQuery](#metricdataquery)[]: This structure defines the metric that is used as the "total requests" number for a request-based SLO. The number observed for this metric is divided by the number of "good requests" or "bad requests" that is observed for the metric defined in `MonitoredRequestCountMetric`.
 
 ## RollingInterval
 ### Properties

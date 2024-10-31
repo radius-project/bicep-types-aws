@@ -968,14 +968,14 @@
     "properties": {
       "ConsumerGroupsToExclude": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "List of regular expression patterns indicating the consumer groups that should not be replicated."
       },
       "ConsumerGroupsToReplicate": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/74"
         },
         "flags": 1,
         "description": "List of regular expression patterns indicating the consumer groups to copy."
@@ -1022,14 +1022,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "The AWS security groups to associate with the elastic network interfaces in order to specify what the replicator has access to. If a security group is not specified, the default security group associated with the VPC is used."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/76"
         },
         "flags": 1,
         "description": "The list of subnets to connect to in the virtual private cloud (VPC). AWS creates elastic network interfaces inside these subnets."
@@ -1070,7 +1070,7 @@
       },
       "TopicReplication": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/72"
         },
         "flags": 1,
         "description": "Configuration relating to topic replication."
@@ -1092,6 +1092,23 @@
   {
     "$type": "ObjectType",
     "name": "ReplicationStartingPositionType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReplicationTopicNameConfiguration",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReplicationTopicNameConfigurationType",
     "properties": {}
   },
   {
@@ -1144,16 +1161,23 @@
         "flags": 0,
         "description": "Configuration for specifying the position in the topics to start replicating from."
       },
+      "TopicNameConfiguration": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "Configuration for specifying replicated topic names should be the same as their corresponding upstream topics or prefixed with source cluster alias."
+      },
       "TopicsToExclude": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "List of regular expression patterns indicating the topics that should not be replicated."
       },
       "TopicsToReplicate": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/78"
         },
         "flags": 1,
         "description": "List of regular expression patterns indicating the topics to copy."
@@ -1215,7 +1239,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/69"
+      "$ref": "#/71"
     }
   },
   {
@@ -1238,14 +1262,14 @@
       },
       "KafkaClusters": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/80"
         },
         "flags": 1,
         "description": "Specifies a list of Kafka clusters which are targets of the replicator."
       },
       "ReplicationInfoList": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/81"
         },
         "flags": 1,
         "description": "A list of replication configurations, where each configuration targets a given source cluster to target cluster replication flow."
@@ -1273,7 +1297,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "A collection of tags associated with a resource"
@@ -1300,7 +1324,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/83"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1312,7 +1336,7 @@
     "name": "AWS.MSK/Replicator@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/82"
+      "$ref": "#/84"
     },
     "flags": 0
   },
@@ -1387,19 +1411,19 @@
       },
       "ClientSubnets": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/94"
         },
         "flags": 1
       },
       "SecurityGroups": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/95"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/89"
         },
         "flags": 0
       },
@@ -1438,7 +1462,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/96"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1450,7 +1474,7 @@
     "name": "AWS.MSK/VpcConnection@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/95"
+      "$ref": "#/97"
     },
     "flags": 0
   }

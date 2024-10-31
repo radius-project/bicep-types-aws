@@ -1,6 +1,164 @@
 [
   {
     "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/AgentStatusProperties"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/AgentStatusProperties",
+    "properties": {
+      "AgentStatusArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the agent status."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the status."
+      },
+      "DisplayOrder": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The display order of the status."
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier of the Amazon Connect instance."
+      },
+      "LastModifiedRegion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Last modified region."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "Last modified time."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the status."
+      },
+      "ResetOrderNumber": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A number indicating the reset order of the agent status."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The state of the status."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of agent status."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/AgentStatus",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/AgentStatus@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/7"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "InstanceId",
     "properties": {}
   },
@@ -8,9 +166,6 @@
     "$type": "ObjectType",
     "name": "Origin",
     "properties": {}
-  },
-  {
-    "$type": "StringType"
   },
   {
     "$type": "StringLiteralType",
@@ -22,13 +177,13 @@
     "properties": {
       "InstanceId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17
       },
       "Origin": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17
       }
@@ -40,21 +195,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -66,7 +221,7 @@
     "name": "AWS.Connect/ApprovedOrigin@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/5"
+      "$ref": "#/13"
     },
     "flags": 0
   },
@@ -76,14 +231,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. . You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -97,7 +252,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/15"
     }
   },
   {
@@ -106,56 +261,56 @@
     "properties": {
       "ContactFlowArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The identifier of the contact flow (ARN)."
       },
       "Content": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The content of the contact flow in JSON format."
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the contact flow."
       },
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the Amazon Connect instance (ARN)."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the contact flow."
       },
       "State": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The state of the contact flow."
       },
       "Tags": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "One or more tags."
       },
       "Type": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The type of the contact flow."
@@ -168,21 +323,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/18"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -194,7 +349,7 @@
     "name": "AWS.Connect/ContactFlow@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/19"
     },
     "flags": 0
   },
@@ -204,14 +359,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -225,7 +380,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/21"
     }
   },
   {
@@ -234,56 +389,56 @@
     "properties": {
       "ContactFlowModuleArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The identifier of the contact flow module (ARN)."
       },
       "Content": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The content of the contact flow module in JSON format."
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the contact flow module."
       },
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the Amazon Connect instance (ARN)."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the contact flow module."
       },
       "State": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The state of the contact flow module."
       },
       "Status": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The status of the contact flow module."
       },
       "Tags": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -296,21 +451,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -322,7 +477,7 @@
     "name": "AWS.Connect/ContactFlowModule@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/25"
     },
     "flags": 0
   },
@@ -332,7 +487,7 @@
     "properties": {
       "Section": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/34"
         },
         "flags": 1,
         "description": "A subsection or inner section of an item."
@@ -345,14 +500,14 @@
     "properties": {
       "Question": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "The information of the question."
       },
       "Section": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The information of the section."
@@ -365,7 +520,7 @@
     "properties": {
       "PropertyValue": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/39"
         },
         "flags": 1,
         "description": "The property value of the automation."
@@ -378,28 +533,28 @@
     "properties": {
       "AutomaticFail": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The flag to mark the option as automatic fail. If an automatic fail answer is provided, the overall evaluation gets a score of 0."
       },
       "MaxValue": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The maximum answer value of the range option."
       },
       "MinValue": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The minimum answer value of the range option."
       },
       "Score": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The score assigned to answer values within the range option.\n  *Minimum*: 0\n  *Maximum*: 10"
@@ -412,28 +567,28 @@
     "properties": {
       "Automation": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "The automation properties of the numeric question."
       },
       "MaxValue": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The maximum answer value."
       },
       "MinValue": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The minimum answer value."
       },
       "Options": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "The scoring options of the numeric question."
@@ -446,49 +601,49 @@
     "properties": {
       "Instructions": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The instructions of the section.\n  *Length Constraints*: Minimum length of 0. Maximum length of 1024."
       },
       "NotApplicableEnabled": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The flag to enable not applicable answers to the question."
       },
       "QuestionType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The type of the question.\n  *Allowed values*: ``NUMERIC`` | ``SINGLESELECT`` | ``TEXT``"
       },
       "QuestionTypeProperties": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The properties of the type of question. Text questions do not have to define question type properties."
       },
       "RefId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the question. An identifier must be unique within the evaluation form.\n  *Length Constraints*: Minimum length of 1. Maximum length of 40."
       },
       "Title": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The title of the question.\n  *Length Constraints*: Minimum length of 1. Maximum length of 350."
       },
       "Weight": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The scoring weight of the section.\n  *Minimum*: 0\n  *Maximum*: 100"
@@ -501,14 +656,14 @@
     "properties": {
       "Numeric": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "The properties of the numeric question."
       },
       "SingleSelect": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "The properties of the numeric question."
@@ -521,35 +676,35 @@
     "properties": {
       "Instructions": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The instructions of the section."
       },
       "Items": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "The items of the section.\n  *Minimum*: 1"
       },
       "RefId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the section. An identifier must be unique within the evaluation form.\n  *Length Constraints*: Minimum length of 1. Maximum length of 40."
       },
       "Title": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The title of the section.\n  *Length Constraints*: Minimum length of 1. Maximum length of 128."
       },
       "Weight": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The scoring weight of the section.\n  *Minimum*: 0 \n  *Maximum*: 100"
@@ -562,14 +717,14 @@
     "properties": {
       "DefaultOptionRefId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The identifier of the default answer option, when none of the automation options match the criteria.\n  *Length Constraints*: Minimum length of 1. Maximum length of 40."
       },
       "Options": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/48"
         },
         "flags": 1,
         "description": "The automation options of the single select question.\n  *Minimum*: 1\n  *Maximum*: 20"
@@ -582,7 +737,7 @@
     "properties": {
       "RuleCategory": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The automation option based on a rule category for the single select question."
@@ -595,28 +750,28 @@
     "properties": {
       "AutomaticFail": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The flag to mark the option as automatic fail. If an automatic fail answer is provided, the overall evaluation gets a score of 0."
       },
       "RefId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the answer option. An identifier must be unique within the question.\n  *Length Constraints*: Minimum length of 1. Maximum length of 40."
       },
       "Score": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The score assigned to the answer option.\n  *Minimum*: 0\n  *Maximum*: 10"
       },
       "Text": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The title of the answer option.\n  *Length Constraints*: Minimum length of 1. Maximum length of 128."
@@ -629,21 +784,21 @@
     "properties": {
       "Automation": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "The display mode of the single select question."
       },
       "DisplayAs": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The display mode of the single select question.\n  *Allowed values*: ``DROPDOWN`` | ``RADIO``"
       },
       "Options": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/49"
         },
         "flags": 1,
         "description": "The answer options of the single select question.\n  *Minimum*: 2\n  *Maximum*: 256"
@@ -656,7 +811,7 @@
     "properties": {
       "Label": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The property label of the automation."
@@ -679,14 +834,14 @@
     "properties": {
       "Mode": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The scoring mode of the evaluation form.\n  *Allowed values*: ``QUESTION_ONLY`` | ``SECTION_ONLY``"
       },
       "Status": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The scoring status of the evaluation form.\n  *Allowed values*: ``ENABLED`` | ``DISABLED``"
@@ -699,21 +854,21 @@
     "properties": {
       "Category": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The category name, as defined in Rules.\n  *Minimum*: 1\n  *Maximum*: 50"
       },
       "Condition": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The condition to apply for the automation option. If the condition is PRESENT, then the option is applied when the contact data includes the category. Similarly, if the condition is NOT_PRESENT, then the option is applied when the contact data does not include the category.\n  *Allowed values*: ``PRESENT`` | ``NOT_PRESENT`` \n  *Maximum*: 50"
       },
       "OptionRefId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the answer option. An identifier must be unique within the question.\n  *Length Constraints*: Minimum length of 1. Maximum length of 40."
@@ -726,14 +881,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -"
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -"
@@ -746,21 +901,9 @@
     "properties": {}
   },
   {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/30"
     }
   },
   {
@@ -772,7 +915,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/29"
+      "$ref": "#/36"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/37"
     }
   },
   {
@@ -782,13 +931,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/27"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
+      "$ref": "#/44"
     }
   },
   {
@@ -797,56 +946,56 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the evaluation form.\n  *Length Constraints*: Minimum length of 0. Maximum length of 1024."
       },
       "EvaluationFormArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": ""
       },
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the Amazon Connect instance."
       },
       "Items": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/51"
         },
         "flags": 1,
         "description": "Items that are part of the evaluation form. The total number of sections and questions must not exceed 100 each. Questions must be contained in a section.\n  *Minimum size*: 1\n  *Maximum size*: 100"
       },
       "ScoringStrategy": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "A scoring strategy of the evaluation form."
       },
       "Status": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The status of the evaluation form.\n  *Allowed values*: ``DRAFT`` | ``ACTIVE``"
       },
       "Tags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }."
       },
       "Title": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "A title of the evaluation form."
@@ -859,21 +1008,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/53"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -885,7 +1034,7 @@
     "name": "AWS.Connect/EvaluationForm@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/48"
+      "$ref": "#/54"
     },
     "flags": 0
   },
@@ -895,21 +1044,21 @@
     "properties": {
       "Day": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The day that the hours of operation applies to."
       },
       "EndTime": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/57"
         },
         "flags": 1,
         "description": "The end time that your contact center closes."
       },
       "StartTime": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/57"
         },
         "flags": 1,
         "description": "The start time that your contact center opens."
@@ -922,14 +1071,14 @@
     "properties": {
       "Hours": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The hours."
       },
       "Minutes": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The minutes."
@@ -942,14 +1091,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
@@ -963,13 +1112,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/50"
+      "$ref": "#/56"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/58"
     }
   },
   {
@@ -978,49 +1127,49 @@
     "properties": {
       "Config": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/60"
         },
         "flags": 1,
         "description": "Configuration information for the hours of operation: day, start time, and end time."
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the hours of operation."
       },
       "HoursOfOperationArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) for the hours of operation."
       },
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the Amazon Connect instance."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the hours of operation."
       },
       "Tags": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "One or more tags."
       },
       "TimeZone": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The time zone of the hours of operation."
@@ -1033,21 +1182,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/62"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1059,7 +1208,7 @@
     "name": "AWS.Connect/HoursOfOperation@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/57"
+      "$ref": "#/63"
     },
     "flags": 0
   },
@@ -1069,43 +1218,43 @@
     "properties": {
       "AutoResolveBestVoices": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "ContactLens": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "ContactflowLogs": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "EarlyMedia": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "InboundCalls": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "OutboundCalls": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "UseCustomTTSVoices": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -1147,14 +1296,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -1173,7 +1322,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/72"
     }
   },
   {
@@ -1182,70 +1331,70 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "An instanceArn is automatically generated on creation based on instanceId."
       },
       "Attributes": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/65"
         },
         "flags": 1,
         "description": "The attributes for the instance."
       },
       "CreatedTime": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Timestamp of instance creation logged as part of instance creation."
       },
       "DirectoryId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 4,
         "description": "Existing directoryId user wants to map to the new Connect instance."
       },
       "Id": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "An instanceId is automatically generated on creation and assigned as the unique identifier."
       },
       "IdentityManagementType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Specifies the type of directory integration for new instance."
       },
       "InstanceAlias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Alias of the new directory created as part of new instance creation."
       },
       "InstanceStatus": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Specifies the creation status of new instance."
       },
       "ServiceRole": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Service linked role created as part of instance creation."
       },
       "Tags": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1258,21 +1407,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/76"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1284,7 +1433,7 @@
     "name": "AWS.Connect/Instance@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/71"
+      "$ref": "#/77"
     },
     "flags": 0
   },
@@ -1304,13 +1453,13 @@
     "properties": {
       "EncryptionType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "KeyId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -1347,7 +1496,7 @@
     "properties": {
       "FirehoseArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -1364,7 +1513,7 @@
     "properties": {
       "StreamArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -1376,19 +1525,19 @@
     "properties": {
       "EncryptionConfig": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/81"
         },
         "flags": 1
       },
       "Prefix": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "RetentionPeriodHours": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -1405,19 +1554,19 @@
     "properties": {
       "BucketName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "BucketPrefix": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "EncryptionConfig": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/81"
         },
         "flags": 0
       }
@@ -1438,50 +1587,50 @@
     "properties": {
       "AssociationId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18
       },
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "Connect Instance ID with which the storage config will be associated"
       },
       "KinesisFirehoseConfig": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/87"
         },
         "flags": 0
       },
       "KinesisStreamConfig": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "KinesisVideoStreamConfig": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/90"
         },
         "flags": 0
       },
       "ResourceType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17
       },
       "S3Config": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/92"
         },
         "flags": 0
       },
       "StorageType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -1493,21 +1642,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/95"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1519,7 +1668,7 @@
     "name": "AWS.Connect/InstanceStorageConfig@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/90"
+      "$ref": "#/96"
     },
     "flags": 0
   },
@@ -1553,25 +1702,25 @@
     "properties": {
       "InstanceId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17
       },
       "IntegrationArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17
       },
       "IntegrationAssociationId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2
       },
       "IntegrationType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17
       }
@@ -1583,149 +1732,14 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
-        },
-        "flags": 17,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/97"
-        },
-        "flags": 17,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.Connect/IntegrationAssociation@default",
-    "scopeType": 0,
-    "body": {
-      "$ref": "#/98"
-    },
-    "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Connect/PhoneNumberProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/100"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.Connect/PhoneNumberProperties",
-    "properties": {
-      "Address": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 2,
-        "description": "The phone number e164 address."
-      },
-      "CountryCode": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The phone number country code."
-      },
-      "Description": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The description of the phone number."
-      },
-      "PhoneNumberArn": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 18,
-        "description": "The phone number ARN"
-      },
-      "Prefix": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 4,
-        "description": "The phone number prefix."
-      },
-      "SourcePhoneNumberArn": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The source phone number arn."
-      },
-      "Tags": {
-        "type": {
-          "$ref": "#/102"
-        },
-        "flags": 0,
-        "description": "One or more tags."
-      },
-      "TargetArn": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "The ARN of the target the phone number is claimed to."
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The phone number type"
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.Connect/PhoneNumber",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
@@ -1741,10 +1755,145 @@
   },
   {
     "$type": "ResourceType",
-    "name": "AWS.Connect/PhoneNumber@default",
+    "name": "AWS.Connect/IntegrationAssociation@default",
     "scopeType": 0,
     "body": {
       "$ref": "#/104"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/PhoneNumberProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/106"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/PhoneNumberProperties",
+    "properties": {
+      "Address": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The phone number e164 address."
+      },
+      "CountryCode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The phone number country code."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the phone number."
+      },
+      "PhoneNumberArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The phone number ARN"
+      },
+      "Prefix": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The phone number prefix."
+      },
+      "SourcePhoneNumberArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The source phone number arn."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 0,
+        "description": "One or more tags."
+      },
+      "TargetArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ARN of the target the phone number is claimed to."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The phone number type"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/PhoneNumber",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/109"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/PhoneNumber@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/110"
     },
     "flags": 0
   },
@@ -1761,7 +1910,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/1"
     }
   },
   {
@@ -1771,7 +1920,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/1"
     }
   },
   {
@@ -1780,7 +1929,7 @@
     "properties": {
       "StringList": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/116"
         },
         "flags": 0
       }
@@ -1792,35 +1941,35 @@
     "properties": {
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "The identifier of the Amazon Connect instance."
       },
       "LastModifiedRegion": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Last modified region."
       },
       "LastModifiedTime": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 2,
         "description": "Last modified time."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "The name of the predefined attribute."
       },
       "Values": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/117"
         },
         "flags": 1,
         "description": "The values of a predefined attribute."
@@ -1833,128 +1982,14 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
-        },
-        "flags": 17,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/112"
-        },
-        "flags": 17,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.Connect/PredefinedAttribute@default",
-    "scopeType": 0,
-    "body": {
-      "$ref": "#/113"
-    },
-    "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Connect/PromptProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/115"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.Connect/PromptProperties",
-    "properties": {
-      "Description": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The description of the prompt."
-      },
-      "InstanceArn": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "The identifier of the Amazon Connect instance."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "The name of the prompt."
-      },
-      "PromptArn": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 18,
-        "description": "The Amazon Resource Name (ARN) for the prompt."
-      },
-      "S3Uri": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 4,
-        "description": "S3 URI of the customer's audio file for creating prompts resource.."
-      },
-      "Tags": {
-        "type": {
-          "$ref": "#/117"
-        },
-        "flags": 0,
-        "description": "An array of key-value pairs to apply to this resource."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.Connect/Prompt",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
@@ -1970,10 +2005,124 @@
   },
   {
     "$type": "ResourceType",
-    "name": "AWS.Connect/Prompt@default",
+    "name": "AWS.Connect/PredefinedAttribute@default",
     "scopeType": 0,
     "body": {
       "$ref": "#/119"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/PromptProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/121"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/PromptProperties",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the prompt."
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier of the Amazon Connect instance."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the prompt."
+      },
+      "PromptArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) for the prompt."
+      },
+      "S3Uri": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "S3 URI of the customer's audio file for creating prompts resource.."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/123"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/Prompt",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/124"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/Prompt@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/125"
     },
     "flags": 0
   },
@@ -1988,19 +2137,19 @@
     "properties": {
       "OutboundCallerIdName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "OutboundCallerIdNumberArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "OutboundFlowArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -2032,13 +2181,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -2056,13 +2205,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/127"
+      "$ref": "#/133"
     }
   },
   {
@@ -2071,77 +2220,77 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the queue."
       },
       "HoursOfOperationArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier for the hours of operation."
       },
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the Amazon Connect instance."
       },
       "MaxContacts": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The maximum number of contacts that can be in the queue before it is considered full."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the queue."
       },
       "OutboundCallerConfig": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/128"
         },
         "flags": 0,
         "description": "The outbound caller ID name, number, and outbound whisper flow."
       },
       "QueueArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) for the queue."
       },
       "QuickConnectArns": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/136"
         },
         "flags": 0,
         "description": "The quick connects available to agents who are working the queue."
       },
       "Status": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The status of the queue."
       },
       "Tags": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/137"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "Type": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The type of queue."
@@ -2154,21 +2303,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/138"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2180,7 +2329,7 @@
     "name": "AWS.Connect/Queue@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/133"
+      "$ref": "#/139"
     },
     "flags": 0
   },
@@ -2200,7 +2349,7 @@
     "properties": {
       "PhoneNumber": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -2217,13 +2366,13 @@
     "properties": {
       "ContactFlowArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "QueueArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -2235,25 +2384,25 @@
     "properties": {
       "PhoneConfig": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/143"
         },
         "flags": 0
       },
       "QueueConfig": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/145"
         },
         "flags": 0
       },
       "QuickConnectType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "UserConfig": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/150"
         },
         "flags": 0
       }
@@ -2270,14 +2419,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
@@ -2295,13 +2444,13 @@
     "properties": {
       "ContactFlowArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "UserArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -2314,7 +2463,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/142"
+      "$ref": "#/148"
     }
   },
   {
@@ -2323,49 +2472,49 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the quick connect."
       },
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the Amazon Connect instance."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the quick connect."
       },
       "QuickConnectArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) for the quick connect."
       },
       "QuickConnectConfig": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/146"
         },
         "flags": 1,
         "description": "Configuration settings for the quick connect."
       },
       "QuickConnectType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The type of quick connect. In the Amazon Connect console, when you create a quick connect, you are prompted to assign one of the following types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE)."
       },
       "Tags": {
         "type": {
-          "$ref": "#/146"
+          "$ref": "#/152"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -2378,21 +2527,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/153"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2404,7 +2553,7 @@
     "name": "AWS.Connect/QuickConnect@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/148"
+      "$ref": "#/154"
     },
     "flags": 0
   },
@@ -2429,7 +2578,7 @@
     "properties": {
       "BehaviorType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -2446,19 +2595,19 @@
     "properties": {
       "Channel": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "Concurrency": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "CrossChannelBehavior": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/159"
         },
         "flags": 0
       }
@@ -2480,19 +2629,19 @@
     "properties": {
       "Delay": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Priority": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "QueueReference": {
         "type": {
-          "$ref": "#/159"
+          "$ref": "#/165"
         },
         "flags": 1
       }
@@ -2504,13 +2653,13 @@
     "properties": {
       "Channel": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "QueueArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -2522,14 +2671,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -2543,19 +2692,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/155"
+      "$ref": "#/161"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/158"
+      "$ref": "#/164"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/160"
+      "$ref": "#/166"
     }
   },
   {
@@ -2564,63 +2713,63 @@
     "properties": {
       "AgentAvailabilityTimer": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Whether agents with this routing profile will have their routing order calculated based on longest idle time or time since their last inbound contact."
       },
       "DefaultOutboundQueueArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the default outbound queue for this routing profile."
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The description of the routing profile."
       },
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the Amazon Connect instance."
       },
       "MediaConcurrencies": {
         "type": {
-          "$ref": "#/162"
+          "$ref": "#/168"
         },
         "flags": 1,
         "description": "The channels agents can handle in the Contact Control Panel (CCP) for this routing profile."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the routing profile."
       },
       "QueueConfigs": {
         "type": {
-          "$ref": "#/163"
+          "$ref": "#/169"
         },
         "flags": 0,
         "description": "The queues to associate with this routing profile."
       },
       "RoutingProfileArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the routing profile."
       },
       "Tags": {
         "type": {
-          "$ref": "#/164"
+          "$ref": "#/170"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2633,21 +2782,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/165"
+          "$ref": "#/171"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2659,7 +2808,7 @@
     "name": "AWS.Connect/RoutingProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/166"
+      "$ref": "#/172"
     },
     "flags": 0
   },
@@ -2669,49 +2818,49 @@
     "properties": {
       "AssignContactCategoryActions": {
         "type": {
-          "$ref": "#/193"
+          "$ref": "#/199"
         },
         "flags": 0
       },
       "CreateCaseActions": {
         "type": {
-          "$ref": "#/194"
+          "$ref": "#/200"
         },
         "flags": 0
       },
       "EndAssociatedTasksActions": {
         "type": {
-          "$ref": "#/195"
+          "$ref": "#/201"
         },
         "flags": 0
       },
       "EventBridgeActions": {
         "type": {
-          "$ref": "#/196"
+          "$ref": "#/202"
         },
         "flags": 0
       },
       "SendNotificationActions": {
         "type": {
-          "$ref": "#/197"
+          "$ref": "#/203"
         },
         "flags": 0
       },
       "SubmitAutoEvaluationActions": {
         "type": {
-          "$ref": "#/198"
+          "$ref": "#/204"
         },
         "flags": 0
       },
       "TaskActions": {
         "type": {
-          "$ref": "#/199"
+          "$ref": "#/205"
         },
         "flags": 0
       },
       "UpdateCaseActions": {
         "type": {
-          "$ref": "#/200"
+          "$ref": "#/206"
         },
         "flags": 0
       }
@@ -2733,13 +2882,13 @@
     "properties": {
       "Fields": {
         "type": {
-          "$ref": "#/202"
+          "$ref": "#/208"
         },
         "flags": 1
       },
       "TemplateId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The Id of template."
@@ -2767,7 +2916,7 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the event bridge action."
@@ -2785,14 +2934,14 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The Id of the field"
       },
       "Value": {
         "type": {
-          "$ref": "#/178"
+          "$ref": "#/184"
         },
         "flags": 1
       }
@@ -2804,25 +2953,25 @@
     "properties": {
       "BooleanValue": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "DoubleValue": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "EmptyValue": {
         "type": {
-          "$ref": "#/206"
+          "$ref": "#/212"
         },
         "flags": 0
       },
       "StringValue": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -2839,14 +2988,14 @@
     "properties": {
       "UserArns": {
         "type": {
-          "$ref": "#/208"
+          "$ref": "#/214"
         },
         "flags": 0,
         "description": "The list of recipients by user arns."
       },
       "UserTags": {
         "type": {
-          "$ref": "#/209"
+          "$ref": "#/215"
         },
         "flags": 0,
         "description": "The collection of recipients who are identified by user tags"
@@ -2859,13 +3008,13 @@
     "properties": {
       "Type": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -2877,14 +3026,14 @@
     "properties": {
       "EventSourceName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of event source."
       },
       "IntegrationAssociationArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) for the AppIntegration association."
@@ -2897,34 +3046,34 @@
     "properties": {
       "Content": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The content of notification."
       },
       "ContentType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The type of content."
       },
       "DeliveryMethod": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The means of delivery."
       },
       "Recipient": {
         "type": {
-          "$ref": "#/180"
+          "$ref": "#/186"
         },
         "flags": 1
       },
       "Subject": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The subject of notification."
@@ -2942,7 +3091,7 @@
     "properties": {
       "EvaluationFormArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the evaluation form."
@@ -2960,14 +3109,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that's 1 to 256 characters in length."
@@ -2980,28 +3129,28 @@
     "properties": {
       "ContactFlowArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the contact flow."
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description which appears in the agent's Contact Control Panel (CCP)."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name which appears in the agent's Contact Control Panel (CCP)."
       },
       "References": {
         "type": {
-          "$ref": "#/212"
+          "$ref": "#/218"
         },
         "flags": 0,
         "description": "A formatted URL that is shown to an agent in the Contact Control Panel (CCP)."
@@ -3019,7 +3168,7 @@
     "properties": {
       "Fields": {
         "type": {
-          "$ref": "#/214"
+          "$ref": "#/220"
         },
         "flags": 1
       }
@@ -3038,19 +3187,49 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/169"
+      "$ref": "#/175"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/171"
+      "$ref": "#/177"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/173"
+      "$ref": "#/179"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/181"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/189"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/191"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/194"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/196"
     }
   },
   {
@@ -3068,49 +3247,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/185"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/188"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/190"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/169"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/177"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/171"
+      "$ref": "#/179"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/173"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/175"
+      "$ref": "#/181"
     }
   },
   {
@@ -3121,13 +3270,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/177"
+      "$ref": "#/183"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/1"
     }
   },
   {
@@ -3138,13 +3287,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/183"
+      "$ref": "#/189"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/185"
+      "$ref": "#/191"
     }
   },
   {
@@ -3155,19 +3304,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/188"
+      "$ref": "#/194"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/177"
+      "$ref": "#/183"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/190"
+      "$ref": "#/196"
     }
   },
   {
@@ -3177,7 +3326,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/187"
+      "$ref": "#/193"
     }
   },
   {
@@ -3186,56 +3335,56 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/168"
+          "$ref": "#/174"
         },
         "flags": 1,
         "description": "The list of actions that will be executed when a rule is triggered."
       },
       "Function": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The conditions of a rule."
       },
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the instance."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the rule."
       },
       "PublishStatus": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The publish status of a rule, either draft or published."
       },
       "RuleArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the rule."
       },
       "Tags": {
         "type": {
-          "$ref": "#/217"
+          "$ref": "#/223"
         },
         "flags": 0,
         "description": "One or more tags."
       },
       "TriggerEventSource": {
         "type": {
-          "$ref": "#/182"
+          "$ref": "#/188"
         },
         "flags": 1,
         "description": "The event source that triggers the rule."
@@ -3248,21 +3397,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/218"
+          "$ref": "#/224"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3274,7 +3423,7 @@
     "name": "AWS.Connect/Rule@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/219"
+      "$ref": "#/225"
     },
     "flags": 0
   },
@@ -3303,19 +3452,19 @@
     "properties": {
       "AssociationId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18
       },
       "InstanceId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17
       },
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -3327,21 +3476,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/225"
+          "$ref": "#/231"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3353,7 +3502,7 @@
     "name": "AWS.Connect/SecurityKey@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/226"
+      "$ref": "#/232"
     },
     "flags": 0
   },
@@ -3363,14 +3512,14 @@
     "properties": {
       "ApplicationPermissions": {
         "type": {
-          "$ref": "#/233"
+          "$ref": "#/239"
         },
         "flags": 1,
         "description": "The permissions that the agent is granted on the application"
       },
       "Namespace": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Namespace of the application that you want to give access to."
@@ -3398,14 +3547,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -3415,7 +3564,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/1"
     }
   },
   {
@@ -3425,37 +3574,37 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/232"
+      "$ref": "#/238"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/228"
+      "$ref": "#/234"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/232"
+      "$ref": "#/238"
     }
   },
   {
@@ -3464,91 +3613,91 @@
     "properties": {
       "AllowedAccessControlHierarchyGroupId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The identifier of the hierarchy group that a security profile uses to restrict access to resources in Amazon Connect."
       },
       "AllowedAccessControlTags": {
         "type": {
-          "$ref": "#/235"
+          "$ref": "#/241"
         },
         "flags": 0,
         "description": "The list of tags that a security profile uses to restrict access to resources in Amazon Connect."
       },
       "Applications": {
         "type": {
-          "$ref": "#/236"
+          "$ref": "#/242"
         },
         "flags": 0,
         "description": "A list of third-party applications that the security profile will give access to."
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the security profile."
       },
       "HierarchyRestrictedResources": {
         "type": {
-          "$ref": "#/237"
+          "$ref": "#/243"
         },
         "flags": 0,
         "description": "The list of resources that a security profile applies hierarchy restrictions to in Amazon Connect."
       },
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the Amazon Connect instance."
       },
       "LastModifiedRegion": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The AWS Region where this resource was last modified."
       },
       "LastModifiedTime": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 2,
         "description": "The timestamp when this resource was last modified."
       },
       "Permissions": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/244"
         },
         "flags": 0,
         "description": "Permissions assigned to the security profile."
       },
       "SecurityProfileArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) for the security profile."
       },
       "SecurityProfileName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the security profile."
       },
       "TagRestrictedResources": {
         "type": {
-          "$ref": "#/239"
+          "$ref": "#/245"
         },
         "flags": 0,
         "description": "The list of resources that a security profile applies tag restrictions to in Amazon Connect."
       },
       "Tags": {
         "type": {
-          "$ref": "#/240"
+          "$ref": "#/246"
         },
         "flags": 0,
         "description": "The tags used to organize, track, or control access for this resource."
@@ -3561,21 +3710,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/241"
+          "$ref": "#/247"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3587,7 +3736,7 @@
     "name": "AWS.Connect/SecurityProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/242"
+      "$ref": "#/248"
     },
     "flags": 0
   },
@@ -3602,13 +3751,13 @@
     "properties": {
       "DefaultValue": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "Id": {
         "type": {
-          "$ref": "#/247"
+          "$ref": "#/253"
         },
         "flags": 1
       }
@@ -3620,27 +3769,27 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the task template's field"
       },
       "Id": {
         "type": {
-          "$ref": "#/247"
+          "$ref": "#/253"
         },
         "flags": 1
       },
       "SingleSelectOptions": {
         "type": {
-          "$ref": "#/259"
+          "$ref": "#/265"
         },
         "flags": 0,
         "description": "list of field options to be used with single select"
       },
       "Type": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -3652,7 +3801,7 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the task template field"
@@ -3680,7 +3829,7 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/247"
+          "$ref": "#/253"
         },
         "flags": 1
       }
@@ -3697,7 +3846,7 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/247"
+          "$ref": "#/253"
         },
         "flags": 1
       }
@@ -3714,7 +3863,7 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/247"
+          "$ref": "#/253"
         },
         "flags": 1
       }
@@ -3736,14 +3885,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. . You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -3753,25 +3902,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/251"
+      "$ref": "#/257"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/253"
+      "$ref": "#/259"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/255"
+      "$ref": "#/261"
     }
   },
   {
@@ -3781,19 +3930,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/251"
+      "$ref": "#/257"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/253"
+      "$ref": "#/259"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/255"
+      "$ref": "#/261"
     }
   },
   {
@@ -3802,19 +3951,19 @@
     "properties": {
       "InvisibleFields": {
         "type": {
-          "$ref": "#/264"
+          "$ref": "#/270"
         },
         "flags": 0
       },
       "ReadOnlyFields": {
         "type": {
-          "$ref": "#/265"
+          "$ref": "#/271"
         },
         "flags": 0
       },
       "RequiredFields": {
         "type": {
-          "$ref": "#/266"
+          "$ref": "#/272"
         },
         "flags": 0
       }
@@ -3823,19 +3972,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/245"
+      "$ref": "#/251"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/246"
+      "$ref": "#/252"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/258"
+      "$ref": "#/264"
     }
   },
   {
@@ -3844,75 +3993,75 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The identifier (arn) of the task template."
       },
       "ClientToken": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "Constraints": {
         "type": {
-          "$ref": "#/267"
+          "$ref": "#/273"
         },
         "flags": 0,
         "description": "The constraints for the task template"
       },
       "ContactFlowArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The identifier of the contact flow."
       },
       "Defaults": {
         "type": {
-          "$ref": "#/268"
+          "$ref": "#/274"
         },
         "flags": 0,
         "description": ""
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the task template."
       },
       "Fields": {
         "type": {
-          "$ref": "#/269"
+          "$ref": "#/275"
         },
         "flags": 0,
         "description": "The list of task template's fields"
       },
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier (arn) of the instance."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the task template."
       },
       "Status": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/270"
+          "$ref": "#/276"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -3925,135 +4074,14 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
-        },
-        "flags": 17,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/271"
-        },
-        "flags": 17,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.Connect/TaskTemplate@default",
-    "scopeType": 0,
-    "body": {
-      "$ref": "#/272"
-    },
-    "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Connect/TrafficDistributionGroupProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/274"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.Connect/TrafficDistributionGroupProperties",
-    "properties": {
-      "Description": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "A description for the traffic distribution group."
-      },
-      "InstanceArn": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "The identifier of the Amazon Connect instance that has been replicated."
-      },
-      "IsDefault": {
-        "type": {
-          "$ref": "#/38"
-        },
-        "flags": 2,
-        "description": "If this is the default traffic distribution group."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "The name for the traffic distribution group."
-      },
-      "Status": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 2,
-        "description": "The status of the traffic distribution group."
-      },
-      "Tags": {
-        "type": {
-          "$ref": "#/276"
-        },
-        "flags": 0,
-        "description": "One or more tags."
-      },
-      "TrafficDistributionGroupArn": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 18,
-        "description": "The identifier of the traffic distribution group."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.Connect/TrafficDistributionGroup",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
@@ -4069,10 +4097,131 @@
   },
   {
     "$type": "ResourceType",
-    "name": "AWS.Connect/TrafficDistributionGroup@default",
+    "name": "AWS.Connect/TaskTemplate@default",
     "scopeType": 0,
     "body": {
       "$ref": "#/278"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/TrafficDistributionGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/280"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/TrafficDistributionGroupProperties",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description for the traffic distribution group."
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier of the Amazon Connect instance that has been replicated."
+      },
+      "IsDefault": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "If this is the default traffic distribution group."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name for the traffic distribution group."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of the traffic distribution group."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/282"
+        },
+        "flags": 0,
+        "description": "One or more tags."
+      },
+      "TrafficDistributionGroupArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The identifier of the traffic distribution group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/TrafficDistributionGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/283"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/TrafficDistributionGroup@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/284"
     },
     "flags": 0
   },
@@ -4147,14 +4296,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
@@ -4167,31 +4316,31 @@
     "properties": {
       "Email": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "FirstName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "LastName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "Mobile": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "SecondaryEmail": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -4203,25 +4352,25 @@
     "properties": {
       "AfterContactWorkTimeLimit": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "AutoAccept": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "DeskPhoneNumber": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "PhoneType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -4233,19 +4382,19 @@
     "properties": {
       "AttributeName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "AttributeValue": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "Level": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -4258,19 +4407,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/293"
+      "$ref": "#/299"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/296"
+      "$ref": "#/302"
     }
   },
   {
@@ -4279,84 +4428,84 @@
     "properties": {
       "DirectoryUserId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The identifier of the user account in the directory used for identity management."
       },
       "HierarchyGroupArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The identifier of the hierarchy group for the user."
       },
       "IdentityInfo": {
         "type": {
-          "$ref": "#/294"
+          "$ref": "#/300"
         },
         "flags": 0,
         "description": "The information about the identity of the user."
       },
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the Amazon Connect instance."
       },
       "Password": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 4,
         "description": "The password for the user account. A password is required if you are using Amazon Connect for identity management. Otherwise, it is an error to include a password."
       },
       "PhoneConfig": {
         "type": {
-          "$ref": "#/295"
+          "$ref": "#/301"
         },
         "flags": 1,
         "description": "The phone settings for the user."
       },
       "RoutingProfileArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the routing profile for the user."
       },
       "SecurityProfileArns": {
         "type": {
-          "$ref": "#/298"
+          "$ref": "#/304"
         },
         "flags": 1,
         "description": "One or more security profile arns for the user"
       },
       "Tags": {
         "type": {
-          "$ref": "#/299"
+          "$ref": "#/305"
         },
         "flags": 0,
         "description": "One or more tags."
       },
       "UserArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) for the user."
       },
       "UserProficiencies": {
         "type": {
-          "$ref": "#/300"
+          "$ref": "#/306"
         },
         "flags": 0,
         "description": "One or more predefined attributes assigned to a user, with a level that indicates how skilled they are."
       },
       "Username": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The user name for the account."
@@ -4369,21 +4518,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/301"
+          "$ref": "#/307"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4395,7 +4544,7 @@
     "name": "AWS.Connect/User@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/302"
+      "$ref": "#/308"
     },
     "flags": 0
   },
@@ -4405,14 +4554,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
@@ -4431,7 +4580,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/304"
+      "$ref": "#/310"
     }
   },
   {
@@ -4440,35 +4589,35 @@
     "properties": {
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the Amazon Connect instance."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the user hierarchy group."
       },
       "ParentGroupArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) for the parent user hierarchy group."
       },
       "Tags": {
         "type": {
-          "$ref": "#/307"
+          "$ref": "#/313"
         },
         "flags": 0,
         "description": "One or more tags."
       },
       "UserHierarchyGroupArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) for the user hierarchy group."
@@ -4481,21 +4630,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/308"
+          "$ref": "#/314"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4507,7 +4656,245 @@
     "name": "AWS.Connect/UserHierarchyGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/309"
+      "$ref": "#/315"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HierarchyLevelArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HierarchyLevelId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LevelFive",
+    "properties": {
+      "HierarchyLevelArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "HierarchyLevelId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LevelFour",
+    "properties": {
+      "HierarchyLevelArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "HierarchyLevelId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LevelOne",
+    "properties": {
+      "HierarchyLevelArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "HierarchyLevelId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LevelThree",
+    "properties": {
+      "HierarchyLevelArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "HierarchyLevelId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LevelTwo",
+    "properties": {
+      "HierarchyLevelArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "HierarchyLevelId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Name",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/UserHierarchyStructureProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UserHierarchyStructure_UserHierarchyStructure",
+    "properties": {
+      "LevelFive": {
+        "type": {
+          "$ref": "#/319"
+        },
+        "flags": 0
+      },
+      "LevelFour": {
+        "type": {
+          "$ref": "#/320"
+        },
+        "flags": 0
+      },
+      "LevelOne": {
+        "type": {
+          "$ref": "#/321"
+        },
+        "flags": 0
+      },
+      "LevelThree": {
+        "type": {
+          "$ref": "#/322"
+        },
+        "flags": 0
+      },
+      "LevelTwo": {
+        "type": {
+          "$ref": "#/323"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/UserHierarchyStructureProperties",
+    "properties": {
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier of the Amazon Connect instance."
+      },
+      "UserHierarchyStructure": {
+        "type": {
+          "$ref": "#/326"
+        },
+        "flags": 0,
+        "description": "Information about the hierarchy structure."
+      },
+      "UserHierarchyStructureArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The identifier of the User Hierarchy Structure."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/UserHierarchyStructure",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/327"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/UserHierarchyStructure@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/328"
     },
     "flags": 0
   },
@@ -4517,14 +4904,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters"
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. . You can specify a value that is maximum of 256 Unicode characters"
@@ -4538,13 +4925,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/311"
+      "$ref": "#/330"
     }
   },
   {
@@ -4558,63 +4945,63 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/313"
+          "$ref": "#/332"
         },
         "flags": 1,
         "description": "The actions of the view in an array."
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the view."
       },
       "InstanceArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the instance."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the view."
       },
       "Tags": {
         "type": {
-          "$ref": "#/314"
+          "$ref": "#/333"
         },
         "flags": 0,
         "description": "One or more tags."
       },
       "Template": {
         "type": {
-          "$ref": "#/315"
+          "$ref": "#/334"
         },
         "flags": 1,
         "description": "The template of the view as JSON."
       },
       "ViewArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the view."
       },
       "ViewContentSha256": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The view content hash."
       },
       "ViewId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The view id of the view."
@@ -4627,21 +5014,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/316"
+          "$ref": "#/335"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4653,7 +5040,7 @@
     "name": "AWS.Connect/View@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/317"
+      "$ref": "#/336"
     },
     "flags": 0
   },
@@ -4667,35 +5054,35 @@
     "properties": {
       "Version": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/3"
         },
         "flags": 2,
         "description": "The version of the view."
       },
       "VersionDescription": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description for the view version."
       },
       "ViewArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the view for which a version is being created."
       },
       "ViewContentSha256": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The view content hash to be checked."
       },
       "ViewVersionArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the created view version."
@@ -4708,21 +5095,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/320"
+          "$ref": "#/339"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4734,7 +5121,7 @@
     "name": "AWS.Connect/ViewVersion@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/321"
+      "$ref": "#/340"
     },
     "flags": 0
   }

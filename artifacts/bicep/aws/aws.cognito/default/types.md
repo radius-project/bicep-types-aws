@@ -49,6 +49,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/UserPoolGroupProperties](#awscognitouserpoolgroupproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Cognito/UserPoolIdentityProvider@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cognito/UserPoolIdentityProviderProperties](#awscognitouserpoolidentityproviderproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Cognito/UserPoolResourceServer@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -181,6 +188,15 @@
 * **RoleArn**: string
 * **UserPoolId**: string (Required, Identifier)
 
+## AWS.Cognito/UserPoolIdentityProviderProperties
+### Properties
+* **AttributeMapping**: [UserPoolIdentityProvider_AttributeMapping](#userpoolidentityproviderattributemapping)
+* **IdpIdentifiers**: string[]
+* **ProviderDetails**: [UserPoolIdentityProvider_ProviderDetails](#userpoolidentityproviderproviderdetails) (Required)
+* **ProviderName**: string (Required, Identifier)
+* **ProviderType**: string (Required)
+* **UserPoolId**: string (Required, Identifier)
+
 ## AWS.Cognito/UserPoolProperties
 ### Properties
 * **AccountRecoverySetting**: [AccountRecoverySetting](#accountrecoverysetting)
@@ -190,6 +206,8 @@
 * **AutoVerifiedAttributes**: string[]
 * **DeletionProtection**: string
 * **DeviceConfiguration**: [DeviceConfiguration](#deviceconfiguration)
+* **EmailAuthenticationMessage**: string
+* **EmailAuthenticationSubject**: string
 * **EmailConfiguration**: [EmailConfiguration](#emailconfiguration)
 * **EmailVerificationMessage**: string
 * **EmailVerificationSubject**: string
@@ -441,6 +459,12 @@
 ### Properties
 * **AdvancedSecurityAdditionalFlows**: [AdvancedSecurityAdditionalFlows](#advancedsecurityadditionalflows)
 * **AdvancedSecurityMode**: string
+
+## UserPoolIdentityProvider_AttributeMapping
+### Properties
+
+## UserPoolIdentityProvider_ProviderDetails
+### Properties
 
 ## VerificationMessageTemplate
 ### Properties
