@@ -278,6 +278,8 @@ As of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service.
 
 ## DnsMap
 ### Properties
+* **Http**: string (ReadOnly)
+* **Realtime**: string (ReadOnly)
 
 ## DynamoDBConfig
 ### Properties

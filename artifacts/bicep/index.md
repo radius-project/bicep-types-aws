@@ -2978,6 +2978,9 @@
 * **Link**: [default](aws/aws.wafv2/default/types.md#resource-awswafv2webaclassociationdefault)
 
 ## aws.wisdom
+### aws.wisdom/aiagent
+* **Link**: [default](aws/aws.wisdom/default/types.md#resource-awswisdomaiagentdefault)
+
 ### aws.wisdom/aiprompt
 * **Link**: [default](aws/aws.wisdom/default/types.md#resource-awswisdomaipromptdefault)
 

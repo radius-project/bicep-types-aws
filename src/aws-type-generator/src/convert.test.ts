@@ -132,6 +132,140 @@ describe('convert', () => {
             sensitive: undefined});
     });
 
+    test('AWS::OpenSearchService::Application', () => {
+        const file = fs.readFileSync(path.resolve('./testdata/AWS::OpenSearchService::Application.json'), { encoding: 'utf8' });
+
+        const schemaRecord: SchemaRecord = JSON.parse(file);
+        const types = convertSchemaRecordToTypes([schemaRecord]);
+
+        const resourceType = lookupResourceType(types, "AWS.OpenSearchService/Application@default");
+        expect(resourceType).toStrictEqual({
+            type: TypeBaseKind.ResourceType,
+            name: "AWS.OpenSearchService/Application@default",
+            scopeType: ScopeType.Unknown,
+            readOnlyScopes: undefined,
+            body: new TypeReference(lookupObjectTypeIndex(types, "AWS.OpenSearchService/Application")),
+            flags: ResourceFlags.None,
+            functions: undefined,
+        });
+
+        const bodyType = lookupObjectType(types, "AWS.OpenSearchService/Application");
+        expect(bodyType).toStrictEqual({
+            type: TypeBaseKind.ObjectType,
+            name: "AWS.OpenSearchService/Application",
+            properties: {
+                "name": {
+                    type: new TypeReference(lookupStringType(types)),
+                    flags: ObjectTypePropertyFlags.None,
+                    description: "the resource name"} as ObjectTypeProperty,
+
+                "alias": {
+                        type: new TypeReference(lookupStringType(types)),
+                        flags: ObjectTypePropertyFlags.Required | ObjectTypePropertyFlags.Identifier,
+                        description: "the resource alias"} as ObjectTypeProperty,
+
+                "properties": {
+                    type: new TypeReference(lookupObjectTypeIndex(types, "AWS.OpenSearchService/ApplicationProperties")),
+                    flags: ObjectTypePropertyFlags.Required | ObjectTypePropertyFlags.Identifier,
+                    description: "properties of the resource"} as ObjectTypeProperty
+            },
+            additionalProperties: undefined,
+            sensitive: undefined,
+        });
+
+        const propertiesType = lookupObjectType(types, "AWS.OpenSearchService/ApplicationProperties");
+        expect(propertiesType).toStrictEqual({
+            type: TypeBaseKind.ObjectType,
+            name: "AWS.OpenSearchService/ApplicationProperties",
+            properties: {
+                "AppConfigs": {
+                    type: new TypeReference(lookupArrayTypeIndex(types, new TypeReference(lookupObjectTypeIndex(types, "AppConfig")))),
+                    flags: ObjectTypePropertyFlags.None,
+                    description: "List of application configurations."} as ObjectTypeProperty,
+                "Arn": {
+                    type: new TypeReference(lookupStringType(types)),
+                    flags: ObjectTypePropertyFlags.ReadOnly,
+                    description: "Amazon Resource Name (ARN) format."} as ObjectTypeProperty,
+                "DataSources": {
+                    type: new TypeReference(lookupArrayTypeIndex(types, new TypeReference(lookupObjectTypeIndex(types, "DataSource")))),
+                    flags: ObjectTypePropertyFlags.None,
+                    description: "List of data sources."} as ObjectTypeProperty,
+                "Endpoint": {
+                        type: new TypeReference(lookupStringType(types)),
+                        flags: ObjectTypePropertyFlags.None,
+                        description: "The endpoint for the application."},
+                "IamIdentityCenterOptions": {
+                    type:  new TypeReference(lookupObjectTypeIndex(types, "Application_IamIdentityCenterOptions")),
+                    flags: ObjectTypePropertyFlags.None,
+                    description: "Options for configuring IAM Identity Center"} as ObjectTypeProperty,
+                "Id": {
+                    type: new TypeReference(lookupStringType(types)),
+                    flags: ObjectTypePropertyFlags.ReadOnly,
+                    description: "The identifier of the application."},
+                "Name": {
+                    type: new TypeReference(lookupStringType(types)),
+                    flags: ObjectTypePropertyFlags.Required | ObjectTypePropertyFlags.Identifier,
+                    description: "The name of the application."} as ObjectTypeProperty,
+                "Tags": {
+                    type: new TypeReference(lookupArrayTypeIndex(types, new TypeReference(lookupObjectTypeIndex(types, "Tag")))),
+                    flags: ObjectTypePropertyFlags.None,
+                    description: "An arbitrary set of tags (key-value pairs) for this application."} as ObjectTypeProperty,
+            },
+            additionalProperties: undefined,
+            sensitive: undefined});
+
+        const appConfigType = lookupObjectType(types, "AppConfig");
+        expect(appConfigType).toStrictEqual({
+            type: TypeBaseKind.ObjectType,
+            name: "AppConfig",
+            properties: {
+                "Key": {
+                    type: new TypeReference(lookupStringType(types)),
+                    flags: ObjectTypePropertyFlags.Required,
+                    description: "The configuration key"},
+                "Value": {
+                    type: new TypeReference(lookupStringType(types)),
+                    flags: ObjectTypePropertyFlags.Required,
+                    description: "The configuration value."},
+            },
+            additionalProperties: undefined,
+            sensitive: undefined});
+
+        const dataSourceype = lookupObjectType(types, "DataSource");
+        expect(dataSourceype).toStrictEqual({
+            type: TypeBaseKind.ObjectType,
+            name: "DataSource",
+            properties: {
+                "DataSourceArn": {
+                    type: new TypeReference(lookupStringType(types)),
+                    flags: ObjectTypePropertyFlags.Required,
+                    description: "The ARN of the data source."} as ObjectTypeProperty,
+                "DataSourceDescription": {
+                    type: new TypeReference(lookupStringType(types)),
+                    flags: ObjectTypePropertyFlags.None,
+                    description: "Description of the data source."} as ObjectTypeProperty,    
+            },
+            additionalProperties: undefined,
+            sensitive: undefined});
+
+        const tagType = lookupObjectType(types, "Tag");
+        expect(tagType).toStrictEqual({
+            type: TypeBaseKind.ObjectType,
+            name: "Tag",
+            properties: {
+                "Key": {
+                    type: new TypeReference(lookupStringType(types)),
+                    flags: ObjectTypePropertyFlags.Required,
+                    description: "The key in the key-value pair"} as ObjectTypeProperty,
+                "Value": {
+                    type: new TypeReference(lookupStringType(types)),
+                    flags: ObjectTypePropertyFlags.Required,
+                    description: "The value in the key-value pair"} as ObjectTypeProperty,
+            },
+            additionalProperties: undefined,
+            sensitive: undefined});
+    });
+
     test('AWS::Redshift::ScheduledAction', () => {
         const file = fs.readFileSync(path.resolve('./testdata/AWS::Redshift::ScheduledAction.json'), { encoding: 'utf8' });
 

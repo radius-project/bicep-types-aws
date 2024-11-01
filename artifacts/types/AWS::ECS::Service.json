@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECS-Service",
   "type": "AWS::ECS::Service",
-  "time": "2024-10-31T14:51:51.423Z",
+  "time": "2024-11-01T14:51:57.086Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -109,7 +109,7 @@
       },
       "DeploymentConfiguration": {
         "additionalProperties": false,
-        "description": "Optional deployment parameters that control how many tasks run during a deployment and the ordering of stopping and starting tasks.",
+        "description": "Optional deployment parameters that control how many tasks run during the deployment and the failure detection methods.",
         "properties": {
           "Alarms": {
             "$ref": "#/definitions/DeploymentAlarms",
@@ -188,7 +188,7 @@
             "type": "integer"
           },
           "LoadBalancerName": {
-            "description": "The name of the load balancer to associate with the Amazon ECS service or task set.\n If you are using an Application Load Balancer or a Network Load Balancer the load balancer name parameter should be omitted.",
+            "description": "The name of the load balancer to associate with the service or task set.\n If you are using an Application Load Balancer or a Network Load Balancer the load balancer name parameter should be omitted.",
             "type": "string"
           },
           "TargetGroupArn": {
@@ -421,14 +421,14 @@
       },
       "ServiceManagedEBSVolumeConfiguration": {
         "additionalProperties": false,
-        "description": "The configuration for the Amazon EBS volume that Amazon ECS creates and manages on your behalf. These settings are used to create each Amazon EBS volume, with one volume created for each task in the service.\n Many of these parameters map 1:1 with the Amazon EBS ``CreateVolume`` API request parameters.",
+        "description": "The configuration for the Amazon EBS volume that Amazon ECS creates and manages on your behalf. These settings are used to create each Amazon EBS volume, with one volume created for each task in the service. For information about the supported launch types and operating systems, see [Supported operating systems and launch types](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ebs-volumes.html#ebs-volumes-configuration) in the*Amazon Elastic Container Service Developer Guide*.\n Many of these parameters map 1:1 with the Amazon EBS ``CreateVolume`` API request parameters.",
         "properties": {
           "Encrypted": {
             "description": "Indicates whether the volume should be encrypted. If no value is specified, encryption is turned on by default. This parameter maps 1:1 with the ``Encrypted`` parameter of the [CreateVolume API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html) in the *Amazon EC2 API Reference*.",
             "type": "boolean"
           },
           "FilesystemType": {
-            "description": "The Linux filesystem type for the volume. For volumes created from a snapshot, you must specify the same filesystem type that the volume was using when the snapshot was created. If there is a filesystem type mismatch, the task will fail to start.\n The available filesystem types are\u2028 ``ext3``, ``ext4``, and ``xfs``. If no value is specified, the ``xfs`` filesystem type is used by default.",
+            "description": "The filesystem type for the volume. For volumes created from a snapshot, you must specify the same filesystem type that the volume was using when the snapshot was created. If there is a filesystem type mismatch, the task will fail to start.\n The available Linux filesystem types are\u2028 ``ext3``, ``ext4``, and ``xfs``. If no value is specified, the ``xfs`` filesystem type is used by default.\n The available Windows filesystem types are ``NTFS``.",
             "type": "string"
           },
           "Iops": {
@@ -603,7 +603,7 @@
       },
       "DeploymentConfiguration": {
         "$ref": "#/definitions/DeploymentConfiguration",
-        "description": "Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping and starting tasks."
+        "description": "Optional deployment parameters that control how many tasks run during the deployment and the failure detection methods."
       },
       "DeploymentController": {
         "$ref": "#/definitions/DeploymentController",
