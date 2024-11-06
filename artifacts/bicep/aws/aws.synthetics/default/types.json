@@ -5,7 +5,7 @@
     "properties": {
       "S3Encryption": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "Encryption configuration for uploading artifacts to S3"
@@ -18,14 +18,14 @@
     "properties": {
       "IgnoreCoordinates": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "List of coordinates of rectangles to be ignored during visual testing"
       },
       "ScreenshotName": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Name of the screenshot to be used as base reference for visual testing"
@@ -38,37 +38,37 @@
     "properties": {
       "Handler": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "S3Bucket": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 4
       },
       "S3Key": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 4
       },
       "S3ObjectVersion": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 4
       },
       "Script": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 4
       },
       "SourceLocationArn": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2
       }
@@ -76,32 +76,37 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ResourceToTag",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "RunConfig",
     "properties": {
       "ActiveTracing": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "Enable active tracing if set to true"
       },
       "EnvironmentVariables": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/13"
         },
         "flags": 4,
         "description": "Environment variable key-value pairs."
       },
       "MemoryInMB": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Provide maximum memory available for canary in MB"
       },
       "TimeoutInSeconds": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Provide maximum canary timeout per run in seconds"
@@ -114,14 +119,14 @@
     "properties": {
       "EncryptionMode": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Encryption mode for encrypting artifacts when uploading to S3. Valid values: SSE_S3 and SSE_KMS."
       },
       "KmsKeyArn": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "KMS key Arn for encrypting artifacts when uploading to S3. You must specify KMS key Arn for SSE_KMS encryption mode only."
@@ -134,13 +139,13 @@
     "properties": {
       "DurationInSeconds": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Expression": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -152,14 +157,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
@@ -172,19 +177,19 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 1
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 1
       },
       "VpcId": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -196,14 +201,14 @@
     "properties": {
       "BaseCanaryRunId": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Canary run id to be used as base reference for visual testing"
       },
       "BaseScreenshots": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "List of screenshots used as base reference for visual testing"
@@ -216,7 +221,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/9"
+      "$ref": "#/10"
     }
   },
   {
@@ -233,13 +238,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/9"
+      "$ref": "#/10"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/9"
+      "$ref": "#/10"
     }
   },
   {
@@ -255,7 +260,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
     }
   },
   {
@@ -271,7 +282,7 @@
       },
       "ArtifactS3Location": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Provide the s3 bucket output location for test results"
@@ -285,97 +296,104 @@
       },
       "DeleteLambdaResourcesOnCanaryDeletion": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 4,
         "description": "Deletes associated lambda resources created by Synthetics if set to True. Default is False"
       },
       "ExecutionRoleArn": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Lambda Execution role used to run your canaries"
       },
       "FailureRetentionPeriod": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Retention period of failed canary runs represented in number of days"
       },
       "Id": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "Id of the canary"
       },
       "Name": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "Name of the canary."
       },
+      "ResourcesToReplicateTags": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 4,
+        "description": "List of resources which canary tags should be replicated to."
+      },
       "RunConfig": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "Provide canary run configuration"
       },
       "RuntimeVersion": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Runtime version of Synthetics Library"
       },
       "Schedule": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "Frequency to run your canaries"
       },
       "StartCanaryAfterCreation": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 4,
         "description": "Runs canary if set to True. Default is False"
       },
       "State": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "State of the canary"
       },
       "SuccessRetentionPeriod": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Retention period of successful canary runs represented in number of days"
       },
       "Tags": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "VPCConfig": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "Provide VPC Configuration if enabled."
       },
       "VisualReference": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/9"
         },
         "flags": 4,
         "description": "Visual reference configuration for visual testing"
@@ -388,21 +406,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/21"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -414,7 +432,7 @@
     "name": "AWS.Synthetics/Canary@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/22"
     },
     "flags": 0
   },
@@ -429,14 +447,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
@@ -450,13 +468,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/9"
+      "$ref": "#/10"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/25"
     }
   },
   {
@@ -465,27 +483,27 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "Id of the group."
       },
       "Name": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "Name of the group."
       },
       "ResourceArns": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/27"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/28"
         },
         "flags": 0
       }
@@ -497,21 +515,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/29"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -523,7 +541,7 @@
     "name": "AWS.Synthetics/Group@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/28"
+      "$ref": "#/30"
     },
     "flags": 0
   }

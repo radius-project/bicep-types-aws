@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Location-APIKey",
   "type": "AWS::Location::APIKey",
-  "time": "2024-08-07T16:24:37.285Z",
+  "time": "2024-10-29T15:57:58.526Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -16,10 +16,10 @@
             "items": {
               "maxLength": 200,
               "minLength": 5,
-              "pattern": "^geo:\\w*\\*?$",
+              "pattern": "^(geo|geo-routes|geo-places|geo-maps):\\w*\\*?$",
               "type": "string"
             },
-            "maxItems": 7,
+            "maxItems": 24,
             "minItems": 1,
             "type": "array"
           },
@@ -41,7 +41,7 @@
               "pattern": "(^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-9]+)*))(:[0-9]+):((\\*)|([-a-z]+[/][*-._\\w]+))$)|(^arn(:[a-z0-9]+([.-][a-z0-9]+)*):(geo-routes|geo-places|geo-maps)(:((\\*)|([a-z0-9]+([.-][a-z0-9]+)*)))::((provider[\\/][*-._\\w]+))$)",
               "type": "string"
             },
-            "maxItems": 5,
+            "maxItems": 8,
             "minItems": 1,
             "type": "array"
           }
@@ -113,7 +113,21 @@
           "geo:SearchPlaceIndexForSuggestions",
           "geo:GetPlace",
           "geo:CalculateRoute",
-          "geo:CalculateRouteMatrix"
+          "geo:CalculateRouteMatrix",
+          "geo-maps:GetTile",
+          "geo-maps:GetStaticMap",
+          "geo-places:Autocomplete",
+          "geo-places:Geocode",
+          "geo-places:GetPlace",
+          "geo-places:ReverseGeocode",
+          "geo-places:SearchNearby",
+          "geo-places:SearchText",
+          "geo-places:Suggest",
+          "geo-routes:CalculateIsolines",
+          "geo-routes:CalculateRouteMatrix",
+          "geo-routes:CalculateRoutes",
+          "geo-routes:OptimizeWaypoints",
+          "geo-routes:SnapToRoads"
         ]
       },
       "delete": {
@@ -148,6 +162,20 @@
           "geo:GetPlace",
           "geo:CalculateRoute",
           "geo:CalculateRouteMatrix",
+          "geo-maps:GetTile",
+          "geo-maps:GetStaticMap",
+          "geo-places:Autocomplete",
+          "geo-places:Geocode",
+          "geo-places:GetPlace",
+          "geo-places:ReverseGeocode",
+          "geo-places:SearchNearby",
+          "geo-places:SearchText",
+          "geo-places:Suggest",
+          "geo-routes:CalculateIsolines",
+          "geo-routes:CalculateRouteMatrix",
+          "geo-routes:CalculateRoutes",
+          "geo-routes:OptimizeWaypoints",
+          "geo-routes:SnapToRoads",
           "geo:UpdateKey"
         ]
       }
@@ -222,6 +250,10 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "geo:TagResource",
+        "geo:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

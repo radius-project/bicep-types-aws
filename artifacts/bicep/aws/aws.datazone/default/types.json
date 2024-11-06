@@ -817,6 +817,20 @@
         "flags": 5,
         "description": "The identifier of the Amazon DataZone domain in which the environment would be created."
       },
+      "EnvironmentAccountIdentifier": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 4,
+        "description": "The AWS account in which the Amazon DataZone environment is created."
+      },
+      "EnvironmentAccountRegion": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 4,
+        "description": "The AWS region in which the Amazon DataZone environment is created."
+      },
       "EnvironmentBlueprintId": {
         "type": {
           "$ref": "#/22"
@@ -835,8 +849,15 @@
         "type": {
           "$ref": "#/22"
         },
-        "flags": 5,
+        "flags": 4,
         "description": "The ID of the environment profile with which the Amazon DataZone environment would be created."
+      },
+      "EnvironmentRoleArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 4,
+        "description": "Environment role arn for custom aws environment permissions"
       },
       "GlossaryTerms": {
         "type": {
@@ -941,6 +962,132 @@
   },
   {
     "$type": "ObjectType",
+    "name": "AwsConsoleLinkParameters",
+    "properties": {
+      "Uri": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EnvironmentActionURI",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DataZone/EnvironmentActionsProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DataZone/EnvironmentActionsProperties",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The description of the Amazon DataZone environment action."
+      },
+      "DomainId": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 18,
+        "description": "The identifier of the Amazon DataZone domain in which the environment is created."
+      },
+      "DomainIdentifier": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 4,
+        "description": "The identifier of the Amazon DataZone domain in which the environment would be created."
+      },
+      "EnvironmentId": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 18,
+        "description": "The identifier of the Amazon DataZone environment in which the action is taking place"
+      },
+      "EnvironmentIdentifier": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 4,
+        "description": "The identifier of the Amazon DataZone environment in which the action is taking place"
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 18,
+        "description": "The ID of the Amazon DataZone environment action."
+      },
+      "Identifier": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 4,
+        "description": "The ID of the Amazon DataZone environment action."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The name of the environment action."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0,
+        "description": "The parameters of the environment action."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DataZone/EnvironmentActions",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DataZone/EnvironmentActions@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/57"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "Parameter",
     "properties": {}
   },
@@ -950,7 +1097,7 @@
     "properties": {
       "Parameters": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/59"
         },
         "flags": 0
       },
@@ -975,7 +1122,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/60"
     }
   },
   {
@@ -1002,7 +1149,7 @@
       },
       "EnabledRegions": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/62"
         },
         "flags": 1
       },
@@ -1032,7 +1179,7 @@
       },
       "RegionalParameters": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/63"
         },
         "flags": 0
       },
@@ -1064,7 +1211,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/64"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1076,7 +1223,7 @@
     "name": "AWS.DataZone/EnvironmentBlueprintConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/59"
+      "$ref": "#/65"
     },
     "flags": 0
   },
@@ -1107,7 +1254,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/61"
+      "$ref": "#/67"
     }
   },
   {
@@ -1214,7 +1361,7 @@
       },
       "UserParameters": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "The user parameters of this Amazon DataZone environment profile."
@@ -1241,7 +1388,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/70"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1253,7 +1400,7 @@
     "name": "AWS.DataZone/EnvironmentProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/65"
+      "$ref": "#/71"
     },
     "flags": 0
   },
@@ -1333,7 +1480,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/75"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1345,7 +1492,7 @@
     "name": "AWS.DataZone/GroupProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/70"
+      "$ref": "#/76"
     },
     "flags": 0
   },
@@ -1400,7 +1547,7 @@
       },
       "GlossaryTerms": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/79"
         },
         "flags": 0,
         "description": "The glossary terms that can be used in this Amazon DataZone project."
@@ -1448,7 +1595,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/80"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1460,7 +1607,7 @@
     "name": "AWS.DataZone/Project@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/75"
+      "$ref": "#/81"
     },
     "flags": 0
   },
@@ -1501,7 +1648,7 @@
       },
       "Member": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/83"
         },
         "flags": 5
       },
@@ -1533,7 +1680,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/87"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1545,7 +1692,7 @@
     "name": "AWS.DataZone/ProjectMembership@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/82"
+      "$ref": "#/88"
     },
     "flags": 0
   },
@@ -1588,7 +1735,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/84"
+      "$ref": "#/90"
     }
   },
   {
@@ -1597,14 +1744,14 @@
     "properties": {
       "ApplicableAssetTypes": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/92"
         },
         "flags": 1,
         "description": "The asset types that can be included in the subscription target."
       },
       "AuthorizedPrincipals": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/93"
         },
         "flags": 1,
         "description": "The authorized principals of the subscription target."
@@ -1688,7 +1835,7 @@
       },
       "SubscriptionTargetConfig": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/94"
         },
         "flags": 1,
         "description": "The configuration of the subscription target."
@@ -1736,7 +1883,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/95"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1748,7 +1895,7 @@
     "name": "AWS.DataZone/SubscriptionTarget@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/90"
+      "$ref": "#/96"
     },
     "flags": 0
   },
@@ -1822,7 +1969,7 @@
     "properties": {
       "Details": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/100"
         },
         "flags": 2
       },
@@ -1894,7 +2041,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/105"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1906,7 +2053,7 @@
     "name": "AWS.DataZone/UserProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/100"
+      "$ref": "#/106"
     },
     "flags": 0
   }

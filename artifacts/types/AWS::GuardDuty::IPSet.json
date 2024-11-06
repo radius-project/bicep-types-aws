@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GuardDuty-IPSet",
   "type": "AWS::GuardDuty::IPSet",
-  "time": "2024-07-09T15:48:30.238Z",
+  "time": "2024-10-31T15:58:01.216Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -72,7 +72,9 @@
           "guardduty:UpdateIPSet",
           "guardduty:GetIPSet",
           "guardduty:ListIPSets",
-          "iam:PutRolePolicy"
+          "iam:PutRolePolicy",
+          "guardduty:TagResource",
+          "guardduty:UntagResource"
         ]
       }
     },
@@ -106,6 +108,7 @@
         "type": "string"
       },
       "Tags": {
+        "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/TagItem"
         },
@@ -121,8 +124,14 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "guardduty:TagResource",
+        "guardduty:UntagResource",
+        "guardduty:ListTagsForResource"
+      ],
       "tagOnCreate": true,
-      "tagUpdatable": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::GuardDuty::IPSet",

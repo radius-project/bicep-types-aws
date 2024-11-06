@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Bedrock-Flow",
   "type": "AWS::Bedrock::Flow",
-  "time": "2024-07-18T17:03:21.588Z",
+  "time": "2024-10-31T16:25:37.473Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -10,6 +10,27 @@
     ],
     "additionalProperties": false,
     "definitions": {
+      "AgentFlowNodeConfiguration": {
+        "additionalProperties": false,
+        "description": "Agent flow node configuration",
+        "properties": {
+          "AgentAliasArn": {
+            "description": "Arn representation of the Agent Alias.",
+            "maxLength": 2048,
+            "pattern": "^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:agent-alias/[0-9a-zA-Z]{10}/[0-9a-zA-Z]{10}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "AgentAliasArn"
+        ],
+        "type": "object"
+      },
+      "CollectorFlowNodeConfiguration": {
+        "additionalProperties": false,
+        "description": "Collector flow node configuration",
+        "type": "object"
+      },
       "ConditionFlowNodeConfiguration": {
         "additionalProperties": false,
         "description": "Condition flow node configuration",
@@ -340,6 +361,71 @@
             ],
             "title": "LambdaFunction",
             "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Agent": {
+                "$ref": "#/definitions/AgentFlowNodeConfiguration"
+              }
+            },
+            "required": [
+              "Agent"
+            ],
+            "title": "Agent",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Storage": {
+                "$ref": "#/definitions/StorageFlowNodeConfiguration"
+              }
+            },
+            "required": [
+              "Storage"
+            ],
+            "title": "Storage",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Iterator": {
+                "$ref": "#/definitions/IteratorFlowNodeConfiguration"
+              }
+            },
+            "required": [
+              "Iterator"
+            ],
+            "title": "Iterator",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Collector": {
+                "$ref": "#/definitions/CollectorFlowNodeConfiguration"
+              }
+            },
+            "required": [
+              "Collector"
+            ],
+            "title": "Collector",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Retrieval": {
+                "$ref": "#/definitions/RetrievalFlowNodeConfiguration"
+              }
+            },
+            "required": [
+              "Retrieval"
+            ],
+            "title": "Retrieval",
+            "type": "object"
           }
         ]
       },
@@ -408,7 +494,12 @@
           "Condition",
           "Lex",
           "Prompt",
-          "LambdaFunction"
+          "LambdaFunction",
+          "Agent",
+          "Storage",
+          "Retrieval",
+          "Iterator",
+          "Collector"
         ],
         "type": "string"
       },
@@ -422,15 +513,63 @@
         ],
         "type": "string"
       },
+      "FlowValidation": {
+        "additionalProperties": false,
+        "description": "Validation for Flow",
+        "properties": {
+          "Message": {
+            "description": "validation message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Message"
+        ],
+        "type": "object"
+      },
+      "FlowValidations": {
+        "description": "List of flow validations",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/FlowValidation"
+        },
+        "type": "array"
+      },
+      "GuardrailConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for a guardrail",
+        "properties": {
+          "GuardrailIdentifier": {
+            "description": "Identifier for the guardrail, could be the id or the arn",
+            "maxLength": 2048,
+            "pattern": "^(([a-z0-9]+)|(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:guardrail/[a-z0-9]+))$",
+            "type": "string"
+          },
+          "GuardrailVersion": {
+            "description": "Version of the guardrail",
+            "pattern": "^(([0-9]{1,8})|(DRAFT))$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "InputFlowNodeConfiguration": {
         "additionalProperties": false,
         "description": "Input flow node configuration",
+        "type": "object"
+      },
+      "IteratorFlowNodeConfiguration": {
+        "additionalProperties": false,
+        "description": "Iterator flow node configuration",
         "type": "object"
       },
       "KnowledgeBaseFlowNodeConfiguration": {
         "additionalProperties": false,
         "description": "Knowledge base flow node configuration",
         "properties": {
+          "GuardrailConfiguration": {
+            "$ref": "#/definitions/GuardrailConfiguration"
+          },
           "KnowledgeBaseId": {
             "description": "Identifier of the KnowledgeBase",
             "maxLength": 10,
@@ -438,10 +577,10 @@
             "type": "string"
           },
           "ModelId": {
-            "description": "ARN or name of a Bedrock model.",
+            "description": "ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models.",
             "maxLength": 2048,
             "minLength": 1,
-            "pattern": "^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}(([:][a-z0-9-]{1,63}){0,2})?/[a-z0-9]{12})|(:foundation-model/([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2})))|(([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2}))|(([0-9a-zA-Z][_-]?)+)$",
+            "pattern": "^(arn:aws(-[^:]{1,12})?:(bedrock|sagemaker):[a-z0-9-]{1,20}:([0-9]{12})?:([a-z-]+/)?)?([a-zA-Z0-9.-]{1,63}){0,2}(([:][a-z0-9-]{1,63}){0,2})?(/[a-z0-9]{1,12})?$",
             "type": "string"
           }
         },
@@ -498,6 +637,9 @@
         "additionalProperties": false,
         "description": "Prompt flow node configuration",
         "properties": {
+          "GuardrailConfiguration": {
+            "$ref": "#/definitions/GuardrailConfiguration"
+          },
           "SourceConfiguration": {
             "$ref": "#/definitions/PromptFlowNodeSourceConfiguration"
           }
@@ -515,10 +657,10 @@
             "$ref": "#/definitions/PromptInferenceConfiguration"
           },
           "ModelId": {
-            "description": "ARN or name of a Bedrock model.",
+            "description": "ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models.",
             "maxLength": 2048,
             "minLength": 1,
-            "pattern": "^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:provisioned-model/[a-z0-9]{12})))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)$",
+            "pattern": "^(arn:aws(-[^:]{1,12})?:(bedrock|sagemaker):[a-z0-9-]{1,20}:([0-9]{12})?:([a-z-]+/)?)?([a-zA-Z0-9.-]{1,63}){0,2}(([:][a-z0-9-]{1,63}){0,2})?(/[a-z0-9]{1,12})?$",
             "type": "string"
           },
           "TemplateConfiguration": {
@@ -637,12 +779,6 @@
             "minimum": 0,
             "type": "number"
           },
-          "TopK": {
-            "description": "Sample from the k most likely next tokens",
-            "maximum": 500,
-            "minimum": 0,
-            "type": "number"
-          },
           "TopP": {
             "description": "Cumulative probability cutoff for token selection",
             "maximum": 1,
@@ -677,6 +813,49 @@
         ],
         "type": "string"
       },
+      "RetrievalFlowNodeConfiguration": {
+        "additionalProperties": false,
+        "description": "Retrieval flow node configuration",
+        "properties": {
+          "ServiceConfiguration": {
+            "$ref": "#/definitions/RetrievalFlowNodeServiceConfiguration"
+          }
+        },
+        "required": [
+          "ServiceConfiguration"
+        ],
+        "type": "object"
+      },
+      "RetrievalFlowNodeS3Configuration": {
+        "additionalProperties": false,
+        "description": "s3 Retrieval configuration for Retrieval node",
+        "properties": {
+          "BucketName": {
+            "description": "bucket name of an s3 that will be used for Retrieval flow node configuration",
+            "pattern": "^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "BucketName"
+        ],
+        "type": "object"
+      },
+      "RetrievalFlowNodeServiceConfiguration": {
+        "description": "Retrieval service configuration for Retrieval node",
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "S3": {
+                "$ref": "#/definitions/RetrievalFlowNodeS3Configuration"
+              }
+            },
+            "title": "S3",
+            "type": "object"
+          }
+        ]
+      },
       "S3Location": {
         "additionalProperties": false,
         "description": "A bucket, key and optional version pointing to an S3 object containing a UTF-8 encoded JSON string Definition with the same schema as the Definition property of this resource",
@@ -706,6 +885,49 @@
           "Key"
         ],
         "type": "object"
+      },
+      "StorageFlowNodeConfiguration": {
+        "additionalProperties": false,
+        "description": "Storage flow node configuration",
+        "properties": {
+          "ServiceConfiguration": {
+            "$ref": "#/definitions/StorageFlowNodeServiceConfiguration"
+          }
+        },
+        "required": [
+          "ServiceConfiguration"
+        ],
+        "type": "object"
+      },
+      "StorageFlowNodeS3Configuration": {
+        "additionalProperties": false,
+        "description": "s3 storage configuration for storage node",
+        "properties": {
+          "BucketName": {
+            "description": "bucket name of an s3 that will be used for storage flow node configuration",
+            "pattern": "^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "BucketName"
+        ],
+        "type": "object"
+      },
+      "StorageFlowNodeServiceConfiguration": {
+        "description": "storage service configuration for storage node",
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "S3": {
+                "$ref": "#/definitions/StorageFlowNodeS3Configuration"
+              }
+            },
+            "title": "S3",
+            "type": "object"
+          }
+        ]
       },
       "TagsMap": {
         "additionalProperties": false,
@@ -761,25 +983,32 @@
           "bedrock:TagResource",
           "bedrock:ListTagsForResource",
           "kms:GenerateDataKey",
-          "kms:Decrypt"
+          "kms:Decrypt",
+          "bedrock:CreateGuardrail",
+          "bedrock:CreateGuardrailVersion",
+          "bedrock:GetGuardrail"
         ]
       },
       "delete": {
         "permissions": [
           "bedrock:DeleteFlow",
-          "bedrock:GetFlow"
+          "bedrock:GetFlow",
+          "bedrock:DeleteGuardrail",
+          "bedrock:GetGuardrail"
         ]
       },
       "list": {
         "permissions": [
-          "bedrock:ListFlows"
+          "bedrock:ListFlows",
+          "bedrock:ListGuardrails"
         ]
       },
       "read": {
         "permissions": [
           "bedrock:GetFlow",
           "bedrock:ListTagsForResource",
-          "kms:Decrypt"
+          "kms:Decrypt",
+          "bedrock:GetGuardrail"
         ]
       },
       "update": {
@@ -794,7 +1023,9 @@
           "bedrock:UntagResource",
           "bedrock:ListTagsForResource",
           "kms:GenerateDataKey",
-          "kms:Decrypt"
+          "kms:Decrypt",
+          "bedrock:UpdateGuardrail",
+          "bedrock:GetGuardrail"
         ]
       }
     },
@@ -871,6 +1102,9 @@
         "format": "date-time",
         "type": "string"
       },
+      "Validations": {
+        "$ref": "#/definitions/FlowValidations"
+      },
       "Version": {
         "description": "Draft Version.",
         "maxLength": 5,
@@ -885,7 +1119,8 @@
       "/properties/Id",
       "/properties/Status",
       "/properties/UpdatedAt",
-      "/properties/Version"
+      "/properties/Version",
+      "/properties/Validations"
     ],
     "required": [
       "ExecutionRoleArn",

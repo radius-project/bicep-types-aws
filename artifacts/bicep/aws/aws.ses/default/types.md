@@ -240,6 +240,7 @@
 
 ## DeliveryOptions
 ### Properties
+* **MaxDeliverySeconds**: int: Specifies the maximum time until which SES will retry sending emails
 * **SendingPoolName**: string: The name of the dedicated IP pool to associate with the configuration set.
 * **TlsPolicy**: string: Specifies whether messages that use the configuration set are required to use Transport Layer Security (TLS). If the value is Require , messages are only delivered if a TLS connection can be established. If the value is Optional , messages can be delivered in plain text if a TLS connection can't be established.
 

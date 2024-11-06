@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VpcLattice-Service",
   "type": "AWS::VpcLattice::Service",
-  "time": "2024-08-08T17:25:35.422Z",
+  "time": "2024-09-25T16:56:19.654Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -66,7 +66,8 @@
       "delete": {
         "permissions": [
           "vpc-lattice:DeleteService",
-          "vpc-lattice:GetService"
+          "vpc-lattice:GetService",
+          "vpc-lattice:UntagResource"
         ]
       },
       "list": {
@@ -171,6 +172,11 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "vpc-lattice:UntagResource",
+        "vpc-lattice:TagResource",
+        "vpc-lattice:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

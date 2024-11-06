@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-DomainConfiguration",
   "type": "AWS::IoT::DomainConfiguration",
-  "time": "2024-06-25T16:32:48.146Z",
+  "time": "2024-10-03T17:52:29.763Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -22,6 +22,17 @@
             "maxLength": 128,
             "minLength": 1,
             "pattern": "^[\\w=,@-]+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ClientCertificateConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "ClientCertificateCallbackArn": {
+            "maxLength": 170,
+            "minLength": 1,
             "type": "string"
           }
         },
@@ -129,11 +140,33 @@
       "/properties/DomainConfigurationName"
     ],
     "properties": {
+      "ApplicationProtocol": {
+        "enum": [
+          "SECURE_MQTT",
+          "MQTT_WSS",
+          "HTTPS",
+          "DEFAULT"
+        ],
+        "type": "string"
+      },
       "Arn": {
+        "type": "string"
+      },
+      "AuthenticationType": {
+        "enum": [
+          "AWS_X509",
+          "CUSTOM_AUTH",
+          "AWS_SIGV4",
+          "CUSTOM_AUTH_X509",
+          "DEFAULT"
+        ],
         "type": "string"
       },
       "AuthorizerConfig": {
         "$ref": "#/definitions/AuthorizerConfig"
+      },
+      "ClientCertificateConfig": {
+        "$ref": "#/definitions/ClientCertificateConfig"
       },
       "DomainConfigurationName": {
         "maxLength": 128,

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-CustomerGateway",
   "type": "AWS::EC2::CustomerGateway",
-  "time": "2024-08-01T16:08:27.651Z",
+  "time": "2024-10-22T20:19:14.563Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -15,7 +15,7 @@
     "definitions": {
       "Tag": {
         "additionalProperties": false,
-        "description": "Specifies a tag. For more information, see [Add tags to a resource](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#cloudformation-add-tag-specifications).",
+        "description": "Specifies a tag. For more information, see [Resource tags](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html).",
         "properties": {
           "Key": {
             "description": "The tag key.",
@@ -45,8 +45,7 @@
       "delete": {
         "permissions": [
           "ec2:DeleteCustomerGateway",
-          "ec2:DescribeCustomerGateways",
-          "ec2:DeleteTags"
+          "ec2:DescribeCustomerGateways"
         ]
       },
       "list": {
@@ -123,6 +122,10 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

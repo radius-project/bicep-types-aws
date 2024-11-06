@@ -224,8 +224,10 @@
 * **CoreNetworkId**: string (ReadOnly): The ID of a core network where you're creating a site-to-site VPN attachment.
 * **CreatedAt**: string (ReadOnly): Creation time of the attachment.
 * **EdgeLocation**: string (ReadOnly): The Region where the edge is located.
+* **NetworkFunctionGroupName**: string: The name of the network function group attachment.
 * **OwnerAccountId**: string (ReadOnly): Owner account of the attachment.
 * **PeeringId**: string (Required): The Id of peering between transit gateway and core network.
+* **ProposedNetworkFunctionGroupChange**: [ProposedNetworkFunctionGroupChange](#proposednetworkfunctiongroupchange): The attachment to move from one network function group to another.
 * **ProposedSegmentChange**: [ProposedSegmentChange](#proposedsegmentchange): The attachment to move from one segment to another.
 * **ResourceArn**: string (ReadOnly): The ARN of the Resource.
 * **SegmentName**: string (ReadOnly): The name of the segment that attachment is in.
@@ -326,6 +328,12 @@
 * **Address**: string: The physical address.
 * **Latitude**: string: The latitude.
 * **Longitude**: string: The longitude.
+
+## ProposedNetworkFunctionGroupChange
+### Properties
+* **AttachmentPolicyRuleNumber**: int: The rule number in the policy document that applies to this change.
+* **NetworkFunctionGroupName**: string: The name of the network function group to change.
+* **Tags**: [Tag](#tag)[]: The key-value tags that changed for the network function group.
 
 ## ProposedNetworkFunctionGroupChange
 ### Properties

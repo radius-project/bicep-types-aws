@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkManager-TransitGatewayRouteTableAttachment",
   "type": "AWS::NetworkManager::TransitGatewayRouteTableAttachment",
-  "time": "2024-02-15T21:03:11.885Z",
+  "time": "2024-09-23T22:42:16.117Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,30 @@
       "/properties/TransitGatewayRouteTableArn"
     ],
     "definitions": {
+      "ProposedNetworkFunctionGroupChange": {
+        "additionalProperties": false,
+        "description": "The attachment to move from one network function group to another.",
+        "properties": {
+          "AttachmentPolicyRuleNumber": {
+            "description": "The rule number in the policy document that applies to this change.",
+            "type": "integer"
+          },
+          "NetworkFunctionGroupName": {
+            "description": "The name of the network function group to change.",
+            "type": "string"
+          },
+          "Tags": {
+            "description": "The key-value tags that changed for the network function group.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Tag"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "type": "object"
+      },
       "ProposedSegmentChange": {
         "additionalProperties": false,
         "description": "The attachment to move from one segment to another.",
@@ -124,6 +148,10 @@
         "description": "The Region where the edge is located.",
         "type": "string"
       },
+      "NetworkFunctionGroupName": {
+        "description": "The name of the network function group attachment.",
+        "type": "string"
+      },
       "OwnerAccountId": {
         "description": "Owner account of the attachment.",
         "type": "string"
@@ -131,6 +159,10 @@
       "PeeringId": {
         "description": "The Id of peering between transit gateway and core network.",
         "type": "string"
+      },
+      "ProposedNetworkFunctionGroupChange": {
+        "$ref": "#/definitions/ProposedNetworkFunctionGroupChange",
+        "description": "The attachment to move from one network function group to another."
       },
       "ProposedSegmentChange": {
         "$ref": "#/definitions/ProposedSegmentChange",
@@ -187,6 +219,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-networkmanager/aws-networkmanager-transitgatewayroutetableattachment",
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "networkmanager:TagResource",
+        "networkmanager:UntagResource",
+        "networkmanager:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

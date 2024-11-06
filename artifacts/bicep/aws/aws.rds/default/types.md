@@ -366,11 +366,11 @@
  Valid for Cluster Type: Multi-AZ DB clusters only
  Default: The default behavior varies depending on whether ``DBSubnetGroupName`` is specified.
  If ``DBSubnetGroupName`` isn't specified, and ``PubliclyAccessible`` isn't specified, the following applies:
-  +  If the default VPC in the target Region doesn?t have an internet gateway attached to it, the DB cluster is private.
+  +  If the default VPC in the target Region doesn’t have an internet gateway attached to it, the DB cluster is private.
   +  If the default VPC in the target Region has an internet gateway attached to it, the DB cluster is public.
   
  If ``DBSubnetGroupName`` is specified, and ``PubliclyAccessible`` isn't specified, the following applies:
-  +  If the subnets are part of a VPC that doesn?t have an internet gateway attached to it, the DB cluster is private.
+  +  If the subnets are part of a VPC that doesn’t have an internet gateway attached to it, the DB cluster is private.
   +  If the subnets are part of a VPC that has an internet gateway attached to it, the DB cluster is public.
 * **ReadEndpoint**: [ReadEndpoint](#readendpoint): This data type represents the information you need to connect to an Amazon RDS DB instance. This data type is used as a response element in the following actions:
   +   ``CreateDBInstance`` 
@@ -645,16 +645,13 @@
   +   ``CharacterSetName`` 
   +   ``DBClusterIdentifier`` 
   +   ``DBName`` 
-  +   ``DeleteAutomatedBackups`` 
   +   ``KmsKeyId`` 
   +   ``MasterUsername`` 
   +   ``MasterUserPassword`` 
-  +   ``PerformanceInsightsKMSKeyId`` 
-  +   ``PerformanceInsightsRetentionPeriod`` 
   +   ``PromotionTier`` 
   +   ``SourceDBInstanceIdentifier`` 
   +   ``SourceRegion`` 
-  +   ``StorageEncrypted`` (for an encrypted snapshot)
+  +   ``StorageEncrypted`` (for an unencrypted snapshot)
   +   ``Timezone`` 
   
   *Amazon Aurora* 
@@ -891,7 +888,7 @@
   
  Default: ``7`` days
  If you specify a retention period that isn't valid, such as ``94``, Amazon RDS returns an error.
-* **Port**: string (WriteOnly): The port number on which the database accepts connections.
+* **Port**: string: The port number on which the database accepts connections.
  This setting doesn't apply to Aurora DB instances. The port number is managed by the cluster.
  Valid Values: ``1150-65535`` 
  Default:
@@ -930,7 +927,7 @@
  This setting is only supported in RDS for Oracle.
  Default: ``open-read-only`` 
  Valid Values: ``open-read-only`` or ``mounted``
-* **RestoreTime**: string (WriteOnly): The date and time to restore from.
+* **RestoreTime**: string (WriteOnly): The date and time to restore from. This parameter applies to point-in-time recovery. For more information, see [Restoring a DB instance to a specified time](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html) in the in the *Amazon RDS User Guide*.
  Constraints:
   +  Must be a time in Universal Coordinated Time (UTC) format.
   +  Must be before the latest restorable time for the DB instance.
@@ -977,7 +974,7 @@
 * **Timezone**: string: The time zone of the DB instance. The time zone parameter is currently supported only by [RDS for Db2](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/db2-time-zone) and [RDS for SQL Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone).
 * **UseDefaultProcessorFeatures**: bool (WriteOnly): Specifies whether the DB instance class of the DB instance uses its default processor features.
  This setting doesn't apply to RDS Custom DB instances.
-* **UseLatestRestorableTime**: bool (WriteOnly): Specifies whether the DB instance is restored from the latest backup time. By default, the DB instance isn't restored from the latest backup time.
+* **UseLatestRestorableTime**: bool (WriteOnly): Specifies whether the DB instance is restored from the latest backup time. By default, the DB instance isn't restored from the latest backup time. This parameter applies to point-in-time recovery. For more information, see [Restoring a DB instance to a specified time](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html) in the in the *Amazon RDS User Guide*.
  Constraints:
   +  Can't be specified if the ``RestoreTime`` parameter is provided.
 * **VPCSecurityGroups**: string[]: A list of the VPC security group IDs to assign to the DB instance. The list can include both the physical IDs of existing VPC security groups and references to [AWS::EC2::SecurityGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resources created in the template.
@@ -1077,7 +1074,7 @@
   +  First character must be a letter.
   
  Example: ``mydbsubnetgroup``
-* **SubnetIds**: string[] (Required, WriteOnly): The EC2 Subnet IDs for the DB subnet group.
+* **SubnetIds**: string[] (Required): The EC2 Subnet IDs for the DB subnet group.
 * **Tags**: [Tag](#tag)[]: Tags to assign to the DB subnet group.
 
 ## AWS.RDS/EventSubscriptionProperties
@@ -1113,6 +1110,7 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 * **SourceDBClusterIdentifier**: string: The Amazon Resource Name (ARN) to use as the primary cluster of the global database. This parameter is optional. This parameter is stored as a lowercase string.
 * **StorageEncrypted**: bool:  The storage encryption setting for the new global database cluster.
 If you specify the SourceDBClusterIdentifier property, don't specify this property. The value is inherited from the cluster.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## AWS.RDS/IntegrationProperties
 ### Properties
@@ -1296,6 +1294,11 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 ### Properties
 * **Key**: string (Required): A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
 * **Value**: string: A value is the optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## Tag
 ### Properties

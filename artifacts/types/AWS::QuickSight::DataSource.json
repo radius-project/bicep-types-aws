@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-DataSource",
   "type": "AWS::QuickSight::DataSource",
-  "time": "2024-05-22T16:51:40.879Z",
+  "time": "2024-10-21T15:51:06.271Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -313,6 +313,7 @@
           "PRESTO",
           "REDSHIFT",
           "S3",
+          "S3_TABLES",
           "SALESFORCE",
           "SERVICENOW",
           "SNOWFLAKE",
@@ -328,7 +329,9 @@
           "MONGO",
           "MONGO_ATLAS",
           "DOCUMENTDB",
-          "APPFLOW"
+          "APPFLOW",
+          "IMPALA",
+          "GLUE"
         ],
         "type": "string"
       },
@@ -961,7 +964,10 @@
           "quicksight:DescribeDataSource",
           "quicksight:DescribeDataSourcePermissions",
           "quicksight:TagResource",
-          "quicksight:ListTagsForResource"
+          "quicksight:ListTagsForResource",
+          "quicksight:CreateFolderMembership",
+          "quicksight:DeleteFolderMembership",
+          "quicksight:ListFoldersForResource"
         ]
       },
       "delete": {
@@ -991,6 +997,9 @@
           "quicksight:DescribeDataSourcePermissions",
           "quicksight:UpdateDataSource",
           "quicksight:UpdateDataSourcePermissions",
+          "quicksight:CreateFolderMembership",
+          "quicksight:DeleteFolderMembership",
+          "quicksight:ListFoldersForResource",
           "quicksight:TagResource",
           "quicksight:UntagResource",
           "quicksight:ListTagsForResource"
@@ -1037,6 +1046,14 @@
       },
       "ErrorInfo": {
         "$ref": "#/definitions/DataSourceErrorInfo"
+      },
+      "FolderArns": {
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 10,
+        "minItems": 0,
+        "type": "array"
       },
       "LastUpdatedTime": {
         "description": "\u003cp\u003eThe last time that this data source was updated.\u003c/p\u003e",
@@ -1090,7 +1107,8 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-quicksight",
     "typeName": "AWS::QuickSight::DataSource",
     "writeOnlyProperties": [
-      "/properties/Credentials"
+      "/properties/Credentials",
+      "/properties/FolderArns"
     ]
   }
 }

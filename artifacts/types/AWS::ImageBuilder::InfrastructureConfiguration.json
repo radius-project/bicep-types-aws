@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ImageBuilder-InfrastructureConfiguration",
   "type": "AWS::ImageBuilder::InfrastructureConfiguration",
-  "time": "2024-08-08T15:51:54.275Z",
+  "time": "2024-10-30T21:40:46.122Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -33,6 +33,34 @@
         "properties": {
           "S3Logs": {
             "$ref": "#/definitions/S3Logs"
+          }
+        },
+        "type": "object"
+      },
+      "Placement": {
+        "additionalProperties": false,
+        "description": "The placement options",
+        "properties": {
+          "AvailabilityZone": {
+            "description": "AvailabilityZone",
+            "type": "string"
+          },
+          "HostId": {
+            "description": "HostId",
+            "type": "string"
+          },
+          "HostResourceGroupArn": {
+            "description": "HostResourceGroupArn",
+            "type": "string"
+          },
+          "Tenancy": {
+            "description": "Tenancy",
+            "enum": [
+              "default",
+              "dedicated",
+              "host"
+            ],
+            "type": "string"
           }
         },
         "type": "object"
@@ -151,6 +179,10 @@
       "Name": {
         "description": "The name of the infrastructure configuration.",
         "type": "string"
+      },
+      "Placement": {
+        "$ref": "#/definitions/Placement",
+        "description": "The placement option settings for the infrastructure configuration."
       },
       "ResourceTags": {
         "additionalProperties": false,

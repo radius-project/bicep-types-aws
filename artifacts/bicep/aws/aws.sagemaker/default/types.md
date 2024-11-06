@@ -7,6 +7,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/AppImageConfigProperties](#awssagemakerappimageconfigproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SageMaker/Cluster@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/ClusterProperties](#awssagemakerclusterproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SageMaker/Device@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -27,6 +34,13 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/DomainProperties](#awssagemakerdomainproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SageMaker/Endpoint@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/EndpointProperties](#awssagemakerendpointproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/FeatureGroup@default
 * **Valid Scope(s)**: Unknown
@@ -142,6 +156,22 @@
 * **CustomDetails**: [ModelCard_CustomDetails](#modelcardcustomdetails): customer details.
 * **EthicalConsiderations**: string: Any ethical considerations that the author wants to provide.
 
+## Alarm
+### Properties
+* **AlarmName**: string (Required): The name of the CloudWatch alarm.
+
+## AppLifecycleManagement
+### Properties
+* **IdleSettings**: [IdleSettings](#idlesettings)
+
+## AppLifecycleManagement
+### Properties
+* **IdleSettings**: [IdleSettings](#idlesettings)
+
+## AutoRollbackConfig
+### Properties
+* **Alarms**: [Alarm](#alarm)[] (Required): List of CloudWatch alarms to monitor during the deployment. If any alarm goes off, the deployment is rolled back.
+
 ## AWS.SageMaker/AppImageConfigProperties
 ### Properties
 * **AppImageConfigArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the AppImageConfig.
@@ -150,6 +180,19 @@
 * **JupyterLabAppImageConfig**: [JupyterLabAppImageConfig](#jupyterlabappimageconfig): The JupyterLabAppImageConfig.
 * **KernelGatewayImageConfig**: [KernelGatewayImageConfig](#kernelgatewayimageconfig): The KernelGatewayImageConfig.
 * **Tags**: [Tag](#tag)[] (WriteOnly): A list of tags to apply to the AppImageConfig.
+
+## AWS.SageMaker/ClusterProperties
+### Properties
+* **ClusterArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the HyperPod Cluster.
+* **ClusterName**: string: The name of the HyperPod Cluster.
+* **ClusterStatus**: string (ReadOnly): The status of the HyperPod Cluster.
+* **CreationTime**: string (ReadOnly): The time at which the HyperPod cluster was created.
+* **FailureMessage**: string (ReadOnly): The failure message of the HyperPod Cluster.
+* **InstanceGroups**: [ClusterInstanceGroup](#clusterinstancegroup)[] (Required, ReadOnly)
+* **NodeRecovery**: string: If node auto-recovery is set to true, faulty nodes will be replaced or rebooted when a failure is detected. If set to false, nodes will be labelled when a fault is detected.
+* **Orchestrator**: [Orchestrator](#orchestrator)
+* **Tags**: [Tag](#tag)[]: Custom tags for managing the SageMaker HyperPod cluster as an AWS resource. You can add tags to your cluster in the same way you add them in other AWS services that support tagging.
+* **VpcConfig**: [VpcConfig](#vpcconfig)
 
 ## AWS.SageMaker/DeviceFleetProperties
 ### Properties
@@ -182,9 +225,21 @@
 * **SingleSignOnApplicationArn**: string (ReadOnly): The ARN of the application managed by SageMaker in IAM Identity Center. This value is only returned for domains created after October 1, 2023.
 * **SingleSignOnManagedApplicationInstanceId**: string (ReadOnly): The SSO managed application instance ID.
 * **SubnetIds**: string[] (Required): The VPC subnets that Studio uses for communication.
+* **TagPropagation**: string: Indicates whether the tags added to Domain, User Profile and Space entity is propagated to all SageMaker resources.
 * **Tags**: [Tag](#tag)[] (WriteOnly): A list of tags to apply to the user profile.
 * **Url**: string (ReadOnly): The URL to the created domain.
 * **VpcId**: string (Required): The ID of the Amazon Virtual Private Cloud (VPC) that Studio uses for communication.
+
+## AWS.SageMaker/EndpointProperties
+### Properties
+* **DeploymentConfig**: [DeploymentConfig](#deploymentconfig): Specifies deployment configuration for updating the SageMaker endpoint. Includes rollback and update policies.
+* **EndpointArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the endpoint.
+* **EndpointConfigName**: string (Required): The name of the endpoint configuration for the SageMaker endpoint. This is a required property.
+* **EndpointName**: string (ReadOnly): The name of the SageMaker endpoint. This name must be unique within an AWS Region.
+* **ExcludeRetainedVariantProperties**: [VariantProperty](#variantproperty)[] (WriteOnly): Specifies a list of variant properties that you want to exclude when updating an endpoint.
+* **RetainAllVariantProperties**: bool (WriteOnly): When set to true, retains all variant properties for an endpoint when it is updated.
+* **RetainDeploymentConfig**: bool (WriteOnly): When set to true, retains the deployment configuration during endpoint updates.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## AWS.SageMaker/FeatureGroupProperties
 ### Properties
@@ -378,7 +433,7 @@
 * **SpaceName**: string (Required, Identifier): A name for the Space.
 * **SpaceSettings**: [SpaceSettings](#spacesettings) (WriteOnly): A collection of settings.
 * **SpaceSharingSettings**: [SpaceSharingSettings](#spacesharingsettings)
-* **Tags**: [Tag](#tag)[] (WriteOnly): A list of tags to apply to the space.
+* **Tags**: [Tag](#tag)[]: A list of tags to apply to the space.
 * **Url**: string (ReadOnly)
 
 ## AWS.SageMaker/UserProfileProperties
@@ -411,11 +466,22 @@
 * **PreTrainingReport**: [MetricsSource](#metricssource)
 * **Report**: [MetricsSource](#metricssource)
 
+## BlueGreenUpdatePolicy
+### Properties
+* **MaximumExecutionTimeoutInSeconds**: int: The maximum time allowed for the blue/green update, in seconds.
+* **TerminationWaitInSeconds**: int: The wait time before terminating the old endpoint during a blue/green deployment.
+* **TrafficRoutingConfiguration**: [TrafficRoutingConfig](#trafficroutingconfig) (Required): The traffic routing configuration for the blue/green deployment.
+
 ## BusinessDetails
 ### Properties
 * **BusinessProblem**: string: What business problem does the model solve?
 * **BusinessStakeholders**: string: Business stakeholders.
 * **LineOfBusiness**: string: Line of business.
+
+## CapacitySize
+### Properties
+* **Type**: string (Required): Specifies whether the `Value` is an instance count or a capacity unit.
+* **Value**: int (Required): The value representing either the number of instances or the number of capacity units.
 
 ## CaptureContentTypeHeader
 ### Properties
@@ -429,18 +495,49 @@
 * **VolumeKmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the model monitoring job.
 * **VolumeSizeInGB**: int (Required): The size of the ML storage volume, in gigabytes, that you want to provision. You must specify sufficient ML storage for your scenario.
 
+## ClusterEbsVolumeConfig
+### Properties
+* **VolumeSizeInGB**: int: The size in gigabytes (GB) of the additional EBS volume to be attached to the instances in the SageMaker HyperPod cluster instance group. The additional EBS volume is attached to each instance within the SageMaker HyperPod cluster instance group and mounted to /opt/sagemaker.
+
+## ClusterInstanceGroup
+### Properties
+* **CurrentCount**: int: The number of instances that are currently in the instance group of a SageMaker HyperPod cluster.
+* **ExecutionRole**: string (Required)
+* **InstanceCount**: int (Required): The number of instances you specified to add to the instance group of a SageMaker HyperPod cluster.
+* **InstanceGroupName**: string (Required)
+* **InstanceStorageConfigs**: [ClusterInstanceStorageConfig](#clusterinstancestorageconfig)[]
+* **InstanceType**: string (Required)
+* **LifeCycleConfig**: [ClusterLifeCycleConfig](#clusterlifecycleconfig) (Required)
+* **OnStartDeepHealthChecks**: string[]
+* **ThreadsPerCore**: int: The number you specified to TreadsPerCore in CreateCluster for enabling or disabling multithreading. For instance types that support multithreading, you can specify 1 for disabling multithreading and 2 for enabling multithreading.
+
+## ClusterInstanceStorageConfig
+### Properties
+* **EbsVolumeConfig**: [ClusterEbsVolumeConfig](#clusterebsvolumeconfig)
+
+## ClusterLifeCycleConfig
+### Properties
+* **OnCreate**: string (Required): The file name of the entrypoint script of lifecycle scripts under SourceS3Uri. This entrypoint script runs during cluster creation.
+* **SourceS3Uri**: string (Required): An Amazon S3 bucket path where your lifecycle scripts are stored.
+
+## ClusterOrchestratorEksConfig
+### Properties
+* **ClusterArn**: string (Required, Identifier): The ARN of the EKS cluster, such as arn:aws:eks:us-west-2:123456789012:cluster/my-eks-cluster
+
 ## CodeEditorAppImageConfig
 ### Properties
 * **ContainerConfig**: [ContainerConfig](#containerconfig): The container configuration for a SageMaker image.
 
 ## CodeEditorAppSettings
 ### Properties
+* **AppLifecycleManagement**: [AppLifecycleManagement](#applifecyclemanagement)
 * **CustomImages**: [CustomImage](#customimage)[]: A list of custom images for use for CodeEditor apps.
 * **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the CodeEditor app.
 * **LifecycleConfigArns**: string[]: A list of LifecycleConfigArns available for use with CodeEditor apps.
 
 ## CodeEditorAppSettings
 ### Properties
+* **AppLifecycleManagement**: [AppLifecycleManagement](#applifecyclemanagement)
 * **CustomImages**: [CustomImage](#customimage)[]: A list of custom images for use for CodeEditor apps.
 * **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the CodeEditor app.
 * **LifecycleConfigArns**: string[]: A list of LifecycleConfigArns available for use with CodeEditor apps.
@@ -592,6 +689,12 @@
 * **ResolvedImage**: string
 * **SpecifiedImage**: string
 
+## DeploymentConfig
+### Properties
+* **AutoRollbackConfiguration**: [AutoRollbackConfig](#autorollbackconfig): Configuration for automatic rollback if an error occurs during deployment.
+* **BlueGreenUpdatePolicy**: [BlueGreenUpdatePolicy](#bluegreenupdatepolicy): Configuration for blue-green update deployment policies.
+* **RollingUpdatePolicy**: [RollingUpdatePolicy](#rollingupdatepolicy): Configuration for rolling update deployment policies.
+
 ## Device
 ### Properties
 * **Description**: string: Description of the device
@@ -606,6 +709,7 @@
 ## DomainSettings
 ### Properties
 * **DockerSettings**: [DockerSettings](#dockersettings)
+* **ExecutionRoleIdentityConfig**: string: The configuration for attaching a SageMaker user profile name to the execution role as a sts:SourceIdentity key.
 * **RStudioServerProDomainSettings**: [RStudioServerProDomainSettings](#rstudioserverprodomainsettings)
 * **SecurityGroupIds**: string[]: The security groups for the Amazon Virtual Private Cloud that the Domain uses for communication between Domain-level apps and user apps.
 
@@ -724,6 +828,20 @@
 * **DefaultUid**: int: The default POSIX user ID (UID). If not specified, defaults to 1000.
 * **MountPath**: string: The path within the image to mount the user's EFS home directory. The directory should be empty. If not specified, defaults to /home/sagemaker-user.
 
+## IdleSettings
+### Properties
+* **IdleTimeoutInMinutes**: int
+* **LifecycleManagement**: string
+* **MaxIdleTimeoutInMinutes**: int
+* **MinIdleTimeoutInMinutes**: int
+
+## IdleSettings
+### Properties
+* **IdleTimeoutInMinutes**: int
+* **LifecycleManagement**: string
+* **MaxIdleTimeoutInMinutes**: int
+* **MinIdleTimeoutInMinutes**: int
+
 ## InferenceComponentComputeResourceRequirements
 ### Properties
 * **MaxMemoryRequiredInMb**: int
@@ -791,6 +909,7 @@
 
 ## JupyterLabAppSettings
 ### Properties
+* **AppLifecycleManagement**: [AppLifecycleManagement](#applifecyclemanagement)
 * **CodeRepositories**: [CodeRepository](#coderepository)[]: A list of CodeRepositories available for use with JupyterLab apps.
 * **CustomImages**: [CustomImage](#customimage)[]: A list of custom images for use for JupyterLab apps.
 * **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the JupyterLab app.
@@ -798,6 +917,7 @@
 
 ## JupyterLabAppSettings
 ### Properties
+* **AppLifecycleManagement**: [AppLifecycleManagement](#applifecyclemanagement)
 * **CodeRepositories**: [CodeRepository](#coderepository)[]: A list of CodeRepositories available for use with JupyterLab apps.
 * **CustomImages**: [CustomImage](#customimage)[]: A list of custom images available for use for JupyterLab apps
 * **DefaultResourceSpec**: [ResourceSpec](#resourcespec): The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the JupyterLab app.
@@ -1072,6 +1192,10 @@
 ### Properties
 * **KmsKeyId**: string
 
+## Orchestrator
+### Properties
+* **Eks**: [ClusterOrchestratorEksConfig](#clusterorchestratoreksconfig) (Required)
+
 ## OwnershipSettings
 ### Properties
 * **OwnerUserProfileName**: string (Required)
@@ -1125,6 +1249,13 @@
 * **LifecycleConfigArn**: string: The Amazon Resource Name (ARN) of the Lifecycle Configuration to attach to the Resource.
 * **SageMakerImageArn**: string: The ARN of the SageMaker image that the image version belongs to.
 * **SageMakerImageVersionArn**: string: The ARN of the image version created on the instance.
+
+## RollingUpdatePolicy
+### Properties
+* **MaximumBatchSize**: [CapacitySize](#capacitysize) (Required): Specifies the maximum batch size for each rolling update.
+* **MaximumExecutionTimeoutInSeconds**: int: The maximum time allowed for the rolling update, in seconds.
+* **RollbackMaximumBatchSize**: [CapacitySize](#capacitysize): The maximum batch size for rollback during an update failure.
+* **WaitIntervalInSeconds**: int (Required): The time to wait between steps during the rolling update, in seconds.
 
 ## RSessionAppSettings
 ### Properties
@@ -1221,12 +1352,22 @@
 ### Properties
 * **SourceAlgorithms**: [SourceAlgorithm](#sourcealgorithm)[] (Required): A list of algorithms that were used to create a model package.
 
+## SpaceAppLifecycleManagement
+### Properties
+* **IdleSettings**: [SpaceIdleSettings](#spaceidlesettings)
+
 ## SpaceCodeEditorAppSettings
 ### Properties
+* **AppLifecycleManagement**: [SpaceAppLifecycleManagement](#spaceapplifecyclemanagement)
 * **DefaultResourceSpec**: [ResourceSpec](#resourcespec)
+
+## SpaceIdleSettings
+### Properties
+* **IdleTimeoutInMinutes**: int: The space idle timeout value set in minutes
 
 ## SpaceJupyterLabAppSettings
 ### Properties
+* **AppLifecycleManagement**: [SpaceAppLifecycleManagement](#spaceapplifecyclemanagement)
 * **CodeRepositories**: [CodeRepository](#coderepository)[]: A list of CodeRepositories available for use with JupyterLab apps.
 * **DefaultResourceSpec**: [ResourceSpec](#resourcespec)
 
@@ -1273,6 +1414,11 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string (Required): The key value of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
@@ -1285,6 +1431,11 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
 
 ## Tag
 ### Properties
@@ -1356,6 +1507,13 @@
 * **ProvisionedReadCapacityUnits**: int: For provisioned feature groups with online store enabled, this indicates the read throughput you are billed for and can consume without throttling.
 * **ProvisionedWriteCapacityUnits**: int: For provisioned feature groups, this indicates the write throughput you are billed for and can consume without throttling.
 * **ThroughputMode**: string (Required)
+
+## TrafficRoutingConfig
+### Properties
+* **CanarySize**: [CapacitySize](#capacitysize): Specifies the size of the canary traffic in a canary deployment.
+* **LinearStepSize**: [CapacitySize](#capacitysize): Specifies the step size for linear traffic routing.
+* **Type**: string (Required): Specifies the type of traffic routing (e.g., 'AllAtOnce', 'Canary', 'Linear').
+* **WaitIntervalInSeconds**: int: Specifies the wait interval between traffic shifts, in seconds.
 
 ## TrainingDetails
 ### Properties
@@ -1459,6 +1617,15 @@
 ### Properties
 * **ValidationProfiles**: [ValidationProfile](#validationprofile)[] (Required)
 * **ValidationRole**: string (Required): The IAM roles to be used for the validation of the model package.
+
+## VariantProperty
+### Properties
+* **VariantPropertyType**: string: The type of variant property (e.g., 'DesiredInstanceCount', 'DesiredWeight', 'DataCaptureConfig').
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required): The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for the VPC that is specified in the Subnets field.
+* **Subnets**: string[] (Required): The ID of the subnets in the VPC to which you want to connect your training job or model.
 
 ## VpcConfig
 ### Properties

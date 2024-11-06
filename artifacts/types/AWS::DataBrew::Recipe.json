@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataBrew-Recipe",
   "type": "AWS::DataBrew::Recipe",
-  "time": "2024-08-07T17:05:45.952Z",
+  "time": "2024-10-03T18:30:26.35Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -588,7 +588,18 @@
       "Steps"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-databrew.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "databrew:TagResource",
+        "databrew:UntagResource",
+        "databrew:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
     "typeName": "AWS::DataBrew::Recipe"
   }
 }

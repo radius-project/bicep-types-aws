@@ -130,7 +130,7 @@
 * **GrantScope**: string (ReadOnly): The S3 path of the data to which you are granting access. It is a combination of the S3 path of the registered location and the subprefix.
 * **Permission**: string (Required): The level of access to be afforded to the grantee
 * **S3PrefixType**: string (WriteOnly): The type of S3SubPrefix.
-* **Tags**: [Tag](#tag)[] (WriteOnly)
+* **Tags**: [Tag](#tag)[]
 
 ## AWS.S3/AccessGrantsInstanceProperties
 ### Properties
@@ -145,7 +145,7 @@
 * **AccessGrantsLocationId**: string (ReadOnly, Identifier): The unique identifier for the specified Access Grants location.
 * **IamRoleArn**: string: The Amazon Resource Name (ARN) of the access grant location's associated IAM role.
 * **LocationScope**: string: Descriptor for where the location actually points
-* **Tags**: [Tag](#tag)[] (WriteOnly)
+* **Tags**: [Tag](#tag)[]
 
 ## AWS.S3/AccessPointProperties
 ### Properties
@@ -198,6 +198,7 @@
  Amazon S3 can store replicated objects in a single destination bucket or multiple destination buckets. The destination bucket or buckets must already exist.
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this S3 bucket.
 * **VersioningConfiguration**: [VersioningConfiguration](#versioningconfiguration): Enables multiple versions of all objects in this bucket. You might enable versioning to prevent objects from being deleted or overwritten by mistake or to archive objects so that you can retrieve previous versions of them.
+  When you enable versioning on a bucket for the first time, it might take a short amount of time for the change to be fully propagated. We recommend that you wait for 15 minutes after enabling versioning before issuing write operations (``PUT`` or ``DELETE``) on objects in the bucket.
 * **WebsiteConfiguration**: [WebsiteConfiguration](#websiteconfiguration): Information used to configure the bucket as a static website. For more information, see [Hosting Websites on Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html).
 * **WebsiteURL**: string (ReadOnly)
 
@@ -350,6 +351,7 @@
 ## LifecycleConfiguration
 ### Properties
 * **Rules**: [Rule](#rule)[] (Required, WriteOnly): A lifecycle rule for individual objects in an Amazon S3 bucket.
+* **TransitionDefaultMinimumObjectSize**: string
 
 ## LoggingConfiguration
 ### Properties
@@ -606,16 +608,22 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 
 ## ServerSideEncryptionByDefault
 ### Properties
-* **KMSMasterKeyID**: string: AWS Key Management Service (KMS) customer AWS KMS key ID to use for the default encryption. This parameter is allowed if and only if ``SSEAlgorithm`` is set to ``aws:kms`` or ``aws:kms:dsse``.
- You can specify the key ID, key alias, or the Amazon Resource Name (ARN) of the KMS key.
+* **KMSMasterKeyID**: string: AWS Key Management Service (KMS) customer managed key ID to use for the default encryption. 
+   +   *General purpose buckets* - This parameter is allowed if and only if ``SSEAlgorithm`` is set to ``aws:kms`` or ``aws:kms:dsse``.
+  +   *Directory buckets* - This parameter is allowed if and only if ``SSEAlgorithm`` is set to ``aws:kms``.
+  
+  You can specify the key ID, key alias, or the Amazon Resource Name (ARN) of the KMS key.
   +  Key ID: ``1234abcd-12ab-34cd-56ef-1234567890ab`` 
   +  Key ARN: ``arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab`` 
   +  Key Alias: ``alias/alias-name`` 
   
- If you use a key ID, you can run into a LogDestination undeliverable error when creating a VPC flow log. 
- If you are using encryption with cross-account or AWS service operations you must use a fully qualified KMS key ARN. For more information, see [Using encryption for cross-account operations](https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html#bucket-encryption-update-bucket-policy).
-  Amazon S3 only supports symmetric encryption KMS keys. For more information, see [Asymmetric keys in KMS](https://docs.aws.amazon.com//kms/latest/developerguide/symmetric-asymmetric.html) in the *Key Management Service Developer Guide*.
+ If you are using encryption with cross-account or AWS service operations, you must use a fully qualified KMS key ARN. For more information, see [Using encryption for cross-account operations](https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html#bucket-encryption-update-bucket-policy).
+   +   *General purpose buckets* - If you're specifying a customer managed KMS key, we recommend using a fully qualified KMS key ARN. If you use a KMS key alias instead, then KMS resolves the key within the requester?s account. This behavior can result in data that's encrypted with a KMS key that belongs to the requester, and not the bucket owner. Also, if you use a key ID, you can run into a LogDestination undeliverable error when creating a VPC flow log. 
+  +   *Directory buckets* - When you specify an [customer managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) for encryption in your directory bucket, only use the key ID or key ARN. The key alias format of the KMS key isn't supported.
+  
+   Amazon S3 only supports symmetric encryption KMS keys. For more information, see [Asymmetric keys in KMS](https://docs.aws.amazon.com//kms/latest/developerguide/symmetric-asymmetric.html) in the *Key Management Service Developer Guide*.
 * **SSEAlgorithm**: string (Required): Server-side encryption algorithm to use for the default encryption.
+  For directory buckets, there are only two supported values for server-side encryption: ``AES256`` and ``aws:kms``.
 
 ## ServerSideEncryptionRule
 ### Properties

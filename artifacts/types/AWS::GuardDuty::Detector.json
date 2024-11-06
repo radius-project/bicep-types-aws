@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GuardDuty-Detector",
   "type": "AWS::GuardDuty::Detector",
-  "time": "2024-07-09T19:25:25.17Z",
+  "time": "2024-10-31T16:23:52.39Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -40,6 +40,7 @@
         "additionalProperties": false,
         "properties": {
           "AdditionalConfiguration": {
+            "insertionOrder": false,
             "items": {
               "$ref": "#/definitions/CFNFeatureAdditionalConfiguration"
             },
@@ -163,7 +164,8 @@
       },
       "read": {
         "permissions": [
-          "guardduty:GetDetector"
+          "guardduty:GetDetector",
+          "guardduty:ListTagsForResource"
         ]
       },
       "update": {
@@ -172,7 +174,9 @@
           "guardduty:GetDetector",
           "guardduty:ListDetectors",
           "iam:CreateServiceLinkedRole",
-          "iam:GetRole"
+          "iam:GetRole",
+          "guardduty:TagResource",
+          "guardduty:UntagResource"
         ]
       }
     },
@@ -187,6 +191,7 @@
         "type": "boolean"
       },
       "Features": {
+        "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/CFNFeatureConfiguration"
         },
@@ -199,6 +204,7 @@
         "type": "string"
       },
       "Tags": {
+        "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/TagItem"
         },
@@ -214,7 +220,8 @@
     "tagging": {
       "cloudFormationSystemTags": false,
       "tagOnCreate": true,
-      "tagUpdatable": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::GuardDuty::Detector"

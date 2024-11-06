@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MemoryDB-ParameterGroup",
   "type": "AWS::MemoryDB::ParameterGroup",
-  "time": "2023-11-22T20:37:41.618Z",
+  "time": "2024-10-19T05:40:36.631Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -117,7 +117,18 @@
       "Family"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-memorydb",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "memorydb:TagResource",
+        "memorydb:ListTags",
+        "memorydb:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::MemoryDB::ParameterGroup",
     "writeOnlyProperties": [
       "/properties/Parameters"

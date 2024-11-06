@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkFirewall-FirewallPolicy",
   "type": "AWS::NetworkFirewall::FirewallPolicy",
-  "time": "2024-08-01T19:16:39.852Z",
+  "time": "2024-10-30T23:12:42.645Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -192,6 +192,17 @@
       "StatefulEngineOptions": {
         "additionalProperties": false,
         "properties": {
+          "FlowTimeouts": {
+            "additionalProperties": false,
+            "properties": {
+              "TcpIdleTimeoutSeconds": {
+                "maximum": 6000,
+                "minimum": 60,
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
           "RuleOrder": {
             "$ref": "#/definitions/RuleOrder"
           },
@@ -367,6 +378,15 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-networkfirewall.git",
     "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "network-firewall:TagResource",
+        "network-firewall:UntagResource",
+        "network-firewall:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::NetworkFirewall::FirewallPolicy"

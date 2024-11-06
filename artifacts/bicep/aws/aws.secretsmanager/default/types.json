@@ -97,6 +97,207 @@
   },
   {
     "$type": "ObjectType",
+    "name": "HostedRotationLambda",
+    "properties": {
+      "ExcludeCharacters": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4,
+        "description": "A string of the characters that you don't want in the password."
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4,
+        "description": "The ARN of the KMS key that Secrets Manager uses to encrypt the secret. If you don't specify this value, then Secrets Manager uses the key aws/secretsmanager. If aws/secretsmanager doesn't yet exist, then Secrets Manager creates it for you automatically the first time it encrypts the secret value."
+      },
+      "MasterSecretArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4,
+        "description": "The ARN of the secret that contains superuser credentials, if you use the alternating users rotation strategy. CloudFormation grants the execution role for the Lambda rotation function GetSecretValue permission to the secret in this property."
+      },
+      "MasterSecretKmsKeyArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4,
+        "description": "The ARN of the KMS key that Secrets Manager used to encrypt the superuser secret, if you use the alternating users strategy and the superuser secret is encrypted with a customer managed key. You don't need to specify this property if the superuser secret is encrypted using the key aws/secretsmanager. CloudFormation grants the execution role for the Lambda rotation function Decrypt, DescribeKey, and GenerateDataKey permission to the key in this property."
+      },
+      "RotationLambdaName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4,
+        "description": "The name of the Lambda rotation function."
+      },
+      "RotationType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 5,
+        "description": "The type of rotation template to use"
+      },
+      "Runtime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4,
+        "description": "The python runtime associated with the Lambda function"
+      },
+      "SuperuserSecretArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4,
+        "description": "The ARN of the secret that contains superuser credentials, if you use the alternating users rotation strategy. CloudFormation grants the execution role for the Lambda rotation function GetSecretValue permission to the secret in this property."
+      },
+      "SuperuserSecretKmsKeyArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4,
+        "description": "The ARN of the KMS key that Secrets Manager used to encrypt the superuser secret, if you use the alternating users strategy and the superuser secret is encrypted with a customer managed key. You don't need to specify this property if the superuser secret is encrypted using the key aws/secretsmanager. CloudFormation grants the execution role for the Lambda rotation function Decrypt, DescribeKey, and GenerateDataKey permission to the key in this property."
+      },
+      "VpcSecurityGroupIds": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4,
+        "description": "A comma-separated list of security group IDs applied to the target database."
+      },
+      "VpcSubnetIds": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4,
+        "description": "A comma separated list of VPC subnet IDs of the target database network. The Lambda rotation function is in the same subnet group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RotationRules",
+    "properties": {
+      "AutomaticallyAfterDays": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The number of days between automatic scheduled rotations of the secret. You can use this value to check that your secret meets your compliance guidelines for how often secrets must be rotated."
+      },
+      "Duration": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The length of the rotation window in hours, for example 3h for a three hour window. Secrets Manager rotates your secret at any time during this window. The window must not extend into the next rotation window or the next UTC day. The window starts according to the ScheduleExpression. If you don't specify a Duration, for a ScheduleExpression in hours, the window automatically closes after one hour. For a ScheduleExpression in days, the window automatically closes at the end of the UTC day."
+      },
+      "ScheduleExpression": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "A cron() or rate() expression that defines the schedule for rotating your secret. Secrets Manager rotation schedules use UTC time zone."
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecretsManager/RotationScheduleProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecretsManager/RotationScheduleProperties",
+    "properties": {
+      "HostedRotationLambda": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 4,
+        "description": "Creates a new Lambda rotation function based on one of the Secrets Manager rotation function templates. To use a rotation function that already exists, specify RotationLambdaARN instead."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The ARN of the secret."
+      },
+      "RotateImmediatelyOnUpdate": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "Specifies whether to rotate the secret immediately or wait until the next scheduled rotation window."
+      },
+      "RotationLambdaARN": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of an existing Lambda rotation function. To specify a rotation function that is also defined in this template, use the Ref function."
+      },
+      "RotationRules": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "A structure that defines the rotation configuration for this secret."
+      },
+      "SecretId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ARN or name of the secret to rotate."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecretsManager/RotationSchedule",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecretsManager/RotationSchedule@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/13"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "GenerateSecretString",
     "properties": {
       "ExcludeCharacters": {
@@ -150,7 +351,7 @@
       },
       "PasswordLength": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The length of the password. If you don't include this parameter, the default length is 32 characters."
@@ -212,22 +413,19 @@
     }
   },
   {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.SecretsManager/SecretProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/9"
+      "$ref": "#/16"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/10"
+      "$ref": "#/17"
     }
   },
   {
@@ -243,7 +441,7 @@
       },
       "GenerateSecretString": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/15"
         },
         "flags": 4,
         "description": "A structure that specifies how to generate a password to encrypt and store in the secret. To include a specific string in the secret, use ``SecretString`` instead. If you omit both ``GenerateSecretString`` and ``SecretString``, you create an empty secret. When you make a change to this property, a new secret version is created.\n We recommend that you specify the maximum length and include every character type that the system you are generating a password for can support."
@@ -271,7 +469,7 @@
       },
       "ReplicaRegions": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "A custom type that specifies a ``Region`` and the ``KmsKeyId`` for a replica secret."
@@ -285,7 +483,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "A list of tags to attach to the secret. Each tag is a key and value pair of strings in a JSON text string, for example:\n  ``[{\"Key\":\"CostCenter\",\"Value\":\"12345\"},{\"Key\":\"environment\",\"Value\":\"production\"}]`` \n Secrets Manager tag key names are case sensitive. A tag with the key \"ABC\" is a different tag from one with key \"abc\".\n Stack-level tags, tags you apply to the CloudFormation stack, are also attached to the secret. \n If you check tags in permissions policies as part of your security strategy, then adding or removing a tag can change permissions. If the completion of this operation would result in you losing your permissions for this secret, then Secrets Manager blocks the operation and returns an ``Access Denied`` error. For more information, see [Control access to secrets using tags](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_examples.html#tag-secrets-abac) and [Limit access to identities with tags that match secrets' tags](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_examples.html#auth-and-access_tags2).\n For information about how to format a JSON parameter for the various command line tool environments, see [Using JSON for Parameters](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#cli-using-param-json). If your command-line tool or SDK requires quotation marks around the parameter, you should use single quotes to avoid confusion with the double quotes required in the JSON text.\n The following restrictions apply to tags:\n  +  Maximum number of tags per secret: 50\n  +  Maximum key length: 127 Unicode characters in UTF-8\n  +  Maximum value length: 255 Unicode characters in UTF-8\n  +  Tag keys and values are case sensitive.\n  +  Do not use the ``aws:`` prefix in your tag names or values because AWS reserves it for AWS use. You can't edit or delete tag names or values with this prefix. Tags with this prefix do not count against your tags per secret limit.\n  +  If you use your tagging schema across multiple services and resources, other services might have restrictions on allowed characters. Generally allowed characters: letters, spaces, and numbers representable in UTF-8, plus the following special characters: + - = . _ : / @."
@@ -312,7 +510,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/21"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -324,7 +522,77 @@
     "name": "AWS.SecretsManager/Secret@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/16"
+      "$ref": "#/22"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecretsManager/SecretTargetAttachmentProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecretsManager/SecretTargetAttachmentProperties",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18
+      },
+      "SecretId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      },
+      "TargetId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      },
+      "TargetType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecretsManager/SecretTargetAttachment",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecretsManager/SecretTargetAttachment@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/26"
     },
     "flags": 0
   }

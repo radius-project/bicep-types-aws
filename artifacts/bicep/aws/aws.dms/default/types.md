@@ -1,5 +1,12 @@
 # AWS.DMS @ default
 
+## Resource AWS.DMS/DataMigration@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DMS/DataMigrationProperties](#awsdmsdatamigrationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.DMS/DataProvider@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -27,6 +34,19 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DMS/ReplicationConfigProperties](#awsdmsreplicationconfigproperties) (Required, Identifier): properties of the resource
+
+## AWS.DMS/DataMigrationProperties
+### Properties
+* **DataMigrationArn**: string (ReadOnly, Identifier): The property describes an ARN of the data migration.
+* **DataMigrationCreateTime**: string (ReadOnly): The property describes the create time of the data migration.
+* **DataMigrationIdentifier**: string (WriteOnly): The property describes an ARN of the data migration.
+* **DataMigrationName**: string: The property describes a name to identify the data migration.
+* **DataMigrationSettings**: [DataMigrationSettings](#datamigrationsettings): The property describes the settings for the data migration.
+* **DataMigrationType**: string (Required): The property describes the type of migration.
+* **MigrationProjectIdentifier**: string (Required): The property describes an identifier for the migration project. It is used for describing/deleting/modifying can be name/arn
+* **ServiceAccessRoleArn**: string (Required): The property describes Amazon Resource Name (ARN) of the service access role.
+* **SourceDataSettings**: [SourceDataSettings](#sourcedatasettings)[]: The property describes the settings for the data migration.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## AWS.DMS/DataProviderProperties
 ### Properties
@@ -96,6 +116,12 @@
 * **PreferredMaintenanceWindow**: string
 * **ReplicationSubnetGroupId**: string
 * **VpcSecurityGroupIds**: string[]
+
+## DataMigrationSettings
+### Properties
+* **CloudwatchLogsEnabled**: bool: The property specifies whether to enable the Cloudwatch log.
+* **NumberOfJobs**: int: The number of parallel jobs that trigger parallel threads to unload the tables from the source, and then load them to the target.
+* **SelectionRules**: string: The property specifies the rules of selecting objects for data migration.
 
 ## DataProvider_DmsSslModeValue
 ### Properties
@@ -173,6 +199,18 @@
 
 ## ReplicationConfig_TableMappings
 ### Properties
+
+## SourceDataSettings
+### Properties
+* **CDCStartPosition**: string: The property is a point in the database engine's log that defines a time where you can begin CDC.
+* **CDCStartTime**: string: The property indicates the start time for a change data capture (CDC) operation. The value is server time in UTC format.
+* **CDCStopTime**: string: The property indicates the stop time for a change data capture (CDC) operation. The value is server time in UTC format.
+* **SlotName**: string: The property sets the name of a previously created logical replication slot for a change data capture (CDC) load of the source instance.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties

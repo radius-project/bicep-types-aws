@@ -71,6 +71,7 @@
 * **CodeSigningConfigId**: string (ReadOnly): A unique identifier for CodeSigningConfig resource
 * **CodeSigningPolicies**: [CodeSigningPolicies](#codesigningpolicies): Policies to control how to act if a signature is invalid
 * **Description**: string: A description of the CodeSigningConfig
+* **Tags**: [Tag](#tag)[]: A list of tags to apply to CodeSigningConfig resource
 
 ## AWS.Lambda/EventInvokeConfigProperties
 ### Properties
@@ -103,6 +104,7 @@
   +   *Amazon Managed Streaming for Apache Kafka* – The ARN of the cluster or the ARN of the VPC connection (for [cross-account event source mappings](https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#msk-multi-vpc)).
   +   *Amazon MQ* – The ARN of the broker.
   +   *Amazon DocumentDB* – The ARN of the DocumentDB change stream.
+* **EventSourceMappingArn**: string (ReadOnly)
 * **FilterCriteria**: [FilterCriteria](#filtercriteria): An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see [Lambda event filtering](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
 * **FunctionName**: string (Required): The name or ARN of the Lambda function.
   **Name formats**
@@ -112,9 +114,10 @@
   +   *Partial ARN* – ``123456789012:function:MyFunction``.
   
  The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length.
-* **FunctionResponseTypes**: string[]: (Streams and SQS) A list of current response type enums applied to the event source mapping.
+* **FunctionResponseTypes**: string[]: (Kinesis, DynamoDB Streams, and SQS) A list of current response type enums applied to the event source mapping.
  Valid Values: ``ReportBatchItemFailures``
 * **Id**: string (ReadOnly, Identifier)
+* **KmsKeyArn**: string: The ARN of the KMSlong (KMS) customer managed key that Lambda uses to encrypt your function's [filter criteria](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-basics).
 * **MaximumBatchingWindowInSeconds**: int: The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function.
   *Default (, , event sources)*: 0
   *Default (, Kafka, , event sources)*: 500 ms
@@ -133,6 +136,8 @@
   +   *TRIM_HORIZON* - Process all available records.
   +   *AT_TIMESTAMP* - Specify a time from which to start reading records.
 * **StartingPositionTimestamp**: int: With ``StartingPosition`` set to ``AT_TIMESTAMP``, the time from which to start reading, in Unix time seconds. ``StartingPositionTimestamp`` cannot be in the future.
+* **Tags**: [Tag](#tag)[]: A list of tags to add to the event source mapping.
+  You must have the ``lambda:TagResource``, ``lambda:UntagResource``, and ``lambda:ListTags`` permissions for your [principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html) to manage the CFN stack. If you don't have these permissions, there might be unexpected behavior with stack-level tags propagating to the resource during resource creation and update.
 * **Topics**: string[]: The name of the Kafka topic.
 * **TumblingWindowInSeconds**: int: (Kinesis and DynamoDB Streams only) The duration in seconds of a processing window for DynamoDB and Kinesis Streams event sources. A value of 0 seconds indicates no tumbling window.
 
@@ -157,6 +162,7 @@
 * **LoggingConfig**: [LoggingConfig](#loggingconfig): The function's Amazon CloudWatch Logs configuration settings.
 * **MemorySize**: int: The amount of [memory available to the function](https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console) at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB. Note that new AWS accounts have reduced concurrency and memory quotas. AWS raises these quotas automatically based on your usage. You can also request a quota increase.
 * **PackageType**: string: The type of deployment package. Set to ``Image`` for container image and set ``Zip`` for .zip file archive.
+* **RecursiveLoop**: string
 * **ReservedConcurrentExecutions**: int: The number of simultaneous executions to reserve for the function.
 * **Role**: string (Required): The Amazon Resource Name (ARN) of the function's execution role.
 * **Runtime**: string: The identifier of the function's [runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Runtime is required if the deployment package is a .zip file archive. Specifying a runtime results in an error if you're deploying a function using a container image.
@@ -328,6 +334,16 @@
   +   ``CLIENT_CERTIFICATE_TLS_AUTH`` – (Amazon MSK, self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the certificate chain (X.509 PEM), private key (PKCS#8 PEM), and private key password (optional) used for mutual TLS authentication of your MSK/Apache Kafka brokers.
   +   ``SERVER_ROOT_CA_CERTIFICATE`` – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the root CA certificate (X.509 PEM) used for TLS encryption of your Apache Kafka brokers.
 * **URI**: string: The value for your chosen configuration in ``Type``. For example: ``"URI": "arn:aws:secretsmanager:us-east-1:01234567890:secret:MyBrokerSecretName"``.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for this tag.
+* **Value**: string: The value for this tag.
 
 ## Tag
 ### Properties

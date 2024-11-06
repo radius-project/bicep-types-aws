@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Pinpoint-InAppTemplate",
   "type": "AWS::Pinpoint::InAppTemplate",
-  "time": "2024-08-05T21:51:59.327Z",
+  "time": "2024-10-04T20:04:40.258Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -163,7 +163,9 @@
       "update": {
         "permissions": [
           "mobiletargeting:UpdateInAppTemplate",
-          "mobiletargeting:GetInAppTemplate"
+          "mobiletargeting:GetInAppTemplate",
+          "mobiletargeting:TagResource",
+          "mobiletargeting:UntagResource"
         ]
       }
     },
@@ -212,7 +214,17 @@
       "TemplateName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "mobiletargeting:TagResource",
+        "mobiletargeting:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Pinpoint::InAppTemplate"
   }
 }

@@ -42,7 +42,8 @@
 
 ## AWS.B2BI/PartnershipProperties
 ### Properties
-* **Capabilities**: string[]
+* **Capabilities**: string[] (Required)
+* **CapabilityOptions**: [CapabilityOptions](#capabilityoptions)
 * **CreatedAt**: string (ReadOnly)
 * **Email**: string (Required)
 * **ModifiedAt**: string (ReadOnly)
@@ -71,12 +72,16 @@
 ## AWS.B2BI/TransformerProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly)
-* **EdiType**: [EdiType](#editype) (Required)
-* **FileFormat**: string (Required)
-* **MappingTemplate**: string (Required)
+* **EdiType**: [EdiType](#editype)
+* **FileFormat**: string
+* **InputConversion**: [InputConversion](#inputconversion)
+* **Mapping**: [Mapping](#mapping)
+* **MappingTemplate**: string: This shape is deprecated: This is a legacy trait. Please use input-conversion or output-conversion.
 * **ModifiedAt**: string (ReadOnly)
 * **Name**: string (Required)
-* **SampleDocument**: string
+* **OutputConversion**: [OutputConversion](#outputconversion)
+* **SampleDocument**: string: This shape is deprecated: This is a legacy trait. Please use input-conversion or output-conversion.
+* **SampleDocuments**: [SampleDocuments](#sampledocuments)
 * **Status**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **TransformerArn**: string (ReadOnly)
@@ -85,13 +90,48 @@
 ## CapabilityConfiguration
 ### Properties
 
+## CapabilityOptions
+### Properties
+* **OutboundEdi**: [Partnership_OutboundEdiOptions](#partnershipoutboundedioptions)
+
 ## EdiType
+### Properties
+
+## FormatOptions
+### Properties
+
+## InputConversion
+### Properties
+* **FormatOptions**: [FormatOptions](#formatoptions)
+* **FromFormat**: string (Required)
+
+## Mapping
+### Properties
+* **Template**: string
+* **TemplateLanguage**: string (Required)
+
+## OutputConversion
+### Properties
+* **FormatOptions**: [FormatOptions](#formatoptions)
+* **ToFormat**: string (Required)
+
+## Partnership_OutboundEdiOptions
 ### Properties
 
 ## S3Location
 ### Properties
 * **BucketName**: string
 * **Key**: string
+
+## SampleDocumentKeys
+### Properties
+* **Input**: string
+* **Output**: string
+
+## SampleDocuments
+### Properties
+* **BucketName**: string (Required)
+* **Keys**: [SampleDocumentKeys](#sampledocumentkeys)[] (Required)
 
 ## Tag
 ### Properties

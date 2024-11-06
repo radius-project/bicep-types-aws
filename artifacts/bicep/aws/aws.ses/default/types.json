@@ -16,6 +16,13 @@
     "$type": "ObjectType",
     "name": "DeliveryOptions",
     "properties": {
+      "MaxDeliverySeconds": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Specifies the maximum time until which SES will retry sending emails"
+      },
       "SendingPoolName": {
         "type": {
           "$ref": "#/8"
@@ -51,7 +58,7 @@
     "properties": {
       "ReputationMetricsEnabled": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "If true , tracking of reputation metrics is enabled for the configuration set. If false , tracking of reputation metrics is disabled for the configuration set."
@@ -64,7 +71,7 @@
     "properties": {
       "SendingEnabled": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -76,7 +83,7 @@
     "properties": {
       "SuppressedReasons": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "A list that contains the reasons that email addresses are automatically added to the suppression list for your account."
@@ -116,6 +123,9 @@
   },
   {
     "$type": "StringType"
+  },
+  {
+    "$type": "IntegerType"
   },
   {
     "$type": "BooleanType"
@@ -199,7 +209,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/13"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -211,7 +221,7 @@
     "name": "AWS.SES/ConfigurationSet@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/13"
+      "$ref": "#/14"
     },
     "flags": 0
   },
@@ -221,7 +231,7 @@
     "properties": {
       "DimensionConfigurations": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "A list of dimensions upon which to categorize your emails when you publish email sending events to Amazon CloudWatch."
@@ -273,35 +283,35 @@
     "properties": {
       "CloudWatchDestination": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "An object that contains the names, default values, and sources of the dimensions associated with an Amazon CloudWatch event destination."
       },
       "Enabled": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Sets whether Amazon SES publishes events to this destination when you send an email with the associated configuration set. Set to true to enable publishing to this destination; set to false to prevent publishing to this destination. The default value is false.   "
       },
       "EventBridgeDestination": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "An object that contains Event bus ARN associated with the event bridge destination."
       },
       "KinesisFirehoseDestination": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "An object that contains the delivery stream ARN and the IAM role ARN associated with an Amazon Kinesis Firehose event destination."
       },
       "MatchingEventTypes": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "The type of email sending events, send, reject, bounce, complaint, delivery, open, click, renderingFailure, deliveryDelay, and subscription."
@@ -315,7 +325,7 @@
       },
       "SnsDestination": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "An object that contains SNS topic ARN associated event destination."
@@ -357,7 +367,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/16"
+      "$ref": "#/17"
     }
   },
   {
@@ -383,7 +393,7 @@
       },
       "EventDestination": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/19"
         },
         "flags": 1,
         "description": "The event destination object."
@@ -416,7 +426,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -428,7 +438,7 @@
     "name": "AWS.SES/ConfigurationSetEventDestination@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/25"
+      "$ref": "#/26"
     },
     "flags": 0
   },
@@ -490,13 +500,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/28"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/29"
     }
   },
   {
@@ -519,14 +529,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "The tags (keys and values) associated with the contact list."
       },
       "Topics": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "The topics associated with the contact list."
@@ -553,7 +563,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/33"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -565,7 +575,7 @@
     "name": "AWS.SES/ContactList@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/33"
+      "$ref": "#/34"
     },
     "flags": 0
   },
@@ -613,7 +623,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -625,7 +635,7 @@
     "name": "AWS.SES/DedicatedIpPool@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/37"
+      "$ref": "#/38"
     },
     "flags": 0
   },
@@ -648,7 +658,7 @@
     "properties": {
       "SigningEnabled": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Sets the DKIM signing configuration for the identity. When you set this value true, then the messages that are sent from the identity are signed using DKIM. If you set this value to false, your messages are sent without DKIM signing."
@@ -688,7 +698,7 @@
     "properties": {
       "EmailForwardingEnabled": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "If the value is true, you receive email notifications when bounce or complaint events occur"
@@ -725,13 +735,13 @@
     "properties": {
       "ConfigurationSetAttributes": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/40"
         },
         "flags": 0
       },
       "DkimAttributes": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/41"
         },
         "flags": 0
       },
@@ -773,7 +783,7 @@
       },
       "DkimSigningAttributes": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/42"
         },
         "flags": 0
       },
@@ -786,13 +796,13 @@
       },
       "FeedbackAttributes": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0
       },
       "MailFromAttributes": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       }
@@ -818,7 +828,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -830,7 +840,7 @@
     "name": "AWS.SES/EmailIdentity@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/46"
+      "$ref": "#/47"
     },
     "flags": 0
   },
@@ -859,7 +869,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/48"
+      "$ref": "#/49"
     }
   },
   {
@@ -892,7 +902,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 0
       }
@@ -918,7 +928,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -930,7 +940,7 @@
     "name": "AWS.SES/MailManagerAddonInstance@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/52"
+      "$ref": "#/53"
     },
     "flags": 0
   },
@@ -959,7 +969,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/55"
     }
   },
   {
@@ -986,7 +996,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/57"
         },
         "flags": 0
       }
@@ -1012,7 +1022,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/58"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1024,7 +1034,7 @@
     "name": "AWS.SES/MailManagerAddonSubscription@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/58"
+      "$ref": "#/59"
     },
     "flags": 0
   },
@@ -1068,7 +1078,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/63"
+      "$ref": "#/64"
     }
   },
   {
@@ -1107,13 +1117,13 @@
       },
       "Retention": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/66"
         },
         "flags": 0
       }
@@ -1139,7 +1149,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/67"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1151,7 +1161,7 @@
     "name": "AWS.SES/MailManagerArchive@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/67"
+      "$ref": "#/68"
     },
     "flags": 0
   },
@@ -1200,7 +1210,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/73"
+      "$ref": "#/74"
     }
   },
   {
@@ -1221,7 +1231,7 @@
       },
       "IngressPointConfiguration": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/70"
         },
         "flags": 4
       },
@@ -1257,7 +1267,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/76"
         },
         "flags": 0
       },
@@ -1295,7 +1305,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/77"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1307,7 +1317,7 @@
     "name": "AWS.SES/MailManagerIngressPoint@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/77"
+      "$ref": "#/78"
     },
     "flags": 0
   },
@@ -1344,12 +1354,9 @@
     "value": "AWS.SES/MailManagerRelayProperties"
   },
   {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/81"
+      "$ref": "#/82"
     }
   },
   {
@@ -1358,7 +1365,7 @@
     "properties": {
       "Authentication": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/81"
         },
         "flags": 1
       },
@@ -1388,7 +1395,7 @@
       },
       "ServerPort": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/9"
         },
         "flags": 1
       },
@@ -1728,7 +1735,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/9"
         },
         "flags": 1
       }
@@ -2350,7 +2357,7 @@
       },
       "MaxMessageSizeBytes": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/9"
         },
         "flags": 0
       },

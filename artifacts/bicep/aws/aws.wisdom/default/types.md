@@ -1,5 +1,26 @@
 # AWS.Wisdom @ default
 
+## Resource AWS.Wisdom/AIAgent@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Wisdom/AIAgentProperties](#awswisdomaiagentproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Wisdom/AIPrompt@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Wisdom/AIPromptProperties](#awswisdomaipromptproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Wisdom/AIPromptVersion@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Wisdom/AIPromptVersionProperties](#awswisdomaipromptversionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Wisdom/Assistant@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -21,6 +42,12 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/KnowledgeBaseProperties](#awswisdomknowledgebaseproperties) (Required, Identifier): properties of the resource
 
+## AIAgentConfiguration
+### Properties
+
+## AIPromptTemplateConfiguration
+### Properties
+
 ## AppIntegrationsConfiguration
 ### Properties
 * **AppIntegrationArn**: string (Required)
@@ -29,6 +56,43 @@
 ## AssociationData
 ### Properties
 * **KnowledgeBaseId**: string (Required)
+
+## AWS.Wisdom/AIAgentProperties
+### Properties
+* **AIAgentArn**: string (ReadOnly)
+* **AIAgentId**: string (ReadOnly, Identifier)
+* **AssistantArn**: string (ReadOnly)
+* **AssistantId**: string (Required, Identifier)
+* **Configuration**: [AIAgentConfiguration](#aiagentconfiguration) (Required)
+* **Description**: string
+* **Name**: string
+* **Tags**: [Tags](#tags)
+* **Type**: string (Required)
+
+## AWS.Wisdom/AIPromptProperties
+### Properties
+* **AIPromptArn**: string (ReadOnly)
+* **AIPromptId**: string (ReadOnly, Identifier)
+* **ApiFormat**: string (Required)
+* **AssistantArn**: string (ReadOnly)
+* **AssistantId**: string (Identifier)
+* **Description**: string
+* **ModelId**: string (Required)
+* **Name**: string
+* **Tags**: [Tags](#tags)
+* **TemplateConfiguration**: [AIPromptTemplateConfiguration](#aiprompttemplateconfiguration) (Required)
+* **TemplateType**: string (Required)
+* **Type**: string (Required)
+
+## AWS.Wisdom/AIPromptVersionProperties
+### Properties
+* **AIPromptArn**: string (ReadOnly)
+* **AIPromptId**: string (Required, Identifier)
+* **AIPromptVersionId**: string (ReadOnly)
+* **AssistantArn**: string (ReadOnly)
+* **AssistantId**: string (Required, Identifier)
+* **ModifiedTimeSeconds**: int
+* **VersionNumber**: int (ReadOnly, Identifier)
 
 ## AWS.Wisdom/AssistantAssociationProperties
 ### Properties
@@ -92,4 +156,10 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tags
+### Properties
+
+## Tags
+### Properties
 

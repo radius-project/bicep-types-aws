@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-NatGateway",
   "type": "AWS::EC2::NatGateway",
-  "time": "2024-08-06T21:04:08.67Z",
+  "time": "2024-10-29T19:37:29.907Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -13,7 +13,7 @@
     "definitions": {
       "Tag": {
         "additionalProperties": false,
-        "description": "Specifies a tag. For more information, see [Add tags to a resource](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#cloudformation-add-tag-specifications).",
+        "description": "Specifies a tag. For more information, see [Resource tags](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html).",
         "properties": {
           "Key": {
             "description": "The tag key.",
@@ -93,7 +93,7 @@
         "type": "string"
       },
       "SecondaryAllocationIds": {
-        "description": "Secondary EIP allocation IDs. For more information, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating) in the *Amazon VPC User Guide*.",
+        "description": "Secondary EIP allocation IDs. For more information, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-working-with.html) in the *Amazon VPC User Guide*.",
         "insertionOrder": true,
         "items": {
           "type": "string"
@@ -137,7 +137,12 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "ec2:DeleteTags",
+        "ec2:CreateTags"
+      ],
       "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
       "tagUpdatable": true,
       "taggable": true
     },

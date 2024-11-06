@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppConfig-Application",
   "type": "AWS::AppConfig::Application",
-  "time": "2024-04-08T15:36:32.26Z",
+  "time": "2024-10-15T18:31:23.833Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -13,7 +13,6 @@
             "description": "The key-value string map. The valid character set is [a-zA-Z1-9 +-=._:/-]. The tag key can be up to 128 characters and must not start with aws:.",
             "maxLength": 128,
             "minLength": 1,
-            "pattern": "^(?!aws:.)[a-zA-Z1-9+=._:/-]*$",
             "type": "string"
           },
           "Value": {
@@ -100,6 +99,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-appconfig.git",
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "appconfig:TagResource",
+        "appconfig:UntagResource",
+        "appconfig:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

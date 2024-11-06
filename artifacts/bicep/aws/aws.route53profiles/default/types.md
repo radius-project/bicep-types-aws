@@ -23,12 +23,12 @@
 
 ## AWS.Route53Profiles/ProfileAssociationProperties
 ### Properties
-* **Arn**: string (WriteOnly): The Amazon Resource Name (ARN) of the  profile association.
+* **Arn**: string (WriteOnly): The Amazon Resource Name (ARN) of the profile association.
 * **Id**: string (ReadOnly, Identifier): Primary Identifier for  Profile Association
 * **Name**: string (Required): The name of an association between a  Profile and a VPC.
 * **ProfileId**: string (Required): The ID of the  profile that you associated with the resource that is specified by ResourceId.
 * **ResourceId**: string (Required): The resource that you associated the  profile with.
-* **Tags**: [Tag](#tag)[] (WriteOnly): An array of key-value pairs to apply to this resource.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## AWS.Route53Profiles/ProfileProperties
 ### Properties
@@ -36,7 +36,7 @@
 * **ClientToken**: string (ReadOnly): The id of the creator request
 * **Id**: string (ReadOnly, Identifier): The ID of the profile.
 * **Name**: string (Required): The name of the profile.
-* **Tags**: [Tag](#tag)[] (WriteOnly): An array of key-value pairs to apply to this resource.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## AWS.Route53Profiles/ProfileResourceAssociationProperties
 ### Properties

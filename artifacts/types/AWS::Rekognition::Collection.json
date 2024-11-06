@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Rekognition-Collection",
   "type": "AWS::Rekognition::Collection",
-  "time": "2024-07-10T16:05:22.141Z",
+  "time": "2024-10-29T16:14:50.991Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -108,7 +108,18 @@
       "CollectionId"
     ],
     "sourceUrl": "https://docs.aws.amazon.com/rekognition/latest/dg/collections.html",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "rekognition:ListTagsForResource",
+        "rekognition:TagResource",
+        "rekognition:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Rekognition::Collection"
   }
 }

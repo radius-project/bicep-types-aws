@@ -1,41 +1,265 @@
 [
   {
     "$type": "ObjectType",
+    "name": "AppConfig",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The configuration key"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The configuration value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AppConfigType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataSource",
+    "properties": {
+      "DataSourceArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The ARN of the data source."
+      },
+      "DataSourceDescription": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Description of the data source."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The key in the key-value pair"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The value in the key-value pair"
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.OpenSearchService/ApplicationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Application_IamIdentityCenterOptions",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Whether IAM Identity Center is enabled."
+      },
+      "IamIdentityCenterInstanceArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The ARN of the IAM Identity Center instance."
+      },
+      "IamRoleForIdentityCenterApplicationArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The ARN of the IAM role for Identity Center application."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.OpenSearchService/ApplicationProperties",
+    "properties": {
+      "AppConfigs": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "List of application configurations."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "Amazon Resource Name (ARN) format."
+      },
+      "DataSources": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "List of data sources."
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The endpoint for the application."
+      },
+      "IamIdentityCenterOptions": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Options for configuring IAM Identity Center"
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The identifier of the application."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "The name of the application."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "An arbitrary set of tags (key-value pairs) for this application."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.OpenSearchService/Application",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.OpenSearchService/Application@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/12"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "AdvancedSecurityOptionsInput",
     "properties": {
       "AnonymousAuthDisableDate": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 2
       },
       "AnonymousAuthEnabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "Enabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "InternalUserDatabaseEnabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "JWTOptions": {
+        "type": {
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "MasterUserOptions": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/25"
         },
         "flags": 4
       },
       "SAMLOptions": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -47,73 +271,73 @@
     "properties": {
       "ColdStorageOptions": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "DedicatedMasterCount": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/39"
         },
         "flags": 0
       },
       "DedicatedMasterEnabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "DedicatedMasterType": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "InstanceCount": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/39"
         },
         "flags": 0
       },
       "InstanceType": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "MultiAZWithStandbyEnabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "WarmCount": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/39"
         },
         "flags": 0
       },
       "WarmEnabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "WarmType": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "ZoneAwarenessConfig": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/38"
         },
         "flags": 0
       },
       "ZoneAwarenessEnabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       }
@@ -125,25 +349,25 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "IdentityPoolId": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "UserPoolId": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -155,7 +379,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       }
@@ -167,31 +391,31 @@
     "properties": {
       "CustomEndpoint": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "CustomEndpointCertificateArn": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "CustomEndpointEnabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "EnforceHTTPS": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "TLSSecurityPolicy": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -203,31 +427,31 @@
     "properties": {
       "EBSEnabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "Iops": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/39"
         },
         "flags": 0
       },
       "Throughput": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/39"
         },
         "flags": 0
       },
       "VolumeSize": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/39"
         },
         "flags": 0
       },
       "VolumeType": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -239,15 +463,63 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "KmsKeyId": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IdentityCenterOptions",
+    "properties": {
+      "EnabledAPIAccess": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Whether Identity Center is enabled."
+      },
+      "IdentityCenterApplicationARN": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The ARN of the Identity Center application."
+      },
+      "IdentityCenterInstanceARN": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The ARN of the Identity Center instance."
+      },
+      "IdentityStoreId": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The IdentityStoreId for Identity Center options."
+      },
+      "RolesKey": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The roles key for Identity Center options."
+      },
+      "SubjectKey": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The subject key for Identity Center options."
       }
     }
   },
@@ -257,15 +529,45 @@
     "properties": {
       "EntityId": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "MetadataContent": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JWTOptions",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "PublicKey": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 4
+      },
+      "RolesKey": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "SubjectKey": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
       }
     }
   },
@@ -275,13 +577,13 @@
     "properties": {
       "CloudWatchLogsLogGroupArn": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "Enabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       }
@@ -293,19 +595,19 @@
     "properties": {
       "MasterUserARN": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "MasterUserName": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "MasterUserPassword": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -317,7 +619,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       }
@@ -329,7 +631,7 @@
     "properties": {
       "WindowStartTime": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/37"
         },
         "flags": 0
       }
@@ -341,13 +643,13 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "OffPeakWindow": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/27"
         },
         "flags": 0
       }
@@ -355,47 +657,52 @@
   },
   {
     "$type": "ObjectType",
+    "name": "RolesKeyIdcType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "SAMLOptions",
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "Idp": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "MasterBackendRole": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 4
       },
       "MasterUserName": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 4
       },
       "RolesKey": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "SessionTimeoutMinutes": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/39"
         },
         "flags": 0
       },
       "SubjectKey": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -407,49 +714,49 @@
     "properties": {
       "AutomatedUpdateDate": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "Cancellable": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "CurrentVersion": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "Description": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "NewVersion": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "OptionalDeployment": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "UpdateAvailable": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "UpdateStatus": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -461,7 +768,7 @@
     "properties": {
       "AutomatedSnapshotStartHour": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/39"
         },
         "flags": 0
       }
@@ -473,7 +780,7 @@
     "properties": {
       "AutoSoftwareUpdateEnabled": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/8"
         },
         "flags": 0
       }
@@ -481,18 +788,23 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SubjectKeyIdcType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The value of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The key of the tag."
@@ -505,13 +817,13 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/40"
         },
         "flags": 0
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/41"
         },
         "flags": 0
       }
@@ -523,13 +835,13 @@
     "properties": {
       "Hours": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/39"
         },
         "flags": 1
       },
       "Minutes": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/39"
         },
         "flags": 1
       }
@@ -541,17 +853,11 @@
     "properties": {
       "AvailabilityZoneCount": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/39"
         },
         "flags": 0
       }
     }
-  },
-  {
-    "$type": "StringType"
-  },
-  {
-    "$type": "BooleanType"
   },
   {
     "$type": "IntegerType"
@@ -559,13 +865,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/21"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/21"
+      "$ref": "#/4"
     }
   },
   {
@@ -595,7 +901,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/35"
     }
   },
   {
@@ -604,152 +910,164 @@
     "properties": {
       "AccessPolicies": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/43"
         },
         "flags": 0
       },
       "AdvancedOptions": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "AdvancedSecurityOptions": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/14"
         },
         "flags": 0
       },
       "Arn": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 2
       },
       "ClusterConfig": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/15"
         },
         "flags": 0
       },
       "CognitoOptions": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "DomainArn": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 2
       },
       "DomainEndpoint": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 2
       },
       "DomainEndpointOptions": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "DomainEndpointV2": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 2
       },
       "DomainEndpoints": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/45"
         },
         "flags": 2
       },
       "DomainName": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 16
       },
       "EBSOptions": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/19"
         },
         "flags": 0
       },
       "EncryptionAtRestOptions": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "EngineVersion": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "IPAddressType": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "Id": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 2
       },
+      "IdentityCenterOptions": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
       "LogPublishingOptions": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "NodeToNodeEncryptionOptions": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/26"
         },
         "flags": 0
       },
       "OffPeakWindowOptions": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/28"
         },
         "flags": 0
       },
       "ServiceSoftwareOptions": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/31"
         },
         "flags": 2
       },
+      "SkipShardMigrationWait": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
       "SnapshotOptions": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/32"
         },
         "flags": 0
       },
       "SoftwareUpdateOptions": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/33"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this Domain."
       },
       "VPCOptions": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/36"
         },
         "flags": 0
       }
@@ -761,21 +1079,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/48"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -787,7 +1105,7 @@
     "name": "AWS.OpenSearchService/Domain@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/33"
+      "$ref": "#/49"
     },
     "flags": 0
   }

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MSK-Replicator",
   "type": "AWS::MSK::Replicator",
-  "time": "2024-03-12T18:47:26.161Z",
+  "time": "2024-08-20T16:27:27.277Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -13,8 +13,7 @@
       "/properties/ReplicatorName",
       "/properties/Description",
       "/properties/KafkaClusters",
-      "/properties/ServiceExecutionRoleArn",
-      "/properties/ReplicationInfoList/-/TopicReplication/StartingPosition/Type"
+      "/properties/ServiceExecutionRoleArn"
     ],
     "definitions": {
       "AmazonMskCluster": {
@@ -187,6 +186,25 @@
         ],
         "type": "string"
       },
+      "ReplicationTopicNameConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for specifying replicated topic names should be the same as their corresponding upstream topics or prefixed with source cluster alias.",
+        "properties": {
+          "Type": {
+            "$ref": "#/definitions/ReplicationTopicNameConfigurationType"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "ReplicationTopicNameConfigurationType": {
+        "description": "The type of replicated topic name.",
+        "enum": [
+          "PREFIXED_WITH_SOURCE_CLUSTER_ALIAS",
+          "IDENTICAL"
+        ],
+        "type": "string"
+      },
       "Tag": {
         "additionalProperties": false,
         "properties": {
@@ -224,6 +242,10 @@
           "StartingPosition": {
             "$ref": "#/definitions/ReplicationStartingPosition",
             "description": "Configuration for specifying the position in the topics to start replicating from."
+          },
+          "TopicNameConfiguration": {
+            "$ref": "#/definitions/ReplicationTopicNameConfiguration",
+            "description": "Configuration for specifying replicated topic names should be the same as their corresponding upstream topics or prefixed with source cluster alias."
           },
           "TopicsToExclude": {
             "description": "List of regular expression patterns indicating the topics that should not be replicated.",
@@ -378,6 +400,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-msk-replicator.git",
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "kafka:UntagResource",
+        "kafka:ListTagsForResource",
+        "kafka:TagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-OpenSearchService-Domain",
   "type": "AWS::OpenSearchService::Domain",
-  "time": "2024-06-05T03:41:23.926Z",
+  "time": "2024-10-30T04:59:28.472Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -26,6 +26,9 @@
           },
           "InternalUserDatabaseEnabled": {
             "type": "boolean"
+          },
+          "JWTOptions": {
+            "$ref": "#/definitions/JWTOptions"
           },
           "MasterUserOptions": {
             "$ref": "#/definitions/MasterUserOptions"
@@ -159,6 +162,37 @@
         },
         "type": "object"
       },
+      "IdentityCenterOptions": {
+        "additionalProperties": false,
+        "description": "Options for configuring Identity Center",
+        "properties": {
+          "EnabledAPIAccess": {
+            "description": "Whether Identity Center is enabled.",
+            "type": "boolean"
+          },
+          "IdentityCenterApplicationARN": {
+            "description": "The ARN of the Identity Center application.",
+            "type": "string"
+          },
+          "IdentityCenterInstanceARN": {
+            "description": "The ARN of the Identity Center instance.",
+            "type": "string"
+          },
+          "IdentityStoreId": {
+            "description": "The IdentityStoreId for Identity Center options.",
+            "type": "string"
+          },
+          "RolesKey": {
+            "$ref": "#/definitions/RolesKeyIdcType",
+            "description": "The roles key for Identity Center options."
+          },
+          "SubjectKey": {
+            "$ref": "#/definitions/SubjectKeyIdcType",
+            "description": "The subject key for Identity Center options."
+          }
+        },
+        "type": "object"
+      },
       "Idp": {
         "additionalProperties": false,
         "properties": {
@@ -175,6 +209,24 @@
           "MetadataContent",
           "EntityId"
         ],
+        "type": "object"
+      },
+      "JWTOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "Enabled": {
+            "type": "boolean"
+          },
+          "PublicKey": {
+            "type": "string"
+          },
+          "RolesKey": {
+            "type": "string"
+          },
+          "SubjectKey": {
+            "type": "string"
+          }
+        },
         "type": "object"
       },
       "LogPublishingOption": {
@@ -233,6 +285,14 @@
           }
         },
         "type": "object"
+      },
+      "RolesKeyIdcType": {
+        "description": "Roles Key Idc type values.",
+        "enum": [
+          "GroupName",
+          "GroupId"
+        ],
+        "type": "string"
       },
       "SAMLOptions": {
         "additionalProperties": false,
@@ -308,6 +368,15 @@
           }
         },
         "type": "object"
+      },
+      "SubjectKeyIdcType": {
+        "description": "Subject Key Idc type values.",
+        "enum": [
+          "UserName",
+          "UserId",
+          "Email"
+        ],
+        "type": "string"
       },
       "Tag": {
         "additionalProperties": false,
@@ -483,6 +552,9 @@
       "Id": {
         "type": "string"
       },
+      "IdentityCenterOptions": {
+        "$ref": "#/definitions/IdentityCenterOptions"
+      },
       "LogPublishingOptions": {
         "additionalProperties": false,
         "patternProperties": {
@@ -500,6 +572,9 @@
       },
       "ServiceSoftwareOptions": {
         "$ref": "#/definitions/ServiceSoftwareOptions"
+      },
+      "SkipShardMigrationWait": {
+        "type": "boolean"
       },
       "SnapshotOptions": {
         "$ref": "#/definitions/SnapshotOptions"
@@ -527,14 +602,17 @@
       "/properties/DomainEndpointV2",
       "/properties/DomainEndpoints",
       "/properties/ServiceSoftwareOptions",
-      "/properties/AdvancedSecurityOptions/AnonymousAuthDisableDate"
+      "/properties/AdvancedSecurityOptions/AnonymousAuthDisableDate",
+      "/properties/IdentityCenterOptions/IdentityCenterApplicationARN",
+      "/properties/IdentityCenterOptions/IdentityStoreId"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "typeName": "AWS::OpenSearchService::Domain",
     "writeOnlyProperties": [
       "/properties/AdvancedSecurityOptions/MasterUserOptions",
       "/properties/AdvancedSecurityOptions/SAMLOptions/MasterUserName",
-      "/properties/AdvancedSecurityOptions/SAMLOptions/MasterBackendRole"
+      "/properties/AdvancedSecurityOptions/SAMLOptions/MasterBackendRole",
+      "/properties/AdvancedSecurityOptions/JWTOptions/PublicKey"
     ]
   }
 }

@@ -21,6 +21,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Backup/FrameworkProperties](#awsbackupframeworkproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Backup/LogicallyAirGappedBackupVault@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Backup/LogicallyAirGappedBackupVaultProperties](#awsbackuplogicallyairgappedbackupvaultproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Backup/ReportPlan@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -84,6 +91,19 @@
 `UNAVAILABLE` when AWS Backup is unable to validate recording status at this time.
 * **FrameworkTags**: [Tag](#tag)[]: Metadata that you can assign to help organize the frameworks that you create. Each tag is a key-value pair.
 
+## AWS.Backup/LogicallyAirGappedBackupVaultProperties
+### Properties
+* **AccessPolicy**: [LogicallyAirGappedBackupVault_AccessPolicy](#logicallyairgappedbackupvaultaccesspolicy) | string
+* **BackupVaultArn**: string (ReadOnly)
+* **BackupVaultName**: string (Required, Identifier)
+* **BackupVaultTags**: [LogicallyAirGappedBackupVault_BackupVaultTags](#logicallyairgappedbackupvaultbackupvaulttags)
+* **EncryptionKeyArn**: string (ReadOnly)
+* **MaxRetentionDays**: int (Required)
+* **MinRetentionDays**: int (Required)
+* **Notifications**: [NotificationObjectType](#notificationobjecttype)
+* **VaultState**: string
+* **VaultType**: string
+
 ## AWS.Backup/ReportPlanProperties
 ### Properties
 * **ReportDeliveryChannel**: [ReportPlan_ReportDeliveryChannel](#reportplanreportdeliverychannel) (Required): A structure that contains information about where and how to deliver your reports, specifically your Amazon S3 bucket name, S3 key prefix, and the formats of your reports.
@@ -100,6 +120,7 @@
 * **RestoreTestingPlanName**: string (Required, Identifier)
 * **ScheduleExpression**: string (Required)
 * **ScheduleExpressionTimezone**: string
+* **ScheduleStatus**: string
 * **StartWindowHours**: int
 * **Tags**: [Tag](#tag)[]
 
@@ -183,6 +204,14 @@
 * **ChangeableForDays**: int (WriteOnly)
 * **MaxRetentionDays**: int
 * **MinRetentionDays**: int (Required)
+
+## LogicallyAirGappedBackupVault_BackupVaultTags
+### Properties
+
+## NotificationObjectType
+### Properties
+* **BackupVaultEvents**: string[] (Required)
+* **SNSTopicArn**: string (Required)
 
 ## NotificationObjectType
 ### Properties

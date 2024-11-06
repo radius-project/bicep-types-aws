@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Events-Connection",
   "type": "AWS::Events::Connection",
-  "time": "2024-01-03T20:30:33.207Z",
+  "time": "2024-10-31T19:26:31.619Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -12,9 +12,11 @@
         "additionalProperties": false,
         "properties": {
           "ApiKeyName": {
+            "pattern": "^[ \\t]*[^\\x00-\\x1F\\x7F]+([ \\t]+[^\\x00-\\x1F\\x7F]+)*[ \\t]*$",
             "type": "string"
           },
           "ApiKeyValue": {
+            "pattern": "^[ \\t]*[^\\x00-\\x1F\\x7F]+([ \\t]+[^\\x00-\\x1F\\x7F]+)*[ \\t]*$",
             "type": "string"
           }
         },
@@ -65,9 +67,11 @@
         "additionalProperties": false,
         "properties": {
           "Password": {
+            "pattern": "^[ \\t]*[^\\x00-\\x1F\\x7F]+([ \\t]+[^\\x00-\\x1F\\x7F]+)*[ \\t]*$",
             "type": "string"
           },
           "Username": {
+            "pattern": "^[ \\t]*[^\\x00-\\x1F\\x7F]+([ \\t]+[^\\x00-\\x1F\\x7F]+)*[ \\t]*$",
             "type": "string"
           }
         },
@@ -81,9 +85,11 @@
         "additionalProperties": false,
         "properties": {
           "ClientID": {
+            "pattern": "^[ \\t]*[^\\x00-\\x1F\\x7F]+([ \\t]+[^\\x00-\\x1F\\x7F]+)*[ \\t]*$",
             "type": "string"
           },
           "ClientSecret": {
+            "pattern": "^[ \\t]*[^\\x00-\\x1F\\x7F]+([ \\t]+[^\\x00-\\x1F\\x7F]+)*[ \\t]*$",
             "type": "string"
           }
         },
@@ -123,6 +129,7 @@
           "AuthorizationEndpoint": {
             "maxLength": 2048,
             "minLength": 1,
+            "pattern": "^((%[0-9A-Fa-f]{2}|[-()_.!~*';/?:@\\x26=+$,A-Za-z0-9])+)([).!';/?:,])?$",
             "type": "string"
           },
           "ClientParameters": {
@@ -173,6 +180,7 @@
       "create": {
         "permissions": [
           "events:CreateConnection",
+          "events:DescribeConnection",
           "secretsmanager:CreateSecret",
           "secretsmanager:GetSecretValue",
           "secretsmanager:PutSecretValue",
@@ -181,7 +189,8 @@
       },
       "delete": {
         "permissions": [
-          "events:DeleteConnection"
+          "events:DeleteConnection",
+          "events:DescribeConnection"
         ]
       },
       "list": {
@@ -211,6 +220,7 @@
     "properties": {
       "Arn": {
         "description": "The arn of the connection resource.",
+        "pattern": "^arn:aws([a-z]|\\-)*:events:([a-z]|\\d|\\-)*:([0-9]{12})?:connection\\/[\\.\\-_A-Za-z0-9]+\\/[\\-A-Za-z0-9]+$",
         "type": "string"
       },
       "AuthParameters": {
@@ -233,10 +243,12 @@
         "description": "Name of the connection.",
         "maxLength": 64,
         "minLength": 1,
+        "pattern": "[\\.\\-_A-Za-z0-9]+",
         "type": "string"
       },
       "SecretArn": {
         "description": "The arn of the secrets manager secret created in the customer account.",
+        "pattern": "^arn:aws([a-z]|\\-)*:secretsmanager:([a-z]|\\d|\\-)*:([0-9]{12})?:secret:[\\/_+=\\.@\\-A-Za-z0-9]+$",
         "type": "string"
       }
     },
@@ -244,10 +256,12 @@
       "/properties/Arn",
       "/properties/SecretArn"
     ],
-    "required": [
-      "AuthorizationType",
-      "AuthParameters"
-    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
     "typeName": "AWS::Events::Connection",
     "writeOnlyProperties": [
       "/properties/AuthParameters"

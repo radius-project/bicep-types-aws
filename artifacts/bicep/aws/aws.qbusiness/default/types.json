@@ -10,7 +10,7 @@
     "properties": {
       "AttachmentsControlMode": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -23,11 +23,17 @@
   },
   {
     "$type": "ObjectType",
-    "name": "EncryptionConfiguration",
+    "name": "AutoSubscriptionConfiguration",
     "properties": {
-      "KmsKeyId": {
+      "AutoSubscribe": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "DefaultSubscriptionType": {
+        "type": {
+          "$ref": "#/13"
         },
         "flags": 0
       }
@@ -35,11 +41,50 @@
   },
   {
     "$type": "ObjectType",
+    "name": "AutoSubscriptionStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionConfiguration",
+    "properties": {
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IdentityType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PersonalizationConfiguration",
+    "properties": {
+      "PersonalizationControlMode": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PersonalizationControlMode",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "QAppsConfiguration",
     "properties": {
       "QAppsControlMode": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -52,17 +97,22 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SubscriptionType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -78,7 +128,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
     }
   },
   {
@@ -87,13 +143,13 @@
     "properties": {
       "ApplicationArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "ApplicationId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 18
       },
@@ -103,69 +159,99 @@
         },
         "flags": 0
       },
-      "CreatedAt": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 2
-      },
-      "Description": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "DisplayName": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "EncryptionConfiguration": {
+      "AutoSubscriptionConfiguration": {
         "type": {
           "$ref": "#/3"
         },
         "flags": 0
       },
+      "ClientIdsForOIDC": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "DisplayName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "EncryptionConfiguration": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "IamIdentityProviderArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
       "IdentityCenterApplicationArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "IdentityCenterInstanceArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 4
       },
+      "IdentityType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "PersonalizationConfiguration": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
       "QAppsConfiguration": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0
-      },
-      "RoleArn": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0
-      },
-      "Status": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 2
-      },
-      "Tags": {
         "type": {
           "$ref": "#/9"
         },
         "flags": 0
       },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       }
@@ -177,21 +263,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -203,7 +289,7 @@
     "name": "AWS.QBusiness/Application@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/18"
     },
     "flags": 0
   },
@@ -223,13 +309,13 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/32"
         },
         "flags": 1
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/33"
         },
         "flags": 1
       }
@@ -241,19 +327,19 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Operator": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/34"
         },
         "flags": 0
       }
@@ -265,19 +351,19 @@
     "properties": {
       "AttributeValueOperator": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "Key": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/35"
         },
         "flags": 0
       }
@@ -304,19 +390,19 @@
     "properties": {
       "InlineConfigurations": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/36"
         },
         "flags": 0
       },
       "PostExtractionHookConfiguration": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/29"
         },
         "flags": 0
       },
       "PreExtractionHookConfiguration": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/29"
         },
         "flags": 0
       }
@@ -328,25 +414,25 @@
     "properties": {
       "InvocationCondition": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "LambdaArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "S3BucketName": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       }
@@ -358,19 +444,19 @@
     "properties": {
       "Condition": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "DocumentContentOperator": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "Target": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/24"
         },
         "flags": 0
       }
@@ -382,13 +468,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -397,13 +483,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/13"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/13"
     }
   },
   {
@@ -419,7 +505,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/30"
     }
   },
   {
@@ -434,7 +520,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/31"
     }
   },
   {
@@ -443,97 +529,97 @@
     "properties": {
       "ApplicationId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 17
       },
       "Configuration": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/38"
         },
         "flags": 1
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "DataSourceArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "DataSourceId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 18
       },
       "Description": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "DisplayName": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "DocumentEnrichmentConfiguration": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/28"
         },
         "flags": 0
       },
       "IndexId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 17
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "Status": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "SyncSchedule": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/39"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "VpcConfiguration": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/22"
         },
         "flags": 0
       }
@@ -545,21 +631,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/40"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -571,7 +657,7 @@
     "name": "AWS.QBusiness/DataSource@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/41"
     },
     "flags": 0
   },
@@ -586,19 +672,19 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "Search": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       }
@@ -610,7 +696,7 @@
     "properties": {
       "Units": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/52"
         },
         "flags": 0
       }
@@ -622,7 +708,7 @@
     "properties": {
       "TextDocumentStatistics": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/51"
         },
         "flags": 0
       }
@@ -649,13 +735,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -667,13 +753,13 @@
     "properties": {
       "IndexedTextBytes": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/52"
         },
         "flags": 0
       },
       "IndexedTextDocumentCount": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/52"
         },
         "flags": 0
       }
@@ -689,13 +775,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/37"
+      "$ref": "#/44"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/50"
     }
   },
   {
@@ -704,79 +790,79 @@
     "properties": {
       "ApplicationId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 17
       },
       "CapacityConfiguration": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "Description": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "DisplayName": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "DocumentAttributeConfigurations": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "IndexArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "IndexId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 18
       },
       "IndexStatistics": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/46"
         },
         "flags": 2
       },
       "Status": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/55"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       }
@@ -788,21 +874,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/56"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -814,7 +900,7 @@
     "name": "AWS.QBusiness/Index@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/50"
+      "$ref": "#/57"
     },
     "flags": 0
   },
@@ -834,13 +920,13 @@
     "properties": {
       "RoleArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "SecretArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -852,19 +938,19 @@
     "properties": {
       "ApiSchema": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/59"
         },
         "flags": 1
       },
       "ApiSchemaType": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Description": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -881,13 +967,13 @@
     "properties": {
       "RoleArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "SecretArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -919,13 +1005,13 @@
     "properties": {
       "Bucket": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Key": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -937,13 +1023,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -956,7 +1042,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/63"
+      "$ref": "#/70"
     }
   },
   {
@@ -965,79 +1051,79 @@
     "properties": {
       "ApplicationId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 17
       },
       "AuthConfiguration": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/65"
         },
         "flags": 1
       },
       "BuildStatus": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "CustomPluginConfiguration": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/62"
         },
         "flags": 0
       },
       "DisplayName": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "PluginArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "PluginId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 18
       },
       "ServerUrl": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "State": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/72"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       }
@@ -1049,21 +1135,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/73"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1075,7 +1161,7 @@
     "name": "AWS.QBusiness/Plugin@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/67"
+      "$ref": "#/74"
     },
     "flags": 0
   },
@@ -1085,7 +1171,7 @@
     "properties": {
       "IndexId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -1097,7 +1183,7 @@
     "properties": {
       "IndexId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -1124,13 +1210,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -1143,7 +1229,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/74"
+      "$ref": "#/81"
     }
   },
   {
@@ -1152,67 +1238,67 @@
     "properties": {
       "ApplicationId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 17
       },
       "Configuration": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/78"
         },
         "flags": 1
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "DisplayName": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "RetrieverArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "RetrieverId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 18
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "Status": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/83"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       }
@@ -1224,21 +1310,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/84"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1250,9 +1336,49 @@
     "name": "AWS.QBusiness/Retriever@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/78"
+      "$ref": "#/85"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IdentityProviderConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OpenIDConnectProviderConfiguration",
+    "properties": {
+      "SecretsArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "SecretsRole": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Origin",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SamlProviderConfiguration",
+    "properties": {
+      "AuthenticationUrl": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1260,13 +1386,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -1289,7 +1415,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/80"
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/91"
     }
   },
   {
@@ -1298,79 +1430,91 @@
     "properties": {
       "ApplicationId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 17
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "DefaultEndpoint": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
+      "IdentityProviderConfiguration": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 0
+      },
+      "Origins": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 0
+      },
       "RoleArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "SamplePromptsControlMode": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "Status": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "Subtitle": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/96"
         },
         "flags": 0
       },
       "Title": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "WebExperienceArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "WebExperienceId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 18
       },
       "WelcomeMessage": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0
       }
@@ -1382,21 +1526,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/97"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1408,7 +1552,7 @@
     "name": "AWS.QBusiness/WebExperience@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/86"
+      "$ref": "#/98"
     },
     "flags": 0
   }

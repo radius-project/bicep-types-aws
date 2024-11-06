@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ElasticBeanstalk-Environment",
   "type": "AWS::ElasticBeanstalk::Environment",
-  "time": "2024-06-28T13:59:15.925Z",
+  "time": "2024-11-01T16:34:17.285Z",
   "schema": {
     "$schema": "https://raw.githubusercontent.com/aws-cloudformation/cloudformation-resource-schema/master/src/main/resources/schema/provider.definition.schema.v1.json",
     "additionalProperties": false,
@@ -113,11 +113,15 @@
         "permissions": [
           "elasticbeanstalk:DescribeEnvironments",
           "elasticbeanstalk:UpdateEnvironment",
-          "elasticbeanstalk:UpdateTagsForResource",
           "elasticbeanstalk:AssociateEnvironmentOperationsRole",
           "elasticbeanstalk:DisassociateEnvironmentOperationsRole",
           "elasticbeanstalk:AddTags",
           "elasticbeanstalk:ListTagsForResource",
+          "elasticbeanstalk:RemoveTags",
+          "s3:GetBucketLocation",
+          "s3:GetBucketPolicy",
+          "s3:ListBucket",
+          "s3:PutBucketPolicy",
           "iam:PassRole"
         ],
         "timeoutInMinutes": 300
@@ -197,6 +201,11 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "elasticbeanstalk:AddTags",
+        "elasticbeanstalk:RemoveTags",
+        "elasticbeanstalk:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

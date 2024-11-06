@@ -1,6 +1,531 @@
 [
   {
     "$type": "ObjectType",
+    "name": "AIAgentAssociationConfigurationType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AIAgentConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AIAgentType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AnswerRecommendationAIAgentConfiguration",
+    "properties": {
+      "AnswerGenerationAIPromptId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "AssociationConfigurations": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      },
+      "IntentLabelingGenerationAIPromptId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "QueryReformulationAIPromptId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AssociationConfiguration",
+    "properties": {
+      "AssociationConfigurationData": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "AssociationId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "AssociationType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AssociationConfigurationData",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KnowledgeBaseAssociationConfigurationData",
+    "properties": {
+      "ContentTagFilter": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "MaxResults": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "OverrideKnowledgeBaseSearchType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KnowledgeBaseSearchType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManualSearchAIAgentConfiguration",
+    "properties": {
+      "AnswerGenerationAIPromptId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "AssociationConfigurations": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OrCondition",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagCondition",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagFilter",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AIAgent_AssociationConfigurationData",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AIAgent_TagFilter",
+    "properties": {}
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Wisdom/AIAgentProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Wisdom/AIAgentProperties",
+    "properties": {
+      "AIAgentArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "AIAgentId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 18
+      },
+      "AssistantArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "AssistantId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17
+      },
+      "Configuration": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Wisdom/AIAgent",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Wisdom/AIAgent@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/21"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AIPromptAPIFormat",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AIPromptTemplateConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AIPromptTemplateType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AIPromptType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TextFullAIPromptEditTemplateConfiguration",
+    "properties": {
+      "Text": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Wisdom/AIPromptProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Wisdom/AIPromptProperties",
+    "properties": {
+      "AIPromptArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "AIPromptId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 18
+      },
+      "ApiFormat": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "AssistantArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "AssistantId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 16
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "ModelId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      },
+      "TemplateConfiguration": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      },
+      "TemplateType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Wisdom/AIPrompt",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Wisdom/AIPrompt@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/31"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Wisdom/AIPromptVersionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Wisdom/AIPromptVersionProperties",
+    "properties": {
+      "AIPromptArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "AIPromptId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17
+      },
+      "AIPromptVersionId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "AssistantArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "AssistantId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17
+      },
+      "ModifiedTimeSeconds": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "VersionNumber": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 18
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Wisdom/AIPromptVersion",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Wisdom/AIPromptVersion@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/35"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "AssistantType",
     "properties": {}
   },
@@ -10,7 +535,7 @@
     "properties": {
       "KmsKeyId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 0
       }
@@ -22,20 +547,17 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 1
       }
     }
-  },
-  {
-    "$type": "StringType"
   },
   {
     "$type": "StringLiteralType",
@@ -44,7 +566,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/39"
     }
   },
   {
@@ -53,43 +575,43 @@
     "properties": {
       "AssistantArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "AssistantId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 18
       },
       "Description": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "ServerSideEncryptionConfiguration": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/38"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -101,21 +623,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/42"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -127,7 +649,7 @@
     "name": "AWS.Wisdom/Assistant@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/7"
+      "$ref": "#/43"
     },
     "flags": 0
   },
@@ -137,7 +659,7 @@
     "properties": {
       "KnowledgeBaseId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -154,13 +676,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -173,7 +695,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/47"
     }
   },
   {
@@ -182,43 +704,43 @@
     "properties": {
       "AssistantArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "AssistantAssociationArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "AssistantAssociationId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 18
       },
       "AssistantId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 17
       },
       "Association": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/45"
         },
         "flags": 1
       },
       "AssociationType": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/49"
         },
         "flags": 0
       }
@@ -230,21 +752,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/50"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -256,7 +778,7 @@
     "name": "AWS.Wisdom/AssistantAssociation@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/51"
     },
     "flags": 0
   },
@@ -266,13 +788,13 @@
     "properties": {
       "AppIntegrationArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "ObjectFields": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/59"
         },
         "flags": 0
       }
@@ -289,7 +811,7 @@
     "properties": {
       "TemplateUri": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 0
       }
@@ -301,7 +823,7 @@
     "properties": {
       "KmsKeyId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 0
       }
@@ -313,7 +835,7 @@
     "properties": {
       "AppIntegrations": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/53"
         },
         "flags": 1
       }
@@ -325,13 +847,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 1
       }
@@ -340,7 +862,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/13"
     }
   },
   {
@@ -350,7 +872,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/58"
     }
   },
   {
@@ -359,55 +881,55 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 0
       },
       "KnowledgeBaseArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 2
       },
       "KnowledgeBaseId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 18
       },
       "KnowledgeBaseType": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "Name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "RenderingConfiguration": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/55"
         },
         "flags": 0
       },
       "ServerSideEncryptionConfiguration": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/56"
         },
         "flags": 0
       },
       "SourceConfiguration": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/57"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/61"
         },
         "flags": 0
       }
@@ -419,21 +941,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/62"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -445,7 +967,7 @@
     "name": "AWS.Wisdom/KnowledgeBase@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/27"
+      "$ref": "#/63"
     },
     "flags": 0
   }

@@ -26,6 +26,7 @@
 * **ComputeEnvironmentArn**: string (ReadOnly, Identifier)
 * **ComputeEnvironmentName**: string
 * **ComputeResources**: [ComputeResources](#computeresources)
+* **Context**: string
 * **EksConfiguration**: [EksConfiguration](#eksconfiguration)
 * **ReplaceComputeEnvironment**: bool (WriteOnly)
 * **ServiceRole**: string

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Backup-RestoreTestingPlan",
   "type": "AWS::Backup::RestoreTestingPlan",
-  "time": "2024-07-08T15:52:30.258Z",
+  "time": "2024-10-30T16:11:48.723Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -60,6 +60,13 @@
         ],
         "type": "string"
       },
+      "RestoreTestingScheduleStatus": {
+        "enum": [
+          "ACTIVE",
+          "SUSPENDED"
+        ],
+        "type": "string"
+      },
       "Tag": {
         "additionalProperties": false,
         "properties": {
@@ -88,6 +95,7 @@
       "create": {
         "permissions": [
           "backup:CreateRestoreTestingPlan",
+          "backup:UpdateRestoreTestingPlanScheduleStatus",
           "backup:TagResource",
           "backup:GetRestoreTestingPlan",
           "backup:ListTags"
@@ -117,6 +125,7 @@
       "update": {
         "permissions": [
           "backup:UpdateRestoreTestingPlan",
+          "backup:UpdateRestoreTestingPlanScheduleStatus",
           "backup:TagResource",
           "backup:UntagResource",
           "backup:GetRestoreTestingPlan",
@@ -144,6 +153,9 @@
       "ScheduleExpressionTimezone": {
         "type": "string"
       },
+      "ScheduleStatus": {
+        "$ref": "#/definitions/RestoreTestingScheduleStatus"
+      },
       "StartWindowHours": {
         "type": "integer"
       },
@@ -166,6 +178,11 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "backup:TagResource",
+        "backup:UntagResource",
+        "backup:ListTags"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

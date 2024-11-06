@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IVS-Channel",
   "type": "AWS::IVS::Channel",
-  "time": "2024-04-25T15:34:37.154Z",
+  "time": "2024-10-23T15:54:38.887Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -37,7 +37,7 @@
       "delete": {
         "permissions": [
           "ivs:DeleteChannel",
-          "ivs:UnTagResource"
+          "ivs:UntagResource"
         ]
       },
       "list": {
@@ -57,7 +57,7 @@
           "ivs:GetChannel",
           "ivs:UpdateChannel",
           "ivs:TagResource",
-          "ivs:UnTagResource",
+          "ivs:UntagResource",
           "ivs:ListTagsForResource"
         ]
       }
@@ -111,6 +111,7 @@
       "Preset": {
         "description": "Optional transcode preset for the channel. This is selectable only for ADVANCED_HD and ADVANCED_SD channel types. For those channel types, the default preset is HIGHER_BANDWIDTH_DELIVERY. For other channel types (BASIC and STANDARD), preset is the empty string (\"\").",
         "enum": [
+          "",
           "HIGHER_BANDWIDTH_DELIVERY",
           "CONSTRAINED_BANDWIDTH_DELIVERY"
         ],
@@ -155,6 +156,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "ivs:TagResource",
+        "ivs:UntagResource",
+        "ivs:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

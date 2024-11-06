@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53Resolver-FirewallDomainList",
   "type": "AWS::Route53Resolver::FirewallDomainList",
-  "time": "2024-08-07T14:40:05.41Z",
+  "time": "2024-09-24T14:52:00.814Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -47,52 +47,42 @@
     "handlers": {
       "create": {
         "permissions": [
-          "route53resolver:*",
-          "ec2:*",
-          "logs:*",
-          "iam:*",
-          "lambda:*",
-          "s3:*"
+          "route53resolver:CreateFirewallDomainList",
+          "route53resolver:GetFirewallDomainList",
+          "route53resolver:ImportFirewallDomains",
+          "route53resolver:UpdateFirewallDomains",
+          "route53resolver:TagResource",
+          "route53resolver:ListTagsForResource"
         ]
       },
       "delete": {
         "permissions": [
-          "route53resolver:*",
-          "ec2:*",
-          "logs:*",
-          "iam:*",
-          "lambda:*",
-          "s3:*"
+          "route53resolver:GetFirewallDomainList",
+          "route53resolver:DeleteFirewallDomainList",
+          "route53resolver:UntagResource",
+          "route53resolver:ListTagsForResource"
         ]
       },
       "list": {
         "permissions": [
-          "route53resolver:*",
-          "ec2:*",
-          "logs:*",
-          "iam:*",
-          "lambda:*",
-          "s3:*"
+          "route53resolver:ListFirewallDomainLists",
+          "route53resolver:ListTagsForResource"
         ]
       },
       "read": {
         "permissions": [
-          "route53resolver:*",
-          "ec2:*",
-          "logs:*",
-          "iam:*",
-          "lambda:*",
-          "s3:*"
+          "route53resolver:GetFirewallDomainList",
+          "route53resolver:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
-          "route53resolver:*",
-          "ec2:*",
-          "logs:*",
-          "iam:*",
-          "lambda:*",
-          "s3:*"
+          "route53resolver:GetFirewallDomainList",
+          "route53resolver:ImportFirewallDomains",
+          "route53resolver:UpdateFirewallDomains",
+          "route53resolver:TagResource",
+          "route53resolver:UntagResource",
+          "route53resolver:ListTagsForResource"
         ]
       }
     },
@@ -196,6 +186,10 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "route53resolver:TagResource",
+        "route53resolver:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

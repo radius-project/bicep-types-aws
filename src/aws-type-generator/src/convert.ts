@@ -234,9 +234,14 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
             parts.shift()
         }
 
-        const definition = record.schema.definitions?.[parts[0]];
+        let definition = record.schema.definitions?.[parts[0]];
         if (!definition) {
-            throw new Error(`could not find definition ${schema.$ref} in ${context}`)
+            // Note: Definitions are typically the only schema with circular references 
+            // This is in the off case that definitions reference a property field instead of a circular definitions reference 
+            definition = record.schema.properties?.[parts[0]]
+            if(!definition) {
+                throw new Error(`could not find definition ${schema.$ref} in ${context}`)
+            }
         }
 
         if (!schema.additionalProperties && !schema.items && !schema.properties && !schema.required && !schema.type) {
@@ -255,7 +260,7 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
 
         const obj: any = {}
         Object.getOwnPropertyNames(definition).forEach(name => {
-            if (name in definition) {
+            if (definition !== undefined && name in definition) {
                 obj[name] = (definition as any)[name]
             }
         })

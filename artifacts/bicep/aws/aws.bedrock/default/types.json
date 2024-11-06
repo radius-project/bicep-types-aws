@@ -807,6 +807,214 @@
   },
   {
     "$type": "ObjectType",
+    "name": "InferenceProfileModel",
+    "properties": {
+      "ModelArn": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "ARN for Foundation Models in Bedrock. These models can be used as base models for model customization jobs"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InferenceProfileModelSource",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InferenceProfileStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InferenceProfileType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "Tag Key"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "Tag Value"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Unit",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Bedrock/ApplicationInferenceProfileProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/48"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/52"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Bedrock/ApplicationInferenceProfileProperties",
+    "properties": {
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 2,
+        "description": "Time Stamp"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Description of the inference profile"
+      },
+      "InferenceProfileArn": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 2
+      },
+      "InferenceProfileId": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 2
+      },
+      "InferenceProfileIdentifier": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 18,
+        "description": "Inference profile identifier. Supports both system-defined inference profile ids, and inference profile ARNs."
+      },
+      "InferenceProfileName": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1
+      },
+      "ModelSource": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 4
+      },
+      "Models": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 2,
+        "description": "List of model configuration"
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0,
+        "description": "List of Tags"
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 2
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 2,
+        "description": "Time Stamp"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Bedrock/ApplicationInferenceProfile",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Bedrock/ApplicationInferenceProfile@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/58"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BedrockFoundationModelConfiguration",
+    "properties": {
+      "ModelArn": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The model's ARN."
+      },
+      "ParsingPrompt": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "ChunkingConfiguration",
     "properties": {
       "ChunkingStrategy": {
@@ -817,7 +1025,19 @@
       },
       "FixedSizeChunkingConfiguration": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "HierarchicalChunkingConfiguration": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0
+      },
+      "SemanticChunkingConfiguration": {
+        "type": {
+          "$ref": "#/90"
         },
         "flags": 0
       }
@@ -830,6 +1050,108 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ConfluenceCrawlerConfiguration",
+    "properties": {
+      "FilterConfiguration": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfluenceDataSourceConfiguration",
+    "properties": {
+      "CrawlerConfiguration": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0
+      },
+      "SourceConfiguration": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfluenceSourceConfiguration",
+    "properties": {
+      "AuthType": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The supported authentication type to authenticate and connect to your Confluence instance."
+      },
+      "CredentialsSecretArn": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name of an AWS Secrets Manager secret that stores your authentication credentials for your Confluence instance URL. For more information on the key-value pairs that must be included in your secret, depending on your authentication type, see Confluence connection configuration."
+      },
+      "HostType": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The supported host type, whether online/cloud or server/on-premises."
+      },
+      "HostUrl": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The Confluence host URL or instance URL."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CrawlFilterConfiguration",
+    "properties": {
+      "PatternObjectFilter": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The crawl filter type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomTransformationConfiguration",
+    "properties": {
+      "IntermediateStorage": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 1
+      },
+      "Transformations": {
+        "type": {
+          "$ref": "#/105"
+        },
+        "flags": 1,
+        "description": "A list of Lambda functions that process documents."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "DataDeletionPolicy",
     "properties": {}
   },
@@ -837,17 +1159,41 @@
     "$type": "ObjectType",
     "name": "DataSourceConfiguration",
     "properties": {
+      "ConfluenceConfiguration": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 0
+      },
       "S3Configuration": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/83"
         },
-        "flags": 1
+        "flags": 0
+      },
+      "SalesforceConfiguration": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 0
+      },
+      "SharePointConfiguration": {
+        "type": {
+          "$ref": "#/93"
+        },
+        "flags": 0
       },
       "Type": {
         "type": {
           "$ref": "#/23"
         },
         "flags": 1
+      },
+      "WebConfiguration": {
+        "type": {
+          "$ref": "#/102"
+        },
+        "flags": 0
       }
     }
   },
@@ -859,6 +1205,11 @@
   {
     "$type": "ObjectType",
     "name": "DataSourceType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FilterList",
     "properties": {}
   },
   {
@@ -883,6 +1234,129 @@
   },
   {
     "$type": "ObjectType",
+    "name": "HierarchicalChunkingConfiguration",
+    "properties": {
+      "LevelConfigurations": {
+        "type": {
+          "$ref": "#/107"
+        },
+        "flags": 1,
+        "description": "Token settings for each layer."
+      },
+      "OverlapTokens": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1,
+        "description": "The number of tokens to repeat across chunks in the same layer."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HierarchicalChunkingLevelConfiguration",
+    "properties": {
+      "MaxTokens": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1,
+        "description": "The maximum number of tokens that a chunk can contain in this layer."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntermediateStorage",
+    "properties": {
+      "S3Location": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParsingConfiguration",
+    "properties": {
+      "BedrockFoundationModelConfiguration": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 0
+      },
+      "ParsingStrategy": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParsingPrompt",
+    "properties": {
+      "ParsingPromptText": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "Instructions for interpreting the contents of a document."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParsingStrategy",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PatternObjectFilter",
+    "properties": {
+      "ExclusionFilters": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 0
+      },
+      "InclusionFilters": {
+        "type": {
+          "$ref": "#/109"
+        },
+        "flags": 0
+      },
+      "ObjectType": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The supported object type or content type of the data source."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PatternObjectFilterConfiguration",
+    "properties": {
+      "Filters": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PatternObjectFilterList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "S3DataSourceConfiguration",
     "properties": {
       "BucketArn": {
@@ -901,10 +1375,125 @@
       },
       "InclusionPrefixes": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/112"
         },
         "flags": 0,
         "description": "A list of S3 prefixes that define the object containing the data sources."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Location",
+    "properties": {
+      "URI": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The location's URI"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SalesforceCrawlerConfiguration",
+    "properties": {
+      "FilterConfiguration": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SalesforceDataSourceConfiguration",
+    "properties": {
+      "CrawlerConfiguration": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0
+      },
+      "SourceConfiguration": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SalesforceSourceConfiguration",
+    "properties": {
+      "AuthType": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The supported authentication type to authenticate and connect to your Salesforce instance."
+      },
+      "CredentialsSecretArn": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name of an AWS Secrets Manager secret that stores your authentication credentials for your Salesforce instance URL. For more information on the key-value pairs that must be included in your secret, depending on your authentication type, see Salesforce connection configuration."
+      },
+      "HostUrl": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The Salesforce host URL or instance URL."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SeedUrl",
+    "properties": {
+      "Url": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "A web url."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SeedUrls",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SemanticChunkingConfiguration",
+    "properties": {
+      "BreakpointPercentileThreshold": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1,
+        "description": "The dissimilarity threshold for splitting chunks."
+      },
+      "BufferSize": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1,
+        "description": "The buffer size."
+      },
+      "MaxTokens": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1,
+        "description": "The maximum number of tokens that a chunk can contain."
       }
     }
   },
@@ -923,14 +1512,310 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SharePointCrawlerConfiguration",
+    "properties": {
+      "FilterConfiguration": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SharePointDataSourceConfiguration",
+    "properties": {
+      "CrawlerConfiguration": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 0
+      },
+      "SourceConfiguration": {
+        "type": {
+          "$ref": "#/94"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SharePointSourceConfiguration",
+    "properties": {
+      "AuthType": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The supported authentication type to authenticate and connect to your SharePoint site/sites."
+      },
+      "CredentialsSecretArn": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name of an AWS Secrets Manager secret that stores your authentication credentials for your SharePoint site/sites. For more information on the key-value pairs that must be included in your secret, depending on your authentication type, see SharePoint connection configuration."
+      },
+      "Domain": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The domain of your SharePoint instance or site URL/URLs."
+      },
+      "HostType": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The supported host type, whether online/cloud or server/on-premises."
+      },
+      "SiteUrls": {
+        "type": {
+          "$ref": "#/114"
+        },
+        "flags": 1,
+        "description": "A list of one or more SharePoint site URLs."
+      },
+      "TenantId": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "The identifier of your Microsoft 365 tenant."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformation",
+    "properties": {
+      "StepToApply": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "When the service applies the transformation."
+      },
+      "TransformationFunction": {
+        "type": {
+          "$ref": "#/96"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TransformationFunction",
+    "properties": {
+      "TransformationLambdaConfiguration": {
+        "type": {
+          "$ref": "#/97"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TransformationLambdaConfiguration",
+    "properties": {
+      "LambdaArn": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The function's ARN identifier."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UrlConfiguration",
+    "properties": {
+      "SeedUrls": {
+        "type": {
+          "$ref": "#/115"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "VectorIngestionConfiguration",
     "properties": {
       "ChunkingConfiguration": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/61"
+        },
+        "flags": 0
+      },
+      "CustomTransformationConfiguration": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0
+      },
+      "ParsingConfiguration": {
+        "type": {
+          "$ref": "#/77"
         },
         "flags": 0
       }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebCrawlerConfiguration",
+    "properties": {
+      "CrawlerLimits": {
+        "type": {
+          "$ref": "#/101"
+        },
+        "flags": 0
+      },
+      "ExclusionFilters": {
+        "type": {
+          "$ref": "#/116"
+        },
+        "flags": 0
+      },
+      "InclusionFilters": {
+        "type": {
+          "$ref": "#/117"
+        },
+        "flags": 0
+      },
+      "Scope": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebCrawlerLimits",
+    "properties": {
+      "RateLimit": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "Rate of web URLs retrieved per minute."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebDataSourceConfiguration",
+    "properties": {
+      "CrawlerConfiguration": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 0
+      },
+      "SourceConfiguration": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebScopeType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebSourceConfiguration",
+    "properties": {
+      "UrlConfiguration": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/95"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/75"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/80"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/80"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/88"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/88"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
     }
   },
   {
@@ -968,7 +1853,7 @@
       },
       "DataSourceConfiguration": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/69"
         },
         "flags": 1
       },
@@ -994,7 +1879,7 @@
       },
       "FailureReasons": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/119"
         },
         "flags": 2,
         "description": "The details of the failure reasons related to the data source."
@@ -1015,7 +1900,7 @@
       },
       "ServerSideEncryptionConfiguration": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/91"
         },
         "flags": 0
       },
@@ -1028,7 +1913,7 @@
       },
       "VectorIngestionConfiguration": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/99"
         },
         "flags": 0
       }
@@ -1054,7 +1939,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/120"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1066,9 +1951,27 @@
     "name": "AWS.Bedrock/DataSource@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/62"
+      "$ref": "#/121"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentFlowNodeConfiguration",
+    "properties": {
+      "AgentAliasArn": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "Arn representation of the Agent Alias."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CollectorFlowNodeConfiguration",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1076,7 +1979,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/168"
         },
         "flags": 1,
         "description": "List of conditions in a condition node"
@@ -1127,7 +2030,7 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/169"
         },
         "flags": 0
       },
@@ -1196,14 +2099,14 @@
     "properties": {
       "Connections": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/170"
         },
         "flags": 0,
         "description": "List of connections"
       },
       "Nodes": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/171"
         },
         "flags": 0,
         "description": "List of nodes in a flow"
@@ -1216,13 +2119,13 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/172"
         },
         "flags": 0
       },
       "Inputs": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/173"
         },
         "flags": 0,
         "description": "List of node inputs in a flow"
@@ -1236,7 +2139,7 @@
       },
       "Outputs": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/174"
         },
         "flags": 0,
         "description": "List of node outputs in a flow"
@@ -1316,13 +2219,62 @@
   },
   {
     "$type": "ObjectType",
+    "name": "FlowValidation",
+    "properties": {
+      "Message": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "validation message"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FlowValidations",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GuardrailConfiguration",
+    "properties": {
+      "GuardrailIdentifier": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Identifier for the guardrail, could be the id or the arn"
+      },
+      "GuardrailVersion": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Version of the guardrail"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "InputFlowNodeConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IteratorFlowNodeConfiguration",
     "properties": {}
   },
   {
     "$type": "ObjectType",
     "name": "KnowledgeBaseFlowNodeConfiguration",
     "properties": {
+      "GuardrailConfiguration": {
+        "type": {
+          "$ref": "#/143"
+        },
+        "flags": 0
+      },
       "KnowledgeBaseId": {
         "type": {
           "$ref": "#/23"
@@ -1335,7 +2287,7 @@
           "$ref": "#/23"
         },
         "flags": 0,
-        "description": "ARN or name of a Bedrock model."
+        "description": "ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models."
       }
     }
   },
@@ -1381,9 +2333,15 @@
     "$type": "ObjectType",
     "name": "PromptFlowNodeConfiguration",
     "properties": {
+      "GuardrailConfiguration": {
+        "type": {
+          "$ref": "#/143"
+        },
+        "flags": 0
+      },
       "SourceConfiguration": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/176"
         },
         "flags": 1
       }
@@ -1395,7 +2353,7 @@
     "properties": {
       "InferenceConfiguration": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/177"
         },
         "flags": 0
       },
@@ -1404,11 +2362,11 @@
           "$ref": "#/23"
         },
         "flags": 1,
-        "description": "ARN or name of a Bedrock model."
+        "description": "ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models."
       },
       "TemplateConfiguration": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/178"
         },
         "flags": 1
       },
@@ -1469,7 +2427,7 @@
       },
       "StopSequences": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/179"
         },
         "flags": 0,
         "description": "List of stop sequences"
@@ -1480,13 +2438,6 @@
         },
         "flags": 0,
         "description": "Controls randomness, higher values increase diversity"
-      },
-      "TopK": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Sample from the k most likely next tokens"
       },
       "TopP": {
         "type": {
@@ -1506,6 +2457,43 @@
     "$type": "ObjectType",
     "name": "PromptTemplateType",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RetrievalFlowNodeConfiguration",
+    "properties": {
+      "ServiceConfiguration": {
+        "type": {
+          "$ref": "#/180"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RetrievalFlowNodeS3Configuration",
+    "properties": {
+      "BucketName": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "bucket name of an s3 that will be used for Retrieval flow node configuration"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RetrievalFlowNodeServiceConfiguration",
+    "properties": {
+      "S3": {
+        "type": {
+          "$ref": "#/160"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1536,6 +2524,43 @@
   },
   {
     "$type": "ObjectType",
+    "name": "StorageFlowNodeConfiguration",
+    "properties": {
+      "ServiceConfiguration": {
+        "type": {
+          "$ref": "#/181"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageFlowNodeS3Configuration",
+    "properties": {
+      "BucketName": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "bucket name of an s3 that will be used for storage flow node configuration"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageFlowNodeServiceConfiguration",
+    "properties": {
+      "S3": {
+        "type": {
+          "$ref": "#/164"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "TagsMap",
     "properties": {}
   },
@@ -1545,7 +2570,7 @@
     "properties": {
       "InputVariables": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/182"
         },
         "flags": 0,
         "description": "List of input variables"
@@ -1562,7 +2587,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/127"
     }
   },
   {
@@ -1573,13 +2598,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/68"
+      "$ref": "#/129"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/73"
+      "$ref": "#/134"
     }
   },
   {
@@ -1590,13 +2615,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/76"
+      "$ref": "#/137"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/77"
+      "$ref": "#/138"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/141"
     }
   },
   {
@@ -1621,14 +2652,30 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "Flow_RetrievalFlowNodeServiceConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Flow_StorageFlowNodeServiceConfiguration",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/90"
+      "$ref": "#/155"
     }
   },
   {
     "$type": "StringLiteralType",
     "value": "AWS.Bedrock/FlowProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/141"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1657,13 +2704,13 @@
       },
       "Definition": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/133"
         },
         "flags": 0
       },
       "DefinitionS3Location": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/162"
         },
         "flags": 4
       },
@@ -1676,7 +2723,7 @@
       },
       "DefinitionSubstitutions": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/126"
         },
         "flags": 4
       },
@@ -1716,13 +2763,13 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/166"
         },
         "flags": 0
       },
       "TestAliasTags": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/166"
         },
         "flags": 0
       },
@@ -1732,6 +2779,12 @@
         },
         "flags": 2,
         "description": "Time Stamp."
+      },
+      "Validations": {
+        "type": {
+          "$ref": "#/184"
+        },
+        "flags": 2
       },
       "Version": {
         "type": {
@@ -1762,7 +2815,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/185"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1774,7 +2827,7 @@
     "name": "AWS.Bedrock/Flow@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/111"
+      "$ref": "#/186"
     },
     "flags": 0
   },
@@ -1803,7 +2856,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/188"
     }
   },
   {
@@ -1861,14 +2914,14 @@
       },
       "RoutingConfiguration": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/191"
         },
         "flags": 1,
         "description": "Routing configuration for a Flow alias."
       },
       "Tags": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/189"
         },
         "flags": 0
       },
@@ -1901,7 +2954,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/192"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1913,9 +2966,27 @@
     "name": "AWS.Bedrock/FlowAlias@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/118"
+      "$ref": "#/193"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentFlowNodeConfiguration",
+    "properties": {
+      "AgentAliasArn": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "Arn representation of the Agent Alias."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CollectorFlowNodeConfiguration",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1923,7 +2994,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/235"
         },
         "flags": 1,
         "description": "List of conditions in a condition node"
@@ -1969,7 +3040,7 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/151"
+          "$ref": "#/236"
         },
         "flags": 0
       },
@@ -2038,14 +3109,14 @@
     "properties": {
       "Connections": {
         "type": {
-          "$ref": "#/152"
+          "$ref": "#/237"
         },
         "flags": 0,
         "description": "List of connections"
       },
       "Nodes": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/238"
         },
         "flags": 0,
         "description": "List of nodes in a flow"
@@ -2058,13 +3129,13 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/154"
+          "$ref": "#/239"
         },
         "flags": 0
       },
       "Inputs": {
         "type": {
-          "$ref": "#/155"
+          "$ref": "#/240"
         },
         "flags": 0,
         "description": "List of node inputs in a flow"
@@ -2078,7 +3149,7 @@
       },
       "Outputs": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/241"
         },
         "flags": 0,
         "description": "List of node outputs in a flow"
@@ -2158,13 +3229,44 @@
   },
   {
     "$type": "ObjectType",
+    "name": "GuardrailConfiguration",
+    "properties": {
+      "GuardrailIdentifier": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Identifier for the guardrail, could be the id or the arn"
+      },
+      "GuardrailVersion": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Version of the guardrail"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "InputFlowNodeConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IteratorFlowNodeConfiguration",
     "properties": {}
   },
   {
     "$type": "ObjectType",
     "name": "KnowledgeBaseFlowNodeConfiguration",
     "properties": {
+      "GuardrailConfiguration": {
+        "type": {
+          "$ref": "#/212"
+        },
+        "flags": 0
+      },
       "KnowledgeBaseId": {
         "type": {
           "$ref": "#/23"
@@ -2177,7 +3279,7 @@
           "$ref": "#/23"
         },
         "flags": 0,
-        "description": "ARN or name of a Bedrock model."
+        "description": "ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models."
       }
     }
   },
@@ -2223,9 +3325,15 @@
     "$type": "ObjectType",
     "name": "PromptFlowNodeConfiguration",
     "properties": {
+      "GuardrailConfiguration": {
+        "type": {
+          "$ref": "#/212"
+        },
+        "flags": 0
+      },
       "SourceConfiguration": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/242"
         },
         "flags": 1
       }
@@ -2237,7 +3345,7 @@
     "properties": {
       "InferenceConfiguration": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/243"
         },
         "flags": 0
       },
@@ -2246,11 +3354,11 @@
           "$ref": "#/23"
         },
         "flags": 1,
-        "description": "ARN or name of a Bedrock model."
+        "description": "ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models."
       },
       "TemplateConfiguration": {
         "type": {
-          "$ref": "#/159"
+          "$ref": "#/244"
         },
         "flags": 1
       },
@@ -2311,7 +3419,7 @@
       },
       "StopSequences": {
         "type": {
-          "$ref": "#/160"
+          "$ref": "#/245"
         },
         "flags": 0,
         "description": "List of stop sequences"
@@ -2322,13 +3430,6 @@
         },
         "flags": 0,
         "description": "Controls randomness, higher values increase diversity"
-      },
-      "TopK": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Sample from the k most likely next tokens"
       },
       "TopP": {
         "type": {
@@ -2351,11 +3452,85 @@
   },
   {
     "$type": "ObjectType",
+    "name": "RetrievalFlowNodeConfiguration",
+    "properties": {
+      "ServiceConfiguration": {
+        "type": {
+          "$ref": "#/246"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RetrievalFlowNodeS3Configuration",
+    "properties": {
+      "BucketName": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "bucket name of an s3 that will be used for Retrieval flow node configuration"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RetrievalFlowNodeServiceConfiguration",
+    "properties": {
+      "S3": {
+        "type": {
+          "$ref": "#/229"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageFlowNodeConfiguration",
+    "properties": {
+      "ServiceConfiguration": {
+        "type": {
+          "$ref": "#/247"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageFlowNodeS3Configuration",
+    "properties": {
+      "BucketName": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "bucket name of an s3 that will be used for storage flow node configuration"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageFlowNodeServiceConfiguration",
+    "properties": {
+      "S3": {
+        "type": {
+          "$ref": "#/232"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "TextPromptTemplateConfiguration",
     "properties": {
       "InputVariables": {
         "type": {
-          "$ref": "#/161"
+          "$ref": "#/248"
         },
         "flags": 0,
         "description": "List of input variables"
@@ -2372,7 +3547,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/121"
+      "$ref": "#/198"
     }
   },
   {
@@ -2383,13 +3558,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/123"
+      "$ref": "#/200"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/128"
+      "$ref": "#/205"
     }
   },
   {
@@ -2400,13 +3575,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/131"
+      "$ref": "#/208"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/132"
+      "$ref": "#/209"
     }
   },
   {
@@ -2431,9 +3606,19 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "FlowVersion_RetrievalFlowNodeServiceConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FlowVersion_StorageFlowNodeServiceConfiguration",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/145"
+      "$ref": "#/224"
     }
   },
   {
@@ -2451,9 +3636,16 @@
         "flags": 2,
         "description": "Time Stamp."
       },
+      "CustomerEncryptionKeyArn": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 2,
+        "description": "A KMS key ARN"
+      },
       "Definition": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/204"
         },
         "flags": 2
       },
@@ -2527,7 +3719,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/163"
+          "$ref": "#/250"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2539,7 +3731,7 @@
     "name": "AWS.Bedrock/FlowVersion@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/164"
+      "$ref": "#/251"
     },
     "flags": 0
   },
@@ -2602,7 +3794,7 @@
     "properties": {
       "FiltersConfig": {
         "type": {
-          "$ref": "#/191"
+          "$ref": "#/278"
         },
         "flags": 1,
         "description": "List of content filter configs in content policy."
@@ -2639,7 +3831,7 @@
     "properties": {
       "FiltersConfig": {
         "type": {
-          "$ref": "#/192"
+          "$ref": "#/279"
         },
         "flags": 1,
         "description": "List of contextual grounding filter configs."
@@ -2770,14 +3962,14 @@
     "properties": {
       "PiiEntitiesConfig": {
         "type": {
-          "$ref": "#/193"
+          "$ref": "#/280"
         },
         "flags": 0,
         "description": "List of entities."
       },
       "RegexesConfig": {
         "type": {
-          "$ref": "#/194"
+          "$ref": "#/281"
         },
         "flags": 0,
         "description": "List of regex."
@@ -2817,7 +4009,7 @@
       },
       "Examples": {
         "type": {
-          "$ref": "#/195"
+          "$ref": "#/282"
         },
         "flags": 0,
         "description": "List of text examples"
@@ -2850,7 +4042,7 @@
       },
       "Examples": {
         "type": {
-          "$ref": "#/196"
+          "$ref": "#/283"
         },
         "flags": 0,
         "description": "List of text examples"
@@ -2876,7 +4068,7 @@
     "properties": {
       "TopicsConfig": {
         "type": {
-          "$ref": "#/197"
+          "$ref": "#/284"
         },
         "flags": 1,
         "description": "List of topic configs in topic policy."
@@ -2907,14 +4099,14 @@
     "properties": {
       "ManagedWordListsConfig": {
         "type": {
-          "$ref": "#/198"
+          "$ref": "#/285"
         },
         "flags": 0,
         "description": "A config for the list of managed words."
       },
       "WordsConfig": {
         "type": {
-          "$ref": "#/199"
+          "$ref": "#/286"
         },
         "flags": 0,
         "description": "List of custom word configs."
@@ -2924,31 +4116,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/167"
+      "$ref": "#/254"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/170"
+      "$ref": "#/257"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/179"
+      "$ref": "#/266"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/181"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/268"
     }
   },
   {
@@ -2960,19 +4146,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/186"
+      "$ref": "#/23"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/176"
+      "$ref": "#/273"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/189"
+      "$ref": "#/263"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/276"
     }
   },
   {
@@ -2994,7 +4186,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/184"
+      "$ref": "#/271"
     }
   },
   {
@@ -3017,13 +4209,13 @@
       },
       "ContentPolicyConfig": {
         "type": {
-          "$ref": "#/169"
+          "$ref": "#/256"
         },
         "flags": 0
       },
       "ContextualGroundingPolicyConfig": {
         "type": {
-          "$ref": "#/172"
+          "$ref": "#/259"
         },
         "flags": 0
       },
@@ -3043,7 +4235,7 @@
       },
       "FailureRecommendations": {
         "type": {
-          "$ref": "#/201"
+          "$ref": "#/288"
         },
         "flags": 2,
         "description": "List of failure recommendations"
@@ -3078,7 +4270,7 @@
       },
       "SensitiveInformationPolicyConfig": {
         "type": {
-          "$ref": "#/183"
+          "$ref": "#/270"
         },
         "flags": 0
       },
@@ -3090,21 +4282,21 @@
       },
       "StatusReasons": {
         "type": {
-          "$ref": "#/202"
+          "$ref": "#/289"
         },
         "flags": 2,
         "description": "List of status reasons"
       },
       "Tags": {
         "type": {
-          "$ref": "#/203"
+          "$ref": "#/290"
         },
         "flags": 0,
         "description": "List of Tags"
       },
       "TopicPolicyConfig": {
         "type": {
-          "$ref": "#/187"
+          "$ref": "#/274"
         },
         "flags": 0
       },
@@ -3124,7 +4316,7 @@
       },
       "WordPolicyConfig": {
         "type": {
-          "$ref": "#/190"
+          "$ref": "#/277"
         },
         "flags": 0
       }
@@ -3150,7 +4342,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/204"
+          "$ref": "#/291"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3162,7 +4354,7 @@
     "name": "AWS.Bedrock/Guardrail@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/205"
+      "$ref": "#/292"
     },
     "flags": 0
   },
@@ -3185,7 +4377,7 @@
     "properties": {
       "BedrockEmbeddingModelConfiguration": {
         "type": {
-          "$ref": "#/207"
+          "$ref": "#/294"
         },
         "flags": 0
       }
@@ -3203,7 +4395,7 @@
       },
       "VectorKnowledgeBaseConfiguration": {
         "type": {
-          "$ref": "#/225"
+          "$ref": "#/312"
         },
         "flags": 1
       }
@@ -3265,7 +4457,7 @@
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/214"
+          "$ref": "#/301"
         },
         "flags": 1
       },
@@ -3318,7 +4510,7 @@
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/216"
+          "$ref": "#/303"
         },
         "flags": 1
       },
@@ -3378,7 +4570,7 @@
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/218"
+          "$ref": "#/305"
         },
         "flags": 1
       },
@@ -3431,7 +4623,7 @@
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/220"
+          "$ref": "#/307"
         },
         "flags": 1
       },
@@ -3505,7 +4697,7 @@
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/222"
+          "$ref": "#/309"
         },
         "flags": 1
       },
@@ -3551,25 +4743,25 @@
     "properties": {
       "MongoDbAtlasConfiguration": {
         "type": {
-          "$ref": "#/213"
+          "$ref": "#/300"
         },
         "flags": 0
       },
       "OpensearchServerlessConfiguration": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/302"
         },
         "flags": 0
       },
       "PineconeConfiguration": {
         "type": {
-          "$ref": "#/217"
+          "$ref": "#/304"
         },
         "flags": 0
       },
       "RdsConfiguration": {
         "type": {
-          "$ref": "#/219"
+          "$ref": "#/306"
         },
         "flags": 0
       },
@@ -3599,7 +4791,7 @@
       },
       "EmbeddingModelConfiguration": {
         "type": {
-          "$ref": "#/208"
+          "$ref": "#/295"
         },
         "flags": 0
       }
@@ -3635,7 +4827,7 @@
       },
       "FailureReasons": {
         "type": {
-          "$ref": "#/227"
+          "$ref": "#/314"
         },
         "flags": 2,
         "description": "A list of reasons that the API operation on the knowledge base failed."
@@ -3649,7 +4841,7 @@
       },
       "KnowledgeBaseConfiguration": {
         "type": {
-          "$ref": "#/209"
+          "$ref": "#/296"
         },
         "flags": 1
       },
@@ -3682,13 +4874,13 @@
       },
       "StorageConfiguration": {
         "type": {
-          "$ref": "#/223"
+          "$ref": "#/310"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/224"
+          "$ref": "#/311"
         },
         "flags": 0
       },
@@ -3721,7 +4913,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/228"
+          "$ref": "#/315"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3733,7 +4925,7 @@
     "name": "AWS.Bedrock/KnowledgeBase@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/229"
+      "$ref": "#/316"
     },
     "flags": 0
   },
@@ -3768,7 +4960,7 @@
       },
       "StopSequences": {
         "type": {
-          "$ref": "#/240"
+          "$ref": "#/327"
         },
         "flags": 0,
         "description": "List of stop sequences"
@@ -3779,13 +4971,6 @@
         },
         "flags": 0,
         "description": "Controls randomness, higher values increase diversity"
-      },
-      "TopK": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Sample from the k most likely next tokens"
       },
       "TopP": {
         "type": {
@@ -3812,7 +4997,7 @@
     "properties": {
       "InferenceConfiguration": {
         "type": {
-          "$ref": "#/231"
+          "$ref": "#/318"
         },
         "flags": 0
       },
@@ -3821,7 +5006,7 @@
           "$ref": "#/23"
         },
         "flags": 0,
-        "description": "ARN or name of a Bedrock model."
+        "description": "ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models."
       },
       "Name": {
         "type": {
@@ -3832,9 +5017,9 @@
       },
       "TemplateConfiguration": {
         "type": {
-          "$ref": "#/234"
+          "$ref": "#/321"
         },
-        "flags": 0
+        "flags": 1
       },
       "TemplateType": {
         "type": {
@@ -3855,7 +5040,7 @@
     "properties": {
       "InputVariables": {
         "type": {
-          "$ref": "#/241"
+          "$ref": "#/328"
         },
         "flags": 0,
         "description": "List of input variables"
@@ -3869,7 +5054,7 @@
       },
       "TextS3Location": {
         "type": {
-          "$ref": "#/239"
+          "$ref": "#/326"
         },
         "flags": 0
       }
@@ -3911,7 +5096,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/232"
+      "$ref": "#/319"
     }
   },
   {
@@ -3921,7 +5106,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/236"
+      "$ref": "#/323"
     }
   },
   {
@@ -3979,7 +5164,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/237"
+          "$ref": "#/324"
         },
         "flags": 0
       },
@@ -3992,7 +5177,7 @@
       },
       "Variants": {
         "type": {
-          "$ref": "#/243"
+          "$ref": "#/330"
         },
         "flags": 4,
         "description": "List of prompt variants"
@@ -4026,7 +5211,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/244"
+          "$ref": "#/331"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4038,268 +5223,7 @@
     "name": "AWS.Bedrock/Prompt@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/245"
-    },
-    "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PromptInferenceConfiguration",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PromptInputVariable",
-    "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "Name for an input variable"
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PromptModelInferenceConfiguration",
-    "properties": {
-      "MaxTokens": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Maximum length of output"
-      },
-      "StopSequences": {
-        "type": {
-          "$ref": "#/254"
-        },
-        "flags": 0,
-        "description": "List of stop sequences"
-      },
-      "Temperature": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Controls randomness, higher values increase diversity"
-      },
-      "TopK": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Sample from the k most likely next tokens"
-      },
-      "TopP": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0,
-        "description": "Cumulative probability cutoff for token selection"
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PromptTemplateConfiguration",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PromptTemplateType",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PromptVariant",
-    "properties": {
-      "InferenceConfiguration": {
-        "type": {
-          "$ref": "#/247"
-        },
-        "flags": 0
-      },
-      "ModelId": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "ARN or name of a Bedrock model."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1,
-        "description": "Name for a variant."
-      },
-      "TemplateConfiguration": {
-        "type": {
-          "$ref": "#/250"
-        },
-        "flags": 0
-      },
-      "TemplateType": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TextPromptTemplateConfiguration",
-    "properties": {
-      "InputVariables": {
-        "type": {
-          "$ref": "#/255"
-        },
-        "flags": 0,
-        "description": "List of input variables"
-      },
-      "Text": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1,
-        "description": "Prompt content for String prompt template"
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/23"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/248"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Bedrock/PromptVersionProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/252"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.Bedrock/PromptVersionProperties",
-    "properties": {
-      "Arn": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 18,
-        "description": "ARN of a prompt version resource"
-      },
-      "CreatedAt": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 2,
-        "description": "Time Stamp."
-      },
-      "DefaultVariant": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 2,
-        "description": "Name for a variant."
-      },
-      "Description": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "Description for a prompt version resource."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 2,
-        "description": "Name for a prompt resource."
-      },
-      "PromptArn": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1,
-        "description": "ARN of a prompt resource possibly with a version"
-      },
-      "PromptId": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 2,
-        "description": "Identifier for a Prompt"
-      },
-      "UpdatedAt": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 2,
-        "description": "Time Stamp."
-      },
-      "Variants": {
-        "type": {
-          "$ref": "#/257"
-        },
-        "flags": 2,
-        "description": "List of prompt variants"
-      },
-      "Version": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 2,
-        "description": "Version."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.Bedrock/PromptVersion",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 17,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/258"
-        },
-        "flags": 17,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.Bedrock/PromptVersion@default",
-    "scopeType": 0,
-    "body": {
-      "$ref": "#/259"
+      "$ref": "#/332"
     },
     "flags": 0
   }

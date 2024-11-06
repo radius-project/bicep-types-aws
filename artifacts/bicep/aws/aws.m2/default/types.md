@@ -18,7 +18,7 @@
 ### Properties
 * **ApplicationArn**: string (ReadOnly, Identifier)
 * **ApplicationId**: string (ReadOnly)
-* **Definition**: [Definition](#definition) (Required, WriteOnly)
+* **Definition**: [Definition](#definition) (WriteOnly)
 * **Description**: string
 * **EngineType**: string (Required)
 * **KmsKeyId**: string: The ID or the Amazon Resource Name (ARN) of the customer managed KMS Key used for encrypting application-related resources.

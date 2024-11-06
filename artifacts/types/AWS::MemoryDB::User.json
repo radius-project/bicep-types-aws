@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MemoryDB-User",
   "type": "AWS::MemoryDB::User",
-  "time": "2023-11-22T20:54:46.297Z",
+  "time": "2024-10-19T05:40:34.735Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -137,7 +137,18 @@
       "UserName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-memorydb",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "memorydb:TagResource",
+        "memorydb:ListTags",
+        "memorydb:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::MemoryDB::User",
     "writeOnlyProperties": [
       "/properties/AuthenticationMode",

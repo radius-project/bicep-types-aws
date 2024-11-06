@@ -491,6 +491,34 @@ describe('convert', () => {
         const stringPropertyType = new TypeReference(lookupStringType(types));
         expect(accountPropertyType).toStrictEqual(stringPropertyType)
     });
+
+    test('Definition can reference property', () => {
+        const file = fs.readFileSync(path.resolve('./testdata/AWS::OpenSearchService::Application.json'), { encoding: 'utf8' });
+
+        const schemaRecord: SchemaRecord = JSON.parse(file);
+        const types = convertSchemaRecordToTypes([schemaRecord]);
+
+        const resourceType = lookupResourceType(types, "AWS.OpenSearchService/Application@default");
+        expect(resourceType).not.toBeUndefined();
+
+        // DataSourceArn references a property so we ensure that it's populated correctly
+        const dataSourceype = lookupObjectType(types, "DataSource");
+        expect(dataSourceype).toStrictEqual({
+            type: TypeBaseKind.ObjectType,
+            name: "DataSource",
+            properties: {
+                "DataSourceArn": {
+                    type: new TypeReference(lookupStringType(types)),
+                    flags: ObjectTypePropertyFlags.Required,
+                    description: "The ARN of the data source."} as ObjectTypeProperty,
+                "DataSourceDescription": {
+                    type: new TypeReference(lookupStringType(types)),
+                    flags: ObjectTypePropertyFlags.None,
+                    description: "Description of the data source."} as ObjectTypeProperty,    
+            },
+            additionalProperties: undefined,
+            sensitive: undefined});
+    });
 });
 
 function lookupObjectType(types: BicepType[], name: string): ObjectType | undefined {

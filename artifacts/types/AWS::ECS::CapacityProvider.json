@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECS-CapacityProvider",
   "type": "AWS::ECS::CapacityProvider",
-  "time": "2024-08-07T15:50:14.299Z",
+  "time": "2024-10-17T16:25:42.231Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -135,10 +135,16 @@
     "propertyTransform": {
       "/properties/AutoScalingGroupProvider/AutoScalingGroupArn": "$split(AutoScalingGroupProvider.AutoScalingGroupArn, \"autoScalingGroupName/\")[-1] $OR $split(AutoScalingGroupArn, \"autoScalingGroupName/\")[-1]"
     },
-    "required": [
-      "AutoScalingGroupProvider"
-    ],
     "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ecs:TagResource",
+        "ecs:UntagResource",
+        "ecs:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::ECS::CapacityProvider"

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-PaymentCryptography-Key",
   "type": "AWS::PaymentCryptography::Key",
-  "time": "2024-07-21T14:52:29.65Z",
+  "time": "2024-11-01T12:54:36.503Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -14,7 +14,9 @@
           "AES_256",
           "RSA_2048",
           "RSA_3072",
-          "RSA_4096"
+          "RSA_4096",
+          "ECC_NIST_P256",
+          "ECC_NIST_P384"
         ],
         "type": "string"
       },
@@ -156,12 +158,13 @@
           },
           "Value": {
             "maxLength": 256,
-            "minLength": 0,
+            "minLength": 1,
             "type": "string"
           }
         },
         "required": [
-          "Key"
+          "Key",
+          "Value"
         ],
         "type": "object"
       }
@@ -252,6 +255,11 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "payment-cryptography:ListTagsForResource",
+        "payment-cryptography:TagResource",
+        "payment-cryptography:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

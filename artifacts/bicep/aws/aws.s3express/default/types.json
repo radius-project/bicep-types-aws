@@ -77,5 +77,157 @@
       "$ref": "#/5"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Arn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BucketEncryption",
+    "properties": {
+      "ServerSideEncryptionConfiguration": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1,
+        "description": "Specifies the default server-side-encryption configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServerSideEncryptionByDefault",
+    "properties": {
+      "KMSMasterKeyID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "AWS Key Management Service (KMS) customer managed key ID to use for the default encryption. This parameter is allowed only if SSEAlgorithm is set to aws:kms. You can specify this parameter with the key ID or the Amazon Resource Name (ARN) of the KMS key"
+      },
+      "SSEAlgorithm": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServerSideEncryptionRule",
+    "properties": {
+      "BucketKeyEnabled": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "Specifies whether Amazon S3 should use an S3 Bucket Key with server-side encryption using KMS (SSE-KMS) for new objects in the bucket. Existing objects are not affected. Amazon S3 Express One Zone uses an S3 Bucket Key with SSE-KMS and S3 Bucket Key cannot be disabled. It's only allowed to set the BucketKeyEnabled element to true."
+      },
+      "ServerSideEncryptionByDefault": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.S3Express/DirectoryBucketProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.S3Express/DirectoryBucketProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Returns the Amazon Resource Name (ARN) of the specified bucket."
+      },
+      "AvailabilityZoneName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Returns the code for the Availability Zone where the directory bucket was created."
+      },
+      "BucketEncryption": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "BucketName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "Specifies a name for the bucket. The bucket name must contain only lowercase letters, numbers, and hyphens (-). A directory bucket name must be unique in the chosen Availability Zone. The bucket name must also follow the format 'bucket_base_name--az_id--x-s3' (for example, 'DOC-EXAMPLE-BUCKET--usw2-az1--x-s3'). If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the bucket name."
+      },
+      "DataRedundancy": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the number of Availability Zone that's used for redundancy for the bucket."
+      },
+      "LocationName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the AZ ID of the Availability Zone where the directory bucket will be created. An example AZ ID value is 'use1-az5'."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.S3Express/DirectoryBucket",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.S3Express/DirectoryBucket@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/15"
+    },
+    "flags": 0
   }
 ]

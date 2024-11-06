@@ -265,16 +265,23 @@
         },
         "flags": 1
       },
-      "Configuration": {
+      "Commands": {
         "type": {
           "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "The shell commands to run with your compute action in CodePipeline."
+      },
+      "Configuration": {
+        "type": {
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "The action's configuration. These are key-value pairs that specify input values for an action."
       },
       "InputArtifacts": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/40"
         },
         "flags": 0
       },
@@ -294,9 +301,16 @@
       },
       "OutputArtifacts": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/41"
         },
         "flags": 0
+      },
+      "OutputVariables": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "The list of variables that are to be exported from the compute action."
       },
       "Region": {
         "type": {
@@ -413,7 +427,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/43"
         },
         "flags": 0
       }
@@ -452,7 +466,7 @@
       },
       "Rules": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/44"
         },
         "flags": 0
       }
@@ -484,7 +498,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/45"
         },
         "flags": 0
       },
@@ -494,6 +508,13 @@
         },
         "flags": 0,
         "description": "The specified result for when the failure conditions are met, such as rolling back the stage"
+      },
+      "RetryConfiguration": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "The configuration that specifies the retry configuration for a stage"
       }
     }
   },
@@ -503,14 +524,14 @@
     "properties": {
       "Excludes": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "The list of patterns of Git branches that, when a commit is pushed, are to be excluded from starting the pipeline."
       },
       "Includes": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "The list of patterns of Git branches that, when a commit is pushed, are to be included as criteria that starts the pipeline."
@@ -523,14 +544,14 @@
     "properties": {
       "PullRequest": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "The field where the repository event that will start the pipeline is specified as pull requests."
       },
       "Push": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "The field where the repository event that will start the pipeline, such as pushing Git tags, is specified with details."
@@ -550,14 +571,14 @@
     "properties": {
       "Excludes": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "The list of patterns of Git repository file paths that, when a commit is pushed, are to be excluded from starting the pipeline."
       },
       "Includes": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "The list of patterns of Git repository file paths that, when a commit is pushed, are to be included as criteria that starts the pipeline."
@@ -576,7 +597,7 @@
       },
       "Events": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "The field that specifies which pull request events to filter on (opened, updated, closed) for the trigger configuration."
@@ -619,14 +640,14 @@
     "properties": {
       "Excludes": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "The list of patterns of Git tags that, when pushed, are to be excluded from starting the pipeline."
       },
       "Includes": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "The list of patterns of Git tags that, when pushed, are to be included as criteria that starts the pipeline."
@@ -650,6 +671,13 @@
     "$type": "ObjectType",
     "name": "OutputArtifact",
     "properties": {
+      "Files": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0,
+        "description": "The files that you want to associate with the output artifact that will be exported from the compute action."
+      },
       "Name": {
         "type": {
           "$ref": "#/5"
@@ -684,14 +712,14 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "The rule's configuration. These are key-value pairs that specify input values for a rule."
       },
       "InputArtifacts": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/58"
         },
         "flags": 0
       },
@@ -764,20 +792,20 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/59"
         },
         "flags": 1
       },
       "BeforeEntry": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "The method to use before stage runs."
       },
       "Blockers": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/62"
         },
         "flags": 0
       },
@@ -790,14 +818,14 @@
       },
       "OnFailure": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "The method to use when a stage has not completed successfully"
       },
       "OnSuccess": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "The method to use when a stage has completed successfully"
@@ -830,7 +858,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/68"
         },
         "flags": 0
       }
@@ -884,6 +912,12 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "Pipeline_Configuration",
     "properties": {}
@@ -903,6 +937,12 @@
   {
     "$type": "ArrayType",
     "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
       "$ref": "#/19"
     }
   },
@@ -916,6 +956,19 @@
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Pipeline_RetryConfiguration",
+    "properties": {
+      "RetryMode": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The specified retry mode type for the given stage. FAILED_ACTIONS will retry only the failed actions. ALL_ACTIONS will retry both failed and successful"
+      }
     }
   },
   {
@@ -940,6 +993,12 @@
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/26"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
     }
   },
   {
@@ -1001,7 +1060,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/60"
         },
         "flags": 0
       }
@@ -1021,11 +1080,24 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Pipeline_FailureConditions_RetryConfiguration",
+    "properties": {
+      "RetryMode": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The specified retry mode type for the given stage. FAILED_ACTIONS will retry only the failed actions. ALL_ACTIONS will retry both failed and successful"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Pipeline_FailureConditions",
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/63"
         },
         "flags": 0
       },
@@ -1035,6 +1107,13 @@
         },
         "flags": 0,
         "description": "The specified result for when the failure conditions are met, such as rolling back the stage"
+      },
+      "RetryConfiguration": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 0,
+        "description": "The configuration that specifies the retry configuration for a stage"
       }
     }
   },
@@ -1050,7 +1129,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/66"
         },
         "flags": 0
       }
@@ -1115,14 +1194,14 @@
       },
       "ArtifactStores": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "A mapping of artifactStore objects and their corresponding AWS Regions. There must be an artifact store for the pipeline Region and for each cross-region action in the pipeline."
       },
       "DisableInboundStageTransitions": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "Represents the input of a DisableStageTransition action."
@@ -1164,28 +1243,28 @@
       },
       "Stages": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/72"
         },
         "flags": 1,
         "description": "Represents information about a stage and its definition."
       },
       "Tags": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "Specifies the tags applied to the pipeline."
       },
       "Triggers": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "The trigger configuration specifying a type of event, such as Git tags, that starts the pipeline."
       },
       "Variables": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "A list that defines the pipeline variables for a pipeline resource. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9@\\-_]+."
@@ -1219,7 +1298,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/76"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1231,7 +1310,7 @@
     "name": "AWS.CodePipeline/Pipeline@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/72"
+      "$ref": "#/77"
     },
     "flags": 0
   }

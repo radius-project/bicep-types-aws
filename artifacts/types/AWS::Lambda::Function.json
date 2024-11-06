@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lambda-Function",
   "type": "AWS::Lambda::Function",
-  "time": "2024-08-08T18:42:09.565Z",
+  "time": "2024-10-28T16:33:46.106Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -99,7 +99,7 @@
           "Arn": {
             "description": "The Amazon Resource Name (ARN) of the Amazon EFS access point that provides access to the file system.",
             "maxLength": 200,
-            "pattern": "^arn:aws[a-zA-Z-]*:elasticfilesystem:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}:\\d{12}:access-point/fsap-[a-f0-9]{17}$",
+            "pattern": "^arn:aws[a-zA-Z-]*:elasticfilesystem:[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:access-point/fsap-[a-f0-9]{17}$",
             "type": "string"
           },
           "LocalMountPath": {
@@ -186,6 +186,14 @@
           }
         },
         "type": "object"
+      },
+      "RecursiveLoop": {
+        "description": "The function recursion configuration.",
+        "enum": [
+          "Allow",
+          "Terminate"
+        ],
+        "type": "string"
       },
       "RuntimeManagementConfig": {
         "additionalProperties": false,
@@ -341,7 +349,9 @@
           "lambda:GetLayerVersion",
           "lambda:GetRuntimeManagementConfig",
           "lambda:PutRuntimeManagementConfig",
-          "lambda:TagResource"
+          "lambda:TagResource",
+          "lambda:PutFunctionRecursionConfig",
+          "lambda:GetFunctionRecursionConfig"
         ]
       },
       "delete": {
@@ -359,7 +369,8 @@
       "read": {
         "permissions": [
           "lambda:GetFunction",
-          "lambda:GetFunctionCodeSigningConfig"
+          "lambda:GetFunctionCodeSigningConfig",
+          "lambda:GetFunctionRecursionConfig"
         ]
       },
       "update": {
@@ -387,7 +398,9 @@
           "lambda:PutFunctionCodeSigningConfig",
           "lambda:DeleteFunctionCodeSigningConfig",
           "lambda:GetCodeSigningConfig",
-          "lambda:GetFunctionCodeSigningConfig"
+          "lambda:GetFunctionCodeSigningConfig",
+          "lambda:PutFunctionRecursionConfig",
+          "lambda:GetFunctionRecursionConfig"
         ]
       }
     },
@@ -419,7 +432,7 @@
       },
       "CodeSigningConfigArn": {
         "description": "To enable code signing for this function, specify the ARN of a code-signing configuration. A code-signing configuration includes a set of signing profiles, which define the trusted publishers for this function.",
-        "pattern": "arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}:\\d{12}:code-signing-config:csc-[a-z0-9]{17}",
+        "pattern": "arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:code-signing-config:csc-[a-z0-9]{17}",
         "type": "string"
       },
       "DeadLetterConfig": {
@@ -490,6 +503,10 @@
           "Zip"
         ],
         "type": "string"
+      },
+      "RecursiveLoop": {
+        "$ref": "#/definitions/RecursiveLoop",
+        "description": ""
       },
       "ReservedConcurrentExecutions": {
         "description": "The number of simultaneous executions to reserve for the function.",

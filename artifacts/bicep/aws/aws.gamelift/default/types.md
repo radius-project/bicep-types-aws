@@ -103,6 +103,10 @@
 * **Name**: string (Required, Identifier): A descriptive label for the container group definition.
 * **OperatingSystem**: string (Required): The operating system of the container group
 * **SchedulingStrategy**: string: Specifies whether the container group includes replica or daemon containers.
+* **SourceVersionNumber**: int: A specific ContainerGroupDefinition version to be updated
+* **Status**: string (ReadOnly): A string indicating ContainerGroupDefinition status.
+* **StatusReason**: string (ReadOnly): A string indicating the reason for ContainerGroupDefinition status.
+* **SupportContainerDefinitions**: [ContainerGroupDefinition_SupportContainerDefinitions](#containergroupdefinitionsupportcontainerdefinitions)[]: A collection of support container definitions that define the containers in this group.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TotalCpuLimit**: int (Required): The maximum number of CPU units reserved for this container group. The value is expressed as an integer amount of CPU units. (1 vCPU is equal to 1024 CPU units.)
 * **TotalMemoryLimit**: int (Required): The maximum amount of memory (in MiB) to allocate for this container group.
@@ -253,6 +257,9 @@ Note: It is not currently possible to use the !Ref command to reference a script
 ### Properties
 * **Name**: string (Required, Identifier): The environment variable name.
 * **Value**: string (Required): The environment variable value.
+
+## ContainerGroupDefinition_SupportContainerDefinitions
+### Properties
 
 ## ContainerGroupsConfiguration
 ### Properties

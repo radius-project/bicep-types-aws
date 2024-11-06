@@ -17,11 +17,13 @@
 ## ActionDeclaration
 ### Properties
 * **ActionTypeId**: [ActionTypeId](#actiontypeid) (Required)
+* **Commands**: string[]: The shell commands to run with your compute action in CodePipeline.
 * **Configuration**: [Pipeline_Configuration](#pipelineconfiguration): The action's configuration. These are key-value pairs that specify input values for an action.
 * **InputArtifacts**: [InputArtifact](#inputartifact)[]
 * **Name**: string (Required, Identifier): The action declaration's name.
 * **Namespace**: string: The variable namespace associated with the action. All variables produced as output by this action fall under this namespace.
 * **OutputArtifacts**: [OutputArtifact](#outputartifact)[]
+* **OutputVariables**: string[]: The list of variables that are to be exported from the compute action.
 * **Region**: string: The action declaration's AWS Region, such as us-east-1.
 * **RoleArn**: string: The ARN of the IAM service role that performs the declared action. This is assumed through the roleArn for the pipeline.
 * **RunOrder**: int: The order in which actions are run.
@@ -142,6 +144,7 @@
 
 ## OutputArtifact
 ### Properties
+* **Files**: string[]: The files that you want to associate with the output artifact that will be exported from the compute action.
 * **Name**: string (Required, Identifier): The name of the output of an artifact, such as "My App".
 
 ## Pipeline_BeforeEntryConditions
@@ -158,6 +161,11 @@
 ### Properties
 * **Conditions**: [Condition](#condition)[]
 * **Result**: string: The specified result for when the failure conditions are met, such as rolling back the stage
+* **RetryConfiguration**: [Pipeline_FailureConditions_RetryConfiguration](#pipelinefailureconditionsretryconfiguration): The configuration that specifies the retry configuration for a stage
+
+## Pipeline_FailureConditions_RetryConfiguration
+### Properties
+* **RetryMode**: string: The specified retry mode type for the given stage. FAILED_ACTIONS will retry only the failed actions. ALL_ACTIONS will retry both failed and successful
 
 ## Pipeline_SuccessConditions
 ### Properties

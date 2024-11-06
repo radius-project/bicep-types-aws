@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Rekognition-StreamProcessor",
   "type": "AWS::Rekognition::StreamProcessor",
-  "time": "2024-07-03T22:03:45.254Z",
+  "time": "2024-10-30T15:58:01.441Z",
   "schema": {
     "$comment": "We explicitly specify the replacement strategy to be delete_then_create because we cannot create a new SP resource with the same name or same KVS input before deleting the old one",
     "additionalProperties": false,
@@ -394,7 +394,18 @@
       "KinesisVideoStream"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "rekognition:TagResource",
+        "rekognition:UntagResource",
+        "rekognition:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Rekognition::StreamProcessor"
   }
 }

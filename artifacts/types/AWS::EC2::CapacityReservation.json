@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-CapacityReservation",
   "type": "AWS::EC2::CapacityReservation",
-  "time": "2024-07-29T21:17:41.285Z",
+  "time": "2024-10-22T15:51:33.225Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -84,6 +84,7 @@
           "ec2:CreateCapacityReservation",
           "ec2:DescribeCapacityReservations",
           "ec2:CancelCapacityReservation",
+          "ec2:AssociateCapacityReservationBillingOwner",
           "ec2:CreateTags",
           "ec2:DeleteTags"
         ]
@@ -145,6 +146,9 @@
       },
       "TotalInstanceCount": {
         "type": "integer"
+      },
+      "UnusedReservationBillingOwnerId": {
+        "type": "string"
       }
     },
     "readOnlyProperties": [
@@ -158,6 +162,9 @@
       "InstancePlatform",
       "InstanceType"
     ],
-    "typeName": "AWS::EC2::CapacityReservation"
+    "typeName": "AWS::EC2::CapacityReservation",
+    "writeOnlyProperties": [
+      "/properties/UnusedReservationBillingOwnerId"
+    ]
   }
 }

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IVS-EncoderConfiguration",
   "type": "AWS::IVS::EncoderConfiguration",
-  "time": "2024-04-25T15:34:32.506Z",
+  "time": "2024-10-23T15:54:09.874Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -120,16 +120,16 @@
           },
           "Height": {
             "default": 720,
-            "description": "Video-resolution height. Note that the maximum value is determined by width times height, such that the maximum total pixels is 2073600 (1920x1080 or 1080x1920). Default: 720.",
+            "description": "Video-resolution height. This must be an even number. Note that the maximum value is determined by width times height, such that the maximum total pixels is 2073600 (1920x1080 or 1080x1920). Default: 720.",
             "maximum": 1920,
-            "minimum": 1,
+            "minimum": 2,
             "type": "integer"
           },
           "Width": {
             "default": 1280,
-            "description": "Video-resolution width. Note that the maximum value is determined by width times height, such that the maximum total pixels is 2073600 (1920x1080 or 1080x1920). Default: 1280.",
+            "description": "Video-resolution width. This must be an even number. Note that the maximum value is determined by width times height, such that the maximum total pixels is 2073600 (1920x1080 or 1080x1920). Default: 1280.",
             "maximum": 1920,
-            "minimum": 1,
+            "minimum": 2,
             "type": "integer"
           }
         },
@@ -143,6 +143,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "ivs:TagResource",
+        "ivs:UntagResource",
+        "ivs:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

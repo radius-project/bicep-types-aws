@@ -1,13 +1,9 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WorkSpacesWeb-UserSettings",
   "type": "AWS::WorkSpacesWeb::UserSettings",
-  "time": "2024-07-22T16:52:48.026Z",
+  "time": "2024-10-15T17:39:52.076Z",
   "schema": {
     "additionalProperties": false,
-    "createOnlyProperties": [
-      "/properties/AdditionalEncryptionContext",
-      "/properties/CustomerManagedKey"
-    ],
     "definitions": {
       "CookieSpecification": {
         "additionalProperties": false,
@@ -112,10 +108,12 @@
           "workspaces-web:GetUserSettings",
           "workspaces-web:ListTagsForResource",
           "workspaces-web:TagResource",
-          "kms:CreateGrant",
           "kms:DescribeKey",
           "kms:GenerateDataKey",
-          "kms:Decrypt"
+          "kms:Decrypt",
+          "kms:GenerateDataKeyWithoutPlaintext",
+          "kms:ReEncryptTo",
+          "kms:ReEncryptFrom"
         ]
       },
       "delete": {
@@ -246,6 +244,11 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "workspaces-web:UntagResource",
+        "workspaces-web:ListTagsForResource",
+        "workspaces-web:TagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ElasticLoadBalancingV2-Listener",
   "type": "AWS::ElasticLoadBalancingV2::Listener",
-  "time": "2024-07-25T16:12:55.922Z",
+  "time": "2024-10-30T19:41:37.757Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -127,6 +127,18 @@
       },
       "AuthenticateOidcConfig": {
         "additionalProperties": false,
+        "anyOf": [
+          {
+            "required": [
+              "ClientSecret"
+            ]
+          },
+          {
+            "required": [
+              "UseExistingClientSecret"
+            ]
+          }
+        ],
         "description": "Specifies information required using an identity provide (IdP) that is compliant with OpenID Connect (OIDC) to authenticate users.",
         "properties": {
           "AuthenticationRequestExtraParams": {
@@ -258,6 +270,21 @@
         },
         "type": "object"
       },
+      "ListenerAttribute": {
+        "additionalProperties": false,
+        "description": "Information about a listener attribute.",
+        "properties": {
+          "Key": {
+            "description": "The name of the attribute.\n The following attribute is supported by Network Load Balancers, and Gateway Load Balancers.\n  +   ``tcp.idle_timeout.seconds`` - The tcp idle timeout value, in seconds. The valid range is 60-6000 seconds. The default is 350 seconds.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the attribute.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "MutualAuthentication": {
         "additionalProperties": false,
         "description": "Specifies the configuration information for mutual authentication.",
@@ -352,7 +379,8 @@
         "permissions": [
           "elasticloadbalancing:CreateListener",
           "elasticloadbalancing:DescribeListeners",
-          "cognito-idp:DescribeUserPoolClient"
+          "cognito-idp:DescribeUserPoolClient",
+          "elasticloadbalancing:ModifyListenerAttributes"
         ]
       },
       "delete": {
@@ -394,14 +422,16 @@
       },
       "read": {
         "permissions": [
-          "elasticloadbalancing:DescribeListeners"
+          "elasticloadbalancing:DescribeListeners",
+          "elasticloadbalancing:DescribeListenerAttributes"
         ]
       },
       "update": {
         "permissions": [
           "elasticloadbalancing:ModifyListener",
           "elasticloadbalancing:DescribeListeners",
-          "cognito-idp:DescribeUserPoolClient"
+          "cognito-idp:DescribeUserPoolClient",
+          "elasticloadbalancing:ModifyListenerAttributes"
         ]
       }
     },
@@ -435,6 +465,16 @@
       "ListenerArn": {
         "description": "",
         "type": "string"
+      },
+      "ListenerAttributes": {
+        "arrayType": "AttributeList",
+        "description": "The listener attributes.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ListenerAttribute"
+        },
+        "type": "array",
+        "uniqueItems": true
       },
       "LoadBalancerArn": {
         "description": "The Amazon Resource Name (ARN) of the load balancer.",

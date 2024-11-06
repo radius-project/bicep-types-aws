@@ -118,11 +118,12 @@
 * **EgressIp**: string (ReadOnly): The IP address from which video will be sent to output destinations.
 * **FlowArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN), a unique identifier for any AWS resource, of the flow.
 * **FlowAvailabilityZone**: string (ReadOnly): The Availability Zone that you want to create the flow in. These options are limited to the Availability Zones within the current AWS.(ReadOnly)
-* **Maintenance**: [Maintenance](#maintenance): The maintenance settings you want to use for the flow. 
+* **Maintenance**: [Maintenance](#maintenance): The maintenance settings you want to use for the flow.
 * **MediaStreams**: [MediaStream](#mediastream)[] (ReadOnly): The media streams associated with the flow. You can associate any of these media streams with sources and outputs on the flow.
 * **Name**: string (Required): The name of the flow.
 * **Source**: [Source](#source) (Required): The source of the flow.
 * **SourceFailoverConfig**: [FailoverConfig](#failoverconfig): The source failover config of the flow.
+* **SourceMonitoringConfig**: [SourceMonitoringConfig](#sourcemonitoringconfig): The source monitoring config of the flow.
 * **VpcInterfaces**: [VpcInterface](#vpcinterface)[] (ReadOnly): The VPC interfaces that you added to this flow.
 
 ## AWS.MediaConnect/FlowSourceProperties
@@ -381,6 +382,10 @@
 * **StreamId**: string: The stream ID that you want to use for this transport. This parameter applies only to Zixi-based streams.
 * **VpcInterfaceName**: string: The name of the VPC Interface this Source is configured with.
 * **WhitelistCidr**: string: The range of IP addresses that should be allowed to contribute content to your source. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16.
+
+## SourceMonitoringConfig
+### Properties
+* **ThumbnailState**: string (Required): The state of thumbnail monitoring.
 
 ## SourcePriority
 ### Properties

@@ -239,6 +239,10 @@
 ### Properties
 * **Type**: string
 
+## ReplicationTopicNameConfiguration
+### Properties
+* **Type**: string
+
 ## S3
 ### Properties
 * **Bucket**: string
@@ -277,6 +281,7 @@
 * **CopyTopicConfigurations**: bool: Whether to periodically configure remote topics to match their corresponding upstream topics.
 * **DetectAndCopyNewTopics**: bool: Whether to periodically check for new topics and partitions.
 * **StartingPosition**: [ReplicationStartingPosition](#replicationstartingposition): Configuration for specifying the position in the topics to start replicating from.
+* **TopicNameConfiguration**: [ReplicationTopicNameConfiguration](#replicationtopicnameconfiguration): Configuration for specifying replicated topic names should be the same as their corresponding upstream topics or prefixed with source cluster alias.
 * **TopicsToExclude**: string[]: List of regular expression patterns indicating the topics that should not be replicated.
 * **TopicsToReplicate**: string[] (Required): List of regular expression patterns indicating the topics to copy.
 
