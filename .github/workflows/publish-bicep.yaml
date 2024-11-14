@@ -21,11 +21,10 @@ on:
       - main
     tags:
       - v*
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
-    inputs: {}
+  workflow_run:
+    workflows: ["Approve Publish Bicep Types"]
+    types:
+      - completed
 
 permissions:
       id-token: write
@@ -33,7 +32,7 @@ permissions:
 
 env: 
   # bicep-types ACR url for uploading AWS Bicep types
-  BICEP_TYPES_REGISTRY: 'biceptypes.azurecr.io'
+  BICEP_TYPES_REGISTRY: 'shruku.azurecr.io'
   AWS_REGION: us-west-2
   CI_PUBLISH_RELEASE: ${{ github.repository == 'radius-project/bicep-types-aws' && startsWith(github.ref, 'refs/tags/v') && github.event_name == 'push' }}
   CI_PUBLISH_LATEST: ${{ github.repository == 'radius-project/bicep-types-aws' && github.ref == 'refs/heads/main' && github.event_name == 'push' }}
@@ -42,7 +41,9 @@ jobs:
   build-and-push-bicep-types:
     name: Publish Radius bicep types to ACR
     runs-on: ubuntu-latest
-    environment: publish-bicep
+    if: ${{ (github.repository == 'sk593/bicep-types-aws' && startsWith(github.ref, 'refs/tags/v') && github.event_name == 'push') || 
+      (github.repository == 'sk593/bicep-types-aws' && github.ref == 'refs/heads/main' && github.event_name == 'push') }}
+      # || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
     steps: 
       - name: Check out code
         uses: actions/checkout@v4

@@ -1,0 +1,22 @@
+name: "Approve Publish Bicep Types"
+on:
+  pull_request:
+    branches:
+      - main
+      - features/*
+      - release/*
+
+jobs:
+  approve-functional-tests-run:
+    name: "Approve Publish Bicep Types"
+    runs-on: ubuntu-latest
+    environment: publish-bicep
+    steps:
+      - name: Checkout bicep-types-aws repository
+        uses: actions/checkout@v4
+      # - name: Trigger Publish Bicep Workflow
+      #   uses: peter-evans/workflow-dispatch@v1
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     workflow: publish-bicep.yaml
+      #     ref: main
