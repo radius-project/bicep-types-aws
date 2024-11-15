@@ -21,10 +21,11 @@ on:
       - main
     tags:
       - v*
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["Approve Publish Bicep Types"]
+    types:
+      - completed
+    workflow_dispatch:
     inputs: {}
 
 permissions:
@@ -42,7 +43,6 @@ jobs:
   build-and-push-bicep-types:
     name: Publish Radius bicep types to ACR
     runs-on: ubuntu-latest
-    environment: publish-bicep
     steps: 
       - name: Check out code
         uses: actions/checkout@v4
