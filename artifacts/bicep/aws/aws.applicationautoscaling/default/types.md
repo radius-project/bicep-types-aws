@@ -80,6 +80,7 @@
  The following policy types are supported: 
   ``TargetTrackingScaling``—Not supported for Amazon EMR
   ``StepScaling``—Not supported for DynamoDB, Amazon Comprehend, Lambda, Amazon Keyspaces, Amazon MSK, Amazon ElastiCache, or Neptune.
+* **PredictiveScalingPolicyConfiguration**: [PredictiveScalingPolicyConfiguration](#predictivescalingpolicyconfiguration)
 * **ResourceId**: string: The identifier of the resource associated with the scaling policy. This string consists of the resource type and unique identifier.
   +  ECS service - The resource type is ``service`` and the unique identifier is the cluster name and service name. Example: ``service/my-cluster/my-service``.
   +  Spot Fleet - The resource type is ``spot-fleet-request`` and the unique identifier is the Spot Fleet request ID. Example: ``spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE``.
@@ -156,6 +157,76 @@
   +  targetgroup/<target-group-name>/<target-group-id> is the final portion of the target group ARN.
   
  To find the ARN for an Application Load Balancer, use the [DescribeLoadBalancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html) API operation. To find the ARN for the target group, use the [DescribeTargetGroups](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeTargetGroups.html) API operation.
+
+## PredictiveScalingCustomizedCapacityMetric
+### Properties
+* **MetricDataQueries**: [PredictiveScalingMetricDataQuery](#predictivescalingmetricdataquery)[] (Required)
+
+## PredictiveScalingCustomizedLoadMetric
+### Properties
+* **MetricDataQueries**: [PredictiveScalingMetricDataQuery](#predictivescalingmetricdataquery)[] (Required)
+
+## PredictiveScalingCustomizedScalingMetric
+### Properties
+* **MetricDataQueries**: [PredictiveScalingMetricDataQuery](#predictivescalingmetricdataquery)[] (Required)
+
+## PredictiveScalingMetric
+### Properties
+* **Dimensions**: [PredictiveScalingMetricDimension](#predictivescalingmetricdimension)[]: The dimensions for the metric.
+* **MetricName**: string: The name of the metric.
+* **Namespace**: string: The namespace of the metric.
+
+## PredictiveScalingMetricDataQuery
+### Properties
+* **Expression**: string: The math expression to perform on the returned data, if this object is performing a math expression.
+* **Id**: string: A short name that identifies the object's results in the response.
+* **Label**: string: A human-readable label for this metric or expression. This is especially useful if this is a math expression, so that you know what the value represents.
+* **MetricStat**: [PredictiveScalingMetricStat](#predictivescalingmetricstat): Information about the metric data to return.
+* **ReturnData**: bool: Indicates whether to return the timestamps and raw data values of this metric.
+
+## PredictiveScalingMetricDimension
+### Properties
+* **Name**: string: The name of the dimension.
+* **Value**: string: The value of the dimension.
+
+## PredictiveScalingMetricSpecification
+### Properties
+* **CustomizedCapacityMetricSpecification**: [PredictiveScalingCustomizedCapacityMetric](#predictivescalingcustomizedcapacitymetric)
+* **CustomizedLoadMetricSpecification**: [PredictiveScalingCustomizedLoadMetric](#predictivescalingcustomizedloadmetric)
+* **CustomizedScalingMetricSpecification**: [PredictiveScalingCustomizedScalingMetric](#predictivescalingcustomizedscalingmetric)
+* **PredefinedLoadMetricSpecification**: [PredictiveScalingPredefinedLoadMetric](#predictivescalingpredefinedloadmetric)
+* **PredefinedMetricPairSpecification**: [PredictiveScalingPredefinedMetricPair](#predictivescalingpredefinedmetricpair)
+* **PredefinedScalingMetricSpecification**: [PredictiveScalingPredefinedScalingMetric](#predictivescalingpredefinedscalingmetric)
+* **TargetValue**: int (Required)
+
+## PredictiveScalingMetricStat
+### Properties
+* **Metric**: [PredictiveScalingMetric](#predictivescalingmetric): The CloudWatch metric to return, including the metric name, namespace, and dimensions. 
+* **Stat**: string: The statistic to return. It can include any CloudWatch statistic or extended statistic.
+* **Unit**: string: The unit to use for the returned data points.
+
+## PredictiveScalingPolicyConfiguration
+### Properties
+* **MaxCapacityBreachBehavior**: string
+* **MaxCapacityBuffer**: int
+* **MetricSpecifications**: [PredictiveScalingMetricSpecification](#predictivescalingmetricspecification)[] (Required)
+* **Mode**: string
+* **SchedulingBufferTime**: int
+
+## PredictiveScalingPredefinedLoadMetric
+### Properties
+* **PredefinedMetricType**: string (Required)
+* **ResourceLabel**: string
+
+## PredictiveScalingPredefinedMetricPair
+### Properties
+* **PredefinedMetricType**: string (Required)
+* **ResourceLabel**: string
+
+## PredictiveScalingPredefinedScalingMetric
+### Properties
+* **PredefinedMetricType**: string (Required)
+* **ResourceLabel**: string
 
 ## ScalableTargetAction
 ### Properties

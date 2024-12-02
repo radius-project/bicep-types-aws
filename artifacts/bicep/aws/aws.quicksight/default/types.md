@@ -6121,6 +6121,13 @@
 * **DecimalSeparator**: string
 * **ThousandsSeparator**: [ThousandSeparatorOptions](#thousandseparatoroptions)
 
+## OAuthParameters
+### Properties
+* **IdentityProviderResourceUri**: string
+* **IdentityProviderVpcConnectionProperties**: [VpcConnectionProperties](#vpcconnectionproperties)
+* **OAuthScope**: string
+* **TokenProviderUrl**: string (Required)
+
 ## OracleParameters
 ### Properties
 * **Database**: string (Required): <p>The database.</p>
@@ -8431,8 +8438,11 @@
 
 ## SnowflakeParameters
 ### Properties
+* **AuthenticationType**: string
 * **Database**: string (Required): <p>Database.</p>
+* **DatabaseAccessControlRole**: string
 * **Host**: string (Required): <p>Host.</p>
+* **OAuthParameters**: [OAuthParameters](#oauthparameters)
 * **Warehouse**: string (Required): <p>Warehouse.</p>
 
 ## Spacing
@@ -8473,8 +8483,11 @@
 
 ## StarburstParameters
 ### Properties
+* **AuthenticationType**: string
 * **Catalog**: string (Required): <p>The catalog name for the Starburst data source.</p>
+* **DatabaseAccessControlRole**: string
 * **Host**: string (Required): <p>The host name of the Starburst data source.</p>
+* **OAuthParameters**: [OAuthParameters](#oauthparameters)
 * **Port**: int (Required): <p>The port for the Starburst data source.</p>
 * **ProductType**: string
 

@@ -227,100 +227,565 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ContainerDefinition",
+    "name": "ConnectionPortRange",
     "properties": {
-      "Command": {
+      "FromPort": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/25"
         },
-        "flags": 0,
-        "description": "The command that's passed to the container."
+        "flags": 1,
+        "description": "A starting value for a range of allowed port numbers."
       },
-      "ContainerName": {
+      "ToPort": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1,
+        "description": "An ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than FromPort."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeploymentConfiguration",
+    "properties": {
+      "ImpairmentStrategy": {
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
-        "description": "A descriptive label for the container definition. Container definition names must be unique with a container group definition."
-      },
-      "Cpu": {
-        "type": {
-          "$ref": "#/21"
-        },
         "flags": 0,
-        "description": "The maximum number of CPU units reserved for this container. The value is expressed as an integer amount of CPU units. 1 vCPU is equal to 1024 CPU units"
+        "description": "The strategy to apply in case of impairment; defaults to MAINTAIN."
       },
-      "DependsOn": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0,
-        "description": "A list of container dependencies that determines when this container starts up and shuts down. For container groups with multiple containers, dependencies let you define a startup/shutdown sequence across the containers."
-      },
-      "EntryPoint": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 0,
-        "description": "The entry point that's passed to the container so that it will run as an executable. If there are multiple arguments, each argument is a string in the array."
-      },
-      "Environment": {
-        "type": {
-          "$ref": "#/24"
-        },
-        "flags": 0,
-        "description": "The environment variables to pass to a container."
-      },
-      "Essential": {
+      "MinimumHealthyPercentage": {
         "type": {
           "$ref": "#/25"
         },
         "flags": 0,
-        "description": "Specifies if the container is essential. If an essential container fails a health check, then all containers in the container group will be restarted. You must specify exactly 1 essential container in a container group."
+        "description": "The minimum percentage of healthy required; defaults to 75."
       },
-      "HealthCheck": {
+      "ProtectionStrategy": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/1"
         },
         "flags": 0,
-        "description": "Specifies how the health of the containers will be checked."
+        "description": "The protection strategy for deployment on the container fleet; defaults to WITH_PROTECTION."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeploymentDetails",
+    "properties": {
+      "LatestDeploymentId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the last deployment on the container fleet. This field will be empty if the container fleet does not have a ContainerGroupDefinition attached."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GameSessionCreationLimitPolicy",
+    "properties": {
+      "NewGameSessionsPerCreator": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "The maximum number of game sessions that an individual can create during the policy period."
       },
-      "ImageUri": {
+      "PolicyPeriodInMinutes": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "The time span used in evaluating the resource creation limit policy."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IpPermission",
+    "properties": {
+      "FromPort": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1,
+        "description": "A starting value for a range of allowed port numbers."
+      },
+      "IpRange": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "Specifies the image URI of this container."
+        "description": "A range of allowed IP addresses. This value must be expressed in CIDR notation. Example: \"000.000.000.000/[subnet mask]\" or optionally the shortened version \"0.0.0.0/[subnet mask]\"."
       },
-      "MemoryLimits": {
+      "Protocol": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The network communication protocol used by the fleet."
+      },
+      "ToPort": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1,
+        "description": "An ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than FromPort."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Location",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LocationCapacity",
+    "properties": {
+      "DesiredEC2Instances": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1,
+        "description": "The number of EC2 instances you want to maintain in the specified fleet location. This value must fall between the minimum and maximum size limits."
+      },
+      "MaxSize": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1,
+        "description": "The maximum value that is allowed for the fleet's instance count for a location."
+      },
+      "MinSize": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1,
+        "description": "The minimum value allowed for the fleet's instance count for a location."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LocationConfiguration",
+    "properties": {
+      "Location": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "LocationCapacity": {
         "type": {
           "$ref": "#/17"
         },
-        "flags": 0,
-        "description": "Specifies how much memory is available to the container. You must specify at least this parameter or the TotalMemoryLimit parameter of the ContainerGroupDefinition."
+        "flags": 0
       },
-      "PortConfiguration": {
+      "StoppedActions": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/26"
         },
-        "flags": 0,
-        "description": "Defines the ports on the container."
-      },
-      "ResolvedImageDigest": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The digest of the container image."
-      },
-      "WorkingDirectory": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The working directory to run commands inside the container in."
+        "flags": 0
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogConfiguration",
+    "properties": {
+      "LogDestination": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "S3BucketName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the S3 bucket to pull logs from if S3 is the LogDestination"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogDestination",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScalingPolicy",
+    "properties": {
+      "ComparisonOperator": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Comparison operator to use when measuring a metric against the threshold value."
+      },
+      "EvaluationPeriods": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "Length of time (in minutes) the metric must be at or beyond the threshold before a scaling event is triggered."
+      },
+      "MetricName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Name of the Amazon GameLift-defined metric that is used to trigger a scaling adjustment."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A descriptive label that is associated with a fleet's scaling policy. Policy names do not need to be unique."
+      },
+      "PolicyType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of scaling policy to create. For a target-based policy, set the parameter MetricName to 'PercentAvailableGameSessions' and specify a TargetConfiguration. For a rule-based policy set the following parameters: MetricName, ComparisonOperator, Threshold, EvaluationPeriods, ScalingAdjustmentType, and ScalingAdjustment."
+      },
+      "ScalingAdjustment": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "Amount of adjustment to make, based on the scaling adjustment type."
+      },
+      "ScalingAdjustmentType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of adjustment to make to a fleet's instance count."
+      },
+      "TargetConfiguration": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "An object that contains settings for a target-based scaling policy."
+      },
+      "Threshold": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "Metric value used to trigger a scaling event."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StoppedActions",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TargetConfiguration",
+    "properties": {
+      "TargetValue": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1,
+        "description": "Desired value to use with a target-based scaling policy. The value must be relevant for whatever metric the scaling policy is using. For example, in a policy using the metric PercentAvailableGameSessions, the target value should be the preferred size of the fleet's buffer (the percent of capacity that should be idle and ready for new game sessions)."
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.GameLift/ContainerFleetProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/21"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GameLift/ContainerFleetProperties",
+    "properties": {
+      "BillingType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Indicates whether to use On-Demand instances or Spot instances for this fleet. If empty, the default is ON_DEMAND. Both categories of instances use identical hardware and configurations based on the instance type selected for this fleet."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "A time stamp indicating when this data object was created. Format is a number expressed in Unix time as milliseconds (for example \"1469498468.057\")."
+      },
+      "DeploymentConfiguration": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 4
+      },
+      "DeploymentDetails": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A human-readable description of a fleet."
+      },
+      "FleetArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) that is assigned to a Amazon GameLift container fleet resource and uniquely identifies it across all AWS Regions."
+      },
+      "FleetId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Unique fleet ID"
+      },
+      "FleetRoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A unique identifier for an AWS IAM role that manages access to your AWS services. Create a role or look up a role's ARN from the IAM dashboard in the AWS Management Console."
+      },
+      "GameServerContainerGroupDefinitionArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the game server container group definition. This field will be empty if GameServerContainerGroupDefinitionName is not specified."
+      },
+      "GameServerContainerGroupDefinitionName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The name of the container group definition that will be created per game server. You must specify GAME_SERVER container group. You have the option to also specify one PER_INSTANCE container group."
+      },
+      "GameServerContainerGroupsPerInstance": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 4,
+        "description": "The number of desired game server container groups per instance, a number between 1-5000."
+      },
+      "GameSessionCreationLimitPolicy": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "A policy that limits the number of game sessions an individual player can create over a span of time for this fleet."
+      },
+      "InstanceConnectionPortRange": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      },
+      "InstanceInboundPermissions": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0,
+        "description": "A range of IP addresses and port settings that allow inbound traffic to connect to server processes on an Amazon GameLift server."
+      },
+      "InstanceType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of an EC2 instance type that is supported in Amazon GameLift. A fleet instance type determines the computing resources of each instance in the fleet, including CPU, memory, storage, and networking capacity. Amazon GameLift supports the following EC2 instance types. See Amazon EC2 Instance Types for detailed descriptions."
+      },
+      "Locations": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 4
+      },
+      "LogConfiguration": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
+      "MaximumGameServerContainerGroupsPerInstance": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 2,
+        "description": "The maximum number of game server container groups per instance, a number between 1-5000."
+      },
+      "MetricGroups": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "The name of an Amazon CloudWatch metric group. A metric group aggregates the metrics for all fleets in the group. Specify a string containing the metric group name. You can use an existing name or use a new name to create a new metric group. Currently, this parameter can have only one string."
+      },
+      "NewGameSessionProtectionPolicy": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A game session protection policy to apply to all game sessions hosted on instances in this fleet. When protected, active game sessions cannot be terminated during a scale-down event. If this parameter is not set, instances in this fleet default to no protection. You can change a fleet's protection policy to affect future game sessions on the fleet. You can also set protection for individual game sessions."
+      },
+      "PerInstanceContainerGroupDefinitionArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the per instance container group definition. This field will be empty if PerInstanceContainerGroupDefinitionName is not specified."
+      },
+      "PerInstanceContainerGroupDefinitionName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The name of the container group definition that will be created per instance. This field is optional if you specify GameServerContainerGroupDefinitionName."
+      },
+      "ScalingPolicies": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 4,
+        "description": "A list of rules that control how a fleet is scaled."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The current status of the container fleet."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GameLift/ContainerFleet",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.GameLift/ContainerFleet@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/35"
+    },
+    "flags": 0
   },
   {
     "$type": "ObjectType",
@@ -368,35 +833,35 @@
     "properties": {
       "Command": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/46"
         },
         "flags": 1,
         "description": "A string array representing the command that the container runs to determine if it is healthy."
       },
       "Interval": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "How often (in seconds) the health is checked."
       },
       "Retries": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "How many times the process manager will retry the command after a timeout. (The first run of the command does not count as a retry.)"
       },
       "StartPeriod": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The optional grace period (in seconds) to give a container time to boostrap before teh health check is declared failed."
       },
       "Timeout": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "How many seconds the process manager allows the command to run before canceling it."
@@ -436,7 +901,7 @@
     "properties": {
       "FromPort": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "A starting value for the range of allowed port numbers."
@@ -450,7 +915,7 @@
       },
       "ToPort": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "An ending value for the range of allowed port numbers. Port numbers are end-inclusive. This value must be equal to or greater than FromPort."
@@ -459,21 +924,63 @@
   },
   {
     "$type": "ObjectType",
-    "name": "MemoryLimits",
+    "name": "GameServerContainerDefinition",
     "properties": {
-      "HardLimit": {
+      "ContainerName": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/1"
         },
-        "flags": 0,
-        "description": "The hard limit of memory to reserve for the container."
+        "flags": 1,
+        "description": "A descriptive label for the container definition. Container definition names must be unique with a container group definition."
       },
-      "SoftLimit": {
+      "DependsOn": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/47"
         },
         "flags": 0,
-        "description": "The amount of memory that is reserved for the container."
+        "description": "A list of container dependencies that determines when this container starts up and shuts down. For container groups with multiple containers, dependencies let you define a startup/shutdown sequence across the containers."
+      },
+      "EnvironmentOverride": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0,
+        "description": "The environment variables to pass to a container."
+      },
+      "ImageUri": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the image URI of this container."
+      },
+      "MountPoints": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0,
+        "description": "A list of mount point configurations to be used in a container."
+      },
+      "PortConfiguration": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "Defines the ports on the container."
+      },
+      "ResolvedImageDigest": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The digest of the container image."
+      },
+      "ServerSdkVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The version of the server SDK used in this container group"
       }
     }
   },
@@ -483,10 +990,93 @@
     "properties": {
       "ContainerPortRanges": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/50"
         },
         "flags": 1,
         "description": "Specifies one or more ranges of ports on a container."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SupportContainerDefinition",
+    "properties": {
+      "ContainerName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A descriptive label for the container definition."
+      },
+      "DependsOn": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 0,
+        "description": "A list of container dependencies that determines when this container starts up and shuts down. For container groups with multiple containers, dependencies let you define a startup/shutdown sequence across the containers."
+      },
+      "EnvironmentOverride": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0,
+        "description": "The environment variables to pass to a container."
+      },
+      "Essential": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0,
+        "description": "Specifies if the container is essential. If an essential container fails a health check, then all containers in the container group will be restarted. You must specify exactly 1 essential container in a container group."
+      },
+      "HealthCheck": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0,
+        "description": "Specifies how the health of the containers will be checked."
+      },
+      "ImageUri": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the image URI of this container."
+      },
+      "MemoryHardLimitMebibytes": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "The total memory limit of container groups following this definition in MiB"
+      },
+      "MountPoints": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0,
+        "description": "A list of mount point configurations to be used in a container."
+      },
+      "PortConfiguration": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "Defines the ports on the container."
+      },
+      "ResolvedImageDigest": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The digest of the container image."
+      },
+      "Vcpu": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "The number of virtual CPUs to give to the support group"
       }
     }
   },
@@ -517,24 +1107,39 @@
     }
   },
   {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/37"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/38"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/41"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/37"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/38"
     }
   },
   {
@@ -543,13 +1148,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/16"
+      "$ref": "#/40"
     }
   },
   {
@@ -559,37 +1158,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ContainerGroupDefinition_SupportContainerDefinitions",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/44"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/45"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.GameLift/ContainerGroupDefinitionProperties",
     "properties": {
-      "ContainerDefinitions": {
-        "type": {
-          "$ref": "#/29"
-        },
-        "flags": 3,
-        "description": "A collection of container definitions that define the containers in this group."
-      },
       "ContainerGroupDefinitionArn": {
         "type": {
           "$ref": "#/1"
@@ -597,12 +1178,25 @@
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) that is assigned to a Amazon GameLift container group resource and uniquely identifies it across all AWS Regions."
       },
+      "ContainerGroupType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The scope of the container group"
+      },
       "CreationTime": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 2,
         "description": "A time stamp indicating when this data object was created. Format is a number expressed in Unix time as milliseconds (for example \"1469498468.057\")."
+      },
+      "GameServerContainerDefinition": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0
       },
       "Name": {
         "type": {
@@ -618,16 +1212,9 @@
         "flags": 1,
         "description": "The operating system of the container group"
       },
-      "SchedulingStrategy": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "Specifies whether the container group includes replica or daemon containers."
-      },
       "SourceVersionNumber": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "A specific ContainerGroupDefinition version to be updated"
@@ -648,31 +1235,45 @@
       },
       "SupportContainerDefinitions": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "A collection of support container definitions that define the containers in this group."
       },
       "Tags": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
-      "TotalCpuLimit": {
+      "TotalMemoryLimitMebibytes": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 1,
-        "description": "The maximum number of CPU units reserved for this container group. The value is expressed as an integer amount of CPU units. (1 vCPU is equal to 1024 CPU units.)"
+        "description": "The total memory limit of container groups following this definition in MiB"
       },
-      "TotalMemoryLimit": {
+      "TotalVcpuLimit": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 1,
-        "description": "The maximum amount of memory (in MiB) to allocate for this container group."
+        "description": "The total amount of virtual CPUs on the container group definition"
+      },
+      "VersionDescription": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of this version"
+      },
+      "VersionNumber": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 2,
+        "description": "The version of this ContainerGroupDefinition"
       }
     }
   },
@@ -696,7 +1297,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/58"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -708,7 +1309,7 @@
     "name": "AWS.GameLift/ContainerGroupDefinition@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/59"
     },
     "flags": 0
   },
@@ -739,76 +1340,11 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ConnectionPortRange",
-    "properties": {
-      "FromPort": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "A starting value for a range of allowed port numbers."
-      },
-      "ToPort": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 1,
-        "description": "An ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than FromPort."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ContainerGroupsConfiguration",
-    "properties": {
-      "ConnectionPortRange": {
-        "type": {
-          "$ref": "#/38"
-        },
-        "flags": 1
-      },
-      "ContainerGroupDefinitionNames": {
-        "type": {
-          "$ref": "#/50"
-        },
-        "flags": 1,
-        "description": "The names of the container group definitions that will be created in an instance. You must specify exactly one REPLICA container group. You have the option to also specify one DAEMON container group."
-      },
-      "ContainerGroupsPerInstance": {
-        "type": {
-          "$ref": "#/40"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ContainerGroupsPerInstance",
-    "properties": {
-      "DesiredReplicaContainerGroupsPerInstance": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0,
-        "description": "Use this parameter to override the number of replica container groups GameLift will launch per instance with a number that is lower than that calculated maximum."
-      },
-      "MaxReplicaContainerGroupsPerInstance": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 2,
-        "description": "GameLift calculates the maximum number of replica container groups it can launch per instance based on instance properties such as CPU, memory, and connection ports."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "IpPermission",
     "properties": {
       "FromPort": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "A starting value for a range of allowed port numbers."
@@ -829,7 +1365,7 @@
       },
       "ToPort": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "An ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than FromPort."
@@ -847,21 +1383,21 @@
     "properties": {
       "DesiredEC2Instances": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "The number of EC2 instances you want to maintain in the specified fleet location. This value must fall between the minimum and maximum size limits."
       },
       "MaxSize": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "The maximum value that is allowed for the fleet's instance count for a location. When creating a new fleet, GameLift automatically sets this value to \"1\". Once the fleet is active, you can change this value."
       },
       "MinSize": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "The minimum value allowed for the fleet's instance count for a location. When creating a new fleet, GameLift automatically sets this value to \"0\". After the fleet is active, you can change this value."
@@ -880,7 +1416,7 @@
       },
       "LocationCapacity": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/65"
         },
         "flags": 0
       }
@@ -892,14 +1428,14 @@
     "properties": {
       "NewGameSessionsPerCreator": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The maximum number of game sessions that an individual can create during the policy period."
       },
       "PolicyPeriodInMinutes": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The time span used in evaluating the resource creation limit policy."
@@ -912,21 +1448,21 @@
     "properties": {
       "GameSessionActivationTimeoutSeconds": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The maximum amount of time (in seconds) that a game session can remain in status ACTIVATING. If the game session is not active before the timeout, activation is terminated and the game session status is changed to TERMINATED."
       },
       "MaxConcurrentGameSessionActivations": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The maximum number of game sessions with status ACTIVATING to allow on an instance simultaneously. This setting limits the amount of instance resources that can be used for new game activations at any one time."
       },
       "ServerProcesses": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "A collection of server process configurations that describe which server processes to run on each instance in a fleet."
@@ -946,7 +1482,7 @@
       },
       "EvaluationPeriods": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "Length of time (in minutes) the metric must be at or beyond the threshold before a scaling event is triggered."
@@ -980,7 +1516,7 @@
       },
       "ScalingAdjustment": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "Amount of adjustment to make, based on the scaling adjustment type."
@@ -1001,14 +1537,14 @@
       },
       "TargetConfiguration": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "An object that contains settings for a target-based scaling policy."
       },
       "Threshold": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "Metric value used to trigger a scaling event."
@@ -1028,7 +1564,7 @@
     "properties": {
       "ConcurrentExecutions": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "The number of server processes that use this configuration to run concurrently on an instance."
@@ -1055,7 +1591,7 @@
     "properties": {
       "TargetValue": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "Desired value to use with a target-based scaling policy. The value must be relevant for whatever metric the scaling policy is using. For example, in a policy using the metric PercentAvailableGameSessions, the target value should be the preferred size of the fleet's buffer (the percent of capacity that should be idle and ready for new game sessions)."
@@ -1065,13 +1601,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/48"
+      "$ref": "#/70"
     }
   },
   {
@@ -1081,19 +1611,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/41"
+      "$ref": "#/63"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/44"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/66"
     }
   },
   {
@@ -1105,7 +1629,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/69"
     }
   },
   {
@@ -1114,7 +1644,7 @@
     "properties": {
       "AnywhereConfiguration": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "Configuration for Anywhere fleet."
@@ -1135,7 +1665,7 @@
       },
       "CertificateConfiguration": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "Indicates whether to generate a TLS/SSL certificate for the new fleet. TLS certificates are used for encrypting traffic between game clients and game servers running on GameLift. If this parameter is not set, certificate generation is disabled. This fleet setting cannot be changed once the fleet is created."
@@ -1147,12 +1677,6 @@
         "flags": 0,
         "description": "ComputeType to differentiate EC2 hardware managed by GameLift and Anywhere hardware managed by the customer."
       },
-      "ContainerGroupsConfiguration": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0
-      },
       "Description": {
         "type": {
           "$ref": "#/1"
@@ -1162,14 +1686,14 @@
       },
       "DesiredEC2Instances": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "[DEPRECATED] The number of EC2 instances that you want this fleet to host. When creating a new fleet, GameLift automatically sets this value to \"1\" and initiates a single instance. Once the fleet is active, update this value to trigger GameLift to add or remove instances from the fleet."
       },
       "EC2InboundPermissions": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "A range of IP addresses and port settings that allow inbound traffic to connect to server processes on an Amazon GameLift server."
@@ -1211,34 +1735,34 @@
       },
       "Locations": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/75"
         },
         "flags": 0
       },
       "LogPaths": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "This parameter is no longer used. When hosting a custom game build, specify where Amazon GameLift should store log files using the Amazon GameLift server API call ProcessReady()"
       },
       "MaxSize": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "[DEPRECATED] The maximum value that is allowed for the fleet's instance count. When creating a new fleet, GameLift automatically sets this value to \"1\". Once the fleet is active, you can change this value."
       },
       "MetricGroups": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "The name of an Amazon CloudWatch metric group. A metric group aggregates the metrics for all fleets in the group. Specify a string containing the metric group name. You can use an existing name or use a new name to create a new metric group. Currently, this parameter can have only one string."
       },
       "MinSize": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "[DEPRECATED] The minimum value allowed for the fleet's instance count. When creating a new fleet, GameLift automatically sets this value to \"0\". After the fleet is active, you can change this value."
@@ -1273,21 +1797,21 @@
       },
       "ResourceCreationLimitPolicy": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "A policy that limits the number of game sessions an individual player can create over a span of time for this fleet."
       },
       "RuntimeConfiguration": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "Instructions for launching server processes on each instance in the fleet. Server processes run either a custom game build executable or a Realtime script. The runtime configuration defines the server executables or launch script file, launch parameters, and the number of processes to run concurrently on each instance. When creating a fleet, the runtime configuration must have at least one server process configuration; otherwise the request fails with an invalid request exception.\n\nThis parameter is required unless the parameters ServerLaunchPath and ServerLaunchParameters are defined. Runtime configuration has replaced these parameters, but fleets that use them will continue to work."
       },
       "ScalingPolicies": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "A list of rules that control how a fleet is scaled."
@@ -1335,7 +1859,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/79"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1347,7 +1871,7 @@
     "name": "AWS.GameLift/Fleet@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/59"
+      "$ref": "#/80"
     },
     "flags": 0
   },
@@ -1362,13 +1886,13 @@
     "properties": {
       "EstimatedInstanceWarmup": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "TargetTrackingConfiguration": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/107"
         },
         "flags": 1
       }
@@ -1436,7 +1960,7 @@
       },
       "InstanceDefinitions": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/112"
         },
         "flags": 0
       },
@@ -1466,7 +1990,7 @@
       },
       "SuspendedActions": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/113"
         },
         "flags": 0
       }
@@ -1615,7 +2139,7 @@
     "properties": {
       "TargetValue": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 1
       }
@@ -1644,7 +2168,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/71"
+      "$ref": "#/92"
     }
   },
   {
@@ -1656,7 +2180,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/71"
+      "$ref": "#/92"
     }
   },
   {
@@ -1668,7 +2192,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/84"
+      "$ref": "#/105"
     }
   },
   {
@@ -1684,13 +2208,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/71"
+      "$ref": "#/92"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/84"
+      "$ref": "#/105"
     }
   },
   {
@@ -1712,7 +2236,7 @@
       },
       "AutoScalingPolicy": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/83"
         },
         "flags": 4,
         "description": "Configuration settings to define a scaling policy for the Auto Scaling group that is optimized for game hosting. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource."
@@ -1754,28 +2278,28 @@
       },
       "InstanceDefinitions": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/119"
         },
         "flags": 1,
         "description": "A set of EC2 instance types to use when creating instances in the group."
       },
       "LaunchTemplate": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/96"
         },
         "flags": 4,
         "description": "The EC2 launch template that contains configuration settings and game server code to be deployed to all instances in the game server group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource."
       },
       "MaxSize": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 4,
         "description": "The maximum number of instances allowed in the EC2 Auto Scaling group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource."
       },
       "MinSize": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 4,
         "description": "The minimum number of instances allowed in the EC2 Auto Scaling group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource."
@@ -1789,14 +2313,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/120"
         },
         "flags": 4,
         "description": "A list of labels to assign to the new game server group resource. Updating game server group tags with CloudFormation will not take effect. Please update this property using AWS GameLift APIs instead."
       },
       "VpcSubnets": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/121"
         },
         "flags": 4,
         "description": "A list of virtual private cloud (VPC) subnets to use with instances in the game server group. Updating this game server group property will not take effect for the created EC2 Auto Scaling group, please update the EC2 Auto Scaling group directly after creating the resource."
@@ -1823,7 +2347,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/122"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1835,7 +2359,7 @@
     "name": "AWS.GameLift/GameServerGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/102"
+      "$ref": "#/123"
     },
     "flags": 0
   },
@@ -1850,7 +2374,7 @@
     "properties": {
       "AllowedLocations": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/134"
         },
         "flags": 0
       }
@@ -1879,14 +2403,14 @@
     "properties": {
       "MaximumIndividualPlayerLatencyMilliseconds": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The maximum latency value that is allowed for any player, in milliseconds. All policies must have a value set for this property."
       },
       "PolicyDurationSeconds": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The length of time, in seconds, that the policy is enforced while placing a new game session."
@@ -1899,13 +2423,13 @@
     "properties": {
       "LocationOrder": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/136"
         },
         "flags": 0
       },
       "PriorityOrder": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/137"
         },
         "flags": 0
       }
@@ -1979,7 +2503,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/106"
+      "$ref": "#/127"
     }
   },
   {
@@ -1994,7 +2518,7 @@
     "properties": {
       "AllowedLocations": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/141"
         },
         "flags": 0
       }
@@ -2003,7 +2527,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/108"
+      "$ref": "#/129"
     }
   },
   {
@@ -2024,13 +2548,13 @@
     "properties": {
       "LocationOrder": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/144"
         },
         "flags": 0
       },
       "PriorityOrder": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/145"
         },
         "flags": 0
       }
@@ -2039,7 +2563,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/111"
+      "$ref": "#/132"
     }
   },
   {
@@ -2062,14 +2586,14 @@
       },
       "Destinations": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/140"
         },
         "flags": 0,
         "description": "A list of fleets and/or fleet aliases that can be used to fulfill game session placement requests in the queue."
       },
       "FilterConfiguration": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/142"
         },
         "flags": 0,
         "description": "A list of locations where a queue is allowed to place new game sessions."
@@ -2090,28 +2614,28 @@
       },
       "PlayerLatencyPolicies": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/143"
         },
         "flags": 0,
         "description": "A set of policies that act as a sliding cap on player latency."
       },
       "PriorityConfiguration": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/146"
         },
         "flags": 0,
         "description": "Custom settings to use when prioritizing destinations and locations for game session placements."
       },
       "Tags": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/147"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "TimeoutInSeconds": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The maximum time, in seconds, that a new game session placement request remains in the queue."
@@ -2138,7 +2662,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/148"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2150,7 +2674,7 @@
     "name": "AWS.GameLift/GameSessionQueue@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/128"
+      "$ref": "#/149"
     },
     "flags": 0
   },
@@ -2181,7 +2705,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/130"
+      "$ref": "#/151"
     }
   },
   {
@@ -2202,7 +2726,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/153"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2229,7 +2753,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/154"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2241,7 +2765,7 @@
     "name": "AWS.GameLift/Location@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/134"
+      "$ref": "#/155"
     },
     "flags": 0
   },
@@ -2292,7 +2816,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/136"
+      "$ref": "#/157"
     }
   },
   {
@@ -2304,7 +2828,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/137"
+      "$ref": "#/158"
     }
   },
   {
@@ -2313,21 +2837,21 @@
     "properties": {
       "AcceptanceRequired": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/53"
         },
         "flags": 1,
         "description": "A flag that indicates whether a match that was created with this configuration must be accepted by the matched players"
       },
       "AcceptanceTimeoutSeconds": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The length of time (in seconds) to wait for players to accept a proposed match, if acceptance is required."
       },
       "AdditionalPlayerCount": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The number of player slots in a match to keep open for future players."
@@ -2376,7 +2900,7 @@
       },
       "GameProperties": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/160"
         },
         "flags": 0,
         "description": "A set of custom properties for a game session, formatted as key:value pairs."
@@ -2390,7 +2914,7 @@
       },
       "GameSessionQueueArns": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/161"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) that is assigned to a Amazon GameLift game session queue resource and uniquely identifies it."
@@ -2411,7 +2935,7 @@
       },
       "RequestTimeoutSeconds": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "The maximum duration, in seconds, that a matchmaking ticket can remain in process before timing out."
@@ -2432,7 +2956,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/162"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2459,7 +2983,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/163"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2471,7 +2995,7 @@
     "name": "AWS.GameLift/MatchmakingConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/143"
+      "$ref": "#/164"
     },
     "flags": 0
   },
@@ -2502,7 +3026,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/145"
+      "$ref": "#/166"
     }
   },
   {
@@ -2539,7 +3063,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/168"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2566,7 +3090,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/169"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2578,7 +3102,7 @@
     "name": "AWS.GameLift/MatchmakingRuleSet@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/149"
+      "$ref": "#/170"
     },
     "flags": 0
   },
@@ -2677,7 +3201,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/152"
+      "$ref": "#/173"
     }
   },
   {
@@ -2714,21 +3238,21 @@
       },
       "SizeOnDisk": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/25"
         },
         "flags": 2,
         "description": "The file size of the uploaded Realtime script, expressed in bytes. When files are uploaded from an S3 location, this value remains at \"0\"."
       },
       "StorageLocation": {
         "type": {
-          "$ref": "#/154"
+          "$ref": "#/175"
         },
         "flags": 1,
         "description": "The location of the Amazon S3 bucket where a zipped file containing your Realtime scripts is stored. The storage location must specify the Amazon S3 bucket name, the zip file name (the \"key\"), and a role ARN that allows Amazon GameLift to access the Amazon S3 storage location. The S3 bucket must be in the same Region where you want to create a new script. By default, Amazon GameLift uploads the latest version of the zip file; if you have S3 object versioning turned on, you can use the ObjectVersion parameter to specify an earlier version."
       },
       "Tags": {
         "type": {
-          "$ref": "#/155"
+          "$ref": "#/176"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2762,7 +3286,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/177"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2774,7 +3298,7 @@
     "name": "AWS.GameLift/Script@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/157"
+      "$ref": "#/178"
     },
     "flags": 0
   }

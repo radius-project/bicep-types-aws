@@ -93,6 +93,7 @@
 
 ## AWS.CleanRooms/CollaborationProperties
 ### Properties
+* **AnalyticsEngine**: string
 * **Arn**: string (ReadOnly)
 * **CollaborationIdentifier**: string (ReadOnly, Identifier)
 * **CreatorDisplayName**: string (Required)
@@ -284,6 +285,7 @@
 * **Bucket**: string (Required)
 * **KeyPrefix**: string
 * **ResultFormat**: string (Required)
+* **SingleFileOutput**: bool
 
 ## QueryComputePaymentConfig
 ### Properties

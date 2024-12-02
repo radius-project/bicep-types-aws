@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-Nodegroup",
   "type": "AWS::EKS::Nodegroup",
-  "time": "2024-10-22T18:57:22.903Z",
+  "time": "2024-11-15T21:31:33.083Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -31,6 +31,17 @@
           "Version": {
             "minLength": 1,
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "NodeRepairConfig": {
+        "additionalProperties": false,
+        "description": "The node auto repair configuration for node group.",
+        "properties": {
+          "Enabled": {
+            "description": "Set this value to true to enable node auto repair for the node group.",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -231,6 +242,10 @@
       "LaunchTemplate": {
         "$ref": "#/definitions/LaunchTemplateSpecification",
         "description": "An object representing a node group's launch template specification."
+      },
+      "NodeRepairConfig": {
+        "$ref": "#/definitions/NodeRepairConfig",
+        "description": "The node auto repair configuration for node group."
       },
       "NodeRole": {
         "description": "The Amazon Resource Name (ARN) of the IAM role to associate with your node group.",

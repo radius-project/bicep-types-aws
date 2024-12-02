@@ -32,7 +32,7 @@
 * **NamespaceResourcePolicy**: [Namespace_NamespaceResourcePolicy](#namespacenamespaceresourcepolicy): The resource policy document that will be attached to the namespace.
 * **RedshiftIdcApplicationArn**: string (WriteOnly): The ARN for the Redshift application that integrates with IAM Identity Center.
 * **SnapshotCopyConfigurations**: [SnapshotCopyConfiguration](#snapshotcopyconfiguration)[]: The snapshot copy configurations for the namespace.
-* **Tags**: [Tag](#tag)[] (WriteOnly): The list of tags for the namespace.
+* **Tags**: [Tag](#tag)[]: The list of tags for the namespace.
 
 ## AWS.RedshiftServerless/WorkgroupProperties
 ### Properties
@@ -45,7 +45,7 @@
 * **PubliclyAccessible**: bool: A value that specifies whether the workgroup can be accessible from a public network.
 * **SecurityGroupIds**: string[] (WriteOnly): A list of security group IDs to associate with the workgroup.
 * **SubnetIds**: string[] (WriteOnly): A list of subnet IDs the workgroup is associated with.
-* **Tags**: [Tag](#tag)[] (WriteOnly): The map of the key-value pairs used to tag the workgroup.
+* **Tags**: [Tag](#tag)[]: The map of the key-value pairs used to tag the workgroup.
 * **Workgroup**: [Workgroup](#workgroup) (ReadOnly): Definition for workgroup resource
 * **WorkgroupName**: string (Required, Identifier): The name of the workgroup.
 

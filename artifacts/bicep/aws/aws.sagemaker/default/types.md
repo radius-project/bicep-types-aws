@@ -293,10 +293,10 @@
 * **InferenceComponentName**: string
 * **InferenceComponentStatus**: string (ReadOnly)
 * **LastModifiedTime**: string (ReadOnly)
-* **RuntimeConfig**: [InferenceComponentRuntimeConfig](#inferencecomponentruntimeconfig) (Required)
+* **RuntimeConfig**: [InferenceComponentRuntimeConfig](#inferencecomponentruntimeconfig)
 * **Specification**: [InferenceComponentSpecification](#inferencecomponentspecification) (Required)
 * **Tags**: [Tag](#tag)[]
-* **VariantName**: string (Required)
+* **VariantName**: string
 
 ## AWS.SageMaker/InferenceExperimentProperties
 ### Properties
@@ -864,7 +864,8 @@
 
 ## InferenceComponentSpecification
 ### Properties
-* **ComputeResourceRequirements**: [InferenceComponentComputeResourceRequirements](#inferencecomponentcomputeresourcerequirements) (Required)
+* **BaseInferenceComponentName**: string
+* **ComputeResourceRequirements**: [InferenceComponentComputeResourceRequirements](#inferencecomponentcomputeresourcerequirements)
 * **Container**: [InferenceComponentContainerSpecification](#inferencecomponentcontainerspecification)
 * **ModelName**: string
 * **StartupParameters**: [InferenceComponentStartupParameters](#inferencecomponentstartupparameters)

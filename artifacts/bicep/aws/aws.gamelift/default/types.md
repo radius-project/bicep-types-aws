@@ -14,6 +14,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.GameLift/BuildProperties](#awsgameliftbuildproperties) (Identifier): properties of the resource
 
+## Resource AWS.GameLift/ContainerFleet@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.GameLift/ContainerFleetProperties](#awsgameliftcontainerfleetproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.GameLift/ContainerGroupDefinition@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -95,21 +102,51 @@
 * **StorageLocation**: [StorageLocation](#storagelocation) (WriteOnly): Information indicating where your game build files are stored. Use this parameter only when creating a build with files stored in an Amazon S3 bucket that you own. The storage location must specify an Amazon S3 bucket name and key. The location must also specify a role ARN that you set up to allow Amazon GameLift to access your Amazon S3 bucket. The S3 bucket and your new build must be in the same Region.
 * **Version**: string: Version information that is associated with this build. Version strings do not need to be unique.
 
+## AWS.GameLift/ContainerFleetProperties
+### Properties
+* **BillingType**: string: Indicates whether to use On-Demand instances or Spot instances for this fleet. If empty, the default is ON_DEMAND. Both categories of instances use identical hardware and configurations based on the instance type selected for this fleet.
+* **CreationTime**: string (ReadOnly): A time stamp indicating when this data object was created. Format is a number expressed in Unix time as milliseconds (for example "1469498468.057").
+* **DeploymentConfiguration**: [DeploymentConfiguration](#deploymentconfiguration) (WriteOnly)
+* **DeploymentDetails**: [DeploymentDetails](#deploymentdetails) (ReadOnly)
+* **Description**: string: A human-readable description of a fleet.
+* **FleetArn**: string (ReadOnly): The Amazon Resource Name (ARN) that is assigned to a Amazon GameLift container fleet resource and uniquely identifies it across all AWS Regions.
+* **FleetId**: string (ReadOnly, Identifier): Unique fleet ID
+* **FleetRoleArn**: string (Required): A unique identifier for an AWS IAM role that manages access to your AWS services. Create a role or look up a role's ARN from the IAM dashboard in the AWS Management Console.
+* **GameServerContainerGroupDefinitionArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the game server container group definition. This field will be empty if GameServerContainerGroupDefinitionName is not specified.
+* **GameServerContainerGroupDefinitionName**: string (WriteOnly): The name of the container group definition that will be created per game server. You must specify GAME_SERVER container group. You have the option to also specify one PER_INSTANCE container group.
+* **GameServerContainerGroupsPerInstance**: int (WriteOnly): The number of desired game server container groups per instance, a number between 1-5000.
+* **GameSessionCreationLimitPolicy**: [GameSessionCreationLimitPolicy](#gamesessioncreationlimitpolicy): A policy that limits the number of game sessions an individual player can create over a span of time for this fleet.
+* **InstanceConnectionPortRange**: [ConnectionPortRange](#connectionportrange)
+* **InstanceInboundPermissions**: [IpPermission](#ippermission)[]: A range of IP addresses and port settings that allow inbound traffic to connect to server processes on an Amazon GameLift server.
+* **InstanceType**: string: The name of an EC2 instance type that is supported in Amazon GameLift. A fleet instance type determines the computing resources of each instance in the fleet, including CPU, memory, storage, and networking capacity. Amazon GameLift supports the following EC2 instance types. See Amazon EC2 Instance Types for detailed descriptions.
+* **Locations**: [LocationConfiguration](#locationconfiguration)[] (WriteOnly)
+* **LogConfiguration**: [LogConfiguration](#logconfiguration)
+* **MaximumGameServerContainerGroupsPerInstance**: int (ReadOnly): The maximum number of game server container groups per instance, a number between 1-5000.
+* **MetricGroups**: string[]: The name of an Amazon CloudWatch metric group. A metric group aggregates the metrics for all fleets in the group. Specify a string containing the metric group name. You can use an existing name or use a new name to create a new metric group. Currently, this parameter can have only one string.
+* **NewGameSessionProtectionPolicy**: string: A game session protection policy to apply to all game sessions hosted on instances in this fleet. When protected, active game sessions cannot be terminated during a scale-down event. If this parameter is not set, instances in this fleet default to no protection. You can change a fleet's protection policy to affect future game sessions on the fleet. You can also set protection for individual game sessions.
+* **PerInstanceContainerGroupDefinitionArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the per instance container group definition. This field will be empty if PerInstanceContainerGroupDefinitionName is not specified.
+* **PerInstanceContainerGroupDefinitionName**: string (WriteOnly): The name of the container group definition that will be created per instance. This field is optional if you specify GameServerContainerGroupDefinitionName.
+* **ScalingPolicies**: [ScalingPolicy](#scalingpolicy)[] (WriteOnly): A list of rules that control how a fleet is scaled.
+* **Status**: string (ReadOnly): The current status of the container fleet.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
 ## AWS.GameLift/ContainerGroupDefinitionProperties
 ### Properties
-* **ContainerDefinitions**: [ContainerDefinition](#containerdefinition)[] (Required, ReadOnly): A collection of container definitions that define the containers in this group.
 * **ContainerGroupDefinitionArn**: string (ReadOnly): The Amazon Resource Name (ARN) that is assigned to a Amazon GameLift container group resource and uniquely identifies it across all AWS Regions.
+* **ContainerGroupType**: string: The scope of the container group
 * **CreationTime**: string (ReadOnly): A time stamp indicating when this data object was created. Format is a number expressed in Unix time as milliseconds (for example "1469498468.057").
+* **GameServerContainerDefinition**: [GameServerContainerDefinition](#gameservercontainerdefinition)
 * **Name**: string (Required, Identifier): A descriptive label for the container group definition.
 * **OperatingSystem**: string (Required): The operating system of the container group
-* **SchedulingStrategy**: string: Specifies whether the container group includes replica or daemon containers.
 * **SourceVersionNumber**: int: A specific ContainerGroupDefinition version to be updated
 * **Status**: string (ReadOnly): A string indicating ContainerGroupDefinition status.
 * **StatusReason**: string (ReadOnly): A string indicating the reason for ContainerGroupDefinition status.
-* **SupportContainerDefinitions**: [ContainerGroupDefinition_SupportContainerDefinitions](#containergroupdefinitionsupportcontainerdefinitions)[]: A collection of support container definitions that define the containers in this group.
+* **SupportContainerDefinitions**: [SupportContainerDefinition](#supportcontainerdefinition)[]: A collection of support container definitions that define the containers in this group.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-* **TotalCpuLimit**: int (Required): The maximum number of CPU units reserved for this container group. The value is expressed as an integer amount of CPU units. (1 vCPU is equal to 1024 CPU units.)
-* **TotalMemoryLimit**: int (Required): The maximum amount of memory (in MiB) to allocate for this container group.
+* **TotalMemoryLimitMebibytes**: int (Required): The total memory limit of container groups following this definition in MiB
+* **TotalVcpuLimit**: int (Required): The total amount of virtual CPUs on the container group definition
+* **VersionDescription**: string: The description of this version
+* **VersionNumber**: int (ReadOnly): The version of this ContainerGroupDefinition
 
 ## AWS.GameLift/FleetProperties
 ### Properties
@@ -118,7 +155,6 @@
 * **BuildId**: string: A unique identifier for a build to be deployed on the new fleet. If you are deploying the fleet with a custom game build, you must specify this property. The build must have been successfully uploaded to Amazon GameLift and be in a READY status. This fleet setting cannot be changed once the fleet is created.
 * **CertificateConfiguration**: [CertificateConfiguration](#certificateconfiguration): Indicates whether to generate a TLS/SSL certificate for the new fleet. TLS certificates are used for encrypting traffic between game clients and game servers running on GameLift. If this parameter is not set, certificate generation is disabled. This fleet setting cannot be changed once the fleet is created.
 * **ComputeType**: string: ComputeType to differentiate EC2 hardware managed by GameLift and Anywhere hardware managed by the customer.
-* **ContainerGroupsConfiguration**: [ContainerGroupsConfiguration](#containergroupsconfiguration)
 * **Description**: string: A human-readable description of a fleet.
 * **DesiredEC2Instances**: int: [DEPRECATED] The number of EC2 instances that you want this fleet to host. When creating a new fleet, GameLift automatically sets this value to "1" and initiates a single instance. Once the fleet is active, update this value to trigger GameLift to add or remove instances from the fleet.
 * **EC2InboundPermissions**: [IpPermission](#ippermission)[]: A range of IP addresses and port settings that allow inbound traffic to connect to server processes on an Amazon GameLift server.
@@ -232,22 +268,6 @@ Note: It is not currently possible to use the !Ref command to reference a script
 * **FromPort**: int (Required): A starting value for a range of allowed port numbers.
 * **ToPort**: int (Required): An ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than FromPort.
 
-## ContainerDefinition
-### Properties
-* **Command**: string[]: The command that's passed to the container.
-* **ContainerName**: string (Required): A descriptive label for the container definition. Container definition names must be unique with a container group definition.
-* **Cpu**: int: The maximum number of CPU units reserved for this container. The value is expressed as an integer amount of CPU units. 1 vCPU is equal to 1024 CPU units
-* **DependsOn**: [ContainerDependency](#containerdependency)[]: A list of container dependencies that determines when this container starts up and shuts down. For container groups with multiple containers, dependencies let you define a startup/shutdown sequence across the containers.
-* **EntryPoint**: string[]: The entry point that's passed to the container so that it will run as an executable. If there are multiple arguments, each argument is a string in the array.
-* **Environment**: [ContainerEnvironment](#containerenvironment)[]: The environment variables to pass to a container.
-* **Essential**: bool: Specifies if the container is essential. If an essential container fails a health check, then all containers in the container group will be restarted. You must specify exactly 1 essential container in a container group.
-* **HealthCheck**: [ContainerHealthCheck](#containerhealthcheck): Specifies how the health of the containers will be checked.
-* **ImageUri**: string (Required): Specifies the image URI of this container.
-* **MemoryLimits**: [MemoryLimits](#memorylimits): Specifies how much memory is available to the container. You must specify at least this parameter or the TotalMemoryLimit parameter of the ContainerGroupDefinition.
-* **PortConfiguration**: [PortConfiguration](#portconfiguration): Defines the ports on the container.
-* **ResolvedImageDigest**: string: The digest of the container image.
-* **WorkingDirectory**: string: The working directory to run commands inside the container in.
-
 ## ContainerDependency
 ### Properties
 * **Condition**: string (Required): The type of dependency.
@@ -258,20 +278,6 @@ Note: It is not currently possible to use the !Ref command to reference a script
 * **Name**: string (Required, Identifier): The environment variable name.
 * **Value**: string (Required): The environment variable value.
 
-## ContainerGroupDefinition_SupportContainerDefinitions
-### Properties
-
-## ContainerGroupsConfiguration
-### Properties
-* **ConnectionPortRange**: [ConnectionPortRange](#connectionportrange) (Required)
-* **ContainerGroupDefinitionNames**: string[] (Required): The names of the container group definitions that will be created in an instance. You must specify exactly one REPLICA container group. You have the option to also specify one DAEMON container group.
-* **ContainerGroupsPerInstance**: [ContainerGroupsPerInstance](#containergroupsperinstance)
-
-## ContainerGroupsPerInstance
-### Properties
-* **DesiredReplicaContainerGroupsPerInstance**: int: Use this parameter to override the number of replica container groups GameLift will launch per instance with a number that is lower than that calculated maximum.
-* **MaxReplicaContainerGroupsPerInstance**: int (ReadOnly): GameLift calculates the maximum number of replica container groups it can launch per instance based on instance properties such as CPU, memory, and connection ports.
-
 ## ContainerHealthCheck
 ### Properties
 * **Command**: string[] (Required): A string array representing the command that the container runs to determine if it is healthy.
@@ -280,16 +286,48 @@ Note: It is not currently possible to use the !Ref command to reference a script
 * **StartPeriod**: int: The optional grace period (in seconds) to give a container time to boostrap before teh health check is declared failed.
 * **Timeout**: int: How many seconds the process manager allows the command to run before canceling it.
 
+## ContainerMountPoint
+### Properties
+* **AccessLevel**: string: The access permissions for the mounted path.
+* **ContainerPath**: string: The path inside the container where the mount is accessible.
+* **InstancePath**: string (Required): The path on the host that will be mounted in the container.
+
 ## ContainerPortRange
 ### Properties
 * **FromPort**: int (Required): A starting value for the range of allowed port numbers.
 * **Protocol**: string (Required): Defines the protocol of these ports.
 * **ToPort**: int (Required): An ending value for the range of allowed port numbers. Port numbers are end-inclusive. This value must be equal to or greater than FromPort.
 
+## DeploymentConfiguration
+### Properties
+* **ImpairmentStrategy**: string: The strategy to apply in case of impairment; defaults to MAINTAIN.
+* **MinimumHealthyPercentage**: int: The minimum percentage of healthy required; defaults to 75.
+* **ProtectionStrategy**: string: The protection strategy for deployment on the container fleet; defaults to WITH_PROTECTION.
+
+## DeploymentDetails
+### Properties
+* **LatestDeploymentId**: string: The ID of the last deployment on the container fleet. This field will be empty if the container fleet does not have a ContainerGroupDefinition attached.
+
 ## GameProperty
 ### Properties
 * **Key**: string (Required): The game property identifier.
 * **Value**: string (Required): The game property value.
+
+## GameServerContainerDefinition
+### Properties
+* **ContainerName**: string (Required): A descriptive label for the container definition. Container definition names must be unique with a container group definition.
+* **DependsOn**: [ContainerDependency](#containerdependency)[]: A list of container dependencies that determines when this container starts up and shuts down. For container groups with multiple containers, dependencies let you define a startup/shutdown sequence across the containers.
+* **EnvironmentOverride**: [ContainerEnvironment](#containerenvironment)[]: The environment variables to pass to a container.
+* **ImageUri**: string (Required): Specifies the image URI of this container.
+* **MountPoints**: [ContainerMountPoint](#containermountpoint)[]: A list of mount point configurations to be used in a container.
+* **PortConfiguration**: [PortConfiguration](#portconfiguration): Defines the ports on the container.
+* **ResolvedImageDigest**: string: The digest of the container image.
+* **ServerSdkVersion**: string (Required): The version of the server SDK used in this container group
+
+## GameSessionCreationLimitPolicy
+### Properties
+* **NewGameSessionsPerCreator**: int: The maximum number of game sessions that an individual can create during the policy period.
+* **PolicyPeriodInMinutes**: int: The time span used in evaluating the resource creation limit policy.
 
 ## GameSessionQueue_FilterConfiguration
 ### Properties
@@ -316,11 +354,24 @@ Note: It is not currently possible to use the !Ref command to reference a script
 * **Protocol**: string (Required): The network communication protocol used by the fleet.
 * **ToPort**: int (Required): An ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than FromPort.
 
+## IpPermission
+### Properties
+* **FromPort**: int (Required): A starting value for a range of allowed port numbers.
+* **IpRange**: string (Required): A range of allowed IP addresses. This value must be expressed in CIDR notation. Example: "000.000.000.000/[subnet mask]" or optionally the shortened version "0.0.0.0/[subnet mask]".
+* **Protocol**: string (Required): The network communication protocol used by the fleet.
+* **ToPort**: int (Required): An ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than FromPort.
+
 ## LaunchTemplate
 ### Properties
 * **LaunchTemplateId**: string
 * **LaunchTemplateName**: string
 * **Version**: string
+
+## LocationCapacity
+### Properties
+* **DesiredEC2Instances**: int (Required): The number of EC2 instances you want to maintain in the specified fleet location. This value must fall between the minimum and maximum size limits.
+* **MaxSize**: int (Required): The maximum value that is allowed for the fleet's instance count for a location.
+* **MinSize**: int (Required): The minimum value allowed for the fleet's instance count for a location.
 
 ## LocationCapacity
 ### Properties
@@ -332,11 +383,17 @@ Note: It is not currently possible to use the !Ref command to reference a script
 ### Properties
 * **Location**: string (Required)
 * **LocationCapacity**: [LocationCapacity](#locationcapacity)
+* **StoppedActions**: string[]
 
-## MemoryLimits
+## LocationConfiguration
 ### Properties
-* **HardLimit**: int: The hard limit of memory to reserve for the container.
-* **SoftLimit**: int: The amount of memory that is reserved for the container.
+* **Location**: string (Required)
+* **LocationCapacity**: [LocationCapacity](#locationcapacity)
+
+## LogConfiguration
+### Properties
+* **LogDestination**: string
+* **S3BucketName**: string: The name of the S3 bucket to pull logs from if S3 is the LogDestination
 
 ## PlayerLatencyPolicy
 ### Properties
@@ -363,6 +420,18 @@ Note: It is not currently possible to use the !Ref command to reference a script
 * **GameSessionActivationTimeoutSeconds**: int: The maximum amount of time (in seconds) that a game session can remain in status ACTIVATING. If the game session is not active before the timeout, activation is terminated and the game session status is changed to TERMINATED.
 * **MaxConcurrentGameSessionActivations**: int: The maximum number of game sessions with status ACTIVATING to allow on an instance simultaneously. This setting limits the amount of instance resources that can be used for new game activations at any one time.
 * **ServerProcesses**: [ServerProcess](#serverprocess)[]: A collection of server process configurations that describe which server processes to run on each instance in a fleet.
+
+## ScalingPolicy
+### Properties
+* **ComparisonOperator**: string: Comparison operator to use when measuring a metric against the threshold value.
+* **EvaluationPeriods**: int: Length of time (in minutes) the metric must be at or beyond the threshold before a scaling event is triggered.
+* **MetricName**: string (Required): Name of the Amazon GameLift-defined metric that is used to trigger a scaling adjustment.
+* **Name**: string (Required): A descriptive label that is associated with a fleet's scaling policy. Policy names do not need to be unique.
+* **PolicyType**: string: The type of scaling policy to create. For a target-based policy, set the parameter MetricName to 'PercentAvailableGameSessions' and specify a TargetConfiguration. For a rule-based policy set the following parameters: MetricName, ComparisonOperator, Threshold, EvaluationPeriods, ScalingAdjustmentType, and ScalingAdjustment.
+* **ScalingAdjustment**: int: Amount of adjustment to make, based on the scaling adjustment type.
+* **ScalingAdjustmentType**: string: The type of adjustment to make to a fleet's instance count.
+* **TargetConfiguration**: [TargetConfiguration](#targetconfiguration): An object that contains settings for a target-based scaling policy.
+* **Threshold**: int: Metric value used to trigger a scaling event.
 
 ## ScalingPolicy
 ### Properties
@@ -403,6 +472,25 @@ Linux: /local/game. Examples: "/local/game/MyGame/server.exe" or "/local/game/My
 * **ObjectVersion**: string: The version of the file, if object versioning is turned on for the bucket. Amazon GameLift uses this information when retrieving files from your S3 bucket. To retrieve a specific version of the file, provide an object version. To retrieve the latest version of the file, do not set this parameter.
 * **RoleArn**: string (Required): The Amazon Resource Name (ARN) for an IAM role that allows Amazon GameLift to access the S3 bucket.
 
+## SupportContainerDefinition
+### Properties
+* **ContainerName**: string (Required): A descriptive label for the container definition.
+* **DependsOn**: [ContainerDependency](#containerdependency)[]: A list of container dependencies that determines when this container starts up and shuts down. For container groups with multiple containers, dependencies let you define a startup/shutdown sequence across the containers.
+* **EnvironmentOverride**: [ContainerEnvironment](#containerenvironment)[]: The environment variables to pass to a container.
+* **Essential**: bool: Specifies if the container is essential. If an essential container fails a health check, then all containers in the container group will be restarted. You must specify exactly 1 essential container in a container group.
+* **HealthCheck**: [ContainerHealthCheck](#containerhealthcheck): Specifies how the health of the containers will be checked.
+* **ImageUri**: string (Required): Specifies the image URI of this container.
+* **MemoryHardLimitMebibytes**: int: The total memory limit of container groups following this definition in MiB
+* **MountPoints**: [ContainerMountPoint](#containermountpoint)[]: A list of mount point configurations to be used in a container.
+* **PortConfiguration**: [PortConfiguration](#portconfiguration): Defines the ports on the container.
+* **ResolvedImageDigest**: string: The digest of the container image.
+* **Vcpu**: int: The number of virtual CPUs to give to the support group
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length.
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.
@@ -437,6 +525,10 @@ Linux: /local/game. Examples: "/local/game/MyGame/server.exe" or "/local/game/My
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length.
+
+## TargetConfiguration
+### Properties
+* **TargetValue**: int (Required): Desired value to use with a target-based scaling policy. The value must be relevant for whatever metric the scaling policy is using. For example, in a policy using the metric PercentAvailableGameSessions, the target value should be the preferred size of the fleet's buffer (the percent of capacity that should be idle and ready for new game sessions).
 
 ## TargetConfiguration
 ### Properties

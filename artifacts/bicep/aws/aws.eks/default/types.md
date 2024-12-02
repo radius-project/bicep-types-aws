@@ -95,6 +95,7 @@
 * **BootstrapSelfManagedAddons**: bool (WriteOnly): Set this value to false to avoid creating the default networking add-ons when the cluster is created.
 * **CertificateAuthorityData**: string (ReadOnly): The certificate-authority-data for your cluster.
 * **ClusterSecurityGroupId**: string (ReadOnly): The cluster security group that was created by Amazon EKS for the cluster. Managed node groups use this security group for control plane to data plane communication.
+* **ComputeConfig**: [ComputeConfig](#computeconfig)
 * **EncryptionConfig**: [EncryptionConfig](#encryptionconfig)[]
 * **EncryptionConfigKeyArn**: string (ReadOnly): Amazon Resource Name (ARN) or alias of the customer master key (CMK).
 * **Endpoint**: string (ReadOnly): The endpoint for your Kubernetes API server, such as https://5E1D0CEXAMPLEA591B746AFC5AB30262.yl4.us-west-2.eks.amazonaws.com.
@@ -104,8 +105,10 @@
 * **Name**: string (Identifier): The unique name to give to your cluster.
 * **OpenIdConnectIssuerUrl**: string (ReadOnly): The issuer URL for the cluster's OIDC identity provider, such as https://oidc.eks.us-west-2.amazonaws.com/id/EXAMPLED539D4633E53DE1B716D3041E. If you need to remove https:// from this output value, you can include the following code in your template.
 * **OutpostConfig**: [OutpostConfig](#outpostconfig)
+* **RemoteNetworkConfig**: [RemoteNetworkConfig](#remotenetworkconfig)
 * **ResourcesVpcConfig**: [ResourcesVpcConfig](#resourcesvpcconfig) (Required)
 * **RoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.
+* **StorageConfig**: [StorageConfig](#storageconfig)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **UpgradePolicy**: [UpgradePolicy](#upgradepolicy)
 * **Version**: string: The desired Kubernetes version for your cluster. If you don't specify a value here, the latest version available in Amazon EKS is used.
@@ -143,6 +146,7 @@
 * **Labels**: [Nodegroup_Labels](#nodegrouplabels): The Kubernetes labels to be applied to the nodes in the node group when they are created.
 * **LaunchTemplate**: [LaunchTemplateSpecification](#launchtemplatespecification): An object representing a node group's launch template specification.
 * **NodegroupName**: string: The unique name to give your node group.
+* **NodeRepairConfig**: [NodeRepairConfig](#noderepairconfig): The node auto repair configuration for node group.
 * **NodeRole**: string (Required): The Amazon Resource Name (ARN) of the IAM role to associate with your node group.
 * **ReleaseVersion**: string: The AMI version of the Amazon EKS-optimized AMI to use with your node group.
 * **RemoteAccess**: [RemoteAccess](#remoteaccess): The remote access (SSH) configuration to use with your node group.
@@ -163,13 +167,27 @@
 * **ServiceAccount**: string (Required): The Kubernetes service account that the pod identity association is created for.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## BlockStorage
+### Properties
+* **Enabled**: bool: Todo: add description
+
 ## ClusterLogging
 ### Properties
 * **EnabledTypes**: [LoggingTypeConfig](#loggingtypeconfig)[]
 
+## ComputeConfig
+### Properties
+* **Enabled**: bool: Todo: add description
+* **NodePools**: string[]: Todo: add description
+* **NodeRoleArn**: string: Todo: add description
+
 ## ControlPlanePlacement
 ### Properties
 * **GroupName**: string: Specify the placement group name of the control place machines for your cluster.
+
+## ElasticLoadBalancing
+### Properties
+* **Enabled**: bool: Todo: add description
 
 ## EncryptionConfig
 ### Properties
@@ -178,6 +196,7 @@
 
 ## KubernetesNetworkConfig
 ### Properties
+* **ElasticLoadBalancing**: [ElasticLoadBalancing](#elasticloadbalancing): Todo: add description
 * **IpFamily**: string: Ipv4 or Ipv6. You can only specify ipv6 for 1.21 and later clusters that use version 1.10.1 or later of the Amazon VPC CNI add-on
 * **ServiceIpv4Cidr**: string: The CIDR block to assign Kubernetes service IP addresses from. If you don't specify a block, Kubernetes assigns addresses from either the 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. We recommend that you specify a block that does not overlap with resources in other networks that are peered or connected to your VPC. 
 * **ServiceIpv6Cidr**: string (ReadOnly): The CIDR block to assign Kubernetes service IP addresses from.
@@ -206,6 +225,10 @@
 
 ## Nodegroup_Tags
 ### Properties
+
+## NodeRepairConfig
+### Properties
+* **Enabled**: bool: Set this value to true to enable node auto repair for the node group.
 
 ## OidcIdentityProviderConfig
 ### Properties
@@ -237,6 +260,19 @@
 * **Ec2SshKey**: string (Required)
 * **SourceSecurityGroups**: string[]
 
+## RemoteNetworkConfig
+### Properties
+* **RemoteNodeNetworks**: [RemoteNodeNetwork](#remotenodenetwork)[] (Required): Network configuration of nodes run on-premises with EKS Hybrid Nodes.
+* **RemotePodNetworks**: [RemotePodNetwork](#remotepodnetwork)[]: Network configuration of pods run on-premises with EKS Hybrid Nodes.
+
+## RemoteNodeNetwork
+### Properties
+* **Cidrs**: string[] (Required): Specifies the list of remote node CIDRs.
+
+## RemotePodNetwork
+### Properties
+* **Cidrs**: string[] (Required): Specifies the list of remote pod CIDRs.
+
 ## RequiredClaim
 ### Properties
 * **Key**: string (Required): The key of the requiredClaims.
@@ -260,6 +296,10 @@
 ### Properties
 * **Labels**: [Label](#label)[]
 * **Namespace**: string (Required)
+
+## StorageConfig
+### Properties
+* **BlockStorage**: [BlockStorage](#blockstorage): Todo: add description
 
 ## Tag
 ### Properties

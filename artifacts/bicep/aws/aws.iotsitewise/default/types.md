@@ -174,6 +174,8 @@
 * **PortalId**: string (ReadOnly, Identifier): The ID of the portal.
 * **PortalName**: string (Required): A friendly name for the portal.
 * **PortalStartUrl**: string (ReadOnly): The public root URL for the AWS IoT AWS IoT SiteWise Monitor application portal.
+* **PortalType**: string: The type of portal
+* **PortalTypeConfiguration**: [PortalTypeConfiguration](#portaltypeconfiguration)
 * **RoleArn**: string (Required): The ARN of a service role that allows the portal's users to access your AWS IoT SiteWise resources on your behalf.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the portal.
 
@@ -237,6 +239,9 @@
 ### Properties
 * **AlarmRoleArn**: string: The ARN of the IAM role that allows the alarm to perform actions and access AWS resources and services, such as AWS IoT Events.
 * **NotificationLambdaArn**: string: The ARN of the AWS Lambda function that manages alarm notifications. For more information, see Managing alarm notifications in the AWS IoT Events Developer Guide.
+
+## PortalTypeConfiguration
+### Properties
 
 ## Project
 ### Properties

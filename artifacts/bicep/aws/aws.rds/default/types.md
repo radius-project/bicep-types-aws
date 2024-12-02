@@ -56,6 +56,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.RDS/DBProxyTargetGroupProperties](#awsrdsdbproxytargetgroupproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.RDS/DBShardGroup@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.RDS/DBShardGroupProperties](#awsrdsdbshardgroupproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.RDS/DBSubnetGroup@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -167,6 +174,7 @@
   +  Must be a value from 1 to 35
   
  Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **ClusterScalabilityType**: string (WriteOnly)
 * **CopyTagsToSnapshot**: bool: A value that indicates whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.
  Valid for: Aurora DB clusters and Multi-AZ DB clusters
 * **DatabaseName**: string: The name of your database. If you don't provide a name, then Amazon RDS won't create a database in this DB cluster. For naming constraints, see [Naming Constraints](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_Limits.html#RDS_Limits.Constraints) in the *Amazon Aurora User Guide*. 
@@ -366,11 +374,11 @@
  Valid for Cluster Type: Multi-AZ DB clusters only
  Default: The default behavior varies depending on whether ``DBSubnetGroupName`` is specified.
  If ``DBSubnetGroupName`` isn't specified, and ``PubliclyAccessible`` isn't specified, the following applies:
-  +  If the default VPC in the target Region doesn’t have an internet gateway attached to it, the DB cluster is private.
+  +  If the default VPC in the target Region doesn?t have an internet gateway attached to it, the DB cluster is private.
   +  If the default VPC in the target Region has an internet gateway attached to it, the DB cluster is public.
   
  If ``DBSubnetGroupName`` is specified, and ``PubliclyAccessible`` isn't specified, the following applies:
-  +  If the subnets are part of a VPC that doesn’t have an internet gateway attached to it, the DB cluster is private.
+  +  If the subnets are part of a VPC that doesn?t have an internet gateway attached to it, the DB cluster is private.
   +  If the subnets are part of a VPC that has an internet gateway attached to it, the DB cluster is public.
 * **ReadEndpoint**: [ReadEndpoint](#readendpoint): This data type represents the information you need to connect to an Amazon RDS DB instance. This data type is used as a response element in the following actions:
   +   ``CreateDBInstance`` 
@@ -1064,6 +1072,18 @@
 * **TargetGroupArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) representing the target group.
 * **TargetGroupName**: string (Required): The identifier for the DBProxyTargetGroup
 
+## AWS.RDS/DBShardGroupProperties
+### Properties
+* **ComputeRedundancy**: int: Specifies whether to create standby instances for the DB shard group.
+* **DBClusterIdentifier**: string (Required): The name of the primary DB cluster for the DB shard group.
+* **DBShardGroupIdentifier**: string (Identifier): The name of the DB shard group.
+* **DBShardGroupResourceId**: string (ReadOnly): The Amazon Web Services Region-unique, immutable identifier for the DB shard group.
+* **Endpoint**: string (ReadOnly): The connection endpoint for the DB shard group.
+* **MaxACU**: int (Required): The maximum capacity of the DB shard group in Aurora capacity units (ACUs).
+* **MinACU**: int (WriteOnly): The minimum capacity of the DB shard group in Aurora capacity units (ACUs).
+* **PubliclyAccessible**: bool: Indicates whether the DB shard group is publicly accessible.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
 ## AWS.RDS/DBSubnetGroupProperties
 ### Properties
 * **DBSubnetGroupDescription**: string (Required): The description for the DB subnet group.
@@ -1107,6 +1127,7 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 * **EngineLifecycleSupport**: string: The life cycle type of the global cluster. You can use this setting to enroll your global cluster into Amazon RDS Extended Support.
 * **EngineVersion**: string: The version number of the database engine to use. If you specify the SourceDBClusterIdentifier property, don't specify this property. The value is inherited from the cluster.
 * **GlobalClusterIdentifier**: string (Identifier): The cluster identifier of the new global database cluster. This parameter is stored as a lowercase string.
+* **GlobalEndpoint**: [GlobalEndpoint](#globalendpoint)
 * **SourceDBClusterIdentifier**: string: The Amazon Resource Name (ARN) to use as the primary cluster of the global database. This parameter is optional. This parameter is stored as a lowercase string.
 * **StorageEncrypted**: bool:  The storage encryption setting for the new global database cluster.
 If you specify the SourceDBClusterIdentifier property, don't specify this property. The value is inherited from the cluster.
@@ -1198,6 +1219,10 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 * **HostedZoneId**: string (ReadOnly): Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.
 * **Port**: string (ReadOnly): Specifies the port that the database engine is listening on.
 
+## GlobalEndpoint
+### Properties
+* **Address**: string: The writer endpoint for the global database cluster. This endpoint always points to the writer DB instance in the current primary cluster.
+
 ## MasterUserSecret
 ### Properties
 * **KmsKeyId**: string: The AWS KMS key identifier that is used to encrypt the secret.
@@ -1284,6 +1309,11 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 ### Properties
 * **Key**: string (Required): A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
 * **Value**: string: A value is the optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## Tag
 ### Properties

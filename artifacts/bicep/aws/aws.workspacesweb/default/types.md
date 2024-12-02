@@ -7,6 +7,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.WorkSpacesWeb/BrowserSettingsProperties](#awsworkspaceswebbrowsersettingsproperties) (Identifier): properties of the resource
 
+## Resource AWS.WorkSpacesWeb/DataProtectionSettings@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.WorkSpacesWeb/DataProtectionSettingsProperties](#awsworkspaceswebdataprotectionsettingsproperties) (Identifier): properties of the resource
+
 ## Resource AWS.WorkSpacesWeb/IdentityProvider@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -65,6 +72,18 @@
 * **CustomerManagedKey**: string
 * **Tags**: [Tag](#tag)[]
 
+## AWS.WorkSpacesWeb/DataProtectionSettingsProperties
+### Properties
+* **AdditionalEncryptionContext**: [EncryptionContextMap](#encryptioncontextmap)
+* **AssociatedPortalArns**: string[] (ReadOnly)
+* **CreationDate**: string (ReadOnly)
+* **CustomerManagedKey**: string
+* **DataProtectionSettingsArn**: string (ReadOnly, Identifier)
+* **Description**: string
+* **DisplayName**: string
+* **InlineRedactionConfiguration**: [InlineRedactionConfiguration](#inlineredactionconfiguration)
+* **Tags**: [Tag](#tag)[]
+
 ## AWS.WorkSpacesWeb/IdentityProviderProperties
 ### Properties
 * **IdentityProviderArn**: string (ReadOnly, Identifier)
@@ -103,6 +122,7 @@
 * **BrowserType**: string (ReadOnly)
 * **CreationDate**: string (ReadOnly)
 * **CustomerManagedKey**: string
+* **DataProtectionSettingsArn**: string
 * **DisplayName**: string
 * **InstanceType**: string
 * **IpAccessSettingsArn**: string
@@ -161,6 +181,16 @@
 * **Allowlist**: [CookieSpecification](#cookiespecification)[] (Required)
 * **Blocklist**: [CookieSpecification](#cookiespecification)[]
 
+## CustomPattern
+### Properties
+* **KeywordRegex**: string
+* **PatternDescription**: string
+* **PatternName**: string (Required)
+* **PatternRegex**: string (Required)
+
+## EncryptionContextMap
+### Properties
+
 ## EncryptionContextMap
 ### Properties
 
@@ -176,10 +206,36 @@
 ## IdentityProviderDetails
 ### Properties
 
+## InlineRedactionConfiguration
+### Properties
+* **GlobalConfidenceLevel**: int
+* **GlobalEnforcedUrls**: string[]
+* **GlobalExemptUrls**: string[]
+* **InlineRedactionPatterns**: [InlineRedactionPattern](#inlineredactionpattern)[] (Required)
+
+## InlineRedactionPattern
+### Properties
+* **BuiltInPatternId**: string
+* **ConfidenceLevel**: int
+* **CustomPattern**: [CustomPattern](#custompattern)
+* **EnforcedUrls**: string[]
+* **ExemptUrls**: string[]
+* **RedactionPlaceHolder**: [RedactionPlaceHolder](#redactionplaceholder) (Required)
+
 ## IpRule
 ### Properties
 * **Description**: string
 * **IpRange**: string (Required): A single IP address or an IP address range in CIDR notation
+
+## RedactionPlaceHolder
+### Properties
+* **RedactionPlaceHolderText**: string
+* **RedactionPlaceHolderType**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
