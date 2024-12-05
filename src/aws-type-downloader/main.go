@@ -17,6 +17,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// These have been skipped due to missing schema: https://github.com/aws/aws-sdk-go-v2/issues/2913
+// These will be reverted when the issue is resolved.
 var skippedResources = map[string]struct{}{
 	"AWS::QuickSight::Analysis":  {},
 	"AWS::QuickSight::Dashboard": {},
