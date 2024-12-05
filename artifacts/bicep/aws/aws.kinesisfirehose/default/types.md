@@ -65,6 +65,7 @@
 * **AmazonOpenSearchServerlessDestinationConfiguration**: [AmazonOpenSearchServerlessDestinationConfiguration](#amazonopensearchserverlessdestinationconfiguration)
 * **AmazonopensearchserviceDestinationConfiguration**: [AmazonopensearchserviceDestinationConfiguration](#amazonopensearchservicedestinationconfiguration)
 * **Arn**: string (ReadOnly)
+* **DatabaseSourceConfiguration**: [DatabaseSourceConfiguration](#databasesourceconfiguration)
 * **DeliveryStreamEncryptionConfigurationInput**: [DeliveryStreamEncryptionConfigurationInput](#deliverystreamencryptionconfigurationinput)
 * **DeliveryStreamName**: string (Identifier)
 * **DeliveryStreamType**: string
@@ -100,6 +101,45 @@
 * **CopyOptions**: string
 * **DataTableColumns**: string
 * **DataTableName**: string (Required)
+
+## DatabaseColumns
+### Properties
+* **Exclude**: string[]
+* **Include**: string[]
+
+## Databases
+### Properties
+* **Exclude**: string[]
+* **Include**: string[]
+
+## DatabaseSourceAuthenticationConfiguration
+### Properties
+* **SecretsManagerConfiguration**: [SecretsManagerConfiguration](#secretsmanagerconfiguration) (Required)
+
+## DatabaseSourceConfiguration
+### Properties
+* **Columns**: [DatabaseColumns](#databasecolumns)
+* **Databases**: [Databases](#databases) (Required)
+* **DatabaseSourceAuthenticationConfiguration**: [DatabaseSourceAuthenticationConfiguration](#databasesourceauthenticationconfiguration) (Required)
+* **DatabaseSourceVPCConfiguration**: [DatabaseSourceVPCConfiguration](#databasesourcevpcconfiguration) (Required)
+* **Digest**: string
+* **Endpoint**: string (Required)
+* **Port**: int (Required)
+* **PublicCertificate**: string
+* **SnapshotWatermarkTable**: string (Required)
+* **SSLMode**: string
+* **SurrogateKeys**: string[]
+* **Tables**: [DatabaseTables](#databasetables) (Required)
+* **Type**: string (Required)
+
+## DatabaseSourceVPCConfiguration
+### Properties
+* **VpcEndpointServiceName**: string (Required)
+
+## DatabaseTables
+### Properties
+* **Exclude**: string[]
+* **Include**: string[]
 
 ## DataFormatConversionConfiguration
 ### Properties

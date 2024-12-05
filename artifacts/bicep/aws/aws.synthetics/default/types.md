@@ -28,6 +28,7 @@
 * **FailureRetentionPeriod**: int: Retention period of failed canary runs represented in number of days
 * **Id**: string (ReadOnly): Id of the canary
 * **Name**: string (Required, Identifier): Name of the canary.
+* **ProvisionedResourceCleanup**: string: Setting to control if provisioned resources created by Synthetics are deleted alongside the canary. Default is AUTOMATIC.
 * **ResourcesToReplicateTags**: string[] (WriteOnly): List of resources which canary tags should be replicated to.
 * **RunConfig**: [RunConfig](#runconfig): Provide canary run configuration
 * **RuntimeVersion**: string (Required): Runtime version of Synthetics Library

@@ -121,7 +121,7 @@
 
 ## ReplicationConfiguration
 ### Properties
-* **Destinations**: [ReplicationDestination](#replicationdestination)[] (WriteOnly): An array of destination objects. Only one destination object is supported.
+* **Destinations**: [ReplicationDestination](#replicationdestination)[] (ReadOnly, WriteOnly): An array of destination objects. Only one destination object is supported.
 
 ## ReplicationDestination
 ### Properties
@@ -132,6 +132,9 @@
 * **KmsKeyId**: string: The ID of an kms-key-long used to protect the encrypted file system.
 * **Region**: string: The AWS-Region in which the destination file system is located.
   For One Zone file systems, the replication configuration must specify the AWS-Region in which the destination file system is located.
+* **RoleArn**: string
+* **Status**: string
+* **StatusMessage**: string
 
 ## RootDirectory
 ### Properties

@@ -350,7 +350,7 @@
           "$ref": "#/12"
         },
         "flags": 0,
-        "description": "The protocol. You can specify HTTP, HTTPS, or #{protocol}. You can redirect HTTP to HTTP, HTTP to HTTPS, and HTTPS to HTTPS. You cannot redirect HTTPS to HTTP."
+        "description": "The protocol. You can specify HTTP, HTTPS, or #{protocol}. You can redirect HTTP to HTTP, HTTP to HTTPS, and HTTPS to HTTPS. You can't redirect HTTPS to HTTP."
       },
       "Query": {
         "type": {
@@ -519,14 +519,14 @@
           "$ref": "#/11"
         },
         "flags": 0,
-        "description": "The port on which the load balancer is listening. You cannot specify a port for a Gateway Load Balancer."
+        "description": "The port on which the load balancer is listening. You can't specify a port for a Gateway Load Balancer."
       },
       "Protocol": {
         "type": {
           "$ref": "#/12"
         },
         "flags": 0,
-        "description": "The protocol for connections from clients to the load balancer. For Application Load Balancers, the supported protocols are HTTP and HTTPS. For Network Load Balancers, the supported protocols are TCP, TLS, UDP, and TCP_UDP. You can’t specify the UDP or TCP_UDP protocol if dual-stack mode is enabled. You cannot specify a protocol for a Gateway Load Balancer."
+        "description": "The protocol for connections from clients to the load balancer. For Application Load Balancers, the supported protocols are HTTP and HTTPS. For Network Load Balancers, the supported protocols are TCP, TLS, UDP, and TCP_UDP. You can’t specify the UDP or TCP_UDP protocol if dual-stack mode is enabled. You can't specify a protocol for a Gateway Load Balancer."
       },
       "SslPolicy": {
         "type": {
@@ -956,7 +956,7 @@
           "$ref": "#/12"
         },
         "flags": 0,
-        "description": "The protocol. You can specify HTTP, HTTPS, or #{protocol}. You can redirect HTTP to HTTP, HTTP to HTTPS, and HTTPS to HTTPS. You cannot redirect HTTPS to HTTP."
+        "description": "The protocol. You can specify HTTP, HTTPS, or #{protocol}. You can redirect HTTP to HTTP, HTTP to HTTPS, and HTTPS to HTTPS. You can't redirect HTTPS to HTTP."
       },
       "Query": {
         "type": {
@@ -1256,7 +1256,7 @@
           "$ref": "#/12"
         },
         "flags": 0,
-        "description": "The name of the attribute.\n The following attributes are supported by all load balancers:\n  +   ``deletion_protection.enabled`` - Indicates whether deletion protection is enabled. The value is ``true`` or ``false``. The default is ``false``.\n  +   ``load_balancing.cross_zone.enabled`` - Indicates whether cross-zone load balancing is enabled. The possible values are ``true`` and ``false``. The default for Network Load Balancers and Gateway Load Balancers is ``false``. The default for Application Load Balancers is ``true``, and cannot be changed.\n  \n The following attributes are supported by both Application Load Balancers and Network Load Balancers:\n  +   ``access_logs.s3.enabled`` - Indicates whether access logs are enabled. The value is ``true`` or ``false``. The default is ``false``.\n  +   ``access_logs.s3.bucket`` - The name of the S3 bucket for the access logs. This attribute is required if access logs are enabled. The bucket must exist in the same region as the load balancer and have a bucket policy that grants Elastic Load Balancing permissions to write to the bucket.\n  +   ``access_logs.s3.prefix`` - The prefix for the location in the S3 bucket for the access logs.\n  +   ``ipv6.deny_all_igw_traffic`` - Blocks internet gateway (IGW) access to the load balancer. It is set to ``false`` for internet-facing load balancers and ``true`` for internal load balancers, preventing unintended access to your internal load balancer through an internet gateway.\n  \n The following attributes are supported by only Application Load Balancers:\n  +   ``idle_timeout.timeout_seconds`` - The idle timeout value, in seconds. The valid range is 1-4000 seconds. The default is 60 seconds.\n  +   ``client_keep_alive.seconds`` - The client keep alive value, in seconds. The valid range is 60-604800 seconds. The default is 3600 seconds.\n  +   ``connection_logs.s3.enabled`` - Indicates whether connection logs are enabled. The value is ``true`` or ``false``. The default is ``false``.\n  +   ``connection_logs.s3.bucket`` - The name of the S3 bucket for the connection logs. This attribute is required if connection logs are enabled. The bucket must exist in the same region as the load balancer and have a bucket policy that grants Elastic Load Balancing permissions to write to the bucket.\n  +   ``connection_logs.s3.prefix`` - The prefix for the location in the S3 bucket for the connection logs.\n  +   ``routing.http.desync_mitigation_mode`` - Determines how the load balancer handles requests that might pose a security risk to your application. The possible values are ``monitor``, ``defensive``, and ``strictest``. The default is ``defensive``.\n  +   ``routing.http.drop_invalid_header_fields.enabled`` - Indicates whether HTTP headers with invalid header fields are removed by the load balancer (``true``) or routed to targets (``false``). The default is ``false``.\n  +   ``routing.http.preserve_host_header.enabled`` - Indicates whether the Application Load Balancer should preserve the ``Host`` header in the HTTP request and send it to the target without any change. The possible values are ``true`` and ``false``. The default is ``false``.\n  +   ``routing.http.x_amzn_tls_version_and_cipher_suite.enabled`` - Indicates whether the two headers (``x-amzn-tls-version`` and ``x-amzn-tls-cipher-suite``), which contain information about the negotiated TLS version and cipher suite, are added to the client request before sending it to the target. The ``x-amzn-tls-version`` header has information about the TLS protocol version negotiated with the client, and the ``x-amzn-tls-cipher-suite`` header has information about the cipher suite negotiated with the client. Both headers are in OpenSSL format. The possible values for the attribute are ``true`` and ``false``. The default is ``false``.\n  +   ``routing.http.xff_client_port.enabled`` - Indicates whether the ``X-Forwarded-For`` header should preserve the source port that the client used to connect to the load balancer. The possible values are ``true`` and ``false``. The default is ``false``.\n  +   ``routing.http.xff_header_processing.mode`` - Enables you to modify, preserve, or remove the ``X-Forwarded-For`` header in the HTTP request before the Application Load Balancer sends the request to the target. The possible values are ``append``, ``preserve``, and ``remove``. The default is ``append``.\n  +  If the value is ``append``, the Application Load Balancer adds the client IP address (of the last hop) to the ``X-Forwarded-For`` header in the HTTP request before it sends it to targets.\n  +  If the value is ``preserve`` the Application Load Balancer preserves the ``X-Forwarded-For`` header in the HTTP request, and sends it to targets without any change.\n  +  If the value is ``remove``, the Application Load Balancer removes the ``X-Forwarded-For`` header in the HTTP request before it sends it to targets.\n  \n  +   ``routing.http2.enabled`` - Indicates whether HTTP/2 is enabled. The possible values are ``true`` and ``false``. The default is ``true``. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens.\n  +   ``waf.fail_open.enabled`` - Indicates whether to allow a WAF-enabled load balancer to route requests to targets if it is unable to forward the request to AWS WAF. The possible values are ``true`` and ``false``. The default is ``false``.\n  \n The following attributes are supported by only Network Load Balancers:\n  +   ``dns_record.client_routing_policy`` - Indicates how traffic is distributed among the load balancer Availability Zones. The possible values are ``availability_zone_affinity`` with 100 percent zonal affinity, ``partial_availability_zone_affinity`` with 85 percent zonal affinity, and ``any_availability_zone`` with 0 percent zonal affinity."
+        "description": "The name of the attribute.\n The following attributes are supported by all load balancers:\n  +   ``deletion_protection.enabled`` - Indicates whether deletion protection is enabled. The value is ``true`` or ``false``. The default is ``false``.\n  +   ``load_balancing.cross_zone.enabled`` - Indicates whether cross-zone load balancing is enabled. The possible values are ``true`` and ``false``. The default for Network Load Balancers and Gateway Load Balancers is ``false``. The default for Application Load Balancers is ``true``, and can't be changed.\n  \n The following attributes are supported by both Application Load Balancers and Network Load Balancers:\n  +   ``access_logs.s3.enabled`` - Indicates whether access logs are enabled. The value is ``true`` or ``false``. The default is ``false``.\n  +   ``access_logs.s3.bucket`` - The name of the S3 bucket for the access logs. This attribute is required if access logs are enabled. The bucket must exist in the same region as the load balancer and have a bucket policy that grants Elastic Load Balancing permissions to write to the bucket.\n  +   ``access_logs.s3.prefix`` - The prefix for the location in the S3 bucket for the access logs.\n  +   ``ipv6.deny_all_igw_traffic`` - Blocks internet gateway (IGW) access to the load balancer. It is set to ``false`` for internet-facing load balancers and ``true`` for internal load balancers, preventing unintended access to your internal load balancer through an internet gateway.\n  \n The following attributes are supported by only Application Load Balancers:\n  +   ``idle_timeout.timeout_seconds`` - The idle timeout value, in seconds. The valid range is 1-4000 seconds. The default is 60 seconds.\n  +   ``client_keep_alive.seconds`` - The client keep alive value, in seconds. The valid range is 60-604800 seconds. The default is 3600 seconds.\n  +   ``connection_logs.s3.enabled`` - Indicates whether connection logs are enabled. The value is ``true`` or ``false``. The default is ``false``.\n  +   ``connection_logs.s3.bucket`` - The name of the S3 bucket for the connection logs. This attribute is required if connection logs are enabled. The bucket must exist in the same region as the load balancer and have a bucket policy that grants Elastic Load Balancing permissions to write to the bucket.\n  +   ``connection_logs.s3.prefix`` - The prefix for the location in the S3 bucket for the connection logs.\n  +   ``routing.http.desync_mitigation_mode`` - Determines how the load balancer handles requests that might pose a security risk to your application. The possible values are ``monitor``, ``defensive``, and ``strictest``. The default is ``defensive``.\n  +   ``routing.http.drop_invalid_header_fields.enabled`` - Indicates whether HTTP headers with invalid header fields are removed by the load balancer (``true``) or routed to targets (``false``). The default is ``false``.\n  +   ``routing.http.preserve_host_header.enabled`` - Indicates whether the Application Load Balancer should preserve the ``Host`` header in the HTTP request and send it to the target without any change. The possible values are ``true`` and ``false``. The default is ``false``.\n  +   ``routing.http.x_amzn_tls_version_and_cipher_suite.enabled`` - Indicates whether the two headers (``x-amzn-tls-version`` and ``x-amzn-tls-cipher-suite``), which contain information about the negotiated TLS version and cipher suite, are added to the client request before sending it to the target. The ``x-amzn-tls-version`` header has information about the TLS protocol version negotiated with the client, and the ``x-amzn-tls-cipher-suite`` header has information about the cipher suite negotiated with the client. Both headers are in OpenSSL format. The possible values for the attribute are ``true`` and ``false``. The default is ``false``.\n  +   ``routing.http.xff_client_port.enabled`` - Indicates whether the ``X-Forwarded-For`` header should preserve the source port that the client used to connect to the load balancer. The possible values are ``true`` and ``false``. The default is ``false``.\n  +   ``routing.http.xff_header_processing.mode`` - Enables you to modify, preserve, or remove the ``X-Forwarded-For`` header in the HTTP request before the Application Load Balancer sends the request to the target. The possible values are ``append``, ``preserve``, and ``remove``. The default is ``append``.\n  +  If the value is ``append``, the Application Load Balancer adds the client IP address (of the last hop) to the ``X-Forwarded-For`` header in the HTTP request before it sends it to targets.\n  +  If the value is ``preserve`` the Application Load Balancer preserves the ``X-Forwarded-For`` header in the HTTP request, and sends it to targets without any change.\n  +  If the value is ``remove``, the Application Load Balancer removes the ``X-Forwarded-For`` header in the HTTP request before it sends it to targets.\n  \n  +   ``routing.http2.enabled`` - Indicates whether HTTP/2 is enabled. The possible values are ``true`` and ``false``. The default is ``true``. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens.\n  +   ``waf.fail_open.enabled`` - Indicates whether to allow a WAF-enabled load balancer to route requests to targets if it is unable to forward the request to AWS WAF. The possible values are ``true`` and ``false``. The default is ``false``.\n  \n The following attributes are supported by only Network Load Balancers:\n  +   ``dns_record.client_routing_policy`` - Indicates how traffic is distributed among the load balancer Availability Zones. The possible values are ``availability_zone_affinity`` with 100 percent zonal affinity, ``partial_availability_zone_affinity`` with 85 percent zonal affinity, and ``any_availability_zone`` with 0 percent zonal affinity.\n  +   ``zonal_shift.config.enabled`` - Indicates whether zonal shift is enabled. The possible values are ``true`` and ``false``. The default is ``false``."
       },
       "Value": {
         "type": {
@@ -1264,6 +1264,18 @@
         },
         "flags": 0,
         "description": "The value of the attribute."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MinimumLoadBalancerCapacity",
+    "properties": {
+      "CapacityUnits": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1
       }
     }
   },
@@ -1291,6 +1303,13 @@
         },
         "flags": 0,
         "description": "[Network Load Balancers] The private IPv4 address for an internal load balancer."
+      },
+      "SourceNatIpv6Prefix": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "[Network Load Balancers with UDP listeners] The IPv6 prefix to use for source NAT. Specify an IPv6 prefix (/80 netmask) from the subnet CIDR block or ``auto_assigned`` to use an IPv6 prefix selected at random from the subnet CIDR block."
       },
       "SubnetId": {
         "type": {
@@ -1332,15 +1351,15 @@
     }
   },
   {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/58"
+    "$type": "ObjectType",
+    "name": "LoadBalancer_MinimumLoadBalancerCapacity",
+    "properties": {
+      "CapacityUnits": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1
+      }
     }
   },
   {
@@ -1353,6 +1372,18 @@
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/59"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/60"
     }
   },
   {
@@ -1373,6 +1404,13 @@
         "flags": 2,
         "description": ""
       },
+      "EnablePrefixForIpv6SourceNat": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "[Network Load Balancers with UDP listeners] Indicates whether to use an IPv6 prefix from each subnet for source NAT. The IP address type must be ``dualstack``. The default value is ``off``."
+      },
       "EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic": {
         "type": {
           "$ref": "#/12"
@@ -1385,7 +1423,7 @@
           "$ref": "#/12"
         },
         "flags": 0,
-        "description": "Note: Internal load balancers must use the ``ipv4`` IP address type.\n [Application Load Balancers] The IP address type. The possible values are ``ipv4`` (for only IPv4 addresses), ``dualstack`` (for IPv4 and IPv6 addresses), and ``dualstack-without-public-ipv4`` (for IPv6 only public addresses, with private IPv4 and IPv6 addresses).\n Note: Application Load Balancer authentication only supports IPv4 addresses when connecting to an Identity Provider (IdP) or Amazon Cognito endpoint. Without a public IPv4 address the load balancer cannot complete the authentication process, resulting in HTTP 500 errors.\n [Network Load Balancers] The IP address type. The possible values are ``ipv4`` (for only IPv4 addresses) and ``dualstack`` (for IPv4 and IPv6 addresses). You can’t specify ``dualstack`` for a load balancer with a UDP or TCP_UDP listener.\n [Gateway Load Balancers] The IP address type. The possible values are ``ipv4`` (for only IPv4 addresses) and ``dualstack`` (for IPv4 and IPv6 addresses)."
+        "description": "The IP address type. Internal load balancers must use ``ipv4``.\n [Application Load Balancers] The possible values are ``ipv4`` (IPv4 addresses), ``dualstack`` (IPv4 and IPv6 addresses), and ``dualstack-without-public-ipv4`` (public IPv6 addresses and private IPv4 and IPv6 addresses).\n Application Load Balancer authentication supports IPv4 addresses only when connecting to an Identity Provider (IdP) or Amazon Cognito endpoint. Without a public IPv4 address the load balancer can't complete the authentication process, resulting in HTTP 500 errors.\n [Network Load Balancers and Gateway Load Balancers] The possible values are ``ipv4`` (IPv4 addresses) and ``dualstack`` (IPv4 and IPv6 addresses)."
       },
       "LoadBalancerArn": {
         "type": {
@@ -1396,7 +1434,7 @@
       },
       "LoadBalancerAttributes": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "The load balancer attributes."
@@ -1415,6 +1453,13 @@
         "flags": 2,
         "description": ""
       },
+      "MinimumLoadBalancerCapacity": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0,
+        "description": ""
+      },
       "Name": {
         "type": {
           "$ref": "#/12"
@@ -1427,32 +1472,32 @@
           "$ref": "#/12"
         },
         "flags": 0,
-        "description": "The nodes of an Internet-facing load balancer have public IP addresses. The DNS name of an Internet-facing load balancer is publicly resolvable to the public IP addresses of the nodes. Therefore, Internet-facing load balancers can route requests from clients over the internet.\n The nodes of an internal load balancer have only private IP addresses. The DNS name of an internal load balancer is publicly resolvable to the private IP addresses of the nodes. Therefore, internal load balancers can route requests only from clients with access to the VPC for the load balancer.\n The default is an Internet-facing load balancer.\n You cannot specify a scheme for a Gateway Load Balancer."
+        "description": "The nodes of an Internet-facing load balancer have public IP addresses. The DNS name of an Internet-facing load balancer is publicly resolvable to the public IP addresses of the nodes. Therefore, Internet-facing load balancers can route requests from clients over the internet.\n The nodes of an internal load balancer have only private IP addresses. The DNS name of an internal load balancer is publicly resolvable to the private IP addresses of the nodes. Therefore, internal load balancers can route requests only from clients with access to the VPC for the load balancer.\n The default is an Internet-facing load balancer.\n You can't specify a scheme for a Gateway Load Balancer."
       },
       "SecurityGroups": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "[Application Load Balancers and Network Load Balancers] The IDs of the security groups for the load balancer."
       },
       "SubnetMappings": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/65"
         },
         "flags": 0,
-        "description": "The IDs of the subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings, but not both.\n [Application Load Balancers] You must specify subnets from at least two Availability Zones. You cannot specify Elastic IP addresses for your subnets.\n [Application Load Balancers on Outposts] You must specify one Outpost subnet.\n [Application Load Balancers on Local Zones] You can specify subnets from one or more Local Zones.\n [Network Load Balancers] You can specify subnets from one or more Availability Zones. You can specify one Elastic IP address per subnet if you need static IP addresses for your internet-facing load balancer. For internal load balancers, you can specify one private IP address per subnet from the IPv4 range of the subnet. For internet-facing load balancer, you can specify one IPv6 address per subnet.\n [Gateway Load Balancers] You can specify subnets from one or more Availability Zones. You cannot specify Elastic IP addresses for your subnets."
+        "description": "The IDs of the subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings, but not both.\n [Application Load Balancers] You must specify subnets from at least two Availability Zones. You can't specify Elastic IP addresses for your subnets.\n [Application Load Balancers on Outposts] You must specify one Outpost subnet.\n [Application Load Balancers on Local Zones] You can specify subnets from one or more Local Zones.\n [Network Load Balancers] You can specify subnets from one or more Availability Zones. You can specify one Elastic IP address per subnet if you need static IP addresses for your internet-facing load balancer. For internal load balancers, you can specify one private IP address per subnet from the IPv4 range of the subnet. For internet-facing load balancer, you can specify one IPv6 address per subnet.\n [Gateway Load Balancers] You can specify subnets from one or more Availability Zones. You can't specify Elastic IP addresses for your subnets."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/66"
         },
         "flags": 0,
-        "description": "The IDs of the subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings, but not both. To specify an Elastic IP address, specify subnet mappings instead of subnets.\n [Application Load Balancers] You must specify subnets from at least two Availability Zones.\n [Application Load Balancers on Outposts] You must specify one Outpost subnet.\n [Application Load Balancers on Local Zones] You can specify subnets from one or more Local Zones.\n [Network Load Balancers] You can specify subnets from one or more Availability Zones.\n [Gateway Load Balancers] You can specify subnets from one or more Availability Zones."
+        "description": "The IDs of the subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings, but not both. To specify an Elastic IP address, specify subnet mappings instead of subnets.\n [Application Load Balancers] You must specify subnets from at least two Availability Zones.\n [Application Load Balancers on Outposts] You must specify one Outpost subnet.\n [Application Load Balancers on Local Zones] You can specify subnets from one or more Local Zones.\n [Network Load Balancers and Gateway Load Balancers] You can specify subnets from one or more Availability Zones."
       },
       "Tags": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "The tags to assign to the load balancer."
@@ -1486,7 +1531,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1498,7 +1543,7 @@
     "name": "AWS.ElasticLoadBalancingV2/LoadBalancer@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/67"
+      "$ref": "#/69"
     },
     "flags": 0
   },
@@ -1602,19 +1647,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/70"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/72"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/71"
+      "$ref": "#/74"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/73"
     }
   },
   {
@@ -1679,14 +1724,14 @@
       },
       "LoadBalancerArns": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/76"
         },
         "flags": 2,
         "description": "The Amazon Resource Names (ARNs) of the load balancers that route traffic to this target group."
       },
       "Matcher": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "[HTTP/HTTPS health checks] The HTTP or gRPC codes to use when checking for a successful response from a target."
@@ -1721,7 +1766,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "The tags."
@@ -1735,7 +1780,7 @@
       },
       "TargetGroupAttributes": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "The attributes."
@@ -1763,7 +1808,7 @@
       },
       "Targets": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/79"
         },
         "flags": 0,
         "description": "The targets."
@@ -1804,7 +1849,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/80"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1816,7 +1861,7 @@
     "name": "AWS.ElasticLoadBalancingV2/TargetGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/79"
+      "$ref": "#/81"
     },
     "flags": 0
   },
@@ -1845,7 +1890,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/81"
+      "$ref": "#/83"
     }
   },
   {
@@ -1896,7 +1941,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/85"
         },
         "flags": 0,
         "description": "The tags to assign to the trust store."
@@ -1930,7 +1975,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/86"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1942,7 +1987,7 @@
     "name": "AWS.ElasticLoadBalancingV2/TrustStore@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/85"
+      "$ref": "#/87"
     },
     "flags": 0
   }

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaLive-ChannelPlacementGroup",
   "type": "AWS::MediaLive::ChannelPlacementGroup",
-  "time": "2024-09-09T18:14:59.403Z",
+  "time": "2024-11-20T16:55:48.329Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -40,7 +40,8 @@
         "permissions": [
           "medialive:CreateChannelPlacementGroup",
           "medialive:DescribeChannelPlacementGroup",
-          "medialive:CreateTags"
+          "medialive:CreateTags",
+          "medialive:ListTagsForResource"
         ]
       },
       "delete": {
@@ -66,7 +67,8 @@
       },
       "read": {
         "permissions": [
-          "medialive:DescribeChannelPlacementGroup"
+          "medialive:DescribeChannelPlacementGroup",
+          "medialive:ListTagsForResource"
         ]
       },
       "update": {
@@ -74,7 +76,8 @@
           "medialive:UpdateChannelPlacementGroup",
           "medialive:DescribeChannelPlacementGroup",
           "medialive:CreateTags",
-          "medialive:DeleteTags"
+          "medialive:DeleteTags",
+          "medialive:ListTagsForResource"
         ]
       }
     },
@@ -140,9 +143,9 @@
         "medialive:CreateTags",
         "medialive:DeleteTags"
       ],
-      "tagOnCreate": false,
+      "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
-      "tagUpdatable": false,
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::MediaLive::ChannelPlacementGroup"

@@ -35,6 +35,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Transfer/ServerProperties](#awstransferserverproperties) (Identifier): properties of the resource
 
+## Resource AWS.Transfer/User@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Transfer/UserProperties](#awstransferuserproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Transfer/Workflow@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -117,6 +124,20 @@
 * **Tags**: [Tag](#tag)[]
 * **WorkflowDetails**: [WorkflowDetails](#workflowdetails)
 
+## AWS.Transfer/UserProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **HomeDirectory**: string
+* **HomeDirectoryMappings**: [HomeDirectoryMapEntry](#homedirectorymapentry)[]
+* **HomeDirectoryType**: string
+* **Policy**: string
+* **PosixProfile**: [PosixProfile](#posixprofile)
+* **Role**: string (Required)
+* **ServerId**: string (Required)
+* **SshPublicKeys**: string[]: This represents the SSH User Public Keys for CloudFormation resource
+* **Tags**: [Tag](#tag)[]
+* **UserName**: string (Required)
+
 ## AWS.Transfer/WorkflowProperties
 ### Properties
 * **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the workflow.
@@ -156,6 +177,12 @@
 * **VpcEndpointId**: string
 * **VpcId**: string
 
+## HomeDirectoryMapEntry
+### Properties
+* **Entry**: string (Required)
+* **Target**: string (Required)
+* **Type**: string
+
 ## IdentityProviderDetails
 ### Properties
 * **DirectoryId**: string
@@ -168,6 +195,12 @@
 ### Properties
 * **EfsFileLocation**: [EfsInputFileLocation](#efsinputfilelocation)
 * **S3FileLocation**: [S3InputFileLocation](#s3inputfilelocation)
+
+## PosixProfile
+### Properties
+* **Gid**: int (Required)
+* **SecondaryGids**: int[]
+* **Uid**: int (Required)
 
 ## ProtocolDetails
 ### Properties
@@ -213,6 +246,11 @@
 ### Properties
 * **Key**: string (Required): The name assigned to the tag that you create.
 * **Value**: string (Required): Contains one or more values that you assigned to the key name you create.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

@@ -29,6 +29,7 @@
 * **OpsCenterEnabled**: bool: When set to true, creates opsItems for any problems detected on an application.
 * **OpsItemSNSTopicArn**: string (WriteOnly): The SNS topic provided to Application Insights that is associated to the created opsItem.
 * **ResourceGroupName**: string (Required): The name of the resource group.
+* **SNSNotificationArn**: string (WriteOnly): Application Insights sends notifications to this SNS topic whenever there is a problem update in the associated application.
 * **Tags**: [Tag](#tag)[]: The tags of Application Insights application.
 
 ## ComponentConfiguration

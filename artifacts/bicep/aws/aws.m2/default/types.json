@@ -119,6 +119,90 @@
     "flags": 0
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.M2/DeploymentProperties"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.M2/DeploymentProperties",
+    "properties": {
+      "ApplicationId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "The application ID."
+      },
+      "ApplicationVersion": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The version number of the application to deploy"
+      },
+      "DeploymentId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The deployment ID."
+      },
+      "EnvironmentId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The environment ID."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The status of the deployment."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.M2/Deployment",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.M2/Deployment@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/11"
+    },
+    "flags": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "EfsStorageConfiguration",
     "properties": {
@@ -169,7 +253,7 @@
     "properties": {
       "DesiredCapacity": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/9"
         },
         "flags": 1
       }
@@ -184,9 +268,6 @@
     "$type": "ObjectType",
     "name": "TagMap",
     "properties": {}
-  },
-  {
-    "$type": "IntegerType"
   },
   {
     "$type": "StringLiteralType",
@@ -204,7 +285,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/17"
     }
   },
   {
@@ -253,7 +334,7 @@
       },
       "HighAvailabilityConfig": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/16"
         },
         "flags": 0
       },
@@ -287,35 +368,35 @@
       },
       "PubliclyAccessible": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "Specifies whether the environment is publicly accessible."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "The list of security groups for the VPC associated with this environment."
       },
       "StorageConfigurations": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "The storage configurations defined for the runtime environment."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The unique identifiers of the subnets assigned to this runtime environment."
       },
       "Tags": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "Tags associated to this environment."
@@ -342,7 +423,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -354,7 +435,7 @@
     "name": "AWS.M2/Environment@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/21"
+      "$ref": "#/25"
     },
     "flags": 0
   }

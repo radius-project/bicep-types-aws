@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VpcLattice-ServiceNetwork",
   "type": "AWS::VpcLattice::ServiceNetwork",
-  "time": "2024-09-25T16:51:30.685Z",
+  "time": "2024-11-20T14:55:37.56Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -16,6 +16,18 @@
       "/properties/Name"
     ],
     "definitions": {
+      "SharingConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "enabled"
+        ],
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "properties": {
@@ -110,6 +122,9 @@
         "minLength": 3,
         "pattern": "^(?!servicenetwork-)(?![-])(?!.*[-]$)(?!.*[-]{2})[a-z0-9-]+$",
         "type": "string"
+      },
+      "SharingConfig": {
+        "$ref": "#/definitions/SharingConfig"
       },
       "Tags": {
         "insertionOrder": false,

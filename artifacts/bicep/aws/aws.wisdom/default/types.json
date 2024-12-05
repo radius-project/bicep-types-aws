@@ -282,6 +282,94 @@
     "flags": 0
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.Wisdom/AIAgentVersionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Wisdom/AIAgentVersionProperties",
+    "properties": {
+      "AIAgentArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "AIAgentId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17
+      },
+      "AIAgentVersionId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "AssistantArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "AssistantId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17
+      },
+      "ModifiedTimeSeconds": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "VersionNumber": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 18
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Wisdom/AIAgentVersion",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Wisdom/AIAgentVersion@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/25"
+    },
+    "flags": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "AIPromptAPIFormat",
     "properties": {}
@@ -376,13 +464,13 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/31"
         },
         "flags": 0
       },
       "TemplateConfiguration": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/28"
         },
         "flags": 1
       },
@@ -420,7 +508,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/34"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -432,7 +520,7 @@
     "name": "AWS.Wisdom/AIPrompt@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/31"
+      "$ref": "#/35"
     },
     "flags": 0
   },
@@ -508,7 +596,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/38"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -520,7 +608,7 @@
     "name": "AWS.Wisdom/AIPromptVersion@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/35"
+      "$ref": "#/39"
     },
     "flags": 0
   },
@@ -566,7 +654,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/43"
     }
   },
   {
@@ -599,13 +687,13 @@
       },
       "ServerSideEncryptionConfiguration": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/42"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/45"
         },
         "flags": 0
       },
@@ -637,7 +725,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/46"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -649,7 +737,7 @@
     "name": "AWS.Wisdom/Assistant@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/43"
+      "$ref": "#/47"
     },
     "flags": 0
   },
@@ -695,7 +783,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
+      "$ref": "#/51"
     }
   },
   {
@@ -728,7 +816,7 @@
       },
       "Association": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/49"
         },
         "flags": 1
       },
@@ -740,7 +828,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/53"
         },
         "flags": 0
       }
@@ -766,7 +854,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/54"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -778,7 +866,7 @@
     "name": "AWS.Wisdom/AssistantAssociation@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/51"
+      "$ref": "#/55"
     },
     "flags": 0
   },
@@ -794,7 +882,7 @@
       },
       "ObjectFields": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/74"
         },
         "flags": 0
       }
@@ -802,7 +890,78 @@
   },
   {
     "$type": "ObjectType",
+    "name": "BedrockFoundationModelConfiguration",
+    "properties": {
+      "ModelArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "ParsingPrompt": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FixedSizeChunkingConfiguration",
+    "properties": {
+      "MaxTokens": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "OverlapPercentage": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HierarchicalChunkingConfiguration",
+    "properties": {
+      "LevelConfigurations": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 1
+      },
+      "OverlapTokens": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HierarchicalChunkingLevelConfiguration",
+    "properties": {
+      "MaxTokens": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "KnowledgeBaseType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedSourceConfiguration",
     "properties": {}
   },
   {
@@ -814,6 +973,42 @@
           "$ref": "#/13"
         },
         "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SeedUrl",
+    "properties": {
+      "Url": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SemanticChunkingConfiguration",
+    "properties": {
+      "BreakpointPercentileThreshold": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "BufferSize": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "MaxTokens": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
       }
     }
   },
@@ -832,14 +1027,7 @@
   {
     "$type": "ObjectType",
     "name": "SourceConfiguration",
-    "properties": {
-      "AppIntegrations": {
-        "type": {
-          "$ref": "#/53"
-        },
-        "flags": 1
-      }
-    }
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -860,9 +1048,187 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "UrlFilterList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UrlFilterPattern",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VectorIngestionConfiguration",
+    "properties": {
+      "ChunkingConfiguration": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 0
+      },
+      "ParsingConfiguration": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebCrawlerConfiguration",
+    "properties": {
+      "CrawlerLimits": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0
+      },
+      "ExclusionFilters": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 0
+      },
+      "InclusionFilters": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0
+      },
+      "Scope": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "UrlConfiguration": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KnowledgeBase_ParsingPrompt",
+    "properties": {
+      "ParsingPromptText": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/61"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KnowledgeBase_ChunkingConfiguration",
+    "properties": {
+      "ChunkingStrategy": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "FixedSizeChunkingConfiguration": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0
+      },
+      "HierarchicalChunkingConfiguration": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 0
+      },
+      "SemanticChunkingConfiguration": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KnowledgeBase_ParsingConfiguration",
+    "properties": {
+      "BedrockFoundationModelConfiguration": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0
+      },
+      "ParsingStrategy": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KnowledgeBase_CrawlerLimits",
+    "properties": {
+      "RateLimit": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/65"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KnowledgeBase_UrlConfiguration",
+    "properties": {
+      "SeedUrls": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 0
+      }
     }
   },
   {
@@ -872,7 +1238,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/69"
     }
   },
   {
@@ -911,25 +1277,31 @@
       },
       "RenderingConfiguration": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/64"
         },
         "flags": 0
       },
       "ServerSideEncryptionConfiguration": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/67"
         },
         "flags": 0
       },
       "SourceConfiguration": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/86"
+        },
+        "flags": 0
+      },
+      "VectorIngestionConfiguration": {
+        "type": {
+          "$ref": "#/72"
         },
         "flags": 0
       }
@@ -955,7 +1327,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/87"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -967,7 +1339,901 @@
     "name": "AWS.Wisdom/KnowledgeBase@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/63"
+      "$ref": "#/88"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentAttributes",
+    "properties": {
+      "FirstName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The agent?s first name as entered in their Amazon Connect user account."
+      },
+      "LastName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The agent?s last name as entered in their Amazon Connect user account."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ChannelSubtype",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Content",
+    "properties": {
+      "EmailMessageTemplateContent": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 0
+      },
+      "SmsMessageTemplateContent": {
+        "type": {
+          "$ref": "#/102"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomAttributes",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomerProfileAttributes",
+    "properties": {
+      "AccountNumber": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "A unique account number that you have given to the customer."
+      },
+      "AdditionalInformation": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Any additional information relevant to the customer's profile."
+      },
+      "Address1": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The first line of a customer address."
+      },
+      "Address2": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The second line of a customer address."
+      },
+      "Address3": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The third line of a customer address."
+      },
+      "Address4": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The fourth line of a customer address."
+      },
+      "BillingAddress1": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The first line of a customer?s billing address."
+      },
+      "BillingAddress2": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The second line of a customer?s billing address."
+      },
+      "BillingAddress3": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The third line of a customer?s billing address."
+      },
+      "BillingAddress4": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The fourth line of a customer?s billing address."
+      },
+      "BillingCity": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The city of a customer?s billing address."
+      },
+      "BillingCountry": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The country of a customer?s billing address."
+      },
+      "BillingCounty": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The county of a customer?s billing address."
+      },
+      "BillingPostalCode": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The postal code of a customer?s billing address."
+      },
+      "BillingProvince": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The province of a customer?s billing address."
+      },
+      "BillingState": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The state of a customer?s billing address."
+      },
+      "BirthDate": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The customer's birth date."
+      },
+      "BusinessEmailAddress": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The customer's business email address."
+      },
+      "BusinessName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The name of the customer's business."
+      },
+      "BusinessPhoneNumber": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The customer's business phone number."
+      },
+      "City": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The city in which a customer lives."
+      },
+      "Country": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The country in which a customer lives."
+      },
+      "County": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The county in which a customer lives."
+      },
+      "Custom": {
+        "type": {
+          "$ref": "#/93"
+        },
+        "flags": 0
+      },
+      "EmailAddress": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The customer's email address, which has not been specified as a personal or business address."
+      },
+      "FirstName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The customer's first name."
+      },
+      "Gender": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The customer's gender."
+      },
+      "HomePhoneNumber": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The customer's home phone number."
+      },
+      "LastName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The customer's last name."
+      },
+      "MailingAddress1": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The first line of a customer?s mailing address."
+      },
+      "MailingAddress2": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The second line of a customer?s mailing address."
+      },
+      "MailingAddress3": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The third line of a customer?s mailing address."
+      },
+      "MailingAddress4": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The fourth line of a customer?s mailing address."
+      },
+      "MailingCity": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The city of a customer?s mailing address."
+      },
+      "MailingCountry": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The country of a customer?s mailing address."
+      },
+      "MailingCounty": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The county of a customer?s mailing address."
+      },
+      "MailingPostalCode": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The postal code of a customer?s mailing address"
+      },
+      "MailingProvince": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The province of a customer?s mailing address."
+      },
+      "MailingState": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The state of a customer?s mailing address."
+      },
+      "MiddleName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The customer's middle name."
+      },
+      "MobilePhoneNumber": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The customer's mobile phone number."
+      },
+      "PartyType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The customer's party type."
+      },
+      "PhoneNumber": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The customer's phone number, which has not been specified as a mobile, home, or business number."
+      },
+      "PostalCode": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The postal code of a customer address."
+      },
+      "ProfileARN": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The ARN of a customer profile."
+      },
+      "ProfileId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The unique identifier of a customer profile."
+      },
+      "Province": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The province in which a customer lives."
+      },
+      "ShippingAddress1": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The first line of a customer?s shipping address."
+      },
+      "ShippingAddress2": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The second line of a customer?s shipping address."
+      },
+      "ShippingAddress3": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The third line of a customer?s shipping address."
+      },
+      "ShippingAddress4": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The fourth line of a customer?s shipping address"
+      },
+      "ShippingCity": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The city of a customer?s shipping address."
+      },
+      "ShippingCountry": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The country of a customer?s shipping address."
+      },
+      "ShippingCounty": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The county of a customer?s shipping address."
+      },
+      "ShippingPostalCode": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The postal code of a customer?s shipping address."
+      },
+      "ShippingProvince": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The province of a customer?s shipping address."
+      },
+      "ShippingState": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The state of a customer?s shipping address."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The state in which a customer lives."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EmailMessageTemplateContent",
+    "properties": {
+      "Body": {
+        "type": {
+          "$ref": "#/96"
+        },
+        "flags": 1
+      },
+      "Headers": {
+        "type": {
+          "$ref": "#/107"
+        },
+        "flags": 1,
+        "description": "The email headers to include in email messages."
+      },
+      "Subject": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The subject line, or title, to use in email messages."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EmailMessageTemplateContentBody",
+    "properties": {
+      "Html": {
+        "type": {
+          "$ref": "#/101"
+        },
+        "flags": 0,
+        "description": "The message body, in HTML format, to use in email messages that are based on the message template. We recommend using HTML format for email clients that render HTML content. You can include links, formatted text, and more in an HTML message."
+      },
+      "PlainText": {
+        "type": {
+          "$ref": "#/101"
+        },
+        "flags": 0,
+        "description": "The message body, in plain text format, to use in email messages that are based on the message template. We recommend using plain text format for email clients that don't render HTML content and clients that are connected to high-latency networks, such as mobile devices."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EmailMessageTemplateHeader",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The name of the email header."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The value of the email header."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GroupingConfiguration",
+    "properties": {
+      "Criteria": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The criteria used for grouping Amazon Q in Connect users."
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 1,
+        "description": "The list of values that define different groups of Amazon Q in Connect users."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GroupingValue",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MessageTemplateAttributes",
+    "properties": {
+      "AgentAttributes": {
+        "type": {
+          "$ref": "#/90"
+        },
+        "flags": 0
+      },
+      "CustomAttributes": {
+        "type": {
+          "$ref": "#/93"
+        },
+        "flags": 0
+      },
+      "CustomerProfileAttributes": {
+        "type": {
+          "$ref": "#/94"
+        },
+        "flags": 0
+      },
+      "SystemAttributes": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MessageTemplateBodyContentProvider",
+    "properties": {
+      "Content": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SmsMessageTemplateContent",
+    "properties": {
+      "Body": {
+        "type": {
+          "$ref": "#/103"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SmsMessageTemplateContentBody",
+    "properties": {
+      "PlainText": {
+        "type": {
+          "$ref": "#/101"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SystemAttributes",
+    "properties": {
+      "CustomerEndpoint": {
+        "type": {
+          "$ref": "#/105"
+        },
+        "flags": 0,
+        "description": "The CustomerEndpoint attribute."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The name of the task."
+      },
+      "SystemEndpoint": {
+        "type": {
+          "$ref": "#/105"
+        },
+        "flags": 0,
+        "description": "The SystemEndpoint attribute."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SystemEndpointAttributes",
+    "properties": {
+      "Address": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The customer's phone number if used with customerEndpoint, or the number the customer dialed to call your contact center if used with systemEndpoint."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -"
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/97"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Wisdom/MessageTemplateProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/106"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Wisdom/MessageTemplateProperties",
+    "properties": {
+      "ChannelSubtype": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "Content": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 1
+      },
+      "DefaultAttributes": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 0
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The description of the message template."
+      },
+      "GroupingConfiguration": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 0
+      },
+      "KnowledgeBaseArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the knowledge base to which the message template belongs."
+      },
+      "Language": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The language code value for the language in which the message template is written. The supported language codes include de_DE, en_US, es_ES, fr_FR, id_ID, it_IT, ja_JP, ko_KR, pt_BR, zh_CN, zh_TW"
+      },
+      "MessageTemplateArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the message template."
+      },
+      "MessageTemplateContentSha256": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The content SHA256 of the message template."
+      },
+      "MessageTemplateId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the message template."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The name of the message template."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 0,
+        "description": "The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Wisdom/MessageTemplate",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/111"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Wisdom/MessageTemplate@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/112"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Wisdom/MessageTemplateVersionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Wisdom/MessageTemplateVersionProperties",
+    "properties": {
+      "MessageTemplateArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The unqualified Amazon Resource Name (ARN) of the message template."
+      },
+      "MessageTemplateContentSha256": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The content SHA256 of the message template."
+      },
+      "MessageTemplateVersionArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 18,
+        "description": "The unqualified Amazon Resource Name (ARN) of the message template version."
+      },
+      "MessageTemplateVersionNumber": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "Current version number of the message template."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Wisdom/MessageTemplateVersion",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/115"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Wisdom/MessageTemplateVersion@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/116"
     },
     "flags": 0
   }
