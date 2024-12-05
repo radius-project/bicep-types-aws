@@ -1,10 +1,16 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-InferenceComponent",
   "type": "AWS::SageMaker::InferenceComponent",
-  "time": "2024-10-25T00:50:46.601Z",
+  "time": "2024-11-22T14:42:27.049Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
+      "BaseInferenceComponentName": {
+        "description": "The name of the base inference component",
+        "maxLength": 63,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9])*$",
+        "type": "string"
+      },
       "ContainerImage": {
         "description": "The image to use for the container that will be materialized for the inference component",
         "maxLength": 255,
@@ -132,6 +138,9 @@
         "additionalProperties": false,
         "description": "The specification for the inference component",
         "properties": {
+          "BaseInferenceComponentName": {
+            "$ref": "#/definitions/BaseInferenceComponentName"
+          },
           "ComputeResourceRequirements": {
             "$ref": "#/definitions/InferenceComponentComputeResourceRequirements"
           },
@@ -145,9 +154,6 @@
             "$ref": "#/definitions/InferenceComponentStartupParameters"
           }
         },
-        "required": [
-          "ComputeResourceRequirements"
-        ],
         "type": "object"
       },
       "InferenceComponentStartupParameters": {
@@ -336,9 +342,7 @@
     ],
     "required": [
       "EndpointName",
-      "VariantName",
-      "Specification",
-      "RuntimeConfig"
+      "Specification"
     ],
     "tagging": {
       "cloudFormationSystemTags": false,

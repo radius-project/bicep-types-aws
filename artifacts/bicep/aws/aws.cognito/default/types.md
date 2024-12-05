@@ -28,6 +28,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/LogDeliveryConfigurationProperties](#awscognitologdeliveryconfigurationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Cognito/ManagedLoginBranding@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cognito/ManagedLoginBrandingProperties](#awscognitomanagedloginbrandingproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Cognito/UserPool@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -115,6 +122,14 @@
 * **RoleArn**: string
 * **UserDataShared**: bool
 
+## AssetType
+### Properties
+* **Bytes**: string
+* **Category**: string (Required)
+* **ColorMode**: string (Required)
+* **Extension**: string (Required)
+* **ResourceId**: string
+
 ## AWS.Cognito/IdentityPoolPrincipalTagProperties
 ### Properties
 * **IdentityPoolId**: string (Required, Identifier)
@@ -151,6 +166,16 @@
 * **Id**: string (ReadOnly, Identifier)
 * **LogConfigurations**: [LogConfiguration](#logconfiguration)[]
 * **UserPoolId**: string (Required)
+
+## AWS.Cognito/ManagedLoginBrandingProperties
+### Properties
+* **Assets**: [AssetType](#assettype)[]
+* **ClientId**: string (WriteOnly)
+* **ManagedLoginBrandingId**: string (ReadOnly, Identifier)
+* **ReturnMergedResources**: bool (WriteOnly)
+* **Settings**: [ManagedLoginBranding_Settings](#managedloginbrandingsettings)
+* **UseCognitoProvidedValues**: bool
+* **UserPoolId**: string (Required, Identifier)
 
 ## AWS.Cognito/UserPoolClientProperties
 ### Properties
@@ -228,7 +253,10 @@
 * **UserPoolId**: string (ReadOnly, Identifier)
 * **UserPoolName**: string
 * **UserPoolTags**: [UserPool_UserPoolTags](#userpooluserpooltags)
+* **UserPoolTier**: string
 * **VerificationMessageTemplate**: [VerificationMessageTemplate](#verificationmessagetemplate)
+* **WebAuthnRelyingPartyID**: string
+* **WebAuthnUserVerification**: string
 
 ## AWS.Cognito/UserPoolResourceServerProperties
 ### Properties
@@ -349,6 +377,9 @@
 * **LogLevel**: string
 * **S3Configuration**: [S3Configuration](#s3configuration)
 
+## ManagedLoginBranding_Settings
+### Properties
+
 ## NotifyConfigurationType
 ### Properties
 * **BlockEmail**: [NotifyEmailType](#notifyemailtype)
@@ -382,6 +413,7 @@
 ## Policies
 ### Properties
 * **PasswordPolicy**: [PasswordPolicy](#passwordpolicy)
+* **SignInPolicy**: [SignInPolicy](#signinpolicy)
 
 ## PreTokenGenerationConfig
 ### Properties
@@ -421,6 +453,10 @@
 * **NumberAttributeConstraints**: [NumberAttributeConstraints](#numberattributeconstraints)
 * **Required**: bool
 * **StringAttributeConstraints**: [StringAttributeConstraints](#stringattributeconstraints)
+
+## SignInPolicy
+### Properties
+* **AllowedFirstAuthFactors**: string[]
 
 ## SmsConfiguration
 ### Properties

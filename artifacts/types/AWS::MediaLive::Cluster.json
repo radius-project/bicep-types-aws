@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaLive-Cluster",
   "type": "AWS::MediaLive::Cluster",
-  "time": "2024-09-09T18:13:10.213Z",
+  "time": "2024-11-20T16:55:48.303Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -104,7 +104,8 @@
           "ecs:RegisterTaskDefinition",
           "ecs:TagResource",
           "ecs:CreateService",
-          "iam:PassRole"
+          "iam:PassRole",
+          "medialive:ListTagsForResource"
         ]
       },
       "delete": {
@@ -120,7 +121,8 @@
       },
       "read": {
         "permissions": [
-          "medialive:DescribeCluster"
+          "medialive:DescribeCluster",
+          "medialive:ListTagsForResource"
         ]
       },
       "update": {
@@ -128,7 +130,8 @@
           "medialive:UpdateCluster",
           "medialive:DescribeCluster",
           "medialive:CreateTags",
-          "medialive:DeleteTags"
+          "medialive:DeleteTags",
+          "medialive:ListTagsForResource"
         ]
       }
     },

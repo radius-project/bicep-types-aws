@@ -224,7 +224,7 @@
     "properties": {
       "Dimensions": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The dimensions of the metric. \n Conditional: If you published your metric with dimensions, you must specify the same dimensions in your scaling policy."
@@ -238,7 +238,7 @@
       },
       "Metrics": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The metrics to include in the target tracking scaling policy, as a metric data query. This can include both raw metric and metric math expressions."
@@ -308,6 +308,295 @@
   },
   {
     "$type": "ObjectType",
+    "name": "PredictiveScalingCustomizedCapacityMetric",
+    "properties": {
+      "MetricDataQueries": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PredictiveScalingCustomizedLoadMetric",
+    "properties": {
+      "MetricDataQueries": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PredictiveScalingCustomizedScalingMetric",
+    "properties": {
+      "MetricDataQueries": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PredictiveScalingMetric",
+    "properties": {
+      "Dimensions": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "The dimensions for the metric."
+      },
+      "MetricName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name of the metric."
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The namespace of the metric."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PredictiveScalingMetricDataQuery",
+    "properties": {
+      "Expression": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The math expression to perform on the returned data, if this object is performing a math expression."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A short name that identifies the object's results in the response."
+      },
+      "Label": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A human-readable label for this metric or expression. This is especially useful if this is a math expression, so that you know what the value represents."
+      },
+      "MetricStat": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "Information about the metric data to return."
+      },
+      "ReturnData": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Indicates whether to return the timestamps and raw data values of this metric."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PredictiveScalingMetricDimension",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name of the dimension."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The value of the dimension."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PredictiveScalingMetricSpecification",
+    "properties": {
+      "CustomizedCapacityMetricSpecification": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      },
+      "CustomizedLoadMetricSpecification": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "CustomizedScalingMetricSpecification": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "PredefinedLoadMetricSpecification": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0
+      },
+      "PredefinedMetricPairSpecification": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "PredefinedScalingMetricSpecification": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "TargetValue": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PredictiveScalingMetricStat",
+    "properties": {
+      "Metric": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The CloudWatch metric to return, including the metric name, namespace, and dimensions. "
+      },
+      "Stat": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The statistic to return. It can include any CloudWatch statistic or extended statistic."
+      },
+      "Unit": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The unit to use for the returned data points."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PredictiveScalingPolicyConfiguration",
+    "properties": {
+      "MaxCapacityBreachBehavior": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "MaxCapacityBuffer": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "MetricSpecifications": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 1
+      },
+      "Mode": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "SchedulingBufferTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PredictiveScalingPredefinedLoadMetric",
+    "properties": {
+      "PredefinedMetricType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "ResourceLabel": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PredictiveScalingPredefinedMetricPair",
+    "properties": {
+      "PredefinedMetricType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "ResourceLabel": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PredictiveScalingPredefinedScalingMetric",
+    "properties": {
+      "PredefinedMetricType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "ResourceLabel": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "StepAdjustment",
     "properties": {
       "MetricIntervalLowerBound": {
@@ -367,7 +656,7 @@
       },
       "StepAdjustments": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "A set of adjustments that enable you to scale based on the size of the alarm breach.\n At least one step adjustment is required if you are adding a new step scaling policy configuration."
@@ -380,7 +669,7 @@
     "properties": {
       "Dimensions": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The dimensions for the metric. For the list of available dimensions, see the AWS documentation available from the table in [services that publish CloudWatch metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html) in the *Amazon CloudWatch User Guide*. \n Conditional: If you published your metric with dimensions, you must specify the same dimensions in your scaling policy."
@@ -428,7 +717,7 @@
       },
       "MetricStat": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "Information about the metric data to return.\n Conditional: Within each ``MetricDataQuery`` object, you must specify either ``Expression`` or ``MetricStat``, but not both."
@@ -468,7 +757,7 @@
     "properties": {
       "Metric": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "The CloudWatch metric to return, including the metric name, namespace, and dimensions. To get the exact metric name, namespace, and dimensions, inspect the [Metric](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_Metric.html) object that is returned by a call to [ListMetrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html)."
@@ -546,19 +835,49 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/29"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/20"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/26"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/30"
     }
   },
   {
@@ -590,6 +909,13 @@
         "flags": 1,
         "description": "The scaling policy type.\n The following policy types are supported: \n  ``TargetTrackingScaling``—Not supported for Amazon EMR\n  ``StepScaling``—Not supported for DynamoDB, Amazon Comprehend, Lambda, Amazon Keyspaces, Amazon MSK, Amazon ElastiCache, or Neptune."
       },
+      "PredictiveScalingPolicyConfiguration": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": ""
+      },
       "ResourceId": {
         "type": {
           "$ref": "#/4"
@@ -620,14 +946,14 @@
       },
       "StepScalingPolicyConfiguration": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "A step scaling policy."
       },
       "TargetTrackingScalingPolicyConfiguration": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "A target tracking scaling policy."
@@ -654,7 +980,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/43"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -666,7 +992,7 @@
     "name": "AWS.ApplicationAutoScaling/ScalingPolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/27"
+      "$ref": "#/44"
     },
     "flags": 0
   }

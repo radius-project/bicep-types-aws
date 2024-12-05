@@ -28,6 +28,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/BasePathMappingProperties](#awsapigatewaybasepathmappingproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.ApiGateway/BasePathMappingV2@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGateway/BasePathMappingV2Properties](#awsapigatewaybasepathmappingv2properties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.ApiGateway/ClientCertificate@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -62,6 +69,13 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/DomainNameProperties](#awsapigatewaydomainnameproperties) (Identifier): properties of the resource
+
+## Resource AWS.ApiGateway/DomainNameV2@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGateway/DomainNameV2Properties](#awsapigatewaydomainnamev2properties) (Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/GatewayResponse@default
 * **Valid Scope(s)**: Unknown
@@ -181,6 +195,14 @@
 * **RestApiId**: string
 * **Stage**: string
 
+## AWS.ApiGateway/BasePathMappingV2Properties
+### Properties
+* **BasePath**: string: The base path name that callers of the API must provide in the URL after the domain name.
+* **BasePathMappingArn**: string (ReadOnly, Identifier): Amazon Resource Name (ARN) of the resource.
+* **DomainNameArn**: string (Required): The Arn of an AWS::ApiGateway::DomainNameV2 resource.
+* **RestApiId**: string (Required): The ID of the API.
+* **Stage**: string: The name of the API's stage.
+
 ## AWS.ApiGateway/ClientCertificateProperties
 ### Properties
 * **ClientCertificateId**: string (ReadOnly, Identifier)
@@ -221,6 +243,18 @@
 * **RegionalCertificateArn**: string
 * **RegionalDomainName**: string (ReadOnly)
 * **RegionalHostedZoneId**: string (ReadOnly)
+* **SecurityPolicy**: string
+* **Tags**: [Tag](#tag)[]
+
+## AWS.ApiGateway/DomainNameV2Properties
+### Properties
+* **CertificateArn**: string
+* **DomainName**: string
+* **DomainNameArn**: string (ReadOnly, Identifier): The amazon resource name (ARN) of the domain name resource.
+* **DomainNameId**: string (ReadOnly)
+* **EndpointConfiguration**: [EndpointConfiguration](#endpointconfiguration)
+* **ManagementPolicy**: [DomainNameV2_ManagementPolicy](#domainnamev2managementpolicy) | string
+* **Policy**: [DomainNameV2_Policy](#domainnamev2policy) | string
 * **SecurityPolicy**: string
 * **Tags**: [Tag](#tag)[]
 
@@ -361,6 +395,10 @@
 * **PercentTraffic**: int
 * **StageVariableOverrides**: [Deployment_StageVariableOverrides](#deploymentstagevariableoverrides)
 * **UseStageCache**: bool
+
+## EndpointConfiguration
+### Properties
+* **Types**: string[]
 
 ## EndpointConfiguration
 ### Properties
@@ -532,6 +570,11 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag
 * **Value**: string (Required): The value for the tag
+
+## Tag
+### Properties
+* **Key**: string
+* **Value**: string
 
 ## Tag
 ### Properties

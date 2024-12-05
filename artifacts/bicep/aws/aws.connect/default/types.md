@@ -28,6 +28,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Connect/ContactFlowModuleProperties](#awsconnectcontactflowmoduleproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Connect/EmailAddress@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Connect/EmailAddressProperties](#awsconnectemailaddressproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Connect/EvaluationForm@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -245,6 +252,15 @@
 * **Tags**: [Tag](#tag)[]: One or more tags.
 * **Type**: string (Required): The type of the contact flow.
 
+## AWS.Connect/EmailAddressProperties
+### Properties
+* **Description**: string: A description for the email address.
+* **DisplayName**: string: The display name for the email address.
+* **EmailAddress**: string (Required): Email address to be created for this instance
+* **EmailAddressArn**: string (ReadOnly, Identifier): The identifier of the email address.
+* **InstanceArn**: string (Required): The identifier of the Amazon Connect instance.
+* **Tags**: [Tag](#tag)[]: One or more tags.
+
 ## AWS.Connect/EvaluationFormProperties
 ### Properties
 * **Description**: string: The description of the evaluation form.
@@ -265,6 +281,7 @@
 * **Config**: [HoursOfOperationConfig](#hoursofoperationconfig)[] (Required): Configuration information for the hours of operation: day, start time, and end time.
 * **Description**: string: The description of the hours of operation.
 * **HoursOfOperationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the hours of operation.
+* **HoursOfOperationOverrides**: [HoursOfOperationOverride](#hoursofoperationoverride)[]: One or more hours of operation overrides assigned to an hour of operation.
 * **InstanceArn**: string (Required): The identifier of the Amazon Connect instance.
 * **Name**: string (Required): The name of the hours of operation.
 * **Tags**: [Tag](#tag)[]: One or more tags.
@@ -622,6 +639,21 @@
 * **EndTime**: [HoursOfOperationTimeSlice](#hoursofoperationtimeslice) (Required): The end time that your contact center closes.
 * **StartTime**: [HoursOfOperationTimeSlice](#hoursofoperationtimeslice) (Required): The start time that your contact center opens.
 
+## HoursOfOperationOverride
+### Properties
+* **EffectiveFrom**: string (Required)
+* **EffectiveTill**: string (Required)
+* **HoursOfOperationOverrideId**: string
+* **OverrideConfig**: [HoursOfOperationOverrideConfig](#hoursofoperationoverrideconfig)[] (Required)
+* **OverrideDescription**: string
+* **OverrideName**: string (Required)
+
+## HoursOfOperationOverrideConfig
+### Properties
+* **Day**: string (Required): The day that the hours of operation override applies to.
+* **EndTime**: [OverrideTimeSlice](#overridetimeslice) (Required): The new end time that your contact center closes for the overriden days.
+* **StartTime**: [OverrideTimeSlice](#overridetimeslice) (Required): The new start time that your contact center opens for the overriden days.
+
 ## HoursOfOperationTimeSlice
 ### Properties
 * **Hours**: int (Required): The hours.
@@ -695,6 +727,11 @@
 * **OutboundCallerIdName**: string
 * **OutboundCallerIdNumberArn**: string
 * **OutboundFlowArn**: string
+
+## OverrideTimeSlice
+### Properties
+* **Hours**: int (Required): The hours.
+* **Minutes**: int (Required): The minutes.
 
 ## PhoneNumberQuickConnectConfig
 ### Properties
@@ -799,6 +836,11 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties

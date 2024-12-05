@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-Cluster",
   "type": "AWS::EKS::Cluster",
-  "time": "2024-10-21T22:26:17.528Z",
+  "time": "2024-11-28T08:02:14.8Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -11,7 +11,8 @@
       "/properties/AccessConfig/BootstrapClusterCreatorAdminPermissions",
       "/properties/Name",
       "/properties/RoleArn",
-      "/properties/BootstrapSelfManagedAddons"
+      "/properties/BootstrapSelfManagedAddons",
+      "/properties/RemoteNetworkConfig"
     ],
     "definitions": {
       "AccessConfig": {
@@ -55,6 +56,29 @@
         },
         "type": "object"
       },
+      "ComputeConfig": {
+        "additionalProperties": false,
+        "description": "Todo: add description",
+        "properties": {
+          "Enabled": {
+            "description": "Todo: add description",
+            "type": "boolean"
+          },
+          "NodePools": {
+            "description": "Todo: add description",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "NodeRoleArn": {
+            "description": "Todo: add description",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "ControlPlanePlacement": {
         "additionalProperties": false,
         "description": "Specify the placement group of the control plane machines for your cluster.",
@@ -62,6 +86,17 @@
           "GroupName": {
             "description": "Specify the placement group name of the control place machines for your cluster.",
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ElasticLoadBalancing": {
+        "additionalProperties": false,
+        "description": "Todo: add description",
+        "properties": {
+          "Enabled": {
+            "description": "Todo: add description",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -97,6 +132,10 @@
         "additionalProperties": false,
         "description": "The Kubernetes network configuration for the cluster.",
         "properties": {
+          "ElasticLoadBalancing": {
+            "$ref": "#/definitions/ElasticLoadBalancing",
+            "description": "Todo: add description"
+          },
           "IpFamily": {
             "description": "Ipv4 or Ipv6. You can only specify ipv6 for 1.21 and later clusters that use version 1.10.1 or later of the Amazon VPC CNI add-on",
             "enum": [
@@ -181,6 +220,24 @@
             "type": "string"
           }
         },
+        "type": "object"
+      },
+      "RemoteNetworkConfig": {
+        "additionalProperties": false,
+        "description": "Configuration fields for specifying on-premises node and pod CIDRs that are external to the VPC passed during cluster creation.",
+        "properties": {
+          "RemoteNodeNetworks": {
+            "$ref": "#/definitions/RemoteNodeNetworks",
+            "description": "Network configuration of nodes run on-premises with EKS Hybrid Nodes."
+          },
+          "RemotePodNetworks": {
+            "$ref": "#/definitions/RemotePodNetworks",
+            "description": "Network configuration of pods run on-premises with EKS Hybrid Nodes."
+          }
+        },
+        "required": [
+          "RemoteNodeNetworks"
+        ],
         "type": "object"
       },
       "RemoteNodeNetwork": {
@@ -282,6 +339,17 @@
         ],
         "type": "object"
       },
+      "StorageConfig": {
+        "additionalProperties": false,
+        "description": "Todo: add description",
+        "properties": {
+          "BlockStorage": {
+            "$ref": "#/definitions/BlockStorage",
+            "description": "Todo: add description"
+          }
+        },
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "description": "A key-value pair to associate with a resource.",
@@ -339,6 +407,7 @@
           "eks:CreateCluster",
           "eks:DescribeCluster",
           "eks:TagResource",
+          "eks:CreateAccessEntry",
           "iam:PassRole",
           "iam:GetRole",
           "iam:ListAttachedRolePolicies",
@@ -407,6 +476,9 @@
         "description": "The cluster security group that was created by Amazon EKS for the cluster. Managed node groups use this security group for control plane to data plane communication.",
         "type": "string"
       },
+      "ComputeConfig": {
+        "$ref": "#/definitions/ComputeConfig"
+      },
       "EncryptionConfig": {
         "insertionOrder": false,
         "items": {
@@ -447,12 +519,18 @@
       "OutpostConfig": {
         "$ref": "#/definitions/OutpostConfig"
       },
+      "RemoteNetworkConfig": {
+        "$ref": "#/definitions/RemoteNetworkConfig"
+      },
       "ResourcesVpcConfig": {
         "$ref": "#/definitions/ResourcesVpcConfig"
       },
       "RoleArn": {
         "description": "The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.",
         "type": "string"
+      },
+      "StorageConfig": {
+        "$ref": "#/definitions/StorageConfig"
       },
       "Tags": {
         "description": "An array of key-value pairs to apply to this resource.",

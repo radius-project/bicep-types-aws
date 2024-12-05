@@ -397,9 +397,36 @@
     "properties": {
       "EnabledTypes": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/44"
         },
         "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ComputeConfig",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Todo: add description"
+      },
+      "NodePools": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "Todo: add description"
+      },
+      "NodeRoleArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Todo: add description"
       }
     }
   },
@@ -418,6 +445,19 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ElasticLoadBalancing",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Todo: add description"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "EnabledTypes",
     "properties": {}
   },
@@ -427,14 +467,14 @@
     "properties": {
       "Provider": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The encryption provider for the cluster."
       },
       "Resources": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "Specifies the resources to be encrypted. The only supported value is \"secrets\"."
@@ -445,6 +485,13 @@
     "$type": "ObjectType",
     "name": "KubernetesNetworkConfig",
     "properties": {
+      "ElasticLoadBalancing": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "Todo: add description"
+      },
       "IpFamily": {
         "type": {
           "$ref": "#/3"
@@ -507,14 +554,14 @@
       },
       "ControlPlanePlacement": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "Specify the placement group of the control plane machines for your cluster."
       },
       "OutpostArns": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/48"
         },
         "flags": 1,
         "description": "Specify one or more Arn(s) of Outpost(s) on which you would like to create your cluster."
@@ -536,11 +583,31 @@
   },
   {
     "$type": "ObjectType",
+    "name": "RemoteNetworkConfig",
+    "properties": {
+      "RemoteNodeNetworks": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 1,
+        "description": "Network configuration of nodes run on-premises with EKS Hybrid Nodes."
+      },
+      "RemotePodNetworks": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0,
+        "description": "Network configuration of pods run on-premises with EKS Hybrid Nodes."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "RemoteNodeNetwork",
     "properties": {
       "Cidrs": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/51"
         },
         "flags": 1,
         "description": "Specifies the list of remote node CIDRs."
@@ -558,7 +625,7 @@
     "properties": {
       "Cidrs": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/53"
         },
         "flags": 1,
         "description": "Specifies the list of remote pod CIDRs."
@@ -590,24 +657,37 @@
       },
       "PublicAccessCidrs": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "The CIDR blocks that are allowed access to your cluster's public Kubernetes API server endpoint. Communication to the endpoint from addresses outside of the CIDR blocks that you specify is denied. The default value is 0.0.0.0/0. If you've disabled private endpoint access and you have nodes or AWS Fargate pods in the cluster, then ensure that you specify the necessary CIDR blocks."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "Specify one or more security groups for the cross-account elastic network interfaces that Amazon EKS creates to use to allow communication between your worker nodes and the Kubernetes control plane. If you don't specify a security group, the default security group for your VPC is used."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/57"
         },
         "flags": 1,
         "description": "Specify subnets for your Amazon EKS nodes. Amazon EKS creates cross-account elastic network interfaces in these subnets to allow communication between your nodes and the Kubernetes control plane."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageConfig",
+    "properties": {
+      "BlockStorage": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Todo: add description"
       }
     }
   },
@@ -660,13 +740,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/29"
+      "$ref": "#/31"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/29"
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/31"
     }
   },
   {
@@ -684,13 +770,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
+      "$ref": "#/35"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/37"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
       "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/32"
+      "$ref": "#/35"
     }
   },
   {
@@ -702,7 +800,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/34"
+      "$ref": "#/37"
     }
   },
   {
@@ -730,13 +828,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/28"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/37"
+      "$ref": "#/41"
     }
   },
   {
@@ -777,9 +875,15 @@
         "flags": 2,
         "description": "The cluster security group that was created by Amazon EKS for the cluster. Managed node groups use this security group for control plane to data plane communication."
       },
+      "ComputeConfig": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
       "EncryptionConfig": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/59"
         },
         "flags": 0
       },
@@ -806,13 +910,13 @@
       },
       "KubernetesNetworkConfig": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/29"
         },
         "flags": 0
       },
       "Logging": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/30"
         },
         "flags": 0
       },
@@ -832,13 +936,19 @@
       },
       "OutpostConfig": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/32"
+        },
+        "flags": 0
+      },
+      "RemoteNetworkConfig": {
+        "type": {
+          "$ref": "#/34"
         },
         "flags": 0
       },
       "ResourcesVpcConfig": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/39"
         },
         "flags": 1
       },
@@ -849,16 +959,22 @@
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf."
       },
+      "StorageConfig": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
       "Tags": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "UpgradePolicy": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/42"
         },
         "flags": 0
       },
@@ -871,7 +987,7 @@
       },
       "ZonalShiftConfig": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/43"
         },
         "flags": 0
       }
@@ -897,7 +1013,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/61"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -909,7 +1025,7 @@
     "name": "AWS.EKS/Cluster@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/55"
+      "$ref": "#/62"
     },
     "flags": 0
   },
@@ -939,7 +1055,7 @@
     "properties": {
       "Labels": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/67"
         },
         "flags": 0
       },
@@ -974,7 +1090,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/57"
+      "$ref": "#/64"
     }
   },
   {
@@ -984,7 +1100,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/65"
     }
   },
   {
@@ -996,7 +1112,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/59"
+      "$ref": "#/66"
     }
   },
   {
@@ -1032,19 +1148,19 @@
       },
       "Selectors": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/69"
         },
         "flags": 1
       },
       "Subnets": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1071,7 +1187,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/72"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1083,7 +1199,7 @@
     "name": "AWS.EKS/FargateProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/66"
+      "$ref": "#/73"
     },
     "flags": 0
   },
@@ -1121,7 +1237,7 @@
       },
       "RequiredClaims": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/78"
         },
         "flags": 0
       },
@@ -1184,7 +1300,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/69"
+      "$ref": "#/76"
     }
   },
   {
@@ -1194,7 +1310,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/70"
+      "$ref": "#/77"
     }
   },
   {
@@ -1224,13 +1340,13 @@
       },
       "Oidc": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/75"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/80"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1264,7 +1380,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/81"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1276,7 +1392,7 @@
     "name": "AWS.EKS/IdentityProviderConfig@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/75"
+      "$ref": "#/82"
     },
     "flags": 0
   },
@@ -1306,6 +1422,19 @@
   },
   {
     "$type": "ObjectType",
+    "name": "NodeRepairConfig",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Set this value to true to enable node auto repair for the node group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "RemoteAccess",
     "properties": {
       "Ec2SshKey": {
@@ -1316,7 +1445,7 @@
       },
       "SourceSecurityGroups": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/90"
         },
         "flags": 0
       }
@@ -1328,19 +1457,19 @@
     "properties": {
       "DesiredSize": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/91"
         },
         "flags": 0
       },
       "MaxSize": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/91"
         },
         "flags": 0
       },
       "MinSize": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/91"
         },
         "flags": 0
       }
@@ -1376,14 +1505,14 @@
     "properties": {
       "MaxUnavailable": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "The maximum number of nodes unavailable at once during a version update. Nodes will be updated in parallel. This value or maxUnavailablePercentage is required to have a value.The maximum number is 100. "
       },
       "MaxUnavailablePercentage": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "The maximum percentage of nodes unavailable during a version update. This percentage of nodes will be updated in parallel, up to 100 nodes at once. This value or maxUnavailable is required to have a value."
@@ -1428,7 +1557,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/80"
+      "$ref": "#/88"
     }
   },
   {
@@ -1464,7 +1593,7 @@
       },
       "DiskSize": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "The root device disk size (in GiB) for your node group instances."
@@ -1484,24 +1613,31 @@
       },
       "InstanceTypes": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "Specify the instance types for a node group."
       },
       "Labels": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "The Kubernetes labels to be applied to the nodes in the node group when they are created."
       },
       "LaunchTemplate": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/84"
         },
         "flags": 0,
         "description": "An object representing a node group's launch template specification."
+      },
+      "NodeRepairConfig": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0,
+        "description": "The node auto repair configuration for node group."
       },
       "NodeRole": {
         "type": {
@@ -1526,42 +1662,42 @@
       },
       "RemoteAccess": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/86"
         },
         "flags": 0,
         "description": "The remote access (SSH) configuration to use with your node group."
       },
       "ScalingConfig": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/87"
         },
         "flags": 0,
         "description": "The scaling configuration details for the Auto Scaling group that is created for your node group."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/95"
         },
         "flags": 1,
         "description": "The subnets to use for the Auto Scaling group that is created for your node group."
       },
       "Tags": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/96"
         },
         "flags": 0,
         "description": "The metadata, as key-value pairs, to apply to the node group to assist with categorization and organization. Follows same schema as Labels for consistency."
       },
       "Taints": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "The Kubernetes taints to be applied to the nodes in the node group when they are created."
       },
       "UpdateConfig": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "The node group update configuration."
@@ -1595,7 +1731,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/98"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1607,7 +1743,7 @@
     "name": "AWS.EKS/Nodegroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/91"
+      "$ref": "#/99"
     },
     "flags": 0
   },
@@ -1638,7 +1774,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/93"
+      "$ref": "#/101"
     }
   },
   {
@@ -1689,7 +1825,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/103"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1716,7 +1852,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/104"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1728,7 +1864,7 @@
     "name": "AWS.EKS/PodIdentityAssociation@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/97"
+      "$ref": "#/105"
     },
     "flags": 0
   }

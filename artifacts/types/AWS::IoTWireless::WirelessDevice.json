@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTWireless-WirelessDevice",
   "type": "AWS::IoTWireless::WirelessDevice",
-  "time": "2024-10-21T17:43:09.542Z",
+  "time": "2024-11-12T23:49:23.977Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -37,6 +37,50 @@
           "DevAddr",
           "SessionKeys"
         ],
+        "type": "object"
+      },
+      "Application": {
+        "additionalProperties": false,
+        "description": "LoRaWAN application configuration, which can be used to perform geolocation.",
+        "properties": {
+          "DestinationName": {
+            "description": "The name of the position data destination that describes the AWS IoT rule that processes the device's position data for use by AWS IoT Core for LoRaWAN.",
+            "maxLength": 128,
+            "pattern": "[a-zA-Z0-9-_]+",
+            "type": "string"
+          },
+          "FPort": {
+            "description": "The Fport value.",
+            "maximum": 223,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "Type": {
+            "description": "Application type, which can be specified to obtain real-time position information of your LoRaWAN device.",
+            "enum": [
+              "SemtechGeolocation",
+              "SemtechGNSS",
+              "SemtechGNSSNG",
+              "SemtechWiFi"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "FPorts": {
+        "additionalProperties": false,
+        "properties": {
+          "Applications": {
+            "description": "A list of optional LoRaWAN application information, which can be used for geolocation.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Application"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
         "type": "object"
       },
       "LoRaWANDevice": {
@@ -77,6 +121,9 @@
           "DeviceProfileId": {
             "maxLength": 256,
             "type": "string"
+          },
+          "FPorts": {
+            "$ref": "#/definitions/FPorts"
           },
           "OtaaV10x": {
             "$ref": "#/definitions/OtaaV10x"
@@ -200,8 +247,7 @@
       "create": {
         "permissions": [
           "iotwireless:CreateWirelessDevice",
-          "iotwireless:TagResource",
-          "iotwireless:ListTagsForResource"
+          "iotwireless:TagResource"
         ]
       },
       "delete": {
@@ -225,9 +271,10 @@
       "update": {
         "permissions": [
           "iotwireless:UpdateWirelessDevice",
-          "iotwireless:UntagResource",
-          "iotwireless:ListTagsForResource",
-          "iotwireless:AssociateWirelessDeviceWithThing"
+          "iotwireless:GetWirelessDevice",
+          "iotwireless:AssociateWirelessDeviceWithThing",
+          "iotwireless:TagResource",
+          "iotwireless:UntagResource"
         ]
       }
     },
@@ -267,6 +314,14 @@
         "maxLength": 256,
         "type": "string"
       },
+      "Positioning": {
+        "description": "FPort values for the GNSS, stream, and ClockSync functions of the positioning information.",
+        "enum": [
+          "Enabled",
+          "Disabled"
+        ],
+        "type": "string"
+      },
       "Tags": {
         "description": "A list of key-value pairs that contain metadata for the device. Currently not supported, will not create if tags are passed.",
         "insertionOrder": false,
@@ -304,7 +359,18 @@
       "DestinationName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "iotwireless:TagResource",
+        "iotwireless:UntagResource",
+        "iotwireless:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::IoTWireless::WirelessDevice"
   }
 }

@@ -7,6 +7,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.M2/ApplicationProperties](#awsm2applicationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.M2/Deployment@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.M2/DeploymentProperties](#awsm2deploymentproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.M2/Environment@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -25,6 +32,14 @@
 * **Name**: string (Required)
 * **RoleArn**: string
 * **Tags**: [TagMap](#tagmap)
+
+## AWS.M2/DeploymentProperties
+### Properties
+* **ApplicationId**: string (Required, Identifier): The application ID.
+* **ApplicationVersion**: int (Required): The version number of the application to deploy
+* **DeploymentId**: string (ReadOnly): The deployment ID.
+* **EnvironmentId**: string (Required): The environment ID.
+* **Status**: string (ReadOnly): The status of the deployment.
 
 ## AWS.M2/EnvironmentProperties
 ### Properties

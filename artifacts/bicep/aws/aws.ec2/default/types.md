@@ -371,6 +371,20 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCProperties](#awsec2vpcproperties) (Identifier): properties of the resource
 
+## Resource AWS.EC2/VPCBlockPublicAccessExclusion@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/VPCBlockPublicAccessExclusionProperties](#awsec2vpcblockpublicaccessexclusionproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/VPCBlockPublicAccessOptions@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/VPCBlockPublicAccessOptionsProperties](#awsec2vpcblockpublicaccessoptionsproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/VPCDHCPOptionsAssociation@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -1321,6 +1335,19 @@ Use this for ICMP and any protocol that uses ports.
  For more information, see [Amazon EBS volume types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html).
  Default: ``gp2``
 
+## AWS.EC2/VPCBlockPublicAccessExclusionProperties
+### Properties
+* **ExclusionId**: string (ReadOnly, Identifier): The ID of the exclusion
+* **InternetGatewayExclusionMode**: string (Required): The desired Block Public Access Exclusion Mode for a specific VPC/Subnet.
+* **SubnetId**: string: The ID of the subnet. Required only if you don't specify VpcId
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **VpcId**: string: The ID of the vpc. Required only if you don't specify SubnetId.
+
+## AWS.EC2/VPCBlockPublicAccessOptionsProperties
+### Properties
+* **AccountId**: string (ReadOnly, Identifier): The identifier for the specified AWS account.
+* **InternetGatewayBlockMode**: string (Required): The desired Block Public Access mode for Internet Gateways in your account. We do not allow to create in a off mode as this is the default value
+
 ## AWS.EC2/VPCDHCPOptionsAssociationProperties
 ### Properties
 * **DhcpOptionsId**: string (Required, Identifier): The ID of the DHCP options set, or default to associate no DHCP options with the VPC.
@@ -1461,6 +1488,10 @@ Use this for ICMP and any protocol that uses ports.
 * **Max**: int
 * **Min**: int
 
+## BaselinePerformanceFactors
+### Properties
+* **Cpu**: [Cpu](#cpu)
+
 ## BlockDeviceMapping
 ### Properties
 * **DeviceName**: string (Required): The device name (for example, /dev/sdh or xvdh).
@@ -1530,6 +1561,10 @@ Use this for ICMP and any protocol that uses ports.
 * **TcpEstablishedTimeout**: int
 * **UdpStreamTimeout**: int
 * **UdpTimeout**: int
+
+## Cpu
+### Properties
+* **References**: [Reference](#reference)[]
 
 ## CpuOptions
 ### Properties
@@ -1882,6 +1917,7 @@ Use this for ICMP and any protocol that uses ports.
  Default: ``excluded``
 * **BaselineEbsBandwidthMbps**: [BaselineEbsBandwidthMbps](#baselineebsbandwidthmbps): The minimum and maximum baseline bandwidth to Amazon EBS, in Mbps. For more information, see [Amazon EBS–optimized instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html) in the *Amazon EC2 User Guide*.
  Default: No minimum or maximum limits
+* **BaselinePerformanceFactors**: [BaselinePerformanceFactors](#baselineperformancefactors)
 * **BurstablePerformance**: string: Indicates whether burstable performance T instance types are included, excluded, or required. For more information, see [Burstable performance instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html).
   +  To include burstable performance instance types, specify ``included``.
   +  To require only burstable performance instance types, specify ``required``.
@@ -2439,6 +2475,10 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Cidr**: string (Required)
 
+## Reference
+### Properties
+* **InstanceFamily**: string: The instance family to refer. Ensure that you specify the correct family name. For example, C6i and C6g are valid values, but C6 is not.
+
 ## ResourceStatementRequest
 ### Properties
 * **Resources**: string[]
@@ -2792,6 +2832,11 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Key**: string (Required): The tag key.
 * **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties

@@ -198,7 +198,7 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1
+        "flags": 5
       }
     }
   },
@@ -218,15 +218,21 @@
         },
         "flags": 0
       },
+      "ConnectivityParameters": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
       "InvocationHttpParameters": {
         "type": {
           "$ref": "#/15"
         },
-        "flags": 0
+        "flags": 4
       },
       "OAuthParameters": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -240,7 +246,7 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1
+        "flags": 5
       },
       "Username": {
         "type": {
@@ -264,7 +270,7 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1
+        "flags": 5
       }
     }
   },
@@ -274,21 +280,33 @@
     "properties": {
       "BodyParameters": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/20"
         },
-        "flags": 0
+        "flags": 4
       },
       "HeaderParameters": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/21"
         },
-        "flags": 0
+        "flags": 4
       },
       "QueryStringParameters": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/22"
         },
-        "flags": 0
+        "flags": 4
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectivityParameters",
+    "properties": {
+      "ResourceParameters": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
       }
     }
   },
@@ -328,7 +346,7 @@
     "properties": {
       "IsValueSecret": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 0
       },
@@ -347,21 +365,39 @@
     }
   },
   {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/17"
+    "$type": "ObjectType",
+    "name": "ResourceParameters",
+    "properties": {
+      "ResourceAssociationArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "ResourceConfigurationArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/18"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
     }
   },
   {
@@ -370,6 +406,18 @@
   {
     "$type": "StringLiteralType",
     "value": "AWS.Events/ConnectionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Connection_InvocationConnectivityParameters",
+    "properties": {
+      "ResourceParameters": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -386,7 +434,7 @@
         "type": {
           "$ref": "#/12"
         },
-        "flags": 4
+        "flags": 0
       },
       "AuthorizationType": {
         "type": {
@@ -400,6 +448,13 @@
         },
         "flags": 0,
         "description": "Description of the connection."
+      },
+      "InvocationConnectivityParameters": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "The private resource the HTTP request will be sent to."
       },
       "Name": {
         "type": {
@@ -437,7 +492,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/26"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -449,7 +504,7 @@
     "name": "AWS.Events/Connection@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/24"
+      "$ref": "#/27"
     },
     "flags": 0
   },
@@ -481,13 +536,13 @@
     "properties": {
       "Primary": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/34"
         },
         "flags": 1
       },
       "Secondary": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/39"
         },
         "flags": 1
       }
@@ -538,7 +593,7 @@
     "properties": {
       "FailoverConfig": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/32"
         },
         "flags": 1
       }
@@ -559,7 +614,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/29"
     }
   },
   {
@@ -569,7 +624,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/29"
     }
   },
   {
@@ -602,7 +657,7 @@
       },
       "EventBuses": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/42"
         },
         "flags": 1
       },
@@ -614,7 +669,7 @@
       },
       "ReplicationConfig": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/35"
         },
         "flags": 0
       },
@@ -626,7 +681,7 @@
       },
       "RoutingConfig": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/38"
         },
         "flags": 1
       },
@@ -664,7 +719,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/43"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -676,7 +731,7 @@
     "name": "AWS.Events/Endpoint@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/41"
+      "$ref": "#/44"
     },
     "flags": 0
   },
@@ -723,7 +778,7 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/46"
+        "$ref": "#/49"
       },
       {
         "$ref": "#/1"
@@ -733,7 +788,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/46"
     }
   },
   {
@@ -749,7 +804,7 @@
       },
       "DeadLetterConfig": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "Dead Letter Queue for the event bus."
@@ -784,14 +839,14 @@
       },
       "Policy": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "A JSON string that describes the permission policy statement for the event bus."
       },
       "Tags": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "Any tags assigned to the event bus."
@@ -818,7 +873,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/52"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -830,7 +885,7 @@
     "name": "AWS.Events/EventBus@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/50"
+      "$ref": "#/53"
     },
     "flags": 0
   },
@@ -858,13 +913,13 @@
       },
       "SecurityGroups": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/78"
         },
         "flags": 0
       },
       "Subnets": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/79"
         },
         "flags": 1
       }
@@ -888,7 +943,7 @@
     "properties": {
       "ArrayProperties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/57"
         },
         "flags": 0
       },
@@ -906,7 +961,7 @@
       },
       "RetryStrategy": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/59"
         },
         "flags": 0
       }
@@ -966,19 +1021,19 @@
     "properties": {
       "CapacityProviderStrategy": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/80"
         },
         "flags": 0
       },
       "EnableECSManagedTags": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "EnableExecuteCommand": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 0
       },
@@ -996,19 +1051,19 @@
       },
       "NetworkConfiguration": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/66"
         },
         "flags": 0
       },
       "PlacementConstraints": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/81"
         },
         "flags": 0
       },
       "PlacementStrategies": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/82"
         },
         "flags": 0
       },
@@ -1032,7 +1087,7 @@
       },
       "TagList": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/83"
         },
         "flags": 0
       },
@@ -1056,19 +1111,19 @@
     "properties": {
       "HeaderParameters": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/84"
         },
         "flags": 0
       },
       "PathParameterValues": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/85"
         },
         "flags": 0
       },
       "QueryStringParameters": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/86"
         },
         "flags": 0
       }
@@ -1080,7 +1135,7 @@
     "properties": {
       "InputPathsMap": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/87"
         },
         "flags": 0
       },
@@ -1110,7 +1165,7 @@
     "properties": {
       "AwsVpcConfiguration": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/56"
         },
         "flags": 0
       }
@@ -1182,7 +1237,7 @@
       },
       "Sqls": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/88"
         },
         "flags": 0
       },
@@ -1194,7 +1249,7 @@
       },
       "WithEvent": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 0
       }
@@ -1224,7 +1279,7 @@
     "properties": {
       "RunCommandTargets": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/89"
         },
         "flags": 1
       }
@@ -1242,7 +1297,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/90"
         },
         "flags": 1
       }
@@ -1272,7 +1327,7 @@
     "properties": {
       "PipelineParameterList": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/91"
         },
         "flags": 0
       }
@@ -1314,7 +1369,7 @@
     "properties": {
       "AppSyncParameters": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/55"
         },
         "flags": 0
       },
@@ -1326,25 +1381,25 @@
       },
       "BatchParameters": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/58"
         },
         "flags": 0
       },
       "DeadLetterConfig": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "EcsParameters": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/62"
         },
         "flags": 0
       },
       "HttpParameters": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/63"
         },
         "flags": 0
       },
@@ -1368,25 +1423,25 @@
       },
       "InputTransformer": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/64"
         },
         "flags": 0
       },
       "KinesisParameters": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "RedshiftDataParameters": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "RetryPolicy": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/70"
         },
         "flags": 0
       },
@@ -1398,19 +1453,19 @@
       },
       "RunCommandParameters": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/71"
         },
         "flags": 0
       },
       "SageMakerPipelineParameters": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/74"
         },
         "flags": 0
       },
       "SqsParameters": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/75"
         },
         "flags": 0
       }
@@ -1431,25 +1486,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/57"
+      "$ref": "#/60"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/64"
+      "$ref": "#/67"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/65"
+      "$ref": "#/68"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/73"
+      "$ref": "#/76"
     }
   },
   {
@@ -1482,7 +1537,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/69"
+      "$ref": "#/72"
     }
   },
   {
@@ -1494,7 +1549,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/70"
+      "$ref": "#/73"
     }
   },
   {
@@ -1513,14 +1568,14 @@
         "$ref": "#/1"
       },
       {
-        "$ref": "#/90"
+        "$ref": "#/93"
       }
     ]
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/74"
+      "$ref": "#/77"
     }
   },
   {
@@ -1550,7 +1605,7 @@
       },
       "EventPattern": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "The event pattern of the rule. For more information, see Events and Event Patterns in the Amazon EventBridge User Guide."
@@ -1585,7 +1640,7 @@
       },
       "Targets": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/95"
         },
         "flags": 0,
         "description": "Adds the specified targets to the specified rule, or updates the targets if they are already associated with the rule.\nTargets are the resources that are invoked when a rule is triggered."
@@ -1612,7 +1667,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/96"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1624,7 +1679,7 @@
     "name": "AWS.Events/Rule@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/94"
+      "$ref": "#/97"
     },
     "flags": 0
   }

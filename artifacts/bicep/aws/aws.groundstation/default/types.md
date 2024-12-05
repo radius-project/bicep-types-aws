@@ -7,6 +7,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.GroundStation/ConfigProperties](#awsgroundstationconfigproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.GroundStation/DataflowEndpointGroup@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.GroundStation/DataflowEndpointGroupProperties](#awsgroundstationdataflowendpointgroupproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.GroundStation/MissionProfile@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -39,6 +46,15 @@
 * **Tags**: [Tag](#tag)[]
 * **Type**: string (ReadOnly)
 
+## AWS.GroundStation/DataflowEndpointGroupProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **ContactPostPassDurationSeconds**: int: Amount of time, in seconds, after a contact ends that the Ground Station Dataflow Endpoint Group will be in a POSTPASS state. A Ground Station Dataflow Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group enters and exits the POSTPASS state.
+* **ContactPrePassDurationSeconds**: int: Amount of time, in seconds, before a contact starts that the Ground Station Dataflow Endpoint Group will be in a PREPASS state. A Ground Station Dataflow Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group enters and exits the PREPASS state.
+* **EndpointDetails**: [EndpointDetails](#endpointdetails)[] (Required)
+* **Id**: string (ReadOnly, Identifier)
+* **Tags**: [Tag](#tag)[]
+
 ## AWS.GroundStation/MissionProfileProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
@@ -54,6 +70,14 @@
 * **Tags**: [Tag](#tag)[]
 * **TrackingConfigArn**: string (Required)
 
+## AwsGroundStationAgentEndpoint
+### Properties
+* **AgentStatus**: string
+* **AuditResults**: string
+* **EgressAddress**: [ConnectionDetails](#connectiondetails)
+* **IngressAddress**: [RangedConnectionDetails](#rangedconnectiondetails)
+* **Name**: string
+
 ## ConfigData
 ### Properties
 * **AntennaDownlinkConfig**: [AntennaDownlinkConfig](#antennadownlinkconfig)
@@ -64,10 +88,21 @@
 * **TrackingConfig**: [TrackingConfig](#trackingconfig)
 * **UplinkEchoConfig**: [UplinkEchoConfig](#uplinkechoconfig)
 
+## ConnectionDetails
+### Properties
+* **Mtu**: int: Maximum transmission unit (MTU) size in bytes of a dataflow endpoint.
+* **SocketAddress**: [SocketAddress](#socketaddress)
+
 ## DataflowEdge
 ### Properties
 * **Destination**: string
 * **Source**: string
+
+## DataflowEndpoint
+### Properties
+* **Address**: [SocketAddress](#socketaddress)
+* **Mtu**: int
+* **Name**: string
 
 ## DataflowEndpointConfig
 ### Properties
@@ -87,6 +122,12 @@
 * **Units**: string
 * **Value**: int
 
+## EndpointDetails
+### Properties
+* **AwsGroundStationAgentEndpoint**: [AwsGroundStationAgentEndpoint](#awsgroundstationagentendpoint)
+* **Endpoint**: [DataflowEndpoint](#dataflowendpoint)
+* **SecurityDetails**: [SecurityDetails](#securitydetails)
+
 ## Frequency
 ### Properties
 * **Units**: string
@@ -97,11 +138,37 @@
 * **Units**: string
 * **Value**: int
 
+## IntegerRange
+### Properties
+* **Maximum**: int: A maximum value.
+* **Minimum**: int: A minimum value.
+
+## RangedConnectionDetails
+### Properties
+* **Mtu**: int: Maximum transmission unit (MTU) size in bytes of a dataflow endpoint.
+* **SocketAddress**: [RangedSocketAddress](#rangedsocketaddress)
+
+## RangedSocketAddress
+### Properties
+* **Name**: string: IPv4 socket address.
+* **PortRange**: [IntegerRange](#integerrange): Port range of a socket address.
+
 ## S3RecordingConfig
 ### Properties
 * **BucketArn**: string
 * **Prefix**: string
 * **RoleArn**: string
+
+## SecurityDetails
+### Properties
+* **RoleArn**: string
+* **SecurityGroupIds**: string[]
+* **SubnetIds**: string[]
+
+## SocketAddress
+### Properties
+* **Name**: string
+* **Port**: int
 
 ## SpectrumConfig
 ### Properties
@@ -118,6 +185,11 @@
 ### Properties
 * **Key**: string
 * **Value**: string
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

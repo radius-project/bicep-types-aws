@@ -14,6 +14,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IVS/EncoderConfigurationProperties](#awsivsencoderconfigurationproperties) (Identifier): properties of the resource
 
+## Resource AWS.IVS/IngestConfiguration@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IVS/IngestConfigurationProperties](#awsivsingestconfigurationproperties) (Identifier): properties of the resource
+
 ## Resource AWS.IVS/PlaybackKeyPair@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -88,6 +95,19 @@
 * **Name**: string: Encoder configuration name.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Video**: [EncoderConfiguration_Video](#encoderconfigurationvideo): Video configuration. Default: video resolution 1280x720, bitrate 2500 kbps, 30 fps
+
+## AWS.IVS/IngestConfigurationProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): IngestConfiguration ARN is automatically generated on creation and assigned as the unique identifier.
+* **IngestProtocol**: string: Ingest Protocol.
+* **InsecureIngest**: bool (WriteOnly): Whether ingest configuration allows insecure ingest.
+* **Name**: string: IngestConfiguration
+* **ParticipantId**: string (ReadOnly): Participant Id is automatically generated on creation and assigned.
+* **StageArn**: string: Stage ARN. A value other than an empty string indicates that stage is linked to IngestConfiguration. Default: "" (recording is disabled).
+* **State**: string (ReadOnly): State of IngestConfiguration which determines whether IngestConfiguration is in use or not.
+* **StreamKey**: string (ReadOnly): Stream-key value.
+* **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
+* **UserId**: string: User defined indentifier for participant associated with IngestConfiguration.
 
 ## AWS.IVS/PlaybackKeyPairProperties
 ### Properties
@@ -180,6 +200,11 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

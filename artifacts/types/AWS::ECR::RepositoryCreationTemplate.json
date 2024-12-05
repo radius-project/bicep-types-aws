@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECR-RepositoryCreationTemplate",
   "type": "AWS::ECR::RepositoryCreationTemplate",
-  "time": "2024-07-23T18:42:11.926Z",
+  "time": "2024-11-18T16:55:29.043Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -36,12 +36,13 @@
         "description": "The encryption type to use.",
         "enum": [
           "AES256",
-          "KMS"
+          "KMS",
+          "KMS_DSSE"
         ],
         "type": "string"
       },
       "KmsKey": {
-        "description": "If you use the KMS encryption type, specify the CMK to use for encryption. The alias, key ID, or full ARN of the CMK can be specified. The key must exist in the same Region as the repository. If no key is specified, the default AWS managed CMK for Amazon ECR will be used.",
+        "description": "If you use the KMS or KMS_DSSE encryption type, specify the CMK to use for encryption. The alias, key ID, or full ARN of the CMK can be specified. The key must exist in the same Region as the repository. If no key is specified, the default AWS managed CMK for Amazon ECR will be used.",
         "maxLength": 2048,
         "minLength": 1,
         "type": "string"

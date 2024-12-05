@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-DataSource",
   "type": "AWS::QuickSight::DataSource",
-  "time": "2024-10-21T15:51:06.271Z",
+  "time": "2024-11-07T16:51:20.593Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -122,6 +122,14 @@
           "Port"
         ],
         "type": "object"
+      },
+      "AuthenticationType": {
+        "enum": [
+          "PASSWORD",
+          "TOKEN",
+          "X509"
+        ],
+        "type": "string"
       },
       "AwsIotAnalyticsParameters": {
         "additionalProperties": false,
@@ -463,6 +471,33 @@
         ],
         "type": "object"
       },
+      "OAuthParameters": {
+        "additionalProperties": false,
+        "properties": {
+          "IdentityProviderResourceUri": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          },
+          "IdentityProviderVpcConnectionProperties": {
+            "$ref": "#/definitions/VpcConnectionProperties"
+          },
+          "OAuthScope": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "TokenProviderUrl": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "TokenProviderUrl"
+        ],
+        "type": "object"
+      },
       "OracleParameters": {
         "additionalProperties": false,
         "description": "\u003cp\u003eThe parameters for Oracle.\u003c/p\u003e",
@@ -722,10 +757,18 @@
         "additionalProperties": false,
         "description": "\u003cp\u003eThe parameters for Snowflake.\u003c/p\u003e",
         "properties": {
+          "AuthenticationType": {
+            "$ref": "#/definitions/AuthenticationType"
+          },
           "Database": {
             "description": "\u003cp\u003eDatabase.\u003c/p\u003e",
             "maxLength": 128,
             "minLength": 1,
+            "type": "string"
+          },
+          "DatabaseAccessControlRole": {
+            "maxLength": 128,
+            "minLength": 0,
             "type": "string"
           },
           "Host": {
@@ -733,6 +776,9 @@
             "maxLength": 256,
             "minLength": 1,
             "type": "string"
+          },
+          "OAuthParameters": {
+            "$ref": "#/definitions/OAuthParameters"
           },
           "Warehouse": {
             "description": "\u003cp\u003eWarehouse.\u003c/p\u003e",
@@ -819,8 +865,16 @@
         "additionalProperties": false,
         "description": "\u003cp\u003eThe parameters that are required to connect to a Starburst data source.\u003c/p\u003e",
         "properties": {
+          "AuthenticationType": {
+            "$ref": "#/definitions/AuthenticationType"
+          },
           "Catalog": {
             "description": "\u003cp\u003eThe catalog name for the Starburst data source.\u003c/p\u003e",
+            "maxLength": 128,
+            "minLength": 0,
+            "type": "string"
+          },
+          "DatabaseAccessControlRole": {
             "maxLength": 128,
             "minLength": 0,
             "type": "string"
@@ -830,6 +884,9 @@
             "maxLength": 256,
             "minLength": 1,
             "type": "string"
+          },
+          "OAuthParameters": {
+            "$ref": "#/definitions/OAuthParameters"
           },
           "Port": {
             "default": 0,

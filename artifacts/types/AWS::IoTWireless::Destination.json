@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTWireless-Destination",
   "type": "AWS::IoTWireless::Destination",
-  "time": "2024-10-21T17:37:07.711Z",
+  "time": "2024-11-12T23:31:21.835Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -31,8 +31,7 @@
         "permissions": [
           "iam:PassRole",
           "iotwireless:CreateDestination",
-          "iotwireless:TagResource",
-          "iotwireless:ListTagsForResource"
+          "iotwireless:TagResource"
         ]
       },
       "delete": {
@@ -55,9 +54,10 @@
       "update": {
         "permissions": [
           "iam:PassRole",
+          "iotwireless:GetDestination",
           "iotwireless:UpdateDestination",
           "iotwireless:UntagResource",
-          "iotwireless:ListTagsForResource"
+          "iotwireless:TagResource"
         ]
       }
     },
@@ -119,7 +119,18 @@
       "ExpressionType"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "iotwireless:TagResource",
+        "iotwireless:UntagResource",
+        "iotwireless:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::IoTWireless::Destination"
   }
 }

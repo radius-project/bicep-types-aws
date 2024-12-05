@@ -1,17 +1,93 @@
 [
   {
     "$type": "ObjectType",
-    "name": "Tag",
+    "name": "CustomActionAttachment",
     "properties": {
-      "Key": {
+      "ButtonText": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "Criteria": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "NotificationType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "Variables": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomActionAttachmentCriteria",
+    "properties": {
+      "Operator": {
+        "type": {
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "VariableName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomActionAttachmentCriteriaOperator",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomActionAttachmentVariables",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomActionDefinition",
+    "properties": {
+      "CommandText": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
         },
         "flags": 1
       }
@@ -21,25 +97,149 @@
     "$type": "StringType"
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Chatbot/CustomActionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Chatbot/CustomActionProperties",
+    "properties": {
+      "ActionName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "AliasName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "Attachments": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "CustomActionArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18
+      },
+      "Definition": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Chatbot/CustomAction",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Chatbot/CustomAction@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/12"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.Chatbot/MicrosoftTeamsChannelConfigurationProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/0"
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
     }
   },
   {
@@ -51,77 +251,84 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 18,
         "description": "Amazon Resource Name (ARN) of the configuration"
       },
       "ConfigurationName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The name of the configuration"
       },
+      "CustomizationResourceArns": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "ARNs of Custom Actions to associate with notifications in the provided chat channel."
+      },
       "GuardrailPolicies": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "The list of IAM policy ARNs that are applied as channel guardrails. The AWS managed 'AdministratorAccess' policy is applied as a default if this is not set."
       },
       "IamRoleArn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The ARN of the IAM role that defines the permissions for AWS Chatbot"
       },
       "LoggingLevel": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "Specifies the logging level for this configuration:ERROR,INFO or NONE. This property affects the log entries pushed to Amazon CloudWatch logs"
       },
       "SnsTopicArns": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "ARNs of SNS topics which delivers notifications to AWS Chatbot, for example CloudWatch alarm notifications."
       },
       "Tags": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "The tags to add to the configuration"
       },
       "TeamId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The id of the Microsoft Teams team"
       },
       "TeamsChannelId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The id of the Microsoft Teams channel"
       },
       "TeamsTenantId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The id of the Microsoft Teams tenant"
       },
       "UserRoleRequired": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "Enables use of a user role requirement in your chat configuration"
@@ -134,21 +341,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/21"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -160,7 +367,7 @@
     "name": "AWS.Chatbot/MicrosoftTeamsChannelConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/8"
+      "$ref": "#/22"
     },
     "flags": 0
   },
@@ -170,13 +377,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 1
       }
@@ -189,19 +396,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/10"
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
     }
   },
   {
@@ -210,70 +423,77 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 18,
         "description": "Amazon Resource Name (ARN) of the configuration"
       },
       "ConfigurationName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The name of the configuration"
       },
+      "CustomizationResourceArns": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "ARNs of Custom Actions to associate with notifications in the provided chat channel."
+      },
       "GuardrailPolicies": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "The list of IAM policy ARNs that are applied as channel guardrails. The AWS managed 'AdministratorAccess' policy is applied as a default if this is not set."
       },
       "IamRoleArn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The ARN of the IAM role that defines the permissions for AWS Chatbot"
       },
       "LoggingLevel": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "Specifies the logging level for this configuration:ERROR,INFO or NONE. This property affects the log entries pushed to Amazon CloudWatch logs"
       },
       "SlackChannelId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The id of the Slack channel"
       },
       "SlackWorkspaceId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The id of the Slack workspace"
       },
       "SnsTopicArns": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "ARNs of SNS topics which delivers notifications to AWS Chatbot, for example CloudWatch alarm notifications."
       },
       "Tags": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "The tags to add to the configuration"
       },
       "UserRoleRequired": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "Enables use of a user role requirement in your chat configuration"
@@ -286,21 +506,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/30"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -312,7 +532,7 @@
     "name": "AWS.Chatbot/SlackChannelConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/16"
+      "$ref": "#/31"
     },
     "flags": 0
   }

@@ -45,7 +45,7 @@
 ## ApiKeyAuthParameters
 ### Properties
 * **ApiKeyName**: string (Required)
-* **ApiKeyValue**: string (Required)
+* **ApiKeyValue**: string (Required, WriteOnly)
 
 ## AppSyncParameters
 ### Properties
@@ -58,7 +58,8 @@
 ### Properties
 * **ApiKeyAuthParameters**: [ApiKeyAuthParameters](#apikeyauthparameters)
 * **BasicAuthParameters**: [BasicAuthParameters](#basicauthparameters)
-* **InvocationHttpParameters**: [ConnectionHttpParameters](#connectionhttpparameters)
+* **ConnectivityParameters**: [ConnectivityParameters](#connectivityparameters)
+* **InvocationHttpParameters**: [ConnectionHttpParameters](#connectionhttpparameters) (WriteOnly)
 * **OAuthParameters**: [OAuthParameters](#oauthparameters)
 
 ## AWS.Events/ApiDestinationProperties
@@ -84,8 +85,9 @@
 ### Properties
 * **Arn**: string (ReadOnly): The arn of the connection resource.
 * **AuthorizationType**: string
-* **AuthParameters**: [AuthParameters](#authparameters) (WriteOnly)
+* **AuthParameters**: [AuthParameters](#authparameters)
 * **Description**: string: Description of the connection.
+* **InvocationConnectivityParameters**: [Connection_InvocationConnectivityParameters](#connectioninvocationconnectivityparameters): The private resource the HTTP request will be sent to.
 * **Name**: string (Identifier): Name of the connection.
 * **SecretArn**: string (ReadOnly): The arn of the secrets manager secret created in the customer account.
 
@@ -135,7 +137,7 @@ Targets are the resources that are invoked when a rule is triggered.
 
 ## BasicAuthParameters
 ### Properties
-* **Password**: string (Required)
+* **Password**: string (Required, WriteOnly)
 * **Username**: string (Required)
 
 ## BatchArrayProperties
@@ -162,13 +164,21 @@ Targets are the resources that are invoked when a rule is triggered.
 ## ClientParameters
 ### Properties
 * **ClientID**: string (Required)
-* **ClientSecret**: string (Required)
+* **ClientSecret**: string (Required, WriteOnly)
+
+## Connection_InvocationConnectivityParameters
+### Properties
+* **ResourceParameters**: [ResourceParameters](#resourceparameters) (Required)
 
 ## ConnectionHttpParameters
 ### Properties
-* **BodyParameters**: [Parameter](#parameter)[]
-* **HeaderParameters**: [Parameter](#parameter)[]
-* **QueryStringParameters**: [Parameter](#parameter)[]
+* **BodyParameters**: [Parameter](#parameter)[] (WriteOnly)
+* **HeaderParameters**: [Parameter](#parameter)[] (WriteOnly)
+* **QueryStringParameters**: [Parameter](#parameter)[] (WriteOnly)
+
+## ConnectivityParameters
+### Properties
+* **ResourceParameters**: [ResourceParameters](#resourceparameters) (Required)
 
 ## DeadLetterConfig
 ### Properties
@@ -263,6 +273,11 @@ Targets are the resources that are invoked when a rule is triggered.
 ## ReplicationConfig
 ### Properties
 * **State**: string (Required)
+
+## ResourceParameters
+### Properties
+* **ResourceAssociationArn**: string (ReadOnly)
+* **ResourceConfigurationArn**: string (Required)
 
 ## RetryPolicy
 ### Properties

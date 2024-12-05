@@ -197,9 +197,9 @@ The value must be either -1 or an integer between 1 and 3,653.
 * **IntegrationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the integration.
 * **IntegrationName**: string: The name of the integration.
 * **KMSKeyId**: string: An KMS key identifier for the key to use to encrypt the integration. If you don't specify an encryption key, the default AWS owned KMS key is used.
-* **SourceArn**: string (Required): The Amazon Resource Name (ARN) of the database to use as the source for replication, for example, arn:aws:dynamodb:us-east-2:123412341234:table/dynamotable
+* **SourceArn**: string (Required): The Amazon Resource Name (ARN) of the database to use as the source for replication
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-* **TargetArn**: string (Required): The Amazon Resource Name (ARN) of the Redshift data warehouse to use as the target for replication, for example, arn:aws:redshift:us-east-2:123412341234:namespace:e43aab3e-10a3-4ec4-83d4-f227ff9bfbcf
+* **TargetArn**: string (Required): The Amazon Resource Name (ARN) of the Redshift data warehouse to use as the target for replication
 
 ## AWS.Redshift/ScheduledActionProperties
 ### Properties

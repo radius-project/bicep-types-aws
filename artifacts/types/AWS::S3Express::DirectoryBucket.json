@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-S3Express-DirectoryBucket",
   "type": "AWS::S3Express::DirectoryBucket",
-  "time": "2024-10-02T16:27:24.163Z",
+  "time": "2024-11-21T02:11:15.364Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -10,6 +10,21 @@
       "/properties/DataRedundancy"
     ],
     "definitions": {
+      "AbortIncompleteMultipartUpload": {
+        "additionalProperties": false,
+        "description": "Specifies the days since the initiation of an incomplete multipart upload that Amazon S3 will wait before permanently removing all parts of the upload.",
+        "properties": {
+          "DaysAfterInitiation": {
+            "description": "Specifies the number of days after which Amazon S3 aborts an incomplete multipart upload.",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "DaysAfterInitiation"
+        ],
+        "type": "object"
+      },
       "Arn": {
         "description": "The Amazon Resource Name (ARN) of the specified bucket.",
         "type": "string"
@@ -30,6 +45,64 @@
         },
         "required": [
           "ServerSideEncryptionConfiguration"
+        ],
+        "type": "object"
+      },
+      "LifecycleConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Rules": {
+            "description": "A lifecycle rule for individual objects in an Amazon S3 Express bucket.",
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/Rule"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "Rules"
+        ],
+        "type": "object"
+      },
+      "Rule": {
+        "additionalProperties": false,
+        "description": "You must specify at least one of the following properties: AbortIncompleteMultipartUpload, or ExpirationInDays.",
+        "properties": {
+          "AbortIncompleteMultipartUpload": {
+            "$ref": "#/definitions/AbortIncompleteMultipartUpload"
+          },
+          "ExpirationInDays": {
+            "type": "integer"
+          },
+          "Id": {
+            "maxLength": 255,
+            "type": "string"
+          },
+          "ObjectSizeGreaterThan": {
+            "maxLength": 20,
+            "pattern": "[0-9]+",
+            "type": "string"
+          },
+          "ObjectSizeLessThan": {
+            "maxLength": 20,
+            "pattern": "[0-9]+",
+            "type": "string"
+          },
+          "Prefix": {
+            "type": "string"
+          },
+          "Status": {
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Status"
         ],
         "type": "object"
       },
@@ -91,7 +164,8 @@
           "kms:Decrypt",
           "s3express:CreateBucket",
           "s3express:ListAllMyDirectoryBuckets",
-          "s3express:PutEncryptionConfiguration"
+          "s3express:PutEncryptionConfiguration",
+          "s3express:PutLifecycleConfiguration"
         ]
       },
       "delete": {
@@ -110,14 +184,15 @@
           "s3express:ListAllMyDirectoryBuckets",
           "ec2:DescribeAvailabilityZones",
           "s3express:GetEncryptionConfiguration",
-          "s3express:ListAllMyDirectoryBuckets"
+          "s3express:GetLifecycleConfiguration"
         ]
       },
       "update": {
         "permissions": [
           "kms:GenerateDataKey",
           "kms:Decrypt",
-          "s3express:PutEncryptionConfiguration"
+          "s3express:PutEncryptionConfiguration",
+          "s3express:PutLifecycleConfiguration"
         ]
       }
     },
@@ -154,6 +229,10 @@
           "SingleAvailabilityZone"
         ],
         "type": "string"
+      },
+      "LifecycleConfiguration": {
+        "$ref": "#/definitions/LifecycleConfiguration",
+        "description": "Lifecycle rules that define how Amazon S3 Express manages objects during their lifetime."
       },
       "LocationName": {
         "description": "Specifies the AZ ID of the Availability Zone where the directory bucket will be created. An example AZ ID value is 'use1-az5'.",

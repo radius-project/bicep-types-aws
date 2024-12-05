@@ -1,12 +1,13 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataSync-Task",
   "type": "AWS::DataSync::Task",
-  "time": "2024-11-01T20:51:21.054Z",
+  "time": "2024-11-12T20:55:31.497Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/DestinationLocationArn",
-      "/properties/SourceLocationArn"
+      "/properties/SourceLocationArn",
+      "/properties/TaskMode"
     ],
     "definitions": {
       "DestinationNetworkInterfaceArns": {
@@ -582,6 +583,14 @@
         "description": "The ARN of the task.",
         "maxLength": 128,
         "pattern": "^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]*:[0-9]{12}:task/task-[0-9a-f]{17}$",
+        "type": "string"
+      },
+      "TaskMode": {
+        "description": "Specifies the task mode for the task.",
+        "enum": [
+          "BASIC",
+          "ENHANCED"
+        ],
         "type": "string"
       },
       "TaskReportConfig": {

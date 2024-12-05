@@ -117,6 +117,14 @@
 ### Properties
 * **LaunchTemplateId**: string
 * **LaunchTemplateName**: string
+* **Overrides**: [LaunchTemplateSpecificationOverride](#launchtemplatespecificationoverride)[]
+* **Version**: string
+
+## LaunchTemplateSpecificationOverride
+### Properties
+* **LaunchTemplateId**: string
+* **LaunchTemplateName**: string
+* **TargetInstanceTypes**: string[]
 * **Version**: string
 
 ## SchedulingPolicy_Tags

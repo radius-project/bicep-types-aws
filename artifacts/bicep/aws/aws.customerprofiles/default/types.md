@@ -35,6 +35,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CustomerProfiles/ObjectTypeProperties](#awscustomerprofilesobjecttypeproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CustomerProfiles/SegmentDefinition@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CustomerProfiles/SegmentDefinitionProperties](#awscustomerprofilessegmentdefinitionproperties) (Required, Identifier): properties of the resource
+
 ## AttributeDetails
 ### Properties
 * **Attributes**: [AttributeItem](#attributeitem)[] (Required)
@@ -99,6 +106,7 @@
 ### Properties
 * **CreatedAt**: string (ReadOnly): The time of this integration got created
 * **DomainName**: string (Required, Identifier): The unique name of the domain.
+* **EventTriggerNames**: string[]: A list of unique names for active event triggers associated with the integration.
 * **FlowDefinition**: [FlowDefinition](#flowdefinition) (WriteOnly)
 * **LastUpdatedAt**: string (ReadOnly): The time of this integration got last updated at
 * **ObjectTypeName**: string: The name of the ObjectType defined for the 3rd party data in Profile Service
@@ -122,6 +130,17 @@
 * **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the integration.
 * **TemplateId**: string: A unique identifier for the object template.
 
+## AWS.CustomerProfiles/SegmentDefinitionProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): The time of this segment definition got created.
+* **Description**: string: The description of the segment definition.
+* **DisplayName**: string (Required): The display name of the segment definition.
+* **DomainName**: string (Required, Identifier): The unique name of the domain.
+* **SegmentDefinitionArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the segment definition.
+* **SegmentDefinitionName**: string (Required, Identifier): The unique name of the segment definition.
+* **SegmentGroups**: [SegmentGroup](#segmentgroup) (Required): An array that defines the set of segment criteria to evaluate when handling segment groups for the segment.
+* **Tags**: [Tag](#tag)[]: The tags used to organize, track, or control access for this resource.
+
 ## Conditions
 ### Properties
 * **ObjectCount**: int
@@ -144,6 +163,9 @@
 ## Consolidation
 ### Properties
 * **MatchingAttributesList**: string[][] (Required): A list of matching criteria.
+
+## Dimension
+### Properties
 
 ## DomainStats
 ### Properties
@@ -174,6 +196,13 @@
 * **SourceFlowConfig**: [SourceFlowConfig](#sourceflowconfig) (Required)
 * **Tasks**: [Task](#task)[] (Required)
 * **TriggerConfig**: [TriggerConfig](#triggerconfig) (Required)
+
+## Group
+### Properties
+* **Dimensions**: [Dimension](#dimension)[]
+* **SourceSegments**: [SourceSegment](#sourcesegment)[]
+* **SourceType**: string
+* **Type**: string
 
 ## IncrementalPullConfig
 ### Properties
@@ -262,6 +291,11 @@
 * **ScheduleStartTime**: int
 * **Timezone**: string
 
+## SegmentGroup
+### Properties
+* **Groups**: [Group](#group)[]
+* **Include**: string
+
 ## ServiceNowSourceProperties
 ### Properties
 * **Object**: string (Required)
@@ -281,15 +315,9 @@
 * **IncrementalPullConfig**: [IncrementalPullConfig](#incrementalpullconfig)
 * **SourceConnectorProperties**: [SourceConnectorProperties](#sourceconnectorproperties) (Required)
 
-## Tag
+## SourceSegment
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **SegmentDefinitionName**: string (Identifier)
 
 ## Tag
 ### Properties
@@ -303,8 +331,23 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Task
 ### Properties

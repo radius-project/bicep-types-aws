@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EMRContainers-VirtualCluster",
   "type": "AWS::EMRContainers::VirtualCluster",
-  "time": "2024-10-01T15:11:56.033Z",
+  "time": "2024-11-11T16:35:11.388Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -92,7 +92,8 @@
       },
       "delete": {
         "permissions": [
-          "emr-containers:DeleteVirtualCluster"
+          "emr-containers:DeleteVirtualCluster",
+          "emr-containers:DescribeVirtualCluster"
         ]
       },
       "list": {
@@ -157,6 +158,17 @@
       "ContainerProvider"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "emr-containers:TagResource",
+        "emr-containers:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::EMRContainers::VirtualCluster"
   }
 }

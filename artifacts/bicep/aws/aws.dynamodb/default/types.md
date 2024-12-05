@@ -42,6 +42,7 @@
 * **TableId**: string (ReadOnly)
 * **TableName**: string (Identifier)
 * **TimeToLiveSpecification**: [TimeToLiveSpecification](#timetolivespecification)
+* **WarmThroughput**: [WarmThroughput](#warmthroughput)
 * **WriteOnDemandThroughputSettings**: [WriteOnDemandThroughputSettings](#writeondemandthroughputsettings)
 * **WriteProvisionedThroughputSettings**: [WriteProvisionedThroughputSettings](#writeprovisionedthroughputsettings)
 
@@ -86,6 +87,7 @@
  For more information, see [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html).
 * **TimeToLiveSpecification**: [TimeToLiveSpecification](#timetolivespecification): Specifies the Time to Live (TTL) settings for the table.
   For detailed information about the limits in DynamoDB, see [Limits in Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html) in the Amazon DynamoDB Developer Guide.
+* **WarmThroughput**: [WarmThroughput](#warmthroughput): Represents the warm throughput (in read units per second and write units per second) for creating a table.
 
 ## CapacityAutoScalingSettings
 ### Properties
@@ -112,6 +114,7 @@
 * **IndexName**: string (Required)
 * **KeySchema**: [KeySchema](#keyschema)[] (Required)
 * **Projection**: [Projection](#projection) (Required)
+* **WarmThroughput**: [WarmThroughput](#warmthroughput)
 * **WriteOnDemandThroughputSettings**: [WriteOnDemandThroughputSettings](#writeondemandthroughputsettings)
 * **WriteProvisionedThroughputSettings**: [WriteProvisionedThroughputSettings](#writeprovisionedthroughputsettings)
 
@@ -129,6 +132,7 @@
 * **Projection**: [Projection](#projection) (Required): Represents attributes that are copied (projected) from the table into the global secondary index. These are in addition to the primary key attributes and index key attributes, which are automatically projected.
 * **ProvisionedThroughput**: [ProvisionedThroughput](#provisionedthroughput): Represents the provisioned throughput settings for the specified global secondary index.
  For current minimum and maximum provisioned throughput values, see [Service, Account, and Table Quotas](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html) in the *Amazon DynamoDB Developer Guide*.
+* **WarmThroughput**: [WarmThroughput](#warmthroughput): Represents the warm throughput value (in read units per second and write units per second) for the specified secondary index. If you use this parameter, you must specify ``ReadUnitsPerSecond``, ``WriteUnitsPerSecond``, or both.
 
 ## GlobalTable_PolicyDocument
 ### Properties
@@ -339,6 +343,16 @@
    +  The ``AttributeName`` property is required when enabling the TTL, or when TTL is already enabled.
   +  To update this property, you must first disable TTL and then enable TTL with the new attribute name.
 * **Enabled**: bool (Required): Indicates whether TTL is to be enabled (true) or disabled (false) on the table.
+
+## WarmThroughput
+### Properties
+* **ReadUnitsPerSecond**: int
+* **WriteUnitsPerSecond**: int
+
+## WarmThroughput
+### Properties
+* **ReadUnitsPerSecond**: int: Represents the number of read operations your base table can instantaneously support.
+* **WriteUnitsPerSecond**: int: Represents the number of write operations your base table can instantaneously support.
 
 ## WriteOnDemandThroughputSettings
 ### Properties

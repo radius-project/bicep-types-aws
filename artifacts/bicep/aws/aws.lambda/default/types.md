@@ -85,33 +85,33 @@
 ### Properties
 * **AmazonManagedKafkaEventSourceConfig**: [AmazonManagedKafkaEventSourceConfig](#amazonmanagedkafkaeventsourceconfig): Specific configuration settings for an Amazon Managed Streaming for Apache Kafka (Amazon MSK) event source.
 * **BatchSize**: int: The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to your function. Lambda passes all of the records in the batch to the function in a single call, up to the payload limit for synchronous invocation (6 MB).
-  +   *Amazon Kinesis* – Default 100. Max 10,000.
-  +   *Amazon DynamoDB Streams* – Default 100. Max 10,000.
-  +   *Amazon Simple Queue Service* – Default 10. For standard queues the max is 10,000. For FIFO queues the max is 10.
-  +   *Amazon Managed Streaming for Apache Kafka* – Default 100. Max 10,000.
-  +   *Self-managed Apache Kafka* – Default 100. Max 10,000.
-  +   *Amazon MQ (ActiveMQ and RabbitMQ)* – Default 100. Max 10,000.
-  +   *DocumentDB* – Default 100. Max 10,000.
+  +   *Amazon Kinesis* ? Default 100. Max 10,000.
+  +   *Amazon DynamoDB Streams* ? Default 100. Max 10,000.
+  +   *Amazon Simple Queue Service* ? Default 10. For standard queues the max is 10,000. For FIFO queues the max is 10.
+  +   *Amazon Managed Streaming for Apache Kafka* ? Default 100. Max 10,000.
+  +   *Self-managed Apache Kafka* ? Default 100. Max 10,000.
+  +   *Amazon MQ (ActiveMQ and RabbitMQ)* ? Default 100. Max 10,000.
+  +   *DocumentDB* ? Default 100. Max 10,000.
 * **BisectBatchOnFunctionError**: bool: (Kinesis and DynamoDB Streams only) If the function returns an error, split the batch in two and retry. The default value is false.
 * **DestinationConfig**: [DestinationConfig](#destinationconfig): (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka event sources only) A configuration object that specifies the destination of an event after Lambda processes it.
 * **DocumentDBEventSourceConfig**: [DocumentDBEventSourceConfig](#documentdbeventsourceconfig): Specific configuration settings for a DocumentDB event source.
 * **Enabled**: bool: When true, the event source mapping is active. When false, Lambda pauses polling and invocation.
  Default: True
 * **EventSourceArn**: string: The Amazon Resource Name (ARN) of the event source.
-  +   *Amazon Kinesis* – The ARN of the data stream or a stream consumer.
-  +   *Amazon DynamoDB Streams* – The ARN of the stream.
-  +   *Amazon Simple Queue Service* – The ARN of the queue.
-  +   *Amazon Managed Streaming for Apache Kafka* – The ARN of the cluster or the ARN of the VPC connection (for [cross-account event source mappings](https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#msk-multi-vpc)).
-  +   *Amazon MQ* – The ARN of the broker.
-  +   *Amazon DocumentDB* – The ARN of the DocumentDB change stream.
+  +   *Amazon Kinesis* ? The ARN of the data stream or a stream consumer.
+  +   *Amazon DynamoDB Streams* ? The ARN of the stream.
+  +   *Amazon Simple Queue Service* ? The ARN of the queue.
+  +   *Amazon Managed Streaming for Apache Kafka* ? The ARN of the cluster or the ARN of the VPC connection (for [cross-account event source mappings](https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#msk-multi-vpc)).
+  +   *Amazon MQ* ? The ARN of the broker.
+  +   *Amazon DocumentDB* ? The ARN of the DocumentDB change stream.
 * **EventSourceMappingArn**: string (ReadOnly)
 * **FilterCriteria**: [FilterCriteria](#filtercriteria): An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see [Lambda event filtering](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
 * **FunctionName**: string (Required): The name or ARN of the Lambda function.
   **Name formats**
- +   *Function name* – ``MyFunction``.
-  +   *Function ARN* – ``arn:aws:lambda:us-west-2:123456789012:function:MyFunction``.
-  +   *Version or Alias ARN* – ``arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD``.
-  +   *Partial ARN* – ``123456789012:function:MyFunction``.
+ +   *Function name* ? ``MyFunction``.
+  +   *Function ARN* ? ``arn:aws:lambda:us-west-2:123456789012:function:MyFunction``.
+  +   *Version or Alias ARN* ? ``arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD``.
+  +   *Partial ARN* ? ``123456789012:function:MyFunction``.
   
  The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length.
 * **FunctionResponseTypes**: string[]: (Kinesis, DynamoDB Streams, and SQS) A list of current response type enums applied to the event source mapping.
@@ -125,7 +125,9 @@
 * **MaximumRecordAgeInSeconds**: int: (Kinesis and DynamoDB Streams only) Discard records older than the specified age. The default value is -1, which sets the maximum age to infinite. When the value is set to infinite, Lambda never discards old records.
   The minimum valid value for maximum record age is 60s. Although values less than 60 and greater than -1 fall within the parameter's absolute range, they are not allowed
 * **MaximumRetryAttempts**: int: (Kinesis and DynamoDB Streams only) Discard records after the specified number of retries. The default value is -1, which sets the maximum number of retries to infinite. When MaximumRetryAttempts is infinite, Lambda retries failed records until the record expires in the event source.
+* **MetricsConfig**: [MetricsConfig](#metricsconfig)
 * **ParallelizationFactor**: int: (Kinesis and DynamoDB Streams only) The number of batches to process concurrently from each shard. The default value is 1.
+* **ProvisionedPollerConfig**: [ProvisionedPollerConfig](#provisionedpollerconfig)
 * **Queues**: string[]: (Amazon MQ) The name of the Amazon MQ broker destination queue to consume.
 * **ScalingConfig**: [ScalingConfig](#scalingconfig): (Amazon SQS only) The scaling configuration for the event source. For more information, see [Configuring maximum concurrency for Amazon SQS event sources](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-max-concurrency).
 * **SelfManagedEventSource**: [SelfManagedEventSource](#selfmanagedeventsource): The self-managed Apache Kafka cluster for your event source.
@@ -145,7 +147,10 @@
 ### Properties
 * **Architectures**: string[]: The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is ``x86_64``.
 * **Arn**: string (ReadOnly)
-* **Code**: [Code](#code) (Required, WriteOnly): The code for the function.
+* **Code**: [Code](#code) (Required, WriteOnly): The code for the function. You can define your function code in multiple ways:
+  +  For .zip deployment packages, you can specify the S3 location of the .zip file in the ``S3Bucket``, ``S3Key``, and ``S3ObjectVersion`` properties.
+  +  For .zip deployment packages, you can alternatively define the function code inline in the ``ZipFile`` property. This method works only for Node.js and Python functions.
+  +  For container images, specify the URI of your container image in the ECR registry in the ``ImageUri`` property.
 * **CodeSigningConfigArn**: string: To enable code signing for this function, specify the ARN of a code-signing configuration. A code-signing configuration includes a set of signing profiles, which define the trusted publishers for this function.
 * **DeadLetterConfig**: [DeadLetterConfig](#deadletterconfig): A dead-letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing. For more information, see [Dead-letter queues](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq).
 * **Description**: string: A description of the function.
@@ -157,12 +162,14 @@
  If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.
 * **Handler**: string: The name of the method within your code that Lambda calls to run your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see [Lambda programming model](https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html).
 * **ImageConfig**: [ImageConfig](#imageconfig): Configuration values that override the container image Dockerfile settings. For more information, see [Container image settings](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms).
-* **KmsKeyArn**: string: The ARN of the KMSlong (KMS) customer managed key that's used to encrypt your function's [environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption). When [Lambda SnapStart](https://docs.aws.amazon.com/lambda/latest/dg/snapstart-security.html) is activated, Lambda also uses this key is to encrypt your function's snapshot. If you deploy your function using a container image, Lambda also uses this key to encrypt your function when it's deployed. Note that this is not the same key that's used to protect your container image in the Amazon Elastic Container Registry (Amazon ECR). If you don't provide a customer managed key, Lambda uses a default service key.
+* **KmsKeyArn**: string: The ARN of the KMSlong (KMS) customer managed key that's used to encrypt your function's [environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption). When [SnapStart](https://docs.aws.amazon.com/lambda/latest/dg/snapstart-security.html) is activated, LAM also uses this key is to encrypt your function's snapshot. If you deploy your function using a container image, LAM also uses this key to encrypt your function when it's deployed. Note that this is not the same key that's used to protect your container image in the ECRlong (ECR). If you don't provide a customer managed key, LAM uses a default service key.
 * **Layers**: string[]: A list of [function layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) to add to the function's execution environment. Specify each layer by its ARN, including the version.
 * **LoggingConfig**: [LoggingConfig](#loggingconfig): The function's Amazon CloudWatch Logs configuration settings.
 * **MemorySize**: int: The amount of [memory available to the function](https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console) at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB. Note that new AWS accounts have reduced concurrency and memory quotas. AWS raises these quotas automatically based on your usage. You can also request a quota increase.
 * **PackageType**: string: The type of deployment package. Set to ``Image`` for container image and set ``Zip`` for .zip file archive.
-* **RecursiveLoop**: string
+* **RecursiveLoop**: string: The status of your function's recursive loop detection configuration.
+ When this value is set to ``Allow``and Lambda detects your function being invoked as part of a recursive loop, it doesn't take any action.
+ When this value is set to ``Terminate`` and Lambda detects your function being invoked as part of a recursive loop, it stops your function being invoked and notifies you.
 * **ReservedConcurrentExecutions**: int: The number of simultaneous executions to reserve for the function.
 * **Role**: string (Required): The Amazon Resource Name (ARN) of the function's execution role.
 * **Runtime**: string: The identifier of the function's [runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Runtime is required if the deployment package is a .zip file archive. Specifying a runtime results in an error if you're deploying a function using a container image.
@@ -172,6 +179,7 @@
 * **SnapStart**: [SnapStart](#snapstart) (WriteOnly): The function's [SnapStart](https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html) setting.
 * **SnapStartResponse**: [SnapStartResponse](#snapstartresponse) (ReadOnly)
 * **Tags**: [Tag](#tag)[]: A list of [tags](https://docs.aws.amazon.com/lambda/latest/dg/tagging.html) to apply to the function.
+  You must have the ``lambda:TagResource``, ``lambda:UntagResource``, and ``lambda:ListTags`` permissions for your [principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html) to manage the CFN stack. If you don't have these permissions, there might be unexpected behavior with stack-level tags propagating to the resource during resource creation and update.
 * **Timeout**: int: The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For more information, see [Lambda execution environment](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html).
 * **TracingConfig**: [TracingConfig](#tracingconfig): Set ``Mode`` to ``Active`` to sample and trace a subset of incoming requests with [X-Ray](https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html).
 * **VpcConfig**: [VpcConfig](#vpcconfig): For network connectivity to AWS resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the internet only through that VPC. For more information, see [Configuring a Lambda function to access resources in a VPC](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).
@@ -236,6 +244,7 @@
 ## Environment
 ### Properties
 * **Variables**: [Function_Variables](#functionvariables): Environment variable key-value pairs. For more information, see [Using Lambda environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html).
+ If the value of the environment variable is a time or a duration, enclose the value in quotes.
 
 ## EphemeralStorage
 ### Properties
@@ -270,6 +279,10 @@
 * **LogGroup**: string: The name of the Amazon CloudWatch log group the function sends logs to. By default, Lambda functions send logs to a default log group named ``/aws/lambda/<function name>``. To use a different log group, enter an existing log group or enter a new log group name.
 * **SystemLogLevel**: string: Set this property to filter the system logs for your function that Lambda sends to CloudWatch. Lambda only sends system logs at the selected level of detail and lower, where ``DEBUG`` is the highest level and ``WARN`` is the lowest.
 
+## MetricsConfig
+### Properties
+* **Metrics**: string[]: Metric groups to enable.
+
 ## OnFailure
 ### Properties
 * **Destination**: string (Required): The Amazon Resource Name (ARN) of the destination resource.
@@ -288,6 +301,11 @@
 ## ProvisionedConcurrencyConfiguration
 ### Properties
 * **ProvisionedConcurrentExecutions**: int (Required): The amount of provisioned concurrency to allocate for the alias.
+
+## ProvisionedPollerConfig
+### Properties
+* **MaximumPollers**: int: The maximum number of event pollers this event source can scale up to.
+* **MinimumPollers**: int: The minimum number of event pollers this event source can scale down to.
 
 ## RuntimeManagementConfig
 ### Properties
@@ -324,15 +342,15 @@
 ## SourceAccessConfiguration
 ### Properties
 * **Type**: string: The type of authentication protocol, VPC components, or virtual host for your event source. For example: ``"Type":"SASL_SCRAM_512_AUTH"``.
-  +   ``BASIC_AUTH`` – (Amazon MQ) The ASMlong secret that stores your broker credentials.
-  +   ``BASIC_AUTH`` – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL/PLAIN authentication of your Apache Kafka brokers.
-  +   ``VPC_SUBNET`` – (Self-managed Apache Kafka) The subnets associated with your VPC. Lambda connects to these subnets to fetch data from your self-managed Apache Kafka cluster.
-  +   ``VPC_SECURITY_GROUP`` – (Self-managed Apache Kafka) The VPC security group used to manage access to your self-managed Apache Kafka brokers.
-  +   ``SASL_SCRAM_256_AUTH`` – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL SCRAM-256 authentication of your self-managed Apache Kafka brokers.
-  +   ``SASL_SCRAM_512_AUTH`` – (Amazon MSK, Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL SCRAM-512 authentication of your self-managed Apache Kafka brokers.
-  +   ``VIRTUAL_HOST`` –- (RabbitMQ) The name of the virtual host in your RabbitMQ broker. Lambda uses this RabbitMQ host as the event source. This property cannot be specified in an UpdateEventSourceMapping API call.
-  +   ``CLIENT_CERTIFICATE_TLS_AUTH`` – (Amazon MSK, self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the certificate chain (X.509 PEM), private key (PKCS#8 PEM), and private key password (optional) used for mutual TLS authentication of your MSK/Apache Kafka brokers.
-  +   ``SERVER_ROOT_CA_CERTIFICATE`` – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the root CA certificate (X.509 PEM) used for TLS encryption of your Apache Kafka brokers.
+  +   ``BASIC_AUTH`` ? (Amazon MQ) The ASMlong secret that stores your broker credentials.
+  +   ``BASIC_AUTH`` ? (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL/PLAIN authentication of your Apache Kafka brokers.
+  +   ``VPC_SUBNET`` ? (Self-managed Apache Kafka) The subnets associated with your VPC. Lambda connects to these subnets to fetch data from your self-managed Apache Kafka cluster.
+  +   ``VPC_SECURITY_GROUP`` ? (Self-managed Apache Kafka) The VPC security group used to manage access to your self-managed Apache Kafka brokers.
+  +   ``SASL_SCRAM_256_AUTH`` ? (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL SCRAM-256 authentication of your self-managed Apache Kafka brokers.
+  +   ``SASL_SCRAM_512_AUTH`` ? (Amazon MSK, Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL SCRAM-512 authentication of your self-managed Apache Kafka brokers.
+  +   ``VIRTUAL_HOST`` ?- (RabbitMQ) The name of the virtual host in your RabbitMQ broker. Lambda uses this RabbitMQ host as the event source. This property cannot be specified in an UpdateEventSourceMapping API call.
+  +   ``CLIENT_CERTIFICATE_TLS_AUTH`` ? (Amazon MSK, self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the certificate chain (X.509 PEM), private key (PKCS#8 PEM), and private key password (optional) used for mutual TLS authentication of your MSK/Apache Kafka brokers.
+  +   ``SERVER_ROOT_CA_CERTIFICATE`` ? (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the root CA certificate (X.509 PEM) used for TLS encryption of your Apache Kafka brokers.
 * **URI**: string: The value for your chosen configuration in ``Type``. For example: ``"URI": "arn:aws:secretsmanager:us-east-1:01234567890:secret:MyBrokerSecretName"``.
 
 ## Tag
@@ -347,8 +365,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string (Required)
-* **Value**: string
+* **Key**: string (Required): The key for this tag.
+* **Value**: string: The value for this tag.
 
 ## TracingConfig
 ### Properties

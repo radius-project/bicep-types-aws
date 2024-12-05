@@ -1,5 +1,12 @@
 # AWS.CloudFormation @ default
 
+## Resource AWS.CloudFormation/GuardHook@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFormation/GuardHookProperties](#awscloudformationguardhookproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudFormation/HookDefaultVersion@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -13,6 +20,13 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/HookTypeConfigProperties](#awscloudformationhooktypeconfigproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.CloudFormation/LambdaHook@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFormation/LambdaHookProperties](#awscloudformationlambdahookproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/ResourceDefaultVersion@default
 * **Valid Scope(s)**: Unknown
@@ -47,6 +61,20 @@
 * **Enabled**: bool: If set to true, StackSets automatically deploys additional stack instances to AWS Organizations accounts that are added to a target organization or organizational unit (OU) in the specified Regions. If an account is removed from a target organization or OU, StackSets deletes stack instances from the account in the specified Regions.
 * **RetainStacksOnAccountRemoval**: bool: If set to true, stack resources are retained when an account is removed from a target organization or OU. If set to false, stack resources are deleted. Specify only if Enabled is set to True.
 
+## AWS.CloudFormation/GuardHookProperties
+### Properties
+* **Alias**: string (Required): The typename alias for the hook.
+* **ExecutionRole**: string (Required): The execution role ARN assumed by hooks to read Guard rules from S3 and write Guard outputs to S3.
+* **FailureMode**: string (Required): Attribute to specify CloudFormation behavior on hook failure.
+* **HookArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the activated hook
+* **HookStatus**: string (Required): Attribute to specify which stacks this hook applies to or should get invoked for
+* **LogBucket**: string: S3 Bucket where the guard validate report will be uploaded to
+* **Options**: [GuardHook_Options](#guardhookoptions)
+* **RuleLocation**: [S3Location](#s3location) (Required)
+* **StackFilters**: [GuardHook_StackFilters](#guardhookstackfilters): Filters to allow hooks to target specific stack attributes
+* **TargetFilters**: [GuardHook_TargetFilters](#guardhooktargetfilters): Attribute to specify which targets should invoke the hook
+* **TargetOperations**: string[] (Required): Which operations should this Hook run against? Resource changes, stacks or change sets.
+
 ## AWS.CloudFormation/HookDefaultVersionProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the type. This is used to uniquely identify a HookDefaultVersion
@@ -65,6 +93,18 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **TypeName**: string: The name of the type being registered.
 
 We recommend that type names adhere to the following pattern: company_or_organization::service::type.
+
+## AWS.CloudFormation/LambdaHookProperties
+### Properties
+* **Alias**: string (Required): The typename alias for the hook.
+* **ExecutionRole**: string (Required): The execution role ARN assumed by Hooks to invoke Lambda.
+* **FailureMode**: string (Required): Attribute to specify CloudFormation behavior on hook failure.
+* **HookArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the activated hook
+* **HookStatus**: string (Required): Attribute to specify which stacks this hook applies to or should get invoked for
+* **LambdaFunction**: string (Required): Amazon Resource Name (ARN), Partial ARN, name, version, or alias of the Lambda function to invoke with this hook.
+* **StackFilters**: [LambdaHook_StackFilters](#lambdahookstackfilters): Filters to allow hooks to target specific stack attributes
+* **TargetFilters**: [LambdaHook_TargetFilters](#lambdahooktargetfilters): Attribute to specify which targets should invoke the hook
+* **TargetOperations**: string[] (Required): Which operations should this Hook run against? Resource changes, stacks or change sets.
 
 ## AWS.CloudFormation/ResourceDefaultVersionProperties
 ### Properties
@@ -143,6 +183,48 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **AccountsUrl**: string: Returns the value of the AccountsUrl property.
 * **OrganizationalUnitIds**: string[]: The organization root ID or organizational unit (OU) IDs to which StackSets deploys.
 
+## GuardHook_Options
+### Properties
+* **InputParams**: [S3Location](#s3location)
+
+## GuardHook_StackFilters
+### Properties
+* **FilteringCriteria**: string (Required): Attribute to specify the filtering behavior. ANY will make the Hook pass if one filter matches. ALL will make the Hook pass if all filters match
+* **StackNames**: [GuardHook_StackFilters_StackNames](#guardhookstackfiltersstacknames): List of stack names as filters
+* **StackRoles**: [GuardHook_StackFilters_StackRoles](#guardhookstackfiltersstackroles): List of stack roles that are performing the stack operations.
+
+## GuardHook_StackFilters_StackNames
+### Properties
+* **Exclude**: string[]: List of stack names that the hook is going to be excluded from
+* **Include**: string[]: List of stack names that the hook is going to target
+
+## GuardHook_StackFilters_StackRoles
+### Properties
+* **Exclude**: string[]: List of stack roles that the hook is going to be excluded from
+* **Include**: string[]: List of stack roles that the hook is going to target
+
+## GuardHook_TargetFilters
+### Properties
+
+## LambdaHook_StackFilters
+### Properties
+* **FilteringCriteria**: string (Required): Attribute to specify the filtering behavior. ANY will make the Hook pass if one filter matches. ALL will make the Hook pass if all filters match
+* **StackNames**: [LambdaHook_StackFilters_StackNames](#lambdahookstackfiltersstacknames): List of stack names as filters
+* **StackRoles**: [LambdaHook_StackFilters_StackRoles](#lambdahookstackfiltersstackroles): List of stack roles that are performing the stack operations.
+
+## LambdaHook_StackFilters_StackNames
+### Properties
+* **Exclude**: string[]: List of stack names that the hook is going to be excluded from
+* **Include**: string[]: List of stack names that the hook is going to target
+
+## LambdaHook_StackFilters_StackRoles
+### Properties
+* **Exclude**: string[]: List of stack roles that the hook is going to be excluded from
+* **Include**: string[]: List of stack roles that the hook is going to target
+
+## LambdaHook_TargetFilters
+### Properties
+
 ## LoggingConfig
 ### Properties
 * **LogGroupName**: string: The Amazon CloudWatch log group to which CloudFormation sends error logging information when invoking the type's handlers.
@@ -169,6 +251,11 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 ### Properties
 * **ParameterKey**: string (Required): The key associated with the parameter. If you don't specify a key and value for a particular parameter, AWS CloudFormation uses the default value that is specified in your template.
 * **ParameterValue**: string (Required): The input value associated with the parameter.
+
+## S3Location
+### Properties
+* **Uri**: string (Required): S3 uri of Guard files.
+* **VersionId**: string: S3 object version
 
 ## Stack_Parameters
 ### Properties

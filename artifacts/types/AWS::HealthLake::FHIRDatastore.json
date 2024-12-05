@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-HealthLake-FHIRDatastore",
   "type": "AWS::HealthLake::FHIRDatastore",
-  "time": "2024-10-17T15:13:17.565Z",
+  "time": "2024-11-20T16:15:03.153Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -294,7 +294,18 @@
     "required": [
       "DatastoreTypeVersion"
     ],
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "healthlake:UntagResource",
+        "healthlake:TagResource",
+        "healthlake:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::HealthLake::FHIRDatastore"
   }
 }

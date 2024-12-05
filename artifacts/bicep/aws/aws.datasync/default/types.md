@@ -271,6 +271,7 @@
 * **Status**: string (ReadOnly): The status of the task that was described.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TaskArn**: string (ReadOnly, Identifier): The ARN of the task.
+* **TaskMode**: string: Specifies the task mode for the task.
 * **TaskReportConfig**: [TaskReportConfig](#taskreportconfig)
 
 ## AzureBlobSasConfiguration

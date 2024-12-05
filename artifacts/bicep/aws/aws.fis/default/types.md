@@ -19,6 +19,7 @@
 * **Actions**: [ExperimentTemplateActionMap](#experimenttemplateactionmap)
 * **Description**: string (Required)
 * **ExperimentOptions**: [ExperimentTemplateExperimentOptions](#experimenttemplateexperimentoptions)
+* **ExperimentReportConfiguration**: [ExperimentTemplateExperimentReportConfiguration](#experimenttemplateexperimentreportconfiguration)
 * **Id**: string (ReadOnly, Identifier)
 * **LogConfiguration**: [ExperimentTemplateLogConfiguration](#experimenttemplatelogconfiguration)
 * **RoleArn**: string (Required)
@@ -33,9 +34,26 @@
 * **ExperimentTemplateId**: string (Required, Identifier)
 * **RoleArn**: string (Required)
 
+## CloudWatchDashboard
+### Properties
+* **DashboardIdentifier**: string (Required)
+
 ## ExperimentTemplate_CloudWatchLogsConfiguration
 ### Properties
 * **LogGroupArn**: string (Required)
+
+## ExperimentTemplate_DataSources
+### Properties
+* **CloudWatchDashboards**: [CloudWatchDashboard](#cloudwatchdashboard)[]
+
+## ExperimentTemplate_Outputs
+### Properties
+* **ExperimentReportS3Configuration**: [ExperimentTemplate_Outputs_ExperimentReportS3Configuration](#experimenttemplateoutputsexperimentreports3configuration) (Required)
+
+## ExperimentTemplate_Outputs_ExperimentReportS3Configuration
+### Properties
+* **BucketName**: string (Required)
+* **Prefix**: string
 
 ## ExperimentTemplate_S3Configuration
 ### Properties
@@ -52,6 +70,13 @@
 ### Properties
 * **AccountTargeting**: string: The account targeting setting for the experiment template.
 * **EmptyTargetResolutionMode**: string: The target resolution failure mode for the experiment template.
+
+## ExperimentTemplateExperimentReportConfiguration
+### Properties
+* **DataSources**: [ExperimentTemplate_DataSources](#experimenttemplatedatasources) (Required)
+* **Outputs**: [ExperimentTemplate_Outputs](#experimenttemplateoutputs) (Required)
+* **PostExperimentDuration**: string
+* **PreExperimentDuration**: string
 
 ## ExperimentTemplateLogConfiguration
 ### Properties

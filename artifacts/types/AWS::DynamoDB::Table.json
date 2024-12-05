@@ -1,9 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DynamoDB-Table",
   "type": "AWS::DynamoDB::Table",
-  "time": "2024-10-29T16:31:56.328Z",
+  "time": "2024-11-21T01:48:14.873Z",
   "schema": {
     "additionalProperties": false,
+    "conditionalCreateOnlyProperties": [
+      "/properties/KeySchema"
+    ],
     "createOnlyProperties": [
       "/properties/TableName",
       "/properties/ImportSourceSpecification"
@@ -122,6 +125,10 @@
           "ProvisionedThroughput": {
             "$ref": "#/definitions/ProvisionedThroughput",
             "description": "Represents the provisioned throughput settings for the specified global secondary index.\n For current minimum and maximum provisioned throughput values, see [Service, Account, and Table Quotas](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html) in the *Amazon DynamoDB Developer Guide*."
+          },
+          "WarmThroughput": {
+            "$ref": "#/definitions/WarmThroughput",
+            "description": "Represents the warm throughput value (in read units per second and write units per second) for the specified secondary index. If you use this parameter, you must specify ``ReadUnitsPerSecond``, ``WriteUnitsPerSecond``, or both."
           }
         },
         "required": [
@@ -444,9 +451,38 @@
           "Enabled"
         ],
         "type": "object"
+      },
+      "WarmThroughput": {
+        "additionalProperties": false,
+        "anyOf": [
+          {
+            "required": [
+              "ReadUnitsPerSecond"
+            ]
+          },
+          {
+            "required": [
+              "WriteUnitsPerSecond"
+            ]
+          }
+        ],
+        "description": "Provides visibility into the number of read and write operations your table or secondary index can instantaneously support. The settings can be modified using the ``UpdateTable`` operation to meet the throughput requirements of an upcoming peak event.",
+        "properties": {
+          "ReadUnitsPerSecond": {
+            "description": "Represents the number of read operations your base table can instantaneously support.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "WriteUnitsPerSecond": {
+            "description": "Represents the number of write operations your base table can instantaneously support.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
       }
     },
-    "description": "The ``AWS::DynamoDB::Table`` resource creates a DDB table. For more information, see [CreateTable](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html) in the *API Reference*.\n You should be aware of the following behaviors when working with DDB tables:\n  +   CFNlong typically creates DDB tables in parallel. However, if your template includes multiple DDB tables with indexes, you must declare dependencies so that the tables are created sequentially. DDBlong limits the number of tables with secondary indexes that are in the creating state. If you create multiple tables with indexes at the same time, DDB returns an error and the stack operation fails. For an example, see [DynamoDB Table with a DependsOn Attribute](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#aws-resource-dynamodb-table--examples--DynamoDB_Table_with_a_DependsOn_Attribute).\n  \n   Our guidance is to use the latest schema documented here for your CFNlong templates. This schema supports the provisioning of all table settings below. When using this schema in your CFNlong templates, please ensure that your Identity and Access Management (IAM) policies are updated with appropriate permissions to allow for the authorization of these setting changes.",
+    "description": "The ``AWS::DynamoDB::Table`` resource creates a DDB table. For more information, see [CreateTable](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html) in the *API Reference*.\n You should be aware of the following behaviors when working with DDB tables:\n  +   CFNlong typically creates DDB tables in parallel. However, if your template includes multiple DDB tables with indexes, you must declare dependencies so that the tables are created sequentially. DDBlong limits the number of tables with secondary indexes that are in the creating state. If you create multiple tables with indexes at the same time, DDB returns an error and the stack operation fails. For an example, see [DynamoDB Table with a DependsOn Attribute](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#aws-resource-dynamodb-table--examples--DynamoDB_Table_with_a_DependsOn_Attribute).\n  \n   Our guidance is to use the latest schema documented for your CFNlong templates. This schema supports the provisioning of all table settings below. When using this schema in your CFNlong templates, please ensure that your Identity and Access Management (IAM) policies are updated with appropriate permissions to allow for the authorization of these setting changes.",
     "handlers": {
       "create": {
         "permissions": [
@@ -656,6 +692,10 @@
       "TimeToLiveSpecification": {
         "$ref": "#/definitions/TimeToLiveSpecification",
         "description": "Specifies the Time to Live (TTL) settings for the table.\n  For detailed information about the limits in DynamoDB, see [Limits in Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html) in the Amazon DynamoDB Developer Guide."
+      },
+      "WarmThroughput": {
+        "$ref": "#/definitions/WarmThroughput",
+        "description": "Represents the warm throughput (in read units per second and write units per second) for creating a table."
       }
     },
     "propertyTransform": {

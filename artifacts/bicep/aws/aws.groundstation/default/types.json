@@ -456,6 +456,346 @@
   },
   {
     "$type": "ObjectType",
+    "name": "AgentStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AuditResults",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AwsGroundStationAgentEndpoint",
+    "properties": {
+      "AgentStatus": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "AuditResults": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "EgressAddress": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0
+      },
+      "IngressAddress": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionDetails",
+    "properties": {
+      "Mtu": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "Maximum transmission unit (MTU) size in bytes of a dataflow endpoint."
+      },
+      "SocketAddress": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataflowEndpoint",
+    "properties": {
+      "Address": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0
+      },
+      "Mtu": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointDetails",
+    "properties": {
+      "AwsGroundStationAgentEndpoint": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0
+      },
+      "SecurityDetails": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntegerRange",
+    "properties": {
+      "Maximum": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "A maximum value."
+      },
+      "Minimum": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "A minimum value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RangedConnectionDetails",
+    "properties": {
+      "Mtu": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "Maximum transmission unit (MTU) size in bytes of a dataflow endpoint."
+      },
+      "SocketAddress": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RangedSocketAddress",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "IPv4 socket address."
+      },
+      "PortRange": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "Port range of a socket address."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SecurityDetails",
+    "properties": {
+      "RoleArn": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SocketAddress",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/25"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/25"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.GroundStation/DataflowEndpointGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/37"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/43"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GroundStation/DataflowEndpointGroupProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 2
+      },
+      "ContactPostPassDurationSeconds": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "Amount of time, in seconds, after a contact ends that the Ground Station Dataflow Endpoint Group will be in a POSTPASS state. A Ground Station Dataflow Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group enters and exits the POSTPASS state."
+      },
+      "ContactPrePassDurationSeconds": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "Amount of time, in seconds, before a contact starts that the Ground Station Dataflow Endpoint Group will be in a PREPASS state. A Ground Station Dataflow Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group enters and exits the PREPASS state."
+      },
+      "EndpointDetails": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 1
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 18
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GroundStation/DataflowEndpointGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.GroundStation/DataflowEndpointGroup@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/50"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "DataflowEdge",
     "properties": {
       "Destination": {
@@ -515,13 +855,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/32"
+      "$ref": "#/52"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/34"
+      "$ref": "#/54"
     }
   },
   {
@@ -550,7 +890,7 @@
       },
       "DataflowEdges": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/56"
         },
         "flags": 1,
         "description": ""
@@ -583,7 +923,7 @@
       },
       "StreamsKmsKey": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "The ARN of a KMS Key used for encrypting data during transmission from the source to destination locations."
@@ -597,7 +937,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/57"
         },
         "flags": 0
       },
@@ -629,7 +969,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/58"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -641,7 +981,7 @@
     "name": "AWS.GroundStation/MissionProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/39"
+      "$ref": "#/59"
     },
     "flags": 0
   }

@@ -7,6 +7,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudTrail/ChannelProperties](#awscloudtrailchannelproperties) (Identifier): properties of the resource
 
+## Resource AWS.CloudTrail/Dashboard@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudTrail/DashboardProperties](#awscloudtraildashboardproperties) (Identifier): properties of the resource
+
 ## Resource AWS.CloudTrail/EventDataStore@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -66,6 +73,19 @@
 * **Source**: string: The ARN of an on-premises storage solution or application, or a partner event source.
 * **Tags**: [Tag](#tag)[] (WriteOnly): An array of key-value pairs to apply to this resource.
 
+## AWS.CloudTrail/DashboardProperties
+### Properties
+* **CreatedTimestamp**: string (ReadOnly): The timestamp of the dashboard creation.
+* **DashboardArn**: string (ReadOnly, Identifier): The ARN of the dashboard.
+* **Name**: string: The name of the dashboard.
+* **RefreshSchedule**: [RefreshSchedule](#refreshschedule): Configures the automatic refresh schedule for the dashboard. Includes the frequency unit (DAYS or HOURS) and value, as well as the status (ENABLED or DISABLED) of the refresh schedule.
+* **Status**: string (ReadOnly): The status of the dashboard. Values are CREATING, CREATED, UPDATING, UPDATED and DELETING.
+* **Tags**: [Tag](#tag)[]
+* **TerminationProtectionEnabled**: bool: Indicates whether the dashboard is protected from termination.
+* **Type**: string (ReadOnly): The type of the dashboard. Values are CUSTOM and MANAGED.
+* **UpdatedTimestamp**: string (ReadOnly): The timestamp showing when the dashboard was updated, if applicable. UpdatedTimestamp is always either the same or newer than the time shown in CreatedTimestamp.
+* **Widgets**: [Widget](#widget)[]: List of widgets on the dashboard
+
 ## AWS.CloudTrail/EventDataStoreProperties
 ### Properties
 * **AdvancedEventSelectors**: [AdvancedEventSelector](#advancedeventselector)[]: The advanced event selectors that were used to select events for the data store.
@@ -113,6 +133,14 @@
 * **Tags**: [Tag](#tag)[]
 * **TrailName**: string (Identifier)
 
+## Dashboard_Frequency
+### Properties
+* **Unit**: string (Required): The frequency unit. Supported values are HOURS and DAYS.
+* **Value**: int (Required): The frequency value.
+
+## Dashboard_ViewProperties
+### Properties
+
 ## DataResource
 ### Properties
 * **Type**: string (Required): The resource type in which you want to log data events. You can specify AWS::S3::Object or AWS::Lambda::Function resources.
@@ -138,6 +166,12 @@
 ### Properties
 * **InsightType**: string: The type of insight to log on a trail.
 
+## RefreshSchedule
+### Properties
+* **Frequency**: [Dashboard_Frequency](#dashboardfrequency)
+* **Status**: string: The status of the schedule. Supported values are ENABLED and DISABLED.
+* **TimeOfDay**: string: StartTime of the automatic schedule refresh.
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
@@ -152,4 +186,15 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Widget
+### Properties
+* **QueryParameters**: string[]: The placeholder keys in the QueryStatement. For example: $StartTime$, $EndTime$, $Period$.
+* **QueryStatement**: string (Required): The SQL query statement on one or more event data stores.
+* **ViewProperties**: [Dashboard_ViewProperties](#dashboardviewproperties): The view properties of the widget.
 

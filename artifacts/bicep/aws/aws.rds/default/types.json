@@ -412,6 +412,13 @@
         "flags": 0,
         "description": "The number of days for which automated backups are retained.\n Default: 1\n Constraints:\n  +  Must be a value from 1 to 35\n  \n Valid for: Aurora DB clusters and Multi-AZ DB clusters"
       },
+      "ClusterScalabilityType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": ""
+      },
       "CopyTagsToSnapshot": {
         "type": {
           "$ref": "#/4"
@@ -690,7 +697,7 @@
           "$ref": "#/4"
         },
         "flags": 0,
-        "description": "Specifies whether the DB cluster is publicly accessible.\n When the DB cluster is publicly accessible and you connect from outside of the DB cluster's virtual private cloud (VPC), its Domain Name System (DNS) endpoint resolves to the public IP address. When you connect from within the same VPC as the DB cluster, the endpoint resolves to the private IP address. Access to the DB cluster is ultimately controlled by the security group it uses. That public access isn't permitted if the security group assigned to the DB cluster doesn't permit it.\n When the DB cluster isn't publicly accessible, it is an internal DB cluster with a DNS name that resolves to a private IP address.\n Valid for Cluster Type: Multi-AZ DB clusters only\n Default: The default behavior varies depending on whether ``DBSubnetGroupName`` is specified.\n If ``DBSubnetGroupName`` isn't specified, and ``PubliclyAccessible`` isn't specified, the following applies:\n  +  If the default VPC in the target Region doesn’t have an internet gateway attached to it, the DB cluster is private.\n  +  If the default VPC in the target Region has an internet gateway attached to it, the DB cluster is public.\n  \n If ``DBSubnetGroupName`` is specified, and ``PubliclyAccessible`` isn't specified, the following applies:\n  +  If the subnets are part of a VPC that doesn’t have an internet gateway attached to it, the DB cluster is private.\n  +  If the subnets are part of a VPC that has an internet gateway attached to it, the DB cluster is public."
+        "description": "Specifies whether the DB cluster is publicly accessible.\n When the DB cluster is publicly accessible and you connect from outside of the DB cluster's virtual private cloud (VPC), its Domain Name System (DNS) endpoint resolves to the public IP address. When you connect from within the same VPC as the DB cluster, the endpoint resolves to the private IP address. Access to the DB cluster is ultimately controlled by the security group it uses. That public access isn't permitted if the security group assigned to the DB cluster doesn't permit it.\n When the DB cluster isn't publicly accessible, it is an internal DB cluster with a DNS name that resolves to a private IP address.\n Valid for Cluster Type: Multi-AZ DB clusters only\n Default: The default behavior varies depending on whether ``DBSubnetGroupName`` is specified.\n If ``DBSubnetGroupName`` isn't specified, and ``PubliclyAccessible`` isn't specified, the following applies:\n  +  If the default VPC in the target Region doesn?t have an internet gateway attached to it, the DB cluster is private.\n  +  If the default VPC in the target Region has an internet gateway attached to it, the DB cluster is public.\n  \n If ``DBSubnetGroupName`` is specified, and ``PubliclyAccessible`` isn't specified, the following applies:\n  +  If the subnets are part of a VPC that doesn?t have an internet gateway attached to it, the DB cluster is private.\n  +  If the subnets are part of a VPC that has an internet gateway attached to it, the DB cluster is public."
       },
       "ReadEndpoint": {
         "type": {
@@ -2366,6 +2373,141 @@
           "$ref": "#/1"
         },
         "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.RDS/DBShardGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/82"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RDS/DBShardGroupProperties",
+    "properties": {
+      "ComputeRedundancy": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Specifies whether to create standby instances for the DB shard group."
+      },
+      "DBClusterIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the primary DB cluster for the DB shard group."
+      },
+      "DBShardGroupIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The name of the DB shard group."
+      },
+      "DBShardGroupResourceId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Amazon Web Services Region-unique, immutable identifier for the DB shard group."
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The connection endpoint for the DB shard group."
+      },
+      "MaxACU": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The maximum capacity of the DB shard group in Aurora capacity units (ACUs)."
+      },
+      "MinACU": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 4,
+        "description": "The minimum capacity of the DB shard group in Aurora capacity units (ACUs)."
+      },
+      "PubliclyAccessible": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Indicates whether the DB shard group is publicly accessible."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RDS/DBShardGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.RDS/DBShardGroup@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/86"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
         "description": "A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: \"^([\\\\p{L}\\\\p{Z}\\\\p{N}_.:/=+\\\\-@]*)$\")."
       },
       "Value": {
@@ -2390,7 +2532,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/82"
+      "$ref": "#/88"
     }
   },
   {
@@ -2413,14 +2555,14 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/90"
         },
         "flags": 1,
         "description": "The EC2 Subnet IDs for the DB subnet group."
       },
       "Tags": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "Tags to assign to the DB subnet group."
@@ -2447,7 +2589,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/92"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2459,7 +2601,7 @@
     "name": "AWS.RDS/DBSubnetGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/87"
+      "$ref": "#/93"
     },
     "flags": 0
   },
@@ -2502,7 +2644,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/89"
+      "$ref": "#/95"
     }
   },
   {
@@ -2518,7 +2660,7 @@
       },
       "EventCategories": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "A list of event categories for a particular source type (``SourceType``) that you want to subscribe to. You can see a list of the categories for a given source type in the \"Amazon RDS event categories and event messages\" section of the [Amazon RDS User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.Messages.html) or the [Amazon Aurora User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Events.Messages.html). You can also see this list by using the ``DescribeEventCategories`` operation."
@@ -2532,7 +2674,7 @@
       },
       "SourceIds": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/98"
         },
         "flags": 0,
         "description": "The list of identifiers of the event sources for which events are returned. If not specified, then all sources are included in the response. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens. It can't end with a hyphen or contain two consecutive hyphens.\n Constraints:\n  +  If ``SourceIds`` are supplied, ``SourceType`` must also be provided.\n  +  If the source type is a DB instance, a ``DBInstanceIdentifier`` value must be supplied.\n  +  If the source type is a DB cluster, a ``DBClusterIdentifier`` value must be supplied.\n  +  If the source type is a DB parameter group, a ``DBParameterGroupName`` value must be supplied.\n  +  If the source type is a DB security group, a ``DBSecurityGroupName`` value must be supplied.\n  +  If the source type is a DB snapshot, a ``DBSnapshotIdentifier`` value must be supplied.\n  +  If the source type is a DB cluster snapshot, a ``DBClusterSnapshotIdentifier`` value must be supplied.\n  +  If the source type is an RDS Proxy, a ``DBProxyName`` value must be supplied."
@@ -2553,7 +2695,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/99"
         },
         "flags": 0,
         "description": "An optional array of key-value pairs to apply to this subscription."
@@ -2580,7 +2722,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/100"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2592,9 +2734,22 @@
     "name": "AWS.RDS/EventSubscription@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/95"
+      "$ref": "#/101"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GlobalEndpoint",
+    "properties": {
+      "Address": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The writer endpoint for the global database cluster. This endpoint always points to the writer DB instance in the current primary cluster."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -2623,7 +2778,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/97"
+      "$ref": "#/104"
     }
   },
   {
@@ -2665,6 +2820,12 @@
         "flags": 16,
         "description": "The cluster identifier of the new global database cluster. This parameter is stored as a lowercase string."
       },
+      "GlobalEndpoint": {
+        "type": {
+          "$ref": "#/103"
+        },
+        "flags": 0
+      },
       "SourceDBClusterIdentifier": {
         "type": {
           "$ref": "#/1"
@@ -2681,7 +2842,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/106"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2708,7 +2869,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/107"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2720,7 +2881,7 @@
     "name": "AWS.RDS/GlobalCluster@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/101"
+      "$ref": "#/108"
     },
     "flags": 0
   },
@@ -2757,7 +2918,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/104"
+      "$ref": "#/111"
     }
   },
   {
@@ -2767,7 +2928,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/104"
+      "$ref": "#/111"
     }
   },
   {
@@ -2776,7 +2937,7 @@
     "properties": {
       "AdditionalEncryptionContext": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/110"
         },
         "flags": 0,
         "description": "An optional set of non-secret key?value pairs that contains additional contextual information about the data. For more information, see [Encryption context](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context) in the *Key Management Service Developer Guide*.\n You can only include this parameter if you specify the ``KMSKeyId`` parameter."
@@ -2832,7 +2993,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "A list of tags. For more information, see [Tagging Amazon RDS Resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html) in the *Amazon RDS User Guide.*."
@@ -2866,7 +3027,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/116"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2878,7 +3039,7 @@
     "name": "AWS.RDS/Integration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/110"
+      "$ref": "#/117"
     },
     "flags": 0
   },
@@ -2888,7 +3049,7 @@
     "properties": {
       "DBSecurityGroupMemberships": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "A list of DB security groups used for this option."
@@ -2902,7 +3063,7 @@
       },
       "OptionSettings": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "The option settings to include in an option group."
@@ -2923,7 +3084,7 @@
       },
       "VpcSecurityGroupMemberships": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/124"
         },
         "flags": 0,
         "description": "A list of VPC security group names used for this option."
@@ -2979,7 +3140,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/120"
     }
   },
   {
@@ -2995,13 +3156,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/112"
+      "$ref": "#/119"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/114"
+      "$ref": "#/121"
     }
   },
   {
@@ -3024,7 +3185,7 @@
       },
       "OptionConfigurations": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/126"
         },
         "flags": 0,
         "description": "A list of all available options for an option group."
@@ -3045,7 +3206,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/127"
         },
         "flags": 0,
         "description": "Tags to assign to the option group."
@@ -3072,7 +3233,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/128"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3084,7 +3245,7 @@
     "name": "AWS.RDS/OptionGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/122"
+      "$ref": "#/129"
     },
     "flags": 0
   }

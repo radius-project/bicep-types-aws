@@ -103,6 +103,7 @@ Length Constraints: Maximum length of 51200
 * **DeliveryDestinationType**: string (ReadOnly): Displays whether this delivery destination is CloudWatch Logs, Amazon S3, or Kinesis Data Firehose.
 * **DestinationResourceArn**: string: The ARN of the Amazon Web Services destination that this delivery destination represents. That Amazon Web Services destination can be a log group in CloudWatch Logs, an Amazon S3 bucket, or a delivery stream in Firehose.
 * **Name**: string (Required, Identifier): The name of this delivery destination.
+* **OutputFormat**: string: The format of the logs that are sent to this delivery destination.
 * **Tags**: [Tag](#tag)[]: The tags that have been assigned to this delivery destination.
 
 ## AWS.Logs/DeliveryProperties
@@ -112,6 +113,10 @@ Length Constraints: Maximum length of 51200
 * **DeliveryDestinationType**: string (ReadOnly): Displays whether the delivery destination associated with this delivery is CloudWatch Logs, Amazon S3, or Kinesis Data Firehose.
 * **DeliveryId**: string (ReadOnly, Identifier): The unique ID that identifies this delivery in your account.
 * **DeliverySourceName**: string (Required): The name of the delivery source that is associated with this delivery.
+* **FieldDelimiter**: string: The field delimiter to use between record fields when the final output format of a delivery is in Plain , W3C , or Raw format.
+* **RecordFields**: string[]: The list of record fields to be delivered to the destination, in order. If the delivery's log source has mandatory fields, they must be included in this list.
+* **S3EnableHiveCompatiblePath**: bool: This parameter causes the S3 objects that contain delivered logs to use a prefix structure that allows for integration with Apache Hive.
+* **S3SuffixPath**: string: This string allows re-configuring the S3 object prefix to contain either static or variable sections. The valid variables to use in the suffix path will vary by each log source. See ConfigurationTemplate$allowedSuffixPathFields for more info on what values are supported in the suffix path for each log source.
 * **Tags**: [Tag](#tag)[]: The tags that have been assigned to this delivery.
 
 ## AWS.Logs/DeliverySourceProperties

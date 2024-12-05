@@ -78,6 +78,7 @@ Contains between 3 and 32 characters
 ## AWS.OpenSearchServerless/SecurityConfigProperties
 ### Properties
 * **Description**: string: Security config description
+* **IamIdentityCenterOptions**: [IamIdentityCenterConfigOptions](#iamidentitycenterconfigoptions)
 * **Id**: string (ReadOnly, Identifier): The identifier of the security config
 * **Name**: string (WriteOnly): The friendly name of the security config
 * **SamlOptions**: [SamlConfigOptions](#samlconfigoptions)
@@ -97,6 +98,15 @@ Contains between 3 and 32 characters
 * **SecurityGroupIds**: string[]: The ID of one or more security groups to associate with the endpoint network interface
 * **SubnetIds**: string[] (Required): The ID of one or more subnets in which to create an endpoint network interface
 * **VpcId**: string (Required): The ID of the VPC in which the endpoint will be used.
+
+## IamIdentityCenterConfigOptions
+### Properties
+* **ApplicationArn**: string (ReadOnly)
+* **ApplicationDescription**: string (ReadOnly): The description of the IAM Identity Center application used to integrate with OpenSearch Serverless
+* **ApplicationName**: string (ReadOnly): The name of the IAM Identity Center application used to integrate with OpenSearch Serverless
+* **GroupAttribute**: string
+* **InstanceArn**: string (Required)
+* **UserAttribute**: string
 
 ## SamlConfigOptions
 ### Properties

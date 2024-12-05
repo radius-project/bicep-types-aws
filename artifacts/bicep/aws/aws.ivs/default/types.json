@@ -309,12 +309,152 @@
   },
   {
     "$type": "StringLiteralType",
-    "value": "AWS.IVS/PlaybackKeyPairProperties"
+    "value": "AWS.IVS/IngestConfigurationProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/IngestConfigurationProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "IngestConfiguration ARN is automatically generated on creation and assigned as the unique identifier."
+      },
+      "IngestProtocol": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Ingest Protocol."
+      },
+      "InsecureIngest": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 4,
+        "description": "Whether ingest configuration allows insecure ingest."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "IngestConfiguration"
+      },
+      "ParticipantId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Participant Id is automatically generated on creation and assigned."
+      },
+      "StageArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Stage ARN. A value other than an empty string indicates that stage is linked to IngestConfiguration. Default: \"\" (recording is disabled)."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "State of IngestConfiguration which determines whether IngestConfiguration is in use or not."
+      },
+      "StreamKey": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Stream-key value."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "A list of key-value pairs that contain metadata for the asset model."
+      },
+      "UserId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "User defined indentifier for participant associated with IngestConfiguration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IVS/IngestConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IVS/IngestConfiguration@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/20"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IVS/PlaybackKeyPairProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
     }
   },
   {
@@ -351,7 +491,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the asset model."
@@ -378,7 +518,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/25"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -390,7 +530,7 @@
     "name": "AWS.IVS/PlaybackKeyPair@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/26"
     },
     "flags": 0
   },
@@ -433,7 +573,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/28"
     }
   },
   {
@@ -442,14 +582,14 @@
     "properties": {
       "AllowedCountries": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/30"
         },
         "flags": 1,
         "description": "A list of country codes that control geoblocking restriction. Allowed values are the officially assigned ISO 3166-1 alpha-2 codes. Default: All countries (an empty array)."
       },
       "AllowedOrigins": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/31"
         },
         "flags": 1,
         "description": "A list of origin sites that control CORS restriction. Allowed values are the same as valid values of the Origin header defined at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin"
@@ -477,7 +617,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -504,7 +644,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -516,7 +656,7 @@
     "name": "AWS.IVS/PlaybackRestrictionPolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/28"
+      "$ref": "#/34"
     },
     "flags": 0
   },
@@ -545,7 +685,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/36"
     }
   },
   {
@@ -582,7 +722,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the asset model."
@@ -609,7 +749,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/39"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -621,7 +761,7 @@
     "name": "AWS.IVS/PublicKey@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/40"
     },
     "flags": 0
   },
@@ -631,7 +771,7 @@
     "properties": {
       "S3": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/44"
         },
         "flags": 0
       }
@@ -650,7 +790,7 @@
       },
       "Renditions": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "Renditions indicates which renditions are recorded for a stream."
@@ -707,7 +847,7 @@
       },
       "Storage": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "Storage indicates the format in which thumbnails are recorded."
@@ -740,7 +880,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/45"
     }
   },
   {
@@ -756,7 +896,7 @@
       },
       "DestinationConfiguration": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/42"
         },
         "flags": 1
       },
@@ -776,7 +916,7 @@
       },
       "RenditionConfiguration": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/43"
         },
         "flags": 0
       },
@@ -789,14 +929,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the asset model."
       },
       "ThumbnailConfiguration": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/46"
         },
         "flags": 0
       }
@@ -822,7 +962,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/51"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -834,7 +974,7 @@
     "name": "AWS.IVS/RecordingConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/46"
+      "$ref": "#/52"
     },
     "flags": 0
   },
@@ -844,7 +984,7 @@
     "properties": {
       "MediaTypes": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "Types of media to be recorded. Default: AUDIO_VIDEO."
@@ -889,7 +1029,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/49"
+      "$ref": "#/55"
     }
   },
   {
@@ -912,7 +1052,7 @@
       },
       "AutoParticipantRecordingConfiguration": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/54"
         },
         "flags": 0
       },
@@ -925,7 +1065,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -952,7 +1092,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/59"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -964,7 +1104,7 @@
     "name": "AWS.IVS/Stage@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/54"
+      "$ref": "#/60"
     },
     "flags": 0
   },
@@ -1006,7 +1146,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/57"
+      "$ref": "#/63"
     }
   },
   {
@@ -1029,13 +1169,13 @@
       },
       "S3": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/62"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the asset model."
@@ -1062,7 +1202,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/66"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1074,7 +1214,7 @@
     "name": "AWS.IVS/StorageConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/61"
+      "$ref": "#/67"
     },
     "flags": 0
   },
@@ -1103,7 +1243,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/63"
+      "$ref": "#/69"
     }
   },
   {
@@ -1126,7 +1266,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the asset model."
@@ -1160,7 +1300,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/72"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1172,7 +1312,7 @@
     "name": "AWS.IVS/StreamKey@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/67"
+      "$ref": "#/73"
     },
     "flags": 0
   }
