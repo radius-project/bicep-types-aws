@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Cognito-UserPool",
   "type": "AWS::Cognito::UserPool",
-  "time": "2024-10-04T18:55:26.306Z",
+  "time": "2024-11-23T10:00:48.31Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -205,6 +205,9 @@
         "properties": {
           "PasswordPolicy": {
             "$ref": "#/definitions/PasswordPolicy"
+          },
+          "SignInPolicy": {
+            "$ref": "#/definitions/SignInPolicy"
           }
         },
         "type": "object"
@@ -256,6 +259,18 @@
           },
           "StringAttributeConstraints": {
             "$ref": "#/definitions/StringAttributeConstraints"
+          }
+        },
+        "type": "object"
+      },
+      "SignInPolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "AllowedFirstAuthFactors": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "type": "object"
@@ -511,6 +526,14 @@
         },
         "type": "object"
       },
+      "UserPoolTier": {
+        "enum": [
+          "LITE",
+          "ESSENTIALS",
+          "PLUS"
+        ],
+        "type": "string"
+      },
       "UsernameAttributes": {
         "items": {
           "type": "string"
@@ -522,6 +545,16 @@
       },
       "VerificationMessageTemplate": {
         "$ref": "#/definitions/VerificationMessageTemplate"
+      },
+      "WebAuthnRelyingPartyID": {
+        "maxLength": 63,
+        "minLength": 1,
+        "type": "string"
+      },
+      "WebAuthnUserVerification": {
+        "maxLength": 9,
+        "minLength": 1,
+        "type": "string"
       }
     },
     "propertyTransform": {

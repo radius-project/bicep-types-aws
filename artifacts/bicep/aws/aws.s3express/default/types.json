@@ -80,6 +80,19 @@
   },
   {
     "$type": "ObjectType",
+    "name": "AbortIncompleteMultipartUpload",
+    "properties": {
+      "DaysAfterInitiation": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "Specifies the number of days after which Amazon S3 aborts an incomplete multipart upload."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Arn",
     "properties": {}
   },
@@ -89,10 +102,71 @@
     "properties": {
       "ServerSideEncryptionConfiguration": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/15"
         },
         "flags": 1,
         "description": "Specifies the default server-side-encryption configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LifecycleConfiguration",
+    "properties": {
+      "Rules": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "A lifecycle rule for individual objects in an Amazon S3 Express bucket."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Rule",
+    "properties": {
+      "AbortIncompleteMultipartUpload": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "ExpirationInDays": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ObjectSizeGreaterThan": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ObjectSizeLessThan": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Prefix": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
       }
     }
   },
@@ -121,23 +195,32 @@
     "properties": {
       "BucketKeyEnabled": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Specifies whether Amazon S3 should use an S3 Bucket Key with server-side encryption using KMS (SSE-KMS) for new objects in the bucket. Existing objects are not affected. Amazon S3 Express One Zone uses an S3 Bucket Key with SSE-KMS and S3 Bucket Key cannot be disabled. It's only allowed to set the BucketKeyEnabled element to true."
       },
       "ServerSideEncryptionByDefault": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/12"
         },
         "flags": 0
       }
     }
   },
   {
+    "$type": "IntegerType"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/10"
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/11"
     }
   },
   {
@@ -167,7 +250,7 @@
       },
       "BucketEncryption": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/9"
         },
         "flags": 0
       },
@@ -184,6 +267,13 @@
         },
         "flags": 1,
         "description": "Specifies the number of Availability Zone that's used for redundancy for the bucket."
+      },
+      "LifecycleConfiguration": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Lifecycle rules that define how Amazon S3 Express manages objects during their lifetime."
       },
       "LocationName": {
         "type": {
@@ -214,7 +304,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/19"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -226,7 +316,7 @@
     "name": "AWS.S3Express/DirectoryBucket@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/20"
     },
     "flags": 0
   }

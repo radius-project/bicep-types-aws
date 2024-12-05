@@ -34,7 +34,7 @@
 * **Name**: string (Required): The name of the control panel. You can use any non-white space character in the name.
 * **RoutingControlCount**: int (ReadOnly): Count of associated routing controls
 * **Status**: string (ReadOnly): The deployment status of control panel. Status can be one of the following: PENDING, DEPLOYED, PENDING_DELETION.
-* **Tags**: [Tag](#tag)[] (WriteOnly): A collection of tags associated with a resource
+* **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
 ## AWS.Route53RecoveryControl/RoutingControlProperties
 ### Properties
@@ -53,7 +53,7 @@
 * **RuleConfig**: [RuleConfig](#ruleconfig) (Required)
 * **SafetyRuleArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the safety rule.
 * **Status**: string (ReadOnly): The deployment status of the routing control. Status can be one of the following: PENDING, DEPLOYED, PENDING_DELETION.
-* **Tags**: [Tag](#tag)[] (WriteOnly): A collection of tags associated with a resource
+* **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
 ## GatingRule
 ### Properties

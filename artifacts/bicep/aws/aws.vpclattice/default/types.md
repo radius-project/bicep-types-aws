@@ -86,6 +86,7 @@
 * **ResourceArn**: string (ReadOnly)
 * **ResourceId**: string (ReadOnly)
 * **ResourceIdentifier**: string (WriteOnly)
+* **ServiceNetworkLogType**: string
 * **Tags**: [Tag](#tag)[]
 
 ## AWS.VpcLattice/AuthPolicyProperties
@@ -132,6 +133,7 @@
 * **Id**: string (ReadOnly)
 * **LastUpdatedAt**: string (ReadOnly)
 * **Name**: string
+* **SharingConfig**: [SharingConfig](#sharingconfig)
 * **Tags**: [Tag](#tag)[]
 
 ## AWS.VpcLattice/ServiceNetworkServiceAssociationProperties
@@ -275,6 +277,10 @@
 
 ## ResourcePolicy_Policy
 ### Properties
+
+## SharingConfig
+### Properties
+* **enabled**: bool (Required)
 
 ## Tag
 ### Properties

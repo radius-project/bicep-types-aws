@@ -1,5 +1,12 @@
 # AWS.Chatbot @ default
 
+## Resource AWS.Chatbot/CustomAction@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Chatbot/CustomActionProperties](#awschatbotcustomactionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Chatbot/MicrosoftTeamsChannelConfiguration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -14,10 +21,20 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Chatbot/SlackChannelConfigurationProperties](#awschatbotslackchannelconfigurationproperties) (Required, Identifier): properties of the resource
 
+## AWS.Chatbot/CustomActionProperties
+### Properties
+* **ActionName**: string (Required)
+* **AliasName**: string
+* **Attachments**: [CustomActionAttachment](#customactionattachment)[]
+* **CustomActionArn**: string (ReadOnly, Identifier)
+* **Definition**: [CustomActionDefinition](#customactiondefinition) (Required)
+* **Tags**: [Tag](#tag)[]
+
 ## AWS.Chatbot/MicrosoftTeamsChannelConfigurationProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): Amazon Resource Name (ARN) of the configuration
 * **ConfigurationName**: string (Required): The name of the configuration
+* **CustomizationResourceArns**: string[]: ARNs of Custom Actions to associate with notifications in the provided chat channel.
 * **GuardrailPolicies**: string[]: The list of IAM policy ARNs that are applied as channel guardrails. The AWS managed 'AdministratorAccess' policy is applied as a default if this is not set.
 * **IamRoleArn**: string (Required): The ARN of the IAM role that defines the permissions for AWS Chatbot
 * **LoggingLevel**: string: Specifies the logging level for this configuration:ERROR,INFO or NONE. This property affects the log entries pushed to Amazon CloudWatch logs
@@ -32,6 +49,7 @@
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): Amazon Resource Name (ARN) of the configuration
 * **ConfigurationName**: string (Required): The name of the configuration
+* **CustomizationResourceArns**: string[]: ARNs of Custom Actions to associate with notifications in the provided chat channel.
 * **GuardrailPolicies**: string[]: The list of IAM policy ARNs that are applied as channel guardrails. The AWS managed 'AdministratorAccess' policy is applied as a default if this is not set.
 * **IamRoleArn**: string (Required): The ARN of the IAM role that defines the permissions for AWS Chatbot
 * **LoggingLevel**: string: Specifies the logging level for this configuration:ERROR,INFO or NONE. This property affects the log entries pushed to Amazon CloudWatch logs
@@ -40,6 +58,31 @@
 * **SnsTopicArns**: string[]: ARNs of SNS topics which delivers notifications to AWS Chatbot, for example CloudWatch alarm notifications.
 * **Tags**: [Tag](#tag)[]: The tags to add to the configuration
 * **UserRoleRequired**: bool: Enables use of a user role requirement in your chat configuration
+
+## CustomActionAttachment
+### Properties
+* **ButtonText**: string
+* **Criteria**: [CustomActionAttachmentCriteria](#customactionattachmentcriteria)[]
+* **NotificationType**: string
+* **Variables**: [CustomActionAttachmentVariables](#customactionattachmentvariables)
+
+## CustomActionAttachmentCriteria
+### Properties
+* **Operator**: string (Required)
+* **Value**: string
+* **VariableName**: string (Required)
+
+## CustomActionAttachmentVariables
+### Properties
+
+## CustomActionDefinition
+### Properties
+* **CommandText**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

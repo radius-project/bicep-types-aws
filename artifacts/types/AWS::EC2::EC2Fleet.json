@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-EC2Fleet",
   "type": "AWS::EC2::EC2Fleet",
-  "time": "2024-10-30T15:46:08.886Z",
+  "time": "2024-11-12T20:52:49.825Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -52,6 +52,15 @@
         },
         "type": "object"
       },
+      "BaselinePerformanceFactorsRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "Cpu": {
+            "$ref": "#/definitions/CpuPerformanceFactorRequest"
+          }
+        },
+        "type": "object"
+      },
       "CapacityRebalance": {
         "additionalProperties": false,
         "properties": {
@@ -76,6 +85,19 @@
               "use-capacity-reservations-first"
             ],
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CpuPerformanceFactorRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "References": {
+            "items": {
+              "$ref": "#/definitions/PerformanceFactorReferenceRequest"
+            },
+            "type": "array",
+            "uniqueItems": false
           }
         },
         "type": "object"
@@ -237,7 +259,8 @@
               "enum": [
                 "intel",
                 "amd",
-                "amazon-web-services"
+                "amazon-web-services",
+                "apple"
               ],
               "type": "string"
             },
@@ -394,6 +417,15 @@
           },
           "SingleInstanceType": {
             "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "PerformanceFactorReferenceRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "InstanceFamily": {
+            "type": "string"
           }
         },
         "type": "object"

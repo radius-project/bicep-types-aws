@@ -47,6 +47,9 @@
 ### aws.apigateway/basepathmapping
 * **Link**: [default](aws/aws.apigateway/default/types.md#resource-awsapigatewaybasepathmappingdefault)
 
+### aws.apigateway/basepathmappingv2
+* **Link**: [default](aws/aws.apigateway/default/types.md#resource-awsapigatewaybasepathmappingv2default)
+
 ### aws.apigateway/clientcertificate
 * **Link**: [default](aws/aws.apigateway/default/types.md#resource-awsapigatewayclientcertificatedefault)
 
@@ -61,6 +64,9 @@
 
 ### aws.apigateway/domainname
 * **Link**: [default](aws/aws.apigateway/default/types.md#resource-awsapigatewaydomainnamedefault)
+
+### aws.apigateway/domainnamev2
+* **Link**: [default](aws/aws.apigateway/default/types.md#resource-awsapigatewaydomainnamev2default)
 
 ### aws.apigateway/gatewayresponse
 * **Link**: [default](aws/aws.apigateway/default/types.md#resource-awsapigatewaygatewayresponsedefault)
@@ -378,6 +384,9 @@
 * **Link**: [default](aws/aws.certificatemanager/default/types.md#resource-awscertificatemanageraccountdefault)
 
 ## aws.chatbot
+### aws.chatbot/customaction
+* **Link**: [default](aws/aws.chatbot/default/types.md#resource-awschatbotcustomactiondefault)
+
 ### aws.chatbot/microsoftteamschannelconfiguration
 * **Link**: [default](aws/aws.chatbot/default/types.md#resource-awschatbotmicrosoftteamschannelconfigurationdefault)
 
@@ -414,11 +423,17 @@
 * **Link**: [default](aws/aws.cleanroomsml/default/types.md#resource-awscleanroomsmltrainingdatasetdefault)
 
 ## aws.cloudformation
+### aws.cloudformation/guardhook
+* **Link**: [default](aws/aws.cloudformation/default/types.md#resource-awscloudformationguardhookdefault)
+
 ### aws.cloudformation/hookdefaultversion
 * **Link**: [default](aws/aws.cloudformation/default/types.md#resource-awscloudformationhookdefaultversiondefault)
 
 ### aws.cloudformation/hooktypeconfig
 * **Link**: [default](aws/aws.cloudformation/default/types.md#resource-awscloudformationhooktypeconfigdefault)
+
+### aws.cloudformation/lambdahook
+* **Link**: [default](aws/aws.cloudformation/default/types.md#resource-awscloudformationlambdahookdefault)
 
 ### aws.cloudformation/resourcedefaultversion
 * **Link**: [default](aws/aws.cloudformation/default/types.md#resource-awscloudformationresourcedefaultversiondefault)
@@ -472,6 +487,9 @@
 ## aws.cloudtrail
 ### aws.cloudtrail/channel
 * **Link**: [default](aws/aws.cloudtrail/default/types.md#resource-awscloudtrailchanneldefault)
+
+### aws.cloudtrail/dashboard
+* **Link**: [default](aws/aws.cloudtrail/default/types.md#resource-awscloudtraildashboarddefault)
 
 ### aws.cloudtrail/eventdatastore
 * **Link**: [default](aws/aws.cloudtrail/default/types.md#resource-awscloudtraileventdatastoredefault)
@@ -555,6 +573,9 @@
 ### aws.cognito/logdeliveryconfiguration
 * **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitologdeliveryconfigurationdefault)
 
+### aws.cognito/managedloginbranding
+* **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitomanagedloginbrandingdefault)
+
 ### aws.cognito/userpool
 * **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitouserpooldefault)
 
@@ -614,6 +635,9 @@
 
 ### aws.connect/contactflowmodule
 * **Link**: [default](aws/aws.connect/default/types.md#resource-awsconnectcontactflowmoduledefault)
+
+### aws.connect/emailaddress
+* **Link**: [default](aws/aws.connect/default/types.md#resource-awsconnectemailaddressdefault)
 
 ### aws.connect/evaluationform
 * **Link**: [default](aws/aws.connect/default/types.md#resource-awsconnectevaluationformdefault)
@@ -682,6 +706,10 @@
 ### aws.connectcampaigns/campaign
 * **Link**: [default](aws/aws.connectcampaigns/default/types.md#resource-awsconnectcampaignscampaigndefault)
 
+## aws.connectcampaignsv2
+### aws.connectcampaignsv2/campaign
+* **Link**: [default](aws/aws.connectcampaignsv2/default/types.md#resource-awsconnectcampaignsv2campaigndefault)
+
 ## aws.controltower
 ### aws.controltower/enabledbaseline
 * **Link**: [default](aws/aws.controltower/default/types.md#resource-awscontroltowerenabledbaselinedefault)
@@ -707,6 +735,9 @@
 
 ### aws.customerprofiles/objecttype
 * **Link**: [default](aws/aws.customerprofiles/default/types.md#resource-awscustomerprofilesobjecttypedefault)
+
+### aws.customerprofiles/segmentdefinition
+* **Link**: [default](aws/aws.customerprofiles/default/types.md#resource-awscustomerprofilessegmentdefinitiondefault)
 
 ## aws.databrew
 ### aws.databrew/dataset
@@ -1057,6 +1088,12 @@
 ### aws.ec2/vpc
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2vpcdefault)
 
+### aws.ec2/vpcblockpublicaccessexclusion
+* **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2vpcblockpublicaccessexclusiondefault)
+
+### aws.ec2/vpcblockpublicaccessoptions
+* **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2vpcblockpublicaccessoptionsdefault)
+
 ### aws.ec2/vpcdhcpoptionsassociation
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2vpcdhcpoptionsassociationdefault)
 
@@ -1339,6 +1376,9 @@
 ### aws.gamelift/build
 * **Link**: [default](aws/aws.gamelift/default/types.md#resource-awsgameliftbuilddefault)
 
+### aws.gamelift/containerfleet
+* **Link**: [default](aws/aws.gamelift/default/types.md#resource-awsgameliftcontainerfleetdefault)
+
 ### aws.gamelift/containergroupdefinition
 * **Link**: [default](aws/aws.gamelift/default/types.md#resource-awsgameliftcontainergroupdefinitiondefault)
 
@@ -1412,6 +1452,9 @@
 ## aws.groundstation
 ### aws.groundstation/config
 * **Link**: [default](aws/aws.groundstation/default/types.md#resource-awsgroundstationconfigdefault)
+
+### aws.groundstation/dataflowendpointgroup
+* **Link**: [default](aws/aws.groundstation/default/types.md#resource-awsgroundstationdataflowendpointgroupdefault)
 
 ### aws.groundstation/missionprofile
 * **Link**: [default](aws/aws.groundstation/default/types.md#resource-awsgroundstationmissionprofiledefault)
@@ -1510,6 +1553,10 @@
 ## aws.internetmonitor
 ### aws.internetmonitor/monitor
 * **Link**: [default](aws/aws.internetmonitor/default/types.md#resource-awsinternetmonitormonitordefault)
+
+## aws.invoicing
+### aws.invoicing/invoiceunit
+* **Link**: [default](aws/aws.invoicing/default/types.md#resource-awsinvoicinginvoiceunitdefault)
 
 ## aws.iot
 ### aws.iot/accountauditconfiguration
@@ -1657,6 +1704,9 @@
 ### aws.iotwireless/destination
 * **Link**: [default](aws/aws.iotwireless/default/types.md#resource-awsiotwirelessdestinationdefault)
 
+### aws.iotwireless/deviceprofile
+* **Link**: [default](aws/aws.iotwireless/default/types.md#resource-awsiotwirelessdeviceprofiledefault)
+
 ### aws.iotwireless/fuotatask
 * **Link**: [default](aws/aws.iotwireless/default/types.md#resource-awsiotwirelessfuotataskdefault)
 
@@ -1665,6 +1715,12 @@
 
 ### aws.iotwireless/networkanalyzerconfiguration
 * **Link**: [default](aws/aws.iotwireless/default/types.md#resource-awsiotwirelessnetworkanalyzerconfigurationdefault)
+
+### aws.iotwireless/serviceprofile
+* **Link**: [default](aws/aws.iotwireless/default/types.md#resource-awsiotwirelessserviceprofiledefault)
+
+### aws.iotwireless/taskdefinition
+* **Link**: [default](aws/aws.iotwireless/default/types.md#resource-awsiotwirelesstaskdefinitiondefault)
 
 ### aws.iotwireless/wirelessdevice
 * **Link**: [default](aws/aws.iotwireless/default/types.md#resource-awsiotwirelesswirelessdevicedefault)
@@ -1678,6 +1734,9 @@
 
 ### aws.ivs/encoderconfiguration
 * **Link**: [default](aws/aws.ivs/default/types.md#resource-awsivsencoderconfigurationdefault)
+
+### aws.ivs/ingestconfiguration
+* **Link**: [default](aws/aws.ivs/default/types.md#resource-awsivsingestconfigurationdefault)
 
 ### aws.ivs/playbackkeypair
 * **Link**: [default](aws/aws.ivs/default/types.md#resource-awsivsplaybackkeypairdefault)
@@ -1903,6 +1962,9 @@
 ### aws.m2/application
 * **Link**: [default](aws/aws.m2/default/types.md#resource-awsm2applicationdefault)
 
+### aws.m2/deployment
+* **Link**: [default](aws/aws.m2/default/types.md#resource-awsm2deploymentdefault)
+
 ### aws.m2/environment
 * **Link**: [default](aws/aws.m2/default/types.md#resource-awsm2environmentdefault)
 
@@ -2029,6 +2091,9 @@
 
 ### aws.memorydb/cluster
 * **Link**: [default](aws/aws.memorydb/default/types.md#resource-awsmemorydbclusterdefault)
+
+### aws.memorydb/multiregioncluster
+* **Link**: [default](aws/aws.memorydb/default/types.md#resource-awsmemorydbmultiregionclusterdefault)
 
 ### aws.memorydb/parametergroup
 * **Link**: [default](aws/aws.memorydb/default/types.md#resource-awsmemorydbparametergroupdefault)
@@ -2323,6 +2388,10 @@
 ### aws.ram/permission
 * **Link**: [default](aws/aws.ram/default/types.md#resource-awsrampermissiondefault)
 
+## aws.rbin
+### aws.rbin/rule
+* **Link**: [default](aws/aws.rbin/default/types.md#resource-awsrbinruledefault)
+
 ## aws.rds
 ### aws.rds/customdbengineversion
 * **Link**: [default](aws/aws.rds/default/types.md#resource-awsrdscustomdbengineversiondefault)
@@ -2347,6 +2416,9 @@
 
 ### aws.rds/dbproxytargetgroup
 * **Link**: [default](aws/aws.rds/default/types.md#resource-awsrdsdbproxytargetgroupdefault)
+
+### aws.rds/dbshardgroup
+* **Link**: [default](aws/aws.rds/default/types.md#resource-awsrdsdbshardgroupdefault)
 
 ### aws.rds/dbsubnetgroup
 * **Link**: [default](aws/aws.rds/default/types.md#resource-awsrdsdbsubnetgroupdefault)
@@ -2907,6 +2979,9 @@
 ### aws.transfer/server
 * **Link**: [default](aws/aws.transfer/default/types.md#resource-awstransferserverdefault)
 
+### aws.transfer/user
+* **Link**: [default](aws/aws.transfer/default/types.md#resource-awstransferuserdefault)
+
 ### aws.transfer/workflow
 * **Link**: [default](aws/aws.transfer/default/types.md#resource-awstransferworkflowdefault)
 
@@ -2981,6 +3056,9 @@
 ### aws.wisdom/aiagent
 * **Link**: [default](aws/aws.wisdom/default/types.md#resource-awswisdomaiagentdefault)
 
+### aws.wisdom/aiagentversion
+* **Link**: [default](aws/aws.wisdom/default/types.md#resource-awswisdomaiagentversiondefault)
+
 ### aws.wisdom/aiprompt
 * **Link**: [default](aws/aws.wisdom/default/types.md#resource-awswisdomaipromptdefault)
 
@@ -2996,6 +3074,12 @@
 ### aws.wisdom/knowledgebase
 * **Link**: [default](aws/aws.wisdom/default/types.md#resource-awswisdomknowledgebasedefault)
 
+### aws.wisdom/messagetemplate
+* **Link**: [default](aws/aws.wisdom/default/types.md#resource-awswisdommessagetemplatedefault)
+
+### aws.wisdom/messagetemplateversion
+* **Link**: [default](aws/aws.wisdom/default/types.md#resource-awswisdommessagetemplateversiondefault)
+
 ## aws.workspaces
 ### aws.workspaces/workspacespool
 * **Link**: [default](aws/aws.workspaces/default/types.md#resource-awsworkspacesworkspacespooldefault)
@@ -3007,6 +3091,9 @@
 ## aws.workspacesweb
 ### aws.workspacesweb/browsersettings
 * **Link**: [default](aws/aws.workspacesweb/default/types.md#resource-awsworkspaceswebbrowsersettingsdefault)
+
+### aws.workspacesweb/dataprotectionsettings
+* **Link**: [default](aws/aws.workspacesweb/default/types.md#resource-awsworkspaceswebdataprotectionsettingsdefault)
 
 ### aws.workspacesweb/identityprovider
 * **Link**: [default](aws/aws.workspacesweb/default/types.md#resource-awsworkspaceswebidentityproviderdefault)

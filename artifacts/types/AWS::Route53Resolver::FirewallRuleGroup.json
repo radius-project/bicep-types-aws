@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53Resolver-FirewallRuleGroup",
   "type": "AWS::Route53Resolver::FirewallRuleGroup",
-  "time": "2024-09-24T14:50:46.491Z",
+  "time": "2024-11-19T22:37:18.13Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -49,6 +49,23 @@
             ],
             "type": "string"
           },
+          "ConfidenceThreshold": {
+            "description": "FirewallDomainRedirectionAction",
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ],
+            "type": "string"
+          },
+          "DnsThreatProtection": {
+            "description": "FirewallDomainRedirectionAction",
+            "enum": [
+              "DGA",
+              "DNS_TUNNELING"
+            ],
+            "type": "string"
+          },
           "FirewallDomainListId": {
             "description": "ResourceId",
             "maxLength": 64,
@@ -63,6 +80,12 @@
             ],
             "type": "string"
           },
+          "FirewallThreatProtectionId": {
+            "description": "ResourceId",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
           "Priority": {
             "description": "Rule Priority",
             "type": "integer"
@@ -75,7 +98,6 @@
           }
         },
         "required": [
-          "FirewallDomainListId",
           "Priority",
           "Action"
         ],
@@ -257,7 +279,8 @@
       "/properties/ShareStatus",
       "/properties/CreatorRequestId",
       "/properties/CreationTime",
-      "/properties/ModificationTime"
+      "/properties/ModificationTime",
+      "/properties/FirewallRules/*/FirewallThreatProtectionId"
     ],
     "tagging": {
       "cloudFormationSystemTags": false,

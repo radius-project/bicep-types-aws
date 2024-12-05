@@ -73,7 +73,7 @@
 * **Arn**: string (ReadOnly): Arn
 * **CreationTime**: string (ReadOnly): Rfc3339TimeString
 * **CreatorRequestId**: string (ReadOnly): The id of the creator request.
-* **FirewallRules**: [FirewallRule](#firewallrule)[]: FirewallRules
+* **FirewallRules**: [FirewallRule](#firewallrule)[] (ReadOnly): FirewallRules
 * **Id**: string (ReadOnly, Identifier): ResourceId
 * **ModificationTime**: string (ReadOnly): Rfc3339TimeString
 * **Name**: string: FirewallRuleGroupName
@@ -117,8 +117,11 @@
 * **BlockOverrideDomain**: string: BlockOverrideDomain
 * **BlockOverrideTtl**: int: BlockOverrideTtl
 * **BlockResponse**: string: BlockResponse
-* **FirewallDomainListId**: string (Required): ResourceId
+* **ConfidenceThreshold**: string: FirewallDomainRedirectionAction
+* **DnsThreatProtection**: string: FirewallDomainRedirectionAction
+* **FirewallDomainListId**: string: ResourceId
 * **FirewallDomainRedirectionAction**: string: FirewallDomainRedirectionAction
+* **FirewallThreatProtectionId**: string: ResourceId
 * **Priority**: int (Required): Rule Priority
 * **Qtype**: string: Qtype
 

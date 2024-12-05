@@ -136,8 +136,8 @@
 * **ListenerAttributes**: [ListenerAttribute](#listenerattribute)[]: The listener attributes.
 * **LoadBalancerArn**: string (Required): The Amazon Resource Name (ARN) of the load balancer.
 * **MutualAuthentication**: [MutualAuthentication](#mutualauthentication): The mutual authentication configuration information.
-* **Port**: int: The port on which the load balancer is listening. You cannot specify a port for a Gateway Load Balancer.
-* **Protocol**: string: The protocol for connections from clients to the load balancer. For Application Load Balancers, the supported protocols are HTTP and HTTPS. For Network Load Balancers, the supported protocols are TCP, TLS, UDP, and TCP_UDP. You can’t specify the UDP or TCP_UDP protocol if dual-stack mode is enabled. You cannot specify a protocol for a Gateway Load Balancer.
+* **Port**: int: The port on which the load balancer is listening. You can't specify a port for a Gateway Load Balancer.
+* **Protocol**: string: The protocol for connections from clients to the load balancer. For Application Load Balancers, the supported protocols are HTTP and HTTPS. For Network Load Balancers, the supported protocols are TCP, TLS, UDP, and TCP_UDP. You can’t specify the UDP or TCP_UDP protocol if dual-stack mode is enabled. You can't specify a protocol for a Gateway Load Balancer.
 * **SslPolicy**: string: [HTTPS and TLS listeners] The security policy that defines which protocols and ciphers are supported.
  Updating the security policy can result in interruptions if the load balancer is handling a high volume of traffic.
  For more information, see [Security policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies) in the *Application Load Balancers Guide* and [Security policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-tls-listener.html#describe-ssl-policies) in the *Network Load Balancers Guide*.
@@ -158,35 +158,35 @@
 ### Properties
 * **CanonicalHostedZoneID**: string (ReadOnly)
 * **DNSName**: string (ReadOnly)
+* **EnablePrefixForIpv6SourceNat**: string: [Network Load Balancers with UDP listeners] Indicates whether to use an IPv6 prefix from each subnet for source NAT. The IP address type must be ``dualstack``. The default value is ``off``.
 * **EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic**: string: Indicates whether to evaluate inbound security group rules for traffic sent to a Network Load Balancer through privatelink.
-* **IpAddressType**: string: Note: Internal load balancers must use the ``ipv4`` IP address type.
- [Application Load Balancers] The IP address type. The possible values are ``ipv4`` (for only IPv4 addresses), ``dualstack`` (for IPv4 and IPv6 addresses), and ``dualstack-without-public-ipv4`` (for IPv6 only public addresses, with private IPv4 and IPv6 addresses).
- Note: Application Load Balancer authentication only supports IPv4 addresses when connecting to an Identity Provider (IdP) or Amazon Cognito endpoint. Without a public IPv4 address the load balancer cannot complete the authentication process, resulting in HTTP 500 errors.
- [Network Load Balancers] The IP address type. The possible values are ``ipv4`` (for only IPv4 addresses) and ``dualstack`` (for IPv4 and IPv6 addresses). You can’t specify ``dualstack`` for a load balancer with a UDP or TCP_UDP listener.
- [Gateway Load Balancers] The IP address type. The possible values are ``ipv4`` (for only IPv4 addresses) and ``dualstack`` (for IPv4 and IPv6 addresses).
+* **IpAddressType**: string: The IP address type. Internal load balancers must use ``ipv4``.
+ [Application Load Balancers] The possible values are ``ipv4`` (IPv4 addresses), ``dualstack`` (IPv4 and IPv6 addresses), and ``dualstack-without-public-ipv4`` (public IPv6 addresses and private IPv4 and IPv6 addresses).
+ Application Load Balancer authentication supports IPv4 addresses only when connecting to an Identity Provider (IdP) or Amazon Cognito endpoint. Without a public IPv4 address the load balancer can't complete the authentication process, resulting in HTTP 500 errors.
+ [Network Load Balancers and Gateway Load Balancers] The possible values are ``ipv4`` (IPv4 addresses) and ``dualstack`` (IPv4 and IPv6 addresses).
 * **LoadBalancerArn**: string (ReadOnly, Identifier)
 * **LoadBalancerAttributes**: [LoadBalancerAttribute](#loadbalancerattribute)[]: The load balancer attributes.
 * **LoadBalancerFullName**: string (ReadOnly)
 * **LoadBalancerName**: string (ReadOnly)
+* **MinimumLoadBalancerCapacity**: [LoadBalancer_MinimumLoadBalancerCapacity](#loadbalancerminimumloadbalancercapacity)
 * **Name**: string: The name of the load balancer. This name must be unique per region per account, can have a maximum of 32 characters, must contain only alphanumeric characters or hyphens, must not begin or end with a hyphen, and must not begin with "internal-".
  If you don't specify a name, AWS CloudFormation generates a unique physical ID for the load balancer. If you specify a name, you cannot perform updates that require replacement of this resource, but you can perform other updates. To replace the resource, specify a new name.
 * **Scheme**: string: The nodes of an Internet-facing load balancer have public IP addresses. The DNS name of an Internet-facing load balancer is publicly resolvable to the public IP addresses of the nodes. Therefore, Internet-facing load balancers can route requests from clients over the internet.
  The nodes of an internal load balancer have only private IP addresses. The DNS name of an internal load balancer is publicly resolvable to the private IP addresses of the nodes. Therefore, internal load balancers can route requests only from clients with access to the VPC for the load balancer.
  The default is an Internet-facing load balancer.
- You cannot specify a scheme for a Gateway Load Balancer.
+ You can't specify a scheme for a Gateway Load Balancer.
 * **SecurityGroups**: string[]: [Application Load Balancers and Network Load Balancers] The IDs of the security groups for the load balancer.
 * **SubnetMappings**: [SubnetMapping](#subnetmapping)[]: The IDs of the subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings, but not both.
- [Application Load Balancers] You must specify subnets from at least two Availability Zones. You cannot specify Elastic IP addresses for your subnets.
+ [Application Load Balancers] You must specify subnets from at least two Availability Zones. You can't specify Elastic IP addresses for your subnets.
  [Application Load Balancers on Outposts] You must specify one Outpost subnet.
  [Application Load Balancers on Local Zones] You can specify subnets from one or more Local Zones.
  [Network Load Balancers] You can specify subnets from one or more Availability Zones. You can specify one Elastic IP address per subnet if you need static IP addresses for your internet-facing load balancer. For internal load balancers, you can specify one private IP address per subnet from the IPv4 range of the subnet. For internet-facing load balancer, you can specify one IPv6 address per subnet.
- [Gateway Load Balancers] You can specify subnets from one or more Availability Zones. You cannot specify Elastic IP addresses for your subnets.
+ [Gateway Load Balancers] You can specify subnets from one or more Availability Zones. You can't specify Elastic IP addresses for your subnets.
 * **Subnets**: string[]: The IDs of the subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings, but not both. To specify an Elastic IP address, specify subnet mappings instead of subnets.
  [Application Load Balancers] You must specify subnets from at least two Availability Zones.
  [Application Load Balancers on Outposts] You must specify one Outpost subnet.
  [Application Load Balancers on Local Zones] You can specify subnets from one or more Local Zones.
- [Network Load Balancers] You can specify subnets from one or more Availability Zones.
- [Gateway Load Balancers] You can specify subnets from one or more Availability Zones.
+ [Network Load Balancers and Gateway Load Balancers] You can specify subnets from one or more Availability Zones.
 * **Tags**: [Tag](#tag)[]: The tags to assign to the load balancer.
 * **Type**: string: The type of load balancer. The default is ``application``.
 
@@ -291,12 +291,16 @@
 ## ListenerRule_AuthenticationRequestExtraParams
 ### Properties
 
+## LoadBalancer_MinimumLoadBalancerCapacity
+### Properties
+* **CapacityUnits**: int (Required)
+
 ## LoadBalancerAttribute
 ### Properties
 * **Key**: string: The name of the attribute.
  The following attributes are supported by all load balancers:
   +   ``deletion_protection.enabled`` - Indicates whether deletion protection is enabled. The value is ``true`` or ``false``. The default is ``false``.
-  +   ``load_balancing.cross_zone.enabled`` - Indicates whether cross-zone load balancing is enabled. The possible values are ``true`` and ``false``. The default for Network Load Balancers and Gateway Load Balancers is ``false``. The default for Application Load Balancers is ``true``, and cannot be changed.
+  +   ``load_balancing.cross_zone.enabled`` - Indicates whether cross-zone load balancing is enabled. The possible values are ``true`` and ``false``. The default for Network Load Balancers and Gateway Load Balancers is ``false``. The default for Application Load Balancers is ``true``, and can't be changed.
   
  The following attributes are supported by both Application Load Balancers and Network Load Balancers:
   +   ``access_logs.s3.enabled`` - Indicates whether access logs are enabled. The value is ``true`` or ``false``. The default is ``false``.
@@ -325,6 +329,7 @@
   
  The following attributes are supported by only Network Load Balancers:
   +   ``dns_record.client_routing_policy`` - Indicates how traffic is distributed among the load balancer Availability Zones. The possible values are ``availability_zone_affinity`` with 100 percent zonal affinity, ``partial_availability_zone_affinity`` with 85 percent zonal affinity, and ``any_availability_zone`` with 0 percent zonal affinity.
+  +   ``zonal_shift.config.enabled`` - Indicates whether zonal shift is enabled. The possible values are ``true`` and ``false``. The default is ``false``.
 * **Value**: string: The value of the attribute.
 
 ## Matcher
@@ -358,7 +363,7 @@
 * **Host**: string: The hostname. This component is not percent-encoded. The hostname can contain #{host}.
 * **Path**: string: The absolute path, starting with the leading "/". This component is not percent-encoded. The path can contain #{host}, #{path}, and #{port}.
 * **Port**: string: The port. You can specify a value from 1 to 65535 or #{port}.
-* **Protocol**: string: The protocol. You can specify HTTP, HTTPS, or #{protocol}. You can redirect HTTP to HTTP, HTTP to HTTPS, and HTTPS to HTTPS. You cannot redirect HTTPS to HTTP.
+* **Protocol**: string: The protocol. You can specify HTTP, HTTPS, or #{protocol}. You can redirect HTTP to HTTP, HTTP to HTTPS, and HTTPS to HTTPS. You can't redirect HTTPS to HTTP.
 * **Query**: string: The query parameters, URL-encoded when necessary, but not percent-encoded. Do not include the leading "?", as it is automatically added. You can specify any of the reserved keywords.
 * **StatusCode**: string (Required): The HTTP redirect code. The redirect is either permanent (HTTP 301) or temporary (HTTP 302).
 
@@ -367,7 +372,7 @@
 * **Host**: string: The hostname. This component is not percent-encoded. The hostname can contain #{host}.
 * **Path**: string: The absolute path, starting with the leading "/". This component is not percent-encoded. The path can contain #{host}, #{path}, and #{port}.
 * **Port**: string: The port. You can specify a value from 1 to 65535 or #{port}.
-* **Protocol**: string: The protocol. You can specify HTTP, HTTPS, or #{protocol}. You can redirect HTTP to HTTP, HTTP to HTTPS, and HTTPS to HTTPS. You cannot redirect HTTPS to HTTP.
+* **Protocol**: string: The protocol. You can specify HTTP, HTTPS, or #{protocol}. You can redirect HTTP to HTTP, HTTP to HTTPS, and HTTPS to HTTPS. You can't redirect HTTPS to HTTP.
 * **Query**: string: The query parameters, URL-encoded when necessary, but not percent-encoded. Do not include the leading "?", as it is automatically added. You can specify any of the reserved keywords.
 * **StatusCode**: string (Required): The HTTP redirect code. The redirect is either permanent (HTTP 301) or temporary (HTTP 302).
 
@@ -410,6 +415,7 @@
 * **AllocationId**: string: [Network Load Balancers] The allocation ID of the Elastic IP address for an internet-facing load balancer.
 * **IPv6Address**: string: [Network Load Balancers] The IPv6 address.
 * **PrivateIPv4Address**: string: [Network Load Balancers] The private IPv4 address for an internal load balancer.
+* **SourceNatIpv6Prefix**: string: [Network Load Balancers with UDP listeners] The IPv6 prefix to use for source NAT. Specify an IPv6 prefix (/80 netmask) from the subnet CIDR block or ``auto_assigned`` to use an IPv6 prefix selected at random from the subnet CIDR block.
 * **SubnetId**: string (Required): The ID of the subnet.
 
 ## Tag

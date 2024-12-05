@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTWireless-WirelessGateway",
   "type": "AWS::IoTWireless::WirelessGateway",
-  "time": "2024-10-21T17:30:26.048Z",
+  "time": "2024-11-12T23:29:59.705Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -45,8 +45,7 @@
       "create": {
         "permissions": [
           "iotwireless:CreateWirelessGateway",
-          "iotwireless:TagResource",
-          "iotwireless:ListTagsForResource"
+          "iotwireless:TagResource"
         ]
       },
       "delete": {
@@ -69,10 +68,11 @@
       },
       "update": {
         "permissions": [
+          "iotwireless:GetWirelessGateway",
           "iotwireless:UpdateWirelessGateway",
-          "iotwireless:UntagResource",
-          "iotwireless:ListTagsForResource",
-          "iotwireless:AssociateWirelessGatewayWithThing"
+          "iotwireless:AssociateWirelessGatewayWithThing",
+          "iotwireless:TagResource",
+          "iotwireless:UntagResource"
         ]
       }
     },
@@ -134,7 +134,18 @@
       "LoRaWAN"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "iotwireless:TagResource",
+        "iotwireless:UntagResource",
+        "iotwireless:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::IoTWireless::WirelessGateway"
   }
 }
