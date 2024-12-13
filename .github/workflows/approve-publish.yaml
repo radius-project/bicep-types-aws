@@ -1,0 +1,23 @@
+name: Approve Publish Bicep Types
+
+on:
+  pull_request:
+    branches:
+      - main
+      - features/*
+      - release/*
+
+jobs:
+  approve-publish:
+    name: "Approve Publish Bicep Types"
+    runs-on: ubuntu-latest
+    environment: publish-bicep
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Save PR number
+        uses: ./.github/actions/save-pr-as-artifact
+        
+      - name: Publish Bicep
+        run: echo "Publishing Bicep types..."
