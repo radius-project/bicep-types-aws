@@ -1,0 +1,229 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "ResourceTag",
+    "properties": {
+      "ResourceTagKey": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The tag key of the resource."
+      },
+      "ResourceTagValue": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The tag value of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RetentionPeriod",
+    "properties": {
+      "RetentionPeriodUnit": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The retention period unit of the rule"
+      },
+      "RetentionPeriodValue": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The retention period value of the rule."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "A unique identifier for the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "String which you can use to describe or define the tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UnlockDelay",
+    "properties": {
+      "UnlockDelayUnit": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 4,
+        "description": "The unit of time in which to measure the unlock delay. Currently, the unlock delay can be measure only in days."
+      },
+      "UnlockDelayValue": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The unlock delay period, measured in the unit specified for UnlockDelayUnit."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Rbin/RuleProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Rbin/RuleProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18,
+        "description": "Rule Arn is unique for each rule."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The description of the retention rule."
+      },
+      "ExcludeResourceTags": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "Information about the exclude resource tags used to identify resources that are excluded by the retention rule."
+      },
+      "Identifier": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The unique ID of the retention rule."
+      },
+      "LockConfiguration": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 4,
+        "description": "Information about the retention rule lock configuration."
+      },
+      "LockState": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The lock state for the retention rule."
+      },
+      "ResourceTags": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Information about the resource tags used to identify resources that are retained by the retention rule."
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The resource type retained by the retention rule."
+      },
+      "RetentionPeriod": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Information about the retention period for which the retention rule is to retain resources."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The state of the retention rule. Only retention rules that are in the available state retain resources."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Information about the tags assigned to the retention rule."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Rbin/Rule",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Rbin/Rule@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/11"
+    },
+    "flags": 0
+  }
+]

@@ -10,6 +10,7 @@
 ## AWS.ApplicationSignals/ServiceLevelObjectiveProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The ARN of this SLO.
+* **BurnRateConfigurations**: [BurnRateConfiguration](#burnrateconfiguration)[]
 * **CreatedTime**: int (ReadOnly): Epoch time in seconds of the time that this SLO was created
 * **Description**: string: An optional description for this SLO. Default is 'No description'
 * **EvaluationType**: string (ReadOnly): Displays whether this is a period-based SLO or a request-based SLO.
@@ -19,6 +20,10 @@
 * **RequestBasedSli**: [RequestBasedSli](#requestbasedsli)
 * **Sli**: [Sli](#sli)
 * **Tags**: [Tag](#tag)[]
+
+## BurnRateConfiguration
+### Properties
+* **LookBackWindowMinutes**: int (Required): The number of minutes to use as the look-back window.
 
 ## CalendarInterval
 ### Properties

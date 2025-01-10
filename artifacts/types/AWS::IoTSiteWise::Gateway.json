@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTSiteWise-Gateway",
   "type": "AWS::IoTSiteWise::Gateway",
-  "time": "2024-10-15T22:18:59.635Z",
+  "time": "2024-11-29T00:46:31.638Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -153,7 +153,8 @@
       },
       "list": {
         "permissions": [
-          "iotsitewise:ListGateways"
+          "iotsitewise:ListGateways",
+          "iotsitewise:ListTagsForResource"
         ]
       },
       "read": {
@@ -218,7 +219,18 @@
       "GatewayPlatform"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-IoTSiteWise.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "iotsitewise:TagResource",
+        "iotsitewise:UntagResource",
+        "iotsitewise:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::IoTSiteWise::Gateway"
   }
 }

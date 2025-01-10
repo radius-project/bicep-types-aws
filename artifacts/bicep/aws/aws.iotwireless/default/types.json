@@ -123,6 +123,248 @@
   },
   {
     "$type": "ObjectType",
+    "name": "FactoryPresetFreq",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LoRaWANDeviceProfile",
+    "properties": {
+      "ClassBTimeout": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "ClassCTimeout": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "FactoryPresetFreqsList": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      },
+      "MacVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "MaxDutyCycle": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "MaxEirp": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "PingSlotDr": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "PingSlotFreq": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "PingSlotPeriod": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "RegParamsRevision": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "RfRegion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "RxDataRate2": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "RxDelay1": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "RxDrOffset1": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "RxFreq2": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "Supports32BitFCnt": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "SupportsClassB": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "SupportsClassC": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "SupportsJoin": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IoTWireless/DeviceProfileProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/9"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoTWireless/DeviceProfileProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Service profile Arn. Returned after successful create."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Service profile Id. Returned after successful create."
+      },
+      "LoRaWAN": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "LoRaWANDeviceProfile supports all LoRa specific attributes for service profile for CreateDeviceProfile operation"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Name of service profile"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "A list of key-value pairs that contain metadata for the device profile."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoTWireless/DeviceProfile",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IoTWireless/DeviceProfile@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/16"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "LoRaWAN",
     "properties": {
       "RfRegion": {
@@ -166,7 +408,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/19"
     }
   },
   {
@@ -245,7 +487,7 @@
       },
       "LoRaWAN": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 1,
         "description": "FUOTA task LoRaWAN"
@@ -259,7 +501,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the FUOTA task."
@@ -286,7 +528,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/22"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -298,7 +540,7 @@
     "name": "AWS.IoTWireless/FuotaTask@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/12"
+      "$ref": "#/23"
     },
     "flags": 0
   },
@@ -315,14 +557,14 @@
       },
       "NumberOfDevicesInGroup": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "Multicast group number of devices in group. Returned after successful read."
       },
       "NumberOfDevicesRequested": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "Multicast group number of devices requested. Returned after successful read."
@@ -355,16 +597,13 @@
     }
   },
   {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.IoTWireless/MulticastGroupProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/15"
+      "$ref": "#/26"
     }
   },
   {
@@ -408,7 +647,7 @@
       },
       "LoRaWAN": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "Multicast group LoRaWAN"
@@ -429,7 +668,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the Multicast group."
@@ -456,7 +695,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/29"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -468,7 +707,7 @@
     "name": "AWS.IoTWireless/MulticastGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/30"
     },
     "flags": 0
   },
@@ -509,7 +748,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/33"
     }
   },
   {
@@ -569,28 +808,28 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "TraceContent": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "Trace content for your wireless gateway and wireless device resources"
       },
       "WirelessDevices": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "List of wireless gateway resources that have been added to the network analyzer configuration"
       },
       "WirelessGateways": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "List of wireless gateway resources that have been added to the network analyzer configuration"
@@ -617,7 +856,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/40"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -629,7 +868,454 @@
     "name": "AWS.IoTWireless/NetworkAnalyzerConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/31"
+      "$ref": "#/41"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LoRaWANServiceProfile",
+    "properties": {
+      "AddGwMetadata": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "ChannelMask": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "DevStatusReqFreq": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2
+      },
+      "DlBucketSize": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2
+      },
+      "DlRate": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2
+      },
+      "DlRatePolicy": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "DrMax": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2
+      },
+      "DrMin": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2
+      },
+      "HrAllowed": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 2
+      },
+      "MinGwDiversity": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2
+      },
+      "NwkGeoLoc": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 2
+      },
+      "PrAllowed": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "RaAllowed": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "ReportDevStatusBattery": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 2
+      },
+      "ReportDevStatusMargin": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 2
+      },
+      "TargetPer": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2
+      },
+      "UlBucketSize": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2
+      },
+      "UlRate": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2
+      },
+      "UlRatePolicy": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IoTWireless/ServiceProfileProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/44"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoTWireless/ServiceProfileProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Service profile Arn. Returned after successful create."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Service profile Id. Returned after successful create."
+      },
+      "LoRaWAN": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "LoRaWAN supports all LoRa specific attributes for service profile for CreateServiceProfile operation"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Name of service profile"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "A list of key-value pairs that contain metadata for the service profile."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoTWireless/ServiceProfile",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IoTWireless/ServiceProfile@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/48"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LoRaWANGatewayVersion",
+    "properties": {
+      "Model": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "PackageVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Station": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LoRaWANUpdateGatewayTaskCreate",
+    "properties": {
+      "CurrentVersion": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0
+      },
+      "SigKeyCrc": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "UpdateSignature": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "UpdateVersion": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LoRaWANUpdateGatewayTaskEntry",
+    "properties": {
+      "CurrentVersion": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0
+      },
+      "UpdateVersion": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UpdateWirelessGatewayTaskCreate",
+    "properties": {
+      "LoRaWAN": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 0
+      },
+      "UpdateDataRole": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "UpdateDataSource": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IoTWireless/TaskDefinitionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/53"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoTWireless/TaskDefinitionProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "TaskDefinition arn. Returned after successful create."
+      },
+      "AutoCreateTasks": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1,
+        "description": "Whether to automatically create tasks using this task definition for all gateways with the specified current version. If false, the task must me created by calling CreateWirelessGatewayTask."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The ID of the new wireless gateway task definition"
+      },
+      "LoRaWANUpdateGatewayTaskEntry": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0,
+        "description": "The list of task definitions."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the new resource."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0,
+        "description": "A list of key-value pairs that contain metadata for the destination."
+      },
+      "TaskDefinitionType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A filter to list only the wireless gateway task definitions that use this task definition type"
+      },
+      "Update": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0,
+        "description": "Information about the gateways to update."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoTWireless/TaskDefinition",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IoTWireless/TaskDefinition@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/58"
     },
     "flags": 0
   },
@@ -645,7 +1331,7 @@
       },
       "SessionKeys": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/67"
         },
         "flags": 1
       }
@@ -663,9 +1349,49 @@
       },
       "SessionKeys": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/68"
         },
         "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Application",
+    "properties": {
+      "DestinationName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the position data destination that describes the AWS IoT rule that processes the device's position data for use by AWS IoT Core for LoRaWAN."
+      },
+      "FPort": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The Fport value."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Application type, which can be specified to obtain real-time position information of your LoRaWAN device."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FPorts",
+    "properties": {
+      "Applications": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 0,
+        "description": "A list of optional LoRaWAN application information, which can be used for geolocation."
       }
     }
   },
@@ -675,13 +1401,13 @@
     "properties": {
       "AbpV10x": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/60"
         },
         "flags": 0
       },
       "AbpV11": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/61"
         },
         "flags": 0
       },
@@ -697,15 +1423,21 @@
         },
         "flags": 0
       },
+      "FPorts": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0
+      },
       "OtaaV10x": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "OtaaV11": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/66"
         },
         "flags": 0
       },
@@ -826,13 +1558,19 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/62"
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.IoTWireless/WirelessDeviceProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/40"
+      "$ref": "#/69"
     }
   },
   {
@@ -876,7 +1614,7 @@
       },
       "LoRaWAN": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "The combination of Package, Station and Model which represents the version of the LoRaWAN Wireless Device."
@@ -888,9 +1626,16 @@
         "flags": 0,
         "description": "Wireless device name"
       },
+      "Positioning": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "FPort values for the GNSS, stream, and ClockSync functions of the positioning information."
+      },
       "Tags": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the device. Currently not supported, will not create if tags are passed."
@@ -938,7 +1683,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/73"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -950,7 +1695,7 @@
     "name": "AWS.IoTWireless/WirelessDevice@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/44"
+      "$ref": "#/74"
     },
     "flags": 0
   },
@@ -997,7 +1742,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
+      "$ref": "#/77"
     }
   },
   {
@@ -1034,7 +1779,7 @@
       },
       "LoRaWAN": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/76"
         },
         "flags": 1,
         "description": "The combination of Package, Station and Model which represents the version of the LoRaWAN Wireless Gateway."
@@ -1048,7 +1793,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/79"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the gateway."
@@ -1089,7 +1834,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/80"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1101,7 +1846,7 @@
     "name": "AWS.IoTWireless/WirelessGateway@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/51"
+      "$ref": "#/81"
     },
     "flags": 0
   }

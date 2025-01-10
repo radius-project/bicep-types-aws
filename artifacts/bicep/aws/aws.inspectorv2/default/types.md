@@ -40,7 +40,7 @@
 ## CisTargets
 ### Properties
 * **AccountIds**: string[] (Required)
-* **TargetResourceTags**: [CisScanConfiguration_TargetResourceTags](#cisscanconfigurationtargetresourcetags)
+* **TargetResourceTags**: [CisScanConfiguration_TargetResourceTags](#cisscanconfigurationtargetresourcetags) (Required)
 
 ## DailySchedule
 ### Properties

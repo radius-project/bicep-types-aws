@@ -716,6 +716,12 @@
 * **RoleArn**: string (Required)
 * **Type**: string (Required)
 
+## PropagatingAttribute
+### Properties
+* **ConnectionAttribute**: string
+* **ThingAttribute**: string
+* **UserPropertyKey**: string (Required)
+
 ## ProvisioningHook
 ### Properties
 * **PayloadVersion**: string
@@ -784,6 +790,8 @@
 ## ServerCertificateConfig
 ### Properties
 * **EnableOCSPCheck**: bool
+* **OcspAuthorizedResponderArn**: string
+* **OcspLambdaArn**: string
 
 ## ServerCertificateSummary
 ### Properties
@@ -927,8 +935,13 @@
 
 ## ThingType_ThingTypeProperties
 ### Properties
+* **Mqtt5Configuration**: [ThingType_ThingTypeProperties_Mqtt5Configuration](#thingtypethingtypepropertiesmqtt5configuration)
 * **SearchableAttributes**: string[]
 * **ThingTypeDescription**: string
+
+## ThingType_ThingTypeProperties_Mqtt5Configuration
+### Properties
+* **PropagatingAttributes**: [PropagatingAttribute](#propagatingattribute)[]
 
 ## Timestamp
 ### Properties

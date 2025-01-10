@@ -49,14 +49,21 @@
 ### Properties
 * **CapacityDistributionStrategy**: string
 
+## AvailabilityZoneImpairmentPolicy
+### Properties
+* **ImpairedZoneHealthCheckBehavior**: string (Required)
+* **ZonalShiftEnabled**: bool (Required)
+
 ## AWS.AutoScaling/AutoScalingGroupProperties
 ### Properties
 * **AutoScalingGroupName**: string (Identifier): The name of the Auto Scaling group. This name must be unique per Region per account.
  The name can contain any ASCII character 33 to 126 including most punctuation characters, digits, and upper and lowercased letters.
   You cannot use a colon (:) in the name.
 * **AvailabilityZoneDistribution**: [AvailabilityZoneDistribution](#availabilityzonedistribution)
+* **AvailabilityZoneImpairmentPolicy**: [AvailabilityZoneImpairmentPolicy](#availabilityzoneimpairmentpolicy)
 * **AvailabilityZones**: string[]: A list of Availability Zones where instances in the Auto Scaling group can be created. Used for launching into the default VPC subnet in each Availability Zone when not using the ``VPCZoneIdentifier`` property, or for attaching a network interface when an existing network interface ID is specified in a launch template.
 * **CapacityRebalance**: bool: Indicates whether Capacity Rebalancing is enabled. Otherwise, Capacity Rebalancing is disabled. When you turn on Capacity Rebalancing, Amazon EC2 Auto Scaling attempts to launch a Spot Instance whenever Amazon EC2 notifies that a Spot Instance is at an elevated risk of interruption. After launching a new instance, it then terminates an old instance. For more information, see [Use Capacity Rebalancing to handle Amazon EC2 Spot Interruptions](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-capacity-rebalancing.html) in the in the *Amazon EC2 Auto Scaling User Guide*.
+* **CapacityReservationSpecification**: [CapacityReservationSpecification](#capacityreservationspecification)
 * **Context**: string: Reserved.
 * **Cooldown**: string: *Only needed if you use simple scaling policies.* 
  The amount of time, in seconds, between one scaling activity ending and another one starting due to simple scaling policies. For more information, see [Scaling cooldowns for Amazon EC2 Auto Scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scaling-cooldowns.html) in the *Amazon EC2 Auto Scaling User Guide*.
@@ -99,6 +106,7 @@
 * **PlacementGroup**: string: The name of the placement group into which to launch your instances. For more information, see [Placement groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html) in the *Amazon EC2 User Guide for Linux Instances*.
   A *cluster* placement group is a logical grouping of instances within a single Availability Zone. You cannot specify multiple Availability Zones and a cluster placement group.
 * **ServiceLinkedRoleARN**: string: The Amazon Resource Name (ARN) of the service-linked role that the Auto Scaling group uses to call other AWS service on your behalf. By default, Amazon EC2 Auto Scaling uses a service-linked role named ``AWSServiceRoleForAutoScaling``, which it creates if it does not exist. For more information, see [Service-linked roles](https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-service-linked-role.html) in the *Amazon EC2 Auto Scaling User Guide*.
+* **SkipZonalShiftValidation**: bool (WriteOnly)
 * **Tags**: [TagProperty](#tagproperty)[]: One or more tags. You can tag your Auto Scaling group and propagate the tags to the Amazon EC2 instances it launches. Tags are not propagated to Amazon EBS volumes. To add tags to Amazon EBS volumes, specify the tags in a launch template but use caution. If the launch template specifies an instance tag with a key that is also specified for the Auto Scaling group, Amazon EC2 Auto Scaling overrides the value of that instance tag with the value specified by the Auto Scaling group. For more information, see [Tag Auto Scaling groups and instances](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-tagging.html) in the *Amazon EC2 Auto Scaling User Guide*.
 * **TargetGroupARNs**: string[]: The Amazon Resource Names (ARN) of the Elastic Load Balancing target groups to associate with the Auto Scaling group. Instances are registered as targets with the target groups. The target groups receive incoming traffic and route requests to one or more registered targets. For more information, see [Use Elastic Load Balancing to distribute traffic across the instances in your Auto Scaling group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html) in the *Amazon EC2 Auto Scaling User Guide*.
 * **TerminationPolicies**: string[]: A policy or a list of policies that are used to select the instance to terminate. These policies are executed in the order that you list them. For more information, see [Configure termination policies for Amazon EC2 Auto Scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-termination-policies.html) in the *Amazon EC2 Auto Scaling User Guide*.
@@ -161,12 +169,31 @@
 * **Max**: int: The maximum value in Mbps.
 * **Min**: int: The minimum value in Mbps.
 
+## BaselinePerformanceFactorsRequest
+### Properties
+* **Cpu**: [CpuPerformanceFactorRequest](#cpuperformancefactorrequest)
+
+## CapacityReservationSpecification
+### Properties
+* **CapacityReservationPreference**: string (Required)
+* **CapacityReservationTarget**: [CapacityReservationTarget](#capacityreservationtarget)
+
+## CapacityReservationTarget
+### Properties
+* **CapacityReservationIds**: string[]
+* **CapacityReservationResourceGroupArns**: string[]
+
+## CpuPerformanceFactorRequest
+### Properties
+* **References**: [PerformanceFactorReferenceRequest](#performancefactorreferencerequest)[]
+
 ## CustomizedMetricSpecification
 ### Properties
 * **Dimensions**: [MetricDimension](#metricdimension)[]
 * **MetricName**: string
 * **Metrics**: [TargetTrackingMetricDataQuery](#targettrackingmetricdataquery)[]
 * **Namespace**: string
+* **Period**: int
 * **Statistic**: string
 * **Unit**: string
 
@@ -215,6 +242,7 @@
  Default: ``excluded``
 * **BaselineEbsBandwidthMbps**: [BaselineEbsBandwidthMbpsRequest](#baselineebsbandwidthmbpsrequest): The minimum and maximum baseline bandwidth performance for an instance type, in Mbps. For more information, see [Amazon EBS–optimized instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html) in the *Amazon EC2 User Guide for Linux Instances*.
  Default: No minimum or maximum limits
+* **BaselinePerformanceFactors**: [BaselinePerformanceFactorsRequest](#baselineperformancefactorsrequest)
 * **BurstablePerformance**: string: Indicates whether burstable performance instance types are included, excluded, or required. For more information, see [Burstable performance instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html) in the *Amazon EC2 User Guide for Linux Instances*.
  Default: ``excluded``
 * **CpuManufacturers**: string[]: Lists which specific CPU manufacturers to include.
@@ -423,6 +451,10 @@
   +   ``autoscaling:TEST_NOTIFICATION``
 * **TopicARN**: string | string[] (Required): The Amazon Resource Name (ARN) of the Amazon SNS topic.
 
+## PerformanceFactorReferenceRequest
+### Properties
+* **InstanceFamily**: string
+
 ## PredefinedMetricSpecification
 ### Properties
 * **PredefinedMetricType**: string (Required)
@@ -498,11 +530,13 @@
 * **Id**: string (Required)
 * **Label**: string
 * **MetricStat**: [TargetTrackingMetricStat](#targettrackingmetricstat)
+* **Period**: int
 * **ReturnData**: bool
 
 ## TargetTrackingMetricStat
 ### Properties
 * **Metric**: [Metric](#metric) (Required)
+* **Period**: int
 * **Stat**: string (Required)
 * **Unit**: string
 

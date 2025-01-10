@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTSiteWise-Dashboard",
   "type": "AWS::IoTSiteWise::Dashboard",
-  "time": "2024-10-15T22:09:03.514Z",
+  "time": "2024-11-20T18:34:20.593Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -53,7 +53,8 @@
       },
       "list": {
         "permissions": [
-          "iotsitewise:ListDashboards"
+          "iotsitewise:ListDashboards",
+          "iotsitewise:ListTagsForResource"
         ]
       },
       "read": {
@@ -124,7 +125,18 @@
       "DashboardName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-iotsitewise.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "iotsitewise:TagResource",
+        "iotsitewise:UntagResource",
+        "iotsitewise:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::IoTSiteWise::Dashboard"
   }
 }

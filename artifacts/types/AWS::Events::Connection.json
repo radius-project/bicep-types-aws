@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Events-Connection",
   "type": "AWS::Events::Connection",
-  "time": "2024-10-31T19:26:31.619Z",
+  "time": "2024-11-24T09:07:09.861Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -53,6 +53,9 @@
           },
           "BasicAuthParameters": {
             "$ref": "#/definitions/BasicAuthParameters"
+          },
+          "ConnectivityParameters": {
+            "$ref": "#/definitions/ConnectivityParameters"
           },
           "InvocationHttpParameters": {
             "$ref": "#/definitions/ConnectionHttpParameters"
@@ -123,6 +126,18 @@
         },
         "type": "object"
       },
+      "ConnectivityParameters": {
+        "additionalProperties": false,
+        "properties": {
+          "ResourceParameters": {
+            "$ref": "#/definitions/ResourceParameters"
+          }
+        },
+        "required": [
+          "ResourceParameters"
+        ],
+        "type": "object"
+      },
       "OAuthParameters": {
         "additionalProperties": false,
         "properties": {
@@ -171,6 +186,26 @@
         "required": [
           "Key",
           "Value"
+        ],
+        "type": "object"
+      },
+      "ResourceParameters": {
+        "additionalProperties": false,
+        "properties": {
+          "ResourceAssociationArn": {
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:servicenetworkresourceassociation/snra-[0-9a-z]{17}$",
+            "type": "string"
+          },
+          "ResourceConfigurationArn": {
+            "maxLength": 2048,
+            "pattern": "^arn:[a-z0-9f\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:resourceconfiguration/rcfg-[0-9a-z]{17}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ResourceConfigurationArn"
         ],
         "type": "object"
       }
@@ -239,6 +274,19 @@
         "maxLength": 512,
         "type": "string"
       },
+      "InvocationConnectivityParameters": {
+        "additionalProperties": false,
+        "description": "The private resource the HTTP request will be sent to.",
+        "properties": {
+          "ResourceParameters": {
+            "$ref": "#/definitions/ResourceParameters"
+          }
+        },
+        "required": [
+          "ResourceParameters"
+        ],
+        "type": "object"
+      },
       "Name": {
         "description": "Name of the connection.",
         "maxLength": 64,
@@ -248,13 +296,15 @@
       },
       "SecretArn": {
         "description": "The arn of the secrets manager secret created in the customer account.",
-        "pattern": "^arn:aws([a-z]|\\-)*:secretsmanager:([a-z]|\\d|\\-)*:([0-9]{12})?:secret:[\\/_+=\\.@\\-A-Za-z0-9]+$",
+        "pattern": "^arn:aws([a-z]|\\-)*:secretsmanager:([a-z]|\\d|\\-)*:([0-9]{12})?:secret:([a-z]|\\d|\\-)*(!)*[\\/_+=\\.@\\-A-Za-z0-9]+$",
         "type": "string"
       }
     },
     "readOnlyProperties": [
       "/properties/Arn",
-      "/properties/SecretArn"
+      "/properties/SecretArn",
+      "/properties/AuthParameters/ConnectivityParameters/ResourceParameters/ResourceAssociationArn",
+      "/properties/InvocationConnectivityParameters/ResourceParameters/ResourceAssociationArn"
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
@@ -264,7 +314,13 @@
     },
     "typeName": "AWS::Events::Connection",
     "writeOnlyProperties": [
-      "/properties/AuthParameters"
+      "/properties/AuthParameters/BasicAuthParameters/Password",
+      "/properties/AuthParameters/ApiKeyAuthParameters/ApiKeyValue",
+      "/properties/AuthParameters/OAuthParameters/ClientParameters/ClientSecret",
+      "/properties/AuthParameters/OAuthParameters/OAuthHttpParameters/HeaderParameters",
+      "/properties/AuthParameters/OAuthParameters/OAuthHttpParameters/QueryStringParameters",
+      "/properties/AuthParameters/OAuthParameters/OAuthHttpParameters/BodyParameters",
+      "/properties/AuthParameters/InvocationHttpParameters"
     ]
   }
 }

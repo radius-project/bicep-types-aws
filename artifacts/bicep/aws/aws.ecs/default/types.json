@@ -688,14 +688,14 @@
       },
       "SecurityGroups": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "The IDs of the security groups associated with the task or service. If you don't specify a security group, the default security group for the VPC is used. There's a limit of 5 security groups that can be specified per ``awsvpcConfiguration``.\n  All specified security groups must be from the same VPC."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "The IDs of the subnets associated with the task or service. There's a limit of 16 subnets that can be specified per ``awsvpcConfiguration``.\n  All specified subnets must be from the same VPC."
@@ -735,7 +735,7 @@
     "properties": {
       "AlarmNames": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/70"
         },
         "flags": 1,
         "description": "One or more CloudWatch alarm names. Use a \",\" to separate the alarms."
@@ -843,7 +843,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "The tags applied to this Amazon EBS volume. ``AmazonECSCreated`` and ``AmazonECSManaged`` are reserved tags that can't be used."
@@ -873,7 +873,7 @@
           "$ref": "#/3"
         },
         "flags": 0,
-        "description": "The name of the load balancer to associate with the service or task set.\n If you are using an Application Load Balancer or a Network Load Balancer the load balancer name parameter should be omitted."
+        "description": "The name of the load balancer to associate with the Amazon ECS service or task set.\n If you are using an Application Load Balancer or a Network Load Balancer the load balancer name parameter should be omitted."
       },
       "TargetGroupArn": {
         "type": {
@@ -897,14 +897,14 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "The configuration options to send to the log driver.\n The options you can specify depend on the log driver. Some of the options you can specify when you use the ``awslogs`` log driver to route logs to Amazon CloudWatch include the following:\n  + awslogs-create-group Required: No Specify whether you want the log group to be created automatically. If this option isn't specified, it defaults to false. Your IAM policy must include the logs:CreateLogGroup permission before you attempt to use awslogs-create-group. + awslogs-region Required: Yes Specify the Region that the awslogs log driver is to send your Docker logs to. You can choose to send all of your logs from clusters in different Regions to a single region in CloudWatch Logs. This is so that they're all visible in one location. Otherwise, you can separate them by Region for more granularity. Make sure that the specified log group exists in the Region that you specify with this option. + awslogs-group Required: Yes Make sure to specify a log group that the awslogs log driver sends its log streams to. + awslogs-stream-prefix Required: Yes, when using the Fargate launch type.Optional for the EC2 launch type, required for the Fargate launch type. Use the awslogs-stream-prefix option to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task that the container belongs to. If you specify a prefix with this option, then the log stream takes the format prefix-name/container-name/ecs-task-id. If you don't specify a prefix with this option, then the log stream is named after the container ID that's assigned by the Docker daemon on the container instance. Because it's difficult to trace logs back to the container that sent them with just the Docker container ID (which is only available on the container instance), we recommend that you specify a prefix with this option. For Amazon ECS services, you can use the service name as the prefix. Doing so, you can trace log streams to the service that the container belongs to, the name of the container that sent them, and the ID of the task that the container belongs to. You must specify a stream-prefix for your logs to have your logs appear in the Log pane when using the Amazon ECS console. + awslogs-datetime-format Required: No This option defines a multiline start pattern in Python strftime format. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern. The matched line is the delimiter between log messages. One example of a use case for using this format is for parsing output such as a stack dump, which might otherwise be logged in multiple entries. The correct pattern allows it to be captured in a single entry. For more information, see awslogs-datetime-format. You cannot configure both the awslogs-datetime-format and awslogs-multiline-pattern options. Multiline logging performs regular expression parsing and matching of all log messages. This might have a negative impact on logging performance. + awslogs-multiline-pattern Required: No This option defines a multiline start pattern that uses a regular expression. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern. The matched line is the delimiter between log messages. For more information, see awslogs-multiline-pattern. This option is ignored if awslogs-datetime-format is also configured. You cannot configure both the awslogs-datetime-format and awslogs-multiline-pattern options. Multiline logging performs regular expression parsing and matching of all log messages. This might have a negative impact on logging performance. + mode Required: No Valid values: non-blocking | blocking This option defines the delivery mode of log messages from the container to CloudWatch Logs. The delivery mode you choose affects application availability when the flow of logs from container to CloudWatch is interrupted. If you use the blocking mode and the flow of logs to CloudWatch is interrupted, calls from container code to write to the stdout and stderr streams will block. The logging thread of the application will block as a result. This may cause the application to become unresponsive and lead to container healthcheck failure. If you use the non-blocking mode, the container's logs are instead stored in an in-memory intermediate buffer configured with the max-buffer-size option. This prevents the application from becoming unresponsive when logs cannot be sent to CloudWatch. We recommend using this mode if you want to ensure service availability and are okay with some log loss. For more information, see Preventing log loss with non-blocking mode in the awslogs container log driver. + max-buffer-size Required: No Default value: 1m When non-blocking mode is used, the max-buffer-size log option controls the size of the buffer that's used for intermediate message storage. Make sure to specify an adequate buffer size based on your application. When the buffer fills up, further logs cannot be stored. Logs that cannot be stored are lost. \n To route logs using the ``splunk`` log router, you need to specify a ``splunk-token`` and a ``splunk-url``.\n When you use the ``awsfirelens`` log router to route logs to an AWS Service or AWS Partner Network destination for log storage and analytics, you can set the ``log-driver-buffer-limit`` option to limit the number of events that are buffered in memory, before being sent to the log router container. It can help to resolve potential log loss issue because high throughput might result in memory running out for the buffer inside of Docker.\n Other options you can specify when using ``awsfirelens`` to route logs depend on the destination. When you export logs to Amazon Data Firehose, you can specify the AWS Region with ``region`` and a name for the log stream with ``delivery_stream``.\n When you export logs to Amazon Kinesis Data Streams, you can specify an AWS Region with ``region`` and a data stream name with ``stream``.\n  When you export logs to Amazon OpenSearch Service, you can specify options like ``Name``, ``Host`` (OpenSearch Service endpoint without protocol), ``Port``, ``Index``, ``Type``, ``Aws_auth``, ``Aws_region``, ``Suppress_Type_Name``, and ``tls``.\n When you export logs to Amazon S3, you can specify the bucket using the ``bucket`` option. You can also specify ``region``, ``total_file_size``, ``upload_timeout``, and ``use_put_object`` as options.\n This parameter requires version 1.19 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'``"
       },
       "SecretOptions": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "The secrets to pass to the log configuration. For more information, see [Specifying sensitive data](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html) in the *Amazon Elastic Container Service Developer Guide*."
@@ -1031,7 +1031,7 @@
       },
       "Services": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "The list of Service Connect service objects. These are names and aliases (also known as endpoints) that are used by other Amazon ECS services to connect to this service. \n This field is not required for a \"client\" Amazon ECS service that's a member of a namespace only to connect to other services within the namespace. An example of this would be a frontend application that accepts incoming requests from either a load balancer that's attached to the service or by other means.\n An object selects a port from the task definition, assigns a name for the CMAPlong service, and a list of aliases (endpoints) and ports for client applications to refer to this service."
@@ -1044,7 +1044,7 @@
     "properties": {
       "ClientAliases": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "The list of client aliases for this Service Connect service. You use these to assign names that can be used by client applications. The maximum number of client aliases that you can have in this list is 1.\n Each alias (\"endpoint\") is a fully-qualified name and port number that other Amazon ECS tasks (\"clients\") can use to connect to this service.\n Each name and port mapping must be unique within the namespace.\n For each ``ServiceConnectService``, you must provide at least one ``clientAlias`` with one ``port``."
@@ -1181,7 +1181,7 @@
       },
       "TagSpecifications": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "The tags to apply to the volume. Amazon ECS applies service-managed tags by default. This parameter maps 1:1 with the ``TagSpecifications.N`` parameter of the [CreateVolume API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html) in the *Amazon EC2 API Reference*."
@@ -1297,6 +1297,30 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "VpcLatticeConfiguration",
+    "properties": {
+      "PortName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      },
+      "TargetGroupArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/3"
@@ -1396,12 +1420,25 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/67"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.ECS/ServiceProperties",
     "properties": {
+      "AvailabilityZoneRebalancing": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": ""
+      },
       "CapacityProviderStrategy": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "The capacity provider strategy to use for the service.\n If a ``capacityProviderStrategy`` is specified, the ``launchType`` parameter must be omitted. If no ``capacityProviderStrategy`` or ``launchType`` is specified, the ``defaultCapacityProviderStrategy`` for the cluster is used.\n A capacity provider strategy may contain a maximum of 6 capacity providers."
@@ -1418,7 +1455,7 @@
           "$ref": "#/48"
         },
         "flags": 0,
-        "description": "Optional deployment parameters that control how many tasks run during the deployment and the failure detection methods."
+        "description": "Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping and starting tasks."
       },
       "DeploymentController": {
         "type": {
@@ -1464,7 +1501,7 @@
       },
       "LoadBalancers": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/79"
         },
         "flags": 0,
         "description": "A list of load balancer objects to associate with the service. If you specify the ``Role`` property, ``LoadBalancers`` must be specified as well. For information about the number of load balancers that you can specify per service, see [Service Load Balancing](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html) in the *Amazon Elastic Container Service Developer Guide*."
@@ -1485,14 +1522,14 @@
       },
       "PlacementConstraints": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/80"
         },
         "flags": 0,
         "description": "An array of placement constraint objects to use for tasks in your service. You can specify a maximum of 10 constraints for each task. This limit includes constraints in the task definition and those specified at runtime."
       },
       "PlacementStrategies": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/81"
         },
         "flags": 0,
         "description": "The placement strategy objects to use for tasks in your service. You can specify a maximum of 5 strategy rules for each service."
@@ -1548,14 +1585,14 @@
       },
       "ServiceRegistries": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "The details of the service discovery registry to associate with this service. For more information, see [Service discovery](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html).\n  Each service may be associated with one service registry. Multiple service registries for each service isn't supported."
       },
       "Tags": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "The metadata that you apply to the service to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. When a service is deleted, the tags are deleted as well.\n The following basic restrictions apply to tags:\n  +  Maximum number of tags per resource - 50\n  +  For each resource, each tag key must be unique, and each tag key can have only one value.\n  +  Maximum key length - 128 Unicode characters in UTF-8\n  +  Maximum value length - 256 Unicode characters in UTF-8\n  +  If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.\n  +  Tag keys and values are case-sensitive.\n  +  Do not use ``aws:``, ``AWS:``, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit."
@@ -1569,10 +1606,17 @@
       },
       "VolumeConfigurations": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/84"
         },
         "flags": 4,
         "description": "The configuration for a volume specified in the task definition as a volume that is configured at launch time. Currently, the only supported volume type is an Amazon EBS volume."
+      },
+      "VpcLatticeConfigurations": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0,
+        "description": ""
       }
     }
   },
@@ -1596,7 +1640,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/86"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1608,7 +1652,7 @@
     "name": "AWS.ECS/Service@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/85"
+      "$ref": "#/87"
     },
     "flags": 0
   },
@@ -1638,7 +1682,7 @@
     "properties": {
       "Command": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "The command that's passed to the container. This parameter maps to ``Cmd`` in the docker container create command and the ``COMMAND`` parameter to docker run. If there are multiple arguments, each argument is a separated string in the array."
@@ -1652,14 +1696,14 @@
       },
       "CredentialSpecs": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/124"
         },
         "flags": 0,
         "description": "A list of ARNs in SSM or Amazon S3 to a credential spec (``CredSpec``) file that configures the container for Active Directory authentication. We recommend that you use this parameter instead of the ``dockerSecurityOptions``. The maximum number of ARNs is 1.\n There are two formats for each ARN.\n  + credentialspecdomainless:MyARN You use credentialspecdomainless:MyARN to provide a CredSpec with an additional section for a secret in . You provide the login credentials to the domain in the secret. Each task that runs on any container instance can join different domains. You can use this format without joining the container instance to a domain. + credentialspec:MyARN You use credentialspec:MyARN to provide a CredSpec for a single domain. You must join the container instance to the domain before you start any tasks that use this task definition. \n In both formats, replace ``MyARN`` with the ARN in SSM or Amazon S3.\n If you provide a ``credentialspecdomainless:MyARN``, the ``credspec`` must provide a ARN in ASMlong for a secret containing the username, password, and the domain to connect to. For better security, the instance isn't joined to the domain for domainless authentication. Other applications on the instance can't use the domainless credentials. You can use this parameter to run tasks on the same instance, even it the tasks need to join different domains. For more information, see [Using gMSAs for Windows Containers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/windows-gmsa.html) and [Using gMSAs for Linux Containers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/linux-gmsa.html)."
       },
       "DependsOn": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/125"
         },
         "flags": 0,
         "description": "The dependencies defined for container startup and shutdown. A container can contain multiple dependencies. When a dependency is defined for container startup, for container shutdown it is reversed.\n For tasks using the EC2 launch type, the container instances require at least version 1.26.0 of the container agent to turn on container dependencies. However, we recommend using the latest container agent version. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html) in the *Amazon Elastic Container Service Developer Guide*. If you're using an Amazon ECS-optimized Linux AMI, your instance needs at least version 1.26.0-1 of the ``ecs-init`` package. If your container instances are launched from version ``20190301`` or later, then they contain the required versions of the container agent and ``ecs-init``. For more information, see [Amazon ECS-optimized Linux AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html) in the *Amazon Elastic Container Service Developer Guide*.\n For tasks using the Fargate launch type, the task or service requires the following platforms:\n  +  Linux platform version ``1.3.0`` or later.\n  +  Windows platform version ``1.0.0`` or later.\n  \n If the task definition is used in a blue/green deployment that uses [AWS::CodeDeploy::DeploymentGroup BlueGreenDeploymentConfiguration](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-bluegreendeploymentconfiguration.html), the ``dependsOn`` parameter is not supported. For more information see [Issue #680](https://docs.aws.amazon.com/https://github.com/aws-cloudformation/cloudformation-coverage-roadmap/issues/680) on the on the GitHub website."
@@ -1673,49 +1717,49 @@
       },
       "DnsSearchDomains": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/126"
         },
         "flags": 0,
         "description": "A list of DNS search domains that are presented to the container. This parameter maps to ``DnsSearch`` in the docker container create command and the ``--dns-search`` option to docker run.\n  This parameter is not supported for Windows containers."
       },
       "DnsServers": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/127"
         },
         "flags": 0,
         "description": "A list of DNS servers that are presented to the container. This parameter maps to ``Dns`` in the docker container create command and the ``--dns`` option to docker run.\n  This parameter is not supported for Windows containers."
       },
       "DockerLabels": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/128"
         },
         "flags": 0,
         "description": "A key/value map of labels to add to the container. This parameter maps to ``Labels`` in the docker container create command and the ``--label`` option to docker run. This parameter requires version 1.18 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'``"
       },
       "DockerSecurityOptions": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/129"
         },
         "flags": 0,
         "description": "A list of strings to provide custom configuration for multiple security systems. This field isn't valid for containers in tasks using the Fargate launch type.\n For Linux tasks on EC2, this parameter can be used to reference custom labels for SELinux and AppArmor multi-level security systems.\n For any tasks on EC2, this parameter can be used to reference a credential spec file that configures a container for Active Directory authentication. For more information, see [Using gMSAs for Windows Containers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/windows-gmsa.html) and [Using gMSAs for Linux Containers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/linux-gmsa.html) in the *Amazon Elastic Container Service Developer Guide*.\n This parameter maps to ``SecurityOpt`` in the docker container create command and the ``--security-opt`` option to docker run.\n  The Amazon ECS container agent running on a container instance must register with the ``ECS_SELINUX_CAPABLE=true`` or ``ECS_APPARMOR_CAPABLE=true`` environment variables before containers placed on that instance can use these security options. For more information, see [Amazon ECS Container Agent Configuration](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html) in the *Amazon Elastic Container Service Developer Guide*.\n  Valid values: \"no-new-privileges\" | \"apparmor:PROFILE\" | \"label:value\" | \"credentialspec:CredentialSpecFilePath\""
       },
       "EntryPoint": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/130"
         },
         "flags": 0,
-        "description": "Early versions of the Amazon ECS container agent don't properly handle ``entryPoint`` parameters. If you have problems using ``entryPoint``, update your container agent or enter your commands and arguments as ``command`` array items instead.\n  The entry point that's passed to the container. This parameter maps to ``Entrypoint`` in tthe docker container create command and the ``--entrypoint`` option to docker run."
+        "description": "Early versions of the Amazon ECS container agent don't properly handle ``entryPoint`` parameters. If you have problems using ``entryPoint``, update your container agent or enter your commands and arguments as ``command`` array items instead.\n  The entry point that's passed to the container. This parameter maps to ``Entrypoint`` in the docker container create command and the ``--entrypoint`` option to docker run."
       },
       "Environment": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/131"
         },
         "flags": 0,
         "description": "The environment variables to pass to a container. This parameter maps to ``Env`` in the docker container create command and the ``--env`` option to docker run.\n  We don't recommend that you use plaintext environment variables for sensitive information, such as credential data."
       },
       "EnvironmentFiles": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/132"
         },
         "flags": 0,
         "description": "A list of files containing the environment variables to pass to a container. This parameter maps to the ``--env-file`` option to docker run.\n You can specify up to ten environment files. The file must have a ``.env`` file extension. Each line in an environment file contains an environment variable in ``VARIABLE=VALUE`` format. Lines beginning with ``#`` are treated as comments and are ignored.\n If there are environment variables specified using the ``environment`` parameter in a container definition, they take precedence over the variables contained within an environment file. If multiple environment files are specified that contain the same variable, they're processed from the top down. We recommend that you use unique variable names. For more information, see [Specifying Environment Variables](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/taskdef-envfiles.html) in the *Amazon Elastic Container Service Developer Guide*."
@@ -1729,21 +1773,21 @@
       },
       "ExtraHosts": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/133"
         },
         "flags": 0,
         "description": "A list of hostnames and IP address mappings to append to the ``/etc/hosts`` file on the container. This parameter maps to ``ExtraHosts`` in the docker container create command and the ``--add-host`` option to docker run.\n  This parameter isn't supported for Windows containers or tasks that use the ``awsvpc`` network mode."
       },
       "FirelensConfiguration": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/99"
         },
         "flags": 0,
         "description": "The FireLens configuration for the container. This is used to specify and configure a log router for container logs. For more information, see [Custom Log Routing](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_firelens.html) in the *Amazon Elastic Container Service Developer Guide*."
       },
       "HealthCheck": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/100"
         },
         "flags": 0,
         "description": "The container health check command and associated configuration parameters for the container. This parameter maps to ``HealthCheck`` in the docker container create command and the ``HEALTHCHECK`` parameter of docker run."
@@ -1753,7 +1797,7 @@
           "$ref": "#/3"
         },
         "flags": 0,
-        "description": "The hostname to use for your container. This parameter maps to ``Hostname`` in thethe docker container create command and the ``--hostname`` option to docker run.\n  The ``hostname`` parameter is not supported if you're using the ``awsvpc`` network mode."
+        "description": "The hostname to use for your container. This parameter maps to ``Hostname`` in the docker container create command and the ``--hostname`` option to docker run.\n  The ``hostname`` parameter is not supported if you're using the ``awsvpc`` network mode."
       },
       "Image": {
         "type": {
@@ -1771,21 +1815,21 @@
       },
       "Links": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/134"
         },
         "flags": 0,
         "description": "The ``links`` parameter allows containers to communicate with each other without the need for port mappings. This parameter is only supported if the network mode of a task definition is ``bridge``. The ``name:internalName`` construct is analogous to ``name:alias`` in Docker links. Up to 255 letters (uppercase and lowercase), numbers, underscores, and hyphens are allowed.. This parameter maps to ``Links`` in the docker container create command and the ``--link`` option to docker run.\n  This parameter is not supported for Windows containers.\n   Containers that are collocated on a single container instance may be able to communicate with each other without requiring links or host port mappings. Network isolation is achieved on the container instance using security groups and VPC settings."
       },
       "LinuxParameters": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/106"
         },
         "flags": 0,
         "description": "Linux-specific modifications that are applied to the container, such as Linux kernel capabilities. For more information see [KernelCapabilities](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KernelCapabilities.html).\n  This parameter is not supported for Windows containers."
       },
       "LogConfiguration": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/107"
         },
         "flags": 0,
         "description": "The log configuration specification for the container.\n This parameter maps to ``LogConfig`` in the docker Create a container command and the ``--log-driver`` option to docker run. By default, containers use the same logging driver that the Docker daemon uses. However, the container may use a different logging driver than the Docker daemon by specifying a log driver with this parameter in the container definition. To use a different logging driver for a container, the log system must be configured properly on the container instance (or on a different log server for remote logging options). For more information on the options for different supported log drivers, see [Configure logging drivers](https://docs.aws.amazon.com/https://docs.docker.com/engine/admin/logging/overview/) in the Docker documentation.\n  Amazon ECS currently supports a subset of the logging drivers available to the Docker daemon (shown in the [LogConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LogConfiguration.html) data type). Additional log drivers may be available in future releases of the Amazon ECS container agent.\n  This parameter requires version 1.18 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'`` \n  The Amazon ECS container agent running on a container instance must register the logging drivers available on that instance with the ``ECS_AVAILABLE_LOGGING_DRIVERS`` environment variable before containers placed on that instance can use these log configuration options. For more information, see [Container Agent Configuration](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html) in the *Developer Guide*."
@@ -1806,7 +1850,7 @@
       },
       "MountPoints": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/135"
         },
         "flags": 0,
         "description": "The mount points for data volumes in your container.\n This parameter maps to ``Volumes`` in the docker container create command and the ``--volume`` option to docker run.\n Windows containers can mount whole directories on the same drive as ``$env:ProgramData``. Windows containers can't mount directories on a different drive, and mount point can't be across drives."
@@ -1816,11 +1860,11 @@
           "$ref": "#/3"
         },
         "flags": 1,
-        "description": "The name of a container. If you're linking multiple containers together in a task definition, the ``name`` of one container can be entered in the ``links`` of another container to connect the containers. Up to 255 letters (uppercase and lowercase), numbers, underscores, and hyphens are allowed. This parameter maps to ``name`` in tthe docker container create command and the ``--name`` option to docker run."
+        "description": "The name of a container. If you're linking multiple containers together in a task definition, the ``name`` of one container can be entered in the ``links`` of another container to connect the containers. Up to 255 letters (uppercase and lowercase), numbers, underscores, and hyphens are allowed. This parameter maps to ``name`` in the docker container create command and the ``--name`` option to docker run."
       },
       "PortMappings": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/136"
         },
         "flags": 0,
         "description": "The list of port mappings for the container. Port mappings allow containers to access ports on the host container instance to send or receive traffic.\n For task definitions that use the ``awsvpc`` network mode, you should only specify the ``containerPort``. The ``hostPort`` can be left blank or it must be the same value as the ``containerPort``.\n Port mappings on Windows use the ``NetNAT`` gateway address rather than ``localhost``. There is no loopback for port mappings on Windows, so you cannot access a container's mapped port from the host itself. \n This parameter maps to ``PortBindings`` in the [Create a container](https://docs.aws.amazon.com/https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.aws.amazon.com/https://docs.docker.com/engine/api/v1.35/) and the ``--publish`` option to [docker run](https://docs.aws.amazon.com/https://docs.docker.com/engine/reference/run/). If the network mode of a task definition is set to ``none``, then you can't specify port mappings. If the network mode of a task definition is set to ``host``, then host ports must either be undefined or they must match the container port in the port mapping.\n  After a task reaches the ``RUNNING`` status, manual and automatic host and container port assignments are visible in the *Network Bindings* section of a container description for a selected task in the Amazon ECS console. The assignments are also visible in the ``networkBindings`` section [DescribeTasks](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html) responses."
@@ -1837,7 +1881,7 @@
           "$ref": "#/18"
         },
         "flags": 0,
-        "description": "When this parameter is ``true``, a TTY is allocated. This parameter maps to ``Tty`` in tthe docker container create command and the ``--tty`` option to docker run."
+        "description": "When this parameter is ``true``, a TTY is allocated. This parameter maps to ``Tty`` in the docker container create command and the ``--tty`` option to docker run."
       },
       "ReadonlyRootFilesystem": {
         "type": {
@@ -1848,28 +1892,28 @@
       },
       "RepositoryCredentials": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/111"
         },
         "flags": 0,
         "description": "The private repository authentication credentials to use."
       },
       "ResourceRequirements": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/137"
         },
         "flags": 0,
         "description": "The type and amount of a resource to assign to a container. The only supported resource is a GPU."
       },
       "RestartPolicy": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "The restart policy for a container. When you set up a restart policy, Amazon ECS can restart the container without needing to replace the task. For more information, see [Restart individual containers in Amazon ECS tasks with container restart policies](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/container-restart-policy.html) in the *Amazon Elastic Container Service Developer Guide*."
       },
       "Secrets": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/138"
         },
         "flags": 0,
         "description": "The secrets to pass to the container. For more information, see [Specifying Sensitive Data](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html) in the *Amazon Elastic Container Service Developer Guide*."
@@ -1886,18 +1930,18 @@
           "$ref": "#/4"
         },
         "flags": 0,
-        "description": "Time duration (in seconds) to wait before the container is forcefully killed if it doesn't exit normally on its own.\n For tasks using the Fargate launch type, the task or service requires the following platforms:\n  +  Linux platform version ``1.3.0`` or later.\n  +  Windows platform version ``1.0.0`` or later.\n  \n The max stop timeout value is 120 seconds and if the parameter is not specified, the default value of 30 seconds is used.\n For tasks that use the EC2 launch type, if the ``stopTimeout`` parameter isn't specified, the value set for the Amazon ECS container agent configuration variable ``ECS_CONTAINER_STOP_TIMEOUT`` is used. If neither the ``stopTimeout`` parameter or the ``ECS_CONTAINER_STOP_TIMEOUT`` agent configuration variable are set, then the default values of 30 seconds for Linux containers and 30 seconds on Windows containers are used. Your container instances require at least version 1.26.0 of the container agent to use a container stop timeout value. However, we recommend using the latest container agent version. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html) in the *Amazon Elastic Container Service Developer Guide*. If you're using an Amazon ECS-optimized Linux AMI, your instance needs at least version 1.26.0-1 of the ``ecs-init`` package. If your container instances are launched from version ``20190301`` or later, then they contain the required versions of the container agent and ``ecs-init``. For more information, see [Amazon ECS-optimized Linux AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html) in the *Amazon Elastic Container Service Developer Guide*.\n The valid values are 2-120 seconds."
+        "description": "Time duration (in seconds) to wait before the container is forcefully killed if it doesn't exit normally on its own.\n For tasks using the Fargate launch type, the task or service requires the following platforms:\n  +  Linux platform version ``1.3.0`` or later.\n  +  Windows platform version ``1.0.0`` or later.\n  \n For tasks that use the Fargate launch type, the max stop timeout value is 120 seconds and if the parameter is not specified, the default value of 30 seconds is used.\n For tasks that use the EC2 launch type, if the ``stopTimeout`` parameter isn't specified, the value set for the Amazon ECS container agent configuration variable ``ECS_CONTAINER_STOP_TIMEOUT`` is used. If neither the ``stopTimeout`` parameter or the ``ECS_CONTAINER_STOP_TIMEOUT`` agent configuration variable are set, then the default values of 30 seconds for Linux containers and 30 seconds on Windows containers are used. Your container instances require at least version 1.26.0 of the container agent to use a container stop timeout value. However, we recommend using the latest container agent version. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html) in the *Amazon Elastic Container Service Developer Guide*. If you're using an Amazon ECS-optimized Linux AMI, your instance needs at least version 1.26.0-1 of the ``ecs-init`` package. If your container instances are launched from version ``20190301`` or later, then they contain the required versions of the container agent and ``ecs-init``. For more information, see [Amazon ECS-optimized Linux AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html) in the *Amazon Elastic Container Service Developer Guide*.\n The valid values for Fargate are 2-120 seconds."
       },
       "SystemControls": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/139"
         },
         "flags": 0,
-        "description": "A list of namespaced kernel parameters to set in the container. This parameter maps to ``Sysctls`` in tthe docker container create command and the ``--sysctl`` option to docker run. For example, you can configure ``net.ipv4.tcp_keepalive_time`` setting to maintain longer lived connections."
+        "description": "A list of namespaced kernel parameters to set in the container. This parameter maps to ``Sysctls`` in the docker container create command and the ``--sysctl`` option to docker run. For example, you can configure ``net.ipv4.tcp_keepalive_time`` setting to maintain longer lived connections."
       },
       "Ulimits": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/140"
         },
         "flags": 0,
         "description": "A list of ``ulimits`` to set in the container. This parameter maps to ``Ulimits`` in the [Create a container](https://docs.aws.amazon.com/https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.aws.amazon.com/https://docs.docker.com/engine/api/v1.35/) and the ``--ulimit`` option to [docker run](https://docs.aws.amazon.com/https://docs.docker.com/engine/reference/run/). Valid naming values are displayed in the [Ulimit](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Ulimit.html) data type. This parameter requires version 1.18 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'`` \n  This parameter is not supported for Windows containers."
@@ -1909,12 +1953,19 @@
         "flags": 0,
         "description": "The user to use inside the container. This parameter maps to ``User`` in the docker container create command and the ``--user`` option to docker run.\n  When running tasks using the ``host`` network mode, don't run containers using the root user (UID 0). We recommend using a non-root user for better security.\n  You can specify the ``user`` using the following formats. If specifying a UID or GID, you must specify it as a positive integer.\n  +   ``user`` \n  +   ``user:group`` \n  +   ``uid`` \n  +   ``uid:gid`` \n  +   ``user:gid`` \n  +   ``uid:group`` \n  \n  This parameter is not supported for Windows containers."
       },
-      "VolumesFrom": {
+      "VersionConsistency": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/3"
         },
         "flags": 0,
-        "description": "Data volumes to mount from another container. This parameter maps to ``VolumesFrom`` in tthe docker container create command and the ``--volumes-from`` option to docker run."
+        "description": ""
+      },
+      "VolumesFrom": {
+        "type": {
+          "$ref": "#/141"
+        },
+        "flags": 0,
+        "description": "Data volumes to mount from another container. This parameter maps to ``VolumesFrom`` in the docker container create command and the ``--volumes-from`` option to docker run."
       },
       "WorkingDirectory": {
         "type": {
@@ -1965,7 +2016,7 @@
       },
       "Permissions": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/142"
         },
         "flags": 0,
         "description": "The explicit permissions to provide to the container for the device. By default, the container has permissions for ``read``, ``write``, and ``mknod`` for the device."
@@ -1992,14 +2043,14 @@
       },
       "DriverOpts": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/143"
         },
         "flags": 0,
         "description": "A map of Docker driver-specific options passed through. This parameter maps to ``DriverOpts`` in the docker create-volume command and the ``xxopt`` option to docker volume create."
       },
       "Labels": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/144"
         },
         "flags": 0,
         "description": "Custom metadata to add to your Docker volume. This parameter maps to ``Labels`` in the docker container create command and the ``xxlabel`` option to docker volume create."
@@ -2019,7 +2070,7 @@
     "properties": {
       "AuthorizationConfig": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "The authorization configuration details for the Amazon EFS file system."
@@ -2113,7 +2164,7 @@
     "properties": {
       "AuthorizationConfig": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "The authorization configuration details for the Amazon FSx for Windows File Server file system."
@@ -2140,7 +2191,7 @@
     "properties": {
       "Options": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/145"
         },
         "flags": 0,
         "description": "The options to use when configuring the log router. This field is optional and can be used to add additional metadata, such as the task, task definition, cluster, and container instance details to the log event.\n  If specified, valid option keys are:\n  +   ``enable-ecs-log-metadata``, which can be ``true`` or ``false`` \n  +   ``config-file-type``, which can be ``s3`` or ``file`` \n  +   ``config-file-value``, which is either an S3 ARN or a file path"
@@ -2160,10 +2211,10 @@
     "properties": {
       "Command": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/146"
         },
         "flags": 0,
-        "description": "A string array representing the command that the container runs to determine if it is healthy. The string array must start with ``CMD`` to run the command arguments directly, or ``CMD-SHELL`` to run the command with the container's default shell. \n  When you use the AWS Management Console JSON panel, the CLIlong, or the APIs, enclose the list of commands in double quotes and brackets.\n  ``[ \"CMD-SHELL\", \"curl -f http://localhost/ || exit 1\" ]`` \n You don't include the double quotes and brackets when you use the AWS Management Console.\n  ``CMD-SHELL, curl -f http://localhost/ || exit 1`` \n An exit code of 0 indicates success, and non-zero exit code indicates failure. For more information, see ``HealthCheck`` in tthe docker container create command"
+        "description": "A string array representing the command that the container runs to determine if it is healthy. The string array must start with ``CMD`` to run the command arguments directly, or ``CMD-SHELL`` to run the command with the container's default shell. \n  When you use the AWS Management Console JSON panel, the CLIlong, or the APIs, enclose the list of commands in double quotes and brackets.\n  ``[ \"CMD-SHELL\", \"curl -f http://localhost/ || exit 1\" ]`` \n You don't include the double quotes and brackets when you use the AWS Management Console.\n  ``CMD-SHELL, curl -f http://localhost/ || exit 1`` \n An exit code of 0 indicates success, and non-zero exit code indicates failure. For more information, see ``HealthCheck`` in the docker container create command."
       },
       "Interval": {
         "type": {
@@ -2254,14 +2305,14 @@
     "properties": {
       "Add": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/147"
         },
         "flags": 0,
         "description": "The Linux capabilities for the container that have been added to the default configuration provided by Docker. This parameter maps to ``CapAdd`` in the docker container create command and the ``--cap-add`` option to docker run.\n  Tasks launched on FARGATElong only support adding the ``SYS_PTRACE`` kernel capability.\n  Valid values: ``\"ALL\" | \"AUDIT_CONTROL\" | \"AUDIT_WRITE\" | \"BLOCK_SUSPEND\" | \"CHOWN\" | \"DAC_OVERRIDE\" | \"DAC_READ_SEARCH\" | \"FOWNER\" | \"FSETID\" | \"IPC_LOCK\" | \"IPC_OWNER\" | \"KILL\" | \"LEASE\" | \"LINUX_IMMUTABLE\" | \"MAC_ADMIN\" | \"MAC_OVERRIDE\" | \"MKNOD\" | \"NET_ADMIN\" | \"NET_BIND_SERVICE\" | \"NET_BROADCAST\" | \"NET_RAW\" | \"SETFCAP\" | \"SETGID\" | \"SETPCAP\" | \"SETUID\" | \"SYS_ADMIN\" | \"SYS_BOOT\" | \"SYS_CHROOT\" | \"SYS_MODULE\" | \"SYS_NICE\" | \"SYS_PACCT\" | \"SYS_PTRACE\" | \"SYS_RAWIO\" | \"SYS_RESOURCE\" | \"SYS_TIME\" | \"SYS_TTY_CONFIG\" | \"SYSLOG\" | \"WAKE_ALARM\"``"
       },
       "Drop": {
         "type": {
-          "$ref": "#/146"
+          "$ref": "#/148"
         },
         "flags": 0,
         "description": "The Linux capabilities for the container that have been removed from the default configuration provided by Docker. This parameter maps to ``CapDrop`` in the docker container create command and the ``--cap-drop`` option to docker run.\n Valid values: ``\"ALL\" | \"AUDIT_CONTROL\" | \"AUDIT_WRITE\" | \"BLOCK_SUSPEND\" | \"CHOWN\" | \"DAC_OVERRIDE\" | \"DAC_READ_SEARCH\" | \"FOWNER\" | \"FSETID\" | \"IPC_LOCK\" | \"IPC_OWNER\" | \"KILL\" | \"LEASE\" | \"LINUX_IMMUTABLE\" | \"MAC_ADMIN\" | \"MAC_OVERRIDE\" | \"MKNOD\" | \"NET_ADMIN\" | \"NET_BIND_SERVICE\" | \"NET_BROADCAST\" | \"NET_RAW\" | \"SETFCAP\" | \"SETGID\" | \"SETPCAP\" | \"SETUID\" | \"SYS_ADMIN\" | \"SYS_BOOT\" | \"SYS_CHROOT\" | \"SYS_MODULE\" | \"SYS_NICE\" | \"SYS_PACCT\" | \"SYS_PTRACE\" | \"SYS_RAWIO\" | \"SYS_RESOURCE\" | \"SYS_TIME\" | \"SYS_TTY_CONFIG\" | \"SYSLOG\" | \"WAKE_ALARM\"``"
@@ -2294,17 +2345,17 @@
     "properties": {
       "Capabilities": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/104"
         },
         "flags": 0,
         "description": "The Linux capabilities for the container that are added to or dropped from the default configuration provided by Docker.\n  For tasks that use the Fargate launch type, ``capabilities`` is supported for all platform versions but the ``add`` parameter is only supported if using platform version 1.4.0 or later."
       },
       "Devices": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/149"
         },
         "flags": 0,
-        "description": "Any host devices to expose to the container. This parameter maps to ``Devices`` in tthe docker container create command and the ``--device`` option to docker run.\n  If you're using tasks that use the Fargate launch type, the ``devices`` parameter isn't supported."
+        "description": "Any host devices to expose to the container. This parameter maps to ``Devices`` in the docker container create command and the ``--device`` option to docker run.\n  If you're using tasks that use the Fargate launch type, the ``devices`` parameter isn't supported."
       },
       "InitProcessEnabled": {
         "type": {
@@ -2336,7 +2387,7 @@
       },
       "Tmpfs": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/150"
         },
         "flags": 0,
         "description": "The container path, mount options, and size (in MiB) of the tmpfs mount. This parameter maps to the ``--tmpfs`` option to docker run.\n  If you're using tasks that use the Fargate launch type, the ``tmpfs`` parameter isn't supported."
@@ -2356,14 +2407,14 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/149"
+          "$ref": "#/151"
         },
         "flags": 0,
-        "description": "The configuration options to send to the log driver. This parameter requires version 1.19 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'``"
+        "description": "The configuration options to send to the log driver.\n The options you can specify depend on the log driver. Some of the options you can specify when you use the ``awslogs`` log driver to route logs to Amazon CloudWatch include the following:\n  + awslogs-create-group Required: No Specify whether you want the log group to be created automatically. If this option isn't specified, it defaults to false. Your IAM policy must include the logs:CreateLogGroup permission before you attempt to use awslogs-create-group. + awslogs-region Required: Yes Specify the Region that the awslogs log driver is to send your Docker logs to. You can choose to send all of your logs from clusters in different Regions to a single region in CloudWatch Logs. This is so that they're all visible in one location. Otherwise, you can separate them by Region for more granularity. Make sure that the specified log group exists in the Region that you specify with this option. + awslogs-group Required: Yes Make sure to specify a log group that the awslogs log driver sends its log streams to. + awslogs-stream-prefix Required: Yes, when using the Fargate launch type.Optional for the EC2 launch type, required for the Fargate launch type. Use the awslogs-stream-prefix option to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task that the container belongs to. If you specify a prefix with this option, then the log stream takes the format prefix-name/container-name/ecs-task-id. If you don't specify a prefix with this option, then the log stream is named after the container ID that's assigned by the Docker daemon on the container instance. Because it's difficult to trace logs back to the container that sent them with just the Docker container ID (which is only available on the container instance), we recommend that you specify a prefix with this option. For Amazon ECS services, you can use the service name as the prefix. Doing so, you can trace log streams to the service that the container belongs to, the name of the container that sent them, and the ID of the task that the container belongs to. You must specify a stream-prefix for your logs to have your logs appear in the Log pane when using the Amazon ECS console. + awslogs-datetime-format Required: No This option defines a multiline start pattern in Python strftime format. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern. The matched line is the delimiter between log messages. One example of a use case for using this format is for parsing output such as a stack dump, which might otherwise be logged in multiple entries. The correct pattern allows it to be captured in a single entry. For more information, see awslogs-datetime-format. You cannot configure both the awslogs-datetime-format and awslogs-multiline-pattern options. Multiline logging performs regular expression parsing and matching of all log messages. This might have a negative impact on logging performance. + awslogs-multiline-pattern Required: No This option defines a multiline start pattern that uses a regular expression. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern. The matched line is the delimiter between log messages. For more information, see awslogs-multiline-pattern. This option is ignored if awslogs-datetime-format is also configured. You cannot configure both the awslogs-datetime-format and awslogs-multiline-pattern options. Multiline logging performs regular expression parsing and matching of all log messages. This might have a negative impact on logging performance. + mode Required: No Valid values: non-blocking | blocking This option defines the delivery mode of log messages from the container to CloudWatch Logs. The delivery mode you choose affects application availability when the flow of logs from container to CloudWatch is interrupted. If you use the blocking mode and the flow of logs to CloudWatch is interrupted, calls from container code to write to the stdout and stderr streams will block. The logging thread of the application will block as a result. This may cause the application to become unresponsive and lead to container healthcheck failure. If you use the non-blocking mode, the container's logs are instead stored in an in-memory intermediate buffer configured with the max-buffer-size option. This prevents the application from becoming unresponsive when logs cannot be sent to CloudWatch. We recommend using this mode if you want to ensure service availability and are okay with some log loss. For more information, see Preventing log loss with non-blocking mode in the awslogs container log driver. + max-buffer-size Required: No Default value: 1m When non-blocking mode is used, the max-buffer-size log option controls the size of the buffer that's used for intermediate message storage. Make sure to specify an adequate buffer size based on your application. When the buffer fills up, further logs cannot be stored. Logs that cannot be stored are lost. \n To route logs using the ``splunk`` log router, you need to specify a ``splunk-token`` and a ``splunk-url``.\n When you use the ``awsfirelens`` log router to route logs to an AWS Service or AWS Partner Network destination for log storage and analytics, you can set the ``log-driver-buffer-limit`` option to limit the number of events that are buffered in memory, before being sent to the log router container. It can help to resolve potential log loss issue because high throughput might result in memory running out for the buffer inside of Docker.\n Other options you can specify when using ``awsfirelens`` to route logs depend on the destination. When you export logs to Amazon Data Firehose, you can specify the AWS Region with ``region`` and a name for the log stream with ``delivery_stream``.\n When you export logs to Amazon Kinesis Data Streams, you can specify an AWS Region with ``region`` and a data stream name with ``stream``.\n  When you export logs to Amazon OpenSearch Service, you can specify options like ``Name``, ``Host`` (OpenSearch Service endpoint without protocol), ``Port``, ``Index``, ``Type``, ``Aws_auth``, ``Aws_region``, ``Suppress_Type_Name``, and ``tls``.\n When you export logs to Amazon S3, you can specify the bucket using the ``bucket`` option. You can also specify ``region``, ``total_file_size``, ``upload_timeout``, and ``use_put_object`` as options.\n This parameter requires version 1.19 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'``"
       },
       "SecretOptions": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/152"
         },
         "flags": 0,
         "description": "The secrets to pass to the log configuration. For more information, see [Specifying sensitive data](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html) in the *Amazon Elastic Container Service Developer Guide*."
@@ -2434,7 +2485,7 @@
           "$ref": "#/3"
         },
         "flags": 0,
-        "description": "The name that's used for the port mapping. This parameter only applies to Service Connect. This parameter is the name that you use in the ``serviceConnectConfiguration`` of a service. The name can include up to 64 characters. The characters can include lowercase letters, numbers, underscores (_), and hyphens (-). The name can't start with a hyphen.\n For more information, see [Service Connect](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html) in the *Amazon Elastic Container Service Developer Guide*."
+        "description": "The name that's used for the port mapping. This parameter is the name that you use in the ``serviceConnectConfiguration`` and the ``vpcLatticeConfigurations`` of a service. The name can include up to 64 characters. The characters can include lowercase letters, numbers, underscores (_), and hyphens (-). The name can't start with a hyphen."
       },
       "Protocol": {
         "type": {
@@ -2458,7 +2509,7 @@
       },
       "ProxyConfigurationProperties": {
         "type": {
-          "$ref": "#/151"
+          "$ref": "#/153"
         },
         "flags": 0,
         "description": "The set of network configuration parameters to provide the Container Network Interface (CNI) plugin, specified as key-value pairs.\n  +   ``IgnoredUID`` - (Required) The user ID (UID) of the proxy container as defined by the ``user`` parameter in a container definition. This is used to ensure the proxy ignores its own traffic. If ``IgnoredGID`` is specified, this field can be empty.\n  +   ``IgnoredGID`` - (Required) The group ID (GID) of the proxy container as defined by the ``user`` parameter in a container definition. This is used to ensure the proxy ignores its own traffic. If ``IgnoredUID`` is specified, this field can be empty.\n  +   ``AppPorts`` - (Required) The list of ports that the application uses. Network traffic to these ports is forwarded to the ``ProxyIngressPort`` and ``ProxyEgressPort``.\n  +   ``ProxyIngressPort`` - (Required) Specifies the port that incoming traffic to the ``AppPorts`` is directed to.\n  +   ``ProxyEgressPort`` - (Required) Specifies the port that outgoing traffic from the ``AppPorts`` is directed to.\n  +   ``EgressIgnoredPorts`` - (Required) The egress traffic going to the specified ports is ignored and not redirected to the ``ProxyEgressPort``. It can be an empty list.\n  +   ``EgressIgnoredIPs`` - (Required) The egress traffic going to the specified IP addresses is ignored and not redirected to the ``ProxyEgressPort``. It can be an empty list."
@@ -2518,7 +2569,7 @@
       },
       "IgnoredExitCodes": {
         "type": {
-          "$ref": "#/152"
+          "$ref": "#/154"
         },
         "flags": 0,
         "description": "A list of exit codes that Amazon ECS will ignore and not attempt a restart on. You can specify a maximum of 50 container exit codes. By default, Amazon ECS does not ignore any exit codes."
@@ -2645,7 +2696,7 @@
       },
       "MountOptions": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/155"
         },
         "flags": 0,
         "description": "The list of tmpfs volume mount options.\n Valid values: ``\"defaults\" | \"ro\" | \"rw\" | \"suid\" | \"nosuid\" | \"dev\" | \"nodev\" | \"exec\" | \"noexec\" | \"sync\" | \"async\" | \"dirsync\" | \"remount\" | \"mand\" | \"nomand\" | \"atime\" | \"noatime\" | \"diratime\" | \"nodiratime\" | \"bind\" | \"rbind\" | \"unbindable\" | \"runbindable\" | \"private\" | \"rprivate\" | \"shared\" | \"rshared\" | \"slave\" | \"rslave\" | \"relatime\" | \"norelatime\" | \"strictatime\" | \"nostrictatime\" | \"mode\" | \"uid\" | \"gid\" | \"nr_inodes\" | \"nr_blocks\" | \"mpol\"``"
@@ -2668,7 +2719,7 @@
           "$ref": "#/4"
         },
         "flags": 1,
-        "description": "The hard limit for the ``ulimit`` type."
+        "description": "The hard limit for the ``ulimit`` type. The value can be specified in bytes, seconds, or as a count, depending on the ``type`` of the ``ulimit``."
       },
       "Name": {
         "type": {
@@ -2682,7 +2733,7 @@
           "$ref": "#/4"
         },
         "flags": 1,
-        "description": "The soft limit for the ``ulimit`` type."
+        "description": "The soft limit for the ``ulimit`` type. The value can be specified in bytes, seconds, or as a count, depending on the ``type`` of the ``ulimit``."
       }
     }
   },
@@ -2699,28 +2750,28 @@
       },
       "DockerVolumeConfiguration": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "This parameter is specified when you use Docker volumes.\n Windows containers only support the use of the ``local`` driver. To use bind mounts, specify the ``host`` parameter instead.\n  Docker volumes aren't supported by tasks run on FARGATElong."
       },
       "EFSVolumeConfiguration": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "This parameter is specified when you use an Amazon Elastic File System file system for task storage."
       },
       "FSxWindowsFileServerVolumeConfiguration": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/98"
         },
         "flags": 0,
         "description": "This parameter is specified when you use Amazon FSx for Windows File Server file system for task storage."
       },
       "Host": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/102"
         },
         "flags": 0,
         "description": "This parameter is specified when you use bind mount host volumes. The contents of the ``host`` parameter determine whether your bind mount host volume persists on the host container instance and where it's stored. If the ``host`` parameter is empty, then the Docker daemon assigns a host path for your data volume. However, the data isn't guaranteed to persist after the containers that are associated with it stop running.\n Windows containers can mount whole directories on the same drive as ``$env:ProgramData``. Windows containers can't mount directories on a different drive, and mount point can't be across drives. For example, you can mount ``C:\\my\\path:C:\\my\\path`` and ``D:\\:D:\\``, but not ``D:\\my\\path:C:\\my\\path`` or ``D:\\:C:\\my\\path``."
@@ -2769,7 +2820,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/89"
+      "$ref": "#/91"
     }
   },
   {
@@ -2804,19 +2855,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/103"
+      "$ref": "#/105"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/93"
+      "$ref": "#/95"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/99"
+      "$ref": "#/101"
     }
   },
   {
@@ -2828,43 +2879,43 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/106"
+      "$ref": "#/108"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/107"
+      "$ref": "#/109"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/110"
+      "$ref": "#/112"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/115"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/114"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/118"
+      "$ref": "#/116"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/120"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/122"
     }
   },
   {
@@ -2909,13 +2960,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/90"
+      "$ref": "#/92"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/117"
+      "$ref": "#/119"
     }
   },
   {
@@ -2926,13 +2977,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/115"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/103"
+      "$ref": "#/105"
     }
   },
   {
@@ -2954,19 +3005,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/88"
+      "$ref": "#/90"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/101"
+      "$ref": "#/103"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/116"
+      "$ref": "#/118"
     }
   },
   {
@@ -2978,13 +3029,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/115"
+      "$ref": "#/117"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/119"
+      "$ref": "#/121"
     }
   },
   {
@@ -2993,7 +3044,7 @@
     "properties": {
       "ContainerDefinitions": {
         "type": {
-          "$ref": "#/155"
+          "$ref": "#/157"
         },
         "flags": 0,
         "description": "A list of container definitions in JSON format that describe the different containers that make up your task. For more information about container definition parameters and defaults, see [Amazon ECS Task Definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html) in the *Amazon Elastic Container Service Developer Guide*."
@@ -3007,7 +3058,7 @@
       },
       "EphemeralStorage": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/96"
         },
         "flags": 0,
         "description": "The ephemeral storage settings to use for tasks run with the task definition."
@@ -3028,7 +3079,7 @@
       },
       "InferenceAccelerators": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/158"
         },
         "flags": 0,
         "description": "The Elastic Inference accelerators to use for the containers in the task."
@@ -3063,35 +3114,35 @@
       },
       "PlacementConstraints": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/159"
         },
         "flags": 0,
         "description": "An array of placement constraint objects to use for tasks.\n  This parameter isn't supported for tasks run on FARGATElong."
       },
       "ProxyConfiguration": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/110"
         },
         "flags": 0,
         "description": "The configuration details for the App Mesh proxy.\n Your Amazon ECS container instances require at least version 1.26.0 of the container agent and at least version 1.26.0-1 of the ``ecs-init`` package to use a proxy configuration. If your container instances are launched from the Amazon ECS optimized AMI version ``20190301`` or later, they contain the required versions of the container agent and ``ecs-init``. For more information, see [Amazon ECS-optimized Linux AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html) in the *Amazon Elastic Container Service Developer Guide*."
       },
       "RequiresCompatibilities": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/160"
         },
         "flags": 0,
         "description": "The task launch types the task definition was validated against. The valid values are ``EC2``, ``FARGATE``, and ``EXTERNAL``. For more information, see [Amazon ECS launch types](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) in the *Amazon Elastic Container Service Developer Guide*."
       },
       "RuntimePlatform": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/114"
         },
         "flags": 0,
         "description": "The operating system that your tasks definitions run on. A platform family is specified only for tasks using the Fargate launch type."
       },
       "Tags": {
         "type": {
-          "$ref": "#/159"
+          "$ref": "#/161"
         },
         "flags": 0,
         "description": "The metadata that you apply to the task definition to help you categorize and organize them. Each tag consists of a key and an optional value. You define both of them.\n The following basic restrictions apply to tags:\n  +  Maximum number of tags per resource - 50\n  +  For each resource, each tag key must be unique, and each tag key can have only one value.\n  +  Maximum key length - 128 Unicode characters in UTF-8\n  +  Maximum value length - 256 Unicode characters in UTF-8\n  +  If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.\n  +  Tag keys and values are case-sensitive.\n  +  Do not use ``aws:``, ``AWS:``, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit."
@@ -3112,7 +3163,7 @@
       },
       "Volumes": {
         "type": {
-          "$ref": "#/160"
+          "$ref": "#/162"
         },
         "flags": 0,
         "description": "The list of data volume definitions for the task. For more information, see [Using data volumes in tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_data_volumes.html) in the *Amazon Elastic Container Service Developer Guide*.\n  The ``host`` and ``sourcePath`` parameters aren't supported for tasks run on FARGATElong."
@@ -3139,7 +3190,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/161"
+          "$ref": "#/163"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -3151,7 +3202,7 @@
     "name": "AWS.ECS/TaskDefinition@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/162"
+      "$ref": "#/164"
     },
     "flags": 0
   },
@@ -3168,14 +3219,14 @@
       },
       "SecurityGroups": {
         "type": {
-          "$ref": "#/171"
+          "$ref": "#/173"
         },
         "flags": 0,
         "description": "The security groups associated with the task or service. If you do not specify a security group, the default security group for the VPC is used. There is a limit of 5 security groups that can be specified per AwsVpcConfiguration."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/172"
+          "$ref": "#/174"
         },
         "flags": 1,
         "description": "The subnets associated with the task or service. There is a limit of 16 subnets that can be specified per AwsVpcConfiguration."
@@ -3239,7 +3290,7 @@
     "properties": {
       "AwsVpcConfiguration": {
         "type": {
-          "$ref": "#/164"
+          "$ref": "#/166"
         },
         "flags": 0
       }
@@ -3336,25 +3387,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/165"
+      "$ref": "#/167"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/166"
+      "$ref": "#/168"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/169"
+      "$ref": "#/171"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/170"
+      "$ref": "#/172"
     }
   },
   {
@@ -3363,7 +3414,7 @@
     "properties": {
       "CapacityProviderStrategy": {
         "type": {
-          "$ref": "#/174"
+          "$ref": "#/176"
         },
         "flags": 0
       },
@@ -3397,13 +3448,13 @@
       },
       "LoadBalancers": {
         "type": {
-          "$ref": "#/175"
+          "$ref": "#/177"
         },
         "flags": 0
       },
       "NetworkConfiguration": {
         "type": {
-          "$ref": "#/167"
+          "$ref": "#/169"
         },
         "flags": 0
       },
@@ -3416,7 +3467,7 @@
       },
       "Scale": {
         "type": {
-          "$ref": "#/168"
+          "$ref": "#/170"
         },
         "flags": 0,
         "description": "A floating-point percentage of the desired number of tasks to place and keep running in the task set."
@@ -3430,14 +3481,14 @@
       },
       "ServiceRegistries": {
         "type": {
-          "$ref": "#/176"
+          "$ref": "#/178"
         },
         "flags": 0,
         "description": "The details of the service discovery registries to assign to this task set. For more information, see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html."
       },
       "Tags": {
         "type": {
-          "$ref": "#/177"
+          "$ref": "#/179"
         },
         "flags": 0
       },
@@ -3470,7 +3521,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/178"
+          "$ref": "#/180"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3482,7 +3533,7 @@
     "name": "AWS.ECS/TaskSet@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/179"
+      "$ref": "#/181"
     },
     "flags": 0
   }

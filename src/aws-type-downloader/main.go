@@ -17,6 +17,16 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// These have been skipped due to missing schema: https://github.com/aws/aws-sdk-go-v2/issues/2913
+// These will be reverted when the issue is resolved.
+var skippedResources = map[string]struct{}{
+	"AWS::EC2::LaunchTemplate":   {},
+	"AWS::QuickSight::Analysis":  {},
+	"AWS::QuickSight::Dashboard": {},
+	"AWS::QuickSight::Template":  {},
+	"AWS::SageMaker::Cluster":    {},
+}
+
 func main() {
 	Execute()
 }
@@ -115,7 +125,8 @@ func run(cmd *cobra.Command, args []string) error {
 				timestamp = record.Timestamp
 			}
 
-			if typeSummary.LastUpdated != nil && (timestamp == *typeSummary.LastUpdated || timestamp.After(*typeSummary.LastUpdated)) {
+			if isSkippedResource(*typeSummary.TypeName) ||
+				typeSummary.LastUpdated != nil && (timestamp == *typeSummary.LastUpdated || timestamp.After(*typeSummary.LastUpdated)) {
 				fmt.Printf("Skipping: %s - already up to date\n", *typeSummary.TypeName)
 				continue
 			}
@@ -199,4 +210,9 @@ func Execute() {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
+}
+
+func isSkippedResource(typeName string) bool {
+	_, exists := skippedResources[typeName]
+	return exists
 }
