@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ConnectCampaignsV2-Campaign",
   "type": "AWS::ConnectCampaignsV2::Campaign",
-  "time": "2024-11-21T22:36:23.293Z",
+  "time": "2025-01-02T22:39:45.779Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -267,6 +267,16 @@
         },
         "type": "object"
       },
+      "EventTrigger": {
+        "additionalProperties": false,
+        "description": "The event trigger of the campaign",
+        "properties": {
+          "CustomerProfilesDomainArn": {
+            "$ref": "#/definitions/Arn"
+          }
+        },
+        "type": "object"
+      },
       "InstanceId": {
         "description": "Amazon Connect Instance Id",
         "maxLength": 256,
@@ -480,17 +490,25 @@
       },
       "Source": {
         "additionalProperties": false,
-        "description": "The possible types of channel config parameters",
+        "description": "The possible source of the campaign",
         "oneOf": [
           {
             "required": [
               "CustomerProfilesSegmentArn"
+            ]
+          },
+          {
+            "required": [
+              "EventTrigger"
             ]
           }
         ],
         "properties": {
           "CustomerProfilesSegmentArn": {
             "$ref": "#/definitions/Arn"
+          },
+          "EventTrigger": {
+            "$ref": "#/definitions/EventTrigger"
           }
         },
         "type": "object"

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-OpenSearchService-Domain",
   "type": "AWS::OpenSearchService::Domain",
-  "time": "2024-10-30T04:59:28.472Z",
+  "time": "2024-12-18T05:48:48.426Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -62,6 +62,12 @@
           },
           "MultiAZWithStandbyEnabled": {
             "type": "boolean"
+          },
+          "NodeOptions": {
+            "items": {
+              "$ref": "#/definitions/NodeOption"
+            },
+            "type": "array"
           },
           "WarmCount": {
             "type": "integer"
@@ -251,6 +257,36 @@
             "type": "string"
           },
           "MasterUserPassword": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "NodeConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "Count": {
+            "type": "integer"
+          },
+          "Enabled": {
+            "type": "boolean"
+          },
+          "Type": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "NodeOption": {
+        "additionalProperties": false,
+        "properties": {
+          "NodeConfig": {
+            "$ref": "#/definitions/NodeConfig"
+          },
+          "NodeType": {
+            "enum": [
+              "coordinator"
+            ],
             "type": "string"
           }
         },

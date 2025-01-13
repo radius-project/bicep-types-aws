@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DMS-DataProvider",
   "type": "AWS::DMS::DataProvider",
-  "time": "2024-11-21T04:50:36.153Z",
+  "time": "2025-01-09T05:36:14.67Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -15,6 +15,29 @@
           "none",
           "require",
           "verify-ca",
+          "verify-full"
+        ],
+        "type": "string"
+      },
+      "MongoDbAuthMechanism": {
+        "enum": [
+          "default",
+          "mongodb_cr",
+          "scram_sha_1"
+        ],
+        "type": "string"
+      },
+      "MongoDbAuthType": {
+        "enum": [
+          "no",
+          "password"
+        ],
+        "type": "string"
+      },
+      "MongoDbSslModeValue": {
+        "enum": [
+          "none",
+          "require",
           "verify-full"
         ],
         "type": "string"
@@ -122,12 +145,16 @@
       "Engine": {
         "description": "The property describes a data engine for the data provider.",
         "enum": [
-          "postgres",
+          "aurora",
+          "aurora_postgresql",
           "mysql",
           "oracle",
+          "postgres",
           "sqlserver",
-          "aurora",
-          "aurora_postgresql"
+          "redshift",
+          "mariadb",
+          "mongodb",
+          "docdb"
         ],
         "type": "string"
       },
@@ -158,10 +185,83 @@
             "required": [
               "MicrosoftSqlServerSettings"
             ]
+          },
+          {
+            "required": [
+              "RedshiftSettings"
+            ]
+          },
+          {
+            "required": [
+              "DocDbSettings"
+            ]
+          },
+          {
+            "required": [
+              "MariaDbSettings"
+            ]
+          },
+          {
+            "required": [
+              "MongoDbSettings"
+            ]
           }
         ],
         "description": "The property identifies the exact type of settings for the data provider.",
         "properties": {
+          "DocDbSettings": {
+            "additionalProperties": false,
+            "description": "DocDbSettings property identifier.",
+            "properties": {
+              "CertificateArn": {
+                "type": "string"
+              },
+              "DatabaseName": {
+                "type": "string"
+              },
+              "Port": {
+                "type": "integer"
+              },
+              "ServerName": {
+                "type": "string"
+              },
+              "SslMode": {
+                "$ref": "#/definitions/MongoDbSslModeValue",
+                "type": "object"
+              }
+            },
+            "required": [
+              "ServerName",
+              "Port",
+              "DatabaseName"
+            ],
+            "type": "object"
+          },
+          "MariaDbSettings": {
+            "additionalProperties": false,
+            "description": "MariaDbSettings property identifier.",
+            "properties": {
+              "CertificateArn": {
+                "type": "string"
+              },
+              "Port": {
+                "type": "integer"
+              },
+              "ServerName": {
+                "type": "string"
+              },
+              "SslMode": {
+                "$ref": "#/definitions/DmsSslModeValue",
+                "type": "object"
+              }
+            },
+            "required": [
+              "ServerName",
+              "Port",
+              "SslMode"
+            ],
+            "type": "object"
+          },
           "MicrosoftSqlServerSettings": {
             "additionalProperties": false,
             "description": "MicrosoftSqlServerSettings property identifier.",
@@ -188,6 +288,44 @@
               "Port",
               "SslMode",
               "DatabaseName"
+            ],
+            "type": "object"
+          },
+          "MongoDbSettings": {
+            "additionalProperties": false,
+            "description": "MongoDbSettings property identifier.",
+            "properties": {
+              "AuthMechanism": {
+                "$ref": "#/definitions/MongoDbAuthMechanism",
+                "type": "object"
+              },
+              "AuthSource": {
+                "type": "string"
+              },
+              "AuthType": {
+                "$ref": "#/definitions/MongoDbAuthType",
+                "type": "object"
+              },
+              "CertificateArn": {
+                "type": "string"
+              },
+              "DatabaseName": {
+                "type": "string"
+              },
+              "Port": {
+                "type": "integer"
+              },
+              "ServerName": {
+                "type": "string"
+              },
+              "SslMode": {
+                "$ref": "#/definitions/MongoDbSslModeValue",
+                "type": "object"
+              }
+            },
+            "required": [
+              "ServerName",
+              "Port"
             ],
             "type": "object"
           },
@@ -285,6 +423,27 @@
               "ServerName",
               "Port",
               "SslMode",
+              "DatabaseName"
+            ],
+            "type": "object"
+          },
+          "RedshiftSettings": {
+            "additionalProperties": false,
+            "description": "RedshiftSettings property identifier.",
+            "properties": {
+              "DatabaseName": {
+                "type": "string"
+              },
+              "Port": {
+                "type": "integer"
+              },
+              "ServerName": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "ServerName",
+              "Port",
               "DatabaseName"
             ],
             "type": "object"

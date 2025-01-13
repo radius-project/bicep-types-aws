@@ -710,16 +710,23 @@
     "$type": "ObjectType",
     "name": "RuleDeclaration",
     "properties": {
-      "Configuration": {
+      "Commands": {
         "type": {
           "$ref": "#/57"
+        },
+        "flags": 0,
+        "description": "The shell commands to run with your compute action in CodePipeline."
+      },
+      "Configuration": {
+        "type": {
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "The rule's configuration. These are key-value pairs that specify input values for a rule."
       },
       "InputArtifacts": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/59"
         },
         "flags": 0
       },
@@ -792,20 +799,20 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/60"
         },
         "flags": 1
       },
       "BeforeEntry": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "The method to use before stage runs."
       },
       "Blockers": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/63"
         },
         "flags": 0
       },
@@ -818,14 +825,14 @@
       },
       "OnFailure": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "The method to use when a stage has not completed successfully"
       },
       "OnSuccess": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "The method to use when a stage has completed successfully"
@@ -858,7 +865,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/69"
         },
         "flags": 0
       }
@@ -1032,6 +1039,12 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "Pipeline_Configuration",
     "properties": {}
@@ -1060,7 +1073,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/61"
         },
         "flags": 0
       }
@@ -1097,7 +1110,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/64"
         },
         "flags": 0
       },
@@ -1110,7 +1123,7 @@
       },
       "RetryConfiguration": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "The configuration that specifies the retry configuration for a stage"
@@ -1129,7 +1142,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/67"
         },
         "flags": 0
       }
@@ -1194,14 +1207,14 @@
       },
       "ArtifactStores": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "A mapping of artifactStore objects and their corresponding AWS Regions. There must be an artifact store for the pipeline Region and for each cross-region action in the pipeline."
       },
       "DisableInboundStageTransitions": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "Represents the input of a DisableStageTransition action."
@@ -1243,28 +1256,28 @@
       },
       "Stages": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/73"
         },
         "flags": 1,
         "description": "Represents information about a stage and its definition."
       },
       "Tags": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "Specifies the tags applied to the pipeline."
       },
       "Triggers": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "The trigger configuration specifying a type of event, such as Git tags, that starts the pipeline."
       },
       "Variables": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "A list that defines the pipeline variables for a pipeline resource. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9@\\-_]+."
@@ -1298,7 +1311,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/77"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1310,7 +1323,7 @@
     "name": "AWS.CodePipeline/Pipeline@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/77"
+      "$ref": "#/78"
     },
     "flags": 0
   }

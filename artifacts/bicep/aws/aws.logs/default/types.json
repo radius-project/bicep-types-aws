@@ -762,7 +762,7 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": ""
+        "description": "The value of this key-value pair."
       }
     }
   },
@@ -774,6 +774,17 @@
     "$type": "ObjectType",
     "name": "LogGroup_DataProtectionPolicy",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogGroup_FieldIndexPolicies",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/45"
+    }
   },
   {
     "$type": "ArrayType",
@@ -798,6 +809,13 @@
         },
         "flags": 0,
         "description": "Creates a data protection policy and assigns it to the log group. A data protection policy can help safeguard sensitive data that's ingested by the log group by auditing and masking the sensitive log data. When a user who does not have permission to view masked data views a log event that includes masked data, the sensitive data is replaced by asterisks.\n For more information, including a list of types of data that can be audited and masked, see [Protect sensitive log data with masking](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html)."
+      },
+      "FieldIndexPolicies": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "Creates or updates a *field index policy* for the specified log group. Only log groups in the Standard log class support field index policies. For more information about log classes, see [Log classes](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html).\n You can use field index policies to create *field indexes* on fields found in log events in the log group. Creating field indexes lowers the costs for CWL Insights queries that reference those field indexes, because these queries attempt to skip the processing of log events that are known to not match the indexed field. Good fields to index are fields that you often need to query for and fields that have high cardinality of values Common examples of indexes include request ID, session ID, userID, and instance IDs. For more information, see [Create field indexes to improve query performance and reduce costs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html).\n Currently, this array supports only one field index policy object."
       },
       "KmsKeyId": {
         "type": {
@@ -829,7 +847,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to the log group.\n For more information, see [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)."
@@ -856,7 +874,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/48"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -868,7 +886,7 @@
     "name": "AWS.Logs/LogGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/47"
+      "$ref": "#/49"
     },
     "flags": 0
   },
@@ -905,7 +923,7 @@
       },
       "Dimensions": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "The fields to use as dimensions for the metric. One metric filter can include as many as three dimensions.\n  Metrics extracted from log events are charged as custom metrics. To prevent unexpected high charges, do not specify high-cardinality fields such as ``IPAddress`` or ``requestID`` as dimensions. Each different value found for a dimension is treated as a separate metric and accrues charges as a separate custom metric. \n CloudWatch Logs disables a metric filter if it generates 1000 different name/value pairs for your specified dimensions within a certain amount of time. This helps to prevent accidental high charges.\n You can also set up a billing alarm to alert you if your charges are higher than expected. For more information, see [Creating a Billing Alarm to Monitor Your Estimated Charges](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html)."
@@ -943,7 +961,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/49"
+      "$ref": "#/51"
     }
   },
   {
@@ -953,13 +971,20 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/50"
+      "$ref": "#/52"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.Logs/MetricFilterProperties",
     "properties": {
+      "ApplyOnTransformedLogs": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "This parameter is valid only for log groups that have an active log transformer. For more information about log transformers, see [PutTransformer](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html).\n If this value is ``true``, the metric filter is applied on the transformed version of the log events instead of the original ingested log events."
+      },
       "FilterName": {
         "type": {
           "$ref": "#/1"
@@ -983,7 +1008,7 @@
       },
       "MetricTransformations": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/55"
         },
         "flags": 1,
         "description": "The metric transformations."
@@ -1010,7 +1035,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/56"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1022,7 +1047,7 @@
     "name": "AWS.Logs/MetricFilter@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/55"
+      "$ref": "#/57"
     },
     "flags": 0
   },
@@ -1047,7 +1072,7 @@
     "properties": {
       "LogGroupNames": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "Optionally define specific log groups as part of your query definition"
@@ -1065,6 +1090,13 @@
         },
         "flags": 18,
         "description": "Unique identifier of a query definition"
+      },
+      "QueryLanguage": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Query language of the query string. Possible values are CWLI, SQL, PPL, with CWLI being the default."
       },
       "QueryString": {
         "type": {
@@ -1095,7 +1127,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/62"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1107,7 +1139,7 @@
     "name": "AWS.Logs/QueryDefinition@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/61"
+      "$ref": "#/63"
     },
     "flags": 0
   },
@@ -1155,7 +1187,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/66"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1167,7 +1199,7 @@
     "name": "AWS.Logs/ResourcePolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/65"
+      "$ref": "#/67"
     },
     "flags": 0
   },
@@ -1179,6 +1211,13 @@
     "$type": "ObjectType",
     "name": "AWS.Logs/SubscriptionFilterProperties",
     "properties": {
+      "ApplyOnTransformedLogs": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "This parameter is valid only for log groups that have an active log transformer. For more information about log transformers, see [PutTransformer](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html).\n If this value is ``true``, the subscription filter is applied on the transformed version of the log events instead of the original ingested log events."
+      },
       "DestinationArn": {
         "type": {
           "$ref": "#/1"
@@ -1243,7 +1282,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/70"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1255,7 +1294,881 @@
     "name": "AWS.Logs/SubscriptionFilter@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/69"
+      "$ref": "#/71"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AddKeyEntry",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "OverwriteIfExists": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Column",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CopyValueEntry",
+    "properties": {
+      "OverwriteIfExists": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Target": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MatchPattern",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MaxLengthString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MoveKeyEntry",
+    "properties": {
+      "OverwriteIfExists": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Target": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NonEmptyAndMaxLengthString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NonEmptyString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParseCloudfront",
+    "properties": {
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParsePostgres",
+    "properties": {
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParseRoute53",
+    "properties": {
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParseVPC",
+    "properties": {
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParseWAF",
+    "properties": {
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Processor",
+    "properties": {
+      "AddKeys": {
+        "type": {
+          "$ref": "#/93"
+        },
+        "flags": 0
+      },
+      "CopyValue": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 0
+      },
+      "Csv": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 0
+      },
+      "DateTimeConverter": {
+        "type": {
+          "$ref": "#/101"
+        },
+        "flags": 0
+      },
+      "DeleteKeys": {
+        "type": {
+          "$ref": "#/103"
+        },
+        "flags": 0
+      },
+      "Grok": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 0
+      },
+      "ListToMap": {
+        "type": {
+          "$ref": "#/105"
+        },
+        "flags": 0
+      },
+      "LowerCaseString": {
+        "type": {
+          "$ref": "#/107"
+        },
+        "flags": 0
+      },
+      "MoveKeys": {
+        "type": {
+          "$ref": "#/109"
+        },
+        "flags": 0
+      },
+      "ParseCloudfront": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 0
+      },
+      "ParseJSON": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 0
+      },
+      "ParseKeyValue": {
+        "type": {
+          "$ref": "#/111"
+        },
+        "flags": 0
+      },
+      "ParsePostgres": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0
+      },
+      "ParseRoute53": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 0
+      },
+      "ParseVPC": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0
+      },
+      "ParseWAF": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0
+      },
+      "RenameKeys": {
+        "type": {
+          "$ref": "#/113"
+        },
+        "flags": 0
+      },
+      "SplitString": {
+        "type": {
+          "$ref": "#/115"
+        },
+        "flags": 0
+      },
+      "SubstituteString": {
+        "type": {
+          "$ref": "#/117"
+        },
+        "flags": 0
+      },
+      "TrimString": {
+        "type": {
+          "$ref": "#/119"
+        },
+        "flags": 0
+      },
+      "TypeConverter": {
+        "type": {
+          "$ref": "#/121"
+        },
+        "flags": 0
+      },
+      "UpperCaseString": {
+        "type": {
+          "$ref": "#/123"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RenameKeyEntry",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "OverwriteIfExists": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "RenameTo": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SplitStringEntry",
+    "properties": {
+      "Delimiter": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SubstituteStringEntry",
+    "properties": {
+      "From": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "To": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TypeConverterEntry",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WithKey",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/73"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_AddKeys",
+    "properties": {
+      "Entries": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/75"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_CopyValue",
+    "properties": {
+      "Entries": {
+        "type": {
+          "$ref": "#/94"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_Column",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/96"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_Csv",
+    "properties": {
+      "Columns": {
+        "type": {
+          "$ref": "#/97"
+        },
+        "flags": 0
+      },
+      "Delimiter": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "QuoteCharacter": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_MatchPattern",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/99"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_DateTimeConverter",
+    "properties": {
+      "Locale": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "MatchPatterns": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 1
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "SourceTimezone": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Target": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "TargetFormat": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "TargetTimezone": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_DeleteKeys",
+    "properties": {
+      "WithKeys": {
+        "type": {
+          "$ref": "#/102"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_Grok",
+    "properties": {
+      "Match": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_ListToMap",
+    "properties": {
+      "Flatten": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "FlattenedElement": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Target": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ValueKey": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_LowerCaseString",
+    "properties": {
+      "WithKeys": {
+        "type": {
+          "$ref": "#/106"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/78"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_MoveKeys",
+    "properties": {
+      "Entries": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_ParseJSON",
+    "properties": {
+      "Destination": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_ParseKeyValue",
+    "properties": {
+      "Destination": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "FieldDelimiter": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "KeyPrefix": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "KeyValueDelimiter": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "NonMatchValue": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "OverwriteIfExists": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/87"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_RenameKeys",
+    "properties": {
+      "Entries": {
+        "type": {
+          "$ref": "#/112"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/88"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_SplitString",
+    "properties": {
+      "Entries": {
+        "type": {
+          "$ref": "#/114"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/89"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_SubstituteString",
+    "properties": {
+      "Entries": {
+        "type": {
+          "$ref": "#/116"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_TrimString",
+    "properties": {
+      "WithKeys": {
+        "type": {
+          "$ref": "#/118"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/90"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_TypeConverter",
+    "properties": {
+      "Entries": {
+        "type": {
+          "$ref": "#/120"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_UpperCaseString",
+    "properties": {
+      "WithKeys": {
+        "type": {
+          "$ref": "#/122"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Logs/TransformerProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/86"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Logs/TransformerProperties",
+    "properties": {
+      "LogGroupIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "Existing log group that you want to associate with this transformer."
+      },
+      "TransformerConfig": {
+        "type": {
+          "$ref": "#/125"
+        },
+        "flags": 1,
+        "description": "List of processors in a transformer"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Logs/Transformer",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/126"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Logs/Transformer@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/127"
     },
     "flags": 0
   }

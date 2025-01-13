@@ -253,7 +253,7 @@
 * **Name**: string (Required): The name of the knowledge base.
 * **RoleArn**: string (Required): The ARN of the IAM role with permissions to invoke API operations on the knowledge base. The ARN must begin with AmazonBedrockExecutionRoleForKnowledgeBase_
 * **Status**: string (ReadOnly)
-* **StorageConfiguration**: [StorageConfiguration](#storageconfiguration) (Required)
+* **StorageConfiguration**: [StorageConfiguration](#storageconfiguration)
 * **Tags**: [TagsMap](#tagsmap)
 * **UpdatedAt**: string (ReadOnly): The time at which the knowledge base was last updated.
 
@@ -271,6 +271,10 @@
 * **Variants**: [PromptVariant](#promptvariant)[] (WriteOnly): List of prompt variants
 * **Version**: string (ReadOnly): Draft Version.
 
+## BedrockDataAutomationConfiguration
+### Properties
+* **ParsingModality**: string
+
 ## BedrockEmbeddingModelConfiguration
 ### Properties
 * **Dimensions**: int: The dimensions details for the vector configuration used on the Bedrock embeddings model.
@@ -278,6 +282,7 @@
 ## BedrockFoundationModelConfiguration
 ### Properties
 * **ModelArn**: string (Required): The model's ARN.
+* **ParsingModality**: string
 * **ParsingPrompt**: [ParsingPrompt](#parsingprompt)
 
 ## ChunkingConfiguration
@@ -442,6 +447,7 @@
 * **Description**: string: Description of function
 * **Name**: string (Required): Name for a resource.
 * **Parameters**: [ParameterMap](#parametermap)
+* **RequireConfirmation**: string
 
 ## FunctionSchema
 ### Properties
@@ -480,10 +486,15 @@
 ### Properties
 * **S3Location**: [S3Location](#s3location) (Required)
 
+## KendraKnowledgeBaseConfiguration
+### Properties
+* **KendraIndexArn**: string (Required)
+
 ## KnowledgeBaseConfiguration
 ### Properties
+* **KendraKnowledgeBaseConfiguration**: [KendraKnowledgeBaseConfiguration](#kendraknowledgebaseconfiguration)
 * **Type**: string (Required)
-* **VectorKnowledgeBaseConfiguration**: [VectorKnowledgeBaseConfiguration](#vectorknowledgebaseconfiguration) (Required)
+* **VectorKnowledgeBaseConfiguration**: [VectorKnowledgeBaseConfiguration](#vectorknowledgebaseconfiguration)
 
 ## ManagedWordsConfig
 ### Properties
@@ -522,6 +533,7 @@
 
 ## ParsingConfiguration
 ### Properties
+* **BedrockDataAutomationConfiguration**: [BedrockDataAutomationConfiguration](#bedrockdataautomationconfiguration)
 * **BedrockFoundationModelConfiguration**: [BedrockFoundationModelConfiguration](#bedrockfoundationmodelconfiguration)
 * **ParsingStrategy**: string (Required)
 
@@ -565,6 +577,9 @@
 * **PromptState**: string
 * **PromptType**: string
 
+## PromptGenAiResource
+### Properties
+
 ## PromptInferenceConfiguration
 ### Properties
 
@@ -578,6 +593,7 @@
 
 ## PromptVariant
 ### Properties
+* **GenAiResource**: [PromptGenAiResource](#promptgenairesource)
 * **InferenceConfiguration**: [PromptInferenceConfiguration](#promptinferenceconfiguration)
 * **ModelId**: string: ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models.
 * **Name**: string (Required): Name for a variant.
@@ -621,6 +637,10 @@
 * **Bucket**: string (Required): A bucket in S3
 * **Key**: string (Required): A object key in S3
 * **Version**: string: The version of the the S3 object to use
+
+## S3Location
+### Properties
+* **URI**: string (Required): The location's URI
 
 ## SalesforceCrawlerConfiguration
 ### Properties
@@ -681,6 +701,15 @@
 * **PineconeConfiguration**: [PineconeConfiguration](#pineconeconfiguration)
 * **RdsConfiguration**: [RdsConfiguration](#rdsconfiguration)
 * **Type**: string (Required)
+
+## SupplementalDataStorageConfiguration
+### Properties
+* **SupplementalDataStorageLocations**: [SupplementalDataStorageLocation](#supplementaldatastoragelocation)[] (Required)
+
+## SupplementalDataStorageLocation
+### Properties
+* **S3Location**: [S3Location](#s3location)
+* **SupplementalDataStorageLocationType**: string (Required)
 
 ## Tag
 ### Properties
@@ -748,6 +777,7 @@
 ### Properties
 * **EmbeddingModelArn**: string (Required): The ARN of the model used to create vector embeddings for the knowledge base.
 * **EmbeddingModelConfiguration**: [EmbeddingModelConfiguration](#embeddingmodelconfiguration)
+* **SupplementalDataStorageConfiguration**: [SupplementalDataStorageConfiguration](#supplementaldatastorageconfiguration)
 
 ## WebCrawlerConfiguration
 ### Properties

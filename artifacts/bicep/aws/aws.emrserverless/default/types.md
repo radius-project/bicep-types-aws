@@ -40,6 +40,7 @@
 * **NetworkConfiguration**: [NetworkConfiguration](#networkconfiguration): Network Configuration for customer VPC connectivity.
 * **ReleaseLabel**: string (Required): EMR release label.
 * **RuntimeConfiguration**: [ConfigurationObject](#configurationobject)[]
+* **SchedulerConfiguration**: [SchedulerConfiguration](#schedulerconfiguration): The scheduler configuration for batch and streaming jobs running on this application. Supported with release labels emr-7.0.0 and above.
 * **Tags**: [Tag](#tag)[]: Tag map with key and value
 * **Type**: string (Required): The type of the application
 * **WorkerTypeSpecifications**: [WorkerTypeSpecificationInputMap](#workertypespecificationinputmap): The key-value pairs that specify worker type to WorkerTypeSpecificationInput. This parameter must contain all valid worker types for a Spark or Hive application. Valid worker types include Driver and Executor for Spark applications and HiveDriver and TezTask for Hive applications. You can either set image details in this parameter for each worker type, or in imageConfiguration for all worker types.
@@ -103,6 +104,11 @@
 ### Properties
 * **SecurityGroupIds**: string[]: The ID of the security groups in the VPC to which you want to connect your job or application.
 * **SubnetIds**: string[]: The ID of the subnets in the VPC to which you want to connect your job or application.
+
+## SchedulerConfiguration
+### Properties
+* **MaxConcurrentRuns**: int: The maximum concurrent job runs on this application. If scheduler configuration is enabled on your application, the default value is 15. The valid range is 1 to 1000.
+* **QueueTimeoutMinutes**: int: The maximum duration in minutes for the job in QUEUED state. If scheduler configuration is enabled on your application, the default value is 360 minutes (6 hours). The valid range is from 15 to 720.
 
 ## Tag
 ### Properties

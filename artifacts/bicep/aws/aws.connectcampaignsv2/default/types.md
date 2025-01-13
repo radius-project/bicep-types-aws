@@ -76,6 +76,10 @@
 ### Properties
 * **AgentlessConfig**: [AgentlessConfig](#agentlessconfig)
 
+## EventTrigger
+### Properties
+* **CustomerProfilesDomainArn**: string
+
 ## LocalTimeZoneConfig
 ### Properties
 * **DefaultTimeZone**: string
@@ -126,7 +130,8 @@
 
 ## Source
 ### Properties
-* **CustomerProfilesSegmentArn**: string (Required)
+* **CustomerProfilesSegmentArn**: string
+* **EventTrigger**: [EventTrigger](#eventtrigger)
 
 ## Tag
 ### Properties

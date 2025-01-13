@@ -184,13 +184,13 @@
 
 ## Actions
 ### Properties
-* **AssignContactCategoryActions**: [AssignContactCategoryAction](#assigncontactcategoryaction)[]
+* **AssignContactCategoryActions**: [AssignContactCategoryAction](#assigncontactcategoryaction)[]: Information about the contact category action. The syntax can be empty, for example, ``{}``.
 * **CreateCaseActions**: [CreateCaseAction](#createcaseaction)[]
 * **EndAssociatedTasksActions**: [EndAssociatedTasksAction](#endassociatedtasksaction)[]
-* **EventBridgeActions**: [EventBridgeAction](#eventbridgeaction)[]
-* **SendNotificationActions**: [SendNotificationAction](#sendnotificationaction)[]
+* **EventBridgeActions**: [EventBridgeAction](#eventbridgeaction)[]: Information about the EV action.
+* **SendNotificationActions**: [SendNotificationAction](#sendnotificationaction)[]: Information about the send notification action.
 * **SubmitAutoEvaluationActions**: [SubmitAutoEvaluationAction](#submitautoevaluationaction)[]
-* **TaskActions**: [TaskAction](#taskaction)[]
+* **TaskActions**: [TaskAction](#taskaction)[]: Information about the task action. This field is required if ``TriggerEventSource`` is one of the following values: ``OnZendeskTicketCreate`` | ``OnZendeskTicketStatusUpdate`` | ``OnSalesforceCaseCreate``
 * **UpdateCaseActions**: [UpdateCaseAction](#updatecaseaction)[]
 
 ## Application
@@ -355,6 +355,7 @@
 * **MaxContacts**: int: The maximum number of contacts that can be in the queue before it is considered full.
 * **Name**: string (Required): The name of the queue.
 * **OutboundCallerConfig**: [OutboundCallerConfig](#outboundcallerconfig): The outbound caller ID name, number, and outbound whisper flow.
+* **OutboundEmailConfig**: [OutboundEmailConfig](#outboundemailconfig): The outbound email address ID.
 * **QueueArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the queue.
 * **QuickConnectArns**: string[]: The quick connects available to agents who are working the queue.
 * **Status**: string: The status of the queue.
@@ -385,14 +386,15 @@
 
 ## AWS.Connect/RuleProperties
 ### Properties
-* **Actions**: [Actions](#actions) (Required): The list of actions that will be executed when a rule is triggered.
-* **Function**: string (Required): The conditions of a rule.
+* **Actions**: [Actions](#actions) (Required): A list of actions to be run when the rule is triggered.
+* **Function**: string (Required): The conditions of the rule.
 * **InstanceArn**: string (Required): The Amazon Resource Name (ARN) of the instance.
 * **Name**: string (Required): The name of the rule.
-* **PublishStatus**: string (Required): The publish status of a rule, either draft or published.
-* **RuleArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the rule.
-* **Tags**: [Tag](#tag)[]: One or more tags.
-* **TriggerEventSource**: [RuleTriggerEventSource](#ruletriggereventsource) (Required): The event source that triggers the rule.
+* **PublishStatus**: string (Required): The publish status of the rule.
+  *Allowed values*: ``DRAFT`` | ``PUBLISHED``
+* **RuleArn**: string (ReadOnly, Identifier)
+* **Tags**: [Tag](#tag)[]: The tags used to organize, track, or control access for this resource. For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+* **TriggerEventSource**: [RuleTriggerEventSource](#ruletriggereventsource) (Required): The event source to trigger the rule.
 
 ## AWS.Connect/SecurityKeyProperties
 ### Properties
@@ -427,6 +429,7 @@
 * **Fields**: [Field](#field)[]: The list of task template's fields
 * **InstanceArn**: string (Required): The identifier (arn) of the instance.
 * **Name**: string: The name of the task template.
+* **SelfAssignContactFlowArn**: string: The identifier of the contact flow.
 * **Status**: string
 * **Tags**: [Tag](#tag)[]: One or more tags.
 
@@ -492,7 +495,7 @@
 ## CreateCaseAction
 ### Properties
 * **Fields**: [Field](#field)[] (Required)
-* **TemplateId**: string (Required): The Id of template.
+* **TemplateId**: string (Required)
 
 ## CrossChannelBehavior
 ### Properties
@@ -608,11 +611,11 @@
 
 ## EventBridgeAction
 ### Properties
-* **Name**: string (Required): The name of the event bridge action.
+* **Name**: string (Required): The name.
 
 ## Field
 ### Properties
-* **Id**: string (Required): The Id of the field
+* **Id**: string (Required)
 * **Value**: [FieldValue](#fieldvalue) (Required)
 
 ## Field
@@ -715,8 +718,8 @@
 
 ## NotificationRecipientType
 ### Properties
-* **UserArns**: string[]: The list of recipients by user arns.
-* **UserTags**: [Rule_UserTags](#ruleusertags): The collection of recipients who are identified by user tags
+* **UserArns**: string[]: The Amazon Resource Name (ARN) of the user account.
+* **UserTags**: [Rule_UserTags](#ruleusertags): The tags used to organize, track, or control access for this resource. For example, { "tags": {"key1":"value1", "key2":"value2"} }. CON users with the specified tags will be notified.
 
 ## NumericQuestionPropertyValueAutomation
 ### Properties
@@ -727,6 +730,10 @@
 * **OutboundCallerIdName**: string
 * **OutboundCallerIdNumberArn**: string
 * **OutboundFlowArn**: string
+
+## OutboundEmailConfig
+### Properties
+* **OutboundEmailAddressId**: string
 
 ## OverrideTimeSlice
 ### Properties
@@ -783,8 +790,8 @@
 
 ## RuleTriggerEventSource
 ### Properties
-* **EventSourceName**: string (Required): The name of event source.
-* **IntegrationAssociationArn**: string: The Amazon Resource Name (ARN) for the AppIntegration association.
+* **EventSourceName**: string (Required): The name of the event source.
+* **IntegrationAssociationArn**: string: The Amazon Resource Name (ARN) of the integration association. ``IntegrationAssociationArn`` is required if ``TriggerEventSource`` is one of the following values: ``OnZendeskTicketCreate`` | ``OnZendeskTicketStatusUpdate`` | ``OnSalesforceCaseCreate``
 
 ## S3Config
 ### Properties
@@ -801,11 +808,13 @@
 
 ## SendNotificationAction
 ### Properties
-* **Content**: string (Required): The content of notification.
-* **ContentType**: string (Required): The type of content.
-* **DeliveryMethod**: string (Required): The means of delivery.
-* **Recipient**: [NotificationRecipientType](#notificationrecipienttype) (Required)
-* **Subject**: string: The subject of notification.
+* **Content**: string (Required): Notification content. Supports variable injection. For more information, see [JSONPath reference](https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html) in the *Administrators Guide*.
+* **ContentType**: string (Required): Content type format.
+  *Allowed value*: ``PLAIN_TEXT``
+* **DeliveryMethod**: string (Required): Notification delivery method.
+  *Allowed value*: ``EMAIL``
+* **Recipient**: [NotificationRecipientType](#notificationrecipienttype) (Required): Notification recipient.
+* **Subject**: string: The subject of the email if the delivery method is ``EMAIL``. Supports variable injection. For more information, see [JSONPath reference](https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html) in the *Administrators Guide*.
 
 ## SingleSelectQuestionRuleCategoryAutomation
 ### Properties
@@ -820,7 +829,7 @@
 
 ## SubmitAutoEvaluationAction
 ### Properties
-* **EvaluationFormArn**: string (Required): The Amazon Resource Name (ARN) of the evaluation form.
+* **EvaluationFormArn**: string (Required)
 
 ## Tag
 ### Properties
@@ -884,8 +893,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that's 1 to 256 characters in length.
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -
 
 ## Tag
 ### Properties
@@ -919,10 +928,10 @@
 
 ## TaskAction
 ### Properties
-* **ContactFlowArn**: string (Required): The Amazon Resource Name (ARN) of the contact flow.
-* **Description**: string: The description which appears in the agent's Contact Control Panel (CCP).
-* **Name**: string (Required): The name which appears in the agent's Contact Control Panel (CCP).
-* **References**: [Rule_References](#rulereferences): A formatted URL that is shown to an agent in the Contact Control Panel (CCP).
+* **ContactFlowArn**: string (Required): The Amazon Resource Name (ARN) of the flow.
+* **Description**: string: The description. Supports variable injection. For more information, see [JSONPath reference](https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html) in the *Administrators Guide*.
+* **Name**: string (Required): The name. Supports variable injection. For more information, see [JSONPath reference](https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html) in the *Administrators Guide*.
+* **References**: [Rule_References](#rulereferences): Information about the reference when the ``referenceType`` is ``URL``. Otherwise, null. ``URL`` is the only accepted type. (Supports variable injection in the ``Value`` field.)
 
 ## TaskTemplate_Constraints
 ### Properties

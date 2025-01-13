@@ -77,6 +77,19 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/SubscriptionFilterProperties](#awslogssubscriptionfilterproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Logs/Transformer@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Logs/TransformerProperties](#awslogstransformerproperties) (Required, Identifier): properties of the resource
+
+## AddKeyEntry
+### Properties
+* **Key**: string (Required)
+* **OverwriteIfExists**: bool
+* **Value**: string (Required)
+
 ## AWS.Logs/AccountPolicyProperties
 ### Properties
 * **AccountId**: string (ReadOnly, Identifier): User account id
@@ -156,6 +169,9 @@ Length Constraints: Maximum length of 51200
 * **Arn**: string (ReadOnly)
 * **DataProtectionPolicy**: [LogGroup_DataProtectionPolicy](#loggroupdataprotectionpolicy): Creates a data protection policy and assigns it to the log group. A data protection policy can help safeguard sensitive data that's ingested by the log group by auditing and masking the sensitive log data. When a user who does not have permission to view masked data views a log event that includes masked data, the sensitive data is replaced by asterisks.
  For more information, including a list of types of data that can be audited and masked, see [Protect sensitive log data with masking](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html).
+* **FieldIndexPolicies**: [LogGroup_FieldIndexPolicies](#loggroupfieldindexpolicies)[]: Creates or updates a *field index policy* for the specified log group. Only log groups in the Standard log class support field index policies. For more information about log classes, see [Log classes](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html).
+ You can use field index policies to create *field indexes* on fields found in log events in the log group. Creating field indexes lowers the costs for CWL Insights queries that reference those field indexes, because these queries attempt to skip the processing of log events that are known to not match the indexed field. Good fields to index are fields that you often need to query for and fields that have high cardinality of values Common examples of indexes include request ID, session ID, userID, and instance IDs. For more information, see [Create field indexes to improve query performance and reduce costs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html).
+ Currently, this array supports only one field index policy object.
 * **KmsKeyId**: string: The Amazon Resource Name (ARN) of the KMS key to use when encrypting log data.
  To associate an KMS key with the log group, specify the ARN of that KMS key here. If you do so, ingested data is encrypted using this key. This association is stored as long as the data encrypted with the KMS key is still within CWL. This enables CWL to decrypt this data whenever it is requested.
  If you attempt to associate a KMS key with the log group but the KMS key doesn't exist or is deactivated, you will receive an ``InvalidParameterException`` error.
@@ -173,6 +189,8 @@ Length Constraints: Maximum length of 51200
 
 ## AWS.Logs/MetricFilterProperties
 ### Properties
+* **ApplyOnTransformedLogs**: bool: This parameter is valid only for log groups that have an active log transformer. For more information about log transformers, see [PutTransformer](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html).
+ If this value is ``true``, the metric filter is applied on the transformed version of the log events instead of the original ingested log events.
 * **FilterName**: string (Identifier): The name of the metric filter.
 * **FilterPattern**: string (Required): A filter pattern for extracting metric data out of ingested log events. For more information, see [Filter and Pattern Syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html).
 * **LogGroupName**: string (Required, Identifier): The name of an existing log group that you want to associate with this metric filter.
@@ -183,6 +201,7 @@ Length Constraints: Maximum length of 51200
 * **LogGroupNames**: string[]: Optionally define specific log groups as part of your query definition
 * **Name**: string (Required): A name for the saved query definition
 * **QueryDefinitionId**: string (ReadOnly, Identifier): Unique identifier of a query definition
+* **QueryLanguage**: string: Query language of the query string. Possible values are CWLI, SQL, PPL, with CWLI being the default.
 * **QueryString**: string (Required): The query string to use for this definition
 
 ## AWS.Logs/ResourcePolicyProperties
@@ -192,12 +211,25 @@ Length Constraints: Maximum length of 51200
 
 ## AWS.Logs/SubscriptionFilterProperties
 ### Properties
+* **ApplyOnTransformedLogs**: bool: This parameter is valid only for log groups that have an active log transformer. For more information about log transformers, see [PutTransformer](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html).
+ If this value is ``true``, the subscription filter is applied on the transformed version of the log events instead of the original ingested log events.
 * **DestinationArn**: string (Required): The Amazon Resource Name (ARN) of the destination.
 * **Distribution**: string: The method used to distribute log data to the destination, which can be either random or grouped by log stream.
 * **FilterName**: string (Identifier): The name of the subscription filter.
 * **FilterPattern**: string (Required): The filtering expressions that restrict what gets delivered to the destination AWS resource. For more information about the filter pattern syntax, see [Filter and Pattern Syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html).
 * **LogGroupName**: string (Required, Identifier): The log group to associate with the subscription filter. All log events that are uploaded to this log group are filtered and delivered to the specified AWS resource if the filter pattern matches the log events.
 * **RoleArn**: string: The ARN of an IAM role that grants CWL permissions to deliver ingested log events to the destination stream. You don't need to provide the ARN when you are working with a logical destination for cross-account delivery.
+
+## AWS.Logs/TransformerProperties
+### Properties
+* **LogGroupIdentifier**: string (Required, Identifier): Existing log group that you want to associate with this transformer.
+* **TransformerConfig**: [Processor](#processor)[] (Required): List of processors in a transformer
+
+## CopyValueEntry
+### Properties
+* **OverwriteIfExists**: bool
+* **Source**: string (Required)
+* **Target**: string (Required)
 
 ## DeliveryDestination_DeliveryDestinationPolicy
 ### Properties
@@ -211,6 +243,9 @@ Length Constraints: Maximum length of 51200
 ## LogGroup_DataProtectionPolicy
 ### Properties
 
+## LogGroup_FieldIndexPolicies
+### Properties
+
 ## MetricTransformation
 ### Properties
 * **DefaultValue**: int: (Optional) The value to emit when a filter pattern does not match a log event. This value can be null.
@@ -222,6 +257,74 @@ Length Constraints: Maximum length of 51200
 * **MetricNamespace**: string (Required): A custom namespace to contain your metric in CloudWatch. Use namespaces to group together metrics that are similar. For more information, see [Namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Namespace).
 * **MetricValue**: string (Required): The value that is published to the CloudWatch metric. For example, if you're counting the occurrences of a particular term like ``Error``, specify 1 for the metric value. If you're counting the number of bytes transferred, reference the value that is in the log event by using $. followed by the name of the field that you specified in the filter pattern, such as ``$.size``.
 * **Unit**: string: The unit to assign to the metric. If you omit this, the unit is set as ``None``.
+
+## MoveKeyEntry
+### Properties
+* **OverwriteIfExists**: bool
+* **Source**: string (Required)
+* **Target**: string (Required)
+
+## ParseCloudfront
+### Properties
+* **Source**: string
+
+## ParsePostgres
+### Properties
+* **Source**: string
+
+## ParseRoute53
+### Properties
+* **Source**: string
+
+## ParseVPC
+### Properties
+* **Source**: string
+
+## ParseWAF
+### Properties
+* **Source**: string
+
+## Processor
+### Properties
+* **AddKeys**: [Transformer_AddKeys](#transformeraddkeys)
+* **CopyValue**: [Transformer_CopyValue](#transformercopyvalue)
+* **Csv**: [Transformer_Csv](#transformercsv)
+* **DateTimeConverter**: [Transformer_DateTimeConverter](#transformerdatetimeconverter)
+* **DeleteKeys**: [Transformer_DeleteKeys](#transformerdeletekeys)
+* **Grok**: [Transformer_Grok](#transformergrok)
+* **ListToMap**: [Transformer_ListToMap](#transformerlisttomap)
+* **LowerCaseString**: [Transformer_LowerCaseString](#transformerlowercasestring)
+* **MoveKeys**: [Transformer_MoveKeys](#transformermovekeys)
+* **ParseCloudfront**: [ParseCloudfront](#parsecloudfront)
+* **ParseJSON**: [Transformer_ParseJSON](#transformerparsejson)
+* **ParseKeyValue**: [Transformer_ParseKeyValue](#transformerparsekeyvalue)
+* **ParsePostgres**: [ParsePostgres](#parsepostgres)
+* **ParseRoute53**: [ParseRoute53](#parseroute53)
+* **ParseVPC**: [ParseVPC](#parsevpc)
+* **ParseWAF**: [ParseWAF](#parsewaf)
+* **RenameKeys**: [Transformer_RenameKeys](#transformerrenamekeys)
+* **SplitString**: [Transformer_SplitString](#transformersplitstring)
+* **SubstituteString**: [Transformer_SubstituteString](#transformersubstitutestring)
+* **TrimString**: [Transformer_TrimString](#transformertrimstring)
+* **TypeConverter**: [Transformer_TypeConverter](#transformertypeconverter)
+* **UpperCaseString**: [Transformer_UpperCaseString](#transformeruppercasestring)
+
+## RenameKeyEntry
+### Properties
+* **Key**: string (Required)
+* **OverwriteIfExists**: bool
+* **RenameTo**: string (Required)
+
+## SplitStringEntry
+### Properties
+* **Delimiter**: string (Required)
+* **Source**: string (Required)
+
+## SubstituteStringEntry
+### Properties
+* **From**: string (Required)
+* **Source**: string (Required)
+* **To**: string (Required)
 
 ## Tag
 ### Properties
@@ -241,5 +344,106 @@ Length Constraints: Maximum length of 51200
 ## Tag
 ### Properties
 * **Key**: string (Required)
-* **Value**: string (Required)
+* **Value**: string (Required): The value of this key-value pair.
+
+## Transformer_AddKeys
+### Properties
+* **Entries**: [AddKeyEntry](#addkeyentry)[] (Required)
+
+## Transformer_Column
+### Properties
+
+## Transformer_CopyValue
+### Properties
+* **Entries**: [CopyValueEntry](#copyvalueentry)[] (Required)
+
+## Transformer_Csv
+### Properties
+* **Columns**: [Transformer_Column](#transformercolumn)[]
+* **Delimiter**: string
+* **QuoteCharacter**: string
+* **Source**: string
+
+## Transformer_DateTimeConverter
+### Properties
+* **Locale**: string
+* **MatchPatterns**: [Transformer_MatchPattern](#transformermatchpattern)[] (Required)
+* **Source**: string (Required)
+* **SourceTimezone**: string
+* **Target**: string (Required)
+* **TargetFormat**: string
+* **TargetTimezone**: string
+
+## Transformer_DeleteKeys
+### Properties
+* **WithKeys**: string[] (Required)
+
+## Transformer_Grok
+### Properties
+* **Match**: string (Required)
+* **Source**: string
+
+## Transformer_ListToMap
+### Properties
+* **Flatten**: bool
+* **FlattenedElement**: string
+* **Key**: string (Required)
+* **Source**: string (Required)
+* **Target**: string
+* **ValueKey**: string
+
+## Transformer_LowerCaseString
+### Properties
+* **WithKeys**: string[] (Required)
+
+## Transformer_MatchPattern
+### Properties
+
+## Transformer_MoveKeys
+### Properties
+* **Entries**: [MoveKeyEntry](#movekeyentry)[] (Required)
+
+## Transformer_ParseJSON
+### Properties
+* **Destination**: string
+* **Source**: string
+
+## Transformer_ParseKeyValue
+### Properties
+* **Destination**: string
+* **FieldDelimiter**: string
+* **KeyPrefix**: string
+* **KeyValueDelimiter**: string
+* **NonMatchValue**: string
+* **OverwriteIfExists**: bool
+* **Source**: string
+
+## Transformer_RenameKeys
+### Properties
+* **Entries**: [RenameKeyEntry](#renamekeyentry)[] (Required)
+
+## Transformer_SplitString
+### Properties
+* **Entries**: [SplitStringEntry](#splitstringentry)[] (Required)
+
+## Transformer_SubstituteString
+### Properties
+* **Entries**: [SubstituteStringEntry](#substitutestringentry)[] (Required)
+
+## Transformer_TrimString
+### Properties
+* **WithKeys**: string[] (Required)
+
+## Transformer_TypeConverter
+### Properties
+* **Entries**: [TypeConverterEntry](#typeconverterentry)[] (Required)
+
+## Transformer_UpperCaseString
+### Properties
+* **WithKeys**: string[] (Required)
+
+## TypeConverterEntry
+### Properties
+* **Key**: string (Required)
+* **Type**: string (Required)
 

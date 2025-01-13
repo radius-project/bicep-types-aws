@@ -224,6 +224,21 @@
   },
   {
     "$type": "ObjectType",
+    "name": "MongoDbAuthMechanism",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MongoDbAuthType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MongoDbSslModeValue",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
@@ -245,6 +260,82 @@
   {
     "$type": "StringLiteralType",
     "value": "AWS.DMS/DataProviderProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataProvider_MongoDbSslModeValue",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataProvider_Settings_DocDbSettings",
+    "properties": {
+      "CertificateArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "ServerName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "SslMode": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataProvider_DmsSslModeValue",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataProvider_Settings_MariaDbSettings",
+    "properties": {
+      "CertificateArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "ServerName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "SslMode": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -281,9 +372,78 @@
       },
       "SslMode": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/22"
         },
         "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataProvider_MongoDbAuthMechanism",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataProvider_MongoDbAuthType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataProvider_MongoDbSslModeValue",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataProvider_Settings_MongoDbSettings",
+    "properties": {
+      "AuthMechanism": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "AuthSource": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "AuthType": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "CertificateArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "ServerName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "SslMode": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
       }
     }
   },
@@ -316,7 +476,7 @@
       },
       "SslMode": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/28"
         },
         "flags": 1
       }
@@ -387,7 +547,7 @@
       },
       "SslMode": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/30"
         },
         "flags": 1
       }
@@ -428,7 +588,31 @@
       },
       "SslMode": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/32"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataProvider_Settings_RedshiftSettings",
+    "properties": {
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "ServerName": {
+        "type": {
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -438,40 +622,68 @@
     "$type": "ObjectType",
     "name": "DataProvider_Settings",
     "properties": {
+      "DocDbSettings": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "DocDbSettings property identifier."
+      },
+      "MariaDbSettings": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "MariaDbSettings property identifier."
+      },
       "MicrosoftSqlServerSettings": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "MicrosoftSqlServerSettings property identifier."
       },
+      "MongoDbSettings": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "MongoDbSettings property identifier."
+      },
       "MySqlSettings": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "MySqlSettings property identifier."
       },
       "OracleSettings": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "OracleSettings property identifier."
       },
       "PostgreSqlSettings": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "PostgreSqlSettings property identifier."
+      },
+      "RedshiftSettings": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "RedshiftSettings property identifier."
       }
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/16"
     }
   },
   {
@@ -529,14 +741,14 @@
       },
       "Settings": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "The property identifies the exact type of settings for the data provider."
       },
       "Tags": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -563,7 +775,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/37"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -575,7 +787,7 @@
     "name": "AWS.DMS/DataProvider@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/26"
+      "$ref": "#/38"
     },
     "flags": 0
   },
@@ -606,7 +818,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/40"
     }
   },
   {
@@ -691,14 +903,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "VpcSecurityGroups": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The property describes vps security groups for the instance profile."
@@ -725,7 +937,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/44"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -737,7 +949,7 @@
     "name": "AWS.DMS/InstanceProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/33"
+      "$ref": "#/45"
     },
     "flags": 0
   },
@@ -822,19 +1034,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/47"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
+      "$ref": "#/48"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/47"
     }
   },
   {
@@ -899,28 +1111,28 @@
       },
       "SchemaConversionApplicationAttributes": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "The property describes schema conversion application attributes for the migration project."
       },
       "SourceDataProviderDescriptors": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/51"
         },
         "flags": 4,
         "description": "The property describes source data provider descriptors for the migration project."
       },
       "Tags": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "TargetDataProviderDescriptors": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/53"
         },
         "flags": 4,
         "description": "The property describes target data provider descriptors for the migration project."
@@ -954,7 +1166,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/54"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -966,7 +1178,7 @@
     "name": "AWS.DMS/MigrationProject@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/43"
+      "$ref": "#/55"
     },
     "flags": 0
   },
@@ -1024,7 +1236,7 @@
       },
       "VpcSecurityGroupIds": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/59"
         },
         "flags": 0
       }
@@ -1078,7 +1290,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/46"
+      "$ref": "#/58"
     }
   },
   {
@@ -1087,7 +1299,7 @@
     "properties": {
       "ComputeConfig": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/57"
         },
         "flags": 1
       },
@@ -1107,7 +1319,7 @@
       },
       "ReplicationSettings": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "JSON settings for Servereless replications that are provisioned using this replication configuration"
@@ -1135,21 +1347,21 @@
       },
       "SupplementalSettings": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "JSON settings for specifying supplemental data"
       },
       "TableMappings": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/63"
         },
         "flags": 1,
         "description": "JSON table mappings for AWS DMS Serverless replications that are provisioned using this replication configuration"
       },
       "Tags": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "<p>Contains a map of the key-value pairs for the resource tag or tags assigned to the dataset.</p>"
@@ -1183,7 +1395,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/65"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1195,7 +1407,7 @@
     "name": "AWS.DMS/ReplicationConfig@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/54"
+      "$ref": "#/66"
     },
     "flags": 0
   }

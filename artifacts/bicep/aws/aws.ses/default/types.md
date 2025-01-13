@@ -399,6 +399,7 @@
 ## TrackingOptions
 ### Properties
 * **CustomRedirectDomain**: string: The domain to use for tracking open and click events.
+* **HttpsPolicy**: string: The https policy to use for tracking open and click events.
 
 ## VdmOptions
 ### Properties

@@ -85,6 +85,7 @@
 * **InstanceCount**: int
 * **InstanceType**: string
 * **MultiAZWithStandbyEnabled**: bool
+* **NodeOptions**: [NodeOption](#nodeoption)[]
 * **WarmCount**: int
 * **WarmEnabled**: bool
 * **WarmType**: string
@@ -166,6 +167,17 @@
 * **MasterUserARN**: string
 * **MasterUserName**: string
 * **MasterUserPassword**: string
+
+## NodeConfig
+### Properties
+* **Count**: int
+* **Enabled**: bool
+* **Type**: string
+
+## NodeOption
+### Properties
+* **NodeConfig**: [NodeConfig](#nodeconfig)
+* **NodeType**: string
 
 ## NodeToNodeEncryptionOptions
 ### Properties

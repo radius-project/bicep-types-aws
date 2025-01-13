@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Bedrock-KnowledgeBase",
   "type": "AWS::Bedrock::KnowledgeBase",
-  "time": "2024-10-29T15:26:35.257Z",
+  "time": "2025-01-06T18:10:56.726Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -32,10 +32,31 @@
         },
         "type": "object"
       },
+      "KendraIndexArn": {
+        "description": "Arn of a Kendra index",
+        "pattern": "^arn:aws(|-cn|-us-gov):kendra:[a-z0-9-]{1,20}:([0-9]{12}|):index/([a-zA-Z0-9][a-zA-Z0-9-]{35}|[a-zA-Z0-9][a-zA-Z0-9-]{35}-[a-zA-Z0-9][a-zA-Z0-9-]{35})$",
+        "type": "string"
+      },
+      "KendraKnowledgeBaseConfiguration": {
+        "additionalProperties": false,
+        "description": "Configurations for a Kendra knowledge base",
+        "properties": {
+          "KendraIndexArn": {
+            "$ref": "#/definitions/KendraIndexArn"
+          }
+        },
+        "required": [
+          "KendraIndexArn"
+        ],
+        "type": "object"
+      },
       "KnowledgeBaseConfiguration": {
         "additionalProperties": false,
         "description": "Contains details about the embeddings model used for the knowledge base.",
         "properties": {
+          "KendraKnowledgeBaseConfiguration": {
+            "$ref": "#/definitions/KendraKnowledgeBaseConfiguration"
+          },
           "Type": {
             "$ref": "#/definitions/KnowledgeBaseType"
           },
@@ -44,8 +65,7 @@
           }
         },
         "required": [
-          "Type",
-          "VectorKnowledgeBaseConfiguration"
+          "Type"
         ],
         "type": "object"
       },
@@ -74,7 +94,8 @@
       "KnowledgeBaseType": {
         "description": "The type of a knowledge base.",
         "enum": [
-          "VECTOR"
+          "VECTOR",
+          "KENDRA"
         ],
         "type": "string"
       },
@@ -168,7 +189,7 @@
           "CollectionArn": {
             "description": "The ARN of the OpenSearch Service vector store.",
             "maxLength": 2048,
-            "pattern": "^arn:aws:aoss:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:collection/[a-z0-9-]{3,32}$",
+            "pattern": "^arn:aws(|-cn|-us-gov|-iso):aoss:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:collection/[a-z0-9-]{3,32}$",
             "type": "string"
           },
           "FieldMapping": {
@@ -412,6 +433,23 @@
         ],
         "type": "object"
       },
+      "S3Location": {
+        "additionalProperties": false,
+        "description": "An Amazon S3 location.",
+        "properties": {
+          "URI": {
+            "description": "The location's URI",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^s3://.{1,128}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "URI"
+        ],
+        "type": "object"
+      },
       "StorageConfiguration": {
         "additionalProperties": false,
         "description": "The vector store service in which the knowledge base is stored.",
@@ -459,6 +497,52 @@
         ],
         "type": "object"
       },
+      "SupplementalDataStorageConfiguration": {
+        "additionalProperties": false,
+        "description": "Configurations for supplemental data storage.",
+        "properties": {
+          "SupplementalDataStorageLocations": {
+            "$ref": "#/definitions/SupplementalDataStorageLocations"
+          }
+        },
+        "required": [
+          "SupplementalDataStorageLocations"
+        ],
+        "type": "object"
+      },
+      "SupplementalDataStorageLocation": {
+        "additionalProperties": false,
+        "description": "Supplemental data storage location.",
+        "properties": {
+          "S3Location": {
+            "$ref": "#/definitions/S3Location"
+          },
+          "SupplementalDataStorageLocationType": {
+            "$ref": "#/definitions/SupplementalDataStorageLocationType"
+          }
+        },
+        "required": [
+          "SupplementalDataStorageLocationType"
+        ],
+        "type": "object"
+      },
+      "SupplementalDataStorageLocationType": {
+        "description": "Supplemental data storage location type.",
+        "enum": [
+          "S3"
+        ],
+        "type": "string"
+      },
+      "SupplementalDataStorageLocations": {
+        "description": "List of supplemental data storage locations.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/SupplementalDataStorageLocation"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
+      },
       "TagsMap": {
         "additionalProperties": false,
         "description": "A map of tag keys and values",
@@ -486,6 +570,9 @@
           },
           "EmbeddingModelConfiguration": {
             "$ref": "#/definitions/EmbeddingModelConfiguration"
+          },
+          "SupplementalDataStorageConfiguration": {
+            "$ref": "#/definitions/SupplementalDataStorageConfiguration"
           }
         },
         "required": [
@@ -612,8 +699,7 @@
     "required": [
       "KnowledgeBaseConfiguration",
       "Name",
-      "RoleArn",
-      "StorageConfiguration"
+      "RoleArn"
     ],
     "tagging": {
       "cloudFormationSystemTags": true,

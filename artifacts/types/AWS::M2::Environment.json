@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-M2-Environment",
   "type": "AWS::M2::Environment",
-  "time": "2024-11-22T01:09:11.002Z",
+  "time": "2025-01-09T19:58:01.536Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,7 @@
       "/properties/EngineType",
       "/properties/KmsKeyId",
       "/properties/Name",
+      "/properties/NetworkType",
       "/properties/PubliclyAccessible",
       "/properties/SecurityGroupIds",
       "/properties/StorageConfigurations",
@@ -79,6 +80,13 @@
           "DesiredCapacity"
         ],
         "type": "object"
+      },
+      "NetworkType": {
+        "enum": [
+          "ipv4",
+          "dual"
+        ],
+        "type": "string"
       },
       "StorageConfiguration": {
         "description": "Defines the storage configuration for an environment.",
@@ -226,6 +234,9 @@
         "description": "The name of the environment.",
         "pattern": "^[A-Za-z0-9][A-Za-z0-9_\\-]{1,59}$",
         "type": "string"
+      },
+      "NetworkType": {
+        "$ref": "#/definitions/NetworkType"
       },
       "PreferredMaintenanceWindow": {
         "description": "Configures a desired maintenance window for the environment. If you do not provide a value, a random system-generated value will be assigned.",

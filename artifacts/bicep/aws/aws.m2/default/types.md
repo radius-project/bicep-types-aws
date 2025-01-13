@@ -52,6 +52,7 @@
 * **InstanceType**: string (Required): The type of instance underlying the environment.
 * **KmsKeyId**: string: The ID or the Amazon Resource Name (ARN) of the customer managed KMS Key used for encrypting environment-related resources.
 * **Name**: string (Required): The name of the environment.
+* **NetworkType**: string
 * **PreferredMaintenanceWindow**: string: Configures a desired maintenance window for the environment. If you do not provide a value, a random system-generated value will be assigned.
 * **PubliclyAccessible**: bool: Specifies whether the environment is publicly accessible.
 * **SecurityGroupIds**: string[]: The list of security groups for the VPC associated with this environment.

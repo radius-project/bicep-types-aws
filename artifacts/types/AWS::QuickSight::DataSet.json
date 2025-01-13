@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-DataSet",
   "type": "AWS::QuickSight::DataSet",
-  "time": "2024-11-07T18:31:22.795Z",
+  "time": "2024-12-12T18:03:25.561Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -855,6 +855,20 @@
         ],
         "type": "object"
       },
+      "PerformanceConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "UniqueKeys": {
+            "items": {
+              "$ref": "#/definitions/UniqueKey"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
       "PhysicalTable": {
         "additionalProperties": false,
         "description": "\u003cp\u003eA view of a data source that contains information about the shape of the data in the\n            underlying source. This is a variant type structure. For this structure to be valid,\n            only one of the attributes can be non-null.\u003c/p\u003e",
@@ -1138,9 +1152,7 @@
             "minItems": 1,
             "type": "array"
           },
-          "UploadSettings": {
-            "$ref": "#/definitions/UploadSettings"
-          }
+          "UploadSettings": {}
         },
         "required": [
           "DataSourceArn",
@@ -1305,6 +1317,25 @@
             "$ref": "#/definitions/UntagColumnOperation"
           }
         },
+        "type": "object"
+      },
+      "UniqueKey": {
+        "additionalProperties": false,
+        "properties": {
+          "ColumnNames": {
+            "items": {
+              "maxLength": 127,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "ColumnNames"
+        ],
         "type": "object"
       },
       "UntagColumnOperation": {
@@ -1525,6 +1556,9 @@
           "$ref": "#/definitions/OutputColumn"
         },
         "type": "array"
+      },
+      "PerformanceConfiguration": {
+        "$ref": "#/definitions/PerformanceConfiguration"
       },
       "Permissions": {
         "description": "\u003cp\u003eA list of resource permissions on the dataset.\u003c/p\u003e",

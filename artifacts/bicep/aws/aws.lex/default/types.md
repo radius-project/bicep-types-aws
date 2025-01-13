@@ -69,6 +69,7 @@
 * **Id**: string (ReadOnly, Identifier)
 * **IdleSessionTTLInSeconds**: int (Required): IdleSessionTTLInSeconds of the resource
 * **Name**: string (Required)
+* **Replication**: [Replication](#replication) (WriteOnly)
 * **RoleArn**: string (Required)
 * **TestBotAliasSettings**: [TestBotAliasSettings](#testbotaliassettings)
 * **TestBotAliasTags**: [Tag](#tag)[] (WriteOnly): A list of tags to add to the test alias for a bot, , which can only be added at bot/bot alias creation.
@@ -405,6 +406,10 @@
 * **MessageGroupsList**: [MessageGroup](#messagegroup)[] (Required)
 * **MessageSelectionStrategy**: string
 * **PromptAttemptsSpecification**: [Bot_PromptAttemptsSpecification](#botpromptattemptsspecification): Specifies the advanced settings on each attempt of the prompt.
+
+## Replication
+### Properties
+* **ReplicaRegions**: string[] (Required): List of secondary regions for bot replication.
 
 ## ResponseSpecification
 ### Properties

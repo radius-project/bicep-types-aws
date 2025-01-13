@@ -321,6 +321,9 @@
 ### aws.batch/computeenvironment
 * **Link**: [default](aws/aws.batch/default/types.md#resource-awsbatchcomputeenvironmentdefault)
 
+### aws.batch/jobdefinition
+* **Link**: [default](aws/aws.batch/default/types.md#resource-awsbatchjobdefinitiondefault)
+
 ### aws.batch/jobqueue
 * **Link**: [default](aws/aws.batch/default/types.md#resource-awsbatchjobqueuedefault)
 
@@ -729,6 +732,9 @@
 
 ### aws.customerprofiles/eventstream
 * **Link**: [default](aws/aws.customerprofiles/default/types.md#resource-awscustomerprofileseventstreamdefault)
+
+### aws.customerprofiles/eventtrigger
+* **Link**: [default](aws/aws.customerprofiles/default/types.md#resource-awscustomerprofileseventtriggerdefault)
 
 ### aws.customerprofiles/integration
 * **Link**: [default](aws/aws.customerprofiles/default/types.md#resource-awscustomerprofilesintegrationdefault)
@@ -1577,6 +1583,9 @@
 ### aws.iot/certificateprovider
 * **Link**: [default](aws/aws.iot/default/types.md#resource-awsiotcertificateproviderdefault)
 
+### aws.iot/command
+* **Link**: [default](aws/aws.iot/default/types.md#resource-awsiotcommanddefault)
+
 ### aws.iot/custommetric
 * **Link**: [default](aws/aws.iot/default/types.md#resource-awsiotcustommetricdefault)
 
@@ -1950,6 +1959,9 @@
 ### aws.logs/subscriptionfilter
 * **Link**: [default](aws/aws.logs/default/types.md#resource-awslogssubscriptionfilterdefault)
 
+### aws.logs/transformer
+* **Link**: [default](aws/aws.logs/default/types.md#resource-awslogstransformerdefault)
+
 ## aws.lookoutmetrics
 ### aws.lookoutmetrics/anomalydetector
 * **Link**: [default](aws/aws.lookoutmetrics/default/types.md#resource-awslookoutmetricsanomalydetectordefault)
@@ -2167,6 +2179,9 @@
 ### aws.networkmanager/device
 * **Link**: [default](aws/aws.networkmanager/default/types.md#resource-awsnetworkmanagerdevicedefault)
 
+### aws.networkmanager/directconnectgatewayattachment
+* **Link**: [default](aws/aws.networkmanager/default/types.md#resource-awsnetworkmanagerdirectconnectgatewayattachmentdefault)
+
 ### aws.networkmanager/globalnetwork
 * **Link**: [default](aws/aws.networkmanager/default/types.md#resource-awsnetworkmanagerglobalnetworkdefault)
 
@@ -2308,6 +2323,16 @@
 ### aws.pcaconnectorscep/connector
 * **Link**: [default](aws/aws.pcaconnectorscep/default/types.md#resource-awspcaconnectorscepconnectordefault)
 
+## aws.pcs
+### aws.pcs/cluster
+* **Link**: [default](aws/aws.pcs/default/types.md#resource-awspcsclusterdefault)
+
+### aws.pcs/computenodegroup
+* **Link**: [default](aws/aws.pcs/default/types.md#resource-awspcscomputenodegroupdefault)
+
+### aws.pcs/queue
+* **Link**: [default](aws/aws.pcs/default/types.md#resource-awspcsqueuedefault)
+
 ## aws.personalize
 ### aws.personalize/dataset
 * **Link**: [default](aws/aws.personalize/default/types.md#resource-awspersonalizedatasetdefault)
@@ -2334,6 +2359,9 @@
 ### aws.qbusiness/application
 * **Link**: [default](aws/aws.qbusiness/default/types.md#resource-awsqbusinessapplicationdefault)
 
+### aws.qbusiness/dataaccessor
+* **Link**: [default](aws/aws.qbusiness/default/types.md#resource-awsqbusinessdataaccessordefault)
+
 ### aws.qbusiness/datasource
 * **Link**: [default](aws/aws.qbusiness/default/types.md#resource-awsqbusinessdatasourcedefault)
 
@@ -2356,6 +2384,9 @@
 ## aws.quicksight
 ### aws.quicksight/analysis
 * **Link**: [default](aws/aws.quicksight/default/types.md#resource-awsquicksightanalysisdefault)
+
+### aws.quicksight/custompermissions
+* **Link**: [default](aws/aws.quicksight/default/types.md#resource-awsquicksightcustompermissionsdefault)
 
 ### aws.quicksight/dashboard
 * **Link**: [default](aws/aws.quicksight/default/types.md#resource-awsquicksightdashboarddefault)
@@ -2387,6 +2418,9 @@
 ## aws.ram
 ### aws.ram/permission
 * **Link**: [default](aws/aws.ram/default/types.md#resource-awsrampermissiondefault)
+
+### aws.ram/resourceshare
+* **Link**: [default](aws/aws.ram/default/types.md#resource-awsramresourcesharedefault)
 
 ## aws.rbin
 ### aws.rbin/rule
@@ -2646,6 +2680,13 @@
 ### aws.s3outposts/bucketpolicy
 * **Link**: [default](aws/aws.s3outposts/default/types.md#resource-awss3outpostsbucketpolicydefault)
 
+## aws.s3tables
+### aws.s3tables/tablebucket
+* **Link**: [default](aws/aws.s3tables/default/types.md#resource-awss3tablestablebucketdefault)
+
+### aws.s3tables/tablebucketpolicy
+* **Link**: [default](aws/aws.s3tables/default/types.md#resource-awss3tablestablebucketpolicydefault)
+
 ## aws.sagemaker
 ### aws.sagemaker/appimageconfig
 * **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerappimageconfigdefault)
@@ -2694,6 +2735,9 @@
 
 ### aws.sagemaker/monitoringschedule
 * **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakermonitoringscheduledefault)
+
+### aws.sagemaker/partnerapp
+* **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerpartnerappdefault)
 
 ### aws.sagemaker/pipeline
 * **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerpipelinedefault)
@@ -3012,6 +3056,12 @@
 ### aws.vpclattice/listener
 * **Link**: [default](aws/aws.vpclattice/default/types.md#resource-awsvpclatticelistenerdefault)
 
+### aws.vpclattice/resourceconfiguration
+* **Link**: [default](aws/aws.vpclattice/default/types.md#resource-awsvpclatticeresourceconfigurationdefault)
+
+### aws.vpclattice/resourcegateway
+* **Link**: [default](aws/aws.vpclattice/default/types.md#resource-awsvpclatticeresourcegatewaydefault)
+
 ### aws.vpclattice/resourcepolicy
 * **Link**: [default](aws/aws.vpclattice/default/types.md#resource-awsvpclatticeresourcepolicydefault)
 
@@ -3023,6 +3073,9 @@
 
 ### aws.vpclattice/servicenetwork
 * **Link**: [default](aws/aws.vpclattice/default/types.md#resource-awsvpclatticeservicenetworkdefault)
+
+### aws.vpclattice/servicenetworkresourceassociation
+* **Link**: [default](aws/aws.vpclattice/default/types.md#resource-awsvpclatticeservicenetworkresourceassociationdefault)
 
 ### aws.vpclattice/servicenetworkserviceassociation
 * **Link**: [default](aws/aws.vpclattice/default/types.md#resource-awsvpclatticeservicenetworkserviceassociationdefault)
@@ -3058,6 +3111,12 @@
 
 ### aws.wisdom/aiagentversion
 * **Link**: [default](aws/aws.wisdom/default/types.md#resource-awswisdomaiagentversiondefault)
+
+### aws.wisdom/aiguardrail
+* **Link**: [default](aws/aws.wisdom/default/types.md#resource-awswisdomaiguardraildefault)
+
+### aws.wisdom/aiguardrailversion
+* **Link**: [default](aws/aws.wisdom/default/types.md#resource-awswisdomaiguardrailversiondefault)
 
 ### aws.wisdom/aiprompt
 * **Link**: [default](aws/aws.wisdom/default/types.md#resource-awswisdomaipromptdefault)

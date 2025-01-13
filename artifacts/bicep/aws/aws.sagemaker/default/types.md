@@ -112,6 +112,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/MonitoringScheduleProperties](#awssagemakermonitoringscheduleproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SageMaker/PartnerApp@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/PartnerAppProperties](#awssagemakerpartnerappproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SageMaker/Pipeline@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -402,6 +409,21 @@
 * **MonitoringScheduleStatus**: string: The status of a schedule job.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## AWS.SageMaker/PartnerAppProperties
+### Properties
+* **ApplicationConfig**: [PartnerAppConfig](#partnerappconfig): A collection of settings that specify the maintenance schedule for the PartnerApp.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the created PartnerApp.
+* **AuthType**: string (Required): The Auth type of PartnerApp.
+* **BaseUrl**: string (ReadOnly): The AppServerUrl based on app and account-info.
+* **ClientToken**: string (WriteOnly): The client token for the PartnerApp.
+* **EnableIamSessionBasedIdentity**: bool: Enables IAM Session based Identity for PartnerApp.
+* **ExecutionRoleArn**: string (Required): The execution role for the user.
+* **MaintenanceConfig**: [PartnerAppMaintenanceConfig](#partnerappmaintenanceconfig): A collection of settings that specify the maintenance schedule for the PartnerApp.
+* **Name**: string (Required): A name for the PartnerApp.
+* **Tags**: [Tag](#tag)[]: A list of tags to apply to the PartnerApp.
+* **Tier**: string (Required): The tier of the PartnerApp.
+* **Type**: string (Required): The type of PartnerApp.
+
 ## AWS.SageMaker/PipelineProperties
 ### Properties
 * **ParallelismConfiguration**: [Pipeline_ParallelismConfiguration](#pipelineparallelismconfiguration)
@@ -509,6 +531,7 @@
 * **InstanceType**: string (Required)
 * **LifeCycleConfig**: [ClusterLifeCycleConfig](#clusterlifecycleconfig) (Required)
 * **OnStartDeepHealthChecks**: string[]
+* **OverrideVpcConfig**: [VpcConfig](#vpcconfig)
 * **ThreadsPerCore**: int: The number you specified to TreadsPerCore in CreateCluster for enabling or disabling multithreading. For instance types that support multithreading, you can specify 1 for disabling multithreading and 2 for enabling multithreading.
 
 ## ClusterInstanceStorageConfig
@@ -590,14 +613,17 @@
 ## CustomFileSystem
 ### Properties
 * **EFSFileSystem**: [EFSFileSystem](#efsfilesystem)
+* **FSxLustreFileSystem**: [FSxLustreFileSystem](#fsxlustrefilesystem)
 
 ## CustomFileSystemConfig
 ### Properties
 * **EFSFileSystemConfig**: [EFSFileSystemConfig](#efsfilesystemconfig)
+* **FSxLustreFileSystemConfig**: [FSxLustreFileSystemConfig](#fsxlustrefilesystemconfig)
 
 ## CustomFileSystemConfig
 ### Properties
 * **EFSFileSystemConfig**: [EFSFileSystemConfig](#efsfilesystemconfig)
+* **FSxLustreFileSystemConfig**: [FSxLustreFileSystemConfig](#fsxlustrefilesystemconfig)
 
 ## CustomImage
 ### Properties
@@ -827,6 +853,20 @@
 * **DefaultGid**: int: The default POSIX group ID (GID). If not specified, defaults to 100.
 * **DefaultUid**: int: The default POSIX user ID (UID). If not specified, defaults to 1000.
 * **MountPath**: string: The path within the image to mount the user's EFS home directory. The directory should be empty. If not specified, defaults to /home/sagemaker-user.
+
+## FSxLustreFileSystem
+### Properties
+* **FileSystemId**: string (Required)
+
+## FSxLustreFileSystemConfig
+### Properties
+* **FileSystemId**: string (Required)
+* **FileSystemPath**: string
+
+## FSxLustreFileSystemConfig
+### Properties
+* **FileSystemId**: string (Required)
+* **FileSystemPath**: string
 
 ## IdleSettings
 ### Properties
@@ -1201,6 +1241,18 @@
 ### Properties
 * **OwnerUserProfileName**: string (Required)
 
+## PartnerApp_Arguments
+### Properties
+
+## PartnerAppConfig
+### Properties
+* **AdminUsers**: string[]: A list of users with administrator privileges for the PartnerApp.
+* **Arguments**: [PartnerApp_Arguments](#partnerapparguments): A list of arguments to pass to the PartnerApp.
+
+## PartnerAppMaintenanceConfig
+### Properties
+* **MaintenanceWindowStart**: string (Required): The maintenance window start day and time for the PartnerApp.
+
 ## Pipeline_ParallelismConfiguration
 ### Properties
 * **MaxParallelExecutionSteps**: int (Required): Maximum parallel execution steps
@@ -1482,6 +1534,11 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

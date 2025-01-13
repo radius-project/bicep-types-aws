@@ -314,7 +314,8 @@
         "type": {
           "$ref": "#/35"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "One or more metric data queries to provide data points for a metric specification."
       }
     }
   },
@@ -326,7 +327,8 @@
         "type": {
           "$ref": "#/36"
         },
-        "flags": 1
+        "flags": 1,
+        "description": ""
       }
     }
   },
@@ -338,7 +340,8 @@
         "type": {
           "$ref": "#/37"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "One or more metric data queries to provide data points for a metric specification."
       }
     }
   },
@@ -351,7 +354,7 @@
           "$ref": "#/38"
         },
         "flags": 0,
-        "description": "The dimensions for the metric."
+        "description": "Describes the dimensions of the metric."
       },
       "MetricName": {
         "type": {
@@ -378,14 +381,14 @@
           "$ref": "#/4"
         },
         "flags": 0,
-        "description": "The math expression to perform on the returned data, if this object is performing a math expression."
+        "description": "The math expression to perform on the returned data, if this object is performing a math expression. This expression can use the ``Id`` of the other metrics to refer to those metrics, and can also use the ``Id`` of other expressions to use the result of those expressions. \n Conditional: Within each ``MetricDataQuery`` object, you must specify either ``Expression`` or ``MetricStat``, but not both."
       },
       "Id": {
         "type": {
           "$ref": "#/4"
         },
         "flags": 0,
-        "description": "A short name that identifies the object's results in the response."
+        "description": "A short name that identifies the object's results in the response. This name must be unique among all ``MetricDataQuery`` objects specified for a single scaling policy. If you are performing math expressions on this set of data, this name represents that data and can serve as a variable in the mathematical expression. The valid characters are letters, numbers, and underscores. The first character must be a lowercase letter."
       },
       "Label": {
         "type": {
@@ -399,14 +402,14 @@
           "$ref": "#/21"
         },
         "flags": 0,
-        "description": "Information about the metric data to return."
+        "description": "Information about the metric data to return. \n Conditional: Within each ``MetricDataQuery`` object, you must specify either ``Expression`` or ``MetricStat``, but not both."
       },
       "ReturnData": {
         "type": {
           "$ref": "#/5"
         },
         "flags": 0,
-        "description": "Indicates whether to return the timestamps and raw data values of this metric."
+        "description": "Indicates whether to return the timestamps and raw data values of this metric. \n If you use any math expressions, specify ``true`` for this value for only the final math expression that the metric specification is based on. You must specify ``false`` for ``ReturnData`` for all the other metrics and expressions used in the metric specification.\n If you are only retrieving metrics and not performing any math expressions, do not specify anything for ``ReturnData``. This sets it to its default (``true``)."
       }
     }
   },
@@ -438,43 +441,50 @@
         "type": {
           "$ref": "#/14"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The customized capacity metric specification."
       },
       "CustomizedLoadMetricSpecification": {
         "type": {
           "$ref": "#/15"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The customized load metric specification."
       },
       "CustomizedScalingMetricSpecification": {
         "type": {
           "$ref": "#/16"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The customized scaling metric specification."
       },
       "PredefinedLoadMetricSpecification": {
         "type": {
           "$ref": "#/23"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The predefined load metric specification."
       },
       "PredefinedMetricPairSpecification": {
         "type": {
           "$ref": "#/24"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The predefined metric pair specification that determines the appropriate scaling metric and load metric to use."
       },
       "PredefinedScalingMetricSpecification": {
         "type": {
           "$ref": "#/25"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The predefined scaling metric specification."
       },
       "TargetValue": {
         "type": {
           "$ref": "#/3"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "Specifies the target utilization."
       }
     }
   },
@@ -487,21 +497,21 @@
           "$ref": "#/17"
         },
         "flags": 0,
-        "description": "The CloudWatch metric to return, including the metric name, namespace, and dimensions. "
+        "description": "The CloudWatch metric to return, including the metric name, namespace, and dimensions. To get the exact metric name, namespace, and dimensions, inspect the [Metric](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_Metric.html) object that is returned by a call to [ListMetrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html)."
       },
       "Stat": {
         "type": {
           "$ref": "#/4"
         },
         "flags": 0,
-        "description": "The statistic to return. It can include any CloudWatch statistic or extended statistic."
+        "description": "The statistic to return. It can include any CloudWatch statistic or extended statistic. For a list of valid values, see the table in [Statistics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic) in the *Amazon CloudWatch User Guide*. \n The most commonly used metrics for predictive scaling are ``Average`` and ``Sum``."
       },
       "Unit": {
         "type": {
           "$ref": "#/4"
         },
         "flags": 0,
-        "description": "The unit to use for the returned data points."
+        "description": "The unit to use for the returned data points. For a complete list of the units that CloudWatch supports, see the [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html) data type in the *Amazon CloudWatch API Reference*."
       }
     }
   },
@@ -513,31 +523,36 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Defines the behavior that should be applied if the forecast capacity approaches or exceeds the maximum capacity. Defaults to ``HonorMaxCapacity`` if not specified."
       },
       "MaxCapacityBuffer": {
         "type": {
           "$ref": "#/3"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The size of the capacity buffer to use when the forecast capacity is close to or exceeds the maximum capacity. The value is specified as a percentage relative to the forecast capacity. For example, if the buffer is 10, this means a 10 percent buffer, such that if the forecast capacity is 50, and the maximum capacity is 40, then the effective maximum capacity is 55. \n Required if the ``MaxCapacityBreachBehavior`` property is set to ``IncreaseMaxCapacity``, and cannot be used otherwise."
       },
       "MetricSpecifications": {
         "type": {
           "$ref": "#/39"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "This structure includes the metrics and target utilization to use for predictive scaling. \n This is an array, but we currently only support a single metric specification. That is, you can specify a target value and a single metric pair, or a target value and one scaling metric and one load metric."
       },
       "Mode": {
         "type": {
           "$ref": "#/4"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The predictive scaling mode. Defaults to ``ForecastOnly`` if not specified."
       },
       "SchedulingBufferTime": {
         "type": {
           "$ref": "#/3"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The amount of time, in seconds, that the start time can be advanced. \n The value must be less than the forecast interval duration of 3600 seconds (60 minutes). Defaults to 300 seconds if not specified."
       }
     }
   },
@@ -549,13 +564,15 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The metric type."
       },
       "ResourceLabel": {
         "type": {
           "$ref": "#/4"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "A label that uniquely identifies a target group."
       }
     }
   },
@@ -567,13 +584,15 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "Indicates which metrics to use. There are two different types of metrics for each metric type: one is a load metric and one is a scaling metric."
       },
       "ResourceLabel": {
         "type": {
           "$ref": "#/4"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "A label that uniquely identifies a specific target group from which to determine the total and average request count."
       }
     }
   },
@@ -585,13 +604,15 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The metric type."
       },
       "ResourceLabel": {
         "type": {
           "$ref": "#/4"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "A label that uniquely identifies a specific target group from which to determine the average request count."
       }
     }
   },
@@ -914,7 +935,7 @@
           "$ref": "#/22"
         },
         "flags": 0,
-        "description": ""
+        "description": "The predictive scaling policy configuration."
       },
       "ResourceId": {
         "type": {

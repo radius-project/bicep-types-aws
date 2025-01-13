@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-Space",
   "type": "AWS::SageMaker::Space",
-  "time": "2024-11-20T16:42:22.461Z",
+  "time": "2025-01-09T16:39:07.443Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -43,6 +43,9 @@
         "properties": {
           "EFSFileSystem": {
             "$ref": "#/definitions/EFSFileSystem"
+          },
+          "FSxLustreFileSystem": {
+            "$ref": "#/definitions/FSxLustreFileSystem"
           }
         },
         "type": "object"
@@ -110,6 +113,21 @@
         },
         "required": [
           "EbsVolumeSizeInGb"
+        ],
+        "type": "object"
+      },
+      "FSxLustreFileSystem": {
+        "additionalProperties": false,
+        "properties": {
+          "FileSystemId": {
+            "maxLength": 21,
+            "minLength": 11,
+            "pattern": "^(fs-[0-9a-f]{8,})$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "FileSystemId"
         ],
         "type": "object"
       },

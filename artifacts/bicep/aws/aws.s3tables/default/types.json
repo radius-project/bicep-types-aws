@@ -1,0 +1,204 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "TableBucketARN",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TableBucketName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UnreferencedFileRemoval",
+    "properties": {
+      "NoncurrentDays": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "S3 permanently deletes noncurrent objects after the number of days specified by the NoncurrentDays property."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Indicates whether the Unreferenced File Removal maintenance action is enabled."
+      },
+      "UnreferencedDays": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "For any object not referenced by your table and older than the UnreferencedDays property, S3 creates a delete marker and marks the object version as noncurrent."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.S3Tables/TableBucketProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.S3Tables/TableBucketProperties",
+    "properties": {
+      "TableBucketARN": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18
+      },
+      "TableBucketName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      },
+      "UnreferencedFileRemoval": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.S3Tables/TableBucket",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.S3Tables/TableBucket@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/7"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourcePolicy",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TableBucketARN",
+    "properties": {}
+  },
+  {
+    "$type": "UnionType",
+    "elements": [
+      {
+        "$ref": "#/9"
+      },
+      {
+        "$ref": "#/3"
+      }
+    ]
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.S3Tables/TableBucketPolicyProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TableBucketPolicy_ResourcePolicy",
+    "properties": {}
+  },
+  {
+    "$type": "UnionType",
+    "elements": [
+      {
+        "$ref": "#/13"
+      },
+      {
+        "$ref": "#/3"
+      }
+    ]
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.S3Tables/TableBucketPolicyProperties",
+    "properties": {
+      "ResourcePolicy": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      },
+      "TableBucketARN": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.S3Tables/TableBucketPolicy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.S3Tables/TableBucketPolicy@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/16"
+    },
+    "flags": 0
+  }
+]

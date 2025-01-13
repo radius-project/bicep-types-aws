@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Redshift-Integration",
   "type": "AWS::Redshift::Integration",
-  "time": "2024-11-14T23:50:42.688Z",
+  "time": "2024-12-21T01:59:38.504Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -65,9 +65,10 @@
           "redshift:CreateTags",
           "redshift:DescribeTags",
           "redshift:DescribeClusters",
+          "redshift:CreateInboundIntegration",
+          "redshift-serverless:ListNamespaces",
           "kms:CreateGrant",
-          "kms:DescribeKey",
-          "redshift:CreateInboundIntegration"
+          "kms:DescribeKey"
         ]
       },
       "delete": {
@@ -96,7 +97,8 @@
           "redshift:CreateTags",
           "redshift:DeleteTags",
           "redshift:DescribeClusters",
-          "redshift:DescribeTags"
+          "redshift:DescribeTags",
+          "redshift-serverless:ListNamespaces"
         ]
       }
     },
@@ -122,20 +124,6 @@
         "type": "string"
       },
       "KMSKeyId": {
-        "anyOf": [
-          {
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::KMS::Key"
-            }
-          },
-          {
-            "relationshipRef": {
-              "propertyPath": "/properties/KeyId",
-              "typeName": "AWS::KMS::Key"
-            }
-          }
-        ],
         "description": "An KMS key identifier for the key to use to encrypt the integration. If you don't specify an encryption key, the default AWS owned KMS key is used.",
         "type": "string"
       },

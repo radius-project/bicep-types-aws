@@ -225,7 +225,7 @@
 * **EnvironmentId**: string (ReadOnly, Identifier): The ID of the environment in which subscription target is created.
 * **EnvironmentIdentifier**: string (Required, WriteOnly): The ID of the environment in which subscription target would be created.
 * **Id**: string (ReadOnly, Identifier): The ID of the subscription target.
-* **ManageAccessRole**: string (Required): The manage access role that is used to create the subscription target.
+* **ManageAccessRole**: string: The manage access role that is used to create the subscription target.
 * **Name**: string (Required): The name of the subscription target.
 * **ProjectId**: string (ReadOnly): The identifier of the project specified in the subscription target.
 * **Provider**: string: The provider of the subscription target.
@@ -256,6 +256,7 @@
 ### Properties
 * **GlueRunConfiguration**: [GlueRunConfigurationInput](#gluerunconfigurationinput)
 * **RedshiftRunConfiguration**: [RedshiftRunConfigurationInput](#redshiftrunconfigurationinput)
+* **SageMakerRunConfiguration**: [SageMakerRunConfigurationInput](#sagemakerrunconfigurationinput)
 
 ## EnvironmentParameter
 ### Properties
@@ -317,6 +318,10 @@
 * **FilterExpressions**: [FilterExpression](#filterexpression)[]: The filter expressions specified in the relational filter configuration for the data source.
 * **SchemaName**: string: The schema name specified in the relational filter configuration for the data source.
 
+## SageMakerRunConfigurationInput
+### Properties
+* **TrackingAssets**: [TrackingAssets](#trackingassets) (Required): The tracking assets of the Amazon SageMaker run.
+
 ## ScheduleConfiguration
 ### Properties
 * **Schedule**: string: The schedule of the data source runs.
@@ -336,6 +341,9 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag.
 * **Value**: string (Required): The value for the tag.
+
+## TrackingAssets
+### Properties
 
 ## UserProfileDetails
 ### Properties

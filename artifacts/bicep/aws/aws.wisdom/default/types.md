@@ -14,6 +14,20 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/AIAgentVersionProperties](#awswisdomaiagentversionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Wisdom/AIGuardrail@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Wisdom/AIGuardrailProperties](#awswisdomaiguardrailproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Wisdom/AIGuardrailVersion@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Wisdom/AIGuardrailVersionProperties](#awswisdomaiguardrailversionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Wisdom/AIPrompt@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -71,6 +85,28 @@
 ## AIAgentConfiguration
 ### Properties
 
+## AIGuardrailContentPolicyConfig
+### Properties
+* **FiltersConfig**: [GuardrailContentFilterConfig](#guardrailcontentfilterconfig)[] (Required): List of content filter configs in content policy.
+
+## AIGuardrailContextualGroundingPolicyConfig
+### Properties
+* **FiltersConfig**: [GuardrailContextualGroundingFilterConfig](#guardrailcontextualgroundingfilterconfig)[] (Required): List of contextual grounding filter configs.
+
+## AIGuardrailSensitiveInformationPolicyConfig
+### Properties
+* **PiiEntitiesConfig**: [GuardrailPiiEntityConfig](#guardrailpiientityconfig)[]: List of entities.
+* **RegexesConfig**: [GuardrailRegexConfig](#guardrailregexconfig)[]: List of regex.
+
+## AIGuardrailTopicPolicyConfig
+### Properties
+* **TopicsConfig**: [GuardrailTopicConfig](#guardrailtopicconfig)[] (Required): List of topic configs in topic policy.
+
+## AIGuardrailWordPolicyConfig
+### Properties
+* **ManagedWordListsConfig**: [GuardrailManagedWordsConfig](#guardrailmanagedwordsconfig)[]: A config for the list of managed words.
+* **WordsConfig**: [GuardrailWordConfig](#guardrailwordconfig)[]: List of custom word configs.
+
 ## AIPromptTemplateConfiguration
 ### Properties
 
@@ -86,6 +122,7 @@
 * **AssistantId**: string (Required, Identifier)
 * **Configuration**: [AIAgentConfiguration](#aiagentconfiguration) (Required)
 * **Description**: string
+* **ModifiedTimeSeconds**: int (ReadOnly)
 * **Name**: string
 * **Tags**: [Tags](#tags)
 * **Type**: string (Required)
@@ -100,6 +137,33 @@
 * **ModifiedTimeSeconds**: int
 * **VersionNumber**: int (ReadOnly, Identifier)
 
+## AWS.Wisdom/AIGuardrailProperties
+### Properties
+* **AIGuardrailArn**: string (ReadOnly)
+* **AIGuardrailId**: string (ReadOnly, Identifier)
+* **AssistantArn**: string (ReadOnly)
+* **AssistantId**: string (Required, Identifier)
+* **BlockedInputMessaging**: string (Required): Messaging for when violations are detected in text
+* **BlockedOutputsMessaging**: string (Required): Messaging for when violations are detected in text
+* **ContentPolicyConfig**: [AIGuardrailContentPolicyConfig](#aiguardrailcontentpolicyconfig)
+* **ContextualGroundingPolicyConfig**: [AIGuardrailContextualGroundingPolicyConfig](#aiguardrailcontextualgroundingpolicyconfig)
+* **Description**: string: Description of the guardrail or its version
+* **Name**: string
+* **SensitiveInformationPolicyConfig**: [AIGuardrailSensitiveInformationPolicyConfig](#aiguardrailsensitiveinformationpolicyconfig)
+* **Tags**: [Tags](#tags)
+* **TopicPolicyConfig**: [AIGuardrailTopicPolicyConfig](#aiguardrailtopicpolicyconfig)
+* **WordPolicyConfig**: [AIGuardrailWordPolicyConfig](#aiguardrailwordpolicyconfig)
+
+## AWS.Wisdom/AIGuardrailVersionProperties
+### Properties
+* **AIGuardrailArn**: string (ReadOnly)
+* **AIGuardrailId**: string (Required, Identifier)
+* **AIGuardrailVersionId**: string (ReadOnly)
+* **AssistantArn**: string (ReadOnly)
+* **AssistantId**: string (Required, Identifier)
+* **ModifiedTimeSeconds**: int
+* **VersionNumber**: int (ReadOnly, Identifier)
+
 ## AWS.Wisdom/AIPromptProperties
 ### Properties
 * **AIPromptArn**: string (ReadOnly)
@@ -109,6 +173,7 @@
 * **AssistantId**: string (Identifier)
 * **Description**: string
 * **ModelId**: string (Required)
+* **ModifiedTimeSeconds**: int (ReadOnly)
 * **Name**: string
 * **Tags**: [Tags](#tags)
 * **TemplateConfiguration**: [AIPromptTemplateConfiguration](#aiprompttemplateconfiguration) (Required)
@@ -280,6 +345,44 @@
 * **Criteria**: string (Required): The criteria used for grouping Amazon Q in Connect users.
 * **Values**: string[] (Required): The list of values that define different groups of Amazon Q in Connect users.
 
+## GuardrailContentFilterConfig
+### Properties
+* **InputStrength**: string (Required)
+* **OutputStrength**: string (Required)
+* **Type**: string (Required)
+
+## GuardrailContextualGroundingFilterConfig
+### Properties
+* **Threshold**: int (Required): The threshold for this filter.
+* **Type**: string (Required)
+
+## GuardrailManagedWordsConfig
+### Properties
+* **Type**: string (Required)
+
+## GuardrailPiiEntityConfig
+### Properties
+* **Action**: string (Required)
+* **Type**: string (Required)
+
+## GuardrailRegexConfig
+### Properties
+* **Action**: string (Required)
+* **Description**: string: The regex description.
+* **Name**: string (Required): The regex name.
+* **Pattern**: string (Required): The regex pattern.
+
+## GuardrailTopicConfig
+### Properties
+* **Definition**: string (Required): Definition of topic in topic policy
+* **Examples**: string[]: List of text examples
+* **Name**: string (Required): Name of topic in topic policy
+* **Type**: string (Required)
+
+## GuardrailWordConfig
+### Properties
+* **Text**: string (Required): The custom word text.
+
 ## HierarchicalChunkingConfiguration
 ### Properties
 * **LevelConfigurations**: [HierarchicalChunkingLevelConfiguration](#hierarchicalchunkinglevelconfiguration)[] (Required)
@@ -374,6 +477,9 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -
+
+## Tags
+### Properties
 
 ## Tags
 ### Properties

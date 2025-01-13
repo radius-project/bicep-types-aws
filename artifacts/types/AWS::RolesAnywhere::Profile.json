@@ -1,9 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RolesAnywhere-Profile",
   "type": "AWS::RolesAnywhere::Profile",
-  "time": "2024-11-20T16:52:34.361Z",
+  "time": "2025-01-06T17:25:01.99Z",
   "schema": {
     "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/RequireInstanceProperties"
+    ],
     "definitions": {
       "AttributeMapping": {
         "additionalProperties": false,
@@ -183,11 +186,19 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "rolesanywhere:UntagResource",
+        "rolesanywhere:TagResource",
+        "rolesanywhere:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::RolesAnywhere::Profile"
+    "typeName": "AWS::RolesAnywhere::Profile",
+    "writeOnlyProperties": [
+      "/properties/RequireInstanceProperties"
+    ]
   }
 }

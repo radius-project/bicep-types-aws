@@ -120,6 +120,7 @@
 * **S3StorageOptions**: [S3StorageOptions](#s3storageoptions)
 * **SecurityPolicyName**: string
 * **ServerId**: string (ReadOnly)
+* **State**: string (ReadOnly)
 * **StructuredLogDestinations**: string[]
 * **Tags**: [Tag](#tag)[]
 * **WorkflowDetails**: [WorkflowDetails](#workflowdetails)

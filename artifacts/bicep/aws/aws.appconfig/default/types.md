@@ -53,6 +53,7 @@
 ### Properties
 * **ApplicationId**: string (Required, Identifier): The application ID.
 * **ConfigurationProfileId**: string (ReadOnly, Identifier): The configuration profile ID
+* **DeletionProtectionCheck**: string (WriteOnly): On resource deletion this controls whether the Deletion Protection check should be applied, bypassed, or (the default) whether the behavior should be controlled by the account-level Deletion Protection setting. See https://docs.aws.amazon.com/appconfig/latest/userguide/deletion-protection.html
 * **Description**: string: A description of the configuration profile.
 * **KmsKeyArn**: string (ReadOnly): The Amazon Resource Name of the AWS Key Management Service key to encrypt new configuration data versions in the AWS AppConfig hosted configuration store. This attribute is only used for hosted configuration types. To encrypt data managed in other configuration stores, see the documentation for how to specify an AWS KMS key for that particular service.
 * **KmsKeyIdentifier**: string: The AWS Key Management Service key identifier (key ID, key alias, or key ARN) provided when the resource was created or updated.
@@ -90,6 +91,7 @@ Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4
 ## AWS.AppConfig/EnvironmentProperties
 ### Properties
 * **ApplicationId**: string (Required, Identifier): The application ID.
+* **DeletionProtectionCheck**: string (WriteOnly): On resource deletion this controls whether the Deletion Protection check should be applied, bypassed, or (the default) whether the behavior should be controlled by the account-level Deletion Protection setting. See https://docs.aws.amazon.com/appconfig/latest/userguide/deletion-protection.html
 * **Description**: string: A description of the environment.
 * **EnvironmentId**: string (ReadOnly, Identifier): The environment ID.
 * **Monitors**: [Monitor](#monitor)[]: Amazon CloudWatch alarms to monitor during the deployment process.

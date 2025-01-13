@@ -9,10 +9,10 @@
 
 ## AWS.VoiceID/DomainProperties
 ### Properties
-* **Description**: string (WriteOnly)
+* **Description**: string
 * **DomainId**: string (ReadOnly, Identifier)
-* **Name**: string (Required, WriteOnly)
-* **ServerSideEncryptionConfiguration**: [ServerSideEncryptionConfiguration](#serversideencryptionconfiguration) (Required, WriteOnly)
+* **Name**: string (Required)
+* **ServerSideEncryptionConfiguration**: [ServerSideEncryptionConfiguration](#serversideencryptionconfiguration) (Required)
 * **Tags**: [Tag](#tag)[]
 
 ## ServerSideEncryptionConfiguration

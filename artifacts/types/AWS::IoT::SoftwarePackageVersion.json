@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-SoftwarePackageVersion",
   "type": "AWS::IoT::SoftwarePackageVersion",
-  "time": "2024-02-19T16:23:10.071Z",
+  "time": "2024-12-11T16:26:08.856Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -117,6 +117,7 @@
         "type": "string"
       },
       "PackageVersionArn": {
+        "pattern": "^arn:[!-~]+$",
         "type": "string"
       },
       "Status": {
@@ -149,6 +150,11 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "iot:TagResource",
+        "iot:UntagResource",
+        "iot:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

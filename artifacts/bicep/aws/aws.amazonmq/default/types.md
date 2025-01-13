@@ -11,7 +11,7 @@
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Amazon MQ configuration.
 * **AuthenticationStrategy**: string: The authentication strategy associated with the configuration. The default is SIMPLE.
-* **Data**: string (Required, WriteOnly): The base64-encoded XML configuration.
+* **Data**: string (WriteOnly): The base64-encoded XML configuration.
 * **Description**: string: The description of the configuration.
 * **EngineType**: string (Required): The type of broker engine. Note: Currently, Amazon MQ only supports ACTIVEMQ for creating and editing broker configurations.
 * **EngineVersion**: string: The version of the broker engine.

@@ -7,6 +7,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.QBusiness/ApplicationProperties](#awsqbusinessapplicationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.QBusiness/DataAccessor@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QBusiness/DataAccessorProperties](#awsqbusinessdataaccessorproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.QBusiness/DataSource@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -42,12 +49,34 @@
 * **name**: string: the resource name
 * **properties**: [AWS.QBusiness/WebExperienceProperties](#awsqbusinesswebexperienceproperties) (Required, Identifier): properties of the resource
 
+## ActionConfiguration
+### Properties
+* **Action**: string (Required)
+* **FilterConfiguration**: [ActionFilterConfiguration](#actionfilterconfiguration)
+
+## ActionFilterConfiguration
+### Properties
+* **DocumentAttributeFilter**: [AttributeFilter](#attributefilter) (Required)
+
 ## APISchema
 ### Properties
 
 ## AttachmentsConfiguration
 ### Properties
 * **AttachmentsControlMode**: string (Required)
+
+## AttributeFilter
+### Properties
+* **AndAllFilters**: [AttributeFilter](#attributefilter)[]
+* **ContainsAll**: [DocumentAttribute](#documentattribute)
+* **ContainsAny**: [DocumentAttribute](#documentattribute)
+* **EqualsTo**: [DocumentAttribute](#documentattribute)
+* **GreaterThan**: [DocumentAttribute](#documentattribute)
+* **GreaterThanOrEquals**: [DocumentAttribute](#documentattribute)
+* **LessThan**: [DocumentAttribute](#documentattribute)
+* **LessThanOrEquals**: [DocumentAttribute](#documentattribute)
+* **NotFilter**: [AttributeFilter](#attributefilter)
+* **OrAllFilters**: [AttributeFilter](#attributefilter)[]
 
 ## AutoSubscriptionConfiguration
 ### Properties
@@ -71,8 +100,22 @@
 * **IdentityType**: string
 * **PersonalizationConfiguration**: [PersonalizationConfiguration](#personalizationconfiguration)
 * **QAppsConfiguration**: [QAppsConfiguration](#qappsconfiguration)
+* **QuickSightConfiguration**: [QuickSightConfiguration](#quicksightconfiguration)
 * **RoleArn**: string
 * **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]
+* **UpdatedAt**: string (ReadOnly)
+
+## AWS.QBusiness/DataAccessorProperties
+### Properties
+* **ActionConfigurations**: [ActionConfiguration](#actionconfiguration)[] (Required)
+* **ApplicationId**: string (Required, Identifier)
+* **CreatedAt**: string (ReadOnly)
+* **DataAccessorArn**: string (ReadOnly)
+* **DataAccessorId**: string (ReadOnly, Identifier)
+* **DisplayName**: string (Required)
+* **IdcApplicationArn**: string (ReadOnly)
+* **Principal**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **UpdatedAt**: string (ReadOnly)
 
@@ -87,6 +130,7 @@
 * **DisplayName**: string (Required)
 * **DocumentEnrichmentConfiguration**: [DocumentEnrichmentConfiguration](#documentenrichmentconfiguration)
 * **IndexId**: string (Required, Identifier)
+* **MediaExtractionConfiguration**: [MediaExtractionConfiguration](#mediaextractionconfiguration)
 * **RoleArn**: string
 * **Status**: string (ReadOnly)
 * **SyncSchedule**: string
@@ -113,7 +157,7 @@
 
 ## AWS.QBusiness/PluginProperties
 ### Properties
-* **ApplicationId**: string (Required, Identifier)
+* **ApplicationId**: string (Identifier)
 * **AuthConfiguration**: [PluginAuthConfiguration](#pluginauthconfiguration) (Required)
 * **BuildStatus**: string (ReadOnly)
 * **CreatedAt**: string (ReadOnly)
@@ -145,6 +189,7 @@
 ### Properties
 * **ApplicationId**: string (Required, Identifier)
 * **CreatedAt**: string (ReadOnly)
+* **CustomizationConfiguration**: [CustomizationConfiguration](#customizationconfiguration)
 * **DefaultEndpoint**: string (ReadOnly)
 * **IdentityProviderConfiguration**: [IdentityProviderConfiguration](#identityproviderconfiguration)
 * **Origins**: string[]
@@ -159,11 +204,21 @@
 * **WebExperienceId**: string (ReadOnly, Identifier)
 * **WelcomeMessage**: string
 
+## CustomizationConfiguration
+### Properties
+* **CustomCSSUrl**: string
+* **FaviconUrl**: string
+* **FontUrl**: string
+* **LogoUrl**: string
+
 ## CustomPluginConfiguration
 ### Properties
 * **ApiSchema**: [APISchema](#apischema) (Required)
 * **ApiSchemaType**: string (Required)
 * **Description**: string (Required)
+
+## DataAccessor_DocumentAttributeValue
+### Properties
 
 ## DataSource_Configuration
 ### Properties
@@ -178,6 +233,11 @@
 ### Properties
 * **SecurityGroupIds**: string[] (Required)
 * **SubnetIds**: string[] (Required)
+
+## DocumentAttribute
+### Properties
+* **Name**: string (Required)
+* **Value**: [DataAccessor_DocumentAttributeValue](#dataaccessordocumentattributevalue) (Required)
 
 ## DocumentAttributeCondition
 ### Properties
@@ -217,6 +277,10 @@
 ## IdentityProviderConfiguration
 ### Properties
 
+## ImageExtractionConfiguration
+### Properties
+* **ImageExtractionStatus**: string (Required)
+
 ## IndexCapacityConfiguration
 ### Properties
 * **Units**: int
@@ -231,6 +295,10 @@
 * **DocumentContentOperator**: string
 * **Target**: [DocumentAttributeTarget](#documentattributetarget)
 
+## MediaExtractionConfiguration
+### Properties
+* **ImageExtractionConfiguration**: [ImageExtractionConfiguration](#imageextractionconfiguration)
+
 ## PersonalizationConfiguration
 ### Properties
 * **PersonalizationControlMode**: string (Required)
@@ -242,8 +310,17 @@
 ### Properties
 * **QAppsControlMode**: string (Required)
 
+## QuickSightConfiguration
+### Properties
+* **ClientNamespace**: string (Required)
+
 ## RetrieverConfiguration
 ### Properties
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

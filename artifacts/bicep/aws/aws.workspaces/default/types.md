@@ -23,7 +23,7 @@
 * **PoolArn**: string (ReadOnly)
 * **PoolId**: string (ReadOnly, Identifier)
 * **PoolName**: string (Required)
-* **Tags**: [Tag](#tag)[] (WriteOnly)
+* **Tags**: [Tag](#tag)[]
 * **TimeoutSettings**: [TimeoutSettings](#timeoutsettings)
 
 ## Capacity

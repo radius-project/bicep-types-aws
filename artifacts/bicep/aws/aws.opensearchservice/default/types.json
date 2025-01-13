@@ -259,7 +259,7 @@
       },
       "SAMLOptions": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/32"
         },
         "flags": 0
       }
@@ -277,7 +277,7 @@
       },
       "DedicatedMasterCount": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0
       },
@@ -295,7 +295,7 @@
       },
       "InstanceCount": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0
       },
@@ -311,9 +311,15 @@
         },
         "flags": 0
       },
+      "NodeOptions": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0
+      },
       "WarmCount": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0
       },
@@ -331,7 +337,7 @@
       },
       "ZoneAwarenessConfig": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0
       },
@@ -433,19 +439,19 @@
       },
       "Iops": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "Throughput": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "VolumeSize": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0
       },
@@ -615,6 +621,48 @@
   },
   {
     "$type": "ObjectType",
+    "name": "NodeConfig",
+    "properties": {
+      "Count": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NodeOption",
+    "properties": {
+      "NodeConfig": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
+      "NodeType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "NodeToNodeEncryptionOptions",
     "properties": {
       "Enabled": {
@@ -631,7 +679,7 @@
     "properties": {
       "WindowStartTime": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/39"
         },
         "flags": 0
       }
@@ -649,7 +697,7 @@
       },
       "OffPeakWindow": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/29"
         },
         "flags": 0
       }
@@ -696,7 +744,7 @@
       },
       "SessionTimeoutMinutes": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0
       },
@@ -768,7 +816,7 @@
     "properties": {
       "AutomatedSnapshotStartHour": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0
       }
@@ -817,13 +865,13 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/43"
         },
         "flags": 0
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/44"
         },
         "flags": 0
       }
@@ -835,13 +883,13 @@
     "properties": {
       "Hours": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 1
       },
       "Minutes": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 1
       }
@@ -853,7 +901,7 @@
     "properties": {
       "AvailabilityZoneCount": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0
       }
@@ -861,6 +909,12 @@
   },
   {
     "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/27"
+    }
   },
   {
     "$type": "ArrayType",
@@ -901,7 +955,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/37"
     }
   },
   {
@@ -910,13 +964,13 @@
     "properties": {
       "AccessPolicies": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "AdvancedOptions": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/47"
         },
         "flags": 0
       },
@@ -970,7 +1024,7 @@
       },
       "DomainEndpoints": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/48"
         },
         "flags": 2
       },
@@ -1018,25 +1072,25 @@
       },
       "LogPublishingOptions": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/49"
         },
         "flags": 0
       },
       "NodeToNodeEncryptionOptions": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/28"
         },
         "flags": 0
       },
       "OffPeakWindowOptions": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "ServiceSoftwareOptions": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/33"
         },
         "flags": 2
       },
@@ -1048,26 +1102,26 @@
       },
       "SnapshotOptions": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/34"
         },
         "flags": 0
       },
       "SoftwareUpdateOptions": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/35"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this Domain."
       },
       "VPCOptions": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/38"
         },
         "flags": 0
       }
@@ -1093,7 +1147,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/51"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1105,7 +1159,7 @@
     "name": "AWS.OpenSearchService/Domain@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/49"
+      "$ref": "#/52"
     },
     "flags": 0
   }
