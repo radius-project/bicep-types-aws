@@ -199,6 +199,7 @@
 ## BridgeNetworkSource
 ### Properties
 * **MulticastIp**: string (Required): The network source multicast IP.
+* **MulticastSourceSettings**: [MulticastSourceSettings](#multicastsourcesettings): The settings related to the multicast source.
 * **Name**: string (Required): The name of the network source.
 * **NetworkName**: string (Required): The network source's gateway network name.
 * **Port**: int (Required): The network source port.
@@ -207,6 +208,7 @@
 ## BridgeNetworkSource
 ### Properties
 * **MulticastIp**: string (Required): The network source multicast IP.
+* **MulticastSourceSettings**: [MulticastSourceSettings](#multicastsourcesettings): The settings related to the multicast source.
 * **NetworkName**: string (Required): The network source's gateway network name.
 * **Port**: int (Required): The network source port.
 * **Protocol**: string (Required): The network source protocol.
@@ -357,6 +359,14 @@
 * **EncodingName**: string (Required): The format that was used to encode the data. For ancillary data streams, set the encoding name to smpte291. For audio streams, set the encoding name to pcm. For video, 2110 streams, set the encoding name to raw. For video, JPEG XS streams, set the encoding name to jxsv.
 * **InputConfigurations**: [InputConfiguration](#inputconfiguration)[]: The media streams that you want to associate with the source.
 * **MediaStreamName**: string (Required): A name that helps you distinguish one media stream from another.
+
+## MulticastSourceSettings
+### Properties
+* **MulticastSourceIp**: string: The IP address of the source for source-specific multicast (SSM).
+
+## MulticastSourceSettings
+### Properties
+* **MulticastSourceIp**: string: The IP address of the source for source-specific multicast (SSM).
 
 ## Source
 ### Properties

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-KafkaConnect-Connector",
   "type": "AWS::KafkaConnect::Connector",
-  "time": "2024-11-06T17:16:21.482Z",
+  "time": "2025-01-08T05:36:09.718Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -10,7 +10,6 @@
     ],
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/ConnectorConfiguration",
       "/properties/ConnectorDescription",
       "/properties/ConnectorName",
       "/properties/KafkaCluster",
@@ -457,7 +456,9 @@
       "update": {
         "permissions": [
           "kafkaconnect:UpdateConnector",
+          "kafkaconnect:UpdateConnectorConfiguration",
           "kafkaconnect:DescribeConnector",
+          "kafkaconnect:DescribeConnectorOperation",
           "kafkaconnect:TagResource",
           "kafkaconnect:ListTagsForResource",
           "kafkaconnect:UntagResource",
@@ -569,6 +570,12 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-kafkaconnect.git",
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "kafkaconnect:ListTagsForResource",
+        "kafkaconnect:UntagResource",
+        "kafkaconnect:TagResource",
+        "firehose:TagDeliveryStream"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

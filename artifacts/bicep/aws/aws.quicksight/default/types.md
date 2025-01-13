@@ -7,6 +7,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/AnalysisProperties](#awsquicksightanalysisproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.QuickSight/CustomPermissions@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/CustomPermissionsProperties](#awsquicksightcustompermissionsproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.QuickSight/Dashboard@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -133,6 +140,15 @@
 ### Properties
 * **Domain**: string (Required): <p>The OpenSearch domain.</p>
 
+## Analysis_AvailabilityStatus
+### Properties
+
+## Analysis_Interactions
+### Properties
+
+## Analysis_Interactions
+### Properties
+
 ## AnalysisDefaults
 ### Properties
 * **DefaultNewSheetConfiguration**: [DefaultNewSheetConfiguration](#defaultnewsheetconfiguration) (Required)
@@ -156,6 +172,7 @@
 * **ParameterDeclarations**: [ParameterDeclaration](#parameterdeclaration)[]
 * **QueryExecutionOptions**: [QueryExecutionOptions](#queryexecutionoptions)
 * **Sheets**: [SheetDefinition](#sheetdefinition)[]
+* **StaticFiles**: [StaticFile](#staticfile)[]
 
 ## AnalysisError
 ### Properties
@@ -312,6 +329,14 @@
 * **ThemeArn**: string: <p>The ARN of the theme of the analysis.</p>
 * **ValidationStrategy**: [ValidationStrategy](#validationstrategy) (WriteOnly)
 
+## AWS.QuickSight/CustomPermissionsProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **AwsAccountId**: string (Required, Identifier)
+* **Capabilities**: [Capabilities](#capabilities)
+* **CustomPermissionsName**: string (Required, Identifier)
+* **Tags**: [Tag](#tag)[]
+
 ## AWS.QuickSight/DashboardProperties
 ### Properties
 * **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) of the resource.</p>
@@ -359,6 +384,7 @@
 * **Name**: string: <p>The display name for the dataset.</p>
 * **OutputColumns**: [OutputColumn](#outputcolumn)[] (ReadOnly): <p>The list of columns after all transforms. These columns are available in templates,
             analyses, and dashboards.</p>
+* **PerformanceConfiguration**: [PerformanceConfiguration](#performanceconfiguration)
 * **Permissions**: [ResourcePermission](#resourcepermission)[]: <p>A list of resource permissions on the dataset.</p>
 * **PhysicalTableMap**: [PhysicalTableMap](#physicaltablemap)
 * **RowLevelPermissionDataSet**: [RowLevelPermissionDataSet](#rowlevelpermissiondataset)
@@ -533,10 +559,10 @@
 
 ## AxisDisplayOptions
 ### Properties
-* **AxisLineVisibility**: string
+* **AxisLineVisibility**: [Template_AxisLineVisibility](#templateaxislinevisibility)
 * **AxisOffset**: string: String based length that is composed of value and unit in px
 * **DataOptions**: [AxisDataOptions](#axisdataoptions)
-* **GridLineVisibility**: string
+* **GridLineVisibility**: [Template_GridLineVisibility](#templategridlinevisibility)
 * **ScrollbarOptions**: [ScrollBarOptions](#scrollbaroptions)
 * **TickLabelOptions**: [AxisTickLabelOptions](#axisticklabeloptions)
 
@@ -769,6 +795,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## BarChartVisual
@@ -778,6 +805,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## BarChartVisual
@@ -787,6 +815,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## BinCountOptions
@@ -936,8 +965,8 @@
 
 ## BoxPlotOptions
 ### Properties
-* **AllDataPointsVisibility**: string
-* **OutlierVisibility**: string
+* **AllDataPointsVisibility**: [Template_AllDataPointsVisibility](#templatealldatapointsvisibility)
+* **OutlierVisibility**: [Template_OutlierVisibility](#templateoutliervisibility)
 * **StyleOptions**: [BoxPlotStyleOptions](#boxplotstyleoptions)
 
 ## BoxPlotSortConfiguration
@@ -974,6 +1003,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## BoxPlotVisual
@@ -983,6 +1013,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## BoxPlotVisual
@@ -992,6 +1023,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## CalculatedField
@@ -1026,6 +1058,26 @@
 ### Properties
 * **Expression**: string (Required)
 * **FieldId**: string (Required)
+
+## Capabilities
+### Properties
+* **AddOrRunAnomalyDetectionForAnalyses**: string
+* **CreateAndUpdateDashboardEmailReports**: string
+* **CreateAndUpdateDatasets**: string
+* **CreateAndUpdateDataSources**: string
+* **CreateAndUpdateThemes**: string
+* **CreateAndUpdateThresholdAlerts**: string
+* **CreateSharedFolders**: string
+* **CreateSPICEDataset**: string
+* **ExportToCsv**: string
+* **ExportToExcel**: string
+* **RenameSharedFolders**: string
+* **ShareAnalyses**: string
+* **ShareDashboards**: string
+* **ShareDatasets**: string
+* **ShareDataSources**: string
+* **SubscribeDashboardEmailReports**: string
+* **ViewAccountSPICECapacity**: string
 
 ## CascadingControlConfiguration
 ### Properties
@@ -1188,8 +1240,8 @@
 ## ChartAxisLabelOptions
 ### Properties
 * **AxisLabelOptions**: [AxisLabelOptions](#axislabeloptions)[]
-* **SortIconVisibility**: string
-* **Visibility**: string
+* **SortIconVisibility**: [Template_SortIconVisibility](#templatesorticonvisibility)
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## ClusterMarker
 ### Properties
@@ -1367,7 +1419,7 @@
 * **Column**: [ColumnIdentifier](#columnidentifier) (Required)
 * **Label**: string
 * **TooltipTarget**: string
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## ComboChartAggregatedFieldWells
 ### Properties
@@ -1490,6 +1542,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## ComboChartVisual
@@ -1499,6 +1552,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## ComboChartVisual
@@ -1508,6 +1562,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## ComparativeOrder
@@ -1867,6 +1922,7 @@
 * **DataSetIdentifier**: string (Required)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## CustomContentVisual
@@ -1876,6 +1932,7 @@
 * **DataSetIdentifier**: string (Required)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## CustomContentVisual
@@ -1885,6 +1942,7 @@
 * **DataSetIdentifier**: string (Required)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## CustomFilterConfiguration
@@ -1979,6 +2037,15 @@
 ### Properties
 * **CustomValues**: [CustomParameterValues](#customparametervalues) (Required)
 * **IncludeNullValue**: bool
+
+## Dashboard_Interactions
+### Properties
+
+## Dashboard_Interactions
+### Properties
+
+## Dashboard_VisualMenuOption
+### Properties
 
 ## DashboardError
 ### Properties
@@ -1997,7 +2064,7 @@
 * **SheetControlsOption**: [SheetControlsOption](#sheetcontrolsoption)
 * **SheetLayoutElementMaximizationOption**: [SheetLayoutElementMaximizationOption](#sheetlayoutelementmaximizationoption)
 * **VisualAxisSortOption**: [VisualAxisSortOption](#visualaxissortoption)
-* **VisualMenuOption**: [VisualMenuOption](#visualmenuoption)
+* **VisualMenuOption**: [Dashboard_VisualMenuOption](#dashboardvisualmenuoption)
 * **VisualPublishOptions**: [DashboardVisualPublishOptions](#dashboardvisualpublishoptions)
 
 ## DashboardSourceEntity
@@ -2033,6 +2100,7 @@
 * **Options**: [AssetOptions](#assetoptions)
 * **ParameterDeclarations**: [ParameterDeclaration](#parameterdeclaration)[]
 * **Sheets**: [SheetDefinition](#sheetdefinition)[]
+* **StaticFiles**: [StaticFile](#staticfile)[]
 
 ## DashboardVisualPublishOptions
 ### Properties
@@ -2138,16 +2206,16 @@
 
 ## DataLabelOptions
 ### Properties
-* **CategoryLabelVisibility**: string
+* **CategoryLabelVisibility**: [Template_CategoryLabelVisibility](#templatecategorylabelvisibility)
 * **DataLabelTypes**: [DataLabelType](#datalabeltype)[]
 * **LabelColor**: string
 * **LabelContent**: string
 * **LabelFontConfiguration**: [FontConfiguration](#fontconfiguration)
-* **MeasureLabelVisibility**: string
+* **MeasureLabelVisibility**: [Template_MeasureLabelVisibility](#templatemeasurelabelvisibility)
 * **Overlap**: string
 * **Position**: string
-* **TotalsVisibility**: string
-* **Visibility**: string
+* **TotalsVisibility**: [Template_TotalsVisibility](#templatetotalsvisibility)
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## DataLabelType
 ### Properties
@@ -2207,7 +2275,7 @@
 ### Properties
 * **FieldId**: string
 * **FieldValue**: string
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## DataPathSort
 ### Properties
@@ -2375,7 +2443,7 @@
 
 ## DateAxisOptions
 ### Properties
-* **MissingDateVisibility**: string
+* **MissingDateVisibility**: [Template_MissingDateVisibility](#templatemissingdatevisibility)
 
 ## DateDimensionField
 ### Properties
@@ -2960,7 +3028,7 @@
 
 ## DonutCenterOptions
 ### Properties
-* **LabelVisibility**: string
+* **LabelVisibility**: [Template_LabelVisibility](#templatelabelvisibility)
 
 ## DonutOptions
 ### Properties
@@ -3123,7 +3191,7 @@
 
 ## FieldBasedTooltip
 ### Properties
-* **AggregationVisibility**: string
+* **AggregationVisibility**: [Template_AggregationVisibility](#templateaggregationvisibility)
 * **TooltipFields**: [TooltipItem](#tooltipitem)[]
 * **TooltipTitleType**: string
 
@@ -3143,7 +3211,7 @@
 ## FieldLabelType
 ### Properties
 * **FieldId**: string
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## FieldSeriesItem
 ### Properties
@@ -3212,7 +3280,7 @@
 * **FieldId**: string (Required)
 * **Label**: string
 * **TooltipTarget**: string
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## FilledMapAggregatedFieldWells
 ### Properties
@@ -3327,6 +3395,7 @@
 * **ConditionalFormatting**: [FilledMapConditionalFormatting](#filledmapconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## FilledMapVisual
@@ -3337,6 +3406,7 @@
 * **ConditionalFormatting**: [FilledMapConditionalFormatting](#filledmapconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## FilledMapVisual
@@ -3347,6 +3417,7 @@
 * **ConditionalFormatting**: [FilledMapConditionalFormatting](#filledmapconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## Filter
@@ -3757,16 +3828,18 @@
 
 ## FontSize
 ### Properties
+* **Absolute**: string: String based length that is composed of value and unit in px
+* **Relative**: string
+
+## FontSize
+### Properties
+* **Absolute**: string: String based length that is composed of value and unit in px
 * **Relative**: string
 
 ## FontSize
 ### Properties
 * **Relative**: string
 
-## FontSize
-### Properties
-* **Relative**: string
-
 ## FontWeight
 ### Properties
 * **Name**: string
@@ -3936,7 +4009,7 @@
 * **LoadingAnimation**: [LoadingAnimation](#loadinganimation)
 * **RenderingRules**: [SheetElementRenderingRule](#sheetelementrenderingrule)[]
 * **SelectedBorderStyle**: [FreeFormLayoutElementBorderStyle](#freeformlayoutelementborderstyle)
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 * **Width**: string (Required): String based length that is composed of value and unit in px
 * **XAxisLocation**: string (Required): String based length that is composed of value and unit in px
 * **YAxisLocation**: string (Required): String based length that is composed of value and unit in px with Integer.MAX_VALUE as maximum value
@@ -3954,7 +4027,7 @@
 ## FreeFormLayoutElementBackgroundStyle
 ### Properties
 * **Color**: string
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## FreeFormLayoutElementBorderStyle
 ### Properties
@@ -3969,7 +4042,7 @@
 ## FreeFormLayoutElementBorderStyle
 ### Properties
 * **Color**: string
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## FreeFormLayoutScreenCanvasSizeOptions
 ### Properties
@@ -4062,13 +4135,13 @@
 
 ## FunnelChartDataLabelOptions
 ### Properties
-* **CategoryLabelVisibility**: string
+* **CategoryLabelVisibility**: [Template_CategoryLabelVisibility](#templatecategorylabelvisibility)
 * **LabelColor**: string
 * **LabelFontConfiguration**: [FontConfiguration](#fontconfiguration)
 * **MeasureDataLabelStyle**: string
-* **MeasureLabelVisibility**: string
+* **MeasureLabelVisibility**: [Template_MeasureLabelVisibility](#templatemeasurelabelvisibility)
 * **Position**: string
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## FunnelChartFieldWells
 ### Properties
@@ -4104,6 +4177,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## FunnelChartVisual
@@ -4113,6 +4187,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## FunnelChartVisual
@@ -4122,6 +4197,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## GaugeChartArcConditionalFormatting
@@ -4248,6 +4324,7 @@
 * **ConditionalFormatting**: [GaugeChartConditionalFormatting](#gaugechartconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## GaugeChartVisual
@@ -4257,6 +4334,7 @@
 * **ConditionalFormatting**: [GaugeChartConditionalFormatting](#gaugechartconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## GaugeChartVisual
@@ -4266,7 +4344,66 @@
 * **ConditionalFormatting**: [GaugeChartConditionalFormatting](#gaugechartconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
+
+## GeospatialCategoricalColor
+### Properties
+* **CategoryDataColors**: [GeospatialCategoricalDataColor](#geospatialcategoricaldatacolor)[] (Required)
+* **DefaultOpacity**: int
+* **NullDataSettings**: [GeospatialNullDataSettings](#geospatialnulldatasettings)
+* **NullDataVisibility**: string
+
+## GeospatialCategoricalColor
+### Properties
+* **CategoryDataColors**: [GeospatialCategoricalDataColor](#geospatialcategoricaldatacolor)[] (Required)
+* **DefaultOpacity**: int
+* **NullDataSettings**: [GeospatialNullDataSettings](#geospatialnulldatasettings)
+* **NullDataVisibility**: string
+
+## GeospatialCategoricalDataColor
+### Properties
+* **Color**: string (Required)
+* **DataValue**: string (Required)
+
+## GeospatialCategoricalDataColor
+### Properties
+* **Color**: string (Required)
+* **DataValue**: string (Required)
+
+## GeospatialCircleRadius
+### Properties
+* **Radius**: int
+
+## GeospatialCircleRadius
+### Properties
+* **Radius**: int
+
+## GeospatialCircleSymbolStyle
+### Properties
+* **CircleRadius**: [GeospatialCircleRadius](#geospatialcircleradius)
+* **FillColor**: [GeospatialColor](#geospatialcolor)
+* **StrokeColor**: [GeospatialColor](#geospatialcolor)
+* **StrokeWidth**: [GeospatialLineWidth](#geospatiallinewidth)
+
+## GeospatialCircleSymbolStyle
+### Properties
+* **CircleRadius**: [GeospatialCircleRadius](#geospatialcircleradius)
+* **FillColor**: [GeospatialColor](#geospatialcolor)
+* **StrokeColor**: [GeospatialColor](#geospatialcolor)
+* **StrokeWidth**: [GeospatialLineWidth](#geospatiallinewidth)
+
+## GeospatialColor
+### Properties
+* **Categorical**: [GeospatialCategoricalColor](#geospatialcategoricalcolor)
+* **Gradient**: [GeospatialGradientColor](#geospatialgradientcolor)
+* **Solid**: [GeospatialSolidColor](#geospatialsolidcolor)
+
+## GeospatialColor
+### Properties
+* **Categorical**: [GeospatialCategoricalColor](#geospatialcategoricalcolor)
+* **Gradient**: [GeospatialGradientColor](#geospatialgradientcolor)
+* **Solid**: [GeospatialSolidColor](#geospatialsolidcolor)
 
 ## GeoSpatialColumnGroup
 ### Properties
@@ -4295,6 +4432,38 @@
 * **South**: int (Required)
 * **West**: int (Required)
 
+## GeospatialDataSourceItem
+### Properties
+* **StaticFileDataSource**: [GeospatialStaticFileSource](#geospatialstaticfilesource)
+
+## GeospatialDataSourceItem
+### Properties
+* **StaticFileDataSource**: [GeospatialStaticFileSource](#geospatialstaticfilesource)
+
+## GeospatialGradientColor
+### Properties
+* **DefaultOpacity**: int
+* **NullDataSettings**: [GeospatialNullDataSettings](#geospatialnulldatasettings)
+* **NullDataVisibility**: string
+* **StepColors**: [GeospatialGradientStepColor](#geospatialgradientstepcolor)[] (Required)
+
+## GeospatialGradientColor
+### Properties
+* **DefaultOpacity**: int
+* **NullDataSettings**: [GeospatialNullDataSettings](#geospatialnulldatasettings)
+* **NullDataVisibility**: string
+* **StepColors**: [GeospatialGradientStepColor](#geospatialgradientstepcolor)[] (Required)
+
+## GeospatialGradientStepColor
+### Properties
+* **Color**: string (Required)
+* **DataValue**: int (Required)
+
+## GeospatialGradientStepColor
+### Properties
+* **Color**: string (Required)
+* **DataValue**: int (Required)
+
 ## GeospatialHeatmapColorScale
 ### Properties
 * **Colors**: [GeospatialHeatmapDataColor](#geospatialheatmapdatacolor)[]
@@ -4331,6 +4500,114 @@
 ### Properties
 * **Color**: string (Required)
 
+## GeospatialLayerColorField
+### Properties
+* **ColorDimensionsFields**: [DimensionField](#dimensionfield)[]
+* **ColorValuesFields**: [MeasureField](#measurefield)[]
+
+## GeospatialLayerColorField
+### Properties
+* **ColorDimensionsFields**: [DimensionField](#dimensionfield)[]
+* **ColorValuesFields**: [MeasureField](#measurefield)[]
+
+## GeospatialLayerDefinition
+### Properties
+* **LineLayer**: [GeospatialLineLayer](#geospatiallinelayer)
+* **PointLayer**: [GeospatialPointLayer](#geospatialpointlayer)
+* **PolygonLayer**: [GeospatialPolygonLayer](#geospatialpolygonlayer)
+
+## GeospatialLayerDefinition
+### Properties
+* **LineLayer**: [GeospatialLineLayer](#geospatiallinelayer)
+* **PointLayer**: [GeospatialPointLayer](#geospatialpointlayer)
+* **PolygonLayer**: [GeospatialPolygonLayer](#geospatialpolygonlayer)
+
+## GeospatialLayerItem
+### Properties
+* **Actions**: [LayerCustomAction](#layercustomaction)[]
+* **DataSource**: [GeospatialDataSourceItem](#geospatialdatasourceitem)
+* **JoinDefinition**: [GeospatialLayerJoinDefinition](#geospatiallayerjoindefinition)
+* **Label**: string
+* **LayerDefinition**: [GeospatialLayerDefinition](#geospatiallayerdefinition)
+* **LayerId**: string (Required)
+* **LayerType**: string
+* **Tooltip**: [TooltipOptions](#tooltipoptions)
+* **Visibility**: string
+
+## GeospatialLayerItem
+### Properties
+* **Actions**: [LayerCustomAction](#layercustomaction)[]
+* **DataSource**: [GeospatialDataSourceItem](#geospatialdatasourceitem)
+* **JoinDefinition**: [GeospatialLayerJoinDefinition](#geospatiallayerjoindefinition)
+* **Label**: string
+* **LayerDefinition**: [GeospatialLayerDefinition](#geospatiallayerdefinition)
+* **LayerId**: string (Required)
+* **LayerType**: string
+* **Tooltip**: [TooltipOptions](#tooltipoptions)
+* **Visibility**: string
+
+## GeospatialLayerJoinDefinition
+### Properties
+* **ColorField**: [GeospatialLayerColorField](#geospatiallayercolorfield)
+* **DatasetKeyField**: [UnaggregatedField](#unaggregatedfield)
+* **ShapeKeyField**: string
+
+## GeospatialLayerJoinDefinition
+### Properties
+* **ColorField**: [GeospatialLayerColorField](#geospatiallayercolorfield)
+* **DatasetKeyField**: [UnaggregatedField](#unaggregatedfield)
+* **ShapeKeyField**: string
+
+## GeospatialLayerMapConfiguration
+### Properties
+* **Interactions**: [Analysis_Interactions](#analysisinteractions)
+* **Legend**: [LegendOptions](#legendoptions)
+* **MapLayers**: [GeospatialLayerItem](#geospatiallayeritem)[]
+* **MapState**: [GeospatialMapState](#geospatialmapstate)
+* **MapStyle**: [GeospatialMapStyle](#geospatialmapstyle)
+
+## GeospatialLayerMapConfiguration
+### Properties
+* **Interactions**: [Dashboard_Interactions](#dashboardinteractions)
+* **Legend**: [LegendOptions](#legendoptions)
+* **MapLayers**: [GeospatialLayerItem](#geospatiallayeritem)[]
+* **MapState**: [GeospatialMapState](#geospatialmapstate)
+* **MapStyle**: [GeospatialMapStyle](#geospatialmapstyle)
+
+## GeospatialLineLayer
+### Properties
+* **Style**: [GeospatialLineStyle](#geospatiallinestyle) (Required)
+
+## GeospatialLineLayer
+### Properties
+* **Style**: [GeospatialLineStyle](#geospatiallinestyle) (Required)
+
+## GeospatialLineStyle
+### Properties
+* **LineSymbolStyle**: [GeospatialLineSymbolStyle](#geospatiallinesymbolstyle)
+
+## GeospatialLineStyle
+### Properties
+* **LineSymbolStyle**: [GeospatialLineSymbolStyle](#geospatiallinesymbolstyle)
+
+## GeospatialLineSymbolStyle
+### Properties
+* **FillColor**: [GeospatialColor](#geospatialcolor)
+* **LineWidth**: [GeospatialLineWidth](#geospatiallinewidth)
+
+## GeospatialLineSymbolStyle
+### Properties
+* **FillColor**: [GeospatialColor](#geospatialcolor)
+* **LineWidth**: [GeospatialLineWidth](#geospatiallinewidth)
+
+## GeospatialLineWidth
+### Properties
+* **LineWidth**: int
+
+## GeospatialLineWidth
+### Properties
+* **LineWidth**: int
+
 ## GeospatialMapAggregatedFieldWells
 ### Properties
 * **Colors**: [DimensionField](#dimensionfield)[]
@@ -4352,6 +4629,7 @@
 ## GeospatialMapConfiguration
 ### Properties
 * **FieldWells**: [GeospatialMapFieldWells](#geospatialmapfieldwells)
+* **Interactions**: [Analysis_Interactions](#analysisinteractions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **MapStyleOptions**: [GeospatialMapStyleOptions](#geospatialmapstyleoptions)
 * **PointStyleOptions**: [GeospatialPointStyleOptions](#geospatialpointstyleoptions)
@@ -4362,6 +4640,7 @@
 ## GeospatialMapConfiguration
 ### Properties
 * **FieldWells**: [GeospatialMapFieldWells](#geospatialmapfieldwells)
+* **Interactions**: [Dashboard_Interactions](#dashboardinteractions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **MapStyleOptions**: [GeospatialMapStyleOptions](#geospatialmapstyleoptions)
 * **PointStyleOptions**: [GeospatialPointStyleOptions](#geospatialpointstyleoptions)
@@ -4391,6 +4670,28 @@
 ### Properties
 * **GeospatialMapAggregatedFieldWells**: [GeospatialMapAggregatedFieldWells](#geospatialmapaggregatedfieldwells)
 
+## GeospatialMapState
+### Properties
+* **Bounds**: [GeospatialCoordinateBounds](#geospatialcoordinatebounds)
+* **MapNavigation**: string
+
+## GeospatialMapState
+### Properties
+* **Bounds**: [GeospatialCoordinateBounds](#geospatialcoordinatebounds)
+* **MapNavigation**: string
+
+## GeospatialMapStyle
+### Properties
+* **BackgroundColor**: string
+* **BaseMapStyle**: string
+* **BaseMapVisibility**: string
+
+## GeospatialMapStyle
+### Properties
+* **BackgroundColor**: string
+* **BaseMapStyle**: string
+* **BaseMapVisibility**: string
+
 ## GeospatialMapStyleOptions
 ### Properties
 * **BaseMapStyle**: string
@@ -4410,6 +4711,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## GeospatialMapVisual
@@ -4419,6 +4721,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## GeospatialMapVisual
@@ -4428,13 +4731,44 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
-## GeospatialPointStyleOptions
+## GeospatialNullDataSettings
 ### Properties
-* **ClusterMarkerConfiguration**: [ClusterMarkerConfiguration](#clustermarkerconfiguration)
-* **HeatmapConfiguration**: [GeospatialHeatmapConfiguration](#geospatialheatmapconfiguration)
-* **SelectedPointStyle**: string
+* **SymbolStyle**: [GeospatialNullSymbolStyle](#geospatialnullsymbolstyle) (Required)
+
+## GeospatialNullDataSettings
+### Properties
+* **SymbolStyle**: [GeospatialNullSymbolStyle](#geospatialnullsymbolstyle) (Required)
+
+## GeospatialNullSymbolStyle
+### Properties
+* **FillColor**: string
+* **StrokeColor**: string
+* **StrokeWidth**: int
+
+## GeospatialNullSymbolStyle
+### Properties
+* **FillColor**: string
+* **StrokeColor**: string
+* **StrokeWidth**: int
+
+## GeospatialPointLayer
+### Properties
+* **Style**: [GeospatialPointStyle](#geospatialpointstyle) (Required)
+
+## GeospatialPointLayer
+### Properties
+* **Style**: [GeospatialPointStyle](#geospatialpointstyle) (Required)
+
+## GeospatialPointStyle
+### Properties
+* **CircleSymbolStyle**: [GeospatialCircleSymbolStyle](#geospatialcirclesymbolstyle)
+
+## GeospatialPointStyle
+### Properties
+* **CircleSymbolStyle**: [GeospatialCircleSymbolStyle](#geospatialcirclesymbolstyle)
 
 ## GeospatialPointStyleOptions
 ### Properties
@@ -4447,6 +4781,58 @@
 * **ClusterMarkerConfiguration**: [ClusterMarkerConfiguration](#clustermarkerconfiguration)
 * **HeatmapConfiguration**: [GeospatialHeatmapConfiguration](#geospatialheatmapconfiguration)
 * **SelectedPointStyle**: string
+
+## GeospatialPointStyleOptions
+### Properties
+* **ClusterMarkerConfiguration**: [ClusterMarkerConfiguration](#clustermarkerconfiguration)
+* **HeatmapConfiguration**: [GeospatialHeatmapConfiguration](#geospatialheatmapconfiguration)
+* **SelectedPointStyle**: string
+
+## GeospatialPolygonLayer
+### Properties
+* **Style**: [GeospatialPolygonStyle](#geospatialpolygonstyle) (Required)
+
+## GeospatialPolygonLayer
+### Properties
+* **Style**: [GeospatialPolygonStyle](#geospatialpolygonstyle) (Required)
+
+## GeospatialPolygonStyle
+### Properties
+* **PolygonSymbolStyle**: [GeospatialPolygonSymbolStyle](#geospatialpolygonsymbolstyle)
+
+## GeospatialPolygonStyle
+### Properties
+* **PolygonSymbolStyle**: [GeospatialPolygonSymbolStyle](#geospatialpolygonsymbolstyle)
+
+## GeospatialPolygonSymbolStyle
+### Properties
+* **FillColor**: [GeospatialColor](#geospatialcolor)
+* **StrokeColor**: [GeospatialColor](#geospatialcolor)
+* **StrokeWidth**: [GeospatialLineWidth](#geospatiallinewidth)
+
+## GeospatialPolygonSymbolStyle
+### Properties
+* **FillColor**: [GeospatialColor](#geospatialcolor)
+* **StrokeColor**: [GeospatialColor](#geospatialcolor)
+* **StrokeWidth**: [GeospatialLineWidth](#geospatiallinewidth)
+
+## GeospatialSolidColor
+### Properties
+* **Color**: string (Required)
+* **State**: string
+
+## GeospatialSolidColor
+### Properties
+* **Color**: string (Required)
+* **State**: string
+
+## GeospatialStaticFileSource
+### Properties
+* **StaticFileId**: string (Required)
+
+## GeospatialStaticFileSource
+### Properties
+* **StaticFileId**: string (Required)
 
 ## GeospatialWindowOptions
 ### Properties
@@ -4715,6 +5101,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## HeatMapVisual
@@ -4724,6 +5111,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## HeatMapVisual
@@ -4733,6 +5121,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## HistogramAggregatedFieldWells
@@ -4819,6 +5208,7 @@
 * **ChartConfiguration**: [HistogramConfiguration](#histogramconfiguration)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## HistogramVisual
@@ -4827,6 +5217,7 @@
 * **ChartConfiguration**: [HistogramConfiguration](#histogramconfiguration)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## HistogramVisual
@@ -4835,11 +5226,88 @@
 * **ChartConfiguration**: [HistogramConfiguration](#histogramconfiguration)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## IdentityCenterConfiguration
 ### Properties
 * **EnableIdentityPropagation**: bool: <p>A Boolean option that controls whether Trusted Identity Propagation should be used.</p>
+
+## ImageCustomAction
+### Properties
+* **ActionOperations**: [ImageCustomActionOperation](#imagecustomactionoperation)[] (Required)
+* **CustomActionId**: string (Required)
+* **Name**: string (Required)
+* **Status**: string
+* **Trigger**: string (Required)
+
+## ImageCustomAction
+### Properties
+* **ActionOperations**: [ImageCustomActionOperation](#imagecustomactionoperation)[] (Required)
+* **CustomActionId**: string (Required)
+* **Name**: string (Required)
+* **Status**: string
+* **Trigger**: string (Required)
+
+## ImageCustomAction
+### Properties
+* **ActionOperations**: [ImageCustomActionOperation](#imagecustomactionoperation)[] (Required)
+* **CustomActionId**: string (Required)
+* **Name**: string (Required)
+* **Status**: string
+* **Trigger**: string (Required)
+
+## ImageCustomActionOperation
+### Properties
+* **NavigationOperation**: [CustomActionNavigationOperation](#customactionnavigationoperation)
+* **SetParametersOperation**: [CustomActionSetParametersOperation](#customactionsetparametersoperation)
+* **URLOperation**: [CustomActionURLOperation](#customactionurloperation)
+
+## ImageCustomActionOperation
+### Properties
+* **NavigationOperation**: [CustomActionNavigationOperation](#customactionnavigationoperation)
+* **SetParametersOperation**: [CustomActionSetParametersOperation](#customactionsetparametersoperation)
+* **URLOperation**: [CustomActionURLOperation](#customactionurloperation)
+
+## ImageCustomActionOperation
+### Properties
+* **NavigationOperation**: [CustomActionNavigationOperation](#customactionnavigationoperation)
+* **SetParametersOperation**: [CustomActionSetParametersOperation](#customactionsetparametersoperation)
+* **URLOperation**: [CustomActionURLOperation](#customactionurloperation)
+
+## ImageInteractionOptions
+### Properties
+* **ImageMenuOption**: [ImageMenuOption](#imagemenuoption)
+
+## ImageInteractionOptions
+### Properties
+* **ImageMenuOption**: [ImageMenuOption](#imagemenuoption)
+
+## ImageInteractionOptions
+### Properties
+* **ImageMenuOption**: [ImageMenuOption](#imagemenuoption)
+
+## ImageMenuOption
+### Properties
+* **AvailabilityStatus**: [Analysis_AvailabilityStatus](#analysisavailabilitystatus)
+
+## ImageMenuOption
+### Properties
+* **AvailabilityStatus**: string
+
+## ImageMenuOption
+### Properties
+* **AvailabilityStatus**: [Template_AvailabilityStatus](#templateavailabilitystatus)
+
+## ImageStaticFile
+### Properties
+* **Source**: [StaticFileSource](#staticfilesource)
+* **StaticFileId**: string (Required)
+
+## ImageStaticFile
+### Properties
+* **Source**: [StaticFileSource](#staticfilesource)
+* **StaticFileId**: string (Required)
 
 ## IncrementalRefresh
 ### Properties
@@ -4886,6 +5354,7 @@
 * **InsightConfiguration**: [InsightConfiguration](#insightconfiguration)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## InsightVisual
@@ -4895,6 +5364,7 @@
 * **InsightConfiguration**: [InsightConfiguration](#insightconfiguration)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## InsightVisual
@@ -4904,6 +5374,7 @@
 * **InsightConfiguration**: [InsightConfiguration](#insightconfiguration)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## IntegerDatasetParameter
@@ -5187,9 +5658,9 @@
 ## KPISparklineOptions
 ### Properties
 * **Color**: string
-* **TooltipVisibility**: string
+* **TooltipVisibility**: [Template_TooltipVisibility](#templatetooltipvisibility)
 * **Type**: string (Required)
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## KPIVisual
 ### Properties
@@ -5199,6 +5670,7 @@
 * **ConditionalFormatting**: [KPIConditionalFormatting](#kpiconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## KPIVisual
@@ -5209,6 +5681,7 @@
 * **ConditionalFormatting**: [KPIConditionalFormatting](#kpiconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## KPIVisual
@@ -5219,6 +5692,7 @@
 * **ConditionalFormatting**: [KPIConditionalFormatting](#kpiconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## KPIVisualLayoutOptions
@@ -5261,7 +5735,55 @@
 ### Properties
 * **CustomLabel**: string
 * **FontConfiguration**: [FontConfiguration](#fontconfiguration)
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
+
+## LayerCustomAction
+### Properties
+* **ActionOperations**: [LayerCustomActionOperation](#layercustomactionoperation)[] (Required)
+* **CustomActionId**: string (Required)
+* **Name**: string (Required)
+* **Status**: string
+* **Trigger**: string (Required)
+
+## LayerCustomAction
+### Properties
+* **ActionOperations**: [LayerCustomActionOperation](#layercustomactionoperation)[] (Required)
+* **CustomActionId**: string (Required)
+* **Name**: string (Required)
+* **Status**: string
+* **Trigger**: string (Required)
+
+## LayerCustomActionOperation
+### Properties
+* **FilterOperation**: [CustomActionFilterOperation](#customactionfilteroperation)
+* **NavigationOperation**: [CustomActionNavigationOperation](#customactionnavigationoperation)
+* **SetParametersOperation**: [CustomActionSetParametersOperation](#customactionsetparametersoperation)
+* **URLOperation**: [CustomActionURLOperation](#customactionurloperation)
+
+## LayerCustomActionOperation
+### Properties
+* **FilterOperation**: [CustomActionFilterOperation](#customactionfilteroperation)
+* **NavigationOperation**: [CustomActionNavigationOperation](#customactionnavigationoperation)
+* **SetParametersOperation**: [CustomActionSetParametersOperation](#customactionsetparametersoperation)
+* **URLOperation**: [CustomActionURLOperation](#customactionurloperation)
+
+## LayerMapVisual
+### Properties
+* **ChartConfiguration**: [GeospatialLayerMapConfiguration](#geospatiallayermapconfiguration)
+* **DataSetIdentifier**: string (Required)
+* **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
+* **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
+* **VisualId**: string (Required)
+
+## LayerMapVisual
+### Properties
+* **ChartConfiguration**: [GeospatialLayerMapConfiguration](#geospatiallayermapconfiguration)
+* **DataSetIdentifier**: string (Required)
+* **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
+* **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
+* **VisualId**: string (Required)
 
 ## Layout
 ### Properties
@@ -5298,6 +5820,7 @@
 * **Height**: string: String based length that is composed of value and unit in px
 * **Position**: string
 * **Title**: [LabelOptions](#labeloptions)
+* **ValueFontConfiguration**: [FontConfiguration](#fontconfiguration)
 * **Visibility**: string
 * **Width**: string: String based length that is composed of value and unit in px
 
@@ -5306,6 +5829,7 @@
 * **Height**: string: String based length that is composed of value and unit in px
 * **Position**: string
 * **Title**: [LabelOptions](#labeloptions)
+* **ValueFontConfiguration**: [FontConfiguration](#fontconfiguration)
 * **Visibility**: string
 * **Width**: string: String based length that is composed of value and unit in px
 
@@ -5314,7 +5838,8 @@
 * **Height**: string: String based length that is composed of value and unit in px
 * **Position**: string
 * **Title**: [LabelOptions](#labeloptions)
-* **Visibility**: string
+* **ValueFontConfiguration**: [FontConfiguration](#fontconfiguration)
+* **Visibility**: [Template_Visibility](#templatevisibility)
 * **Width**: string: String based length that is composed of value and unit in px
 
 ## LineChartAggregatedFieldWells
@@ -5455,7 +5980,7 @@
 ### Properties
 * **LineInterpolation**: string
 * **LineStyle**: string
-* **LineVisibility**: string
+* **LineVisibility**: [Template_LineVisibility](#templatelinevisibility)
 * **LineWidth**: string: String based length that is composed of value and unit in px
 
 ## LineChartMarkerStyleSettings
@@ -5477,7 +6002,7 @@
 * **MarkerColor**: string
 * **MarkerShape**: string
 * **MarkerSize**: string: String based length that is composed of value and unit in px
-* **MarkerVisibility**: string
+* **MarkerVisibility**: [Template_MarkerVisibility](#templatemarkervisibility)
 
 ## LineChartSeriesSettings
 ### Properties
@@ -5525,6 +6050,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## LineChartVisual
@@ -5534,6 +6060,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## LineChartVisual
@@ -5543,6 +6070,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## LineSeriesAxisDisplayOptions
@@ -5595,7 +6123,7 @@
 
 ## ListControlSearchOptions
 ### Properties
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## ListControlSelectAllOptions
 ### Properties
@@ -5607,7 +6135,7 @@
 
 ## ListControlSelectAllOptions
 ### Properties
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## LoadingAnimation
 ### Properties
@@ -5619,7 +6147,7 @@
 
 ## LoadingAnimation
 ### Properties
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## LocalNavigationConfiguration
 ### Properties
@@ -5697,7 +6225,7 @@
 
 ## MaximumLabelType
 ### Properties
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## MaximumMinimumComputation
 ### Properties
@@ -5778,7 +6306,7 @@
 
 ## MinimumLabelType
 ### Properties
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## MissingDataConfiguration
 ### Properties
@@ -6183,13 +6711,13 @@
 ## PanelConfiguration
 ### Properties
 * **BackgroundColor**: string
-* **BackgroundVisibility**: string
+* **BackgroundVisibility**: [Template_BackgroundVisibility](#templatebackgroundvisibility)
 * **BorderColor**: string
 * **BorderStyle**: string
 * **BorderThickness**: string: String based length that is composed of value and unit in px
-* **BorderVisibility**: string
+* **BorderVisibility**: [Template_BorderVisibility](#templatebordervisibility)
 * **GutterSpacing**: string: String based length that is composed of value and unit in px
-* **GutterVisibility**: string
+* **GutterVisibility**: [Template_GutterVisibility](#templateguttervisibility)
 * **Title**: [PanelTitleOptions](#paneltitleoptions)
 
 ## PanelTitleOptions
@@ -6208,7 +6736,7 @@
 ### Properties
 * **FontConfiguration**: [FontConfiguration](#fontconfiguration)
 * **HorizontalTextAlignment**: string
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## ParameterControl
 ### Properties
@@ -6499,6 +7027,10 @@
 ### Properties
 * **From**: int
 * **To**: int
+
+## PerformanceConfiguration
+### Properties
+* **UniqueKeys**: [UniqueKey](#uniquekey)[]
 
 ## PeriodOverPeriodComputation
 ### Properties
@@ -6648,6 +7180,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## PieChartVisual
@@ -6657,6 +7190,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## PieChartVisual
@@ -6666,6 +7200,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## PivotFieldSortOptions
@@ -6846,7 +7381,7 @@
 ### Properties
 * **CustomLabel**: string
 * **FieldId**: string (Required)
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## PivotTableFieldOptions
 ### Properties
@@ -6925,9 +7460,9 @@
 ## PivotTableOptions
 ### Properties
 * **CellStyle**: [TableCellStyle](#tablecellstyle)
-* **CollapsedRowDimensionsVisibility**: string
+* **CollapsedRowDimensionsVisibility**: [Template_CollapsedRowDimensionsVisibility](#templatecollapsedrowdimensionsvisibility)
 * **ColumnHeaderStyle**: [TableCellStyle](#tablecellstyle)
-* **ColumnNamesVisibility**: string
+* **ColumnNamesVisibility**: [Template_ColumnNamesVisibility](#templatecolumnnamesvisibility)
 * **DefaultCellWidth**: string: String based length that is composed of value and unit in px
 * **MetricPlacement**: string
 * **RowAlternateColorOptions**: [RowAlternateColorOptions](#rowalternatecoloroptions)
@@ -6935,8 +7470,8 @@
 * **RowHeaderStyle**: [TableCellStyle](#tablecellstyle)
 * **RowsLabelOptions**: [PivotTableRowsLabelOptions](#pivottablerowslabeloptions)
 * **RowsLayout**: string
-* **SingleMetricVisibility**: string
-* **ToggleButtonsVisibility**: string
+* **SingleMetricVisibility**: [Template_SingleMetricVisibility](#templatesinglemetricvisibility)
+* **ToggleButtonsVisibility**: [Template_ToggleButtonsVisibility](#templatetogglebuttonsvisibility)
 
 ## PivotTablePaginatedReportOptions
 ### Properties
@@ -6950,8 +7485,8 @@
 
 ## PivotTablePaginatedReportOptions
 ### Properties
-* **OverflowColumnHeaderVisibility**: string
-* **VerticalOverflowVisibility**: string
+* **OverflowColumnHeaderVisibility**: [Template_OverflowColumnHeaderVisibility](#templateoverflowcolumnheadervisibility)
+* **VerticalOverflowVisibility**: [Template_VerticalOverflowVisibility](#templateverticaloverflowvisibility)
 
 ## PivotTableRowsLabelOptions
 ### Properties
@@ -6966,7 +7501,7 @@
 ## PivotTableRowsLabelOptions
 ### Properties
 * **CustomLabel**: string
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## PivotTableSortBy
 ### Properties
@@ -7026,6 +7561,7 @@
 * **ConditionalFormatting**: [PivotTableConditionalFormatting](#pivottableconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## PivotTableVisual
@@ -7035,6 +7571,7 @@
 * **ConditionalFormatting**: [PivotTableConditionalFormatting](#pivottableconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## PivotTableVisual
@@ -7044,6 +7581,7 @@
 * **ConditionalFormatting**: [PivotTableConditionalFormatting](#pivottableconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## PivotTotalOptions
@@ -7076,8 +7614,140 @@
 * **ScrollStatus**: string
 * **TotalAggregationOptions**: [TotalAggregationOption](#totalaggregationoption)[]
 * **TotalCellStyle**: [TableCellStyle](#tablecellstyle)
-* **TotalsVisibility**: string
+* **TotalsVisibility**: [Template_TotalsVisibility](#templatetotalsvisibility)
 * **ValueCellStyle**: [TableCellStyle](#tablecellstyle)
+
+## PluginVisual
+### Properties
+* **ChartConfiguration**: [PluginVisualConfiguration](#pluginvisualconfiguration)
+* **PluginArn**: string (Required)
+* **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
+* **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
+* **VisualId**: string (Required)
+
+## PluginVisual
+### Properties
+* **ChartConfiguration**: [PluginVisualConfiguration](#pluginvisualconfiguration)
+* **PluginArn**: string (Required)
+* **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
+* **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
+* **VisualId**: string (Required)
+
+## PluginVisual
+### Properties
+* **ChartConfiguration**: [PluginVisualConfiguration](#pluginvisualconfiguration)
+* **PluginArn**: string (Required)
+* **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
+* **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
+* **VisualId**: string (Required)
+
+## PluginVisualConfiguration
+### Properties
+* **FieldWells**: [PluginVisualFieldWell](#pluginvisualfieldwell)[]
+* **SortConfiguration**: [PluginVisualSortConfiguration](#pluginvisualsortconfiguration)
+* **VisualOptions**: [PluginVisualOptions](#pluginvisualoptions)
+
+## PluginVisualConfiguration
+### Properties
+* **FieldWells**: [PluginVisualFieldWell](#pluginvisualfieldwell)[]
+* **SortConfiguration**: [PluginVisualSortConfiguration](#pluginvisualsortconfiguration)
+* **VisualOptions**: [PluginVisualOptions](#pluginvisualoptions)
+
+## PluginVisualConfiguration
+### Properties
+* **FieldWells**: [PluginVisualFieldWell](#pluginvisualfieldwell)[]
+* **SortConfiguration**: [PluginVisualSortConfiguration](#pluginvisualsortconfiguration)
+* **VisualOptions**: [PluginVisualOptions](#pluginvisualoptions)
+
+## PluginVisualFieldWell
+### Properties
+* **AxisName**: string
+* **Dimensions**: [DimensionField](#dimensionfield)[]
+* **Measures**: [MeasureField](#measurefield)[]
+* **Unaggregated**: [UnaggregatedField](#unaggregatedfield)[]
+
+## PluginVisualFieldWell
+### Properties
+* **AxisName**: string
+* **Dimensions**: [DimensionField](#dimensionfield)[]
+* **Measures**: [MeasureField](#measurefield)[]
+* **Unaggregated**: [UnaggregatedField](#unaggregatedfield)[]
+
+## PluginVisualFieldWell
+### Properties
+* **AxisName**: string
+* **Dimensions**: [DimensionField](#dimensionfield)[]
+* **Measures**: [MeasureField](#measurefield)[]
+* **Unaggregated**: [UnaggregatedField](#unaggregatedfield)[]
+
+## PluginVisualItemsLimitConfiguration
+### Properties
+* **ItemsLimit**: int
+
+## PluginVisualItemsLimitConfiguration
+### Properties
+* **ItemsLimit**: int
+
+## PluginVisualItemsLimitConfiguration
+### Properties
+* **ItemsLimit**: int
+
+## PluginVisualOptions
+### Properties
+* **VisualProperties**: [PluginVisualProperty](#pluginvisualproperty)[]
+
+## PluginVisualOptions
+### Properties
+* **VisualProperties**: [PluginVisualProperty](#pluginvisualproperty)[]
+
+## PluginVisualOptions
+### Properties
+* **VisualProperties**: [PluginVisualProperty](#pluginvisualproperty)[]
+
+## PluginVisualProperty
+### Properties
+* **Name**: string
+* **Value**: string
+
+## PluginVisualProperty
+### Properties
+* **Name**: string
+* **Value**: string
+
+## PluginVisualProperty
+### Properties
+* **Name**: string
+* **Value**: string
+
+## PluginVisualSortConfiguration
+### Properties
+* **PluginVisualTableQuerySort**: [PluginVisualTableQuerySort](#pluginvisualtablequerysort)
+
+## PluginVisualSortConfiguration
+### Properties
+* **PluginVisualTableQuerySort**: [PluginVisualTableQuerySort](#pluginvisualtablequerysort)
+
+## PluginVisualSortConfiguration
+### Properties
+* **PluginVisualTableQuerySort**: [PluginVisualTableQuerySort](#pluginvisualtablequerysort)
+
+## PluginVisualTableQuerySort
+### Properties
+* **ItemsLimitConfiguration**: [PluginVisualItemsLimitConfiguration](#pluginvisualitemslimitconfiguration)
+* **RowSort**: [FieldSortOptions](#fieldsortoptions)[]
+
+## PluginVisualTableQuerySort
+### Properties
+* **ItemsLimitConfiguration**: [PluginVisualItemsLimitConfiguration](#pluginvisualitemslimitconfiguration)
+* **RowSort**: [FieldSortOptions](#fieldsortoptions)[]
+
+## PluginVisualTableQuerySort
+### Properties
+* **ItemsLimitConfiguration**: [PluginVisualItemsLimitConfiguration](#pluginvisualitemslimitconfiguration)
+* **RowSort**: [FieldSortOptions](#fieldsortoptions)[]
 
 ## PostgreSqlParameters
 ### Properties
@@ -7119,7 +7789,7 @@
 
 ## ProgressBarOptions
 ### Properties
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## QueryExecutionOptions
 ### Properties
@@ -7157,7 +7827,7 @@
 
 ## RadarChartAreaStyleSettings
 ### Properties
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## RadarChartConfiguration
 ### Properties
@@ -7197,7 +7867,7 @@
 
 ## RadarChartConfiguration
 ### Properties
-* **AlternateBandColorsVisibility**: string
+* **AlternateBandColorsVisibility**: [Template_AlternateBandColorsVisibility](#templatealternatebandcolorsvisibility)
 * **AlternateBandEvenColor**: string
 * **AlternateBandOddColor**: string
 * **AxesRangeScale**: string
@@ -7265,6 +7935,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## RadarChartVisual
@@ -7274,6 +7945,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## RadarChartVisual
@@ -7283,6 +7955,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## RangeConstant
@@ -7300,7 +7973,7 @@
 
 ## RangeEndsLabelType
 ### Properties
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## RdsParameters
 ### Properties
@@ -7828,6 +8501,7 @@
 * **ChartConfiguration**: [SankeyDiagramChartConfiguration](#sankeydiagramchartconfiguration)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## SankeyDiagramVisual
@@ -7836,6 +8510,7 @@
 * **ChartConfiguration**: [SankeyDiagramChartConfiguration](#sankeydiagramchartconfiguration)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## SankeyDiagramVisual
@@ -7844,6 +8519,7 @@
 * **ChartConfiguration**: [SankeyDiagramChartConfiguration](#sankeydiagramchartconfiguration)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## ScatterPlotCategoricallyAggregatedFieldWells
@@ -7952,6 +8628,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## ScatterPlotVisual
@@ -7961,6 +8638,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## ScatterPlotVisual
@@ -7970,6 +8648,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## ScrollBarOptions
@@ -7984,7 +8663,7 @@
 
 ## ScrollBarOptions
 ### Properties
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 * **VisibleRange**: [VisibleRangeOptions](#visiblerangeoptions)
 
 ## SecondaryValueOptions
@@ -7997,7 +8676,7 @@
 
 ## SecondaryValueOptions
 ### Properties
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## SectionAfterPageBreak
 ### Properties
@@ -8173,18 +8852,21 @@
 
 ## Sheet
 ### Properties
+* **Images**: [SheetImage](#sheetimage)[]
 * **Name**: string: <p>The name of a sheet. This name is displayed on the sheet's tab in the Amazon QuickSight
             console.</p>
 * **SheetId**: string: <p>The unique identifier associated with a sheet.</p>
 
 ## Sheet
 ### Properties
+* **Images**: [SheetImage](#sheetimage)[]
 * **Name**: string: <p>The name of a sheet. This name is displayed on the sheet's tab in the Amazon QuickSight
             console.</p>
 * **SheetId**: string: <p>The unique identifier associated with a sheet.</p>
 
 ## Sheet
 ### Properties
+* **Images**: [SheetImage](#sheetimage)[]
 * **Name**: string: <p>The name of a sheet. This name is displayed on the sheet's tab in the Amazon QuickSight
             console.</p>
 * **SheetId**: string: <p>The unique identifier associated with a sheet.</p>
@@ -8202,7 +8884,7 @@
 ## SheetControlInfoIconLabelOptions
 ### Properties
 * **InfoIconText**: string
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## SheetControlLayout
 ### Properties
@@ -8237,6 +8919,7 @@
 * **ContentType**: string
 * **Description**: string
 * **FilterControls**: [FilterControl](#filtercontrol)[]
+* **Images**: [SheetImage](#sheetimage)[]
 * **Layouts**: [Layout](#layout)[]
 * **Name**: string
 * **ParameterControls**: [ParameterControl](#parametercontrol)[]
@@ -8251,6 +8934,7 @@
 * **ContentType**: string
 * **Description**: string
 * **FilterControls**: [FilterControl](#filtercontrol)[]
+* **Images**: [SheetImage](#sheetimage)[]
 * **Layouts**: [Layout](#layout)[]
 * **Name**: string
 * **ParameterControls**: [ParameterControl](#parametercontrol)[]
@@ -8265,6 +8949,7 @@
 * **ContentType**: string
 * **Description**: string
 * **FilterControls**: [FilterControl](#filtercontrol)[]
+* **Images**: [SheetImage](#sheetimage)[]
 * **Layouts**: [Layout](#layout)[]
 * **Name**: string
 * **ParameterControls**: [ParameterControl](#parametercontrol)[]
@@ -8284,22 +8969,115 @@
 
 ## SheetElementConfigurationOverrides
 ### Properties
+* **Visibility**: [Template_Visibility](#templatevisibility)
+
+## SheetElementRenderingRule
+### Properties
+* **ConfigurationOverrides**: [SheetElementConfigurationOverrides](#sheetelementconfigurationoverrides) (Required)
+* **Expression**: string (Required)
+
+## SheetElementRenderingRule
+### Properties
+* **ConfigurationOverrides**: [SheetElementConfigurationOverrides](#sheetelementconfigurationoverrides) (Required)
+* **Expression**: string (Required)
+
+## SheetElementRenderingRule
+### Properties
+* **ConfigurationOverrides**: [SheetElementConfigurationOverrides](#sheetelementconfigurationoverrides) (Required)
+* **Expression**: string (Required)
+
+## SheetImage
+### Properties
+* **Actions**: [ImageCustomAction](#imagecustomaction)[]
+* **ImageContentAltText**: string
+* **Interactions**: [ImageInteractionOptions](#imageinteractionoptions)
+* **Scaling**: [SheetImageScalingConfiguration](#sheetimagescalingconfiguration)
+* **SheetImageId**: string (Required)
+* **Source**: [SheetImageSource](#sheetimagesource) (Required)
+* **Tooltip**: [SheetImageTooltipConfiguration](#sheetimagetooltipconfiguration)
+
+## SheetImage
+### Properties
+* **Actions**: [ImageCustomAction](#imagecustomaction)[]
+* **ImageContentAltText**: string
+* **Interactions**: [ImageInteractionOptions](#imageinteractionoptions)
+* **Scaling**: [SheetImageScalingConfiguration](#sheetimagescalingconfiguration)
+* **SheetImageId**: string (Required)
+* **Source**: [SheetImageSource](#sheetimagesource) (Required)
+* **Tooltip**: [SheetImageTooltipConfiguration](#sheetimagetooltipconfiguration)
+
+## SheetImage
+### Properties
+* **Actions**: [ImageCustomAction](#imagecustomaction)[]
+* **ImageContentAltText**: string
+* **Interactions**: [ImageInteractionOptions](#imageinteractionoptions)
+* **Scaling**: [SheetImageScalingConfiguration](#sheetimagescalingconfiguration)
+* **SheetImageId**: string (Required)
+* **Source**: [SheetImageSource](#sheetimagesource) (Required)
+* **Tooltip**: [SheetImageTooltipConfiguration](#sheetimagetooltipconfiguration)
+
+## SheetImageScalingConfiguration
+### Properties
+* **ScalingType**: string
+
+## SheetImageScalingConfiguration
+### Properties
+* **ScalingType**: string
+
+## SheetImageScalingConfiguration
+### Properties
+* **ScalingType**: string
+
+## SheetImageSource
+### Properties
+* **SheetImageStaticFileSource**: [SheetImageStaticFileSource](#sheetimagestaticfilesource)
+
+## SheetImageSource
+### Properties
+* **SheetImageStaticFileSource**: [SheetImageStaticFileSource](#sheetimagestaticfilesource)
+
+## SheetImageSource
+### Properties
+* **SheetImageStaticFileSource**: [SheetImageStaticFileSource](#sheetimagestaticfilesource)
+
+## SheetImageStaticFileSource
+### Properties
+* **StaticFileId**: string (Required)
+
+## SheetImageStaticFileSource
+### Properties
+* **StaticFileId**: string (Required)
+
+## SheetImageStaticFileSource
+### Properties
+* **StaticFileId**: string (Required)
+
+## SheetImageTooltipConfiguration
+### Properties
+* **TooltipText**: [SheetImageTooltipText](#sheetimagetooltiptext)
 * **Visibility**: string
 
-## SheetElementRenderingRule
+## SheetImageTooltipConfiguration
 ### Properties
-* **ConfigurationOverrides**: [SheetElementConfigurationOverrides](#sheetelementconfigurationoverrides) (Required)
-* **Expression**: string (Required)
+* **TooltipText**: [SheetImageTooltipText](#sheetimagetooltiptext)
+* **Visibility**: string
 
-## SheetElementRenderingRule
+## SheetImageTooltipConfiguration
 ### Properties
-* **ConfigurationOverrides**: [SheetElementConfigurationOverrides](#sheetelementconfigurationoverrides) (Required)
-* **Expression**: string (Required)
+* **TooltipText**: [SheetImageTooltipText](#sheetimagetooltiptext)
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
-## SheetElementRenderingRule
+## SheetImageTooltipText
 ### Properties
-* **ConfigurationOverrides**: [SheetElementConfigurationOverrides](#sheetelementconfigurationoverrides) (Required)
-* **Expression**: string (Required)
+* **PlainText**: string
+
+## SheetImageTooltipText
+### Properties
+* **PlainText**: string
+
+## SheetImageTooltipText
+### Properties
+* **PlainText**: string
 
 ## SheetLayoutElementMaximizationOption
 ### Properties
@@ -8471,6 +9249,16 @@
 * **Host**: string (Required): <p>Host.</p>
 * **Port**: int (Required): <p>Port.</p>
 
+## SpatialStaticFile
+### Properties
+* **Source**: [StaticFileSource](#staticfilesource)
+* **StaticFileId**: string (Required)
+
+## SpatialStaticFile
+### Properties
+* **Source**: [StaticFileSource](#staticfilesource)
+* **StaticFileId**: string (Required)
+
 ## SqlServerParameters
 ### Properties
 * **Database**: string (Required): <p>Database.</p>
@@ -8490,6 +9278,46 @@
 * **OAuthParameters**: [OAuthParameters](#oauthparameters)
 * **Port**: int (Required): <p>The port for the Starburst data source.</p>
 * **ProductType**: string
+
+## StaticFile
+### Properties
+* **ImageStaticFile**: [ImageStaticFile](#imagestaticfile)
+* **SpatialStaticFile**: [SpatialStaticFile](#spatialstaticfile)
+
+## StaticFile
+### Properties
+* **ImageStaticFile**: [ImageStaticFile](#imagestaticfile)
+* **SpatialStaticFile**: [SpatialStaticFile](#spatialstaticfile)
+
+## StaticFileS3SourceOptions
+### Properties
+* **BucketName**: string (Required)
+* **ObjectKey**: string (Required)
+* **Region**: string (Required)
+
+## StaticFileS3SourceOptions
+### Properties
+* **BucketName**: string (Required)
+* **ObjectKey**: string (Required)
+* **Region**: string (Required)
+
+## StaticFileSource
+### Properties
+* **S3Options**: [StaticFileS3SourceOptions](#staticfiles3sourceoptions)
+* **UrlOptions**: [StaticFileUrlSourceOptions](#staticfileurlsourceoptions)
+
+## StaticFileSource
+### Properties
+* **S3Options**: [StaticFileS3SourceOptions](#staticfiles3sourceoptions)
+* **UrlOptions**: [StaticFileUrlSourceOptions](#staticfileurlsourceoptions)
+
+## StaticFileUrlSourceOptions
+### Properties
+* **Url**: string (Required)
+
+## StaticFileUrlSourceOptions
+### Properties
+* **Url**: string (Required)
 
 ## StringDatasetParameter
 ### Properties
@@ -8611,7 +9439,7 @@
 * **MetricHeaderCellStyle**: [TableCellStyle](#tablecellstyle)
 * **StyleTargets**: [TableStyleTarget](#tablestyletarget)[]
 * **TotalCellStyle**: [TableCellStyle](#tablecellstyle)
-* **TotalsVisibility**: string
+* **TotalsVisibility**: [Template_TotalsVisibility](#templatetotalsvisibility)
 * **ValueCellStyle**: [TableCellStyle](#tablecellstyle)
 
 ## TableAggregatedFieldWells
@@ -8705,7 +9533,7 @@
 * **HorizontalTextAlignment**: string
 * **TextWrap**: string
 * **VerticalTextAlignment**: string
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## TableConditionalFormatting
 ### Properties
@@ -8854,7 +9682,7 @@
 * **CustomLabel**: string
 * **FieldId**: string (Required)
 * **URLStyling**: [TableFieldURLConfiguration](#tablefieldurlconfiguration)
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 * **Width**: string: String based length that is composed of value and unit in px
 
 ## TableFieldOptions
@@ -8950,8 +9778,8 @@
 
 ## TablePaginatedReportOptions
 ### Properties
-* **OverflowColumnHeaderVisibility**: string
-* **VerticalOverflowVisibility**: string
+* **OverflowColumnHeaderVisibility**: [Template_OverflowColumnHeaderVisibility](#templateoverflowcolumnheadervisibility)
+* **VerticalOverflowVisibility**: [Template_VerticalOverflowVisibility](#templateverticaloverflowvisibility)
 
 ## TablePinnedFieldOptions
 ### Properties
@@ -9053,6 +9881,7 @@
 * **ConditionalFormatting**: [TableConditionalFormatting](#tableconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## TableVisual
@@ -9062,6 +9891,7 @@
 * **ConditionalFormatting**: [TableConditionalFormatting](#tableconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## TableVisual
@@ -9071,6 +9901,7 @@
 * **ConditionalFormatting**: [TableConditionalFormatting](#tableconditionalformatting)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## Tag
@@ -9112,6 +9943,218 @@
 ### Properties
 * **Key**: string (Required): <p>Tag key.</p>
 * **Value**: string (Required): <p>Tag value.</p>
+
+## Tag
+### Properties
+* **Key**: string (Required): <p>Tag key.</p>
+* **Value**: string (Required): <p>Tag value.</p>
+
+## Template_AggregationVisibility
+### Properties
+
+## Template_AllDataPointsVisibility
+### Properties
+
+## Template_AlternateBandColorsVisibility
+### Properties
+
+## Template_AvailabilityStatus
+### Properties
+
+## Template_AxisLineVisibility
+### Properties
+
+## Template_BackgroundVisibility
+### Properties
+
+## Template_BorderVisibility
+### Properties
+
+## Template_CategoryLabelVisibility
+### Properties
+
+## Template_CategoryLabelVisibility
+### Properties
+
+## Template_CollapsedRowDimensionsVisibility
+### Properties
+
+## Template_ColumnNamesVisibility
+### Properties
+
+## Template_GridLineVisibility
+### Properties
+
+## Template_GutterVisibility
+### Properties
+
+## Template_LabelVisibility
+### Properties
+
+## Template_LineVisibility
+### Properties
+
+## Template_MarkerVisibility
+### Properties
+
+## Template_MeasureLabelVisibility
+### Properties
+
+## Template_MeasureLabelVisibility
+### Properties
+
+## Template_MissingDateVisibility
+### Properties
+
+## Template_OutlierVisibility
+### Properties
+
+## Template_OverflowColumnHeaderVisibility
+### Properties
+
+## Template_OverflowColumnHeaderVisibility
+### Properties
+
+## Template_SingleMetricVisibility
+### Properties
+
+## Template_SortIconVisibility
+### Properties
+
+## Template_ToggleButtonsVisibility
+### Properties
+
+## Template_TooltipVisibility
+### Properties
+
+## Template_TooltipVisibility
+### Properties
+
+## Template_TotalsVisibility
+### Properties
+
+## Template_TotalsVisibility
+### Properties
+
+## Template_TotalsVisibility
+### Properties
+
+## Template_TotalsVisibility
+### Properties
+
+## Template_VerticalOverflowVisibility
+### Properties
+
+## Template_VerticalOverflowVisibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
+
+## Template_Visibility
+### Properties
 
 ## TemplateError
 ### Properties
@@ -9213,7 +10256,7 @@
 
 ## TextControlPlaceholderOptions
 ### Properties
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## TextFieldControlDisplayOptions
 ### Properties
@@ -9270,7 +10313,7 @@
 ## ThousandSeparatorOptions
 ### Properties
 * **Symbol**: string
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## TileLayoutStyle
 ### Properties
@@ -9447,7 +10490,7 @@
 ### Properties
 * **FieldBasedTooltip**: [FieldBasedTooltip](#fieldbasedtooltip)
 * **SelectedTooltipType**: string
-* **TooltipVisibility**: string
+* **TooltipVisibility**: [Template_TooltipVisibility](#templatetooltipvisibility)
 
 ## TopBottomFilter
 ### Properties
@@ -9716,7 +10759,7 @@
 * **ScrollStatus**: string
 * **TotalAggregationOptions**: [TotalAggregationOption](#totalaggregationoption)[]
 * **TotalCellStyle**: [TableCellStyle](#tablecellstyle)
-* **TotalsVisibility**: string
+* **TotalsVisibility**: [Template_TotalsVisibility](#templatetotalsvisibility)
 
 ## TreeMapAggregatedFieldWells
 ### Properties
@@ -9806,6 +10849,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## TreeMapVisual
@@ -9815,6 +10859,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## TreeMapVisual
@@ -9824,6 +10869,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## TrendArrowOptions
@@ -9836,7 +10882,7 @@
 
 ## TrendArrowOptions
 ### Properties
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## TrinoParameters
 ### Properties
@@ -9898,6 +10944,10 @@
 * **FieldId**: string (Required)
 * **FormatConfiguration**: [FormatConfiguration](#formatconfiguration)
 
+## UniqueKey
+### Properties
+* **ColumnNames**: string[] (Required)
+
 ## UniqueValuesComputation
 ### Properties
 * **Category**: [DimensionField](#dimensionfield)
@@ -9955,9 +11005,39 @@
 * **HistogramVisual**: [HistogramVisual](#histogramvisual)
 * **InsightVisual**: [InsightVisual](#insightvisual)
 * **KPIVisual**: [KPIVisual](#kpivisual)
+* **LayerMapVisual**: [LayerMapVisual](#layermapvisual)
 * **LineChartVisual**: [LineChartVisual](#linechartvisual)
 * **PieChartVisual**: [PieChartVisual](#piechartvisual)
 * **PivotTableVisual**: [PivotTableVisual](#pivottablevisual)
+* **PluginVisual**: [PluginVisual](#pluginvisual)
+* **RadarChartVisual**: [RadarChartVisual](#radarchartvisual)
+* **SankeyDiagramVisual**: [SankeyDiagramVisual](#sankeydiagramvisual)
+* **ScatterPlotVisual**: [ScatterPlotVisual](#scatterplotvisual)
+* **TableVisual**: [TableVisual](#tablevisual)
+* **TreeMapVisual**: [TreeMapVisual](#treemapvisual)
+* **WaterfallVisual**: [WaterfallVisual](#waterfallvisual)
+* **WordCloudVisual**: [WordCloudVisual](#wordcloudvisual)
+
+## Visual
+### Properties
+* **BarChartVisual**: [BarChartVisual](#barchartvisual)
+* **BoxPlotVisual**: [BoxPlotVisual](#boxplotvisual)
+* **ComboChartVisual**: [ComboChartVisual](#combochartvisual)
+* **CustomContentVisual**: [CustomContentVisual](#customcontentvisual)
+* **EmptyVisual**: [EmptyVisual](#emptyvisual)
+* **FilledMapVisual**: [FilledMapVisual](#filledmapvisual)
+* **FunnelChartVisual**: [FunnelChartVisual](#funnelchartvisual)
+* **GaugeChartVisual**: [GaugeChartVisual](#gaugechartvisual)
+* **GeospatialMapVisual**: [GeospatialMapVisual](#geospatialmapvisual)
+* **HeatMapVisual**: [HeatMapVisual](#heatmapvisual)
+* **HistogramVisual**: [HistogramVisual](#histogramvisual)
+* **InsightVisual**: [InsightVisual](#insightvisual)
+* **KPIVisual**: [KPIVisual](#kpivisual)
+* **LayerMapVisual**: [LayerMapVisual](#layermapvisual)
+* **LineChartVisual**: [LineChartVisual](#linechartvisual)
+* **PieChartVisual**: [PieChartVisual](#piechartvisual)
+* **PivotTableVisual**: [PivotTableVisual](#pivottablevisual)
+* **PluginVisual**: [PluginVisual](#pluginvisual)
 * **RadarChartVisual**: [RadarChartVisual](#radarchartvisual)
 * **SankeyDiagramVisual**: [SankeyDiagramVisual](#sankeydiagramvisual)
 * **ScatterPlotVisual**: [ScatterPlotVisual](#scatterplotvisual)
@@ -9984,32 +11064,7 @@
 * **LineChartVisual**: [LineChartVisual](#linechartvisual)
 * **PieChartVisual**: [PieChartVisual](#piechartvisual)
 * **PivotTableVisual**: [PivotTableVisual](#pivottablevisual)
-* **RadarChartVisual**: [RadarChartVisual](#radarchartvisual)
-* **SankeyDiagramVisual**: [SankeyDiagramVisual](#sankeydiagramvisual)
-* **ScatterPlotVisual**: [ScatterPlotVisual](#scatterplotvisual)
-* **TableVisual**: [TableVisual](#tablevisual)
-* **TreeMapVisual**: [TreeMapVisual](#treemapvisual)
-* **WaterfallVisual**: [WaterfallVisual](#waterfallvisual)
-* **WordCloudVisual**: [WordCloudVisual](#wordcloudvisual)
-
-## Visual
-### Properties
-* **BarChartVisual**: [BarChartVisual](#barchartvisual)
-* **BoxPlotVisual**: [BoxPlotVisual](#boxplotvisual)
-* **ComboChartVisual**: [ComboChartVisual](#combochartvisual)
-* **CustomContentVisual**: [CustomContentVisual](#customcontentvisual)
-* **EmptyVisual**: [EmptyVisual](#emptyvisual)
-* **FilledMapVisual**: [FilledMapVisual](#filledmapvisual)
-* **FunnelChartVisual**: [FunnelChartVisual](#funnelchartvisual)
-* **GaugeChartVisual**: [GaugeChartVisual](#gaugechartvisual)
-* **GeospatialMapVisual**: [GeospatialMapVisual](#geospatialmapvisual)
-* **HeatMapVisual**: [HeatMapVisual](#heatmapvisual)
-* **HistogramVisual**: [HistogramVisual](#histogramvisual)
-* **InsightVisual**: [InsightVisual](#insightvisual)
-* **KPIVisual**: [KPIVisual](#kpivisual)
-* **LineChartVisual**: [LineChartVisual](#linechartvisual)
-* **PieChartVisual**: [PieChartVisual](#piechartvisual)
-* **PivotTableVisual**: [PivotTableVisual](#pivottablevisual)
+* **PluginVisual**: [PluginVisual](#pluginvisual)
 * **RadarChartVisual**: [RadarChartVisual](#radarchartvisual)
 * **SankeyDiagramVisual**: [SankeyDiagramVisual](#sankeydiagramvisual)
 * **ScatterPlotVisual**: [ScatterPlotVisual](#scatterplotvisual)
@@ -10067,10 +11122,6 @@
 * **SetParametersOperation**: [CustomActionSetParametersOperation](#customactionsetparametersoperation)
 * **URLOperation**: [CustomActionURLOperation](#customactionurloperation)
 
-## VisualMenuOption
-### Properties
-* **AvailabilityStatus**: string
-
 ## VisualPalette
 ### Properties
 * **ChartColor**: string
@@ -10099,7 +11150,7 @@
 ## VisualSubtitleLabelOptions
 ### Properties
 * **FormatText**: [LongFormatText](#longformattext)
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## VisualTitleLabelOptions
 ### Properties
@@ -10114,7 +11165,7 @@
 ## VisualTitleLabelOptions
 ### Properties
 * **FormatText**: [ShortFormatText](#shortformattext)
-* **Visibility**: string
+* **Visibility**: [Template_Visibility](#templatevisibility)
 
 ## VpcConnectionProperties
 ### Properties
@@ -10256,6 +11307,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## WaterfallVisual
@@ -10265,6 +11317,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## WaterfallVisual
@@ -10274,6 +11327,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## WhatIfPointScenario
@@ -10406,6 +11460,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## WordCloudVisual
@@ -10415,6 +11470,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## WordCloudVisual
@@ -10424,6 +11480,7 @@
 * **ColumnHierarchies**: [ColumnHierarchy](#columnhierarchy)[]
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## YAxisOptions

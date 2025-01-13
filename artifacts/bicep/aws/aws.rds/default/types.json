@@ -8,14 +8,14 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+        "description": "A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: \"^([\\\\p{L}\\\\p{Z}\\\\p{N}_.:/=+\\\\-@]*)$\")."
       },
       "Value": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+        "description": "A value is the optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: \"^([\\\\p{L}\\\\p{Z}\\\\p{N}_.:/=+\\\\-@]*)$\")."
       }
     }
   },
@@ -44,21 +44,21 @@
           "$ref": "#/1"
         },
         "flags": 2,
-        "description": "The ARN of the custom engine version."
+        "description": ""
       },
       "DatabaseInstallationFilesS3BucketName": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The name of an Amazon S3 bucket that contains database installation files for your CEV. For example, a valid bucket name is `my-custom-installation-files`."
+        "description": "The name of an Amazon S3 bucket that contains database installation files for your CEV. For example, a valid bucket name is ``my-custom-installation-files``."
       },
       "DatabaseInstallationFilesS3Prefix": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The Amazon S3 directory that contains the database installation files for your CEV. For example, a valid bucket name is `123456789012/cev1`. If this setting isn't specified, no prefix is assumed."
+        "description": "The Amazon S3 directory that contains the database installation files for your CEV. For example, a valid bucket name is ``123456789012/cev1``. If this setting isn't specified, no prefix is assumed."
       },
       "Description": {
         "type": {
@@ -72,63 +72,63 @@
           "$ref": "#/1"
         },
         "flags": 17,
-        "description": "The database engine to use for your custom engine version (CEV). The only supported value is `custom-oracle-ee`."
+        "description": "The database engine to use for your custom engine version (CEV).\n Valid values:\n  +   ``custom-oracle-ee`` \n  +   ``custom-oracle-ee-cdb``"
       },
       "EngineVersion": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 17,
-        "description": "The name of your CEV. The name format is 19.customized_string . For example, a valid name is 19.my_cev1. This setting is required for RDS Custom for Oracle, but optional for Amazon RDS. The combination of Engine and EngineVersion is unique per customer per Region."
+        "description": "The name of your CEV. The name format is ``major version.customized_string``. For example, a valid CEV name is ``19.my_cev1``. This setting is required for RDS Custom for Oracle, but optional for Amazon RDS. The combination of ``Engine`` and ``EngineVersion`` is unique per customer per Region.\n  *Constraints:* Minimum length is 1. Maximum length is 60.\n  *Pattern:* ``^[a-z0-9_.-]{1,60$``}"
       },
       "ImageId": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The identifier of Amazon Machine Image (AMI) used for CEV."
+        "description": "A value that indicates the ID of the AMI."
       },
       "KMSKeyId": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The AWS KMS key identifier for an encrypted CEV. A symmetric KMS key is required for RDS Custom, but optional for Amazon RDS."
+        "description": "The AWS KMS key identifier for an encrypted CEV. A symmetric encryption KMS key is required for RDS Custom, but optional for Amazon RDS.\n If you have an existing symmetric encryption KMS key in your account, you can use it with RDS Custom. No further action is necessary. If you don't already have a symmetric encryption KMS key in your account, follow the instructions in [Creating a symmetric encryption KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk) in the *Key Management Service Developer Guide*.\n You can choose the same symmetric encryption key when you create a CEV and a DB instance, or choose different keys."
       },
       "Manifest": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 4,
-        "description": "The CEV manifest, which is a JSON document that describes the installation .zip files stored in Amazon S3. Specify the name/value pairs in a file or a quoted string. RDS Custom applies the patches in the order in which they are listed."
+        "description": "The CEV manifest, which is a JSON document that describes the installation .zip files stored in Amazon S3. Specify the name/value pairs in a file or a quoted string. RDS Custom applies the patches in the order in which they are listed.\n The following JSON fields are valid:\n  + MediaImportTemplateVersion Version of the CEV manifest. The date is in the format YYYY-MM-DD. + databaseInstallationFileNames Ordered list of installation files for the CEV. + opatchFileNames Ordered list of OPatch installers used for the Oracle DB engine. + psuRuPatchFileNames The PSU and RU patches for this CEV. + OtherPatchFileNames The patches that are not in the list of PSU and RU patches. Amazon RDS applies these patches after applying the PSU and RU patches. \n For more information, see [Creating the CEV manifest](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.preparing.manifest) in the *Amazon RDS User Guide*."
       },
       "SourceCustomDbEngineVersionIdentifier": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 4,
-        "description": "The identifier of the source custom engine version."
+        "description": "The ARN of a CEV to use as a source for creating a new CEV. You can specify a different Amazon Machine Imagine (AMI) by using either ``Source`` or ``UseAwsProvidedLatestImage``. You can't specify a different JSON manifest when you specify ``SourceCustomDbEngineVersionIdentifier``."
       },
       "Status": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The availability status to be assigned to the CEV."
+        "description": "A value that indicates the status of a custom engine version (CEV)."
       },
       "Tags": {
         "type": {
           "$ref": "#/3"
         },
         "flags": 0,
-        "description": "An array of key-value pairs to apply to this resource."
+        "description": "A list of tags. For more information, see [Tagging Amazon RDS Resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html) in the *Amazon RDS User Guide.*"
       },
       "UseAwsProvidedLatestImage": {
         "type": {
           "$ref": "#/4"
         },
         "flags": 4,
-        "description": "A value that indicates whether AWS provided latest image is applied automatically to the Custom Engine Version. By default, AWS provided latest image is applied automatically. This value is only applied on create."
+        "description": "Specifies whether to use the latest service-provided Amazon Machine Image (AMI) for the CEV. If you specify ``UseAwsProvidedLatestImage``, you can't also specify ``ImageId``."
       }
     }
   },
@@ -305,7 +305,14 @@
           "$ref": "#/15"
         },
         "flags": 0,
-        "description": "The minimum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 8, 8.5, 9, and so on. The smallest value that you can use is 0.5."
+        "description": "The minimum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 8, 8.5, 9, and so on. For Aurora versions that support the Aurora Serverless v2 auto-pause feature, the smallest value that you can use is 0. For versions that don't support Aurora Serverless v2 auto-pause, the smallest value that you can use is 0.5."
+      },
+      "SecondsUntilAutoPause": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Specifies the number of seconds an Aurora Serverless v2 DB instance must be idle before Aurora attempts to automatically pause it. \n Specify a value between 300 seconds (five minutes) and 86,400 seconds (one day). The default is 300 seconds."
       }
     }
   },
@@ -389,7 +396,7 @@
           "$ref": "#/4"
         },
         "flags": 0,
-        "description": "Specifies whether minor engine upgrades are applied automatically to the DB cluster during the maintenance window. By default, minor engine upgrades are applied automatically.\n Valid for Cluster Type: Multi-AZ DB clusters only"
+        "description": "Specifies whether minor engine upgrades are applied automatically to the DB cluster during the maintenance window. By default, minor engine upgrades are applied automatically.\n Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB cluster"
       },
       "AvailabilityZones": {
         "type": {
@@ -417,7 +424,7 @@
           "$ref": "#/1"
         },
         "flags": 4,
-        "description": ""
+        "description": "Specifies the scalability mode of the Aurora DB cluster. When set to ``limitless``, the cluster operates as an Aurora Limitless Database, allowing you to create a DB shard group for horizontal scaling (sharding) capabilities. When set to ``standard`` (the default), the cluster uses normal DB instance creation."
       },
       "CopyTagsToSnapshot": {
         "type": {
@@ -481,6 +488,13 @@
         },
         "flags": 0,
         "description": "Reserved for future use."
+      },
+      "DatabaseInsightsMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The mode of Database Insights to enable for the DB cluster.\n If you set this value to ``advanced``, you must also set the ``PerformanceInsightsEnabled`` parameter to ``true`` and the ``PerformanceInsightsRetentionPeriod`` parameter to 465.\n Valid for Cluster Type: Aurora DB clusters only"
       },
       "DatabaseName": {
         "type": {
@@ -564,7 +578,7 @@
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The life cycle type for this DB cluster.\n  By default, this value is set to ``open-source-rds-extended-support``, which enrolls your DB cluster into Amazon RDS Extended Support. At the end of standard support, you can avoid charges for Extended Support by setting the value to ``open-source-rds-extended-support-disabled``. In this case, creating the DB cluster will fail if the DB major version is past its end of standard support date.\n  You can use this setting to enroll your DB cluster into Amazon RDS Extended Support. With RDS Extended Support, you can run the selected major engine version on your DB cluster past the end of standard support for that engine version. For more information, see the following sections:\n  +  Amazon Aurora (PostgreSQL only) - [Using Amazon RDS Extended Support](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html) in the *Amazon Aurora User Guide* \n  +  Amazon RDS - [Using Amazon RDS Extended Support](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html) in the *Amazon RDS User Guide* \n  \n Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters\n Valid Values: ``open-source-rds-extended-support | open-source-rds-extended-support-disabled`` \n Default: ``open-source-rds-extended-support``"
+        "description": "The life cycle type for this DB cluster.\n  By default, this value is set to ``open-source-rds-extended-support``, which enrolls your DB cluster into Amazon RDS Extended Support. At the end of standard support, you can avoid charges for Extended Support by setting the value to ``open-source-rds-extended-support-disabled``. In this case, creating the DB cluster will fail if the DB major version is past its end of standard support date.\n  You can use this setting to enroll your DB cluster into Amazon RDS Extended Support. With RDS Extended Support, you can run the selected major engine version on your DB cluster past the end of standard support for that engine version. For more information, see the following sections:\n  +  Amazon Aurora - [Using Amazon RDS Extended Support](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html) in the *Amazon Aurora User Guide* \n  +  Amazon RDS - [Using Amazon RDS Extended Support](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html) in the *Amazon RDS User Guide* \n  \n Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters\n Valid Values: ``open-source-rds-extended-support | open-source-rds-extended-support-disabled`` \n Default: ``open-source-rds-extended-support``"
       },
       "EngineMode": {
         "type": {
@@ -620,7 +634,7 @@
           "$ref": "#/10"
         },
         "flags": 0,
-        "description": "The secret managed by RDS in AWS Secrets Manager for the master user password.\n For more information, see [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html) in the *Amazon RDS User Guide* and [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-secrets-manager.html) in the *Amazon Aurora User Guide.*"
+        "description": "The secret managed by RDS in AWS Secrets Manager for the master user password.\n  When you restore a DB cluster from a snapshot, Amazon RDS generates a new secret instead of reusing the secret specified in the ``SecretArn`` property. This ensures that the restored DB cluster is securely managed with a dedicated secret. To maintain consistent integration with your application, you might need to update resource configurations to reference the newly created secret.\n  For more information, see [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html) in the *Amazon RDS User Guide* and [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-secrets-manager.html) in the *Amazon Aurora User Guide.*"
       },
       "MasterUsername": {
         "type": {
@@ -634,14 +648,14 @@
           "$ref": "#/15"
         },
         "flags": 0,
-        "description": "The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB cluster. To turn off collecting Enhanced Monitoring metrics, specify ``0``.\n If ``MonitoringRoleArn`` is specified, also set ``MonitoringInterval`` to a value other than ``0``.\n Valid for Cluster Type: Multi-AZ DB clusters only\n Valid Values: ``0 | 1 | 5 | 10 | 15 | 30 | 60`` \n Default: ``0``"
+        "description": "The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB cluster. To turn off collecting Enhanced Monitoring metrics, specify ``0``.\n If ``MonitoringRoleArn`` is specified, also set ``MonitoringInterval`` to a value other than ``0``.\n Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters\n Valid Values: ``0 | 1 | 5 | 10 | 15 | 30 | 60`` \n Default: ``0``"
       },
       "MonitoringRoleArn": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The Amazon Resource Name (ARN) for the IAM role that permits RDS to send Enhanced Monitoring metrics to Amazon CloudWatch Logs. An example is ``arn:aws:iam:123456789012:role/emaccess``. For information on creating a monitoring role, see [Setting up and enabling Enhanced Monitoring](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html#USER_Monitoring.OS.Enabling) in the *Amazon RDS User Guide*.\n If ``MonitoringInterval`` is set to a value other than ``0``, supply a ``MonitoringRoleArn`` value.\n Valid for Cluster Type: Multi-AZ DB clusters only"
+        "description": "The Amazon Resource Name (ARN) for the IAM role that permits RDS to send Enhanced Monitoring metrics to Amazon CloudWatch Logs. An example is ``arn:aws:iam:123456789012:role/emaccess``. For information on creating a monitoring role, see [Setting up and enabling Enhanced Monitoring](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html#USER_Monitoring.OS.Enabling) in the *Amazon RDS User Guide*.\n If ``MonitoringInterval`` is set to a value other than ``0``, supply a ``MonitoringRoleArn`` value.\n Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters"
       },
       "NetworkType": {
         "type": {
@@ -655,21 +669,21 @@
           "$ref": "#/4"
         },
         "flags": 0,
-        "description": "Specifies whether to turn on Performance Insights for the DB cluster.\n For more information, see [Using Amazon Performance Insights](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html) in the *Amazon RDS User Guide*.\n Valid for Cluster Type: Multi-AZ DB clusters only"
+        "description": "Specifies whether to turn on Performance Insights for the DB cluster.\n For more information, see [Using Amazon Performance Insights](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html) in the *Amazon RDS User Guide*.\n Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters"
       },
       "PerformanceInsightsKmsKeyId": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The AWS KMS key identifier for encryption of Performance Insights data.\n The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key.\n If you don't specify a value for ``PerformanceInsightsKMSKeyId``, then Amazon RDS uses your default KMS key. There is a default KMS key for your AWS-account. Your AWS-account has a different default KMS key for each AWS-Region.\n Valid for Cluster Type: Multi-AZ DB clusters only"
+        "description": "The AWS KMS key identifier for encryption of Performance Insights data.\n The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key.\n If you don't specify a value for ``PerformanceInsightsKMSKeyId``, then Amazon RDS uses your default KMS key. There is a default KMS key for your AWS-account. Your AWS-account has a different default KMS key for each AWS-Region.\n Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters"
       },
       "PerformanceInsightsRetentionPeriod": {
         "type": {
           "$ref": "#/15"
         },
         "flags": 0,
-        "description": "The number of days to retain Performance Insights data.\n Valid for Cluster Type: Multi-AZ DB clusters only\n Valid Values:\n  +   ``7`` \n  +   *month* * 31, where *month* is a number of months from 1-23. Examples: ``93`` (3 months * 31), ``341`` (11 months * 31), ``589`` (19 months * 31)\n  +   ``731`` \n  \n Default: ``7`` days\n If you specify a retention period that isn't valid, such as ``94``, Amazon RDS issues an error."
+        "description": "The number of days to retain Performance Insights data.\n Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters\n Valid Values:\n  +   ``7`` \n  +   *month* * 31, where *month* is a number of months from 1-23. Examples: ``93`` (3 months * 31), ``341`` (11 months * 31), ``589`` (19 months * 31)\n  +   ``731`` \n  \n Default: ``7`` days\n If you specify a retention period that isn't valid, such as ``94``, Amazon RDS issues an error."
       },
       "Port": {
         "type": {
@@ -1303,8 +1317,15 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 2,
+        "flags": 0,
         "description": "The Oracle system identifier (SID), which is the name of the Oracle database instance that manages your database files. In this context, the term \"Oracle database instance\" refers exclusively to the system global area (SGA) and Oracle background processes. If you don't specify a SID, the value defaults to ``RDSCDB``. The Oracle SID is also the name of your CDB."
+      },
+      "DatabaseInsightsMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": ""
       },
       "DbiResourceId": {
         "type": {

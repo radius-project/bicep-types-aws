@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-EC2Fleet",
   "type": "AWS::EC2::EC2Fleet",
-  "time": "2024-11-12T20:52:49.825Z",
+  "time": "2024-12-16T22:33:54.161Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -61,6 +61,24 @@
         },
         "type": "object"
       },
+      "BlockDeviceMapping": {
+        "additionalProperties": false,
+        "properties": {
+          "DeviceName": {
+            "type": "string"
+          },
+          "Ebs": {
+            "$ref": "#/definitions/EbsBlockDevice"
+          },
+          "NoDevice": {
+            "type": "string"
+          },
+          "VirtualName": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "CapacityRebalance": {
         "additionalProperties": false,
         "properties": {
@@ -98,6 +116,42 @@
             },
             "type": "array",
             "uniqueItems": false
+          }
+        },
+        "type": "object"
+      },
+      "EbsBlockDevice": {
+        "additionalProperties": false,
+        "properties": {
+          "DeleteOnTermination": {
+            "type": "boolean"
+          },
+          "Encrypted": {
+            "type": "boolean"
+          },
+          "Iops": {
+            "type": "integer"
+          },
+          "KmsKeyId": {
+            "type": "string"
+          },
+          "SnapshotId": {
+            "type": "string"
+          },
+          "VolumeSize": {
+            "type": "integer"
+          },
+          "VolumeType": {
+            "enum": [
+              "gp2",
+              "gp3",
+              "io1",
+              "io2",
+              "sc1",
+              "st1",
+              "standard"
+            ],
+            "type": "string"
           }
         },
         "type": "object"
@@ -245,6 +299,9 @@
           },
           "BaselineEbsBandwidthMbps": {
             "$ref": "#/definitions/BaselineEbsBandwidthMbpsRequest"
+          },
+          "BaselinePerformanceFactors": {
+            "$ref": "#/definitions/BaselinePerformanceFactorsRequest"
           },
           "BurstablePerformance": {
             "enum": [

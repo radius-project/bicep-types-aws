@@ -42,6 +42,7 @@
 * **MaxCapacity**: int (WriteOnly): The max compute capacity of the workgroup in Redshift Processing Units (RPUs).
 * **NamespaceName**: string: The namespace the workgroup is associated with.
 * **Port**: int: The custom port to use when connecting to a workgroup. Valid port ranges are 5431-5455 and 8191-8215. The default is 5439.
+* **PricePerformanceTarget**: [Workgroup_PerformanceTarget](#workgroupperformancetarget): A property that represents the price performance target settings for the workgroup.
 * **PubliclyAccessible**: bool: A value that specifies whether the workgroup can be accessible from a public network.
 * **SecurityGroupIds**: string[] (WriteOnly): A list of security group IDs to associate with the workgroup.
 * **SubnetIds**: string[] (WriteOnly): A list of subnet IDs the workgroup is associated with.
@@ -86,6 +87,11 @@
 * **PrivateIpAddress**: string
 * **SubnetId**: string
 
+## PerformanceTarget
+### Properties
+* **Level**: int
+* **Status**: string
+
 ## SnapshotCopyConfiguration
 ### Properties
 * **DestinationKmsKeyId**: string
@@ -117,6 +123,7 @@
 * **EnhancedVpcRouting**: bool (ReadOnly)
 * **MaxCapacity**: int (ReadOnly)
 * **NamespaceName**: string (ReadOnly)
+* **PricePerformanceTarget**: [PerformanceTarget](#performancetarget)
 * **PubliclyAccessible**: bool (ReadOnly)
 * **SecurityGroupIds**: string[] (ReadOnly)
 * **Status**: string (ReadOnly)
@@ -124,4 +131,9 @@
 * **WorkgroupArn**: string (ReadOnly)
 * **WorkgroupId**: string (ReadOnly)
 * **WorkgroupName**: string (ReadOnly, Identifier)
+
+## Workgroup_PerformanceTarget
+### Properties
+* **Level**: int
+* **Status**: string
 

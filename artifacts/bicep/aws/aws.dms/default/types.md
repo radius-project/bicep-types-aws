@@ -135,12 +135,46 @@
 ## DataProvider_DmsSslModeValue
 ### Properties
 
+## DataProvider_DmsSslModeValue
+### Properties
+
+## DataProvider_MongoDbAuthMechanism
+### Properties
+
+## DataProvider_MongoDbAuthType
+### Properties
+
+## DataProvider_MongoDbSslModeValue
+### Properties
+
+## DataProvider_MongoDbSslModeValue
+### Properties
+
 ## DataProvider_Settings
 ### Properties
+* **DocDbSettings**: [DataProvider_Settings_DocDbSettings](#dataprovidersettingsdocdbsettings): DocDbSettings property identifier.
+* **MariaDbSettings**: [DataProvider_Settings_MariaDbSettings](#dataprovidersettingsmariadbsettings): MariaDbSettings property identifier.
 * **MicrosoftSqlServerSettings**: [DataProvider_Settings_MicrosoftSqlServerSettings](#dataprovidersettingsmicrosoftsqlserversettings): MicrosoftSqlServerSettings property identifier.
+* **MongoDbSettings**: [DataProvider_Settings_MongoDbSettings](#dataprovidersettingsmongodbsettings): MongoDbSettings property identifier.
 * **MySqlSettings**: [DataProvider_Settings_MySqlSettings](#dataprovidersettingsmysqlsettings): MySqlSettings property identifier.
 * **OracleSettings**: [DataProvider_Settings_OracleSettings](#dataprovidersettingsoraclesettings): OracleSettings property identifier.
 * **PostgreSqlSettings**: [DataProvider_Settings_PostgreSqlSettings](#dataprovidersettingspostgresqlsettings): PostgreSqlSettings property identifier.
+* **RedshiftSettings**: [DataProvider_Settings_RedshiftSettings](#dataprovidersettingsredshiftsettings): RedshiftSettings property identifier.
+
+## DataProvider_Settings_DocDbSettings
+### Properties
+* **CertificateArn**: string
+* **DatabaseName**: string (Required)
+* **Port**: int (Required)
+* **ServerName**: string (Required)
+* **SslMode**: [DataProvider_MongoDbSslModeValue](#dataprovidermongodbsslmodevalue)
+
+## DataProvider_Settings_MariaDbSettings
+### Properties
+* **CertificateArn**: string
+* **Port**: int (Required)
+* **ServerName**: string (Required)
+* **SslMode**: [DataProvider_DmsSslModeValue](#dataproviderdmssslmodevalue) (Required)
 
 ## DataProvider_Settings_MicrosoftSqlServerSettings
 ### Properties
@@ -149,6 +183,17 @@
 * **Port**: int (Required)
 * **ServerName**: string (Required)
 * **SslMode**: [DataProvider_DmsSslModeValue](#dataproviderdmssslmodevalue) (Required)
+
+## DataProvider_Settings_MongoDbSettings
+### Properties
+* **AuthMechanism**: [DataProvider_MongoDbAuthMechanism](#dataprovidermongodbauthmechanism)
+* **AuthSource**: string
+* **AuthType**: [DataProvider_MongoDbAuthType](#dataprovidermongodbauthtype)
+* **CertificateArn**: string
+* **DatabaseName**: string
+* **Port**: int (Required)
+* **ServerName**: string (Required)
+* **SslMode**: [DataProvider_MongoDbSslModeValue](#dataprovidermongodbsslmodevalue)
 
 ## DataProvider_Settings_MySqlSettings
 ### Properties
@@ -177,6 +222,12 @@
 * **Port**: int (Required)
 * **ServerName**: string (Required)
 * **SslMode**: [DataProvider_DmsSslModeValue](#dataproviderdmssslmodevalue) (Required)
+
+## DataProvider_Settings_RedshiftSettings
+### Properties
+* **DatabaseName**: string (Required)
+* **Port**: int (Required)
+* **ServerName**: string (Required)
 
 ## DataProviderDescriptor
 ### Properties

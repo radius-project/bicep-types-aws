@@ -572,7 +572,7 @@
     "properties": {
       "AllowedMethods": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "A complex type that controls which HTTP methods CloudFront processes and forwards to your Amazon S3 bucket or your custom origin. There are three choices:\n  +  CloudFront forwards only ``GET`` and ``HEAD`` requests.\n  +  CloudFront forwards only ``GET``, ``HEAD``, and ``OPTIONS`` requests.\n  +  CloudFront forwards ``GET, HEAD, OPTIONS, PUT, PATCH, POST``, and ``DELETE`` requests.\n  \n If you pick the third choice, you may need to restrict access to your Amazon S3 bucket or to your custom origin so users can't perform operations that you don't want them to. For example, you might not want users to have permissions to delete objects from your origin."
@@ -586,7 +586,7 @@
       },
       "CachedMethods": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "A complex type that controls whether CloudFront caches the response to requests using the specified HTTP methods. There are two choices:\n  +  CloudFront caches responses to ``GET`` and ``HEAD`` requests.\n  +  CloudFront caches responses to ``GET``, ``HEAD``, and ``OPTIONS`` requests.\n  \n If you pick the second choice for your Amazon S3 Origin, you may need to forward Access-Control-Request-Method, Access-Control-Request-Headers, and Origin headers for the responses to be cached correctly."
@@ -621,14 +621,21 @@
       },
       "FunctionAssociations": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "A list of CloudFront functions that are associated with this cache behavior. CloudFront functions must be published to the ``LIVE`` stage to associate them with a cache behavior."
       },
+      "GrpcConfig": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The gRPC configuration for your cache behavior."
+      },
       "LambdaFunctionAssociations": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "A complex type that contains zero or more Lambda@Edge function associations for a cache behavior."
@@ -691,14 +698,14 @@
       },
       "TrustedKeyGroups": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "A list of key groups that CloudFront can use to validate signed URLs or signed cookies.\n When a cache behavior contains trusted key groups, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with a private key whose corresponding public key is in the key group. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see [Serving private content](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html) in the *Amazon CloudFront Developer Guide*."
       },
       "TrustedSigners": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "We recommend using ``TrustedKeyGroups`` instead of ``TrustedSigners``.\n  A list of AWS-account IDs whose public keys CloudFront can use to validate signed URLs or signed cookies.\n When a cache behavior contains trusted signers, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with the private key of a CloudFront key pair in the trusted signer's AWS-account. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see [Serving private content](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html) in the *Amazon CloudFront Developer Guide*."
@@ -725,7 +732,7 @@
       },
       "WhitelistedNames": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "This field is deprecated. We recommend that you use a cache policy or an origin request policy instead of this field.\n If you want to include cookies in the cache key, use a cache policy. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) in the *Amazon CloudFront Developer Guide*.\n If you want to send cookies to the origin but not include them in the cache key, use an origin request policy. For more information, see [Creating origin request policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy) in the *Amazon CloudFront Developer Guide*.\n Required if you specify ``whitelist`` for the value of ``Forward``. A complex type that specifies how many different cookies you want CloudFront to forward to the origin for this cache behavior and, if you want to forward selected cookies, the names of those cookies.\n If you specify ``all`` or ``none`` for the value of ``Forward``, omit ``WhitelistedNames``. If you change the value of ``Forward`` from ``whitelist`` to ``all`` or ``none`` and you don't delete the ``WhitelistedNames`` element and its child elements, CloudFront deletes them automatically.\n For the current limit on the number of cookie names that you can whitelist for each cache behavior, see [CloudFront Limits](https://docs.aws.amazon.com/general/latest/gr/xrefaws_service_limits.html#limits_cloudfront) in the *General Reference*."
@@ -789,7 +796,7 @@
           "$ref": "#/6"
         },
         "flags": 0,
-        "description": "Specifies how long, in seconds, CloudFront persists its connection to the origin. The minimum timeout is 1 second, the maximum is 60 seconds, and the default (if you don't specify otherwise) is 5 seconds.\n For more information, see [Origin Keep-alive Timeout](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginKeepaliveTimeout) in the *Amazon CloudFront Developer Guide*."
+        "description": "Specifies how long, in seconds, CloudFront persists its connection to the origin. The minimum timeout is 1 second, the maximum is 60 seconds, and the default (if you don't specify otherwise) is 5 seconds.\n For more information, see [Keep-alive timeout (custom origins only)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginKeepaliveTimeout) in the *Amazon CloudFront Developer Guide*."
       },
       "OriginProtocolPolicy": {
         "type": {
@@ -803,11 +810,11 @@
           "$ref": "#/6"
         },
         "flags": 0,
-        "description": "Specifies how long, in seconds, CloudFront waits for a response from the origin. This is also known as the *origin response timeout*. The minimum timeout is 1 second, the maximum is 60 seconds, and the default (if you don't specify otherwise) is 30 seconds.\n For more information, see [Origin Response Timeout](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginResponseTimeout) in the *Amazon CloudFront Developer Guide*."
+        "description": "Specifies how long, in seconds, CloudFront waits for a response from the origin. This is also known as the *origin response timeout*. The minimum timeout is 1 second, the maximum is 60 seconds, and the default (if you don't specify otherwise) is 30 seconds.\n For more information, see [Response timeout (custom origins only)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginResponseTimeout) in the *Amazon CloudFront Developer Guide*."
       },
       "OriginSSLProtocols": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "Specifies the minimum SSL/TLS protocol that CloudFront uses when connecting to your origin over HTTPS. Valid values include ``SSLv3``, ``TLSv1``, ``TLSv1.1``, and ``TLSv1.2``.\n For more information, see [Minimum Origin SSL Protocol](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginSSLProtocols) in the *Amazon CloudFront Developer Guide*."
@@ -820,7 +827,7 @@
     "properties": {
       "AllowedMethods": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "A complex type that controls which HTTP methods CloudFront processes and forwards to your Amazon S3 bucket or your custom origin. There are three choices:\n  +  CloudFront forwards only ``GET`` and ``HEAD`` requests.\n  +  CloudFront forwards only ``GET``, ``HEAD``, and ``OPTIONS`` requests.\n  +  CloudFront forwards ``GET, HEAD, OPTIONS, PUT, PATCH, POST``, and ``DELETE`` requests.\n  \n If you pick the third choice, you may need to restrict access to your Amazon S3 bucket or to your custom origin so users can't perform operations that you don't want them to. For example, you might not want users to have permissions to delete objects from your origin."
@@ -834,7 +841,7 @@
       },
       "CachedMethods": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "A complex type that controls whether CloudFront caches the response to requests using the specified HTTP methods. There are two choices:\n  +  CloudFront caches responses to ``GET`` and ``HEAD`` requests.\n  +  CloudFront caches responses to ``GET``, ``HEAD``, and ``OPTIONS`` requests.\n  \n If you pick the second choice for your Amazon S3 Origin, you may need to forward Access-Control-Request-Method, Access-Control-Request-Headers, and Origin headers for the responses to be cached correctly."
@@ -869,14 +876,21 @@
       },
       "FunctionAssociations": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "A list of CloudFront functions that are associated with this cache behavior. Your functions must be published to the ``LIVE`` stage to associate them with a cache behavior."
       },
+      "GrpcConfig": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The gRPC configuration for your cache behavior."
+      },
       "LambdaFunctionAssociations": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "A complex type that contains zero or more Lambda@Edge function associations for a cache behavior."
@@ -932,14 +946,14 @@
       },
       "TrustedKeyGroups": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "A list of key groups that CloudFront can use to validate signed URLs or signed cookies.\n When a cache behavior contains trusted key groups, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with a private key whose corresponding public key is in the key group. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see [Serving private content](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html) in the *Amazon CloudFront Developer Guide*."
       },
       "TrustedSigners": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "We recommend using ``TrustedKeyGroups`` instead of ``TrustedSigners``.\n  A list of AWS-account IDs whose public keys CloudFront can use to validate signed URLs or signed cookies.\n When a cache behavior contains trusted signers, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with the private key of a CloudFront key pair in a trusted signer's AWS-account. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see [Serving private content](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html) in the *Amazon CloudFront Developer Guide*."
@@ -959,21 +973,28 @@
     "properties": {
       "Aliases": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "A complex type that contains information about CNAMEs (alternate domain names), if any, for this distribution."
       },
+      "AnycastIpListId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": ""
+      },
       "CNAMEs": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "An alias for the CF distribution's domain name.\n  This property is legacy. We recommend that you use [Aliases](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-aliases) instead."
       },
       "CacheBehaviors": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "A complex type that contains zero or more ``CacheBehavior`` elements."
@@ -994,14 +1015,14 @@
       },
       "CustomErrorResponses": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "A complex type that controls the following:\n  +  Whether CloudFront replaces HTTP status codes in the 4xx and 5xx range with custom error messages before returning the response to the viewer.\n  +  How long CloudFront caches HTTP status codes in the 4xx and 5xx range.\n  \n For more information about custom error pages, see [Customizing Error Responses](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/custom-error-pages.html) in the *Amazon CloudFront Developer Guide*."
       },
       "CustomOrigin": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The user-defined HTTP server that serves as the origin for content that CF distributes.\n  This property is legacy. We recommend that you use [Origin](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html) instead."
@@ -1018,7 +1039,7 @@
           "$ref": "#/5"
         },
         "flags": 0,
-        "description": "The object that you want CloudFront to request from your origin (for example, ``index.html``) when a viewer requests the root URL for your distribution (``https://www.example.com``) instead of an object in your distribution (``https://www.example.com/product-description.html``). Specifying a default root object avoids exposing the contents of your distribution.\n Specify only the object name, for example, ``index.html``. Don't add a ``/`` before the object name.\n If you don't want to specify a default root object when you create a distribution, include an empty ``DefaultRootObject`` element.\n To delete the default root object from an existing distribution, update the distribution configuration and include an empty ``DefaultRootObject`` element.\n To replace the default root object, update the distribution configuration and specify the new object.\n For more information about the default root object, see [Creating a Default Root Object](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DefaultRootObject.html) in the *Amazon CloudFront Developer Guide*."
+        "description": "When a viewer requests the root URL for your distribution, the default root object is the object that you want CloudFront to request from your origin. For example, if your root URL is ``https://www.example.com``, you can specify CloudFront to return the ``index.html`` file as the default root object. You can specify a default root object so that viewers see a specific file or object, instead of another object in your distribution (for example, ``https://www.example.com/product-description.html``). A default root object avoids exposing the contents of your distribution.\n You can specify the object name or a path to the object name (for example, ``index.html`` or ``exampleFolderName/index.html``). Your string can't begin with a forward slash (``/``). Only specify the object name or the path to the object.\n If you don't want to specify a default root object when you create a distribution, include an empty ``DefaultRootObject`` element.\n To delete the default root object from an existing distribution, update the distribution configuration and include an empty ``DefaultRootObject`` element.\n To replace the default root object, update the distribution configuration and specify the new object.\n For more information about the default root object, see [Specify a default root object](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DefaultRootObject.html) in the *Amazon CloudFront Developer Guide*."
       },
       "Enabled": {
         "type": {
@@ -1043,21 +1064,21 @@
       },
       "Logging": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "A complex type that controls whether access logs are written for the distribution.\n For more information about logging, see [Access Logs](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html) in the *Amazon CloudFront Developer Guide*."
       },
       "OriginGroups": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "A complex type that contains information about origin groups for this distribution.\n Specify a value for either the ``Origins`` or ``OriginGroups`` property."
       },
       "Origins": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "A complex type that contains information about origins for this distribution.\n Specify a value for either the ``Origins`` or ``OriginGroups`` property."
@@ -1071,14 +1092,14 @@
       },
       "Restrictions": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "A complex type that identifies ways in which you want to restrict distribution of your content."
       },
       "S3Origin": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "The origin as an S3 bucket.\n  This property is legacy. We recommend that you use [Origin](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html) instead."
@@ -1092,7 +1113,7 @@
       },
       "ViewerCertificate": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/59"
         },
         "flags": 0,
         "description": "A complex type that determines the distribution's SSL/TLS configuration for communicating with viewers."
@@ -1119,7 +1140,7 @@
       },
       "Headers": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/79"
         },
         "flags": 0,
         "description": "This field is deprecated. We recommend that you use a cache policy or an origin request policy instead of this field.\n If you want to include headers in the cache key, use a cache policy. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) in the *Amazon CloudFront Developer Guide*.\n If you want to send headers to the origin but not include them in the cache key, use an origin request policy. For more information, see [Creating origin request policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy) in the *Amazon CloudFront Developer Guide*.\n A complex type that specifies the ``Headers``, if any, that you want CloudFront to forward to the origin for this cache behavior (whitelisted headers). For the headers that you specify, CloudFront also caches separate versions of a specified object that is based on the header values in viewer requests.\n For more information, see [Caching Content Based on Request Headers](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/header-caching.html) in the *Amazon CloudFront Developer Guide*."
@@ -1133,7 +1154,7 @@
       },
       "QueryStringCacheKeys": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/80"
         },
         "flags": 0,
         "description": "This field is deprecated. We recommend that you use a cache policy or an origin request policy instead of this field.\n If you want to include query strings in the cache key, use a cache policy. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) in the *Amazon CloudFront Developer Guide*.\n If you want to send query strings to the origin but not include them in the cache key, use an origin request policy. For more information, see [Creating origin request policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy) in the *Amazon CloudFront Developer Guide*.\n A complex type that contains information about the query string parameters that you want CloudFront to use for caching for this cache behavior."
@@ -1166,7 +1187,7 @@
     "properties": {
       "Locations": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/81"
         },
         "flags": 0,
         "description": "A complex type that contains a ``Location`` element for each country in which you want CloudFront either to distribute your content (``whitelist``) or not distribute your content (``blacklist``).\n The ``Location`` element is a two-letter, uppercase country code for a country that you want to include in your ``blacklist`` or ``whitelist``. Include one ``Location`` element for each country.\n CloudFront and ``MaxMind`` both use ``ISO 3166`` country codes. For the current list of countries and the corresponding codes, see ``ISO 3166-1-alpha-2`` code on the *International Organization for Standardization* website. You can also refer to the country list on the CloudFront console, which includes both country names and codes."
@@ -1177,6 +1198,19 @@
         },
         "flags": 1,
         "description": "The method that you want to use to restrict distribution of your content by country:\n  +   ``none``: No geo restriction is enabled, meaning access to content is not restricted by client geo location.\n  +   ``blacklist``: The ``Location`` elements specify the countries in which you don't want CloudFront to distribute your content.\n  +   ``whitelist``: The ``Location`` elements specify the countries in which you want CloudFront to distribute your content."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GrpcConfig",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "Enables your CloudFront distribution to receive gRPC requests and to proxy them directly to your origins."
       }
     }
   },
@@ -1241,7 +1275,7 @@
       },
       "OriginSSLProtocols": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/82"
         },
         "flags": 1,
         "description": "The minimum SSL/TLS protocol version that CF uses when communicating with your origin server over HTTPs.\n For more information, see [Minimum Origin SSL Protocol](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginSSLProtocols) in the *Developer Guide*."
@@ -1276,8 +1310,8 @@
         "type": {
           "$ref": "#/5"
         },
-        "flags": 1,
-        "description": "The Amazon S3 bucket to store the access logs in, for example, ``myawslogbucket.s3.amazonaws.com``."
+        "flags": 0,
+        "description": "The Amazon S3 bucket to store the access logs in, for example, ``amzn-s3-demo-bucket.s3.amazonaws.com``."
       },
       "IncludeCookies": {
         "type": {
@@ -1343,7 +1377,7 @@
       },
       "OriginCustomHeaders": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "A list of HTTP header names and values that CloudFront adds to the requests that it sends to the origin.\n For more information, see [Adding Custom Headers to Origin Requests](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/add-origin-custom-headers.html) in the *Amazon CloudFront Developer Guide*."
@@ -1357,14 +1391,14 @@
       },
       "OriginShield": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "CloudFront Origin Shield. Using Origin Shield can help reduce the load on your origin.\n For more information, see [Using Origin Shield](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html) in the *Amazon CloudFront Developer Guide*."
       },
       "S3OriginConfig": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "Use this type to specify an origin that is an Amazon S3 bucket that is not configured with static website hosting. To specify any other type of origin, including an Amazon S3 bucket that is configured with static website hosting, use the ``CustomOriginConfig`` type instead."
@@ -1397,7 +1431,7 @@
     "properties": {
       "FailoverCriteria": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/49"
         },
         "flags": 1,
         "description": "A complex type that contains information about the failover criteria for an origin group."
@@ -1411,10 +1445,17 @@
       },
       "Members": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 1,
         "description": "A complex type that contains information about the origins in an origin group."
+      },
+      "SelectionCriteria": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The selection criteria for the origin group. For more information, see [Create an origin group](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html#concept_origin_groups.creating) in the *Amazon CloudFront Developer Guide*."
       }
     }
   },
@@ -1424,7 +1465,7 @@
     "properties": {
       "StatusCodes": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/57"
         },
         "flags": 1,
         "description": "The status codes that, when returned from the primary origin, will trigger CloudFront to failover to the second origin."
@@ -1450,7 +1491,7 @@
     "properties": {
       "Items": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/84"
         },
         "flags": 1,
         "description": "Items (origins) in an origin group."
@@ -1466,11 +1507,16 @@
   },
   {
     "$type": "ObjectType",
+    "name": "OriginGroupSelectionCriteria",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "OriginGroups",
     "properties": {
       "Items": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/85"
         },
         "flags": 0,
         "description": "The items (origin groups) in a distribution."
@@ -1536,7 +1582,7 @@
     "properties": {
       "Items": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/86"
         },
         "flags": 1,
         "description": "The items (status codes) for an origin group."
@@ -1632,7 +1678,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/41"
+      "$ref": "#/42"
     }
   },
   {
@@ -1680,7 +1726,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/41"
+      "$ref": "#/42"
     }
   },
   {
@@ -1722,49 +1768,49 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/45"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/46"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/49"
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/47"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/50"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/48"
     }
   },
   {
@@ -1780,7 +1826,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/56"
+      "$ref": "#/58"
     }
   },
   {
@@ -1810,7 +1856,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/88"
         },
         "flags": 0,
         "description": "A complex type that contains zero or more ``Tag`` elements."
@@ -1837,7 +1883,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/89"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1849,7 +1895,7 @@
     "name": "AWS.CloudFront/Distribution@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/88"
+      "$ref": "#/90"
     },
     "flags": 0
   },
@@ -1866,7 +1912,7 @@
       },
       "KeyValueStoreAssociations": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/95"
         },
         "flags": 0,
         "description": "The configuration for the key value store associations."
@@ -1909,7 +1955,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/92"
+      "$ref": "#/94"
     }
   },
   {
@@ -1943,14 +1989,14 @@
       },
       "FunctionConfig": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/92"
         },
         "flags": 1,
         "description": "Contains configuration information about a CloudFront function."
       },
       "FunctionMetadata": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "Contains metadata about a CloudFront function."
@@ -1991,7 +2037,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/97"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2003,7 +2049,7 @@
     "name": "AWS.CloudFront/Function@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/96"
+      "$ref": "#/98"
     },
     "flags": 0
   },
@@ -2020,7 +2066,7 @@
       },
       "Items": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/101"
         },
         "flags": 1,
         "description": "A list of the identifiers of the public keys in the key group."
@@ -2057,7 +2103,7 @@
       },
       "KeyGroupConfig": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/100"
         },
         "flags": 1,
         "description": "The key group configuration."
@@ -2091,7 +2137,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/103"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2103,7 +2149,7 @@
     "name": "AWS.CloudFront/KeyGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/102"
+      "$ref": "#/104"
     },
     "flags": 0
   },
@@ -2158,7 +2204,7 @@
       },
       "ImportSource": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/106"
         },
         "flags": 4,
         "description": "The import source for the key value store."
@@ -2199,7 +2245,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/108"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2211,7 +2257,7 @@
     "name": "AWS.CloudFront/KeyValueStore@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/107"
+      "$ref": "#/109"
     },
     "flags": 0
   },
@@ -2273,7 +2319,7 @@
       },
       "OriginAccessControlConfig": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/111"
         },
         "flags": 1,
         "description": "The origin access control."
@@ -2300,7 +2346,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/113"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2312,7 +2358,7 @@
     "name": "AWS.CloudFront/OriginAccessControl@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/112"
+      "$ref": "#/114"
     },
     "flags": 0
   },
@@ -2329,7 +2375,7 @@
       },
       "Cookies": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "Contains a list of cookie names."
@@ -2349,7 +2395,7 @@
       },
       "Headers": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/121"
         },
         "flags": 0,
         "description": "Contains a list of HTTP header names."
@@ -2369,14 +2415,14 @@
       },
       "CookiesConfig": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/116"
         },
         "flags": 1,
         "description": "The cookies from viewer requests to include in origin requests."
       },
       "HeadersConfig": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/117"
         },
         "flags": 1,
         "description": "The HTTP headers to include in origin requests. These can include headers from viewer requests and additional headers added by CloudFront."
@@ -2390,7 +2436,7 @@
       },
       "QueryStringsConfig": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/119"
         },
         "flags": 1,
         "description": "The URL query strings from viewer requests to include in origin requests."
@@ -2410,7 +2456,7 @@
       },
       "QueryStrings": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "Contains a list of query string names."
@@ -2459,7 +2505,7 @@
       },
       "OriginRequestPolicyConfig": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/118"
         },
         "flags": 1,
         "description": "The origin request policy configuration."
@@ -2486,7 +2532,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/124"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2498,7 +2544,7 @@
     "name": "AWS.CloudFront/OriginRequestPolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/123"
+      "$ref": "#/125"
     },
     "flags": 0
   },
@@ -2560,7 +2606,7 @@
       },
       "PublicKeyConfig": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/127"
         },
         "flags": 1,
         "description": "Configuration information about a public key that you can use with [signed URLs and signed cookies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html), or with [field-level encryption](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html)."
@@ -2587,7 +2633,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/129"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2599,7 +2645,7 @@
     "name": "AWS.CloudFront/PublicKey@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/128"
+      "$ref": "#/130"
     },
     "flags": 0
   },
@@ -2609,7 +2655,7 @@
     "properties": {
       "KinesisStreamConfig": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/133"
         },
         "flags": 1,
         "description": "Contains information about the Amazon Kinesis data stream where you are sending real-time log data."
@@ -2650,7 +2696,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/130"
+      "$ref": "#/132"
     }
   },
   {
@@ -2672,14 +2718,14 @@
       },
       "EndPoints": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/135"
         },
         "flags": 1,
         "description": "Contains information about the Amazon Kinesis data stream where you are sending real-time log data for this real-time log configuration."
       },
       "Fields": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/136"
         },
         "flags": 1,
         "description": "A list of fields that are included in each real-time log record. In an API response, the fields are provided in the same order in which they are sent to the Amazon Kinesis data stream.\n For more information about fields, see [Real-time log configuration fields](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html#understand-real-time-log-config-fields) in the *Amazon CloudFront Developer Guide*."
@@ -2720,7 +2766,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/137"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2732,7 +2778,7 @@
     "name": "AWS.CloudFront/RealtimeLogConfig@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/136"
+      "$ref": "#/138"
     },
     "flags": 0
   },
@@ -2742,7 +2788,7 @@
     "properties": {
       "Items": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/158"
         },
         "flags": 1,
         "description": "The list of HTTP header names. You can specify ``*`` to allow all headers."
@@ -2755,7 +2801,7 @@
     "properties": {
       "Items": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/159"
         },
         "flags": 1,
         "description": "The list of HTTP methods. Valid values are:\n  +   ``GET`` \n  +   ``DELETE`` \n  +   ``HEAD`` \n  +   ``OPTIONS`` \n  +   ``PATCH`` \n  +   ``POST`` \n  +   ``PUT`` \n  +   ``ALL`` \n  \n  ``ALL`` is a special value that includes all of the listed HTTP methods."
@@ -2768,7 +2814,7 @@
     "properties": {
       "Items": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/160"
         },
         "flags": 1,
         "description": "The list of origins (domain names). You can specify ``*`` to allow all origins."
@@ -2781,7 +2827,7 @@
     "properties": {
       "Items": {
         "type": {
-          "$ref": "#/159"
+          "$ref": "#/161"
         },
         "flags": 1,
         "description": "The list of HTTP headers. You can specify ``*`` to expose all headers."
@@ -2834,28 +2880,28 @@
       },
       "AccessControlAllowHeaders": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/140"
         },
         "flags": 1,
         "description": "A list of HTTP header names that CloudFront includes as values for the ``Access-Control-Allow-Headers`` HTTP response header.\n For more information about the ``Access-Control-Allow-Headers`` HTTP response header, see [Access-Control-Allow-Headers](https://docs.aws.amazon.com/https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers) in the MDN Web Docs."
       },
       "AccessControlAllowMethods": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/141"
         },
         "flags": 1,
         "description": "A list of HTTP methods that CloudFront includes as values for the ``Access-Control-Allow-Methods`` HTTP response header.\n For more information about the ``Access-Control-Allow-Methods`` HTTP response header, see [Access-Control-Allow-Methods](https://docs.aws.amazon.com/https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods) in the MDN Web Docs."
       },
       "AccessControlAllowOrigins": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/142"
         },
         "flags": 1,
         "description": "A list of origins (domain names) that CloudFront can use as the value for the ``Access-Control-Allow-Origin`` HTTP response header.\n For more information about the ``Access-Control-Allow-Origin`` HTTP response header, see [Access-Control-Allow-Origin](https://docs.aws.amazon.com/https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) in the MDN Web Docs."
       },
       "AccessControlExposeHeaders": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/143"
         },
         "flags": 0,
         "description": "A list of HTTP headers that CloudFront includes as values for the ``Access-Control-Expose-Headers`` HTTP response header.\n For more information about the ``Access-Control-Expose-Headers`` HTTP response header, see [Access-Control-Expose-Headers](https://docs.aws.amazon.com/https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers) in the MDN Web Docs."
@@ -2909,7 +2955,7 @@
     "properties": {
       "Items": {
         "type": {
-          "$ref": "#/160"
+          "$ref": "#/162"
         },
         "flags": 1,
         "description": "The list of HTTP response headers and their values."
@@ -2975,7 +3021,7 @@
     "properties": {
       "Items": {
         "type": {
-          "$ref": "#/161"
+          "$ref": "#/163"
         },
         "flags": 1,
         "description": "The list of HTTP header names."
@@ -2995,14 +3041,14 @@
       },
       "CorsConfig": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/146"
         },
         "flags": 0,
         "description": "A configuration for a set of HTTP response headers that are used for cross-origin resource sharing (CORS)."
       },
       "CustomHeadersConfig": {
         "type": {
-          "$ref": "#/146"
+          "$ref": "#/148"
         },
         "flags": 0,
         "description": "A configuration for a set of custom HTTP response headers."
@@ -3016,21 +3062,21 @@
       },
       "RemoveHeadersConfig": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/152"
         },
         "flags": 0,
         "description": "A configuration for a set of HTTP headers to remove from the HTTP response."
       },
       "SecurityHeadersConfig": {
         "type": {
-          "$ref": "#/152"
+          "$ref": "#/154"
         },
         "flags": 0,
         "description": "A configuration for a set of security-related HTTP response headers."
       },
       "ServerTimingHeadersConfig": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/155"
         },
         "flags": 0,
         "description": "A configuration for enabling the ``Server-Timing`` header in HTTP responses sent from CloudFront."
@@ -3043,42 +3089,42 @@
     "properties": {
       "ContentSecurityPolicy": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/144"
         },
         "flags": 0,
         "description": "The policy directives and their values that CloudFront includes as values for the ``Content-Security-Policy`` HTTP response header.\n For more information about the ``Content-Security-Policy`` HTTP response header, see [Content-Security-Policy](https://docs.aws.amazon.com/https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) in the MDN Web Docs."
       },
       "ContentTypeOptions": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/145"
         },
         "flags": 0,
         "description": "Determines whether CloudFront includes the ``X-Content-Type-Options`` HTTP response header with its value set to ``nosniff``.\n For more information about the ``X-Content-Type-Options`` HTTP response header, see [X-Content-Type-Options](https://docs.aws.amazon.com/https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options) in the MDN Web Docs."
       },
       "FrameOptions": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/149"
         },
         "flags": 0,
         "description": "Determines whether CloudFront includes the ``X-Frame-Options`` HTTP response header and the header's value.\n For more information about the ``X-Frame-Options`` HTTP response header, see [X-Frame-Options](https://docs.aws.amazon.com/https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options) in the MDN Web Docs."
       },
       "ReferrerPolicy": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/150"
         },
         "flags": 0,
         "description": "Determines whether CloudFront includes the ``Referrer-Policy`` HTTP response header and the header's value.\n For more information about the ``Referrer-Policy`` HTTP response header, see [Referrer-Policy](https://docs.aws.amazon.com/https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy) in the MDN Web Docs."
       },
       "StrictTransportSecurity": {
         "type": {
-          "$ref": "#/154"
+          "$ref": "#/156"
         },
         "flags": 0,
         "description": "Determines whether CloudFront includes the ``Strict-Transport-Security`` HTTP response header and the header's value.\n For more information about the ``Strict-Transport-Security`` HTTP response header, see [Security headers](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-response-headers-policies.html#understanding-response-headers-policies-security) in the *Amazon CloudFront Developer Guide* and [Strict-Transport-Security](https://docs.aws.amazon.com/https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) in the MDN Web Docs."
       },
       "XSSProtection": {
         "type": {
-          "$ref": "#/155"
+          "$ref": "#/157"
         },
         "flags": 0,
         "description": "Determines whether CloudFront includes the ``X-XSS-Protection`` HTTP response header and the header's value.\n For more information about the ``X-XSS-Protection`` HTTP response header, see [X-XSS-Protection](https://docs.aws.amazon.com/https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection) in the MDN Web Docs."
@@ -3200,13 +3246,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/145"
+      "$ref": "#/147"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/149"
+      "$ref": "#/151"
     }
   },
   {
@@ -3233,7 +3279,7 @@
       },
       "ResponseHeadersPolicyConfig": {
         "type": {
-          "$ref": "#/151"
+          "$ref": "#/153"
         },
         "flags": 1,
         "description": "A response headers policy configuration."
@@ -3260,7 +3306,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/163"
+          "$ref": "#/165"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3272,7 +3318,7 @@
     "name": "AWS.CloudFront/ResponseHeadersPolicy@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/164"
+      "$ref": "#/166"
     },
     "flags": 0
   }

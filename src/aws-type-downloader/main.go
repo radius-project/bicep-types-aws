@@ -18,14 +18,8 @@ import (
 )
 
 // These have been skipped due to missing schema: https://github.com/aws/aws-sdk-go-v2/issues/2913
-// These will be reverted when the issue is resolved.
-var skippedResources = map[string]struct{}{
-	"AWS::EC2::LaunchTemplate":   {},
-	"AWS::QuickSight::Analysis":  {},
-	"AWS::QuickSight::Dashboard": {},
-	"AWS::QuickSight::Template":  {},
-	"AWS::SageMaker::Cluster":    {},
-}
+// These will be reverted when the issue is resolved, but the map will be kept for future use if needed.
+var skippedResources = map[string]struct{}{}
 
 func main() {
 	Execute()

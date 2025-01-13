@@ -108,19 +108,29 @@
 
 ## AWS.RDS/CustomDBEngineVersionProperties
 ### Properties
-* **DatabaseInstallationFilesS3BucketName**: string: The name of an Amazon S3 bucket that contains database installation files for your CEV. For example, a valid bucket name is `my-custom-installation-files`.
-* **DatabaseInstallationFilesS3Prefix**: string: The Amazon S3 directory that contains the database installation files for your CEV. For example, a valid bucket name is `123456789012/cev1`. If this setting isn't specified, no prefix is assumed.
-* **DBEngineVersionArn**: string (ReadOnly): The ARN of the custom engine version.
+* **DatabaseInstallationFilesS3BucketName**: string: The name of an Amazon S3 bucket that contains database installation files for your CEV. For example, a valid bucket name is ``my-custom-installation-files``.
+* **DatabaseInstallationFilesS3Prefix**: string: The Amazon S3 directory that contains the database installation files for your CEV. For example, a valid bucket name is ``123456789012/cev1``. If this setting isn't specified, no prefix is assumed.
+* **DBEngineVersionArn**: string (ReadOnly)
 * **Description**: string: An optional description of your CEV.
-* **Engine**: string (Required, Identifier): The database engine to use for your custom engine version (CEV). The only supported value is `custom-oracle-ee`.
-* **EngineVersion**: string (Required, Identifier): The name of your CEV. The name format is 19.customized_string . For example, a valid name is 19.my_cev1. This setting is required for RDS Custom for Oracle, but optional for Amazon RDS. The combination of Engine and EngineVersion is unique per customer per Region.
-* **ImageId**: string: The identifier of Amazon Machine Image (AMI) used for CEV.
-* **KMSKeyId**: string: The AWS KMS key identifier for an encrypted CEV. A symmetric KMS key is required for RDS Custom, but optional for Amazon RDS.
+* **Engine**: string (Required, Identifier): The database engine to use for your custom engine version (CEV).
+ Valid values:
+  +   ``custom-oracle-ee`` 
+  +   ``custom-oracle-ee-cdb``
+* **EngineVersion**: string (Required, Identifier): The name of your CEV. The name format is ``major version.customized_string``. For example, a valid CEV name is ``19.my_cev1``. This setting is required for RDS Custom for Oracle, but optional for Amazon RDS. The combination of ``Engine`` and ``EngineVersion`` is unique per customer per Region.
+  *Constraints:* Minimum length is 1. Maximum length is 60.
+  *Pattern:* ``^[a-z0-9_.-]{1,60$``}
+* **ImageId**: string: A value that indicates the ID of the AMI.
+* **KMSKeyId**: string: The AWS KMS key identifier for an encrypted CEV. A symmetric encryption KMS key is required for RDS Custom, but optional for Amazon RDS.
+ If you have an existing symmetric encryption KMS key in your account, you can use it with RDS Custom. No further action is necessary. If you don't already have a symmetric encryption KMS key in your account, follow the instructions in [Creating a symmetric encryption KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk) in the *Key Management Service Developer Guide*.
+ You can choose the same symmetric encryption key when you create a CEV and a DB instance, or choose different keys.
 * **Manifest**: string (WriteOnly): The CEV manifest, which is a JSON document that describes the installation .zip files stored in Amazon S3. Specify the name/value pairs in a file or a quoted string. RDS Custom applies the patches in the order in which they are listed.
-* **SourceCustomDbEngineVersionIdentifier**: string (WriteOnly): The identifier of the source custom engine version.
-* **Status**: string: The availability status to be assigned to the CEV.
-* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-* **UseAwsProvidedLatestImage**: bool (WriteOnly): A value that indicates whether AWS provided latest image is applied automatically to the Custom Engine Version. By default, AWS provided latest image is applied automatically. This value is only applied on create.
+ The following JSON fields are valid:
+  + MediaImportTemplateVersion Version of the CEV manifest. The date is in the format YYYY-MM-DD. + databaseInstallationFileNames Ordered list of installation files for the CEV. + opatchFileNames Ordered list of OPatch installers used for the Oracle DB engine. + psuRuPatchFileNames The PSU and RU patches for this CEV. + OtherPatchFileNames The patches that are not in the list of PSU and RU patches. Amazon RDS applies these patches after applying the PSU and RU patches. 
+ For more information, see [Creating the CEV manifest](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.preparing.manifest) in the *Amazon RDS User Guide*.
+* **SourceCustomDbEngineVersionIdentifier**: string (WriteOnly): The ARN of a CEV to use as a source for creating a new CEV. You can specify a different Amazon Machine Imagine (AMI) by using either ``Source`` or ``UseAwsProvidedLatestImage``. You can't specify a different JSON manifest when you specify ``SourceCustomDbEngineVersionIdentifier``.
+* **Status**: string: A value that indicates the status of a custom engine version (CEV).
+* **Tags**: [Tag](#tag)[]: A list of tags. For more information, see [Tagging Amazon RDS Resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html) in the *Amazon RDS User Guide.*
+* **UseAwsProvidedLatestImage**: bool (WriteOnly): Specifies whether to use the latest service-provided Amazon Machine Image (AMI) for the CEV. If you specify ``UseAwsProvidedLatestImage``, you can't also specify ``ImageId``.
 
 ## AWS.RDS/DBClusterParameterGroupProperties
 ### Properties
@@ -160,7 +170,7 @@
 * **AssociatedRoles**: [DBClusterRole](#dbclusterrole)[]: Provides a list of the AWS Identity and Access Management (IAM) roles that are associated with the DB cluster. IAM roles that are associated with a DB cluster grant permission for the DB cluster to access other Amazon Web Services on your behalf.
  Valid for: Aurora DB clusters and Multi-AZ DB clusters
 * **AutoMinorVersionUpgrade**: bool: Specifies whether minor engine upgrades are applied automatically to the DB cluster during the maintenance window. By default, minor engine upgrades are applied automatically.
- Valid for Cluster Type: Multi-AZ DB clusters only
+ Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB cluster
 * **AvailabilityZones**: string[]: A list of Availability Zones (AZs) where instances in the DB cluster can be created. For information on AWS Regions and Availability Zones, see [Choosing the Regions and Availability Zones](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.RegionsAndAvailabilityZones.html) in the *Amazon Aurora User Guide*. 
  Valid for: Aurora DB clusters only
 * **BacktrackWindow**: int: The target backtrack window, in seconds. To disable backtracking, set this value to ``0``.
@@ -174,9 +184,12 @@
   +  Must be a value from 1 to 35
   
  Valid for: Aurora DB clusters and Multi-AZ DB clusters
-* **ClusterScalabilityType**: string (WriteOnly)
+* **ClusterScalabilityType**: string (WriteOnly): Specifies the scalability mode of the Aurora DB cluster. When set to ``limitless``, the cluster operates as an Aurora Limitless Database, allowing you to create a DB shard group for horizontal scaling (sharding) capabilities. When set to ``standard`` (the default), the cluster uses normal DB instance creation.
 * **CopyTagsToSnapshot**: bool: A value that indicates whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.
  Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **DatabaseInsightsMode**: string: The mode of Database Insights to enable for the DB cluster.
+ If you set this value to ``advanced``, you must also set the ``PerformanceInsightsEnabled`` parameter to ``true`` and the ``PerformanceInsightsRetentionPeriod`` parameter to 465.
+ Valid for Cluster Type: Aurora DB clusters only
 * **DatabaseName**: string: The name of your database. If you don't provide a name, then Amazon RDS won't create a database in this DB cluster. For naming constraints, see [Naming Constraints](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_Limits.html#RDS_Limits.Constraints) in the *Amazon Aurora User Guide*. 
  Valid for: Aurora DB clusters and Multi-AZ DB clusters
 * **DBClusterArn**: string (ReadOnly)
@@ -252,7 +265,7 @@
 * **EngineLifecycleSupport**: string: The life cycle type for this DB cluster.
   By default, this value is set to ``open-source-rds-extended-support``, which enrolls your DB cluster into Amazon RDS Extended Support. At the end of standard support, you can avoid charges for Extended Support by setting the value to ``open-source-rds-extended-support-disabled``. In this case, creating the DB cluster will fail if the DB major version is past its end of standard support date.
   You can use this setting to enroll your DB cluster into Amazon RDS Extended Support. With RDS Extended Support, you can run the selected major engine version on your DB cluster past the end of standard support for that engine version. For more information, see the following sections:
-  +  Amazon Aurora (PostgreSQL only) - [Using Amazon RDS Extended Support](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html) in the *Amazon Aurora User Guide* 
+  +  Amazon Aurora - [Using Amazon RDS Extended Support](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html) in the *Amazon Aurora User Guide* 
   +  Amazon RDS - [Using Amazon RDS Extended Support](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html) in the *Amazon RDS User Guide* 
   
  Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
@@ -311,15 +324,16 @@
   If you specify the ``SourceDBClusterIdentifier``, ``SnapshotIdentifier``, or ``GlobalClusterIdentifier`` property, don't specify this property. The value is inherited from the source DB cluster, the snapshot, or the primary DB cluster for the global database cluster, respectively.
   Valid for: Aurora DB clusters and Multi-AZ DB clusters
 * **MasterUserSecret**: [MasterUserSecret](#masterusersecret): The secret managed by RDS in AWS Secrets Manager for the master user password.
- For more information, see [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html) in the *Amazon RDS User Guide* and [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-secrets-manager.html) in the *Amazon Aurora User Guide.*
+  When you restore a DB cluster from a snapshot, Amazon RDS generates a new secret instead of reusing the secret specified in the ``SecretArn`` property. This ensures that the restored DB cluster is securely managed with a dedicated secret. To maintain consistent integration with your application, you might need to update resource configurations to reference the newly created secret.
+  For more information, see [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html) in the *Amazon RDS User Guide* and [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-secrets-manager.html) in the *Amazon Aurora User Guide.*
 * **MonitoringInterval**: int: The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB cluster. To turn off collecting Enhanced Monitoring metrics, specify ``0``.
  If ``MonitoringRoleArn`` is specified, also set ``MonitoringInterval`` to a value other than ``0``.
- Valid for Cluster Type: Multi-AZ DB clusters only
+ Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
  Valid Values: ``0 | 1 | 5 | 10 | 15 | 30 | 60`` 
  Default: ``0``
 * **MonitoringRoleArn**: string: The Amazon Resource Name (ARN) for the IAM role that permits RDS to send Enhanced Monitoring metrics to Amazon CloudWatch Logs. An example is ``arn:aws:iam:123456789012:role/emaccess``. For information on creating a monitoring role, see [Setting up and enabling Enhanced Monitoring](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html#USER_Monitoring.OS.Enabling) in the *Amazon RDS User Guide*.
  If ``MonitoringInterval`` is set to a value other than ``0``, supply a ``MonitoringRoleArn`` value.
- Valid for Cluster Type: Multi-AZ DB clusters only
+ Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
 * **NetworkType**: string: The network type of the DB cluster.
  Valid values:
   +   ``IPV4`` 
@@ -330,13 +344,13 @@
  Valid for: Aurora DB clusters only
 * **PerformanceInsightsEnabled**: bool: Specifies whether to turn on Performance Insights for the DB cluster.
  For more information, see [Using Amazon Performance Insights](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html) in the *Amazon RDS User Guide*.
- Valid for Cluster Type: Multi-AZ DB clusters only
+ Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
 * **PerformanceInsightsKmsKeyId**: string: The AWS KMS key identifier for encryption of Performance Insights data.
  The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key.
  If you don't specify a value for ``PerformanceInsightsKMSKeyId``, then Amazon RDS uses your default KMS key. There is a default KMS key for your AWS-account. Your AWS-account has a different default KMS key for each AWS-Region.
- Valid for Cluster Type: Multi-AZ DB clusters only
+ Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
 * **PerformanceInsightsRetentionPeriod**: int: The number of days to retain Performance Insights data.
- Valid for Cluster Type: Multi-AZ DB clusters only
+ Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
  Valid Values:
   +   ``7`` 
   +   *month* * 31, where *month* is a number of months from 1-23. Examples: ``93`` (3 months * 31), ``341`` (11 months * 31), ``589`` (19 months * 31)
@@ -561,6 +575,7 @@
   +  The instance profile name and the associated IAM role name must start with the prefix ``AWSRDSCustom``.
   
  For the list of permissions required for the IAM role, see [Configure IAM and your VPC](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc) in the *Amazon RDS User Guide*.
+* **DatabaseInsightsMode**: string (ReadOnly)
 * **DBClusterIdentifier**: string: The identifier of the DB cluster that this DB instance will belong to.
  This setting doesn't apply to RDS Custom DB instances.
 * **DBClusterSnapshotIdentifier**: string: The identifier for the Multi-AZ DB cluster snapshot to restore from.
@@ -668,7 +683,7 @@
  If there's no DB subnet group, then the DB instance isn't a VPC DB instance.
  For more information about using Amazon RDS in a VPC, see [Amazon VPC and Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html) in the *Amazon RDS User Guide*. 
  This setting doesn't apply to Amazon Aurora DB instances. The DB subnet group is managed by the DB cluster. If specified, the setting must match the DB cluster setting.
-* **DBSystemId**: string (ReadOnly): The Oracle system identifier (SID), which is the name of the Oracle database instance that manages your database files. In this context, the term "Oracle database instance" refers exclusively to the system global area (SGA) and Oracle background processes. If you don't specify a SID, the value defaults to ``RDSCDB``. The Oracle SID is also the name of your CDB.
+* **DBSystemId**: string: The Oracle system identifier (SID), which is the name of the Oracle database instance that manages your database files. In this context, the term "Oracle database instance" refers exclusively to the system global area (SGA) and Oracle background processes. If you don't specify a SID, the value defaults to ``RDSCDB``. The Oracle SID is also the name of your CDB.
 * **DedicatedLogVolume**: bool: Indicates whether the DB instance has a dedicated log volume (DLV) enabled.
 * **DeleteAutomatedBackups**: bool (WriteOnly): A value that indicates whether to remove automated backups immediately after the DB instance is deleted. This parameter isn't case-sensitive. The default is to remove automated backups immediately after the DB instance is deleted.
   *Amazon Aurora* 
@@ -1283,12 +1298,14 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 * **MaxCapacity**: int: The maximum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 40, 40.5, 41, and so on. The largest value that you can use is 128.
  The maximum capacity must be higher than 0.5 ACUs. For more information, see [Choosing the maximum Aurora Serverless v2 capacity setting for a cluster](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.setting-capacity.html#aurora-serverless-v2.max_capacity_considerations) in the *Amazon Aurora User Guide*.
  Aurora automatically sets certain parameters for Aurora Serverless V2 DB instances to values that depend on the maximum ACU value in the capacity range. When you update the maximum capacity value, the ``ParameterApplyStatus`` value for the DB instance changes to ``pending-reboot``. You can update the parameter values by rebooting the DB instance after changing the capacity range.
-* **MinCapacity**: int: The minimum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 8, 8.5, 9, and so on. The smallest value that you can use is 0.5.
+* **MinCapacity**: int: The minimum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 8, 8.5, 9, and so on. For Aurora versions that support the Aurora Serverless v2 auto-pause feature, the smallest value that you can use is 0. For versions that don't support Aurora Serverless v2 auto-pause, the smallest value that you can use is 0.5.
+* **SecondsUntilAutoPause**: int: Specifies the number of seconds an Aurora Serverless v2 DB instance must be idle before Aurora attempts to automatically pause it. 
+ Specify a value between 300 seconds (five minutes) and 86,400 seconds (one day). The default is 300 seconds.
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required): A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
+* **Value**: string: A value is the optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
 
 ## Tag
 ### Properties
