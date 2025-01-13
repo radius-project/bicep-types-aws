@@ -6,6 +6,7 @@ This Repository is part of the Radius project. For general information please se
 
 - [Building the repo](./docs/contributing/contributing-code/contributing-code-building/)
 - [Understanding repo organization](./docs/contributing/contributing-code/contributing-code-organization/)
+- [Understanding repo workflows](./docs/contributing/contributing-code/contributing-code-workflows/)
 
 ## Current status
 
