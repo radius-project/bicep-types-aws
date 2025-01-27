@@ -188,6 +188,7 @@
 ## AWS.QBusiness/WebExperienceProperties
 ### Properties
 * **ApplicationId**: string (Required, Identifier)
+* **BrowserExtensionConfiguration**: [BrowserExtensionConfiguration](#browserextensionconfiguration)
 * **CreatedAt**: string (ReadOnly)
 * **CustomizationConfiguration**: [CustomizationConfiguration](#customizationconfiguration)
 * **DefaultEndpoint**: string (ReadOnly)
@@ -203,6 +204,10 @@
 * **WebExperienceArn**: string (ReadOnly)
 * **WebExperienceId**: string (ReadOnly, Identifier)
 * **WelcomeMessage**: string
+
+## BrowserExtensionConfiguration
+### Properties
+* **EnabledBrowserExtensions**: string[] (Required)
 
 ## CustomizationConfiguration
 ### Properties

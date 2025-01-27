@@ -81,13 +81,15 @@
 ### Properties
 * **AssetFormsInput**: [FormInput](#forminput)[] (WriteOnly): The metadata forms that are to be attached to the assets that this data source works with.
 * **Configuration**: [DataSourceConfigurationInput](#datasourceconfigurationinput) (WriteOnly): Configuration of the data source. It can be set to either glueRunConfiguration or redshiftRunConfiguration.
+* **ConnectionId**: string (ReadOnly): The unique identifier of a connection used to fetch relevant parameters from connection during Datasource run
+* **ConnectionIdentifier**: string (WriteOnly): The unique identifier of a connection used to fetch relevant parameters from connection during Datasource run
 * **CreatedAt**: string (ReadOnly): The timestamp of when the data source was created.
 * **Description**: string: The description of the data source.
 * **DomainId**: string (ReadOnly, Identifier): The ID of the Amazon DataZone domain where the data source is created.
 * **DomainIdentifier**: string (Required, WriteOnly): The ID of the Amazon DataZone domain where the data source is created.
 * **EnableSetting**: string: Specifies whether the data source is enabled.
 * **EnvironmentId**: string (ReadOnly): The unique identifier of the Amazon DataZone environment to which the data source publishes assets.
-* **EnvironmentIdentifier**: string (Required, WriteOnly): The unique identifier of the Amazon DataZone environment to which the data source publishes assets.
+* **EnvironmentIdentifier**: string (WriteOnly): The unique identifier of the Amazon DataZone environment to which the data source publishes assets.
 * **Id**: string (ReadOnly, Identifier): The unique identifier of the data source.
 * **LastRunAssetCount**: int (ReadOnly): The number of assets created by the data source during its last run.
 * **LastRunAt**: string (ReadOnly): The timestamp that specifies when the data source was last run.
@@ -283,6 +285,7 @@
 ## GlueRunConfigurationInput
 ### Properties
 * **AutoImportDataQualityResult**: bool: Specifies whether to automatically import data quality metrics as part of the data source run.
+* **CatalogName**: string: The catalog name in the AWS Glue run configuration.
 * **DataAccessRole**: string: The data access role included in the configuration details of the AWS Glue data source.
 * **RelationalFilterConfigurations**: [RelationalFilterConfiguration](#relationalfilterconfiguration)[] (Required): The relational filter configurations included in the configuration details of the AWS Glue data source.
 
@@ -303,8 +306,8 @@
 ## RedshiftRunConfigurationInput
 ### Properties
 * **DataAccessRole**: string: The data access role included in the configuration details of the Amazon Redshift data source.
-* **RedshiftCredentialConfiguration**: [RedshiftCredentialConfiguration](#redshiftcredentialconfiguration) (Required): The details of the credentials required to access an Amazon Redshift cluster.
-* **RedshiftStorage**: [DataSource_RedshiftStorage](#datasourceredshiftstorage) (Required): The details of the Amazon Redshift storage as part of the configuration of an Amazon Redshift data source run.
+* **RedshiftCredentialConfiguration**: [RedshiftCredentialConfiguration](#redshiftcredentialconfiguration): The details of the credentials required to access an Amazon Redshift cluster.
+* **RedshiftStorage**: [DataSource_RedshiftStorage](#datasourceredshiftstorage): The details of the Amazon Redshift storage as part of the configuration of an Amazon Redshift data source run.
 * **RelationalFilterConfigurations**: [RelationalFilterConfiguration](#relationalfilterconfiguration)[] (Required)
 
 ## RegionalParameter

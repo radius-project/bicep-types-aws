@@ -573,7 +573,8 @@
 
 ## AWS.EC2/CapacityReservationProperties
 ### Properties
-* **AvailabilityZone**: string (Required)
+* **AvailabilityZone**: string
+* **AvailabilityZoneId**: string
 * **AvailableInstanceCount**: int (ReadOnly)
 * **EbsOptimized**: bool
 * **EndDate**: string
@@ -1225,20 +1226,22 @@ Use this for ICMP and any protocol that uses ports.
 
 ## AWS.EC2/VerifiedAccessEndpointProperties
 ### Properties
-* **ApplicationDomain**: string (Required): The DNS name for users to reach your application.
+* **ApplicationDomain**: string: The DNS name for users to reach your application.
 * **AttachmentType**: string (Required): The type of attachment used to provide connectivity between the AWS Verified Access endpoint and the application.
+* **CidrOptions**: [CidrOptions](#cidroptions): The options for cidr type endpoint.
 * **CreationTime**: string (ReadOnly): The creation time.
 * **Description**: string: A description for the AWS Verified Access endpoint.
 * **DeviceValidationDomain**: string (ReadOnly): Returned if endpoint has a device trust provider attached.
-* **DomainCertificateArn**: string (Required): The ARN of a public TLS/SSL certificate imported into or created with ACM.
+* **DomainCertificateArn**: string: The ARN of a public TLS/SSL certificate imported into or created with ACM.
 * **EndpointDomain**: string (ReadOnly): A DNS name that is generated for the endpoint.
-* **EndpointDomainPrefix**: string (Required): A custom identifier that gets prepended to a DNS name that is generated for the endpoint.
+* **EndpointDomainPrefix**: string: A custom identifier that gets prepended to a DNS name that is generated for the endpoint.
 * **EndpointType**: string (Required): The type of AWS Verified Access endpoint. Incoming application requests will be sent to an IP address, load balancer or a network interface depending on the endpoint type specified.The type of AWS Verified Access endpoint. Incoming application requests will be sent to an IP address, load balancer or a network interface depending on the endpoint type specified.
 * **LastUpdatedTime**: string (ReadOnly): The last updated time.
 * **LoadBalancerOptions**: [LoadBalancerOptions](#loadbalanceroptions): The load balancer details if creating the AWS Verified Access endpoint as load-balancer type.
 * **NetworkInterfaceOptions**: [NetworkInterfaceOptions](#networkinterfaceoptions): The options for network-interface type endpoint.
 * **PolicyDocument**: string: The AWS Verified Access policy document.
 * **PolicyEnabled**: bool: The status of the Verified Access policy.
+* **RdsOptions**: [RdsOptions](#rdsoptions): The options for rds type endpoint.
 * **SecurityGroupIds**: string[]: The IDs of the security groups for the endpoint.
 * **SseSpecification**: [SseSpecification](#ssespecification): The configuration options for customer provided KMS encryption.
 * **Status**: string (ReadOnly): The endpoint status.
@@ -1263,6 +1266,8 @@ Use this for ICMP and any protocol that uses ports.
 
 ## AWS.EC2/VerifiedAccessInstanceProperties
 ### Properties
+* **CidrEndpointsCustomSubDomain**: string: Introduce CidrEndpointsCustomSubDomain property to represent the domain (say, ava.my-company.com)
+* **CidrEndpointsCustomSubDomainNameServers**: string[] (ReadOnly): Property to represent the name servers assoicated with the domain that AVA manages (say, ['ns1.amazonaws.com', 'ns2.amazonaws.com', 'ns3.amazonaws.com', 'ns4.amazonaws.com']).
 * **CreationTime**: string (ReadOnly): Time this Verified Access Instance was created.
 * **Description**: string: A description for the AWS Verified Access instance.
 * **FipsEnabled**: bool: Indicates whether FIPS is enabled
@@ -1280,6 +1285,7 @@ Use this for ICMP and any protocol that uses ports.
 * **DeviceOptions**: [DeviceOptions](#deviceoptions)
 * **DeviceTrustProviderType**: string: The type of device-based trust provider. Possible values: jamf|crowdstrike
 * **LastUpdatedTime**: string (ReadOnly): The last updated time.
+* **NativeApplicationOidcOptions**: [NativeApplicationOidcOptions](#nativeapplicationoidcoptions)
 * **OidcOptions**: [OidcOptions](#oidcoptions)
 * **PolicyReferenceName**: string (Required): The identifier to be used when working with policy rules.
 * **SseSpecification**: [VerifiedAccessTrustProvider_SseSpecification](#verifiedaccesstrustproviderssespecification): The configuration options for customer provided KMS encryption.
@@ -1548,6 +1554,13 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **CapacityReservationId**: string: The ID of the Capacity Reservation in which to run the instance.
 * **CapacityReservationResourceGroupArn**: string: The ARN of the Capacity Reservation resource group in which to run the instance.
+
+## CidrOptions
+### Properties
+* **Cidr**: string: The IP address range, in CIDR notation.
+* **PortRanges**: [PortRange](#portrange)[]: The list of port range.
+* **Protocol**: string: The IP protocol.
+* **SubnetIds**: string[]: The IDs of the subnets.
 
 ## ClassicLoadBalancer
 ### Properties
@@ -1927,8 +1940,9 @@ Use this for ICMP and any protocol that uses ports.
 * **AcceleratorTotalMemoryMiB**: [AcceleratorTotalMemoryMiB](#acceleratortotalmemorymib): The minimum and maximum amount of total accelerator memory, in MiB.
  Default: No minimum or maximum limits
 * **AcceleratorTypes**: string[]: The accelerator types that must be on the instance type.
-  +  For instance types with GPU accelerators, specify ``gpu``.
   +  For instance types with FPGA accelerators, specify ``fpga``.
+  +  For instance types with GPU accelerators, specify ``gpu``.
+  +  For instance types with Inference accelerators, specify ``inference``.
   
  Default: Any accelerator type
 * **AllowedInstanceTypes**: string[]: The instance types to apply your specified attributes against. All other instance types are ignored, even if they match your specified attributes.
@@ -2209,6 +2223,7 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **LoadBalancerArn**: string: The ARN of the load balancer.
 * **Port**: int: The IP port number.
+* **PortRanges**: [PortRange](#portrange)[]: The list of port range.
 * **Protocol**: string: The IP protocol.
 * **SubnetIds**: string[]: The IDs of the subnets.
 
@@ -2276,6 +2291,17 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Enabled**: bool: Specify ``true`` to enable detailed monitoring. Otherwise, basic monitoring is enabled.
 
+## NativeApplicationOidcOptions
+### Properties
+* **AuthorizationEndpoint**: string: The OIDC authorization endpoint.
+* **ClientId**: string: The client identifier.
+* **ClientSecret**: string (WriteOnly): The client secret.
+* **Issuer**: string: The OIDC issuer.
+* **PublicSigningKeyEndpoint**: string: The public signing key for endpoint
+* **Scope**: string: OpenID Connect (OIDC) scopes are used by an application during authentication to authorize access to details of a user. Each scope returns a specific set of user attributes.
+* **TokenEndpoint**: string: The OIDC token endpoint.
+* **UserInfoEndpoint**: string: The OIDC user info endpoint.
+
 ## NetworkBandwidthGbps
 ### Properties
 * **Max**: int: The maximum amount of network bandwidth, in Gbps. To specify no maximum limit, omit this parameter.
@@ -2316,7 +2342,8 @@ Use this for ICMP and any protocol that uses ports.
 * **ConnectionTrackingSpecification**: [ConnectionTrackingSpecification](#connectiontrackingspecification): A connection tracking specification for the network interface.
 * **DeleteOnTermination**: bool: Indicates whether the network interface is deleted when the instance is terminated.
 * **Description**: string: A description for the network interface.
-* **DeviceIndex**: int: The device index for the network interface attachment. Each network interface requires a device index. If you create a launch template that includes secondary network interfaces but not a primary network interface, then you must add a primary network interface as a launch parameter when you launch an instance from the template.
+* **DeviceIndex**: int: The device index for the network interface attachment. If the network interface is of type ``interface``, you must specify a device index.
+ If you create a launch template that includes secondary network interfaces but no primary network interface, and you specify it using the ``LaunchTemplate`` property of ``AWS::EC2::Instance``, then you must include a primary network interface using the ``NetworkInterfaces`` property of ``AWS::EC2::Instance``.
 * **EnaSrdSpecification**: [EnaSrdSpecification](#enasrdspecification): The ENA Express configuration for the network interface.
 * **Groups**: string[]: The IDs of one or more security groups.
 * **InterfaceType**: string: The type of network interface. To create an Elastic Fabric Adapter (EFA), specify ``efa`` or ``efa``. For more information, see [Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) in the *Amazon EC2 User Guide*.
@@ -2360,6 +2387,7 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **NetworkInterfaceId**: string: The ID of the network interface.
 * **Port**: int: The IP port number.
+* **PortRanges**: [PortRange](#portrange)[]: The list of port ranges.
 * **Protocol**: string: The IP protocol.
 
 ## OidcOptions
@@ -2488,6 +2516,11 @@ Use this for ICMP and any protocol that uses ports.
 * **From**: int
 * **To**: int
 
+## PortRange
+### Properties
+* **FromPort**: int: The first port in the range.
+* **ToPort**: int: The last port in the range.
+
 ## PrivateDnsNameOptions
 ### Properties
 * **EnableResourceNameDnsAAAARecord**: bool: Indicates whether to respond to DNS queries for instance hostnames with DNS AAAA records.
@@ -2517,6 +2550,16 @@ Use this for ICMP and any protocol that uses ports.
 ## ProvisionedCidr
 ### Properties
 * **Cidr**: string (Required)
+
+## RdsOptions
+### Properties
+* **Port**: int: The IP port number.
+* **Protocol**: string: The IP protocol.
+* **RdsDbClusterArn**: string: The ARN of the RDS DB cluster.
+* **RdsDbInstanceArn**: string: The ARN of the RDS DB instance.
+* **RdsDbProxyArn**: string: The ARN of the RDS DB proxy.
+* **RdsEndpoint**: string: The RDS endpoint.
+* **SubnetIds**: string[]: The IDs of the subnets.
 
 ## Reference
 ### Properties

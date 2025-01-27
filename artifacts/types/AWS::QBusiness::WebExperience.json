@@ -1,13 +1,39 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QBusiness-WebExperience",
   "type": "AWS::QBusiness::WebExperience",
-  "time": "2024-12-26T21:51:59.702Z",
+  "time": "2025-01-22T20:51:50.578Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/ApplicationId"
     ],
     "definitions": {
+      "BrowserExtension": {
+        "enum": [
+          "FIREFOX",
+          "CHROME"
+        ],
+        "type": "string"
+      },
+      "BrowserExtensionConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "EnabledBrowserExtensions": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/BrowserExtension"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "EnabledBrowserExtensions"
+        ],
+        "type": "object"
+      },
       "CustomizationConfiguration": {
         "additionalProperties": false,
         "properties": {
@@ -212,6 +238,9 @@
         "minLength": 36,
         "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{35}$",
         "type": "string"
+      },
+      "BrowserExtensionConfiguration": {
+        "$ref": "#/definitions/BrowserExtensionConfiguration"
       },
       "CreatedAt": {
         "format": "date-time",

@@ -68,7 +68,13 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1
+        "flags": 0
+      },
+      "AvailabilityZoneId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
       },
       "AvailableInstanceCount": {
         "type": {
@@ -4877,7 +4883,7 @@
           "$ref": "#/253"
         },
         "flags": 0,
-        "description": "The accelerator types that must be on the instance type.\n  +  For instance types with GPU accelerators, specify ``gpu``.\n  +  For instance types with FPGA accelerators, specify ``fpga``.\n  \n Default: Any accelerator type"
+        "description": "The accelerator types that must be on the instance type.\n  +  For instance types with FPGA accelerators, specify ``fpga``.\n  +  For instance types with GPU accelerators, specify ``gpu``.\n  +  For instance types with Inference accelerators, specify ``inference``.\n  \n Default: Any accelerator type"
       },
       "AllowedInstanceTypes": {
         "type": {
@@ -5514,7 +5520,7 @@
           "$ref": "#/5"
         },
         "flags": 0,
-        "description": "The device index for the network interface attachment. Each network interface requires a device index. If you create a launch template that includes secondary network interfaces but not a primary network interface, then you must add a primary network interface as a launch parameter when you launch an instance from the template."
+        "description": "The device index for the network interface attachment. If the network interface is of type ``interface``, you must specify a device index.\n If you create a launch template that includes secondary network interfaces but no primary network interface, and you specify it using the ``LaunchTemplate`` property of ``AWS::EC2::Instance``, then you must include a primary network interface using the ``NetworkInterfaces`` property of ``AWS::EC2::Instance``."
       },
       "EnaSrdSpecification": {
         "type": {
@@ -14353,6 +14359,40 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CidrOptions",
+    "properties": {
+      "Cidr": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The IP address range, in CIDR notation."
+      },
+      "PortRanges": {
+        "type": {
+          "$ref": "#/701"
+        },
+        "flags": 0,
+        "description": "The list of port range."
+      },
+      "Protocol": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The IP protocol."
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/702"
+        },
+        "flags": 0,
+        "description": "The IDs of the subnets."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "LoadBalancerOptions",
     "properties": {
       "LoadBalancerArn": {
@@ -14369,6 +14409,13 @@
         "flags": 0,
         "description": "The IP port number."
       },
+      "PortRanges": {
+        "type": {
+          "$ref": "#/703"
+        },
+        "flags": 0,
+        "description": "The list of port range."
+      },
       "Protocol": {
         "type": {
           "$ref": "#/2"
@@ -14378,7 +14425,7 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/698"
+          "$ref": "#/704"
         },
         "flags": 0,
         "description": "The IDs of the subnets."
@@ -14403,12 +14450,94 @@
         "flags": 0,
         "description": "The IP port number."
       },
+      "PortRanges": {
+        "type": {
+          "$ref": "#/705"
+        },
+        "flags": 0,
+        "description": "The list of port ranges."
+      },
       "Protocol": {
         "type": {
           "$ref": "#/2"
         },
         "flags": 0,
         "description": "The IP protocol."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PortRange",
+    "properties": {
+      "FromPort": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The first port in the range."
+      },
+      "ToPort": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The last port in the range."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RdsOptions",
+    "properties": {
+      "Port": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The IP port number."
+      },
+      "Protocol": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The IP protocol."
+      },
+      "RdsDbClusterArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the RDS DB cluster."
+      },
+      "RdsDbInstanceArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the RDS DB instance."
+      },
+      "RdsDbProxyArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the RDS DB proxy."
+      },
+      "RdsEndpoint": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The RDS endpoint."
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/706"
+        },
+        "flags": 0,
+        "description": "The IDs of the subnets."
       }
     }
   },
@@ -14465,6 +14594,36 @@
   {
     "$type": "ArrayType",
     "itemType": {
+      "$ref": "#/695"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/695"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/695"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
       "$ref": "#/2"
     }
   },
@@ -14481,7 +14640,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/697"
+      "$ref": "#/700"
     }
   },
   {
@@ -14492,7 +14651,7 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The DNS name for users to reach your application."
       },
       "AttachmentType": {
@@ -14501,6 +14660,13 @@
         },
         "flags": 1,
         "description": "The type of attachment used to provide connectivity between the AWS Verified Access endpoint and the application."
+      },
+      "CidrOptions": {
+        "type": {
+          "$ref": "#/692"
+        },
+        "flags": 0,
+        "description": "The options for cidr type endpoint."
       },
       "CreationTime": {
         "type": {
@@ -14527,7 +14693,7 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The ARN of a public TLS/SSL certificate imported into or created with ACM."
       },
       "EndpointDomain": {
@@ -14541,7 +14707,7 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "A custom identifier that gets prepended to a DNS name that is generated for the endpoint."
       },
       "EndpointType": {
@@ -14560,14 +14726,14 @@
       },
       "LoadBalancerOptions": {
         "type": {
-          "$ref": "#/692"
+          "$ref": "#/693"
         },
         "flags": 0,
         "description": "The load balancer details if creating the AWS Verified Access endpoint as load-balancer type."
       },
       "NetworkInterfaceOptions": {
         "type": {
-          "$ref": "#/693"
+          "$ref": "#/694"
         },
         "flags": 0,
         "description": "The options for network-interface type endpoint."
@@ -14586,16 +14752,23 @@
         "flags": 0,
         "description": "The status of the Verified Access policy."
       },
+      "RdsOptions": {
+        "type": {
+          "$ref": "#/696"
+        },
+        "flags": 0,
+        "description": "The options for rds type endpoint."
+      },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/700"
+          "$ref": "#/708"
         },
         "flags": 0,
         "description": "The IDs of the security groups for the endpoint."
       },
       "SseSpecification": {
         "type": {
-          "$ref": "#/695"
+          "$ref": "#/698"
         },
         "flags": 0,
         "description": "The configuration options for customer provided KMS encryption."
@@ -14609,7 +14782,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/701"
+          "$ref": "#/709"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -14657,7 +14830,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/702"
+          "$ref": "#/710"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -14669,7 +14842,7 @@
     "name": "AWS.EC2/VerifiedAccessEndpoint@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/703"
+      "$ref": "#/711"
     },
     "flags": 0
   },
@@ -14720,7 +14893,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/706"
+      "$ref": "#/714"
     }
   },
   {
@@ -14771,14 +14944,14 @@
       },
       "SseSpecification": {
         "type": {
-          "$ref": "#/705"
+          "$ref": "#/713"
         },
         "flags": 0,
         "description": "The configuration options for customer provided KMS encryption."
       },
       "Tags": {
         "type": {
-          "$ref": "#/708"
+          "$ref": "#/716"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -14826,7 +14999,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/709"
+          "$ref": "#/717"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -14838,9 +15011,14 @@
     "name": "AWS.EC2/VerifiedAccessGroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/710"
+      "$ref": "#/718"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Nameserver",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -14868,7 +15046,7 @@
     "properties": {
       "CloudWatchLogs": {
         "type": {
-          "$ref": "#/716"
+          "$ref": "#/725"
         },
         "flags": 0,
         "description": "Sends Verified Access logs to CloudWatch Logs."
@@ -14882,7 +15060,7 @@
       },
       "KinesisDataFirehose": {
         "type": {
-          "$ref": "#/717"
+          "$ref": "#/726"
         },
         "flags": 0,
         "description": "Sends Verified Access logs to Kinesis."
@@ -14896,7 +15074,7 @@
       },
       "S3": {
         "type": {
-          "$ref": "#/718"
+          "$ref": "#/727"
         },
         "flags": 0,
         "description": "Sends Verified Access logs to Amazon S3."
@@ -15030,7 +15208,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/712"
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/721"
     }
   },
   {
@@ -15042,13 +15226,27 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/714"
+      "$ref": "#/723"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.EC2/VerifiedAccessInstanceProperties",
     "properties": {
+      "CidrEndpointsCustomSubDomain": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Introduce CidrEndpointsCustomSubDomain property to represent the domain (say, ava.my-company.com)"
+      },
+      "CidrEndpointsCustomSubDomainNameServers": {
+        "type": {
+          "$ref": "#/729"
+        },
+        "flags": 2,
+        "description": "Property to represent the name servers assoicated with the domain that AVA manages (say, ['ns1.amazonaws.com', 'ns2.amazonaws.com', 'ns3.amazonaws.com', 'ns4.amazonaws.com'])."
+      },
       "CreationTime": {
         "type": {
           "$ref": "#/2"
@@ -15079,14 +15277,14 @@
       },
       "LoggingConfigurations": {
         "type": {
-          "$ref": "#/713"
+          "$ref": "#/722"
         },
         "flags": 0,
         "description": "The configuration options for AWS Verified Access instances."
       },
       "Tags": {
         "type": {
-          "$ref": "#/720"
+          "$ref": "#/730"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -15100,14 +15298,14 @@
       },
       "VerifiedAccessTrustProviderIds": {
         "type": {
-          "$ref": "#/721"
+          "$ref": "#/731"
         },
         "flags": 0,
         "description": "The IDs of the AWS Verified Access trust providers."
       },
       "VerifiedAccessTrustProviders": {
         "type": {
-          "$ref": "#/722"
+          "$ref": "#/732"
         },
         "flags": 0,
         "description": "AWS Verified Access trust providers."
@@ -15134,7 +15332,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/723"
+          "$ref": "#/733"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -15146,7 +15344,7 @@
     "name": "AWS.EC2/VerifiedAccessInstance@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/724"
+      "$ref": "#/734"
     },
     "flags": 0
   },
@@ -15167,6 +15365,68 @@
         },
         "flags": 0,
         "description": "The ID of the tenant application with the device-identity provider."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NativeApplicationOidcOptions",
+    "properties": {
+      "AuthorizationEndpoint": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The OIDC authorization endpoint."
+      },
+      "ClientId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The client identifier."
+      },
+      "ClientSecret": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4,
+        "description": "The client secret."
+      },
+      "Issuer": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The OIDC issuer."
+      },
+      "PublicSigningKeyEndpoint": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The public signing key for endpoint"
+      },
+      "Scope": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "OpenID Connect (OIDC) scopes are used by an application during authentication to authorize access to details of a user. Each scope returns a specific set of user attributes."
+      },
+      "TokenEndpoint": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The OIDC token endpoint."
+      },
+      "UserInfoEndpoint": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The OIDC user info endpoint."
       }
     }
   },
@@ -15277,7 +15537,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/729"
+      "$ref": "#/740"
     }
   },
   {
@@ -15300,7 +15560,7 @@
       },
       "DeviceOptions": {
         "type": {
-          "$ref": "#/726"
+          "$ref": "#/736"
         },
         "flags": 0
       },
@@ -15318,9 +15578,15 @@
         "flags": 2,
         "description": "The last updated time."
       },
+      "NativeApplicationOidcOptions": {
+        "type": {
+          "$ref": "#/737"
+        },
+        "flags": 0
+      },
       "OidcOptions": {
         "type": {
-          "$ref": "#/727"
+          "$ref": "#/738"
         },
         "flags": 0
       },
@@ -15333,14 +15599,14 @@
       },
       "SseSpecification": {
         "type": {
-          "$ref": "#/731"
+          "$ref": "#/742"
         },
         "flags": 0,
         "description": "The configuration options for customer provided KMS encryption."
       },
       "Tags": {
         "type": {
-          "$ref": "#/732"
+          "$ref": "#/743"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -15388,7 +15654,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/733"
+          "$ref": "#/744"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -15400,7 +15666,7 @@
     "name": "AWS.EC2/VerifiedAccessTrustProvider@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/734"
+      "$ref": "#/745"
     },
     "flags": 0
   },
@@ -15431,7 +15697,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/736"
+      "$ref": "#/747"
     }
   },
   {
@@ -15503,7 +15769,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/738"
+          "$ref": "#/749"
         },
         "flags": 0,
         "description": "The tags to apply to the volume during creation."
@@ -15551,7 +15817,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/739"
+          "$ref": "#/750"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -15563,7 +15829,7 @@
     "name": "AWS.EC2/Volume@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/740"
+      "$ref": "#/751"
     },
     "flags": 0
   }

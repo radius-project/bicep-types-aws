@@ -4400,6 +4400,16 @@
   },
   {
     "$type": "ObjectType",
+    "name": "AwsDataCatalogTableName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AwsDataCatalogTableNames",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "BedrockEmbeddingModelConfiguration",
     "properties": {
       "Dimensions": {
@@ -4408,8 +4418,43 @@
         },
         "flags": 0,
         "description": "The dimensions details for the vector configuration used on the Bedrock embeddings model."
+      },
+      "EmbeddingDataType": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "The data type for the vectors when using a model to convert text into vector embeddings."
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CuratedQueries",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CuratedQuery",
+    "properties": {
+      "NaturalLanguage": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      },
+      "Sql": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DescriptionString",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -4417,11 +4462,16 @@
     "properties": {
       "BedrockEmbeddingModelConfiguration": {
         "type": {
-          "$ref": "#/297"
+          "$ref": "#/299"
         },
         "flags": 0
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InclusionType",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -4446,7 +4496,13 @@
     "properties": {
       "KendraKnowledgeBaseConfiguration": {
         "type": {
-          "$ref": "#/300"
+          "$ref": "#/306"
+        },
+        "flags": 0
+      },
+      "SqlKnowledgeBaseConfiguration": {
+        "type": {
+          "$ref": "#/350"
         },
         "flags": 0
       },
@@ -4458,7 +4514,7 @@
       },
       "VectorKnowledgeBaseConfiguration": {
         "type": {
-          "$ref": "#/322"
+          "$ref": "#/358"
         },
         "flags": 0
       }
@@ -4520,7 +4576,7 @@
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/306"
+          "$ref": "#/312"
         },
         "flags": 1
       },
@@ -4562,6 +4618,11 @@
   },
   {
     "$type": "ObjectType",
+    "name": "NaturalLanguageString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "OpenSearchServerlessConfiguration",
     "properties": {
       "CollectionArn": {
@@ -4573,7 +4634,7 @@
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/308"
+          "$ref": "#/315"
         },
         "flags": 1
       },
@@ -4633,7 +4694,7 @@
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/310"
+          "$ref": "#/317"
         },
         "flags": 1
       },
@@ -4668,6 +4729,126 @@
   },
   {
     "$type": "ObjectType",
+    "name": "QueryEngineType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryExecutionTimeoutSeconds",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationColumn",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "Inclusion": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationColumnName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationColumns",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationConfiguration",
+    "properties": {
+      "ExecutionTimeoutSeconds": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      },
+      "GenerationContext": {
+        "type": {
+          "$ref": "#/324"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationContext",
+    "properties": {
+      "CuratedQueries": {
+        "type": {
+          "$ref": "#/363"
+        },
+        "flags": 0
+      },
+      "Tables": {
+        "type": {
+          "$ref": "#/364"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationTable",
+    "properties": {
+      "Columns": {
+        "type": {
+          "$ref": "#/365"
+        },
+        "flags": 0
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "Inclusion": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationTableName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationTables",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "RdsConfiguration",
     "properties": {
       "CredentialsSecretArn": {
@@ -4686,7 +4867,7 @@
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/312"
+          "$ref": "#/329"
         },
         "flags": 1
       },
@@ -4760,7 +4941,7 @@
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/314"
+          "$ref": "#/331"
         },
         "flags": 1
       },
@@ -4802,6 +4983,216 @@
   },
   {
     "$type": "ObjectType",
+    "name": "RedshiftClusterIdentifier",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftConfiguration",
+    "properties": {
+      "QueryEngineConfiguration": {
+        "type": {
+          "$ref": "#/339"
+        },
+        "flags": 1
+      },
+      "QueryGenerationConfiguration": {
+        "type": {
+          "$ref": "#/323"
+        },
+        "flags": 0
+      },
+      "StorageConfigurations": {
+        "type": {
+          "$ref": "#/367"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftDatabase",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftProvisionedAuthConfiguration",
+    "properties": {
+      "DatabaseUser": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Redshift database user"
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      },
+      "UsernamePasswordSecretArn": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftProvisionedAuthType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftProvisionedConfiguration",
+    "properties": {
+      "AuthConfiguration": {
+        "type": {
+          "$ref": "#/335"
+        },
+        "flags": 1
+      },
+      "ClusterIdentifier": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftQueryEngineAwsDataCatalogStorageConfiguration",
+    "properties": {
+      "TableNames": {
+        "type": {
+          "$ref": "#/368"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftQueryEngineConfiguration",
+    "properties": {
+      "ProvisionedConfiguration": {
+        "type": {
+          "$ref": "#/337"
+        },
+        "flags": 0
+      },
+      "ServerlessConfiguration": {
+        "type": {
+          "$ref": "#/347"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftQueryEngineRedshiftStorageConfiguration",
+    "properties": {
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftQueryEngineStorageConfiguration",
+    "properties": {
+      "AwsDataCatalogConfiguration": {
+        "type": {
+          "$ref": "#/338"
+        },
+        "flags": 0
+      },
+      "RedshiftConfiguration": {
+        "type": {
+          "$ref": "#/340"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftQueryEngineStorageConfigurations",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftQueryEngineStorageType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftQueryEngineType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftServerlessAuthConfiguration",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      },
+      "UsernamePasswordSecretArn": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftServerlessAuthType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftServerlessConfiguration",
+    "properties": {
+      "AuthConfiguration": {
+        "type": {
+          "$ref": "#/345"
+        },
+        "flags": 1
+      },
+      "WorkgroupArn": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "S3Location",
     "properties": {
       "URI": {
@@ -4815,29 +5206,57 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SecretArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SqlKnowledgeBaseConfiguration",
+    "properties": {
+      "RedshiftConfiguration": {
+        "type": {
+          "$ref": "#/333"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SqlString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "StorageConfiguration",
     "properties": {
       "MongoDbAtlasConfiguration": {
         "type": {
-          "$ref": "#/305"
+          "$ref": "#/311"
         },
         "flags": 0
       },
       "OpensearchServerlessConfiguration": {
         "type": {
-          "$ref": "#/307"
+          "$ref": "#/314"
         },
         "flags": 0
       },
       "PineconeConfiguration": {
         "type": {
-          "$ref": "#/309"
+          "$ref": "#/316"
         },
         "flags": 0
       },
       "RdsConfiguration": {
         "type": {
-          "$ref": "#/311"
+          "$ref": "#/328"
         },
         "flags": 0
       },
@@ -4855,7 +5274,7 @@
     "properties": {
       "SupplementalDataStorageLocations": {
         "type": {
-          "$ref": "#/323"
+          "$ref": "#/370"
         },
         "flags": 1
       }
@@ -4867,7 +5286,7 @@
     "properties": {
       "S3Location": {
         "type": {
-          "$ref": "#/315"
+          "$ref": "#/348"
         },
         "flags": 0
       },
@@ -4907,28 +5326,93 @@
       },
       "EmbeddingModelConfiguration": {
         "type": {
-          "$ref": "#/298"
+          "$ref": "#/303"
         },
         "flags": 0
       },
       "SupplementalDataStorageConfiguration": {
         "type": {
-          "$ref": "#/317"
+          "$ref": "#/353"
         },
         "flags": 0
       }
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "WorkgroupArn",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/318"
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/318"
+      "$ref": "#/301"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/320"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/301"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/325"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/320"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/325"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/341"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/341"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/354"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/354"
     }
   },
   {
@@ -4961,7 +5445,7 @@
       },
       "FailureReasons": {
         "type": {
-          "$ref": "#/326"
+          "$ref": "#/373"
         },
         "flags": 2,
         "description": "A list of reasons that the API operation on the knowledge base failed."
@@ -4975,7 +5459,7 @@
       },
       "KnowledgeBaseConfiguration": {
         "type": {
-          "$ref": "#/301"
+          "$ref": "#/307"
         },
         "flags": 1
       },
@@ -5008,13 +5492,13 @@
       },
       "StorageConfiguration": {
         "type": {
-          "$ref": "#/316"
+          "$ref": "#/352"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/321"
+          "$ref": "#/357"
         },
         "flags": 0
       },
@@ -5047,7 +5531,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/327"
+          "$ref": "#/374"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5059,7 +5543,7 @@
     "name": "AWS.Bedrock/KnowledgeBase@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/328"
+      "$ref": "#/375"
     },
     "flags": 0
   },
@@ -5079,28 +5563,28 @@
     "properties": {
       "InputVariables": {
         "type": {
-          "$ref": "#/354"
+          "$ref": "#/401"
         },
         "flags": 0,
         "description": "List of input variables"
       },
       "Messages": {
         "type": {
-          "$ref": "#/355"
+          "$ref": "#/402"
         },
         "flags": 1,
         "description": "List of messages for chat prompt template"
       },
       "System": {
         "type": {
-          "$ref": "#/357"
+          "$ref": "#/404"
         },
         "flags": 0,
         "description": "Configuration for chat prompt template"
       },
       "ToolConfiguration": {
         "type": {
-          "$ref": "#/351"
+          "$ref": "#/398"
         },
         "flags": 0
       }
@@ -5122,7 +5606,7 @@
     "properties": {
       "Content": {
         "type": {
-          "$ref": "#/358"
+          "$ref": "#/405"
         },
         "flags": 1,
         "description": "List of Content Blocks"
@@ -5184,7 +5668,7 @@
       },
       "StopSequences": {
         "type": {
-          "$ref": "#/359"
+          "$ref": "#/406"
         },
         "flags": 0,
         "description": "List of stop sequences"
@@ -5221,13 +5705,13 @@
     "properties": {
       "GenAiResource": {
         "type": {
-          "$ref": "#/337"
+          "$ref": "#/384"
         },
         "flags": 0
       },
       "InferenceConfiguration": {
         "type": {
-          "$ref": "#/338"
+          "$ref": "#/385"
         },
         "flags": 0
       },
@@ -5247,7 +5731,7 @@
       },
       "TemplateConfiguration": {
         "type": {
-          "$ref": "#/341"
+          "$ref": "#/388"
         },
         "flags": 1
       },
@@ -5288,7 +5772,7 @@
     "properties": {
       "InputVariables": {
         "type": {
-          "$ref": "#/360"
+          "$ref": "#/407"
         },
         "flags": 0,
         "description": "List of input variables"
@@ -5302,7 +5786,7 @@
       },
       "TextS3Location": {
         "type": {
-          "$ref": "#/348"
+          "$ref": "#/395"
         },
         "flags": 0
       }
@@ -5351,13 +5835,13 @@
     "properties": {
       "ToolChoice": {
         "type": {
-          "$ref": "#/350"
+          "$ref": "#/397"
         },
         "flags": 0
       },
       "Tools": {
         "type": {
-          "$ref": "#/361"
+          "$ref": "#/408"
         },
         "flags": 1,
         "description": "List of Tools"
@@ -5381,7 +5865,7 @@
       },
       "InputSchema": {
         "type": {
-          "$ref": "#/352"
+          "$ref": "#/399"
         },
         "flags": 1
       },
@@ -5397,13 +5881,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/339"
+      "$ref": "#/386"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/335"
+      "$ref": "#/382"
     }
   },
   {
@@ -5414,13 +5898,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/356"
+      "$ref": "#/403"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/333"
+      "$ref": "#/380"
     }
   },
   {
@@ -5432,13 +5916,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/339"
+      "$ref": "#/386"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/349"
+      "$ref": "#/396"
     }
   },
   {
@@ -5448,7 +5932,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/343"
+      "$ref": "#/390"
     }
   },
   {
@@ -5506,7 +5990,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/346"
+          "$ref": "#/393"
         },
         "flags": 0
       },
@@ -5519,7 +6003,7 @@
       },
       "Variants": {
         "type": {
-          "$ref": "#/363"
+          "$ref": "#/410"
         },
         "flags": 4,
         "description": "List of prompt variants"
@@ -5553,7 +6037,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/364"
+          "$ref": "#/411"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5565,7 +6049,7 @@
     "name": "AWS.Bedrock/Prompt@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/365"
+      "$ref": "#/412"
     },
     "flags": 0
   }

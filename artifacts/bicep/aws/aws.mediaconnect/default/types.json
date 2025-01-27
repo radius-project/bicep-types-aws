@@ -700,6 +700,38 @@
   },
   {
     "$type": "ObjectType",
+    "name": "AudioMonitoringSetting",
+    "properties": {
+      "SilentAudio": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BlackFrames",
+    "properties": {
+      "State": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether the BlackFrames metric is enabled or disabled."
+      },
+      "ThresholdSeconds": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Specifies the number of consecutive seconds of black frames that triggers an event or alert."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Encryption",
     "properties": {
       "Algorithm": {
@@ -787,7 +819,7 @@
       },
       "SourcePriority": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "The priority you want to assign to a source. You can have a primary stream and a backup stream or two equally prioritized streams."
@@ -857,6 +889,26 @@
   },
   {
     "$type": "ObjectType",
+    "name": "FrozenFrames",
+    "properties": {
+      "State": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether the FrozenFrames metric is enabled or disabled."
+      },
+      "ThresholdSeconds": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Specifies the number of consecutive seconds of a static image that triggers an event or alert."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "GatewayBridgeSource",
     "properties": {
       "BridgeArn": {
@@ -868,7 +920,7 @@
       },
       "VpcInterfaceAttachment": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "The name of the VPC interface attachment to use for this bridge source."
@@ -888,7 +940,7 @@
       },
       "Interface": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/47"
         },
         "flags": 1,
         "description": "The VPC interface where the media stream comes in from."
@@ -934,7 +986,7 @@
     "properties": {
       "Attributes": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Attributes that are related to the media stream."
@@ -996,7 +1048,7 @@
     "properties": {
       "Fmtp": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "A set of parameters that define the media stream."
@@ -1023,7 +1075,7 @@
       },
       "InputConfigurations": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/59"
         },
         "flags": 0,
         "description": "The media streams that you want to associate with the source."
@@ -1039,11 +1091,31 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SilentAudio",
+    "properties": {
+      "State": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether the SilentAudio metric is enabled or disabled."
+      },
+      "ThresholdSeconds": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Specifies the number of consecutive seconds of silence that triggers an event or alert."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Source",
     "properties": {
       "Decryption": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The type of decryption that is used on the content ingested from this source."
@@ -1064,7 +1136,7 @@
       },
       "GatewayBridgeSource": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "The source configuration for cloud flows receiving a stream from a bridge."
@@ -1106,7 +1178,7 @@
       },
       "MediaStreamSourceConfigurations": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "The media stream that is associated with the source, and the parameters for that association."
@@ -1201,12 +1273,51 @@
     "$type": "ObjectType",
     "name": "SourceMonitoringConfig",
     "properties": {
+      "AudioMonitoringSettings": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0,
+        "description": "Contains the settings for audio stream metrics monitoring."
+      },
+      "ContentQualityAnalysisState": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether content quality analysis is enabled or disabled."
+      },
       "ThumbnailState": {
         "type": {
           "$ref": "#/15"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The state of thumbnail monitoring."
+      },
+      "VideoMonitoringSettings": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 0,
+        "description": "Contains the settings for video stream metrics monitoring."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VideoMonitoringSetting",
+    "properties": {
+      "BlackFrames": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
+      "FrozenFrames": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
       }
     }
   },
@@ -1223,7 +1334,7 @@
       },
       "NetworkInterfaceIds": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "IDs of the network interfaces created in customer's account by MediaConnect."
@@ -1244,7 +1355,7 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/64"
         },
         "flags": 1,
         "description": "Security Group IDs to be used on ENI."
@@ -1287,13 +1398,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/46"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/48"
+      "$ref": "#/51"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/39"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/55"
     }
   },
   {
@@ -1315,13 +1438,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/46"
+      "$ref": "#/49"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/51"
+      "$ref": "#/56"
     }
   },
   {
@@ -1358,14 +1481,14 @@
       },
       "Maintenance": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "The maintenance settings you want to use for the flow."
       },
       "MediaStreams": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/66"
         },
         "flags": 2,
         "description": "The media streams associated with the flow. You can associate any of these media streams with sources and outputs on the flow."
@@ -1379,28 +1502,28 @@
       },
       "Source": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/53"
         },
         "flags": 1,
         "description": "The source of the flow."
       },
       "SourceFailoverConfig": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The source failover config of the flow."
       },
       "SourceMonitoringConfig": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "The source monitoring config of the flow."
       },
       "VpcInterfaces": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/67"
         },
         "flags": 2,
         "description": "The VPC interfaces that you added to this flow."
@@ -1427,7 +1550,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/68"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1439,7 +1562,7 @@
     "name": "AWS.MediaConnect/Flow@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/62"
+      "$ref": "#/69"
     },
     "flags": 0
   },
@@ -1542,7 +1665,7 @@
       },
       "Encryption": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "The type of encryption that will be used on the output that is associated with this entitlement."
@@ -1577,7 +1700,7 @@
       },
       "Subscribers": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/73"
         },
         "flags": 1,
         "description": "The AWS account IDs that you want to share your content with. The receiving accounts (subscribers) will be allowed to create their own flow using your content as the source."
@@ -1604,7 +1727,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/74"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1616,7 +1739,7 @@
     "name": "AWS.MediaConnect/FlowEntitlement@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/68"
+      "$ref": "#/75"
     },
     "flags": 0
   },
@@ -1640,7 +1763,7 @@
       },
       "Interface": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/80"
         },
         "flags": 1,
         "description": "The VPC interface that is used for the media stream associated with the output."
@@ -1720,7 +1843,7 @@
     "properties": {
       "DestinationConfigurations": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "The media streams that you want to associate with the output."
@@ -1734,7 +1857,7 @@
       },
       "EncodingParameters": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "A collection of parameters that determine how MediaConnect will convert the content. These fields only apply to outputs on flows that have a CDI source."
@@ -1764,7 +1887,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/70"
+      "$ref": "#/77"
     }
   },
   {
@@ -1780,7 +1903,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/74"
+      "$ref": "#/81"
     }
   },
   {
@@ -1789,7 +1912,7 @@
     "properties": {
       "CidrAllowList": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/85"
         },
         "flags": 0,
         "description": "The range of IP addresses that should be allowed to initiate output requests to this flow. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16."
@@ -1810,7 +1933,7 @@
       },
       "Encryption": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/79"
         },
         "flags": 0,
         "description": "The type of key used for the encryption. If no keyType is provided, the service will use the default setting (static-key)."
@@ -1831,7 +1954,7 @@
       },
       "MediaStreamOutputConfigurations": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/86"
         },
         "flags": 0,
         "description": "The definition for each media stream that is associated with the output."
@@ -1901,7 +2024,7 @@
       },
       "VpcInterfaceAttachment": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "The name of the VPC interface attachment to use for this output."
@@ -1928,7 +2051,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/87"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1940,7 +2063,7 @@
     "name": "AWS.MediaConnect/FlowOutput@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/81"
+      "$ref": "#/88"
     },
     "flags": 0
   },
@@ -2026,7 +2149,7 @@
       },
       "VpcInterfaceAttachment": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/92"
         },
         "flags": 0,
         "description": "The name of the VPC interface attachment to use for this bridge source."
@@ -2056,7 +2179,7 @@
     "properties": {
       "Decryption": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/90"
         },
         "flags": 0,
         "description": "The type of encryption that is used on the content ingested from this source."
@@ -2084,7 +2207,7 @@
       },
       "GatewayBridgeSource": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "The source configuration for cloud flows receiving a stream from a bridge."
@@ -2223,7 +2346,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/94"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2235,7 +2358,7 @@
     "name": "AWS.MediaConnect/FlowSource@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/88"
+      "$ref": "#/95"
     },
     "flags": 0
   },
@@ -2275,7 +2398,7 @@
       },
       "NetworkInterfaceIds": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/98"
         },
         "flags": 2,
         "description": "IDs of the network interfaces created in customer's account by MediaConnect."
@@ -2289,7 +2412,7 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/99"
         },
         "flags": 1,
         "description": "Security Group IDs to be used on ENI."
@@ -2323,7 +2446,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/100"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2335,7 +2458,7 @@
     "name": "AWS.MediaConnect/FlowVpcInterface@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/94"
+      "$ref": "#/101"
     },
     "flags": 0
   }

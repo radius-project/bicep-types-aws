@@ -17,8 +17,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// These have been skipped due to missing schema: https://github.com/aws/aws-sdk-go-v2/issues/2913
-// These will be reverted when the issue is resolved, but the map will be kept for future use if needed.
+// This map is used as a workaround when there are issues with missing schema from AWS CloudFormation specs.
+// Since we do not own AWS schemas, we may have to wait for the proper updates to be made. Any resources added
+// to this map will be skipped during downloads so a previous, working version of that resource schema can be used.
 var skippedResources = map[string]struct{}{}
 
 func main() {

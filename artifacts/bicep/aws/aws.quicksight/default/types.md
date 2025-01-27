@@ -476,8 +476,10 @@
 ### Properties
 * **Arn**: string (ReadOnly)
 * **AwsAccountId**: string (Identifier)
+* **ConfigOptions**: [TopicConfigOptions](#topicconfigoptions)
 * **DataSets**: [DatasetMetadata](#datasetmetadata)[]
 * **Description**: string
+* **FolderArns**: string[] (WriteOnly)
 * **Name**: string
 * **TopicId**: string (Identifier)
 * **UserExperienceVersion**: string
@@ -10634,6 +10636,10 @@
 * **NotAllowedAggregations**: string[]
 * **SemanticType**: [SemanticType](#semantictype)
 * **TimeGranularity**: string
+
+## TopicConfigOptions
+### Properties
+* **QBusinessInsightsEnabled**: bool
 
 ## TopicDateRangeFilter
 ### Properties

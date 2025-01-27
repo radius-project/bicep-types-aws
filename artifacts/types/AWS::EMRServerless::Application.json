@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EMRServerless-Application",
   "type": "AWS::EMRServerless::Application",
-  "time": "2025-01-02T17:44:53.917Z",
+  "time": "2025-01-27T16:47:16.435Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -342,6 +342,10 @@
             "$ref": "#/definitions/ManagedPersistenceMonitoringConfiguration",
             "description": "Managed log persistence configurations for a JobRun."
           },
+          "PrometheusMonitoringConfiguration": {
+            "$ref": "#/definitions/PrometheusMonitoringConfiguration",
+            "description": "Prometheus monitoring configurations for a JobRun."
+          },
           "S3MonitoringConfiguration": {
             "$ref": "#/definitions/S3MonitoringConfiguration",
             "description": "S3 monitoring configurations for a JobRun."
@@ -377,6 +381,21 @@
         },
         "required": [],
         "type": "object"
+      },
+      "PrometheusMonitoringConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "RemoteWriteUrl": {
+            "$ref": "#/definitions/RemoteWriteUrl",
+            "description": "The remote write URL in the Amazon Managed Service for Prometheus workspace to send metrics to."
+          }
+        }
+      },
+      "RemoteWriteUrl": {
+        "maxLength": 10280,
+        "minLength": 1,
+        "pattern": "^https://aps-workspaces.([a-z]{2}-[a-z-]{1,20}-[1-9]).amazonaws(.[0-9A-Za-z]{2,4})+/workspaces/[-_.0-9A-Za-z]{1,100}/api/v1/remote_write$",
+        "type": "string"
       },
       "S3MonitoringConfiguration": {
         "additionalProperties": false,

@@ -278,6 +278,7 @@
 ## BedrockEmbeddingModelConfiguration
 ### Properties
 * **Dimensions**: int: The dimensions details for the vector configuration used on the Bedrock embeddings model.
+* **EmbeddingDataType**: string: The data type for the vectors when using a model to convert text into vector embeddings.
 
 ## BedrockFoundationModelConfiguration
 ### Properties
@@ -331,6 +332,11 @@
 ### Properties
 * **PatternObjectFilter**: [PatternObjectFilterConfiguration](#patternobjectfilterconfiguration)
 * **Type**: string (Required): The crawl filter type.
+
+## CuratedQuery
+### Properties
+* **NaturalLanguage**: string (Required)
+* **Sql**: string (Required)
 
 ## CustomTransformationConfiguration
 ### Properties
@@ -493,6 +499,7 @@
 ## KnowledgeBaseConfiguration
 ### Properties
 * **KendraKnowledgeBaseConfiguration**: [KendraKnowledgeBaseConfiguration](#kendraknowledgebaseconfiguration)
+* **SqlKnowledgeBaseConfiguration**: [SqlKnowledgeBaseConfiguration](#sqlknowledgebaseconfiguration)
 * **Type**: string (Required)
 * **VectorKnowledgeBaseConfiguration**: [VectorKnowledgeBaseConfiguration](#vectorknowledgebaseconfiguration)
 
@@ -600,6 +607,29 @@
 * **TemplateConfiguration**: [PromptTemplateConfiguration](#prompttemplateconfiguration) (Required)
 * **TemplateType**: string (Required)
 
+## QueryGenerationColumn
+### Properties
+* **Description**: string
+* **Inclusion**: string
+* **Name**: string
+
+## QueryGenerationConfiguration
+### Properties
+* **ExecutionTimeoutSeconds**: int
+* **GenerationContext**: [QueryGenerationContext](#querygenerationcontext)
+
+## QueryGenerationContext
+### Properties
+* **CuratedQueries**: [CuratedQuery](#curatedquery)[]
+* **Tables**: [QueryGenerationTable](#querygenerationtable)[]
+
+## QueryGenerationTable
+### Properties
+* **Columns**: [QueryGenerationColumn](#querygenerationcolumn)[]
+* **Description**: string
+* **Inclusion**: string
+* **Name**: string (Required)
+
 ## RdsConfiguration
 ### Properties
 * **CredentialsSecretArn**: string (Required): The ARN of the secret that you created in AWS Secrets Manager that is linked to your Amazon RDS database.
@@ -614,6 +644,53 @@
 * **PrimaryKeyField**: string (Required): The name of the field in which Amazon Bedrock stores the ID for each entry.
 * **TextField**: string (Required): The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.
 * **VectorField**: string (Required): The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.
+
+## RedshiftConfiguration
+### Properties
+* **QueryEngineConfiguration**: [RedshiftQueryEngineConfiguration](#redshiftqueryengineconfiguration) (Required)
+* **QueryGenerationConfiguration**: [QueryGenerationConfiguration](#querygenerationconfiguration)
+* **StorageConfigurations**: [RedshiftQueryEngineStorageConfiguration](#redshiftqueryenginestorageconfiguration)[] (Required)
+
+## RedshiftProvisionedAuthConfiguration
+### Properties
+* **DatabaseUser**: string: Redshift database user
+* **Type**: string (Required)
+* **UsernamePasswordSecretArn**: string
+
+## RedshiftProvisionedConfiguration
+### Properties
+* **AuthConfiguration**: [RedshiftProvisionedAuthConfiguration](#redshiftprovisionedauthconfiguration) (Required)
+* **ClusterIdentifier**: string (Required)
+
+## RedshiftQueryEngineAwsDataCatalogStorageConfiguration
+### Properties
+* **TableNames**: string[] (Required)
+
+## RedshiftQueryEngineConfiguration
+### Properties
+* **ProvisionedConfiguration**: [RedshiftProvisionedConfiguration](#redshiftprovisionedconfiguration)
+* **ServerlessConfiguration**: [RedshiftServerlessConfiguration](#redshiftserverlessconfiguration)
+* **Type**: string (Required)
+
+## RedshiftQueryEngineRedshiftStorageConfiguration
+### Properties
+* **DatabaseName**: string (Required)
+
+## RedshiftQueryEngineStorageConfiguration
+### Properties
+* **AwsDataCatalogConfiguration**: [RedshiftQueryEngineAwsDataCatalogStorageConfiguration](#redshiftqueryengineawsdatacatalogstorageconfiguration)
+* **RedshiftConfiguration**: [RedshiftQueryEngineRedshiftStorageConfiguration](#redshiftqueryengineredshiftstorageconfiguration)
+* **Type**: string (Required)
+
+## RedshiftServerlessAuthConfiguration
+### Properties
+* **Type**: string (Required)
+* **UsernamePasswordSecretArn**: string
+
+## RedshiftServerlessConfiguration
+### Properties
+* **AuthConfiguration**: [RedshiftServerlessAuthConfiguration](#redshiftserverlessauthconfiguration) (Required)
+* **WorkgroupArn**: string (Required)
 
 ## RegexConfig
 ### Properties
@@ -693,6 +770,11 @@
 * **HostType**: string (Required): The supported host type, whether online/cloud or server/on-premises.
 * **SiteUrls**: string[] (Required): A list of one or more SharePoint site URLs.
 * **TenantId**: string: The identifier of your Microsoft 365 tenant.
+
+## SqlKnowledgeBaseConfiguration
+### Properties
+* **RedshiftConfiguration**: [RedshiftConfiguration](#redshiftconfiguration)
+* **Type**: string (Required)
 
 ## StorageConfiguration
 ### Properties

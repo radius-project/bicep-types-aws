@@ -84,6 +84,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/ResponseHeadersPolicyProperties](#awscloudfrontresponseheaderspolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CloudFront/VpcOrigin@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFront/VpcOriginProperties](#awscloudfrontvpcoriginproperties) (Required, Identifier): properties of the resource
+
 ## AccessControlAllowHeaders
 ### Properties
 * **Items**: string[] (Required): The list of HTTP header names. You can specify ``*`` to allow all headers.
@@ -191,6 +198,16 @@
 * **Id**: string (ReadOnly, Identifier)
 * **LastModifiedTime**: string (ReadOnly)
 * **ResponseHeadersPolicyConfig**: [ResponseHeadersPolicyConfig](#responseheaderspolicyconfig) (Required): A response headers policy configuration.
+
+## AWS.CloudFront/VpcOriginProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **CreatedTime**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
+* **LastModifiedTime**: string (ReadOnly)
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]
+* **VpcOriginEndpointConfig**: [VpcOriginEndpointConfig](#vpcoriginendpointconfig) (Required)
 
 ## CacheBehavior
 ### Properties
@@ -841,6 +858,11 @@
 * **Value**: string (Required): A string that contains an optional ``Tag`` value.
  The string length should be between 0 and 256 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
 
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
 ## TrafficConfig
 ### Properties
 * **SingleHeaderConfig**: [SingleHeaderConfig](#singleheaderconfig): Determines which HTTP requests are sent to the staging distribution.
@@ -875,6 +897,15 @@
   +   ``static-ip`` - Do not specify this value unless your distribution has been enabled for this feature by the CloudFront team. If you have a use case that requires static IP addresses for a distribution, contact CloudFront through the [Center](https://docs.aws.amazon.com/support/home).
   
  If the distribution uses the CloudFront domain name such as ``d111111abcdef8.cloudfront.net``, don't set a value for this field.
+
+## VpcOriginEndpointConfig
+### Properties
+* **Arn**: string (Required)
+* **HTTPPort**: int
+* **HTTPSPort**: int
+* **Name**: string (Required)
+* **OriginProtocolPolicy**: string
+* **OriginSSLProtocols**: string[]
 
 ## XSSProtection
 ### Properties

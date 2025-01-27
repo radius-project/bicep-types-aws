@@ -487,6 +487,9 @@
 ### aws.cloudfront/responseheaderspolicy
 * **Link**: [default](aws/aws.cloudfront/default/types.md#resource-awscloudfrontresponseheaderspolicydefault)
 
+### aws.cloudfront/vpcorigin
+* **Link**: [default](aws/aws.cloudfront/default/types.md#resource-awscloudfrontvpcorigindefault)
+
 ## aws.cloudtrail
 ### aws.cloudtrail/channel
 * **Link**: [default](aws/aws.cloudtrail/default/types.md#resource-awscloudtrailchanneldefault)
@@ -1480,6 +1483,9 @@
 
 ### aws.guardduty/member
 * **Link**: [default](aws/aws.guardduty/default/types.md#resource-awsguarddutymemberdefault)
+
+### aws.guardduty/publishingdestination
+* **Link**: [default](aws/aws.guardduty/default/types.md#resource-awsguarddutypublishingdestinationdefault)
 
 ### aws.guardduty/threatintelset
 * **Link**: [default](aws/aws.guardduty/default/types.md#resource-awsguarddutythreatintelsetdefault)

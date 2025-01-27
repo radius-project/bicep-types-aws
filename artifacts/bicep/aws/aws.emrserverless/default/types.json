@@ -10,7 +10,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "If set to true, the Application will automatically start. Defaults to true."
@@ -23,14 +23,14 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "If set to true, the Application will automatically stop after being idle. Defaults to true."
       },
       "IdleTimeoutMinutes": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The amount of time [in minutes] to wait before auto stopping the Application when idle. Defaults to 15 minutes."
@@ -48,35 +48,35 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "If set to false, CloudWatch logging will be turned off. Defaults to false."
       },
       "EncryptionKeyArn": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "KMS key ARN to encrypt the logs stored in given CloudWatch log-group."
       },
       "LogGroupName": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "Log-group name to produce log-streams on CloudWatch. If undefined, logs will be produced in a default log-group /aws/emr-serverless"
       },
       "LogStreamNamePrefix": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "Log-stream name prefix by which log-stream names will start in the CloudWatch Log-group."
       },
       "LogTypeMap": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The specific log-streams which need to be uploaded to CloudWatch."
@@ -94,20 +94,20 @@
     "properties": {
       "Classification": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 1,
         "description": "String with a maximum length of 1024."
       },
       "Configurations": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "Properties": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/46"
         },
         "flags": 0
       }
@@ -139,7 +139,7 @@
     "properties": {
       "ImageUri": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The URI of an image in the Amazon ECR registry. This field is required when you create a new application. If you leave this field blank in an update, Amazon EMR will remove the image configuration."
@@ -152,13 +152,13 @@
     "properties": {
       "WorkerConfiguration": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/36"
         },
         "flags": 1
       },
       "WorkerCount": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/42"
         },
         "flags": 1,
         "description": "Initial count of workers to be initialized when an Application is started. This count will be continued to be maintained until the Application is stopped"
@@ -171,7 +171,7 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 1,
         "description": "Worker type for an analytics framework."
@@ -195,14 +195,14 @@
     "properties": {
       "LivyEndpointEnabled": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "Enables an Apache Livy endpoint that you can connect to and run interactive jobs"
       },
       "StudioEnabled": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "Enabled you to connect an Application to Amazon EMR Studio to run interactive workloads in a notebook"
@@ -230,13 +230,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/49"
         },
         "flags": 1
       }
@@ -253,14 +253,14 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "If set to false, managed logging will be turned off. Defaults to true."
       },
       "EncryptionKeyArn": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "KMS key ARN to encrypt the logs stored in managed persistence"
@@ -273,21 +273,21 @@
     "properties": {
       "Cpu": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 1,
         "description": "Per worker CPU resource. vCPU is the only supported unit and specifying vCPU is optional."
       },
       "Disk": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "Per worker Disk resource. GB is the only supported unit and specifying GB is optional"
       },
       "Memory": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 1,
         "description": "Per worker memory resource. GB is the only supported unit and specifying GB is optional."
@@ -317,9 +317,16 @@
         "flags": 0,
         "description": "Managed log persistence configurations for a JobRun."
       },
+      "PrometheusMonitoringConfiguration": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0,
+        "description": "Prometheus monitoring configurations for a JobRun."
+      },
       "S3MonitoringConfiguration": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "S3 monitoring configurations for a JobRun."
@@ -332,14 +339,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "The ID of the security groups in the VPC to which you want to connect your job or application."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "The ID of the subnets in the VPC to which you want to connect your job or application."
@@ -348,18 +355,36 @@
   },
   {
     "$type": "ObjectType",
+    "name": "PrometheusMonitoringConfiguration",
+    "properties": {
+      "RemoteWriteUrl": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0,
+        "description": "The remote write URL in the Amazon Managed Service for Prometheus workspace to send metrics to."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RemoteWriteUrl",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "S3MonitoringConfiguration",
     "properties": {
       "EncryptionKeyArn": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "KMS key ARN to encrypt the logs stored in given s3"
       },
       "LogUri": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0
       }
@@ -371,14 +396,14 @@
     "properties": {
       "MaxConcurrentRuns": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The maximum concurrent job runs on this application. If scheduler configuration is enabled on your application, the default value is 15. The valid range is 1 to 1000."
       },
       "QueueTimeoutMinutes": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The maximum duration in minutes for the job in QUEUED state. If scheduler configuration is enabled on your application, the default value is 360 minutes (6 hours). The valid range is from 15 to 720."
@@ -411,14 +436,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 128 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
@@ -436,28 +461,28 @@
     "properties": {
       "Cpu": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 1,
         "description": "Per worker CPU resource. vCPU is the only supported unit and specifying vCPU is optional."
       },
       "Disk": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "Per worker Disk resource. GB is the only supported unit and specifying GB is optional"
       },
       "DiskType": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "Per worker DiskType resource. Shuffle optimized and Standard are only supported types and specifying diskType is optional"
       },
       "Memory": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 1,
         "description": "Per worker memory resource. GB is the only supported unit and specifying GB is optional."
@@ -527,13 +552,26 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/40"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Application_PrometheusMonitoringConfiguration",
+    "properties": {
+      "RemoteWriteUrl": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0,
+        "description": "The remote write URL in the Amazon Managed Service for Prometheus workspace to send metrics to."
+      }
     }
   },
   {
@@ -542,14 +580,14 @@
     "properties": {
       "EncryptionKeyArn": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "KMS key ARN to encrypt the logs stored in given s3"
       },
       "LogUri": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0
       }
@@ -558,13 +596,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/40"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/40"
     }
   },
   {
@@ -586,7 +624,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/32"
+      "$ref": "#/34"
     }
   },
   {
@@ -595,20 +633,20 @@
     "properties": {
       "ApplicationId": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 18,
         "description": "The ID of the EMR Serverless Application."
       },
       "Architecture": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0
       },
       "Arn": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the EMR Serverless Application."
@@ -635,7 +673,7 @@
       },
       "InitialCapacity": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "Initial capacity initialized when an Application is started."
@@ -661,7 +699,7 @@
       },
       "Name": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "User friendly Application name."
@@ -675,41 +713,41 @@
       },
       "ReleaseLabel": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 1,
         "description": "EMR release label."
       },
       "RuntimeConfiguration": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/56"
         },
         "flags": 0
       },
       "SchedulerConfiguration": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "The scheduler configuration for batch and streaming jobs running on this application. Supported with release labels emr-7.0.0 and above."
       },
       "Tags": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "Tag map with key and value"
       },
       "Type": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 1,
         "description": "The type of the application"
       },
       "WorkerTypeSpecifications": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "The key-value pairs that specify worker type to WorkerTypeSpecificationInput. This parameter must contain all valid worker types for a Spark or Hive application. Valid worker types include Driver and Executor for Spark applications and HiveDriver and TezTask for Hive applications. You can either set image details in this parameter for each worker type, or in imageConfiguration for all worker types."
@@ -722,21 +760,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/58"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -748,7 +786,7 @@
     "name": "AWS.EMRServerless/Application@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/56"
+      "$ref": "#/59"
     },
     "flags": 0
   }

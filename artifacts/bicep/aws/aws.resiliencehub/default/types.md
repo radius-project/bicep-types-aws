@@ -24,7 +24,6 @@
 * **EventSubscriptions**: [EventSubscription](#eventsubscription)[]: The list of events you would like to subscribe and get notification for.
 * **Name**: string (Required): Name of the app.
 * **PermissionModel**: [PermissionModel](#permissionmodel)
-* **RegulatoryPolicyArn**: string: Amazon Resource Name (ARN) of the Regulatory Policy.
 * **ResiliencyPolicyArn**: string: Amazon Resource Name (ARN) of the Resiliency Policy.
 * **ResourceMappings**: [ResourceMapping](#resourcemapping)[] (Required): An array of ResourceMapping objects.
 * **Tags**: [TagMap](#tagmap)

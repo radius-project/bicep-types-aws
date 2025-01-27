@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudWatch-MetricStream",
   "type": "AWS::CloudWatch::MetricStream",
-  "time": "2025-01-08T09:59:33.558Z",
+  "time": "2025-01-24T10:31:11.242Z",
   "schema": {
     "additionalProperties": false,
     "allOf": [
@@ -153,7 +153,8 @@
       },
       "read": {
         "permissions": [
-          "cloudwatch:GetMetricStream"
+          "cloudwatch:GetMetricStream",
+          "cloudwatch:ListTagsForResource"
         ]
       },
       "update": {
@@ -278,10 +279,18 @@
       "/properties/State"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-cloudwatch.git",
-    "taggable": true,
-    "typeName": "AWS::CloudWatch::MetricStream",
-    "writeOnlyProperties": [
-      "/properties/Tags"
-    ]
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "cloudwatch:TagResource",
+        "cloudwatch:UntagResource",
+        "cloudwatch:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::CloudWatch::MetricStream"
   }
 }

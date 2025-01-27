@@ -7,6 +7,10 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EMRServerless/ApplicationProperties](#awsemrserverlessapplicationproperties) (Required, Identifier): properties of the resource
 
+## Application_PrometheusMonitoringConfiguration
+### Properties
+* **RemoteWriteUrl**: string: The remote write URL in the Amazon Managed Service for Prometheus workspace to send metrics to.
+
 ## Application_Properties
 ### Properties
 
@@ -98,6 +102,7 @@
 ### Properties
 * **CloudWatchLoggingConfiguration**: [CloudWatchLoggingConfiguration](#cloudwatchloggingconfiguration): CloudWatch logging configurations for a JobRun.
 * **ManagedPersistenceMonitoringConfiguration**: [ManagedPersistenceMonitoringConfiguration](#managedpersistencemonitoringconfiguration): Managed log persistence configurations for a JobRun.
+* **PrometheusMonitoringConfiguration**: [Application_PrometheusMonitoringConfiguration](#applicationprometheusmonitoringconfiguration): Prometheus monitoring configurations for a JobRun.
 * **S3MonitoringConfiguration**: [Application_S3MonitoringConfiguration](#applications3monitoringconfiguration): S3 monitoring configurations for a JobRun.
 
 ## NetworkConfiguration

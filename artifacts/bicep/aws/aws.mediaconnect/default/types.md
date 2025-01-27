@@ -56,6 +56,10 @@
 * **name**: string: the resource name
 * **properties**: [AWS.MediaConnect/FlowVpcInterfaceProperties](#awsmediaconnectflowvpcinterfaceproperties) (Required, Identifier): properties of the resource
 
+## AudioMonitoringSetting
+### Properties
+* **SilentAudio**: [SilentAudio](#silentaudio)
+
 ## AWS.MediaConnect/BridgeOutputProperties
 ### Properties
 * **BridgeArn**: string (Required, Identifier): The Amazon Resource Number (ARN) of the bridge.
@@ -158,6 +162,11 @@
 * **RoleArn**: string (Required): Role Arn MediaConnect can assume to create ENIs in customer's account.
 * **SecurityGroupIds**: string[] (Required): Security Group IDs to be used on ENI.
 * **SubnetId**: string (Required): Subnet must be in the AZ of the Flow
+
+## BlackFrames
+### Properties
+* **State**: string: Indicates whether the BlackFrames metric is enabled or disabled.
+* **ThresholdSeconds**: int: Specifies the number of consecutive seconds of black frames that triggers an event or alert.
 
 ## Bridge_EgressGatewayBridge
 ### Properties
@@ -303,6 +312,11 @@
 * **ScanMode**: string: The type of compression that was used to smooth the video's appearance.
 * **Tcs**: string: The transfer characteristic system (TCS) that is used in the video.
 
+## FrozenFrames
+### Properties
+* **State**: string: Indicates whether the FrozenFrames metric is enabled or disabled.
+* **ThresholdSeconds**: int: Specifies the number of consecutive seconds of a static image that triggers an event or alert.
+
 ## GatewayBridgeSource
 ### Properties
 * **BridgeArn**: string (Required): The ARN of the bridge feeding this flow.
@@ -368,6 +382,11 @@
 ### Properties
 * **MulticastSourceIp**: string: The IP address of the source for source-specific multicast (SSM).
 
+## SilentAudio
+### Properties
+* **State**: string: Indicates whether the SilentAudio metric is enabled or disabled.
+* **ThresholdSeconds**: int: Specifies the number of consecutive seconds of silence that triggers an event or alert.
+
 ## Source
 ### Properties
 * **Decryption**: [Encryption](#encryption): The type of decryption that is used on the content ingested from this source.
@@ -395,11 +414,19 @@
 
 ## SourceMonitoringConfig
 ### Properties
-* **ThumbnailState**: string (Required): The state of thumbnail monitoring.
+* **AudioMonitoringSettings**: [AudioMonitoringSetting](#audiomonitoringsetting)[]: Contains the settings for audio stream metrics monitoring.
+* **ContentQualityAnalysisState**: string: Indicates whether content quality analysis is enabled or disabled.
+* **ThumbnailState**: string: The state of thumbnail monitoring.
+* **VideoMonitoringSettings**: [VideoMonitoringSetting](#videomonitoringsetting)[]: Contains the settings for video stream metrics monitoring.
 
 ## SourcePriority
 ### Properties
 * **PrimarySource**: string: The name of the source you choose as the primary source for this flow.
+
+## VideoMonitoringSetting
+### Properties
+* **BlackFrames**: [BlackFrames](#blackframes)
+* **FrozenFrames**: [FrozenFrames](#frozenframes)
 
 ## VpcInterface
 ### Properties
