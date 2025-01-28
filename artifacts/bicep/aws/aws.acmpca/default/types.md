@@ -42,7 +42,7 @@
 * **RevocationConfiguration**: [RevocationConfiguration](#revocationconfiguration) (WriteOnly): Certificate revocation information used by the CreateCertificateAuthority and UpdateCertificateAuthority actions.
 * **SigningAlgorithm**: string (Required): Algorithm your CA uses to sign certificate requests.
 * **Subject**: [Subject](#subject) (Required, WriteOnly): Structure that contains X.500 distinguished name information for your CA.
-* **Tags**: [Tag](#tag)[] (WriteOnly)
+* **Tags**: [Tag](#tag)[]
 * **Type**: string (Required): The type of the certificate authority.
 * **UsageMode**: string: Usage mode of the ceritificate authority.
 

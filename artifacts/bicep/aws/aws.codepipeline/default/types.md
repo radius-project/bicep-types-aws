@@ -178,6 +178,7 @@
 
 ## RuleDeclaration
 ### Properties
+* **Commands**: string[]: The shell commands to run with your compute action in CodePipeline.
 * **Configuration**: [Pipeline_Configuration](#pipelineconfiguration): The rule's configuration. These are key-value pairs that specify input values for a rule.
 * **InputArtifacts**: [InputArtifact](#inputartifact)[]
 * **Name**: string (Identifier): The rule declaration's name.

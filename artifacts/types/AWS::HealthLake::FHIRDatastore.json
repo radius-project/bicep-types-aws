@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-HealthLake-FHIRDatastore",
   "type": "AWS::HealthLake::FHIRDatastore",
-  "time": "2024-11-20T16:15:03.153Z",
+  "time": "2025-01-13T22:42:57.048Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -72,6 +72,10 @@
       },
       "IdentityProviderConfiguration": {
         "additionalProperties": false,
+        "default": {
+          "AuthorizationStrategy": "AWS_AUTH",
+          "FineGrainedAuthorizationEnabled": false
+        },
         "description": "The identity provider configuration for the datastore",
         "properties": {
           "AuthorizationStrategy": {
@@ -147,6 +151,11 @@
       },
       "SseConfiguration": {
         "additionalProperties": false,
+        "default": {
+          "KmsEncryptionConfig": {
+            "CmkType": "AWS_OWNED_KMS_KEY"
+          }
+        },
         "description": "The server-side encryption key configuration for a customer provided encryption key.",
         "properties": {
           "KmsEncryptionConfig": {

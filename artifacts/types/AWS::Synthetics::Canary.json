@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Synthetics-Canary",
   "type": "AWS::Synthetics::Canary",
-  "time": "2024-11-20T20:04:48.061Z",
+  "time": "2024-12-30T22:07:04.762Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -168,6 +168,10 @@
       "VPCConfig": {
         "additionalProperties": false,
         "properties": {
+          "Ipv6AllowedForDualStack": {
+            "description": "Allow outbound IPv6 traffic on VPC canaries that are connected to dual-stack subnets if set to true",
+            "type": "boolean"
+          },
           "SecurityGroupIds": {
             "items": {
               "type": "string"
@@ -291,7 +295,10 @@
           "lambda:ListTags",
           "lambda:TagResource",
           "lambda:UntagResource",
-          "iam:PassRole"
+          "iam:PassRole",
+          "ec2:DescribeVpcs",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroups"
         ]
       }
     },

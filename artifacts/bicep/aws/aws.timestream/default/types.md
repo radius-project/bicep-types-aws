@@ -50,8 +50,10 @@
 * **InfluxAuthParametersSecretArn**: string (ReadOnly): The Auth parameters secret Amazon Resource name (ARN) that is associated with the InfluxDB instance.
 * **LogDeliveryConfiguration**: [InfluxDBInstance_LogDeliveryConfiguration](#influxdbinstancelogdeliveryconfiguration): Configuration for sending logs to customer account from the InfluxDB instance.
 * **Name**: string: The unique name that is associated with the InfluxDB instance.
+* **NetworkType**: string: Network type of the InfluxDB Instance.
 * **Organization**: string (WriteOnly): The organization for the InfluxDB instance.
 * **Password**: string (WriteOnly): The password for the InfluxDB instance.
+* **Port**: int: The port number on which InfluxDB accepts connections.
 * **PubliclyAccessible**: bool: Attach a public IP to the customer ENI.
 * **SecondaryAvailabilityZone**: string (ReadOnly): The Secondary Availability Zone (AZ) where the InfluxDB instance is created, if DeploymentType is set as WITH_MULTIAZ_STANDBY.
 * **Status**: string (ReadOnly): Status of the InfluxDB Instance.

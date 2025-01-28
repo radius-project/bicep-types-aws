@@ -903,6 +903,163 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CFNDestinationProperties",
+    "properties": {
+      "DestinationArn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The ARN of the resource to publish to."
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The ARN of the KMS key to use for encryption."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagItem",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.GuardDuty/PublishingDestinationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PublishingDestination_CFNDestinationProperties",
+    "properties": {
+      "DestinationArn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The ARN of the resource to publish to."
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The ARN of the KMS key to use for encryption."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/56"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GuardDuty/PublishingDestinationProperties",
+    "properties": {
+      "DestinationProperties": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 1
+      },
+      "DestinationType": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The type of resource for the publishing destination. Currently only Amazon S3 buckets are supported."
+      },
+      "DetectorId": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "The ID of the GuardDuty detector associated with the publishing destination."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 18,
+        "description": "The ID of the publishing destination."
+      },
+      "PublishingFailureStartTimestamp": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The time, in epoch millisecond format, at which GuardDuty was first unable to publish findings to the destination."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The status of the publishing destination."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GuardDuty/PublishingDestination",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.GuardDuty/PublishingDestination@default",
+    "scopeType": 0,
+    "body": {
+      "$ref": "#/61"
+    },
+    "flags": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "TagItem",
     "properties": {
       "Key": {
@@ -926,7 +1083,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/55"
+      "$ref": "#/63"
     }
   },
   {
@@ -971,7 +1128,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/65"
         },
         "flags": 0
       }
@@ -997,7 +1154,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/66"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1009,7 +1166,7 @@
     "name": "AWS.GuardDuty/ThreatIntelSet@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/59"
+      "$ref": "#/67"
     },
     "flags": 0
   }

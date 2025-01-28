@@ -21,6 +21,20 @@
 * **name**: string: the resource name
 * **properties**: [AWS.VpcLattice/ListenerProperties](#awsvpclatticelistenerproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.VpcLattice/ResourceConfiguration@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.VpcLattice/ResourceConfigurationProperties](#awsvpclatticeresourceconfigurationproperties) (Identifier): properties of the resource
+
+## Resource AWS.VpcLattice/ResourceGateway@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.VpcLattice/ResourceGatewayProperties](#awsvpclatticeresourcegatewayproperties) (Identifier): properties of the resource
+
 ## Resource AWS.VpcLattice/ResourcePolicy@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -48,6 +62,13 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.VpcLattice/ServiceNetworkProperties](#awsvpclatticeservicenetworkproperties) (Identifier): properties of the resource
+
+## Resource AWS.VpcLattice/ServiceNetworkResourceAssociation@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.VpcLattice/ServiceNetworkResourceAssociationProperties](#awsvpclatticeservicenetworkresourceassociationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/ServiceNetworkServiceAssociation@default
 * **Valid Scope(s)**: Unknown
@@ -108,6 +129,32 @@
 * **ServiceIdentifier**: string (WriteOnly)
 * **Tags**: [Tag](#tag)[]
 
+## AWS.VpcLattice/ResourceConfigurationProperties
+### Properties
+* **AllowAssociationToSharableServiceNetwork**: bool
+* **Arn**: string (ReadOnly, Identifier)
+* **Id**: string (ReadOnly)
+* **Name**: string
+* **PortRanges**: string[]
+* **ProtocolType**: string
+* **ResourceConfigurationAuthType**: string (WriteOnly)
+* **ResourceConfigurationDefinition**: [ResourceConfiguration_ResourceConfigurationDefinition](#resourceconfigurationresourceconfigurationdefinition)
+* **ResourceConfigurationGroupId**: string (WriteOnly)
+* **ResourceConfigurationType**: string
+* **ResourceGatewayId**: string
+* **Tags**: [Tag](#tag)[]
+
+## AWS.VpcLattice/ResourceGatewayProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **Id**: string (ReadOnly)
+* **IpAddressType**: string
+* **Name**: string
+* **SecurityGroupIds**: string[]: The ID of one or more security groups to associate with the endpoint network interface.
+* **SubnetIds**: string[]: The ID of one or more subnets in which to create an endpoint network interface.
+* **Tags**: [Tag](#tag)[]
+* **VpcIdentifier**: string
+
 ## AWS.VpcLattice/ResourcePolicyProperties
 ### Properties
 * **Policy**: [ResourcePolicy_Policy](#resourcepolicypolicy) (Required)
@@ -134,6 +181,14 @@
 * **LastUpdatedAt**: string (ReadOnly)
 * **Name**: string
 * **SharingConfig**: [SharingConfig](#sharingconfig)
+* **Tags**: [Tag](#tag)[]
+
+## AWS.VpcLattice/ServiceNetworkResourceAssociationProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **Id**: string (ReadOnly)
+* **ResourceConfigurationId**: string
+* **ServiceNetworkId**: string
 * **Tags**: [Tag](#tag)[]
 
 ## AWS.VpcLattice/ServiceNetworkServiceAssociationProperties
@@ -275,6 +330,9 @@
 * **Exact**: string
 * **Prefix**: string
 
+## ResourceConfiguration_ResourceConfigurationDefinition
+### Properties
+
 ## ResourcePolicy_Policy
 ### Properties
 
@@ -286,6 +344,21 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string
 
 ## Tag
 ### Properties

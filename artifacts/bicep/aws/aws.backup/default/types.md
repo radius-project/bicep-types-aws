@@ -101,8 +101,8 @@
 * **MaxRetentionDays**: int (Required)
 * **MinRetentionDays**: int (Required)
 * **Notifications**: [NotificationObjectType](#notificationobjecttype)
-* **VaultState**: string
-* **VaultType**: string
+* **VaultState**: string (ReadOnly)
+* **VaultType**: string (ReadOnly)
 
 ## AWS.Backup/ReportPlanProperties
 ### Properties

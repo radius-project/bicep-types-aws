@@ -84,6 +84,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/ResponseHeadersPolicyProperties](#awscloudfrontresponseheaderspolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CloudFront/VpcOrigin@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFront/VpcOriginProperties](#awscloudfrontvpcoriginproperties) (Required, Identifier): properties of the resource
+
 ## AccessControlAllowHeaders
 ### Properties
 * **Items**: string[] (Required): The list of HTTP header names. You can specify ``*`` to allow all headers.
@@ -192,6 +199,16 @@
 * **LastModifiedTime**: string (ReadOnly)
 * **ResponseHeadersPolicyConfig**: [ResponseHeadersPolicyConfig](#responseheaderspolicyconfig) (Required): A response headers policy configuration.
 
+## AWS.CloudFront/VpcOriginProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **CreatedTime**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
+* **LastModifiedTime**: string (ReadOnly)
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]
+* **VpcOriginEndpointConfig**: [VpcOriginEndpointConfig](#vpcoriginendpointconfig) (Required)
+
 ## CacheBehavior
 ### Properties
 * **AllowedMethods**: string[]: A complex type that controls which HTTP methods CloudFront processes and forwards to your Amazon S3 bucket or your custom origin. There are three choices:
@@ -217,6 +234,7 @@
  A ``CacheBehavior`` must include either a ``CachePolicyId`` or ``ForwardedValues``. We recommend that you use a ``CachePolicyId``.
  A complex type that specifies how CloudFront handles query strings, cookies, and HTTP headers.
 * **FunctionAssociations**: [FunctionAssociation](#functionassociation)[]: A list of CloudFront functions that are associated with this cache behavior. CloudFront functions must be published to the ``LIVE`` stage to associate them with a cache behavior.
+* **GrpcConfig**: [GrpcConfig](#grpcconfig): The gRPC configuration for your cache behavior.
 * **LambdaFunctionAssociations**: [LambdaFunctionAssociation](#lambdafunctionassociation)[]: A complex type that contains zero or more Lambda@Edge function associations for a cache behavior.
 * **MaxTTL**: int: This field is deprecated. We recommend that you use the ``MaxTTL`` field in a cache policy instead of this field. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
  The maximum amount of time that you want objects to stay in CloudFront caches before CloudFront forwards another request to your origin to determine whether the object has been updated. The value that you specify applies only when your origin adds HTTP headers such as ``Cache-Control max-age``, ``Cache-Control s-maxage``, and ``Expires`` to objects. For more information, see [Managing How Long Content Stays in an Edge Cache (Expiration)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html) in the *Amazon CloudFront Developer Guide*.
@@ -370,13 +388,13 @@
 * **HTTPPort**: int: The HTTP port that CloudFront uses to connect to the origin. Specify the HTTP port that the origin listens on.
 * **HTTPSPort**: int: The HTTPS port that CloudFront uses to connect to the origin. Specify the HTTPS port that the origin listens on.
 * **OriginKeepaliveTimeout**: int: Specifies how long, in seconds, CloudFront persists its connection to the origin. The minimum timeout is 1 second, the maximum is 60 seconds, and the default (if you don't specify otherwise) is 5 seconds.
- For more information, see [Origin Keep-alive Timeout](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginKeepaliveTimeout) in the *Amazon CloudFront Developer Guide*.
+ For more information, see [Keep-alive timeout (custom origins only)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginKeepaliveTimeout) in the *Amazon CloudFront Developer Guide*.
 * **OriginProtocolPolicy**: string (Required): Specifies the protocol (HTTP or HTTPS) that CloudFront uses to connect to the origin. Valid values are:
   +   ``http-only`` ? CloudFront always uses HTTP to connect to the origin.
   +   ``match-viewer`` ? CloudFront connects to the origin using the same protocol that the viewer used to connect to CloudFront.
   +   ``https-only`` ? CloudFront always uses HTTPS to connect to the origin.
 * **OriginReadTimeout**: int: Specifies how long, in seconds, CloudFront waits for a response from the origin. This is also known as the *origin response timeout*. The minimum timeout is 1 second, the maximum is 60 seconds, and the default (if you don't specify otherwise) is 30 seconds.
- For more information, see [Origin Response Timeout](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginResponseTimeout) in the *Amazon CloudFront Developer Guide*.
+ For more information, see [Response timeout (custom origins only)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginResponseTimeout) in the *Amazon CloudFront Developer Guide*.
 * **OriginSSLProtocols**: string[]: Specifies the minimum SSL/TLS protocol that CloudFront uses when connecting to your origin over HTTPS. Valid values include ``SSLv3``, ``TLSv1``, ``TLSv1.1``, and ``TLSv1.2``.
  For more information, see [Minimum Origin SSL Protocol](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginSSLProtocols) in the *Amazon CloudFront Developer Guide*.
 
@@ -405,6 +423,7 @@
  A ``DefaultCacheBehavior`` must include either a ``CachePolicyId`` or ``ForwardedValues``. We recommend that you use a ``CachePolicyId``.
  A complex type that specifies how CloudFront handles query strings, cookies, and HTTP headers.
 * **FunctionAssociations**: [FunctionAssociation](#functionassociation)[]: A list of CloudFront functions that are associated with this cache behavior. Your functions must be published to the ``LIVE`` stage to associate them with a cache behavior.
+* **GrpcConfig**: [GrpcConfig](#grpcconfig): The gRPC configuration for your cache behavior.
 * **LambdaFunctionAssociations**: [LambdaFunctionAssociation](#lambdafunctionassociation)[]: A complex type that contains zero or more Lambda@Edge function associations for a cache behavior.
 * **MaxTTL**: int: This field is deprecated. We recommend that you use the ``MaxTTL`` field in a cache policy instead of this field. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
  The maximum amount of time that you want objects to stay in CloudFront caches before CloudFront forwards another request to your origin to determine whether the object has been updated. The value that you specify applies only when your origin adds HTTP headers such as ``Cache-Control max-age``, ``Cache-Control s-maxage``, and ``Expires`` to objects. For more information, see [Managing How Long Content Stays in an Edge Cache (Expiration)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html) in the *Amazon CloudFront Developer Guide*.
@@ -432,6 +451,7 @@
 ## DistributionConfig
 ### Properties
 * **Aliases**: string[]: A complex type that contains information about CNAMEs (alternate domain names), if any, for this distribution.
+* **AnycastIpListId**: string
 * **CacheBehaviors**: [CacheBehavior](#cachebehavior)[]: A complex type that contains zero or more ``CacheBehavior`` elements.
 * **CNAMEs**: string[]: An alias for the CF distribution's domain name.
   This property is legacy. We recommend that you use [Aliases](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-aliases) instead.
@@ -445,12 +465,12 @@
 * **CustomOrigin**: [LegacyCustomOrigin](#legacycustomorigin): The user-defined HTTP server that serves as the origin for content that CF distributes.
   This property is legacy. We recommend that you use [Origin](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html) instead.
 * **DefaultCacheBehavior**: [DefaultCacheBehavior](#defaultcachebehavior) (Required): A complex type that describes the default cache behavior if you don't specify a ``CacheBehavior`` element or if files don't match any of the values of ``PathPattern`` in ``CacheBehavior`` elements. You must create exactly one default cache behavior.
-* **DefaultRootObject**: string: The object that you want CloudFront to request from your origin (for example, ``index.html``) when a viewer requests the root URL for your distribution (``https://www.example.com``) instead of an object in your distribution (``https://www.example.com/product-description.html``). Specifying a default root object avoids exposing the contents of your distribution.
- Specify only the object name, for example, ``index.html``. Don't add a ``/`` before the object name.
+* **DefaultRootObject**: string: When a viewer requests the root URL for your distribution, the default root object is the object that you want CloudFront to request from your origin. For example, if your root URL is ``https://www.example.com``, you can specify CloudFront to return the ``index.html`` file as the default root object. You can specify a default root object so that viewers see a specific file or object, instead of another object in your distribution (for example, ``https://www.example.com/product-description.html``). A default root object avoids exposing the contents of your distribution.
+ You can specify the object name or a path to the object name (for example, ``index.html`` or ``exampleFolderName/index.html``). Your string can't begin with a forward slash (``/``). Only specify the object name or the path to the object.
  If you don't want to specify a default root object when you create a distribution, include an empty ``DefaultRootObject`` element.
  To delete the default root object from an existing distribution, update the distribution configuration and include an empty ``DefaultRootObject`` element.
  To replace the default root object, update the distribution configuration and specify the new object.
- For more information about the default root object, see [Creating a Default Root Object](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DefaultRootObject.html) in the *Amazon CloudFront Developer Guide*.
+ For more information about the default root object, see [Specify a default root object](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DefaultRootObject.html) in the *Amazon CloudFront Developer Guide*.
 * **Enabled**: bool (Required): From this field, you can enable or disable the selected distribution.
 * **HttpVersion**: string: (Optional) Specify the HTTP version(s) that you want viewers to use to communicate with CF. The default value for new distributions is ``http1.1``.
  For viewers and CF to use HTTP/2, viewers must support TLSv1.2 or later, and must support Server Name Indication (SNI).
@@ -540,6 +560,10 @@
   +   ``blacklist``: The ``Location`` elements specify the countries in which you don't want CloudFront to distribute your content.
   +   ``whitelist``: The ``Location`` elements specify the countries in which you want CloudFront to distribute your content.
 
+## GrpcConfig
+### Properties
+* **Enabled**: bool (Required): Enables your CloudFront distribution to receive gRPC requests and to proxy them directly to your origins.
+
 ## HeadersConfig
 ### Properties
 * **HeaderBehavior**: string (Required): Determines whether any HTTP headers are included in the cache key and in requests that CloudFront sends to the origin. Valid values are:
@@ -606,7 +630,7 @@
 
 ## Logging
 ### Properties
-* **Bucket**: string (Required): The Amazon S3 bucket to store the access logs in, for example, ``myawslogbucket.s3.amazonaws.com``.
+* **Bucket**: string: The Amazon S3 bucket to store the access logs in, for example, ``amzn-s3-demo-bucket.s3.amazonaws.com``.
 * **IncludeCookies**: bool: Specifies whether you want CloudFront to include cookies in access logs, specify ``true`` for ``IncludeCookies``. If you choose to include cookies in logs, CloudFront logs all cookies regardless of how you configure the cache behaviors for this distribution. If you don't want to include cookies when you create a distribution or if you want to disable include cookies for an existing distribution, specify ``false`` for ``IncludeCookies``.
 * **Prefix**: string: An optional string that you want CloudFront to prefix to the access log ``filenames`` for this distribution, for example, ``myprefix/``. If you want to enable logging, but you don't want to specify a prefix, you still must include an empty ``Prefix`` element in the ``Logging`` element.
 
@@ -654,6 +678,7 @@
 * **FailoverCriteria**: [OriginGroupFailoverCriteria](#origingroupfailovercriteria) (Required): A complex type that contains information about the failover criteria for an origin group.
 * **Id**: string (Required, Identifier): The origin group's ID.
 * **Members**: [OriginGroupMembers](#origingroupmembers) (Required): A complex type that contains information about the origins in an origin group.
+* **SelectionCriteria**: string: The selection criteria for the origin group. For more information, see [Create an origin group](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html#concept_origin_groups.creating) in the *Amazon CloudFront Developer Guide*.
 
 ## OriginGroupFailoverCriteria
 ### Properties
@@ -833,6 +858,11 @@
 * **Value**: string (Required): A string that contains an optional ``Tag`` value.
  The string length should be between 0 and 256 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
 
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
 ## TrafficConfig
 ### Properties
 * **SingleHeaderConfig**: [SingleHeaderConfig](#singleheaderconfig): Determines which HTTP requests are sent to the staging distribution.
@@ -867,6 +897,15 @@
   +   ``static-ip`` - Do not specify this value unless your distribution has been enabled for this feature by the CloudFront team. If you have a use case that requires static IP addresses for a distribution, contact CloudFront through the [Center](https://docs.aws.amazon.com/support/home).
   
  If the distribution uses the CloudFront domain name such as ``d111111abcdef8.cloudfront.net``, don't set a value for this field.
+
+## VpcOriginEndpointConfig
+### Properties
+* **Arn**: string (Required)
+* **HTTPPort**: int
+* **HTTPSPort**: int
+* **Name**: string (Required)
+* **OriginProtocolPolicy**: string
+* **OriginSSLProtocols**: string[]
 
 ## XSSProtection
 ### Properties

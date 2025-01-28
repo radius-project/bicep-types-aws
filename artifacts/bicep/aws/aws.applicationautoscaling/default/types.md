@@ -80,7 +80,7 @@
  The following policy types are supported: 
   ``TargetTrackingScaling``—Not supported for Amazon EMR
   ``StepScaling``—Not supported for DynamoDB, Amazon Comprehend, Lambda, Amazon Keyspaces, Amazon MSK, Amazon ElastiCache, or Neptune.
-* **PredictiveScalingPolicyConfiguration**: [PredictiveScalingPolicyConfiguration](#predictivescalingpolicyconfiguration)
+* **PredictiveScalingPolicyConfiguration**: [PredictiveScalingPolicyConfiguration](#predictivescalingpolicyconfiguration): The predictive scaling policy configuration.
 * **ResourceId**: string: The identifier of the resource associated with the scaling policy. This string consists of the resource type and unique identifier.
   +  ECS service - The resource type is ``service`` and the unique identifier is the cluster name and service name. Example: ``service/my-cluster/my-service``.
   +  Spot Fleet - The resource type is ``spot-fleet-request`` and the unique identifier is the Spot Fleet request ID. Example: ``spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE``.
@@ -160,7 +160,7 @@
 
 ## PredictiveScalingCustomizedCapacityMetric
 ### Properties
-* **MetricDataQueries**: [PredictiveScalingMetricDataQuery](#predictivescalingmetricdataquery)[] (Required)
+* **MetricDataQueries**: [PredictiveScalingMetricDataQuery](#predictivescalingmetricdataquery)[] (Required): One or more metric data queries to provide data points for a metric specification.
 
 ## PredictiveScalingCustomizedLoadMetric
 ### Properties
@@ -168,21 +168,25 @@
 
 ## PredictiveScalingCustomizedScalingMetric
 ### Properties
-* **MetricDataQueries**: [PredictiveScalingMetricDataQuery](#predictivescalingmetricdataquery)[] (Required)
+* **MetricDataQueries**: [PredictiveScalingMetricDataQuery](#predictivescalingmetricdataquery)[] (Required): One or more metric data queries to provide data points for a metric specification.
 
 ## PredictiveScalingMetric
 ### Properties
-* **Dimensions**: [PredictiveScalingMetricDimension](#predictivescalingmetricdimension)[]: The dimensions for the metric.
+* **Dimensions**: [PredictiveScalingMetricDimension](#predictivescalingmetricdimension)[]: Describes the dimensions of the metric.
 * **MetricName**: string: The name of the metric.
 * **Namespace**: string: The namespace of the metric.
 
 ## PredictiveScalingMetricDataQuery
 ### Properties
-* **Expression**: string: The math expression to perform on the returned data, if this object is performing a math expression.
-* **Id**: string: A short name that identifies the object's results in the response.
+* **Expression**: string: The math expression to perform on the returned data, if this object is performing a math expression. This expression can use the ``Id`` of the other metrics to refer to those metrics, and can also use the ``Id`` of other expressions to use the result of those expressions. 
+ Conditional: Within each ``MetricDataQuery`` object, you must specify either ``Expression`` or ``MetricStat``, but not both.
+* **Id**: string: A short name that identifies the object's results in the response. This name must be unique among all ``MetricDataQuery`` objects specified for a single scaling policy. If you are performing math expressions on this set of data, this name represents that data and can serve as a variable in the mathematical expression. The valid characters are letters, numbers, and underscores. The first character must be a lowercase letter.
 * **Label**: string: A human-readable label for this metric or expression. This is especially useful if this is a math expression, so that you know what the value represents.
-* **MetricStat**: [PredictiveScalingMetricStat](#predictivescalingmetricstat): Information about the metric data to return.
-* **ReturnData**: bool: Indicates whether to return the timestamps and raw data values of this metric.
+* **MetricStat**: [PredictiveScalingMetricStat](#predictivescalingmetricstat): Information about the metric data to return. 
+ Conditional: Within each ``MetricDataQuery`` object, you must specify either ``Expression`` or ``MetricStat``, but not both.
+* **ReturnData**: bool: Indicates whether to return the timestamps and raw data values of this metric. 
+ If you use any math expressions, specify ``true`` for this value for only the final math expression that the metric specification is based on. You must specify ``false`` for ``ReturnData`` for all the other metrics and expressions used in the metric specification.
+ If you are only retrieving metrics and not performing any math expressions, do not specify anything for ``ReturnData``. This sets it to its default (``true``).
 
 ## PredictiveScalingMetricDimension
 ### Properties
@@ -191,42 +195,46 @@
 
 ## PredictiveScalingMetricSpecification
 ### Properties
-* **CustomizedCapacityMetricSpecification**: [PredictiveScalingCustomizedCapacityMetric](#predictivescalingcustomizedcapacitymetric)
-* **CustomizedLoadMetricSpecification**: [PredictiveScalingCustomizedLoadMetric](#predictivescalingcustomizedloadmetric)
-* **CustomizedScalingMetricSpecification**: [PredictiveScalingCustomizedScalingMetric](#predictivescalingcustomizedscalingmetric)
-* **PredefinedLoadMetricSpecification**: [PredictiveScalingPredefinedLoadMetric](#predictivescalingpredefinedloadmetric)
-* **PredefinedMetricPairSpecification**: [PredictiveScalingPredefinedMetricPair](#predictivescalingpredefinedmetricpair)
-* **PredefinedScalingMetricSpecification**: [PredictiveScalingPredefinedScalingMetric](#predictivescalingpredefinedscalingmetric)
-* **TargetValue**: int (Required)
+* **CustomizedCapacityMetricSpecification**: [PredictiveScalingCustomizedCapacityMetric](#predictivescalingcustomizedcapacitymetric): The customized capacity metric specification.
+* **CustomizedLoadMetricSpecification**: [PredictiveScalingCustomizedLoadMetric](#predictivescalingcustomizedloadmetric): The customized load metric specification.
+* **CustomizedScalingMetricSpecification**: [PredictiveScalingCustomizedScalingMetric](#predictivescalingcustomizedscalingmetric): The customized scaling metric specification.
+* **PredefinedLoadMetricSpecification**: [PredictiveScalingPredefinedLoadMetric](#predictivescalingpredefinedloadmetric): The predefined load metric specification.
+* **PredefinedMetricPairSpecification**: [PredictiveScalingPredefinedMetricPair](#predictivescalingpredefinedmetricpair): The predefined metric pair specification that determines the appropriate scaling metric and load metric to use.
+* **PredefinedScalingMetricSpecification**: [PredictiveScalingPredefinedScalingMetric](#predictivescalingpredefinedscalingmetric): The predefined scaling metric specification.
+* **TargetValue**: int (Required): Specifies the target utilization.
 
 ## PredictiveScalingMetricStat
 ### Properties
-* **Metric**: [PredictiveScalingMetric](#predictivescalingmetric): The CloudWatch metric to return, including the metric name, namespace, and dimensions. 
-* **Stat**: string: The statistic to return. It can include any CloudWatch statistic or extended statistic.
-* **Unit**: string: The unit to use for the returned data points.
+* **Metric**: [PredictiveScalingMetric](#predictivescalingmetric): The CloudWatch metric to return, including the metric name, namespace, and dimensions. To get the exact metric name, namespace, and dimensions, inspect the [Metric](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_Metric.html) object that is returned by a call to [ListMetrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html).
+* **Stat**: string: The statistic to return. It can include any CloudWatch statistic or extended statistic. For a list of valid values, see the table in [Statistics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic) in the *Amazon CloudWatch User Guide*. 
+ The most commonly used metrics for predictive scaling are ``Average`` and ``Sum``.
+* **Unit**: string: The unit to use for the returned data points. For a complete list of the units that CloudWatch supports, see the [MetricDatum](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html) data type in the *Amazon CloudWatch API Reference*.
 
 ## PredictiveScalingPolicyConfiguration
 ### Properties
-* **MaxCapacityBreachBehavior**: string
-* **MaxCapacityBuffer**: int
-* **MetricSpecifications**: [PredictiveScalingMetricSpecification](#predictivescalingmetricspecification)[] (Required)
-* **Mode**: string
-* **SchedulingBufferTime**: int
+* **MaxCapacityBreachBehavior**: string: Defines the behavior that should be applied if the forecast capacity approaches or exceeds the maximum capacity. Defaults to ``HonorMaxCapacity`` if not specified.
+* **MaxCapacityBuffer**: int: The size of the capacity buffer to use when the forecast capacity is close to or exceeds the maximum capacity. The value is specified as a percentage relative to the forecast capacity. For example, if the buffer is 10, this means a 10 percent buffer, such that if the forecast capacity is 50, and the maximum capacity is 40, then the effective maximum capacity is 55. 
+ Required if the ``MaxCapacityBreachBehavior`` property is set to ``IncreaseMaxCapacity``, and cannot be used otherwise.
+* **MetricSpecifications**: [PredictiveScalingMetricSpecification](#predictivescalingmetricspecification)[] (Required): This structure includes the metrics and target utilization to use for predictive scaling. 
+ This is an array, but we currently only support a single metric specification. That is, you can specify a target value and a single metric pair, or a target value and one scaling metric and one load metric.
+* **Mode**: string: The predictive scaling mode. Defaults to ``ForecastOnly`` if not specified.
+* **SchedulingBufferTime**: int: The amount of time, in seconds, that the start time can be advanced. 
+ The value must be less than the forecast interval duration of 3600 seconds (60 minutes). Defaults to 300 seconds if not specified.
 
 ## PredictiveScalingPredefinedLoadMetric
 ### Properties
-* **PredefinedMetricType**: string (Required)
-* **ResourceLabel**: string
+* **PredefinedMetricType**: string (Required): The metric type.
+* **ResourceLabel**: string: A label that uniquely identifies a target group.
 
 ## PredictiveScalingPredefinedMetricPair
 ### Properties
-* **PredefinedMetricType**: string (Required)
-* **ResourceLabel**: string
+* **PredefinedMetricType**: string (Required): Indicates which metrics to use. There are two different types of metrics for each metric type: one is a load metric and one is a scaling metric.
+* **ResourceLabel**: string: A label that uniquely identifies a specific target group from which to determine the total and average request count.
 
 ## PredictiveScalingPredefinedScalingMetric
 ### Properties
-* **PredefinedMetricType**: string (Required)
-* **ResourceLabel**: string
+* **PredefinedMetricType**: string (Required): The metric type.
+* **ResourceLabel**: string: A label that uniquely identifies a specific target group from which to determine the average request count.
 
 ## ScalableTargetAction
 ### Properties

@@ -170,6 +170,12 @@
           "$ref": "#/26"
         },
         "flags": 0
+      },
+      "RecoveryPeriodInDays": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
       }
     }
   },
@@ -627,6 +633,12 @@
         },
         "flags": 0
       },
+      "PointInTimeRecoverySpecification": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
       "Replicas": {
         "type": {
           "$ref": "#/38"
@@ -1007,6 +1019,13 @@
         },
         "flags": 0,
         "description": "Indicates whether point in time recovery is enabled (true) or disabled (false) on the table."
+      },
+      "RecoveryPeriodInDays": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "The number of preceding days for which continuous backups are taken and maintained. Your table data is only recoverable to any point-in-time from within the configured recovery period. This parameter is optional. If no value is provided, the value will default to 35."
       }
     }
   },
@@ -1310,7 +1329,7 @@
           "$ref": "#/48"
         },
         "flags": 4,
-        "description": "Specifies the properties of data being imported from the S3 bucket source to the table.\n  If you specify the ``ImportSourceSpecification`` property, and also specify either the ``StreamSpecification``, the ``TableClass`` property, or the ``DeletionProtectionEnabled`` property, the IAM entity creating/updating stack must have ``UpdateTable`` permission."
+        "description": "Specifies the properties of data being imported from the S3 bucket source to the\" table.\n  If you specify the ``ImportSourceSpecification`` property, and also specify either the ``StreamSpecification``, the ``TableClass`` property, the ``DeletionProtectionEnabled`` property, or the ``WarmThroughput`` property, the IAM entity creating/updating stack must have ``UpdateTable`` permission."
       },
       "KeySchema": {
         "type": {

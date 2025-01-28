@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-UserProfile",
   "type": "AWS::SageMaker::UserProfile",
-  "time": "2024-11-20T16:16:16.732Z",
+  "time": "2025-01-27T18:07:49.696Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -89,6 +89,9 @@
         "properties": {
           "EFSFileSystemConfig": {
             "$ref": "#/definitions/EFSFileSystemConfig"
+          },
+          "FSxLustreFileSystemConfig": {
+            "$ref": "#/definitions/FSxLustreFileSystemConfig"
           }
         },
         "type": "object"
@@ -171,6 +174,27 @@
         "type": "object"
       },
       "EFSFileSystemConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "FileSystemId": {
+            "maxLength": 21,
+            "minLength": 11,
+            "pattern": "^(fs-[0-9a-f]{8,})$",
+            "type": "string"
+          },
+          "FileSystemPath": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^\\/\\S*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "FileSystemId"
+        ],
+        "type": "object"
+      },
+      "FSxLustreFileSystemConfig": {
         "additionalProperties": false,
         "properties": {
           "FileSystemId": {
@@ -350,7 +374,8 @@
           "Comet",
           "DeepchecksLLMEvaluation",
           "Fiddler",
-          "LakeraGuard"
+          "LakeraGuard",
+          "PerformanceEvaluation"
         ],
         "type": "string"
       },

@@ -253,7 +253,6 @@
 * **DomainNameArn**: string (ReadOnly, Identifier): The amazon resource name (ARN) of the domain name resource.
 * **DomainNameId**: string (ReadOnly)
 * **EndpointConfiguration**: [EndpointConfiguration](#endpointconfiguration)
-* **ManagementPolicy**: [DomainNameV2_ManagementPolicy](#domainnamev2managementpolicy) | string
 * **Policy**: [DomainNameV2_Policy](#domainnamev2policy) | string
 * **SecurityPolicy**: string
 * **Tags**: [Tag](#tag)[]

@@ -253,7 +253,7 @@
 * **Name**: string (Required): The name of the knowledge base.
 * **RoleArn**: string (Required): The ARN of the IAM role with permissions to invoke API operations on the knowledge base. The ARN must begin with AmazonBedrockExecutionRoleForKnowledgeBase_
 * **Status**: string (ReadOnly)
-* **StorageConfiguration**: [StorageConfiguration](#storageconfiguration) (Required)
+* **StorageConfiguration**: [StorageConfiguration](#storageconfiguration)
 * **Tags**: [TagsMap](#tagsmap)
 * **UpdatedAt**: string (ReadOnly): The time at which the knowledge base was last updated.
 
@@ -271,13 +271,19 @@
 * **Variants**: [PromptVariant](#promptvariant)[] (WriteOnly): List of prompt variants
 * **Version**: string (ReadOnly): Draft Version.
 
+## BedrockDataAutomationConfiguration
+### Properties
+* **ParsingModality**: string
+
 ## BedrockEmbeddingModelConfiguration
 ### Properties
 * **Dimensions**: int: The dimensions details for the vector configuration used on the Bedrock embeddings model.
+* **EmbeddingDataType**: string: The data type for the vectors when using a model to convert text into vector embeddings.
 
 ## BedrockFoundationModelConfiguration
 ### Properties
 * **ModelArn**: string (Required): The model's ARN.
+* **ParsingModality**: string
 * **ParsingPrompt**: [ParsingPrompt](#parsingprompt)
 
 ## ChunkingConfiguration
@@ -326,6 +332,11 @@
 ### Properties
 * **PatternObjectFilter**: [PatternObjectFilterConfiguration](#patternobjectfilterconfiguration)
 * **Type**: string (Required): The crawl filter type.
+
+## CuratedQuery
+### Properties
+* **NaturalLanguage**: string (Required)
+* **Sql**: string (Required)
 
 ## CustomTransformationConfiguration
 ### Properties
@@ -442,6 +453,7 @@
 * **Description**: string: Description of function
 * **Name**: string (Required): Name for a resource.
 * **Parameters**: [ParameterMap](#parametermap)
+* **RequireConfirmation**: string
 
 ## FunctionSchema
 ### Properties
@@ -480,10 +492,16 @@
 ### Properties
 * **S3Location**: [S3Location](#s3location) (Required)
 
+## KendraKnowledgeBaseConfiguration
+### Properties
+* **KendraIndexArn**: string (Required)
+
 ## KnowledgeBaseConfiguration
 ### Properties
+* **KendraKnowledgeBaseConfiguration**: [KendraKnowledgeBaseConfiguration](#kendraknowledgebaseconfiguration)
+* **SqlKnowledgeBaseConfiguration**: [SqlKnowledgeBaseConfiguration](#sqlknowledgebaseconfiguration)
 * **Type**: string (Required)
-* **VectorKnowledgeBaseConfiguration**: [VectorKnowledgeBaseConfiguration](#vectorknowledgebaseconfiguration) (Required)
+* **VectorKnowledgeBaseConfiguration**: [VectorKnowledgeBaseConfiguration](#vectorknowledgebaseconfiguration)
 
 ## ManagedWordsConfig
 ### Properties
@@ -522,6 +540,7 @@
 
 ## ParsingConfiguration
 ### Properties
+* **BedrockDataAutomationConfiguration**: [BedrockDataAutomationConfiguration](#bedrockdataautomationconfiguration)
 * **BedrockFoundationModelConfiguration**: [BedrockFoundationModelConfiguration](#bedrockfoundationmodelconfiguration)
 * **ParsingStrategy**: string (Required)
 
@@ -565,6 +584,9 @@
 * **PromptState**: string
 * **PromptType**: string
 
+## PromptGenAiResource
+### Properties
+
 ## PromptInferenceConfiguration
 ### Properties
 
@@ -578,11 +600,35 @@
 
 ## PromptVariant
 ### Properties
+* **GenAiResource**: [PromptGenAiResource](#promptgenairesource)
 * **InferenceConfiguration**: [PromptInferenceConfiguration](#promptinferenceconfiguration)
 * **ModelId**: string: ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models.
 * **Name**: string (Required): Name for a variant.
 * **TemplateConfiguration**: [PromptTemplateConfiguration](#prompttemplateconfiguration) (Required)
 * **TemplateType**: string (Required)
+
+## QueryGenerationColumn
+### Properties
+* **Description**: string
+* **Inclusion**: string
+* **Name**: string
+
+## QueryGenerationConfiguration
+### Properties
+* **ExecutionTimeoutSeconds**: int
+* **GenerationContext**: [QueryGenerationContext](#querygenerationcontext)
+
+## QueryGenerationContext
+### Properties
+* **CuratedQueries**: [CuratedQuery](#curatedquery)[]
+* **Tables**: [QueryGenerationTable](#querygenerationtable)[]
+
+## QueryGenerationTable
+### Properties
+* **Columns**: [QueryGenerationColumn](#querygenerationcolumn)[]
+* **Description**: string
+* **Inclusion**: string
+* **Name**: string (Required)
 
 ## RdsConfiguration
 ### Properties
@@ -598,6 +644,53 @@
 * **PrimaryKeyField**: string (Required): The name of the field in which Amazon Bedrock stores the ID for each entry.
 * **TextField**: string (Required): The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.
 * **VectorField**: string (Required): The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.
+
+## RedshiftConfiguration
+### Properties
+* **QueryEngineConfiguration**: [RedshiftQueryEngineConfiguration](#redshiftqueryengineconfiguration) (Required)
+* **QueryGenerationConfiguration**: [QueryGenerationConfiguration](#querygenerationconfiguration)
+* **StorageConfigurations**: [RedshiftQueryEngineStorageConfiguration](#redshiftqueryenginestorageconfiguration)[] (Required)
+
+## RedshiftProvisionedAuthConfiguration
+### Properties
+* **DatabaseUser**: string: Redshift database user
+* **Type**: string (Required)
+* **UsernamePasswordSecretArn**: string
+
+## RedshiftProvisionedConfiguration
+### Properties
+* **AuthConfiguration**: [RedshiftProvisionedAuthConfiguration](#redshiftprovisionedauthconfiguration) (Required)
+* **ClusterIdentifier**: string (Required)
+
+## RedshiftQueryEngineAwsDataCatalogStorageConfiguration
+### Properties
+* **TableNames**: string[] (Required)
+
+## RedshiftQueryEngineConfiguration
+### Properties
+* **ProvisionedConfiguration**: [RedshiftProvisionedConfiguration](#redshiftprovisionedconfiguration)
+* **ServerlessConfiguration**: [RedshiftServerlessConfiguration](#redshiftserverlessconfiguration)
+* **Type**: string (Required)
+
+## RedshiftQueryEngineRedshiftStorageConfiguration
+### Properties
+* **DatabaseName**: string (Required)
+
+## RedshiftQueryEngineStorageConfiguration
+### Properties
+* **AwsDataCatalogConfiguration**: [RedshiftQueryEngineAwsDataCatalogStorageConfiguration](#redshiftqueryengineawsdatacatalogstorageconfiguration)
+* **RedshiftConfiguration**: [RedshiftQueryEngineRedshiftStorageConfiguration](#redshiftqueryengineredshiftstorageconfiguration)
+* **Type**: string (Required)
+
+## RedshiftServerlessAuthConfiguration
+### Properties
+* **Type**: string (Required)
+* **UsernamePasswordSecretArn**: string
+
+## RedshiftServerlessConfiguration
+### Properties
+* **AuthConfiguration**: [RedshiftServerlessAuthConfiguration](#redshiftserverlessauthconfiguration) (Required)
+* **WorkgroupArn**: string (Required)
 
 ## RegexConfig
 ### Properties
@@ -621,6 +714,10 @@
 * **Bucket**: string (Required): A bucket in S3
 * **Key**: string (Required): A object key in S3
 * **Version**: string: The version of the the S3 object to use
+
+## S3Location
+### Properties
+* **URI**: string (Required): The location's URI
 
 ## SalesforceCrawlerConfiguration
 ### Properties
@@ -674,6 +771,11 @@
 * **SiteUrls**: string[] (Required): A list of one or more SharePoint site URLs.
 * **TenantId**: string: The identifier of your Microsoft 365 tenant.
 
+## SqlKnowledgeBaseConfiguration
+### Properties
+* **RedshiftConfiguration**: [RedshiftConfiguration](#redshiftconfiguration)
+* **Type**: string (Required)
+
 ## StorageConfiguration
 ### Properties
 * **MongoDbAtlasConfiguration**: [MongoDbAtlasConfiguration](#mongodbatlasconfiguration)
@@ -681,6 +783,15 @@
 * **PineconeConfiguration**: [PineconeConfiguration](#pineconeconfiguration)
 * **RdsConfiguration**: [RdsConfiguration](#rdsconfiguration)
 * **Type**: string (Required)
+
+## SupplementalDataStorageConfiguration
+### Properties
+* **SupplementalDataStorageLocations**: [SupplementalDataStorageLocation](#supplementaldatastoragelocation)[] (Required)
+
+## SupplementalDataStorageLocation
+### Properties
+* **S3Location**: [S3Location](#s3location)
+* **SupplementalDataStorageLocationType**: string (Required)
 
 ## Tag
 ### Properties
@@ -748,6 +859,7 @@
 ### Properties
 * **EmbeddingModelArn**: string (Required): The ARN of the model used to create vector embeddings for the knowledge base.
 * **EmbeddingModelConfiguration**: [EmbeddingModelConfiguration](#embeddingmodelconfiguration)
+* **SupplementalDataStorageConfiguration**: [SupplementalDataStorageConfiguration](#supplementaldatastorageconfiguration)
 
 ## WebCrawlerConfiguration
 ### Properties

@@ -79,7 +79,7 @@
 
 ## RegionConfiguration
 ### Properties
-* **SseKmsKeyId**: string (Required)
+* **SseKmsKeyId**: string (Required): The AWS Key Management Service key ID or Key Alias to use to encrypt your replication set.
 
 ## ReplicationRegion
 ### Properties
