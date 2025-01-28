@@ -102,7 +102,7 @@
 * **RoleArn**: string: The ARN of the role that provides access to the Kinesis Firehose.
 * **State**: string (ReadOnly): Displays the state of the Metric Stream.
 * **StatisticsConfigurations**: [MetricStreamStatisticsConfiguration](#metricstreamstatisticsconfiguration)[]: By default, a metric stream always sends the MAX, MIN, SUM, and SAMPLECOUNT statistics for each metric that is streamed. You can use this parameter to have the metric stream also send additional statistics in the stream. This array can have up to 100 members.
-* **Tags**: [Tag](#tag)[] (WriteOnly): A set of tags to assign to the delivery stream.
+* **Tags**: [Tag](#tag)[]: A set of tags to assign to the delivery stream.
 
 ## Dimension
 ### Properties

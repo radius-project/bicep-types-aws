@@ -45,7 +45,7 @@
 * **Name**: string (Required)
 * **ProfileArn**: string (ReadOnly)
 * **ProfileId**: string (ReadOnly, Identifier)
-* **RequireInstanceProperties**: bool
+* **RequireInstanceProperties**: bool (WriteOnly)
 * **RoleArns**: string[] (Required)
 * **SessionPolicy**: string
 * **Tags**: [Tag](#tag)[]

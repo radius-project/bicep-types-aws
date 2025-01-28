@@ -386,7 +386,7 @@
       },
       "VpcEndpoints": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/28"
         },
         "flags": 2
       }
@@ -424,6 +424,29 @@
   },
   {
     "$type": "ObjectType",
+    "name": "PerformanceTarget",
+    "properties": {
+      "Level": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PerformanceTargetStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
@@ -446,7 +469,7 @@
     "properties": {
       "NetworkInterfaces": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/29"
         },
         "flags": 0
       },
@@ -476,7 +499,7 @@
       },
       "ConfigParameters": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/30"
         },
         "flags": 2
       },
@@ -510,6 +533,12 @@
         },
         "flags": 2
       },
+      "PricePerformanceTarget": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      },
       "PubliclyAccessible": {
         "type": {
           "$ref": "#/12"
@@ -518,7 +547,7 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/31"
         },
         "flags": 2
       },
@@ -530,7 +559,7 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/32"
         },
         "flags": 2
       },
@@ -562,7 +591,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/25"
     }
   },
   {
@@ -600,9 +629,21 @@
     }
   },
   {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
+    "$type": "ObjectType",
+    "name": "Workgroup_PerformanceTarget",
+    "properties": {
+      "Level": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      }
     }
   },
   {
@@ -614,7 +655,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
     }
   },
   {
@@ -630,7 +677,7 @@
       },
       "ConfigParameters": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/34"
         },
         "flags": 4,
         "description": "A list of parameters to set for finer control over a database. Available options are datestyle, enable_user_activity_logging, query_group, search_path, max_query_execution_time, and require_ssl."
@@ -663,6 +710,13 @@
         "flags": 0,
         "description": "The custom port to use when connecting to a workgroup. Valid port ranges are 5431-5455 and 8191-8215. The default is 5439."
       },
+      "PricePerformanceTarget": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "A property that represents the price performance target settings for the workgroup."
+      },
       "PubliclyAccessible": {
         "type": {
           "$ref": "#/12"
@@ -672,28 +726,28 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/36"
         },
         "flags": 4,
         "description": "A list of security group IDs to associate with the workgroup."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/37"
         },
         "flags": 4,
         "description": "A list of subnet IDs the workgroup is associated with."
       },
       "Tags": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "The map of the key-value pairs used to tag the workgroup."
       },
       "Workgroup": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/26"
         },
         "flags": 2,
         "description": "Definition for workgroup resource"
@@ -727,7 +781,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/39"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -739,7 +793,7 @@
     "name": "AWS.RedshiftServerless/Workgroup@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/37"
+      "$ref": "#/40"
     },
     "flags": 0
   }

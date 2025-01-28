@@ -98,6 +98,7 @@
 * **CollaborationIdentifier**: string (ReadOnly, Identifier)
 * **CreatorDisplayName**: string (Required)
 * **CreatorMemberAbilities**: string[] (Required)
+* **CreatorMLMemberAbilities**: [MLMemberAbilities](#mlmemberabilities)
 * **CreatorPaymentConfiguration**: [PaymentConfiguration](#paymentconfiguration)
 * **DataEncryptionMetadata**: [DataEncryptionMetadata](#dataencryptionmetadata)
 * **Description**: string (Required)
@@ -214,11 +215,6 @@
 ## Document
 ### Properties
 
-## GlueTableReference
-### Properties
-* **DatabaseName**: string (Required)
-* **TableName**: string (Required)
-
 ## IdMappingConfig
 ### Properties
 * **AllowUseAsDimensionColumn**: bool (Required)
@@ -247,8 +243,22 @@
 * **IdMappingWorkflowsSupported**: [Document](#document)[]
 * **IdNamespaceType**: string
 
+## MembershipMLPaymentConfig
+### Properties
+* **ModelInference**: [MembershipModelInferencePaymentConfig](#membershipmodelinferencepaymentconfig)
+* **ModelTraining**: [MembershipModelTrainingPaymentConfig](#membershipmodeltrainingpaymentconfig)
+
+## MembershipModelInferencePaymentConfig
+### Properties
+* **IsResponsible**: bool (Required)
+
+## MembershipModelTrainingPaymentConfig
+### Properties
+* **IsResponsible**: bool (Required)
+
 ## MembershipPaymentConfiguration
 ### Properties
+* **MachineLearning**: [MembershipMLPaymentConfig](#membershipmlpaymentconfig)
 * **QueryCompute**: [MembershipQueryComputePaymentConfig](#membershipquerycomputepaymentconfig) (Required)
 
 ## MembershipProtectedQueryOutputConfiguration
@@ -269,10 +279,29 @@
 * **AccountId**: string (Required)
 * **DisplayName**: string (Required)
 * **MemberAbilities**: string[] (Required)
+* **MLMemberAbilities**: [MLMemberAbilities](#mlmemberabilities)
 * **PaymentConfiguration**: [PaymentConfiguration](#paymentconfiguration)
+
+## MLMemberAbilities
+### Properties
+* **CustomMLMemberAbilities**: string[] (Required)
+
+## MLPaymentConfig
+### Properties
+* **ModelInference**: [ModelInferencePaymentConfig](#modelinferencepaymentconfig)
+* **ModelTraining**: [ModelTrainingPaymentConfig](#modeltrainingpaymentconfig)
+
+## ModelInferencePaymentConfig
+### Properties
+* **IsResponsible**: bool (Required)
+
+## ModelTrainingPaymentConfig
+### Properties
+* **IsResponsible**: bool (Required)
 
 ## PaymentConfiguration
 ### Properties
+* **MachineLearning**: [MLPaymentConfig](#mlpaymentconfig)
 * **QueryCompute**: [QueryComputePaymentConfig](#querycomputepaymentconfig) (Required)
 
 ## PrivacyBudgetTemplate_Parameters
@@ -293,7 +322,6 @@
 
 ## TableReference
 ### Properties
-* **Glue**: [GlueTableReference](#gluetablereference) (Required)
 
 ## Tag
 ### Properties

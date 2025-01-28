@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CE-AnomalySubscription",
   "type": "AWS::CE::AnomalySubscription",
-  "time": "2024-11-14T17:00:14.284Z",
+  "time": "2025-01-27T16:30:53.608Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -86,7 +86,8 @@
       },
       "read": {
         "permissions": [
-          "ce:GetAnomalySubscriptions"
+          "ce:GetAnomalySubscriptions",
+          "ce:ListTagsForResource"
         ]
       },
       "update": {
@@ -172,9 +173,16 @@
       "SubscriptionName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "typeName": "AWS::CE::AnomalySubscription",
-    "writeOnlyProperties": [
-      "/properties/ResourceTags"
-    ]
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ce:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/ResourceTags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::CE::AnomalySubscription"
   }
 }

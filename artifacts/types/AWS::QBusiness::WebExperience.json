@@ -1,13 +1,69 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QBusiness-WebExperience",
   "type": "AWS::QBusiness::WebExperience",
-  "time": "2024-11-22T18:36:25.951Z",
+  "time": "2025-01-22T20:51:50.578Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/ApplicationId"
     ],
     "definitions": {
+      "BrowserExtension": {
+        "enum": [
+          "FIREFOX",
+          "CHROME"
+        ],
+        "type": "string"
+      },
+      "BrowserExtensionConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "EnabledBrowserExtensions": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/BrowserExtension"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "EnabledBrowserExtensions"
+        ],
+        "type": "object"
+      },
+      "CustomizationConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "CustomCSSUrl": {
+            "maxLength": 1284,
+            "minLength": 0,
+            "pattern": "^(https?://[a-zA-Z0-9-_.+%/]+\\.css)?$",
+            "type": "string"
+          },
+          "FaviconUrl": {
+            "maxLength": 1284,
+            "minLength": 0,
+            "pattern": "^(https?://[a-zA-Z0-9-_.+%/]+\\.(svg|ico))?$",
+            "type": "string"
+          },
+          "FontUrl": {
+            "maxLength": 1284,
+            "minLength": 0,
+            "pattern": "^(https?://[a-zA-Z0-9-_.+%/]+\\.(ttf|woff|woff2|otf))?$",
+            "type": "string"
+          },
+          "LogoUrl": {
+            "maxLength": 1284,
+            "minLength": 0,
+            "pattern": "^(https?://[a-zA-Z0-9-_.+%/]+\\.(svg|png))?$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "IdentityProviderConfiguration": {
         "oneOf": [
           {
@@ -183,9 +239,15 @@
         "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{35}$",
         "type": "string"
       },
+      "BrowserExtensionConfiguration": {
+        "$ref": "#/definitions/BrowserExtensionConfiguration"
+      },
       "CreatedAt": {
         "format": "date-time",
         "type": "string"
+      },
+      "CustomizationConfiguration": {
+        "$ref": "#/definitions/CustomizationConfiguration"
       },
       "DefaultEndpoint": {
         "maxLength": 2048,

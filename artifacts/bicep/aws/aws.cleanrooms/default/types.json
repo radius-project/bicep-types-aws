@@ -240,31 +240,71 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CustomMLMemberAbilities",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomMLMemberAbility",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "DataEncryptionMetadata",
     "properties": {
       "AllowCleartext": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/33"
         },
         "flags": 1
       },
       "AllowDuplicates": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/33"
         },
         "flags": 1
       },
       "AllowJoinsOnColumnsWithDifferentNames": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/33"
         },
         "flags": 1
       },
       "PreserveNulls": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/33"
         },
         "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MLMemberAbilities",
+    "properties": {
+      "CustomMLMemberAbilities": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MLPaymentConfig",
+    "properties": {
+      "ModelInference": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
+      "ModelTraining": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
       }
     }
   },
@@ -294,15 +334,21 @@
         },
         "flags": 1
       },
+      "MLMemberAbilities": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
       "MemberAbilities": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/36"
         },
         "flags": 1
       },
       "PaymentConfiguration": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/29"
         },
         "flags": 0
       }
@@ -315,6 +361,30 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ModelInferencePaymentConfig",
+    "properties": {
+      "IsResponsible": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ModelTrainingPaymentConfig",
+    "properties": {
+      "IsResponsible": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Name",
     "properties": {}
   },
@@ -322,9 +392,15 @@
     "$type": "ObjectType",
     "name": "PaymentConfiguration",
     "properties": {
+      "MachineLearning": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
       "QueryCompute": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/30"
         },
         "flags": 1
       }
@@ -336,7 +412,7 @@
     "properties": {
       "IsResponsible": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/33"
         },
         "flags": 1
       }
@@ -361,7 +437,19 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
     "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
   },
   {
     "$type": "ArrayType",
@@ -388,13 +476,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/31"
     }
   },
   {
@@ -425,21 +513,27 @@
         },
         "flags": 1
       },
+      "CreatorMLMemberAbilities": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
       "CreatorMemberAbilities": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/38"
         },
         "flags": 1
       },
       "CreatorPaymentConfiguration": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/29"
         },
         "flags": 0
       },
       "DataEncryptionMetadata": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/19"
         },
         "flags": 0
       },
@@ -451,7 +545,7 @@
       },
       "Members": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/39"
         },
         "flags": 1
       },
@@ -469,7 +563,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration."
@@ -496,7 +590,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/41"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -508,7 +602,7 @@
     "name": "AWS.CleanRooms/Collaboration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/42"
     },
     "flags": 0
   },
@@ -523,7 +617,7 @@
     "properties": {
       "ColumnNames": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/75"
         },
         "flags": 1
       },
@@ -552,7 +646,7 @@
       },
       "Minimum": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/76"
         },
         "flags": 1
       },
@@ -600,7 +694,7 @@
     "properties": {
       "Policy": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/60"
         },
         "flags": 1
       },
@@ -624,25 +718,25 @@
       },
       "AggregateColumns": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/79"
         },
         "flags": 1
       },
       "AllowedJoinOperators": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/80"
         },
         "flags": 0
       },
       "DimensionColumns": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/81"
         },
         "flags": 1
       },
       "JoinColumns": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/82"
         },
         "flags": 1
       },
@@ -654,13 +748,13 @@
       },
       "OutputConstraints": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/83"
         },
         "flags": 1
       },
       "ScalarFunctions": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/84"
         },
         "flags": 1
       }
@@ -683,25 +777,25 @@
       },
       "AllowedAnalyses": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/85"
         },
         "flags": 1
       },
       "AllowedAnalysisProviders": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/86"
         },
         "flags": 0
       },
       "DifferentialPrivacy": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/63"
         },
         "flags": 0
       },
       "DisallowedOutputColumns": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/87"
         },
         "flags": 0
       }
@@ -719,19 +813,49 @@
       },
       "AllowedJoinOperators": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/88"
         },
         "flags": 0
       },
       "JoinColumns": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/89"
         },
         "flags": 1
       },
       "ListColumns": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/90"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AthenaTableReference",
+    "properties": {
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "OutputLocation": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "TableName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "WorkGroup": {
+        "type": {
+          "$ref": "#/6"
         },
         "flags": 1
       }
@@ -743,7 +867,7 @@
     "properties": {
       "V1": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/91"
         },
         "flags": 1
       }
@@ -765,7 +889,7 @@
     "properties": {
       "Columns": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/92"
         },
         "flags": 1
       }
@@ -823,15 +947,73 @@
   },
   {
     "$type": "ObjectType",
-    "name": "TableReference",
+    "name": "SnowflakeTableReference",
     "properties": {
-      "Glue": {
+      "AccountIdentifier": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "SchemaName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "TableName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "TableSchema": {
+        "type": {
+          "$ref": "#/94"
         },
         "flags": 1
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SnowflakeTableSchema",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SnowflakeTableSchemaV1",
+    "properties": {
+      "ColumnName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "ColumnType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TableReference",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -875,7 +1057,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/37"
+      "$ref": "#/45"
     }
   },
   {
@@ -899,7 +1081,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/47"
     }
   },
   {
@@ -952,7 +1134,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/55"
+      "$ref": "#/64"
     }
   },
   {
@@ -960,6 +1142,11 @@
     "itemType": {
       "$ref": "#/6"
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfiguredTable_SnowflakeTableSchema",
+    "properties": {}
   },
   {
     "$type": "StringLiteralType",
@@ -974,13 +1161,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/46"
+      "$ref": "#/54"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/62"
+      "$ref": "#/74"
     }
   },
   {
@@ -989,7 +1176,7 @@
     "properties": {
       "AllowedColumns": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/96"
         },
         "flags": 1
       },
@@ -1001,7 +1188,7 @@
       },
       "AnalysisRules": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/97"
         },
         "flags": 0
       },
@@ -1031,13 +1218,13 @@
       },
       "TableReference": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/73"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/98"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration."
@@ -1064,7 +1251,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/99"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1076,7 +1263,7 @@
     "name": "AWS.CleanRooms/ConfiguredTable@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/87"
+      "$ref": "#/100"
     },
     "flags": 0
   },
@@ -1106,7 +1293,7 @@
     "properties": {
       "Policy": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/110"
         },
         "flags": 1
       },
@@ -1124,13 +1311,13 @@
     "properties": {
       "AllowedAdditionalAnalyses": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/116"
         },
         "flags": 0
       },
       "AllowedResultReceivers": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/117"
         },
         "flags": 0
       }
@@ -1142,13 +1329,13 @@
     "properties": {
       "AllowedAdditionalAnalyses": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/118"
         },
         "flags": 0
       },
       "AllowedResultReceivers": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/119"
         },
         "flags": 0
       }
@@ -1160,13 +1347,13 @@
     "properties": {
       "AllowedAdditionalAnalyses": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/120"
         },
         "flags": 0
       },
       "AllowedResultReceivers": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/121"
         },
         "flags": 0
       }
@@ -1178,7 +1365,7 @@
     "properties": {
       "V1": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/122"
         },
         "flags": 1
       }
@@ -1272,13 +1459,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/93"
+      "$ref": "#/106"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/113"
     }
   },
   {
@@ -1293,7 +1480,7 @@
       },
       "ConfiguredTableAssociationAnalysisRules": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/124"
         },
         "flags": 0
       },
@@ -1335,7 +1522,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/125"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration."
@@ -1362,7 +1549,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/126"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1374,7 +1561,7 @@
     "name": "AWS.CleanRooms/ConfiguredTableAssociation@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/114"
+      "$ref": "#/127"
     },
     "flags": 0
   },
@@ -1390,7 +1577,7 @@
       },
       "ManageResourcePolicies": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/33"
         },
         "flags": 1
       }
@@ -1402,7 +1589,7 @@
     "properties": {
       "IdMappingTableInputSource": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/134"
         },
         "flags": 1
       }
@@ -1452,7 +1639,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/118"
+      "$ref": "#/131"
     }
   },
   {
@@ -1462,7 +1649,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/119"
+      "$ref": "#/132"
     }
   },
   {
@@ -1501,13 +1688,13 @@
       },
       "InputReferenceConfig": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/129"
         },
         "flags": 1
       },
       "InputReferenceProperties": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/130"
         },
         "flags": 2
       },
@@ -1537,7 +1724,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/136"
         },
         "flags": 0
       }
@@ -1563,7 +1750,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/137"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1575,7 +1762,7 @@
     "name": "AWS.CleanRooms/IdMappingTable@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/125"
+      "$ref": "#/138"
     },
     "flags": 0
   },
@@ -1590,7 +1777,7 @@
     "properties": {
       "AllowUseAsDimensionColumn": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/33"
         },
         "flags": 1
       }
@@ -1608,7 +1795,7 @@
       },
       "ManageResourcePolicies": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/33"
         },
         "flags": 1
       }
@@ -1620,7 +1807,7 @@
     "properties": {
       "IdMappingWorkflowsSupported": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/146"
         },
         "flags": 0
       },
@@ -1658,7 +1845,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/127"
+      "$ref": "#/140"
     }
   },
   {
@@ -1668,7 +1855,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/131"
+      "$ref": "#/144"
     }
   },
   {
@@ -1701,7 +1888,7 @@
       },
       "IdMappingConfig": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/141"
         },
         "flags": 0
       },
@@ -1713,13 +1900,13 @@
       },
       "InputReferenceConfig": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/142"
         },
         "flags": 1
       },
       "InputReferenceProperties": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/143"
         },
         "flags": 2
       },
@@ -1743,7 +1930,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/148"
         },
         "flags": 0
       }
@@ -1769,7 +1956,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/149"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1781,17 +1968,65 @@
     "name": "AWS.CleanRooms/IdNamespaceAssociation@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/137"
+      "$ref": "#/150"
     },
     "flags": 0
   },
   {
     "$type": "ObjectType",
+    "name": "MembershipMLPaymentConfig",
+    "properties": {
+      "ModelInference": {
+        "type": {
+          "$ref": "#/153"
+        },
+        "flags": 0
+      },
+      "ModelTraining": {
+        "type": {
+          "$ref": "#/154"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MembershipModelInferencePaymentConfig",
+    "properties": {
+      "IsResponsible": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MembershipModelTrainingPaymentConfig",
+    "properties": {
+      "IsResponsible": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "MembershipPaymentConfiguration",
     "properties": {
+      "MachineLearning": {
+        "type": {
+          "$ref": "#/152"
+        },
+        "flags": 0
+      },
       "QueryCompute": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/158"
         },
         "flags": 1
       }
@@ -1803,7 +2038,7 @@
     "properties": {
       "S3": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/161"
         },
         "flags": 1
       }
@@ -1815,7 +2050,7 @@
     "properties": {
       "OutputConfiguration": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/156"
         },
         "flags": 1
       },
@@ -1833,7 +2068,7 @@
     "properties": {
       "IsResponsible": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/33"
         },
         "flags": 1
       }
@@ -1873,7 +2108,7 @@
       },
       "SingleFileOutput": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/33"
         },
         "flags": 0
       }
@@ -1909,7 +2144,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/147"
+      "$ref": "#/163"
     }
   },
   {
@@ -1942,7 +2177,7 @@
       },
       "DefaultResultConfiguration": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/157"
         },
         "flags": 0
       },
@@ -1954,7 +2189,7 @@
       },
       "PaymentConfiguration": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/155"
         },
         "flags": 0
       },
@@ -1966,7 +2201,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/149"
+          "$ref": "#/165"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms membership."
@@ -1993,7 +2228,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/166"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2005,7 +2240,7 @@
     "name": "AWS.CleanRooms/Membership@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/151"
+      "$ref": "#/167"
     },
     "flags": 0
   },
@@ -2037,13 +2272,13 @@
     "properties": {
       "Epsilon": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/76"
         },
         "flags": 1
       },
       "UsersNoisePerQuery": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/76"
         },
         "flags": 1
       }
@@ -2052,7 +2287,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/153"
+      "$ref": "#/169"
     }
   },
   {
@@ -2097,7 +2332,7 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/155"
+          "$ref": "#/171"
         },
         "flags": 1
       },
@@ -2115,7 +2350,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/172"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms privacy budget template."
@@ -2142,7 +2377,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/173"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2154,7 +2389,7 @@
     "name": "AWS.CleanRooms/PrivacyBudgetTemplate@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/158"
+      "$ref": "#/174"
     },
     "flags": 0
   }

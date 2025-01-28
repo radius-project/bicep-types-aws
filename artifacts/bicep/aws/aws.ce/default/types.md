@@ -32,14 +32,14 @@
 * **MonitorName**: string (Required): The name of the monitor.
 * **MonitorSpecification**: string
 * **MonitorType**: string (Required)
-* **ResourceTags**: [ResourceTag](#resourcetag)[] (WriteOnly): Tags to assign to monitor.
+* **ResourceTags**: [ResourceTag](#resourcetag)[]: Tags to assign to monitor.
 
 ## AWS.CE/AnomalySubscriptionProperties
 ### Properties
 * **AccountId**: string (ReadOnly): The accountId
 * **Frequency**: string (Required): The frequency at which anomaly reports are sent over email. 
 * **MonitorArnList**: string[] (Required): A list of cost anomaly monitors.
-* **ResourceTags**: [ResourceTag](#resourcetag)[] (WriteOnly): Tags to assign to subscription.
+* **ResourceTags**: [ResourceTag](#resourcetag)[]: Tags to assign to subscription.
 * **Subscribers**: [Subscriber](#subscriber)[] (Required, ReadOnly): A list of subscriber
 * **SubscriptionArn**: string (ReadOnly, Identifier)
 * **SubscriptionName**: string (Required): The name of the subscription.

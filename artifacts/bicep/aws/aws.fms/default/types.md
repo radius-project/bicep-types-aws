@@ -39,6 +39,7 @@
 * **RemediationEnabled**: bool (Required)
 * **ResourcesCleanUp**: bool
 * **ResourceSetIds**: string[]
+* **ResourceTagLogicalOperator**: string
 * **ResourceTags**: [ResourceTag](#resourcetag)[]
 * **ResourceType**: string
 * **ResourceTypeList**: string[]

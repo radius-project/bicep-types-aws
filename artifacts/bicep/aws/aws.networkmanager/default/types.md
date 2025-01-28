@@ -28,6 +28,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.NetworkManager/DeviceProperties](#awsnetworkmanagerdeviceproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.NetworkManager/DirectConnectGatewayAttachment@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NetworkManager/DirectConnectGatewayAttachmentProperties](#awsnetworkmanagerdirectconnectgatewayattachmentproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.NetworkManager/GlobalNetwork@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -145,6 +152,26 @@
 * **Tags**: [Tag](#tag)[]: The tags for the device.
 * **Type**: string: The device type.
 * **Vendor**: string: The device vendor.
+
+## AWS.NetworkManager/DirectConnectGatewayAttachmentProperties
+### Properties
+* **AttachmentId**: string (ReadOnly, Identifier): Id of the attachment.
+* **AttachmentPolicyRuleNumber**: int (ReadOnly): The policy rule number associated with the attachment.
+* **AttachmentType**: string (ReadOnly): Attachment type.
+* **CoreNetworkArn**: string (ReadOnly): The ARN of a core network for the Direct Connect Gateway attachment.
+* **CoreNetworkId**: string (Required): The ID of a core network for the Direct Connect Gateway attachment.
+* **CreatedAt**: string (ReadOnly): Creation time of the attachment.
+* **DirectConnectGatewayArn**: string (Required): The ARN of the Direct Connect Gateway.
+* **EdgeLocations**: string[] (Required): The Regions where the edges are located.
+* **NetworkFunctionGroupName**: string (ReadOnly): The name of the network function group attachment.
+* **OwnerAccountId**: string (ReadOnly): Owner account of the attachment.
+* **ProposedNetworkFunctionGroupChange**: [ProposedNetworkFunctionGroupChange](#proposednetworkfunctiongroupchange): The attachment to move from one network function group to another.
+* **ProposedSegmentChange**: [ProposedSegmentChange](#proposedsegmentchange): The attachment to move from one segment to another.
+* **ResourceArn**: string (ReadOnly): The ARN of the Resource.
+* **SegmentName**: string (ReadOnly): The name of the segment attachment..
+* **State**: string (ReadOnly): State of the attachment.
+* **Tags**: [Tag](#tag)[]: Tags for the attachment.
+* **UpdatedAt**: string (ReadOnly): Last update time of the attachment.
 
 ## AWS.NetworkManager/GlobalNetworkProperties
 ### Properties
@@ -353,6 +380,12 @@
 * **NetworkFunctionGroupName**: string: The name of the network function group to change.
 * **Tags**: [Tag](#tag)[]: The key-value tags that changed for the network function group.
 
+## ProposedNetworkFunctionGroupChange
+### Properties
+* **AttachmentPolicyRuleNumber**: int: The rule number in the policy document that applies to this change.
+* **NetworkFunctionGroupName**: string: The name of the network function group to change.
+* **Tags**: [Tag](#tag)[]: The key-value tags that changed for the network function group.
+
 ## ProposedSegmentChange
 ### Properties
 * **AttachmentPolicyRuleNumber**: int: The rule number in the policy document that applies to this change.
@@ -376,6 +409,17 @@
 * **AttachmentPolicyRuleNumber**: int: The rule number in the policy document that applies to this change.
 * **SegmentName**: string: The name of the segment to change.
 * **Tags**: [Tag](#tag)[]: The key-value tags that changed for the segment.
+
+## ProposedSegmentChange
+### Properties
+* **AttachmentPolicyRuleNumber**: int: The rule number in the policy document that applies to this change.
+* **SegmentName**: string: The name of the segment to change.
+* **Tags**: [Tag](#tag)[]: The key-value tags that changed for the segment.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties

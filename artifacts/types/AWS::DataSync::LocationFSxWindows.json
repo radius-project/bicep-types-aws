@@ -1,16 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataSync-LocationFSxWindows",
   "type": "AWS::DataSync::LocationFSxWindows",
-  "time": "2024-11-12T21:21:45.361Z",
+  "time": "2025-01-17T21:04:21.394Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/Domain",
       "/properties/FsxFilesystemArn",
-      "/properties/Password",
-      "/properties/SecurityGroupArns",
-      "/properties/Subdirectory",
-      "/properties/User"
+      "/properties/SecurityGroupArns"
     ],
     "definitions": {
       "Tag": {
@@ -72,9 +68,12 @@
       "update": {
         "permissions": [
           "datasync:DescribeLocationFsxWindows",
+          "datasync:UpdateLocationFsxWindows",
           "datasync:ListTagsForResource",
           "datasync:TagResource",
-          "datasync:UntagResource"
+          "datasync:UntagResource",
+          "fsx:DescribeFileSystems",
+          "ec2:DescribeNetworkInterfaces"
         ]
       }
     },

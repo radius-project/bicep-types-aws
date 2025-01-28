@@ -573,7 +573,8 @@
 
 ## AWS.EC2/CapacityReservationProperties
 ### Properties
-* **AvailabilityZone**: string (Required)
+* **AvailabilityZone**: string
+* **AvailabilityZoneId**: string
 * **AvailableInstanceCount**: int (ReadOnly)
 * **EbsOptimized**: bool
 * **EndDate**: string
@@ -847,7 +848,7 @@
 * **LaunchTemplateId**: string (ReadOnly, Identifier)
 * **LaunchTemplateName**: string: A name for the launch template.
 * **TagSpecifications**: [LaunchTemplateTagSpecification](#launchtemplatetagspecification)[] (WriteOnly): The tags to apply to the launch template on creation. To tag the launch template, the resource type must be ``launch-template``.
- To specify the tags for the resources that are created when an instance is launched, you must use [TagSpecifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-tagspecifications).
+ To specify the tags for resources that are created during instance launch, use [TagSpecifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-tagspecifications).
 * **VersionDescription**: string (WriteOnly): A description for the first version of the launch template.
 
 ## AWS.EC2/LocalGatewayRouteProperties
@@ -1225,20 +1226,22 @@ Use this for ICMP and any protocol that uses ports.
 
 ## AWS.EC2/VerifiedAccessEndpointProperties
 ### Properties
-* **ApplicationDomain**: string (Required): The DNS name for users to reach your application.
+* **ApplicationDomain**: string: The DNS name for users to reach your application.
 * **AttachmentType**: string (Required): The type of attachment used to provide connectivity between the AWS Verified Access endpoint and the application.
+* **CidrOptions**: [CidrOptions](#cidroptions): The options for cidr type endpoint.
 * **CreationTime**: string (ReadOnly): The creation time.
 * **Description**: string: A description for the AWS Verified Access endpoint.
 * **DeviceValidationDomain**: string (ReadOnly): Returned if endpoint has a device trust provider attached.
-* **DomainCertificateArn**: string (Required): The ARN of a public TLS/SSL certificate imported into or created with ACM.
+* **DomainCertificateArn**: string: The ARN of a public TLS/SSL certificate imported into or created with ACM.
 * **EndpointDomain**: string (ReadOnly): A DNS name that is generated for the endpoint.
-* **EndpointDomainPrefix**: string (Required): A custom identifier that gets prepended to a DNS name that is generated for the endpoint.
+* **EndpointDomainPrefix**: string: A custom identifier that gets prepended to a DNS name that is generated for the endpoint.
 * **EndpointType**: string (Required): The type of AWS Verified Access endpoint. Incoming application requests will be sent to an IP address, load balancer or a network interface depending on the endpoint type specified.The type of AWS Verified Access endpoint. Incoming application requests will be sent to an IP address, load balancer or a network interface depending on the endpoint type specified.
 * **LastUpdatedTime**: string (ReadOnly): The last updated time.
 * **LoadBalancerOptions**: [LoadBalancerOptions](#loadbalanceroptions): The load balancer details if creating the AWS Verified Access endpoint as load-balancer type.
 * **NetworkInterfaceOptions**: [NetworkInterfaceOptions](#networkinterfaceoptions): The options for network-interface type endpoint.
 * **PolicyDocument**: string: The AWS Verified Access policy document.
 * **PolicyEnabled**: bool: The status of the Verified Access policy.
+* **RdsOptions**: [RdsOptions](#rdsoptions): The options for rds type endpoint.
 * **SecurityGroupIds**: string[]: The IDs of the security groups for the endpoint.
 * **SseSpecification**: [SseSpecification](#ssespecification): The configuration options for customer provided KMS encryption.
 * **Status**: string (ReadOnly): The endpoint status.
@@ -1263,6 +1266,8 @@ Use this for ICMP and any protocol that uses ports.
 
 ## AWS.EC2/VerifiedAccessInstanceProperties
 ### Properties
+* **CidrEndpointsCustomSubDomain**: string: Introduce CidrEndpointsCustomSubDomain property to represent the domain (say, ava.my-company.com)
+* **CidrEndpointsCustomSubDomainNameServers**: string[] (ReadOnly): Property to represent the name servers assoicated with the domain that AVA manages (say, ['ns1.amazonaws.com', 'ns2.amazonaws.com', 'ns3.amazonaws.com', 'ns4.amazonaws.com']).
 * **CreationTime**: string (ReadOnly): Time this Verified Access Instance was created.
 * **Description**: string: A description for the AWS Verified Access instance.
 * **FipsEnabled**: bool: Indicates whether FIPS is enabled
@@ -1280,6 +1285,7 @@ Use this for ICMP and any protocol that uses ports.
 * **DeviceOptions**: [DeviceOptions](#deviceoptions)
 * **DeviceTrustProviderType**: string: The type of device-based trust provider. Possible values: jamf|crowdstrike
 * **LastUpdatedTime**: string (ReadOnly): The last updated time.
+* **NativeApplicationOidcOptions**: [NativeApplicationOidcOptions](#nativeapplicationoidcoptions)
 * **OidcOptions**: [OidcOptions](#oidcoptions)
 * **PolicyReferenceName**: string (Required): The identifier to be used when working with policy rules.
 * **SseSpecification**: [VerifiedAccessTrustProvider_SseSpecification](#verifiedaccesstrustproviderssespecification): The configuration options for customer provided KMS encryption.
@@ -1365,7 +1371,9 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **CreationTimestamp**: string (ReadOnly)
 * **DnsEntries**: string[] (ReadOnly)
+* **DnsOptions**: [DnsOptionsSpecification](#dnsoptionsspecification)
 * **Id**: string (ReadOnly, Identifier)
+* **IpAddressType**: string
 * **NetworkInterfaceIds**: string[] (ReadOnly)
 * **PolicyDocument**: [VPCEndpoint_PolicyDocument](#vpcendpointpolicydocument) | string: An endpoint policy, which controls access to the service from the VPC. The default endpoint policy allows full access to the service. Endpoint policies are supported only for gateway and interface endpoints.
  For CloudFormation templates in YAML, you can provide the policy in JSON or YAML format. For example, if you have a JSON policy, you can convert it to YAML before including it in the YAML template, and CFNlong converts the policy to JSON format before calling the API actions for privatelink. Alternatively, you can include the JSON directly in the YAML, as shown in the following ``Properties`` section:
@@ -1374,10 +1382,13 @@ Use this for ICMP and any protocol that uses ports.
  To use a private hosted zone, you must set the following VPC attributes to ``true``: ``enableDnsHostnames`` and ``enableDnsSupport``.
  This property is supported only for interface endpoints.
  Default: ``false``
+* **ResourceConfigurationArn**: string
 * **RouteTableIds**: string[]: The IDs of the route tables. Routing is supported only for gateway endpoints.
 * **SecurityGroupIds**: string[]: The IDs of the security groups to associate with the endpoint network interfaces. If this parameter is not specified, we use the default security group for the VPC. Security groups are supported only for interface endpoints.
-* **ServiceName**: string (Required): The name of the endpoint service.
+* **ServiceName**: string: The name of the endpoint service.
+* **ServiceNetworkArn**: string
 * **SubnetIds**: string[]: The IDs of the subnets in which to create endpoint network interfaces. You must specify this property for an interface endpoint or a Gateway Load Balancer endpoint. You can't specify this property for a gateway endpoint. For a Gateway Load Balancer endpoint, you can specify only one subnet.
+* **Tags**: [Tag](#tag)[]
 * **VpcEndpointType**: string: The type of endpoint.
  Default: Gateway
 * **VpcId**: string (Required): The ID of the VPC.
@@ -1395,6 +1406,7 @@ Use this for ICMP and any protocol that uses ports.
 * **NetworkLoadBalancerArns**: string[]
 * **PayerResponsibility**: string
 * **ServiceId**: string (ReadOnly, Identifier)
+* **Tags**: [Tag](#tag)[]: The tags to add to the VPC endpoint service.
 
 ## AWS.EC2/VPCGatewayAttachmentProperties
 ### Properties
@@ -1490,7 +1502,15 @@ Use this for ICMP and any protocol that uses ports.
 
 ## BaselinePerformanceFactors
 ### Properties
-* **Cpu**: [Cpu](#cpu)
+* **Cpu**: [Cpu](#cpu): The CPU performance to consider, using an instance family as the baseline reference.
+
+## BaselinePerformanceFactorsRequest
+### Properties
+* **Cpu**: [CpuPerformanceFactorRequest](#cpuperformancefactorrequest)
+
+## BaselinePerformanceFactorsRequest
+### Properties
+* **Cpu**: [CpuPerformanceFactorRequest](#cpuperformancefactorrequest)
 
 ## BlockDeviceMapping
 ### Properties
@@ -1525,7 +1545,8 @@ Use this for ICMP and any protocol that uses ports.
 ## CapacityReservationSpecification
 ### Properties
 * **CapacityReservationPreference**: string: Indicates the instance's Capacity Reservation preferences. Possible preferences include:
-  +   ``open`` - The instance can run in any ``open`` Capacity Reservation that has matching attributes (instance type, platform, Availability Zone).
+  +   ``capacity-reservations-only`` - The instance will only run in a Capacity Reservation or Capacity Reservation group. If capacity isn't available, the instance will fail to launch.
+  +   ``open`` - The instance can run in any ``open`` Capacity Reservation that has matching attributes (instance type, platform, Availability Zone, tenancy).
   +   ``none`` - The instance avoids running in a Capacity Reservation even if one is available. The instance runs in On-Demand capacity.
 * **CapacityReservationTarget**: [CapacityReservationTarget](#capacityreservationtarget): Information about the target Capacity Reservation or Capacity Reservation group.
 
@@ -1533,6 +1554,13 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **CapacityReservationId**: string: The ID of the Capacity Reservation in which to run the instance.
 * **CapacityReservationResourceGroupArn**: string: The ARN of the Capacity Reservation resource group in which to run the instance.
+
+## CidrOptions
+### Properties
+* **Cidr**: string: The IP address range, in CIDR notation.
+* **PortRanges**: [PortRange](#portrange)[]: The list of port range.
+* **Protocol**: string: The IP protocol.
+* **SubnetIds**: string[]: The IDs of the subnets.
 
 ## ClassicLoadBalancer
 ### Properties
@@ -1564,13 +1592,21 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Cpu
 ### Properties
-* **References**: [Reference](#reference)[]
+* **References**: [Reference](#reference)[]: The instance family to use as the baseline reference for CPU performance. All instance types that match your specified attributes are compared against the CPU performance of the referenced instance family, regardless of CPU manufacturer or architecture differences.
 
 ## CpuOptions
 ### Properties
 * **AmdSevSnp**: string: Indicates whether to enable the instance for AMD SEV-SNP. AMD SEV-SNP is supported with M6a, R6a, and C6a instance types only. For more information, see [AMD SEV-SNP](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sev-snp.html).
 * **CoreCount**: int: The number of CPU cores for the instance.
 * **ThreadsPerCore**: int: The number of threads per CPU core. To disable multithreading for the instance, specify a value of ``1``. Otherwise, specify the default value of ``2``.
+
+## CpuPerformanceFactorRequest
+### Properties
+* **References**: [PerformanceFactorReferenceRequest](#performancefactorreferencerequest)[]
+
+## CpuPerformanceFactorRequest
+### Properties
+* **References**: [PerformanceFactorReferenceRequest](#performancefactorreferencerequest)[]
 
 ## CreditSpecification
 ### Properties
@@ -1581,6 +1617,11 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **PublicSigningKeyUrl**: string: URL Verified Access will use to verify authenticity of the device tokens.
 * **TenantId**: string: The ID of the tenant application with the device-identity provider.
+
+## DnsOptionsSpecification
+### Properties
+* **DnsRecordIpType**: string
+* **PrivateDnsOnlyForInboundResolverEndpoint**: string
 
 ## Ebs
 ### Properties
@@ -1604,7 +1645,7 @@ Use this for ICMP and any protocol that uses ports.
   
  For ``io2`` volumes, you can achieve up to 256,000 IOPS on [instances built on the Nitro System](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances). On other instances, you can achieve performance up to 32,000 IOPS.
  This parameter is supported for ``io1``, ``io2``, and ``gp3`` volumes only.
-* **KmsKeyId**: string: The ARN of the symmetric KMSlong (KMS) CMK used for encryption.
+* **KmsKeyId**: string: Identifier (key ID, key alias, key ARN, or alias ARN) of the customer managed KMS key to use for EBS encryption.
 * **SnapshotId**: string: The ID of the snapshot.
 * **Throughput**: int: The throughput to provision for a ``gp3`` volume, with a maximum of 1,000 MiB/s.
  Valid Range: Minimum value of 125. Maximum value of 1000.
@@ -1899,9 +1940,9 @@ Use this for ICMP and any protocol that uses ports.
 * **AcceleratorTotalMemoryMiB**: [AcceleratorTotalMemoryMiB](#acceleratortotalmemorymib): The minimum and maximum amount of total accelerator memory, in MiB.
  Default: No minimum or maximum limits
 * **AcceleratorTypes**: string[]: The accelerator types that must be on the instance type.
-  +  For instance types with GPU accelerators, specify ``gpu``.
   +  For instance types with FPGA accelerators, specify ``fpga``.
-  +  For instance types with inference accelerators, specify ``inference``.
+  +  For instance types with GPU accelerators, specify ``gpu``.
+  +  For instance types with Inference accelerators, specify ``inference``.
   
  Default: Any accelerator type
 * **AllowedInstanceTypes**: string[]: The instance types to apply your specified attributes against. All other instance types are ignored, even if they match your specified attributes.
@@ -1917,7 +1958,7 @@ Use this for ICMP and any protocol that uses ports.
  Default: ``excluded``
 * **BaselineEbsBandwidthMbps**: [BaselineEbsBandwidthMbps](#baselineebsbandwidthmbps): The minimum and maximum baseline bandwidth to Amazon EBS, in Mbps. For more information, see [Amazon EBS–optimized instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html) in the *Amazon EC2 User Guide*.
  Default: No minimum or maximum limits
-* **BaselinePerformanceFactors**: [BaselinePerformanceFactors](#baselineperformancefactors)
+* **BaselinePerformanceFactors**: [BaselinePerformanceFactors](#baselineperformancefactors): The baseline performance to consider, using an instance family as a baseline reference. The instance family establishes the lowest acceptable level of performance. Amazon EC2 uses this baseline to guide instance type selection, but there is no guarantee that the selected instance types will always exceed the baseline for every application. Currently, this parameter only supports CPU performance as a baseline performance factor. For more information, see [Performance protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html#ec2fleet-abis-performance-protection) in the *Amazon EC2 User Guide*.
 * **BurstablePerformance**: string: Indicates whether burstable performance T instance types are included, excluded, or required. For more information, see [Burstable performance instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html).
   +  To include burstable performance instance types, specify ``included``.
   +  To require only burstable performance instance types, specify ``required``.
@@ -1928,6 +1969,7 @@ Use this for ICMP and any protocol that uses ports.
   +  For instance types with Intel CPUs, specify ``intel``.
   +  For instance types with AMD CPUs, specify ``amd``.
   +  For instance types with AWS CPUs, specify ``amazon-web-services``.
+  +  For instance types with Apple CPUs, specify ``apple``.
   
   Don't confuse the CPU manufacturer with the CPU architecture. Instances will be launched with a compatible CPU architecture based on the Amazon Machine Image (AMI) that you specify in your launch template.
   Default: Any manufacturer
@@ -1991,6 +2033,7 @@ Use this for ICMP and any protocol that uses ports.
 * **AllowedInstanceTypes**: string[]
 * **BareMetal**: string
 * **BaselineEbsBandwidthMbps**: [BaselineEbsBandwidthMbpsRequest](#baselineebsbandwidthmbpsrequest)
+* **BaselinePerformanceFactors**: [BaselinePerformanceFactorsRequest](#baselineperformancefactorsrequest)
 * **BurstablePerformance**: string
 * **CpuManufacturers**: string[]
 * **ExcludedInstanceTypes**: string[]
@@ -2018,6 +2061,7 @@ Use this for ICMP and any protocol that uses ports.
 * **AllowedInstanceTypes**: string[]
 * **BareMetal**: string
 * **BaselineEbsBandwidthMbps**: [BaselineEbsBandwidthMbpsRequest](#baselineebsbandwidthmbpsrequest)
+* **BaselinePerformanceFactors**: [BaselinePerformanceFactorsRequest](#baselineperformancefactorsrequest)
 * **BurstablePerformance**: string
 * **CpuManufacturers**: string[]
 * **ExcludedInstanceTypes**: string[]
@@ -2073,6 +2117,9 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Ipv6Prefix**: string (Required)
 
+## LaunchTemplate_NetworkPerformanceOptions
+### Properties
+
 ## LaunchTemplateConfig
 ### Properties
 * **LaunchTemplateSpecification**: [FleetLaunchTemplateSpecification](#fleetlaunchtemplatespecification)
@@ -2089,7 +2136,8 @@ Use this for ICMP and any protocol that uses ports.
 * **EbsOptimized**: bool: Indicates whether the instance is optimized for Amazon EBS I/O. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal Amazon EBS I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS-optimized instance.
 * **ElasticGpuSpecifications**: [ElasticGpuSpecification](#elasticgpuspecification)[]: Deprecated.
   Amazon Elastic Graphics reached end of life on January 8, 2024. For workloads that require graphics acceleration, we recommend that you use Amazon EC2 G4ad, G4dn, or G5 instances.
-* **ElasticInferenceAccelerators**: [LaunchTemplateElasticInferenceAccelerator](#launchtemplateelasticinferenceaccelerator)[]: An elastic inference accelerator to associate with the instance. Elastic inference accelerators are a resource you can attach to your Amazon EC2 instances to accelerate your Deep Learning (DL) inference workloads.
+* **ElasticInferenceAccelerators**: [LaunchTemplateElasticInferenceAccelerator](#launchtemplateelasticinferenceaccelerator)[]: Amazon Elastic Inference is no longer available.
+  An elastic inference accelerator to associate with the instance. Elastic inference accelerators are a resource you can attach to your Amazon EC2 instances to accelerate your Deep Learning (DL) inference workloads.
  You cannot specify accelerators from different generations in the same request.
   Starting April 15, 2023, AWS will not onboard new customers to Amazon Elastic Inference (EI), and will help current customers migrate their workloads to options that offer better price and performance. After April 15, 2023, new customers will not be able to launch instances with Amazon EI accelerators in Amazon SageMaker, Amazon ECS, or Amazon EC2. However, customers who have used Amazon EI at least once during the past 30-day period are considered current customers and will be able to continue using the service.
 * **EnclaveOptions**: [EnclaveOptions](#enclaveoptions): Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see [What is Nitro Enclaves?](https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html) in the *Nitro Enclaves User Guide*.
@@ -2116,7 +2164,7 @@ Use this for ICMP and any protocol that uses ports.
   
   If you specify ``InstanceRequirements``, you can't specify ``InstanceType``.
  Attribute-based instance type selection is only supported when using Auto Scaling groups, EC2 Fleet, and Spot Fleet to launch instances. If you plan to use the launch template in the [launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html), or with the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API or [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) AWS CloudFormation resource, you can't specify ``InstanceRequirements``.
-  For more information, see [Attribute-based instance type selection for EC2 Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html), [Attribute-based instance type selection for Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html), and [Spot placement score](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html) in the *Amazon EC2 User Guide*.
+  For more information, see [Specify attributes for instance type selection for EC2 Fleet or Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html) and [Spot placement score](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html) in the *Amazon EC2 User Guide*.
 * **InstanceType**: string: The instance type. For more information, see [Amazon EC2 instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the *Amazon EC2 User Guide*.
  If you specify ``InstanceType``, you can't specify ``InstanceRequirements``.
 * **KernelId**: string: The ID of the kernel.
@@ -2128,6 +2176,7 @@ Use this for ICMP and any protocol that uses ports.
 * **MetadataOptions**: [MetadataOptions](#metadataoptions): The metadata options for the instance. For more information, see [Instance metadata and user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the *Amazon EC2 User Guide*.
 * **Monitoring**: [Monitoring](#monitoring): The monitoring for the instance.
 * **NetworkInterfaces**: [NetworkInterface](#networkinterface)[]: The network interfaces for the instance.
+* **NetworkPerformanceOptions**: [LaunchTemplate_NetworkPerformanceOptions](#launchtemplatenetworkperformanceoptions)
 * **Placement**: [Placement](#placement): The placement for the instance.
 * **PrivateDnsNameOptions**: [PrivateDnsNameOptions](#privatednsnameoptions): The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries should be handled. For more information, see [Amazon EC2 instance hostname types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html) in the *User Guide*.
 * **RamDiskId**: string: The ID of the RAM disk.
@@ -2136,8 +2185,7 @@ Use this for ICMP and any protocol that uses ports.
  If you specify a network interface, you must specify any security groups as part of the network interface instead.
 * **SecurityGroups**: string[]: The names of the security groups. For a nondefault VPC, you must use security group IDs instead.
  If you specify a network interface, you must specify any security groups as part of the network interface instead of using this parameter.
-* **TagSpecifications**: [TagSpecification](#tagspecification)[]: The tags to apply to the resources that are created during instance launch.
- To tag a resource after it has been created, see [CreateTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html).
+* **TagSpecifications**: [TagSpecification](#tagspecification)[]: The tags to apply to resources that are created during instance launch.
  To tag the launch template itself, use [TagSpecifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html#cfn-ec2-launchtemplate-tagspecifications).
 * **UserData**: string: The user data to make available to the instance. You must provide base64-encoded text. User data is limited to 16 KB. For more information, see [Run commands on your Amazon EC2 instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) in the *Amazon EC2 User Guide*.
  If you are creating the launch template for use with BATCH, the user data must be provided in the [MIME multi-part archive format](https://docs.aws.amazon.com/https://cloudinit.readthedocs.io/en/latest/topics/format.html#mime-multi-part-archive). For more information, see [Amazon EC2 user data in launch templates](https://docs.aws.amazon.com/batch/latest/userguide/launch-templates.html) in the *User Guide*.
@@ -2175,6 +2223,7 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **LoadBalancerArn**: string: The ARN of the load balancer.
 * **Port**: int: The IP port number.
+* **PortRanges**: [PortRange](#portrange)[]: The list of port range.
 * **Protocol**: string: The IP protocol.
 * **SubnetIds**: string[]: The IDs of the subnets.
 
@@ -2242,6 +2291,17 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Enabled**: bool: Specify ``true`` to enable detailed monitoring. Otherwise, basic monitoring is enabled.
 
+## NativeApplicationOidcOptions
+### Properties
+* **AuthorizationEndpoint**: string: The OIDC authorization endpoint.
+* **ClientId**: string: The client identifier.
+* **ClientSecret**: string (WriteOnly): The client secret.
+* **Issuer**: string: The OIDC issuer.
+* **PublicSigningKeyEndpoint**: string: The public signing key for endpoint
+* **Scope**: string: OpenID Connect (OIDC) scopes are used by an application during authentication to authorize access to details of a user. Each scope returns a specific set of user attributes.
+* **TokenEndpoint**: string: The OIDC token endpoint.
+* **UserInfoEndpoint**: string: The OIDC user info endpoint.
+
 ## NetworkBandwidthGbps
 ### Properties
 * **Max**: int: The maximum amount of network bandwidth, in Gbps. To specify no maximum limit, omit this parameter.
@@ -2282,12 +2342,14 @@ Use this for ICMP and any protocol that uses ports.
 * **ConnectionTrackingSpecification**: [ConnectionTrackingSpecification](#connectiontrackingspecification): A connection tracking specification for the network interface.
 * **DeleteOnTermination**: bool: Indicates whether the network interface is deleted when the instance is terminated.
 * **Description**: string: A description for the network interface.
-* **DeviceIndex**: int: The device index for the network interface attachment. Each network interface requires a device index. If you create a launch template that includes secondary network interfaces but not a primary network interface, then you must add a primary network interface as a launch parameter when you launch an instance from the template.
+* **DeviceIndex**: int: The device index for the network interface attachment. If the network interface is of type ``interface``, you must specify a device index.
+ If you create a launch template that includes secondary network interfaces but no primary network interface, and you specify it using the ``LaunchTemplate`` property of ``AWS::EC2::Instance``, then you must include a primary network interface using the ``NetworkInterfaces`` property of ``AWS::EC2::Instance``.
 * **EnaSrdSpecification**: [EnaSrdSpecification](#enasrdspecification): The ENA Express configuration for the network interface.
 * **Groups**: string[]: The IDs of one or more security groups.
-* **InterfaceType**: string: The type of network interface. To create an Elastic Fabric Adapter (EFA), specify ``efa``. For more information, see [Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) in the *Amazon EC2 User Guide*.
+* **InterfaceType**: string: The type of network interface. To create an Elastic Fabric Adapter (EFA), specify ``efa`` or ``efa``. For more information, see [Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) in the *Amazon EC2 User Guide*.
  If you are not creating an EFA, specify ``interface`` or omit this parameter.
- Valid values: ``interface`` | ``efa``
+ If you specify ``efa-only``, do not assign any IP addresses to the network interface. EFA-only network interfaces do not support IP addresses.
+ Valid values: ``interface`` | ``efa`` | ``efa-only``
 * **Ipv4PrefixCount**: int: The number of IPv4 prefixes to be automatically assigned to the network interface. You cannot use this option if you use the ``Ipv4Prefix`` option.
 * **Ipv4Prefixes**: [Ipv4PrefixSpecification](#ipv4prefixspecification)[]: One or more IPv4 prefixes to be assigned to the network interface. You cannot use this option if you use the ``Ipv4PrefixCount`` option.
 * **Ipv6AddressCount**: int: The number of IPv6 addresses to assign to a network interface. Amazon EC2 automatically selects the IPv6 addresses from the subnet range. You can't use this option if specifying specific IPv6 addresses.
@@ -2325,6 +2387,7 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **NetworkInterfaceId**: string: The ID of the network interface.
 * **Port**: int: The IP port number.
+* **PortRanges**: [PortRange](#portrange)[]: The list of port ranges.
 * **Protocol**: string: The IP protocol.
 
 ## OidcOptions
@@ -2393,6 +2456,14 @@ Use this for ICMP and any protocol that uses ports.
 * **Code**: string: The status code.
 * **Message**: string: The status message, if applicable.
 
+## PerformanceFactorReferenceRequest
+### Properties
+* **InstanceFamily**: string
+
+## PerformanceFactorReferenceRequest
+### Properties
+* **InstanceFamily**: string
+
 ## Phase1DHGroupNumbersRequestListValue
 ### Properties
 * **Value**: int: The Diffie-Hellmann group number.
@@ -2445,6 +2516,11 @@ Use this for ICMP and any protocol that uses ports.
 * **From**: int
 * **To**: int
 
+## PortRange
+### Properties
+* **FromPort**: int: The first port in the range.
+* **ToPort**: int: The last port in the range.
+
 ## PrivateDnsNameOptions
 ### Properties
 * **EnableResourceNameDnsAAAARecord**: bool: Indicates whether to respond to DNS queries for instance hostnames with DNS AAAA records.
@@ -2475,9 +2551,31 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Cidr**: string (Required)
 
+## RdsOptions
+### Properties
+* **Port**: int: The IP port number.
+* **Protocol**: string: The IP protocol.
+* **RdsDbClusterArn**: string: The ARN of the RDS DB cluster.
+* **RdsDbInstanceArn**: string: The ARN of the RDS DB instance.
+* **RdsDbProxyArn**: string: The ARN of the RDS DB proxy.
+* **RdsEndpoint**: string: The RDS endpoint.
+* **SubnetIds**: string[]: The IDs of the subnets.
+
 ## Reference
 ### Properties
-* **InstanceFamily**: string: The instance family to refer. Ensure that you specify the correct family name. For example, C6i and C6g are valid values, but C6 is not.
+* **InstanceFamily**: string: The instance family to use as a baseline reference.
+  Ensure that you specify the correct value for the instance family. The instance family is everything before the period (``.``) in the instance type name. For example, in the instance type ``c6i.large``, the instance family is ``c6i``, not ``c6``. For more information, see [Amazon EC2 instance type naming conventions](https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html) in *Amazon EC2 Instance Types*.
+  The following instance families are *not supported* for performance protection:
+  +   ``c1`` 
+  +   ``g3`` | ``g3s`` 
+  +   ``hpc7g`` 
+  +   ``m1`` | ``m2`` 
+  +   ``mac1`` | ``mac2`` | ``mac2-m1ultra`` | ``mac2-m2`` | ``mac2-m2pro`` 
+  +   ``p3dn`` | ``p4d`` | ``p5`` 
+  +   ``t1`` 
+  +   ``u-12tb1`` | ``u-18tb1`` | ``u-24tb1`` | ``u-3tb1`` | ``u-6tb1`` | ``u-9tb1`` | ``u7i-12tb`` | ``u7in-16tb`` | ``u7in-24tb`` | ``u7in-32tb`` 
+  
+ If you enable performance protection by specifying a supported instance family, the returned instance types will exclude the above unsupported instance families.
 
 ## ResourceStatementRequest
 ### Properties
@@ -2837,6 +2935,16 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

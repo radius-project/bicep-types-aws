@@ -98,6 +98,7 @@
 
 ## VPCConfig
 ### Properties
+* **Ipv6AllowedForDualStack**: bool: Allow outbound IPv6 traffic on VPC canaries that are connected to dual-stack subnets if set to true
 * **SecurityGroupIds**: string[] (Required)
 * **SubnetIds**: string[] (Required)
 * **VpcId**: string

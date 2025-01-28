@@ -73,7 +73,7 @@
 
 ## ExperimentTemplateExperimentReportConfiguration
 ### Properties
-* **DataSources**: [ExperimentTemplate_DataSources](#experimenttemplatedatasources) (Required)
+* **DataSources**: [ExperimentTemplate_DataSources](#experimenttemplatedatasources)
 * **Outputs**: [ExperimentTemplate_Outputs](#experimenttemplateoutputs) (Required)
 * **PostExperimentDuration**: string
 * **PreExperimentDuration**: string

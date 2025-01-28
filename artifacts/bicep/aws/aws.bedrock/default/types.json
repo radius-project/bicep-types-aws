@@ -31,14 +31,14 @@
       },
       "ActionGroupName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of the action group"
       },
       "ActionGroupState": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0
       },
@@ -50,7 +50,7 @@
       },
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Description of action group"
@@ -63,13 +63,13 @@
       },
       "ParentActionGroupSignature": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "SkipResourceInUseCheckOnDelete": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "Specifies whether to allow deleting action group while it is in use."
@@ -82,21 +82,21 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Description of the Resource."
       },
       "KnowledgeBaseId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Identifier for a resource."
       },
       "KnowledgeBaseState": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0
       }
@@ -123,14 +123,14 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Description of function"
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name for a resource."
@@ -138,6 +138,12 @@
       "Parameters": {
         "type": {
           "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "RequireConfirmation": {
+        "type": {
+          "$ref": "#/24"
         },
         "flags": 0
       }
@@ -149,7 +155,7 @@
     "properties": {
       "Functions": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/26"
         },
         "flags": 1,
         "description": "List of Function definitions"
@@ -162,14 +168,14 @@
     "properties": {
       "GuardrailIdentifier": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Identifier for the guardrail, could be the id or the arn"
       },
       "GuardrailVersion": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Version of the guardrail"
@@ -182,35 +188,35 @@
     "properties": {
       "MaximumLength": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Maximum length of output"
       },
       "StopSequences": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "List of stop sequences"
       },
       "Temperature": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Controls randomness, higher values increase diversity"
       },
       "TopK": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Sample from the k most likely next tokens"
       },
       "TopP": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Cumulative probability cutoff for token selection"
@@ -228,21 +234,21 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Description of function parameter."
       },
       "Required": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "Information about if a parameter is required for function call. Default to false."
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -259,7 +265,7 @@
     "properties": {
       "BasePromptTemplate": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Base Prompt Template."
@@ -272,25 +278,25 @@
       },
       "ParserMode": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "PromptCreationMode": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "PromptState": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "PromptType": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0
       }
@@ -302,14 +308,14 @@
     "properties": {
       "OverrideLambda": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "ARN of a Lambda."
       },
       "PromptConfigurations": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/29"
         },
         "flags": 1,
         "description": "List of BasePromptConfiguration"
@@ -328,18 +334,23 @@
   },
   {
     "$type": "ObjectType",
+    "name": "RequireConfirmation",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "S3Identifier",
     "properties": {
       "S3BucketName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "A bucket in S3."
       },
       "S3ObjectKey": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "A object key in S3."
@@ -374,7 +385,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
@@ -396,7 +407,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
@@ -408,7 +419,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
@@ -417,90 +428,90 @@
     "properties": {
       "ActionGroups": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/31"
         },
         "flags": 4,
         "description": "List of ActionGroups"
       },
       "AgentArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Arn representation of the Agent."
       },
       "AgentId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "Identifier for a resource."
       },
       "AgentName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name for a resource."
       },
       "AgentResourceRoleArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "ARN of a IAM role."
       },
       "AgentStatus": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2
       },
       "AgentVersion": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Draft Agent Version."
       },
       "AutoPrepare": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 4,
         "description": "Specifies whether to automatically prepare after creating or updating the agent."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp."
       },
       "CustomerEncryptionKeyArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "A KMS key ARN"
       },
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Description of the Resource."
       },
       "FailureReasons": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/32"
         },
         "flags": 2,
         "description": "Failure Reasons for Error."
       },
       "FoundationModel": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "ARN or name of a Bedrock model."
@@ -513,28 +524,28 @@
       },
       "IdleSessionTTLInSeconds": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Max Session Time."
       },
       "Instruction": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Instruction for the agent."
       },
       "KnowledgeBases": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "List of Agent Knowledge Bases"
       },
       "PreparedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp."
@@ -547,33 +558,33 @@
       },
       "RecommendedActions": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/34"
         },
         "flags": 2,
         "description": "The recommended actions users can take to resolve an error in failureReasons."
       },
       "SkipResourceInUseCheckOnDelete": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 4,
         "description": "Specifies whether to allow deleting agent while it is in use."
       },
       "Tags": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "TestAliasTags": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp."
@@ -586,21 +597,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/35"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -612,7 +623,7 @@
     "name": "AWS.Bedrock/Agent@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/35"
+      "$ref": "#/36"
     },
     "flags": 0
   },
@@ -622,21 +633,21 @@
     "properties": {
       "EndDate": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Time Stamp."
       },
       "RoutingConfiguration": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "Routing configuration for an Agent alias."
       },
       "StartDate": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Time Stamp."
@@ -649,7 +660,7 @@
     "properties": {
       "AgentVersion": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Agent Version."
@@ -669,7 +680,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/39"
     }
   },
   {
@@ -679,13 +690,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/37"
+      "$ref": "#/38"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/39"
     }
   },
   {
@@ -694,75 +705,75 @@
     "properties": {
       "AgentAliasArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Arn representation of the Agent Alias."
       },
       "AgentAliasHistoryEvents": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 2,
         "description": "The list of history events for an alias for an Agent."
       },
       "AgentAliasId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "Id for an Agent Alias generated at the server side."
       },
       "AgentAliasName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name for a resource."
       },
       "AgentAliasStatus": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2
       },
       "AgentId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "Identifier for a resource."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp."
       },
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Description of the Resource."
       },
       "RoutingConfiguration": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "Routing configuration for an Agent alias."
       },
       "Tags": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp."
@@ -775,21 +786,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -801,7 +812,7 @@
     "name": "AWS.Bedrock/AgentAlias@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/46"
+      "$ref": "#/47"
     },
     "flags": 0
   },
@@ -811,7 +822,7 @@
     "properties": {
       "ModelArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "ARN for Foundation Models in Bedrock. These models can be used as base models for model customization jobs"
@@ -839,14 +850,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Tag Key"
       },
       "Value": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Tag Value"
@@ -865,13 +876,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/48"
+      "$ref": "#/49"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/53"
     }
   },
   {
@@ -880,78 +891,78 @@
     "properties": {
       "CreatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp"
       },
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Description of the inference profile"
       },
       "InferenceProfileArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2
       },
       "InferenceProfileId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2
       },
       "InferenceProfileIdentifier": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "Inference profile identifier. Supports both system-defined inference profile ids, and inference profile ARNs."
       },
       "InferenceProfileName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "ModelSource": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/50"
         },
         "flags": 4
       },
       "Models": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/56"
         },
         "flags": 2,
         "description": "List of model configuration"
       },
       "Status": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "List of Tags"
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp"
@@ -964,21 +975,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/58"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -990,9 +1001,21 @@
     "name": "AWS.Bedrock/ApplicationInferenceProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/58"
+      "$ref": "#/59"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BedrockDataAutomationConfiguration",
+    "properties": {
+      "ParsingModality": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1000,14 +1023,20 @@
     "properties": {
       "ModelArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The model's ARN."
       },
+      "ParsingModality": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
       "ParsingPrompt": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/81"
         },
         "flags": 0
       }
@@ -1019,25 +1048,25 @@
     "properties": {
       "ChunkingStrategy": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "FixedSizeChunkingConfiguration": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/75"
         },
         "flags": 0
       },
       "HierarchicalChunkingConfiguration": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/76"
         },
         "flags": 0
       },
       "SemanticChunkingConfiguration": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/93"
         },
         "flags": 0
       }
@@ -1054,7 +1083,7 @@
     "properties": {
       "FilterConfiguration": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0
       }
@@ -1066,13 +1095,13 @@
     "properties": {
       "CrawlerConfiguration": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "SourceConfiguration": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/67"
         },
         "flags": 1
       }
@@ -1084,28 +1113,28 @@
     "properties": {
       "AuthType": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The supported authentication type to authenticate and connect to your Confluence instance."
       },
       "CredentialsSecretArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The Amazon Resource Name of an AWS Secrets Manager secret that stores your authentication credentials for your Confluence instance URL. For more information on the key-value pairs that must be included in your secret, depending on your authentication type, see Confluence connection configuration."
       },
       "HostType": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The supported host type, whether online/cloud or server/on-premises."
       },
       "HostUrl": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The Confluence host URL or instance URL."
@@ -1118,13 +1147,13 @@
     "properties": {
       "PatternObjectFilter": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/84"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The crawl filter type."
@@ -1137,13 +1166,13 @@
     "properties": {
       "IntermediateStorage": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/78"
         },
         "flags": 1
       },
       "Transformations": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/108"
         },
         "flags": 1,
         "description": "A list of Lambda functions that process documents."
@@ -1161,37 +1190,37 @@
     "properties": {
       "ConfluenceConfiguration": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/66"
         },
         "flags": 0
       },
       "S3Configuration": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/86"
         },
         "flags": 0
       },
       "SalesforceConfiguration": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "SharePointConfiguration": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/96"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "WebConfiguration": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/105"
         },
         "flags": 0
       }
@@ -1218,14 +1247,14 @@
     "properties": {
       "MaxTokens": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The maximum number of tokens to include in a chunk."
       },
       "OverlapPercentage": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The percentage of overlap between adjacent chunks of a data source."
@@ -1238,14 +1267,14 @@
     "properties": {
       "LevelConfigurations": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/110"
         },
         "flags": 1,
         "description": "Token settings for each layer."
       },
       "OverlapTokens": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The number of tokens to repeat across chunks in the same layer."
@@ -1258,7 +1287,7 @@
     "properties": {
       "MaxTokens": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The maximum number of tokens that a chunk can contain in this layer."
@@ -1271,7 +1300,7 @@
     "properties": {
       "S3Location": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/87"
         },
         "flags": 1
       }
@@ -1281,15 +1310,21 @@
     "$type": "ObjectType",
     "name": "ParsingConfiguration",
     "properties": {
+      "BedrockDataAutomationConfiguration": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0
+      },
       "BedrockFoundationModelConfiguration": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/62"
         },
         "flags": 0
       },
       "ParsingStrategy": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -1297,11 +1332,16 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ParsingModality",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "ParsingPrompt",
     "properties": {
       "ParsingPromptText": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Instructions for interpreting the contents of a document."
@@ -1319,19 +1359,19 @@
     "properties": {
       "ExclusionFilters": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/111"
         },
         "flags": 0
       },
       "InclusionFilters": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/112"
         },
         "flags": 0
       },
       "ObjectType": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The supported object type or content type of the data source."
@@ -1344,7 +1384,7 @@
     "properties": {
       "Filters": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/113"
         },
         "flags": 1
       }
@@ -1361,21 +1401,21 @@
     "properties": {
       "BucketArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The ARN of the bucket that contains the data source."
       },
       "BucketOwnerAccountId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The account ID for the owner of the S3 bucket."
       },
       "InclusionPrefixes": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "A list of S3 prefixes that define the object containing the data sources."
@@ -1388,7 +1428,7 @@
     "properties": {
       "URI": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The location's URI"
@@ -1401,7 +1441,7 @@
     "properties": {
       "FilterConfiguration": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0
       }
@@ -1413,13 +1453,13 @@
     "properties": {
       "CrawlerConfiguration": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/88"
         },
         "flags": 0
       },
       "SourceConfiguration": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/90"
         },
         "flags": 1
       }
@@ -1431,21 +1471,21 @@
     "properties": {
       "AuthType": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The supported authentication type to authenticate and connect to your Salesforce instance."
       },
       "CredentialsSecretArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The Amazon Resource Name of an AWS Secrets Manager secret that stores your authentication credentials for your Salesforce instance URL. For more information on the key-value pairs that must be included in your secret, depending on your authentication type, see Salesforce connection configuration."
       },
       "HostUrl": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The Salesforce host URL or instance URL."
@@ -1458,7 +1498,7 @@
     "properties": {
       "Url": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "A web url."
@@ -1476,21 +1516,21 @@
     "properties": {
       "BreakpointPercentileThreshold": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The dissimilarity threshold for splitting chunks."
       },
       "BufferSize": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The buffer size."
       },
       "MaxTokens": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The maximum number of tokens that a chunk can contain."
@@ -1503,7 +1543,7 @@
     "properties": {
       "KmsKeyArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The ARN of the AWS KMS key used to encrypt the resource."
@@ -1516,7 +1556,7 @@
     "properties": {
       "FilterConfiguration": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0
       }
@@ -1528,13 +1568,13 @@
     "properties": {
       "CrawlerConfiguration": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/95"
         },
         "flags": 0
       },
       "SourceConfiguration": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/97"
         },
         "flags": 1
       }
@@ -1546,42 +1586,42 @@
     "properties": {
       "AuthType": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The supported authentication type to authenticate and connect to your SharePoint site/sites."
       },
       "CredentialsSecretArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The Amazon Resource Name of an AWS Secrets Manager secret that stores your authentication credentials for your SharePoint site/sites. For more information on the key-value pairs that must be included in your secret, depending on your authentication type, see SharePoint connection configuration."
       },
       "Domain": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The domain of your SharePoint instance or site URL/URLs."
       },
       "HostType": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The supported host type, whether online/cloud or server/on-premises."
       },
       "SiteUrls": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/117"
         },
         "flags": 1,
         "description": "A list of one or more SharePoint site URLs."
       },
       "TenantId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The identifier of your Microsoft 365 tenant."
@@ -1594,14 +1634,14 @@
     "properties": {
       "StepToApply": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "When the service applies the transformation."
       },
       "TransformationFunction": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/99"
         },
         "flags": 1
       }
@@ -1613,7 +1653,7 @@
     "properties": {
       "TransformationLambdaConfiguration": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/100"
         },
         "flags": 1
       }
@@ -1625,7 +1665,7 @@
     "properties": {
       "LambdaArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The function's ARN identifier."
@@ -1638,7 +1678,7 @@
     "properties": {
       "SeedUrls": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/118"
         },
         "flags": 1
       }
@@ -1650,19 +1690,19 @@
     "properties": {
       "ChunkingConfiguration": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/63"
         },
         "flags": 0
       },
       "CustomTransformationConfiguration": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "ParsingConfiguration": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/79"
         },
         "flags": 0
       }
@@ -1674,25 +1714,25 @@
     "properties": {
       "CrawlerLimits": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/104"
         },
         "flags": 0
       },
       "ExclusionFilters": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/119"
         },
         "flags": 0
       },
       "InclusionFilters": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/120"
         },
         "flags": 0
       },
       "Scope": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0
       }
@@ -1704,7 +1744,7 @@
     "properties": {
       "RateLimit": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Rate of web URLs retrieved per minute."
@@ -1717,13 +1757,13 @@
     "properties": {
       "CrawlerConfiguration": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/103"
         },
         "flags": 0
       },
       "SourceConfiguration": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/107"
         },
         "flags": 1
       }
@@ -1740,7 +1780,7 @@
     "properties": {
       "UrlConfiguration": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/101"
         },
         "flags": 1
       }
@@ -1749,79 +1789,79 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/95"
+      "$ref": "#/98"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/75"
+      "$ref": "#/77"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/80"
+      "$ref": "#/83"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/80"
+      "$ref": "#/83"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/88"
+      "$ref": "#/91"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/88"
+      "$ref": "#/91"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
@@ -1831,7 +1871,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
@@ -1840,80 +1880,80 @@
     "properties": {
       "CreatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The time at which the data source was created."
       },
       "DataDeletionPolicy": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "DataSourceConfiguration": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/71"
         },
         "flags": 1
       },
       "DataSourceId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "Identifier for a resource."
       },
       "DataSourceStatus": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2
       },
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Description of the Resource."
       },
       "FailureReasons": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/122"
         },
         "flags": 2,
         "description": "The details of the failure reasons related to the data source."
       },
       "KnowledgeBaseId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "The unique identifier of the knowledge base to which to add the data source."
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the data source."
       },
       "ServerSideEncryptionConfiguration": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/94"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The time at which the knowledge base was last updated."
       },
       "VectorIngestionConfiguration": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/102"
         },
         "flags": 0
       }
@@ -1925,21 +1965,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/123"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1951,7 +1991,7 @@
     "name": "AWS.Bedrock/DataSource@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/121"
+      "$ref": "#/124"
     },
     "flags": 0
   },
@@ -1961,7 +2001,7 @@
     "properties": {
       "AgentAliasArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Arn representation of the Agent Alias."
@@ -1979,7 +2019,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/168"
+          "$ref": "#/171"
         },
         "flags": 1,
         "description": "List of conditions in a condition node"
@@ -1997,14 +2037,14 @@
     "properties": {
       "Expression": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Expression for a condition in a flow"
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a condition in a flow"
@@ -2017,7 +2057,7 @@
     "properties": {
       "Condition": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a condition in a flow"
@@ -2030,34 +2070,34 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/169"
+          "$ref": "#/172"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a connection in a flow"
       },
       "Source": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a node in a flow"
       },
       "Target": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a node in a flow"
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -2079,14 +2119,14 @@
     "properties": {
       "SourceOutput": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a node output in a flow"
       },
       "TargetInput": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a node input in a flow"
@@ -2099,14 +2139,14 @@
     "properties": {
       "Connections": {
         "type": {
-          "$ref": "#/170"
+          "$ref": "#/173"
         },
         "flags": 0,
         "description": "List of connections"
       },
       "Nodes": {
         "type": {
-          "$ref": "#/171"
+          "$ref": "#/174"
         },
         "flags": 0,
         "description": "List of nodes in a flow"
@@ -2119,34 +2159,34 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/172"
+          "$ref": "#/175"
         },
         "flags": 0
       },
       "Inputs": {
         "type": {
-          "$ref": "#/173"
+          "$ref": "#/176"
         },
         "flags": 0,
         "description": "List of node inputs in a flow"
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a node in a flow"
       },
       "Outputs": {
         "type": {
-          "$ref": "#/174"
+          "$ref": "#/177"
         },
         "flags": 0,
         "description": "List of node outputs in a flow"
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -2168,21 +2208,21 @@
     "properties": {
       "Expression": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Expression for a node input in a flow"
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a node input in a flow"
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -2194,14 +2234,14 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a node output in a flow"
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -2223,7 +2263,7 @@
     "properties": {
       "Message": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "validation message"
@@ -2241,14 +2281,14 @@
     "properties": {
       "GuardrailIdentifier": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Identifier for the guardrail, could be the id or the arn"
       },
       "GuardrailVersion": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Version of the guardrail"
@@ -2271,20 +2311,20 @@
     "properties": {
       "GuardrailConfiguration": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/146"
         },
         "flags": 0
       },
       "KnowledgeBaseId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Identifier of the KnowledgeBase"
       },
       "ModelId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models."
@@ -2297,7 +2337,7 @@
     "properties": {
       "LambdaArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "ARN of a Lambda."
@@ -2310,14 +2350,14 @@
     "properties": {
       "BotAliasArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "ARN of a Lex bot alias"
       },
       "LocaleId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Lex bot locale id"
@@ -2335,13 +2375,13 @@
     "properties": {
       "GuardrailConfiguration": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/146"
         },
         "flags": 0
       },
       "SourceConfiguration": {
         "type": {
-          "$ref": "#/176"
+          "$ref": "#/179"
         },
         "flags": 1
       }
@@ -2353,26 +2393,26 @@
     "properties": {
       "InferenceConfiguration": {
         "type": {
-          "$ref": "#/177"
+          "$ref": "#/180"
         },
         "flags": 0
       },
       "ModelId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models."
       },
       "TemplateConfiguration": {
         "type": {
-          "$ref": "#/178"
+          "$ref": "#/181"
         },
         "flags": 1
       },
       "TemplateType": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -2384,7 +2424,7 @@
     "properties": {
       "PromptArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "ARN of a prompt resource possibly with a version"
@@ -2407,7 +2447,7 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Name for an input variable"
@@ -2420,28 +2460,28 @@
     "properties": {
       "MaxTokens": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Maximum length of output"
       },
       "StopSequences": {
         "type": {
-          "$ref": "#/179"
+          "$ref": "#/182"
         },
         "flags": 0,
         "description": "List of stop sequences"
       },
       "Temperature": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Controls randomness, higher values increase diversity"
       },
       "TopP": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Cumulative probability cutoff for token selection"
@@ -2464,7 +2504,7 @@
     "properties": {
       "ServiceConfiguration": {
         "type": {
-          "$ref": "#/180"
+          "$ref": "#/183"
         },
         "flags": 1
       }
@@ -2476,7 +2516,7 @@
     "properties": {
       "BucketName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "bucket name of an s3 that will be used for Retrieval flow node configuration"
@@ -2489,7 +2529,7 @@
     "properties": {
       "S3": {
         "type": {
-          "$ref": "#/160"
+          "$ref": "#/163"
         },
         "flags": 0
       }
@@ -2501,21 +2541,21 @@
     "properties": {
       "Bucket": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "A bucket in S3"
       },
       "Key": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "A object key in S3"
       },
       "Version": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The version of the the S3 object to use"
@@ -2528,7 +2568,7 @@
     "properties": {
       "ServiceConfiguration": {
         "type": {
-          "$ref": "#/181"
+          "$ref": "#/184"
         },
         "flags": 1
       }
@@ -2540,7 +2580,7 @@
     "properties": {
       "BucketName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "bucket name of an s3 that will be used for storage flow node configuration"
@@ -2553,7 +2593,7 @@
     "properties": {
       "S3": {
         "type": {
-          "$ref": "#/164"
+          "$ref": "#/167"
         },
         "flags": 0
       }
@@ -2570,14 +2610,14 @@
     "properties": {
       "InputVariables": {
         "type": {
-          "$ref": "#/182"
+          "$ref": "#/185"
         },
         "flags": 0,
         "description": "List of input variables"
       },
       "Text": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Prompt content for String prompt template"
@@ -2587,7 +2627,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/127"
+      "$ref": "#/130"
     }
   },
   {
@@ -2598,13 +2638,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/129"
+      "$ref": "#/132"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/134"
+      "$ref": "#/137"
     }
   },
   {
@@ -2615,19 +2655,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/137"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/138"
+      "$ref": "#/140"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/141"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/144"
     }
   },
   {
@@ -2648,7 +2688,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
@@ -2664,7 +2704,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/155"
+      "$ref": "#/158"
     }
   },
   {
@@ -2674,7 +2714,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/141"
+      "$ref": "#/144"
     }
   },
   {
@@ -2683,112 +2723,112 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "Arn representation of the Flow"
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp."
       },
       "CustomerEncryptionKeyArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "A KMS key ARN"
       },
       "Definition": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/136"
         },
         "flags": 0
       },
       "DefinitionS3Location": {
         "type": {
-          "$ref": "#/162"
+          "$ref": "#/165"
         },
         "flags": 4
       },
       "DefinitionString": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 4,
         "description": "A JSON string containing a Definition with the same schema as the Definition property of this resource"
       },
       "DefinitionSubstitutions": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/129"
         },
         "flags": 4
       },
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Description of the flow"
       },
       "ExecutionRoleArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "ARN of a IAM role"
       },
       "Id": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Identifier for a Flow"
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name for the flow"
       },
       "Status": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/166"
+          "$ref": "#/169"
         },
         "flags": 0
       },
       "TestAliasTags": {
         "type": {
-          "$ref": "#/166"
+          "$ref": "#/169"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp."
       },
       "Validations": {
         "type": {
-          "$ref": "#/184"
+          "$ref": "#/187"
         },
         "flags": 2
       },
       "Version": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Draft Version."
@@ -2801,21 +2841,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/185"
+          "$ref": "#/188"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2827,7 +2867,7 @@
     "name": "AWS.Bedrock/Flow@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/186"
+      "$ref": "#/189"
     },
     "flags": 0
   },
@@ -2837,7 +2877,7 @@
     "properties": {
       "FlowVersion": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Version."
@@ -2856,7 +2896,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/188"
+      "$ref": "#/191"
     }
   },
   {
@@ -2865,69 +2905,69 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "Arn of the Flow Alias"
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp."
       },
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Description of the Resource."
       },
       "FlowArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "Arn representation of the Flow"
       },
       "FlowId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Identifier for a flow resource."
       },
       "Id": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Id for a Flow Alias generated at the server side."
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name for a resource."
       },
       "RoutingConfiguration": {
         "type": {
-          "$ref": "#/191"
+          "$ref": "#/194"
         },
         "flags": 1,
         "description": "Routing configuration for a Flow alias."
       },
       "Tags": {
         "type": {
-          "$ref": "#/189"
+          "$ref": "#/192"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp."
@@ -2940,21 +2980,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/192"
+          "$ref": "#/195"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2966,7 +3006,7 @@
     "name": "AWS.Bedrock/FlowAlias@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/193"
+      "$ref": "#/196"
     },
     "flags": 0
   },
@@ -2976,7 +3016,7 @@
     "properties": {
       "AgentAliasArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Arn representation of the Agent Alias."
@@ -2994,7 +3034,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/235"
+          "$ref": "#/238"
         },
         "flags": 1,
         "description": "List of conditions in a condition node"
@@ -3007,14 +3047,14 @@
     "properties": {
       "Expression": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Expression for a condition in a flow"
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a condition in a flow"
@@ -3027,7 +3067,7 @@
     "properties": {
       "Condition": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a condition in a flow"
@@ -3040,34 +3080,34 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/236"
+          "$ref": "#/239"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a connection in a flow"
       },
       "Source": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a node in a flow"
       },
       "Target": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a node in a flow"
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -3089,14 +3129,14 @@
     "properties": {
       "SourceOutput": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a node output in a flow"
       },
       "TargetInput": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a node input in a flow"
@@ -3109,14 +3149,14 @@
     "properties": {
       "Connections": {
         "type": {
-          "$ref": "#/237"
+          "$ref": "#/240"
         },
         "flags": 0,
         "description": "List of connections"
       },
       "Nodes": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/241"
         },
         "flags": 0,
         "description": "List of nodes in a flow"
@@ -3129,34 +3169,34 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/239"
+          "$ref": "#/242"
         },
         "flags": 0
       },
       "Inputs": {
         "type": {
-          "$ref": "#/240"
+          "$ref": "#/243"
         },
         "flags": 0,
         "description": "List of node inputs in a flow"
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a node in a flow"
       },
       "Outputs": {
         "type": {
-          "$ref": "#/241"
+          "$ref": "#/244"
         },
         "flags": 0,
         "description": "List of node outputs in a flow"
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -3178,21 +3218,21 @@
     "properties": {
       "Expression": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Expression for a node input in a flow"
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a node input in a flow"
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -3204,14 +3244,14 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a node output in a flow"
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -3233,14 +3273,14 @@
     "properties": {
       "GuardrailIdentifier": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Identifier for the guardrail, could be the id or the arn"
       },
       "GuardrailVersion": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Version of the guardrail"
@@ -3263,20 +3303,20 @@
     "properties": {
       "GuardrailConfiguration": {
         "type": {
-          "$ref": "#/212"
+          "$ref": "#/215"
         },
         "flags": 0
       },
       "KnowledgeBaseId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Identifier of the KnowledgeBase"
       },
       "ModelId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models."
@@ -3289,7 +3329,7 @@
     "properties": {
       "LambdaArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "ARN of a Lambda."
@@ -3302,14 +3342,14 @@
     "properties": {
       "BotAliasArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "ARN of a Lex bot alias"
       },
       "LocaleId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Lex bot locale id"
@@ -3327,13 +3367,13 @@
     "properties": {
       "GuardrailConfiguration": {
         "type": {
-          "$ref": "#/212"
+          "$ref": "#/215"
         },
         "flags": 0
       },
       "SourceConfiguration": {
         "type": {
-          "$ref": "#/242"
+          "$ref": "#/245"
         },
         "flags": 1
       }
@@ -3345,26 +3385,26 @@
     "properties": {
       "InferenceConfiguration": {
         "type": {
-          "$ref": "#/243"
+          "$ref": "#/246"
         },
         "flags": 0
       },
       "ModelId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models."
       },
       "TemplateConfiguration": {
         "type": {
-          "$ref": "#/244"
+          "$ref": "#/247"
         },
         "flags": 1
       },
       "TemplateType": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -3376,7 +3416,7 @@
     "properties": {
       "PromptArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "ARN of a prompt resource possibly with a version"
@@ -3399,7 +3439,7 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Name for an input variable"
@@ -3412,28 +3452,28 @@
     "properties": {
       "MaxTokens": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Maximum length of output"
       },
       "StopSequences": {
         "type": {
-          "$ref": "#/245"
+          "$ref": "#/248"
         },
         "flags": 0,
         "description": "List of stop sequences"
       },
       "Temperature": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Controls randomness, higher values increase diversity"
       },
       "TopP": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Cumulative probability cutoff for token selection"
@@ -3456,7 +3496,7 @@
     "properties": {
       "ServiceConfiguration": {
         "type": {
-          "$ref": "#/246"
+          "$ref": "#/249"
         },
         "flags": 1
       }
@@ -3468,7 +3508,7 @@
     "properties": {
       "BucketName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "bucket name of an s3 that will be used for Retrieval flow node configuration"
@@ -3481,7 +3521,7 @@
     "properties": {
       "S3": {
         "type": {
-          "$ref": "#/229"
+          "$ref": "#/232"
         },
         "flags": 0
       }
@@ -3493,7 +3533,7 @@
     "properties": {
       "ServiceConfiguration": {
         "type": {
-          "$ref": "#/247"
+          "$ref": "#/250"
         },
         "flags": 1
       }
@@ -3505,7 +3545,7 @@
     "properties": {
       "BucketName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "bucket name of an s3 that will be used for storage flow node configuration"
@@ -3518,7 +3558,7 @@
     "properties": {
       "S3": {
         "type": {
-          "$ref": "#/232"
+          "$ref": "#/235"
         },
         "flags": 0
       }
@@ -3530,14 +3570,14 @@
     "properties": {
       "InputVariables": {
         "type": {
-          "$ref": "#/248"
+          "$ref": "#/251"
         },
         "flags": 0,
         "description": "List of input variables"
       },
       "Text": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Prompt content for String prompt template"
@@ -3547,7 +3587,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/198"
+      "$ref": "#/201"
     }
   },
   {
@@ -3558,13 +3598,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/200"
+      "$ref": "#/203"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/205"
+      "$ref": "#/208"
     }
   },
   {
@@ -3575,13 +3615,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/208"
+      "$ref": "#/211"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/209"
+      "$ref": "#/212"
     }
   },
   {
@@ -3602,7 +3642,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
@@ -3618,7 +3658,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/224"
+      "$ref": "#/227"
     }
   },
   {
@@ -3631,68 +3671,68 @@
     "properties": {
       "CreatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp."
       },
       "CustomerEncryptionKeyArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "A KMS key ARN"
       },
       "Definition": {
         "type": {
-          "$ref": "#/204"
+          "$ref": "#/207"
         },
         "flags": 2
       },
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Description of the flow version"
       },
       "ExecutionRoleArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "ARN of a IAM role"
       },
       "FlowArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "Arn representation of the Flow"
       },
       "FlowId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Identifier for a Flow"
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Name for the flow"
       },
       "Status": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2
       },
       "Version": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "Numerical Version."
@@ -3705,21 +3745,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/250"
+          "$ref": "#/253"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3731,7 +3771,7 @@
     "name": "AWS.Bedrock/FlowVersion@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/251"
+      "$ref": "#/254"
     },
     "flags": 0
   },
@@ -3741,19 +3781,19 @@
     "properties": {
       "InputStrength": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "OutputStrength": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -3765,19 +3805,19 @@
     "properties": {
       "InputStrength": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "OutputStrength": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -3794,7 +3834,7 @@
     "properties": {
       "FiltersConfig": {
         "type": {
-          "$ref": "#/278"
+          "$ref": "#/281"
         },
         "flags": 1,
         "description": "List of content filter configs in content policy."
@@ -3807,14 +3847,14 @@
     "properties": {
       "Threshold": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The threshold for this filter."
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -3831,7 +3871,7 @@
     "properties": {
       "FiltersConfig": {
         "type": {
-          "$ref": "#/279"
+          "$ref": "#/282"
         },
         "flags": 1,
         "description": "List of contextual grounding filter configs."
@@ -3854,7 +3894,7 @@
     "properties": {
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -3866,7 +3906,7 @@
     "properties": {
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -3883,13 +3923,13 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -3901,13 +3941,13 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -3924,27 +3964,27 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The regex description."
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The regex name."
       },
       "Pattern": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The regex pattern."
@@ -3962,14 +4002,14 @@
     "properties": {
       "PiiEntitiesConfig": {
         "type": {
-          "$ref": "#/280"
+          "$ref": "#/283"
         },
         "flags": 0,
         "description": "List of entities."
       },
       "RegexesConfig": {
         "type": {
-          "$ref": "#/281"
+          "$ref": "#/284"
         },
         "flags": 0,
         "description": "List of regex."
@@ -3982,14 +4022,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Tag Key"
       },
       "Value": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Tag Value"
@@ -4002,28 +4042,28 @@
     "properties": {
       "Definition": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Definition of topic in topic policy"
       },
       "Examples": {
         "type": {
-          "$ref": "#/282"
+          "$ref": "#/285"
         },
         "flags": 0,
         "description": "List of text examples"
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of topic in topic policy"
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -4035,28 +4075,28 @@
     "properties": {
       "Definition": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Definition of topic in topic policy"
       },
       "Examples": {
         "type": {
-          "$ref": "#/283"
+          "$ref": "#/286"
         },
         "flags": 0,
         "description": "List of text examples"
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of topic in topic policy"
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -4068,7 +4108,7 @@
     "properties": {
       "TopicsConfig": {
         "type": {
-          "$ref": "#/284"
+          "$ref": "#/287"
         },
         "flags": 1,
         "description": "List of topic configs in topic policy."
@@ -4086,7 +4126,7 @@
     "properties": {
       "Text": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The custom word text."
@@ -4099,24 +4139,18 @@
     "properties": {
       "ManagedWordListsConfig": {
         "type": {
-          "$ref": "#/285"
+          "$ref": "#/288"
         },
         "flags": 0,
         "description": "A config for the list of managed words."
       },
       "WordsConfig": {
         "type": {
-          "$ref": "#/286"
+          "$ref": "#/289"
         },
         "flags": 0,
         "description": "List of custom word configs."
       }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/254"
     }
   },
   {
@@ -4128,59 +4162,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/266"
+      "$ref": "#/260"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/268"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/23"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/23"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/273"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/263"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/276"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Bedrock/GuardrailProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/23"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/269"
     }
   },
   {
@@ -4190,133 +4178,185 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/276"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/266"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/279"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Bedrock/GuardrailProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/274"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.Bedrock/GuardrailProperties",
     "properties": {
       "BlockedInputMessaging": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Messaging for when violations are detected in text"
       },
       "BlockedOutputsMessaging": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Messaging for when violations are detected in text"
       },
       "ContentPolicyConfig": {
         "type": {
-          "$ref": "#/256"
+          "$ref": "#/259"
         },
         "flags": 0
       },
       "ContextualGroundingPolicyConfig": {
         "type": {
-          "$ref": "#/259"
+          "$ref": "#/262"
         },
         "flags": 0
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp"
       },
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Description of the guardrail or its version"
       },
       "FailureRecommendations": {
         "type": {
-          "$ref": "#/288"
+          "$ref": "#/291"
         },
         "flags": 2,
         "description": "List of failure recommendations"
       },
       "GuardrailArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "Arn representation for the guardrail"
       },
       "GuardrailId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Unique id for the guardrail"
       },
       "KmsKeyArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The KMS key with which the guardrail was encrypted at rest"
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of the guardrail"
       },
       "SensitiveInformationPolicyConfig": {
         "type": {
-          "$ref": "#/270"
+          "$ref": "#/273"
         },
         "flags": 0
       },
       "Status": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2
       },
       "StatusReasons": {
         "type": {
-          "$ref": "#/289"
+          "$ref": "#/292"
         },
         "flags": 2,
         "description": "List of status reasons"
       },
       "Tags": {
         "type": {
-          "$ref": "#/290"
+          "$ref": "#/293"
         },
         "flags": 0,
         "description": "List of Tags"
       },
       "TopicPolicyConfig": {
         "type": {
-          "$ref": "#/274"
+          "$ref": "#/277"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp"
       },
       "Version": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Guardrail version"
       },
       "WordPolicyConfig": {
         "type": {
-          "$ref": "#/277"
+          "$ref": "#/280"
         },
         "flags": 0
       }
@@ -4328,21 +4368,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/291"
+          "$ref": "#/294"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4354,9 +4394,19 @@
     "name": "AWS.Bedrock/Guardrail@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/292"
+      "$ref": "#/295"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AwsDataCatalogTableName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AwsDataCatalogTableNames",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -4364,12 +4414,47 @@
     "properties": {
       "Dimensions": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "The dimensions details for the vector configuration used on the Bedrock embeddings model."
+      },
+      "EmbeddingDataType": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "The data type for the vectors when using a model to convert text into vector embeddings."
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CuratedQueries",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CuratedQuery",
+    "properties": {
+      "NaturalLanguage": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      },
+      "Sql": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DescriptionString",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -4377,7 +4462,7 @@
     "properties": {
       "BedrockEmbeddingModelConfiguration": {
         "type": {
-          "$ref": "#/294"
+          "$ref": "#/299"
         },
         "flags": 0
       }
@@ -4385,19 +4470,53 @@
   },
   {
     "$type": "ObjectType",
+    "name": "InclusionType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KendraIndexArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KendraKnowledgeBaseConfiguration",
+    "properties": {
+      "KendraIndexArn": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "KnowledgeBaseConfiguration",
     "properties": {
+      "KendraKnowledgeBaseConfiguration": {
+        "type": {
+          "$ref": "#/306"
+        },
+        "flags": 0
+      },
+      "SqlKnowledgeBaseConfiguration": {
+        "type": {
+          "$ref": "#/350"
+        },
+        "flags": 0
+      },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "VectorKnowledgeBaseConfiguration": {
         "type": {
-          "$ref": "#/312"
+          "$ref": "#/358"
         },
-        "flags": 1
+        "flags": 0
       }
     }
   },
@@ -4422,48 +4541,48 @@
     "properties": {
       "CollectionName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of the collection within MongoDB Atlas."
       },
       "CredentialsSecretArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The ARN of the secret that you created in AWS Secrets Manager that is linked to your Amazon Mongo database."
       },
       "DatabaseName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of the database within MongoDB Atlas."
       },
       "Endpoint": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "MongoDB Atlas endpoint."
       },
       "EndpointServiceName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "MongoDB Atlas endpoint service name."
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/301"
+          "$ref": "#/312"
         },
         "flags": 1
       },
       "VectorIndexName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name of a MongoDB Atlas index."
@@ -4476,21 +4595,21 @@
     "properties": {
       "MetadataField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores metadata about the vector store."
       },
       "TextField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose."
       },
       "VectorField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources."
@@ -4499,24 +4618,29 @@
   },
   {
     "$type": "ObjectType",
+    "name": "NaturalLanguageString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "OpenSearchServerlessConfiguration",
     "properties": {
       "CollectionArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The ARN of the OpenSearch Service vector store."
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/303"
+          "$ref": "#/315"
         },
         "flags": 1
       },
       "VectorIndexName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the vector store."
@@ -4529,21 +4653,21 @@
     "properties": {
       "MetadataField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores metadata about the vector store."
       },
       "TextField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose."
       },
       "VectorField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources."
@@ -4556,27 +4680,27 @@
     "properties": {
       "ConnectionString": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The endpoint URL for your index management page."
       },
       "CredentialsSecretArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The ARN of the secret that you created in AWS Secrets Manager that is linked to your Pinecone API key."
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/305"
+          "$ref": "#/317"
         },
         "flags": 1
       },
       "Namespace": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The namespace to be used to write new data to your database."
@@ -4589,14 +4713,14 @@
     "properties": {
       "MetadataField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores metadata about the vector store."
       },
       "TextField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose."
@@ -4605,38 +4729,158 @@
   },
   {
     "$type": "ObjectType",
+    "name": "QueryEngineType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryExecutionTimeoutSeconds",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationColumn",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "Inclusion": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationColumnName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationColumns",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationConfiguration",
+    "properties": {
+      "ExecutionTimeoutSeconds": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      },
+      "GenerationContext": {
+        "type": {
+          "$ref": "#/324"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationContext",
+    "properties": {
+      "CuratedQueries": {
+        "type": {
+          "$ref": "#/363"
+        },
+        "flags": 0
+      },
+      "Tables": {
+        "type": {
+          "$ref": "#/364"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationTable",
+    "properties": {
+      "Columns": {
+        "type": {
+          "$ref": "#/365"
+        },
+        "flags": 0
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "Inclusion": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationTableName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryGenerationTables",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "RdsConfiguration",
     "properties": {
       "CredentialsSecretArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The ARN of the secret that you created in AWS Secrets Manager that is linked to your Amazon RDS database."
       },
       "DatabaseName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of your Amazon RDS database."
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/307"
+          "$ref": "#/329"
         },
         "flags": 1
       },
       "ResourceArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The ARN of the vector store."
       },
       "TableName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the table in the database."
@@ -4649,28 +4893,28 @@
     "properties": {
       "MetadataField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores metadata about the vector store."
       },
       "PrimaryKeyField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores the ID for each entry."
       },
       "TextField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose."
       },
       "VectorField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources."
@@ -4683,27 +4927,27 @@
     "properties": {
       "CredentialsSecretArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The ARN of the secret that you created in AWS Secrets Manager that is linked to your Redis Enterprise Cloud database."
       },
       "Endpoint": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The endpoint URL of the Redis Enterprise Cloud database."
       },
       "FieldMapping": {
         "type": {
-          "$ref": "#/309"
+          "$ref": "#/331"
         },
         "flags": 1
       },
       "VectorIndexName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the vector index."
@@ -4716,21 +4960,21 @@
     "properties": {
       "MetadataField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores metadata about the vector store."
       },
       "TextField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose."
       },
       "VectorField": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources."
@@ -4739,39 +4983,330 @@
   },
   {
     "$type": "ObjectType",
-    "name": "StorageConfiguration",
+    "name": "RedshiftClusterIdentifier",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftConfiguration",
     "properties": {
-      "MongoDbAtlasConfiguration": {
+      "QueryEngineConfiguration": {
         "type": {
-          "$ref": "#/300"
+          "$ref": "#/339"
+        },
+        "flags": 1
+      },
+      "QueryGenerationConfiguration": {
+        "type": {
+          "$ref": "#/323"
         },
         "flags": 0
       },
-      "OpensearchServerlessConfiguration": {
+      "StorageConfigurations": {
         "type": {
-          "$ref": "#/302"
+          "$ref": "#/367"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftDatabase",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftProvisionedAuthConfiguration",
+    "properties": {
+      "DatabaseUser": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Redshift database user"
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      },
+      "UsernamePasswordSecretArn": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftProvisionedAuthType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftProvisionedConfiguration",
+    "properties": {
+      "AuthConfiguration": {
+        "type": {
+          "$ref": "#/335"
+        },
+        "flags": 1
+      },
+      "ClusterIdentifier": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftQueryEngineAwsDataCatalogStorageConfiguration",
+    "properties": {
+      "TableNames": {
+        "type": {
+          "$ref": "#/368"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftQueryEngineConfiguration",
+    "properties": {
+      "ProvisionedConfiguration": {
+        "type": {
+          "$ref": "#/337"
         },
         "flags": 0
       },
-      "PineconeConfiguration": {
+      "ServerlessConfiguration": {
         "type": {
-          "$ref": "#/304"
-        },
-        "flags": 0
-      },
-      "RdsConfiguration": {
-        "type": {
-          "$ref": "#/306"
+          "$ref": "#/347"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftQueryEngineRedshiftStorageConfiguration",
+    "properties": {
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftQueryEngineStorageConfiguration",
+    "properties": {
+      "AwsDataCatalogConfiguration": {
+        "type": {
+          "$ref": "#/338"
+        },
+        "flags": 0
+      },
+      "RedshiftConfiguration": {
+        "type": {
+          "$ref": "#/340"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftQueryEngineStorageConfigurations",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftQueryEngineStorageType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftQueryEngineType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftServerlessAuthConfiguration",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      },
+      "UsernamePasswordSecretArn": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftServerlessAuthType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RedshiftServerlessConfiguration",
+    "properties": {
+      "AuthConfiguration": {
+        "type": {
+          "$ref": "#/345"
+        },
+        "flags": 1
+      },
+      "WorkgroupArn": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Location",
+    "properties": {
+      "URI": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1,
+        "description": "The location's URI"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SecretArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SqlKnowledgeBaseConfiguration",
+    "properties": {
+      "RedshiftConfiguration": {
+        "type": {
+          "$ref": "#/333"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SqlString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageConfiguration",
+    "properties": {
+      "MongoDbAtlasConfiguration": {
+        "type": {
+          "$ref": "#/311"
+        },
+        "flags": 0
+      },
+      "OpensearchServerlessConfiguration": {
+        "type": {
+          "$ref": "#/314"
+        },
+        "flags": 0
+      },
+      "PineconeConfiguration": {
+        "type": {
+          "$ref": "#/316"
+        },
+        "flags": 0
+      },
+      "RdsConfiguration": {
+        "type": {
+          "$ref": "#/328"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SupplementalDataStorageConfiguration",
+    "properties": {
+      "SupplementalDataStorageLocations": {
+        "type": {
+          "$ref": "#/370"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SupplementalDataStorageLocation",
+    "properties": {
+      "S3Location": {
+        "type": {
+          "$ref": "#/348"
+        },
+        "flags": 0
+      },
+      "SupplementalDataStorageLocationType": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SupplementalDataStorageLocationType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SupplementalDataStorageLocations",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -4784,17 +5319,100 @@
     "properties": {
       "EmbeddingModelArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The ARN of the model used to create vector embeddings for the knowledge base."
       },
       "EmbeddingModelConfiguration": {
         "type": {
-          "$ref": "#/295"
+          "$ref": "#/303"
+        },
+        "flags": 0
+      },
+      "SupplementalDataStorageConfiguration": {
+        "type": {
+          "$ref": "#/353"
         },
         "flags": 0
       }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkgroupArn",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/301"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/320"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/301"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/325"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/320"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/325"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/341"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/341"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/354"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/354"
     }
   },
   {
@@ -4804,7 +5422,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
@@ -4813,80 +5431,80 @@
     "properties": {
       "CreatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The time at which the knowledge base was created."
       },
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Description of the Resource."
       },
       "FailureReasons": {
         "type": {
-          "$ref": "#/314"
+          "$ref": "#/373"
         },
         "flags": 2,
         "description": "A list of reasons that the API operation on the knowledge base failed."
       },
       "KnowledgeBaseArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The ARN of the knowledge base."
       },
       "KnowledgeBaseConfiguration": {
         "type": {
-          "$ref": "#/296"
+          "$ref": "#/307"
         },
         "flags": 1
       },
       "KnowledgeBaseId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The unique identifier of the knowledge base."
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the knowledge base."
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The ARN of the IAM role with permissions to invoke API operations on the knowledge base. The ARN must begin with AmazonBedrockExecutionRoleForKnowledgeBase_"
       },
       "Status": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2
       },
       "StorageConfiguration": {
         "type": {
-          "$ref": "#/310"
+          "$ref": "#/352"
         },
-        "flags": 1
+        "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/311"
+          "$ref": "#/357"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The time at which the knowledge base was last updated."
@@ -4899,21 +5517,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/315"
+          "$ref": "#/374"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4925,9 +5543,99 @@
     "name": "AWS.Bedrock/KnowledgeBase@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/316"
+      "$ref": "#/375"
     },
     "flags": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AnyToolChoice",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutoToolChoice",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ChatPromptTemplateConfiguration",
+    "properties": {
+      "InputVariables": {
+        "type": {
+          "$ref": "#/401"
+        },
+        "flags": 0,
+        "description": "List of input variables"
+      },
+      "Messages": {
+        "type": {
+          "$ref": "#/402"
+        },
+        "flags": 1,
+        "description": "List of messages for chat prompt template"
+      },
+      "System": {
+        "type": {
+          "$ref": "#/404"
+        },
+        "flags": 0,
+        "description": "Configuration for chat prompt template"
+      },
+      "ToolConfiguration": {
+        "type": {
+          "$ref": "#/398"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ContentBlock",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConversationRole",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Message",
+    "properties": {
+      "Content": {
+        "type": {
+          "$ref": "#/405"
+        },
+        "flags": 1,
+        "description": "List of Content Blocks"
+      },
+      "Role": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PromptAgentResource",
+    "properties": {
+      "AgentIdentifier": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1,
+        "description": "Arn representation of the Agent Alias."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PromptGenAiResource",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -4940,7 +5648,7 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Name for an input variable"
@@ -4953,28 +5661,28 @@
     "properties": {
       "MaxTokens": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Maximum length of output"
       },
       "StopSequences": {
         "type": {
-          "$ref": "#/327"
+          "$ref": "#/406"
         },
         "flags": 0,
         "description": "List of stop sequences"
       },
       "Temperature": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Controls randomness, higher values increase diversity"
       },
       "TopP": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Cumulative probability cutoff for token selection"
@@ -4995,39 +5703,63 @@
     "$type": "ObjectType",
     "name": "PromptVariant",
     "properties": {
+      "GenAiResource": {
+        "type": {
+          "$ref": "#/384"
+        },
+        "flags": 0
+      },
       "InferenceConfiguration": {
         "type": {
-          "$ref": "#/318"
+          "$ref": "#/385"
         },
         "flags": 0
       },
       "ModelId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models."
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name for a variant."
       },
       "TemplateConfiguration": {
         "type": {
-          "$ref": "#/321"
+          "$ref": "#/388"
         },
         "flags": 1
       },
       "TemplateType": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SpecificToolChoice",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1,
+        "description": "Tool name"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SystemContentBlock",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -5040,21 +5772,21 @@
     "properties": {
       "InputVariables": {
         "type": {
-          "$ref": "#/328"
+          "$ref": "#/407"
         },
         "flags": 0,
         "description": "List of input variables"
       },
       "Text": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Prompt content for String prompt template"
       },
       "TextS3Location": {
         "type": {
-          "$ref": "#/326"
+          "$ref": "#/395"
         },
         "flags": 0
       }
@@ -5066,21 +5798,21 @@
     "properties": {
       "Bucket": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "A bucket in S3"
       },
       "Key": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "A object key in S3"
       },
       "Version": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The version of the the S3 object to use"
@@ -5088,15 +5820,109 @@
     }
   },
   {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/23"
+    "$type": "ObjectType",
+    "name": "Tool",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ToolChoice",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ToolConfiguration",
+    "properties": {
+      "ToolChoice": {
+        "type": {
+          "$ref": "#/397"
+        },
+        "flags": 0
+      },
+      "Tools": {
+        "type": {
+          "$ref": "#/408"
+        },
+        "flags": 1,
+        "description": "List of Tools"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ToolInputSchema",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ToolSpecification",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "InputSchema": {
+        "type": {
+          "$ref": "#/399"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1,
+        "description": "Tool name"
+      }
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/319"
+      "$ref": "#/386"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/382"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Prompt_SystemContentBlock",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/403"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/380"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/386"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/396"
     }
   },
   {
@@ -5106,7 +5932,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/323"
+      "$ref": "#/390"
     }
   },
   {
@@ -5115,76 +5941,76 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "ARN of a prompt resource possibly with a version"
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp."
       },
       "CustomerEncryptionKeyArn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "A KMS key ARN"
       },
       "DefaultVariant": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Name for a variant."
       },
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Name for a prompt resource."
       },
       "Id": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Identifier for a Prompt"
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "Name for a prompt resource."
       },
       "Tags": {
         "type": {
-          "$ref": "#/324"
+          "$ref": "#/393"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Time Stamp."
       },
       "Variants": {
         "type": {
-          "$ref": "#/330"
+          "$ref": "#/410"
         },
         "flags": 4,
         "description": "List of prompt variants"
       },
       "Version": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "Draft Version."
@@ -5197,21 +6023,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/331"
+          "$ref": "#/411"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5223,7 +6049,7 @@
     "name": "AWS.Bedrock/Prompt@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/332"
+      "$ref": "#/412"
     },
     "flags": 0
   }

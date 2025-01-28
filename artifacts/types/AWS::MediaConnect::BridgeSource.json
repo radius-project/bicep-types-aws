@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaConnect-BridgeSource",
   "type": "AWS::MediaConnect::BridgeSource",
-  "time": "2024-11-11T19:38:16.624Z",
+  "time": "2025-01-23T20:12:12.304Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -35,6 +35,10 @@
             "description": "The network source multicast IP.",
             "type": "string"
           },
+          "MulticastSourceSettings": {
+            "$ref": "#/definitions/MulticastSourceSettings",
+            "description": "The settings related to the multicast source."
+          },
           "NetworkName": {
             "description": "The network source's gateway network name.",
             "type": "string"
@@ -54,6 +58,17 @@
           "Port",
           "NetworkName"
         ],
+        "type": "object"
+      },
+      "MulticastSourceSettings": {
+        "additionalProperties": false,
+        "description": "The settings related to the multicast source.",
+        "properties": {
+          "MulticastSourceIp": {
+            "description": "The IP address of the source for source-specific multicast (SSM).",
+            "type": "string"
+          }
+        },
         "type": "object"
       },
       "ProtocolEnum": {

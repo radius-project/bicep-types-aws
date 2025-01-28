@@ -42,6 +42,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/CertificateProviderProperties](#awsiotcertificateproviderproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.IoT/Command@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/CommandProperties](#awsiotcommandproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.IoT/CustomMetric@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -344,6 +351,22 @@
 * **LambdaFunctionArn**: string (Required)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## AWS.IoT/CommandProperties
+### Properties
+* **CommandArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the command.
+* **CommandId**: string (Required, Identifier): The unique identifier for the command.
+* **CreatedAt**: string: The date and time when the command was created.
+* **Deprecated**: bool: A flag indicating whether the command is deprecated.
+* **Description**: string: The description of the command.
+* **DisplayName**: string: The display name for the command.
+* **LastUpdatedAt**: string (WriteOnly): The date and time when the command was last updated.
+* **MandatoryParameters**: [CommandParameter](#commandparameter)[]: The list of mandatory parameters for the command.
+* **Namespace**: string: The namespace to which the command belongs.
+* **Payload**: [CommandPayload](#commandpayload): The payload associated with the command.
+* **PendingDeletion**: bool: A flag indicating whether the command is pending deletion.
+* **RoleArn**: string: The customer role associated with the command.
+* **Tags**: [Tag](#tag)[]: The tags to be associated with the command.
+
 ## AWS.IoT/CustomMetricProperties
 ### Properties
 * **DisplayName**: string: Field represents a friendly name in the console for the custom metric; it doesn't have to be unique. Don't use this name as the metric identifier in the device metric report. Can be updated once defined.
@@ -575,6 +598,28 @@
 * **MetricUnit**: string (Required)
 * **MetricValue**: string (Required)
 * **RoleArn**: string (Required)
+
+## CommandParameter
+### Properties
+* **DefaultValue**: [CommandParameterValue](#commandparametervalue)
+* **Description**: string
+* **Name**: string (Required)
+* **Value**: [CommandParameterValue](#commandparametervalue)
+
+## CommandParameterValue
+### Properties
+* **B**: bool
+* **BIN**: string
+* **D**: int
+* **I**: int
+* **L**: string
+* **S**: string
+* **UL**: string
+
+## CommandPayload
+### Properties
+* **Content**: string
+* **ContentType**: string
 
 ## DynamoDBAction
 ### Properties
@@ -834,8 +879,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Key**: string (Required): Tag key (1-128 chars). No 'aws:' prefix. Allows: [A-Za-z0-9 _.:/=+-]
+* **Value**: string (Required): Tag value (1-256 chars). No 'aws:' prefix. Allows: [A-Za-z0-9 _.:/=+-]
 
 ## Tag
 ### Properties
@@ -846,6 +891,11 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
 
 ## Tag
 ### Properties
@@ -909,13 +959,13 @@
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Key**: string (Required): Tag key (1-128 chars). No 'aws:' prefix. Allows: [A-Za-z0-9 _.:/=+-]
+* **Value**: string (Required): Tag value (1-256 chars). No 'aws:' prefix. Allows: [A-Za-z0-9 _.:/=+-]
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
-* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Key**: string (Required): Tag key (1-128 chars). No 'aws:' prefix. Allows: [A-Za-z0-9 _.:/=+-]
+* **Value**: string (Required): Tag value (1-256 chars). No 'aws:' prefix. Allows: [A-Za-z0-9 _.:/=+-]
 
 ## Tag
 ### Properties

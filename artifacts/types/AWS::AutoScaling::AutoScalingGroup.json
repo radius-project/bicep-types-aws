@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AutoScaling-AutoScalingGroup",
   "type": "AWS::AutoScaling::AutoScalingGroup",
-  "time": "2024-11-19T01:23:16.218Z",
+  "time": "2025-01-13T16:07:05.355Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -47,9 +47,10 @@
       },
       "AvailabilityZoneDistribution": {
         "additionalProperties": false,
-        "description": "",
+        "description": "``AvailabilityZoneDistribution`` is a property of the [AWS::AutoScaling::AutoScalingGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-autoscalinggroup.html) resource.",
         "properties": {
           "CapacityDistributionStrategy": {
+            "description": "If launches fail in an Availability Zone, the following strategies are available. The default is ``balanced-best-effort``. \n  +   ``balanced-only`` - If launches fail in an Availability Zone, Auto Scaling will continue to attempt to launch in the unhealthy zone to preserve a balanced distribution.\n  +   ``balanced-best-effort`` - If launches fail in an Availability Zone, Auto Scaling will attempt to launch in another healthy Availability Zone instead.",
             "enum": [
               "balanced-best-effort",
               "balanced-only"
@@ -61,9 +62,10 @@
       },
       "AvailabilityZoneImpairmentPolicy": {
         "additionalProperties": false,
-        "description": "",
+        "description": "Describes an Availability Zone impairment policy.",
         "properties": {
           "ImpairedZoneHealthCheckBehavior": {
+            "description": "Specifies the health check behavior for the impaired Availability Zone in an active zonal shift. If you select ``Replace unhealthy``, instances that appear unhealthy will be replaced in all Availability Zones. If you select ``Ignore unhealthy``, instances will not be replaced in the Availability Zone with the active zonal shift. For more information, see [Auto Scaling group zonal shift](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-zonal-shift.html) in the *Amazon EC2 Auto Scaling User Guide*.",
             "enum": [
               "IgnoreUnhealthy",
               "ReplaceUnhealthy"
@@ -71,6 +73,7 @@
             "type": "string"
           },
           "ZonalShiftEnabled": {
+            "description": "If ``true``, enable zonal shift for your Auto Scaling group.",
             "type": "boolean"
           }
         },
@@ -100,7 +103,8 @@
         "description": "",
         "properties": {
           "Cpu": {
-            "$ref": "#/definitions/CpuPerformanceFactorRequest"
+            "$ref": "#/definitions/CpuPerformanceFactorRequest",
+            "description": ""
           }
         },
         "type": "object"
@@ -155,7 +159,8 @@
         "description": "",
         "properties": {
           "References": {
-            "$ref": "#/definitions/PerformanceFactorReferenceSetRequest"
+            "$ref": "#/definitions/PerformanceFactorReferenceSetRequest",
+            "description": ""
           }
         },
         "type": "object"
@@ -607,6 +612,7 @@
         "description": "",
         "properties": {
           "InstanceFamily": {
+            "description": "",
             "type": "string"
           }
         },
@@ -794,11 +800,11 @@
       },
       "AvailabilityZoneDistribution": {
         "$ref": "#/definitions/AvailabilityZoneDistribution",
-        "description": ""
+        "description": "The instance capacity distribution across Availability Zones."
       },
       "AvailabilityZoneImpairmentPolicy": {
         "$ref": "#/definitions/AvailabilityZoneImpairmentPolicy",
-        "description": ""
+        "description": "The Availability Zone impairment policy."
       },
       "AvailabilityZones": {
         "description": "A list of Availability Zones where instances in the Auto Scaling group can be created. Used for launching into the default VPC subnet in each Availability Zone when not using the ``VPCZoneIdentifier`` property, or for attaching a network interface when an existing network interface ID is specified in a launch template.",

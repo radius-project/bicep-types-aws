@@ -58,6 +58,7 @@
 * **Input**: [Input](#input) (Required): Input
 * **Name**: string (Required, Identifier): Dataset name
 * **PathOptions**: [PathOptions](#pathoptions): PathOptions
+* **Source**: string: Source type of the dataset
 * **Tags**: [Tag](#tag)[]
 
 ## AWS.DataBrew/JobProperties
@@ -311,6 +312,7 @@
 ## S3Location
 ### Properties
 * **Bucket**: string (Required)
+* **BucketOwner**: string
 * **Key**: string
 
 ## S3Location

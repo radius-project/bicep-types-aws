@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Detective-Graph",
   "type": "AWS::Detective::Graph",
-  "time": "2024-11-23T14:03:33.225Z",
+  "time": "2025-01-25T16:15:06.187Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -30,13 +30,16 @@
       "create": {
         "permissions": [
           "detective:CreateGraph",
+          "detective:ListGraphs",
+          "detective:TagResource",
           "detective:UpdateOrganizationConfiguration",
           "organizations:DescribeOrganization"
         ]
       },
       "delete": {
         "permissions": [
-          "detective:DeleteGraph"
+          "detective:DeleteGraph",
+          "detective:ListGraphs"
         ]
       },
       "list": {
@@ -57,6 +60,7 @@
       },
       "update": {
         "permissions": [
+          "detective:ListGraphs",
           "detective:UntagResource",
           "detective:TagResource",
           "detective:ListTagsForResource",
@@ -89,6 +93,18 @@
       "/properties/Arn"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-detective.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "detective:UntagResource",
+        "detective:TagResource",
+        "detective:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Detective::Graph"
   }
 }

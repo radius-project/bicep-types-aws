@@ -21,6 +21,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CustomerProfiles/EventStreamProperties](#awscustomerprofileseventstreamproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CustomerProfiles/EventTrigger@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CustomerProfiles/EventTriggerProperties](#awscustomerprofileseventtriggerproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CustomerProfiles/Integration@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -102,6 +109,19 @@
 * **Tags**: [Tag](#tag)[]: The tags used to organize, track, or control access for this resource.
 * **Uri**: string (Required)
 
+## AWS.CustomerProfiles/EventTriggerProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): The timestamp of when the event trigger was created.
+* **Description**: string
+* **DomainName**: string (Required, Identifier)
+* **EventTriggerConditions**: [EventTriggerCondition](#eventtriggercondition)[] (Required)
+* **EventTriggerLimits**: [EventTriggerLimits](#eventtriggerlimits)
+* **EventTriggerName**: string (Required, Identifier)
+* **LastUpdatedAt**: string (ReadOnly): The timestamp of when the event trigger was most recently updated.
+* **ObjectTypeName**: string (Required)
+* **SegmentFilter**: string
+* **Tags**: [Tag](#tag)[]
+
 ## AWS.CustomerProfiles/IntegrationProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly): The time of this integration got created
@@ -179,6 +199,20 @@
 * **Status**: string (Required)
 * **Uri**: string (Required)
 
+## EventTriggerCondition
+### Properties
+* **EventTriggerDimensions**: [EventTriggerDimension](#eventtriggerdimension)[] (Required)
+* **LogicalOperator**: string (Required)
+
+## EventTriggerDimension
+### Properties
+* **ObjectAttributes**: [ObjectAttribute](#objectattribute)[] (Required)
+
+## EventTriggerLimits
+### Properties
+* **EventExpiration**: int
+* **Periods**: [Period](#period)[]
+
 ## ExportingConfig
 ### Properties
 * **S3Exporting**: [S3ExportingConfig](#s3exportingconfig)
@@ -233,6 +267,13 @@
 ### Properties
 * **Rule**: string[] (Required)
 
+## ObjectAttribute
+### Properties
+* **ComparisonOperator**: string (Required): The operator used to compare an attribute against a list of values.
+* **FieldName**: string: A field defined within an object type.
+* **Source**: string: An attribute contained within a source object.
+* **Values**: string[] (Required): A list of attribute values used for comparison.
+
 ## ObjectTypeField
 ### Properties
 * **ContentType**: string: The content type of the field. Used for determining equality when searching.
@@ -248,6 +289,13 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Period
+### Properties
+* **MaxInvocationsPerProfile**: int: The maximum allowed number of destination invocations per profile.
+* **Unit**: string (Required): The unit of time.
+* **Unlimited**: bool: If set to true, there is no limit on the number of destination invocations per profile. The default is false.
+* **Value**: int (Required): The amount of time of the specified unit.
 
 ## Range
 ### Properties
@@ -328,6 +376,11 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties
