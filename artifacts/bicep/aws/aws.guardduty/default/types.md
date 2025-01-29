@@ -35,6 +35,13 @@
 * **name**: string: the resource name
 * **properties**: [AWS.GuardDuty/MemberProperties](#awsguarddutymemberproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.GuardDuty/PublishingDestination@default
+* **Valid Scope(s)**: Unknown
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.GuardDuty/PublishingDestinationProperties](#awsguarddutypublishingdestinationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.GuardDuty/ThreatIntelSet@default
 * **Valid Scope(s)**: Unknown
 ### Properties
@@ -91,6 +98,16 @@
 * **MemberId**: string (Identifier)
 * **Message**: string (WriteOnly)
 * **Status**: string
+
+## AWS.GuardDuty/PublishingDestinationProperties
+### Properties
+* **DestinationProperties**: [PublishingDestination_CFNDestinationProperties](#publishingdestinationcfndestinationproperties) (Required)
+* **DestinationType**: string (Required): The type of resource for the publishing destination. Currently only Amazon S3 buckets are supported.
+* **DetectorId**: string (Required, Identifier): The ID of the GuardDuty detector associated with the publishing destination.
+* **Id**: string (ReadOnly, Identifier): The ID of the publishing destination.
+* **PublishingFailureStartTimestamp**: string (ReadOnly): The time, in epoch millisecond format, at which GuardDuty was first unable to publish findings to the destination.
+* **Status**: string (ReadOnly): The status of the publishing destination.
+* **Tags**: [TagItem](#tagitem)[]
 
 ## AWS.GuardDuty/ThreatIntelSetProperties
 ### Properties
@@ -167,6 +184,16 @@
 ### Properties
 * **BucketName**: string: Name of the S3 bucket.
 * **ObjectPrefixes**: string[]: Information about the specified object prefixes. The S3 object will be scanned only if it belongs to any of the specified object prefixes.
+
+## PublishingDestination_CFNDestinationProperties
+### Properties
+* **DestinationArn**: string: The ARN of the resource to publish to.
+* **KmsKeyArn**: string: The ARN of the KMS key to use for encryption.
+
+## TagItem
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## TagItem
 ### Properties

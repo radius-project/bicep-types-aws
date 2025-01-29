@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RedshiftServerless-Workgroup",
   "type": "AWS::RedshiftServerless::Workgroup",
-  "time": "2024-11-17T14:01:02.649Z",
+  "time": "2025-01-23T18:12:09.625Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -61,6 +61,27 @@
           }
         },
         "type": "object"
+      },
+      "PerformanceTarget": {
+        "additionalProperties": false,
+        "properties": {
+          "Level": {
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "Status": {
+            "$ref": "#/definitions/PerformanceTargetStatus"
+          }
+        },
+        "type": "object"
+      },
+      "PerformanceTargetStatus": {
+        "enum": [
+          "ENABLED",
+          "DISABLED"
+        ],
+        "type": "string"
       },
       "Tag": {
         "additionalProperties": false,
@@ -132,6 +153,9 @@
             "minLength": 3,
             "pattern": "^[a-z0-9-]+$",
             "type": "string"
+          },
+          "PricePerformanceTarget": {
+            "$ref": "#/definitions/PerformanceTarget"
           },
           "PubliclyAccessible": {
             "type": "boolean"
@@ -302,6 +326,11 @@
       "Port": {
         "description": "The custom port to use when connecting to a workgroup. Valid port ranges are 5431-5455 and 8191-8215. The default is 5439.",
         "type": "integer"
+      },
+      "PricePerformanceTarget": {
+        "$ref": "#/definitions/PerformanceTarget",
+        "description": "A property that represents the price performance target settings for the workgroup.",
+        "type": "object"
       },
       "PubliclyAccessible": {
         "default": false,

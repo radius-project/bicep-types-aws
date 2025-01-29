@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lex-Bot",
   "type": "AWS::Lex::Bot",
-  "time": "2024-09-06T19:27:05.112Z",
+  "time": "2025-01-06T16:14:25.538Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -1440,6 +1440,33 @@
         "minLength": 1,
         "type": "string"
       },
+      "ReplicaRegion": {
+        "description": "The secondary region that will be used in the replication of the source bot.",
+        "maxLength": 25,
+        "minLength": 2,
+        "type": "string"
+      },
+      "Replication": {
+        "additionalProperties": false,
+        "description": "Parameter used to create a replication of the source bot in the secondary region.",
+        "properties": {
+          "ReplicaRegions": {
+            "description": "List of secondary regions for bot replication.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/ReplicaRegion"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "ReplicaRegions"
+        ],
+        "type": "object"
+      },
       "ResponseSpecification": {
         "additionalProperties": false,
         "description": "A list of message groups that Amazon Lex uses to respond the user input.",
@@ -2177,7 +2204,12 @@
           "lex:UpdateCustomVocabulary",
           "lex:DeleteCustomVocabulary",
           "s3:GetObject",
-          "lex:UpdateBotAlias"
+          "lex:UpdateBotAlias",
+          "iam:CreateServiceLinkedRole",
+          "iam:GetRole",
+          "lex:CreateBotReplica",
+          "lex:DescribeBotReplica",
+          "lex:DeleteBotReplica"
         ]
       },
       "delete": {
@@ -2191,18 +2223,21 @@
           "lex:DeleteBotVersion",
           "lex:DeleteBotChannel",
           "lex:DeleteBotAlias",
-          "lex:DeleteCustomVocabulary"
+          "lex:DeleteCustomVocabulary",
+          "lex:DeleteBotReplica"
         ]
       },
       "list": {
         "permissions": [
-          "lex:ListBots"
+          "lex:ListBots",
+          "lex:ListBotReplicas"
         ]
       },
       "read": {
         "permissions": [
           "lex:DescribeBot",
-          "lex:ListTagsForResource"
+          "lex:ListTagsForResource",
+          "lex:DescribeBotReplica"
         ]
       },
       "update": {
@@ -2237,7 +2272,10 @@
           "lex:UpdateCustomVocabulary",
           "lex:DeleteCustomVocabulary",
           "s3:GetObject",
-          "lex:UpdateBotAlias"
+          "lex:UpdateBotAlias",
+          "lex:CreateBotReplica",
+          "lex:DescribeBotReplica",
+          "lex:DeleteBotReplica"
         ]
       }
     },
@@ -2303,6 +2341,9 @@
       "Name": {
         "$ref": "#/definitions/Name"
       },
+      "Replication": {
+        "$ref": "#/definitions/Replication"
+      },
       "RoleArn": {
         "$ref": "#/definitions/RoleArn"
       },
@@ -2338,7 +2379,8 @@
       "/properties/BotFileS3Location",
       "/properties/AutoBuildBotLocales",
       "/properties/BotTags",
-      "/properties/TestBotAliasTags"
+      "/properties/TestBotAliasTags",
+      "/properties/Replication"
     ]
   }
 }

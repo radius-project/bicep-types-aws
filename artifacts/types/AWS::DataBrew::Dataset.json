@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataBrew-Dataset",
   "type": "AWS::DataBrew::Dataset",
-  "time": "2024-11-06T18:27:13.275Z",
+  "time": "2025-01-14T21:46:00.878Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,12 @@
       "/properties/Tags"
     ],
     "definitions": {
+      "BucketOwner": {
+        "description": "Bucket owner",
+        "maxLength": 12,
+        "minLength": 12,
+        "type": "string"
+      },
       "CsvOptions": {
         "additionalProperties": false,
         "description": "Csv options",
@@ -349,6 +355,9 @@
           "Bucket": {
             "type": "string"
           },
+          "BucketOwner": {
+            "$ref": "#/definitions/BucketOwner"
+          },
           "Key": {
             "type": "string"
           }
@@ -385,6 +394,7 @@
       "create": {
         "permissions": [
           "databrew:CreateDataset",
+          "databrew:DescribeDataset",
           "databrew:TagResource",
           "databrew:UntagResource",
           "glue:GetConnection",
@@ -451,6 +461,15 @@
       "PathOptions": {
         "$ref": "#/definitions/PathOptions",
         "description": "PathOptions"
+      },
+      "Source": {
+        "description": "Source type of the dataset",
+        "enum": [
+          "S3",
+          "DATA-CATALOG",
+          "DATABASE"
+        ],
+        "type": "string"
       },
       "Tags": {
         "insertionOrder": false,

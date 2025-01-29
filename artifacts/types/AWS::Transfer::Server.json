@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Transfer-Server",
   "type": "AWS::Transfer::Server",
-  "time": "2024-10-14T15:21:51.222Z",
+  "time": "2024-12-26T17:48:37.07Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -184,6 +184,17 @@
           "PUBLIC_KEY",
           "PUBLIC_KEY_OR_PASSWORD",
           "PUBLIC_KEY_AND_PASSWORD"
+        ],
+        "type": "string"
+      },
+      "State": {
+        "enum": [
+          "OFFLINE",
+          "ONLINE",
+          "STARTING",
+          "STOPPING",
+          "START_FAILED",
+          "STOP_FAILED"
         ],
         "type": "string"
       },
@@ -430,6 +441,9 @@
         "pattern": "^s-([0-9a-f]{17})$",
         "type": "string"
       },
+      "State": {
+        "$ref": "#/definitions/State"
+      },
       "StructuredLogDestinations": {
         "insertionOrder": false,
         "items": {
@@ -458,7 +472,8 @@
     "readOnlyProperties": [
       "/properties/Arn",
       "/properties/As2ServiceManagedEgressIpAddresses",
-      "/properties/ServerId"
+      "/properties/ServerId",
+      "/properties/State"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-transfer",
     "tagging": {

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-Queue",
   "type": "AWS::Connect::Queue",
-  "time": "2024-11-21T17:02:23.194Z",
+  "time": "2024-12-23T22:26:26.143Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -38,6 +38,21 @@
         "description": "The caller ID number.",
         "pattern": "^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:phone-number/[-a-zA-Z0-9]*$",
         "type": "string"
+      },
+      "OutboundEmailAddressId": {
+        "description": "The email address connect resource ID.",
+        "pattern": "^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/email-address/[-a-zA-Z0-9]*$",
+        "type": "string"
+      },
+      "OutboundEmailConfig": {
+        "additionalProperties": false,
+        "description": "The outbound email address ID.",
+        "properties": {
+          "OutboundEmailAddressId": {
+            "$ref": "#/definitions/OutboundEmailAddressId"
+          }
+        },
+        "type": "object"
       },
       "OutboundFlowArn": {
         "description": "The outbound whisper flow to be used during an outbound call.",
@@ -161,6 +176,10 @@
         "$ref": "#/definitions/OutboundCallerConfig",
         "description": "The outbound caller ID name, number, and outbound whisper flow."
       },
+      "OutboundEmailConfig": {
+        "$ref": "#/definitions/OutboundEmailConfig",
+        "description": "The outbound email address ID."
+      },
       "QueueArn": {
         "description": "The Amazon Resource Name (ARN) for the queue.",
         "pattern": "^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/queue/[-a-zA-Z0-9]*$",
@@ -172,7 +191,6 @@
         "items": {
           "$ref": "#/definitions/QuickConnectArn"
         },
-        "maxItems": 50,
         "minItems": 1,
         "type": "array"
       },

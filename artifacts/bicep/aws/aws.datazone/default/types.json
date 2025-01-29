@@ -24,6 +24,12 @@
           "$ref": "#/13"
         },
         "flags": 0
+      },
+      "SageMakerRunConfiguration": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
       }
     }
   },
@@ -43,13 +49,13 @@
     "properties": {
       "Expression": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -66,28 +72,28 @@
     "properties": {
       "Content": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The content of the metadata form."
       },
       "FormName": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the metadata form."
       },
       "TypeIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The ID of the metadata form type."
       },
       "TypeRevision": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The revision of the metadata form type."
@@ -105,21 +111,28 @@
     "properties": {
       "AutoImportDataQualityResult": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "Specifies whether to automatically import data quality metrics as part of the data source run."
       },
+      "CatalogName": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "The catalog name in the AWS Glue run configuration."
+      },
       "DataAccessRole": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The data access role included in the configuration details of the AWS Glue data source."
       },
       "RelationalFilterConfigurations": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/26"
         },
         "flags": 1,
         "description": "The relational filter configurations included in the configuration details of the AWS Glue data source."
@@ -132,7 +145,7 @@
     "properties": {
       "EnableBusinessNameGeneration": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "Specifies whether automatic business name generation is to be enabled or not as part of the recommendation configuration."
@@ -145,7 +158,7 @@
     "properties": {
       "ClusterName": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of an Amazon Redshift cluster."
@@ -158,7 +171,7 @@
     "properties": {
       "SecretManagerArn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The ARN of a secret manager for an Amazon Redshift cluster."
@@ -171,7 +184,7 @@
     "properties": {
       "DataAccessRole": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The data access role included in the configuration details of the Amazon Redshift data source."
@@ -180,19 +193,19 @@
         "type": {
           "$ref": "#/12"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The details of the credentials required to access an Amazon Redshift cluster."
       },
       "RedshiftStorage": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/27"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The details of the Amazon Redshift storage as part of the configuration of an Amazon Redshift data source run."
       },
       "RelationalFilterConfigurations": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/28"
         },
         "flags": 1
       }
@@ -204,7 +217,7 @@
     "properties": {
       "WorkgroupName": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the Amazon Redshift Serverless workgroup."
@@ -227,21 +240,21 @@
     "properties": {
       "DatabaseName": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The database name specified in the relational filter configuration for the data source."
       },
       "FilterExpressions": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "The filter expressions specified in the relational filter configuration for the data source."
       },
       "SchemaName": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The schema name specified in the relational filter configuration for the data source."
@@ -255,18 +268,31 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SageMakerRunConfigurationInput",
+    "properties": {
+      "TrackingAssets": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The tracking assets of the Amazon SageMaker run."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "ScheduleConfiguration",
     "properties": {
       "Schedule": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The schedule of the data source runs."
       },
       "Timezone": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The timezone of the data source run."
@@ -276,6 +302,11 @@
   {
     "$type": "ObjectType",
     "name": "Timezone",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrackingAssets",
     "properties": {}
   },
   {
@@ -337,7 +368,7 @@
     "properties": {
       "AssetFormsInput": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/32"
         },
         "flags": 4,
         "description": "The metadata forms that are to be attached to the assets that this data source works with."
@@ -349,107 +380,121 @@
         "flags": 4,
         "description": "Configuration of the data source. It can be set to either glueRunConfiguration or redshiftRunConfiguration."
       },
+      "ConnectionId": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 2,
+        "description": "The unique identifier of a connection used to fetch relevant parameters from connection during Datasource run"
+      },
+      "ConnectionIdentifier": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 4,
+        "description": "The unique identifier of a connection used to fetch relevant parameters from connection during Datasource run"
+      },
       "CreatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The timestamp of when the data source was created."
       },
       "Description": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The description of the data source."
       },
       "DomainId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The ID of the Amazon DataZone domain where the data source is created."
       },
       "DomainIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5,
         "description": "The ID of the Amazon DataZone domain where the data source is created."
       },
       "EnableSetting": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Specifies whether the data source is enabled."
       },
       "EnvironmentId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The unique identifier of the Amazon DataZone environment to which the data source publishes assets."
       },
       "EnvironmentIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
-        "flags": 5,
+        "flags": 4,
         "description": "The unique identifier of the Amazon DataZone environment to which the data source publishes assets."
       },
       "Id": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The unique identifier of the data source."
       },
       "LastRunAssetCount": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/33"
         },
         "flags": 2,
         "description": "The number of assets created by the data source during its last run."
       },
       "LastRunAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The timestamp that specifies when the data source was last run."
       },
       "LastRunStatus": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The status of the last run of this data source."
       },
       "Name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the data source."
       },
       "ProjectId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The ID of the Amazon DataZone project to which the data source is added."
       },
       "ProjectIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5,
         "description": "The identifier of the Amazon DataZone project in which you want to add the data source."
       },
       "PublishOnImport": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "Specifies whether the assets that this data source creates in the inventory are to be also automatically published to the catalog."
@@ -463,28 +508,28 @@
       },
       "Schedule": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "The schedule of the data source runs."
       },
       "Status": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The status of the data source."
       },
       "Type": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The type of the data source."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The timestamp of when this data source was updated."
@@ -497,21 +542,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/34"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -523,7 +568,7 @@
     "name": "AWS.DataZone/DataSource@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/33"
+      "$ref": "#/35"
     },
     "flags": 0
   },
@@ -543,13 +588,13 @@
     "properties": {
       "Type": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "UserAssignment": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0
       }
@@ -561,14 +606,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The key name of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The value for the tag."
@@ -587,7 +632,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/40"
     }
   },
   {
@@ -596,91 +641,91 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The ARN of the Amazon DataZone domain."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The timestamp of when the Amazon DataZone domain was last updated."
       },
       "Description": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The description of the Amazon DataZone domain."
       },
       "DomainExecutionRole": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The domain execution role that is created when an Amazon DataZone domain is created. The domain execution role is created in the AWS account that houses the Amazon DataZone domain."
       },
       "Id": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The id of the Amazon DataZone domain."
       },
       "KmsKeyIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The identifier of the AWS Key Management Service (KMS) key that is used to encrypt the Amazon DataZone domain, metadata, and reporting data."
       },
       "LastUpdatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The timestamp of when the Amazon DataZone domain was last updated."
       },
       "ManagedAccountId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The identifier of the AWS account that manages the domain."
       },
       "Name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the Amazon DataZone domain."
       },
       "PortalUrl": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The URL of the data portal for this Amazon DataZone domain."
       },
       "SingleSignOn": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "The single-sign on configuration of the Amazon DataZone domain."
       },
       "Status": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The status of the Amazon DataZone domain."
       },
       "Tags": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The tags specified for the Amazon DataZone domain."
@@ -693,21 +738,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/44"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -719,7 +764,7 @@
     "name": "AWS.DataZone/Domain@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/43"
+      "$ref": "#/45"
     },
     "flags": 0
   },
@@ -729,14 +774,14 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The name of an environment parameter."
       },
       "Value": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The value of an environment parameter."
@@ -755,13 +800,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/45"
+      "$ref": "#/47"
     }
   },
   {
@@ -770,154 +815,154 @@
     "properties": {
       "AwsAccountId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The AWS account in which the Amazon DataZone environment is created."
       },
       "AwsAccountRegion": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The AWS region in which the Amazon DataZone environment is created."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The timestamp of when the environment was created."
       },
       "CreatedBy": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The Amazon DataZone user who created the environment."
       },
       "Description": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The description of the Amazon DataZone environment."
       },
       "DomainId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The identifier of the Amazon DataZone domain in which the environment is created."
       },
       "DomainIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5,
         "description": "The identifier of the Amazon DataZone domain in which the environment would be created."
       },
       "EnvironmentAccountIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 4,
         "description": "The AWS account in which the Amazon DataZone environment is created."
       },
       "EnvironmentAccountRegion": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 4,
         "description": "The AWS region in which the Amazon DataZone environment is created."
       },
       "EnvironmentBlueprintId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The ID of the blueprint with which the Amazon DataZone environment was created."
       },
       "EnvironmentProfileId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The ID of the environment profile with which the Amazon DataZone environment was created."
       },
       "EnvironmentProfileIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 4,
         "description": "The ID of the environment profile with which the Amazon DataZone environment would be created."
       },
       "EnvironmentRoleArn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 4,
         "description": "Environment role arn for custom aws environment permissions"
       },
       "GlossaryTerms": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "The glossary terms that can be used in the Amazon DataZone environment."
       },
       "Id": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The ID of the Amazon DataZone environment."
       },
       "Name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the environment."
       },
       "ProjectId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The ID of the Amazon DataZone project in which the environment is created."
       },
       "ProjectIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5,
         "description": "The ID of the Amazon DataZone project in which the environment would be created."
       },
       "Provider": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The provider of the Amazon DataZone environment."
       },
       "Status": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The status of the Amazon DataZone environment."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The timestamp of when the environment was updated."
       },
       "UserParameters": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "The user parameters of the Amazon DataZone environment."
@@ -930,21 +975,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/52"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -956,7 +1001,7 @@
     "name": "AWS.DataZone/Environment@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/51"
+      "$ref": "#/53"
     },
     "flags": 0
   },
@@ -966,7 +1011,7 @@
     "properties": {
       "Uri": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0
       }
@@ -987,63 +1032,63 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The description of the Amazon DataZone environment action."
       },
       "DomainId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The identifier of the Amazon DataZone domain in which the environment is created."
       },
       "DomainIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 4,
         "description": "The identifier of the Amazon DataZone domain in which the environment would be created."
       },
       "EnvironmentId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The identifier of the Amazon DataZone environment in which the action is taking place"
       },
       "EnvironmentIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 4,
         "description": "The identifier of the Amazon DataZone environment in which the action is taking place"
       },
       "Id": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The ID of the Amazon DataZone environment action."
       },
       "Identifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 4,
         "description": "The ID of the Amazon DataZone environment action."
       },
       "Name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the environment action."
       },
       "Parameters": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "The parameters of the environment action."
@@ -1056,21 +1101,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/58"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1082,7 +1127,7 @@
     "name": "AWS.DataZone/EnvironmentActions@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/57"
+      "$ref": "#/59"
     },
     "flags": 0
   },
@@ -1097,13 +1142,13 @@
     "properties": {
       "Parameters": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "Region": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0
       }
@@ -1116,13 +1161,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/60"
+      "$ref": "#/62"
     }
   },
   {
@@ -1131,61 +1176,61 @@
     "properties": {
       "CreatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2
       },
       "DomainId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18
       },
       "DomainIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5
       },
       "EnabledRegions": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/64"
         },
         "flags": 1
       },
       "EnvironmentBlueprintId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18
       },
       "EnvironmentBlueprintIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5
       },
       "ManageAccessRoleArn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "ProvisioningRoleArn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "RegionalParameters": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2
       }
@@ -1197,21 +1242,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/66"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1223,7 +1268,7 @@
     "name": "AWS.DataZone/EnvironmentBlueprintConfiguration@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/65"
+      "$ref": "#/67"
     },
     "flags": 0
   },
@@ -1233,14 +1278,14 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The name of an environment profile parameter."
       },
       "Value": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The value of an environment profile parameter."
@@ -1254,7 +1299,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/67"
+      "$ref": "#/69"
     }
   },
   {
@@ -1263,105 +1308,105 @@
     "properties": {
       "AwsAccountId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The AWS account in which the Amazon DataZone environment is created."
       },
       "AwsAccountRegion": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The AWS region in which this environment profile is created."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The timestamp of when this environment profile was created."
       },
       "CreatedBy": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The Amazon DataZone user who created this environment profile."
       },
       "Description": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The description of this Amazon DataZone environment profile."
       },
       "DomainId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The ID of the Amazon DataZone domain in which this environment profile is created."
       },
       "DomainIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5,
         "description": "The ID of the Amazon DataZone domain in which this environment profile is created."
       },
       "EnvironmentBlueprintId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The ID of the blueprint with which this environment profile is created."
       },
       "EnvironmentBlueprintIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5,
         "description": "The ID of the blueprint with which this environment profile is created."
       },
       "Id": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The ID of this Amazon DataZone environment profile."
       },
       "Name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of this Amazon DataZone environment profile."
       },
       "ProjectId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The identifier of the project in which to create the environment profile."
       },
       "ProjectIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5,
         "description": "The identifier of the project in which to create the environment profile."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The timestamp of when this environment profile was updated."
       },
       "UserParameters": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "The user parameters of this Amazon DataZone environment profile."
@@ -1374,21 +1419,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/72"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1400,7 +1445,7 @@
     "name": "AWS.DataZone/EnvironmentProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/71"
+      "$ref": "#/73"
     },
     "flags": 0
   },
@@ -1419,42 +1464,42 @@
     "properties": {
       "DomainId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The identifier of the Amazon DataZone domain in which the group profile is created."
       },
       "DomainIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5,
         "description": "The identifier of the Amazon DataZone domain in which the group profile would be created."
       },
       "GroupIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5,
         "description": "The ID of the group."
       },
       "GroupName": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The group-name of the Group Profile."
       },
       "Id": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The ID of the Amazon DataZone group profile."
       },
       "Status": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0
       }
@@ -1466,21 +1511,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/77"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1492,7 +1537,7 @@
     "name": "AWS.DataZone/GroupProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/76"
+      "$ref": "#/78"
     },
     "flags": 0
   },
@@ -1503,7 +1548,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/24"
     }
   },
   {
@@ -1512,63 +1557,63 @@
     "properties": {
       "CreatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The timestamp of when the project was created."
       },
       "CreatedBy": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The Amazon DataZone user who created the project."
       },
       "Description": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The description of the Amazon DataZone project."
       },
       "DomainId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The identifier of the Amazon DataZone domain in which the project was created."
       },
       "DomainIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5,
         "description": "The ID of the Amazon DataZone domain in which this project is created."
       },
       "GlossaryTerms": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/81"
         },
         "flags": 0,
         "description": "The glossary terms that can be used in this Amazon DataZone project."
       },
       "Id": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The ID of the Amazon DataZone project."
       },
       "LastUpdatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The timestamp of when the project was last updated."
       },
       "Name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the Amazon DataZone project."
@@ -1581,21 +1626,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/82"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1607,7 +1652,7 @@
     "name": "AWS.DataZone/Project@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/81"
+      "$ref": "#/83"
     },
     "flags": 0
   },
@@ -1636,25 +1681,25 @@
     "properties": {
       "Designation": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5
       },
       "DomainIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 17
       },
       "Member": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/85"
         },
         "flags": 5
       },
       "ProjectIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 17
       }
@@ -1666,21 +1711,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/89"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1692,7 +1737,7 @@
     "name": "AWS.DataZone/ProjectMembership@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/88"
+      "$ref": "#/90"
     },
     "flags": 0
   },
@@ -1702,14 +1747,14 @@
     "properties": {
       "Content": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The content of the subscription target configuration."
       },
       "FormName": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The form name included in the subscription target configuration."
@@ -1723,19 +1768,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/90"
+      "$ref": "#/92"
     }
   },
   {
@@ -1744,119 +1789,119 @@
     "properties": {
       "ApplicableAssetTypes": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/94"
         },
         "flags": 1,
         "description": "The asset types that can be included in the subscription target."
       },
       "AuthorizedPrincipals": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/95"
         },
         "flags": 1,
         "description": "The authorized principals of the subscription target."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The timestamp of when the subscription target was created."
       },
       "CreatedBy": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The Amazon DataZone user who created the subscription target."
       },
       "DomainId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The ID of the Amazon DataZone domain in which subscription target is created."
       },
       "DomainIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5,
         "description": "The ID of the Amazon DataZone domain in which subscription target would be created."
       },
       "EnvironmentId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The ID of the environment in which subscription target is created."
       },
       "EnvironmentIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5,
         "description": "The ID of the environment in which subscription target would be created."
       },
       "Id": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The ID of the subscription target."
       },
       "ManageAccessRole": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The manage access role that is used to create the subscription target."
       },
       "Name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The name of the subscription target."
       },
       "ProjectId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The identifier of the project specified in the subscription target."
       },
       "Provider": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The provider of the subscription target."
       },
       "SubscriptionTargetConfig": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/96"
         },
         "flags": 1,
         "description": "The configuration of the subscription target."
       },
       "Type": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The type of the subscription target."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The timestamp of when the subscription target was updated."
       },
       "UpdatedBy": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "The Amazon DataZone user who updated the subscription target."
@@ -1869,21 +1914,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/97"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1895,7 +1940,7 @@
     "name": "AWS.DataZone/SubscriptionTarget@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/96"
+      "$ref": "#/98"
     },
     "flags": 0
   },
@@ -1905,7 +1950,7 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The ARN of the IAM User Profile."
@@ -1918,21 +1963,21 @@
     "properties": {
       "FirstName": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The First Name of the IAM User Profile."
       },
       "LastName": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The Last Name of the IAM User Profile."
       },
       "Username": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The username of the SSO User Profile."
@@ -1969,53 +2014,53 @@
     "properties": {
       "Details": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/102"
         },
         "flags": 2
       },
       "DomainId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The identifier of the Amazon DataZone domain in which the user profile is created."
       },
       "DomainIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5,
         "description": "The identifier of the Amazon DataZone domain in which the user profile would be created."
       },
       "Id": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 18,
         "description": "The ID of the Amazon DataZone user profile."
       },
       "Status": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 2
       },
       "UserIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 5,
         "description": "The ID of the user."
       },
       "UserType": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 4
       }
@@ -2027,21 +2072,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/107"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2053,7 +2098,7 @@
     "name": "AWS.DataZone/UserProfile@default",
     "scopeType": 0,
     "body": {
-      "$ref": "#/106"
+      "$ref": "#/108"
     },
     "flags": 0
   }

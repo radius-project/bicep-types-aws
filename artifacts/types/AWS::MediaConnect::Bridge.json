@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaConnect-Bridge",
   "type": "AWS::MediaConnect::Bridge",
-  "time": "2024-11-11T19:41:03.263Z",
+  "time": "2025-01-23T20:13:11.96Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -74,6 +74,10 @@
           "MulticastIp": {
             "description": "The network source multicast IP.",
             "type": "string"
+          },
+          "MulticastSourceSettings": {
+            "$ref": "#/definitions/MulticastSourceSettings",
+            "description": "The settings related to the multicast source."
           },
           "Name": {
             "description": "The name of the network source.",
@@ -203,6 +207,17 @@
           "MaxBitrate",
           "MaxOutputs"
         ],
+        "type": "object"
+      },
+      "MulticastSourceSettings": {
+        "additionalProperties": false,
+        "description": "The settings related to the multicast source.",
+        "properties": {
+          "MulticastSourceIp": {
+            "description": "The IP address of the source for source-specific multicast (SSM).",
+            "type": "string"
+          }
+        },
         "type": "object"
       },
       "ProtocolEnum": {

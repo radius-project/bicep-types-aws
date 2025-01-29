@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DynamoDB-GlobalTable",
   "type": "AWS::DynamoDB::GlobalTable",
-  "time": "2024-11-21T01:47:12.269Z",
+  "time": "2025-01-24T17:34:55.142Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -181,9 +181,19 @@
       },
       "PointInTimeRecoverySpecification": {
         "additionalProperties": false,
+        "dependencies": {
+          "RecoveryPeriodInDays": [
+            "PointInTimeRecoveryEnabled"
+          ]
+        },
         "properties": {
           "PointInTimeRecoveryEnabled": {
             "type": "boolean"
+          },
+          "RecoveryPeriodInDays": {
+            "maximum": 35,
+            "minimum": 1,
+            "type": "integer"
           }
         },
         "type": "object"
@@ -657,6 +667,9 @@
         },
         "type": "array",
         "uniqueItems": true
+      },
+      "PointInTimeRecoverySpecification": {
+        "$ref": "#/definitions/PointInTimeRecoverySpecification"
       },
       "Replicas": {
         "insertionOrder": false,

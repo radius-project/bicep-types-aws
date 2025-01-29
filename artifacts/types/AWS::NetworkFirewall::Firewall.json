@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkFirewall-Firewall",
   "type": "AWS::NetworkFirewall::Firewall",
-  "time": "2024-11-21T23:32:36.739Z",
+  "time": "2025-01-15T22:25:06.439Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,14 @@
       "/properties/FirewallName"
     ],
     "definitions": {
+      "EnabledAnalysisType": {
+        "description": "An analysis type.",
+        "enum": [
+          "TLS_SNI",
+          "HTTP_HOST"
+        ],
+        "type": "string"
+      },
       "EndpointId": {
         "description": "An endpoint Id.",
         "type": "string"
@@ -111,7 +119,8 @@
           "network-firewall:AssociateFirewallPolicy",
           "network-firewall:TagResource",
           "network-firewall:UntagResource",
-          "network-firewall:DescribeFirewall"
+          "network-firewall:DescribeFirewall",
+          "network-firewall:UpdateFirewallAnalysisSettings"
         ]
       }
     },
