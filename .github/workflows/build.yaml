@@ -10,6 +10,8 @@ jobs:
     name: 'Build and test'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
       - name: 'Setup Go'
         uses: actions/setup-go@v5
         with:
@@ -18,8 +20,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18.x
-      - name: 'Checkout'
-        uses: actions/checkout@v4
       - name: 'Build aws-type-downloader'
         env:
           GOPROXY: "https://proxy.golang.org"
