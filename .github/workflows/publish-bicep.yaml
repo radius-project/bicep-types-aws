@@ -102,10 +102,11 @@ jobs:
       - name: Parse release version and set environment variables
         run: python ./.github/scripts/get_release_version.py
 
-      - name: Set up Go ${{ env.GOVER }}
+      - name: 'Setup Go'
         uses: actions/setup-go@v5
         with:
-          go-version: ${{ env.GOVER }}
+          go-version-file: 'src/aws-type-downloader/go.mod'
+          cache-dependency-path: 'src/aws-type-downloader/go.sum'
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
