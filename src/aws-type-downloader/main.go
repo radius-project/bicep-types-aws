@@ -121,7 +121,7 @@ func run(cmd *cobra.Command, args []string) error {
 			}
 
 			if isSkippedResource(*typeSummary.TypeName) ||
-				typeSummary.LastUpdated != nil && (timestamp == *typeSummary.LastUpdated || timestamp.After(*typeSummary.LastUpdated)) {
+				typeSummary.LastUpdated != nil && (timestamp.Equal(*typeSummary.LastUpdated) || timestamp.After(*typeSummary.LastUpdated)) {
 				fmt.Printf("Skipping: %s - already up to date\n", *typeSummary.TypeName)
 				continue
 			}
