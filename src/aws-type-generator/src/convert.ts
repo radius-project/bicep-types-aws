@@ -1,7 +1,7 @@
 import { Dictionary } from "lodash";
 import { boolean } from "yargs";
 import { Context, SchemaDefinition, SchemaRecord } from "./schemarecord";
-import { TypeBaseKind, TypeFactory, ObjectTypeProperty, ObjectTypePropertyFlags, ObjectType, ResourceType, ScopeType, BicepType, TypeReference, ResourceFlags } from "bicep-types";
+import { TypeBaseKind, TypeFactory, ObjectTypeProperty, ObjectTypePropertyFlags, ObjectType, ResourceType, ScopeType, BicepType, TypeReference } from "bicep-types";
 
 export function convertSchemaRecordToTypes(records: SchemaRecord[]): BicepType[] {
     const factory = new TypeFactory()
@@ -112,8 +112,8 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
         },
         undefined)
 
-    factory.addResourceType(`${typeName}@default`,  ScopeType.Unknown, undefined, body, ResourceFlags.None)
-    return {type: TypeBaseKind.ResourceType, name: `${typeName}@default`, scopeType: ScopeType.Unknown, readOnlyScopes: undefined, body: body, flags: ResourceFlags.None}
+    const resourceType = factory.addResourceType(`${typeName}@default`, body, ScopeType.None, ScopeType.None)
+    return factory.lookupType(resourceType) as ResourceType
 }
 
 function convertOneOfPropertiesToUnion(context: Context, factory: TypeFactory, record: SchemaRecord, properties: TypeReference, typeName: string, oneofInDefinitions: boolean) {
@@ -352,11 +352,11 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
 }
 
 function visitAdditionalProperties(context: Context, factory: TypeFactory, record: SchemaRecord, schema: SchemaDefinition): TypeReference | undefined {
-    if (schema.additionalProperties instanceof boolean && schema.additionalProperties) {
+    if (typeof schema.additionalProperties === 'boolean' && schema.additionalProperties) {
         return factory.addAnyType()
-    } else if (schema.additionalProperties instanceof boolean) {
+    } else if (typeof schema.additionalProperties === 'boolean') {
         return undefined
-    } else if (schema.additionalProperties instanceof Object) {
+    } else if (typeof schema.additionalProperties === 'object' && schema.additionalProperties !== null) {
         return visitSchema(context.create("additionalProperties"), factory, record, undefined, schema.additionalProperties as SchemaDefinition)
     } else if (!schema.additionalProperties) {
         return undefined
