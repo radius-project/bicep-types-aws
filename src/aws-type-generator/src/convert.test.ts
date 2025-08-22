@@ -3,7 +3,7 @@ import path from "path";
 import { describe, expect, test } from '@jest/globals';
 import { convertSchemaRecordToTypes } from './convert'
 import { SchemaRecord } from "./schemarecord";
-import { ArrayType, IntegerType, ObjectTypePropertyFlags, ObjectType, ResourceType, ScopeType, BicepType, TypeReference, ResourceFlags, TypeBaseKind, StringType, BooleanType, ObjectTypeProperty } from "bicep-types";
+import { ArrayType, IntegerType, ObjectTypePropertyFlags, ObjectType, ResourceType, ScopeType, BicepType, TypeReference, TypeBaseKind, StringType, BooleanType, ObjectTypeProperty } from "bicep-types";
 
 describe('convert', () => {
     test('AWS::Kinesis::Stream', () => {
@@ -16,10 +16,9 @@ describe('convert', () => {
         expect(resourceType).toStrictEqual({
             type: TypeBaseKind.ResourceType,
             name: "AWS.Kinesis/Stream@default",
-            scopeType: ScopeType.Unknown,
-            readOnlyScopes: undefined,
             body: new TypeReference(lookupObjectTypeIndex(types, "AWS.Kinesis/Stream")),
-            flags: ResourceFlags.None,
+            readableScopes: ScopeType.None,
+            writableScopes: ScopeType.None,
             functions: undefined,
         });
 
@@ -142,10 +141,9 @@ describe('convert', () => {
         expect(resourceType).toStrictEqual({
             type: TypeBaseKind.ResourceType,
             name: "AWS.Redshift/ScheduledAction@default",
-            scopeType: ScopeType.Unknown,
-            readOnlyScopes: undefined,
             body: new TypeReference(lookupObjectTypeIndex(types, "AWS.Redshift/ScheduledAction")),
-            flags: ResourceFlags.None,
+            readableScopes: ScopeType.None,
+            writableScopes: ScopeType.None,
             functions: undefined,
         });
 
@@ -254,10 +252,9 @@ describe('convert', () => {
         expect(resourceType).toStrictEqual({
             type: TypeBaseKind.ResourceType,
             name: "AWS.Evidently/Experiment@default",
-            scopeType: ScopeType.Unknown,
-            readOnlyScopes: undefined,
             body: new TypeReference(lookupObjectTypeIndex(types, "AWS.Evidently/Experiment")),
-            flags: ResourceFlags.None,
+            readableScopes: ScopeType.None,
+            writableScopes: ScopeType.None,
             functions: undefined,
         });
 
@@ -385,10 +382,9 @@ describe('convert', () => {
         expect(resourceType).toStrictEqual({
             type: TypeBaseKind.ResourceType,
             name: "AWS.Route53RecoveryControl/SafetyRule@default",
-            scopeType: ScopeType.Unknown,
-            readOnlyScopes: undefined,
             body: new TypeReference(lookupObjectTypeIndex(types, "AWS.Route53RecoveryControl/SafetyRule")),
-            flags: ResourceFlags.None,
+            readableScopes: ScopeType.None,
+            writableScopes: ScopeType.None,
             functions: undefined,
         });
 
