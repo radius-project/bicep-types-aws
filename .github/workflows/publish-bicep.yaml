@@ -61,7 +61,7 @@ jobs:
           echo "CHECKOUT_REF=refs/heads/main" >> $GITHUB_ENV
 
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: "Download PR data artifacts"
         if: github.event_name == 'workflow_run'
@@ -94,7 +94,7 @@ jobs:
           details_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
       - name: Checkout Radius repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ${{ env.CHECKOUT_REPO }}
           ref: ${{ env.CHECKOUT_REF }}
