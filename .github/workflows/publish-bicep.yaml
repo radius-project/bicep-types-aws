@@ -4,7 +4,7 @@
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-#    
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
@@ -14,6 +14,8 @@
 # limitations under the License.
 # ------------------------------------------------------------
 
+# yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
+---
 name: Update extensibility provider types
 on:
   push:
@@ -29,13 +31,13 @@ on:
     inputs: {}
 
 permissions:
-      id-token: write
-      contents: read
-      checks: write
+  id-token: write
+  contents: read
+  checks: write
 
-env: 
+env:
   # bicep-types ACR url for uploading AWS Bicep types
-  BICEP_TYPES_REGISTRY: 'biceptypes.azurecr.io'
+  BICEP_TYPES_REGISTRY: biceptypes.azurecr.io
   AWS_REGION: us-west-2
   CI_PUBLISH_RELEASE: ${{ github.repository == 'radius-project/bicep-types-aws' && startsWith(github.ref, 'refs/tags/v') && github.event_name == 'push' }}
   CI_PUBLISH_LATEST: ${{ github.repository == 'radius-project/bicep-types-aws' && github.ref == 'refs/heads/main' && github.event_name == 'push' }}
@@ -48,7 +50,7 @@ jobs:
     environment: publish-bicep
     steps:
       - name: Get GitHub app token
-        uses: tibdex/github-app-token@v2
+        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
         id: get_installation_token
         with:
           app_id: ${{ env.PUBLISH_BICEP_APP_ID }}
@@ -61,8 +63,8 @@ jobs:
           echo "CHECKOUT_REF=refs/heads/main" >> $GITHUB_ENV
 
       - name: Check out code
-        uses: actions/checkout@v5
-        with: 
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
           submodules: recursive
 
       - name: "Download PR data artifacts"
@@ -72,7 +74,7 @@ jobs:
 
       - name: "Set PR context (workflow_run)"
         if: github.event_name == 'workflow_run'
-        uses: actions/github-script@v8
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -84,7 +86,7 @@ jobs:
               `CHECKOUT_REF=${payload.head_sha}\n` +
               `PR_NUMBER=${{ steps.get-pr-number.outputs.pr_number }}\n`);
 
-      - uses: LouisBrunner/checks-action@v2.0.0
+      - uses: LouisBrunner/checks-action@6b626ffbad7cc56fd58627f774b9067e6118af23 # v2.0.0
         id: create_check_run
         if: always()
         with:
@@ -96,7 +98,7 @@ jobs:
           details_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
       - name: Checkout Radius repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           repository: ${{ env.CHECKOUT_REPO }}
           ref: ${{ env.CHECKOUT_REF }}
@@ -104,36 +106,36 @@ jobs:
       - name: Parse release version and set environment variables
         run: python ./.github/scripts/get_release_version.py
 
-      - name: 'Setup Go'
-        uses: actions/setup-go@v6
+      - name: "Setup Go"
+        uses: actions/setup-go@44694675825211faa026b3c33043df3e48a5fa00 # v6.0.0
         with:
-          go-version-file: 'src/aws-type-downloader/go.mod'
-          cache-dependency-path: 'src/aws-type-downloader/go.sum'
+          go-version-file: "src/aws-type-downloader/go.mod"
+          cache-dependency-path: "src/aws-type-downloader/go.sum"
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@00943011d9042930efac3dcd3a170e4273319bc8 # v5.1.0
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: 'Build aws-type-downloader'
+      - name: "Build aws-type-downloader"
         env:
           GOPROXY: "https://proxy.golang.org"
-        working-directory: 'src/aws-type-downloader'
+        working-directory: "src/aws-type-downloader"
         run: go build .
 
-      - name: Download AWS specs from CloudControl 
+      - name: Download AWS specs from CloudControl
         run: |
           cd src/aws-type-downloader && go run main.go --output ../../artifacts/types --clean
 
-      - name: 'Initialize submodule'
-        run: | 
+      - name: Initialize submodule
+        run: |
           git submodule update --init --recursive
           npm --prefix bicep-types/src/bicep-types ci && npm --prefix bicep-types/src/bicep-types run build; \
 
@@ -145,15 +147,15 @@ jobs:
           npm run --prefix ./src/aws-type-generator start -- --input ../../artifacts/types --output ../../artifacts/bicep --release-version ${{ env.VERSION }}
 
       - name: Upload AWS Bicep types artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: aws-bicep-types
           path: ./artifacts/bicep
           if-no-files-found: error
 
-      - name: 'Login via Azure CLI'
+      - name: Login via Azure CLI
         if: ${{ env.CI_PUBLISH_LATEST == 'true' || env.CI_PUBLISH_RELEASE == 'true' }}
-        uses: azure/login@v2
+        uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # v2.3.0
         with:
           client-id: ${{ secrets.BICEPTYPES_CLIENT_ID }}
           tenant-id: ${{ secrets.BICEPTYPES_TENANT_ID }}
@@ -167,14 +169,14 @@ jobs:
           sudo mv ./bicep /usr/local/bin/bicep
           bicep --version
 
-      - name: Publish bicep types 
+      - name: Publish bicep types
         if: ${{ env.CI_PUBLISH_LATEST == 'true' || env.CI_PUBLISH_RELEASE == 'true' }}
-        env: 
+        env:
           VERSION: ${{ env.REL_CHANNEL == 'edge' && 'latest' || env.REL_CHANNEL }}
         run: |
           bicep publish-extension ./artifacts/bicep/index.json --target br:${{ env.BICEP_TYPES_REGISTRY }}/aws:${{ env.VERSION }} --force
-      
-      - uses: LouisBrunner/checks-action@v2.0.0
+
+      - uses: LouisBrunner/checks-action@6b626ffbad7cc56fd58627f774b9067e6118af23 # v2.0.0
         if: always()
         with:
           token: ${{ steps.get_installation_token.outputs.token }}
