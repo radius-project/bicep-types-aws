@@ -17,6 +17,7 @@
 # yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
 ---
 name: Generate Bicep types for AWS
+
 on:
   workflow_dispatch:
     inputs: {}
@@ -24,28 +25,34 @@ on:
 jobs:
   generate-types:
     name: Generate Bicep types for AWS
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
     env:
-      GOVER: "^1.21"
+      GOVER: ^1.21
       GOPROXY: https://proxy.golang.org
       AWS_REGION: us-west-2
     steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+      - name: Checkout
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          persist-credentials: false
 
-      - id: get_commit_hash
-        name: Get commit hash (radius-project/bicep-types-aws)
+      - name: Get commit hash (radius-project/bicep-types-aws)
+        id: get_commit_hash
         run: |
-          echo "commit_hash_short=$(git rev-parse HEAD --short)" >> $GITHUB_OUTPUT
+          echo "commit_hash_short=$(git rev-parse HEAD --short)" >> "${GITHUB_OUTPUT}"
 
-      - id: get_date_string
-        name: Get date string
+      - name: Get date string
+        id: get_date_string
         run: |
-          echo "date_string=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "date_string=$(date +'%Y-%m-%d')" >> "${GITHUB_OUTPUT}"
 
-      - id: generate_branch_name
-        name: Generate branch name
+      - name: Generate branch name
+        id: generate_branch_name
         run: |
-          echo "branch_name=generate-types-${{ steps.get_date_string.outputs.date_string }}-${{ steps.get_commit_hash.outputs.commit_hash_short }}" >> $GITHUB_OUTPUT
+          echo "branch_name=generate-types-${{ steps.get_date_string.outputs.date_string }}-${{ steps.get_commit_hash.outputs.commit_hash_short }}" >> "${GITHUB_OUTPUT}"
 
       - name: Configure AWS
         run: |

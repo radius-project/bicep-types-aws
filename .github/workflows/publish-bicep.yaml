@@ -24,16 +24,13 @@ on:
     tags:
       - v*
   workflow_run:
-    workflows: ["Approve Publish Bicep Types"]
+    workflows: [Approve Publish Bicep Types]
     types:
       - completed
   workflow_dispatch:
     inputs: {}
 
-permissions:
-  id-token: write
-  contents: read
-  checks: write
+permissions: {}
 
 env:
   # bicep-types ACR url for uploading AWS Bicep types
@@ -46,37 +43,45 @@ env:
 jobs:
   build-and-push-bicep-types:
     name: Publish Radius bicep types to ACR
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      id-token: write
+      contents: read
+      checks: write
     environment: publish-bicep
     steps:
       - name: Get GitHub app token
-        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
+        uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
         id: get_installation_token
         with:
-          app_id: ${{ env.PUBLISH_BICEP_APP_ID }}
-          private_key: ${{ secrets.PUBLISH_BICEP_APP_PRIVATE_KEY }}
+          app-id: ${{ env.PUBLISH_BICEP_APP_ID }}
+          private-key: ${{ secrets.PUBLISH_BICEP_APP_PRIVATE_KEY }}
+          permission-contents: read
+          permission-checks: write
 
       - name: Set up checkout target (push)
         if: github.event_name == 'push'
         run: |
-          echo "CHECKOUT_REPO=${{ github.repository }}" >> $GITHUB_ENV
-          echo "CHECKOUT_REF=refs/heads/main" >> $GITHUB_ENV
+          echo "CHECKOUT_REPO=${{ github.repository }}" >> "${GITHUB_ENV}"
+          echo "CHECKOUT_REF=refs/heads/main" >> "${GITHUB_ENV}"
 
       - name: Check out code
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
         with:
           submodules: recursive
+          persist-credentials: false
 
-      - name: "Download PR data artifacts"
+      - name: Download PR data artifacts
         if: github.event_name == 'workflow_run'
         uses: ./.github/actions/download-pr-data-artifact
         id: get-pr-number
 
-      - name: "Set PR context (workflow_run)"
+      - name: Set PR context (workflow_run)
         if: github.event_name == 'workflow_run'
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ github.token }}
           script: |
             const payload = context.payload.workflow_run;
             let fs = require('fs');
@@ -91,7 +96,7 @@ jobs:
         if: always()
         with:
           token: ${{ steps.get_installation_token.outputs.token }}
-          name: "Publish Radius bicep types to ACR"
+          name: Publish Radius bicep types to ACR
           status: in_progress
           repo: ${{ github.repository }}
           sha: ${{ env.CHECKOUT_REF }}
@@ -102,20 +107,21 @@ jobs:
         with:
           repository: ${{ env.CHECKOUT_REPO }}
           ref: ${{ env.CHECKOUT_REF }}
+          persist-credentials: false
 
       - name: Parse release version and set environment variables
         run: python ./.github/scripts/get_release_version.py
 
-      - name: "Setup Go"
+      - name: Setup Go
         uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
         with:
-          go-version-file: "src/aws-type-downloader/go.mod"
-          cache-dependency-path: "src/aws-type-downloader/go.sum"
+          go-version-file: src/aws-type-downloader/go.mod
+          cache-dependency-path: src/aws-type-downloader/go.sum
 
       - name: Setup Node.js
         uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
-          node-version: "20"
+          node-version: 20
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@00943011d9042930efac3dcd3a170e4273319bc8 # v5.1.0
@@ -124,10 +130,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: "Build aws-type-downloader"
+      - name: Build aws-type-downloader
         env:
-          GOPROXY: "https://proxy.golang.org"
-        working-directory: "src/aws-type-downloader"
+          GOPROXY: https://proxy.golang.org
+        working-directory: src/aws-type-downloader
         run: go build .
 
       - name: Download AWS specs from CloudControl
@@ -181,7 +187,7 @@ jobs:
         with:
           token: ${{ steps.get_installation_token.outputs.token }}
           check_run_id: ${{ steps.create_check_run.outputs.check_run_id }}
-          name: "Publish Radius bicep types to ACR"
+          name: Publish Radius bicep types to ACR
           repo: ${{ github.repository }}
           sha: ${{ env.CHECKOUT_REF }}
           status: completed

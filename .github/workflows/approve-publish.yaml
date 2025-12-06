@@ -9,14 +9,21 @@ on:
       - features/*
       - release/*
 
+permissions: {}
+
 jobs:
   approve-publish:
-    name: "Approve Publish Bicep Types"
-    runs-on: ubuntu-latest
+    name: Approve Publish Bicep Types
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
     environment: publish-bicep
     steps:
       - name: Checkout repository
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          persist-credentials: false
 
       - name: Save PR number
         uses: ./.github/actions/save-pr-as-artifact
