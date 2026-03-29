@@ -3,7 +3,8 @@
 ## Prerequisites
 
 Please make sure to have the below prerequisites installed for building this repository
-- Go 1.24
+
+- Go 1.26.1
 - node/npm 18+
 
 ## Instructions
