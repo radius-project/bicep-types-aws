@@ -87,3 +87,8 @@ jobs:
 
       - run: npm test
         working-directory: src/aws-type-generator
+
+      - name: Verify actual generator CLI version compatibility without AWS
+        env:
+          AWS_BICEP_TEST_GENERATOR: "true"
+        run: node --test --test-name-pattern='generator CLI' .github/scripts/publish-bicep.test.mjs

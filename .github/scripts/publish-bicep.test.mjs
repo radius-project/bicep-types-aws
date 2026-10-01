@@ -324,6 +324,26 @@ test("workflow authority and evidence wiring remain bounded", async () => {
   assert.ok(generation.indexOf("branch.commit.sha !== context.sha") < generation.indexOf("secrets.AWS_ACCESS_KEY_ID"));
 });
 
+test("generator CLI preserves legacy dashed arguments and default resource identities", {
+  skip: process.env.AWS_BICEP_TEST_GENERATOR !== "true"
+}, async (t) => {
+  const directory = await scratch(t);
+  const input = join(directory, "schemas");
+  await mkdir(input);
+  await cp(resolve("src/aws-type-generator/testdata/AWS::Kinesis::Stream.json"),
+    join(input, "AWS::Kinesis::Stream.json"));
+  for (const version of ["latest", "0.62", "0.62.1-rc.2"]) {
+    for (const option of ["--release-version", "--releaseVersion"]) {
+      const output = join(directory, `${version}-${option}`);
+      await tool(["node", resolve("src/aws-type-generator/dist/src/main.js"),
+        "--input", input, "--output", output, option, version]);
+      const index = JSON.parse(await readFile(join(output, "index.json")));
+      assert.deepEqual(index.settings, { name: "aws", version, isSingleton: false });
+      assert.deepEqual(Object.keys(index.resources), ["AWS.Kinesis/Stream@default"]);
+    }
+  }
+});
+
 test("native Bicep/ORAS raw snapshot, stable/RC publish, retry, restore and conflict", {
   skip: !process.env.AWS_BICEP_TEST_REGISTRY
 }, async (t) => {
