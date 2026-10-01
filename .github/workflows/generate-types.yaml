@@ -25,6 +25,7 @@ on:
 jobs:
   generate-types:
     name: Generate Bicep types for AWS
+    if: github.repository == 'radius-project/bicep-types-aws' && github.ref == 'refs/heads/main' && github.ref_protected
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
@@ -37,7 +38,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ github.sha }}
           persist-credentials: false
+
+      - name: Verify current protected main before using credentials
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const { data: branch } = await github.rest.repos.getBranch({
+              ...context.repo, branch: 'main'
+            });
+            if (!branch.protected || branch.commit.sha !== context.sha) {
+              throw new Error('Generation credentials require current protected main');
+            }
 
       - name: Get commit hash (radius-project/bicep-types-aws)
         id: get_commit_hash
