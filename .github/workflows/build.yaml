@@ -109,3 +109,8 @@ jobs:
       - name: Build templates with the generated types
         working-directory: src/aws-type-generator
         run: npm run test:bicep
+
+      - name: Verify actual generator CLI version compatibility without AWS
+        env:
+          AWS_BICEP_TEST_GENERATOR: "true"
+        run: node --test --test-name-pattern='generator CLI' .github/scripts/publish-bicep.test.mjs
