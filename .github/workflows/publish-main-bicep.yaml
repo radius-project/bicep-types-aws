@@ -117,7 +117,7 @@ jobs:
           retention-days: 90
 
   publish:
-    name: Publish AWS Bicep edge
+    name: Publish AWS Bicep edge and development mirror
     needs: [capture]
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -125,6 +125,7 @@ jobs:
       contents: read
       actions: read
       packages: write
+      id-token: write
     steps:
       - name: Checkout trusted publisher, not generated code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -166,7 +167,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ github.token }}
 
-      - name: Publish current main only
+      - name: Login with main-only Azure identity
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3.1.0
+        with:
+          client-id: ${{ secrets.BICEPTYPES_CLIENT_ID }}
+          tenant-id: ${{ secrets.BICEPTYPES_TENANT_ID }}
+          subscription-id: ${{ secrets.BICEPTYPES_SUBSCRIPTION_ID }}
+
+      - name: Login to the explicit development compatibility registry
+        run: az acr login --name biceptypes
+
+      - name: Publish current main and mirror its exact digest
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
