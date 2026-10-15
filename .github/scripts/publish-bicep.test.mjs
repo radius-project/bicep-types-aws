@@ -7,7 +7,7 @@ import { cp, lstat, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from "nod
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import {
-  capture, captureJob, checkReleaseHistory, existingManifest, hash, identity,
+  capture, captureJob, checkReleaseHistory, developmentMirror, existingManifest, hash, identity,
   mainWorkflow, maximumSnapshotSize, originalSource, packageInfo, prepare, publish,
   releaseWorkflow, repository, select, selectSnapshot, snapshotName, target, tool,
   validateManifest, verifyArtifact, verifyCapture, verifySource, versions
@@ -255,6 +255,75 @@ test("identical release retry verifies only; conflicting versions never write", 
   assert.ok(commands.every((args) => !args.includes("cp")));
 });
 
+test("release publication never writes ACR or emits compatibility state", async (t) => {
+  for (const ref of ["refs/tags/v0.62.1", "refs/tags/v0.62.1-rc.2"]) {
+    const s = { ...source, ref };
+    const directory = await scratch(t);
+    const result = receipt(s);
+    let uploaded = false;
+    await publish(github(s).api, s, result, directory, async (args) => {
+      assert.ok(args.every((arg) => !arg.includes("azurecr.io")));
+      if (args.includes("cp")) uploaded = true;
+      if (args.includes("fetch") && !uploaded) throw missing(result.record.reference);
+      return JSON.stringify(manifest);
+    });
+    assert.equal(uploaded, true);
+    assert.equal(result.status, "published");
+    assert.equal(result.mirror, undefined);
+  }
+});
+
+test("main copies the captured digest and checkpoints interruption before the mirror", async (t) => {
+  const directory = await scratch(t);
+  const result = receipt(main);
+  let writes = 0;
+  await assert.rejects(publish(github(main).api, main, result, directory, async (args) => {
+    if (args.includes("cp") && ++writes === 2) {
+      assert.deepEqual(args, ["oras", "cp", `${target}@${result.record.digest}`, developmentMirror]);
+      const saved = JSON.parse(await readFile(join(directory, "receipt.json")));
+      assert.equal(saved.uploadedDigest, result.record.digest);
+      assert.equal(saved.status, "uploaded");
+      assert.equal(saved.mirror.status, "copying");
+      throw new Error("Interrupted after GHCR write");
+    }
+    return JSON.stringify(manifest);
+  }), /Interrupted after GHCR write/);
+  assert.equal(writes, 2);
+  assert.equal(result.mirror.digest, undefined);
+  await assert.rejects(lstat(join(directory, "record")), { code: "ENOENT" });
+  const commands = [];
+  await publish(github(main).api, { ...main, generationAttempt: 2 }, receipt(main),
+    directory, async (args) => { commands.push(args); return JSON.stringify(manifest); });
+  assert.deepEqual(commands.filter((args) => args.includes("cp"))[1],
+    ["oras", "cp", `${target}@${result.record.digest}`, developmentMirror]);
+  const saved = JSON.parse(await readFile(join(directory, "receipt.json")));
+  assert.equal(saved.status, "published");
+  assert.deepEqual(saved.mirror,
+    { reference: developmentMirror, status: "verified", digest: result.record.digest });
+});
+
+test("main cannot report success when either registry fails parity verification", async (t) => {
+  for (const failure of ["mirror", "edge", "copy"]) {
+    const directory = await scratch(t);
+    let copied = false;
+    await assert.rejects(publish(github(main).api, main, receipt(main), directory, async (args) => {
+      if (args.includes("cp") && args.includes(developmentMirror)) {
+        if (failure === "copy") throw new Error("ACR denied");
+        copied = true;
+      }
+      if (args.includes("fetch") && copied &&
+          args.includes(failure === "mirror" ? developmentMirror : `${target}:edge`))
+        return "wrong manifest";
+      return JSON.stringify(manifest);
+    }), failure === "copy" ? /ACR denied/ : /digest mismatch|edge changed/);
+    const saved = JSON.parse(await readFile(join(directory, "receipt.json")));
+    assert.notEqual(saved.status, "published");
+    assert.equal(saved.uploadedDigest, receipt(main).record.digest);
+    assert.equal(saved.mirror.status, "copying");
+    await assert.rejects(lstat(join(directory, "record")), { code: "ENOENT" });
+  }
+});
+
 test("main bootstraps before any package read and retains private-upload receipt", async (t) => {
   const directory = await scratch(t);
   const { api } = github(main, { visibility: "private" });
@@ -271,6 +340,8 @@ test("main bootstraps before any package read and retains private-upload receipt
   assert.equal(saved.status, "uploaded");
   assert.equal(saved.uploadedDigest, receipt(main).record.digest);
   assert.equal(saved.visibility, "private");
+  assert.equal(saved.mirror.status, "verified");
+  assert.equal(saved.mirror.digest, saved.uploadedDigest);
 });
 
 test("main publication read failure is surfaced after upload, not treated as absence", async (t) => {
@@ -284,12 +355,13 @@ test("main publication read failure is surfaced after upload, not treated as abs
   assert.equal(JSON.parse(await readFile(join(directory, "receipt.json"))).status, "uploaded");
 });
 
-test("older main SHA or older capture run at the SAME SHA never overwrites newer edge", async (t) => {
+test("older main SHA or older capture run at the SAME SHA never writes either registry", async (t) => {
   const directory = await scratch(t);
   for (const changes of [
     { mainSha: "c".repeat(40) },
     { runs: [{ ...apiRun(main), id: 101, run_number: 101, conclusion: "success" }] },
-    { runs: [{ ...apiRun(main), id: 101, run_number: 101, conclusion: "failure" }] }
+    { runs: [{ ...apiRun(main), id: 101, run_number: 101, conclusion: "failure" }] },
+    { runs: [{ ...apiRun(main), id: 101, run_number: 101, status: "queued", conclusion: null }] }
   ]) {
     const { api } = github(main, changes);
     const run = async () => assert.fail("No registry operations after supersession");
@@ -301,20 +373,39 @@ test("older main SHA or older capture run at the SAME SHA never overwrites newer
   }
 });
 
+test("missing main supersession evidence fails before either registry write", async (t) => {
+  const directory = await scratch(t);
+  const { api } = github(main);
+  api.rest.actions.listWorkflowRuns = () => { throw new Error("Actions evidence denied"); };
+  await assert.rejects(publish(api, main, receipt(main), directory,
+    async () => assert.fail("No registry writes without supersession evidence")), /Actions evidence denied/);
+});
+
 test("workflow authority and evidence wiring remain bounded", async () => {
   const read = (name) => readFile(new URL(`../workflows/${name}`, import.meta.url), "utf8");
   for (const name of ["publish-main-bicep.yaml", "publish-release-bicep.yaml"]) {
     const text = await read(name);
     const [generation, uploader] = text.split("\n  publish:\n");
     assert.ok(uploader);
-    assert.doesNotMatch(generation, /packages: write|id-token: write|PRIVATE_KEY/);
+    assert.doesNotMatch(generation, /packages: write|id-token: write|azure\/login|BICEPTYPES_|PRIVATE_KEY/);
     assert.match(uploader, /packages: write/);
-    assert.doesNotMatch(uploader, /AWS_ACCESS|AWS_SECRET|npm |go build|id-token: write|azure\/login|PRIVATE_KEY/);
+    assert.doesNotMatch(uploader, /AWS_ACCESS|AWS_SECRET|npm |go build|PRIVATE_KEY/);
     assert.match(text, /archive: false/);
     assert.match(text, /skip-decompress: true/);
     assert.match(text, /digest-mismatch: error/);
     assert.match(text, /cancel-in-progress: false/);
-    assert.doesNotMatch(text, /biceptypes\.azurecr\.io|:latest|permission-contents: write/);
+    assert.doesNotMatch(text, /permission-contents: write/);
+    if (name === "publish-main-bicep.yaml") {
+      assert.match(uploader, /id-token: write/);
+      assert.match(uploader, /azure\/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906/);
+      for (const secret of ["CLIENT_ID", "TENANT_ID", "SUBSCRIPTION_ID"])
+        assert.match(uploader, new RegExp(`secrets\\.BICEPTYPES_${secret}`));
+      assert.match(uploader, /az acr login --name biceptypes/);
+      assert.match(uploader, /DOCKER_CONFIG=\$\{RUNNER_TEMP\}\/bicep-write-credentials/);
+      assert.match(text, /group: aws-bicep-main/);
+    } else {
+      assert.doesNotMatch(text, /id-token: write|azure\/login|BICEPTYPES_|az acr|azurecr\.io|:latest/);
+    }
   }
   const release = await read("publish-release-bicep.yaml");
   assert.match(release, new RegExp(`name: ${captureJob}`));
@@ -322,6 +413,7 @@ test("workflow authority and evidence wiring remain bounded", async () => {
   const generation = await read("generate-types.yaml");
   assert.match(generation, /github\.repository == 'radius-project\/bicep-types-aws' && github\.ref == 'refs\/heads\/main' && github\.ref_protected/);
   assert.ok(generation.indexOf("branch.commit.sha !== context.sha") < generation.indexOf("secrets.AWS_ACCESS_KEY_ID"));
+  await assert.rejects(read("publish-bicep.yaml"), { code: "ENOENT" });
 });
 
 test("generator CLI preserves legacy dashed arguments and default resource identities", {
@@ -372,6 +464,7 @@ test("native Bicep/ORAS raw snapshot, stable/RC publish, retry, restore and conf
     const result = await prepare(api, archive, s, a, directory);
     const localTarget = `${registry}/published`;
     const run = async (args, options) => {
+      assert.ok(args.every((arg) => !arg.includes("azurecr.io")));
       const mapped = args.map((arg) => arg.replaceAll(target, localTarget));
       if (mapped.some((arg) => arg.startsWith(`${localTarget}:`))) {
         mapped.push(args.includes("cp") ? "--to-plain-http" : "--plain-http");
@@ -399,6 +492,89 @@ test("native Bicep/ORAS raw snapshot, stable/RC publish, retry, restore and conf
         BICEP_TRUSTED_REGISTRIES: "localhost"
       }
     });
+
     await assert.rejects(publish(api, s, receipt(s, "conflicting content"), directory, run), /conflict/);
   }
+});
+
+test("native two-registry main parity, interrupted original-snapshot recovery and same-SHA supersession", {
+  skip: !process.env.AWS_BICEP_TEST_REGISTRY || !process.env.AWS_BICEP_TEST_MIRROR
+}, async (t) => {
+  const registry = process.env.AWS_BICEP_TEST_REGISTRY;
+  const mirrorRegistry = process.env.AWS_BICEP_TEST_MIRROR;
+  assert.match(registry, /^localhost:\d+$/);
+  assert.match(mirrorRegistry, /^localhost:\d+$/);
+  assert.notEqual(registry, mirrorRegistry);
+  const localTarget = `${registry}/development`;
+  const localMirror = `${mirrorRegistry}/aws:latest`;
+  const run = async (args, options) => {
+    const mapped = args.map((arg) => arg.replaceAll(target, localTarget)
+      .replaceAll(developmentMirror, localMirror));
+    if (args.includes("cp")) {
+      if (!args.includes("--from-oci-layout")) mapped.push("--from-plain-http");
+      mapped.push("--to-plain-http");
+    } else {
+      mapped.push("--plain-http");
+    }
+    return tool(mapped, options);
+  };
+  const directory = await scratch(t);
+  await cp(resolve("artifacts/types"), join(directory, "schemas"), { recursive: true });
+  await cp(resolve("artifacts/bicep"), join(directory, "generated"), { recursive: true });
+  const indexPath = join(directory, "generated/index.json");
+  const index = JSON.parse(await readFile(indexPath));
+  index.settings.version = "latest";
+  await writeFile(indexPath, JSON.stringify(index));
+  const archive = await capture(main, directory, registry,
+    join(directory, "schemas"), join(directory, "generated"));
+  const a = {
+    ...artifact, size_in_bytes: (await lstat(archive)).size,
+    digest: hash(await readFile(archive)),
+    workflow_run: { ...artifact.workflow_run, head_branch: "main" }
+  };
+  const { api } = github(main);
+  const result = await prepare(api, archive, main, a, directory);
+  await assert.rejects(publish(api, main, result, directory, async (args, options) => {
+    if (args.includes("cp") && args.includes(developmentMirror))
+      throw new Error("Interrupted before ACR write");
+    return run(args, options);
+  }), /Interrupted before ACR write/);
+  const saved = JSON.parse(await readFile(join(directory, "receipt.json")));
+  assert.equal(saved.uploadedDigest, result.record.digest);
+  assert.equal(saved.mirror.status, "copying");
+  assert.equal(hash(await run(["oras", "manifest", "fetch", `${target}:edge`])), result.record.digest);
+  await assert.rejects(tool(["oras", "manifest", "fetch", "--plain-http", localMirror]), /not found/);
+
+  // Changed live generation inputs cannot affect recovery from the retained raw archive.
+  delete index.resources[Object.keys(index.resources)[0]];
+  await writeFile(indexPath, JSON.stringify(index));
+  const recoveryDirectory = await scratch(t);
+  const retry = { ...main, generationAttempt: 2 };
+  const recovered = await prepare(api, archive, retry, a, recoveryDirectory);
+  assert.deepEqual(recovered.record, result.record);
+  await publish(api, retry, recovered, recoveryDirectory, run);
+  for (const reference of [`${target}:edge`, developmentMirror])
+    assert.equal(hash(await run(["oras", "manifest", "fetch", reference])), result.record.digest);
+  assert.equal(recovered.status, "published");
+  assert.equal(recovered.mirror.digest, result.record.digest);
+  assert.equal(recovered.record.generation.runAttempt, 1);
+  assert.equal(hash(await readFile(archive)), a.digest);
+
+  const newer = { ...main, runId: 101 };
+  const newerArchive = await capture(newer, directory, mirrorRegistry,
+    join(directory, "schemas"), join(directory, "generated"));
+  const newerArtifact = {
+    ...a, name: snapshotName(newer), id: 201,
+    size_in_bytes: (await lstat(newerArchive)).size,
+    digest: hash(await readFile(newerArchive)),
+    workflow_run: { ...a.workflow_run, id: 101 }
+  };
+  const newerResult = await prepare(github(newer).api, newerArchive, newer, newerArtifact, directory);
+  assert.notEqual(newerResult.record.digest, result.record.digest);
+  await publish(github(newer).api, newer, newerResult, directory, run);
+  const superseded = github(main, { runs: [apiRun(newer)] }).api;
+  await assert.rejects(publish(superseded, retry, recovered, recoveryDirectory,
+    async () => assert.fail("Superseded same-SHA retry must not touch either registry")), /Superseded retry/);
+  for (const reference of [`${target}:edge`, developmentMirror])
+    assert.equal(hash(await run(["oras", "manifest", "fetch", reference])), newerResult.record.digest);
 });
