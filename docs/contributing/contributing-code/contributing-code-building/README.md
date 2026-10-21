@@ -51,9 +51,12 @@ PATH="/absolute/path/to/tools:$PATH" bash .github/scripts/test-publish-bicep.sh
 ```
 
 These fixtures use checked-in generated types and raw schemas; they test native
-packaging, full-version publishing/retry/conflict and a representative AWS compile.
+packaging, full-version publishing/retry/conflict, a representative AWS compile,
+and exact-digest development parity across two local registries. They interrupt
+main after its first write, recover from the original snapshot, and reject an
+older retry after a newer capture at the same source SHA.
 They do not call AWS, GHCR or ACR, and do not establish live credential readiness.
-The local HTTP registry is disposable and removed when the fixture exits.
+The local HTTP registries are disposable and removed when the fixture exits.
 OCI-enabled publication to literal TLS `localhost` can select HTTP; use a trusted
 non-loopback registry alias when testing TLS. This does not imply that all Bicep
 restore operations require that workaround.
