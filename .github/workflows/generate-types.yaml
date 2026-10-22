@@ -30,7 +30,6 @@ jobs:
     permissions:
       contents: read # Required for actions/checkout and actions/create-github-app-token
     env:
-      GOVER: ^1.26
       GOPROXY: https://proxy.golang.org
       AWS_REGION: us-west-2
     steps:
@@ -64,7 +63,8 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
-          go-version: ${{ env.GOVER }}
+          go-version-file: src/aws-type-downloader/go.mod
+          cache-dependency-path: src/aws-type-downloader/go.sum
 
       - name: Install node and npm
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
