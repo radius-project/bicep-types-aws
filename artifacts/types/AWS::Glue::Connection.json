@@ -1,0 +1,329 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-Connection",
+  "type": "AWS::Glue::Connection",
+  "time": "2026-10-20T01:07:17.737Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/CatalogId",
+      "/properties/ConnectionInput/Name"
+    ],
+    "definitions": {
+      "AuthenticationConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "AuthenticationType": {
+            "description": "A structure containing the authentication configuration in the CreateConnection request.",
+            "type": "string"
+          },
+          "BasicAuthenticationCredentials": {
+            "$ref": "#/definitions/BasicAuthenticationCredentials",
+            "description": "For supplying basic auth credentials when not providing a SecretArn value"
+          },
+          "CustomAuthenticationCredentials": {
+            "description": "A structure containing the authentication credentials in the CreateConnection request.",
+            "type": "object"
+          },
+          "KmsKeyArn": {
+            "description": "The Amazon Resource Name (ARN) of the KMS key used in the authentication configuration.",
+            "type": "string"
+          },
+          "OAuth2Properties": {
+            "$ref": "#/definitions/OAuth2Properties",
+            "description": "A structure containing properties for OAuth2 in the CreateConnection request."
+          },
+          "SecretArn": {
+            "description": "The secret manager ARN to store credentials in the CreateConnection request.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "AuthenticationType"
+        ],
+        "type": "object"
+      },
+      "AuthorizationCodeProperties": {
+        "additionalProperties": false,
+        "description": "A structure containing the authorization code used in the authentication configuration.",
+        "properties": {
+          "AuthorizationCode": {
+            "description": "The authorization code used in the authentication configuration.",
+            "type": "string"
+          },
+          "RedirectUri": {
+            "description": "The redirect URI where the user gets redirected to by authorization server when issuing an authorization code.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "BasicAuthenticationCredentials": {
+        "additionalProperties": false,
+        "description": "A structure containing the authentication credentials in the CreateConnection request.",
+        "properties": {
+          "Password": {
+            "description": "The password used in the authentication configuration.",
+            "type": "string"
+          },
+          "Username": {
+            "description": "The username used in the authentication configuration.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ConnectionInput": {
+        "additionalProperties": false,
+        "properties": {
+          "AthenaProperties": {
+            "description": "Connection properties specific to the Athena compute environment.",
+            "type": "object"
+          },
+          "AuthenticationConfiguration": {
+            "$ref": "#/definitions/AuthenticationConfiguration",
+            "description": "The authentication configuration used to connect to the connection."
+          },
+          "ConnectionProperties": {
+            "description": "A map of key-value pairs used as parameters for this connection.",
+            "type": "object"
+          },
+          "ConnectionType": {
+            "description": "The type of the connection that needs to be created.",
+            "type": "string"
+          },
+          "Description": {
+            "description": "A description of the connection.",
+            "type": "string"
+          },
+          "MatchCriteria": {
+            "description": "A list of criteria that can be used in selecting this connection.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "Name": {
+            "description": "The name of the connection.",
+            "type": "string"
+          },
+          "PhysicalConnectionRequirements": {
+            "$ref": "#/definitions/PhysicalConnectionRequirements",
+            "description": "The physical connection requirements."
+          },
+          "PythonProperties": {
+            "description": "Connection properties specific to the Python compute environment.",
+            "type": "object"
+          },
+          "SparkProperties": {
+            "description": "Connection properties specific to the Spark compute environment.",
+            "type": "object"
+          },
+          "ValidateCredentials": {
+            "description": "A flag to validate the credentials during create connection. Default is true.",
+            "type": "boolean"
+          },
+          "ValidateForComputeEnvironments": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "ConnectionType"
+        ],
+        "type": "object"
+      },
+      "OAuth2ClientApplication": {
+        "additionalProperties": false,
+        "description": "The OAuth2 client app used for the connection.",
+        "properties": {
+          "AWSManagedClientApplicationReference": {
+            "description": "The reference to the SaaS-side client app that is AWS managed.",
+            "type": "string"
+          },
+          "UserManagedClientApplicationClientId": {
+            "description": "The client application clientID if the ClientAppType is USER_MANAGED.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "OAuth2Credentials": {
+        "additionalProperties": false,
+        "description": "A structure containing the OAuth2 credentials used in the authentication configuration.",
+        "properties": {
+          "AccessToken": {
+            "description": "The access token used in the authentication configuration.",
+            "type": "string"
+          },
+          "JwtToken": {
+            "description": "The JSON Web Token (JWT) used when the authentication type is OAuth2.",
+            "type": "string"
+          },
+          "RefreshToken": {
+            "description": "The refresh token used when the authentication type is OAuth2.",
+            "type": "string"
+          },
+          "UserManagedClientApplicationClientSecret": {
+            "description": "The client application client secret if the client application is user managed.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "OAuth2Properties": {
+        "additionalProperties": false,
+        "description": "A structure containing the authentication credentials in the CreateConnection request.",
+        "properties": {
+          "AuthorizationCodeProperties": {
+            "$ref": "#/definitions/AuthorizationCodeProperties",
+            "description": "The set of properties required for the the OAuth2 AUTHORIZATION_CODE grant type workflow."
+          },
+          "OAuth2ClientApplication": {
+            "$ref": "#/definitions/OAuth2ClientApplication",
+            "description": "The OAuth2 client app used for the connection."
+          },
+          "OAuth2Credentials": {
+            "$ref": "#/definitions/OAuth2Credentials",
+            "description": "A structure containing the OAuth2 credentials used in the authentication configuration."
+          },
+          "OAuth2GrantType": {
+            "description": "The grant type used in the authentication configuration.",
+            "type": "string"
+          },
+          "TokenUrl": {
+            "description": "The URL used in the authentication configuration.",
+            "type": "string"
+          },
+          "TokenUrlParametersMap": {
+            "description": "A map of key-value pairs used in the authentication configuration.",
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "PhysicalConnectionRequirements": {
+        "additionalProperties": false,
+        "properties": {
+          "AvailabilityZone": {
+            "description": "The availability zone where the connection is located.",
+            "type": "string"
+          },
+          "SecurityGroupIdList": {
+            "description": "The security group ID list used by the connection.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "SubnetId": {
+            "description": "The subnet ID used by the connection.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Glue::Connection",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "glue:GetConnection",
+          "glue:CreateConnection",
+          "glue:TagResource",
+          "glue:GetTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "glue:DeleteConnection"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "CatalogId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "CatalogId"
+          ]
+        },
+        "permissions": [
+          "glue:GetConnections"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "glue:GetConnection",
+          "glue:GetTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "glue:GetConnection",
+          "glue:UpdateConnection",
+          "glue:GetTags",
+          "glue:TagResource",
+          "glue:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/CatalogId",
+      "/properties/Name"
+    ],
+    "properties": {
+      "CatalogId": {
+        "description": "The ID of the data catalog to create the catalog object in. Currently, this should be the AWS account ID.",
+        "type": "string"
+      },
+      "ConnectionInput": {
+        "$ref": "#/definitions/ConnectionInput",
+        "description": "The connection properties used for this connection."
+      },
+      "Name": {
+        "description": "The name of the connection.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The collection of tags. Each tag element is associated with a given resource.",
+        "type": "object"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Name"
+    ],
+    "required": [
+      "ConnectionInput",
+      "CatalogId"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "glue:GetTags",
+        "glue:TagResource",
+        "glue:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Glue::Connection",
+    "writeOnlyProperties": [
+      "/properties/ConnectionInput/AuthenticationConfiguration",
+      "/properties/ConnectionInput/AuthenticationConfiguration/AuthenticationType",
+      "/properties/ConnectionInput/AuthenticationConfiguration/BasicAuthenticationCredentials",
+      "/properties/ConnectionInput/AuthenticationConfiguration/CustomAuthenticationCredentials",
+      "/properties/ConnectionInput/AuthenticationConfiguration/KmsKeyArn",
+      "/properties/ConnectionInput/AuthenticationConfiguration/OAuth2Properties/AuthorizationCodeProperties",
+      "/properties/ConnectionInput/AuthenticationConfiguration/OAuth2Properties/OAuth2Credentials",
+      "/properties/ConnectionInput/ValidateCredentials",
+      "/properties/ConnectionInput/ValidateForComputeEnvironments"
+    ]
+  }
+}

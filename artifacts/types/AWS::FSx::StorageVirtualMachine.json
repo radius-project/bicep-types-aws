@@ -1,0 +1,201 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-FSx-StorageVirtualMachine",
+  "type": "AWS::FSx::StorageVirtualMachine",
+  "time": "2026-10-12T20:23:26.028Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/FileSystemId",
+      "/properties/Name",
+      "/properties/RootVolumeSecurityStyle"
+    ],
+    "definitions": {
+      "ActiveDirectoryConfiguration": {
+        "additionalProperties": false,
+        "description": "Describes the self-managed Microsoft Active Directory to which you want to join the SVM.",
+        "properties": {
+          "NetBiosName": {
+            "description": "The NetBIOS name of the Active Directory computer object that will be created for your SVM. Minimum values: 1. Maximum values: 15. Pattern: `^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,255}$`",
+            "type": "string"
+          },
+          "SelfManagedActiveDirectoryConfiguration": {
+            "$ref": "#/definitions/SelfManagedActiveDirectoryConfiguration",
+            "description": "The configuration that Amazon FSx uses to join the ONTAP storage virtual machine (SVM) to your self-managed (including on-premises) Microsoft Active Directory directory."
+          }
+        },
+        "type": "object"
+      },
+      "SelfManagedActiveDirectoryConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "DnsIps": {
+            "description": "A list of IP addresses of DNS servers or domain controllers in the self-managed AD directory. Minimum: 1. Maximum: 3.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "DomainJoinServiceAccountSecret": {
+            "description": "The Amazon Resource Name (ARN) of the AWS Secrets Manager secret containing the self-managed Active Directory domain join service account credentials. Minimum: 64. Maximum: 1024.",
+            "pattern": "^arn:[^:]{1,63}:secretsmanager:[a-z0-9-]+:[0-9]{12}:secret:[a-zA-Z0-9/_+=.@-]+-[a-zA-Z0-9]{6}$",
+            "type": "string"
+          },
+          "DomainName": {
+            "description": "The fully qualified domain name of the self-managed AD directory, such as corp.example.com. Minimum: 1. Maximum: 255. Pattern: `^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,255}$`",
+            "type": "string"
+          },
+          "FileSystemAdministratorsGroup": {
+            "description": "The name of the domain group whose members are granted administrative privileges for the file system. Minimum: 1. Maximum: 256. Pattern: `^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,256}$`",
+            "type": "string"
+          },
+          "OrganizationalUnitDistinguishedName": {
+            "description": "The fully qualified distinguished name of the organizational unit within your self-managed AD directory. Minimum: 1. Maximum: 2000. Pattern: `^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,2000}$`",
+            "type": "string"
+          },
+          "Password": {
+            "description": "The password for the service account on your self-managed AD domain that Amazon FSx will use to join to your AD domain. Minimum: 1. Maximum: 256. Pattern: `^.{1,256}$`",
+            "type": "string"
+          },
+          "UserName": {
+            "description": "The user name for the service account on your self-managed AD domain that Amazon FSx will use to join to your AD domain. Minimum: 1. Maximum: 256. Pattern: `^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,256}$`",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::FSx::StorageVirtualMachine",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "fsx:CreateStorageVirtualMachine",
+          "fsx:DescribeStorageVirtualMachines",
+          "fsx:TagResource",
+          "kms:Decrypt",
+          "secretsmanager:DescribeSecret",
+          "secretsmanager:GetSecretValue"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "fsx:DeleteStorageVirtualMachine",
+          "fsx:DescribeStorageVirtualMachines"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "fsx:DescribeStorageVirtualMachines"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "fsx:DescribeStorageVirtualMachines",
+          "fsx:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "fsx:DescribeStorageVirtualMachines",
+          "fsx:UpdateStorageVirtualMachine",
+          "fsx:TagResource",
+          "fsx:UntagResource",
+          "kms:Decrypt",
+          "secretsmanager:DescribeSecret",
+          "secretsmanager:GetSecretValue"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/StorageVirtualMachineId"
+    ],
+    "properties": {
+      "ActiveDirectoryConfiguration": {
+        "$ref": "#/definitions/ActiveDirectoryConfiguration",
+        "description": "Describes the Microsoft Active Directory configuration to which the SVM is joined, if applicable."
+      },
+      "FileSystemId": {
+        "description": "Specifies the FSx for ONTAP file system on which to create the SVM.",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the SVM. Pattern: `^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,47}$`",
+        "type": "string"
+      },
+      "ResourceARN": {
+        "description": "The Amazon Resource Name (ARN) for a given resource. Min Length: 8, Max Length 512",
+        "pattern": "^arn:(?=[^:]+:fsx:[^:]+:\\d{12}:)((|(?=[a-z0-9-.]{1,63})(?!\\d{1,3}(\\.\\d{1,3}){3})(?![^:]*-{2})(?![^:]*-\\.)(?![^:]*\\.-)[a-z0-9].*(?\u003c!-)):){4}(?!/).{0,1024}$",
+        "type": "string"
+      },
+      "RootVolumeSecurityStyle": {
+        "description": "The security style of the root volume of the SVM. Allowed values: UNIX | NTFS | MIXED.",
+        "type": "string"
+      },
+      "StorageVirtualMachineId": {
+        "description": "The SVM's system generated unique ID.",
+        "type": "string"
+      },
+      "SvmAdminPassword": {
+        "description": "Specifies the password to use when logging on to the SVM using a secure shell (SSH) connection to the SVM's management endpoint.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of Tag values, with a maximum of 50 elements.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "UUID": {
+        "description": "The SVM's UUID (universally unique identifier).",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/StorageVirtualMachineId",
+      "/properties/ResourceARN",
+      "/properties/UUID"
+    ],
+    "required": [
+      "FileSystemId",
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "fsx:ListTagsForResource",
+        "fsx:TagResource",
+        "fsx:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::FSx::StorageVirtualMachine",
+    "writeOnlyProperties": [
+      "/properties/SvmAdminPassword",
+      "/properties/ActiveDirectoryConfiguration/SelfManagedActiveDirectoryConfiguration/Password",
+      "/properties/ActiveDirectoryConfiguration/SelfManagedActiveDirectoryConfiguration/FileSystemAdministratorsGroup",
+      "/properties/RootVolumeSecurityStyle"
+    ]
+  }
+}

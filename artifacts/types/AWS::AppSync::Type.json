@@ -1,0 +1,103 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppSync-Type",
+  "type": "AWS::AppSync::Type",
+  "time": "2026-10-21T20:30:10.878Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ApiId",
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ApiId"
+    ],
+    "description": "Represents a GraphQL type in an AWS AppSync GraphQL API.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "appsync:CreateType",
+          "appsync:GetType"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "appsync:DeleteType",
+          "appsync:GetType"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ApiId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "ApiId"
+          ]
+        },
+        "permissions": [
+          "appsync:ListTypes"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "appsync:GetType"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "appsync:UpdateType",
+          "appsync:GetType"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "ApiId": {
+        "description": "The API ID.",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the type.",
+        "type": "string"
+      },
+      "Definition": {
+        "description": "The type definition, in GraphQL Schema Definition Language (SDL) format.",
+        "type": "string"
+      },
+      "Format": {
+        "description": "The type format: SDL or JSON.",
+        "enum": [
+          "SDL",
+          "JSON"
+        ],
+        "type": "string"
+      },
+      "Name": {
+        "description": "The type name.",
+        "maxLength": 65536,
+        "minLength": 1,
+        "pattern": "^[_A-Za-z][_0-9A-Za-z]*$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Name"
+    ],
+    "required": [
+      "ApiId",
+      "Definition",
+      "Format"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::AppSync::Type"
+  }
+}

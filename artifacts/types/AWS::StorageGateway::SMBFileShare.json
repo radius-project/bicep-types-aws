@@ -1,0 +1,378 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-StorageGateway-SMBFileShare",
+  "type": "AWS::StorageGateway::SMBFileShare",
+  "time": "2026-10-21T23:54:27.215Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/FileShareId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/GatewayARN",
+      "/properties/Role",
+      "/properties/LocationARN",
+      "/properties/BucketRegion",
+      "/properties/VPCEndpointDNSName",
+      "/properties/Authentication"
+    ],
+    "definitions": {
+      "CacheAttributes": {
+        "additionalProperties": false,
+        "description": "Refresh cache information for the file share. Removing this property from a template leaves the share's current value: the service documents no value that resets it.",
+        "properties": {
+          "CacheStaleTimeoutInSeconds": {
+            "description": "How long the directory contents cached by the gateway are considered valid.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "NFSFileShareDefaults": {
+        "additionalProperties": false,
+        "description": "Default values for the file and directory permissions of an NFS share.",
+        "properties": {
+          "DirectoryMode": {
+            "description": "The Unix directory mode in the form nnnn.",
+            "maxLength": 4,
+            "minLength": 1,
+            "pattern": "^[0-7]{4}$",
+            "type": "string"
+          },
+          "FileMode": {
+            "description": "The Unix file mode in the form nnnn.",
+            "maxLength": 4,
+            "minLength": 1,
+            "pattern": "^[0-7]{4}$",
+            "type": "string"
+          },
+          "GroupId": {
+            "description": "The default group ID for files in the file share.",
+            "maximum": 4294967294,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "OwnerId": {
+            "description": "The default owner ID for files in the file share.",
+            "maximum": 4294967294,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair assigned to the file share.",
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::StorageGateway::SMBFileShare. An SMB file share exposes an Amazon S3 bucket through a Storage Gateway file gateway, so clients read and write objects as files over SMB. The share's variant is fixed by its resource type rather than by a property: the service constructs the two variants with different APIs, and a property carrying the choice would belong to neither API's input.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "iam:PassRole",
+          "logs:CreateLogDelivery",
+          "logs:DeleteLogDelivery",
+          "logs:GetLogDelivery",
+          "logs:ListLogDeliveries",
+          "logs:UpdateLogDelivery",
+          "storagegateway:AddTagsToResource",
+          "storagegateway:CreateSMBFileShare",
+          "storagegateway:DescribeSMBFileShares"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "logs:CreateLogDelivery",
+          "logs:DeleteLogDelivery",
+          "logs:GetLogDelivery",
+          "logs:ListLogDeliveries",
+          "logs:UpdateLogDelivery",
+          "storagegateway:DeleteFileShare",
+          "storagegateway:DescribeSMBFileShares",
+          "storagegateway:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "storagegateway:ListFileShares"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "storagegateway:DescribeSMBFileShares",
+          "storagegateway:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "logs:CreateLogDelivery",
+          "logs:DeleteLogDelivery",
+          "logs:GetLogDelivery",
+          "logs:ListLogDeliveries",
+          "logs:UpdateLogDelivery",
+          "storagegateway:AddTagsToResource",
+          "storagegateway:DescribeSMBFileShares",
+          "storagegateway:ListTagsForResource",
+          "storagegateway:RemoveTagsFromResource",
+          "storagegateway:UpdateSMBFileShare"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/FileShareARN"
+    ],
+    "properties": {
+      "AccessBasedEnumeration": {
+        "description": "Whether clients see only the files and folders they may access.",
+        "type": "boolean"
+      },
+      "AdminUserList": {
+        "description": "Users and groups granted administrative privileges on the SMB share.",
+        "insertionOrder": false,
+        "items": {
+          "maxLength": 64,
+          "minLength": 1,
+          "type": "string"
+        },
+        "maxItems": 100,
+        "minItems": 0,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "AuditDestinationARN": {
+        "description": "The ARN of the CloudWatch log group that receives the share's audit logs. Removing this property from a template detaches audit logging: the update sends the empty string, which the service treats as the reset.",
+        "maxLength": 1024,
+        "minLength": 0,
+        "pattern": "^$|^arn:[a-z0-9-]+:logs:[a-z0-9-]+:[0-9]{12}:log-group:.+$",
+        "type": "string"
+      },
+      "Authentication": {
+        "description": "The authentication the SMB share uses. The service accepts ActiveDirectory and GuestAccess; it is a length-bounded string in the API model rather than an enumeration.",
+        "maxLength": 15,
+        "minLength": 5,
+        "type": "string"
+      },
+      "BucketRegion": {
+        "description": "The Region of the S3 bucket, required when the bucket is reached through a VPC endpoint.",
+        "maxLength": 25,
+        "minLength": 1,
+        "type": "string"
+      },
+      "CacheAttributes": {
+        "$ref": "#/definitions/CacheAttributes"
+      },
+      "CaseSensitivity": {
+        "description": "Whether the SMB share is case sensitive or defers to the client.",
+        "enum": [
+          "ClientSpecified",
+          "CaseSensitive"
+        ],
+        "type": "string"
+      },
+      "DefaultStorageClass": {
+        "description": "The S3 storage class for new objects. The service accepts S3_STANDARD, S3_INTELLIGENT_TIERING, S3_STANDARD_IA and S3_ONEZONE_IA; it is a length-bounded string in the API model rather than an enumeration.",
+        "maxLength": 50,
+        "minLength": 5,
+        "type": "string"
+      },
+      "EncryptionType": {
+        "description": "The server-side encryption the gateway applies to objects it writes.",
+        "enum": [
+          "SseS3",
+          "SseKms",
+          "DsseKms"
+        ],
+        "type": "string"
+      },
+      "FileShareARN": {
+        "description": "The ARN of the file share.",
+        "maxLength": 500,
+        "minLength": 50,
+        "pattern": "^arn:[a-z0-9-]+:storagegateway:[a-z0-9-]+:[0-9]{12}:share/.+$",
+        "type": "string"
+      },
+      "FileShareId": {
+        "description": "The ID of the file share.",
+        "maxLength": 30,
+        "minLength": 12,
+        "type": "string"
+      },
+      "FileShareName": {
+        "description": "The name of the file share, which defaults to the bucket name when omitted. Removing this property from a template leaves the share's current value: the service documents no value that resets it.",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "FileShareStatus": {
+        "description": "The status of the file share. The service reports CREATING, UPDATING, AVAILABLE, DELETING and FORCE_DELETING; it is a length-bounded string in the API model rather than an enumeration.",
+        "maxLength": 50,
+        "minLength": 3,
+        "type": "string"
+      },
+      "GatewayARN": {
+        "description": "The ARN of the S3 File Gateway that hosts the share.",
+        "maxLength": 500,
+        "minLength": 50,
+        "pattern": "^arn:[a-z0-9-]+:storagegateway:[a-z0-9-]+:[0-9]{12}:gateway/.+$",
+        "type": "string"
+      },
+      "GuessMIMETypeEnabled": {
+        "description": "Whether the gateway infers the MIME type of uploaded objects from their extension.",
+        "type": "boolean"
+      },
+      "InvalidUserList": {
+        "description": "Users and groups denied access to the SMB share.",
+        "insertionOrder": false,
+        "items": {
+          "maxLength": 64,
+          "minLength": 1,
+          "type": "string"
+        },
+        "maxItems": 100,
+        "minItems": 0,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "KMSEncrypted": {
+        "description": "Deprecated by the service in favour of EncryptionType; true selects KMS encryption. Retained because it remains readable and settable.",
+        "type": "boolean"
+      },
+      "KMSKey": {
+        "description": "The KMS key used for encryption, when EncryptionType selects KMS. Removing this property from a template leaves the share's current value: the service documents no value that resets it.",
+        "maxLength": 2048,
+        "minLength": 7,
+        "pattern": "^(^arn:(aws(|-cn|-us-gov|-iso[A-Za-z0-9_-]*|-eusc)):kms:([a-zA-Z0-9-]+):([0-9]+):(key|alias)/(\\S+)$)|(^alias/(\\S+)$)$",
+        "type": "string"
+      },
+      "LocationARN": {
+        "description": "The ARN of the S3 bucket, or bucket prefix, the share exposes.",
+        "maxLength": 1400,
+        "minLength": 16,
+        "pattern": "^(arn:[a-z0-9-]+:s3:[a-z0-9-]*:[0-9]*:.+|[0-9a-zA-Z][0-9a-zA-Z.\\-]{1,61}-s3alias)$",
+        "type": "string"
+      },
+      "NotificationPolicy": {
+        "description": "The upload-notification settling period, as a JSON document.",
+        "maxLength": 100,
+        "minLength": 2,
+        "pattern": "^\\{[\\w\\s:\\{\\}\\[\\]\\\"]*}$",
+        "type": "string"
+      },
+      "ObjectACL": {
+        "description": "The canned S3 ACL applied to objects the gateway writes.",
+        "enum": [
+          "private",
+          "public-read",
+          "public-read-write",
+          "authenticated-read",
+          "bucket-owner-read",
+          "bucket-owner-full-control",
+          "aws-exec-read"
+        ],
+        "type": "string"
+      },
+      "OplocksEnabled": {
+        "description": "Whether the SMB share grants opportunistic locks. Removing this property from a template leaves the live value unchanged rather than restoring the created default, because that default depends on the gateway's software version -- opportunistic locking is enabled by default only on appliances at 1.19.0.0 or above -- and the version is not part of this resource. Set the value explicitly rather than relying on removal.",
+        "type": "boolean"
+      },
+      "Path": {
+        "description": "The export path the share is mounted or mapped at.",
+        "type": "string"
+      },
+      "ReadOnly": {
+        "description": "Whether clients may write to the share.",
+        "type": "boolean"
+      },
+      "RequesterPays": {
+        "description": "Whether the bucket is a Requester Pays bucket.",
+        "type": "boolean"
+      },
+      "Role": {
+        "description": "The ARN of the IAM role the gateway assumes when it accesses the S3 location.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:(aws(|-cn|-us-gov|-iso[A-Za-z0-9_-]*|-eusc)):iam::([0-9]+):role/(\\S+)$",
+        "type": "string"
+      },
+      "SMBACLEnabled": {
+        "description": "Whether the SMB share uses Windows ACLs rather than POSIX permissions.",
+        "type": "boolean"
+      },
+      "Tags": {
+        "description": "Tags assigned to the file share.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "VPCEndpointDNSName": {
+        "description": "The DNS name of the S3 VPC endpoint the gateway uses to reach the bucket.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])$",
+        "type": "string"
+      },
+      "ValidUserList": {
+        "description": "Users and groups permitted to access the SMB share.",
+        "insertionOrder": false,
+        "items": {
+          "maxLength": 64,
+          "minLength": 1,
+          "type": "string"
+        },
+        "maxItems": 100,
+        "minItems": 0,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/FileShareARN",
+      "/properties/FileShareId",
+      "/properties/FileShareStatus",
+      "/properties/Path"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "GatewayARN",
+      "Role",
+      "LocationARN"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-storagegateway",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "storagegateway:AddTagsToResource",
+        "storagegateway:RemoveTagsFromResource",
+        "storagegateway:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::StorageGateway::SMBFileShare"
+  }
+}

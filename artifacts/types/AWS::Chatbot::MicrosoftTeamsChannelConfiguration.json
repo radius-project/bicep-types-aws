@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Chatbot-MicrosoftTeamsChannelConfiguration",
   "type": "AWS::Chatbot::MicrosoftTeamsChannelConfiguration",
-  "time": "2024-11-22T21:55:18.671Z",
+  "time": "2026-03-03T19:37:31.8Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -14,15 +14,19 @@
         "additionalProperties": false,
         "properties": {
           "Key": {
+            "maxLength": 128,
+            "minLength": 1,
             "type": "string"
           },
           "Value": {
+            "maxLength": 256,
+            "minLength": 0,
             "type": "string"
           }
         },
         "required": [
-          "Value",
-          "Key"
+          "Key",
+          "Value"
         ],
         "type": "object"
       }
@@ -56,7 +60,8 @@
       "read": {
         "permissions": [
           "chatbot:GetMicrosoftTeamsChannelConfiguration",
-          "chatbot:ListAssociations"
+          "chatbot:ListAssociations",
+          "chatbot:ListTagsForResource"
         ]
       },
       "update": {
@@ -147,6 +152,13 @@
         "maxLength": 256,
         "minLength": 1,
         "pattern": "^([a-zA-Z0-9-_=+/.,])*%3[aA]([a-zA-Z0-9-_=+/.,])*%40([a-zA-Z0-9-_=+/.,])*$",
+        "type": "string"
+      },
+      "TeamsChannelName": {
+        "description": "The name of the Microsoft Teams channel",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^(.*)$",
         "type": "string"
       },
       "TeamsTenantId": {

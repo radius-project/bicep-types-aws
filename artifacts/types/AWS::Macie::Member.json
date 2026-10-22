@@ -1,0 +1,157 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Macie-Member",
+  "type": "AWS::Macie::Member",
+  "time": "2026-10-21T21:21:55.155Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/AccountId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AccountId",
+      "/properties/Email"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the Amazon Macie member account.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag. The maximum length of a tag key is 128 characters.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag. The maximum length of a tag value is 256 characters.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents the association between an Amazon Macie administrator account and a member account. Creating this resource associates the specified account with the Macie administrator account that performs the operation; deleting it removes the association.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "macie2:CreateMember",
+          "macie2:GetMember",
+          "macie2:TagResource",
+          "macie2:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "macie2:DeleteMember",
+          "macie2:GetMember",
+          "macie2:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "macie2:ListMembers"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "macie2:GetMember",
+          "macie2:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "macie2:GetMember",
+          "macie2:TagResource",
+          "macie2:UntagResource",
+          "macie2:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AccountId": {
+        "description": "The AWS account ID for the account to associate with the Amazon Macie administrator account.",
+        "pattern": "^[0-9]{12}$",
+        "type": "string"
+      },
+      "AdministratorAccountId": {
+        "description": "The AWS account ID for the Amazon Macie administrator account.",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the association between the member account and the Amazon Macie administrator account.",
+        "type": "string"
+      },
+      "Email": {
+        "description": "The email address for the account to associate with the Amazon Macie administrator account. Required by the Amazon Macie CreateMember API at creation time; it is write-only because the service does not return it (it is null when the account is associated through AWS Organizations).",
+        "type": "string"
+      },
+      "RelationshipStatus": {
+        "description": "The current status of the relationship between the account and the Amazon Macie administrator account.",
+        "enum": [
+          "Enabled",
+          "Paused",
+          "Invited",
+          "Created",
+          "Removed",
+          "Resigned",
+          "EmailVerificationInProgress",
+          "EmailVerificationFailed",
+          "RegionDisabled",
+          "AccountSuspended"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags to associate with the member account in Amazon Macie.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "The date and time, in UTC and extended ISO 8601 format, of the most recent change to the status of the relationship between the account and the Amazon Macie administrator account.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/AdministratorAccountId",
+      "/properties/RelationshipStatus",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "AccountId"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "macie2:TagResource",
+        "macie2:UntagResource",
+        "macie2:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Macie::Member",
+    "writeOnlyProperties": [
+      "/properties/Email"
+    ]
+  }
+}

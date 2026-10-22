@@ -1,98 +1,104 @@
 # AWS.DataSync @ default
 
 ## Resource AWS.DataSync/Agent@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/AgentProperties](#awsdatasyncagentproperties) (Identifier): properties of the resource
 
 ## Resource AWS.DataSync/LocationAzureBlob@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationAzureBlobProperties](#awsdatasynclocationazureblobproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataSync/LocationEFS@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationEFSProperties](#awsdatasynclocationefsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataSync/LocationFSxLustre@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationFSxLustreProperties](#awsdatasynclocationfsxlustreproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataSync/LocationFSxONTAP@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationFSxONTAPProperties](#awsdatasynclocationfsxontapproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataSync/LocationFSxOpenZFS@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationFSxOpenZFSProperties](#awsdatasynclocationfsxopenzfsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataSync/LocationFSxWindows@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationFSxWindowsProperties](#awsdatasynclocationfsxwindowsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataSync/LocationHDFS@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationHDFSProperties](#awsdatasynclocationhdfsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataSync/LocationNFS@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationNFSProperties](#awsdatasynclocationnfsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataSync/LocationObjectStorage@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.DataSync/LocationObjectStorageProperties](#awsdatasynclocationobjectstorageproperties) (Required, Identifier): properties of the resource
+* **properties**: [AWS.DataSync/LocationObjectStorageProperties](#awsdatasynclocationobjectstorageproperties) (Identifier): properties of the resource
 
 ## Resource AWS.DataSync/LocationS3@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationS3Properties](#awsdatasynclocations3properties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataSync/LocationSMB@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/LocationSMBProperties](#awsdatasynclocationsmbproperties) (Required, Identifier): properties of the resource
 
-## Resource AWS.DataSync/StorageSystem@default
-* **Valid Scope(s)**: Unknown
-### Properties
-* **alias**: string (Required, Identifier): the resource alias
-* **name**: string: the resource name
-* **properties**: [AWS.DataSync/StorageSystemProperties](#awsdatasyncstoragesystemproperties) (Required, Identifier): properties of the resource
-
 ## Resource AWS.DataSync/Task@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -111,14 +117,18 @@
 
 ## AWS.DataSync/LocationAzureBlobProperties
 ### Properties
-* **AgentArns**: string[] (Required): The Amazon Resource Names (ARNs) of agents to use for an Azure Blob Location.
+* **AgentArns**: string[]: Specifies the Amazon Resource Name (ARN) of the DataSync agent that can connect with your Azure Blob Storage container. If you are setting up an agentless cross-cloud transfer, you do not need to specify a value for this parameter.
 * **AzureAccessTier**: string: Specifies an access tier for the objects you're transferring into your Azure Blob Storage container.
 * **AzureBlobAuthenticationType**: string (Required): The specific authentication type that you want DataSync to use to access your Azure Blob Container.
 * **AzureBlobContainerUrl**: string (WriteOnly): The URL of the Azure Blob container that was described.
 * **AzureBlobSasConfiguration**: [AzureBlobSasConfiguration](#azureblobsasconfiguration) (WriteOnly)
 * **AzureBlobType**: string: Specifies a blob type for the objects you're transferring into your Azure Blob Storage container.
+* **CmkSecretConfig**: [CmkSecretConfig](#cmksecretconfig)
+* **CustomSecretConfig**: [CustomSecretConfig](#customsecretconfig)
+* **FederatedIdentity**: [AzureFederatedIdentityConfig](#azurefederatedidentityconfig)
 * **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Azure Blob Location that is created.
 * **LocationUri**: string (ReadOnly): The URL of the Azure Blob Location that was described.
+* **ManagedSecretConfig**: [ManagedSecretConfig](#managedsecretconfig) (ReadOnly)
 * **Subdirectory**: string (WriteOnly): The subdirectory in the Azure Blob Container that is used to read data from the Azure Blob Source Location.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
@@ -148,7 +158,7 @@
 * **FsxFilesystemArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the FSx ONAP file system.
 * **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Amazon FSx ONTAP file system location that is created.
 * **LocationUri**: string (ReadOnly): The URL of the FSx ONTAP file system that was described.
-* **Protocol**: [Protocol](#protocol) (WriteOnly)
+* **Protocol**: [Protocol](#protocol)
 * **SecurityGroupArns**: string[] (Required): The ARNs of the security groups that are to use to configure the FSx ONTAP file system.
 * **StorageVirtualMachineArn**: string (Required): The Amazon Resource Name (ARN) for the FSx ONTAP SVM.
 * **Subdirectory**: string (WriteOnly): A subdirectory in the location's path.
@@ -166,10 +176,13 @@
 
 ## AWS.DataSync/LocationFSxWindowsProperties
 ### Properties
+* **CmkSecretConfig**: [CmkSecretConfig](#cmksecretconfig)
+* **CustomSecretConfig**: [CustomSecretConfig](#customsecretconfig)
 * **Domain**: string: The name of the Windows domain that the FSx for Windows server belongs to.
 * **FsxFilesystemArn**: string (WriteOnly): The Amazon Resource Name (ARN) for the FSx for Windows file system.
 * **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Amazon FSx for Windows file system location that is created.
 * **LocationUri**: string (ReadOnly): The URL of the FSx for Windows location that was described.
+* **ManagedSecretConfig**: [ManagedSecretConfig](#managedsecretconfig) (ReadOnly)
 * **Password**: string (WriteOnly): The password of the user who has the permissions to access files and folders in the FSx for Windows file system.
 * **SecurityGroupArns**: string[] (Required): The ARNs of the security groups that are to use to configure the FSx for Windows file system.
 * **Subdirectory**: string (WriteOnly): A subdirectory in the location's path.
@@ -181,12 +194,15 @@
 * **AgentArns**: string[] (Required): ARN(s) of the agent(s) to use for an HDFS location.
 * **AuthenticationType**: string (Required): The authentication mode used to determine identity of user.
 * **BlockSize**: int: Size of chunks (blocks) in bytes that the data is divided into when stored in the HDFS cluster.
+* **CmkSecretConfig**: [CmkSecretConfig](#cmksecretconfig)
+* **CustomSecretConfig**: [CustomSecretConfig](#customsecretconfig)
 * **KerberosKeytab**: string (WriteOnly): The Base64 string representation of the Keytab file.
 * **KerberosKrb5Conf**: string (WriteOnly): The string representation of the Krb5Conf file, or the presigned URL to access the Krb5.conf file within an S3 bucket.
 * **KerberosPrincipal**: string: The unique identity, or principal, to which Kerberos can assign tickets.
 * **KmsKeyProviderUri**: string: The identifier for the Key Management Server where the encryption keys that encrypt data inside HDFS clusters are stored.
 * **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the HDFS location.
 * **LocationUri**: string (ReadOnly): The URL of the HDFS location that was described.
+* **ManagedSecretConfig**: [ManagedSecretConfig](#managedsecretconfig) (ReadOnly)
 * **NameNodes**: [NameNode](#namenode)[] (Required): An array of Name Node(s) of the HDFS location.
 * **QopConfiguration**: [QopConfiguration](#qopconfiguration)
 * **ReplicationFactor**: int: Number of copies of each block that exists inside the HDFS cluster.
@@ -207,10 +223,14 @@
 ## AWS.DataSync/LocationObjectStorageProperties
 ### Properties
 * **AccessKey**: string: Optional. The access key is used if credentials are required to access the self-managed object storage server.
-* **AgentArns**: string[] (Required): The Amazon Resource Name (ARN) of the agents associated with the self-managed object storage server location.
+* **AgentArns**: string[]: Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can connect with your object storage system. If you are setting up an agentless cross-cloud transfer, you do not need to specify a value for this parameter.
 * **BucketName**: string (WriteOnly): The name of the bucket on the self-managed object storage server.
+* **CmkSecretConfig**: [CmkSecretConfig](#cmksecretconfig)
+* **CustomSecretConfig**: [CustomSecretConfig](#customsecretconfig)
+* **FederatedIdentity**: [ObjectStorageFederatedIdentityConfig](#objectstoragefederatedidentityconfig)
 * **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the location that is created.
 * **LocationUri**: string (ReadOnly): The URL of the object storage location that was described.
+* **ManagedSecretConfig**: [ManagedSecretConfig](#managedsecretconfig) (ReadOnly)
 * **SecretKey**: string (WriteOnly): Optional. The secret key is used if credentials are required to access the self-managed object storage server.
 * **ServerCertificate**: string: X.509 PEM content containing a certificate authority or chain to trust.
 * **ServerHostname**: string (WriteOnly): The name of the self-managed object storage server. This value is the IP address or Domain Name Service (DNS) name of the object storage server.
@@ -232,28 +252,23 @@
 ## AWS.DataSync/LocationSMBProperties
 ### Properties
 * **AgentArns**: string[] (Required): The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block (SMB) location.
+* **AuthenticationType**: string: The authentication mode used to determine identity of user.
+* **CmkSecretConfig**: [CmkSecretConfig](#cmksecretconfig)
+* **CustomSecretConfig**: [CustomSecretConfig](#customsecretconfig)
+* **DnsIpAddresses**: string[]: Specifies the IPv4 addresses for the DNS servers that your SMB file server belongs to. This parameter applies only if AuthenticationType is set to KERBEROS. If you have multiple domains in your environment, configuring this parameter makes sure that DataSync connects to the right SMB file server.
 * **Domain**: string: The name of the Windows domain that the SMB server belongs to.
+* **KerberosKeytab**: string (WriteOnly): The Base64 string representation of the Keytab file. Specifies your Kerberos key table (keytab) file, which includes mappings between your service principal name (SPN) and encryption keys. To avoid task execution errors, make sure that the SPN in the keytab file matches exactly what you specify for KerberosPrincipal and in your krb5.conf file.
+* **KerberosKrb5Conf**: string (WriteOnly): The string representation of the Krb5Conf file, or the presigned URL to access the Krb5.conf file within an S3 bucket. Specifies a Kerberos configuration file (krb5.conf) that defines your Kerberos realm configuration. To avoid task execution errors, make sure that the service principal name (SPN) in the krb5.conf file matches exactly what you specify for KerberosPrincipal and in your keytab file.
+* **KerberosPrincipal**: string: Specifies a service principal name (SPN), which is an identity in your Kerberos realm that has permission to access the files, folders, and file metadata in your SMB file server. SPNs are case sensitive and must include a prepended cifs/. For example, an SPN might look like cifs/kerberosuser@EXAMPLE.COM. Your task execution will fail if the SPN that you provide for this parameter doesn't match exactly what's in your keytab or krb5.conf files.
 * **LocationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the SMB location that is created.
 * **LocationUri**: string (ReadOnly): The URL of the SMB location that was described.
+* **ManagedSecretConfig**: [ManagedSecretConfig](#managedsecretconfig) (ReadOnly)
 * **MountOptions**: [MountOptions](#mountoptions)
 * **Password**: string (WriteOnly): The password of the user who can mount the share and has the permissions to access files and folders in the SMB share.
 * **ServerHostname**: string (WriteOnly): The name of the SMB server. This value is the IP address or Domain Name Service (DNS) name of the SMB server.
 * **Subdirectory**: string (WriteOnly): The subdirectory in the SMB file system that is used to read data from the SMB source location or write data to the SMB destination
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-* **User**: string (Required): The user who can mount the share, has the permissions to access files and folders in the SMB share.
-
-## AWS.DataSync/StorageSystemProperties
-### Properties
-* **AgentArns**: string[] (Required): The ARN of the DataSync agent that connects to and reads from the on-premises storage system's management interface.
-* **CloudWatchLogGroupArn**: string: The ARN of the Amazon CloudWatch log group used to monitor and log discovery job events.
-* **ConnectivityStatus**: string (ReadOnly): Indicates whether the DataSync agent can access the on-premises storage system.
-* **Name**: string: A familiar name for the on-premises storage system.
-* **SecretsManagerArn**: string (ReadOnly): The ARN of a secret stored by AWS Secrets Manager.
-* **ServerConfiguration**: [ServerConfiguration](#serverconfiguration) (Required)
-* **ServerCredentials**: [ServerCredentials](#servercredentials) (WriteOnly)
-* **StorageSystemArn**: string (ReadOnly, Identifier): The ARN of the on-premises storage system added to DataSync Discovery.
-* **SystemType**: string (Required): The type of on-premises storage system that DataSync Discovery will analyze.
-* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **User**: string: The user who can mount the share, has the permissions to access files and folders in the SMB share.
 
 ## AWS.DataSync/TaskProperties
 ### Properties
@@ -278,6 +293,76 @@
 ### Properties
 * **AzureBlobSasToken**: string (Required): Specifies the shared access signature (SAS) token, which indicates the permissions DataSync needs to access your Azure Blob Storage container.
 
+## AzureFederatedIdentityConfig
+### Properties
+* **AwsIamRole**: string: Specifies the ARN of the AWS Identity and Access Management (IAM) role that DataSync assumes to mint the OIDC token used to authenticate with the identity provider.
+* **AzureOidc**: [AzureOidcConfig](#azureoidcconfig)
+
+## AzureOidcConfig
+### Properties
+* **ClientId**: string (Required): Specifies the client ID of the Microsoft Entra (Azure AD) identity that DataSync uses to obtain an access token.
+* **TenantId**: string (Required): Specifies the Microsoft Entra (Azure AD) tenant ID that the identity belongs to.
+
+## CmkSecretConfig
+### Properties
+* **KmsKeyArn**: string: Specifies the ARN for the customer-managed AWS KMS key used to encrypt the secret specified for SecretArn. DataSync provides this key to AWS Secrets Manager.
+* **SecretArn**: string (ReadOnly): Specifies the ARN for an AWS Secrets Manager secret, managed by DataSync.
+
+## CmkSecretConfig
+### Properties
+* **KmsKeyArn**: string: Specifies the ARN for the customer-managed AWS KMS key used to encrypt the secret specified for SecretArn. DataSync provides this key to AWS Secrets Manager.
+* **SecretArn**: string (ReadOnly): Specifies the ARN for an AWS Secrets Manager secret, managed by DataSync.
+
+## CmkSecretConfig
+### Properties
+* **KmsKeyArn**: string: Specifies the ARN for the customer-managed AWS KMS key used to encrypt the secret specified for SecretArn. DataSync provides this key to AWS Secrets Manager.
+* **SecretArn**: string (ReadOnly): Specifies the ARN for an AWS Secrets Manager secret, managed by DataSync.
+
+## CmkSecretConfig
+### Properties
+* **KmsKeyArn**: string: Specifies the ARN for the customer-managed AWS KMS key used to encrypt the secret specified for SecretArn. DataSync provides this key to AWS Secrets Manager.
+* **SecretArn**: string (ReadOnly): Specifies the ARN for an AWS Secrets Manager secret, managed by DataSync.
+
+## CmkSecretConfig
+### Properties
+* **KmsKeyArn**: string: Specifies the ARN for the customer-managed AWS KMS key used to encrypt the secret specified for SecretArn. DataSync provides this key to AWS Secrets Manager.
+* **SecretArn**: string (ReadOnly): Specifies the ARN for an AWS Secrets Manager secret, managed by DataSync.
+
+## CmkSecretConfig
+### Properties
+* **KmsKeyArn**: string: Specifies the ARN for the customer-managed AWS KMS key used to encrypt the secret specified for SecretArn. DataSync provides this key to AWS Secrets Manager.
+* **SecretArn**: string (ReadOnly): Specifies the ARN for an AWS Secrets Manager secret, managed by DataSync.
+
+## CustomSecretConfig
+### Properties
+* **SecretAccessRoleArn**: string (Required): Specifies the ARN for the AWS Identity and Access Management role that DataSync uses to access the secret specified for SecretArn.
+* **SecretArn**: string (Required): Specifies the ARN for a customer created AWS Secrets Manager secret.
+
+## CustomSecretConfig
+### Properties
+* **SecretAccessRoleArn**: string (Required): Specifies the ARN for the AWS Identity and Access Management role that DataSync uses to access the secret specified for SecretArn.
+* **SecretArn**: string (Required): Specifies the ARN for a customer created AWS Secrets Manager secret.
+
+## CustomSecretConfig
+### Properties
+* **SecretAccessRoleArn**: string (Required): Specifies the ARN for the AWS Identity and Access Management role that DataSync uses to access the secret specified for SecretArn.
+* **SecretArn**: string (Required): Specifies the ARN for a customer created AWS Secrets Manager secret.
+
+## CustomSecretConfig
+### Properties
+* **SecretAccessRoleArn**: string (Required): Specifies the ARN for the AWS Identity and Access Management role that DataSync uses to access the secret specified for SecretArn.
+* **SecretArn**: string (Required): Specifies the ARN for a customer created AWS Secrets Manager secret.
+
+## CustomSecretConfig
+### Properties
+* **SecretAccessRoleArn**: string (Required): Specifies the ARN for the AWS Identity and Access Management role that DataSync uses to access the secret specified for SecretArn.
+* **SecretArn**: string (Required): Specifies the ARN for a customer created AWS Secrets Manager secret.
+
+## CustomSecretConfig
+### Properties
+* **SecretAccessRoleArn**: string (Required): Specifies the ARN for the AWS Identity and Access Management role that DataSync uses to access the secret specified for SecretArn.
+* **SecretArn**: string (Required): Specifies the ARN for a customer created AWS Secrets Manager secret.
+
 ## Ec2Config
 ### Properties
 * **SecurityGroupArns**: string[] (Required): The Amazon Resource Names (ARNs) of the security groups that are configured for the Amazon EC2 resource.
@@ -287,6 +372,37 @@
 ### Properties
 * **FilterType**: string: The type of filter rule to apply. AWS DataSync only supports the SIMPLE_PATTERN rule type.
 * **Value**: string: A single filter string that consists of the patterns to include or exclude. The patterns are delimited by "|".
+
+## GoogleOidcConfig
+### Properties
+* **IdentityPoolName**: string (Required): The name of the Google Cloud workload identity pool that DataSync federates with.
+* **IdentityProviderName**: string (Required): The name of the OIDC identity provider configured in the Google Cloud workload identity pool.
+* **ProjectName**: string (Required): The human-readable Google Cloud project name.
+* **ProjectNumber**: string (Required): The numeric Google Cloud project ID, as a string.
+
+## ManagedSecretConfig
+### Properties
+* **SecretArn**: string (Required): Specifies the ARN for an AWS Secrets Manager secret.
+
+## ManagedSecretConfig
+### Properties
+* **SecretArn**: string (Required): Specifies the ARN for an AWS Secrets Manager secret.
+
+## ManagedSecretConfig
+### Properties
+* **SecretArn**: string (Required): Specifies the ARN for an AWS Secrets Manager secret.
+
+## ManagedSecretConfig
+### Properties
+* **SecretArn**: string (Required): Specifies the ARN for an AWS Secrets Manager secret.
+
+## ManagedSecretConfig
+### Properties
+* **SecretArn**: string (Required): Specifies the ARN for an AWS Secrets Manager secret.
+
+## ManagedSecretConfig
+### Properties
+* **SecretArn**: string (Required): Specifies the ARN for an AWS Secrets Manager secret.
 
 ## ManifestConfig
 ### Properties
@@ -330,6 +446,15 @@
 ### Properties
 * **Version**: string: The specific NFS version that you want DataSync to use to mount your NFS share.
 
+## ObjectStorageExternalIdentityConfig
+### Properties
+* **GoogleOidc**: [GoogleOidcConfig](#googleoidcconfig)
+
+## ObjectStorageFederatedIdentityConfig
+### Properties
+* **AwsIamRole**: string: Specifies the ARN of the AWS Identity and Access Management (IAM) role that DataSync assumes to mint the OIDC token used to authenticate with the identity provider.
+* **ExternalIdentity**: [ObjectStorageExternalIdentityConfig](#objectstorageexternalidentityconfig)
+
 ## OnPremConfig
 ### Properties
 * **AgentArns**: string[] (Required): ARN(s) of the agent(s) to use for an NFS location.
@@ -341,6 +466,7 @@
 * **Gid**: string: The group ID (GID) of the file's owners.
 * **LogLevel**: string: A value that determines the types of logs that DataSync publishes to a log stream in the Amazon CloudWatch log group that you provide.
 * **Mtime**: string: A value that indicates the last time that a file was modified (that is, a file was written to) before the PREPARING phase.
+* **ObjectMetadata**: string: A value that determines whether source object metadata should be copied to the destination. PRESERVE copies metadata; NONE copies only file-mtime.
 * **ObjectTags**: string: A value that determines whether object tags should be read from the source object store and written to the destination object store.
 * **OverwriteMode**: string: A value that determines whether files at the destination should be overwritten or preserved when copying files.
 * **PosixPermissions**: string: A value that determines which users or groups can access a file for a specific purpose such as reading, writing, or execution of the file.
@@ -370,21 +496,14 @@
 ### Properties
 * **BucketAccessRoleArn**: string (Required): The ARN of the IAM role of the Amazon S3 bucket.
 
-## ServerConfiguration
-### Properties
-* **ServerHostname**: string (Required): The domain name or IP address of the storage system's management interface.
-* **ServerPort**: int: The network port needed to access the system's management interface
-
-## ServerCredentials
-### Properties
-* **Password**: string (Required): The password for your storage system's management interface
-* **Username**: string (Required): The username for your storage system's management interface.
-
 ## SMB
 ### Properties
+* **CmkSecretConfig**: [CmkSecretConfig](#cmksecretconfig)
+* **CustomSecretConfig**: [CustomSecretConfig](#customsecretconfig)
 * **Domain**: string: The name of the Windows domain that the SMB server belongs to.
+* **ManagedSecretConfig**: [ManagedSecretConfig](#managedsecretconfig) (ReadOnly)
 * **MountOptions**: [SmbMountOptions](#smbmountoptions) (Required)
-* **Password**: string (Required): The password of the user who can mount the share and has the permissions to access files and folders in the SMB share.
+* **Password**: string (WriteOnly): The password of the user who can mount the share and has the permissions to access files and folders in the SMB share.
 * **User**: string (Required): The user who can mount the share, has the permissions to access files and folders in the SMB share.
 
 ## SmbMountOptions
@@ -430,11 +549,6 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
-## Tag
-### Properties
-* **Key**: string (Required): The key for an AWS resource tag.
-* **Value**: string (Required): The value for an AWS resource tag.
 
 ## Tag
 ### Properties

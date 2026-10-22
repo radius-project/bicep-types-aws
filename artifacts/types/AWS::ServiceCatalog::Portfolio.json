@@ -1,0 +1,112 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ServiceCatalog-Portfolio",
+  "type": "AWS::ServiceCatalog::Portfolio",
+  "time": "2026-10-19T17:03:33.964Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::ServiceCatalog::Portfolio",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "servicecatalog:CreatePortfolio",
+          "servicecatalog:DescribePortfolio",
+          "servicecatalog:TagResource",
+          "servicecatalog:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "servicecatalog:DeletePortfolio",
+          "servicecatalog:DescribePortfolio"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "servicecatalog:ListPortfolios"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "servicecatalog:DescribePortfolio",
+          "servicecatalog:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "servicecatalog:UpdatePortfolio",
+          "servicecatalog:DescribePortfolio",
+          "servicecatalog:TagResource",
+          "servicecatalog:UntagResource",
+          "servicecatalog:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Id"
+    ],
+    "properties": {
+      "AcceptLanguage": {
+        "type": "string"
+      },
+      "Description": {
+        "type": "string"
+      },
+      "DisplayName": {
+        "type": "string"
+      },
+      "Id": {
+        "type": "string"
+      },
+      "PortfolioName": {
+        "type": "string"
+      },
+      "ProviderName": {
+        "type": "string"
+      },
+      "Tags": {
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/PortfolioName",
+      "/properties/Id"
+    ],
+    "required": [
+      "DisplayName",
+      "ProviderName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::ServiceCatalog::Portfolio",
+    "writeOnlyProperties": [
+      "/properties/AcceptLanguage"
+    ]
+  }
+}

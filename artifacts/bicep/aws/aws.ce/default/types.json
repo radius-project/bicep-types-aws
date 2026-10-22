@@ -143,11 +143,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CE/AnomalyMonitor@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/7"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -318,11 +318,31 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CE/AnomalySubscription@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/17"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceTag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The key name for the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -332,6 +352,12 @@
   {
     "$type": "StringLiteralType",
     "value": "AWS.CE/CostCategoryProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
   },
   {
     "$type": "ObjectType",
@@ -382,6 +408,13 @@
         },
         "flags": 0,
         "description": "Json array format of CostCategorySplitChargeRule in Billing and Cost Management API"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Tags to assign to the cost category."
       }
     }
   },
@@ -405,7 +438,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -415,10 +448,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CE/CostCategory@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/22"
+      "$ref": "#/24"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

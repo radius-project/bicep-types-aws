@@ -1,18 +1,246 @@
 [
   {
     "$type": "ObjectType",
+    "name": "ExistingVersionedProfileSource",
+    "properties": {
+      "ProfileId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The unique identifier of the source profile to clone."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The version number of the source profile to clone."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProfileMappingSource",
+    "properties": {
+      "ProfileMapping": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "Map of template file paths to their Velocity template content."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Source",
+    "properties": {
+      "ExistingVersionedProfileId": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
+      "ProfileMapping": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "StarterProfile": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StarterProfileSource",
+    "properties": {
+      "StarterProfileName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name of the starter profile to seed the profile from."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataTransformationProfile_ProfileMapping",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.HealthLake/DataTransformationProfileProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.HealthLake/DataTransformationProfileProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the data transformation profile."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The identifier (key ID or ARN) of a customer-managed KMS key used to encrypt the profile's template content at rest. If omitted, an AWS owned key is used."
+      },
+      "ProfileDescription": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "A human-readable description of the profile's purpose."
+      },
+      "ProfileId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The unique, server-generated identifier of the profile (32-character lowercase hexadecimal)."
+      },
+      "ProfileName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The human-readable name of the profile."
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4
+      },
+      "SourceFormat": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The source format that this profile converts from."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this profile."
+      },
+      "TargetFormat": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The target format that this profile converts to. Always FHIR_R4."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.HealthLake/DataTransformationProfile",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.HealthLake/DataTransformationProfile@default",
+    "body": {
+      "$ref": "#/11"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AnalyticsConfiguration",
+    "properties": {
+      "Status": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The analytics status for the Data Store."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "CreatedAt",
     "properties": {
       "Nanos": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "Nanoseconds."
       },
       "Seconds": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "Seconds since epoch."
@@ -55,28 +283,28 @@
     "properties": {
       "AuthorizationStrategy": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "Type of Authorization Strategy. The two types of supported Authorization strategies are SMART_ON_FHIR_V1 and AWS_AUTH."
       },
       "FineGrainedAuthorizationEnabled": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "Flag to indicate if fine-grained authorization will be enabled for the datastore"
       },
       "IdpLambdaArn": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the Lambda function that will be used to decode the access token created by the authorization server."
       },
       "Metadata": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The JSON metadata elements for identity provider configuration."
@@ -89,17 +317,30 @@
     "properties": {
       "CmkType": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The type of customer-managed-key (CMK) used for encryption. The two types of supported CMKs are customer owned CMKs and AWS owned CMKs."
       },
       "KmsKeyId": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The KMS encryption key id/alias used to encrypt the Data Store contents at rest."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NlpConfiguration",
+    "properties": {
+      "Status": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The NLP status for the Data Store."
       }
     }
   },
@@ -109,10 +350,23 @@
     "properties": {
       "PreloadDataType": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The type of preloaded data. Only Synthea preloaded data is supported."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProfileConfiguration",
+    "properties": {
+      "DefaultProfiles": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 1,
+        "description": "The FHIR profiles the Data Store validates resources against by default, for example us-core-3.1.1."
       }
     }
   },
@@ -122,7 +376,7 @@
     "properties": {
       "KmsEncryptionConfig": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/22"
         },
         "flags": 1
       }
@@ -134,14 +388,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value of the tag."
@@ -149,13 +403,13 @@
     }
   },
   {
-    "$type": "IntegerType"
-  },
-  {
-    "$type": "StringType"
-  },
-  {
     "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
   },
   {
     "$type": "StringLiteralType",
@@ -164,76 +418,94 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/27"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.HealthLake/FHIRDatastoreProperties",
     "properties": {
+      "AnalyticsConfiguration": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
       "CreatedAt": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/14"
         },
         "flags": 2
       },
       "DatastoreArn": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "DatastoreEndpoint": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "DatastoreId": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 18
       },
       "DatastoreName": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DatastoreStatus": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "DatastoreTypeVersion": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "IdentityProviderConfiguration": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
+      "NlpConfiguration": {
+        "type": {
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "PreloadDataConfig": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "ProfileConfiguration": {
+        "type": {
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "SseConfiguration": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/26"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/31"
         },
         "flags": 0
       }
@@ -245,21 +517,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/32"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -269,10 +541,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.HealthLake/FHIRDatastore@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/18"
+      "$ref": "#/33"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

@@ -1,13 +1,14 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-Topic",
   "type": "AWS::QuickSight::Topic",
-  "time": "2025-01-27T17:56:44.628Z",
+  "time": "2026-08-24T19:34:12.831Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/AwsAccountId",
       "/properties/FolderArns",
-      "/properties/TopicId"
+      "/properties/TopicId",
+      "/properties/Tags"
     ],
     "definitions": {
       "AggregationFunctionParameters": {
@@ -122,6 +123,22 @@
           "COLLECTIVE"
         ],
         "type": "string"
+      },
+      "CustomInstructions": {
+        "additionalProperties": false,
+        "description": "\u003cp\u003eInstructions that provide additional guidance and context for response generation.\u003c/p\u003e",
+        "properties": {
+          "CustomInstructionsString": {
+            "description": "\u003cp\u003eA text field for providing additional guidance or context for response generation.\u003c/p\u003e",
+            "maxLength": 10000,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "CustomInstructionsString"
+        ],
+        "type": "object"
       },
       "DataAggregation": {
         "additionalProperties": false,
@@ -286,7 +303,8 @@
         "enum": [
           "ENFORCED_VALUE_FILTER",
           "CONDITIONAL_VALUE_FILTER",
-          "NAMED_VALUE_FILTER"
+          "NAMED_VALUE_FILTER",
+          "DASHBOARD_DEFAULT_FILTER"
         ],
         "type": "string"
       },
@@ -368,7 +386,8 @@
           "NUMERIC_EQUALITY_FILTER",
           "NUMERIC_RANGE_FILTER",
           "DATE_RANGE_FILTER",
-          "RELATIVE_DATE_FILTER"
+          "RELATIVE_DATE_FILTER",
+          "NULL_FILTER"
         ],
         "type": "string"
       },
@@ -488,6 +507,29 @@
         },
         "type": "object"
       },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "\u003cp\u003eThe key or keys of the key-value pairs for the resource tag or tags assigned to the\n            resource.\u003c/p\u003e",
+        "properties": {
+          "Key": {
+            "description": "\u003cp\u003eTag key.\u003c/p\u003e",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "\u003cp\u003eTag value.\u003c/p\u003e",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
       "TopicCalculatedField": {
         "additionalProperties": false,
         "properties": {
@@ -501,7 +543,7 @@
             "type": "array"
           },
           "CalculatedFieldDescription": {
-            "maxLength": 256,
+            "maxLength": 500,
             "minLength": 0,
             "type": "string"
           },
@@ -630,7 +672,7 @@
             "$ref": "#/definitions/ColumnDataRole"
           },
           "ColumnDescription": {
-            "maxLength": 256,
+            "maxLength": 500,
             "minLength": 0,
             "type": "string"
           },
@@ -693,7 +735,6 @@
       },
       "TopicConfigOptions": {
         "additionalProperties": false,
-        "description": "Model for configuration of a Topic",
         "properties": {
           "QBusinessInsightsEnabled": {
             "type": "boolean"
@@ -755,7 +796,7 @@
             "$ref": "#/definitions/FilterClass"
           },
           "FilterDescription": {
-            "maxLength": 256,
+            "maxLength": 500,
             "minLength": 0,
             "type": "string"
           },
@@ -806,7 +847,7 @@
             "type": "array"
           },
           "EntityDescription": {
-            "maxLength": 256,
+            "maxLength": 500,
             "minLength": 0,
             "type": "string"
           },
@@ -963,7 +1004,10 @@
         "permissions": [
           "quicksight:CreateTopic",
           "quicksight:PassDataSet",
-          "quicksight:DescribeTopicRefresh"
+          "quicksight:DescribeTopicRefresh",
+          "quicksight:CreateFolderMembership",
+          "quicksight:ListFoldersForResource",
+          "quicksight:TagResource"
         ]
       },
       "delete": {
@@ -978,14 +1022,18 @@
       },
       "read": {
         "permissions": [
-          "quicksight:DescribeTopic"
+          "quicksight:DescribeTopic",
+          "quicksight:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "quicksight:UpdateTopic",
           "quicksight:PassDataSet",
-          "quicksight:DescribeTopicRefresh"
+          "quicksight:DescribeTopicRefresh",
+          "quicksight:CreateFolderMembership",
+          "quicksight:DeleteFolderMembership",
+          "quicksight:ListFoldersForResource"
         ]
       }
     },
@@ -1005,6 +1053,9 @@
       },
       "ConfigOptions": {
         "$ref": "#/definitions/TopicConfigOptions"
+      },
+      "CustomInstructions": {
+        "$ref": "#/definitions/CustomInstructions"
       },
       "DataSets": {
         "items": {
@@ -1030,6 +1081,14 @@
         "minLength": 1,
         "type": "string"
       },
+      "Tags": {
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "minItems": 1,
+        "type": "array"
+      },
       "TopicId": {
         "maxLength": 256,
         "minLength": 0,
@@ -1045,9 +1104,14 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
-      "tagOnCreate": false,
+      "permissions": [
+        "quicksight:TagResource",
+        "quicksight:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
       "tagUpdatable": false,
-      "taggable": false
+      "taggable": true
     },
     "typeName": "AWS::QuickSight::Topic",
     "writeOnlyProperties": [

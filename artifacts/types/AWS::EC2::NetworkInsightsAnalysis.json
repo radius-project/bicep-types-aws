@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-NetworkInsightsAnalysis",
   "type": "AWS::EC2::NetworkInsightsAnalysis",
-  "time": "2025-01-23T16:24:26.59Z",
+  "time": "2026-10-19T17:55:35.432Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -11,7 +11,8 @@
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/NetworkInsightsPathId",
-      "/properties/FilterInArns"
+      "/properties/FilterInArns",
+      "/properties/FilterOutArns"
     ],
     "definitions": {
       "AdditionalDetail": {
@@ -219,6 +220,33 @@
         },
         "type": "object"
       },
+      "AnalysisTransitGatewayPolicyTableEntry": {
+        "additionalProperties": false,
+        "properties": {
+          "DestinationCidr": {
+            "type": "string"
+          },
+          "DestinationPortRange": {
+            "$ref": "#/definitions/PortRange"
+          },
+          "Protocol": {
+            "type": "string"
+          },
+          "RuleNumber": {
+            "type": "integer"
+          },
+          "SourceCidr": {
+            "type": "string"
+          },
+          "SourcePortRange": {
+            "$ref": "#/definitions/PortRange"
+          },
+          "TargetRouteTableId": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "Explanation": {
         "additionalProperties": false,
         "properties": {
@@ -389,6 +417,12 @@
           "TransitGatewayAttachment": {
             "$ref": "#/definitions/AnalysisComponent"
           },
+          "TransitGatewayPolicyTable": {
+            "$ref": "#/definitions/AnalysisComponent"
+          },
+          "TransitGatewayPolicyTableEntry": {
+            "$ref": "#/definitions/AnalysisTransitGatewayPolicyTableEntry"
+          },
           "TransitGatewayRouteTable": {
             "$ref": "#/definitions/AnalysisComponent"
           },
@@ -473,6 +507,9 @@
           },
           "TransitGateway": {
             "$ref": "#/definitions/AnalysisComponent"
+          },
+          "TransitGatewayPolicyTableEntry": {
+            "$ref": "#/definitions/AnalysisTransitGatewayPolicyTableEntry"
           },
           "TransitGatewayRouteTableRoute": {
             "$ref": "#/definitions/TransitGatewayRouteTableRoute"
@@ -561,6 +598,8 @@
           "ec2:CreateTags",
           "ec2:StartNetworkInsightsAnalysis",
           "ec2:GetTransitGatewayRouteTablePropagations",
+          "ec2:GetTransitGatewayPolicyTableAssociations",
+          "ec2:GetTransitGatewayPolicyTableEntries",
           "ec2:SearchTransitGatewayRoutes",
           "ec2:Describe*",
           "ec2:GetManagedPrefixListEntries",
@@ -624,6 +663,14 @@
         "uniqueItems": false
       },
       "FilterInArns": {
+        "insertionOrder": true,
+        "items": {
+          "$ref": "#/definitions/ResourceArn"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "FilterOutArns": {
         "insertionOrder": true,
         "items": {
           "$ref": "#/definitions/ResourceArn"
@@ -706,6 +753,17 @@
       "NetworkInsightsPathId"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ec2-ni.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::EC2::NetworkInsightsAnalysis"
   }
 }

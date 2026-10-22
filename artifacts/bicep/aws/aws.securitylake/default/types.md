@@ -1,28 +1,32 @@
 # AWS.SecurityLake @ default
 
 ## Resource AWS.SecurityLake/AwsLogSource@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityLake/AwsLogSourceProperties](#awssecuritylakeawslogsourceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SecurityLake/DataLake@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityLake/DataLakeProperties](#awssecuritylakedatalakeproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SecurityLake/Subscriber@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityLake/SubscriberProperties](#awssecuritylakesubscriberproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SecurityLake/SubscriberNotification@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

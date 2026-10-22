@@ -1,14 +1,15 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Personalize-Dataset",
   "type": "AWS::Personalize::Dataset",
-  "time": "2025-01-08T22:19:22.179Z",
+  "time": "2026-10-21T14:33:44.505Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name",
       "/properties/DatasetType",
       "/properties/DatasetGroupArn",
-      "/properties/SchemaArn"
+      "/properties/SchemaArn",
+      "/properties/Tags"
     ],
     "definitions": {
       "DatasetImportJob": {
@@ -55,6 +56,27 @@
           }
         },
         "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^(?!aws:)[a-zA-Z+-=._:/]+$",
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
       }
     },
     "description": "Resource schema for AWS::Personalize::Dataset.",
@@ -65,7 +87,10 @@
           "personalize:DescribeDataset",
           "personalize:CreateDatasetImportJob",
           "personalize:DescribeDatasetImportJob",
-          "iam:PassRole"
+          "iam:PassRole",
+          "personalize:ListTagsForResource",
+          "personalize:TagResource",
+          "personalize:ListDatasetImportJobs"
         ],
         "timeoutInMinutes": 2160
       },
@@ -82,7 +107,10 @@
       },
       "read": {
         "permissions": [
-          "personalize:DescribeDataset"
+          "personalize:DescribeDataset",
+          "personalize:ListTagsForResource",
+          "personalize:ListDatasetImportJobs",
+          "personalize:DescribeDatasetImportJob"
         ]
       },
       "update": {
@@ -90,7 +118,9 @@
           "personalize:DescribeDataset",
           "personalize:CreateDatasetImportJob",
           "personalize:DescribeDatasetImportJob",
-          "iam:PassRole"
+          "personalize:ListTagsForResource",
+          "iam:PassRole",
+          "personalize:ListDatasetImportJobs"
         ],
         "timeoutInMinutes": 2160
       }
@@ -136,6 +166,15 @@
         "maxLength": 256,
         "pattern": "arn:([a-z\\d-]+):personalize:.*:.*:.+",
         "type": "string"
+      },
+      "Tags": {
+        "description": "The tags used to organize, track, or control access for this resource.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "minItems": 0,
+        "type": "array"
       }
     },
     "readOnlyProperties": [
@@ -149,7 +188,18 @@
       "SchemaArn"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-personalize",
-    "taggable": false,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "personalize:TagResource",
+        "personalize:UntagResource",
+        "personalize:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
     "typeName": "AWS::Personalize::Dataset"
   }
 }

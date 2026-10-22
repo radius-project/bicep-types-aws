@@ -1,42 +1,48 @@
 # AWS.WAFv2 @ default
 
 ## Resource AWS.WAFv2/IPSet@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WAFv2/IPSetProperties](#awswafv2ipsetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WAFv2/LoggingConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WAFv2/LoggingConfigurationProperties](#awswafv2loggingconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WAFv2/RegexPatternSet@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WAFv2/RegexPatternSetProperties](#awswafv2regexpatternsetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WAFv2/RuleGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WAFv2/RuleGroupProperties](#awswafv2rulegroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WAFv2/WebACL@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WAFv2/WebACLProperties](#awswafv2webaclproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WAFv2/WebACLAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -57,6 +63,25 @@
 ## AndStatement
 ### Properties
 * **Statements**: [Statement](#statement)[] (Required)
+
+## ApplicationAttribute
+### Properties
+* **Name**: string (Required, Identifier)
+* **Values**: string[] (Required)
+
+## ApplicationConfig
+### Properties
+* **Attributes**: [ApplicationAttribute](#applicationattribute)[] (Required)
+
+## AsnMatchStatement
+### Properties
+* **AsnList**: int[]
+* **ForwardedIPConfig**: [ForwardedIPConfiguration](#forwardedipconfiguration)
+
+## AsnMatchStatement
+### Properties
+* **AsnList**: int[]
+* **ForwardedIPConfig**: [ForwardedIPConfiguration](#forwardedipconfiguration)
 
 ## AssociationConfig
 ### Properties
@@ -101,6 +126,7 @@
 * **Description**: string
 * **Id**: string (ReadOnly, Identifier)
 * **LabelNamespace**: string (ReadOnly)
+* **MonetizationConfig**: [MonetizationConfig](#monetizationconfig)
 * **Name**: string (Identifier)
 * **Rules**: [Rule](#rule)[]: Collection of Rules.
 * **Scope**: string (Required, Identifier)
@@ -114,17 +140,21 @@
 
 ## AWS.WAFv2/WebACLProperties
 ### Properties
+* **ApplicationConfig**: [ApplicationConfig](#applicationconfig): Collection of application attributes.
 * **Arn**: string (ReadOnly)
 * **AssociationConfig**: [AssociationConfig](#associationconfig)
 * **Capacity**: int (ReadOnly)
 * **CaptchaConfig**: [CaptchaConfig](#captchaconfig)
 * **ChallengeConfig**: [ChallengeConfig](#challengeconfig)
 * **CustomResponseBodies**: [CustomResponseBodies](#customresponsebodies)
+* **DataProtectionConfig**: [DataProtectionConfig](#dataprotectionconfig): Collection of dataProtects.
 * **DefaultAction**: [DefaultAction](#defaultaction) (Required)
 * **Description**: string
 * **Id**: string (ReadOnly, Identifier)
 * **LabelNamespace**: string (ReadOnly)
+* **MonetizationConfig**: [MonetizationConfig](#monetizationconfig)
 * **Name**: string (Identifier)
+* **OnSourceDDoSProtectionConfig**: [OnSourceDDoSProtectionConfig](#onsourceddosprotectionconfig)
 * **Rules**: [Rule](#rule)[]: Collection of Rules.
 * **Scope**: string (Required, Identifier)
 * **Tags**: [Tag](#tag)[]
@@ -138,6 +168,11 @@
 * **RegistrationPagePath**: string (Required)
 * **RequestInspection**: [RequestInspectionACFP](#requestinspectionacfp) (Required)
 * **ResponseInspection**: [ResponseInspection](#responseinspection)
+
+## AWSManagedRulesAntiDDoSRuleSet
+### Properties
+* **ClientSideActionConfig**: [ClientSideActionConfig](#clientsideactionconfig) (Required)
+* **SensitivityToBlock**: string
 
 ## AWSManagedRulesATPRuleSet
 ### Properties
@@ -171,6 +206,7 @@
 ### Properties
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
 * **PositionalConstraint**: string (Required)
+* **PreParseTextTransformations**: [PreParseTextTransformation](#preparsetexttransformation)[]
 * **SearchString**: string
 * **SearchStringBase64**: string
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
@@ -179,6 +215,7 @@
 ### Properties
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
 * **PositionalConstraint**: string (Required)
+* **PreParseTextTransformations**: [PreParseTextTransformation](#preparsetexttransformation)[]
 * **SearchString**: string
 * **SearchStringBase64**: string
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
@@ -214,6 +251,16 @@
 ## ChallengeConfig
 ### Properties
 * **ImmunityTimeProperty**: [ImmunityTimeProperty](#immunitytimeproperty)
+
+## ClientSideAction
+### Properties
+* **ExemptUriRegularExpressions**: [Regex](#regex)[]
+* **Sensitivity**: string
+* **UsageOfAction**: string (Required)
+
+## ClientSideActionConfig
+### Properties
+* **Challenge**: [ClientSideAction](#clientsideaction) (Required)
 
 ## Condition
 ### Properties
@@ -252,6 +299,14 @@
 ### Properties
 * **CustomRequestHandling**: [CustomRequestHandling](#customrequesthandling)
 
+## CryptoConfig
+### Properties
+* **PaymentNetworks**: [PaymentNetwork](#paymentnetwork)[] (Required)
+
+## CryptoConfig
+### Properties
+* **PaymentNetworks**: [PaymentNetwork](#paymentnetwork)[] (Required)
+
 ## CustomHTTPHeader
 ### Properties
 * **Name**: string (Required, Identifier)
@@ -287,6 +342,17 @@
 
 ## CustomResponseBodies
 ### Properties
+
+## DataProtect
+### Properties
+* **Action**: string (Required)
+* **ExcludeRateBasedDetails**: bool
+* **ExcludeRuleMatchDetails**: bool
+* **Field**: [FieldToProtect](#fieldtoprotect) (Required)
+
+## DataProtectionConfig
+### Properties
+* **DataProtections**: [DataProtect](#dataprotect)[] (Required)
 
 ## DefaultAction
 ### Properties
@@ -313,13 +379,16 @@
 * **AllQueryArguments**: [RuleGroup_AllQueryArguments](#rulegroupallqueryarguments): All query arguments of a web request.
 * **Body**: [Body](#body)
 * **Cookies**: [Cookies](#cookies)
+* **HeaderOrder**: [HeaderOrder](#headerorder)
 * **Headers**: [Headers](#headers)
 * **JA3Fingerprint**: [JA3Fingerprint](#ja3fingerprint)
+* **JA4Fingerprint**: [JA4Fingerprint](#ja4fingerprint)
 * **JsonBody**: [JsonBody](#jsonbody)
 * **Method**: [RuleGroup_Method](#rulegroupmethod): The HTTP method of a web request. The method indicates the type of operation that the request is asking the origin to perform.
 * **QueryString**: [RuleGroup_QueryString](#rulegroupquerystring): The query string of a web request. This is the part of a URL that appears after a ? character, if any.
 * **SingleHeader**: [RuleGroup_SingleHeader](#rulegroupsingleheader)
 * **SingleQueryArgument**: [RuleGroup_SingleQueryArgument](#rulegroupsinglequeryargument): One query argument in a web request, identified by name, for example UserName or SalesRegion. The name can be up to 30 characters long and isn't case sensitive.
+* **UriFragment**: [UriFragment](#urifragment)
 * **UriPath**: [RuleGroup_UriPath](#rulegroupuripath): The path component of the URI of a web request. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg.
 
 ## FieldToMatch
@@ -327,14 +396,22 @@
 * **AllQueryArguments**: [WebACL_AllQueryArguments](#webaclallqueryarguments): All query arguments of a web request.
 * **Body**: [Body](#body)
 * **Cookies**: [Cookies](#cookies)
+* **HeaderOrder**: [HeaderOrder](#headerorder)
 * **Headers**: [Headers](#headers)
 * **JA3Fingerprint**: [JA3Fingerprint](#ja3fingerprint)
+* **JA4Fingerprint**: [JA4Fingerprint](#ja4fingerprint)
 * **JsonBody**: [JsonBody](#jsonbody)
 * **Method**: [WebACL_Method](#webaclmethod): The HTTP method of a web request. The method indicates the type of operation that the request is asking the origin to perform.
 * **QueryString**: [WebACL_QueryString](#webaclquerystring): The query string of a web request. This is the part of a URL that appears after a ? character, if any.
 * **SingleHeader**: [WebACL_SingleHeader](#webaclsingleheader)
 * **SingleQueryArgument**: [WebACL_SingleQueryArgument](#webaclsinglequeryargument): One query argument in a web request, identified by name, for example UserName or SalesRegion. The name can be up to 30 characters long and isn't case sensitive.
+* **UriFragment**: [UriFragment](#urifragment)
 * **UriPath**: [WebACL_UriPath](#webacluripath): The path component of the URI of a web request. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg.
+
+## FieldToProtect
+### Properties
+* **FieldKeys**: string[]: List of field keys to protect
+* **FieldType**: string (Required): Field type to protect
 
 ## Filter
 ### Properties
@@ -374,6 +451,14 @@
 * **ExcludedHeaders**: string[]
 * **IncludedHeaders**: string[]
 
+## HeaderOrder
+### Properties
+* **OversizeHandling**: string (Required)
+
+## HeaderOrder
+### Properties
+* **OversizeHandling**: string (Required)
+
 ## Headers
 ### Properties
 * **MatchPattern**: [HeaderMatchPattern](#headermatchpattern) (Required)
@@ -421,6 +506,14 @@
 * **FallbackBehavior**: string (Required)
 
 ## JA3Fingerprint
+### Properties
+* **FallbackBehavior**: string (Required)
+
+## JA4Fingerprint
+### Properties
+* **FallbackBehavior**: string (Required)
+
+## JA4Fingerprint
 ### Properties
 * **FallbackBehavior**: string (Required)
 
@@ -499,6 +592,7 @@
 ## ManagedRuleGroupConfig
 ### Properties
 * **AWSManagedRulesACFPRuleSet**: [AWSManagedRulesACFPRuleSet](#awsmanagedrulesacfpruleset)
+* **AWSManagedRulesAntiDDoSRuleSet**: [AWSManagedRulesAntiDDoSRuleSet](#awsmanagedrulesantiddosruleset)
 * **AWSManagedRulesATPRuleSet**: [AWSManagedRulesATPRuleSet](#awsmanagedrulesatpruleset)
 * **AWSManagedRulesBotControlRuleSet**: [AWSManagedRulesBotControlRuleSet](#awsmanagedrulesbotcontrolruleset)
 * **LoginPath**: string
@@ -516,6 +610,24 @@
 * **VendorName**: string (Required)
 * **Version**: string
 
+## MonetizationConfig
+### Properties
+* **CryptoConfig**: [CryptoConfig](#cryptoconfig)
+* **CurrencyMode**: string
+
+## MonetizationConfig
+### Properties
+* **CryptoConfig**: [CryptoConfig](#cryptoconfig)
+* **CurrencyMode**: string
+
+## MonetizeAction
+### Properties
+* **PriceMultiplier**: string
+
+## MonetizeAction
+### Properties
+* **PriceMultiplier**: string
+
 ## NotStatement
 ### Properties
 * **Statement**: [Statement](#statement) (Required)
@@ -523,6 +635,10 @@
 ## NotStatement
 ### Properties
 * **Statement**: [Statement](#statement) (Required)
+
+## OnSourceDDoSProtectionConfig
+### Properties
+* **ALBLowReputationMode**: string (Required)
 
 ## OrStatement
 ### Properties
@@ -537,6 +653,38 @@
 * **Count**: [WebACL_Count](#webaclcount): Count traffic towards application.
 * **None**: [WebACL_None](#webaclnone): Keep the RuleGroup or ManagedRuleGroup behavior as is.
 
+## PaymentNetwork
+### Properties
+* **Chain**: string (Required)
+* **Prices**: [Price](#price)[] (Required)
+* **WalletAddress**: string (Required)
+
+## PaymentNetwork
+### Properties
+* **Chain**: string (Required)
+* **Prices**: [Price](#price)[] (Required)
+* **WalletAddress**: string (Required)
+
+## PreParseTextTransformation
+### Properties
+* **Priority**: int (Required)
+* **Type**: string (Required)
+
+## PreParseTextTransformation
+### Properties
+* **Priority**: int (Required)
+* **Type**: string (Required)
+
+## Price
+### Properties
+* **Amount**: string (Required)
+* **Currency**: string (Required)
+
+## Price
+### Properties
+* **Amount**: string (Required)
+* **Currency**: string (Required)
+
 ## RateBasedStatement
 ### Properties
 * **AggregateKeyType**: string (Required)
@@ -557,11 +705,14 @@
 
 ## RateBasedStatementCustomKey
 ### Properties
+* **ASN**: [RateLimitAsn](#ratelimitasn)
 * **Cookie**: [RateLimitCookie](#ratelimitcookie)
 * **ForwardedIP**: [RateLimitForwardedIP](#ratelimitforwardedip)
 * **Header**: [RateLimitHeader](#ratelimitheader)
 * **HTTPMethod**: [RateLimitHTTPMethod](#ratelimithttpmethod)
 * **IP**: [RateLimitIP](#ratelimitip)
+* **JA3Fingerprint**: [RateLimitJA3Fingerprint](#ratelimitja3fingerprint)
+* **JA4Fingerprint**: [RateLimitJA4Fingerprint](#ratelimitja4fingerprint)
 * **LabelNamespace**: [RateLimitLabelNamespace](#ratelimitlabelnamespace)
 * **QueryArgument**: [RateLimitQueryArgument](#ratelimitqueryargument)
 * **QueryString**: [RateLimitQueryString](#ratelimitquerystring)
@@ -569,15 +720,24 @@
 
 ## RateBasedStatementCustomKey
 ### Properties
+* **ASN**: [RateLimitAsn](#ratelimitasn)
 * **Cookie**: [RateLimitCookie](#ratelimitcookie)
 * **ForwardedIP**: [RateLimitForwardedIP](#ratelimitforwardedip)
 * **Header**: [RateLimitHeader](#ratelimitheader)
 * **HTTPMethod**: [RateLimitHTTPMethod](#ratelimithttpmethod)
 * **IP**: [RateLimitIP](#ratelimitip)
+* **JA3Fingerprint**: [RateLimitJA3Fingerprint](#ratelimitja3fingerprint)
+* **JA4Fingerprint**: [RateLimitJA4Fingerprint](#ratelimitja4fingerprint)
 * **LabelNamespace**: [RateLimitLabelNamespace](#ratelimitlabelnamespace)
 * **QueryArgument**: [RateLimitQueryArgument](#ratelimitqueryargument)
 * **QueryString**: [RateLimitQueryString](#ratelimitquerystring)
 * **UriPath**: [RateLimitUriPath](#ratelimituripath)
+
+## RateLimitAsn
+### Properties
+
+## RateLimitAsn
+### Properties
 
 ## RateLimitCookie
 ### Properties
@@ -617,6 +777,22 @@
 ## RateLimitIP
 ### Properties
 
+## RateLimitJA3Fingerprint
+### Properties
+* **FallbackBehavior**: string (Required)
+
+## RateLimitJA3Fingerprint
+### Properties
+* **FallbackBehavior**: string (Required)
+
+## RateLimitJA4Fingerprint
+### Properties
+* **FallbackBehavior**: string (Required)
+
+## RateLimitJA4Fingerprint
+### Properties
+* **FallbackBehavior**: string (Required)
+
 ## RateLimitLabelNamespace
 ### Properties
 * **Namespace**: string (Required): The namespace to use for aggregation.
@@ -651,15 +827,21 @@
 ### Properties
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
+## Regex
+### Properties
+* **RegexString**: string
+
 ## RegexMatchStatement
 ### Properties
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
+* **PreParseTextTransformations**: [PreParseTextTransformation](#preparsetexttransformation)[]
 * **RegexString**: string (Required)
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
 ## RegexMatchStatement
 ### Properties
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
+* **PreParseTextTransformations**: [PreParseTextTransformation](#preparsetexttransformation)[]
 * **RegexString**: string (Required)
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
@@ -667,12 +849,14 @@
 ### Properties
 * **Arn**: string (Required)
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
+* **PreParseTextTransformations**: [PreParseTextTransformation](#preparsetexttransformation)[]
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
 ## RegexPatternSetReferenceStatement
 ### Properties
 * **Arn**: string (Required)
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
+* **PreParseTextTransformations**: [PreParseTextTransformation](#preparsetexttransformation)[]
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
 ## RequestBody
@@ -752,6 +936,7 @@
 * **Captcha**: [CaptchaAction](#captchaaction)
 * **Challenge**: [ChallengeAction](#challengeaction)
 * **Count**: [CountAction](#countaction)
+* **Monetize**: [MonetizeAction](#monetizeaction)
 
 ## RuleAction
 ### Properties
@@ -760,6 +945,7 @@
 * **Captcha**: [CaptchaAction](#captchaaction)
 * **Challenge**: [ChallengeAction](#challengeaction)
 * **Count**: [CountAction](#countaction)
+* **Monetize**: [MonetizeAction](#monetizeaction)
 
 ## RuleActionOverride
 ### Properties
@@ -805,6 +991,7 @@
 ### Properties
 * **ComparisonOperator**: string (Required)
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
+* **PreParseTextTransformations**: [PreParseTextTransformation](#preparsetexttransformation)[]
 * **Size**: int (Required)
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
@@ -812,24 +999,28 @@
 ### Properties
 * **ComparisonOperator**: string (Required)
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
+* **PreParseTextTransformations**: [PreParseTextTransformation](#preparsetexttransformation)[]
 * **Size**: int (Required)
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
 ## SqliMatchStatement
 ### Properties
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
+* **PreParseTextTransformations**: [PreParseTextTransformation](#preparsetexttransformation)[]
 * **SensitivityLevel**: string
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
 ## SqliMatchStatement
 ### Properties
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
+* **PreParseTextTransformations**: [PreParseTextTransformation](#preparsetexttransformation)[]
 * **SensitivityLevel**: string
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
 ## Statement
 ### Properties
 * **AndStatement**: [AndStatement](#andstatement)
+* **AsnMatchStatement**: [AsnMatchStatement](#asnmatchstatement)
 * **ByteMatchStatement**: [ByteMatchStatement](#bytematchstatement)
 * **GeoMatchStatement**: [GeoMatchStatement](#geomatchstatement)
 * **IPSetReferenceStatement**: [IPSetReferenceStatement](#ipsetreferencestatement)
@@ -846,6 +1037,7 @@
 ## Statement
 ### Properties
 * **AndStatement**: [AndStatement](#andstatement)
+* **AsnMatchStatement**: [AsnMatchStatement](#asnmatchstatement)
 * **ByteMatchStatement**: [ByteMatchStatement](#bytematchstatement)
 * **GeoMatchStatement**: [GeoMatchStatement](#geomatchstatement)
 * **IPSetReferenceStatement**: [IPSetReferenceStatement](#ipsetreferencestatement)
@@ -890,6 +1082,14 @@
 ### Properties
 * **Priority**: int (Required)
 * **Type**: string (Required)
+
+## UriFragment
+### Properties
+* **FallbackBehavior**: string
+
+## UriFragment
+### Properties
+* **FallbackBehavior**: string
 
 ## VisibilityConfig
 ### Properties
@@ -947,10 +1147,12 @@
 ## XssMatchStatement
 ### Properties
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
+* **PreParseTextTransformations**: [PreParseTextTransformation](#preparsetexttransformation)[]
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 
 ## XssMatchStatement
 ### Properties
 * **FieldToMatch**: [FieldToMatch](#fieldtomatch) (Required)
+* **PreParseTextTransformations**: [PreParseTextTransformation](#preparsetexttransformation)[]
 * **TextTransformations**: [TextTransformation](#texttransformation)[] (Required)
 

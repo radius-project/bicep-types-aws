@@ -1,0 +1,172 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DRS-LaunchConfigurationTemplate",
+  "type": "AWS::DRS::LaunchConfigurationTemplate",
+  "time": "2026-10-21T23:04:40.777Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/LaunchConfigurationTemplateID"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Licensing": {
+        "additionalProperties": false,
+        "description": "Configuration of a machine's license.",
+        "properties": {
+          "OsByol": {
+            "description": "Whether to enable Bring your own license or not.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the Launch Configuration Template.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Account level Launch Configuration Template for AWS Elastic Disaster Recovery.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "drs:CreateLaunchConfigurationTemplate",
+          "drs:DescribeLaunchConfigurationTemplates"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "drs:DeleteLaunchConfigurationTemplate",
+          "drs:DescribeLaunchConfigurationTemplates"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "drs:DescribeLaunchConfigurationTemplates"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "drs:DescribeLaunchConfigurationTemplates"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "drs:UpdateLaunchConfigurationTemplate",
+          "drs:DescribeLaunchConfigurationTemplates",
+          "drs:TagResource",
+          "drs:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "ARN of the Launch Configuration Template.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:.{16,2044}$",
+        "type": "string"
+      },
+      "CopyPrivateIp": {
+        "description": "Copy private IP.",
+        "type": "boolean"
+      },
+      "CopyTags": {
+        "description": "Copy tags.",
+        "type": "boolean"
+      },
+      "ExportBucketArn": {
+        "description": "S3 bucket ARN to export Source Network templates.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:.{16,2044}$",
+        "type": "string"
+      },
+      "LaunchConfigurationTemplateID": {
+        "description": "ID of the Launch Configuration Template.",
+        "maxLength": 21,
+        "minLength": 21,
+        "pattern": "^lct-[0-9a-zA-Z]{17}$",
+        "type": "string"
+      },
+      "LaunchDisposition": {
+        "description": "Launch disposition.",
+        "enum": [
+          "STOPPED",
+          "STARTED"
+        ],
+        "type": "string"
+      },
+      "LaunchIntoSourceInstance": {
+        "description": "DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance.",
+        "type": "boolean"
+      },
+      "Licensing": {
+        "$ref": "#/definitions/Licensing"
+      },
+      "PostLaunchEnabled": {
+        "description": "Whether we want to activate post-launch actions.",
+        "type": "boolean"
+      },
+      "Tags": {
+        "description": "A set of tags associated with the Launch Configuration Template.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "TargetInstanceTypeRightSizingMethod": {
+        "description": "Target instance type right-sizing method.",
+        "enum": [
+          "NONE",
+          "BASIC",
+          "IN_AWS"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/LaunchConfigurationTemplateID"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "drs:CreateLaunchConfigurationTemplate",
+        "drs:DescribeLaunchConfigurationTemplates"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::DRS::LaunchConfigurationTemplate"
+  }
+}

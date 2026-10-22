@@ -1,6 +1,11 @@
 [
   {
     "$type": "ObjectType",
+    "name": "Category",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "EncryptionContextMap",
     "properties": {}
   },
@@ -10,20 +15,67 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       }
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "Unit",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebContentFilteringPolicy",
+    "properties": {
+      "AllowedUrls": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "BlockedCategories": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "BlockedUrls": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
     "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
   },
   {
     "$type": "StringLiteralType",
@@ -32,13 +84,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/2"
     }
   },
   {
@@ -47,37 +99,43 @@
     "properties": {
       "AdditionalEncryptionContext": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "AssociatedPortalArns": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "BrowserPolicy": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "BrowserSettingsArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 18
       },
       "CustomerManagedKey": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/11"
+        },
+        "flags": 0
+      },
+      "WebContentFilteringPolicy": {
+        "type": {
+          "$ref": "#/4"
         },
         "flags": 0
       }
@@ -89,21 +147,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/12"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -113,11 +171,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.WorkSpacesWeb/BrowserSettings@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/7"
+      "$ref": "#/13"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -125,25 +183,25 @@
     "properties": {
       "KeywordRegex": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "PatternDescription": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "PatternName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "PatternRegex": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -160,25 +218,25 @@
     "properties": {
       "GlobalConfidenceLevel": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "GlobalEnforcedUrls": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "GlobalExemptUrls": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "InlineRedactionPatterns": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/25"
         },
         "flags": 1
       }
@@ -190,37 +248,37 @@
     "properties": {
       "BuiltInPatternId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "ConfidenceLevel": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "CustomPattern": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/15"
         },
         "flags": 0
       },
       "EnforcedUrls": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/26"
         },
         "flags": 0
       },
       "ExemptUrls": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/27"
         },
         "flags": 0
       },
       "RedactionPlaceHolder": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/19"
         },
         "flags": 1
       }
@@ -232,13 +290,13 @@
     "properties": {
       "RedactionPlaceHolderText": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "RedactionPlaceHolderType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -255,13 +313,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -273,31 +331,31 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/18"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
@@ -307,13 +365,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/15"
+      "$ref": "#/21"
     }
   },
   {
@@ -322,55 +380,55 @@
     "properties": {
       "AdditionalEncryptionContext": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "AssociatedPortalArns": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/29"
         },
         "flags": 2
       },
       "CreationDate": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "CustomerManagedKey": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DataProtectionSettingsArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 18
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DisplayName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "InlineRedactionConfiguration": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -382,21 +440,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/31"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -406,11 +464,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.WorkSpacesWeb/DataProtectionSettings@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/26"
+      "$ref": "#/32"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -428,13 +486,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -447,7 +505,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/36"
     }
   },
   {
@@ -456,37 +514,37 @@
     "properties": {
       "IdentityProviderArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 18
       },
       "IdentityProviderDetails": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/34"
         },
         "flags": 1
       },
       "IdentityProviderName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "IdentityProviderType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "PortalArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 4
       },
       "Tags": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/38"
         },
         "flags": 0
       }
@@ -498,21 +556,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/39"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -522,11 +580,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.WorkSpacesWeb/IdentityProvider@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/40"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -539,13 +597,13 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "IpRange": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "A single IP address or an IP address range in CIDR notation"
@@ -558,17 +616,22 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Unit",
+    "properties": {}
   },
   {
     "$type": "StringLiteralType",
@@ -577,19 +640,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/37"
+      "$ref": "#/43"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/44"
     }
   },
   {
@@ -598,55 +661,55 @@
     "properties": {
       "AdditionalEncryptionContext": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/42"
         },
         "flags": 0
       },
       "AssociatedPortalArns": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/47"
         },
         "flags": 2
       },
       "CreationDate": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "CustomerManagedKey": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DisplayName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "IpAccessSettingsArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 18
       },
       "IpRules": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/48"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/49"
         },
         "flags": 0
       }
@@ -658,21 +721,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/50"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -682,11 +745,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.WorkSpacesWeb/IpAccessSettings@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/44"
+      "$ref": "#/51"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -694,13 +757,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -713,25 +776,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/46"
+      "$ref": "#/53"
     }
   },
   {
@@ -740,37 +803,37 @@
     "properties": {
       "AssociatedPortalArns": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/55"
         },
         "flags": 2
       },
       "NetworkSettingsArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 18
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/56"
         },
         "flags": 1
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/57"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/58"
         },
         "flags": 0
       },
       "VpcId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -782,21 +845,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/59"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -806,11 +869,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.WorkSpacesWeb/NetworkSettings@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/53"
+      "$ref": "#/60"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -848,13 +911,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -867,7 +930,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/61"
+      "$ref": "#/68"
     }
   },
   {
@@ -876,133 +939,145 @@
     "properties": {
       "AdditionalEncryptionContext": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/64"
         },
         "flags": 0
       },
       "AuthenticationType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "BrowserSettingsArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "BrowserType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "CreationDate": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "CustomerManagedKey": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DataProtectionSettingsArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DisplayName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "InstanceType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "IpAccessSettingsArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "MaxConcurrentSessions": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "NetworkSettingsArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "PortalArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 18
       },
+      "PortalCustomDomain": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
       "PortalEndpoint": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "PortalStatus": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "RendererType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "ServiceProviderSamlMetadata": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 2
       },
+      "SessionLoggerArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
       "StatusReason": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "TrustStoreArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "UserAccessLoggingSettingsArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "UserSettingsArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       }
@@ -1014,21 +1089,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/71"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1038,11 +1113,84 @@
   {
     "$type": "ResourceType",
     "name": "AWS.WorkSpacesWeb/Portal@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/65"
+      "$ref": "#/72"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionContextMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Event",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EventFilter",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FolderStructure",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogConfiguration",
+    "properties": {
+      "S3": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogFileFormat",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3LogConfiguration",
+    "properties": {
+      "Bucket": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "BucketOwner": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "FolderStructure": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "KeyPrefix": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "LogFileFormat": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1050,13 +1198,148 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Unit",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.WorkSpacesWeb/SessionLoggerProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/81"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.WorkSpacesWeb/SessionLoggerProperties",
+    "properties": {
+      "AdditionalEncryptionContext": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0
+      },
+      "AssociatedPortalArns": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 2
+      },
+      "CreationDate": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "CustomerManagedKey": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "DisplayName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "EventFilter": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 1
+      },
+      "LogConfiguration": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 1
+      },
+      "SessionLoggerArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.WorkSpacesWeb/SessionLogger",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.WorkSpacesWeb/SessionLogger@default",
+    "body": {
+      "$ref": "#/87"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -1069,19 +1352,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/67"
+      "$ref": "#/89"
     }
   },
   {
@@ -1090,25 +1373,25 @@
     "properties": {
       "AssociatedPortalArns": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/91"
         },
         "flags": 2
       },
       "CertificateList": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/92"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/93"
         },
         "flags": 0
       },
       "TrustStoreArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 18
       }
@@ -1120,21 +1403,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/94"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1144,11 +1427,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.WorkSpacesWeb/TrustStore@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/73"
+      "$ref": "#/95"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1156,13 +1439,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -1175,13 +1458,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/75"
+      "$ref": "#/97"
     }
   },
   {
@@ -1190,26 +1473,26 @@
     "properties": {
       "AssociatedPortalArns": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/99"
         },
         "flags": 2
       },
       "KinesisStreamArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "Kinesis stream ARN to which log events are published."
       },
       "Tags": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/100"
         },
         "flags": 0
       },
       "UserAccessLoggingSettingsArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 18
       }
@@ -1221,21 +1504,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/101"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1245,11 +1528,76 @@
   {
     "$type": "ResourceType",
     "name": "AWS.WorkSpacesWeb/UserAccessLoggingSettings@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/80"
+      "$ref": "#/102"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BrandingConfiguration",
+    "properties": {
+      "ColorTheme": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "Favicon": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4
+      },
+      "FaviconMetadata": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 2
+      },
+      "LocalizedStrings": {
+        "type": {
+          "$ref": "#/112"
+        },
+        "flags": 0
+      },
+      "Logo": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4
+      },
+      "LogoMetadata": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 2
+      },
+      "TermsOfService": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "Wallpaper": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4
+      },
+      "WallpaperMetadata": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ColorTheme",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1257,19 +1605,19 @@
     "properties": {
       "Domain": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "Path": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       }
@@ -1281,13 +1629,13 @@
     "properties": {
       "Allowlist": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/121"
         },
         "flags": 1
       },
       "Blocklist": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/122"
         },
         "flags": 0
       }
@@ -1305,32 +1653,181 @@
   },
   {
     "$type": "ObjectType",
-    "name": "Tag",
+    "name": "ImageMetadata",
     "properties": {
-      "Key": {
+      "FileExtension": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
-      "Value": {
+      "LastUploadTimestamp": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "MimeType": {
+        "type": {
+          "$ref": "#/5"
         },
         "flags": 1
       }
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "Locale",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LocalizedBrandingStringMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LocalizedBrandingStrings",
+    "properties": {
+      "BrowserTabTitle": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "ContactButtonText": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "ContactLink": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "LoadingText": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "LoginButtonText": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "LoginDescription": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "LoginTitle": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "WelcomeText": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MaxDisplayResolution",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MimeType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ToolbarConfiguration",
+    "properties": {
+      "HiddenToolbarItems": {
+        "type": {
+          "$ref": "#/123"
+        },
+        "flags": 0
+      },
+      "MaxDisplayResolution": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "ToolbarType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "VisualMode": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ToolbarItem",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ToolbarType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VisualMode",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/82"
+      "$ref": "#/106"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/82"
+      "$ref": "#/106"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
     }
   },
   {
@@ -1340,13 +1837,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/86"
+      "$ref": "#/116"
     }
   },
   {
@@ -1355,87 +1852,105 @@
     "properties": {
       "AdditionalEncryptionContext": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/109"
         },
         "flags": 0
       },
       "AssociatedPortalArns": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/125"
         },
         "flags": 2
       },
+      "BrandingConfiguration": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 0
+      },
       "CookieSynchronizationConfiguration": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/107"
         },
         "flags": 0
       },
       "CopyAllowed": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "CustomerManagedKey": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DeepLinkAllowed": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DisconnectTimeoutInMinutes": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "DownloadAllowed": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "IdleDisconnectTimeoutInMinutes": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "PasteAllowed": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "PrintAllowed": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/126"
+        },
+        "flags": 0
+      },
+      "ToolbarConfiguration": {
+        "type": {
+          "$ref": "#/117"
         },
         "flags": 0
       },
       "UploadAllowed": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "UserSettingsArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 18
+      },
+      "WebAuthnAllowed": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
       }
     }
   },
@@ -1445,21 +1960,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/127"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1469,10 +1984,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.WorkSpacesWeb/UserSettings@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/93"
+      "$ref": "#/128"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

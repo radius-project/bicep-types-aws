@@ -1,21 +1,93 @@
 [
   {
     "$type": "ObjectType",
+    "name": "BudgetActionToAdd",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "A description for the budget action."
+      },
+      "ThresholdPercentage": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The percentage threshold for the budget action."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The type of budget action."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BudgetSchedule",
+    "properties": {
+      "Fixed": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FixedBudgetSchedule",
+    "properties": {
+      "EndTime": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "When the budget ends."
+      },
+      "StartTime": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "When the budget starts."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+        "description": "The key name of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UsageTrackingResource",
+    "properties": {
+      "QueueId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The queue ID."
       }
     }
   },
@@ -23,8 +95,11 @@
     "$type": "StringType"
   },
   {
+    "$type": "IntegerType"
+  },
+  {
     "$type": "StringLiteralType",
-    "value": "AWS.Deadline/FarmProperties"
+    "value": "AWS.Deadline/BudgetProperties"
   },
   {
     "$type": "ArrayType",
@@ -33,42 +108,201 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
     "$type": "ObjectType",
-    "name": "AWS.Deadline/FarmProperties",
+    "name": "AWS.Deadline/BudgetProperties",
     "properties": {
+      "Actions": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The budget actions to specify what happens when the budget runs out."
+      },
+      "ApproximateDollarLimit": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The dollar limit based on consumed usage."
+      },
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
-        "flags": 18
+        "flags": 18,
+        "description": "The ARN of the budget."
+      },
+      "BudgetId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The budget ID."
       },
       "Description": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The description of the budget."
       },
       "DisplayName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The display name of the budget."
+      },
+      "FarmId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The farm ID."
+      },
+      "Schedule": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1
       },
+      "Status": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The status of the budget."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "UsageTrackingResource": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/Budget",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Deadline/Budget@default",
+    "body": {
+      "$ref": "#/11"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Deadline/FarmProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/FarmProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18
+      },
+      "CostScaleFactor": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "DisplayName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
       "FarmId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "KmsKeyArn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -81,21 +315,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/16"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -105,11 +339,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Deadline/Farm@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/5"
+      "$ref": "#/17"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -117,13 +351,13 @@
     "properties": {
       "Count": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "Selections": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/51"
         },
         "flags": 1
       }
@@ -135,13 +369,13 @@
     "properties": {
       "Max": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "Min": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 1
       }
@@ -153,13 +387,13 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Runtime": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0
       }
@@ -171,13 +405,13 @@
     "properties": {
       "Max": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "Min": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 1
       }
@@ -200,23 +434,59 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CustomerManagedAutoScalingConfiguration",
+    "properties": {
+      "ScaleOutWorkersPerMinute": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "StandbyWorkerCount": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "WorkerIdleDurationSeconds": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "CustomerManagedFleetConfiguration",
     "properties": {
+      "AutoScalingConfiguration": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
       "Mode": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "StorageProfileId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "TagPropagationMode": {
+        "type": {
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "WorkerCapabilities": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/29"
         },
         "flags": 1
       }
@@ -233,55 +503,55 @@
     "properties": {
       "AcceleratorCount": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "AcceleratorTotalMemoryMiB": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "AcceleratorTypes": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/52"
         },
         "flags": 0
       },
       "CpuArchitectureType": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "CustomAmounts": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/53"
         },
         "flags": 0
       },
       "CustomAttributes": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "MemoryMiB": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/40"
         },
         "flags": 1
       },
       "OsFamily": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "VCpuCount": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/49"
         },
         "flags": 1
       }
@@ -293,19 +563,19 @@
     "properties": {
       "Iops": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "SizeGiB": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "ThroughputMiB": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 0
       }
@@ -322,19 +592,19 @@
     "properties": {
       "Max": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "Min": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -346,13 +616,13 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Values": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/55"
         },
         "flags": 1
       }
@@ -364,13 +634,13 @@
     "properties": {
       "Amounts": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/56"
         },
         "flags": 0
       },
       "Attributes": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/57"
         },
         "flags": 0
       }
@@ -383,22 +653,11 @@
   },
   {
     "$type": "ObjectType",
-    "name": "FleetStatus",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "MemoryMiBRange",
+    "name": "FleetSoftwareAddOn",
     "properties": {
-      "Max": {
+      "Name": {
         "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0
-      },
-      "Min": {
-        "type": {
-          "$ref": "#/32"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -406,19 +665,149 @@
   },
   {
     "$type": "ObjectType",
+    "name": "FleetSoftwareAddOnName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FleetStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HostConfiguration",
+    "properties": {
+      "ScriptBody": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "ScriptTimeoutSeconds": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MemoryMiBRange",
+    "properties": {
+      "Max": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "Min": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PersistentVolumeConfiguration",
+    "properties": {
+      "Iops": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "LastUsedTtlHours": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "MountPath": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "SizeGiB": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "ThroughputMiB": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceManagedEc2AutoScalingConfiguration",
+    "properties": {
+      "ScaleOutWorkersPerMinute": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "StandbyWorkerCount": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "WorkerIdleDurationSeconds": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "ServiceManagedEc2FleetConfiguration",
     "properties": {
+      "AutoScalingConfiguration": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0
+      },
       "InstanceCapabilities": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/44"
         },
         "flags": 1
       },
       "InstanceMarketOptions": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/45"
         },
         "flags": 1
+      },
+      "PersistentVolumeConfiguration": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0
+      },
+      "StorageProfileId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "VpcConfiguration": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0
       }
     }
   },
@@ -428,61 +817,67 @@
     "properties": {
       "AcceleratorCapabilities": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/19"
         },
         "flags": 0
       },
       "AllowedInstanceTypes": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/58"
         },
         "flags": 0
       },
       "CpuArchitectureType": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "CustomAmounts": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/59"
         },
         "flags": 0
       },
       "CustomAttributes": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/60"
         },
         "flags": 0
       },
       "ExcludedInstanceTypes": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "MemoryMiB": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/40"
         },
         "flags": 1
       },
       "OsFamily": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "RootEbsVolume": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/30"
+        },
+        "flags": 0
+      },
+      "SoftwareAddOns": {
+        "type": {
+          "$ref": "#/62"
         },
         "flags": 0
       },
       "VCpuCount": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/49"
         },
         "flags": 1
       }
@@ -494,7 +889,7 @@
     "properties": {
       "Type": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -511,14 +906,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
@@ -527,89 +922,115 @@
   },
   {
     "$type": "ObjectType",
+    "name": "TagPropagationMode",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "VCpuCountRange",
     "properties": {
       "Max": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "Min": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 1
       }
     }
   },
   {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/9"
-    }
-  },
-  {
-    "$type": "IntegerType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/19"
+    "$type": "ObjectType",
+    "name": "VpcConfiguration",
+    "properties": {
+      "ResourceConfigurationArns": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0
+      }
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/21"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/32"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/33"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/32"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/33"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/32"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/33"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/36"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
     }
   },
   {
@@ -619,7 +1040,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/29"
+      "$ref": "#/47"
     }
   },
   {
@@ -628,80 +1049,92 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 18
       },
       "Capabilities": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/34"
         },
         "flags": 2
       },
       "Configuration": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/35"
         },
         "flags": 1
       },
       "Description": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DisplayName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "FarmId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "FleetId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 2
       },
+      "HostConfiguration": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0
+      },
       "MaxWorkerCount": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "MinWorkerCount": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Status": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "StatusMessage": {
+        "type": {
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "WorkerCount": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 2
       }
@@ -713,21 +1146,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/66"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -737,11 +1170,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Deadline/Fleet@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/46"
+      "$ref": "#/67"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -754,14 +1187,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
@@ -775,19 +1208,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/49"
+      "$ref": "#/70"
     }
   },
   {
@@ -796,56 +1229,56 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 18
       },
       "DnsName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "LicenseEndpointId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/72"
         },
         "flags": 1
       },
       "Status": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "StatusMessage": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/73"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "VpcId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -857,21 +1290,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/75"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -881,15 +1314,129 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Deadline/LicenseEndpoint@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/55"
+      "$ref": "#/76"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Deadline/LimitProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/LimitProperties",
+    "properties": {
+      "AmountRequirementName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "CurrentCount": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "DisplayName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "FarmId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17
+      },
+      "LimitId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18
+      },
+      "MaxCount": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/Limit",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Deadline/Limit@default",
+    "body": {
+      "$ref": "#/80"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
   },
   {
     "$type": "StringLiteralType",
     "value": "AWS.Deadline/MonitorProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/82"
+    }
   },
   {
     "$type": "ObjectType",
@@ -897,49 +1444,63 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 18
       },
       "DisplayName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "IdentityCenterApplicationArn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "IdentityCenterInstanceArn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
+      "IdentityCenterRegion": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The AWS region where IAM Identity Center is enabled. Required when Identity Center is in a different region than the monitor."
+      },
       "MonitorId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Subdomain": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
+      "Tags": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
       "Url": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 2
       }
@@ -951,21 +1512,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/85"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -975,11 +1536,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Deadline/Monitor@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/59"
+      "$ref": "#/86"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -992,13 +1553,13 @@
     "properties": {
       "RootPrefix": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "S3BucketName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -1010,19 +1571,19 @@
     "properties": {
       "Posix": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/91"
         },
         "flags": 0
       },
       "RunAs": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Windows": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/102"
         },
         "flags": 0
       }
@@ -1034,17 +1595,34 @@
     "properties": {
       "Group": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "User": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PriorityBalancedSchedulingConfiguration",
+    "properties": {
+      "RenderingTaskBuffer": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PriorityFifoSchedulingConfiguration",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1053,21 +1631,94 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SchedulingConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SchedulingMaxPriorityOverride",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SchedulingMaxPriorityOverrideAlwaysScheduleFirst",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SchedulingMinPriorityOverride",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SchedulingMinPriorityOverrideAlwaysScheduleLast",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WeightedBalancedSchedulingConfiguration",
+    "properties": {
+      "ErrorWeight": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "MaxPriorityOverride": {
+        "type": {
+          "$ref": "#/96"
+        },
+        "flags": 0
+      },
+      "MinPriorityOverride": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 0
+      },
+      "PriorityWeight": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "RenderingTaskBuffer": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "RenderingTaskWeight": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "SubmissionTimeWeight": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
       }
     }
   },
@@ -1077,13 +1728,13 @@
     "properties": {
       "PasswordArn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "User": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -1096,19 +1747,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/100"
     }
   },
   {
@@ -1117,73 +1768,79 @@
     "properties": {
       "AllowedStorageProfileIds": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/104"
         },
         "flags": 0
       },
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 18
       },
       "DefaultBudgetAction": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "Description": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "DisplayName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "FarmId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "JobAttachmentSettings": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "JobRunAsUser": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/90"
         },
         "flags": 0
       },
       "QueueId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "RequiredFileSystemLocationNames": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/105"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "SchedulingConfiguration": {
+        "type": {
+          "$ref": "#/95"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/106"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1196,21 +1853,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/107"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1220,11 +1877,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Deadline/Queue@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/73"
+      "$ref": "#/108"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1241,43 +1898,43 @@
     "properties": {
       "FarmId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 17
       },
       "Name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "Priority": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "QueueEnvironmentId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 18
       },
       "QueueId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 17
       },
       "Template": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "TemplateType": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -1289,21 +1946,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/112"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1313,11 +1970,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Deadline/QueueEnvironment@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/78"
+      "$ref": "#/113"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1325,19 +1982,19 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Path": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -1360,7 +2017,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/80"
+      "$ref": "#/115"
     }
   },
   {
@@ -1369,31 +2026,31 @@
     "properties": {
       "DisplayName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "FarmId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 17
       },
       "FileSystemLocations": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/119"
         },
         "flags": 0
       },
       "OsFamily": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "StorageProfileId": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 18
       }
@@ -1405,21 +2062,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/120"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1429,10 +2086,194 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Deadline/StorageProfile@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/86"
+      "$ref": "#/121"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HostPropertiesRequest",
+    "properties": {
+      "HostName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The host name."
+      },
+      "IpAddresses": {
+        "type": {
+          "$ref": "#/124"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IpAddresses",
+    "properties": {
+      "IpV4Addresses": {
+        "type": {
+          "$ref": "#/125"
+        },
+        "flags": 0,
+        "description": "The IpV4 address of the network."
+      },
+      "IpV6Addresses": {
+        "type": {
+          "$ref": "#/126"
+        },
+        "flags": 0,
+        "description": "The IpV6 address for the network and node component."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Deadline/WorkerProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Worker_Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/128"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/WorkerProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the worker."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The date and time the resource was created."
+      },
+      "CreatedBy": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The user or system that created this resource."
+      },
+      "FarmId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The farm ID."
+      },
+      "FleetId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The fleet ID."
+      },
+      "HostProperties": {
+        "type": {
+          "$ref": "#/123"
+        },
+        "flags": 0,
+        "description": "The IP address and host name of the worker."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The status of the worker."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/129"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "WorkerId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The worker ID."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/Worker",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/130"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Deadline/Worker@default",
+    "body": {
+      "$ref": "#/131"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

@@ -1,0 +1,293 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-Deployment",
+  "type": "AWS::RDS::Deployment",
+  "time": "2026-10-21T23:38:27.892Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/BlueGreenDeploymentIdentifier"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/BlueGreenDeploymentName",
+      "/properties/Source",
+      "/properties/TargetEngineVersion",
+      "/properties/TargetDBParameterGroupName",
+      "/properties/TargetDBClusterParameterGroupName",
+      "/properties/TargetDBInstanceClass",
+      "/properties/UpgradeTargetStorageConfig",
+      "/properties/TargetIops",
+      "/properties/TargetStorageType",
+      "/properties/TargetAllocatedStorage",
+      "/properties/TargetStorageThroughput"
+    ],
+    "definitions": {
+      "DeploymentTask": {
+        "additionalProperties": false,
+        "properties": {
+          "TaskName": {
+            "description": "The name of a Blue/Green Deployment provisioning task.",
+            "type": "string"
+          },
+          "TaskStatus": {
+            "description": "The status of a Blue/Green Deployment provisioning task.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SwitchoverDetail": {
+        "additionalProperties": false,
+        "properties": {
+          "SourceMember": {
+            "description": "The source database member in the Blue/Green Deployment.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^arn:[A-Za-z][0-9A-Za-z-:._]*$",
+            "type": "string"
+          },
+          "SwitchoverDetailStatus": {
+            "description": "The status of this source and target member pair.",
+            "type": "string"
+          },
+          "TargetMember": {
+            "description": "The target database member in the Blue/Green Deployment.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^arn:[A-Za-z][0-9A-Za-z-:._]*$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::RDS::Deployment. Creates and manages an Amazon RDS Blue/Green Deployment.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "rds:CreateBlueGreenDeployment",
+          "rds:DescribeBlueGreenDeployments",
+          "rds:AddTagsToResource",
+          "rds:CreateDBInstanceReadReplica",
+          "rds:CreateDBCluster",
+          "rds:CreateDBInstance",
+          "rds:CreateDBClusterEndpoint",
+          "rds:CreateGlobalCluster",
+          "iam:PassRole"
+        ],
+        "timeoutInMinutes": 540
+      },
+      "delete": {
+        "permissions": [
+          "rds:DescribeBlueGreenDeployments",
+          "rds:DeleteBlueGreenDeployment",
+          "rds:DeleteDBInstance",
+          "rds:DeleteDBCluster",
+          "rds:DeleteDBClusterEndpoint",
+          "rds:DeleteGlobalCluster",
+          "rds:PromoteReadReplica",
+          "rds:PromoteReadReplicaDBCluster",
+          "rds:RemoveFromGlobalCluster",
+          "rds:ListTagsForResource"
+        ],
+        "timeoutInMinutes": 540
+      },
+      "list": {
+        "permissions": [
+          "rds:DescribeBlueGreenDeployments"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "rds:DescribeBlueGreenDeployments",
+          "rds:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "rds:DescribeBlueGreenDeployments",
+          "rds:AddTagsToResource",
+          "rds:RemoveTagsFromResource",
+          "rds:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the Blue/Green Deployment.",
+        "pattern": "^arn:[A-Za-z][0-9A-Za-z-:._]*$",
+        "type": "string"
+      },
+      "BlueGreenDeploymentIdentifier": {
+        "description": "The system-generated identifier of the Blue/Green Deployment.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[A-Za-z][0-9A-Za-z-:._]*$",
+        "type": "string"
+      },
+      "BlueGreenDeploymentName": {
+        "description": "The name of the Blue/Green Deployment.",
+        "maxLength": 60,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z](?:-?[a-zA-Z0-9]+)*$",
+        "type": "string"
+      },
+      "CreateTime": {
+        "description": "The time when the Blue/Green Deployment was created in UTC.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Source": {
+        "description": "The ARN of the source production database.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:[A-Za-z][0-9A-Za-z-:._]*$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the Blue/Green Deployment.",
+        "type": "string"
+      },
+      "SwitchoverDetails": {
+        "description": "The source and target member mappings in the Blue/Green Deployment.",
+        "items": {
+          "$ref": "#/definitions/SwitchoverDetail"
+        },
+        "type": "array"
+      },
+      "Tags": {
+        "description": "The tags assigned to the Blue/Green Deployment.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "Target": {
+        "description": "The ARN of the target database in the green environment.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:[A-Za-z][0-9A-Za-z-:._]*$",
+        "type": "string"
+      },
+      "TargetAllocatedStorage": {
+        "description": "The allocated storage size in GiB for the target DB instance.",
+        "type": "integer"
+      },
+      "TargetDBClusterParameterGroupName": {
+        "description": "The DB cluster parameter group for the target Aurora DB cluster.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[A-Za-z](?!.*--)[0-9A-Za-z-]*[^-]|^default(?!.*--)(?!.*\\.\\.)[0-9A-Za-z-.]*[^-]$",
+        "type": "string"
+      },
+      "TargetDBInstanceClass": {
+        "description": "The DB instance class for target RDS DB instances.",
+        "maxLength": 20,
+        "minLength": 5,
+        "pattern": "^db\\.[0-9a-z]{2,6}\\.[0-9a-z]{4,9}$",
+        "type": "string"
+      },
+      "TargetDBParameterGroupName": {
+        "description": "The DB parameter group for the target DB instance.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[A-Za-z](?!.*--)[0-9A-Za-z-]*[^-]|^default(?!.*--)(?!.*\\.\\.)[0-9A-Za-z-.]*[^-]$",
+        "type": "string"
+      },
+      "TargetEngineVersion": {
+        "description": "The DB engine version for the target database.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[0-9A-Za-z-_.]+$",
+        "type": "string"
+      },
+      "TargetIops": {
+        "description": "The Provisioned IOPS value for the target DB instance.",
+        "type": "integer"
+      },
+      "TargetStorageThroughput": {
+        "description": "The storage throughput value for the target DB instance.",
+        "type": "integer"
+      },
+      "TargetStorageType": {
+        "description": "The storage type for the target DB instance.",
+        "type": "string"
+      },
+      "Tasks": {
+        "description": "The provisioning tasks for the Blue/Green Deployment.",
+        "items": {
+          "$ref": "#/definitions/DeploymentTask"
+        },
+        "type": "array"
+      },
+      "UpgradeTargetStorageConfig": {
+        "description": "Whether to upgrade the storage file system configuration on the target database.",
+        "type": "boolean"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/BlueGreenDeploymentIdentifier",
+      "/properties/Target",
+      "/properties/SwitchoverDetails",
+      "/properties/Tasks",
+      "/properties/Status",
+      "/properties/CreateTime"
+    ],
+    "required": [
+      "BlueGreenDeploymentName",
+      "Source"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "rds:AddTagsToResource",
+        "rds:RemoveTagsFromResource",
+        "rds:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::RDS::Deployment",
+    "writeOnlyProperties": [
+      "/properties/TargetEngineVersion",
+      "/properties/TargetDBParameterGroupName",
+      "/properties/TargetDBClusterParameterGroupName",
+      "/properties/TargetDBInstanceClass",
+      "/properties/UpgradeTargetStorageConfig",
+      "/properties/TargetIops",
+      "/properties/TargetStorageType",
+      "/properties/TargetAllocatedStorage",
+      "/properties/TargetStorageThroughput"
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Polly-Lexicon",
+  "type": "AWS::Polly::Lexicon",
+  "time": "2026-10-21T21:13:36.359Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "description": "Resource Type definition for AWS::Polly::Lexicon. A pronunciation lexicon that stores custom pronunciations for speech synthesis.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "polly:PutLexicon",
+          "polly:GetLexicon"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "polly:DeleteLexicon",
+          "polly:GetLexicon"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "polly:ListLexicons"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "polly:GetLexicon"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "polly:PutLexicon",
+          "polly:GetLexicon"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Alphabet": {
+        "description": "The phonetic alphabet used in the lexicon. Valid values are ipa and x-sampa.",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the lexicon.",
+        "pattern": "^arn:aws[a-zA-Z-]*:polly:[a-z0-9-]+:[0-9]{12}:lexicon/[0-9A-Za-z]{1,20}$",
+        "type": "string"
+      },
+      "Content": {
+        "description": "The content of the PLS lexicon in string format.",
+        "type": "string"
+      },
+      "LanguageCode": {
+        "description": "The language code that the lexicon applies to.",
+        "type": "string"
+      },
+      "LastModified": {
+        "description": "The date the lexicon was last modified (ISO 8601 timestamp).",
+        "format": "date-time",
+        "type": "string"
+      },
+      "LexemesCount": {
+        "description": "The number of lexemes in the lexicon.",
+        "type": "integer"
+      },
+      "Name": {
+        "description": "The name of the lexicon. Must be an alphanumeric string up to 20 characters long.",
+        "pattern": "^[0-9A-Za-z]{1,20}$",
+        "type": "string"
+      },
+      "Size": {
+        "description": "The total size of the lexicon, in characters.",
+        "type": "integer"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Alphabet",
+      "/properties/LanguageCode",
+      "/properties/LastModified",
+      "/properties/LexemesCount",
+      "/properties/Size"
+    ],
+    "required": [
+      "Name",
+      "Content"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Polly::Lexicon"
+  }
+}

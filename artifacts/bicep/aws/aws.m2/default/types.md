@@ -1,21 +1,24 @@
 # AWS.M2 @ default
 
 ## Resource AWS.M2/Application@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.M2/ApplicationProperties](#awsm2applicationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.M2/Deployment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.M2/DeploymentProperties](#awsm2deploymentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.M2/Environment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

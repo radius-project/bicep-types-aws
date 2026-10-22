@@ -1,0 +1,159 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CodeBuild-ReportGroup",
+  "type": "AWS::CodeBuild::ReportGroup",
+  "time": "2026-10-01T22:34:48.144Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/Type"
+    ],
+    "definitions": {
+      "ReportExportConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "ExportConfigType": {
+            "enum": [
+              "S3",
+              "NO_EXPORT"
+            ],
+            "type": "string"
+          },
+          "S3Destination": {
+            "$ref": "#/definitions/S3ReportExportConfig"
+          }
+        },
+        "required": [
+          "ExportConfigType"
+        ],
+        "type": "object"
+      },
+      "S3ReportExportConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "Bucket": {
+            "type": "string"
+          },
+          "BucketOwner": {
+            "type": "string"
+          },
+          "EncryptionDisabled": {
+            "type": "boolean"
+          },
+          "EncryptionKey": {
+            "type": "string"
+          },
+          "Packaging": {
+            "enum": [
+              "NONE",
+              "ZIP"
+            ],
+            "type": "string"
+          },
+          "Path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Bucket"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::CodeBuild::ReportGroup",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "codebuild:CreateReportGroup"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "codebuild:BatchGetReportGroups",
+          "codebuild:DeleteReportGroup"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "codebuild:ListReportGroups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "codebuild:BatchGetReportGroups"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "codebuild:UpdateReportGroup"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "type": "string"
+      },
+      "DeleteReports": {
+        "type": "boolean"
+      },
+      "ExportConfig": {
+        "$ref": "#/definitions/ReportExportConfig"
+      },
+      "Name": {
+        "type": "string"
+      },
+      "Tags": {
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "Type": {
+        "enum": [
+          "TEST",
+          "CODE_COVERAGE"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn"
+    ],
+    "required": [
+      "Type",
+      "ExportConfig"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::CodeBuild::ReportGroup",
+    "writeOnlyProperties": [
+      "/properties/DeleteReports"
+    ]
+  }
+}

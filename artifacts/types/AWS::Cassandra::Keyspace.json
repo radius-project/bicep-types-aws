@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Cassandra-Keyspace",
   "type": "AWS::Cassandra::Keyspace",
-  "time": "2025-01-16T18:39:03.9Z",
+  "time": "2026-10-21T13:38:39.569Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -11,27 +11,10 @@
       "RegionList": {
         "insertionOrder": false,
         "items": {
-          "enum": [
-            "ap-northeast-1",
-            "ap-northeast-2",
-            "ap-south-1",
-            "ap-southeast-1",
-            "ap-southeast-2",
-            "ca-central-1",
-            "eu-central-1",
-            "eu-north-1",
-            "eu-west-1",
-            "eu-west-2",
-            "eu-west-3",
-            "sa-east-1",
-            "us-east-1",
-            "us-east-2",
-            "us-west-1",
-            "us-west-2"
-          ],
+          "pattern": "^[a-z]{2,}-[a-z]+-[0-9]+$",
           "type": "string"
         },
-        "maxItems": 6,
+        "maxItems": 20,
         "minItems": 2,
         "type": "array",
         "uniqueItems": true
@@ -183,6 +166,10 @@
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::Cassandra::Keyspace"
+    "typeName": "AWS::Cassandra::Keyspace",
+    "writeOnlyProperties": [
+      "/properties/ClientSideTimestampsEnabled",
+      "/properties/ReplicationSpecification/RegionList"
+    ]
   }
 }

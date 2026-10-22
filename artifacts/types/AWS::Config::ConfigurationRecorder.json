@@ -1,0 +1,208 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Config-ConfigurationRecorder",
+  "type": "AWS::Config::ConfigurationRecorder",
+  "time": "2026-10-19T17:48:12.457Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/StartedOnCreate"
+    ],
+    "definitions": {
+      "ExclusionByResourceTypes": {
+        "additionalProperties": false,
+        "description": "Specifies whether the configuration recorder excludes certain resource types from being recorded.",
+        "properties": {
+          "ResourceTypes": {
+            "description": "A comma-separated list of resource types to exclude from recording by the configuration recorder.",
+            "insertionOrder": true,
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "ResourceTypes"
+        ],
+        "type": "object"
+      },
+      "RecordingGroup": {
+        "additionalProperties": false,
+        "description": "Specifies which resource types AWS Config records for configuration changes.",
+        "properties": {
+          "AllSupported": {
+            "description": "Specifies whether AWS Config records configuration changes for all supported resource types, excluding the global IAM resource types.",
+            "type": "boolean"
+          },
+          "ExclusionByResourceTypes": {
+            "$ref": "#/definitions/ExclusionByResourceTypes",
+            "description": "An object that specifies how AWS Config excludes resource types from being recorded by the configuration recorder."
+          },
+          "IncludeGlobalResourceTypes": {
+            "description": "This option is a bundle which only applies to the global IAM resource types: IAM users, groups, roles, and customer managed policies. ",
+            "type": "boolean"
+          },
+          "RecordingStrategy": {
+            "$ref": "#/definitions/RecordingStrategy",
+            "description": "An object that specifies the recording strategy for the configuration recorder."
+          },
+          "ResourceTypes": {
+            "description": "A comma-separated list that specifies which resource types AWS Config records.",
+            "insertionOrder": true,
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "type": "object"
+      },
+      "RecordingMode": {
+        "additionalProperties": false,
+        "description": "Specifies the default recording frequency for the configuration recorder.",
+        "properties": {
+          "RecordingFrequency": {
+            "description": "The default recording frequency that AWS Config uses to record configuration changes.",
+            "type": "string"
+          },
+          "RecordingModeOverrides": {
+            "description": "An array of 'RecordingModeOverride' objects for you to specify your overrides for the recording mode. ",
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/RecordingModeOverride"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "RecordingFrequency"
+        ],
+        "type": "object"
+      },
+      "RecordingModeOverride": {
+        "additionalProperties": false,
+        "description": "Specifies your overrides for the recording mode",
+        "properties": {
+          "Description": {
+            "description": "A description that you provide for the override.",
+            "type": "string"
+          },
+          "RecordingFrequency": {
+            "description": "The recording frequency that will be applied to all the resource types specified in the override.",
+            "type": "string"
+          },
+          "ResourceTypes": {
+            "description": "A comma-separated list that specifies which resource types AWS Config includes in the override.",
+            "insertionOrder": true,
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "ResourceTypes",
+          "RecordingFrequency"
+        ],
+        "type": "object"
+      },
+      "RecordingStrategy": {
+        "additionalProperties": false,
+        "description": "Specifies the recording strategy of the configuration recorder.",
+        "properties": {
+          "UseOnly": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "UseOnly"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::Config::ConfigurationRecorder",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "config:DescribeConfigurationRecorders",
+          "config:PutConfigurationRecorder",
+          "config:StartConfigurationRecorder",
+          "iam:PassRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "config:DeleteConfigurationRecorder"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "config:ListConfigurationRecorders"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "config:DescribeConfigurationRecorders",
+          "config:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "config:DescribeConfigurationRecorders",
+          "config:PutConfigurationRecorder",
+          "iam:PassRole"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Name"
+    ],
+    "properties": {
+      "Name": {
+        "description": "The name of the configuration recorder. By default, AWS Config assigns the name \"default\" when creating the configuration recorder. To change the configuration recorder name, you must use the DeleteConfigurationRecorder action to delete your current configuration recorder, and then you must use the PutConfigurationRecorder command to create a configuration recorder that has the desired name.",
+        "type": "string"
+      },
+      "RecordingGroup": {
+        "$ref": "#/definitions/RecordingGroup",
+        "description": "Specifies which resource types are in scope for the configuration recorder to record."
+      },
+      "RecordingMode": {
+        "$ref": "#/definitions/RecordingMode",
+        "description": "Specifies the default recording frequency for the configuration recorder."
+      },
+      "ResourceARN": {
+        "description": "Returns the Amazon Resource Name (ARN) for the Configuration Recorder.",
+        "pattern": "arn:(aws|aws-cn|aws-us-gov):config:\\w+(?:-\\w+)+:[0-9]*:.*",
+        "type": "string"
+      },
+      "RoleARN": {
+        "description": "The Amazon Resource Name (ARN) of the role that allows AWS Config to read S3 objects.",
+        "pattern": "arn:(aws|aws-cn|aws-us-gov):iam::[0-9]*:(role)\\/.*",
+        "type": "string"
+      },
+      "StartedOnCreate": {
+        "default": true,
+        "description": "Defaults to 'true'. Controls whether the recorder starts recording after the create operation. Set this to 'false' for development and testing purposes.",
+        "type": "boolean"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ResourceARN"
+    ],
+    "required": [
+      "RoleARN"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Config::ConfigurationRecorder",
+    "writeOnlyProperties": [
+      "/properties/StartedOnCreate"
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-Instance",
   "type": "AWS::EC2::Instance",
-  "time": "2024-12-26T18:26:24.331Z",
+  "time": "2026-02-19T00:13:51.595Z",
   "schema": {
     "$schema": "https://schema.cloudformation.us-east-1.amazonaws.com/provider.definition.schema.v1.json",
     "additionalProperties": false,
@@ -14,10 +14,10 @@
       "/properties/KernelId",
       "/properties/PrivateDnsNameOptions",
       "/properties/RamdiskId",
-      "/properties/SecurityGroupIds",
       "/properties/Tenancy",
       "/properties/UserData",
-      "/properties/BlockDeviceMappings"
+      "/properties/BlockDeviceMappings",
+      "/properties/SecurityGroupIds"
     ],
     "createOnlyProperties": [
       "/properties/AvailabilityZone",
@@ -125,7 +125,7 @@
         "additionalProperties": false,
         "properties": {
           "Type": {
-            "description": "The type of Elastic Graphics accelerator.",
+            "description": "The type of Elastic Graphics accelerator. Amazon Elastic Graphics is no longer available.",
             "type": "string"
           }
         },
@@ -138,18 +138,43 @@
         "additionalProperties": false,
         "properties": {
           "Count": {
-            "description": "The number of elastic inference accelerators to attach to the instance.",
+            "description": "The number of elastic inference accelerators to attach to the instance. Amazon Elastic Inference is no longer available.",
             "minimum": 0,
             "type": "integer"
           },
           "Type": {
-            "description": "The type of elastic inference accelerator.",
+            "description": "The type of elastic inference accelerator. Amazon Elastic Inference is no longer available.",
             "type": "string"
           }
         },
         "required": [
           "Type"
         ],
+        "type": "object"
+      },
+      "EnaSrdSpecification": {
+        "additionalProperties": false,
+        "description": "Specifies the ENA Express settings for the network interface that's attached to the instance.",
+        "properties": {
+          "EnaSrdEnabled": {
+            "description": "Specifies whether ENA Express is enabled for the network interface when you launch an instance.",
+            "type": "boolean"
+          },
+          "EnaSrdUdpSpecification": {
+            "$ref": "#/definitions/EnaSrdUdpSpecification"
+          }
+        },
+        "type": "object"
+      },
+      "EnaSrdUdpSpecification": {
+        "additionalProperties": false,
+        "description": "Contains ENA Express settings for UDP network traffic for the network interface that's attached to the instance.",
+        "properties": {
+          "EnaSrdUdpEnabled": {
+            "description": "Indicates whether UDP traffic uses ENA Express for your instance.",
+            "type": "boolean"
+          }
+        },
         "type": "object"
       },
       "InstanceIpv6Address": {
@@ -210,6 +235,51 @@
         ],
         "type": "object"
       },
+      "MetadataOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "HttpEndpoint": {
+            "description": "Enables or disables the HTTP metadata endpoint on your instances. If you specify a value of disabled, you cannot access your instance metadata.",
+            "enum": [
+              "disabled",
+              "enabled"
+            ],
+            "type": "string"
+          },
+          "HttpProtocolIpv6": {
+            "description": "Enables or disables the IPv6 endpoint for the instance metadata service. To use this option, the instance must be a Nitro-based instance launched in a subnet that supports IPv6.",
+            "enum": [
+              "disabled",
+              "enabled"
+            ],
+            "type": "string"
+          },
+          "HttpPutResponseHopLimit": {
+            "default": 1,
+            "description": "The number of network hops that the metadata token can travel. Maximum is 64.",
+            "maximum": 64,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "HttpTokens": {
+            "description": "Indicates whether IMDSv2 is required.",
+            "enum": [
+              "optional",
+              "required"
+            ],
+            "type": "string"
+          },
+          "InstanceMetadataTags": {
+            "description": "Indicates whether tags from the instance are propagated to the EBS volumes.",
+            "enum": [
+              "disabled",
+              "enabled"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "NetworkInterface": {
         "additionalProperties": false,
         "properties": {
@@ -232,6 +302,9 @@
           "DeviceIndex": {
             "description": "The position of the network interface in the attachment order. A primary network interface has a device index of 0.",
             "type": "string"
+          },
+          "EnaSrdSpecification": {
+            "$ref": "#/definitions/EnaSrdSpecification"
           },
           "GroupSet": {
             "description": "The IDs of the security groups for the network interface.",
@@ -404,7 +477,6 @@
         "permissions": [
           "iam:PassRole",
           "ec2:ModifyPrivateDnsNameOptions",
-          "ec2:DescribeElasticGpus",
           "ec2:DescribeNetworkInterfaces",
           "ec2:DescribeVolumes",
           "ec2:RunInstances",
@@ -429,7 +501,6 @@
           "ec2:CreateTags",
           "ec2:ReplaceIamInstanceProfileAssociation",
           "ec2:StartInstances",
-          "elastic-inference:DescribeAccelerators",
           "ssm:CreateAssociation",
           "ssm:DescribeAssociation",
           "ssm:ListAssociations"
@@ -439,14 +510,12 @@
         "permissions": [
           "ec2:DescribeInstances",
           "ec2:TerminateInstances",
-          "ec2:DescribeElasticGpus",
           "ec2:DescribeNetworkInterfaces",
           "ec2:DescribeVolumes",
           "ec2:DescribeInstances",
           "ec2:DescribeInstanceAttribute",
           "ec2:DescribeInstanceCreditSpecifications",
           "ec2:DescribeLaunchTemplates",
-          "elastic-inference:DescribeAccelerators",
           "ssm:DescribeAssociation",
           "ssm:ListAssociations"
         ]
@@ -458,21 +527,18 @@
       },
       "read": {
         "permissions": [
-          "ec2:DescribeElasticGpus",
           "ec2:DescribeNetworkInterfaces",
           "ec2:DescribeVolumes",
           "ec2:DescribeInstances",
           "ec2:DescribeInstanceAttribute",
           "ec2:DescribeInstanceCreditSpecifications",
           "ec2:DescribeLaunchTemplates",
-          "elastic-inference:DescribeAccelerators",
           "ssm:DescribeAssociation",
           "ssm:ListAssociations"
         ]
       },
       "update": {
         "permissions": [
-          "ec2:DescribeElasticGpus",
           "ec2:ModifyPrivateDnsNameOptions",
           "ec2:DescribeNetworkInterfaces",
           "ec2:AssociateIamInstanceProfile",
@@ -490,6 +556,7 @@
           "ec2:ModifyInstanceAttribute",
           "ec2:ModifyInstanceCreditSpecification",
           "ec2:ModifyInstanceMaintenanceOptions",
+          "ec2:ModifyInstanceMetadataOptions",
           "ec2:ModifyInstancePlacement",
           "ec2:MonitorInstances",
           "ec2:AttachVolume",
@@ -499,7 +566,6 @@
           "ec2:StartInstances",
           "ec2:StopInstances",
           "ec2:UnmonitorInstances",
-          "elastic-inference:DescribeAccelerators",
           "ssm:CreateAssociation",
           "ssm:DeleteAssociation",
           "ssm:DescribeAssociation",
@@ -568,7 +634,7 @@
         "type": "boolean"
       },
       "ElasticGpuSpecifications": {
-        "description": "An elastic GPU to associate with the instance.",
+        "description": "An elastic GPU to associate with the instance. Amazon Elastic Graphics is no longer available.",
         "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/ElasticGpuSpecification"
@@ -577,7 +643,7 @@
         "uniqueItems": false
       },
       "ElasticInferenceAccelerators": {
-        "description": "An elastic inference accelerator to associate with the instance.",
+        "description": "An elastic inference accelerator to associate with the instance. Amazon Elastic Inference is no longer available.",
         "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/ElasticInferenceAccelerator"
@@ -670,6 +736,11 @@
         },
         "type": "array",
         "uniqueItems": false
+      },
+      "MetadataOptions": {
+        "$ref": "#/definitions/MetadataOptions",
+        "description": "The metadata options for the instance",
+        "type": "object"
       },
       "Monitoring": {
         "description": "Specifies whether detailed monitoring is enabled for the instance.",

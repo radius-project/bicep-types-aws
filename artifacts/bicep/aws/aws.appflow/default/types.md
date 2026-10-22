@@ -1,21 +1,24 @@
 # AWS.AppFlow @ default
 
 ## Resource AWS.AppFlow/Connector@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppFlow/ConnectorProperties](#awsappflowconnectorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppFlow/ConnectorProfile@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppFlow/ConnectorProfileProperties](#awsappflowconnectorprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppFlow/Flow@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

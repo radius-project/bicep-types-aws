@@ -1,0 +1,69 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DAX-SubnetGroup",
+  "type": "AWS::DAX::SubnetGroup",
+  "time": "2026-10-12T15:21:00.592Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/SubnetGroupName"
+    ],
+    "description": "Resource type definition for AWS::DAX::SubnetGroup",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "dax:CreateSubnetGroup",
+          "iam:CreateServiceLinkedRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "dax:DeleteSubnetGroup"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "dax:DescribeSubnetGroups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "dax:DescribeSubnetGroups"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "dax:UpdateSubnetGroup"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/SubnetGroupName"
+    ],
+    "properties": {
+      "Description": {
+        "type": "string"
+      },
+      "SubnetGroupName": {
+        "type": "string"
+      },
+      "SubnetIds": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": false
+      }
+    },
+    "propertyTransform": {
+      "/properties/SubnetGroupName": "$lowercase(SubnetGroupName)"
+    },
+    "required": [
+      "SubnetIds"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-dax",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::DAX::SubnetGroup"
+  }
+}

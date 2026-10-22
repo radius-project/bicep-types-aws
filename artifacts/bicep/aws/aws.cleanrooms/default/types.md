@@ -1,56 +1,72 @@
 # AWS.CleanRooms @ default
 
 ## Resource AWS.CleanRooms/AnalysisTemplate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CleanRooms/AnalysisTemplateProperties](#awscleanroomsanalysistemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CleanRooms/Collaboration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CleanRooms/CollaborationProperties](#awscleanroomscollaborationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CleanRooms/ConfiguredTable@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CleanRooms/ConfiguredTableProperties](#awscleanroomsconfiguredtableproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CleanRooms/ConfiguredTableAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CleanRooms/ConfiguredTableAssociationProperties](#awscleanroomsconfiguredtableassociationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CleanRooms/IdMappingTable@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CleanRooms/IdMappingTableProperties](#awscleanroomsidmappingtableproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CleanRooms/IdNamespaceAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CleanRooms/IdNamespaceAssociationProperties](#awscleanroomsidnamespaceassociationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CleanRooms/IntermediateTable@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CleanRooms/IntermediateTableProperties](#awscleanroomsintermediatetableproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CleanRooms/Membership@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CleanRooms/MembershipProperties](#awscleanroomsmembershipproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CleanRooms/PrivacyBudgetTemplate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -73,7 +89,9 @@
 
 ## AnalysisSource
 ### Properties
-* **Text**: string (Required)
+
+## AnalysisSourceMetadata
+### Properties
 
 ## AWS.CleanRooms/AnalysisTemplateProperties
 ### Properties
@@ -83,26 +101,33 @@
 * **CollaborationArn**: string (ReadOnly)
 * **CollaborationIdentifier**: string (ReadOnly)
 * **Description**: string
+* **ErrorMessageConfiguration**: [ErrorMessageConfiguration](#errormessageconfiguration)
 * **Format**: string (Required)
 * **MembershipArn**: string (ReadOnly)
 * **MembershipIdentifier**: string (Required, Identifier)
 * **Name**: string (Required)
-* **Schema**: [AnalysisSchema](#analysisschema) (ReadOnly)
+* **Schema**: [AnalysisSchema](#analysisschema)
 * **Source**: [AnalysisSource](#analysissource) (Required)
+* **SourceMetadata**: [AnalysisSourceMetadata](#analysissourcemetadata)
+* **SyntheticDataParameters**: [SyntheticDataParameters](#syntheticdataparameters)
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this cleanrooms analysis template.
 
 ## AWS.CleanRooms/CollaborationProperties
 ### Properties
+* **AllowedResultRegions**: string[]
 * **AnalyticsEngine**: string
 * **Arn**: string (ReadOnly)
+* **AutoApprovedChangeTypes**: string[]
 * **CollaborationIdentifier**: string (ReadOnly, Identifier)
 * **CreatorDisplayName**: string (Required)
-* **CreatorMemberAbilities**: string[] (Required)
+* **CreatorMemberAbilities**: string[]
 * **CreatorMLMemberAbilities**: [MLMemberAbilities](#mlmemberabilities)
 * **CreatorPaymentConfiguration**: [PaymentConfiguration](#paymentconfiguration)
 * **DataEncryptionMetadata**: [DataEncryptionMetadata](#dataencryptionmetadata)
 * **Description**: string (Required)
-* **Members**: [MemberSpecification](#memberspecification)[] (Required)
+* **IsMetricsEnabled**: bool
+* **JobLogStatus**: string
+* **Members**: [MemberSpecification](#memberspecification)[]
 * **Name**: string (Required)
 * **QueryLogStatus**: string (Required)
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration.
@@ -128,6 +153,7 @@
 * **ConfiguredTableIdentifier**: string (ReadOnly, Identifier)
 * **Description**: string
 * **Name**: string (Required)
+* **SelectedAnalysisMethods**: string[]
 * **TableReference**: [TableReference](#tablereference) (Required)
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration.
 
@@ -161,13 +187,32 @@
 * **Name**: string (Required)
 * **Tags**: [Tag](#tag)[]
 
+## AWS.CleanRooms/IntermediateTableProperties
+### Properties
+* **AnalysisRules**: [IntermediateTableAnalysisRule](#intermediatetableanalysisrule)[]
+* **Arn**: string (ReadOnly)
+* **CollaborationArn**: string (ReadOnly)
+* **CollaborationIdentifier**: string (ReadOnly)
+* **Description**: string
+* **IntermediateTableIdentifier**: string (ReadOnly, Identifier)
+* **KmsKeyArn**: string
+* **MembershipArn**: string (ReadOnly)
+* **MembershipIdentifier**: string (Required, Identifier)
+* **Name**: string (Required)
+* **PopulationAnalysisConfiguration**: [PopulationAnalysisConfiguration](#populationanalysisconfiguration) (Required)
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]
+
 ## AWS.CleanRooms/MembershipProperties
 ### Properties
 * **Arn**: string (ReadOnly)
 * **CollaborationArn**: string (ReadOnly)
 * **CollaborationCreatorAccountId**: string (ReadOnly)
 * **CollaborationIdentifier**: string (Required)
+* **DefaultJobResultConfiguration**: [MembershipProtectedJobResultConfiguration](#membershipprotectedjobresultconfiguration)
 * **DefaultResultConfiguration**: [MembershipProtectedQueryResultConfiguration](#membershipprotectedqueryresultconfiguration)
+* **IsMetricsEnabled**: bool
+* **JobLogStatus**: string
 * **MembershipIdentifier**: string (ReadOnly, Identifier)
 * **PaymentConfiguration**: [MembershipPaymentConfiguration](#membershippaymentconfiguration)
 * **QueryLogStatus**: string (Required)
@@ -185,6 +230,12 @@
 * **PrivacyBudgetTemplateIdentifier**: string (ReadOnly, Identifier)
 * **PrivacyBudgetType**: string (Required)
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this cleanrooms privacy budget template.
+
+## BudgetParameter
+### Properties
+* **AutoRefresh**: string
+* **Budget**: int (Required)
+* **Type**: string (Required)
 
 ## ConfiguredTable_ConfiguredTableAnalysisRulePolicyV1
 ### Properties
@@ -215,6 +266,10 @@
 ## Document
 ### Properties
 
+## ErrorMessageConfiguration
+### Properties
+* **Type**: string (Required)
+
 ## IdMappingConfig
 ### Properties
 * **AllowUseAsDimensionColumn**: bool (Required)
@@ -243,10 +298,31 @@
 * **IdMappingWorkflowsSupported**: [Document](#document)[]
 * **IdNamespaceType**: string
 
+## IntermediateTable_IntermediateTableAnalysisRulePolicyV1
+### Properties
+
+## IntermediateTableAnalysisRule
+### Properties
+* **Policy**: [IntermediateTableAnalysisRulePolicy](#intermediatetableanalysisrulepolicy) (Required)
+* **Type**: string (Required)
+
+## IntermediateTableAnalysisRulePolicy
+### Properties
+* **V1**: [IntermediateTable_IntermediateTableAnalysisRulePolicyV1](#intermediatetableintermediatetableanalysisrulepolicyv1) (Required)
+
+## JobComputePaymentConfig
+### Properties
+* **IsResponsible**: bool (Required)
+
+## MembershipJobComputePaymentConfig
+### Properties
+* **IsResponsible**: bool (Required)
+
 ## MembershipMLPaymentConfig
 ### Properties
 * **ModelInference**: [MembershipModelInferencePaymentConfig](#membershipmodelinferencepaymentconfig)
 * **ModelTraining**: [MembershipModelTrainingPaymentConfig](#membershipmodeltrainingpaymentconfig)
+* **SyntheticDataGeneration**: [MembershipSyntheticDataGenerationPaymentConfig](#membershipsyntheticdatagenerationpaymentconfig)
 
 ## MembershipModelInferencePaymentConfig
 ### Properties
@@ -258,8 +334,18 @@
 
 ## MembershipPaymentConfiguration
 ### Properties
+* **JobCompute**: [MembershipJobComputePaymentConfig](#membershipjobcomputepaymentconfig)
 * **MachineLearning**: [MembershipMLPaymentConfig](#membershipmlpaymentconfig)
 * **QueryCompute**: [MembershipQueryComputePaymentConfig](#membershipquerycomputepaymentconfig) (Required)
+
+## MembershipProtectedJobOutputConfiguration
+### Properties
+* **S3**: [ProtectedJobS3OutputConfigurationInput](#protectedjobs3outputconfigurationinput) (Required)
+
+## MembershipProtectedJobResultConfiguration
+### Properties
+* **OutputConfiguration**: [MembershipProtectedJobOutputConfiguration](#membershipprotectedjoboutputconfiguration) (Required)
+* **RoleArn**: string (Required)
 
 ## MembershipProtectedQueryOutputConfiguration
 ### Properties
@@ -274,11 +360,15 @@
 ### Properties
 * **IsResponsible**: bool (Required)
 
+## MembershipSyntheticDataGenerationPaymentConfig
+### Properties
+* **IsResponsible**: bool (Required)
+
 ## MemberSpecification
 ### Properties
 * **AccountId**: string (Required)
 * **DisplayName**: string (Required)
-* **MemberAbilities**: string[] (Required)
+* **MemberAbilities**: string[]
 * **MLMemberAbilities**: [MLMemberAbilities](#mlmemberabilities)
 * **PaymentConfiguration**: [PaymentConfiguration](#paymentconfiguration)
 
@@ -290,6 +380,7 @@
 ### Properties
 * **ModelInference**: [ModelInferencePaymentConfig](#modelinferencepaymentconfig)
 * **ModelTraining**: [ModelTrainingPaymentConfig](#modeltrainingpaymentconfig)
+* **SyntheticDataGeneration**: [SyntheticDataGenerationPaymentConfig](#syntheticdatagenerationpaymentconfig)
 
 ## ModelInferencePaymentConfig
 ### Properties
@@ -301,13 +392,30 @@
 
 ## PaymentConfiguration
 ### Properties
+* **JobCompute**: [JobComputePaymentConfig](#jobcomputepaymentconfig)
 * **MachineLearning**: [MLPaymentConfig](#mlpaymentconfig)
 * **QueryCompute**: [QueryComputePaymentConfig](#querycomputepaymentconfig) (Required)
 
+## PopulationAnalysisConfiguration
+### Properties
+* **SqlParameters**: [PopulationAnalysisSqlParameters](#populationanalysissqlparameters)
+
+## PopulationAnalysisSqlParameters
+### Properties
+* **AnalysisTemplateArn**: string
+* **QueryString**: string
+
 ## PrivacyBudgetTemplate_Parameters
 ### Properties
-* **Epsilon**: int (Required)
-* **UsersNoisePerQuery**: int (Required)
+* **BudgetParameters**: [BudgetParameter](#budgetparameter)[]
+* **Epsilon**: int
+* **ResourceArn**: string
+* **UsersNoisePerQuery**: int
+
+## ProtectedJobS3OutputConfigurationInput
+### Properties
+* **Bucket**: string (Required)
+* **KeyPrefix**: string
 
 ## ProtectedQueryS3OutputConfiguration
 ### Properties
@@ -320,8 +428,20 @@
 ### Properties
 * **IsResponsible**: bool (Required)
 
+## SyntheticDataGenerationPaymentConfig
+### Properties
+* **IsResponsible**: bool (Required)
+
+## SyntheticDataParameters
+### Properties
+
 ## TableReference
 ### Properties
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

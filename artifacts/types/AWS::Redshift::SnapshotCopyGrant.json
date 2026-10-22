@@ -1,0 +1,123 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Redshift-SnapshotCopyGrant",
+  "type": "AWS::Redshift::SnapshotCopyGrant",
+  "time": "2026-10-21T22:37:46.053Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SnapshotCopyGrantName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/SnapshotCopyGrantName",
+      "/properties/KmsKeyId"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key, or name, for the resource tag.",
+            "maxLength": 127,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the resource tag.",
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates a snapshot copy grant that permits Amazon Redshift to use an encrypted symmetric key from AWS Key Management Service (KMS) to encrypt copied snapshots in a destination region.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "redshift:CreateSnapshotCopyGrant",
+          "redshift:DescribeSnapshotCopyGrants",
+          "redshift:CreateTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "redshift:DeleteSnapshotCopyGrant"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "redshift:DescribeSnapshotCopyGrants"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "redshift:DescribeSnapshotCopyGrants"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "redshift:DescribeSnapshotCopyGrants",
+          "redshift:CreateTags",
+          "redshift:DeleteTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the snapshot copy grant.",
+        "type": "string"
+      },
+      "KmsKeyId": {
+        "description": "The unique identifier of the encrypted symmetric key to which to grant Amazon Redshift permission. If no key is specified, the default key is used. Marked writeOnly because Create accepts aliases/key-ids but Describe returns the resolved key ARN, which would fail drift detection.",
+        "type": "string"
+      },
+      "SnapshotCopyGrantName": {
+        "description": "The name of the snapshot copy grant. This name must be unique in the region for the AWS account.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of tag instances.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn"
+    ],
+    "required": [
+      "SnapshotCopyGrantName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "redshift:CreateTags",
+        "redshift:DeleteTags",
+        "redshift:DescribeSnapshotCopyGrants"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Redshift::SnapshotCopyGrant",
+    "writeOnlyProperties": [
+      "/properties/KmsKeyId"
+    ]
+  }
+}

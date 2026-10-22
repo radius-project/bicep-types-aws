@@ -1,35 +1,40 @@
 # AWS.AutoScaling @ default
 
 ## Resource AWS.AutoScaling/AutoScalingGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AutoScaling/AutoScalingGroupProperties](#awsautoscalingautoscalinggroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AutoScaling/LifecycleHook@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AutoScaling/LifecycleHookProperties](#awsautoscalinglifecyclehookproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AutoScaling/ScalingPolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AutoScaling/ScalingPolicyProperties](#awsautoscalingscalingpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AutoScaling/ScheduledAction@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AutoScaling/ScheduledActionProperties](#awsautoscalingscheduledactionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AutoScaling/WarmPool@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -48,8 +53,9 @@
 ## AvailabilityZoneDistribution
 ### Properties
 * **CapacityDistributionStrategy**: string: If launches fail in an Availability Zone, the following strategies are available. The default is ``balanced-best-effort``. 
-  +   ``balanced-only`` - If launches fail in an Availability Zone, Auto Scaling will continue to attempt to launch in the unhealthy zone to preserve a balanced distribution.
-  +   ``balanced-best-effort`` - If launches fail in an Availability Zone, Auto Scaling will attempt to launch in another healthy Availability Zone instead.
+  +  ``balanced-only`` - If launches fail in an Availability Zone, Auto Scaling will continue to attempt to launch in the unhealthy zone to preserve a balanced distribution.
+  +  ``balanced-best-effort`` - If launches fail in an Availability Zone, Auto Scaling will attempt to launch in another healthy Availability Zone instead.
+  +  ``reservations-then-balanced`` - Auto Scaling will first attempt to launch into your Capacity Reservations, and then balance any remaining capacity across healthy Availability Zones.
 
 ## AvailabilityZoneImpairmentPolicy
 ### Properties
@@ -58,14 +64,16 @@
 
 ## AWS.AutoScaling/AutoScalingGroupProperties
 ### Properties
+* **AutoScalingGroupARN**: string (ReadOnly)
 * **AutoScalingGroupName**: string (Identifier): The name of the Auto Scaling group. This name must be unique per Region per account.
  The name can contain any ASCII character 33 to 126 including most punctuation characters, digits, and upper and lowercased letters.
   You cannot use a colon (:) in the name.
-* **AvailabilityZoneDistribution**: [AvailabilityZoneDistribution](#availabilityzonedistribution): The instance capacity distribution across Availability Zones.
-* **AvailabilityZoneImpairmentPolicy**: [AvailabilityZoneImpairmentPolicy](#availabilityzoneimpairmentpolicy): The Availability Zone impairment policy.
+* **AvailabilityZoneDistribution**: [AvailabilityZoneDistribution](#availabilityzonedistribution): The EC2 instance capacity distribution across Availability Zones for the Auto Scaling group.
+* **AvailabilityZoneIds**: string[]: The Availability Zone IDs where the Auto Scaling group can launch instances.
+* **AvailabilityZoneImpairmentPolicy**: [AvailabilityZoneImpairmentPolicy](#availabilityzoneimpairmentpolicy): The Availability Zone impairment policy for the Auto Scaling group.
 * **AvailabilityZones**: string[]: A list of Availability Zones where instances in the Auto Scaling group can be created. Used for launching into the default VPC subnet in each Availability Zone when not using the ``VPCZoneIdentifier`` property, or for attaching a network interface when an existing network interface ID is specified in a launch template.
 * **CapacityRebalance**: bool: Indicates whether Capacity Rebalancing is enabled. Otherwise, Capacity Rebalancing is disabled. When you turn on Capacity Rebalancing, Amazon EC2 Auto Scaling attempts to launch a Spot Instance whenever Amazon EC2 notifies that a Spot Instance is at an elevated risk of interruption. After launching a new instance, it then terminates an old instance. For more information, see [Use Capacity Rebalancing to handle Amazon EC2 Spot Interruptions](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-capacity-rebalancing.html) in the in the *Amazon EC2 Auto Scaling User Guide*.
-* **CapacityReservationSpecification**: [CapacityReservationSpecification](#capacityreservationspecification)
+* **CapacityReservationSpecification**: [CapacityReservationSpecification](#capacityreservationspecification): The capacity reservation specification for the Auto Scaling group.
 * **Context**: string: Reserved.
 * **Cooldown**: string: *Only needed if you use simple scaling policies.* 
  The amount of time, in seconds, between one scaling activity ending and another one starting due to simple scaling policies. For more information, see [Scaling cooldowns for Amazon EC2 Auto Scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scaling-cooldowns.html) in the *Amazon EC2 Auto Scaling User Guide*.
@@ -74,6 +82,7 @@
  During an instance refresh, Amazon EC2 Auto Scaling waits for the warm-up period after it replaces an instance before it moves on to replacing the next instance. Amazon EC2 Auto Scaling also waits for the warm-up period before aggregating the metrics for new instances with existing instances in the Amazon CloudWatch metrics that are used for scaling, resulting in more reliable usage data. For more information, see [Set the default instance warmup for an Auto Scaling group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-default-instance-warmup.html) in the *Amazon EC2 Auto Scaling User Guide*.
   To manage various warm-up settings at the group level, we recommend that you set the default instance warmup, *even if it is set to 0 seconds*. To remove a value that you previously set, include the property but specify ``-1`` for the value. However, we strongly recommend keeping the default instance warmup enabled by specifying a value of ``0`` or other nominal value.
   Default: None
+* **DeletionProtection**: string: The deletion protection setting for the Auto Scaling group.
 * **DesiredCapacity**: string: The desired capacity is the initial capacity of the Auto Scaling group at the time of its creation and the capacity it attempts to maintain. It can scale beyond this capacity if you configure automatic scaling.
  The number must be greater than or equal to the minimum size of the group and less than or equal to the maximum size of the group. If you do not specify a desired capacity when creating the stack, the default is the minimum size of the group.
  CloudFormation marks the Auto Scaling group as successful (by setting its status to CREATE_COMPLETE) when the desired capacity is reached. However, if a maximum Spot price is set in the launch template or launch configuration that you specified, then desired capacity is not used as a criteria for success. Whether your request is fulfilled depends on Spot Instance capacity and your maximum price.
@@ -87,6 +96,7 @@
  Only specify ``EC2`` if you must clear a value that was previously set.
 * **InstanceId**: string (WriteOnly): The ID of the instance used to base the launch configuration on. For more information, see [Create an Auto Scaling group using an EC2 instance](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-from-instance.html) in the *Amazon EC2 Auto Scaling User Guide*.
  If you specify ``LaunchTemplate``, ``MixedInstancesPolicy``, or ``LaunchConfigurationName``, don't specify ``InstanceId``.
+* **InstanceLifecyclePolicy**: [InstanceLifecyclePolicy](#instancelifecyclepolicy): The instance lifecycle policy for the Auto Scaling group.
 * **InstanceMaintenancePolicy**: [InstanceMaintenancePolicy](#instancemaintenancepolicy): An instance maintenance policy. For more information, see [Set instance maintenance policy](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-instance-maintenance-policy.html) in the *Amazon EC2 Auto Scaling User Guide*.
 * **LaunchConfigurationName**: string: The name of the launch configuration to use to launch instances.
  Required only if you don't specify ``LaunchTemplate``, ``MixedInstancesPolicy``, or ``InstanceId``.
@@ -105,7 +115,7 @@
 * **NewInstancesProtectedFromScaleIn**: bool: Indicates whether newly launched instances are protected from termination by Amazon EC2 Auto Scaling when scaling in. For more information about preventing instances from terminating on scale in, see [Use instance scale-in protection](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-instance-protection.html) in the *Amazon EC2 Auto Scaling User Guide*.
 * **NotificationConfiguration**: [NotificationConfiguration](#notificationconfiguration)
 * **NotificationConfigurations**: [NotificationConfiguration](#notificationconfiguration)[]: Configures an Auto Scaling group to send notifications when specified events take place.
-* **PlacementGroup**: string: The name of the placement group into which to launch your instances. For more information, see [Placement groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html) in the *Amazon EC2 User Guide for Linux Instances*.
+* **PlacementGroup**: string: The name of the placement group into which to launch your instances. For more information, see [Placement groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html) in the *Amazon EC2 User Guide*.
   A *cluster* placement group is a logical grouping of instances within a single Availability Zone. You cannot specify multiple Availability Zones and a cluster placement group.
 * **ServiceLinkedRoleARN**: string: The Amazon Resource Name (ARN) of the service-linked role that the Auto Scaling group uses to call other AWS service on your behalf. By default, Amazon EC2 Auto Scaling uses a service-linked role named ``AWSServiceRoleForAutoScaling``, which it creates if it does not exist. For more information, see [Service-linked roles](https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-service-linked-role.html) in the *Amazon EC2 Auto Scaling User Guide*.
 * **SkipZonalShiftValidation**: bool (WriteOnly)
@@ -116,7 +126,7 @@
 * **TrafficSources**: [TrafficSourceIdentifier](#trafficsourceidentifier)[]: The traffic sources associated with this Auto Scaling group.
 * **VPCZoneIdentifier**: string[]: A list of subnet IDs for a virtual private cloud (VPC) where instances in the Auto Scaling group can be created.
  If this resource specifies public subnets and is also in a VPC that is defined in the same stack template, you must use the [DependsOn attribute](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html) to declare a dependency on the [VPC-gateway attachment](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-gateway-attachment.html).
-  When you update ``VPCZoneIdentifier``, this retains the same Auto Scaling group and replaces old instances with new ones, according to the specified subnets. You can optionally specify how CloudFormation handles these updates by using an [UpdatePolicy attribute](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html).
+  When you update ``VPCZoneIdentifier``, this retains the same Auto Scaling group and replaces old instances with new ones, according to the specified subnets. To control how CloudFormation replaces the instances, add an [UpdatePolicy attribute](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html) to your stack. Set the update policy to ``AutoScalingInstanceRefresh``. For more information, see the [AutoScalingInstanceRefresh policy](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html#cfn-attributes-updatepolicy-instancerefresh).
   Required to launch instances into a nondefault VPC. If you specify ``VPCZoneIdentifier`` with ``AvailabilityZones``, the subnets that you specify for this property must reside in those Availability Zones.
 
 ## AWS.AutoScaling/LifecycleHookProperties
@@ -173,21 +183,26 @@
 
 ## BaselinePerformanceFactorsRequest
 ### Properties
-* **Cpu**: [CpuPerformanceFactorRequest](#cpuperformancefactorrequest)
+* **Cpu**: [CpuPerformanceFactorRequest](#cpuperformancefactorrequest): The CPU performance to consider, using an instance family as the baseline reference.
 
 ## CapacityReservationSpecification
 ### Properties
-* **CapacityReservationPreference**: string (Required)
-* **CapacityReservationTarget**: [CapacityReservationTarget](#capacityreservationtarget)
+* **CapacityReservationPreference**: string (Required): The capacity reservation preference. The following options are available: 
+  +  ``capacity-reservations-only`` - Auto Scaling will only launch instances into a Capacity Reservation or Capacity Reservation resource group. If capacity isn't available, instances will fail to launch.
+  +  ``capacity-reservations-first`` - Auto Scaling will try to launch instances into a Capacity Reservation or Capacity Reservation resource group first. If capacity isn't available, instances will run in On-Demand capacity.
+  +  ``none`` - Auto Scaling will not launch instances into a Capacity Reservation. Instances will run in On-Demand capacity. 
+  +  ``default`` - Auto Scaling uses the Capacity Reservation preference from your launch template or an open Capacity Reservation.
+* **CapacityReservationTarget**: [CapacityReservationTarget](#capacityreservationtarget): Describes a target Capacity Reservation or Capacity Reservation resource group.
 
 ## CapacityReservationTarget
 ### Properties
-* **CapacityReservationIds**: string[]
-* **CapacityReservationResourceGroupArns**: string[]
+* **CapacityReservationIds**: string[]: The Capacity Reservation IDs to launch instances into.
+* **CapacityReservationResourceGroupArns**: string[]: The resource group ARNs of the Capacity Reservation to launch instances into.
 
 ## CpuPerformanceFactorRequest
 ### Properties
-* **References**: [PerformanceFactorReferenceRequest](#performancefactorreferencerequest)[]
+* **References**: [PerformanceFactorReferenceRequest](#performancefactorreferencerequest)[]: Specify an instance family to use as the baseline reference for CPU performance. All instance types that match your specified attributes will be compared against the CPU performance of the referenced instance family, regardless of CPU manufacturer or architecture differences. 
+  Currently only one instance family can be specified in the list.
 
 ## CustomizedMetricSpecification
 ### Properties
@@ -198,6 +213,16 @@
 * **Period**: int
 * **Statistic**: string
 * **Unit**: string
+
+## DistributionSegment
+### Properties
+* **TargetCapacityTypes**: string[] (Required): The capacity types to prioritize, in order. Amazon EC2 Auto Scaling attempts to launch instances in the priority order of the capacity types, and within each capacity type, in the order of instance types listed in your launch template ``Overrides``.
+ The following lists the valid values:
+  + on-demand-capacity-reservation On-Demand Capacity Reservations. + capacity-block Capacity Blocks. + interruptible-capacity-reservation Interruptible Capacity Reservations. + on-demand On-Demand capacity. Include this value to allow the group to fall back to On-Demand capacity when the preceding capacity types are unavailable.
+
+## InstanceLifecyclePolicy
+### Properties
+* **RetentionTriggers**: [RetentionTriggers](#retentiontriggers): Specifies the conditions that trigger instance retention behavior. These triggers determine when instances should move to a ``Retained`` state instead of automatic termination. This allows you to maintain control over instance management when lifecycles transition and operations fail.
 
 ## InstanceMaintenancePolicy
 ### Properties
@@ -242,15 +267,16 @@
   Default: All instance types
 * **BareMetal**: string: Indicates whether bare metal instance types are included, excluded, or required.
  Default: ``excluded``
-* **BaselineEbsBandwidthMbps**: [BaselineEbsBandwidthMbpsRequest](#baselineebsbandwidthmbpsrequest): The minimum and maximum baseline bandwidth performance for an instance type, in Mbps. For more information, see [Amazon EBS–optimized instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html) in the *Amazon EC2 User Guide for Linux Instances*.
+* **BaselineEbsBandwidthMbps**: [BaselineEbsBandwidthMbpsRequest](#baselineebsbandwidthmbpsrequest): The minimum and maximum baseline bandwidth performance for an instance type, in Mbps. For more information, see [Amazon EBS–optimized instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html) in the *Amazon EC2 User Guide*.
  Default: No minimum or maximum limits
-* **BaselinePerformanceFactors**: [BaselinePerformanceFactorsRequest](#baselineperformancefactorsrequest)
-* **BurstablePerformance**: string: Indicates whether burstable performance instance types are included, excluded, or required. For more information, see [Burstable performance instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html) in the *Amazon EC2 User Guide for Linux Instances*.
+* **BaselinePerformanceFactors**: [BaselinePerformanceFactorsRequest](#baselineperformancefactorsrequest): The baseline performance factors for the instance requirements.
+* **BurstablePerformance**: string: Indicates whether burstable performance instance types are included, excluded, or required. For more information, see [Burstable performance instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html) in the *Amazon EC2 User Guide*.
  Default: ``excluded``
 * **CpuManufacturers**: string[]: Lists which specific CPU manufacturers to include.
   +  For instance types with Intel CPUs, specify ``intel``.
   +  For instance types with AMD CPUs, specify ``amd``.
   +  For instance types with AWS CPUs, specify ``amazon-web-services``.
+  +  For instance types with Apple CPUs, specify ``apple``.
   
   Don't confuse the CPU hardware manufacturer with the CPU hardware architecture. Instances will be launched with a compatible CPU architecture based on the Amazon Machine Image (AMI) that you specify in your launch template. 
   Default: Any manufacturer
@@ -259,11 +285,11 @@
   If you specify ``ExcludedInstanceTypes``, you can't specify ``AllowedInstanceTypes``.
   Default: No excluded instance types
 * **InstanceGenerations**: string[]: Indicates whether current or previous generation instance types are included.
-  +  For current generation instance types, specify ``current``. The current generation includes EC2 instance types currently recommended for use. This typically includes the latest two to three generations in each instance family. For more information, see [Instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the *Amazon EC2 User Guide for Linux Instances*.
+  +  For current generation instance types, specify ``current``. The current generation includes EC2 instance types currently recommended for use. This typically includes the latest two to three generations in each instance family. For more information, see [Instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the *Amazon EC2 User Guide*.
   +  For previous generation instance types, specify ``previous``.
   
  Default: Any current or previous generation
-* **LocalStorage**: string: Indicates whether instance types with instance store volumes are included, excluded, or required. For more information, see [Amazon EC2 instance store](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html) in the *Amazon EC2 User Guide for Linux Instances*.
+* **LocalStorage**: string: Indicates whether instance types with instance store volumes are included, excluded, or required. For more information, see [Amazon EC2 instance store](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html) in the *Amazon EC2 User Guide*.
  Default: ``included``
 * **LocalStorageTypes**: string[]: Indicates the type of local storage that is required.
   +  For instance types with hard disk drive (HDD) storage, specify ``hdd``.
@@ -302,6 +328,8 @@
 
 ## InstancesDistribution
 ### Properties
+* **DistributionSegments**: [DistributionSegment](#distributionsegment)[]: The Distribution Segments configuration. Each segment contains an ordered list of capacity types to prioritize.
+ For more information, see [Use Distribution Segments to target multiple capacity types](https://docs.aws.amazon.com/autoscaling/ec2/userguide/use-distribution-segments.html) in the *Amazon EC2 Auto Scaling User Guide*.
 * **OnDemandAllocationStrategy**: string: The allocation strategy to apply to your On-Demand Instances when they are launched. Possible instance types are determined by the launch template overrides that you specify.
  The following lists the valid values:
   + lowest-price Uses price to determine which instance types are the highest priority, launching the lowest priced instance types within an Availability Zone first. This is the default value for Auto Scaling groups that specify InstanceRequirements. + prioritized You set the order of instance types for the launch template overrides from highest to lowest priority (from first to last in the list). Amazon EC2 Auto Scaling launches your highest priority instance types first. If all your On-Demand capacity cannot be fulfilled using your highest priority instance type, then Amazon EC2 Auto Scaling launches the remaining capacity using the second priority instance type, and so on. This is the default value for Auto Scaling groups that don't specify InstanceRequirements and cannot be used for groups that do.
@@ -328,10 +356,15 @@
 
 ## LaunchTemplateOverrides
 ### Properties
+* **ImageId**: string: The ID of the Amazon Machine Image (AMI) to use for instances launched with this override. When using Instance Refresh with ``ReplaceRootVolume`` strategy, this specifies the AMI for root volume replacement operations. 
+  For ``ReplaceRootVolume`` operations: 
+  +  All overrides in the ``MixedInstancesPolicy`` must specify an ImageId
+  +  The AMI must contain only a single root volume
+  +  Root volume replacement doesn't support multi-volume AMIs
 * **InstanceRequirements**: [InstanceRequirements](#instancerequirements): The instance requirements. Amazon EC2 Auto Scaling uses your specified requirements to identify instance types. Then, it uses your On-Demand and Spot allocation strategies to launch instances from these instance types.
  You can specify up to four separate sets of instance requirements per Auto Scaling group. This is useful for provisioning instances from different Amazon Machine Images (AMIs) in the same Auto Scaling group. To do this, create the AMIs and create a new launch template for each AMI. Then, create a compatible set of instance requirements for each launch template. 
   If you specify ``InstanceRequirements``, you can't specify ``InstanceType``.
-* **InstanceType**: string: The instance type, such as ``m3.xlarge``. You must specify an instance type that is supported in your requested Region and Availability Zones. For more information, see [Instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the *Amazon EC2 User Guide for Linux Instances*.
+* **InstanceType**: string: The instance type, such as ``m3.xlarge``. You must specify an instance type that is supported in your requested Region and Availability Zones. For more information, see [Instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the *Amazon EC2 User Guide*.
  You can specify up to 40 instance types per Auto Scaling group.
 * **LaunchTemplateSpecification**: [LaunchTemplateSpecification](#launchtemplatespecification): Provides a launch template for the specified instance type or set of instance requirements. For example, some instance types might require a launch template with a different AMI. If not provided, Amazon EC2 Auto Scaling uses the launch template that's specified in the ``LaunchTemplate`` definition. For more information, see [Specifying a different launch template for an instance type](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups-launch-template-overrides.html) in the *Amazon EC2 Auto Scaling User Guide*. 
  You can specify up to 20 launch templates per Auto Scaling group. The launch templates specified in the overrides and in the ``LaunchTemplate`` definition count towards this limit.
@@ -430,7 +463,7 @@
 ## MixedInstancesPolicy
 ### Properties
 * **InstancesDistribution**: [InstancesDistribution](#instancesdistribution): The instances distribution.
-* **LaunchTemplate**: [LaunchTemplate](#launchtemplate) (Required): One or more launch templates and the instance types (overrides) that are used to launch EC2 instances to fulfill On-Demand and Spot capacities.
+* **LaunchTemplate**: [LaunchTemplate](#launchtemplate) (Required): One or more launch templates and the instance types (overrides) that are used to launch EC2 instances to fulfill the configured capacities.
 
 ## NetworkBandwidthGbpsRequest
 ### Properties
@@ -445,7 +478,7 @@
 ## NotificationConfiguration
 ### Properties
 * **NotificationTypes**: string[]: A list of event types that send a notification. Event types can include any of the following types. 
-  *Allowed values*:
+ *Allowed values*:
   +   ``autoscaling:EC2_INSTANCE_LAUNCH`` 
   +   ``autoscaling:EC2_INSTANCE_LAUNCH_ERROR`` 
   +   ``autoscaling:EC2_INSTANCE_TERMINATE`` 
@@ -455,7 +488,20 @@
 
 ## PerformanceFactorReferenceRequest
 ### Properties
-* **InstanceFamily**: string
+* **InstanceFamily**: string: The instance family to use as a baseline reference. 
+  Make sure that you specify the correct value for the instance family. The instance family is everything before the period (.) in the instance type name. For example, in the instance ``c6i.large``, the instance family is ``c6i``, not ``c6``. For more information, see [Amazon EC2 instance type naming conventions](https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html) in *Amazon EC2 Instance Types*.
+  The following instance types are *not supported* for performance protection.
+  +   ``c1`` 
+  +   ``g3| g3s`` 
+  +   ``hpc7g`` 
+  +   ``m1| m2`` 
+  +   ``mac1 | mac2 | mac2-m1ultra | mac2-m2 | mac2-m2pro`` 
+  +   ``p3dn | p4d | p5`` 
+  +   ``t1`` 
+  +   ``u-12tb1 | u-18tb1 | u-24tb1 | u-3tb1 | u-6tb1 | u-9tb1 | u7i-12tb | u7in-16tb | u7in-24tb | u7in-32tb`` 
+  
+ If you performance protection by specifying a supported instance family, the returned instance types will exclude the preceding unsupported instance families.
+ If you specify an unsupported instance family as a value for baseline performance, the API returns an empty response.
 
 ## PredefinedMetricSpecification
 ### Properties
@@ -507,6 +553,12 @@
 * **PredefinedMetricType**: string (Required)
 * **ResourceLabel**: string
 
+## RetentionTriggers
+### Properties
+* **TerminateHookAbandon**: string: Specifies the action when a termination lifecycle hook is abandoned due to failure, timeout, or explicit abandonment (calling CompleteLifecycleAction). 
+  Set to ``retain`` to move instances to a retained state. Set to ``terminate`` for default termination behavior. 
+  Retained instances don't count toward desired capacity and remain until you call ``TerminateInstanceInAutoScalingGroup``.
+
 ## StepAdjustment
 ### Properties
 * **MetricIntervalLowerBound**: int
@@ -552,17 +604,17 @@
 * **Identifier**: string (Required): Identifies the traffic source.
  For Application Load Balancers, Gateway Load Balancers, Network Load Balancers, and VPC Lattice, this will be the Amazon Resource Name (ARN) for a target group in this account and Region. For Classic Load Balancers, this will be the name of the Classic Load Balancer in this account and Region.
  For example: 
-  +  Application Load Balancer ARN: ``arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/1234567890123456`` 
-  +  Classic Load Balancer name: ``my-classic-load-balancer`` 
-  +  VPC Lattice ARN: ``arn:aws:vpc-lattice:us-west-2:123456789012:targetgroup/tg-1234567890123456`` 
+  +  Application Load Balancer ARN: ``arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/1234567890123456``
+  +  Classic Load Balancer name: ``my-classic-load-balancer``
+  +  VPC Lattice ARN: ``arn:aws:vpc-lattice:us-west-2:123456789012:targetgroup/tg-1234567890123456``
   
  To get the ARN of a target group for a Application Load Balancer, Gateway Load Balancer, or Network Load Balancer, or the name of a Classic Load Balancer, use the Elastic Load Balancing [DescribeTargetGroups](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeTargetGroups.html) and [DescribeLoadBalancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html) API operations.
  To get the ARN of a target group for VPC Lattice, use the VPC Lattice [GetTargetGroup](https://docs.aws.amazon.com/vpc-lattice/latest/APIReference/API_GetTargetGroup.html) API operation.
 * **Type**: string (Required): Provides additional context for the value of ``Identifier``.
  The following lists the valid values:
-  +   ``elb`` if ``Identifier`` is the name of a Classic Load Balancer.
-  +   ``elbv2`` if ``Identifier`` is the ARN of an Application Load Balancer, Gateway Load Balancer, or Network Load Balancer target group.
-  +   ``vpc-lattice`` if ``Identifier`` is the ARN of a VPC Lattice target group.
+  +  ``elb`` if ``Identifier`` is the name of a Classic Load Balancer.
+  +  ``elbv2`` if ``Identifier`` is the ARN of an Application Load Balancer, Gateway Load Balancer, or Network Load Balancer target group.
+  +  ``vpc-lattice`` if ``Identifier`` is the ARN of a VPC Lattice target group.
   
  Required if the identifier is the name of a Classic Load Balancer.
 

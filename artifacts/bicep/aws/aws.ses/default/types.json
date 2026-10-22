@@ -1,11 +1,24 @@
 [
   {
     "$type": "ObjectType",
+    "name": "ArchivingOptions",
+    "properties": {
+      "ArchiveArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The ARN of the MailManager archive to associate with the configuration set."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "DashboardOptions",
     "properties": {
       "EngagementMetrics": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Whether emails sent with this configuration set have engagement tracking enabled."
@@ -18,21 +31,21 @@
     "properties": {
       "MaxDeliverySeconds": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "Specifies the maximum time until which SES will retry sending emails"
       },
       "SendingPoolName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The name of the dedicated IP pool to associate with the configuration set."
       },
       "TlsPolicy": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Specifies whether messages that use the configuration set are required to use Transport Layer Security (TLS). If the value is Require , messages are only delivered if a TLS connection can be established. If the value is Optional , messages can be delivered in plain text if a TLS connection can't be established."
@@ -45,7 +58,7 @@
     "properties": {
       "OptimizedSharedDelivery": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Whether emails sent with this configuration set have optimized delivery algorithm enabled."
@@ -58,7 +71,7 @@
     "properties": {
       "ReputationMetricsEnabled": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "If true , tracking of reputation metrics is enabled for the configuration set. If false , tracking of reputation metrics is disabled for the configuration set."
@@ -71,7 +84,7 @@
     "properties": {
       "SendingEnabled": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/12"
         },
         "flags": 0
       }
@@ -83,10 +96,35 @@
     "properties": {
       "SuppressedReasons": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "A list that contains the reasons that email addresses are automatically added to the suppression list for your account."
+      },
+      "ValidationOptions": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "An object that contains information about the validation options for your account."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
       }
     }
   },
@@ -96,14 +134,14 @@
     "properties": {
       "CustomRedirectDomain": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The domain to use for tracking open and click events."
       },
       "HttpsPolicy": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The https policy to use for tracking open and click events."
@@ -116,13 +154,13 @@
     "properties": {
       "DashboardOptions": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "GuardianOptions": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -140,7 +178,53 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfigurationSet_ValidationOptions_ConditionThreshold_OverallConfidenceThreshold",
+    "properties": {
+      "ConfidenceVerdictThreshold": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The confidence verdict threshold level."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfigurationSet_ValidationOptions_ConditionThreshold",
+    "properties": {
+      "ConditionThresholdEnabled": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "Whether the condition threshold is enabled or disabled."
+      },
+      "OverallConfidenceThreshold": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "The overall confidence threshold settings."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfigurationSet_ValidationOptions",
+    "properties": {
+      "ConditionThreshold": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The condition threshold settings for suppression validation."
+      }
     }
   },
   {
@@ -148,49 +232,68 @@
     "value": "AWS.SES/ConfigurationSetProperties"
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.SES/ConfigurationSetProperties",
     "properties": {
+      "ArchivingOptions": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
       "DeliveryOptions": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 16,
         "description": "The name of the configuration set."
       },
       "ReputationOptions": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "SendingOptions": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "SuppressionOptions": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0
       },
+      "Tags": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "The tags (keys and values) associated with the contact list."
+      },
       "TrackingOptions": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "VdmOptions": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/9"
         },
         "flags": 0
       }
@@ -202,21 +305,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/19"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -226,11 +329,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SES/ConfigurationSet@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/14"
+      "$ref": "#/20"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -238,7 +341,7 @@
     "properties": {
       "DimensionConfigurations": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "A list of dimensions upon which to categorize your emails when you publish email sending events to Amazon CloudWatch."
@@ -251,21 +354,21 @@
     "properties": {
       "DefaultDimensionValue": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The default value of the dimension that is published to Amazon CloudWatch if you do not provide the value of the dimension when you send an email."
       },
       "DimensionName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The name of an Amazon CloudWatch dimension associated with an email sending metric."
       },
       "DimensionValueSource": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The place where Amazon SES finds the value of a dimension to publish to Amazon CloudWatch. To use the message tags that you specify using an X-SES-MESSAGE-TAGS header or a parameter to the SendEmail/SendRawEmail API, specify messageTag. To use your own email headers, specify emailHeader. To put a custom tag on any link included in your email, specify linkTag."
@@ -278,7 +381,7 @@
     "properties": {
       "EventBusArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -290,49 +393,49 @@
     "properties": {
       "CloudWatchDestination": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "An object that contains the names, default values, and sources of the dimensions associated with an Amazon CloudWatch event destination."
       },
       "Enabled": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "Sets whether Amazon SES publishes events to this destination when you send an email with the associated configuration set. Set to true to enable publishing to this destination; set to false to prevent publishing to this destination. The default value is false.   "
       },
       "EventBridgeDestination": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "An object that contains Event bus ARN associated with the event bridge destination."
       },
       "KinesisFirehoseDestination": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "An object that contains the delivery stream ARN and the IAM role ARN associated with an Amazon Kinesis Firehose event destination."
       },
       "MatchingEventTypes": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/29"
         },
         "flags": 1,
         "description": "The type of email sending events, send, reject, bounce, complaint, delivery, open, click, renderingFailure, deliveryDelay, and subscription."
       },
       "Name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
-        "description": "The name of the event destination set."
+        "description": "The name of the event destination set. SES cannot rename an event destination, so changing the name replaces it."
       },
       "SnsDestination": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "An object that contains SNS topic ARN associated event destination."
@@ -345,14 +448,14 @@
     "properties": {
       "DeliveryStreamARN": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The ARN of the Amazon Kinesis Firehose stream that email sending events should be published to."
       },
       "IAMRoleARN": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The ARN of the IAM role under which Amazon SES publishes email sending events to the Amazon Kinesis Firehose stream."
@@ -365,7 +468,7 @@
     "properties": {
       "TopicARN": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -374,13 +477,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/23"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/10"
     }
   },
   {
@@ -393,21 +496,21 @@
     "properties": {
       "ConfigurationSetName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
-        "flags": 1,
+        "flags": 17,
         "description": "The name of the configuration set that contains the event destination."
       },
       "EventDestination": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "The event destination object."
       },
       "Id": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 18
       }
@@ -419,21 +522,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/31"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -443,11 +546,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SES/ConfigurationSetEventDestination@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/26"
+      "$ref": "#/32"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -455,13 +558,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -473,27 +576,27 @@
     "properties": {
       "DefaultSubscriptionStatus": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Description": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The description of the topic."
       },
       "DisplayName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The display name of the topic."
       },
       "TopicName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The name of the topic."
@@ -507,13 +610,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/34"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/29"
+      "$ref": "#/35"
     }
   },
   {
@@ -522,28 +625,28 @@
     "properties": {
       "ContactListName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 16,
         "description": "The name of the contact list."
       },
       "Description": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The description of the contact list."
       },
       "Tags": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "The tags (keys and values) associated with the contact list."
       },
       "Topics": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "The topics associated with the contact list."
@@ -556,21 +659,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/39"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -580,15 +683,160 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SES/ContactList@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/40"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The key of the key-value tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The value of the key-value tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SES/CustomVerificationEmailTemplateProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/42"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/CustomVerificationEmailTemplateProperties",
+    "properties": {
+      "FailureRedirectionURL": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The URL that the recipient of the verification email is sent to if his or her address is not successfully verified."
+      },
+      "FromEmailAddress": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The email address that the custom verification email is sent from."
+      },
+      "SuccessRedirectionURL": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The URL that the recipient of the verification email is sent to if his or her address is successfully verified."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "The tags (keys and values) associated with the tenant."
+      },
+      "TemplateContent": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The content of the custom verification email. The total size of the email must be less than 10 MB. The message body may contain HTML, with some limitations."
+      },
+      "TemplateName": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "The name of the custom verification email template."
+      },
+      "TemplateSubject": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The subject line of the custom verification email."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/CustomVerificationEmailTemplate",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SES/CustomVerificationEmailTemplate@default",
+    "body": {
+      "$ref": "#/46"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "StringLiteralType",
     "value": "AWS.SES/DedicatedIpPoolProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/48"
+    }
   },
   {
     "$type": "ObjectType",
@@ -596,17 +844,24 @@
     "properties": {
       "PoolName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 16,
         "description": "The name of the dedicated IP pool."
       },
       "ScalingMode": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Specifies whether the dedicated IP pool is managed or not. The default value is STANDARD."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0,
+        "description": "The tags (keys and values) associated with the dedicated IP pool."
       }
     }
   },
@@ -616,21 +871,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/51"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -640,11 +895,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SES/DedicatedIpPool@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/38"
+      "$ref": "#/52"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -652,7 +907,7 @@
     "properties": {
       "ConfigurationSetName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The configuration set to use by default when sending from this identity. Note that any configuration set defined in the email sending request takes precedence."
@@ -665,7 +920,7 @@
     "properties": {
       "SigningEnabled": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "Sets the DKIM signing configuration for the identity. When you set this value true, then the messages that are sent from the identity are signed using DKIM. If you set this value to false, your messages are sent without DKIM signing."
@@ -678,21 +933,21 @@
     "properties": {
       "DomainSigningPrivateKey": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 4,
         "description": "[Bring Your Own DKIM] A private key that's used to generate a DKIM signature. The private key must use 1024 or 2048-bit RSA encryption, and must be encoded using base64 encoding."
       },
       "DomainSigningSelector": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 4,
         "description": "[Bring Your Own DKIM] A string that's used to identify a public key in the DNS configuration for a domain."
       },
       "NextSigningKeyLength": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "[Easy DKIM] The key length of the future DKIM key pair to be generated. This can be changed at most once per day."
@@ -705,7 +960,7 @@
     "properties": {
       "EmailForwardingEnabled": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "If the value is true, you receive email notifications when bounce or complaint events occur"
@@ -718,17 +973,35 @@
     "properties": {
       "BehaviorOnMxFailure": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The action to take if the required MX record isn't found when you send an email. When you set this value to UseDefaultValue , the mail is sent using amazonses.com as the MAIL FROM domain. When you set this value to RejectMessage , the Amazon SES API v2 returns a MailFromDomainNotVerified error, and doesn't attempt to deliver the email."
       },
       "MailFromDomain": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The custom MAIL FROM domain that you want the verified identity to use"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
       }
     }
   },
@@ -737,81 +1010,94 @@
     "value": "AWS.SES/EmailIdentityProperties"
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/59"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.SES/EmailIdentityProperties",
     "properties": {
       "ConfigurationSetAttributes": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "DkimAttributes": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/55"
         },
         "flags": 0
       },
       "DkimDNSTokenName1": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "DkimDNSTokenName2": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "DkimDNSTokenName3": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "DkimDNSTokenValue1": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "DkimDNSTokenValue2": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "DkimDNSTokenValue3": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "DkimSigningAttributes": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/56"
         },
         "flags": 0
       },
       "EmailIdentity": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "The email address or domain to verify."
       },
       "FeedbackAttributes": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/57"
         },
         "flags": 0
       },
       "MailFromAttributes": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/58"
         },
         "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0,
+        "description": "The tags (keys and values) associated with the email identity."
       }
     }
   },
@@ -821,21 +1107,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/62"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -845,11 +1131,78 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SES/EmailIdentity@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/47"
+      "$ref": "#/63"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SES/EmailIdentityCertificateProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/EmailIdentityCertificateProperties",
+    "properties": {
+      "CertificateArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The ARN of the AWS Certificate Manager certificate to associate with the sender."
+      },
+      "EmailIdentity": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "The email identity that owns the sender the certificate is associated with."
+      },
+      "FromAddress": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "The sender the certificate signs for. For an email address identity this is the identity itself."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/EmailIdentityCertificate",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SES/EmailIdentityCertificate@default",
+    "body": {
+      "$ref": "#/67"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -857,13 +1210,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -876,7 +1229,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/49"
+      "$ref": "#/69"
     }
   },
   {
@@ -885,31 +1238,31 @@
     "properties": {
       "AddonInstanceArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "AddonInstanceId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "AddonName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "AddonSubscriptionId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/71"
         },
         "flags": 0
       }
@@ -921,21 +1274,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/72"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -945,11 +1298,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SES/MailManagerAddonInstance@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/53"
+      "$ref": "#/73"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -957,13 +1310,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -976,7 +1329,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/55"
+      "$ref": "#/75"
     }
   },
   {
@@ -985,25 +1338,25 @@
     "properties": {
       "AddonName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "AddonSubscriptionArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "AddonSubscriptionId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "Tags": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/77"
         },
         "flags": 0
       }
@@ -1015,21 +1368,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/78"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1039,11 +1392,105 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SES/MailManagerAddonSubscription@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/59"
+      "$ref": "#/79"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SES/MailManagerAddressListProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/81"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/MailManagerAddressListProperties",
+    "properties": {
+      "AddressListArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2
+      },
+      "AddressListId": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 18
+      },
+      "AddressListName": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/MailManagerAddressList",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SES/MailManagerAddressList@default",
+    "body": {
+      "$ref": "#/85"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1066,13 +1513,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -1085,7 +1532,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/64"
+      "$ref": "#/90"
     }
   },
   {
@@ -1094,43 +1541,43 @@
     "properties": {
       "ArchiveArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "ArchiveId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "ArchiveName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "ArchiveState": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "KmsKeyArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Retention": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/87"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/92"
         },
         "flags": 0
       }
@@ -1142,21 +1589,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/93"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1166,11 +1613,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SES/MailManagerArchive@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/68"
+      "$ref": "#/94"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1194,21 +1641,101 @@
   },
   {
     "$type": "ObjectType",
+    "name": "IpType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PrivateNetworkConfiguration",
+    "properties": {
+      "VpcEndpointId": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PublicNetworkConfiguration",
+    "properties": {
+      "IpType": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TlsAuthConfiguration",
+    "properties": {
+      "TrustStore": {
+        "type": {
+          "$ref": "#/107"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TlsPolicy",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrustStore",
+    "properties": {
+      "CAContent": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "CrlContent": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MailManagerIngressPoint_IpType",
+    "properties": {}
   },
   {
     "$type": "StringLiteralType",
@@ -1217,7 +1744,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/74"
+      "$ref": "#/104"
     }
   },
   {
@@ -1226,67 +1753,79 @@
     "properties": {
       "ARecord": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "IngressPointArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "IngressPointConfiguration": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/96"
         },
         "flags": 4
       },
       "IngressPointId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "IngressPointName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "NetworkConfiguration": {
+        "type": {
+          "$ref": "#/101"
         },
         "flags": 0
       },
       "RuleSetId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Status": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "StatusToUpdate": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/110"
+        },
+        "flags": 0
+      },
+      "TlsPolicy": {
+        "type": {
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "TrafficPolicyId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -1298,21 +1837,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/111"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1322,11 +1861,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SES/MailManagerIngressPoint@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/78"
+      "$ref": "#/112"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1344,13 +1883,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -1363,7 +1902,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/82"
+      "$ref": "#/116"
     }
   },
   {
@@ -1372,43 +1911,43 @@
     "properties": {
       "Authentication": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/115"
         },
         "flags": 1
       },
       "RelayArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "RelayId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "RelayName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "ServerName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "ServerPort": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/11"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/118"
         },
         "flags": 0
       }
@@ -1420,21 +1959,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/119"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1444,11 +1983,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SES/MailManagerRelay@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/86"
+      "$ref": "#/120"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1461,13 +2000,13 @@
     "properties": {
       "HeaderName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "HeaderValue": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -1479,13 +2018,13 @@
     "properties": {
       "Analyzer": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "ResultField": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -1497,13 +2036,61 @@
     "properties": {
       "ActionFailurePolicy": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "TargetArchive": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BounceAction",
+    "properties": {
+      "ActionFailurePolicy": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "DiagnosticMessage": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Message": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Sender": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "SmtpReplyCode": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "StatusCode": {
+        "type": {
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -1515,19 +2102,19 @@
     "properties": {
       "ActionFailurePolicy": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "MailboxArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -1539,25 +2126,25 @@
     "properties": {
       "ActionFailurePolicy": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "ApplicationId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "IndexId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -1566,6 +2153,47 @@
   {
     "$type": "ObjectType",
     "name": "DropAction",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InvokeLambdaAction",
+    "properties": {
+      "ActionFailurePolicy": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "FunctionArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "InvocationType": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "RetryTimeMinutes": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LambdaInvocationType",
     "properties": {}
   },
   {
@@ -1579,19 +2207,19 @@
     "properties": {
       "ActionFailurePolicy": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "MailFrom": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Relay": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -1603,7 +2231,7 @@
     "properties": {
       "ReplaceWith": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/171"
         },
         "flags": 0
       }
@@ -1615,25 +2243,25 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/173"
         },
         "flags": 1
       },
       "Conditions": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/175"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Unless": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/177"
         },
         "flags": 0
       }
@@ -1642,6 +2270,11 @@
   {
     "$type": "ObjectType",
     "name": "RuleAction",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RuleAddressListEmailAttribute",
     "properties": {}
   },
   {
@@ -1655,13 +2288,13 @@
     "properties": {
       "Evaluate": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/178"
         },
         "flags": 1
       },
       "Operator": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -1679,6 +2312,11 @@
   },
   {
     "$type": "ObjectType",
+    "name": "RuleClientCertificateAttribute",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "RuleCondition",
     "properties": {}
   },
@@ -1688,13 +2326,13 @@
     "properties": {
       "Operator": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Values": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/179"
         },
         "flags": 1
       }
@@ -1721,19 +2359,19 @@
     "properties": {
       "Evaluate": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/180"
         },
         "flags": 1
       },
       "Operator": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Values": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/181"
         },
         "flags": 1
       }
@@ -1751,6 +2389,24 @@
   },
   {
     "$type": "ObjectType",
+    "name": "RuleIsInAddressList",
+    "properties": {
+      "AddressLists": {
+        "type": {
+          "$ref": "#/182"
+        },
+        "flags": 1
+      },
+      "Attribute": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "RuleNumberEmailAttribute",
     "properties": {}
   },
@@ -1760,19 +2416,19 @@
     "properties": {
       "Evaluate": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/183"
         },
         "flags": 1
       },
       "Operator": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/11"
         },
         "flags": 1
       }
@@ -1799,19 +2455,19 @@
     "properties": {
       "Evaluate": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/184"
         },
         "flags": 1
       },
       "Operator": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Values": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/185"
         },
         "flags": 1
       }
@@ -1843,19 +2499,19 @@
     "properties": {
       "Evaluate": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/186"
         },
         "flags": 1
       },
       "Operator": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Values": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/187"
         },
         "flags": 1
       }
@@ -1877,31 +2533,31 @@
     "properties": {
       "ActionFailurePolicy": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "S3Bucket": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "S3Prefix": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "S3SseKmsKeyId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -1913,13 +2569,13 @@
     "properties": {
       "ActionFailurePolicy": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -1927,17 +2583,63 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SnsAction",
+    "properties": {
+      "ActionFailurePolicy": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "Encoding": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "PayloadType": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "TopicArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SnsNotificationEncoding",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SnsNotificationPayloadType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -1946,7 +2648,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/10"
     }
   },
   {
@@ -1957,7 +2659,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/129"
+      "$ref": "#/172"
     }
   },
   {
@@ -1968,7 +2670,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/131"
+      "$ref": "#/174"
     }
   },
   {
@@ -1979,7 +2681,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/133"
+      "$ref": "#/176"
     }
   },
   {
@@ -1990,7 +2692,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/10"
     }
   },
   {
@@ -2001,7 +2703,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
     }
   },
   {
@@ -2017,7 +2725,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/10"
     }
   },
   {
@@ -2028,7 +2736,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/10"
     }
   },
   {
@@ -2038,13 +2746,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/98"
+      "$ref": "#/135"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/127"
+      "$ref": "#/170"
     }
   },
   {
@@ -2053,31 +2761,31 @@
     "properties": {
       "RuleSetArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "RuleSetId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "RuleSetName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Rules": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/189"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/146"
+          "$ref": "#/190"
         },
         "flags": 0
       }
@@ -2089,21 +2797,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/191"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2113,11 +2821,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SES/MailManagerRuleSet@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/148"
+      "$ref": "#/192"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -2126,17 +2834,22 @@
   },
   {
     "$type": "ObjectType",
+    "name": "IngressAddressListEmailAttribute",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "IngressAnalysis",
     "properties": {
       "Analyzer": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "ResultField": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -2148,13 +2861,13 @@
     "properties": {
       "Evaluate": {
         "type": {
-          "$ref": "#/171"
+          "$ref": "#/220"
         },
         "flags": 1
       },
       "Operator": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -2191,19 +2904,71 @@
     "properties": {
       "Evaluate": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/201"
         },
         "flags": 1
       },
       "Operator": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Values": {
         "type": {
-          "$ref": "#/172"
+          "$ref": "#/221"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IngressIpv6Attribute",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IngressIpv6Expression",
+    "properties": {
+      "Evaluate": {
+        "type": {
+          "$ref": "#/222"
+        },
+        "flags": 1
+      },
+      "Operator": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/223"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IngressIpv6ToEvaluate",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IngressIsInAddressList",
+    "properties": {
+      "AddressLists": {
+        "type": {
+          "$ref": "#/224"
+        },
+        "flags": 1
+      },
+      "Attribute": {
+        "type": {
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -2220,19 +2985,19 @@
     "properties": {
       "Evaluate": {
         "type": {
-          "$ref": "#/173"
+          "$ref": "#/225"
         },
         "flags": 1
       },
       "Operator": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Values": {
         "type": {
-          "$ref": "#/174"
+          "$ref": "#/226"
         },
         "flags": 1
       }
@@ -2264,19 +3029,19 @@
     "properties": {
       "Evaluate": {
         "type": {
-          "$ref": "#/175"
+          "$ref": "#/227"
         },
         "flags": 1
       },
       "Operator": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -2303,13 +3068,13 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Conditions": {
         "type": {
-          "$ref": "#/176"
+          "$ref": "#/228"
         },
         "flags": 1
       }
@@ -2321,13 +3086,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -2341,7 +3106,24 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MailManagerTrafficPolicy_IngressIpv6ToEvaluate",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
     }
   },
   {
@@ -2352,7 +3134,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/10"
     }
   },
   {
@@ -2363,7 +3145,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/168"
+      "$ref": "#/217"
     }
   },
   {
@@ -2373,13 +3155,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/169"
+      "$ref": "#/218"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/170"
+      "$ref": "#/219"
     }
   },
   {
@@ -2388,43 +3170,43 @@
     "properties": {
       "DefaultAction": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "MaxMessageSizeBytes": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/11"
         },
         "flags": 0
       },
       "PolicyStatements": {
         "type": {
-          "$ref": "#/178"
+          "$ref": "#/230"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/179"
+          "$ref": "#/231"
         },
         "flags": 0
       },
       "TrafficPolicyArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "TrafficPolicyId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "TrafficPolicyName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -2436,21 +3218,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/180"
+          "$ref": "#/232"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2460,11 +3242,586 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SES/MailManagerTrafficPolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/181"
+      "$ref": "#/233"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Details",
+    "properties": {
+      "RouteDetails": {
+        "type": {
+          "$ref": "#/241"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Region",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RouteDetails",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "One part of a key-value pair that defines a tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The optional part of a key-value pair that defines a tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MultiRegionEndpoint_RouteDetails",
+    "properties": {
+      "Region": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/240"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MultiRegionEndpoint",
+    "properties": {
+      "Region": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/242"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/238"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SES/MultiRegionEndpointProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/238"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/MultiRegionEndpointProperties",
+    "properties": {
+      "Details": {
+        "type": {
+          "$ref": "#/235"
+        },
+        "flags": 1
+      },
+      "EndpointName": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "The name of the multi-region endpoint (global-endpoint)."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/246"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/MultiRegionEndpoint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/247"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SES/MultiRegionEndpoint@default",
+    "body": {
+      "$ref": "#/248"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Action",
+    "properties": {
+      "AddHeaderAction": {
+        "type": {
+          "$ref": "#/251"
+        },
+        "flags": 0
+      },
+      "BounceAction": {
+        "type": {
+          "$ref": "#/252"
+        },
+        "flags": 0
+      },
+      "ConnectAction": {
+        "type": {
+          "$ref": "#/253"
+        },
+        "flags": 0
+      },
+      "LambdaAction": {
+        "type": {
+          "$ref": "#/254"
+        },
+        "flags": 0
+      },
+      "S3Action": {
+        "type": {
+          "$ref": "#/256"
+        },
+        "flags": 0
+      },
+      "SNSAction": {
+        "type": {
+          "$ref": "#/257"
+        },
+        "flags": 0
+      },
+      "StopAction": {
+        "type": {
+          "$ref": "#/258"
+        },
+        "flags": 0
+      },
+      "WorkmailAction": {
+        "type": {
+          "$ref": "#/259"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AddHeaderAction",
+    "properties": {
+      "HeaderName": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The name of the header to add to the incoming message. The name must contain at least one character, and can contain up to 50 characters. It consists of alphanumeric (a-z, A-Z, 0-9) characters and dashes."
+      },
+      "HeaderValue": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The content to include in the header. This value can contain up to 2048 characters. It can't contain newline (\\n) or carriage return (\\r) characters."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BounceAction",
+    "properties": {
+      "Message": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "Human-readable text to include in the bounce message."
+      },
+      "Sender": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The email address of the sender of the bounced email. This is the address from which the bounce message is sent."
+      },
+      "SmtpReplyCode": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The SMTP reply code, as defined by RFC 5321."
+      },
+      "StatusCode": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The SMTP enhanced status code, as defined by RFC 3463."
+      },
+      "TopicArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the bounce action is taken. You can find the ARN of a topic by using the ListTopics operation in Amazon SNS."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectAction",
+    "properties": {
+      "IAMRoleARN": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the IAM role to be used by Amazon Simple Email Service while starting email contacts to the Amazon Connect instance. This role should have permission to invoke connect:StartEmailContact for the given Amazon Connect instance."
+      },
+      "InstanceARN": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) for the Amazon Connect instance that Amazon SES integrates with for starting email contacts."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LambdaAction",
+    "properties": {
+      "FunctionArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the AWS Lambda function. An example of an AWS Lambda function ARN is arn:aws:lambda:us-west-2:account-id:function:MyFunction. For more information about AWS Lambda, see the AWS Lambda Developer Guide."
+      },
+      "InvocationType": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The invocation type of the AWS Lambda function. An invocation type of RequestResponse means that the execution of the function immediately results in a response, and a value of Event means that the function is invoked asynchronously. The default value is Event. For information about AWS Lambda invocation types, see the AWS Lambda Developer Guide. There is a 30-second timeout on RequestResponse invocations. You should use Event invocation in most cases. Use RequestResponse only to make a mail flow decision, such as whether to stop the receipt rule or the receipt rule set."
+      },
+      "TopicArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the Lambda action is executed. You can find the ARN of a topic by using the ListTopics operation in Amazon SNS."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Rule",
+    "properties": {
+      "Actions": {
+        "type": {
+          "$ref": "#/260"
+        },
+        "flags": 0,
+        "description": "An ordered list of actions to perform on messages that match at least one of the recipient email addresses or domains specified in the receipt rule."
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "If true, the receipt rule is active. The default value is false."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The name of the receipt rule. The name must meet the following requirements: Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_), dashes (-), or periods (.). Start and end with a letter or number. Contain 64 characters or fewer."
+      },
+      "Recipients": {
+        "type": {
+          "$ref": "#/261"
+        },
+        "flags": 0,
+        "description": "The recipient domains and email addresses that the receipt rule applies to. If this field is not specified, this rule matches all recipients on all verified domains."
+      },
+      "ScanEnabled": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "If true, then messages that this receipt rule applies to are scanned for spam and viruses. The default value is false."
+      },
+      "TlsPolicy": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Specifies whether Amazon SES should require that incoming email is delivered over a connection encrypted with Transport Layer Security (TLS). If this parameter is set to Require, Amazon SES bounces emails that are not received over TLS. The default is Optional."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Action",
+    "properties": {
+      "BucketName": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The name of the Amazon S3 bucket for incoming email."
+      },
+      "IamRoleArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The ARN of the IAM role to be used by Amazon SES while writing to the Amazon S3 bucket."
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The customer managed key that Amazon SES should use to encrypt your emails before saving them to the Amazon S3 bucket. You can use the AWS managed key or a customer managed key that you created in AWS KMS as follows: To use the AWS managed key, provide an ARN in the form of arn:aws:kms:REGION:ACCOUNT-ID-WITHOUT-HYPHENS:alias/aws/ses. For example, if your AWS account ID is 123456789012 and you want to use the AWS managed key in the US West (Oregon) Region, the ARN of the AWS managed key would be arn:aws:kms:us-west-2:123456789012:alias/aws/ses. If you use the AWS managed key, you don't need to perform any extra steps to give Amazon SES permission to use the key. To use a customer managed key that you created in AWS KMS, provide the ARN of the customer managed key and ensure that you add a statement to your key's policy to give Amazon SES permission to use it. For more information about giving permissions, see the Amazon SES Developer Guide. For more information about key policies, see the AWS KMS Developer Guide. If you do not specify an AWS KMS key, Amazon SES does not encrypt your emails. Your mail is encrypted by Amazon SES using the Amazon S3 encryption client before the mail is submitted to Amazon S3 for storage. It is not encrypted using Amazon S3 server-side encryption. This means that you must use the Amazon S3 encryption client to decrypt the email after retrieving it from Amazon S3, as the service has no access to use your AWS KMS keys for decryption. This encryption client is currently available with the AWS SDK for Java and AWS SDK for Ruby only. For more information about client-side encryption using AWS KMS managed keys, see the Amazon S3 Developer Guide."
+      },
+      "ObjectKeyPrefix": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The key prefix of the Amazon S3 bucket. The key prefix is similar to a directory name that enables you to store similar data under the same directory in a bucket."
+      },
+      "TopicArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The ARN of the Amazon SNS topic to notify when the message is saved to the Amazon S3 bucket. You can find the ARN of a topic by using the ListTopics operation in Amazon SNS."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SNSAction",
+    "properties": {
+      "Encoding": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The encoding to use for the email within the Amazon SNS notification. The default value is UTF-8. Use BASE64 if you need to preserve all special characters, especially when the original message uses a different encoding format."
+      },
+      "TopicArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the Amazon SNS Topic to which notification for the email received will be published."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StopAction",
+    "properties": {
+      "Scope": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The scope of the StopAction. The only acceptable value is RuleSet."
+      },
+      "TopicArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the stop action is taken. You can find the ARN of a topic by using the ListTopics Amazon SNS operation."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkmailAction",
+    "properties": {
+      "OrganizationArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the Amazon WorkMail organization. Amazon WorkMail ARNs use the following format: arn:aws:workmail:<region>:<awsAccountId>:organization/<workmailOrganizationId>. You can find the ID of your organization by using the ListOrganizations operation in Amazon WorkMail. Amazon WorkMail organization IDs begin with \"m-\", followed by a string of alphanumeric characters."
+      },
+      "TopicArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the WorkMail action is called. You can find the ARN of a topic by using the ListTopics operation in Amazon SNS."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/250"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SES/ReceiptRuleProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/ReceiptRuleProperties",
+    "properties": {
+      "After": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 4,
+        "description": "The name of an existing rule after which the new rule is placed. If this parameter is null, the new rule is inserted at the beginning of the rule list."
+      },
+      "Rule": {
+        "type": {
+          "$ref": "#/255"
+        },
+        "flags": 1,
+        "description": "A data structure that contains the specified rule's name, actions, recipients, domains, enabled status, scan status, and TLS policy."
+      },
+      "RuleName": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 18,
+        "description": "The name of the rule"
+      },
+      "RuleSetName": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "The name of the rule set where the receipt rule is added."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/ReceiptRule",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/263"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SES/ReceiptRule@default",
+    "body": {
+      "$ref": "#/264"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -2472,28 +3829,28 @@
     "properties": {
       "HtmlPart": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The HTML body of the email."
       },
       "SubjectPart": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The subject line of the email."
       },
       "TemplateName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The name of the template."
       },
       "TextPart": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The email body that is visible to recipients whose email clients do not display HTML content."
@@ -2505,18 +3862,31 @@
     "value": "AWS.SES/TemplateProperties"
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/266"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.SES/TemplateProperties",
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 18
       },
+      "Tags": {
+        "type": {
+          "$ref": "#/269"
+        },
+        "flags": 0,
+        "description": "The tags (keys and values) associated with the email template."
+      },
       "Template": {
         "type": {
-          "$ref": "#/183"
+          "$ref": "#/267"
         },
         "flags": 0
       }
@@ -2528,21 +3898,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/185"
+          "$ref": "#/270"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2552,11 +3922,195 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SES/Template@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/186"
+      "$ref": "#/271"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReputationEntity",
+    "properties": {
+      "Policy": {
+        "type": {
+          "$ref": "#/274"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReputationPolicy",
+    "properties": {
+      "ReputationEntityPolicy": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The ARN of an SES-managed reputation policy."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceAssociation",
+    "properties": {
+      "ResourceArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The ARN of the resource to associate with the tenant"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The key of the key-value tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The value of the key-value tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TenantSuppressionAttributes",
+    "properties": {
+      "SuppressedReasons": {
+        "type": {
+          "$ref": "#/278"
+        },
+        "flags": 1,
+        "description": "The reasons that cause messages to be added to the suppression list."
+      },
+      "SuppressionScope": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The scope of the suppression list for the tenant."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SES/TenantProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/275"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/276"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/TenantProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2,
+        "description": "Amazon Resource Name (ARN) of the tenant."
+      },
+      "ReputationEntity": {
+        "type": {
+          "$ref": "#/273"
+        },
+        "flags": 0,
+        "description": "The reputation configuration for the tenant. Sending status remains managed by SES."
+      },
+      "ResourceAssociations": {
+        "type": {
+          "$ref": "#/280"
+        },
+        "flags": 0,
+        "description": "The list of resources to associate with the tenant."
+      },
+      "SuppressionAttributes": {
+        "type": {
+          "$ref": "#/277"
+        },
+        "flags": 0,
+        "description": "The suppression attributes for the tenant."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/281"
+        },
+        "flags": 0,
+        "description": "The tags (keys and values) associated with the tenant."
+      },
+      "TenantName": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "The name of the tenant."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/Tenant",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/282"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SES/Tenant@default",
+    "body": {
+      "$ref": "#/283"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -2564,7 +4118,7 @@
     "properties": {
       "EngagementMetrics": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Whether emails sent from this account have engagement tracking enabled."
@@ -2577,7 +4131,7 @@
     "properties": {
       "OptimizedSharedDelivery": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Whether emails sent from this account have optimized delivery algorithm enabled."
@@ -2594,19 +4148,19 @@
     "properties": {
       "DashboardAttributes": {
         "type": {
-          "$ref": "#/188"
+          "$ref": "#/285"
         },
         "flags": 0
       },
       "GuardianAttributes": {
         "type": {
-          "$ref": "#/189"
+          "$ref": "#/286"
         },
         "flags": 0
       },
       "VdmAttributesResourceId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 18,
         "description": "Unique identifier for this resource"
@@ -2619,21 +4173,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/191"
+          "$ref": "#/288"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2643,10 +4197,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SES/VdmAttributes@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/192"
+      "$ref": "#/289"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

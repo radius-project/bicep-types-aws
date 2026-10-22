@@ -1,21 +1,24 @@
 # AWS.Route53Profiles @ default
 
 ## Resource AWS.Route53Profiles/Profile@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Route53Profiles/ProfileProperties](#awsroute53profilesprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Route53Profiles/ProfileAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Route53Profiles/ProfileAssociationProperties](#awsroute53profilesprofileassociationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Route53Profiles/ProfileResourceAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -36,6 +39,7 @@
 * **ClientToken**: string (ReadOnly): The id of the creator request
 * **Id**: string (ReadOnly, Identifier): The ID of the profile.
 * **Name**: string (Required): The name of the profile.
+* **ShareStatus**: string (ReadOnly): The sharing status of the profile.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## AWS.Route53Profiles/ProfileResourceAssociationProperties

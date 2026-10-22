@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MWAA-Environment",
   "type": "AWS::MWAA::Environment",
-  "time": "2025-01-27T16:36:51.727Z",
+  "time": "2026-09-21T15:39:33.66Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -134,6 +134,9 @@
           },
           "Status": {
             "$ref": "#/definitions/UpdateStatus"
+          },
+          "WorkerReplacementStrategy": {
+            "$ref": "#/definitions/WorkerReplacementStrategy"
           }
         },
         "type": "object"
@@ -345,7 +348,8 @@
         "description": "Choice for mode of webserver access including over public internet or via private VPC endpoint.",
         "enum": [
           "PRIVATE_ONLY",
-          "PUBLIC_ONLY"
+          "PUBLIC_ONLY",
+          "PUBLIC_AND_PRIVATE"
         ],
         "type": "string"
       },
@@ -366,18 +370,54 @@
         "maxLength": 9,
         "pattern": "(MON|TUE|WED|THU|FRI|SAT|SUN):([01]\\d|2[0-3]):(00|30)",
         "type": "string"
+      },
+      "WorkerReplacementStrategy": {
+        "description": "The worker replacement strategy to use when updating the environment. Valid values: `FORCED`, `GRACEFUL`. FORCED means Apache Airflow workers will be stopped and replaced without waiting for tasks to complete before an update. GRACEFUL means Apache Airflow workers will be able to complete running tasks for up to 12 hours during an update before being stopped and replaced.",
+        "enum": [
+          "FORCED",
+          "GRACEFUL"
+        ],
+        "type": "string"
       }
     },
     "description": "Resource schema for AWS::MWAA::Environment",
     "handlers": {
       "create": {
         "permissions": [
-          "airflow:CreateEnvironment"
+          "airflow:GetEnvironment",
+          "airflow:CreateEnvironment",
+          "airflow:TagResource",
+          "airflow:UntagResource",
+          "iam:PassRole",
+          "iam:ListRoles",
+          "iam:CreatePolicy",
+          "iam:AttachRolePolicy",
+          "iam:CreateRole",
+          "iam:CreateServiceLinkedRole",
+          "s3:GetBucketLocation",
+          "s3:ListAllMyBuckets",
+          "s3:ListBucket",
+          "s3:ListBucketVersions",
+          "s3:CreateBucket",
+          "s3:PutObject",
+          "s3:GetEncryptionConfiguration",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVpcs",
+          "ec2:DescribeRouteTables",
+          "ec2:AuthorizeSecurityGroupIngress",
+          "ec2:CreateSecurityGroup",
+          "ec2:CreateVpcEndpoint",
+          "ec2:CreateNetworkInterface",
+          "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:ListAliases"
         ],
         "timeoutInMinutes": 180
       },
       "delete": {
         "permissions": [
+          "airflow:GetEnvironment",
           "airflow:DeleteEnvironment"
         ]
       },
@@ -393,11 +433,25 @@
       },
       "update": {
         "permissions": [
+          "airflow:GetEnvironment",
           "airflow:UpdateEnvironment",
           "airflow:TagResource",
-          "airflow:UntagResource"
+          "airflow:UntagResource",
+          "iam:PassRole",
+          "iam:ListRoles",
+          "iam:AttachRolePolicy",
+          "s3:GetBucketLocation",
+          "s3:ListBucket",
+          "s3:ListBucketVersions",
+          "s3:GetEncryptionConfiguration",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVpcs",
+          "ec2:DescribeRouteTables",
+          "kms:DescribeKey",
+          "kms:ListAliases"
         ],
-        "timeoutInMinutes": 480
+        "timeoutInMinutes": 900
       }
     },
     "primaryIdentifier": [
@@ -495,6 +549,9 @@
       },
       "WeeklyMaintenanceWindowStart": {
         "$ref": "#/definitions/WeeklyMaintenanceWindowStart"
+      },
+      "WorkerReplacementStrategy": {
+        "$ref": "#/definitions/WorkerReplacementStrategy"
       }
     },
     "readOnlyProperties": [
@@ -514,7 +571,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-mwaa.git",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "airflow:UntagResource",
         "airflow:TagResource"
@@ -524,6 +581,9 @@
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::MWAA::Environment"
+    "typeName": "AWS::MWAA::Environment",
+    "writeOnlyProperties": [
+      "/properties/WorkerReplacementStrategy"
+    ]
   }
 }

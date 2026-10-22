@@ -1,0 +1,129 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DocDB-DBClusterParameterGroup",
+  "type": "AWS::DocDB::DBClusterParameterGroup",
+  "time": "2026-09-08T19:56:44.182Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Family",
+      "/properties/Description",
+      "/properties/Name"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::DocDB::DBClusterParameterGroup",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "rds:CreateDBClusterParameterGroup",
+          "rds:ModifyDBClusterParameterGroup",
+          "rds:AddTagsToResource",
+          "rds:DescribeDBClusterParameterGroups",
+          "rds:DescribeDBClusterParameters",
+          "rds:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "rds:DeleteDBClusterParameterGroup"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "rds:DescribeDBClusterParameterGroups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "rds:DescribeDBClusterParameterGroups",
+          "rds:DescribeDBClusterParameters",
+          "rds:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "rds:ModifyDBClusterParameterGroup",
+          "rds:AddTagsToResource",
+          "rds:RemoveTagsFromResource",
+          "rds:DescribeDBClusterParameterGroups",
+          "rds:DescribeDBClusterParameters",
+          "rds:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Name"
+    ],
+    "properties": {
+      "Description": {
+        "description": "The description for the DB cluster parameter group.",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Family": {
+        "description": "The DB cluster parameter group family name (e.g. docdb5.0).",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the DB cluster parameter group. If omitted, CloudFormation generates a unique name. The name is stored as lowercase.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "[a-zA-Z0-9-]*",
+        "type": "string"
+      },
+      "Parameters": {
+        "description": "An object containing key-value pairs of parameters to set for the DB cluster parameter group.",
+        "type": "object"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      }
+    },
+    "required": [
+      "Family",
+      "Description",
+      "Parameters"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "rds:AddTagsToResource",
+        "rds:RemoveTagsFromResource",
+        "rds:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::DocDB::DBClusterParameterGroup"
+  }
+}

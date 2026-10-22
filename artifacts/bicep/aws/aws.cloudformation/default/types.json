@@ -1,6 +1,166 @@
 [
   {
     "$type": "ObjectType",
+    "name": "TemplateConfiguration",
+    "properties": {
+      "DeletionPolicy": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The DeletionPolicy assigned to resources in the generated template."
+      },
+      "UpdateReplacePolicy": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The UpdateReplacePolicy assigned to resources in the generated template."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TemplateProgress",
+    "properties": {
+      "ResourcesFailed": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of resources that failed the template generation."
+      },
+      "ResourcesPending": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of resources that are still pending the template generation."
+      },
+      "ResourcesProcessing": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of resources that are in-process for the template generation."
+      },
+      "ResourcesSucceeded": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of resources that succeeded the template generation."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CloudFormation/GeneratedTemplateProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CloudFormation/GeneratedTemplateProperties",
+    "properties": {
+      "CreationTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The time the generated template was created."
+      },
+      "GeneratedTemplateId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the generated template."
+      },
+      "GeneratedTemplateName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name assigned to the generated template."
+      },
+      "LastUpdatedTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The time the generated template was last updated."
+      },
+      "Progress": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The status of the template generation."
+      },
+      "TemplateConfiguration": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
+      "TotalWarnings": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The number of warnings generated for this template."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CloudFormation/GeneratedTemplate",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CloudFormation/GeneratedTemplate@default",
+    "body": {
+      "$ref": "#/6"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "Action",
     "properties": {}
   },
@@ -10,19 +170,19 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "InvocationPoint": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "TargetName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1
       }
@@ -44,14 +204,14 @@
     "properties": {
       "Uri": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "S3 uri of Guard files."
       },
       "VersionId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "S3 object version"
@@ -65,6 +225,11 @@
   },
   {
     "$type": "ObjectType",
+    "name": "StackRole",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "TargetName",
     "properties": {}
   },
@@ -74,11 +239,13 @@
     "properties": {}
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.CloudFormation/GuardHookProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GuardHook_Options_InputParams",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -86,22 +253,23 @@
     "properties": {
       "InputParams": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/18"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Specifies the S3 location of input parameter files for your Guard rules. You can specify either a single S3 location or an array of up to 10 S3 locations."
       }
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
@@ -110,14 +278,14 @@
     "properties": {
       "Exclude": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "List of stack names that the hook is going to be excluded from"
       },
       "Include": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "List of stack names that the hook is going to target"
@@ -127,13 +295,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
@@ -142,14 +310,14 @@
     "properties": {
       "Exclude": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "List of stack roles that the hook is going to be excluded from"
       },
       "Include": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "List of stack roles that the hook is going to target"
@@ -162,21 +330,21 @@
     "properties": {
       "FilteringCriteria": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Attribute to specify the filtering behavior. ANY will make the Hook pass if one filter matches. ALL will make the Hook pass if all filters match"
       },
       "StackNames": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "List of stack names as filters"
       },
       "StackRoles": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "List of stack roles that are performing the stack operations."
@@ -191,7 +359,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
@@ -200,75 +368,75 @@
     "properties": {
       "Alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The typename alias for the hook."
       },
       "ExecutionRole": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The execution role ARN assumed by hooks to read Guard rules from S3 and write Guard outputs to S3."
       },
       "FailureMode": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Attribute to specify CloudFormation behavior on hook failure."
       },
       "HookArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the activated hook"
       },
       "HookStatus": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Attribute to specify which stacks this hook applies to or should get invoked for"
       },
       "LogBucket": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "S3 Bucket where the guard validate report will be uploaded to"
       },
       "Options": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/19"
         },
         "flags": 0
       },
       "RuleLocation": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 1
       },
       "StackFilters": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "Filters to allow hooks to target specific stack attributes"
       },
       "TargetFilters": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Attribute to specify which targets should invoke the hook"
       },
       "TargetOperations": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/28"
         },
         "flags": 1,
         "description": "Which operations should this Hook run against? Resource changes, stacks or change sets."
@@ -281,21 +449,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/29"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -305,11 +473,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CloudFormation/GuardHook@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/21"
+      "$ref": "#/30"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -321,28 +489,28 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the type. This is used to uniquely identify a HookDefaultVersion"
       },
       "TypeName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The name of the type being registered.\n\nWe recommend that type names adhere to the following pattern: company_or_organization::service::type."
       },
       "TypeVersionArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the type version."
       },
       "VersionId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The ID of an existing version of the hook to set as the default."
@@ -355,21 +523,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/33"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -379,11 +547,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CloudFormation/HookDefaultVersion@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/25"
+      "$ref": "#/34"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -395,35 +563,35 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The configuration data for the extension, in this account and region."
       },
       "ConfigurationAlias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "An alias by which to refer to this extension configuration data."
       },
       "ConfigurationArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) for the configuration data, in this account and region."
       },
       "TypeArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the type without version number."
       },
       "TypeName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The name of the type being registered.\n\nWe recommend that type names adhere to the following pattern: company_or_organization::service::type."
@@ -436,21 +604,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/37"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -460,11 +628,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CloudFormation/HookTypeConfig@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/29"
+      "$ref": "#/38"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -477,19 +645,19 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "InvocationPoint": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "TargetName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1
       }
@@ -502,12 +670,37 @@
   },
   {
     "$type": "ObjectType",
+    "name": "LoggingConfig",
+    "properties": {
+      "LogGroupName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The Amazon CloudWatch Logs group to which CloudFormation sends error logging information when invoking the extension's handlers."
+      },
+      "LogRoleArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ARN of the role that CloudFormation should assume when sending log entries to CloudWatch Logs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Role",
     "properties": {}
   },
   {
     "$type": "ObjectType",
     "name": "StackName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StackRole",
     "properties": {}
   },
   {
@@ -525,15 +718,18 @@
     "value": "AWS.CloudFormation/LambdaHookProperties"
   },
   {
+    "$type": "BooleanType"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
@@ -542,14 +738,14 @@
     "properties": {
       "Exclude": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "List of stack names that the hook is going to be excluded from"
       },
       "Include": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "List of stack names that the hook is going to target"
@@ -559,13 +755,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
@@ -574,14 +770,14 @@
     "properties": {
       "Exclude": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "List of stack roles that the hook is going to be excluded from"
       },
       "Include": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "List of stack roles that the hook is going to target"
@@ -594,21 +790,21 @@
     "properties": {
       "FilteringCriteria": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Attribute to specify the filtering behavior. ANY will make the Hook pass if one filter matches. ALL will make the Hook pass if all filters match"
       },
       "StackNames": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "List of stack names as filters"
       },
       "StackRoles": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "List of stack roles that are performing the stack operations."
@@ -623,7 +819,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
@@ -632,63 +828,77 @@
     "properties": {
       "Alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The typename alias for the hook."
       },
+      "AutoUpdate": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 4,
+        "description": "Whether to automatically update the extension in this account and Region when a new minor version is published by the extension publisher."
+      },
       "ExecutionRole": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The execution role ARN assumed by Hooks to invoke Lambda."
       },
       "FailureMode": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Attribute to specify CloudFormation behavior on hook failure."
       },
       "HookArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the activated hook"
       },
       "HookStatus": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Attribute to specify which stacks this hook applies to or should get invoked for"
       },
       "LambdaFunction": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Amazon Resource Name (ARN), Partial ARN, name, version, or alias of the Lambda function to invoke with this hook."
       },
+      "LoggingConfig": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 4,
+        "description": "Contains logging configuration information for the hook."
+      },
       "StackFilters": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "Filters to allow hooks to target specific stack attributes"
       },
       "TargetFilters": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "Attribute to specify which targets should invoke the hook"
       },
       "TargetOperations": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/59"
         },
         "flags": 1,
         "description": "Which operations should this Hook run against? Resource changes, stacks or change sets."
@@ -701,21 +911,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/60"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -725,11 +935,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CloudFormation/LambdaHook@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/49"
+      "$ref": "#/61"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -741,28 +951,28 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the type. This is used to uniquely identify a ResourceDefaultVersion"
       },
       "TypeName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The name of the type being registered.\n\nWe recommend that type names adhere to the following pattern: company_or_organization::service::type."
       },
       "TypeVersionArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the type version."
       },
       "VersionId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The ID of an existing version of the resource to set as the default."
@@ -775,21 +985,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/64"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -799,11 +1009,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CloudFormation/ResourceDefaultVersion@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/53"
+      "$ref": "#/65"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -811,25 +1021,25 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "ExportName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "OutputKey": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "OutputValue": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       }
@@ -841,13 +1051,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1
       }
@@ -860,22 +1070,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
-    }
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/55"
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/67"
     }
   },
   {
@@ -891,7 +1098,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/56"
+      "$ref": "#/68"
     }
   },
   {
@@ -900,7 +1107,15 @@
     "properties": {}
   },
   {
-    "$type": "IntegerType"
+    "$type": "UnionType",
+    "elements": [
+      {
+        "$ref": "#/76"
+      },
+      {
+        "$ref": "#/2"
+      }
+    ]
   },
   {
     "$type": "ObjectType",
@@ -908,139 +1123,139 @@
     "properties": {
       "Capabilities": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "ChangeSetId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "CreationTime": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "Description": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "DisableRollback": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/50"
         },
         "flags": 0
       },
       "EnableTerminationProtection": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/50"
         },
         "flags": 0
       },
       "LastUpdateTime": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "NotificationARNs": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/71"
         },
         "flags": 0
       },
       "Outputs": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/72"
         },
         "flags": 2
       },
       "Parameters": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/73"
         },
         "flags": 0
       },
       "ParentId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "RoleARN": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "RootId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "StackId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 18
       },
       "StackName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "StackPolicyBody": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/74"
         },
         "flags": 0
       },
       "StackPolicyURL": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 4
       },
       "StackStatus": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "StackStatusReason": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/75"
         },
         "flags": 0
       },
       "TemplateBody": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/77"
         },
         "flags": 0
       },
       "TemplateURL": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 4
       },
       "TimeoutInMinutes": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -1052,21 +1267,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/78"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1076,11 +1291,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CloudFormation/Stack@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/68"
+      "$ref": "#/79"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1096,16 +1311,23 @@
     "$type": "ObjectType",
     "name": "AutoDeployment",
     "properties": {
+      "DependsOn": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 0,
+        "description": "A list of StackSet ARNs that this StackSet depends on for auto-deployment operations. When auto-deployment is triggered, operations will be sequenced to ensure all dependencies complete successfully before this StackSet's operation begins."
+      },
       "Enabled": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "If set to true, StackSets automatically deploys additional stack instances to AWS Organizations accounts that are added to a target organization or organizational unit (OU) in the specified Regions. If an account is removed from a target organization or OU, StackSets deletes stack instances from the account in the specified Regions."
       },
       "RetainStacksOnAccountRemoval": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "If set to true, stack resources are retained when an account is removed from a target organization or OU. If set to false, stack resources are deleted. Specify only if Enabled is set to True."
@@ -1128,28 +1350,28 @@
     "properties": {
       "AccountFilterType": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The filter type you want to apply on organizational units and accounts."
       },
       "Accounts": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/96"
         },
         "flags": 0,
         "description": "AWS accounts that you want to create stack instances in the specified Region(s) for."
       },
       "AccountsUrl": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
-        "description": "Returns the value of the AccountsUrl property."
+        "description": "Returns the value of the AccountsUrl property. AccountsUrl is currently not supported when using Account Level Targeting (ALT)."
       },
       "OrganizationalUnitIds": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "The organization root ID or organizational unit (OU) IDs to which StackSets deploys."
@@ -1162,43 +1384,43 @@
     "properties": {
       "ConcurrencyMode": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "FailureToleranceCount": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "FailureTolerancePercentage": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "MaxConcurrentCount": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "MaxConcurrentPercentage": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "RegionConcurrencyType": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "RegionOrder": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/98"
         },
         "flags": 0
       }
@@ -1215,14 +1437,14 @@
     "properties": {
       "ParameterKey": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The key associated with the parameter. If you don't specify a key and value for a particular parameter, AWS CloudFormation uses the default value that is specified in your template."
       },
       "ParameterValue": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The input value associated with the parameter."
@@ -1245,20 +1467,20 @@
     "properties": {
       "DeploymentTargets": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/86"
         },
         "flags": 1
       },
       "ParameterOverrides": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/99"
         },
         "flags": 0,
         "description": "A list of stack set parameters whose values you want to override in the selected stack instances."
       },
       "Regions": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/100"
         },
         "flags": 1,
         "description": "The names of one or more Regions where you want to create stack instances using the specified AWS account(s)."
@@ -1267,18 +1489,23 @@
   },
   {
     "$type": "ObjectType",
+    "name": "StackSetArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "A string used to identify this tag. You can specify a maximum of 127 characters for a tag key."
       },
       "Value": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "A string containing the value for this tag. You can specify a maximum of 256 characters for a tag value."
@@ -1288,31 +1515,37 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/78"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/89"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
     }
   },
   {
@@ -1322,7 +1555,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/2"
     }
   },
   {
@@ -1331,7 +1564,7 @@
     "properties": {
       "Active": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/50"
         },
         "flags": 0
       }
@@ -1340,19 +1573,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/78"
+      "$ref": "#/89"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/81"
+      "$ref": "#/92"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/82"
+      "$ref": "#/94"
     }
   },
   {
@@ -1361,111 +1594,111 @@
     "properties": {
       "AdministrationRoleARN": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The Amazon Resource Number (ARN) of the IAM role to use to create this stack set. Specify an IAM role only if you are using customized administrator roles to control which users or groups can manage specific stack sets within the same administrator account."
       },
       "AutoDeployment": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "Describes whether StackSets automatically deploys to AWS Organizations accounts that are added to the target organization or organizational unit (OU). Specify only if PermissionModel is SERVICE_MANAGED."
       },
       "CallAs": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 4,
         "description": "Specifies the AWS account that you are acting from. By default, SELF is specified. For self-managed permissions, specify SELF; for service-managed permissions, if you are signed in to the organization's management account, specify SELF. If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN."
       },
       "Capabilities": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/102"
         },
         "flags": 0,
         "description": "In some cases, you must explicitly acknowledge that your stack set template contains certain capabilities in order for AWS CloudFormation to create the stack set and related stack instances."
       },
       "Description": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "A description of the stack set. You can use the description to identify the stack set's purpose or other important information."
       },
       "ExecutionRoleName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The name of the IAM execution role to use to create the stack set. If you do not specify an execution role, AWS CloudFormation uses the AWSCloudFormationStackSetExecutionRole role for the stack set operation."
       },
       "ManagedExecution": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/103"
         },
         "flags": 0,
         "description": "Describes whether StackSets performs non-conflicting operations concurrently and queues conflicting operations."
       },
       "OperationPreferences": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/87"
         },
         "flags": 4
       },
       "Parameters": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/104"
         },
         "flags": 0,
         "description": "The input parameters for the stack set template."
       },
       "PermissionModel": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Describes how the IAM roles required for stack set operations are created. By default, SELF-MANAGED is specified."
       },
       "StackInstancesGroup": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/105"
         },
         "flags": 4,
         "description": "A group of stack instances with parameters in some specific accounts and regions."
       },
       "StackSetId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 18,
         "description": "The ID of the stack set that you're creating."
       },
       "StackSetName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The name to associate with the stack set. The name must be unique in the Region where you create your stack set."
       },
       "Tags": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/106"
         },
         "flags": 0,
         "description": "The key-value pairs to associate with this stack set and the stacks created from it. AWS CloudFormation also propagates these tags to supported resources that are created in the stacks. A maximum number of 50 tags can be specified."
       },
       "TemplateBody": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The structure that contains the template body, with a minimum length of 1 byte and a maximum length of 51,200 bytes."
       },
       "TemplateURL": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 4,
         "description": "Location of file containing the template body. The URL must point to a template (max size: 460,800 bytes) that is located in an Amazon S3 bucket."
@@ -1478,21 +1711,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/107"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1502,11 +1735,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CloudFormation/StackSet@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/95"
+      "$ref": "#/108"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1514,14 +1747,14 @@
     "properties": {
       "LogGroupName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The Amazon CloudWatch log group to which CloudFormation sends error logging information when invoking the type's handlers."
       },
       "LogRoleArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The ARN of the role that CloudFormation should assume when sending log entries to CloudWatch logs."
@@ -1538,77 +1771,77 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the extension."
       },
       "AutoUpdate": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/50"
         },
         "flags": 4,
         "description": "Whether to automatically update the extension in this account and region when a new minor version is published by the extension publisher. Major versions released by the publisher must be manually updated."
       },
       "ExecutionRoleArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 4,
         "description": "The Amazon Resource Name (ARN) of the IAM execution role to use to register the type. If your resource type calls AWS APIs in any of its handlers, you must create an IAM execution role that includes the necessary permissions to call those AWS APIs, and provision that execution role in your account. CloudFormation then assumes that execution role to provide your resource type with the appropriate credentials."
       },
       "LoggingConfig": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/110"
         },
         "flags": 4,
         "description": "Specifies logging configuration information for a type."
       },
       "MajorVersion": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 4,
         "description": "The Major Version of the type you want to enable"
       },
       "PublicTypeArn": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The Amazon Resource Number (ARN) assigned to the public extension upon publication"
       },
       "PublisherId": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
-        "description": "The publisher id assigned by CloudFormation for publishing in this region."
+        "description": "The reserved publisher id for this type, or the publisher id assigned by CloudFormation for publishing in this region."
       },
       "Type": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 4,
         "description": "The kind of extension"
       },
       "TypeName": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The name of the type being registered.\n\nWe recommend that type names adhere to the following pattern: company_or_organization::service::type."
       },
       "TypeNameAlias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "An alias to assign to the public extension in this account and region. If you specify an alias for the extension, you must then use the alias to refer to the extension in your templates."
       },
       "VersionBump": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 4,
         "description": "Manually updates a previously-enabled type to a new major or minor version, if available. You can also use this parameter to update the value of AutoUpdateEnabled"
@@ -1621,21 +1854,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/112"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1645,10 +1878,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CloudFormation/TypeActivation@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/100"
+      "$ref": "#/113"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

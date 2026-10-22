@@ -1,12 +1,11 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Batch-SchedulingPolicy",
   "type": "AWS::Batch::SchedulingPolicy",
-  "time": "2025-01-08T17:54:21.165Z",
+  "time": "2026-10-19T20:09:27.701Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/Name",
-      "/properties/Tags"
+      "/properties/Name"
     ],
     "definitions": {
       "FairsharePolicy": {
@@ -35,6 +34,19 @@
         "required": [],
         "type": "object"
       },
+      "QuotaSharePolicy": {
+        "additionalProperties": false,
+        "description": "Quota Share Policy for the Job Queue.",
+        "properties": {
+          "IdleResourceAssignmentStrategy": {
+            "enum": [
+              "FIFO"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "ResourceArn": {
         "description": "ARN of the Scheduling Policy.",
         "type": "string"
@@ -55,7 +67,7 @@
         "type": "object"
       }
     },
-    "description": "Resource Type schema for AWS::Batch::SchedulingPolicy",
+    "description": "Resource Type definition for AWS::Batch::SchedulingPolicy",
     "handlers": {
       "create": {
         "permissions": [
@@ -84,7 +96,7 @@
         "permissions": [
           "Batch:UpdateSchedulingPolicy",
           "Batch:TagResource",
-          "Batch:UnTagResource"
+          "Batch:UntagResource"
         ]
       }
     },
@@ -103,6 +115,9 @@
         "pattern": "",
         "type": "string"
       },
+      "QuotaSharePolicy": {
+        "$ref": "#/definitions/QuotaSharePolicy"
+      },
       "Tags": {
         "additionalProperties": false,
         "description": "A key-value pair to associate with a resource.",
@@ -119,10 +134,14 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-batch.git",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "Batch:TagResource",
+        "Batch:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
-      "tagUpdatable": false,
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::Batch::SchedulingPolicy"

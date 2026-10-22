@@ -1,6 +1,925 @@
 [
   {
     "$type": "ObjectType",
+    "name": "ApplicationConfiguration",
+    "properties": {
+      "Classification": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "The classification within a configuration."
+      },
+      "ConfigurationProperties": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Within a configuration classification, a set of properties that represent the settings that you want to change in the configuration file."
+      },
+      "Configurations": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "A list of additional configurations to apply within a configuration object."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EbsBlockDeviceConfig",
+    "properties": {
+      "VolumeSpecification": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1,
+        "description": "EBS volume specifications such as volume type, IOPS, size (GiB) and throughput (MiB/s) that are requested for the EBS volume attached to an Amazon EC2 instance in the cluster."
+      },
+      "VolumesPerInstance": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Use of this property can confuse CloudFormation drift detection. The EbsBlockDeviceConfigs read from the system may return a list with one entry per volume, replacing any entry specified in the template with a VolumesPerInstance greater than one by that many entries containing only the VolumeSpecification. Thus to avoid false drift detection, it is recommended to supply repeated entries in EbsBlockDeviceConfigs for any VolumeSpecification which is intended to be repeated and not to use this property.\n"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EbsConfiguration",
+    "properties": {
+      "EbsBlockDeviceConfigs": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "An array of Amazon EBS volume specifications attached to a cluster instance."
+      },
+      "EbsOptimized": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Indicates whether an Amazon EBS volume is EBS-optimized."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstanceFleetProvisioningSpecifications",
+    "properties": {
+      "OnDemandSpecification": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The launch specification for On-Demand Instances in the instance fleet, which determines the allocation strategy."
+      },
+      "SpotSpecification": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The launch specification for Spot instances in the fleet, which determines the defined duration, provisioning timeout behavior, and allocation strategy."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstanceFleetResizingSpecifications",
+    "properties": {
+      "OnDemandResizeSpecification": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The resize specification for On-Demand Instances in the instance fleet, which contains the allocation strategy, capacity reservation options, and the resize timeout period."
+      },
+      "SpotResizeSpecification": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The resize specification for Spot Instances in the instance fleet, which contains the allocation strategy and the resize timeout period."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstanceTypeConfig",
+    "properties": {
+      "BidPrice": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "The bid price for each Amazon EC2 Spot Instance type as defined by InstanceType. Expressed in USD. If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice is provided, BidPriceAsPercentageOfOnDemandPrice defaults to 100%."
+      },
+      "BidPriceAsPercentageOfOnDemandPrice": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The bid price, as a percentage of On-Demand price, for each Amazon EC2 Spot Instance as defined by InstanceType. Expressed as a number (for example, 20 specifies 20%). If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice is provided, BidPriceAsPercentageOfOnDemandPrice defaults to 100%."
+      },
+      "Configurations": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "An optional configuration specification to be used when provisioning cluster instances, which can include configurations for applications and software bundled with Amazon EMR."
+      },
+      "CustomAmiId": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "The custom AMI ID to use for the instance type."
+      },
+      "EbsConfiguration": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The configuration of Amazon Elastic Block Store (Amazon EBS) attached to each instance as defined by InstanceType."
+      },
+      "InstanceType": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1,
+        "description": "An Amazon EC2 instance type, such as m3.xlarge."
+      },
+      "Priority": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The priority at which Amazon EMR launches the Amazon EC2 instances with this instance type."
+      },
+      "WeightedCapacity": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The number of units that a provisioned instance of this type provides toward fulfilling the target capacities defined in InstanceFleetConfig. This value is 1 for a master instance fleet, and must be 1 or greater for core and task instance fleets. Defaults to 1 if not specified."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OnDemandCapacityReservationOptions",
+    "properties": {
+      "CapacityReservationPreference": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "Indicates the instance's Capacity Reservation preferences."
+      },
+      "CapacityReservationResourceGroupArn": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "The ARN of the Capacity Reservation resource group in which to run the instance."
+      },
+      "UsageStrategy": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "Indicates whether to use unused Capacity Reservations for fulfilling On-Demand capacity."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OnDemandProvisioningSpecification",
+    "properties": {
+      "AllocationStrategy": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1,
+        "description": "Specifies the strategy to use in launching On-Demand instance fleets. Currently, the only option is lowest-price (the default), which launches the lowest price first."
+      },
+      "CapacityReservationOptions": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OnDemandResizingSpecification",
+    "properties": {
+      "AllocationStrategy": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "Specifies the allocation strategy to use to launch On-Demand instances during a resize. The default is lowest-price."
+      },
+      "CapacityReservationOptions": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Describes the strategy for using unused Capacity Reservations for fulfilling On-Demand capacity."
+      },
+      "TimeoutDurationMinutes": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "On-Demand resize timeout in minutes."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SpotProvisioningSpecification",
+    "properties": {
+      "AllocationStrategy": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "Specifies one of the following strategies to launch Spot Instance fleets: price-capacity-optimized, capacity-optimized, lowest-price, or diversified"
+      },
+      "BlockDurationMinutes": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The defined duration for Spot Instances (also known as Spot blocks) in minutes. When specified, the Spot Instance does not terminate before the defined duration expires, and defined duration pricing for Spot Instances applies. Valid values are 60, 120, 180, 240, 300, or 360."
+      },
+      "TimeoutAction": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1,
+        "description": "The action to take when TargetSpotCapacity has not been fulfilled when the TimeoutDurationMinutes has expired; that is, when all Spot Instances could not be provisioned within the Spot provisioning timeout. Valid values are TERMINATE_CLUSTER and SWITCH_TO_ON_DEMAND. SWITCH_TO_ON_DEMAND specifies that if no Spot Instances are available, On-Demand Instances should be provisioned to fulfill any remaining Spot capacity."
+      },
+      "TimeoutDurationMinutes": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The Spot provisioning timeout period in minutes. If Spot Instances are not provisioned within this time period, the TimeOutAction is taken. Minimum value is 5 and maximum value is 1440. The timeout applies only during initial provisioning, when the cluster is first created."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SpotResizingSpecification",
+    "properties": {
+      "AllocationStrategy": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "Specifies the allocation strategy to use to launch Spot instances during a resize."
+      },
+      "TimeoutDurationMinutes": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Spot resize timeout in minutes."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VolumeSpecification",
+    "properties": {
+      "Iops": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The number of I/O operations per second (IOPS) that the volume supports."
+      },
+      "SizeInGB": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The volume size, in gibibytes (GiB). This can be a number from 1 - 1024. If the volume type is EBS-optimized, the minimum value is 10."
+      },
+      "Throughput": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The throughput, in mebibyte per second (MiB/s). This optional parameter can be a number from 125 - 1000 and is valid only for gp3 volumes."
+      },
+      "VolumeType": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1,
+        "description": "The volume type. Volume types supported are gp3, gp2, io1, st1, sc1, and standard."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstanceFleetConfig_ConfigurationProperties",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EMR/InstanceFleetConfigProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EMR/InstanceFleetConfigProperties",
+    "properties": {
+      "ClusterId": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 17,
+        "description": "The unique identifier of the EMR cluster."
+      },
+      "InstanceFleetId": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 18,
+        "description": "The unique identifier for instance fleet for specific cluster"
+      },
+      "InstanceFleetType": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1,
+        "description": "The node type that the instance fleet hosts."
+      },
+      "InstanceTypeConfigs": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 4,
+        "description": "InstanceTypeConfigs determine the EC2 instances that Amazon EMR attempts to provision to fulfill On-Demand and Spot target capacities."
+      },
+      "LaunchSpecifications": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The launch specification for the instance fleet."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "The friendly name of the instance fleet."
+      },
+      "ResizeSpecifications": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The resize specification for the instance fleet."
+      },
+      "TargetOnDemandCapacity": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The target capacity of On-Demand units for the instance fleet, which determines how many On-Demand instances to provision."
+      },
+      "TargetSpotCapacity": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The target capacity of Spot units for the instance fleet, which determines how many Spot instances to provision."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EMR/InstanceFleetConfig",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EMR/InstanceFleetConfig@default",
+    "body": {
+      "$ref": "#/22"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AppConfiguration",
+    "properties": {
+      "Classification": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "ConfigurationProperties": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0
+      },
+      "Configurations": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutoScalingPolicy",
+    "properties": {
+      "Constraints": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 1
+      },
+      "Rules": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudWatchAlarmDefinition",
+    "properties": {
+      "ComparisonOperator": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1
+      },
+      "Dimensions": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0
+      },
+      "EvaluationPeriods": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "MetricName": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "Period": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      },
+      "Statistic": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "Threshold": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      },
+      "Unit": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EbsBlockDeviceConfig",
+    "properties": {
+      "VolumeSpecification": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 1
+      },
+      "VolumesPerInstance": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Use of this property can confuse CloudFormation drift detection. The EbsBlockDeviceConfigs read from the system may return a list with one entry per volume, replacing any entry specified in the template with a VolumesPerInstance greater than one by that many entries containing only the VolumeSpecification. Thus to avoid false drift detection, it is recommended to supply repeated entries in EbsBlockDeviceConfigs for any VolumeSpecification which is intended to be repeated and not to use this property.\n"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EbsConfiguration",
+    "properties": {
+      "EbsBlockDeviceConfigs": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 4
+      },
+      "EbsOptimized": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricDimension",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScalingAction",
+    "properties": {
+      "Market": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "SimpleScalingPolicyConfiguration": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScalingConstraints",
+    "properties": {
+      "MaxCapacity": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      },
+      "MinCapacity": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScalingRule",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1
+      },
+      "Trigger": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScalingTrigger",
+    "properties": {
+      "CloudWatchAlarmDefinition": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SimpleScalingPolicyConfiguration",
+    "properties": {
+      "AdjustmentType": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "CoolDown": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "ScalingAdjustment": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VolumeSpecification",
+    "properties": {
+      "Iops": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "SizeInGB": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      },
+      "Throughput": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "VolumeType": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstanceGroupConfig_ConfigurationProperties",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/32"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/29"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/27"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EMR/InstanceGroupConfigProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EMR/InstanceGroupConfigProperties",
+    "properties": {
+      "AutoScalingPolicy": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "BidPrice": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "Configurations": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0
+      },
+      "CustomAmiId": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "EbsConfiguration": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0
+      },
+      "InstanceCount": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      },
+      "InstanceGroupId": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 18
+      },
+      "InstanceRole": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1
+      },
+      "InstanceType": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1
+      },
+      "JobFlowId": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 17
+      },
+      "Market": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EMR/InstanceGroupConfig",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EMR/InstanceGroupConfig@default",
+    "body": {
+      "$ref": "#/44"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "Arn",
     "properties": {}
   },
@@ -15,14 +934,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 255 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
@@ -35,12 +954,9 @@
     "properties": {}
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/48"
     }
   },
   {
@@ -50,17 +966,14 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/12"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/48"
     }
-  },
-  {
-    "$type": "BooleanType"
   },
   {
     "$type": "ObjectType",
@@ -68,140 +981,140 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the EMR Studio."
       },
       "AuthMode": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "Specifies whether the Studio authenticates users using single sign-on (SSO) or IAM. Amazon EMR Studio currently only supports SSO authentication."
       },
       "DefaultS3Location": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "The default Amazon S3 location to back up EMR Studio Workspaces and notebook files. A Studio user can select an alternative Amazon S3 location when creating a Workspace."
       },
       "Description": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "A detailed description of the Studio."
       },
       "EncryptionKeyArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The AWS KMS key identifier (ARN) used to encrypt AWS EMR Studio workspace and notebook files when backed up to AWS S3."
       },
       "EngineSecurityGroupId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "The ID of the Amazon EMR Studio Engine security group. The Engine security group allows inbound network traffic from the Workspace security group, and it must be in the same VPC specified by VpcId."
       },
       "IdcInstanceArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The ARN of the IAM Identity Center instance to create the Studio application."
       },
       "IdcUserAssignment": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "Specifies whether IAM Identity Center user assignment is REQUIRED or OPTIONAL. If the value is set to REQUIRED, users must be explicitly assigned to the Studio application to access the Studio."
       },
       "IdpAuthUrl": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "Your identity provider's authentication endpoint. Amazon EMR Studio redirects federated users to this endpoint for authentication when logging in to a Studio with the Studio URL."
       },
       "IdpRelayStateParameterName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The name of relay state parameter for external Identity Provider."
       },
       "Name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "A descriptive name for the Amazon EMR Studio."
       },
       "ServiceRole": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "The IAM role that will be assumed by the Amazon EMR Studio. The service role provides a way for Amazon EMR Studio to interoperate with other AWS services."
       },
       "StudioId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 18,
         "description": "The ID of the EMR Studio."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/52"
         },
         "flags": 1,
         "description": "A list of up to 5 subnet IDs to associate with the Studio. The subnets must belong to the VPC specified by VpcId. Studio users can create a Workspace in any of the specified subnets."
       },
       "Tags": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "A list of tags to associate with the Studio. Tags are user-defined key-value pairs that consist of a required key string with a maximum of 128 characters, and an optional value string with a maximum of 256 characters."
       },
       "TrustedIdentityPropagationEnabled": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "A Boolean indicating whether to enable Trusted identity propagation for the Studio. The default value is false."
       },
       "Url": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 2,
         "description": "The unique Studio access URL."
       },
       "UserRole": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The IAM user role that will be assumed by users and groups logged in to a Studio. The permissions attached to this IAM role can be scoped down for each user or group using session policies."
       },
       "VpcId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "The ID of the Amazon Virtual Private Cloud (Amazon VPC) to associate with the Studio."
       },
       "WorkspaceSecurityGroupId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "The ID of the Amazon EMR Studio Workspace security group. The Workspace security group allows outbound network traffic to resources in the Engine security group, and it must be in the same VPC specified by VpcId."
@@ -214,21 +1127,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/54"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -238,11 +1151,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.EMR/Studio@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/55"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -259,28 +1172,28 @@
     "properties": {
       "IdentityName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 17,
         "description": "The name of the user or group. For more information, see UserName and DisplayName in the AWS SSO Identity Store API Reference. Either IdentityName or IdentityId must be specified."
       },
       "IdentityType": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 17,
         "description": "Specifies whether the identity to map to the Studio is a user or a group."
       },
       "SessionPolicyArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) for the session policy that will be applied to the user or group. Session policies refine Studio user permissions without the need to use multiple IAM user roles."
       },
       "StudioId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 17,
         "description": "The ID of the Amazon EMR Studio to which the user or group will be mapped."
@@ -293,21 +1206,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/59"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -317,11 +1230,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.EMR/StudioSessionMapping@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/16"
+      "$ref": "#/60"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -329,14 +1242,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -350,7 +1263,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/18"
+      "$ref": "#/62"
     }
   },
   {
@@ -359,14 +1272,14 @@
     "properties": {
       "Tags": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "WALWorkspaceName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 16,
         "description": "The name of the emrwal container"
@@ -379,21 +1292,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/12"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/65"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -403,10 +1316,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.EMR/WALWorkspace@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/22"
+      "$ref": "#/66"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

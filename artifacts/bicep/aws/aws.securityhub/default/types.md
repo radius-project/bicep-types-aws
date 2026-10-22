@@ -1,63 +1,120 @@
 # AWS.SecurityHub @ default
 
+## Resource AWS.SecurityHub/ActionTarget@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SecurityHub/ActionTargetProperties](#awssecurityhubactiontargetproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SecurityHub/AggregatorV2@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SecurityHub/AggregatorV2Properties](#awssecurityhubaggregatorv2properties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SecurityHub/AutomationRule@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityHub/AutomationRuleProperties](#awssecurityhubautomationruleproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SecurityHub/AutomationRuleV2@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SecurityHub/AutomationRuleV2Properties](#awssecurityhubautomationrulev2properties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SecurityHub/ConfigurationPolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityHub/ConfigurationPolicyProperties](#awssecurityhubconfigurationpolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SecurityHub/Connector@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SecurityHub/ConnectorProperties](#awssecurityhubconnectorproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SecurityHub/ConnectorV2@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SecurityHub/ConnectorV2Properties](#awssecurityhubconnectorv2properties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SecurityHub/FindingAggregator@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityHub/FindingAggregatorProperties](#awssecurityhubfindingaggregatorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SecurityHub/Hub@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityHub/HubProperties](#awssecurityhubhubproperties) (Identifier): properties of the resource
 
+## Resource AWS.SecurityHub/HubV2@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SecurityHub/HubV2Properties](#awssecurityhubhubv2properties) (Identifier): properties of the resource
+
 ## Resource AWS.SecurityHub/Insight@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityHub/InsightProperties](#awssecurityhubinsightproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SecurityHub/OrganizationConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityHub/OrganizationConfigurationProperties](#awssecurityhuborganizationconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SecurityHub/PolicyAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityHub/PolicyAssociationProperties](#awssecurityhubpolicyassociationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SecurityHub/SecurityControl@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityHub/SecurityControlProperties](#awssecurityhubsecuritycontrolproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SecurityHub/Standard@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -77,17 +134,17 @@
 ## AutomationRule_SeverityUpdate
 ### Properties
 * **Label**: string: The severity value of the finding. The allowed values are the following.
-  +   ``INFORMATIONAL`` - No issue was found.
-  +   ``LOW`` - The issue does not require action on its own.
-  +   ``MEDIUM`` - The issue must be addressed but not urgently.
-  +   ``HIGH`` - The issue must be addressed as a priority.
-  +   ``CRITICAL`` - The issue must be remediated immediately to avoid it escalating.
+  +  ``INFORMATIONAL`` - No issue was found.
+  +  ``LOW`` - The issue does not require action on its own.
+  +  ``MEDIUM`` - The issue must be addressed but not urgently.
+  +  ``HIGH`` - The issue must be addressed as a priority.
+  +  ``CRITICAL`` - The issue must be remediated immediately to avoid it escalating.
 * **Normalized**: int: The normalized severity for the finding. This attribute is to be deprecated in favor of ``Label``.
  If you provide ``Normalized`` and don't provide ``Label``, ``Label`` is set automatically as follows.
-  +  0 - ``INFORMATIONAL`` 
-  +  1?39 - ``LOW`` 
-  +  40?69 - ``MEDIUM`` 
-  +  70?89 - ``HIGH`` 
+  +  0 - ``INFORMATIONAL``
+  +  1?39 - ``LOW``
+  +  40?69 - ``MEDIUM``
+  +  70?89 - ``HIGH``
   +  90?100 - ``CRITICAL``
 * **Product**: int: The native severity as defined by the AWS service or integrated partner product that generated the finding.
 
@@ -95,19 +152,25 @@
 ### Properties
 * **Status**: string (Required): The status of the investigation into the finding. The workflow status is specific to an individual finding. It does not affect the generation of new findings. For example, setting the workflow status to ``SUPPRESSED`` or ``RESOLVED`` does not prevent a new finding for the same issue.
  The allowed values are the following.
-  +   ``NEW`` - The initial state of a finding, before it is reviewed.
- Security Hub also resets ``WorkFlowStatus`` from ``NOTIFIED`` or ``RESOLVED`` to ``NEW`` in the following cases:
+  +  ``NEW`` - The initial state of a finding, before it is reviewed.
+ Security Hub CSPM also resets ``WorkFlowStatus`` from ``NOTIFIED`` or ``RESOLVED`` to ``NEW`` in the following cases:
   +  The record state changes from ``ARCHIVED`` to ``ACTIVE``.
   +  The compliance status changes from ``PASSED`` to either ``WARNING``, ``FAILED``, or ``NOT_AVAILABLE``.
   
-  +   ``NOTIFIED`` - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.
-  +   ``RESOLVED`` - The finding was reviewed and remediated and is now considered resolved.
-  +   ``SUPPRESSED`` - Indicates that you reviewed the finding and don't believe that any action is needed. The finding is no longer updated.
+  +  ``NOTIFIED`` - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.
+  +  ``RESOLVED`` - The finding was reviewed and remediated and is now considered resolved.
+  +  ``SUPPRESSED`` - Indicates that you reviewed the finding and don't believe that any action is needed. The finding is no longer updated.
 
 ## AutomationRulesAction
 ### Properties
 * **FindingFieldsUpdate**: [AutomationRulesFindingFieldsUpdate](#automationrulesfindingfieldsupdate) (Required): Specifies that the automation rule action is an update to a finding field.
-* **Type**: string (Required): Specifies the type of action that Security Hub takes when a finding matches the defined criteria of a rule.
+* **Type**: string (Required): Specifies the type of action that Security Hub CSPM takes when a finding matches the defined criteria of a rule.
+
+## AutomationRulesActionV2
+### Properties
+* **ExternalIntegrationConfiguration**: [ExternalIntegrationConfiguration](#externalintegrationconfiguration)
+* **FindingFieldsUpdate**: [AutomationRulesFindingFieldsUpdateV2](#automationrulesfindingfieldsupdatev2)
+* **Type**: string (Required): The category of action to be executed by the automation rule
 
 ## AutomationRulesFindingFieldsUpdate
 ### Properties
@@ -120,6 +183,12 @@
 * **UserDefinedFields**: [map](#map): The rule action updates the ``UserDefinedFields`` field of a finding.
 * **VerificationState**: string: The rule action updates the ``VerificationState`` field of a finding.
 * **Workflow**: [AutomationRule_WorkflowUpdate](#automationruleworkflowupdate): The rule action will update the ``Workflow`` field of a finding.
+
+## AutomationRulesFindingFieldsUpdateV2
+### Properties
+* **Comment**: string: Notes or contextual information for findings that are modified by the automation rule
+* **SeverityId**: int: The severity level to be assigned to findings that match the automation rule criteria
+* **StatusId**: int: The status to be applied to findings that match automation rule criteria
 
 ## AutomationRulesFindingFilters
 ### Properties
@@ -159,9 +228,9 @@
   Array Members: Minimum number of 1 item. Maximum number of 20 items.
 * **NoteUpdatedBy**: [StringFilter](#stringfilter)[]: The principal that created a note. 
   Array Members: Minimum number of 1 item. Maximum number of 20 items.
-* **ProductArn**: [StringFilter](#stringfilter)[]: The Amazon Resource Name (ARN) for a third-party product that generated a finding in Security Hub. 
+* **ProductArn**: [StringFilter](#stringfilter)[]: The Amazon Resource Name (ARN) for a third-party product that generated a finding in Security Hub CSPM. 
   Array Members: Minimum number of 1 item. Maximum number of 20 items.
-* **ProductName**: [StringFilter](#stringfilter)[]: Provides the name of the product that generated the finding. For control-based findings, the product name is Security Hub. 
+* **ProductName**: [StringFilter](#stringfilter)[]: Provides the name of the product that generated the finding. For control-based findings, the product name is Security Hub CSPM. 
   Array Members: Minimum number of 1 item. Maximum number of 20 items.
 * **RecordState**: [StringFilter](#stringfilter)[]: Provides the current state of a finding. 
   Array Members: Minimum number of 1 item. Maximum number of 20 items.
@@ -199,6 +268,21 @@
 * **WorkflowStatus**: [StringFilter](#stringfilter)[]: Provides information about the status of the investigation into a finding. 
   Array Members: Minimum number of 1 item. Maximum number of 20 items.
 
+## AWS.SecurityHub/ActionTargetProperties
+### Properties
+* **ActionTargetArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the custom action target.
+* **Description**: string (Required): The description for the custom action target.
+* **Id**: string (Required): The ID for the custom action target. Can contain up to 20 alphanumeric characters.
+* **Name**: string (Required): The name of the custom action target. Can contain up to 20 characters.
+
+## AWS.SecurityHub/AggregatorV2Properties
+### Properties
+* **AggregationRegion**: string (ReadOnly): The aggregation Region of the AggregatorV2
+* **AggregatorV2Arn**: string (ReadOnly, Identifier): The ARN of the AggregatorV2 being created and assigned as the unique identifier
+* **LinkedRegions**: string[] (Required): The list of included Regions
+* **RegionLinkingMode**: string (Required): Indicates to link a list of included Regions
+* **Tags**: [Tags](#tags)
+
 ## AWS.SecurityHub/AutomationRuleProperties
 ### Properties
 * **Actions**: [AutomationRulesAction](#automationrulesaction)[] (Required): One or more actions to update finding fields if a finding matches the conditions specified in ``Criteria``.
@@ -206,12 +290,26 @@
 * **CreatedBy**: string (ReadOnly)
 * **Criteria**: [AutomationRulesFindingFilters](#automationrulesfindingfilters) (Required): A set of [Security Finding Format (ASFF)](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html) finding field attributes and corresponding expected values that ASH uses to filter findings. If a rule is enabled and a finding matches the criteria specified in this parameter, ASH applies the rule action to the finding.
 * **Description**: string (Required): A description of the rule.
-* **IsTerminal**: bool: Specifies whether a rule is the last to be applied with respect to a finding that matches the rule criteria. This is useful when a finding matches the criteria for multiple rules, and each rule has different actions. If a rule is terminal, Security Hub applies the rule action to a finding that matches the rule criteria and doesn't evaluate other rules for the finding. By default, a rule isn't terminal.
+* **IsTerminal**: bool: Specifies whether a rule is the last to be applied with respect to a finding that matches the rule criteria. This is useful when a finding matches the criteria for multiple rules, and each rule has different actions. If a rule is terminal, Security Hub CSPM applies the rule action to a finding that matches the rule criteria and doesn't evaluate other rules for the finding. By default, a rule isn't terminal.
 * **RuleArn**: string (ReadOnly, Identifier)
 * **RuleName**: string (Required): The name of the rule.
-* **RuleOrder**: int (Required): An integer ranging from 1 to 1000 that represents the order in which the rule action is applied to findings. Security Hub applies rules with lower values for this parameter first.
+* **RuleOrder**: int (Required): An integer ranging from 1 to 1000 that represents the order in which the rule action is applied to findings. Security Hub CSPM applies rules with lower values for this parameter first.
 * **RuleStatus**: string: Whether the rule is active after it is created. If this parameter is equal to ``ENABLED``, ASH applies the rule to findings and finding updates after the rule is created.
 * **Tags**: [Tags](#tags): User-defined tags associated with an automation rule.
+* **UpdatedAt**: string (ReadOnly)
+
+## AWS.SecurityHub/AutomationRuleV2Properties
+### Properties
+* **Actions**: [AutomationRulesActionV2](#automationrulesactionv2)[] (Required): A list of actions to be performed when the rule criteria is met
+* **CreatedAt**: string (ReadOnly)
+* **Criteria**: [Criteria](#criteria) (Required)
+* **Description**: string (Required): A description of the automation rule
+* **RuleArn**: string (ReadOnly, Identifier): The ARN of the automation rule
+* **RuleId**: string (ReadOnly): The ID of the automation rule
+* **RuleName**: string (Required): The name of the automation rule
+* **RuleOrder**: int (Required): The value for the rule priority
+* **RuleStatus**: string: The status of the automation rule
+* **Tags**: [Tags](#tags)
 * **UpdatedAt**: string (ReadOnly)
 
 ## AWS.SecurityHub/ConfigurationPolicyProperties
@@ -226,6 +324,41 @@
 * **Tags**: [Tags](#tags)
 * **UpdatedAt**: string (ReadOnly): The date and time, in UTC and ISO 8601 format.
 
+## AWS.SecurityHub/ConnectorProperties
+### Properties
+* **ConnectorArn**: string (ReadOnly, Identifier)
+* **ConnectorId**: string (ReadOnly)
+* **ConnectorStatus**: string (ReadOnly)
+* **CreatedAt**: string (ReadOnly)
+* **CreatedBy**: string (ReadOnly)
+* **Description**: string: The description of the connector.
+* **EnablementStatus**: string (ReadOnly)
+* **Issues**: [HealthIssue](#healthissue)[] (ReadOnly)
+* **LastCheckedAt**: string (ReadOnly)
+* **LastUpdatedAt**: string (ReadOnly)
+* **Message**: string (ReadOnly)
+* **Name**: string (Required): The name of the connector.
+* **Provider**: [Provider](#provider) (Required)
+* **Tags**: [Tags](#tags)
+
+## AWS.SecurityHub/ConnectorV2Properties
+### Properties
+* **ConnectorArn**: string (ReadOnly, Identifier): The ARN of the connector
+* **ConnectorId**: string (ReadOnly): The ID of the connector
+* **ConnectorStatus**: string (ReadOnly): The status of the connector
+* **CreatedAt**: string (ReadOnly)
+* **Description**: string: A description of the connector
+* **EnablementStatus**: string (ReadOnly): The enablement status of the connector
+* **EnablementStatusReason**: string (ReadOnly): The reason for the enablement status of the connector
+* **Issues**: [HealthIssue](#healthissue)[] (ReadOnly): The list of health issues associated with the connector
+* **KmsKeyArn**: string: The ARN of KMS key used for the connector
+* **LastCheckedAt**: string (ReadOnly)
+* **LastUpdatedAt**: string (ReadOnly)
+* **Message**: string (ReadOnly): The message of the connector status change
+* **Name**: string (Required): The name of the connector
+* **Provider**: [Provider](#provider) (Required)
+* **Tags**: [Tags](#tags)
+
 ## AWS.SecurityHub/FindingAggregatorProperties
 ### Properties
 * **FindingAggregationRegion**: string (ReadOnly)
@@ -233,9 +366,9 @@
 * **RegionLinkingMode**: string (Required): Indicates whether to aggregate findings from all of the available Regions in the current partition. Also determines whether to automatically aggregate findings from new Regions as Security Hub supports them and you opt into them.
  The selected option also determines how to use the Regions provided in the Regions list.
  In CFN, the options for this property are as follows:
-  +   ``ALL_REGIONS`` - Indicates to aggregate findings from all of the Regions where Security Hub is enabled. When you choose this option, Security Hub also automatically aggregates findings from new Regions as Security Hub supports them and you opt into them. 
-  +   ``ALL_REGIONS_EXCEPT_SPECIFIED`` - Indicates to aggregate findings from all of the Regions where Security Hub is enabled, except for the Regions listed in the ``Regions`` parameter. When you choose this option, Security Hub also automatically aggregates findings from new Regions as Security Hub supports them and you opt into them. 
-  +   ``SPECIFIED_REGIONS`` - Indicates to aggregate findings only from the Regions listed in the ``Regions`` parameter. Security Hub does not automatically aggregate findings from new Regions.
+  +  ``ALL_REGIONS`` - Indicates to aggregate findings from all of the Regions where Security Hub is enabled. When you choose this option, Security Hub also automatically aggregates findings from new Regions as Security Hub supports them and you opt into them. 
+  +  ``ALL_REGIONS_EXCEPT_SPECIFIED`` - Indicates to aggregate findings from all of the Regions where Security Hub is enabled, except for the Regions listed in the ``Regions`` parameter. When you choose this option, Security Hub also automatically aggregates findings from new Regions as Security Hub supports them and you opt into them. 
+  +  ``SPECIFIED_REGIONS`` - Indicates to aggregate findings only from the Regions listed in the ``Regions`` parameter. Security Hub does not automatically aggregate findings from new Regions.
 * **Regions**: string[]: If ``RegionLinkingMode`` is ``ALL_REGIONS_EXCEPT_SPECIFIED``, then this is a space-separated list of Regions that do not aggregate findings to the aggregation Region.
  If ``RegionLinkingMode`` is ``SPECIFIED_REGIONS``, then this is a space-separated list of Regions that do aggregate findings to the aggregation Region.
 
@@ -246,6 +379,13 @@
 * **ControlFindingGenerator**: string: This field, used when enabling Security Hub, specifies whether the calling account has consolidated control findings turned on. If the value for this field is set to SECURITY_CONTROL, Security Hub generates a single finding for a control check even when the check applies to multiple enabled standards.  If the value for this field is set to STANDARD_CONTROL, Security Hub generates separate findings for a control check when the check applies to multiple enabled standards.
 * **EnableDefaultStandards**: bool (WriteOnly): Whether to enable the security standards that Security Hub has designated as automatically enabled.
 * **SubscribedAt**: string (ReadOnly): The date and time when Security Hub was enabled in the account.
+* **Tags**: [Tags](#tags)
+
+## AWS.SecurityHub/HubV2Properties
+### Properties
+* **HubV2Arn**: string (ReadOnly, Identifier): The Amazon Resource Name of the Security Hub V2 resource.
+* **NetworkScanning**: [NetworkScanning](#networkscanning)
+* **SubscribedAt**: string (ReadOnly)
 * **Tags**: [Tags](#tags)
 
 ## AWS.SecurityHub/InsightProperties
@@ -286,7 +426,7 @@
 ## AWS.SecurityHub/StandardProperties
 ### Properties
 * **DisabledStandardsControls**: [StandardsControl](#standardscontrol)[]: Specifies which controls are to be disabled in a standard. 
-  *Maximum*: ``100``
+ *Maximum*: ``100``
 * **StandardsArn**: string (Required): The ARN of the standard that you want to enable. To view a list of available ASH standards and their ARNs, use the [DescribeStandards](https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_DescribeStandards.html) API operation.
 * **StandardsSubscriptionArn**: string (ReadOnly, Identifier)
 
@@ -397,12 +537,40 @@
 * **WorkflowState**: [StringFilter](#stringfilter)[]: The workflow state of a finding.
 * **WorkflowStatus**: [StringFilter](#stringfilter)[]: The status of the investigation into a finding.
 
+## AzureProviderConfiguration
+### Properties
+* **AWSConfigConnectorArn**: string (Required): The ARN of the multi-cloud configuration connector used to establish the connection to Azure.
+* **AzureRegions**: string[] (Required): The list of Azure regions to monitor.
+* **ScopeConfiguration**: [AzureScopeConfiguration](#azurescopeconfiguration) (Required): The scope configuration that defines which Azure resources are monitored.
+
+## AzureScopeConfiguration
+### Properties
+* **ScopeType**: string (Required): The type of scope. Valid values are ``tenant`` and ``subscription``.
+* **ScopeValues**: string[]: The list of scope values, such as subscription IDs, when the scope type is ``subscription``.
+
+## BooleanFilter
+### Properties
+* **Value**: bool (Required): The value of the boolean
+
 ## BooleanFilter
 ### Properties
 * **Value**: bool (Required): The value of the boolean.
 
+## CompositeFilter
+### Properties
+* **BooleanFilters**: [OcsfBooleanFilter](#ocsfbooleanfilter)[]: Enables filtering based on boolean field values
+* **DateFilters**: [OcsfDateFilter](#ocsfdatefilter)[]: Enables filtering based on date and timestamp fields
+* **MapFilters**: [OcsfMapFilter](#ocsfmapfilter)[]: Enables filtering based on map field value
+* **NumberFilters**: [OcsfNumberFilter](#ocsfnumberfilter)[]: Enables filtering based on numerical field values
+* **Operator**: string
+* **StringFilters**: [OcsfStringFilter](#ocsfstringfilter)[]: Enables filtering based on string field values
+
 ## ConfigurationPolicy_Parameters
 ### Properties
+
+## Criteria
+### Properties
+* **OcsfFindingCriteria**: [OcsfFindingFilters](#ocsffindingfilters)
 
 ## DateFilter
 ### Properties
@@ -418,6 +586,12 @@
 * **End**: string
 * **Start**: string
 
+## DateFilter
+### Properties
+* **DateRange**: [DateRange](#daterange)
+* **End**: string
+* **Start**: string
+
 ## DateRange
 ### Properties
 * **Unit**: string (Required): A date range unit for the date filter.
@@ -425,8 +599,27 @@
 
 ## DateRange
 ### Properties
+* **Unit**: string (Required): A date range unit for the date filter
+* **Value**: int (Required): A date range value for the date filter
+
+## DateRange
+### Properties
 * **Unit**: string (Required): A date range unit for the date filter.
 * **Value**: int (Required): A date range value for the date filter.
+
+## ExternalIntegrationConfiguration
+### Properties
+* **ConnectorArn**: string: The ARN of the connector that establishes the integration
+
+## HealthIssue
+### Properties
+* **Code**: string (Required): The error code that identifies the type of health issue.
+* **Message**: string (Required): A human-readable message that describes the health issue.
+
+## HealthIssue
+### Properties
+* **Code**: string (Required): The code identifying the type of health issue
+* **Message**: string (Required): The message describing the health issue
 
 ## IpFilter
 ### Properties
@@ -441,28 +634,38 @@
 
 ## MapFilter
 ### Properties
-* **Comparison**: string (Required): The condition to apply to the key value when filtering Security Hub findings with a map filter.
+* **Comparison**: string (Required): The condition to apply to the key value when filtering Security Hub CSPM findings with a map filter.
  To search for values that have the filter value, use one of the following comparison operators:
   +  To search for values that include the filter value, use ``CONTAINS``. For example, for the ``ResourceTags`` field, the filter ``Department CONTAINS Security`` matches findings that include the value ``Security`` for the ``Department`` tag. In the same example, a finding with a value of ``Security team`` for the ``Department`` tag is a match.
   +  To search for values that exactly match the filter value, use ``EQUALS``. For example, for the ``ResourceTags`` field, the filter ``Department EQUALS Security`` matches findings that have the value ``Security`` for the ``Department`` tag.
   
-  ``CONTAINS`` and ``EQUALS`` filters on the same field are joined by ``OR``. A finding matches if it matches any one of those filters. For example, the filters ``Department CONTAINS Security OR Department CONTAINS Finance`` match a finding that includes either ``Security``, ``Finance``, or both values.
+ ``CONTAINS`` and ``EQUALS`` filters on the same field are joined by ``OR``. A finding matches if it matches any one of those filters. For example, the filters ``Department CONTAINS Security OR Department CONTAINS Finance`` match a finding that includes either ``Security``, ``Finance``, or both values.
  To search for values that don't have the filter value, use one of the following comparison operators:
   +  To search for values that exclude the filter value, use ``NOT_CONTAINS``. For example, for the ``ResourceTags`` field, the filter ``Department NOT_CONTAINS Finance`` matches findings that exclude the value ``Finance`` for the ``Department`` tag.
   +  To search for values other than the filter value, use ``NOT_EQUALS``. For example, for the ``ResourceTags`` field, the filter ``Department NOT_EQUALS Finance`` matches findings that don?t have the value ``Finance`` for the ``Department`` tag.
   
-  ``NOT_CONTAINS`` and ``NOT_EQUALS`` filters on the same field are joined by ``AND``. A finding matches only if it matches all of those filters. For example, the filters ``Department NOT_CONTAINS Security AND Department NOT_CONTAINS Finance`` match a finding that excludes both the ``Security`` and ``Finance`` values.
-  ``CONTAINS`` filters can only be used with other ``CONTAINS`` filters. ``NOT_CONTAINS`` filters can only be used with other ``NOT_CONTAINS`` filters.
+ ``NOT_CONTAINS`` and ``NOT_EQUALS`` filters on the same field are joined by ``AND``. A finding matches only if it matches all of those filters. For example, the filters ``Department NOT_CONTAINS Security AND Department NOT_CONTAINS Finance`` match a finding that excludes both the ``Security`` and ``Finance`` values.
+ ``CONTAINS`` filters can only be used with other ``CONTAINS`` filters. ``NOT_CONTAINS`` filters can only be used with other ``NOT_CONTAINS`` filters.
  You can?t have both a ``CONTAINS`` filter and a ``NOT_CONTAINS`` filter on the same field. Similarly, you can?t have both an ``EQUALS`` filter and a ``NOT_EQUALS`` filter on the same field. Combining filters in this way returns an error. 
-  ``CONTAINS`` and ``NOT_CONTAINS`` operators can be used only with automation rules. For more information, see [Automation rules](https://docs.aws.amazon.com/securityhub/latest/userguide/automation-rules.html) in the *User Guide*.
+ ``CONTAINS`` and ``NOT_CONTAINS`` operators can be used only with automation rules. For more information, see [Automation rules](https://docs.aws.amazon.com/securityhub/latest/userguide/automation-rules.html) in the *User Guide*.
 * **Key**: string (Required): The key of the map filter. For example, for ``ResourceTags``, ``Key`` identifies the name of the tag. For ``UserDefinedFields``, ``Key`` is the name of the field.
 * **Value**: string (Required): The value for the key in the map filter. Filter values are case sensitive. For example, one of the values for a tag called ``Department`` might be ``Security``. If you provide ``security`` as the filter value, then there's no match.
+
+## MapFilter
+### Properties
+* **Comparison**: string (Required): The condition to apply to the key value when filtering findings with a map filter
+* **Key**: string (Required): The key of the map filter
+* **Value**: string (Required): The value for the key in the map filter
 
 ## MapFilter
 ### Properties
 * **Comparison**: string (Required): The condition to apply to the key value when filtering Security Hub findings with a map filter.
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## NetworkScanning
+### Properties
+* **Status**: string (Required): Whether the Network Scanning feature is enabled for this account and Region.
 
 ## NumberFilter
 ### Properties
@@ -472,9 +675,45 @@
 
 ## NumberFilter
 ### Properties
+* **Eq**: int: The equal-to condition to be applied to a single field when querying for findings
+* **Gte**: int: The greater-than-equal condition to be applied to a single field when querying for findings
+* **Lte**: int: The less-than-equal condition to be applied to a single field when querying for findings
+
+## NumberFilter
+### Properties
 * **Eq**: int: The equal-to condition to be applied to a single field when querying for findings.
 * **Gte**: int: The greater-than-equal condition to be applied to a single field when querying for findings.
 * **Lte**: int: The less-than-equal condition to be applied to a single field when querying for findings.
+
+## OcsfBooleanFilter
+### Properties
+* **FieldName**: string (Required): The name of the field
+* **Filter**: [BooleanFilter](#booleanfilter) (Required)
+
+## OcsfDateFilter
+### Properties
+* **FieldName**: string (Required): The name of the field
+* **Filter**: [DateFilter](#datefilter) (Required)
+
+## OcsfFindingFilters
+### Properties
+* **CompositeFilters**: [CompositeFilter](#compositefilter)[]: Enables the creation of complex filtering conditions by combining filter
+* **CompositeOperator**: string
+
+## OcsfMapFilter
+### Properties
+* **FieldName**: string (Required): The name of the field
+* **Filter**: [MapFilter](#mapfilter) (Required)
+
+## OcsfNumberFilter
+### Properties
+* **FieldName**: string (Required): The name of the field
+* **Filter**: [NumberFilter](#numberfilter) (Required)
+
+## OcsfStringFilter
+### Properties
+* **FieldName**: string (Required)
+* **Filter**: [StringFilter](#stringfilter) (Required)
 
 ## Parameters
 ### Properties
@@ -482,6 +721,13 @@
 ## Policy
 ### Properties
 * **SecurityHub**: [SecurityHubPolicy](#securityhubpolicy)
+
+## Provider
+### Properties
+* **Azure**: [AzureProviderConfiguration](#azureproviderconfiguration) (Required)
+
+## Provider
+### Properties
 
 ## RelatedFinding
 ### Properties
@@ -513,34 +759,54 @@
 
 ## StringFilter
 ### Properties
-* **Comparison**: string (Required): The condition to apply to a string value when filtering Security Hub findings.
+* **Comparison**: string (Required): The condition to apply to a string value when filtering Security Hub CSPM findings.
  To search for values that have the filter value, use one of the following comparison operators:
   +  To search for values that include the filter value, use ``CONTAINS``. For example, the filter ``Title CONTAINS CloudFront`` matches findings that have a ``Title`` that includes the string CloudFront.
   +  To search for values that exactly match the filter value, use ``EQUALS``. For example, the filter ``AwsAccountId EQUALS 123456789012`` only matches findings that have an account ID of ``123456789012``.
   +  To search for values that start with the filter value, use ``PREFIX``. For example, the filter ``ResourceRegion PREFIX us`` matches findings that have a ``ResourceRegion`` that starts with ``us``. A ``ResourceRegion`` that starts with a different value, such as ``af``, ``ap``, or ``ca``, doesn't match.
   
-  ``CONTAINS``, ``EQUALS``, and ``PREFIX`` filters on the same field are joined by ``OR``. A finding matches if it matches any one of those filters. For example, the filters ``Title CONTAINS CloudFront OR Title CONTAINS CloudWatch`` match a finding that includes either ``CloudFront``, ``CloudWatch``, or both strings in the title.
+ ``CONTAINS``, ``EQUALS``, and ``PREFIX`` filters on the same field are joined by ``OR``. A finding matches if it matches any one of those filters. For example, the filters ``Title CONTAINS CloudFront OR Title CONTAINS CloudWatch`` match a finding that includes either ``CloudFront``, ``CloudWatch``, or both strings in the title.
  To search for values that don?t have the filter value, use one of the following comparison operators:
   +  To search for values that exclude the filter value, use ``NOT_CONTAINS``. For example, the filter ``Title NOT_CONTAINS CloudFront`` matches findings that have a ``Title`` that excludes the string CloudFront.
   +  To search for values other than the filter value, use ``NOT_EQUALS``. For example, the filter ``AwsAccountId NOT_EQUALS 123456789012`` only matches findings that have an account ID other than ``123456789012``.
   +  To search for values that don't start with the filter value, use ``PREFIX_NOT_EQUALS``. For example, the filter ``ResourceRegion PREFIX_NOT_EQUALS us`` matches findings with a ``ResourceRegion`` that starts with a value other than ``us``.
   
-  ``NOT_CONTAINS``, ``NOT_EQUALS``, and ``PREFIX_NOT_EQUALS`` filters on the same field are joined by ``AND``. A finding matches only if it matches all of those filters. For example, the filters ``Title NOT_CONTAINS CloudFront AND Title NOT_CONTAINS CloudWatch`` match a finding that excludes both ``CloudFront`` and ``CloudWatch`` in the title.
+ ``NOT_CONTAINS``, ``NOT_EQUALS``, and ``PREFIX_NOT_EQUALS`` filters on the same field are joined by ``AND``. A finding matches only if it matches all of those filters. For example, the filters ``Title NOT_CONTAINS CloudFront AND Title NOT_CONTAINS CloudWatch`` match a finding that excludes both ``CloudFront`` and ``CloudWatch`` in the title.
  You can?t have both a ``CONTAINS`` filter and a ``NOT_CONTAINS`` filter on the same field. Similarly, you can't provide both an ``EQUALS`` filter and a ``NOT_EQUALS`` or ``PREFIX_NOT_EQUALS`` filter on the same field. Combining filters in this way returns an error. ``CONTAINS`` filters can only be used with other ``CONTAINS`` filters. ``NOT_CONTAINS`` filters can only be used with other ``NOT_CONTAINS`` filters. 
- You can combine ``PREFIX`` filters with ``NOT_EQUALS`` or ``PREFIX_NOT_EQUALS`` filters for the same field. Security Hub first processes the ``PREFIX`` filters, and then the ``NOT_EQUALS`` or ``PREFIX_NOT_EQUALS`` filters.
- For example, for the following filters, Security Hub first identifies findings that have resource types that start with either ``AwsIam`` or ``AwsEc2``. It then excludes findings that have a resource type of ``AwsIamPolicy`` and findings that have a resource type of ``AwsEc2NetworkInterface``.
+ You can combine ``PREFIX`` filters with ``NOT_EQUALS`` or ``PREFIX_NOT_EQUALS`` filters for the same field. Security Hub CSPM first processes the ``PREFIX`` filters, and then the ``NOT_EQUALS`` or ``PREFIX_NOT_EQUALS`` filters.
+ For example, for the following filters, Security Hub CSPM first identifies findings that have resource types that start with either ``AwsIam`` or ``AwsEc2``. It then excludes findings that have a resource type of ``AwsIamPolicy`` and findings that have a resource type of ``AwsEc2NetworkInterface``.
   +   ``ResourceType PREFIX AwsIam`` 
   +   ``ResourceType PREFIX AwsEc2`` 
   +   ``ResourceType NOT_EQUALS AwsIamPolicy`` 
   +   ``ResourceType NOT_EQUALS AwsEc2NetworkInterface`` 
   
-  ``CONTAINS`` and ``NOT_CONTAINS`` operators can be used only with automation rules. For more information, see [Automation rules](https://docs.aws.amazon.com/securityhub/latest/userguide/automation-rules.html) in the *User Guide*.
-* **Value**: string (Required): The string filter value. Filter values are case sensitive. For example, the product name for control-based findings is ``Security Hub``. If you provide ``security hub`` as the filter value, there's no match.
+ The ``CONTAINS`` operator works with automation rules V1 and V2. The ``NOT_CONTAINS`` operator works only with automation rules V1. The ``CONTAINS_WORD`` operator works only in the ``GetFindingsV2``, ``GetFindingStatisticsV2``, ``GetResourcesV2``, and ``GetResourcesStatisticsV2`` APIs. For more information, see [Automation rules](https://docs.aws.amazon.com/securityhub/latest/userguide/automation-rules.html) in the *User Guide*.
+* **Value**: string (Required): The string filter value. Filter values are case sensitive. For example, the product name for control-based findings is ``Security Hub CSPM``. If you provide ``security hub`` as the filter value, there's no match.
+
+## StringFilter
+### Properties
+* **Comparison**: string (Required): The condition to apply to a string value when filtering findings
+* **Value**: string (Required): The string filter value
 
 ## StringFilter
 ### Properties
 * **Comparison**: string (Required)
 * **Value**: string (Required)
+
+## Tags
+### Properties
+
+## Tags
+### Properties
+
+## Tags
+### Properties
+
+## Tags
+### Properties
+
+## Tags
+### Properties
 
 ## Tags
 ### Properties

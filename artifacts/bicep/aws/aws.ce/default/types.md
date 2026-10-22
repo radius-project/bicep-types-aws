@@ -1,21 +1,24 @@
 # AWS.CE @ default
 
 ## Resource AWS.CE/AnomalyMonitor@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CE/AnomalyMonitorProperties](#awsceanomalymonitorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CE/AnomalySubscription@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CE/AnomalySubscriptionProperties](#awsceanomalysubscriptionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CE/CostCategory@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -55,6 +58,12 @@
 * **Rules**: string (Required): JSON array format of Expression in Billing and Cost Management API
 * **RuleVersion**: string (Required)
 * **SplitChargeRules**: string: Json array format of CostCategorySplitChargeRule in Billing and Cost Management API
+* **Tags**: [ResourceTag](#resourcetag)[]: Tags to assign to the cost category.
+
+## ResourceTag
+### Properties
+* **Key**: string (Required): The key name for the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## ResourceTag
 ### Properties

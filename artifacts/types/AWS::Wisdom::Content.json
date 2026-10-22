@@ -1,0 +1,217 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Wisdom-Content",
+  "type": "AWS::Wisdom::Content",
+  "time": "2026-10-21T23:36:01.115Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/KnowledgeBaseId",
+        "/properties/ContentId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/KnowledgeBaseId",
+      "/properties/Name"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^(?!aws:)[a-zA-Z+-=._:/]+$",
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::Wisdom::Content Resource Type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "wisdom:CreateContent",
+          "wisdom:GetContent",
+          "wisdom:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "wisdom:DeleteContent",
+          "wisdom:GetContent",
+          "wisdom:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "KnowledgeBaseId": {
+              "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "KnowledgeBaseId"
+          ]
+        },
+        "permissions": [
+          "wisdom:ListContents"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "wisdom:GetContent",
+          "wisdom:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "wisdom:UpdateContent",
+          "wisdom:GetContent",
+          "wisdom:ListTagsForResource",
+          "wisdom:TagResource",
+          "wisdom:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ContentArn"
+    ],
+    "properties": {
+      "ContentArn": {
+        "description": "The Amazon Resource Name (ARN) of the content.",
+        "pattern": "^arn:[a-z-]*?:wisdom:[a-z0-9-]*?:[0-9]{12}:[a-z-]*?/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(?:/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}){0,2}$",
+        "type": "string"
+      },
+      "ContentId": {
+        "description": "The identifier of the content.",
+        "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+        "type": "string"
+      },
+      "ContentType": {
+        "description": "The media type of the content.",
+        "type": "string"
+      },
+      "KnowledgeBaseArn": {
+        "description": "The Amazon Resource Name (ARN) of the knowledge base.",
+        "pattern": "^arn:[a-z-]*?:wisdom:[a-z0-9-]*?:[0-9]{12}:[a-z-]*?/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(?:/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}){0,2}$",
+        "type": "string"
+      },
+      "KnowledgeBaseId": {
+        "description": "The identifier of the knowledge base.",
+        "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+        "type": "string"
+      },
+      "LinkOutUri": {
+        "description": "The URI of the content.",
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Metadata": {
+        "additionalProperties": false,
+        "description": "A key/value map to store attributes without affecting tagging or recommendations.",
+        "maxProperties": 10,
+        "patternProperties": {
+          "^.+$": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Name": {
+        "description": "The name of the content.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9\\s_.,-]+",
+        "type": "string"
+      },
+      "OverrideLinkOutUri": {
+        "description": "The URI you want to use for the article.",
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "RevisionId": {
+        "description": "The identifier of the content revision.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the content.",
+        "enum": [
+          "CREATE_IN_PROGRESS",
+          "CREATE_FAILED",
+          "ACTIVE",
+          "DELETE_IN_PROGRESS",
+          "DELETE_FAILED",
+          "DELETED",
+          "UPDATE_FAILED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags used to organize, track, or control access for this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "Title": {
+        "description": "The title of the content.",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "UploadId": {
+        "description": "A pointer to the uploaded asset. This value is returned by StartContentUpload.",
+        "maxLength": 1200,
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ContentArn",
+      "/properties/ContentId",
+      "/properties/ContentType",
+      "/properties/KnowledgeBaseArn",
+      "/properties/LinkOutUri",
+      "/properties/RevisionId",
+      "/properties/Status"
+    ],
+    "required": [
+      "KnowledgeBaseId",
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "wisdom:TagResource",
+        "wisdom:UntagResource",
+        "wisdom:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Wisdom::Content",
+    "writeOnlyProperties": [
+      "/properties/UploadId"
+    ]
+  }
+}

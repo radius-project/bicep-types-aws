@@ -27,6 +27,47 @@
     "value": "AWS.Transfer/AgreementProperties"
   },
   {
+    "$type": "ObjectType",
+    "name": "Agreement_CustomDirectories",
+    "properties": {
+      "FailedFilesDirectory": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies a location to store the failed files for an AS2 message."
+      },
+      "MdnFilesDirectory": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies a location to store the MDN file for an AS2 message."
+      },
+      "PayloadFilesDirectory": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies a location to store the payload file for an AS2 message."
+      },
+      "StatusFilesDirectory": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies a location to store the status file for an AS2 message."
+      },
+      "TemporaryFilesDirectory": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies a location to store the temporary processing file for an AS2 message."
+      }
+    }
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/0"
@@ -61,8 +102,15 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "Specifies the base directory for the agreement."
+      },
+      "CustomDirectories": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Specifies a separate directory for each type of file to store for an AS2 message."
       },
       "Description": {
         "type": {
@@ -70,6 +118,13 @@
         },
         "flags": 0,
         "description": "A textual description for the agreement."
+      },
+      "EnforceMessageSigning": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies whether to enforce an AS2 message is signed for this agreement."
       },
       "LocalProfileId": {
         "type": {
@@ -84,6 +139,13 @@
         },
         "flags": 1,
         "description": "A unique identifier for the partner profile."
+      },
+      "PreserveFilename": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies whether to preserve the filename received for this agreement."
       },
       "ServerId": {
         "type": {
@@ -101,7 +163,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to group and search for agreements. Tags are metadata attached to agreements for any purpose."
@@ -128,7 +190,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -138,11 +200,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Transfer/Agreement@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/5"
+      "$ref": "#/6"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -171,7 +233,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/8"
     }
   },
   {
@@ -264,7 +326,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to group and search for certificates. Tags are metadata attached to certificates for any purpose."
@@ -305,7 +367,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -315,11 +377,82 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Transfer/Certificate@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/12"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectorAsyncMdnConfig",
+    "properties": {
+      "ServerIds": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1
+      },
+      "Url": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "URL of the server to receive the MDN response on"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectorEgressConfig",
+    "properties": {
+      "VpcLattice": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectorEgressType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectorStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectorVpcLatticeEgressConfig",
+    "properties": {
+      "PortNumber": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Port to connect to on the target VPC Lattice resource"
+      },
+      "ResourceConfigurationArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "ARN of the VPC Lattice resource configuration"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IpAddressType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServerId",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -347,6 +480,15 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.Transfer/ConnectorProperties"
   },
@@ -354,6 +496,13 @@
     "$type": "ObjectType",
     "name": "Connector_As2Config",
     "properties": {
+      "AsyncMdnConfig": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "Configuration for an AS2 connector with ASYNC MDN Response"
+      },
       "BasicAuthSecretId": {
         "type": {
           "$ref": "#/1"
@@ -410,6 +559,13 @@
         "flags": 0,
         "description": "A unique identifier for the partner profile."
       },
+      "PreserveContentType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies whether to use the AWS S3 object content-type as the content-type for the AS2 message."
+      },
       "SigningAlgorithm": {
         "type": {
           "$ref": "#/1"
@@ -432,12 +588,32 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "Connector_SftpConfig",
     "properties": {
+      "MaxConcurrentConnections": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Specifies the number of active connections that your connector can establish with the remote server at the same time."
+      },
+      "OrderedUserSecretVersionStages": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "Specifies the order in which the connector attempts to use secret versions during authentication. This enables fallback to alternative credentials if the primary version fails."
+      },
       "TrustedHostKeys": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "List of public host keys, for the external server to which you are connecting."
@@ -454,7 +630,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/22"
     }
   },
   {
@@ -477,7 +653,7 @@
       },
       "As2Config": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "Configuration for an AS2 connector."
@@ -488,6 +664,33 @@
         },
         "flags": 18,
         "description": "A unique identifier for the connector."
+      },
+      "EgressConfig": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Egress configuration for the connector."
+      },
+      "EgressType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the egress type for the connector."
+      },
+      "ErrorMessage": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Detailed error message when Connector in ERRORED status"
+      },
+      "IpAddressType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
       },
       "LoggingRole": {
         "type": {
@@ -505,21 +708,27 @@
       },
       "ServiceManagedEgressIpAddresses": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/27"
         },
         "flags": 2,
         "description": "The list of egress IP addresses of this connector. These IP addresses are assigned automatically when you create the connector."
       },
       "SftpConfig": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "Configuration for an SFTP connector."
       },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
       "Tags": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to group and search for connectors. Tags are metadata attached to connectors for any purpose."
@@ -528,7 +737,7 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "URL for Connector"
       }
     }
@@ -553,7 +762,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/32"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -563,11 +772,167 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Transfer/Connector@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/22"
+      "$ref": "#/33"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name assigned to the tag that you create."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Contains one or more values that you assigned to the key name you create."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Transfer/HostKeyProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/35"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Transfer/HostKeyProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The unique Amazon Resource Name (ARN) for the host key."
+      },
+      "DateImported": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The date on which the host key was added to the server."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The text description for this host key."
+      },
+      "HostKeyBody": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The private key portion of an SSH key pair. Transfer Family accepts RSA, ECDSA, and ED25519 keys."
+      },
+      "HostKeyFingerprint": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The public key fingerprint, which is a short sequence of bytes used to identify the longer public key."
+      },
+      "HostKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "A unique identifier for the host key."
+      },
+      "KmsKey": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The Amazon Resource Name (ARN) of a customer managed key used to encrypt the Secrets Manager secret that holds the host key. Applies only when StorageType is SECRETS_MANAGER. If omitted, the AWS managed key is used."
+      },
+      "SecretId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the Secrets Manager secret that holds the host key. Returned only when StorageType is SECRETS_MANAGER."
+      },
+      "ServerId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier of the server that contains the host key."
+      },
+      "StorageType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of storage used for the host key. SERVICE_MANAGED keys are stored within the Transfer Family service. SECRETS_MANAGER keys are stored in an AWS Secrets Manager secret in your account."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0,
+        "description": "Key-value pairs that can be used to group and search for host keys."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The encryption algorithm that is used for the host key."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Transfer/HostKey",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Transfer/HostKey@default",
+    "body": {
+      "$ref": "#/39"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -607,7 +972,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/42"
     }
   },
   {
@@ -630,7 +995,7 @@
       },
       "CertificateIds": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "List of the certificate IDs associated with this profile to be used for encryption and signing of AS2 messages."
@@ -651,7 +1016,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -678,7 +1043,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/46"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -688,11 +1053,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Transfer/Profile@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/30"
+      "$ref": "#/47"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -715,19 +1080,19 @@
     "properties": {
       "AddressAllocationIds": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/71"
         },
         "flags": 0
       },
@@ -793,6 +1158,11 @@
   },
   {
     "$type": "ObjectType",
+    "name": "IpAddressType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Protocol",
     "properties": {}
   },
@@ -802,13 +1172,19 @@
     "properties": {
       "As2Transports": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/72"
         },
         "flags": 0
       },
       "PassiveIp": {
         "type": {
           "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ProxyConfig": {
+        "type": {
+          "$ref": "#/59"
         },
         "flags": 0
       },
@@ -825,6 +1201,23 @@
         "flags": 0
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProxyConfig",
+    "properties": {
+      "SftpMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProxyMode",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -900,13 +1293,13 @@
     "properties": {
       "OnPartialUpload": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/73"
         },
         "flags": 0
       },
       "OnUpload": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/74"
         },
         "flags": 0
       }
@@ -939,13 +1332,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
+      "$ref": "#/67"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
+      "$ref": "#/67"
     }
   },
   {
@@ -959,10 +1352,7 @@
     }
   },
   {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
+    "$type": "BooleanType"
   },
   {
     "$type": "ArrayType",
@@ -973,7 +1363,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/45"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/65"
     }
   },
   {
@@ -988,7 +1384,7 @@
       },
       "As2ServiceManagedEgressIpAddresses": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/76"
         },
         "flags": 2,
         "description": "The list of egress IP addresses of this server. These IP addresses are only relevant for servers that use the AS2 protocol. They are used for sending asynchronous MDNs. These IP addresses are assigned automatically when you create an AS2 server. Additionally, if you update an existing server and add the AS2 protocol, static IP addresses are assigned as well."
@@ -999,6 +1395,13 @@
         },
         "flags": 0
       },
+      "CreateWithHostKey": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 4,
+        "description": "When this property is `true`, AWS Transfer Family will generate an initial host key for your server, making it immediately available to SFTP clients. When set to `false`, clients will not be able to establish an SFTP session until you import one or more host keys (see AWS::Transfer::HostKey). This property cannot be changed after resource creation. Default: `true`."
+      },
       "Domain": {
         "type": {
           "$ref": "#/1"
@@ -1007,7 +1410,7 @@
       },
       "EndpointDetails": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/52"
         },
         "flags": 0
       },
@@ -1019,7 +1422,7 @@
       },
       "IdentityProviderDetails": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/54"
         },
         "flags": 0
       },
@@ -1027,7 +1430,13 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 4
+        "flags": 0
+      },
+      "IpAddressType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
       },
       "LoggingRole": {
         "type": {
@@ -1049,19 +1458,19 @@
       },
       "ProtocolDetails": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/58"
         },
         "flags": 0
       },
       "Protocols": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/78"
         },
         "flags": 0
       },
       "S3StorageOptions": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/61"
         },
         "flags": 0
       },
@@ -1085,19 +1494,19 @@
       },
       "StructuredLogDestinations": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/79"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/80"
         },
         "flags": 0
       },
       "WorkflowDetails": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/68"
         },
         "flags": 0
       }
@@ -1123,7 +1532,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/81"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1133,11 +1542,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Transfer/Server@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/61"
+      "$ref": "#/82"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1179,19 +1588,19 @@
     "properties": {
       "Gid": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "SecondaryGids": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "Uid": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -1216,12 +1625,9 @@
     }
   },
   {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/68"
+      "$ref": "#/24"
     }
   },
   {
@@ -1231,7 +1637,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/63"
+      "$ref": "#/84"
     }
   },
   {
@@ -1243,7 +1649,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/67"
+      "$ref": "#/88"
     }
   },
   {
@@ -1264,7 +1670,7 @@
       },
       "HomeDirectoryMappings": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/91"
         },
         "flags": 0
       },
@@ -1282,7 +1688,7 @@
       },
       "PosixProfile": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/87"
         },
         "flags": 0
       },
@@ -1300,14 +1706,14 @@
       },
       "SshPublicKeys": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/92"
         },
         "flags": 0,
         "description": "This represents the SSH User Public Keys for CloudFormation resource"
       },
       "Tags": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/93"
         },
         "flags": 0
       },
@@ -1339,7 +1745,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/94"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1349,11 +1755,263 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Transfer/User@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/75"
+      "$ref": "#/95"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointDetails",
+    "properties": {
+      "Vpc": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IdentityProviderDetails",
+    "properties": {
+      "ApplicationArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) for the IAM Identity Center used for the web app."
+      },
+      "Role": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The IAM role in IAM Identity Center used for the web app."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Vpc",
+    "properties": {
+      "IpAddressType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The IP address type for the VPC endpoint used by the web app."
+      },
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 4
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/105"
+        },
+        "flags": 0
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebAppCustomization",
+    "properties": {
+      "FaviconFile": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies a favicon to display in the browser tab."
+      },
+      "LogoFile": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies a logo to display on the web app."
+      },
+      "Title": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies a title to display on the web app."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebAppEndpointPolicy",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebAppUnits",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Transfer/WebAppProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/99"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Transfer/WebAppProperties",
+    "properties": {
+      "AccessEndpoint": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The AccessEndpoint is the URL that you provide to your users for them to interact with the Transfer Family web app. You can specify a custom URL or use the default value."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Specifies the unique Amazon Resource Name (ARN) for the web app."
+      },
+      "EndpointDetails": {
+        "type": {
+          "$ref": "#/97"
+        },
+        "flags": 0
+      },
+      "IdentityProviderDetails": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/107"
+        },
+        "flags": 0,
+        "description": "Key-value pairs that can be used to group and search for web apps."
+      },
+      "VpcEndpointId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "WebAppCustomization": {
+        "type": {
+          "$ref": "#/101"
+        },
+        "flags": 0
+      },
+      "WebAppEndpointPolicy": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "WebAppId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "A unique identifier for the web app."
+      },
+      "WebAppUnits": {
+        "type": {
+          "$ref": "#/103"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Transfer/WebApp",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Transfer/WebApp@default",
+    "body": {
+      "$ref": "#/109"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1381,13 +2039,13 @@
     "properties": {
       "EfsFileLocation": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/111"
         },
         "flags": 0
       },
       "S3FileLocation": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/114"
         },
         "flags": 0
       }
@@ -1399,7 +2057,7 @@
     "properties": {
       "S3FileLocation": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/114"
         },
         "flags": 0
       }
@@ -1471,35 +2129,35 @@
     "properties": {
       "CopyStepDetails": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": "Details for a step that performs a file copy."
       },
       "CustomStepDetails": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/119"
         },
         "flags": 0,
         "description": "Details for a step that invokes a lambda function."
       },
       "DecryptStepDetails": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "Details for a step that performs a file decryption."
       },
       "DeleteStepDetails": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/121"
         },
         "flags": 0,
         "description": "Details for a step that deletes the file."
       },
       "TagStepDetails": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "Details for a step that creates one or more tags."
@@ -1518,7 +2176,7 @@
     "properties": {
       "DestinationFileLocation": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/113"
         },
         "flags": 0
       },
@@ -1572,7 +2230,7 @@
       },
       "TimeoutSeconds": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Timeout, in seconds, for the step."
@@ -1585,7 +2243,7 @@
     "properties": {
       "DestinationFileLocation": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/112"
         },
         "flags": 1
       },
@@ -1642,7 +2300,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/81"
+      "$ref": "#/115"
     }
   },
   {
@@ -1665,7 +2323,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "Array that contains from 1 to 10 key/value pairs."
@@ -1679,19 +2337,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/83"
+      "$ref": "#/117"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/83"
+      "$ref": "#/117"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/82"
+      "$ref": "#/116"
     }
   },
   {
@@ -1714,21 +2372,21 @@
       },
       "OnExceptionSteps": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/125"
         },
         "flags": 0,
         "description": "Specifies the steps (actions) to take if any errors are encountered during execution of the workflow."
       },
       "Steps": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/126"
         },
         "flags": 1,
         "description": "Specifies the details for the steps that are in the specified workflow."
       },
       "Tags": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/127"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to group and search for workflows. Tags are metadata attached to workflows for any purpose."
@@ -1762,7 +2420,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/128"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1772,10 +2430,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Transfer/Workflow@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/95"
+      "$ref": "#/129"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

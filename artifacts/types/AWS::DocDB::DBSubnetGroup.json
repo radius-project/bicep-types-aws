@@ -1,0 +1,115 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DocDB-DBSubnetGroup",
+  "type": "AWS::DocDB::DBSubnetGroup",
+  "time": "2026-10-19T17:30:44.787Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DBSubnetGroupName"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::DocDB::DBSubnetGroup",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "rds:CreateDBSubnetGroup",
+          "rds:AddTagsToResource",
+          "rds:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "rds:DeleteDBSubnetGroup"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "rds:DescribeDBSubnetGroups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "rds:DescribeDBSubnetGroups",
+          "rds:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "rds:ModifyDBSubnetGroup",
+          "rds:AddTagsToResource",
+          "rds:RemoveTagsFromResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DBSubnetGroupName"
+    ],
+    "properties": {
+      "DBSubnetGroupDescription": {
+        "description": "The description for the subnet group.",
+        "maxLength": 100,
+        "minLength": 1,
+        "type": "string"
+      },
+      "DBSubnetGroupName": {
+        "description": "The name for the db subnet group. This value is stored as a lowercase string.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "[a-zA-Z][0-9a-zA-Z-:._ ]*",
+        "type": "string"
+      },
+      "SubnetIds": {
+        "description": "One or more subnet IDs to be assigned to the db subnet group.",
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 20,
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": false
+      },
+      "Tags": {
+        "description": "One or more tags to be assigned to the db subnet group",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      }
+    },
+    "required": [
+      "DBSubnetGroupDescription",
+      "SubnetIds"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "rds:AddTagsToResource",
+        "rds:ListTagsForResource",
+        "rds:RemoveTagsFromResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::DocDB::DBSubnetGroup"
+  }
+}

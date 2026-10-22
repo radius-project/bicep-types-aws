@@ -1,0 +1,285 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-MLTransform",
+  "type": "AWS::Glue::MLTransform",
+  "time": "2026-10-14T16:59:01.692Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/InputRecordTables",
+      "/properties/TransformEncryption",
+      "/properties/TransformParameters/FindMatchesParameters/PrimaryKeyColumnName"
+    ],
+    "definitions": {
+      "FindMatchesParameters": {
+        "additionalProperties": false,
+        "description": "The parameters to configure the find matches transform.",
+        "properties": {
+          "AccuracyCostTradeoff": {
+            "description": "The value for accuracy and cost tradeoff. A value of 0.5 means balance.",
+            "type": "number"
+          },
+          "EnforceProvidedLabels": {
+            "description": "If true, forces the output to match the provided labels.",
+            "type": "boolean"
+          },
+          "PrecisionRecallTradeoff": {
+            "description": "The value for precision and recall tradeoff. A value of 0.5 means no preference.",
+            "type": "number"
+          },
+          "PrimaryKeyColumnName": {
+            "description": "The name of a column that uniquely identifies rows in the source table.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "PrimaryKeyColumnName"
+        ],
+        "type": "object"
+      },
+      "GlueTables": {
+        "additionalProperties": false,
+        "description": "The database and table in the AWS Glue Data Catalog that is used for input or output data.",
+        "properties": {
+          "CatalogId": {
+            "description": "A unique identifier for the AWS Glue Data Catalog.",
+            "type": "string"
+          },
+          "ConnectionName": {
+            "description": "The name of the connection to the AWS Glue Data Catalog.",
+            "type": "string"
+          },
+          "DatabaseName": {
+            "description": "A database name in the AWS Glue Data Catalog.",
+            "type": "string"
+          },
+          "TableName": {
+            "description": "A table name in the AWS Glue Data Catalog.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "DatabaseName",
+          "TableName"
+        ],
+        "type": "object"
+      },
+      "InputRecordTables": {
+        "additionalProperties": false,
+        "description": "A list of AWS Glue table definitions used by the transform.",
+        "properties": {
+          "GlueTables": {
+            "description": "The database and table in the AWS Glue Data Catalog that is used for input or output data.",
+            "items": {
+              "$ref": "#/definitions/GlueTables"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "MLUserDataEncryption": {
+        "additionalProperties": false,
+        "description": "The encryption-at-rest settings of the transform that apply to accessing user data.",
+        "properties": {
+          "KmsKeyId": {
+            "description": "The ID for the customer-provided KMS key.",
+            "type": "string"
+          },
+          "MLUserDataEncryptionMode": {
+            "description": "The encryption mode applied to user data.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "MLUserDataEncryptionMode"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key"
+        ],
+        "type": "object"
+      },
+      "TransformEncryption": {
+        "additionalProperties": false,
+        "description": "The encryption-at-rest settings of the transform that apply to accessing user data.",
+        "properties": {
+          "MLUserDataEncryption": {
+            "$ref": "#/definitions/MLUserDataEncryption"
+          },
+          "TaskRunSecurityConfigurationName": {
+            "description": "The name of the security configuration.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "TransformParameters": {
+        "additionalProperties": false,
+        "description": "The algorithm-specific parameters that are associated with the machine learning transform.",
+        "properties": {
+          "FindMatchesParameters": {
+            "$ref": "#/definitions/FindMatchesParameters"
+          },
+          "TransformType": {
+            "description": "The type of machine learning transform.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "TransformType"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Glue::MLTransform",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "glue:CreateMLTransform",
+          "glue:GetMLTransform",
+          "glue:TagResource",
+          "glue:GetTable",
+          "glue:GetDatabase",
+          "iam:PassRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "glue:DeleteMLTransform",
+          "glue:GetMLTransform"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "glue:ListMLTransforms",
+          "glue:GetMLTransforms"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "glue:GetMLTransform",
+          "glue:GetTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "glue:UpdateMLTransform",
+          "glue:GetMLTransform",
+          "glue:TagResource",
+          "glue:UntagResource",
+          "glue:GetTags",
+          "glue:GetTable",
+          "glue:GetDatabase",
+          "iam:PassRole"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/TransformId"
+    ],
+    "properties": {
+      "Description": {
+        "description": "A user-defined, long-form description text for the machine learning transform.",
+        "type": "string"
+      },
+      "GlueVersion": {
+        "description": "The version of AWS Glue this machine learning transform is compatible with.",
+        "type": "string"
+      },
+      "InputRecordTables": {
+        "$ref": "#/definitions/InputRecordTables",
+        "description": "A list of AWS Glue table definitions used by the transform."
+      },
+      "MaxCapacity": {
+        "description": "The number of AWS Glue DPUs allocated to task runs for this transform.",
+        "type": "number"
+      },
+      "MaxRetries": {
+        "description": "The maximum number of times to retry after an MLTaskRun fails.",
+        "type": "integer"
+      },
+      "Name": {
+        "description": "A user-defined name for the machine learning transform.",
+        "type": "string"
+      },
+      "NumberOfWorkers": {
+        "description": "The number of workers of a defined workerType that are allocated when a task runs.",
+        "type": "integer"
+      },
+      "Role": {
+        "description": "The name or ARN of the IAM role with the required permissions.",
+        "type": "string"
+      },
+      "Tags": {
+        "additionalProperties": false,
+        "description": "The tags to use with this machine learning transform.",
+        "patternProperties": {
+          ".*": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Timeout": {
+        "description": "The timeout in minutes of the machine learning transform.",
+        "type": "integer"
+      },
+      "TransformEncryption": {
+        "$ref": "#/definitions/TransformEncryption",
+        "description": "The encryption-at-rest settings of the transform."
+      },
+      "TransformId": {
+        "description": "The unique identifier for the transform.",
+        "type": "string"
+      },
+      "TransformParameters": {
+        "$ref": "#/definitions/TransformParameters",
+        "description": "The algorithm-specific parameters that are associated with the machine learning transform."
+      },
+      "WorkerType": {
+        "description": "The type of predefined worker that is allocated when a task runs.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/TransformId"
+    ],
+    "required": [
+      "InputRecordTables",
+      "TransformParameters",
+      "Role"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-glue.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "glue:TagResource",
+        "glue:UntagResource",
+        "glue:GetTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Glue::MLTransform"
+  }
+}

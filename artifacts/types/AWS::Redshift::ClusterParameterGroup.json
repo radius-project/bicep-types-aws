@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Redshift-ClusterParameterGroup",
   "type": "AWS::Redshift::ClusterParameterGroup",
-  "time": "2024-12-21T01:22:29.34Z",
+  "time": "2026-10-01T16:10:58.712Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -77,6 +77,7 @@
       "delete": {
         "permissions": [
           "redshift:DescribeTags",
+          "redshift:DeleteTags",
           "redshift:DescribeClusterParameterGroups",
           "redshift:DeleteClusterParameterGroup",
           "redshift:DescribeClusterParameters",
@@ -151,13 +152,17 @@
       "ParameterGroupFamily"
     ],
     "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "redshift:DescribeTags",
+        "redshift:CreateTags",
+        "redshift:DeleteTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::Redshift::ClusterParameterGroup",
-    "writeOnlyProperties": [
-      "/properties/Tags",
-      "/properties/Tags/*/Key",
-      "/properties/Tags/*/Value"
-    ]
+    "typeName": "AWS::Redshift::ClusterParameterGroup"
   }
 }

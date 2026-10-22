@@ -1,13 +1,38 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IAM-SAMLProvider",
   "type": "AWS::IAM::SAMLProvider",
-  "time": "2024-11-14T17:35:12.715Z",
+  "time": "2026-10-21T20:11:22.165Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/Name"
+      "/properties/Name",
+      "/properties/AddPrivateKey",
+      "/properties/RemovePrivateKey"
     ],
     "definitions": {
+      "SAMLPrivateKey": {
+        "additionalProperties": false,
+        "description": "The private key metadata for the SAML provider",
+        "properties": {
+          "KeyId": {
+            "description": "The unique identifier for the SAML private key.",
+            "maxLength": 64,
+            "minLength": 22,
+            "pattern": "[A-Z0-9]+",
+            "type": "string"
+          },
+          "Timestamp": {
+            "description": "The date and time, in \u003ca href=\\\"http://www.iso.org/iso/iso8601\\\"\u003eISO 8601 date-time \u003c/a\u003e format, when the private key was uploaded.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "KeyId",
+          "Timestamp"
+        ],
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "description": "A key-value pair to associate with a resource.",
@@ -71,10 +96,25 @@
       "/properties/Arn"
     ],
     "properties": {
+      "AddPrivateKey": {
+        "description": "The private key from your external identity provider",
+        "maxLength": 16384,
+        "minLength": 1,
+        "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+",
+        "type": "string"
+      },
       "Arn": {
         "description": "Amazon Resource Name (ARN) of the SAML provider",
         "maxLength": 1600,
         "minLength": 1,
+        "type": "string"
+      },
+      "AssertionEncryptionMode": {
+        "description": "The encryption setting for the SAML provider",
+        "enum": [
+          "Allowed",
+          "Required"
+        ],
         "type": "string"
       },
       "Name": {
@@ -83,9 +123,31 @@
         "pattern": "[\\w._-]+",
         "type": "string"
       },
+      "PrivateKeyList": {
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/SAMLPrivateKey"
+        },
+        "maxItems": 2,
+        "type": "array"
+      },
+      "RemovePrivateKey": {
+        "description": "The Key ID of the private key to remove",
+        "maxLength": 64,
+        "minLength": 22,
+        "pattern": "[A-Z0-9]+",
+        "type": "string"
+      },
       "SamlMetadataDocument": {
         "maxLength": 10000000,
         "minLength": 1000,
+        "type": "string"
+      },
+      "SamlProviderUUID": {
+        "description": "The unique identifier assigned to the SAML provider",
+        "maxLength": 64,
+        "minLength": 22,
+        "pattern": "[A-Z0-9]+",
         "type": "string"
       },
       "Tags": {
@@ -98,10 +160,8 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/Arn"
-    ],
-    "required": [
-      "SamlMetadataDocument"
+      "/properties/Arn",
+      "/properties/SamlProviderUUID"
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
@@ -115,6 +175,10 @@
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::IAM::SAMLProvider"
+    "typeName": "AWS::IAM::SAMLProvider",
+    "writeOnlyProperties": [
+      "/properties/AddPrivateKey",
+      "/properties/RemovePrivateKey"
+    ]
   }
 }

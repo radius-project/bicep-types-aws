@@ -1,14 +1,16 @@
 # AWS.Scheduler @ default
 
 ## Resource AWS.Scheduler/Schedule@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Scheduler/ScheduleProperties](#awsschedulerscheduleproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Scheduler/ScheduleGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

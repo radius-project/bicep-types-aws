@@ -1,0 +1,154 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SMSVOICE-Registration",
+  "type": "AWS::SMSVOICE::Registration",
+  "time": "2026-10-21T21:09:10.298Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/RegistrationId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/RegistrationType"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key identifier, or name, of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The string value associated with the key of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A registration that has been created.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "sms-voice:CreateRegistration",
+          "sms-voice:DescribeRegistrations",
+          "sms-voice:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "sms-voice:DeleteRegistration",
+          "sms-voice:DescribeRegistrations"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "sms-voice:DescribeRegistrations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sms-voice:DescribeRegistrations",
+          "sms-voice:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "sms-voice:DescribeRegistrations",
+          "sms-voice:TagResource",
+          "sms-voice:UntagResource",
+          "sms-voice:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/RegistrationArn"
+    ],
+    "properties": {
+      "CreatedTimestamp": {
+        "description": "The time when the registration was created, in UNIX epoch time format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CurrentVersionNumber": {
+        "description": "The current version number of the registration.",
+        "maximum": 100000,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "RegistrationArn": {
+        "description": "The Amazon Resource Name (ARN) for the registration.",
+        "type": "string"
+      },
+      "RegistrationId": {
+        "description": "The unique identifier for the registration.",
+        "type": "string"
+      },
+      "RegistrationStatus": {
+        "description": "The status of the registration.",
+        "enum": [
+          "CREATED",
+          "SUBMITTED",
+          "AWS_REVIEWING",
+          "REVIEWING",
+          "REQUIRES_AUTHENTICATION",
+          "PROVISIONING",
+          "COMPLETE",
+          "REQUIRES_UPDATES",
+          "CLOSED",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "RegistrationType": {
+        "description": "The type of registration form to create.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_]+$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of tags (key and value pairs) to associate with the registration.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/RegistrationArn",
+      "/properties/RegistrationId",
+      "/properties/RegistrationStatus",
+      "/properties/CurrentVersionNumber",
+      "/properties/CreatedTimestamp"
+    ],
+    "required": [
+      "RegistrationType"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "sms-voice:TagResource",
+        "sms-voice:UntagResource",
+        "sms-voice:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::SMSVOICE::Registration"
+  }
+}

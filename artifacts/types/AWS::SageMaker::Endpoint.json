@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-Endpoint",
   "type": "AWS::SageMaker::Endpoint",
-  "time": "2024-10-23T08:22:20.928Z",
+  "time": "2026-06-30T15:14:11.528Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -13,6 +13,8 @@
         "properties": {
           "AlarmName": {
             "description": "The name of the CloudWatch alarm.",
+            "maxLength": 255,
+            "minLength": 1,
             "type": "string"
           }
         },
@@ -30,7 +32,7 @@
               "$ref": "#/definitions/Alarm"
             },
             "type": "array",
-            "uniqueItems": true
+            "uniqueItems": false
           }
         },
         "required": [
@@ -43,10 +45,14 @@
         "properties": {
           "MaximumExecutionTimeoutInSeconds": {
             "description": "The maximum time allowed for the blue/green update, in seconds.",
+            "maximum": 28800,
+            "minimum": 600,
             "type": "integer"
           },
           "TerminationWaitInSeconds": {
             "description": "The wait time before terminating the old endpoint during a blue/green deployment.",
+            "maximum": 3600,
+            "minimum": 0,
             "type": "integer"
           },
           "TrafficRoutingConfiguration": {
@@ -68,6 +74,7 @@
           },
           "Value": {
             "description": "The value representing either the number of instances or the number of capacity units.",
+            "minimum": 1,
             "type": "integer"
           }
         },
@@ -104,6 +111,8 @@
           },
           "MaximumExecutionTimeoutInSeconds": {
             "description": "The maximum time allowed for the rolling update, in seconds.",
+            "maximum": 28800,
+            "minimum": 600,
             "type": "integer"
           },
           "RollbackMaximumBatchSize": {
@@ -112,6 +121,8 @@
           },
           "WaitIntervalInSeconds": {
             "description": "The time to wait between steps during the rolling update, in seconds.",
+            "maximum": 3600,
+            "minimum": 0,
             "type": "integer"
           }
         },
@@ -156,6 +167,8 @@
           },
           "WaitIntervalInSeconds": {
             "description": "Specifies the wait interval between traffic shifts, in seconds.",
+            "maximum": 3600,
+            "minimum": 0,
             "type": "integer"
           }
         },
@@ -182,7 +195,8 @@
           "sagemaker:CreateEndpoint",
           "sagemaker:DescribeEndpoint",
           "sagemaker:AddTags"
-        ]
+        ],
+        "timeoutInMinutes": 160
       },
       "delete": {
         "permissions": [
@@ -207,7 +221,8 @@
           "sagemaker:DescribeEndpoint",
           "sagemaker:AddTags",
           "sagemaker:DeleteTags"
-        ]
+        ],
+        "timeoutInMinutes": 970
       }
     },
     "primaryIdentifier": [
@@ -224,10 +239,14 @@
       },
       "EndpointConfigName": {
         "description": "The name of the endpoint configuration for the SageMaker endpoint. This is a required property.",
+        "maxLength": 64,
+        "minLength": 1,
         "type": "string"
       },
       "EndpointName": {
         "description": "The name of the SageMaker endpoint. This name must be unique within an AWS Region.",
+        "maxLength": 64,
+        "minLength": 1,
         "type": "string"
       },
       "ExcludeRetainedVariantProperties": {
@@ -256,8 +275,7 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/EndpointArn",
-      "/properties/EndpointName"
+      "/properties/EndpointArn"
     ],
     "required": [
       "EndpointConfigName"

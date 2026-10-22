@@ -1,14 +1,16 @@
 # AWS.ACMPCA @ default
 
 ## Resource AWS.ACMPCA/CertificateAuthority@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ACMPCA/CertificateAuthorityProperties](#awsacmpcacertificateauthorityproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ACMPCA/CertificateAuthorityActivation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -49,7 +51,9 @@
 ## CrlConfiguration
 ### Properties
 * **CrlDistributionPointExtensionConfiguration**: [CrlDistributionPointExtensionConfiguration](#crldistributionpointextensionconfiguration)
+* **CrlType**: string
 * **CustomCname**: string
+* **CustomPath**: string
 * **Enabled**: bool (Required)
 * **ExpirationInDays**: int
 * **S3BucketName**: string

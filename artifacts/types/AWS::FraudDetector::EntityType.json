@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-FraudDetector-EntityType",
   "type": "AWS::FraudDetector::EntityType",
-  "time": "2024-12-19T16:20:35.187Z",
+  "time": "2026-09-29T02:57:31.416Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -35,7 +35,8 @@
         "permissions": [
           "frauddetector:GetEntityTypes",
           "frauddetector:PutEntityType",
-          "frauddetector:ListTagsForResource"
+          "frauddetector:ListTagsForResource",
+          "frauddetector:TagResource"
         ]
       },
       "delete": {
@@ -115,6 +116,18 @@
       "Name"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "frauddetector:ListTagsForResource",
+        "frauddetector:TagResource",
+        "frauddetector:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::FraudDetector::EntityType"
   }
 }

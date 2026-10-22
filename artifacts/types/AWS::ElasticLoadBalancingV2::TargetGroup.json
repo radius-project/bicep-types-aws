@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ElasticLoadBalancingV2-TargetGroup",
   "type": "AWS::ElasticLoadBalancingV2::TargetGroup",
-  "time": "2025-01-14T17:08:28.048Z",
+  "time": "2026-10-19T17:17:55.687Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -60,6 +60,10 @@
           "Port": {
             "description": "The port on which the target is listening. If the target group protocol is GENEVE, the supported port is 6081. If the target type is alb, the targeted Application Load Balancer must have at least one listener whose port matches the target group port. Not used if the target is a Lambda function.",
             "type": "integer"
+          },
+          "QuicServerId": {
+            "description": "The Server ID used by targets when using QUIC or TCP_QUIC protocols.",
+            "type": "string"
           }
         },
         "required": [
@@ -91,7 +95,8 @@
           "elasticloadbalancing:RegisterTargets",
           "elasticloadbalancing:ModifyTargetGroupAttributes",
           "elasticloadbalancing:DescribeTargetHealth",
-          "elasticloadbalancing:AddTags"
+          "elasticloadbalancing:AddTags",
+          "ec2:DescribeVpcs"
         ]
       },
       "delete": {
@@ -122,7 +127,8 @@
           "elasticloadbalancing:DescribeTargetHealth",
           "elasticloadbalancing:DeregisterTargets",
           "elasticloadbalancing:AddTags",
-          "elasticloadbalancing:RemoveTags"
+          "elasticloadbalancing:RemoveTags",
+          "ec2:DescribeVpcs"
         ]
       }
     },
@@ -200,6 +206,10 @@
         "type": "array",
         "uniqueItems": false
       },
+      "TargetControlPort": {
+        "description": "The port that the target control agent uses to communicate the available capacity of targets to the load balancer.",
+        "type": "integer"
+      },
       "TargetGroupArn": {
         "description": "The ARN of the Target Group",
         "type": "string"
@@ -251,13 +261,14 @@
       "/properties/TargetGroupFullName"
     ],
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "elasticloadbalancing:AddTags",
         "elasticloadbalancing:DescribeTags",
-        "elasticloadbalancing:RemoveTags"
+        "elasticloadbalancing:RemoveTags",
+        "ec2:DescribeVpcs"
       ],
-      "tagOnCreate": false,
+      "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,
       "taggable": true

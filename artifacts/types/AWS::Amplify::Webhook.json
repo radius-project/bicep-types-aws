@@ -1,0 +1,159 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Amplify-Webhook",
+  "type": "AWS::Amplify::Webhook",
+  "time": "2026-10-21T22:37:44.435Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/WebhookId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AppId"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Amplify::Webhook. Creates a webhook on an Amplify app.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "amplify:CreateWebhook",
+          "amplify:GetWebhook",
+          "amplify:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "amplify:DeleteWebhook",
+          "amplify:GetWebhook"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "AppId": {
+              "maxLength": 20,
+              "minLength": 1,
+              "pattern": "^d[a-z0-9]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "AppId"
+          ]
+        },
+        "permissions": [
+          "amplify:ListWebhooks"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "amplify:GetWebhook",
+          "amplify:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "amplify:UpdateWebhook",
+          "amplify:GetWebhook",
+          "amplify:TagResource",
+          "amplify:UntagResource",
+          "amplify:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AppId": {
+        "description": "The unique ID for an Amplify app.",
+        "maxLength": 20,
+        "minLength": 1,
+        "pattern": "^d[a-z0-9]+$",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) for the webhook.",
+        "maxLength": 1000,
+        "type": "string"
+      },
+      "BranchName": {
+        "description": "The name for a branch that is part of an Amplify app.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^(?s).+$",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description for a webhook.",
+        "maxLength": 1000,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags for the webhook.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "WebhookId": {
+        "description": "The unique ID for a webhook.",
+        "maxLength": 255,
+        "type": "string"
+      },
+      "WebhookUrl": {
+        "description": "The URL of the webhook.",
+        "maxLength": 1000,
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/WebhookId",
+      "/properties/WebhookUrl"
+    ],
+    "required": [
+      "BranchName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "amplify:TagResource",
+        "amplify:UntagResource",
+        "amplify:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Amplify::Webhook",
+    "writeOnlyProperties": [
+      "/properties/AppId"
+    ]
+  }
+}

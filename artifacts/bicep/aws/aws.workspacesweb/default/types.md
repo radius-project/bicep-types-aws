@@ -1,63 +1,80 @@
 # AWS.WorkSpacesWeb @ default
 
 ## Resource AWS.WorkSpacesWeb/BrowserSettings@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WorkSpacesWeb/BrowserSettingsProperties](#awsworkspaceswebbrowsersettingsproperties) (Identifier): properties of the resource
 
 ## Resource AWS.WorkSpacesWeb/DataProtectionSettings@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WorkSpacesWeb/DataProtectionSettingsProperties](#awsworkspaceswebdataprotectionsettingsproperties) (Identifier): properties of the resource
 
 ## Resource AWS.WorkSpacesWeb/IdentityProvider@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WorkSpacesWeb/IdentityProviderProperties](#awsworkspaceswebidentityproviderproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WorkSpacesWeb/IpAccessSettings@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WorkSpacesWeb/IpAccessSettingsProperties](#awsworkspaceswebipaccesssettingsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WorkSpacesWeb/NetworkSettings@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WorkSpacesWeb/NetworkSettingsProperties](#awsworkspaceswebnetworksettingsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WorkSpacesWeb/Portal@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WorkSpacesWeb/PortalProperties](#awsworkspaceswebportalproperties) (Identifier): properties of the resource
 
+## Resource AWS.WorkSpacesWeb/SessionLogger@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.WorkSpacesWeb/SessionLoggerProperties](#awsworkspaceswebsessionloggerproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.WorkSpacesWeb/TrustStore@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WorkSpacesWeb/TrustStoreProperties](#awsworkspaceswebtruststoreproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WorkSpacesWeb/UserAccessLoggingSettings@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WorkSpacesWeb/UserAccessLoggingSettingsProperties](#awsworkspaceswebuseraccessloggingsettingsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WorkSpacesWeb/UserSettings@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -71,6 +88,7 @@
 * **BrowserSettingsArn**: string (ReadOnly, Identifier)
 * **CustomerManagedKey**: string
 * **Tags**: [Tag](#tag)[]
+* **WebContentFilteringPolicy**: [WebContentFilteringPolicy](#webcontentfilteringpolicy)
 
 ## AWS.WorkSpacesWeb/DataProtectionSettingsProperties
 ### Properties
@@ -129,15 +147,29 @@
 * **MaxConcurrentSessions**: int
 * **NetworkSettingsArn**: string
 * **PortalArn**: string (ReadOnly, Identifier)
+* **PortalCustomDomain**: string
 * **PortalEndpoint**: string (ReadOnly)
 * **PortalStatus**: string (ReadOnly)
 * **RendererType**: string (ReadOnly)
 * **ServiceProviderSamlMetadata**: string (ReadOnly)
+* **SessionLoggerArn**: string
 * **StatusReason**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]
 * **TrustStoreArn**: string
 * **UserAccessLoggingSettingsArn**: string
 * **UserSettingsArn**: string
+
+## AWS.WorkSpacesWeb/SessionLoggerProperties
+### Properties
+* **AdditionalEncryptionContext**: [EncryptionContextMap](#encryptioncontextmap)
+* **AssociatedPortalArns**: string[] (ReadOnly)
+* **CreationDate**: string (ReadOnly)
+* **CustomerManagedKey**: string
+* **DisplayName**: string
+* **EventFilter**: [EventFilter](#eventfilter) (Required)
+* **LogConfiguration**: [LogConfiguration](#logconfiguration) (Required)
+* **SessionLoggerArn**: string (ReadOnly, Identifier)
+* **Tags**: [Tag](#tag)[]
 
 ## AWS.WorkSpacesWeb/TrustStoreProperties
 ### Properties
@@ -157,6 +189,7 @@
 ### Properties
 * **AdditionalEncryptionContext**: [EncryptionContextMap](#encryptioncontextmap)
 * **AssociatedPortalArns**: string[] (ReadOnly)
+* **BrandingConfiguration**: [BrandingConfiguration](#brandingconfiguration)
 * **CookieSynchronizationConfiguration**: [CookieSynchronizationConfiguration](#cookiesynchronizationconfiguration)
 * **CopyAllowed**: string (Required)
 * **CustomerManagedKey**: string
@@ -167,8 +200,22 @@
 * **PasteAllowed**: string (Required)
 * **PrintAllowed**: string (Required)
 * **Tags**: [Tag](#tag)[]
+* **ToolbarConfiguration**: [ToolbarConfiguration](#toolbarconfiguration)
 * **UploadAllowed**: string (Required)
 * **UserSettingsArn**: string (ReadOnly, Identifier)
+* **WebAuthnAllowed**: string
+
+## BrandingConfiguration
+### Properties
+* **ColorTheme**: string
+* **Favicon**: string (WriteOnly)
+* **FaviconMetadata**: [ImageMetadata](#imagemetadata) (ReadOnly)
+* **LocalizedStrings**: [LocalizedBrandingStringMap](#localizedbrandingstringmap)
+* **Logo**: string (WriteOnly)
+* **LogoMetadata**: [ImageMetadata](#imagemetadata) (ReadOnly)
+* **TermsOfService**: string
+* **Wallpaper**: string (WriteOnly)
+* **WallpaperMetadata**: [ImageMetadata](#imagemetadata) (ReadOnly)
 
 ## CookieSpecification
 ### Properties
@@ -203,8 +250,20 @@
 ## EncryptionContextMap
 ### Properties
 
+## EncryptionContextMap
+### Properties
+
+## EventFilter
+### Properties
+
 ## IdentityProviderDetails
 ### Properties
+
+## ImageMetadata
+### Properties
+* **FileExtension**: string (Required)
+* **LastUploadTimestamp**: string (Required)
+* **MimeType**: string (Required)
 
 ## InlineRedactionConfiguration
 ### Properties
@@ -227,15 +286,25 @@
 * **Description**: string
 * **IpRange**: string (Required): A single IP address or an IP address range in CIDR notation
 
+## LocalizedBrandingStringMap
+### Properties
+
+## LogConfiguration
+### Properties
+* **S3**: [S3LogConfiguration](#s3logconfiguration)
+
 ## RedactionPlaceHolder
 ### Properties
 * **RedactionPlaceHolderText**: string
 * **RedactionPlaceHolderType**: string (Required)
 
-## Tag
+## S3LogConfiguration
 ### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Bucket**: string (Required)
+* **BucketOwner**: string
+* **FolderStructure**: string (Required)
+* **KeyPrefix**: string
+* **LogFileFormat**: string (Required)
 
 ## Tag
 ### Properties
@@ -276,4 +345,27 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## ToolbarConfiguration
+### Properties
+* **HiddenToolbarItems**: string[]
+* **MaxDisplayResolution**: string
+* **ToolbarType**: string
+* **VisualMode**: string
+
+## WebContentFilteringPolicy
+### Properties
+* **AllowedUrls**: string[]
+* **BlockedCategories**: string[]
+* **BlockedUrls**: string[]
 

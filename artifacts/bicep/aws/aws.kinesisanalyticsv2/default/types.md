@@ -1,7 +1,8 @@
 # AWS.KinesisAnalyticsV2 @ default
 
 ## Resource AWS.KinesisAnalyticsV2/Application@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -18,6 +19,7 @@
 ## ApplicationConfiguration
 ### Properties
 * **ApplicationCodeConfiguration**: [ApplicationCodeConfiguration](#applicationcodeconfiguration): The code location and type parameters for a Flink-based Kinesis Data Analytics application.
+* **ApplicationEncryptionConfiguration**: [ApplicationEncryptionConfiguration](#applicationencryptionconfiguration): Describes whether customer managed key is enabled and key details for customer data encryption
 * **ApplicationSnapshotConfiguration**: [ApplicationSnapshotConfiguration](#applicationsnapshotconfiguration): Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.
 * **ApplicationSystemRollbackConfiguration**: [ApplicationSystemRollbackConfiguration](#applicationsystemrollbackconfiguration): Describes whether system initiated rollbacks are enabled for a Flink-based Kinesis Data Analytics application.
 * **EnvironmentProperties**: [EnvironmentProperties](#environmentproperties) (WriteOnly): Describes execution properties for a Flink-based Kinesis Data Analytics application.
@@ -25,6 +27,11 @@
 * **SqlApplicationConfiguration**: [SqlApplicationConfiguration](#sqlapplicationconfiguration): The creation and update parameters for a SQL-based Kinesis Data Analytics application.
 * **VpcConfigurations**: [VpcConfiguration](#vpcconfiguration)[]: The array of descriptions of VPC configurations available to the application.
 * **ZeppelinApplicationConfiguration**: [ZeppelinApplicationConfiguration](#zeppelinapplicationconfiguration): The configuration parameters for a Kinesis Data Analytics Studio notebook.
+
+## ApplicationEncryptionConfiguration
+### Properties
+* **KeyId**: string: KMS KeyId. Can be either key uuid or full key arn or key alias arn or short key alias
+* **KeyType**: string (Required): Specifies whether application data is encrypted using service key: AWS_OWNED_KEY or customer key: CUSTOMER_MANAGED_KEY
 
 ## ApplicationMaintenanceConfiguration
 ### Properties

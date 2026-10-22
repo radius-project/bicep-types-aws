@@ -1,0 +1,398 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-Agent",
+  "type": "AWS::QuickSight::Agent",
+  "time": "2026-08-19T18:56:59.665Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Arn"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AwsAccountId",
+      "/properties/AgentId",
+      "/properties/AgentLifecycle"
+    ],
+    "definitions": {
+      "AgentTag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the agent resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "CustomPromptInput": {
+        "additionalProperties": false,
+        "description": "Custom prompt configuration. Specify either ExistingPrompt or NewPrompt.",
+        "oneOf": [
+          {
+            "required": [
+              "ExistingPrompt"
+            ]
+          },
+          {
+            "required": [
+              "NewPrompt"
+            ]
+          }
+        ],
+        "properties": {
+          "ExistingPrompt": {
+            "$ref": "#/definitions/CustomPromptProfile"
+          },
+          "NewPrompt": {
+            "$ref": "#/definitions/CustomPromptInputParameters"
+          }
+        },
+        "type": "object"
+      },
+      "CustomPromptInputParameters": {
+        "additionalProperties": false,
+        "description": "Parameters for creating a new custom prompt configuration.",
+        "properties": {
+          "CustomInstructions": {
+            "description": "Custom instructions for the agent behavior.",
+            "maxLength": 350000,
+            "minLength": 5,
+            "type": "string"
+          },
+          "Identity": {
+            "description": "The identity or persona of the agent.",
+            "maxLength": 350000,
+            "minLength": 5,
+            "type": "string"
+          },
+          "OutputStyle": {
+            "description": "The output style for the agent responses.",
+            "maxLength": 350000,
+            "minLength": 5,
+            "type": "string"
+          },
+          "ResponseLength": {
+            "description": "The desired response length for the agent.",
+            "maxLength": 350000,
+            "minLength": 5,
+            "type": "string"
+          },
+          "Tone": {
+            "description": "The tone used in agent responses.",
+            "maxLength": 350000,
+            "minLength": 5,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CustomPromptInterface": {
+        "additionalProperties": false,
+        "description": "Read-only view of the resolved custom prompt interface for the agent.",
+        "properties": {
+          "CustomInstructions": {
+            "description": "Custom instructions for the agent behavior.",
+            "maxLength": 350000,
+            "minLength": 5,
+            "type": "string"
+          },
+          "Identity": {
+            "description": "The identity or persona of the agent.",
+            "maxLength": 350000,
+            "minLength": 5,
+            "type": "string"
+          },
+          "ModelProfileId": {
+            "description": "The identifier of the model profile.",
+            "maxLength": 36,
+            "minLength": 36,
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{35}$",
+            "type": "string"
+          },
+          "OutputStyle": {
+            "description": "The output style for the agent responses.",
+            "maxLength": 350000,
+            "minLength": 5,
+            "type": "string"
+          },
+          "PromptSummary": {
+            "description": "A summary of the resolved prompt.",
+            "type": "string"
+          },
+          "QbsAwsAccountId": {
+            "description": "The QBS AWS account identifier.",
+            "maxLength": 15,
+            "minLength": 15,
+            "pattern": "^QBS[0-9]{12}$",
+            "type": "string"
+          },
+          "ResponseLength": {
+            "description": "The desired response length for the agent.",
+            "maxLength": 350000,
+            "minLength": 5,
+            "type": "string"
+          },
+          "SubscriptionId": {
+            "description": "The subscription identifier.",
+            "maxLength": 32,
+            "minLength": 32,
+            "pattern": "^[a-z0-9]+$",
+            "type": "string"
+          },
+          "Tone": {
+            "description": "The tone used in agent responses.",
+            "maxLength": 350000,
+            "minLength": 5,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CustomPromptProfile": {
+        "additionalProperties": false,
+        "description": "Reference to an existing custom prompt profile.",
+        "properties": {
+          "ModelProfileId": {
+            "description": "The identifier of the model profile.",
+            "maxLength": 36,
+            "type": "string"
+          },
+          "QbsAwsAccountId": {
+            "description": "The QBS AWS account identifier.",
+            "maxLength": 15,
+            "pattern": "^QBS[0-9]{12}$",
+            "type": "string"
+          },
+          "SubscriptionId": {
+            "description": "The subscription identifier.",
+            "maxLength": 32,
+            "type": "string"
+          }
+        },
+        "required": [
+          "ModelProfileId",
+          "SubscriptionId",
+          "QbsAwsAccountId"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::QuickSight::Agent",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "quicksight:CreateAgent",
+          "quicksight:DescribeAgent",
+          "quicksight:TagResource",
+          "quicksight:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "quicksight:DeleteAgent",
+          "quicksight:DescribeAgent",
+          "quicksight:ListTagsForResource",
+          "quicksight:UntagResource"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "AwsAccountId": {
+              "$ref": "resource-schema.json#/properties/AwsAccountId"
+            }
+          },
+          "required": [
+            "AwsAccountId"
+          ]
+        },
+        "permissions": [
+          "quicksight:ListAgents"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "quicksight:DescribeAgent",
+          "quicksight:DescribeAgentPermissions",
+          "quicksight:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "quicksight:UpdateAgent",
+          "quicksight:DescribeAgent",
+          "quicksight:DescribeAgentPermissions",
+          "quicksight:UpdateAgentPermissions",
+          "quicksight:TagResource",
+          "quicksight:UntagResource",
+          "quicksight:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/AwsAccountId",
+      "/properties/AgentId"
+    ],
+    "properties": {
+      "ActionConnectors": {
+        "description": "A list of ActionConnector ARNs (max 10) attached to the agent.",
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 10,
+        "type": "array"
+      },
+      "AgentId": {
+        "description": "The unique identifier for the agent.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[0-9a-zA-Z-_.+]+$",
+        "type": "string"
+      },
+      "AgentLifecycle": {
+        "description": "The lifecycle stage of the agent. PREVIEW or PUBLISHED.",
+        "enum": [
+          "PREVIEW",
+          "PUBLISHED"
+        ],
+        "type": "string"
+      },
+      "AgentStatus": {
+        "description": "The current status of the agent. One of ACTIVE, CREATING, UPDATING, or FAILED.",
+        "enum": [
+          "ACTIVE",
+          "CREATING",
+          "UPDATING",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the agent.",
+        "type": "string"
+      },
+      "AwsAccountId": {
+        "description": "The ID of the Amazon Web Services account where the agent is being created.",
+        "maxLength": 12,
+        "minLength": 12,
+        "pattern": "^[0-9]{12}$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time the agent was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Creator": {
+        "description": "The ARN of the user who created the agent.",
+        "type": "string"
+      },
+      "CustomPromptInput": {
+        "$ref": "#/definitions/CustomPromptInput"
+      },
+      "CustomPromptInterface": {
+        "$ref": "#/definitions/CustomPromptInterface"
+      },
+      "Description": {
+        "description": "A description of the agent.",
+        "maxLength": 1000,
+        "minLength": 0,
+        "type": "string"
+      },
+      "ErrorMessage": {
+        "description": "The error message if the agent is in FAILED status.",
+        "type": "string"
+      },
+      "IconId": {
+        "description": "The icon identifier for the agent.",
+        "maxLength": 200,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The display name of the agent.",
+        "maxLength": 50,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Spaces": {
+        "description": "A list of Space ARNs (max 10) attached to the agent.",
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 10,
+        "type": "array"
+      },
+      "StarterPrompts": {
+        "description": "A list of up to 3 starter prompts displayed to users.",
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 3,
+        "type": "array"
+      },
+      "Tags": {
+        "description": "A list of key-value pairs to associate with the agent resource.",
+        "items": {
+          "$ref": "#/definitions/AgentTag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "UpdatedAt": {
+        "description": "The date and time the agent was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "WelcomeMessage": {
+        "description": "The welcome message displayed when a user opens the agent.",
+        "maxLength": 300,
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/AgentStatus",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt",
+      "/properties/Creator",
+      "/properties/CustomPromptInterface",
+      "/properties/ErrorMessage"
+    ],
+    "required": [
+      "AwsAccountId",
+      "AgentId",
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "quicksight:TagResource",
+        "quicksight:UntagResource",
+        "quicksight:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::QuickSight::Agent",
+    "writeOnlyProperties": [
+      "/properties/CustomPromptInput"
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkManager-ConnectAttachment",
   "type": "AWS::NetworkManager::ConnectAttachment",
-  "time": "2024-12-11T10:30:38.391Z",
+  "time": "2026-10-14T20:39:58.035Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -123,6 +123,9 @@
           "networkmanager:ListTagsForResource",
           "networkmanager:TagResource",
           "networkmanager:UntagResource",
+          "networkmanager:PutAttachmentRoutingPolicyLabel",
+          "networkmanager:RemoveAttachmentRoutingPolicyLabel",
+          "networkmanager:ListAttachmentRoutingPolicyAssociations",
           "ec2:DescribeRegions"
         ]
       }
@@ -159,6 +162,13 @@
         "description": "Edge location of the attachment.",
         "type": "string"
       },
+      "LastModificationErrors": {
+        "description": "Errors from the last modification of the attachment.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
       "NetworkFunctionGroupName": {
         "description": "The name of the network function group attachment.",
         "type": "string"
@@ -181,6 +191,10 @@
       },
       "ResourceArn": {
         "description": "The attachment resource ARN.",
+        "type": "string"
+      },
+      "RoutingPolicyLabel": {
+        "description": "Routing policy label",
         "type": "string"
       },
       "SegmentName": {
@@ -219,7 +233,10 @@
       "/properties/AttachmentId",
       "/properties/OwnerAccountId",
       "/properties/AttachmentPolicyRuleNumber",
-      "/properties/SegmentName"
+      "/properties/SegmentName",
+      "/properties/LastModificationErrors",
+      "/properties/ProposedSegmentChange",
+      "/properties/ProposedNetworkFunctionGroupChange"
     ],
     "required": [
       "CoreNetworkId",
@@ -229,7 +246,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-networkmanager/aws-networkmanager-connectattachment",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "networkmanager:TagResource",
         "networkmanager:UntagResource",
@@ -240,6 +257,9 @@
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::NetworkManager::ConnectAttachment"
+    "typeName": "AWS::NetworkManager::ConnectAttachment",
+    "writeOnlyProperties": [
+      "/properties/RoutingPolicyLabel"
+    ]
   }
 }

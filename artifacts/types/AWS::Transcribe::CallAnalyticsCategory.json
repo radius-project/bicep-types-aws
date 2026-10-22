@@ -1,0 +1,347 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Transcribe-CallAnalyticsCategory",
+  "type": "AWS::Transcribe::CallAnalyticsCategory",
+  "time": "2026-10-21T21:18:39.853Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/CategoryName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/CategoryName",
+      "/properties/InputType"
+    ],
+    "definitions": {
+      "AbsoluteTimeRange": {
+        "additionalProperties": false,
+        "properties": {
+          "EndTime": {
+            "maximum": 14400000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "First": {
+            "maximum": 14400000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Last": {
+            "maximum": 14400000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "StartTime": {
+            "maximum": 14400000,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "InterruptionFilter": {
+        "additionalProperties": false,
+        "properties": {
+          "AbsoluteTimeRange": {
+            "$ref": "#/definitions/AbsoluteTimeRange"
+          },
+          "Negate": {
+            "type": "boolean"
+          },
+          "ParticipantRole": {
+            "enum": [
+              "AGENT",
+              "CUSTOMER"
+            ],
+            "type": "string"
+          },
+          "RelativeTimeRange": {
+            "$ref": "#/definitions/RelativeTimeRange"
+          },
+          "Threshold": {
+            "maximum": 14400000,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "NonTalkTimeFilter": {
+        "additionalProperties": false,
+        "properties": {
+          "AbsoluteTimeRange": {
+            "$ref": "#/definitions/AbsoluteTimeRange"
+          },
+          "Negate": {
+            "type": "boolean"
+          },
+          "RelativeTimeRange": {
+            "$ref": "#/definitions/RelativeTimeRange"
+          },
+          "Threshold": {
+            "maximum": 14400000,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "RelativeTimeRange": {
+        "additionalProperties": false,
+        "properties": {
+          "EndPercentage": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "First": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Last": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "StartPercentage": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Rule": {
+        "additionalProperties": false,
+        "properties": {
+          "InterruptionFilter": {
+            "$ref": "#/definitions/InterruptionFilter"
+          },
+          "NonTalkTimeFilter": {
+            "$ref": "#/definitions/NonTalkTimeFilter"
+          },
+          "SentimentFilter": {
+            "$ref": "#/definitions/SentimentFilter"
+          },
+          "TranscriptFilter": {
+            "$ref": "#/definitions/TranscriptFilter"
+          }
+        },
+        "type": "object"
+      },
+      "SentimentFilter": {
+        "additionalProperties": false,
+        "properties": {
+          "AbsoluteTimeRange": {
+            "$ref": "#/definitions/AbsoluteTimeRange"
+          },
+          "Negate": {
+            "type": "boolean"
+          },
+          "ParticipantRole": {
+            "enum": [
+              "AGENT",
+              "CUSTOMER"
+            ],
+            "type": "string"
+          },
+          "RelativeTimeRange": {
+            "$ref": "#/definitions/RelativeTimeRange"
+          },
+          "Sentiments": {
+            "items": {
+              "enum": [
+                "POSITIVE",
+                "NEGATIVE",
+                "NEUTRAL",
+                "MIXED"
+              ],
+              "type": "string"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "Sentiments"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "TranscriptFilter": {
+        "additionalProperties": false,
+        "properties": {
+          "AbsoluteTimeRange": {
+            "$ref": "#/definitions/AbsoluteTimeRange"
+          },
+          "Negate": {
+            "type": "boolean"
+          },
+          "ParticipantRole": {
+            "enum": [
+              "AGENT",
+              "CUSTOMER"
+            ],
+            "type": "string"
+          },
+          "RelativeTimeRange": {
+            "$ref": "#/definitions/RelativeTimeRange"
+          },
+          "Targets": {
+            "items": {
+              "maxLength": 2000,
+              "minLength": 1,
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "TranscriptFilterType": {
+            "enum": [
+              "EXACT"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "TranscriptFilterType",
+          "Targets"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::Transcribe::CallAnalyticsCategory",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "transcribe:CreateCallAnalyticsCategory",
+          "transcribe:GetCallAnalyticsCategory",
+          "transcribe:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "transcribe:DeleteCallAnalyticsCategory"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "transcribe:ListCallAnalyticsCategories"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "transcribe:GetCallAnalyticsCategory",
+          "transcribe:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "transcribe:UpdateCallAnalyticsCategory",
+          "transcribe:GetCallAnalyticsCategory",
+          "transcribe:TagResource",
+          "transcribe:UntagResource",
+          "transcribe:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the Call Analytics category.",
+        "maxLength": 1011,
+        "minLength": 1,
+        "pattern": "^arn:aws(-[^:]+)?:transcribe:[a-zA-Z0-9-]*:[0-9]{12}:analytics-category/[0-9a-zA-Z._-]+$",
+        "type": "string"
+      },
+      "CategoryName": {
+        "description": "A unique name, chosen by you, for your Call Analytics category.",
+        "maxLength": 200,
+        "minLength": 1,
+        "pattern": "^[0-9a-zA-Z._-]+$",
+        "type": "string"
+      },
+      "CreateTime": {
+        "description": "The date and time the Call Analytics category was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "InputType": {
+        "description": "The input type associated with the specified category.",
+        "enum": [
+          "REAL_TIME",
+          "POST_CALL"
+        ],
+        "type": "string"
+      },
+      "LastUpdateTime": {
+        "description": "The date and time the Call Analytics category was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Rules": {
+        "description": "Rules define a Call Analytics category.",
+        "items": {
+          "$ref": "#/definitions/Rule"
+        },
+        "maxItems": 20,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Tags": {
+        "description": "Tags associated with the Call Analytics category.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreateTime",
+      "/properties/LastUpdateTime"
+    ],
+    "required": [
+      "CategoryName",
+      "Rules"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "transcribe:TagResource",
+        "transcribe:UntagResource",
+        "transcribe:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Transcribe::CallAnalyticsCategory"
+  }
+}

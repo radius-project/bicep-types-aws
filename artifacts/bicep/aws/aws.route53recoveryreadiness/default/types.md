@@ -1,28 +1,32 @@
 # AWS.Route53RecoveryReadiness @ default
 
 ## Resource AWS.Route53RecoveryReadiness/Cell@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Route53RecoveryReadiness/CellProperties](#awsroute53recoveryreadinesscellproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Route53RecoveryReadiness/ReadinessCheck@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Route53RecoveryReadiness/ReadinessCheckProperties](#awsroute53recoveryreadinessreadinesscheckproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Route53RecoveryReadiness/RecoveryGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Route53RecoveryReadiness/RecoveryGroupProperties](#awsroute53recoveryreadinessrecoverygroupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Route53RecoveryReadiness/ResourceSet@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

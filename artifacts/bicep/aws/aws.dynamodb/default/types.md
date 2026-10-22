@@ -1,14 +1,16 @@
 # AWS.DynamoDB @ default
 
 ## Resource AWS.DynamoDB/GlobalTable@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DynamoDB/GlobalTableProperties](#awsdynamodbglobaltableproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DynamoDB/Table@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -23,19 +25,23 @@
 ### Properties
 * **AttributeName**: string (Required): A name for the attribute.
 * **AttributeType**: string (Required): The data type for the attribute, where:
-  +   ``S`` - the attribute is of type String
-  +   ``N`` - the attribute is of type Number
-  +   ``B`` - the attribute is of type Binary
+  +  ``S`` - the attribute is of type String
+  +  ``N`` - the attribute is of type Number
+  +  ``B`` - the attribute is of type Binary
 
 ## AWS.DynamoDB/GlobalTableProperties
 ### Properties
 * **Arn**: string (ReadOnly)
-* **AttributeDefinitions**: [AttributeDefinition](#attributedefinition)[] (Required)
+* **AttributeDefinitions**: [AttributeDefinition](#attributedefinition)[]
 * **BillingMode**: string
 * **GlobalSecondaryIndexes**: [GlobalSecondaryIndex](#globalsecondaryindex)[] (WriteOnly)
-* **KeySchema**: [KeySchema](#keyschema)[] (Required)
+* **GlobalTableSourceArn**: string (WriteOnly)
+* **GlobalTableWitnesses**: [GlobalTableWitness](#globaltablewitness)[]
+* **KeySchema**: [KeySchema](#keyschema)[]
 * **LocalSecondaryIndexes**: [LocalSecondaryIndex](#localsecondaryindex)[]
-* **PointInTimeRecoverySpecification**: [PointInTimeRecoverySpecification](#pointintimerecoveryspecification)
+* **MultiRegionConsistency**: string
+* **ReadOnDemandThroughputSettings**: [ReadOnDemandThroughputSettings](#readondemandthroughputsettings)
+* **ReadProvisionedThroughputSettings**: [GlobalReadProvisionedThroughputSettings](#globalreadprovisionedthroughputsettings)
 * **Replicas**: [ReplicaSpecification](#replicaspecification)[] (Required, WriteOnly)
 * **SSESpecification**: [SSESpecification](#ssespecification)
 * **StreamArn**: string (ReadOnly)
@@ -43,6 +49,7 @@
 * **TableId**: string (ReadOnly)
 * **TableName**: string (Identifier)
 * **TimeToLiveSpecification**: [TimeToLiveSpecification](#timetolivespecification)
+* **VectorIndexes**: [VectorIndex](#vectorindex)[]
 * **WarmThroughput**: [WarmThroughput](#warmthroughput)
 * **WriteOnDemandThroughputSettings**: [WriteOnDemandThroughputSettings](#writeondemandthroughputsettings)
 * **WriteProvisionedThroughputSettings**: [WriteProvisionedThroughputSettings](#writeprovisionedthroughputsettings)
@@ -52,14 +59,14 @@
 * **Arn**: string (ReadOnly)
 * **AttributeDefinitions**: [AttributeDefinition](#attributedefinition)[]: A list of attributes that describe the key schema for the table and indexes.
  This property is required to create a DDB table.
- Update requires: [Some interruptions](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-some-interrupt). Replacement if you edit an existing AttributeDefinition.
+ You can add an ``AttributeDefinition`` without interruption. Changing the type of an existing ``AttributeDefinition`` requires replacement of the table.
 * **BillingMode**: string: Specify how you are charged for read and write throughput and how you manage capacity.
  Valid values include:
-  +   ``PROVISIONED`` - We recommend using ``PROVISIONED`` for predictable workloads. ``PROVISIONED`` sets the billing mode to [Provisioned Mode](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.ProvisionedThroughput.Manual).
-  +   ``PAY_PER_REQUEST`` - We recommend using ``PAY_PER_REQUEST`` for unpredictable workloads. ``PAY_PER_REQUEST`` sets the billing mode to [On-Demand Mode](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.OnDemand).
+  +  ``PAY_PER_REQUEST`` - We recommend using ``PAY_PER_REQUEST`` for most DynamoDB workloads. ``PAY_PER_REQUEST`` sets the billing mode to [On-demand capacity mode](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html). 
+  +  ``PROVISIONED`` - We recommend using ``PROVISIONED`` for steady workloads with predictable growth where capacity requirements can be reliably forecasted. ``PROVISIONED`` sets the billing mode to [Provisioned capacity mode](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html).
   
  If not specified, the default is ``PROVISIONED``.
-* **ContributorInsightsSpecification**: [ContributorInsightsSpecification](#contributorinsightsspecification): The settings used to enable or disable CloudWatch Contributor Insights for the specified table.
+* **ContributorInsightsSpecification**: [ContributorInsightsSpecification](#contributorinsightsspecification): The settings used to specify whether to enable CloudWatch Contributor Insights for the table and define which events to monitor.
 * **DeletionProtectionEnabled**: bool: Determines if a table is protected from deletion. When enabled, the table cannot be deleted by any user or process. This setting is disabled by default. For more information, see [Using deletion protection](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.Basics.html#WorkingWithTables.Basics.DeletionProtection) in the *Developer Guide*.
 * **GlobalSecondaryIndexes**: [GlobalSecondaryIndex](#globalsecondaryindex)[]: Global secondary indexes to be created on the table. You can create up to 20 global secondary indexes.
   If you update a table to include a new global secondary index, CFNlong initiates the index creation and then proceeds with the stack update. CFNlong doesn't wait for the index to complete creation because the backfilling phase can take a long time, depending on the size of the table. You can't use the index or update the table until the index's status is ``ACTIVE``. You can track its status by using the DynamoDB [DescribeTable](https://docs.aws.amazon.com/cli/latest/reference/dynamodb/describe-table.html) command.
@@ -76,11 +83,13 @@
 * **PointInTimeRecoverySpecification**: [PointInTimeRecoverySpecification](#pointintimerecoveryspecification): The settings used to enable point in time recovery.
 * **ProvisionedThroughput**: [ProvisionedThroughput](#provisionedthroughput): Throughput for the specified table, which consists of values for ``ReadCapacityUnits`` and ``WriteCapacityUnits``. For more information about the contents of a provisioned throughput structure, see [Amazon DynamoDB Table ProvisionedThroughput](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ProvisionedThroughput.html). 
  If you set ``BillingMode`` as ``PROVISIONED``, you must specify this property. If you set ``BillingMode`` as ``PAY_PER_REQUEST``, you cannot specify this property.
-* **ResourcePolicy**: [ResourcePolicy](#resourcepolicy): A resource-based policy document that contains permissions to add to the specified table. In a CFNshort template, you can provide the policy in JSON or YAML format because CFNshort converts YAML to JSON before submitting it to DDB. For more information about resource-based policies, see [Using resource-based policies for](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/access-control-resource-based.html) and [Resource-based policy examples](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-examples.html).
- When you attach a resource-based policy while creating a table, the policy creation is *strongly consistent*. For information about the considerations that you should keep in mind while attaching a resource-based policy, see [Resource-based policy considerations](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-considerations.html).
+* **ResourcePolicy**: [ResourcePolicy](#resourcepolicy): An AWS resource-based policy document in JSON format that will be attached to the table.
+ When you attach a resource-based policy while creating a table, the policy application is *strongly consistent*.
+ The maximum size supported for a resource-based policy document is 20 KB. DynamoDB counts whitespaces when calculating the size of a policy against this limit. For a full list of all considerations that apply for resource-based policies, see [Resource-based policy considerations](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-considerations.html).
+  You need to specify the ``CreateTable`` and ``PutResourcePolicy`` IAM actions for authorizing a user to create a table with a resource-based policy.
 * **SSESpecification**: [SSESpecification](#ssespecification): Specifies the settings to enable server-side encryption.
 * **StreamArn**: string (ReadOnly)
-* **StreamSpecification**: [StreamSpecification](#streamspecification): The settings for the DDB table stream, which capture changes to items stored in the table.
+* **StreamSpecification**: [StreamSpecification](#streamspecification): The settings for the DDB table stream, which captures changes to items stored in the table. Including this property in your CFNlong template automatically enables streaming.
 * **TableClass**: string: The table class of the new table. Valid values are ``STANDARD`` and ``STANDARD_INFREQUENT_ACCESS``.
 * **TableName**: string (Identifier): A name for the table. If you don't specify a name, CFNlong generates a unique physical ID and uses that ID for the table name. For more information, see [Name Type](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-name.html).
   If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.
@@ -88,6 +97,7 @@
  For more information, see [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html).
 * **TimeToLiveSpecification**: [TimeToLiveSpecification](#timetolivespecification): Specifies the Time to Live (TTL) settings for the table.
   For detailed information about the limits in DynamoDB, see [Limits in Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html) in the Amazon DynamoDB Developer Guide.
+* **VectorIndexes**: [VectorIndex](#vectorindex)[]
 * **WarmThroughput**: [WarmThroughput](#warmthroughput): Represents the warm throughput (in read units per second and write units per second) for creating a table.
 
 ## CapacityAutoScalingSettings
@@ -100,43 +110,55 @@
 ## ContributorInsightsSpecification
 ### Properties
 * **Enabled**: bool (Required)
+* **Mode**: string
 
 ## ContributorInsightsSpecification
 ### Properties
 * **Enabled**: bool (Required): Indicates whether CloudWatch Contributor Insights are to be enabled (true) or disabled (false).
+* **Mode**: string: Specifies the CloudWatch Contributor Insights mode for a table. Valid values are ``ACCESSED_AND_THROTTLED_KEYS`` (tracks all access and throttled events) or ``THROTTLED_KEYS`` (tracks only throttled events). This setting determines what type of contributor insights data is collected for the table.
 
 ## Csv
 ### Properties
 * **Delimiter**: string: The delimiter used for separating items in the CSV file being imported.
 * **HeaderList**: string[]: List of the headers used to specify a common header for all source CSV files being imported. If this field is specified then the first line of each CSV file is treated as data instead of the header. If this field is not specified the the first line of each CSV file is treated as the header.
 
+## GlobalReadProvisionedThroughputSettings
+### Properties
+* **ReadCapacityUnits**: int
+
 ## GlobalSecondaryIndex
 ### Properties
 * **IndexName**: string (Required)
 * **KeySchema**: [KeySchema](#keyschema)[] (Required)
 * **Projection**: [Projection](#projection) (Required)
+* **ReadOnDemandThroughputSettings**: [ReadOnDemandThroughputSettings](#readondemandthroughputsettings)
+* **ReadProvisionedThroughputSettings**: [GlobalReadProvisionedThroughputSettings](#globalreadprovisionedthroughputsettings)
 * **WarmThroughput**: [WarmThroughput](#warmthroughput)
 * **WriteOnDemandThroughputSettings**: [WriteOnDemandThroughputSettings](#writeondemandthroughputsettings)
 * **WriteProvisionedThroughputSettings**: [WriteProvisionedThroughputSettings](#writeprovisionedthroughputsettings)
 
 ## GlobalSecondaryIndex
 ### Properties
-* **ContributorInsightsSpecification**: [ContributorInsightsSpecification](#contributorinsightsspecification): The settings used to enable or disable CloudWatch Contributor Insights for the specified global secondary index.
+* **ContributorInsightsSpecification**: [ContributorInsightsSpecification](#contributorinsightsspecification): The settings used to specify whether to enable CloudWatch Contributor Insights for the global table and define which events to monitor.
 * **IndexName**: string (Required): The name of the global secondary index. The name must be unique among all other indexes on this table.
 * **KeySchema**: [KeySchema](#keyschema)[] (Required): The complete key schema for a global secondary index, which consists of one or more pairs of attribute names and key types:
-  +   ``HASH`` - partition key
-  +   ``RANGE`` - sort key
+  +  ``HASH`` - partition key
+  +  ``RANGE`` - sort key
   
   The partition key of an item is also known as its *hash attribute*. The term "hash attribute" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values.
  The sort key of an item is also known as its *range attribute*. The term "range attribute" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value.
-* **OnDemandThroughput**: [OnDemandThroughput](#ondemandthroughput): The maximum number of read and write units for the specified global secondary index. If you use this parameter, you must specify ``MaxReadRequestUnits``, ``MaxWriteRequestUnits``, or both.
+* **OnDemandThroughput**: [OnDemandThroughput](#ondemandthroughput): The maximum number of read and write units for the specified global secondary index. If you use this parameter, you must specify ``MaxReadRequestUnits``, ``MaxWriteRequestUnits``, or both. You must use either ``OnDemandThroughput`` or ``ProvisionedThroughput`` based on your table's capacity mode.
 * **Projection**: [Projection](#projection) (Required): Represents attributes that are copied (projected) from the table into the global secondary index. These are in addition to the primary key attributes and index key attributes, which are automatically projected.
-* **ProvisionedThroughput**: [ProvisionedThroughput](#provisionedthroughput): Represents the provisioned throughput settings for the specified global secondary index.
+* **ProvisionedThroughput**: [ProvisionedThroughput](#provisionedthroughput): Represents the provisioned throughput settings for the specified global secondary index. You must use either ``OnDemandThroughput`` or ``ProvisionedThroughput`` based on your table's capacity mode.
  For current minimum and maximum provisioned throughput values, see [Service, Account, and Table Quotas](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html) in the *Amazon DynamoDB Developer Guide*.
 * **WarmThroughput**: [WarmThroughput](#warmthroughput): Represents the warm throughput value (in read units per second and write units per second) for the specified secondary index. If you use this parameter, you must specify ``ReadUnitsPerSecond``, ``WriteUnitsPerSecond``, or both.
 
 ## GlobalTable_PolicyDocument
 ### Properties
+
+## GlobalTableWitness
+### Properties
+* **Region**: string
 
 ## ImportSourceSpecification
 ### Properties
@@ -158,8 +180,8 @@
 ### Properties
 * **AttributeName**: string (Required): The name of a key attribute.
 * **KeyType**: string (Required): The role that this key attribute will assume:
-  +   ``HASH`` - partition key
-  +   ``RANGE`` - sort key
+  +  ``HASH`` - partition key
+  +  ``RANGE`` - sort key
   
   The partition key of an item is also known as its *hash attribute*. The term "hash attribute" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values.
  The sort key of an item is also known as its *range attribute*. The term "range attribute" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value.
@@ -185,8 +207,8 @@
 ### Properties
 * **IndexName**: string (Required): The name of the local secondary index. The name must be unique among all other indexes on this table.
 * **KeySchema**: [KeySchema](#keyschema)[] (Required): The complete key schema for the local secondary index, consisting of one or more pairs of attribute names and key types:
-  +   ``HASH`` - partition key
-  +   ``RANGE`` - sort key
+  +  ``HASH`` - partition key
+  +  ``RANGE`` - sort key
   
   The partition key of an item is also known as its *hash attribute*. The term "hash attribute" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values.
  The sort key of an item is also known as its *range attribute*. The term "range attribute" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value.
@@ -217,13 +239,14 @@
 ## Projection
 ### Properties
 * **NonKeyAttributes**: string[]: Represents the non-key attribute names which will be projected into the index.
- For local secondary indexes, the total count of ``NonKeyAttributes`` summed across all of the local secondary indexes, must not exceed 100. If you project the same attribute into two different indexes, this counts as two distinct attributes when determining the total.
+ For global and local secondary indexes, the total count of ``NonKeyAttributes`` summed across all of the secondary indexes, must not exceed 100. If you project the same attribute into two different indexes, this counts as two distinct attributes when determining the total. This limit only applies when you specify the ProjectionType of ``INCLUDE``. You still can specify the ProjectionType of ``ALL`` to project all attributes from the source table, even if the table has more than 100 attributes.
 * **ProjectionType**: string: The set of attributes that are projected into the index:
-  +   ``KEYS_ONLY`` - Only the index and primary keys are projected into the index.
-  +   ``INCLUDE`` - In addition to the attributes described in ``KEYS_ONLY``, the secondary index will include other non-key attributes that you specify.
-  +   ``ALL`` - All of the table attributes are projected into the index.
+  +  ``KEYS_ONLY`` - Only the index and primary keys are projected into the index.
+  +  ``INCLUDE`` - In addition to the attributes described in ``KEYS_ONLY``, the secondary index will include other non-key attributes that you specify.
+  +  ``ALL`` - All of the table attributes are projected into the index.
   
  When using the DynamoDB console, ``ALL`` is selected by default.
+ You can't modify the projection of an existing index. To change the projected attributes, you must delete the index and create a new one with the projection that you want.
 
 ## ProvisionedThroughput
 ### Properties
@@ -253,6 +276,7 @@
 * **ContributorInsightsSpecification**: [ContributorInsightsSpecification](#contributorinsightsspecification)
 * **DeletionProtectionEnabled**: bool
 * **GlobalSecondaryIndexes**: [ReplicaGlobalSecondaryIndexSpecification](#replicaglobalsecondaryindexspecification)[]
+* **GlobalTableSettingsReplicationMode**: string
 * **KinesisStreamSpecification**: [KinesisStreamSpecification](#kinesisstreamspecification)
 * **PointInTimeRecoverySpecification**: [PointInTimeRecoverySpecification](#pointintimerecoveryspecification)
 * **ReadOnDemandThroughputSettings**: [ReadOnDemandThroughputSettings](#readondemandthroughputsettings)
@@ -270,7 +294,8 @@
 
 ## ReplicaStreamSpecification
 ### Properties
-* **ResourcePolicy**: [ResourcePolicy](#resourcepolicy) (Required)
+* **ResourcePolicy**: [ResourcePolicy](#resourcepolicy)
+* **Tags**: [Tag](#tag)[]
 
 ## ResourcePolicy
 ### Properties
@@ -286,6 +311,16 @@
 * **S3BucketOwner**: string: The account number of the S3 bucket that is being imported from. If the bucket is owned by the requester this is optional.
 * **S3KeyPrefix**: string: The key prefix shared by all S3 Objects that are being imported.
 
+## SearchSchemaElement
+### Properties
+* **AttributeName**: string (Required)
+* **SearchSchemaElementType**: string (Required)
+
+## SearchSchemaElement
+### Properties
+* **AttributeName**: string (Required)
+* **SearchSchemaElementType**: string (Required)
+
 ## SSESpecification
 ### Properties
 * **SSEEnabled**: bool (Required)
@@ -296,7 +331,7 @@
 * **KMSMasterKeyId**: string: The KMS key that should be used for the KMS encryption. To specify a key, use its key ID, Amazon Resource Name (ARN), alias name, or alias ARN. Note that you should only provide this parameter if the key is different from the default DynamoDB key ``alias/aws/dynamodb``.
 * **SSEEnabled**: bool (Required): Indicates whether server-side encryption is done using an AWS managed key or an AWS owned key. If enabled (true), server-side encryption type is set to ``KMS`` and an AWS managed key is used (KMS charges apply). If disabled (false) or not specified, server-side encryption is set to AWS owned key.
 * **SSEType**: string: Server-side encryption type. The only supported value is:
-  +   ``KMS`` - Server-side encryption that uses KMSlong. The key is stored in your account and is managed by KMS (KMS charges apply).
+  +  ``KMS`` - Server-side encryption that uses KMSlong. The key is stored in your account and is managed by KMS (KMS charges apply).
 
 ## StreamSpecification
 ### Properties
@@ -305,12 +340,15 @@
 ## StreamSpecification
 ### Properties
 * **ResourcePolicy**: [ResourcePolicy](#resourcepolicy): Creates or updates a resource-based policy document that contains the permissions for DDB resources, such as a table's streams. Resource-based policies let you define access permissions by specifying who has access to each resource, and the actions they are allowed to perform on each resource.
- In a CFNshort template, you can provide the policy in JSON or YAML format because CFNshort converts YAML to JSON before submitting it to DDB. For more information about resource-based policies, see [Using resource-based policies for](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/access-control-resource-based.html) and [Resource-based policy examples](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-examples.html).
+  When you remove the ``StreamSpecification`` property from the template, DynamoDB disables the stream but retains any attached resource policy until the stream is deleted after 24 hours. When you modify the ``StreamViewType`` property, DynamoDB creates a new stream and retains the old stream's resource policy. The old stream and its resource policy are deleted after the 24-hour retention period.
+  In a CFNshort template, you can provide the policy in JSON or YAML format because CFNshort converts YAML to JSON before submitting it to DDB. For more information about resource-based policies, see [Using resource-based policies for](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/access-control-resource-based.html) and [Resource-based policy examples](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-examples.html).
 * **StreamViewType**: string (Required): When an item in the table is modified, ``StreamViewType`` determines what information is written to the stream for this table. Valid values for ``StreamViewType`` are:
-  +   ``KEYS_ONLY`` - Only the key attributes of the modified item are written to the stream.
-  +   ``NEW_IMAGE`` - The entire item, as it appears after it was modified, is written to the stream.
-  +   ``OLD_IMAGE`` - The entire item, as it appeared before it was modified, is written to the stream.
-  +   ``NEW_AND_OLD_IMAGES`` - Both the new and the old item images of the item are written to the stream.
+  +  ``KEYS_ONLY`` - Only the key attributes of the modified item are written to the stream.
+  +  ``NEW_IMAGE`` - The entire item, as it appears after it was modified, is written to the stream.
+  +  ``OLD_IMAGE`` - The entire item, as it appeared before it was modified, is written to the stream.
+  +  ``NEW_AND_OLD_IMAGES`` - Both the new and the old item images of the item are written to the stream.
+* **Tags**: [Tag](#tag)[]: Specifies the tags to apply to the DDB stream. Stream tags are independent of table tags.
+ For an overview on tagging DynamoDB resources, see [Tagging for DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html) in the *Amazon DynamoDB Developer Guide*.
 
 ## Table_KeySchema
 ### Properties
@@ -346,6 +384,32 @@
    +  The ``AttributeName`` property is required when enabling the TTL, or when TTL is already enabled.
   +  To update this property, you must first disable TTL and then enable TTL with the new attribute name.
 * **Enabled**: bool (Required): Indicates whether TTL is to be enabled (true) or disabled (false) on the table.
+
+## VectorAttribute
+### Properties
+* **AttributeName**: string (Required)
+
+## VectorAttribute
+### Properties
+* **AttributeName**: string (Required)
+
+## VectorIndex
+### Properties
+* **Dimensions**: int (Required)
+* **DistanceFunction**: string (Required)
+* **IndexName**: string (Required)
+* **Projection**: [Projection](#projection) (Required)
+* **SearchSchema**: [SearchSchemaElement](#searchschemaelement)[]
+* **VectorAttribute**: [VectorAttribute](#vectorattribute) (Required)
+
+## VectorIndex
+### Properties
+* **Dimensions**: int (Required)
+* **DistanceFunction**: string (Required)
+* **IndexName**: string (Required)
+* **Projection**: [Projection](#projection) (Required)
+* **SearchSchema**: [SearchSchemaElement](#searchschemaelement)[]
+* **VectorAttribute**: [VectorAttribute](#vectorattribute) (Required)
 
 ## WarmThroughput
 ### Properties

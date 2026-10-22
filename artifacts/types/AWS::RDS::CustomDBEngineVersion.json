@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-CustomDBEngineVersion",
   "type": "AWS::RDS::CustomDBEngineVersion",
-  "time": "2025-01-16T00:08:39.193Z",
+  "time": "2026-10-19T17:15:52.462Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,7 @@
       "/properties/EngineVersion",
       "/properties/DatabaseInstallationFilesS3BucketName",
       "/properties/DatabaseInstallationFilesS3Prefix",
+      "/properties/DatabaseInstallationFiles",
       "/properties/ImageId",
       "/properties/KMSKeyId",
       "/properties/Manifest",
@@ -45,7 +46,9 @@
         "permissions": [
           "ec2:CopySnapshot",
           "ec2:DeleteSnapshot",
+          "ec2:DescribeImages",
           "ec2:DescribeSnapshots",
+          "iam:CreateServiceLinkedRole",
           "kms:CreateGrant",
           "kms:Decrypt",
           "kms:DescribeKey",
@@ -103,6 +106,14 @@
         "description": "",
         "type": "string"
       },
+      "DatabaseInstallationFiles": {
+        "description": "",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
       "DatabaseInstallationFilesS3BucketName": {
         "description": "The name of an Amazon S3 bucket that contains database installation files for your CEV. For example, a valid bucket name is ``my-custom-installation-files``.",
         "maxLength": 63,
@@ -122,13 +133,13 @@
         "type": "string"
       },
       "Engine": {
-        "description": "The database engine to use for your custom engine version (CEV).\n Valid values:\n  +   ``custom-oracle-ee`` \n  +   ``custom-oracle-ee-cdb``",
+        "description": "The database engine to use for your custom engine version (CEV).\n Valid values:\n  +   ``custom-oracle-ee`` \n  +   ``custom-oracle-ee-cdb`` \n  +   ``sqlserver-dev-ee`` \n  +   ``sqlserver-ee`` \n  +   ``sqlserver-se``",
         "maxLength": 35,
         "minLength": 1,
         "type": "string"
       },
       "EngineVersion": {
-        "description": "The name of your CEV. The name format is ``major version.customized_string``. For example, a valid CEV name is ``19.my_cev1``. This setting is required for RDS Custom for Oracle, but optional for Amazon RDS. The combination of ``Engine`` and ``EngineVersion`` is unique per customer per Region.\n  *Constraints:* Minimum length is 1. Maximum length is 60.\n  *Pattern:* ``^[a-z0-9_.-]{1,60$``}",
+        "description": "The name of your CEV. The name format is ``major version.customized_string``. For example, a valid CEV name is ``19.my_cev1``. This setting is required for RDS Custom for Oracle, but optional for Amazon RDS. The combination of ``Engine`` and ``EngineVersion`` is unique per customer per Region.\n *Constraints:* Minimum length is 1. Maximum length is 60.\n *Pattern:*``^[a-z0-9_.-]{1,60$``}",
         "maxLength": 60,
         "minLength": 1,
         "type": "string"
@@ -159,7 +170,8 @@
         "enum": [
           "available",
           "inactive",
-          "inactive-except-restore"
+          "inactive-except-restore",
+          "pending-validation"
         ],
         "type": "string"
       },

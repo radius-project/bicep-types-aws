@@ -1,0 +1,343 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaTailor-PrefetchSchedule",
+  "type": "AWS::MediaTailor::PrefetchSchedule",
+  "time": "2026-10-21T21:33:47.399Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/PlaybackConfigurationName",
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/PlaybackConfigurationName",
+      "/properties/Consumption",
+      "/properties/Retrieval",
+      "/properties/RecurringPrefetchConfiguration",
+      "/properties/ScheduleType",
+      "/properties/StreamId"
+    ],
+    "definitions": {
+      "AvailMatchingCriteria": {
+        "additionalProperties": false,
+        "properties": {
+          "DynamicVariable": {
+            "description": "The dynamic variable(s) that MediaTailor should use as avail matching criteria.",
+            "type": "string"
+          },
+          "Operator": {
+            "description": "For the DynamicVariable specified in AvailMatchingCriteria, the Operator that is used for the comparison.",
+            "enum": [
+              "EQUALS"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "DynamicVariable",
+          "Operator"
+        ],
+        "type": "object"
+      },
+      "PrefetchConsumption": {
+        "additionalProperties": false,
+        "properties": {
+          "AvailMatchingCriteria": {
+            "description": "If you only want MediaTailor to insert prefetched ads into avails that match specific dynamic variables, set the avail matching criteria.",
+            "items": {
+              "$ref": "#/definitions/AvailMatchingCriteria"
+            },
+            "type": "array"
+          },
+          "EndTime": {
+            "description": "The time when MediaTailor no longer considers the prefetched ads for use in an ad break, as an ISO 8601 date-time.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "StartTime": {
+            "description": "The time when prefetched ads are considered for use in an ad break, as an ISO 8601 date-time.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "EndTime"
+        ],
+        "type": "object"
+      },
+      "PrefetchRetrieval": {
+        "additionalProperties": false,
+        "properties": {
+          "DynamicVariables": {
+            "additionalProperties": false,
+            "description": "The dynamic variables to use for substitution during prefetch requests to the ad decision server (ADS).",
+            "patternProperties": {
+              ".+": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "EndTime": {
+            "description": "The time when prefetch retrieval ends for the ad break, as an ISO 8601 date-time.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "StartTime": {
+            "description": "The time when prefetch retrievals can start for this break, as an ISO 8601 date-time.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "TrafficShapingRetrievalWindow": {
+            "$ref": "#/definitions/TrafficShapingRetrievalWindow"
+          },
+          "TrafficShapingTpsConfiguration": {
+            "$ref": "#/definitions/TrafficShapingTpsConfiguration"
+          },
+          "TrafficShapingType": {
+            "description": "Indicates the type of traffic shaping used to limit the number of requests to the ADS at one time.",
+            "enum": [
+              "RETRIEVAL_WINDOW",
+              "TPS"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "EndTime"
+        ],
+        "type": "object"
+      },
+      "RecurringConsumption": {
+        "additionalProperties": false,
+        "properties": {
+          "AvailMatchingCriteria": {
+            "description": "The configuration for the dynamic variables that determine which ad breaks that MediaTailor inserts prefetched ads in.",
+            "items": {
+              "$ref": "#/definitions/AvailMatchingCriteria"
+            },
+            "type": "array"
+          },
+          "RetrievedAdExpirationSeconds": {
+            "description": "The number of seconds that an ad is available for insertion after it was prefetched.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "RecurringPrefetchConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "EndTime": {
+            "description": "The end time for the window that MediaTailor prefetches and inserts ads in a live event, as an ISO 8601 date-time.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "RecurringConsumption": {
+            "$ref": "#/definitions/RecurringConsumption"
+          },
+          "RecurringRetrieval": {
+            "$ref": "#/definitions/RecurringRetrieval"
+          },
+          "StartTime": {
+            "description": "The start time for the window that MediaTailor prefetches and inserts ads in a live event, as an ISO 8601 date-time.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "EndTime",
+          "RecurringConsumption",
+          "RecurringRetrieval"
+        ],
+        "type": "object"
+      },
+      "RecurringRetrieval": {
+        "additionalProperties": false,
+        "properties": {
+          "DelayAfterAvailEndSeconds": {
+            "description": "The number of seconds that MediaTailor waits after an ad avail before prefetching ads for the next avail.",
+            "type": "integer"
+          },
+          "DynamicVariables": {
+            "additionalProperties": false,
+            "description": "The dynamic variables to use for substitution during prefetch requests to the ADS.",
+            "patternProperties": {
+              ".+": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "TrafficShapingRetrievalWindow": {
+            "$ref": "#/definitions/TrafficShapingRetrievalWindow"
+          },
+          "TrafficShapingTpsConfiguration": {
+            "$ref": "#/definitions/TrafficShapingTpsConfiguration"
+          },
+          "TrafficShapingType": {
+            "description": "Indicates the type of traffic shaping used to limit the number of requests to the ADS at one time.",
+            "enum": [
+              "RETRIEVAL_WINDOW",
+              "TPS"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "TrafficShapingRetrievalWindow": {
+        "additionalProperties": false,
+        "properties": {
+          "RetrievalWindowDurationSeconds": {
+            "description": "The amount of time, in seconds, that MediaTailor spreads prefetch requests to the ADS.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "TrafficShapingTpsConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "PeakConcurrentUsers": {
+            "description": "The expected peak number of concurrent viewers for your content.",
+            "type": "integer"
+          },
+          "PeakTps": {
+            "description": "The maximum number of transactions per second (TPS) that your ad decision server (ADS) can handle.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::MediaTailor::PrefetchSchedule Resource Type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "mediatailor:CreatePrefetchSchedule",
+          "mediatailor:GetPrefetchSchedule",
+          "mediatailor:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "mediatailor:DeletePrefetchSchedule",
+          "mediatailor:GetPrefetchSchedule"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "PlaybackConfigurationName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "PlaybackConfigurationName"
+          ]
+        },
+        "permissions": [
+          "mediatailor:ListPrefetchSchedules"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mediatailor:GetPrefetchSchedule",
+          "mediatailor:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "mediatailor:GetPrefetchSchedule",
+          "mediatailor:TagResource",
+          "mediatailor:UntagResource",
+          "mediatailor:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the prefetch schedule.",
+        "type": "string"
+      },
+      "Consumption": {
+        "$ref": "#/definitions/PrefetchConsumption"
+      },
+      "Name": {
+        "description": "The name to assign to the prefetch schedule.",
+        "type": "string"
+      },
+      "PlaybackConfigurationName": {
+        "description": "The name of the playback configuration.",
+        "type": "string"
+      },
+      "RecurringPrefetchConfiguration": {
+        "$ref": "#/definitions/RecurringPrefetchConfiguration"
+      },
+      "Retrieval": {
+        "$ref": "#/definitions/PrefetchRetrieval"
+      },
+      "ScheduleType": {
+        "description": "The frequency that MediaTailor creates prefetch schedules.",
+        "enum": [
+          "SINGLE",
+          "RECURRING"
+        ],
+        "type": "string"
+      },
+      "StreamId": {
+        "description": "An optional stream identifier that MediaTailor uses to prefetch ads for multiple streams that use the same playback configuration.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags assigned to the prefetch schedule.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn"
+    ],
+    "required": [
+      "Name",
+      "PlaybackConfigurationName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "mediatailor:TagResource",
+        "mediatailor:UntagResource",
+        "mediatailor:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::MediaTailor::PrefetchSchedule"
+  }
+}

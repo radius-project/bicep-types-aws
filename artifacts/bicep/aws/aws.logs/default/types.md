@@ -1,84 +1,112 @@
 # AWS.Logs @ default
 
 ## Resource AWS.Logs/AccountPolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/AccountPolicyProperties](#awslogsaccountpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/Delivery@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/DeliveryProperties](#awslogsdeliveryproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/DeliveryDestination@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/DeliveryDestinationProperties](#awslogsdeliverydestinationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/DeliverySource@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/DeliverySourceProperties](#awslogsdeliverysourceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/Destination@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/DestinationProperties](#awslogsdestinationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/LogAnomalyDetector@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/LogAnomalyDetectorProperties](#awslogsloganomalydetectorproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Logs/LogGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/LogGroupProperties](#awslogsloggroupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Logs/MetricFilter@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/MetricFilterProperties](#awslogsmetricfilterproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/QueryDefinition@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/QueryDefinitionProperties](#awslogsquerydefinitionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/ResourcePolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/ResourcePolicyProperties](#awslogsresourcepolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Logs/ScheduledQuery@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Logs/ScheduledQueryProperties](#awslogsscheduledqueryproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Logs/StorageTierPolicy@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Logs/StorageTierPolicyProperties](#awslogsstoragetierpolicyproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Logs/SubscriptionFilter@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/SubscriptionFilterProperties](#awslogssubscriptionfilterproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/Transformer@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -108,12 +136,12 @@ Length Constraints: Maximum length of 30720
 ## AWS.Logs/DeliveryDestinationProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) that uniquely identifies this delivery destination.
-* **DeliveryDestinationPolicy**: [DeliveryDestination_DeliveryDestinationPolicy](#deliverydestinationdeliverydestinationpolicy): IAM policy that grants permissions to CloudWatch Logs to deliver logs cross-account to a specified destination in this account.
+* **DeliveryDestinationPolicy**: [DeliveryDestination_DestinationPolicy](#deliverydestinationdestinationpolicy) (WriteOnly): IAM policy that grants permissions to CloudWatch Logs to deliver logs cross-account to a specified destination in this account.
 
 The policy must be in JSON string format.
 
 Length Constraints: Maximum length of 51200
-* **DeliveryDestinationType**: string (ReadOnly): Displays whether this delivery destination is CloudWatch Logs, Amazon S3, or Kinesis Data Firehose.
+* **DeliveryDestinationType**: string: Displays whether this delivery destination is CloudWatch Logs, Amazon S3, Kinesis Data Firehose, or XRay.
 * **DestinationResourceArn**: string: The ARN of the Amazon Web Services destination that this delivery destination represents. That Amazon Web Services destination can be a log group in CloudWatch Logs, an Amazon S3 bucket, or a delivery stream in Firehose.
 * **Name**: string (Required, Identifier): The name of this delivery destination.
 * **OutputFormat**: string: The format of the logs that are sent to this delivery destination.
@@ -135,11 +163,14 @@ Length Constraints: Maximum length of 51200
 ## AWS.Logs/DeliverySourceProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) that uniquely identifies this delivery source.
+* **DeliverySourceConfiguration**: [DeliverySource_DeliverySourceConfiguration](#deliverysourcedeliverysourceconfiguration): A map of key-value pairs to configure the delivery source. Both keys and values must be between 1 and 255 characters in length.
 * **LogType**: string: The type of logs being delivered. Only mandatory when the resourceArn could match more than one. In such a case, the error message will contain all the possible options.
 * **Name**: string (Required, Identifier): The unique name of the Log source.
 * **ResourceArn**: string (WriteOnly): The ARN of the resource that will be sending the logs.
 * **ResourceArns**: string[] (ReadOnly): This array contains the ARN of the AWS resource that sends logs and is represented by this delivery source. Currently, only one ARN can be in the array.
 * **Service**: string (ReadOnly): The AWS service that is sending logs.
+* **Status**: string (ReadOnly): The status of this delivery source. The value can be ACTIVE or INACTIVE.
+* **StatusReason**: string (ReadOnly): The reason for the status of this delivery source, such as RESOURCE_DELETED.
 * **Tags**: [Tag](#tag)[]: The tags that have been assigned to this delivery source.
 
 ## AWS.Logs/DestinationProperties
@@ -148,6 +179,7 @@ Length Constraints: Maximum length of 51200
 * **DestinationName**: string (Required, Identifier): The name of the destination resource
 * **DestinationPolicy**: string: An IAM policy document that governs which AWS accounts can create subscription filters against this destination.
 * **RoleArn**: string (Required): The ARN of an IAM role that permits CloudWatch Logs to send data to the specified AWS resource
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TargetArn**: string (Required): The ARN of the physical target where the log events are delivered (for example, a Kinesis stream)
 
 ## AWS.Logs/LogAnomalyDetectorProperties
@@ -167,8 +199,9 @@ Length Constraints: Maximum length of 51200
 ## AWS.Logs/LogGroupProperties
 ### Properties
 * **Arn**: string (ReadOnly)
+* **BearerTokenAuthenticationEnabled**: bool: Indicates whether bearer token authentication is enabled for this log group. When enabled, bearer token authentication is allowed on operations until it is explicitly disabled.
 * **DataProtectionPolicy**: [LogGroup_DataProtectionPolicy](#loggroupdataprotectionpolicy): Creates a data protection policy and assigns it to the log group. A data protection policy can help safeguard sensitive data that's ingested by the log group by auditing and masking the sensitive log data. When a user who does not have permission to view masked data views a log event that includes masked data, the sensitive data is replaced by asterisks.
- For more information, including a list of types of data that can be audited and masked, see [Protect sensitive log data with masking](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html).
+* **DeletionProtectionEnabled**: bool: Indicates whether deletion protection is enabled for this log group. When enabled, deletion protection blocks all deletion operations until it is explicitly disabled.
 * **FieldIndexPolicies**: [LogGroup_FieldIndexPolicies](#loggroupfieldindexpolicies)[]: Creates or updates a *field index policy* for the specified log group. Only log groups in the Standard log class support field index policies. For more information about log classes, see [Log classes](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html).
  You can use field index policies to create *field indexes* on fields found in log events in the log group. Creating field indexes lowers the costs for CWL Insights queries that reference those field indexes, because these queries attempt to skip the processing of log events that are known to not match the indexed field. Good fields to index are fields that you often need to query for and fields that have high cardinality of values Common examples of indexes include request ID, session ID, userID, and instance IDs. For more information, see [Create field indexes to improve query performance and reduce costs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html).
  Currently, this array supports only one field index policy object.
@@ -182,8 +215,9 @@ Length Constraints: Maximum length of 51200
   
  For details about the features supported by each class, see [Log classes](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html)
 * **LogGroupName**: string (Identifier): The name of the log group. If you don't specify a name, CFNlong generates a unique ID for the log group.
+* **ResourcePolicyDocument**: [LogGroup_ResourcePolicyDocument](#loggroupresourcepolicydocument): Creates or updates a resource policy for the specified log group that allows other services to put log events to this account. A LogGroup can have 1 resource policy.
 * **RetentionInDays**: int: The number of days to retain the log events in the specified log group. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192, 2557, 2922, 3288, and 3653.
- To set a log group so that its log events do not expire, use [DeleteRetentionPolicy](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteRetentionPolicy.html).
+ To set a log group so that its log events do not expire, do not specify this property.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to the log group.
  For more information, see [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html).
 
@@ -191,6 +225,8 @@ Length Constraints: Maximum length of 51200
 ### Properties
 * **ApplyOnTransformedLogs**: bool: This parameter is valid only for log groups that have an active log transformer. For more information about log transformers, see [PutTransformer](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html).
  If this value is ``true``, the metric filter is applied on the transformed version of the log events instead of the original ingested log events.
+* **EmitSystemFieldDimensions**: string[]: The list of system fields that are emitted as additional dimensions in the generated metrics. Returns the ``emitSystemFieldDimensions`` value if it was specified when the metric filter was created.
+* **FieldSelectionCriteria**: string: The filter expression that specifies which log events are processed by this metric filter based on system fields. Returns the ``fieldSelectionCriteria`` value if it was specified when the metric filter was created.
 * **FilterName**: string (Identifier): The name of the metric filter.
 * **FilterPattern**: string (Required): A filter pattern for extracting metric data out of ingested log events. For more information, see [Filter and Pattern Syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html).
 * **LogGroupName**: string (Required, Identifier): The name of an existing log group that you want to associate with this metric filter.
@@ -200,14 +236,43 @@ Length Constraints: Maximum length of 51200
 ### Properties
 * **LogGroupNames**: string[]: Optionally define specific log groups as part of your query definition
 * **Name**: string (Required): A name for the saved query definition
+* **Parameters**: [QueryParameter](#queryparameter)[]: Use this parameter to include specific query parameters as part of your query definition. Query parameters are supported only for Logs Insights QL queries. Query parameters allow you to use placeholder variables in your query string that are substituted with values at execution time. Use the {{parameterName}} syntax in your query string to reference a parameter.
 * **QueryDefinitionId**: string (ReadOnly, Identifier): Unique identifier of a query definition
 * **QueryLanguage**: string: Query language of the query string. Possible values are CWLI, SQL, PPL, with CWLI being the default.
 * **QueryString**: string (Required): The query string to use for this definition
 
 ## AWS.Logs/ResourcePolicyProperties
 ### Properties
-* **PolicyDocument**: string (Required): The policy document
+* **PolicyDocument**: [ResourcePolicy_PolicyDocument](#resourcepolicypolicydocument) | string (Required): The policy document
 * **PolicyName**: string (Required, Identifier): A name for resource policy
+
+## AWS.Logs/ScheduledQueryProperties
+### Properties
+* **CreationTime**: int (ReadOnly)
+* **Description**: string
+* **DestinationConfiguration**: [DestinationConfiguration](#destinationconfiguration)
+* **ExecutionRoleArn**: string (Required)
+* **LastExecutionStatus**: string (ReadOnly)
+* **LastTriggeredTime**: int (ReadOnly)
+* **LastUpdatedTime**: int (ReadOnly)
+* **LogGroupIdentifiers**: string[]
+* **Name**: string (Required)
+* **QueryLanguage**: string (Required)
+* **QueryString**: string (Required)
+* **ScheduledQueryArn**: string (ReadOnly, Identifier)
+* **ScheduleEndTime**: int
+* **ScheduleExpression**: string (Required)
+* **ScheduleStartTime**: int
+* **StartTimeOffset**: int
+* **State**: string
+* **Tags**: [ScheduledQuery_Tags](#scheduledquerytags)[]
+* **Timezone**: string
+
+## AWS.Logs/StorageTierPolicyProperties
+### Properties
+* **AccountId**: string (ReadOnly, Identifier): The AWS account ID that owns this storage tier policy.
+* **LastUpdatedTime**: int (ReadOnly): Timestamp (milliseconds after Jan 1, 1970 00:00:00 UTC) when the storage tier policy was last updated.
+* **StorageTier**: string (Required): The storage tier to apply. Only INTELLIGENT_TIERING is accepted for creation.
 
 ## AWS.Logs/SubscriptionFilterProperties
 ### Properties
@@ -215,6 +280,8 @@ Length Constraints: Maximum length of 51200
  If this value is ``true``, the subscription filter is applied on the transformed version of the log events instead of the original ingested log events.
 * **DestinationArn**: string (Required): The Amazon Resource Name (ARN) of the destination.
 * **Distribution**: string: The method used to distribute log data to the destination, which can be either random or grouped by log stream.
+* **EmitSystemFields**: string[]: The list of system fields that are included in the log events sent to the subscription destination. Returns the ``emitSystemFields`` value if it was specified when the subscription filter was created.
+* **FieldSelectionCriteria**: string: The filter expression that specifies which log events are processed by this subscription filter based on system fields. Returns the ``fieldSelectionCriteria`` value if it was specified when the subscription filter was created.
 * **FilterName**: string (Identifier): The name of the subscription filter.
 * **FilterPattern**: string (Required): The filtering expressions that restrict what gets delivered to the destination AWS resource. For more information about the filter pattern syntax, see [Filter and Pattern Syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html).
 * **LogGroupName**: string (Required, Identifier): The log group to associate with the subscription filter. All log events that are uploaded to this log group are filtered and delivered to the specified AWS resource if the filter pattern matches the log events.
@@ -231,8 +298,20 @@ Length Constraints: Maximum length of 51200
 * **Source**: string (Required)
 * **Target**: string (Required)
 
-## DeliveryDestination_DeliveryDestinationPolicy
+## DeliveryDestination_DestinationPolicy
 ### Properties
+* **DeliveryDestinationName**: string: The name of the delivery destination to assign this policy to
+* **DeliveryDestinationPolicy**: [DeliveryDestination_DestinationPolicy_DeliveryDestinationPolicy](#deliverydestinationdestinationpolicydeliverydestinationpolicy): The contents of the policy attached to the delivery destination
+
+## DeliveryDestination_DestinationPolicy_DeliveryDestinationPolicy
+### Properties
+
+## DeliverySource_DeliverySourceConfiguration
+### Properties
+
+## DestinationConfiguration
+### Properties
+* **S3Configuration**: [S3Configuration](#s3configuration)
 
 ## Dimension
 ### Properties
@@ -244,6 +323,9 @@ Length Constraints: Maximum length of 51200
 ### Properties
 
 ## LogGroup_FieldIndexPolicies
+### Properties
+
+## LogGroup_ResourcePolicyDocument
 ### Properties
 
 ## MetricTransformation
@@ -276,6 +358,13 @@ Length Constraints: Maximum length of 51200
 ### Properties
 * **Source**: string
 
+## ParseToOCSF
+### Properties
+* **EventSource**: string (Required)
+* **MappingVersion**: string
+* **OcsfVersion**: string (Required)
+* **Source**: string
+
 ## ParseVPC
 ### Properties
 * **Source**: string
@@ -300,6 +389,7 @@ Length Constraints: Maximum length of 51200
 * **ParseKeyValue**: [Transformer_ParseKeyValue](#transformerparsekeyvalue)
 * **ParsePostgres**: [ParsePostgres](#parsepostgres)
 * **ParseRoute53**: [ParseRoute53](#parseroute53)
+* **ParseToOCSF**: [ParseToOCSF](#parsetoocsf)
 * **ParseVPC**: [ParseVPC](#parsevpc)
 * **ParseWAF**: [ParseWAF](#parsewaf)
 * **RenameKeys**: [Transformer_RenameKeys](#transformerrenamekeys)
@@ -309,11 +399,27 @@ Length Constraints: Maximum length of 51200
 * **TypeConverter**: [Transformer_TypeConverter](#transformertypeconverter)
 * **UpperCaseString**: [Transformer_UpperCaseString](#transformeruppercasestring)
 
+## QueryParameter
+### Properties
+* **DefaultValue**: string: The default value to use for this query parameter if no value is supplied at execution time.
+* **Description**: string: A description of the query parameter that explains its purpose or expected values.
+* **Name**: string (Required): The name of the query parameter. A query parameter name must start with a letter or underscore, and contain only letters, digits, and underscores.
+
 ## RenameKeyEntry
 ### Properties
 * **Key**: string (Required)
 * **OverwriteIfExists**: bool
 * **RenameTo**: string (Required)
+
+## S3Configuration
+### Properties
+* **DestinationIdentifier**: string (Required)
+* **RoleArn**: string (Required)
+
+## ScheduledQuery_Tags
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## SplitStringEntry
 ### Properties
@@ -340,6 +446,11 @@ Length Constraints: Maximum length of 51200
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., :, /, =, +, - and @.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., :, /, =, +, - and @.
 
 ## Tag
 ### Properties

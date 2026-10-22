@@ -1,28 +1,40 @@
 # AWS.Timestream @ default
 
 ## Resource AWS.Timestream/Database@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Timestream/DatabaseProperties](#awstimestreamdatabaseproperties) (Identifier): properties of the resource
 
+## Resource AWS.Timestream/InfluxDBCluster@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Timestream/InfluxDBClusterProperties](#awstimestreaminfluxdbclusterproperties) (Identifier): properties of the resource
+
 ## Resource AWS.Timestream/InfluxDBInstance@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Timestream/InfluxDBInstanceProperties](#awstimestreaminfluxdbinstanceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Timestream/ScheduledQuery@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Timestream/ScheduledQueryProperties](#awstimestreamscheduledqueryproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Timestream/Table@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -34,6 +46,36 @@
 * **DatabaseName**: string (Identifier): The name for the database. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the database name.
 * **KmsKeyId**: string: The KMS key for the database. If the KMS key is not specified, the database will be encrypted with a Timestream managed KMS key located in your account.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.Timestream/InfluxDBClusterProperties
+### Properties
+* **AllocatedStorage**: int: The allocated storage for the InfluxDB cluster.
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) that is associated with the InfluxDB cluster.
+* **Bucket**: string (WriteOnly): The bucket for the InfluxDB cluster.
+* **DbInstanceType**: string: The compute instance of the InfluxDB cluster.
+* **DbParameterGroupIdentifier**: string: The name of an existing InfluxDB parameter group.
+* **DbStorageType**: string: The storage type of the InfluxDB cluster.
+* **DeploymentType**: string: Deployment type of the InfluxDB cluster.
+* **Endpoint**: string (ReadOnly): The connection endpoint for the InfluxDB cluster.
+* **EngineType**: string (ReadOnly): The engine type for the InfluxDB cluster.
+* **FailoverMode**: string: Failover mode of the InfluxDB cluster.
+* **Id**: string (ReadOnly, Identifier): The service generated unique identifier for InfluxDB cluster.
+* **InfluxAuthParametersSecretArn**: string (ReadOnly): The Auth parameters secret Amazon Resource name (ARN) that is associated with the InfluxDB cluster.
+* **LogDeliveryConfiguration**: [InfluxDBCluster_LogDeliveryConfiguration](#influxdbclusterlogdeliveryconfiguration): Configuration for sending logs to customer account from the InfluxDB cluster.
+* **MaintenanceSchedule**: [MaintenanceSchedule](#maintenanceschedule): The maintenance schedule for the InfluxDB cluster.
+* **Name**: string: The unique name that is associated with the InfluxDB cluster.
+* **NetworkType**: string: Network type of the InfluxDB cluster.
+* **NextMaintenanceTime**: string (ReadOnly): The timestamp of the next scheduled maintenance event.
+* **Organization**: string (WriteOnly): The organization for the InfluxDB cluster.
+* **Password**: string (WriteOnly): The password for the InfluxDB cluster.
+* **Port**: int: The port number on which InfluxDB accepts connections.
+* **PubliclyAccessible**: bool: Attach a public IP to the customer ENI.
+* **ReaderEndpoint**: string (ReadOnly): The reader endpoint for the InfluxDB cluster.
+* **Status**: string (ReadOnly): Status of the InfluxDB cluster.
+* **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this DB cluster.
+* **Username**: string (WriteOnly): The username for the InfluxDB cluster.
+* **VpcSecurityGroupIds**: string[]: A list of Amazon EC2 VPC security groups to associate with this InfluxDB cluster.
+* **VpcSubnetIds**: string[]: A list of EC2 subnet IDs for this InfluxDB cluster.
 
 ## AWS.Timestream/InfluxDBInstanceProperties
 ### Properties
@@ -49,8 +91,10 @@
 * **Id**: string (ReadOnly, Identifier): The service generated unique identifier for InfluxDB instance.
 * **InfluxAuthParametersSecretArn**: string (ReadOnly): The Auth parameters secret Amazon Resource name (ARN) that is associated with the InfluxDB instance.
 * **LogDeliveryConfiguration**: [InfluxDBInstance_LogDeliveryConfiguration](#influxdbinstancelogdeliveryconfiguration): Configuration for sending logs to customer account from the InfluxDB instance.
+* **MaintenanceSchedule**: [MaintenanceSchedule](#maintenanceschedule): The maintenance schedule for the InfluxDB instance.
 * **Name**: string: The unique name that is associated with the InfluxDB instance.
 * **NetworkType**: string: Network type of the InfluxDB Instance.
+* **NextMaintenanceTime**: string (ReadOnly): The timestamp of the next scheduled maintenance event.
 * **Organization**: string (WriteOnly): The organization for the InfluxDB instance.
 * **Password**: string (WriteOnly): The password for the InfluxDB instance.
 * **Port**: int: The port number on which InfluxDB accepts connections.
@@ -65,7 +109,7 @@
 ## AWS.Timestream/ScheduledQueryProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
-* **ClientToken**: string
+* **ClientToken**: string (WriteOnly)
 * **ErrorReportConfiguration**: [ErrorReportConfiguration](#errorreportconfiguration) (Required)
 * **KmsKeyId**: string
 * **NotificationConfiguration**: [NotificationConfiguration](#notificationconfiguration) (Required)
@@ -104,6 +148,15 @@
 ### Properties
 * **S3Configuration**: [S3Configuration](#s3configuration) (Required)
 
+## InfluxDBCluster_LogDeliveryConfiguration
+### Properties
+* **S3Configuration**: [InfluxDBCluster_LogDeliveryConfiguration_S3Configuration](#influxdbclusterlogdeliveryconfigurations3configuration) (Required): S3 configuration for sending logs to customer account from the InfluxDB cluster.
+
+## InfluxDBCluster_LogDeliveryConfiguration_S3Configuration
+### Properties
+* **BucketName**: string (Required): The bucket name for logs to be sent from the InfluxDB cluster
+* **Enabled**: bool (Required): Specifies whether logging to customer specified bucket is enabled.
+
 ## InfluxDBInstance_LogDeliveryConfiguration
 ### Properties
 * **S3Configuration**: [InfluxDBInstance_LogDeliveryConfiguration_S3Configuration](#influxdbinstancelogdeliveryconfigurations3configuration) (Required): S3 configuration for sending logs to customer account from the InfluxDB instance.
@@ -112,6 +165,16 @@
 ### Properties
 * **BucketName**: string (Required): The bucket name for logs to be sent from the InfluxDB instance
 * **Enabled**: bool (Required): Specifies whether logging to customer specified bucket is enabled.
+
+## MaintenanceSchedule
+### Properties
+* **PreferredMaintenanceWindow**: string (Required): The preferred maintenance window in format ddd:HH:MM-ddd:HH:MM.
+* **Timezone**: string (Required): The IANA timezone identifier for the maintenance schedule.
+
+## MaintenanceSchedule
+### Properties
+* **PreferredMaintenanceWindow**: string (Required): The preferred maintenance window in format ddd:HH:MM-ddd:HH:MM.
+* **Timezone**: string (Required): The IANA timezone identifier for the maintenance schedule.
 
 ## MixedMeasureMapping
 ### Properties
@@ -185,6 +248,11 @@
 ### Properties
 * **Key**: string
 * **Value**: string
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## Tag
 ### Properties

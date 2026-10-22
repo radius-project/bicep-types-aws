@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CodePipeline-Pipeline",
   "type": "AWS::CodePipeline::Pipeline",
-  "time": "2025-01-13T22:43:46.967Z",
+  "time": "2026-10-21T17:12:09.515Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -26,6 +26,14 @@
           "Configuration": {
             "description": "The action's configuration. These are key-value pairs that specify input values for an action.",
             "type": "object"
+          },
+          "EnvironmentVariables": {
+            "description": "The list of environment variables that are input to a compute based action.",
+            "items": {
+              "$ref": "#/definitions/EnvironmentVariable"
+            },
+            "type": "array",
+            "uniqueItems": true
           },
           "InputArtifacts": {
             "items": {
@@ -232,6 +240,33 @@
         "required": [
           "Type",
           "Id"
+        ],
+        "type": "object"
+      },
+      "EnvironmentVariable": {
+        "additionalProperties": false,
+        "description": "Represents information about the environment variable of an action.",
+        "properties": {
+          "Name": {
+            "description": "The name of the environment variable.",
+            "type": "string"
+          },
+          "Type": {
+            "description": "The type of the environment variable.",
+            "enum": [
+              "PLAINTEXT",
+              "SECRETS_MANAGER"
+            ],
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the environment variable.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "Value"
         ],
         "type": "object"
       },
@@ -700,6 +735,11 @@
       "/properties/Name"
     ],
     "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the pipeline.",
+        "pattern": "arn:aws(-[\\w]+)*:codepipeline:[a-z0-9-]+:[0-9]{12}:.+",
+        "type": "string"
+      },
       "ArtifactStore": {
         "$ref": "#/definitions/ArtifactStore",
         "description": "The S3 bucket where artifacts for the pipeline are stored."
@@ -789,7 +829,8 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/Version"
+      "/properties/Version",
+      "/properties/Arn"
     ],
     "required": [
       "Stages",
@@ -797,7 +838,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-codepipeline",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "codepipeline:TagResource",
         "codepipeline:UntagResource"

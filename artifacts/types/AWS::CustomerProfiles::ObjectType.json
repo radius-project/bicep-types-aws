@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CustomerProfiles-ObjectType",
   "type": "AWS::CustomerProfiles::ObjectType",
-  "time": "2025-01-14T23:50:01.431Z",
+  "time": "2026-09-15T21:38:34.633Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -15,7 +15,7 @@
           "Name": {
             "maxLength": 64,
             "minLength": 1,
-            "pattern": "^[a-zA-Z0-9_-]+$",
+            "pattern": "^[a-zA-Z0-9_.-]+$",
             "type": "string"
           },
           "ObjectTypeField": {
@@ -98,7 +98,19 @@
                 "NEW_ONLY",
                 "ASSET",
                 "CASE",
-                "ORDER"
+                "ORDER",
+                "AIR_PREFERENCE",
+                "AIR_BOOKING",
+                "AIR_SEGMENT",
+                "HOTEL_PREFERENCE",
+                "HOTEL_STAY_REVENUE",
+                "HOTEL_RESERVATION",
+                "LOYALTY",
+                "LOYALTY_TRANSACTION",
+                "LOYALTY_PROMOTION",
+                "WEB_ANALYTICS",
+                "DEVICE",
+                "COMMUNICATION_RECORD"
               ],
               "type": "string"
             },
@@ -135,7 +147,9 @@
         "permissions": [
           "profile:GetProfileObjectType",
           "profile:PutProfileObjectType",
-          "profile:TagResource"
+          "profile:TagResource",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
         ]
       },
       "delete": {
@@ -155,12 +169,17 @@
           ]
         },
         "permissions": [
-          "profile:ListProfileObjectTypes"
+          "profile:ListProfileObjectTypes",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
         ]
       },
       "read": {
         "permissions": [
-          "profile:GetProfileObjectType"
+          "profile:GetProfileObjectType",
+          "profile:ListTagsForResource",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
         ]
       },
       "update": {
@@ -168,7 +187,10 @@
           "profile:GetProfileObjectType",
           "profile:PutProfileObjectType",
           "profile:UntagResource",
-          "profile:TagResource"
+          "profile:TagResource",
+          "profile:ListTagsForResource",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
         ]
       }
     },
@@ -187,7 +209,7 @@
       },
       "Description": {
         "description": "Description of the profile object type.",
-        "maxLength": 1000,
+        "maxLength": 10000,
         "minLength": 1,
         "type": "string"
       },
@@ -230,6 +252,16 @@
         "description": "The time of this integration got last updated at.",
         "type": "string"
       },
+      "MaxAvailableProfileObjectCount": {
+        "description": "The maximum available number of profile objects",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "MaxProfileObjectCount": {
+        "description": "The maximum number of profile objects for this object type",
+        "minimum": 1,
+        "type": "integer"
+      },
       "ObjectTypeName": {
         "description": "The name of the profile object type.",
         "maxLength": 255,
@@ -242,6 +274,11 @@
         "maxLength": 255,
         "minLength": 1,
         "type": "string"
+      },
+      "SourcePriority": {
+        "description": "Defines the priority order of object types. Lower value indicates higher priority.",
+        "minimum": 1,
+        "type": "integer"
       },
       "Tags": {
         "description": "The tags (keys and values) associated with the integration.",
@@ -262,7 +299,8 @@
     },
     "readOnlyProperties": [
       "/properties/LastUpdatedAt",
-      "/properties/CreatedAt"
+      "/properties/CreatedAt",
+      "/properties/MaxAvailableProfileObjectCount"
     ],
     "required": [
       "DomainName",

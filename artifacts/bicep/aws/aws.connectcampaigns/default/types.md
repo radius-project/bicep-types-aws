@@ -1,7 +1,8 @@
 # AWS.ConnectCampaigns @ default
 
 ## Resource AWS.ConnectCampaigns/Campaign@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

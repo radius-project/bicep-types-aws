@@ -1,0 +1,1298 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionConfiguration",
+    "properties": {
+      "KmsKeyIdentifier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The identifier of the AWS KMS customer managed key that the event bus uses to encrypt events. You can specify the key ARN, key ID, alias name, or alias ARN. If you do not specify a key, EventBridge uses an AWS owned key."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageConfiguration",
+    "properties": {
+      "RetentionPeriodInDays": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The number of days events are retained on the event bus for replay, 1-365."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The tag key. For each resource, each tag key must be unique and each key can have only one value; keys are case sensitive. A key cannot begin or end with a whitespace character; whitespace inside the key is allowed."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The tag value. May be empty. A value cannot begin or end with a whitespace character; whitespace inside the value is allowed."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EventsV2/EventBusProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EventsV2/EventBusProperties",
+    "properties": {
+      "CreationTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The time the event bus was created, as an ISO 8601 timestamp."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A description of the event bus. Control characters and Unicode line separators are not allowed."
+      },
+      "EncryptionConfiguration": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0,
+        "description": "Encryption configuration for the event bus. The service stores and returns the customer managed key as its key ARN. The key ARN is recommended so that drift detection stays accurate. A key ID is also accepted and is matched to the returned key ARN when CloudFormation checks for drift; a key alias is accepted but can be reported as a value difference, because an alias cannot be matched to the key ARN it points to."
+      },
+      "EventBusArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the event bus."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The time the event bus was last modified, as an ISO 8601 timestamp."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The name of the event bus. The first character must be alphanumeric; the remaining characters may also include '.', '-', and '_'."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The lifecycle state of the event bus. The settled operational state is ACTIVE."
+      },
+      "StorageConfiguration": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The event storage configuration for the event bus, which controls the number of days events are retained on the bus."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The tags assigned to the event bus."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EventsV2/EventBus",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EventsV2/EventBus@default",
+    "body": {
+      "$ref": "#/8"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AwsServiceEventsConfiguration",
+    "properties": {
+      "AwsService": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "A single AWS service source identifier, for example aws.s3. Wildcards and lists are not allowed."
+      },
+      "OnFailureConfiguration": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "The destination for events that could not be forwarded."
+      },
+      "Pattern": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A filter pattern, as a JSON string, that defines which events from the specified AWS service are forwarded to the event bus. Do not include source, account, or region as top-level fields. If you do not specify a pattern, all events from the service are forwarded."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EventSourceConfiguration",
+    "properties": {
+      "AwsServiceEventsConfiguration": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Configuration for forwarding a single AWS service's events."
+      },
+      "PartnerEventsConfiguration": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Configuration for forwarding a partner event source's events."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OnFailureConfiguration",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The ARN of the Amazon SQS standard queue that receives events that could not be forwarded. FIFO queues are not supported."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PartnerEventsConfiguration",
+    "properties": {
+      "OnFailureConfiguration": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "The destination for events that could not be forwarded, covering both the forwarding target and the managed partner event bus."
+      },
+      "PartnerBusKmsKeyIdentifier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The identifier of the AWS KMS customer managed key for EventBridge to use, if you choose to use a customer managed key to encrypt events on the managed partner event bus. The identifier can be the key Amazon Resource Name (ARN), KeyId, key alias, or key alias ARN. If you do not specify a customer managed key identifier, EventBridge uses an AWS owned key to encrypt events on the event bus."
+      },
+      "PartnerEventSourceArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The ARN of the partner event source to forward. The partner owns the event source, so the ARN's account segment is empty. Changing this property replaces the event source. Because Name and EventBusArn together identify an event source, and the replacement is created before the old resource is deleted, change Name in the same update."
+      },
+      "Pattern": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A filter pattern, as a JSON string, that defines which events from the specified partner event source are forwarded to the event bus. If you do not specify a pattern, all events from the partner event source are forwarded."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The tag key. Unique per resource; keys are case sensitive. No leading or trailing whitespace (interior whitespace is allowed)."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The tag value. May be empty. No leading or trailing whitespace (interior whitespace is allowed)."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EventsV2/EventSourceProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EventsV2/EventSourceProperties",
+    "properties": {
+      "Configuration": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1,
+        "description": "The event source configuration. Specify exactly one of AwsServiceEventsConfiguration or PartnerEventsConfiguration."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The time the event source was created, as an ISO 8601 timestamp."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A description of the event source. Control characters and Unicode line separators are not allowed."
+      },
+      "EventBusArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The ARN of the custom event bus the event source forwards onto."
+      },
+      "EventSourceArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the event source. Its resource segment has the form event-sourcev2/<type>/<name>/<id>. The type segment is set by the service (aws.service for AWS service events, aws.partner for partner events) and is not part of the event source name. The id segment is a 25-character identifier generated by the service."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The time the event source was last modified, as an ISO 8601 timestamp."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The name of the event source. The first character must be alphanumeric; the remaining characters may also include '.', '-', and '_'. Names cannot begin with the reserved aws. prefix."
+      },
+      "Revoked": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Whether the event bus owner has revoked this event source. Revocation is permanent: a revoked event source cannot be updated, but it can be deleted."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The lifecycle state of the event source: CREATING, ACTIVE, UPDATING, CREATE_FAILED, UPDATE_FAILED, DELETING, or DELETE_FAILED. Revocation by the event bus owner is reported by the Revoked property, not by the state."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The tags assigned to the event source."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EventsV2/EventSource",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EventsV2/EventSource@default",
+    "body": {
+      "$ref": "#/19"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EventsV2/ResourcePolicyProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourcePolicy_PolicyDocument",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EventsV2/ResourcePolicyProperties",
+    "properties": {
+      "EventBusArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "The Amazon Resource Name (ARN) of the event bus whose resource policy this is. The bus must already exist. This resource does not create it."
+      },
+      "PolicyDocument": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The resource policy document, as a JSON object. The document can be up to 20 KB. This quota is adjustable. An empty object is not a valid policy. To remove the policy, delete this resource. The principals in the document must exist and be visible to the service when the policy is written. When you create a new IAM role or user, that principal might not be immediately visible to the service. You might need to enforce a delay before you include it in the document. For more information, see \"Changes that I make are not always immediately visible\" in the IAM User Guide. Declare Version. Write AWS account and role principals as ARNs rather than as account IDs. Write a single Action, Resource, or principal value as a scalar rather than as a one-element list. The service returns these forms as you wrote them. It normalizes other forms, and a normalized value can appear as drift. A stack update replaces the whole policy with this document, including any change made outside CloudFormation. For more information about event bus resource policies, see the Amazon EventBridge User Guide."
+      },
+      "RevisionId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The revision identifier the service assigned to the stored policy. The identifier changes on every successful write."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EventsV2/ResourcePolicy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EventsV2/ResourcePolicy@default",
+    "body": {
+      "$ref": "#/24"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BatchConfiguration",
+    "properties": {
+      "MaxBatchSize": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The maximum number of events in a single batch delivered to the target. The maximum depends on the target: 500 for Kinesis Data Streams and Amazon Data Firehose, 100 for Lambda, Step Functions, and AWS::EventsV2::EventBus targets, 10 for Amazon SQS, Amazon SNS, and AWS::Events::EventBus targets, and 1 for API Gateway, API destinations, and universal service integration targets. The service rejects a value above the target's maximum. Fewer events may be delivered when the batch window elapses. When omitted, the default is 10 for Lambda and Step Functions targets and the target's maximum for other targets. The resolved value applied by the service is returned on read."
+      },
+      "MaxBatchWindowInSeconds": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The maximum time in seconds to wait for a batch to fill before delivering it, 0-300. The default is 0 (no wait). The resolved value applied by the service is returned on read."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeduplicationConfiguration",
+    "properties": {
+      "DeduplicationType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "How duplicate events are detected: CONTENT_BASED deduplicates by a hash of the event content. To deduplicate by a caller-supplied token instead, omit DeduplicationConfiguration and set SystemMetadata.DeduplicationId."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EventBusV2MetadataMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EventBusV2SystemMetadata",
+    "properties": {
+      "DeduplicationId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The deduplication ID for FIFO deduplication on the downstream event bus. Accepts a literal value or a JSONata expression."
+      },
+      "EventGroupId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The event group ID for FIFO ordering on the downstream event bus. Accepts a literal value or a JSONata expression."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Filter",
+    "properties": {
+      "Pattern": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The event pattern, as a JSON string."
+      },
+      "Scope": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "Which part of the event the pattern is evaluated against: DATA (the event payload), METADATA (event metadata), or SYSTEM_METADATA (service-generated metadata)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FilterConfiguration",
+    "properties": {
+      "Filters": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 1,
+        "description": "The list of filters, 1-50 entries. An event must match every filter to be delivered."
+      },
+      "Language": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The filter language. The default is EVENT_BRIDGE_PATTERN."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HeaderParametersMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InvokeConfiguration",
+    "properties": {
+      "EventBusV2Parameters": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "Parameters for forwarding events to another EventBridge event bus, used when TargetArn is an event bus ARN of the form arn:{partition}:events:{region}:{account}:event-busv2/{name}/{id}."
+      },
+      "HttpParameters": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0,
+        "description": "Parameters for invoking an HTTP endpoint target, such as an Amazon API Gateway endpoint or an EventBridge API destination."
+      },
+      "KinesisParameters": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0,
+        "description": "Parameters for writing events to an Amazon Kinesis Data Streams target."
+      },
+      "LambdaParameters": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0,
+        "description": "Parameters for invoking an AWS Lambda function target."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The ARN of the IAM role the service assumes to invoke the target. The role must belong to the same account as the subscriber."
+      },
+      "SnsParameters": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0,
+        "description": "Parameters for publishing events to an Amazon SNS topic target."
+      },
+      "SqsParameters": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 0,
+        "description": "Parameters for sending events to an Amazon SQS queue target."
+      },
+      "StepFunctionsParameters": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0,
+        "description": "Parameters for starting an AWS Step Functions state machine execution target."
+      },
+      "TargetArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the target that the subscriber invokes. For universal service integration targets, use the form arn:{partition}:events:::aws-sdk:{service}:{apiAction}."
+      },
+      "UniversalTargetParameters": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0,
+        "description": "Parameters for invoking an AWS service API as a universal service integration target, used when TargetArn has the form arn:{partition}:events:::aws-sdk:{service}:{apiAction}."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JsonataConfiguration",
+    "properties": {
+      "Expression": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The JSONata expression that transforms the event, enclosed in {% %} delimiters."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogConfiguration",
+    "properties": {
+      "IncludePayload": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Whether the event payload is included in emitted log records: FULL includes it in every emitted record, and ON_ERROR_ONLY includes it only in error records. The default is ON_ERROR_ONLY."
+      },
+      "Level": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The minimum log level: OFF (no logging), ERROR, or INFO. Records below this level are not emitted. The default is OFF."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MessageAttributeMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MessageAttributeValue",
+    "properties": {
+      "BinaryValue": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The attribute value for the Binary data type, Base64-encoded."
+      },
+      "DataType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The attribute data type. For Amazon SQS targets, specify String, Number, or Binary, optionally with a custom label suffix such as Number.float. For Amazon SNS targets, specify String, String.Array, Number, or Binary."
+      },
+      "StringValue": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The attribute value for the String and Number data types (and String.Array for Amazon SNS targets)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OnFailureConfiguration",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The ARN of the destination that receives events that could not be delivered. An Amazon SQS queue is the supported destination."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PointInTimeConfiguration",
+    "properties": {
+      "EndPoint": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "An optional time to stop delivering events at, in seconds since the Unix epoch."
+      },
+      "PointType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "Where to start: HORIZON starts from the earliest available event; TIMESTAMP starts from the StartingPoint timestamp."
+      },
+      "StartingPoint": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The time to start delivering events from, in seconds since the Unix epoch. Required when PointType is TIMESTAMP."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryStringParametersMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RetryPolicy",
+    "properties": {
+      "MaxEventAgeInSeconds": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The maximum age of an event in seconds, 60-86400 (24 hours). When an event reaches this age, retries stop; if OnFailureConfiguration is set, the event is delivered to that destination, otherwise it is dropped. The default is 300."
+      },
+      "MaxRetryAttempts": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The maximum number of retry attempts, 0-185. When the attempts are exhausted, retries stop; if OnFailureConfiguration is set, the event is delivered to that destination, otherwise it is dropped. The default is 5."
+      },
+      "RetryStrategy": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Which errors are retried. ALL retries all errors. The default is ALL."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The tag key. For each resource, each tag key must be unique and each key can have only one value; keys are case sensitive. A key cannot begin or end with a whitespace character; whitespace inside the key is allowed."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The tag value. May be empty. A value cannot begin or end with a whitespace character; whitespace inside the value is allowed."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer",
+    "properties": {
+      "JsonataConfiguration": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "The JSONata expression configuration. Required when Type is JSONATA."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The transform type: RAW delivers the event payload only; WITH_METADATA delivers the event with its metadata envelope; JSONATA delivers the output of the JSONata expression in JsonataConfiguration."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/30"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Subscriber_EventBusV2Parameters",
+    "properties": {
+      "DeduplicationConfiguration": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "Deduplication settings applied to the forwarded events on the downstream event bus."
+      },
+      "Metadata": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "Metadata forwarded with each event, as key-value string pairs."
+      },
+      "SystemMetadata": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0,
+        "description": "System metadata attached to each forwarded event, controlling FIFO ordering and deduplication on the downstream event bus."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Subscriber_HttpParameters",
+    "properties": {
+      "HeaderParameters": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0,
+        "description": "HTTP headers to add to the request."
+      },
+      "InvocationTimeoutSeconds": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The timeout in seconds for each invocation of the target, written as a string. Accepts a literal value or a JSONata expression."
+      },
+      "PathParameterValues": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "Values for the path parameters (wildcards) in the target URL, in order."
+      },
+      "QueryStringParameters": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0,
+        "description": "Query string parameters to add to the request."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Subscriber_KinesisParameters",
+    "properties": {
+      "ExplicitHashKey": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "An explicit hash key that overrides the partition key's shard assignment. Accepts a literal value or a JSONata expression."
+      },
+      "PartitionKey": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The partition key that determines which shard each record is written to. Accepts a literal value or a JSONata expression."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Subscriber_LambdaParameters",
+    "properties": {
+      "DurableExecutionName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A unique name for a durable function execution. Accepts a literal value or a JSONata expression."
+      },
+      "InvocationTimeoutSeconds": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The timeout in seconds for each invocation of the target, written as a string. Accepts a literal value or a JSONata expression."
+      },
+      "InvocationType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "How the function is invoked: EVENT (asynchronous) or REQUEST_RESPONSE (synchronous)."
+      },
+      "Qualifier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The version or alias of the Lambda function to invoke. Accepts a literal value or a JSONata expression."
+      },
+      "TenantId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The tenant identifier for multi-tenant Lambda functions. Accepts a literal value or a JSONata expression."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Subscriber_SnsParameters",
+    "properties": {
+      "MessageAttributes": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Custom message attributes to attach to each message; Amazon SNS subscription filter policies can match on them."
+      },
+      "MessageDeduplicationId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The message deduplication ID to use when the target is a FIFO topic. Accepts a literal value or a JSONata expression."
+      },
+      "MessageGroupId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The message group ID to use when the target is a FIFO topic. Accepts a literal value or a JSONata expression."
+      },
+      "MessageStructure": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Set to json to send a different message per delivery protocol. Accepts a literal value or a JSONata expression."
+      },
+      "Subject": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The subject line to use for email-protocol subscriptions. Accepts a literal value or a JSONata expression."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Subscriber_SqsParameters",
+    "properties": {
+      "DelaySeconds": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The delay in seconds for the message, written as a string. Accepts a literal value or a JSONata expression."
+      },
+      "MessageAttributes": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Custom message attributes to attach to each message."
+      },
+      "MessageDeduplicationId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The message deduplication ID to use when the target is a FIFO queue. Accepts a literal value or a JSONata expression."
+      },
+      "MessageGroupId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The message group ID to use when the target is a FIFO queue. Accepts a literal value or a JSONata expression."
+      },
+      "MessageSystemAttributes": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Message system attributes to attach to each message, such as AWSTraceHeader."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Subscriber_StepFunctionsParameters",
+    "properties": {
+      "InvocationTimeoutSeconds": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The timeout in seconds for each invocation of the target, written as a string. Accepts a literal value or a JSONata expression."
+      },
+      "InvocationType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "How the execution is started: EVENT (StartExecution, asynchronous) or REQUEST_RESPONSE (StartSyncExecution, synchronous)."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A name for the execution. Must be unique for the account, Region, and state machine. Accepts a literal value or a JSONata expression."
+      },
+      "TraceHeader": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The AWS X-Ray trace header for distributed tracing. Accepts a literal value or a JSONata expression."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Subscriber_UniversalTargetParameters",
+    "properties": {
+      "Input": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "JSON string or JSONata expression that produces the API request. Supports {% ... %} JSONata expressions for dynamic values from the event."
+      },
+      "InvocationTimeoutSeconds": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Timeout in seconds for each invocation of the target (1-30, default 30). Must be a literal integer written as a string; JSONata expressions are not supported for this field."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EventsV2/SubscriberProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/42"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EventsV2/SubscriberProperties",
+    "properties": {
+      "BatchConfiguration": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "Configuration for batching events into a single delivery to the target."
+      },
+      "BusName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The name of the event bus this subscriber belongs to. This property is read-only."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "Creation timestamp (ISO-8601), read-only."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A description of the subscriber. Control characters and Unicode line separators are not allowed."
+      },
+      "EventBusArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The ARN of the event bus this subscriber belongs to."
+      },
+      "FilterConfiguration": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "Configuration for filtering which events are delivered to the target. An event must match every filter to be delivered."
+      },
+      "InvokeConfiguration": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 1,
+        "description": "Configuration for how the subscriber invokes its target, including the target ARN, the IAM role used to invoke it, and, optionally, the target-specific parameters object that matches the target type."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "Last-modification timestamp (ISO-8601), read-only."
+      },
+      "LogConfiguration": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "Delivery logging configuration for the subscriber."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The name of the subscriber. The first character must be alphanumeric; the remaining characters may also include '.', '-', and '_'."
+      },
+      "OnFailureConfiguration": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "The destination for events that could not be delivered to the target."
+      },
+      "PointInTimeConfiguration": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0,
+        "description": "The point in time to start delivering events from. Used when StartingPosition is POINT_IN_TIME."
+      },
+      "ResumePosition": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 4,
+        "description": "Resume-time control, never returned by the service. Applied only when an update transitions State from STOPPED to RUNNING: LAST_PROCESSED (default) resumes from the last processed event, LATEST skips to the newest. Ignored on create and on any update that does not perform that transition."
+      },
+      "RetryPolicy": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The retry policy for failed deliveries to the target."
+      },
+      "StartingPosition": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Where the subscriber starts reading events: LATEST starts from the newest events; POINT_IN_TIME starts from the point specified in PointInTimeConfiguration."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The run state of the subscriber. Events are delivered only while the state is RUNNING. Setting the state to STOPPED pauses delivery. When an update sets a stopped subscriber back to RUNNING, ResumePosition controls where delivery resumes."
+      },
+      "SubscriberArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the subscriber."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 0,
+        "description": "The tags assigned to the subscriber."
+      },
+      "Transformer": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "Configuration for transforming events before delivery to the target."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The delivery ordering mode of the subscriber. FIFO delivers events in order within an event group; UNORDERED delivers without an ordering guarantee."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EventsV2/Subscriber",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EventsV2/Subscriber@default",
+    "body": {
+      "$ref": "#/57"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

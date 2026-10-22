@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Oam-Link",
   "type": "AWS::Oam::Link",
-  "time": "2025-01-27T13:39:20.509Z",
+  "time": "2026-10-19T17:22:16.134Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -41,7 +41,9 @@
           "AWS::Logs::LogGroup",
           "AWS::XRay::Trace",
           "AWS::ApplicationInsights::Application",
-          "AWS::InternetMonitor::Monitor"
+          "AWS::InternetMonitor::Monitor",
+          "AWS::ApplicationSignals::Service",
+          "AWS::ApplicationSignals::ServiceLevelObjective"
         ],
         "type": "string"
       }
@@ -58,7 +60,8 @@
           "logs:Link",
           "xray:Link",
           "applicationinsights:Link",
-          "internetmonitor:Link"
+          "internetmonitor:Link",
+          "application-signals:Link"
         ]
       },
       "delete": {
@@ -87,6 +90,7 @@
           "xray:Link",
           "applicationinsights:Link",
           "internetmonitor:Link",
+          "application-signals:Link",
           "oam:TagResource",
           "oam:UntagResource",
           "oam:ListTagsForResource"
@@ -152,7 +156,7 @@
       "SinkIdentifier"
     ],
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "oam:ListTagsForResource",
         "oam:UntagResource",

@@ -1,14 +1,16 @@
 # AWS.S3ObjectLambda @ default
 
 ## Resource AWS.S3ObjectLambda/AccessPoint@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.S3ObjectLambda/AccessPointProperties](#awss3objectlambdaaccesspointproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.S3ObjectLambda/AccessPointPolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

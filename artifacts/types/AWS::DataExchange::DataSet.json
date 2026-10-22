@@ -1,0 +1,154 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataExchange-DataSet",
+  "type": "AWS::DataExchange::DataSet",
+  "time": "2026-10-21T22:49:12.362Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AssetType"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::DataExchange::DataSet Resource Type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "dataexchange:CreateDataSet",
+          "dataexchange:GetDataSet",
+          "dataexchange:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "dataexchange:DeleteDataSet",
+          "dataexchange:GetDataSet"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "dataexchange:ListDataSets"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "dataexchange:GetDataSet",
+          "dataexchange:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "dataexchange:UpdateDataSet",
+          "dataexchange:GetDataSet",
+          "dataexchange:TagResource",
+          "dataexchange:UntagResource",
+          "dataexchange:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN for the data set.",
+        "type": "string"
+      },
+      "AssetType": {
+        "description": "The type of asset that is added to a data set.",
+        "enum": [
+          "S3_SNAPSHOT",
+          "REDSHIFT_DATA_SHARE",
+          "API_GATEWAY_API",
+          "S3_DATA_ACCESS",
+          "LAKE_FORMATION_DATA_PERMISSION"
+        ],
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time that the data set was created, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description for the data set.",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The unique identifier for the data set.",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the data set.",
+        "type": "string"
+      },
+      "Origin": {
+        "description": "A property that defines the data set as OWNED by the account (for providers) or ENTITLED to the account (for subscribers).",
+        "enum": [
+          "OWNED",
+          "ENTITLED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags for the data set.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "UpdatedAt": {
+        "description": "The date and time that the data set was last updated, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt",
+      "/properties/Origin"
+    ],
+    "required": [
+      "AssetType",
+      "Description",
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "dataexchange:TagResource",
+        "dataexchange:UntagResource",
+        "dataexchange:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::DataExchange::DataSet"
+  }
+}

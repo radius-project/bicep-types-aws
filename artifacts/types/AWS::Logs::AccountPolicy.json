@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Logs-AccountPolicy",
   "type": "AWS::Logs::AccountPolicy",
-  "time": "2024-12-18T18:38:37.152Z",
+  "time": "2025-12-23T18:26:39.19Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -22,6 +22,7 @@
           "logs:PutSubscriptionFilter",
           "logs:DeleteSubscriptionFilter",
           "logs:PutTransformer",
+          "logs:PutMetricExtractionPolicy",
           "iam:PassRole"
         ]
       },
@@ -33,6 +34,7 @@
           "logs:DescribeAccountPolicies",
           "logs:DeleteSubscriptionFilter",
           "logs:DeleteTransformer",
+          "logs:DeleteMetricExtractionPolicy",
           "iam:PassRole"
         ]
       },
@@ -49,13 +51,15 @@
         },
         "permissions": [
           "logs:DescribeAccountPolicies",
-          "logs:GetTransformer"
+          "logs:GetTransformer",
+          "logs:GetMetricExtractionPolicy"
         ]
       },
       "read": {
         "permissions": [
           "logs:DescribeAccountPolicies",
-          "logs:GetTransformer"
+          "logs:GetTransformer",
+          "logs:GetMetricExtractionPolicy"
         ]
       },
       "update": {
@@ -72,6 +76,8 @@
           "logs:DeleteSubscriptionFilter",
           "logs:PutTransformer",
           "logs:DeleteTransformer",
+          "logs:PutMetricExtractionPolicy",
+          "logs:DeleteMetricExtractionPolicy",
           "s3:REST.PUT.OBJECT",
           "firehose:TagDeliveryStream",
           "iam:PassRole"
@@ -108,7 +114,8 @@
           "DATA_PROTECTION_POLICY",
           "SUBSCRIPTION_FILTER_POLICY",
           "FIELD_INDEX_POLICY",
-          "TRANSFORMER_POLICY"
+          "TRANSFORMER_POLICY",
+          "METRIC_EXTRACTION_POLICY"
         ],
         "type": "string"
       },

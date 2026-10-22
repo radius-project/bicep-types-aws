@@ -384,11 +384,204 @@
   {
     "$type": "ResourceType",
     "name": "AWS.AppSync/Api@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/28"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AppSync/ApiCacheProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppSync/ApiCacheProperties",
+    "properties": {
+      "ApiCachingBehavior": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "Caching behavior, such as FULL_REQUEST_CACHING, PER_RESOLVER_CACHING, or OPERATION_LEVEL_CACHING"
+      },
+      "ApiId": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "Unique AWS AppSync GraphQL API identifier."
+      },
+      "AtRestEncryptionEnabled": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "At-rest encryption flag for cache. You cannot update this setting after creation."
+      },
+      "HealthMetricsConfig": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Controls how cache health metrics will be emitted to CloudWatch. Cache health metrics include NetworkBandwidthOutAllowanceExceeded and EngineCPUUtilization"
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 18,
+        "description": "The CloudFormation primary identifier for an ApiCache. Mirrors ApiId once the resource exists; populated by the handler. Customers should reference the ApiCache by ApiId."
+      },
+      "TransitEncryptionEnabled": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "Transit encryption flag when connecting to cache. You cannot update this setting after creation."
+      },
+      "Ttl": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "TTL in seconds for cache entries. Valid values are 1-3600."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The cache instance type, such as SMALL, LARGE and LARGE_4X"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppSync/ApiCache",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AppSync/ApiCache@default",
+    "body": {
+      "$ref": "#/33"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AppSync/ApiKeyProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppSync/ApiKeyProperties",
+    "properties": {
+      "ApiId": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 17,
+        "description": "Unique AWS AppSync GraphQL API ID for this API key."
+      },
+      "ApiKey": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The API key."
+      },
+      "ApiKeyId": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 18,
+        "description": "The API key ID."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the API key."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Unique description of your API key."
+      },
+      "Expires": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "The time after which the API key expires. The date is represented as seconds since the epoch, rounded down to the nearest hour."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppSync/ApiKey",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AppSync/ApiKey@default",
+    "body": {
+      "$ref": "#/37"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -424,6 +617,83 @@
   },
   {
     "$type": "ObjectType",
+    "name": "HandlerBehavior",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HandlerConfig",
+    "properties": {
+      "Behavior": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      },
+      "Integration": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HandlerConfigs",
+    "properties": {
+      "OnPublish": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      },
+      "OnSubscribe": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Integration",
+    "properties": {
+      "DataSourceName": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "Data source to invoke for this integration."
+      },
+      "LambdaConfig": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InvokeType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LambdaConfig",
+    "properties": {
+      "InvokeType": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Namespace",
     "properties": {}
   },
@@ -455,13 +725,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/39"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
+      "$ref": "#/51"
     }
   },
   {
@@ -471,19 +741,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/39"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/39"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
+      "$ref": "#/51"
     }
   },
   {
@@ -516,6 +786,12 @@
         "flags": 4,
         "description": "The Amazon S3 endpoint where the code is located."
       },
+      "HandlerConfigs": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0
+      },
       "Name": {
         "type": {
           "$ref": "#/16"
@@ -524,21 +800,21 @@
       },
       "PublishAuthModes": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "List of AuthModes supported for Publish operations."
       },
       "SubscribeAuthModes": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "List of AuthModes supported for Subscribe operations."
       },
       "Tags": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/58"
         },
         "flags": 0
       }
@@ -564,7 +840,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/59"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -574,11 +850,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.AppSync/ChannelNamespace@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/45"
+      "$ref": "#/60"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -593,7 +869,7 @@
       },
       "AwsIamConfig": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "The AWS Identity and Access Management settings."
@@ -660,7 +936,7 @@
       },
       "DeltaSyncConfig": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "The DeltaSyncConfig for a versioned datasource."
@@ -674,14 +950,14 @@
       },
       "UseCallerCredentials": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "Set to TRUE to use AWS Identity and Access Management with this data source."
       },
       "Versioned": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "Set to TRUE to use Conflict Detection and Resolution with this data source."
@@ -727,7 +1003,7 @@
     "properties": {
       "AuthorizationConfig": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "The authorization configuration."
@@ -821,7 +1097,7 @@
     "properties": {
       "RdsHttpEndpointConfig": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "Information about the Amazon RDS resource."
@@ -834,9 +1110,6 @@
         "description": "The type of relational data source."
       }
     }
-  },
-  {
-    "$type": "BooleanType"
   },
   {
     "$type": "StringLiteralType",
@@ -869,35 +1142,35 @@
       },
       "DynamoDBConfig": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "AWS Region and TableName for an Amazon DynamoDB table in your account."
       },
       "ElasticsearchConfig": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "AWS Region and Endpoints for an Amazon OpenSearch Service domain in your account.\nAs of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service. This property is deprecated. For new data sources, use OpenSearchServiceConfig to specify an OpenSearch Service data source."
       },
       "EventBridgeConfig": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "ARN for the EventBridge bus."
       },
       "HttpConfig": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "Endpoints for an HTTP data source."
       },
       "LambdaConfig": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "An ARN of a Lambda function in valid ARN format. This can be the ARN of a Lambda function that exists in the current account or in another account."
@@ -918,14 +1191,14 @@
       },
       "OpenSearchServiceConfig": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "AWS Region and Endpoints for an Amazon OpenSearch Service domain in your account."
       },
       "RelationalDatabaseConfig": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "Relational Database configuration of the relational database data source."
@@ -966,7 +1239,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/74"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -976,15 +1249,52 @@
   {
     "$type": "ResourceType",
     "name": "AWS.AppSync/DataSource@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/61"
+      "$ref": "#/75"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "A string used to identify this tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "A string containing the value for this tag. You can specify a maximum of 256 characters for a tag value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/77"
+    }
   },
   {
     "$type": "StringLiteralType",
     "value": "AWS.AppSync/DomainNameProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/77"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1014,11 +1324,24 @@
         },
         "flags": 17
       },
+      "DomainNameArn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) for the Domain Name."
+      },
       "HostedZoneId": {
         "type": {
           "$ref": "#/16"
         },
         "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 0
       }
     }
   },
@@ -1042,7 +1365,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/82"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1052,11 +1375,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.AppSync/DomainName@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/65"
+      "$ref": "#/83"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -1106,7 +1429,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/86"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1116,11 +1439,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.AppSync/DomainNameApiAssociation@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/69"
+      "$ref": "#/87"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1175,7 +1498,7 @@
       },
       "LambdaConflictHandlerConfig": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/90"
         },
         "flags": 0
       }
@@ -1289,14 +1612,14 @@
       },
       "Runtime": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "Describes a runtime used by an AWS AppSync pipeline resolver or AWS AppSync function. Specifies the name and version of the runtime to use. Note that if a runtime is specified, code must also be specified."
       },
       "SyncConfig": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "Describes a Sync configuration for a resolver. Specifies which Conflict Detection strategy and Resolution strategy to use when the resolver is invoked."
@@ -1323,7 +1646,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/93"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1333,11 +1656,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.AppSync/FunctionConfiguration@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/76"
+      "$ref": "#/94"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1352,19 +1675,19 @@
       },
       "LambdaAuthorizerConfig": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/99"
         },
         "flags": 0
       },
       "OpenIDConnectConfig": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/101"
         },
         "flags": 0
       },
       "UserPoolConfig": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/97"
         },
         "flags": 0
       }
@@ -1459,12 +1782,12 @@
         "type": {
           "$ref": "#/16"
         },
-        "flags": 0,
+        "flags": 1,
         "description": "The service role that AWS AppSync will assume to publish to Amazon CloudWatch Logs in your account."
       },
       "ExcludeVerboseContent": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "Set to TRUE to exclude sections that contain information such as headers, context, and evaluated mapping templates, regardless of logging level."
@@ -1473,7 +1796,7 @@
         "type": {
           "$ref": "#/16"
         },
-        "flags": 0,
+        "flags": 1,
         "description": "The field logging level. Values can be NONE, ERROR, INFO, DEBUG, or ALL."
       }
     }
@@ -1571,7 +1894,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/78"
+      "$ref": "#/96"
     }
   },
   {
@@ -1582,7 +1905,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/84"
+      "$ref": "#/102"
     }
   },
   {
@@ -1591,7 +1914,7 @@
     "properties": {
       "AdditionalAuthenticationProviders": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/105"
         },
         "flags": 0,
         "description": "A list of additional authentication providers for the GraphqlApi API."
@@ -1600,7 +1923,7 @@
         "type": {
           "$ref": "#/16"
         },
-        "flags": 18,
+        "flags": 2,
         "description": "Unique AWS AppSync GraphQL API identifier."
       },
       "ApiType": {
@@ -1614,7 +1937,7 @@
         "type": {
           "$ref": "#/16"
         },
-        "flags": 2,
+        "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the API key"
       },
       "AuthenticationType": {
@@ -1626,14 +1949,14 @@
       },
       "EnhancedMetricsConfig": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/98"
         },
         "flags": 0,
         "description": "Enables and controls the enhanced metrics feature. Enhanced metrics emit granular data on API usage and performance such as AppSync request and error counts, latency, and cache hits/misses. All enhanced metric data is sent to your CloudWatch account, and you can configure the types of data that will be sent."
       },
       "EnvironmentVariables": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/106"
         },
         "flags": 0,
         "description": "A map containing the list of resources with their properties and environment variables."
@@ -1668,14 +1991,14 @@
       },
       "LambdaAuthorizerConfig": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/99"
         },
         "flags": 0,
         "description": "A LambdaAuthorizerConfig holds configuration on how to authorize AWS AppSync API access when using the AWS_LAMBDA authorizer mode. Be aware that an AWS AppSync API may have only one Lambda authorizer configured at a time."
       },
       "LogConfig": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/100"
         },
         "flags": 0,
         "description": "The Amazon CloudWatch Logs configuration."
@@ -1696,7 +2019,7 @@
       },
       "OpenIDConnectConfig": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/101"
         },
         "flags": 0,
         "description": "The OpenID Connect configuration."
@@ -1738,14 +2061,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/107"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this GraphQL API.\n\n"
       },
       "UserPoolConfig": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/103"
         },
         "flags": 0,
         "description": "Optional authorization configuration for using Amazon Cognito user pools with your GraphQL endpoint.\n\n"
@@ -1759,7 +2082,7 @@
       },
       "XrayEnabled": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "A flag indicating whether to use AWS X-Ray tracing for this GraphqlApi.\n\n"
@@ -1786,7 +2109,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/108"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1796,11 +2119,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.AppSync/GraphQLApi@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/91"
+      "$ref": "#/109"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1828,7 +2151,7 @@
     "properties": {
       "CachingKeys": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/116"
         },
         "flags": 0,
         "description": "The caching keys for a resolver that has caching activated.\n Valid values are entries from the ``$context.arguments``, ``$context.source``, and ``$context.identity`` maps."
@@ -1861,7 +2184,7 @@
     "properties": {
       "Functions": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/117"
         },
         "flags": 0,
         "description": "A list of ``Function`` objects."
@@ -1877,18 +2200,18 @@
           "$ref": "#/16"
         },
         "flags": 1,
-        "description": "The Conflict Detection strategy to use.\n  +   *VERSION*: Detect conflicts based on object versions for this resolver.\n  +   *NONE*: Do not detect conflicts when invoking this resolver."
+        "description": "The Conflict Detection strategy to use.\n  +  *VERSION*: Detect conflicts based on object versions for this resolver.\n  +  *NONE*: Do not detect conflicts when invoking this resolver."
       },
       "ConflictHandler": {
         "type": {
           "$ref": "#/16"
         },
         "flags": 0,
-        "description": "The Conflict Resolution strategy to perform in the event of a conflict.\n  +   *OPTIMISTIC_CONCURRENCY*: Resolve conflicts by rejecting mutations when versions don't match the latest version at the server.\n  +   *AUTOMERGE*: Resolve conflicts with the Automerge conflict resolution strategy.\n  +   *LAMBDA*: Resolve conflicts with an LAMlong function supplied in the ``LambdaConflictHandlerConfig``."
+        "description": "The Conflict Resolution strategy to perform in the event of a conflict.\n  +  *OPTIMISTIC_CONCURRENCY*: Resolve conflicts by rejecting mutations when versions don't match the latest version at the server.\n  +  *AUTOMERGE*: Resolve conflicts with the Automerge conflict resolution strategy.\n  +  *LAMBDA*: Resolve conflicts with an LAMlong function supplied in the ``LambdaConflictHandlerConfig``."
       },
       "LambdaConflictHandlerConfig": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "The ``LambdaConflictHandlerConfig`` when configuring ``LAMBDA`` as the Conflict Handler."
@@ -1924,7 +2247,7 @@
       },
       "CachingConfig": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/112"
         },
         "flags": 0,
         "description": "The caching configuration for the resolver."
@@ -1962,7 +2285,7 @@
           "$ref": "#/16"
         },
         "flags": 0,
-        "description": "The resolver type.\n  +   *UNIT*: A UNIT resolver type. A UNIT resolver is the default resolver type. You can use a UNIT resolver to run a GraphQL query against a single data source.\n  +   *PIPELINE*: A PIPELINE resolver type. You can use a PIPELINE resolver to invoke a series of ``Function`` objects in a serial manner. You can use a pipeline resolver to run a GraphQL query against multiple data sources."
+        "description": "The resolver type.\n  +  *UNIT*: A UNIT resolver type. A UNIT resolver is the default resolver type. You can use a UNIT resolver to run a GraphQL query against a single data source.\n  +  *PIPELINE*: A PIPELINE resolver type. You can use a PIPELINE resolver to invoke a series of ``Function`` objects in a serial manner. You can use a pipeline resolver to run a GraphQL query against multiple data sources."
       },
       "MaxBatchSize": {
         "type": {
@@ -1980,7 +2303,7 @@
       },
       "PipelineConfig": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/114"
         },
         "flags": 0,
         "description": "Functions linked with the pipeline resolver."
@@ -2022,14 +2345,14 @@
       },
       "Runtime": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/111"
         },
         "flags": 0,
         "description": "Describes a runtime used by an APSYlong resolver or APSYlong function. Specifies the name and version of the runtime to use. Note that if a runtime is specified, code must also be specified."
       },
       "SyncConfig": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "The ``SyncConfig`` for a resolver attached to a versioned data source."
@@ -2063,7 +2386,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/119"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2073,11 +2396,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.AppSync/Resolver@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/102"
+      "$ref": "#/120"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -2158,7 +2481,7 @@
       },
       "SourceApiAssociationConfig": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "Customized configuration for SourceApiAssociation."
@@ -2213,7 +2536,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/124"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2223,10 +2546,91 @@
   {
     "$type": "ResourceType",
     "name": "AWS.AppSync/SourceApiAssociation@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/107"
+      "$ref": "#/125"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AppSync/TypeProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppSync/TypeProperties",
+    "properties": {
+      "ApiId": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The API ID."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the type."
+      },
+      "Definition": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The type definition, in GraphQL Schema Definition Language (SDL) format."
+      },
+      "Format": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The type format: SDL or JSON."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The type name."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppSync/Type",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/128"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AppSync/Type@default",
+    "body": {
+      "$ref": "#/129"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

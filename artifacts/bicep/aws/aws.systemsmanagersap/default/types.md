@@ -1,7 +1,8 @@
 # AWS.SystemsManagerSAP @ default
 
 ## Resource AWS.SystemsManagerSAP/Application@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -12,12 +13,19 @@
 * **ApplicationId**: string (Required)
 * **ApplicationType**: string (Required)
 * **Arn**: string (ReadOnly, Identifier): The ARN of the SSM-SAP application
+* **ComponentsInfo**: [ComponentInfo](#componentinfo)[] (WriteOnly): This is an optional parameter for component details to which the SAP ABAP application is attached, such as Web Dispatcher.
 * **Credentials**: [Credential](#credential)[] (WriteOnly)
 * **DatabaseArn**: string (WriteOnly): The ARN of the SAP HANA database
 * **Instances**: string[] (WriteOnly)
 * **SapInstanceNumber**: string (WriteOnly)
 * **Sid**: string (WriteOnly)
 * **Tags**: [Tag](#tag)[]: The tags of a SystemsManagerSAP application.
+
+## ComponentInfo
+### Properties
+* **ComponentType**: string
+* **Ec2InstanceId**: string
+* **Sid**: string
 
 ## Credential
 ### Properties

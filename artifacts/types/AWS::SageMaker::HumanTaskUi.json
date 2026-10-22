@@ -1,0 +1,156 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-HumanTaskUi",
+  "type": "AWS::SageMaker::HumanTaskUi",
+  "time": "2026-10-21T22:34:58.387Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/HumanTaskUiName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/HumanTaskUiName",
+      "/properties/UiTemplate"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "UiTemplate": {
+        "additionalProperties": false,
+        "description": "The Liquid template for the worker user interface.",
+        "properties": {
+          "Content": {
+            "description": "The content of the Liquid template for the worker user interface.",
+            "maxLength": 128000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Content"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SageMaker::HumanTaskUi",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "sagemaker:CreateHumanTaskUi",
+          "sagemaker:DescribeHumanTaskUi",
+          "sagemaker:AddTags",
+          "sagemaker:ListTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "sagemaker:DeleteHumanTaskUi",
+          "sagemaker:DescribeHumanTaskUi",
+          "sagemaker:ListTags"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "sagemaker:ListHumanTaskUis"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeHumanTaskUi",
+          "sagemaker:ListTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "sagemaker:DescribeHumanTaskUi",
+          "sagemaker:AddTags",
+          "sagemaker:DeleteTags",
+          "sagemaker:ListTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/HumanTaskUiArn"
+    ],
+    "properties": {
+      "CreationTime": {
+        "description": "The timestamp when the human task user interface was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "HumanTaskUiArn": {
+        "description": "The Amazon Resource Name (ARN) of the human task user interface.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]+:[0-9]{12}:human-task-ui/",
+        "type": "string"
+      },
+      "HumanTaskUiName": {
+        "description": "The name of the human task user interface.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-z0-9](-*[a-z0-9])*$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs that contain metadata to help you categorize and organize a human review workflow user interface.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "UiTemplate": {
+        "$ref": "#/definitions/UiTemplate",
+        "description": "The Liquid template for the worker user interface."
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/HumanTaskUiArn",
+      "/properties/CreationTime"
+    ],
+    "required": [
+      "HumanTaskUiName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:AddTags",
+        "sagemaker:DeleteTags",
+        "sagemaker:ListTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::HumanTaskUi",
+    "writeOnlyProperties": [
+      "/properties/UiTemplate"
+    ]
+  }
+}

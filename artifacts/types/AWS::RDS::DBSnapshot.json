@@ -1,0 +1,235 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBSnapshot",
+  "type": "AWS::RDS::DBSnapshot",
+  "time": "2026-10-21T23:10:33.573Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DBSnapshotIdentifier"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DBSnapshotIdentifier",
+      "/properties/DBInstanceIdentifier"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates a snapshot of a DB instance.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "rds:CreateDBSnapshot",
+          "rds:DescribeDBSnapshots",
+          "rds:DescribeDBInstances",
+          "rds:AddTagsToResource",
+          "rds:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "rds:DeleteDBSnapshot",
+          "rds:DescribeDBSnapshots",
+          "rds:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "rds:DescribeDBSnapshots"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "rds:DescribeDBSnapshots",
+          "rds:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "rds:DescribeDBSnapshots",
+          "rds:AddTagsToResource",
+          "rds:RemoveTagsFromResource",
+          "rds:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DBSnapshotArn"
+    ],
+    "properties": {
+      "AllocatedStorage": {
+        "description": "The allocated storage size in gibibytes (GiB).",
+        "type": "integer"
+      },
+      "AvailabilityZone": {
+        "description": "The name of the Availability Zone the DB instance was located in at the time of the DB snapshot.",
+        "type": "string"
+      },
+      "DBInstanceIdentifier": {
+        "description": "The identifier of the DB instance that you want to create the snapshot of.",
+        "type": "string"
+      },
+      "DBSnapshotArn": {
+        "description": "The Amazon Resource Name (ARN) for the DB snapshot.",
+        "type": "string"
+      },
+      "DBSnapshotIdentifier": {
+        "description": "The identifier for the DB snapshot. Must contain from 1 to 255 letters, numbers, or hyphens. First character must be a letter. Can't end with a hyphen or contain two consecutive hyphens.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9]*(-[a-zA-Z0-9]+)*$",
+        "type": "string"
+      },
+      "DbiResourceId": {
+        "description": "The identifier for the source DB instance, which is unique to an AWS Region.",
+        "type": "string"
+      },
+      "Encrypted": {
+        "description": "Indicates whether the DB snapshot is encrypted.",
+        "type": "boolean"
+      },
+      "Engine": {
+        "description": "The name of the database engine.",
+        "type": "string"
+      },
+      "EngineVersion": {
+        "description": "The version of the database engine.",
+        "type": "string"
+      },
+      "IAMDatabaseAuthenticationEnabled": {
+        "description": "Indicates whether mapping of AWS IAM accounts to database accounts is enabled.",
+        "type": "boolean"
+      },
+      "InstanceCreateTime": {
+        "description": "The time when the DB instance was created, in UTC.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Iops": {
+        "description": "The Provisioned IOPS value of the DB instance at the time of the snapshot.",
+        "type": "integer"
+      },
+      "KmsKeyId": {
+        "description": "If Encrypted is true, the AWS KMS key identifier for the encrypted DB snapshot.",
+        "type": "string"
+      },
+      "LicenseModel": {
+        "description": "License model information for the restored DB instance.",
+        "type": "string"
+      },
+      "MasterUsername": {
+        "description": "The master username for the DB snapshot.",
+        "type": "string"
+      },
+      "OptionGroupName": {
+        "description": "The option group name for the DB snapshot.",
+        "type": "string"
+      },
+      "OriginalSnapshotCreateTime": {
+        "description": "The time of the CreateDBSnapshot operation in UTC. Doesn't change when the snapshot is copied.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Port": {
+        "description": "The port that the database engine was listening on at the time of the snapshot.",
+        "type": "integer"
+      },
+      "SnapshotCreateTime": {
+        "description": "The time when the snapshot was taken, in UTC.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "SnapshotType": {
+        "description": "The type of the DB snapshot.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of this DB snapshot.",
+        "type": "string"
+      },
+      "StorageThroughput": {
+        "description": "The storage throughput for the DB snapshot.",
+        "type": "integer"
+      },
+      "StorageType": {
+        "description": "The storage type associated with the DB snapshot.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags to be assigned to the DB snapshot.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "VpcId": {
+        "description": "The VPC ID associated with the DB snapshot.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DBSnapshotArn",
+      "/properties/Engine",
+      "/properties/EngineVersion",
+      "/properties/AllocatedStorage",
+      "/properties/Status",
+      "/properties/Port",
+      "/properties/AvailabilityZone",
+      "/properties/VpcId",
+      "/properties/InstanceCreateTime",
+      "/properties/MasterUsername",
+      "/properties/SnapshotType",
+      "/properties/Iops",
+      "/properties/OptionGroupName",
+      "/properties/SnapshotCreateTime",
+      "/properties/Encrypted",
+      "/properties/KmsKeyId",
+      "/properties/StorageType",
+      "/properties/LicenseModel",
+      "/properties/IAMDatabaseAuthenticationEnabled",
+      "/properties/DbiResourceId",
+      "/properties/OriginalSnapshotCreateTime",
+      "/properties/StorageThroughput"
+    ],
+    "required": [
+      "DBSnapshotIdentifier",
+      "DBInstanceIdentifier"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "rds:AddTagsToResource",
+        "rds:RemoveTagsFromResource",
+        "rds:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::RDS::DBSnapshot"
+  }
+}

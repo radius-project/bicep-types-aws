@@ -1,14 +1,16 @@
 # AWS.ServiceCatalogAppRegistry @ default
 
 ## Resource AWS.ServiceCatalogAppRegistry/Application@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ServiceCatalogAppRegistry/ApplicationProperties](#awsservicecatalogappregistryapplicationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ServiceCatalogAppRegistry/AttributeGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

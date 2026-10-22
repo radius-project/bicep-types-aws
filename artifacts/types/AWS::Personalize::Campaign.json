@@ -1,0 +1,195 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Personalize-Campaign",
+  "type": "AWS::Personalize::Campaign",
+  "time": "2026-10-21T17:18:06.261Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "definitions": {
+      "CampaignConfig": {
+        "additionalProperties": false,
+        "description": "The configuration details of a campaign.",
+        "properties": {
+          "EnableMetadataWithRecommendations": {
+            "description": "Whether metadata with recommendations is enabled for the campaign.",
+            "type": "boolean"
+          },
+          "ItemExplorationConfig": {
+            "additionalProperties": false,
+            "description": "Specifies the exploration configuration hyperparameters.",
+            "patternProperties": {
+              "^[a-zA-Z0-9]+$": {
+                "maxLength": 1000,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "RankingInfluence": {
+            "additionalProperties": false,
+            "description": "A map of ranking influence values for POPULARITY and FRESHNESS.",
+            "patternProperties": {
+              "^(POPULARITY|FRESHNESS)$": {
+                "maximum": 1,
+                "minimum": 0,
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "SyncWithLatestSolutionVersion": {
+            "description": "Whether the campaign automatically updates to use the latest solution version.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A deployment of a solution version that provides real-time recommendations.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "personalize:CreateCampaign",
+          "personalize:DescribeCampaign",
+          "personalize:TagResource",
+          "personalize:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "personalize:DeleteCampaign",
+          "personalize:DescribeCampaign"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "personalize:ListCampaigns"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "personalize:DescribeCampaign",
+          "personalize:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "personalize:UpdateCampaign",
+          "personalize:DescribeCampaign",
+          "personalize:TagResource",
+          "personalize:UntagResource",
+          "personalize:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/CampaignArn"
+    ],
+    "properties": {
+      "CampaignArn": {
+        "description": "The ARN of the campaign.",
+        "maxLength": 256,
+        "pattern": "arn:([a-z\\d-]+):personalize:.*:.*:.+",
+        "type": "string"
+      },
+      "CampaignConfig": {
+        "$ref": "#/definitions/CampaignConfig"
+      },
+      "CreationDateTime": {
+        "description": "The time at which the campaign was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "LastUpdatedDateTime": {
+        "description": "The time at which the campaign was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "MinProvisionedTPS": {
+        "description": "Specifies the requested minimum provisioned transactions per second.",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "Name": {
+        "description": "The name of the campaign.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-_]*$",
+        "type": "string"
+      },
+      "SolutionVersionArn": {
+        "description": "The ARN of the solution version to deploy.",
+        "maxLength": 256,
+        "pattern": "arn:([a-z\\d-]+):personalize:.*:.*:.+",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the campaign.",
+        "maxLength": 256,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags to associate with the campaign.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/CampaignArn",
+      "/properties/Status",
+      "/properties/CreationDateTime",
+      "/properties/LastUpdatedDateTime"
+    ],
+    "required": [
+      "Name",
+      "SolutionVersionArn"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "personalize:TagResource",
+        "personalize:UntagResource",
+        "personalize:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Personalize::Campaign"
+  }
+}

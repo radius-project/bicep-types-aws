@@ -1,0 +1,226 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkFlowMonitor-Monitor",
+  "type": "AWS::NetworkFlowMonitor::Monitor",
+  "time": "2026-10-21T21:17:16.601Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/MonitorName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/MonitorName",
+      "/properties/ScopeArn"
+    ],
+    "definitions": {
+      "MonitorLocalResource": {
+        "additionalProperties": false,
+        "description": "A local resource is the host where the agent is installed.",
+        "properties": {
+          "Identifier": {
+            "description": "The identifier of the local resource.",
+            "type": "string"
+          },
+          "Type": {
+            "description": "The type of the local resource.",
+            "enum": [
+              "AWS::EC2::VPC",
+              "AWS::AvailabilityZone",
+              "AWS::EC2::Subnet",
+              "AWS::Region",
+              "AWS::EKS::Cluster"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type",
+          "Identifier"
+        ],
+        "type": "object"
+      },
+      "MonitorRemoteResource": {
+        "additionalProperties": false,
+        "description": "A remote resource is the other endpoint in a network flow.",
+        "properties": {
+          "Identifier": {
+            "description": "The identifier of the remote resource.",
+            "type": "string"
+          },
+          "Type": {
+            "description": "The type of the remote resource.",
+            "enum": [
+              "AWS::EC2::VPC",
+              "AWS::AvailabilityZone",
+              "AWS::EC2::Subnet",
+              "AWS::AWSService",
+              "AWS::Region"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type",
+          "Identifier"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates a monitor for specific network flows between local and remote resources to monitor network performance for workloads.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "networkflowmonitor:CreateMonitor",
+          "networkflowmonitor:GetMonitor",
+          "networkflowmonitor:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "networkflowmonitor:DeleteMonitor",
+          "networkflowmonitor:GetMonitor"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "networkflowmonitor:ListMonitors"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "networkflowmonitor:GetMonitor",
+          "networkflowmonitor:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "networkflowmonitor:UpdateMonitor",
+          "networkflowmonitor:GetMonitor",
+          "networkflowmonitor:TagResource",
+          "networkflowmonitor:UntagResource",
+          "networkflowmonitor:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the monitor.",
+        "maxLength": 512,
+        "minLength": 20,
+        "pattern": "^arn:.*$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time when the monitor was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "LocalResources": {
+        "description": "The local resources to monitor.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/MonitorLocalResource"
+        },
+        "minItems": 1,
+        "type": "array"
+      },
+      "ModifiedAt": {
+        "description": "The date and time when the monitor was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "MonitorName": {
+        "description": "The name of the monitor.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_.-]+$",
+        "type": "string"
+      },
+      "MonitorStatus": {
+        "description": "The status of the monitor.",
+        "enum": [
+          "PENDING",
+          "ACTIVE",
+          "INACTIVE",
+          "ERROR",
+          "DELETING"
+        ],
+        "type": "string"
+      },
+      "RemoteResources": {
+        "description": "The remote resources to monitor.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/MonitorRemoteResource"
+        },
+        "type": "array"
+      },
+      "ScopeArn": {
+        "description": "The Amazon Resource Name (ARN) of the scope for the monitor.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:.*$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the monitor.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/MonitorStatus",
+      "/properties/CreatedAt",
+      "/properties/ModifiedAt"
+    ],
+    "required": [
+      "MonitorName",
+      "LocalResources"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "networkflowmonitor:TagResource",
+        "networkflowmonitor:UntagResource",
+        "networkflowmonitor:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::NetworkFlowMonitor::Monitor",
+    "writeOnlyProperties": [
+      "/properties/ScopeArn"
+    ]
+  }
+}

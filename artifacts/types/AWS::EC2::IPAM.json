@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-IPAM",
   "type": "AWS::EC2::IPAM",
-  "time": "2025-01-21T16:59:55.857Z",
+  "time": "2026-10-19T17:14:53.005Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -16,6 +16,21 @@
         },
         "required": [
           "RegionName"
+        ],
+        "type": "object"
+      },
+      "IpamOrganizationalUnitExclusion": {
+        "additionalProperties": false,
+        "description": "If your IPAM is integrated with AWS Organizations and you add an organizational unit (OU) exclusion, IPAM will not manage the IP addresses in accounts in that OU exclusion.",
+        "properties": {
+          "OrganizationsEntityPath": {
+            "description": "An AWS Organizations entity path. Build the path for the OU(s) using AWS Organizations IDs separated by a '/'. Include all child OUs by ending the path with '/*'.",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "OrganizationsEntityPath"
         ],
         "type": "object"
       },
@@ -100,6 +115,15 @@
         "description": "The Id of the default resource discovery, created with this IPAM.",
         "type": "string"
       },
+      "DefaultResourceDiscoveryOrganizationalUnitExclusions": {
+        "description": "A set of organizational unit (OU) exclusions for the default resource discovery, created with this IPAM.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/IpamOrganizationalUnitExclusion"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
       "Description": {
         "type": "string"
       },
@@ -109,6 +133,14 @@
       },
       "IpamId": {
         "description": "Id of the IPAM.",
+        "type": "string"
+      },
+      "MeteredAccount": {
+        "description": "A metered account is an account that is charged for active IP addresses managed in IPAM",
+        "enum": [
+          "ipam-owner",
+          "resource-owner"
+        ],
         "type": "string"
       },
       "OperatingRegions": {
@@ -168,7 +200,7 @@
     "required": [],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ipam.git",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "ec2:DeleteTags",
         "ec2:CreateTags"

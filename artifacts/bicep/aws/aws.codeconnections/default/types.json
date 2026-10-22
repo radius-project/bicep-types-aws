@@ -117,10 +117,183 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CodeConnections/Connection@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/5"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag's key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag's value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcConfiguration",
+    "properties": {
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The ID of the security group or security groups associated with the Amazon VPC."
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The ID of the subnet or subnets associated with the Amazon VPC."
+      },
+      "TlsCertificate": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The value of the Transport Layer Security (TLS) certificate associated with the infrastructure where your provider type is installed."
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID of the Amazon VPC connected to the infrastructure where your provider type is installed."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CodeConnections/HostProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeConnections/HostProperties",
+    "properties": {
+      "HostArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the host."
+      },
+      "HostId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The server-generated unique identifier for the host."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the host."
+      },
+      "ProviderEndpoint": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The endpoint of the infrastructure where your provider type is installed."
+      },
+      "ProviderType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the installed provider to be associated with your connection."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of the host."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "Tags to apply to the host."
+      },
+      "VpcConfiguration": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeConnections/Host",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CodeConnections/Host@default",
+    "body": {
+      "$ref": "#/14"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

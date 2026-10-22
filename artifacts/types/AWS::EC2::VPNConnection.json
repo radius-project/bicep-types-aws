@@ -1,15 +1,13 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-VPNConnection",
   "type": "AWS::EC2::VPNConnection",
-  "time": "2025-01-22T18:43:09.356Z",
+  "time": "2026-10-20T00:41:43.442Z",
   "schema": {
     "$schema": "https://raw.githubusercontent.com/aws-cloudformation/cloudformation-resource-schema/blob/master/src/main/resources/schema/provider.definition.schema.v1.json",
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Type",
-      "/properties/CustomerGatewayId",
-      "/properties/VpnGatewayId",
-      "/properties/TransitGatewayId",
+      "/properties/VpnConcentratorId",
       "/properties/EnableAcceleration",
       "/properties/LocalIpv4NetworkCidr",
       "/properties/LocalIpv6NetworkCidr",
@@ -19,13 +17,29 @@
       "/properties/StaticRoutesOnly",
       "/properties/TransportTransitGatewayAttachmentId",
       "/properties/TunnelInsideIpVersion",
-      "/properties/VpnTunnelOptionsSpecifications"
+      "/properties/PreSharedKeyStorage"
     ],
     "definitions": {
       "CloudwatchLogOptionsSpecification": {
         "additionalProperties": false,
         "description": "Options for sending VPN tunnel logs to CloudWatch.",
         "properties": {
+          "BgpLogEnabled": {
+            "description": "Specifies whether to enable BGP logging for the VPN connection. Default value is ``False``.\n Valid values: ``True`` | ``False``",
+            "type": "boolean"
+          },
+          "BgpLogGroupArn": {
+            "description": "The Amazon Resource Name (ARN) of the CloudWatch log group where BGP logs will be sent.",
+            "type": "string"
+          },
+          "BgpLogOutputFormat": {
+            "description": "The desired output format for BGP logs to be sent to CloudWatch. Default format is ``json``.\n Valid values: ``json`` | ``text``",
+            "enum": [
+              "json",
+              "text"
+            ],
+            "type": "string"
+          },
           "LogEnabled": {
             "description": "Enable or disable VPN tunnel logging feature. Default value is ``False``.\n Valid values: ``True`` | ``False``",
             "type": "boolean"
@@ -214,7 +228,7 @@
         "description": "The tunnel options for a single VPN tunnel.",
         "properties": {
           "DPDTimeoutAction": {
-            "description": "The action to take after DPD timeout occurs. Specify ``restart`` to restart the IKE initiation. Specify ``clear`` to end the IKE session.\n Valid Values: ``clear`` | ``none`` | ``restart`` \n Default: ``clear``",
+            "description": "The action to take after DPD timeout occurs. Specify ``restart`` to restart the IKE initiation. Specify ``clear`` to end the IKE session.\n Valid Values: ``clear`` | ``none`` | ``restart``\n Default: ``clear``",
             "enum": [
               "clear",
               "none",
@@ -332,7 +346,7 @@
             "type": "integer"
           },
           "StartupAction": {
-            "description": "The action to take when the establishing the tunnel for the VPN connection. By default, your customer gateway device must initiate the IKE negotiation and bring up the tunnel. Specify ``start`` for AWS to initiate the IKE negotiation.\n Valid Values: ``add`` | ``start`` \n Default: ``add``",
+            "description": "The action to take when the establishing the tunnel for the VPN connection. By default, your customer gateway device must initiate the IKE negotiation and bring up the tunnel. Specify ``start`` for AWS to initiate the IKE negotiation.\n Valid Values: ``add`` | ``start``\n Default: ``add``",
             "enum": [
               "add",
               "start"
@@ -357,7 +371,15 @@
         "permissions": [
           "ec2:DescribeVpnConnections",
           "ec2:CreateVpnConnection",
-          "ec2:CreateTags"
+          "ec2:CreateTags",
+          "logs:CreateLogDelivery",
+          "logs:GetLogDelivery",
+          "logs:UpdateLogDelivery",
+          "logs:DeleteLogDelivery",
+          "logs:ListLogDeliveries",
+          "logs:PutResourcePolicy",
+          "logs:DescribeResourcePolicies",
+          "logs:DescribeLogGroups"
         ]
       },
       "delete": {
@@ -379,8 +401,19 @@
       "update": {
         "permissions": [
           "ec2:DescribeVpnConnections",
+          "ec2:ModifyVpnConnection",
+          "ec2:ModifyVpnConnectionOptions",
+          "ec2:ModifyVpnTunnelOptions",
           "ec2:CreateTags",
-          "ec2:DeleteTags"
+          "ec2:DeleteTags",
+          "logs:CreateLogDelivery",
+          "logs:GetLogDelivery",
+          "logs:UpdateLogDelivery",
+          "logs:DeleteLogDelivery",
+          "logs:ListLogDeliveries",
+          "logs:PutResourcePolicy",
+          "logs:DescribeResourcePolicies",
+          "logs:DescribeLogGroups"
         ]
       }
     },
@@ -405,7 +438,15 @@
         "type": "string"
       },
       "OutsideIpAddressType": {
-        "description": "The type of IPv4 address assigned to the outside interface of the customer gateway device.\n Valid values: ``PrivateIpv4`` | ``PublicIpv4`` \n Default: ``PublicIpv4``",
+        "description": "The type of IP address assigned to the outside interface of the customer gateway device.\n Valid values: ``PrivateIpv4`` | ``PublicIpv4`` | ``Ipv6``\n Default: ``PublicIpv4``",
+        "type": "string"
+      },
+      "PreSharedKeyStorage": {
+        "description": "Specifies the storage mode for the pre-shared key (PSK). Valid values are ``Standard`` (stored in the S2Slong service) or ``SecretsManager`` (stored in AWS Secrets Manager).",
+        "enum": [
+          "Standard",
+          "SecretsManager"
+        ],
         "type": "string"
       },
       "RemoteIpv4NetworkCidr": {
@@ -437,12 +478,25 @@
         "description": "The transit gateway attachment ID to use for the VPN tunnel.\n Required if ``OutsideIpAddressType`` is set to ``PrivateIpv4``.",
         "type": "string"
       },
+      "TunnelBandwidth": {
+        "default": "standard",
+        "description": "The desired bandwidth specification for the VPN tunnel, used when creating or modifying VPN connection options to set the tunnel's throughput capacity. ``standard`` supports up to 1.25 Gbps per tunnel, while ``large`` supports up to 5 Gbps per tunnel. The default value is ``standard``. Existing VPN connections without a bandwidth setting will automatically default to ``standard``.",
+        "enum": [
+          "standard",
+          "large"
+        ],
+        "type": "string"
+      },
       "TunnelInsideIpVersion": {
         "description": "Indicate whether the VPN tunnels process IPv4 or IPv6 traffic.\n Default: ``ipv4``",
         "type": "string"
       },
       "Type": {
         "description": "The type of VPN connection.",
+        "type": "string"
+      },
+      "VpnConcentratorId": {
+        "description": "The ID of the VPN concentrator to associate with the VPN connection.",
         "type": "string"
       },
       "VpnConnectionId": {
@@ -472,7 +526,7 @@
       "CustomerGatewayId"
     ],
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "ec2:CreateTags",
         "ec2:DeleteTags"
@@ -482,6 +536,10 @@
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::EC2::VPNConnection"
+    "typeName": "AWS::EC2::VPNConnection",
+    "writeOnlyProperties": [
+      "/properties/PreSharedKeyStorage",
+      "/properties/VpnTunnelOptionsSpecifications/*/PreSharedKey"
+    ]
   }
 }

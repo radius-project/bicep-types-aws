@@ -1,49 +1,56 @@
 # AWS.QBusiness @ default
 
 ## Resource AWS.QBusiness/Application@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QBusiness/ApplicationProperties](#awsqbusinessapplicationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.QBusiness/DataAccessor@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QBusiness/DataAccessorProperties](#awsqbusinessdataaccessorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.QBusiness/DataSource@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QBusiness/DataSourceProperties](#awsqbusinessdatasourceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.QBusiness/Index@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QBusiness/IndexProperties](#awsqbusinessindexproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.QBusiness/Plugin@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QBusiness/PluginProperties](#awsqbusinesspluginproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.QBusiness/Retriever@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QBusiness/RetrieverProperties](#awsqbusinessretrieverproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.QBusiness/WebExperience@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -78,6 +85,10 @@
 * **NotFilter**: [AttributeFilter](#attributefilter)
 * **OrAllFilters**: [AttributeFilter](#attributefilter)[]
 
+## AudioExtractionConfiguration
+### Properties
+* **AudioExtractionStatus**: string (Required)
+
 ## AutoSubscriptionConfiguration
 ### Properties
 * **AutoSubscribe**: string (Required)
@@ -110,6 +121,7 @@
 ### Properties
 * **ActionConfigurations**: [ActionConfiguration](#actionconfiguration)[] (Required)
 * **ApplicationId**: string (Required, Identifier)
+* **AuthenticationDetail**: [DataAccessorAuthenticationDetail](#dataaccessorauthenticationdetail)
 * **CreatedAt**: string (ReadOnly)
 * **DataAccessorArn**: string (ReadOnly)
 * **DataAccessorId**: string (ReadOnly, Identifier)
@@ -225,6 +237,15 @@
 ## DataAccessor_DocumentAttributeValue
 ### Properties
 
+## DataAccessorAuthenticationConfiguration
+### Properties
+
+## DataAccessorAuthenticationDetail
+### Properties
+* **AuthenticationConfiguration**: [DataAccessorAuthenticationConfiguration](#dataaccessorauthenticationconfiguration)
+* **AuthenticationType**: string (Required)
+* **ExternalIds**: string[]
+
 ## DataSource_Configuration
 ### Properties
 
@@ -302,7 +323,9 @@
 
 ## MediaExtractionConfiguration
 ### Properties
+* **AudioExtractionConfiguration**: [AudioExtractionConfiguration](#audioextractionconfiguration)
 * **ImageExtractionConfiguration**: [ImageExtractionConfiguration](#imageextractionconfiguration)
+* **VideoExtractionConfiguration**: [VideoExtractionConfiguration](#videoextractionconfiguration)
 
 ## PersonalizationConfiguration
 ### Properties
@@ -361,4 +384,8 @@
 ### Properties
 * **IndexedTextBytes**: int
 * **IndexedTextDocumentCount**: int
+
+## VideoExtractionConfiguration
+### Properties
+* **VideoExtractionStatus**: string (Required)
 

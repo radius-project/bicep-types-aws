@@ -1,25 +1,60 @@
 # AWS.FMS @ default
 
+## Resource AWS.FMS/ApplicationsList@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.FMS/ApplicationsListProperties](#awsfmsapplicationslistproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.FMS/NotificationChannel@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.FMS/NotificationChannelProperties](#awsfmsnotificationchannelproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.FMS/Policy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.FMS/PolicyProperties](#awsfmspolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.FMS/ProtocolsList@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.FMS/ProtocolsListProperties](#awsfmsprotocolslistproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.FMS/ResourceSet@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.FMS/ResourceSetProperties](#awsfmsresourcesetproperties) (Required, Identifier): properties of the resource
+
+## App
+### Properties
+* **AppName**: string (Required): The application's name.
+* **Port**: int (Required): The application's port number, for example 80.
+* **Protocol**: string (Required): The IP protocol name or number. The name can be one of tcp, udp, or icmp. For information on possible numbers, see Protocol Numbers (https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
+
+## AWS.FMS/ApplicationsListProperties
+### Properties
+* **AppsList**: [App](#app)[] (Required): An array of applications in the Firewall Manager applications list.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the applications list.
+* **CreateTime**: string (ReadOnly): The time that the Firewall Manager applications list was created.
+* **LastUpdateTime**: string (ReadOnly): The time that the Firewall Manager applications list was last updated.
+* **ListId**: string (ReadOnly): The ID of the Firewall Manager applications list.
+* **ListName**: string (Required): The name of the Firewall Manager applications list.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to the applications list.
 
 ## AWS.FMS/NotificationChannelProperties
 ### Properties
@@ -45,6 +80,16 @@
 * **ResourceTypeList**: string[]
 * **SecurityServicePolicyData**: [SecurityServicePolicyData](#securityservicepolicydata) (Required)
 * **Tags**: [PolicyTag](#policytag)[]
+
+## AWS.FMS/ProtocolsListProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the protocols list.
+* **CreateTime**: string (ReadOnly): The time that the Firewall Manager protocols list was created.
+* **LastUpdateTime**: string (ReadOnly): The time that the Firewall Manager protocols list was last updated.
+* **ListId**: string (ReadOnly): The ID of the Firewall Manager protocols list.
+* **ListName**: string (Required): The name of the Firewall Manager protocols list.
+* **ProtocolsList**: string[] (Required): An array of protocols in the Firewall Manager protocols list.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to the protocols list.
 
 ## AWS.FMS/ResourceSetProperties
 ### Properties
@@ -116,6 +161,16 @@
 * **ManagedServiceData**: string
 * **PolicyOption**: [PolicyOption](#policyoption)
 * **Type**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
 
 ## Tag
 ### Properties

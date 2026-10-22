@@ -1,14 +1,15 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CustomerProfiles-SegmentDefinition",
   "type": "AWS::CustomerProfiles::SegmentDefinition",
-  "time": "2025-01-14T23:43:02.266Z",
+  "time": "2026-09-15T21:58:52.235Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/DomainName",
       "/properties/SegmentDefinitionName",
       "/properties/DisplayName",
-      "/properties/SegmentGroups"
+      "/properties/SegmentGroups",
+      "/properties/SegmentSqlQuery"
     ],
     "definitions": {
       "AddressDimension": {
@@ -325,6 +326,9 @@
           "PhoneNumber": {
             "$ref": "#/definitions/ProfileDimension"
           },
+          "ProfileType": {
+            "$ref": "#/definitions/ProfileTypeDimension"
+          },
           "ShippingAddress": {
             "$ref": "#/definitions/AddressDimension"
           }
@@ -356,20 +360,59 @@
         ],
         "type": "object"
       },
+      "ProfileType": {
+        "description": "The type of profile.",
+        "enum": [
+          "ACCOUNT_PROFILE",
+          "PROFILE"
+        ],
+        "type": "string"
+      },
+      "ProfileTypeDimension": {
+        "additionalProperties": false,
+        "description": "Specifies profile type based criteria for a segment.",
+        "properties": {
+          "DimensionType": {
+            "$ref": "#/definitions/ProfileTypeDimensionType"
+          },
+          "Values": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/ProfileType"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "DimensionType",
+          "Values"
+        ],
+        "type": "object"
+      },
+      "ProfileTypeDimensionType": {
+        "description": "The type of segment dimension to use for a profile type dimension.",
+        "enum": [
+          "INCLUSIVE",
+          "EXCLUSIVE"
+        ],
+        "type": "string"
+      },
       "RangeOverride": {
         "additionalProperties": false,
         "description": "Defines the range to be applied to the calculated attribute definition.",
         "properties": {
           "End": {
-            "description": "The ending point for this overridden range.",
-            "maximum": 366,
-            "minimum": 0,
+            "description": "The ending point for this overridden range. Positive numbers indicate how many days in the past data should be included, and negative numbers indicate how many days in the future.",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
             "type": "integer"
           },
           "Start": {
-            "description": "The starting point for this overridden range.",
-            "maximum": 366,
-            "minimum": 1,
+            "description": "The starting point for this overridden range. Positive numbers indicate how many days in the past data should be included, and negative numbers indicate how many days in the future.",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
             "type": "integer"
           },
           "Unit": {
@@ -400,6 +443,77 @@
           }
         },
         "type": "object"
+      },
+      "SegmentSort": {
+        "additionalProperties": false,
+        "description": "Defines how segments should be sorted and ordered in the results.",
+        "properties": {
+          "Attributes": {
+            "description": "A list of attributes used to sort the segments and their ordering preferences.",
+            "items": {
+              "$ref": "#/definitions/SortAttribute"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "Attributes"
+        ],
+        "type": "object"
+      },
+      "SegmentSortDataType": {
+        "description": "The data type of the sort attribute (e.g., string, number, date).",
+        "enum": [
+          "STRING",
+          "NUMBER",
+          "DATE"
+        ],
+        "type": "string"
+      },
+      "SegmentSortOrder": {
+        "description": "The sort order for the attribute (ascending or descending).",
+        "enum": [
+          "ASC",
+          "DESC"
+        ],
+        "type": "string"
+      },
+      "SortAttribute": {
+        "additionalProperties": false,
+        "description": "Defines the characteristics and rules for sorting by a specific attribute.",
+        "properties": {
+          "DataType": {
+            "$ref": "#/definitions/SegmentSortDataType"
+          },
+          "Name": {
+            "description": "The name of the attribute to sort by.",
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Order": {
+            "$ref": "#/definitions/SegmentSortOrder"
+          },
+          "Type": {
+            "$ref": "#/definitions/SortAttributeType",
+            "default": "PROFILE"
+          }
+        },
+        "required": [
+          "Name",
+          "Order"
+        ],
+        "type": "object"
+      },
+      "SortAttributeType": {
+        "description": "The type of attribute (e.g., profile, calculated).",
+        "enum": [
+          "PROFILE",
+          "CALCULATED"
+        ],
+        "type": "string"
       },
       "SourceSegment": {
         "additionalProperties": false,
@@ -455,12 +569,24 @@
       "create": {
         "permissions": [
           "profile:CreateSegmentDefinition",
-          "profile:TagResource"
+          "profile:TagResource",
+          "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:GetKeyPolicy",
+          "kms:PutKeyPolicy",
+          "kms:ListGrants",
+          "kms:GenerateDataKey"
         ]
       },
       "delete": {
         "permissions": [
-          "profile:DeleteSegmentDefinition"
+          "profile:DeleteSegmentDefinition",
+          "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:GetKeyPolicy",
+          "kms:PutKeyPolicy",
+          "kms:ListGrants",
+          "kms:GenerateDataKey"
         ]
       },
       "list": {
@@ -475,19 +601,39 @@
           ]
         },
         "permissions": [
-          "profile:ListSegmentDefinitions"
+          "profile:ListSegmentDefinitions",
+          "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:GetKeyPolicy",
+          "kms:PutKeyPolicy",
+          "kms:ListGrants",
+          "kms:GenerateDataKey"
         ]
       },
       "read": {
         "permissions": [
-          "profile:GetSegmentDefinition"
+          "profile:GetSegmentDefinition",
+          "profile:ListTagsForResource",
+          "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:GetKeyPolicy",
+          "kms:PutKeyPolicy",
+          "kms:ListGrants",
+          "kms:GenerateDataKey"
         ]
       },
       "update": {
         "permissions": [
           "profile:GetSegmentDefinition",
+          "profile:ListTagsForResource",
           "profile:UntagResource",
-          "profile:TagResource"
+          "profile:TagResource",
+          "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:GetKeyPolicy",
+          "kms:PutKeyPolicy",
+          "kms:ListGrants",
+          "kms:GenerateDataKey"
         ]
       }
     },
@@ -503,7 +649,7 @@
       },
       "Description": {
         "description": "The description of the segment definition.",
-        "maxLength": 1000,
+        "maxLength": 4000,
         "minLength": 1,
         "type": "string"
       },
@@ -537,6 +683,24 @@
         "$ref": "#/definitions/SegmentGroup",
         "description": "An array that defines the set of segment criteria to evaluate when handling segment groups for the segment."
       },
+      "SegmentSort": {
+        "$ref": "#/definitions/SegmentSort",
+        "description": "The segment sort configuration for ordering segment results."
+      },
+      "SegmentSqlQuery": {
+        "description": "The SQL query that defines the segment criteria.",
+        "maxLength": 50000,
+        "minLength": 1,
+        "type": "string"
+      },
+      "SegmentType": {
+        "description": "The SQL query that defines the segment criteria.",
+        "enum": [
+          "CLASSIC",
+          "ENHANCED"
+        ],
+        "type": "string"
+      },
       "Tags": {
         "description": "The tags used to organize, track, or control access for this resource.",
         "insertionOrder": false,
@@ -551,13 +715,13 @@
     },
     "readOnlyProperties": [
       "/properties/CreatedAt",
-      "/properties/SegmentDefinitionArn"
+      "/properties/SegmentDefinitionArn",
+      "/properties/SegmentType"
     ],
     "required": [
       "DomainName",
       "DisplayName",
-      "SegmentDefinitionName",
-      "SegmentGroups"
+      "SegmentDefinitionName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-customer-profiles",
     "tagging": {

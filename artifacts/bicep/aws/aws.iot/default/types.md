@@ -1,186 +1,247 @@
 # AWS.IoT @ default
 
 ## Resource AWS.IoT/AccountAuditConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/AccountAuditConfigurationProperties](#awsiotaccountauditconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/Authorizer@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/AuthorizerProperties](#awsiotauthorizerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/BillingGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/BillingGroupProperties](#awsiotbillinggroupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoT/CACertificate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/CACertificateProperties](#awsiotcacertificateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/Certificate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/CertificateProperties](#awsiotcertificateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/CertificateProvider@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/CertificateProviderProperties](#awsiotcertificateproviderproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/Command@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/CommandProperties](#awsiotcommandproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/CustomMetric@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/CustomMetricProperties](#awsiotcustommetricproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/Dimension@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/DimensionProperties](#awsiotdimensionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/DomainConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/DomainConfigurationProperties](#awsiotdomainconfigurationproperties) (Identifier): properties of the resource
 
+## Resource AWS.IoT/EncryptionConfiguration@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/EncryptionConfigurationProperties](#awsiotencryptionconfigurationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.IoT/FleetMetric@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/FleetMetricProperties](#awsiotfleetmetricproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.IoT/Job@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/JobProperties](#awsiotjobproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.IoT/Logging@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/LoggingProperties](#awsiotloggingproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/MitigationAction@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/MitigationActionProperties](#awsiotmitigationactionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/Policy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/PolicyProperties](#awsiotpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/ProvisioningTemplate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/ProvisioningTemplateProperties](#awsiotprovisioningtemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/ResourceSpecificLogging@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/ResourceSpecificLoggingProperties](#awsiotresourcespecificloggingproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/RoleAlias@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/RoleAliasProperties](#awsiotrolealiasproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/ScheduledAudit@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/ScheduledAuditProperties](#awsiotscheduledauditproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/SecurityProfile@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/SecurityProfileProperties](#awsiotsecurityprofileproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoT/SoftwarePackage@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/SoftwarePackageProperties](#awsiotsoftwarepackageproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoT/SoftwarePackageVersion@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/SoftwarePackageVersionProperties](#awsiotsoftwarepackageversionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.IoT/Stream@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/StreamProperties](#awsiotstreamproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.IoT/Thing@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/ThingProperties](#awsiotthingproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoT/ThingGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/ThingGroupProperties](#awsiotthinggroupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoT/ThingType@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/ThingTypeProperties](#awsiotthingtypeproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoT/TopicRule@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/TopicRuleProperties](#awsiottopicruleproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/TopicRuleDestination@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/TopicRuleDestinationProperties](#awsiottopicruledestinationproperties) (Identifier): properties of the resource
+
+## AbortConfig
+### Properties
+* **CriteriaList**: [AbortCriteria](#abortcriteria)[] (Required): The list of criteria that determine when and how to abort the job.
+
+## AbortCriteria
+### Properties
+* **Action**: string (Required): The type of job action to take to initiate the job abort.
+* **FailureType**: string (Required): The type of job execution failures that can initiate a job abort.
+* **MinNumberOfExecutedThings**: int (Required): The minimum number of things which must receive job execution notifications before the job can be aborted.
+* **ThresholdPercentage**: int (Required): The minimum percentage of job execution failures that must occur to initiate the job abort.
 
 ## Action
 ### Properties
@@ -192,6 +253,7 @@
 * **Elasticsearch**: [ElasticsearchAction](#elasticsearchaction)
 * **Firehose**: [FirehoseAction](#firehoseaction)
 * **Http**: [HttpAction](#httpaction)
+* **InfluxDB**: [InfluxDBAction](#influxdbaction)
 * **IotAnalytics**: [IotAnalyticsAction](#iotanalyticsaction)
 * **IotEvents**: [IotEventsAction](#ioteventsaction)
 * **IotSiteWise**: [IotSiteWiseAction](#iotsitewiseaction)
@@ -262,7 +324,8 @@
 * **CaCertificateExpiringCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
 * **CaCertificateKeyQualityCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
 * **ConflictingClientIdsCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
-* **DeviceCertificateExpiringCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
+* **DeviceCertificateAgeCheck**: [DeviceCertAgeAuditCheckConfiguration](#devicecertageauditcheckconfiguration)
+* **DeviceCertificateExpiringCheck**: [DeviceCertExpirationAuditCheckConfiguration](#devicecertexpirationauditcheckconfiguration)
 * **DeviceCertificateKeyQualityCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
 * **DeviceCertificateSharedCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
 * **IntermediateCaRevokedForActiveDeviceCertificatesCheck**: [AuditCheckConfiguration](#auditcheckconfiguration)
@@ -363,7 +426,9 @@
 * **MandatoryParameters**: [CommandParameter](#commandparameter)[]: The list of mandatory parameters for the command.
 * **Namespace**: string: The namespace to which the command belongs.
 * **Payload**: [CommandPayload](#commandpayload): The payload associated with the command.
+* **PayloadTemplate**: string: The payload template associated with the command.
 * **PendingDeletion**: bool: A flag indicating whether the command is pending deletion.
+* **Preprocessor**: [CommandPreprocessor](#commandpreprocessor): The command preprocessor configuration.
 * **RoleArn**: string: The customer role associated with the command.
 * **Tags**: [Tag](#tag)[]: The tags to be associated with the command.
 
@@ -402,6 +467,15 @@
 * **TlsConfig**: [TlsConfig](#tlsconfig)
 * **ValidationCertificateArn**: string (WriteOnly)
 
+## AWS.IoT/EncryptionConfigurationProperties
+### Properties
+* **AccountId**: string (ReadOnly, Identifier)
+* **ConfigurationDetails**: [EncryptionConfiguration_ConfigurationDetails](#encryptionconfigurationconfigurationdetails) (ReadOnly)
+* **EncryptionType**: string (Required)
+* **KmsAccessRoleArn**: string
+* **KmsKeyArn**: string
+* **LastModifiedDate**: string (ReadOnly)
+
 ## AWS.IoT/FleetMetricProperties
 ### Properties
 * **AggregationField**: string: The aggregation field to perform aggregation and metric emission
@@ -419,10 +493,32 @@
 * **Unit**: string: The unit of data points emitted by a fleet metric
 * **Version**: int (ReadOnly): The version of a fleet metric
 
+## AWS.IoT/JobProperties
+### Properties
+* **AbortConfig**: [AbortConfig](#abortconfig)
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the job.
+* **CreatedAt**: string (ReadOnly): The time when the job was created, in ISO 8601 date-time format.
+* **Description**: string: A short text description of the job.
+* **DestinationPackageVersions**: string[]: The package version Amazon Resource Names (ARNs) that are installed on the device when the job successfully completes.
+* **Document**: string (WriteOnly): The job document. Required if you don't specify a value for documentSource.
+* **DocumentParameters**: [Job_DocumentParameters](#jobdocumentparameters): Parameters of an Amazon Web Services managed template that you can specify to create the job document.
+* **DocumentSource**: string: An S3 link, or S3 object URL, to the job document. The link is an Amazon S3 object URL and is required if you don't specify a value for document.
+* **JobExecutionsRetryConfig**: [JobExecutionsRetryConfig](#jobexecutionsretryconfig)
+* **JobExecutionsRolloutConfig**: [JobExecutionsRolloutConfig](#jobexecutionsrolloutconfig)
+* **JobId**: string (Required): A job identifier which must be unique for your AWS account. We recommend using a UUID. Alpha-numeric characters, '-' and '_' are valid for use here.
+* **JobTemplateArn**: string: The ARN of the job template used to create the job.
+* **PresignedUrlConfig**: [PresignedUrlConfig](#presignedurlconfig)
+* **SchedulingConfig**: [SchedulingConfig](#schedulingconfig)
+* **Tags**: [Tag](#tag)[]: Metadata which can be used to manage the job.
+* **Targets**: string[] (Required): A list of things and thing groups to which the job should be sent.
+* **TargetSelection**: string: Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT).
+* **TimeoutConfig**: [TimeoutConfig](#timeoutconfig)
+
 ## AWS.IoT/LoggingProperties
 ### Properties
 * **AccountId**: string (Required, Identifier): Your 12-digit account ID (used as the primary identifier for the CloudFormation resource).
 * **DefaultLogLevel**: string (Required): The log level to use. Valid values are: ERROR, WARN, INFO, DEBUG, or DISABLED.
+* **EventConfigurations**: [EventConfiguration](#eventconfiguration)[]: Configurations for event-based logging that specifies which event types to log and their logging settings. Overrides account-level logging for the specified event
 * **RoleArn**: string (Required): The ARN of the role that allows IoT to write to Cloudwatch logs.
 
 ## AWS.IoT/MitigationActionProperties
@@ -500,14 +596,30 @@
 
 ## AWS.IoT/SoftwarePackageVersionProperties
 ### Properties
+* **Artifact**: [PackageVersionArtifact](#packageversionartifact)
 * **Attributes**: [ResourceAttributes](#resourceattributes)
 * **Description**: string
 * **ErrorReason**: string (ReadOnly)
 * **PackageName**: string (Required, Identifier)
 * **PackageVersionArn**: string (ReadOnly)
+* **Recipe**: string: The inline json job document associated with a software package version
+* **Sbom**: [Sbom](#sbom)
+* **SbomValidationStatus**: string (ReadOnly)
 * **Status**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **VersionName**: string (Identifier)
+
+## AWS.IoT/StreamProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the stream.
+* **CreatedAt**: string (ReadOnly): The date when the stream was created.
+* **Description**: string: The description of the stream.
+* **Files**: [StreamFile](#streamfile)[] (Required): The files to stream.
+* **LastUpdatedAt**: string (ReadOnly): The date when the stream was last updated.
+* **RoleArn**: string (Required): An IAM role that allows the IoT service principal to access your S3 files.
+* **StreamId**: string (Required): The stream ID.
+* **StreamVersion**: int (ReadOnly): The stream version.
+* **Tags**: [Tag](#tag)[]: Metadata which can be used to manage streams.
 
 ## AWS.IoT/ThingGroupProperties
 ### Properties
@@ -539,6 +651,7 @@
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): Amazon Resource Name (ARN).
 * **HttpUrlProperties**: [HttpUrlDestinationSummary](#httpurldestinationsummary): HTTP URL destination properties.
+* **InfluxDBProperties**: [InfluxDBDestinationProperties](#influxdbdestinationproperties): InfluxDB destination properties.
 * **Status**: string: The status of the TopicRuleDestination.
 * **StatusReason**: string (ReadOnly): The reasoning for the current status of the TopicRuleDestination.
 * **VpcProperties**: [VpcDestinationProperties](#vpcdestinationproperties): VPC destination properties.
@@ -549,6 +662,17 @@
 * **RuleName**: string (Identifier)
 * **Tags**: [Tag](#tag)[]
 * **TopicRulePayload**: [TopicRulePayload](#topicrulepayload) (Required)
+
+## AwsJsonSubstitutionCommandPreprocessorConfig
+### Properties
+* **OutputFormat**: string (Required)
+
+## BatchConfig
+### Properties
+* **BatchAcrossTopics**: bool
+* **MaxBatchOpenMs**: int
+* **MaxBatchSize**: int
+* **MaxBatchSizeBytes**: int
 
 ## Behavior
 ### Properties
@@ -572,6 +696,14 @@
 ## BillingGroup_BillingGroupProperties
 ### Properties
 * **BillingGroupDescription**: string
+
+## CertAgeCheckCustomConfiguration
+### Properties
+* **CertAgeThresholdInDays**: string
+
+## CertExpirationCheckCustomConfiguration
+### Properties
+* **CertExpirationThresholdInDays**: string
 
 ## ClientCertificateConfig
 ### Properties
@@ -604,7 +736,9 @@
 * **DefaultValue**: [CommandParameterValue](#commandparametervalue)
 * **Description**: string
 * **Name**: string (Required)
+* **Type**: string
 * **Value**: [CommandParameterValue](#commandparametervalue)
+* **ValueConditions**: [CommandParameterValueCondition](#commandparametervaluecondition)[]
 
 ## CommandParameterValue
 ### Properties
@@ -616,10 +750,42 @@
 * **S**: string
 * **UL**: string
 
+## CommandParameterValueComparisonOperand
+### Properties
+* **Number**: string
+* **NumberRange**: [CommandParameterValueNumberRange](#commandparametervaluenumberrange)
+* **Numbers**: string[]
+* **String**: string
+* **Strings**: string[]
+
+## CommandParameterValueCondition
+### Properties
+* **ComparisonOperator**: string (Required)
+* **Operand**: [CommandParameterValueComparisonOperand](#commandparametervaluecomparisonoperand) (Required)
+
+## CommandParameterValueNumberRange
+### Properties
+* **Max**: string (Required)
+* **Min**: string (Required)
+
 ## CommandPayload
 ### Properties
 * **Content**: string
 * **ContentType**: string
+
+## CommandPreprocessor
+### Properties
+* **AwsJsonSubstitution**: [AwsJsonSubstitutionCommandPreprocessorConfig](#awsjsonsubstitutioncommandpreprocessorconfig)
+
+## DeviceCertAgeAuditCheckConfiguration
+### Properties
+* **Configuration**: [CertAgeCheckCustomConfiguration](#certagecheckcustomconfiguration)
+* **Enabled**: bool: True if the check is enabled.
+
+## DeviceCertExpirationAuditCheckConfiguration
+### Properties
+* **Configuration**: [CertExpirationCheckCustomConfiguration](#certexpirationcheckcustomconfiguration)
+* **Enabled**: bool: True if the check is enabled.
 
 ## DynamoDBAction
 ### Properties
@@ -651,6 +817,24 @@
 * **LogLevel**: string (Required):  Specifies which types of information are logged.
 * **RoleArnForLogging**: string (Required):  The ARN of the IAM role used for logging.
 
+## EncryptionConfiguration_ConfigurationDetails
+### Properties
+* **ConfigurationStatus**: string
+* **ErrorCode**: string
+* **ErrorMessage**: string
+
+## EventConfiguration
+### Properties
+* **EventType**: string (Required): The type of event to log. These include event types like Connect, Publish, and Disconnect.
+* **LogDestination**: string: CloudWatch Log Group for event-based logging. Specifies where log events should be sent. The log destination for event-based logging overrides default Log Group for the specified event type and applies to all resources associated with that event.
+* **LogLevel**: string: The logging level for the specified event type. Determines the verbosity of log messages generated for this event type.
+
+## ExponentialRolloutRate
+### Properties
+* **BaseRatePerMinute**: int (Required): The minimum number of things that will be notified of a pending job, per minute at the start of job rollout.
+* **IncrementFactor**: int (Required): The exponential factor to increase the rate of rollout for a job.
+* **RateIncreaseCriteria**: [RateIncreaseCriteria](#rateincreasecriteria) (Required)
+
 ## FirehoseAction
 ### Properties
 * **BatchMode**: bool
@@ -661,7 +845,9 @@
 ## HttpAction
 ### Properties
 * **Auth**: [HttpAuthorization](#httpauthorization)
+* **BatchConfig**: [BatchConfig](#batchconfig)
 * **ConfirmationUrl**: string
+* **EnableBatching**: bool
 * **Headers**: [HttpActionHeader](#httpactionheader)[]
 * **Url**: string (Required)
 
@@ -677,6 +863,32 @@
 ## HttpUrlDestinationSummary
 ### Properties
 * **ConfirmationUrl**: string
+
+## InfluxDBAction
+### Properties
+* **BatchConfig**: [InfluxDBBatchConfig](#influxdbbatchconfig)
+* **DatabaseName**: string (Required)
+* **DestinationArn**: string (Required)
+* **Organization**: string
+* **RoleArn**: string (Required)
+* **TableName**: string (Required)
+* **Tags**: [TopicRule_Tags](#topicruletags)
+* **TimestampUnit**: string
+
+## InfluxDBBatchConfig
+### Properties
+* **BatchAcrossTopics**: bool
+* **MaxBatchOpenMs**: int
+* **MaxBatchSize**: int
+* **MaxBatchSizeBytes**: int
+
+## InfluxDBDestinationProperties
+### Properties
+* **Endpoint**: string (Required): The endpoint URL of the InfluxDB database.
+* **InfluxDBVersion**: string (Required): The version of the InfluxDB database (for example, V2 or V3).
+* **SecretId**: string (Required): The ARN or name of the Secrets Manager secret containing the InfluxDB API token.
+* **SecretKey**: string: The key name within the secret that contains the InfluxDB token.
+* **SecretType**: string: The type of the secret value (SecretString or SecretBinary).
 
 ## IotAnalyticsAction
 ### Properties
@@ -695,6 +907,18 @@
 ### Properties
 * **PutAssetPropertyValueEntries**: [PutAssetPropertyValueEntry](#putassetpropertyvalueentry)[] (Required)
 * **RoleArn**: string (Required)
+
+## Job_DocumentParameters
+### Properties
+
+## JobExecutionsRetryConfig
+### Properties
+* **CriteriaList**: [RetryCriteria](#retrycriteria)[] (Required): The list of criteria that determines how many retries are allowed for each failure type for a job.
+
+## JobExecutionsRolloutConfig
+### Properties
+* **ExponentialRate**: [ExponentialRolloutRate](#exponentialrolloutrate)
+* **MaximumPerMinute**: int: The maximum number of things that will be notified of a pending job, per minute. This parameter allows you to create a staged rollout.
 
 ## KafkaAction
 ### Properties
@@ -733,6 +957,11 @@
 ### Properties
 * **ConfidenceLevel**: string: The sensitivity of anomalous behavior evaluation. Can be Low, Medium, or High.
 
+## MaintenanceWindow
+### Properties
+* **DurationInMinutes**: int (Required): Displays the duration of the next maintenance window.
+* **StartTime**: string (Required): Displays the start time of the next maintenance window.
+
 ## MetricDimension
 ### Properties
 * **DimensionName**: string (Required): A unique identifier for the dimension.
@@ -761,6 +990,15 @@
 * **RoleArn**: string (Required)
 * **Type**: string (Required)
 
+## PackageVersionArtifact
+### Properties
+* **S3Location**: [S3Location](#s3location) (Required)
+
+## PresignedUrlConfig
+### Properties
+* **ExpiresInSec**: int: How long (in seconds) pre-signed URLs are valid. Valid values are 60 - 3600, the default value is 3600 seconds.
+* **RoleArn**: string: The ARN of an IAM role that grants permission to download files from the S3 bucket where the job data/updates are stored.
+
 ## PropagatingAttribute
 ### Properties
 * **ConnectionAttribute**: string
@@ -787,6 +1025,11 @@
 ## PutItemInput
 ### Properties
 * **TableName**: string (Required)
+
+## RateIncreaseCriteria
+### Properties
+* **NumberOfNotifiedThings**: int: The threshold for number of notified things that will initiate the increase in rate of rollout.
+* **NumberOfSucceededThings**: int: The threshold for number of succeeded things that will initiate the increase in rate of rollout.
 
 ## RegistrationConfig
 ### Properties
@@ -817,12 +1060,40 @@
 ## ResourceAttributes
 ### Properties
 
+## RetryCriteria
+### Properties
+* **FailureType**: string (Required): The type of job execution failures that can initiate a job retry.
+* **NumberOfRetries**: int (Required): The number of retries allowed for a failure type for the job.
+
 ## S3Action
 ### Properties
 * **BucketName**: string (Required)
 * **CannedAcl**: string
 * **Key**: string (Required)
 * **RoleArn**: string (Required)
+
+## S3Location
+### Properties
+* **Bucket**: string (Required): The S3 bucket
+* **Key**: string (Required): The S3 key
+* **Version**: string (Required): The S3 version
+
+## S3Location
+### Properties
+* **Bucket**: string: The S3 bucket.
+* **Key**: string: The S3 key.
+* **Version**: string: The S3 bucket version.
+
+## Sbom
+### Properties
+* **S3Location**: [S3Location](#s3location) (Required)
+
+## SchedulingConfig
+### Properties
+* **EndBehavior**: string: Specifies the end behavior for all job executions after a job reaches the selected endTime.
+* **EndTime**: string: The time a job will stop rollout of the job document to all devices in the target group for a job.
+* **MaintenanceWindows**: [MaintenanceWindow](#maintenancewindow)[]: An optional configuration within the SchedulingConfig to setup a recurring maintenance window.
+* **StartTime**: string: The time a job will begin rollout of the job document to all devices in the target group for a job.
 
 ## SecurityProfile_AlertTargets
 ### Properties
@@ -871,6 +1142,11 @@
 * **ExecutionNamePrefix**: string
 * **RoleArn**: string (Required)
 * **StateMachineName**: string (Required)
+
+## StreamFile
+### Properties
+* **FileId**: int: The file ID.
+* **S3Location**: [S3Location](#s3location)
 
 ## Tag
 ### Properties
@@ -924,6 +1200,11 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
+
+## Tag
+### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
 
@@ -956,6 +1237,11 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
 
 ## Tag
 ### Properties
@@ -993,6 +1279,10 @@
 ### Properties
 * **PropagatingAttributes**: [PropagatingAttribute](#propagatingattribute)[]
 
+## TimeoutConfig
+### Properties
+* **InProgressTimeoutInMinutes**: int: Specifies the amount of time, in minutes, this device has to finish execution of this job. The timeout interval can be anywhere between 1 minute and 7 days (1 to 10080 minutes).
+
 ## Timestamp
 ### Properties
 * **Unit**: string
@@ -1021,6 +1311,9 @@
 * **SecurityPolicy**: string
 
 ## TopicRule_ClientProperties
+### Properties
+
+## TopicRule_Tags
 ### Properties
 
 ## TopicRulePayload

@@ -125,11 +125,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IAM/Group@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/8"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -197,11 +197,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IAM/GroupPolicy@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/13"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -277,11 +277,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IAM/InstanceProfile@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/18"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -468,11 +468,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IAM/ManagedPolicy@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/29"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -583,11 +583,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IAM/OIDCProvider@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/37"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -625,7 +625,7 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The value associated with this tag. For example, tags with a key name of ``Department`` could have values such as ``Human Resources``, ``Accounting``, and ``Support``. Tags with a key name of ``Cost Center`` might have values that consist of the number associated with the different cost centers in your company. Typically, many resources have tags with the same key name but with different values.\n   AWS always interprets the tag ``Value`` as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code."
+        "description": "The value associated with this tag. For example, tags with a key name of ``Department`` could have values such as ``Human Resources``, ``Accounting``, and ``Support``. Tags with a key name of ``Cost Center`` might have values that consist of the number associated with the different cost centers in your company. Typically, many resources have tags with the same key name but with different values."
       }
     }
   },
@@ -720,7 +720,7 @@
           "$ref": "#/21"
         },
         "flags": 0,
-        "description": "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default value of one hour is applied. This setting can have a value from 1 hour to 12 hours.\n Anyone who assumes the role from the CLI or API can use the ``DurationSeconds`` API parameter or the ``duration-seconds`` CLI parameter to request a longer session. The ``MaxSessionDuration`` setting determines the maximum duration that can be requested using the ``DurationSeconds`` parameter. If users don't specify a value for the ``DurationSeconds`` parameter, their security credentials are valid for one hour by default. This applies when you use the ``AssumeRole*`` API operations or the ``assume-role*`` CLI operations but does not apply when you use those operations to create a console URL. For more information, see [Using IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) in the *IAM User Guide*."
+        "description": "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default value of one hour is applied. This setting can have a value from 1 hour to 12 hours.\n Anyone who assumes the role from the CLI or API can use the ``DurationSeconds`` API parameter or the ``duration-seconds``CLI parameter to request a longer session. The ``MaxSessionDuration`` setting determines the maximum duration that can be requested using the ``DurationSeconds`` parameter. If users don't specify a value for the ``DurationSeconds`` parameter, their security credentials are valid for one hour by default. This applies when you use the ``AssumeRole*`` API operations or the ``assume-role*``CLI operations but does not apply when you use those operations to create a console URL. For more information, see [Using IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) in the *IAM User Guide*."
       },
       "Path": {
         "type": {
@@ -796,11 +796,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IAM/Role@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/50"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -868,11 +868,31 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IAM/RolePolicy@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/55"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SAMLPrivateKey",
+    "properties": {
+      "KeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The unique identifier for the SAML private key."
+      },
+      "Timestamp": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The date and time, in <a href=\\\"http://www.iso.org/iso/iso8601\\\">ISO 8601 date-time </a> format, when the private key was uploaded."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -905,9 +925,22 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/58"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.IAM/SAMLProviderProperties",
     "properties": {
+      "AddPrivateKey": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The private key from your external identity provider"
+      },
       "Arn": {
         "type": {
           "$ref": "#/1"
@@ -915,21 +948,48 @@
         "flags": 18,
         "description": "Amazon Resource Name (ARN) of the SAML provider"
       },
+      "AssertionEncryptionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The encryption setting for the SAML provider"
+      },
       "Name": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 0
       },
+      "PrivateKeyList": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 0
+      },
+      "RemovePrivateKey": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The Key ID of the private key to remove"
+      },
       "SamlMetadataDocument": {
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1
+        "flags": 0
+      },
+      "SamlProviderUUID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier assigned to the SAML provider"
       },
       "Tags": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/61"
         },
         "flags": 0
       }
@@ -955,9 +1015,9 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/62"
         },
-        "flags": 17,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -965,11 +1025,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IAM/SAMLProvider@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/61"
+      "$ref": "#/63"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -998,7 +1058,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/63"
+      "$ref": "#/65"
     }
   },
   {
@@ -1044,7 +1104,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/67"
         },
         "flags": 0
       }
@@ -1070,7 +1130,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1080,11 +1140,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IAM/ServerCertificate@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/67"
+      "$ref": "#/69"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -1144,7 +1204,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/72"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1154,11 +1214,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IAM/ServiceLinkedRole@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/71"
+      "$ref": "#/73"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1186,7 +1246,7 @@
     "properties": {
       "PolicyDocument": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/79"
         },
         "flags": 1,
         "description": "The entire contents of the policy that defines permissions. For more information, see [Overview of JSON policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json)."
@@ -1216,7 +1276,7 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The value associated with this tag. For example, tags with a key name of ``Department`` could have values such as ``Human Resources``, ``Accounting``, and ``Support``. Tags with a key name of ``Cost Center`` might have values that consist of the number associated with the different cost centers in your company. Typically, many resources have tags with the same key name but with different values.\n   AWS always interprets the tag ``Value`` as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code."
+        "description": "The value associated with this tag. For example, tags with a key name of ``Department`` could have values such as ``Human Resources``, ``Accounting``, and ``Support``. Tags with a key name of ``Cost Center`` might have values that consist of the number associated with the different cost centers in your company. Typically, many resources have tags with the same key name but with different values."
       }
     }
   },
@@ -1229,7 +1289,7 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/76"
+        "$ref": "#/78"
       },
       {
         "$ref": "#/1"
@@ -1255,13 +1315,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/74"
+      "$ref": "#/76"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/75"
+      "$ref": "#/77"
     }
   },
   {
@@ -1277,21 +1337,21 @@
       },
       "Groups": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/81"
         },
         "flags": 0,
         "description": "A list of group names to which you want to add the user."
       },
       "LoginProfile": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "Creates a password for the specified IAM user. A password allows an IAM user to access AWS services through the console.\n You can use the CLI, the AWS API, or the *Users* page in the IAM console to create a password for any IAM user. Use [ChangePassword](https://docs.aws.amazon.com/IAM/latest/APIReference/API_ChangePassword.html) to update your own existing password in the *My Security Credentials* page in the console.\n For more information about managing passwords, see [Managing passwords](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingLogins.html) in the *User Guide*."
       },
       "ManagedPolicyArns": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "A list of Amazon Resource Names (ARNs) of the IAM managed policies that you want to attach to the user.\n For more information about ARNs, see [Amazon Resource Names (ARNs) and Service Namespaces](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) in the *General Reference*."
@@ -1312,14 +1372,14 @@
       },
       "Policies": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "Adds or updates an inline policy document that is embedded in the specified IAM user. To view AWS::IAM::User snippets, see [Declaring an User Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user).\n  The name of each policy for a role, user, or group must be unique. If you don't choose unique names, updates to the IAM identity will fail. \n  For information about limits on the number of inline policies that you can embed in a user, see [Limitations on Entities](https://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html) in the *User Guide*."
       },
       "Tags": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/84"
         },
         "flags": 0,
         "description": "A list of tags that you want to attach to the new user. Each tag consists of a key name and an associated value. For more information about tagging, see [Tagging IAM resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html) in the *IAM User Guide*.\n  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created."
@@ -1353,7 +1413,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/85"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1363,11 +1423,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IAM/User@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/84"
+      "$ref": "#/86"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -1384,7 +1444,7 @@
     "properties": {
       "PolicyDocument": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "The policy document.\n You must provide policies in JSON format in IAM. However, for CFN templates formatted in YAML, you can provide the policy in JSON or YAML format. CFN always converts a YAML policy to JSON format before submitting it to IAM.\n The [regex pattern](https://docs.aws.amazon.com/http://wikipedia.org/wiki/regex) used to validate this parameter is a string of characters consisting of the following:\n  +  Any printable ASCII character ranging from the space character (``\\u0020``) through the end of the ASCII character range\n  +  The printable characters in the Basic Latin and Latin-1 Supplement character set (through ``\\u00FF``)\n  +  The special characters tab (``\\u0009``), line feed (``\\u000A``), and carriage return (``\\u000D``)"
@@ -1425,7 +1485,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/90"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1435,11 +1495,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IAM/UserPolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/89"
+      "$ref": "#/91"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1468,7 +1528,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/91"
+      "$ref": "#/93"
     }
   },
   {
@@ -1495,13 +1555,13 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/95"
         },
         "flags": 0
       },
       "Users": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/96"
         },
         "flags": 1
       },
@@ -1533,7 +1593,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/97"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1543,10 +1603,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IAM/VirtualMFADevice@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/96"
+      "$ref": "#/98"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

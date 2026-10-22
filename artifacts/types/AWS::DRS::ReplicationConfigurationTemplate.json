@@ -1,0 +1,292 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DRS-ReplicationConfigurationTemplate",
+  "type": "AWS::DRS::ReplicationConfigurationTemplate",
+  "time": "2026-10-21T22:02:43.966Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ReplicationConfigurationTemplateID"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "PITPolicyRule": {
+        "additionalProperties": false,
+        "properties": {
+          "Enabled": {
+            "description": "Whether this rule is enabled or not.",
+            "type": "boolean"
+          },
+          "Interval": {
+            "description": "How often, in the chosen units, a snapshot should be taken.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "RetentionDuration": {
+            "description": "The duration to retain a snapshot for, in the chosen units.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "RuleID": {
+            "description": "The ID of the rule.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Units": {
+            "description": "The units used to measure the interval and retentionDuration.",
+            "enum": [
+              "MINUTE",
+              "HOUR",
+              "DAY"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Units",
+          "Interval",
+          "RetentionDuration"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A replication configuration template for AWS Elastic Disaster Recovery Service.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "drs:CreateReplicationConfigurationTemplate",
+          "drs:DescribeReplicationConfigurationTemplates",
+          "drs:TagResource",
+          "drs:ListTagsForResource",
+          "ec2:CreateSecurityGroup",
+          "ec2:CreateTags",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeInstanceTypes",
+          "ec2:DescribeInstanceTypeOfferings",
+          "ec2:GetEbsEncryptionByDefault",
+          "ec2:GetEbsDefaultKmsKeyId",
+          "kms:CreateGrant",
+          "kms:DescribeKey"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "drs:DeleteReplicationConfigurationTemplate"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "drs:DescribeReplicationConfigurationTemplates"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "drs:DescribeReplicationConfigurationTemplates",
+          "drs:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "drs:UpdateReplicationConfigurationTemplate",
+          "drs:DescribeReplicationConfigurationTemplates",
+          "drs:TagResource",
+          "drs:UntagResource",
+          "drs:ListTagsForResource",
+          "ec2:CreateSecurityGroup",
+          "ec2:CreateTags",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeInstanceTypes",
+          "ec2:DescribeInstanceTypeOfferings",
+          "ec2:GetEbsEncryptionByDefault",
+          "ec2:GetEbsDefaultKmsKeyId",
+          "kms:CreateGrant",
+          "kms:DescribeKey"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Replication Configuration Template ARN.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:.{16,2044}$",
+        "type": "string"
+      },
+      "AssociateDefaultSecurityGroup": {
+        "description": "Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration Template.",
+        "type": "boolean"
+      },
+      "AutoReplicateNewDisks": {
+        "description": "Whether to allow the AWS replication agent to automatically replicate newly added disks.",
+        "type": "boolean"
+      },
+      "BandwidthThrottling": {
+        "description": "Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "CreatePublicIP": {
+        "description": "Whether to create a Public IP for the Recovery Instance by default.",
+        "type": "boolean"
+      },
+      "DataPlaneRouting": {
+        "description": "The data plane routing mechanism that will be used for replication.",
+        "enum": [
+          "PRIVATE_IP",
+          "PUBLIC_IP"
+        ],
+        "type": "string"
+      },
+      "DefaultLargeStagingDiskType": {
+        "description": "The Staging Disk EBS volume type to be used during replication.",
+        "enum": [
+          "GP2",
+          "GP3",
+          "ST1",
+          "AUTO"
+        ],
+        "type": "string"
+      },
+      "EbsEncryption": {
+        "description": "The type of EBS encryption to be used during replication.",
+        "enum": [
+          "DEFAULT",
+          "CUSTOM",
+          "NONE"
+        ],
+        "type": "string"
+      },
+      "EbsEncryptionKeyArn": {
+        "description": "The ARN of the EBS encryption key to be used during replication.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:.{16,2044}$",
+        "type": "string"
+      },
+      "InternetProtocol": {
+        "description": "Which version of the Internet Protocol to use for replication of data.",
+        "enum": [
+          "IPV4",
+          "IPV6"
+        ],
+        "type": "string"
+      },
+      "PitPolicy": {
+        "description": "The Point in time (PIT) policy to manage snapshots taken during replication.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/PITPolicyRule"
+        },
+        "maxItems": 10,
+        "minItems": 1,
+        "type": "array"
+      },
+      "ReplicationConfigurationTemplateID": {
+        "description": "The Replication Configuration Template ID.",
+        "maxLength": 21,
+        "minLength": 21,
+        "pattern": "^rct-[0-9a-zA-Z]{17}$",
+        "type": "string"
+      },
+      "ReplicationServerInstanceType": {
+        "description": "The instance type to be used for the replication server.",
+        "maxLength": 255,
+        "type": "string"
+      },
+      "ReplicationServersSecurityGroupsIDs": {
+        "description": "The security group IDs that will be used by the replication server.",
+        "insertionOrder": false,
+        "items": {
+          "maxLength": 255,
+          "pattern": "^sg-[0-9a-fA-F]{8,}$",
+          "type": "string"
+        },
+        "maxItems": 32,
+        "minItems": 0,
+        "type": "array"
+      },
+      "StagingAreaSubnetId": {
+        "description": "The subnet to be used by the replication staging area.",
+        "maxLength": 255,
+        "pattern": "^subnet-[0-9a-fA-F]{8,}$",
+        "type": "string"
+      },
+      "StagingAreaTags": {
+        "additionalProperties": false,
+        "description": "A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc.",
+        "patternProperties": {
+          "^.{0,256}$": {
+            "maxLength": 256,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tags": {
+        "description": "A set of tags to be associated with the Replication Configuration Template resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UseDedicatedReplicationServer": {
+        "description": "Whether to use a dedicated Replication Server in the replication staging area.",
+        "type": "boolean"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ReplicationConfigurationTemplateID"
+    ],
+    "required": [
+      "StagingAreaSubnetId",
+      "ReplicationServersSecurityGroupsIDs",
+      "EbsEncryption",
+      "BandwidthThrottling",
+      "StagingAreaTags",
+      "PitPolicy"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "drs:TagResource",
+        "drs:UntagResource",
+        "drs:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::DRS::ReplicationConfigurationTemplate"
+  }
+}

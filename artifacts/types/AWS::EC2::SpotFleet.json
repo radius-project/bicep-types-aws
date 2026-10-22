@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-SpotFleet",
   "type": "AWS::EC2::SpotFleet",
-  "time": "2025-01-22T20:23:19.044Z",
+  "time": "2026-10-19T19:11:57.84Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -10,11 +10,9 @@
       "/properties/SpotFleetRequestConfigData/InstanceInterruptionBehavior",
       "/properties/SpotFleetRequestConfigData/InstancePoolsToUseCount",
       "/properties/SpotFleetRequestConfigData/LaunchSpecifications",
-      "/properties/SpotFleetRequestConfigData/LaunchTemplateConfigs",
       "/properties/SpotFleetRequestConfigData/LoadBalancersConfig",
       "/properties/SpotFleetRequestConfigData/OnDemandAllocationStrategy",
       "/properties/SpotFleetRequestConfigData/OnDemandMaxTotalPrice",
-      "/properties/SpotFleetRequestConfigData/OnDemandTargetCapacity",
       "/properties/SpotFleetRequestConfigData/ReplaceUnhealthyInstances",
       "/properties/SpotFleetRequestConfigData/SpotMaintenanceStrategies",
       "/properties/SpotFleetRequestConfigData/SpotMaxTotalPrice",
@@ -152,15 +150,6 @@
             "type": "integer"
           },
           "VolumeType": {
-            "enum": [
-              "gp2",
-              "gp3",
-              "io1",
-              "io2",
-              "sc1",
-              "st1",
-              "standard"
-            ],
             "type": "string"
           }
         },
@@ -305,7 +294,14 @@
                 "t4",
                 "t4g",
                 "vu9p",
-                "v100"
+                "v100",
+                "l40s",
+                "l4",
+                "gaudi-hl-205",
+                "inferentia2",
+                "trainium",
+                "trainium2",
+                "u30"
               ],
               "type": "string"
             },
@@ -320,7 +316,8 @@
               "enum": [
                 "gpu",
                 "fpga",
-                "inference"
+                "inference",
+                "media"
               ],
               "type": "string"
             },
@@ -430,6 +427,9 @@
           "OnDemandMaxPricePercentageOverLowestPrice": {
             "type": "integer"
           },
+          "RequireEncryptionInTransit": {
+            "type": "boolean"
+          },
           "RequireHibernateSupport": {
             "type": "boolean"
           },
@@ -465,6 +465,9 @@
         "additionalProperties": false,
         "properties": {
           "AvailabilityZone": {
+            "type": "string"
+          },
+          "AvailabilityZoneId": {
             "type": "string"
           },
           "InstanceRequirements": {
@@ -876,6 +879,9 @@
           "AvailabilityZone": {
             "type": "string"
           },
+          "AvailabilityZoneId": {
+            "type": "string"
+          },
           "GroupName": {
             "type": "string"
           },
@@ -973,8 +979,11 @@
       "delete": {
         "permissions": [
           "ec2:DescribeSpotFleetRequests",
+          "ec2:DescribeSpotFleetInstances",
+          "ec2:DescribeInstanceStatus",
           "ec2:CancelSpotFleetRequests"
-        ]
+        ],
+        "timeoutInMinutes": 40
       },
       "list": {
         "permissions": [
@@ -1002,6 +1011,14 @@
       },
       "SpotFleetRequestConfigData": {
         "$ref": "#/definitions/SpotFleetRequestConfigData"
+      },
+      "Tags": {
+        "description": "The tags to specify in SpotFleetRequestConfigData",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
       }
     },
     "readOnlyProperties": [
@@ -1010,6 +1027,9 @@
     "required": [
       "SpotFleetRequestConfigData"
     ],
+    "tagging": {
+      "taggable": false
+    },
     "typeName": "AWS::EC2::SpotFleet",
     "writeOnlyProperties": [
       "/properties/SpotFleetRequestConfigData/TagSpecifications",

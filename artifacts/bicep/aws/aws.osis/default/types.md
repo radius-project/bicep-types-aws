@@ -1,7 +1,8 @@
 # AWS.OSIS @ default
 
 ## Resource AWS.OSIS/Pipeline@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -18,6 +19,8 @@
 * **PipelineArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the pipeline.
 * **PipelineConfigurationBody**: string (Required): The Data Prepper pipeline configuration.
 * **PipelineName**: string (Required): Name of the OpenSearch Ingestion Service pipeline to create. Pipeline names are unique across the pipelines owned by an account within an AWS Region.
+* **PipelineRoleArn**: string: The Pipeline Role (ARN) for the pipeline.
+* **ResourcePolicy**: [ResourcePolicy](#resourcepolicy)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **VpcEndpoints**: [VpcEndpoint](#vpcendpoint)[] (ReadOnly): The VPC interface endpoints that have access to the pipeline.
 * **VpcEndpointService**: string (ReadOnly): The VPC endpoint service name for the pipeline.
@@ -40,10 +43,17 @@
 ### Properties
 * **LogGroup**: string (Required)
 
+## Pipeline_Policy
+### Properties
+
 ## Pipeline_VpcAttachmentOptions
 ### Properties
 * **AttachToVpc**: bool (Required): Whether the pipeline should be attached to the provided VPC
 * **CidrBlock**: string (Required): The CIDR block to be reserved for OpenSearch Ingestion to create elastic network interfaces (ENIs).
+
+## ResourcePolicy
+### Properties
+* **Policy**: [Pipeline_Policy](#pipelinepolicy) (Required)
 
 ## Tag
 ### Properties

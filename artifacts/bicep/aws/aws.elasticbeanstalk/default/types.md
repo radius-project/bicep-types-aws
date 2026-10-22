@@ -1,28 +1,32 @@
 # AWS.ElasticBeanstalk @ default
 
 ## Resource AWS.ElasticBeanstalk/Application@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ElasticBeanstalk/ApplicationProperties](#awselasticbeanstalkapplicationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ElasticBeanstalk/ApplicationVersion@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ElasticBeanstalk/ApplicationVersionProperties](#awselasticbeanstalkapplicationversionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ElasticBeanstalk/ConfigurationTemplate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ElasticBeanstalk/ConfigurationTemplateProperties](#awselasticbeanstalkconfigurationtemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ElasticBeanstalk/Environment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -47,9 +51,12 @@
 ## AWS.ElasticBeanstalk/ApplicationVersionProperties
 ### Properties
 * **ApplicationName**: string (Required, Identifier): The name of the Elastic Beanstalk application that is associated with this application version. 
+* **BuildConfiguration**: [BuildConfiguration](#buildconfiguration) (WriteOnly): Settings for an AWS CodeBuild build that packages and builds an application version from source code.
 * **Description**: string: A description of this application version.
 * **Id**: string (ReadOnly, Identifier)
-* **SourceBundle**: [SourceBundle](#sourcebundle) (Required): The Amazon S3 bucket and key that identify the location of the source bundle for this version. 
+* **ImageConfiguration**: [ImageConfiguration](#imageconfiguration) (WriteOnly): Configuration for image-based application versions.
+* **Process**: bool (WriteOnly): Pre-process and validate the environment manifest (`env.yaml`) and configuration files in the source bundle. Leave unset for the service default.
+* **SourceBundle**: [SourceBundle](#sourcebundle): The Amazon S3 bucket and key that identify the location of the source bundle for this version. 
 
 ## AWS.ElasticBeanstalk/ConfigurationTemplateProperties
 ### Properties
@@ -88,12 +95,39 @@ Constraint: If both solution stack name and source configuration are specified, 
 * **Tier**: [Tier](#tier): Specifies the tier to use in creating this environment. The environment tier that you choose determines whether Elastic Beanstalk provisions resources to support a web application that handles HTTP(S) requests or a web application that handles background-processing tasks.
 * **VersionLabel**: string: The name of the application version to deploy.
 
+## BuildConfiguration
+### Properties
+* **ArtifactName**: string: The name of the build artifact.
+* **CodeBuildServiceRole**: string (Required): The ARN of the IAM role that AWS CodeBuild assumes to build the application version.
+* **ComputeType**: string: The compute type for the CodeBuild build environment.
+* **Image**: string (Required): The CodeBuild image used for the build environment.
+* **TimeoutInMinutes**: int: The timeout for the CodeBuild build, in minutes.
+
 ## ConfigurationOptionSetting
 ### Properties
 * **Namespace**: string (Required): A unique namespace that identifies the option's associated AWS resource.
 * **OptionName**: string (Required): The name of the configuration option.
 * **ResourceName**: string: A unique resource name for the option setting. Use it for a time–based scaling configuration option. 
 * **Value**: string: The current value for the configuration option.
+
+## ImageBuildConfiguration
+### Properties
+* **Architecture**: string: The target architecture for the built container image.
+* **Buildpack**: string: The buildpack to use for building the image.
+* **CodeBuildServiceRole**: string (Required): The ARN of the IAM role that AWS CodeBuild assumes to build the application version.
+* **ComputeType**: string: The compute type for the CodeBuild build environment.
+* **DockerfileLocation**: string: The path to the Dockerfile, relative to the source root.
+* **TimeoutInMinutes**: int: The timeout for the CodeBuild build, in minutes.
+* **Type**: string (Required): The type of image build: docker or buildpack.
+
+## ImageConfiguration
+### Properties
+* **Build**: [ImageBuildConfiguration](#imagebuildconfiguration): Configuration for building a container image from source code.
+* **Source**: [ImageSource](#imagesource): The container image source for this version, as an ECR image URI.
+
+## ImageSource
+### Properties
+* **Uri**: string: The URI of the container image, e.g. an ECR image URI.
 
 ## MaxAgeRule
 ### Properties

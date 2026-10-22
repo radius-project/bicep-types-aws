@@ -1,12 +1,13 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-Addon",
   "type": "AWS::EKS::Addon",
-  "time": "2025-01-23T17:19:30.437Z",
+  "time": "2026-10-20T00:46:55.302Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/ClusterName",
-      "/properties/AddonName"
+      "/properties/AddonName",
+      "/properties/NamespaceConfig"
     ],
     "definitions": {
       "PodIdentityAssociation": {
@@ -15,7 +16,7 @@
         "properties": {
           "RoleArn": {
             "description": "The IAM role ARN that the pod identity association is created for.",
-            "pattern": "^arn:aws(-cn|-us-gov|-iso(-[a-z])?)?:iam::\\d{12}:(role)\\/*",
+            "pattern": "^arn:aws[a-zA-Z-]*:iam::\\d{12}:(role)\\/*",
             "type": "string"
           },
           "ServiceAccount": {
@@ -99,11 +100,11 @@
           "eks:UpdateAddon",
           "eks:DescribeAddon",
           "eks:DescribeUpdate",
-          "eks:ListTagsForResource",
           "eks:TagResource",
           "eks:UntagResource",
           "eks:CreatePodIdentityAssociation",
-          "eks:DeletePodIdentityAssociation"
+          "eks:DeletePodIdentityAssociation",
+          "eks:UpdatePodIdentityAssociation"
         ]
       }
     },
@@ -135,6 +136,20 @@
         "description": "The configuration values to use with the add-on",
         "minLength": 1,
         "type": "string"
+      },
+      "NamespaceConfig": {
+        "additionalProperties": false,
+        "description": "The custom namespace configuration to use with the add-on",
+        "properties": {
+          "Namespace": {
+            "description": "The custom namespace for creating the add-on",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Namespace"
+        ],
+        "type": "object"
       },
       "PodIdentityAssociations": {
         "description": "An array of pod identities to apply to this add-on.",
@@ -174,6 +189,9 @@
         "uniqueItems": true
       }
     },
+    "propertyTransform": {
+      "/properties/ConfigurationValues": "$replace(ConfigurationValues, /\n$/, '')"
+    },
     "readOnlyProperties": [
       "/properties/Arn"
     ],
@@ -183,7 +201,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-eks.git",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "eks:TagResource",
         "eks:UntagResource"

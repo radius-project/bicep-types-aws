@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ElasticBeanstalk-ConfigurationTemplate",
   "type": "AWS::ElasticBeanstalk::ConfigurationTemplate",
-  "time": "2024-11-01T14:10:53.266Z",
+  "time": "2026-10-13T16:58:18.574Z",
   "schema": {
     "$schema": "https://raw.githubusercontent.com/aws-cloudformation/cloudformation-resource-schema/master/src/main/resources/schema/provider.definition.schema.v1.json",
     "additionalProperties": false,
@@ -62,28 +62,64 @@
     "handlers": {
       "create": {
         "permissions": [
-          "elasticbeanstalk:CreateConfigurationTemplate"
+          "elasticbeanstalk:CreateConfigurationTemplate",
+          "s3:CreateBucket",
+          "s3:PutBucketAcl",
+          "s3:PutBucketObjectLockConfiguration",
+          "s3:PutBucketVersioning",
+          "s3:PutBucketOwnershipControls",
+          "s3:PutBucketPolicy",
+          "s3:PutBucketPublicAccessBlock",
+          "s3:PutObject",
+          "s3:ListBucket",
+          "s3:GetObject",
+          "s3:GetBucketLocation",
+          "s3:GetBucketPolicy",
+          "ec2:DescribeImages",
+          "ec2:CreateLaunchTemplate"
         ]
       },
       "delete": {
         "permissions": [
           "elasticbeanstalk:DeleteConfigurationTemplate",
-          "elasticbeanstalk:DescribeConfigurationSettings"
+          "elasticbeanstalk:DescribeConfigurationSettings",
+          "ec2:CreateLaunchTemplate",
+          "s3:ListBucket",
+          "s3:GetObject",
+          "s3:GetBucketLocation",
+          "s3:GetBucketPolicy",
+          "s3:DeleteObject"
         ]
       },
       "list": {
         "permissions": [
-          "elasticbeanstalk:DescribeApplications"
+          "elasticbeanstalk:DescribeApplications",
+          "s3:ListBucket",
+          "s3:GetObject",
+          "s3:GetBucketLocation",
+          "s3:GetBucketPolicy"
         ]
       },
       "read": {
         "permissions": [
-          "elasticbeanstalk:DescribeConfigurationSettings"
+          "elasticbeanstalk:DescribeConfigurationSettings",
+          "ec2:CreateLaunchTemplate",
+          "s3:ListBucket",
+          "s3:GetObject",
+          "s3:GetBucketLocation",
+          "s3:GetBucketPolicy"
         ]
       },
       "update": {
         "permissions": [
-          "elasticbeanstalk:UpdateConfigurationTemplate"
+          "elasticbeanstalk:UpdateConfigurationTemplate",
+          "ec2:CreateLaunchTemplate",
+          "s3:PutObject",
+          "s3:ListBucket",
+          "s3:GetObject",
+          "s3:GetBucketLocation",
+          "s3:GetBucketPolicy",
+          "ec2:DescribeImages"
         ]
       }
     },

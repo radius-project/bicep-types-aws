@@ -1,0 +1,324 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-Partition",
+  "type": "AWS::Glue::Partition",
+  "time": "2026-10-08T17:08:14.504Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/TableName",
+      "/properties/DatabaseName",
+      "/properties/CatalogId",
+      "/properties/PartitionInput/Values"
+    ],
+    "definitions": {
+      "Column": {
+        "additionalProperties": false,
+        "description": "A column in a Table.",
+        "properties": {
+          "Comment": {
+            "description": "A free-form text comment.",
+            "type": "string"
+          },
+          "Name": {
+            "description": "The name of the Column.",
+            "type": "string"
+          },
+          "Type": {
+            "description": "The data type of the Column.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name"
+        ],
+        "type": "object"
+      },
+      "Order": {
+        "additionalProperties": false,
+        "description": "Specifies the sort order of a sorted column.",
+        "properties": {
+          "Column": {
+            "description": "The name of the column.",
+            "type": "string"
+          },
+          "SortOrder": {
+            "description": "Indicates that the column is sorted in ascending order (== 1), or in descending order (==0).",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "Column"
+        ],
+        "type": "object"
+      },
+      "PartitionInput": {
+        "additionalProperties": false,
+        "description": "The structure used to create and update a partition.",
+        "properties": {
+          "Parameters": {
+            "description": "Key-value pairs defining partition parameters.",
+            "type": "object"
+          },
+          "StorageDescriptor": {
+            "$ref": "#/definitions/StorageDescriptor"
+          },
+          "Values": {
+            "description": "The values of the partition. Although this parameter is not required by the SDK, you must specify this parameter for a valid input. The values for the keys for the new partition must be passed as an array of String objects that must be ordered in the same order as the partition keys appearing in the Amazon S3 prefix. Otherwise AWS Glue will add the values to the wrong keys.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "required": [
+          "Values"
+        ],
+        "type": "object"
+      },
+      "SchemaId": {
+        "additionalProperties": false,
+        "description": "A structure that contains schema identity fields. Either this or the SchemaVersionId has to be provided.",
+        "properties": {
+          "RegistryName": {
+            "description": "The name of the schema registry that contains the schema.",
+            "type": "string"
+          },
+          "SchemaArn": {
+            "description": "The Amazon Resource Name (ARN) of the schema. One of SchemaArn or SchemaName has to be provided.",
+            "type": "string"
+          },
+          "SchemaName": {
+            "description": "The name of the schema. One of SchemaArn or SchemaName has to be provided.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SchemaReference": {
+        "additionalProperties": false,
+        "description": "An object that references a schema stored in the AWS Glue Schema Registry.",
+        "properties": {
+          "SchemaId": {
+            "$ref": "#/definitions/SchemaId"
+          },
+          "SchemaVersionId": {
+            "description": "The unique ID assigned to a version of the schema. Either this or the SchemaId has to be provided.",
+            "type": "string"
+          },
+          "SchemaVersionNumber": {
+            "description": "The version number of the schema.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "SerdeInfo": {
+        "additionalProperties": false,
+        "description": "The serialization/deserialization (SerDe) information.",
+        "properties": {
+          "Name": {
+            "description": "Name of the SerDe.",
+            "type": "string"
+          },
+          "Parameters": {
+            "description": "These key-value pairs define initialization parameters for the SerDe.",
+            "type": "object"
+          },
+          "SerializationLibrary": {
+            "description": "Usually the class that implements the SerDe. An example is org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SkewedInfo": {
+        "additionalProperties": false,
+        "description": "The information about values that appear frequently in a column (skewed values).",
+        "properties": {
+          "SkewedColumnNames": {
+            "description": "A list of values that appear so frequently as to be considered skewed.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "SkewedColumnValueLocationMaps": {
+            "description": "A mapping of skewed values to the columns that contain them.",
+            "type": "object"
+          },
+          "SkewedColumnValues": {
+            "description": "A list of names of columns that contain skewed values.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "type": "object"
+      },
+      "StorageDescriptor": {
+        "additionalProperties": false,
+        "description": "Provides information about the physical location where the partition is stored.",
+        "properties": {
+          "BucketColumns": {
+            "description": "A list of reducer grouping columns, clustering columns, and bucketing columns in the table.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "Columns": {
+            "description": "A list of the Columns in the table.",
+            "items": {
+              "$ref": "#/definitions/Column"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "Compressed": {
+            "description": "True if the data in the table is compressed, or False if not.",
+            "type": "boolean"
+          },
+          "InputFormat": {
+            "description": "The input format: SequenceFileInputFormat (binary), or TextInputFormat, or a custom format.",
+            "type": "string"
+          },
+          "Location": {
+            "description": "The physical location of the table. By default, this takes the form of the warehouse location, followed by the database location in the warehouse, followed by the table name.",
+            "type": "string"
+          },
+          "NumberOfBuckets": {
+            "description": "The number of buckets. You must specify this property if the partition contains any dimension columns.",
+            "type": "integer"
+          },
+          "OutputFormat": {
+            "description": "The output format: SequenceFileOutputFormat (binary), or IgnoreKeyTextOutputFormat, or a custom format.",
+            "type": "string"
+          },
+          "Parameters": {
+            "description": "The user-supplied properties in key-value form.",
+            "type": "object"
+          },
+          "SchemaReference": {
+            "$ref": "#/definitions/SchemaReference"
+          },
+          "SerdeInfo": {
+            "$ref": "#/definitions/SerdeInfo"
+          },
+          "SkewedInfo": {
+            "$ref": "#/definitions/SkewedInfo"
+          },
+          "SortColumns": {
+            "description": "A list specifying the sort order of each bucket in the table.",
+            "items": {
+              "$ref": "#/definitions/Order"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "StoredAsSubDirectories": {
+            "description": "True if the table data is stored in subdirectories, or False if not.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Glue::Partition",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "glue:CreatePartition",
+          "glue:GetPartition",
+          "glue:GetSchemaVersion"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "glue:GetPartitions",
+          "glue:DeletePartition"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "CatalogId": {
+              "$ref": "resource-schema.json#/properties/CatalogId"
+            },
+            "DatabaseName": {
+              "$ref": "resource-schema.json#/properties/DatabaseName"
+            },
+            "TableName": {
+              "$ref": "resource-schema.json#/properties/TableName"
+            }
+          },
+          "required": [
+            "CatalogId",
+            "DatabaseName",
+            "TableName"
+          ]
+        },
+        "permissions": [
+          "glue:GetPartitions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "glue:GetPartitions",
+          "glue:GetPartition"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "glue:UpdatePartition",
+          "glue:GetPartition",
+          "glue:GetSchemaVersion"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/CatalogId",
+      "/properties/DatabaseName",
+      "/properties/TableName",
+      "/properties/IdentifierPartitionInputValues"
+    ],
+    "properties": {
+      "CatalogId": {
+        "description": "The name of the catalog database in which to create the partition.",
+        "type": "string"
+      },
+      "DatabaseName": {
+        "description": "The AWS account ID of the catalog in which the partion is to be created.",
+        "type": "string"
+      },
+      "IdentifierPartitionInputValues": {
+        "description": "A hashed string equivalent to the partition values list for use as a component of the resource's identifier in CFN",
+        "type": "string"
+      },
+      "PartitionInput": {
+        "$ref": "#/definitions/PartitionInput"
+      },
+      "TableName": {
+        "description": "The name of the metadata table in which the partition is to be created.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/IdentifierPartitionInputValues"
+    ],
+    "required": [
+      "TableName",
+      "DatabaseName",
+      "CatalogId",
+      "PartitionInput"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Glue::Partition"
+  }
+}

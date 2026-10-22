@@ -1,0 +1,124 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-DataQualityRuleset",
+  "type": "AWS::Glue::DataQualityRuleset",
+  "time": "2026-10-20T00:07:17.693Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "definitions": {
+      "DataQualityTargetTable": {
+        "additionalProperties": false,
+        "description": "An object representing an AWS Glue table.",
+        "properties": {
+          "DatabaseName": {
+            "description": "The name of the database where the AWS Glue table exists.",
+            "type": "string"
+          },
+          "TableName": {
+            "description": "The name of the AWS Glue table.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "DatabaseName",
+          "TableName"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Glue::DataQualityRuleset",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "glue:CreateDataQualityRuleset",
+          "glue:GetDataQualityRuleset",
+          "glue:GetTable",
+          "glue:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "glue:DeleteDataQualityRuleset",
+          "glue:GetDataQualityRuleset"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "glue:ListDataQualityRulesets"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "glue:GetDataQualityRuleset",
+          "glue:GetTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "glue:UpdateDataQualityRuleset",
+          "glue:GetDataQualityRuleset",
+          "glue:GetTable",
+          "glue:TagResource",
+          "glue:UntagResource",
+          "glue:GetTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Name"
+    ],
+    "properties": {
+      "ClientToken": {
+        "description": "A unique token for idempotency.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description of the data quality ruleset.",
+        "type": "string"
+      },
+      "Name": {
+        "description": "A unique name for the data quality ruleset.",
+        "type": "string"
+      },
+      "Ruleset": {
+        "description": "A Data Quality Definition Language (DQDL) ruleset.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A map of key-value pairs to apply to this resource.",
+        "patternProperties": {
+          ".*": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "TargetTable": {
+        "$ref": "#/definitions/DataQualityTargetTable",
+        "description": "An object representing an AWS Glue table."
+      }
+    },
+    "required": [
+      "Name"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-glue.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "glue:TagResource",
+        "glue:UntagResource",
+        "glue:GetTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Glue::DataQualityRuleset",
+    "writeOnlyProperties": [
+      "/properties/ClientToken"
+    ]
+  }
+}

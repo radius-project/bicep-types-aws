@@ -1,53 +1,76 @@
 # AWS.Backup @ default
 
 ## Resource AWS.Backup/BackupPlan@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Backup/BackupPlanProperties](#awsbackupbackupplanproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Backup/BackupVault@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Backup/BackupVaultProperties](#awsbackupbackupvaultproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Backup/Framework@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Backup/FrameworkProperties](#awsbackupframeworkproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Backup/LegalHold@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Backup/LegalHoldProperties](#awsbackuplegalholdproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Backup/LogicallyAirGappedBackupVault@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Backup/LogicallyAirGappedBackupVaultProperties](#awsbackuplogicallyairgappedbackupvaultproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Backup/ReportPlan@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Backup/ReportPlanProperties](#awsbackupreportplanproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Backup/RestoreTestingPlan@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Backup/RestoreTestingPlanProperties](#awsbackuprestoretestingplanproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Backup/RestoreTestingSelection@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Backup/RestoreTestingSelectionProperties](#awsbackuprestoretestingselectionproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Backup/TieringConfiguration@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Backup/TieringConfigurationProperties](#awsbackuptieringconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## AdvancedBackupSettingResourceType
 ### Properties
@@ -91,15 +114,27 @@
 `UNAVAILABLE` when AWS Backup is unable to validate recording status at this time.
 * **FrameworkTags**: [Tag](#tag)[]: Metadata that you can assign to help organize the frameworks that you create. Each tag is a key-value pair.
 
+## AWS.Backup/LegalHoldProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the legal hold.
+* **CreationDate**: string (ReadOnly): The time when the legal hold was created.
+* **Description**: string (Required): The description of the legal hold.
+* **LegalHoldId**: string (ReadOnly): The ID of the legal hold.
+* **RecoveryPointSelection**: [LegalHold_RecoveryPointSelection](#legalholdrecoverypointselection) (Required): The criteria to assign a set of resources, such as resource types or backup vaults.
+* **Status**: string (ReadOnly): The status of the legal hold.
+* **Tags**: [LegalHold_Tags](#legalholdtags)[]: Optional tags to include.
+* **Title**: string (Required): The title of the legal hold.
+
 ## AWS.Backup/LogicallyAirGappedBackupVaultProperties
 ### Properties
 * **AccessPolicy**: [LogicallyAirGappedBackupVault_AccessPolicy](#logicallyairgappedbackupvaultaccesspolicy) | string
 * **BackupVaultArn**: string (ReadOnly)
 * **BackupVaultName**: string (Required, Identifier)
 * **BackupVaultTags**: [LogicallyAirGappedBackupVault_BackupVaultTags](#logicallyairgappedbackupvaultbackupvaulttags)
-* **EncryptionKeyArn**: string (ReadOnly)
+* **EncryptionKeyArn**: string
 * **MaxRetentionDays**: int (Required)
 * **MinRetentionDays**: int (Required)
+* **MpaApprovalTeamArn**: string
 * **Notifications**: [NotificationObjectType](#notificationobjecttype)
 * **VaultState**: string (ReadOnly)
 * **VaultType**: string (ReadOnly)
@@ -120,7 +155,6 @@
 * **RestoreTestingPlanName**: string (Required, Identifier)
 * **ScheduleExpression**: string (Required)
 * **ScheduleExpressionTimezone**: string
-* **ScheduleStatus**: string
 * **StartWindowHours**: int
 * **Tags**: [Tag](#tag)[]
 
@@ -134,6 +168,16 @@
 * **RestoreTestingPlanName**: string (Required, Identifier)
 * **RestoreTestingSelectionName**: string (Required, Identifier)
 * **ValidationWindowHours**: int
+
+## AWS.Backup/TieringConfigurationProperties
+### Properties
+* **BackupVaultName**: string (Required)
+* **CreationTime**: string (ReadOnly)
+* **LastUpdatedTime**: string (ReadOnly)
+* **ResourceSelection**: [ResourceSelection](#resourceselection)[] (Required)
+* **TieringConfigurationArn**: string (ReadOnly)
+* **TieringConfigurationName**: string (Required, Identifier)
+* **TieringConfigurationTags**: [TieringConfiguration_TieringConfigurationTags](#tieringconfigurationtieringconfigurationtags)
 
 ## BackupPlan_BackupOptions
 ### Properties
@@ -149,19 +193,23 @@
 * **AdvancedBackupSettings**: [AdvancedBackupSettingResourceType](#advancedbackupsettingresourcetype)[]
 * **BackupPlanName**: string (Required)
 * **BackupPlanRule**: [BackupRuleResourceType](#backupruleresourcetype)[] (Required)
+* **ScanSettings**: [ScanSettingResourceType](#scansettingresourcetype)[]
 
 ## BackupRuleResourceType
 ### Properties
 * **CompletionWindowMinutes**: int
 * **CopyActions**: [CopyActionResourceType](#copyactionresourcetype)[]
 * **EnableContinuousBackup**: bool
+* **IndexActions**: [IndexActionsResourceType](#indexactionsresourcetype)[]
 * **Lifecycle**: [LifecycleResourceType](#lifecycleresourcetype)
 * **RecoveryPointTags**: [BackupPlan_RecoveryPointTags](#backupplanrecoverypointtags)
 * **RuleName**: string (Required)
+* **ScanActions**: [ScanActionResourceType](#scanactionresourcetype)[]
 * **ScheduleExpression**: string
 * **ScheduleExpressionTimezone**: string
 * **StartWindowMinutes**: int
 * **TargetBackupVault**: string (Required)
+* **TargetLogicallyAirGappedBackupVaultArn**: string
 
 ## BackupVault_BackupVaultTags
 ### Properties
@@ -188,10 +236,30 @@
 * **ControlName**: string (Required): The name of a control. This name is between 1 and 256 characters.
 * **ControlScope**: [Framework_ControlScope](#frameworkcontrolscope): The scope of a control. The control scope defines what the control will evaluate. Three examples of control scopes are: a specific backup plan, all backup plans with a specific tag, or all backup plans.
 
+## IndexActionsResourceType
+### Properties
+* **ResourceTypes**: string[]
+
 ## KeyValue
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## LegalHold_RecoveryPointSelection
+### Properties
+* **DateRange**: [LegalHold_RecoveryPointSelection_DateRange](#legalholdrecoverypointselectiondaterange): A date range for filtering recovery points.
+* **ResourceIdentifiers**: string[]: The resources included in the resource selection.
+* **VaultNames**: string[]: The names of the vaults in which the selected recovery points are contained.
+
+## LegalHold_RecoveryPointSelection_DateRange
+### Properties
+* **FromDate**: string (Required): The beginning date, inclusive. ISO 8601 date-time.
+* **ToDate**: string (Required): The end date, inclusive. ISO 8601 date-time.
+
+## LegalHold_Tags
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## LifecycleResourceType
 ### Properties
@@ -237,6 +305,12 @@
 * **Regions**: string[]: The list of AWS regions that a report covers.
 * **ReportTemplate**: string (Required): Identifies the report template for the report. Reports are built using a report template. The report templates are: `BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT`
 
+## ResourceSelection
+### Properties
+* **Resources**: string[] (Required)
+* **ResourceType**: string (Required)
+* **TieringDownSettingsInDays**: int (Required)
+
 ## RestoreTestingRecoveryPointSelection
 ### Properties
 * **Algorithm**: string (Required)
@@ -244,6 +318,17 @@
 * **IncludeVaults**: string[] (Required)
 * **RecoveryPointTypes**: string[] (Required)
 * **SelectionWindowDays**: int
+
+## ScanActionResourceType
+### Properties
+* **MalwareScanner**: string
+* **ScanMode**: string
+
+## ScanSettingResourceType
+### Properties
+* **MalwareScanner**: string
+* **ResourceTypes**: string[]
+* **ScannerRoleArn**: string
 
 ## SensitiveStringMap
 ### Properties
@@ -262,4 +347,7 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## TieringConfiguration_TieringConfigurationTags
+### Properties
 

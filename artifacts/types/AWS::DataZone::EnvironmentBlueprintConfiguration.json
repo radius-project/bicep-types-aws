@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataZone-EnvironmentBlueprintConfiguration",
   "type": "AWS::DataZone::EnvironmentBlueprintConfiguration",
-  "time": "2025-01-27T03:23:19.598Z",
+  "time": "2026-10-03T06:32:22.363Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -15,6 +15,27 @@
       "/properties/EnvironmentBlueprintIdentifier"
     ],
     "definitions": {
+      "LakeFormationConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "LocationRegistrationExcludeS3Locations": {
+            "items": {
+              "maxLength": 1024,
+              "minLength": 1,
+              "pattern": "^s3://.+$",
+              "type": "string"
+            },
+            "maxItems": 20,
+            "minItems": 0,
+            "type": "array"
+          },
+          "LocationRegistrationRole": {
+            "pattern": "^arn:aws[^:]*:iam::\\d{12}:role(/[a-zA-Z0-9+=,.@_-]+)*/[a-zA-Z0-9+=,.@_-]+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "Parameter": {
         "additionalProperties": false,
         "patternProperties": {
@@ -23,6 +44,23 @@
           }
         },
         "type": "object"
+      },
+      "ProvisioningConfiguration": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "LakeFormationConfiguration": {
+                "$ref": "#/definitions/LakeFormationConfiguration"
+              }
+            },
+            "required": [
+              "LakeFormationConfiguration"
+            ],
+            "title": "LakeFormationConfiguration",
+            "type": "object"
+          }
+        ]
       },
       "RegionalParameter": {
         "additionalProperties": false,
@@ -119,12 +157,32 @@
         "pattern": "^[a-zA-Z0-9_-]{1,36}$",
         "type": "string"
       },
-      "ManageAccessRoleArn": {
-        "pattern": "^arn:aws[^:]*:iam::\\d{12}:(role|role/service-role)/[\\w+=,.@-]*$",
+      "EnvironmentRolePermissionBoundary": {
+        "pattern": "^arn:aws[^:]*:iam::(aws|\\d{12}):policy/[\\w+=,.@-]*$",
         "type": "string"
       },
+      "GlobalParameters": {
+        "additionalProperties": false,
+        "description": "Region-agnostic environment blueprint parameters.",
+        "patternProperties": {
+          ".+": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ManageAccessRoleArn": {
+        "pattern": "^arn:aws[^:]*:iam::\\d{12}:role(/[a-zA-Z0-9+=,.@_-]+)*/[a-zA-Z0-9+=,.@_-]+$",
+        "type": "string"
+      },
+      "ProvisioningConfigurations": {
+        "items": {
+          "$ref": "#/definitions/ProvisioningConfiguration"
+        },
+        "type": "array"
+      },
       "ProvisioningRoleArn": {
-        "pattern": "^arn:aws[^:]*:iam::\\d{12}:(role|role/service-role)/[\\w+=,.@-]*$",
+        "pattern": "^arn:aws[^:]*:iam::\\d{12}:role(/[a-zA-Z0-9+=,.@_-]+)*/[a-zA-Z0-9+=,.@_-]+$",
         "type": "string"
       },
       "RegionalParameters": {
@@ -158,7 +216,10 @@
     "typeName": "AWS::DataZone::EnvironmentBlueprintConfiguration",
     "writeOnlyProperties": [
       "/properties/DomainIdentifier",
-      "/properties/EnvironmentBlueprintIdentifier"
+      "/properties/EnvironmentBlueprintIdentifier",
+      "/properties/EnvironmentRolePermissionBoundary",
+      "/properties/GlobalParameters",
+      "/properties/ProvisioningConfigurations"
     ]
   }
 }

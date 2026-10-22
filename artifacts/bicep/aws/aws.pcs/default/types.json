@@ -1,18 +1,38 @@
 [
   {
     "$type": "ObjectType",
+    "name": "Accounting",
+    "properties": {
+      "DefaultPurgeTimeInDays": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The default value for all purge settings for `slurmdbd.conf`. For more information, see the [slurmdbd.conf documentation at SchedMD](https://slurm.schedmd.com/slurmdbd.conf.html). The default value is `-1`. A value of `-1` means there is no purge time and records persist as long as the cluster exists."
+      },
+      "Mode": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The default value is `NONE`. A value of `STANDARD` means that Slurm accounting is enabled."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "AuthKey",
     "properties": {
       "SecretArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the the shared Slurm key."
       },
       "SecretVersion": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The version of the shared Slurm key."
@@ -21,32 +41,59 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CgroupCustomSetting",
+    "properties": {
+      "ParameterName": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The cgroup.conf parameter name."
+      },
+      "ParameterValue": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The value for the cgroup.conf parameter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Endpoint",
     "properties": {
+      "Ipv6Address": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "The endpoint's IPv6 address."
+      },
       "Port": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The endpoint's connection port number."
       },
       "PrivateIpAddress": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The endpoint's private IP address."
       },
       "PublicIpAddress": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The endpoint's public IP address."
       },
       "Type": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "Indicates the type of endpoint running at the specific IP address."
@@ -59,17 +106,49 @@
     "properties": {
       "Code": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The short-form error code."
       },
       "Message": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The detailed error information."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JwtAuth",
+    "properties": {
+      "JwtKey": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JwtKey",
+    "properties": {
+      "SecretArn": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the JWT key secret."
+      },
+      "SecretVersion": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The version of the JWT key secret."
       }
     }
   },
@@ -84,17 +163,50 @@
     "properties": {
       "ParameterName": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "AWS PCS supports configuration of the following Slurm parameters for clusters: Prolog, Epilog, and SelectTypeParameters."
       },
       "ParameterValue": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The value for the configured Slurm setting."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SlurmRest",
+    "properties": {
+      "Mode": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The default value is `NONE`. A value of `STANDARD` means that Slurm Rest is enabled."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SlurmdbdCustomSetting",
+    "properties": {
+      "ParameterName": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The slurmdbd.conf parameter name."
+      },
+      "ParameterValue": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The value for the slurmdbd.conf parameter."
       }
     }
   },
@@ -109,19 +221,22 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       }
     }
+  },
+  {
+    "$type": "IntegerType"
   },
   {
     "$type": "StringType"
@@ -133,41 +248,48 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/14"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/14"
     }
   },
   {
     "$type": "ObjectType",
     "name": "Cluster_Networking",
     "properties": {
+      "NetworkType": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "The IP of the cluster (IPV4 or IPV6)"
+      },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "The list of security group IDs associated with the Elastic Network Interface (ENI) created in subnets."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "The list of subnet IDs where AWS PCS creates an Elastic Network Interface (ENI) to enable communication between managed controllers and AWS PCS resources. The subnet must have an available IP address, cannot reside in AWS Outposts, AWS Wavelength, or an AWS Local Zone. AWS PCS currently supports only 1 subnet in this list."
@@ -180,14 +302,14 @@
     "properties": {
       "Type": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The software AWS PCS uses to manage cluster scaling and job scheduling."
       },
       "Version": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The version of the specified scheduling software that AWS PCS uses to manage cluster scaling and job scheduling."
@@ -195,37 +317,78 @@
     }
   },
   {
-    "$type": "IntegerType"
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
     }
   },
   {
     "$type": "ObjectType",
     "name": "Cluster_SlurmConfiguration",
     "properties": {
-      "AuthKey": {
+      "Accounting": {
         "type": {
           "$ref": "#/0"
         },
         "flags": 0
       },
+      "AuthKey": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "CgroupCustomSettings": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Additional cgroup-specific configuration that directly maps to cgroup.conf settings."
+      },
+      "JwtAuth": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
       "ScaleDownIdleTimeInSeconds": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "The time before an idle node is scaled down."
       },
       "SlurmCustomSettings": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "Additional Slurm-specific configuration that directly maps to Slurm settings."
+      },
+      "SlurmRest": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "SlurmdbdCustomSettings": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Additional slurmdbd-specific configuration that directly maps to slurmdbd.conf settings."
       }
     }
   },
@@ -240,77 +403,77 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 18,
         "description": "The unique Amazon Resource Name (ARN) of the cluster."
       },
       "Endpoints": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/16"
         },
         "flags": 2,
         "description": "The list of endpoints available for interaction with the scheduler."
       },
       "ErrorInfo": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/17"
         },
         "flags": 2,
         "description": "The list of errors that occurred during cluster provisioning."
       },
       "Id": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 2,
         "description": "The generated unique ID of the cluster."
       },
       "Name": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The name that identifies the cluster."
       },
       "Networking": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/20"
         },
         "flags": 1,
         "description": "The networking configuration for the cluster's control plane."
       },
       "Scheduler": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/21"
         },
         "flags": 1,
         "description": "The cluster management and job scheduling software associated with the cluster."
       },
       "Size": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The size of the cluster."
       },
       "SlurmConfiguration": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "Additional options related to the Slurm scheduler."
       },
       "Status": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 2,
         "description": "The provisioning status of the cluster. The provisioning status doesn't indicate the overall health of the cluster."
       },
       "Tags": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "1 or more tags added to the resource. Each tag consists of a tag key and tag value. The tag value is optional and can be an empty string."
@@ -323,21 +486,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/27"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -347,11 +510,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.PCS/Cluster@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/28"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -359,14 +522,14 @@
     "properties": {
       "Code": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The short-form error code."
       },
       "Message": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The detailed error information."
@@ -375,11 +538,16 @@
   },
   {
     "$type": "ObjectType",
+    "name": "GresCustomSetting",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "InstanceConfig",
     "properties": {
       "InstanceType": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The EC2 instance type that AWS PCS can provision in the compute node group."
@@ -388,18 +556,129 @@
   },
   {
     "$type": "ObjectType",
+    "name": "NodeLifecycleActions",
+    "properties": {
+      "ScriptCachingPolicy": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "Controls whether lifecycle scripts are downloaded once at first boot (CACHE_ONCE) or re-downloaded on every reboot (REFRESH_ON_REBOOT). Defaults to CACHE_ONCE."
+      },
+      "Stages": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NodeLifecycleScript",
+    "properties": {
+      "Arguments": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0,
+        "description": "An ordered list of arguments passed to the script."
+      },
+      "ExecutionPolicy": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "Whether the script runs only on the node's first boot (FIRST_BOOT_ONLY) or on every boot including reboots (EVERY_BOOT). Defaults to FIRST_BOOT_ONLY."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "A human-readable name that identifies the script."
+      },
+      "OnError": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "The behavior when the script exits with an error. Defaults to TERMINATE."
+      },
+      "ScriptSource": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NodeLifecycleStages",
+    "properties": {
+      "NodeBootstrapped": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "Scripts to run after the node is bootstrapped, once the PCS configuration phase completes and before slurmd starts."
+      },
+      "NodeReady": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "Scripts to execute when the node becomes ready (every boot)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScriptSource",
+    "properties": {
+      "Checksum": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "A 64-character hexadecimal SHA-256 digest used to verify script integrity."
+      },
+      "S3VersionId": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "The S3 object version ID of the script, when stored in a versioned bucket."
+      },
+      "ScriptLocation": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The S3 URI or HTTPS URL where the script is stored."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SecurityGroupId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "SlurmCustomSetting",
     "properties": {
       "ParameterName": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "AWS PCS supports configuration of the following Slurm parameters for compute node groups: Weight and RealMemory."
       },
       "ParameterValue": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The value for the configured Slurm setting."
@@ -412,6 +691,24 @@
     "properties": {}
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/34"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/34"
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.PCS/ComputeNodeGroupProperties"
   },
@@ -419,18 +716,18 @@
     "$type": "ObjectType",
     "name": "ComputeNodeGroup_CustomLaunchTemplate",
     "properties": {
-      "Id": {
+      "TemplateId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The ID of the EC2 launch template to use to provision instances."
       },
       "Version": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The version of the EC2 launch template to use to provision instances."
       }
     }
@@ -438,13 +735,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/30"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/32"
     }
   },
   {
@@ -453,14 +750,14 @@
     "properties": {
       "MaxInstanceCount": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/13"
         },
         "flags": 1,
         "description": "The upper bound of the number of instances allowed in the compute fleet."
       },
       "MinInstanceCount": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/13"
         },
         "flags": 1,
         "description": "The lower bound of the number of instances allowed in the compute fleet."
@@ -470,16 +767,36 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/31"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/38"
     }
   },
   {
     "$type": "ObjectType",
     "name": "ComputeNodeGroup_SlurmConfiguration",
     "properties": {
+      "GresCustomSettings": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0,
+        "description": "Additional Slurm gres.conf records for the compute node group. Each item is a map of gres.conf attribute names to values describing one gres.conf record (for example a GPU topology, MIG, MPS, or custom GRES entry). AWS PCS adds the NodeName= prefix and merges these records with the GPU record it derives from the instance type."
+      },
+      "ScaleDownIdleTimeInSeconds": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The time before an idle node is scaled down."
+      },
       "SlurmCustomSettings": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "Additional Slurm-specific configuration that directly maps to Slurm settings."
@@ -492,7 +809,7 @@
     "properties": {
       "AllocationStrategy": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The Amazon EC2 allocation strategy AWS PCS uses to provision EC2 instances. AWS PCS supports lowest price, capacity optimized, and price capacity optimized. If you don't provide this option, it defaults to price capacity optimized."
@@ -502,7 +819,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/14"
     }
   },
   {
@@ -516,112 +833,118 @@
     "properties": {
       "AmiId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The ID of the Amazon Machine Image (AMI) that AWS PCS uses to launch instances. If not provided, AWS PCS uses the AMI ID specified in the custom launch template."
       },
       "Arn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 18,
         "description": "The unique Amazon Resource Name (ARN) of the compute node group."
       },
       "ClusterId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The ID of the cluster of the compute node group."
       },
       "CustomLaunchTemplate": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/44"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "An Amazon EC2 launch template AWS PCS uses to launch compute nodes."
       },
       "ErrorInfo": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/45"
         },
         "flags": 2,
         "description": "The list of errors that occurred during compute node group provisioning."
       },
       "IamInstanceProfileArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the IAM instance profile used to pass an IAM role when launching EC2 instances. The role contained in your instance profile must have pcs:RegisterComputeNodeGroupInstance permissions attached to provision instances correctly."
       },
       "Id": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 2,
         "description": "The generated unique ID of the compute node group."
       },
       "InstanceConfigs": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/46"
         },
         "flags": 1,
         "description": "A list of EC2 instance configurations that AWS PCS can provision in the compute node group."
       },
       "Name": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The name that identifies the compute node group."
       },
+      "NodeLifecycleActions": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 0
+      },
       "PurchaseOption": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
-        "description": "Specifies how EC2 instances are purchased on your behalf. AWS PCS supports On-Demand and Spot instances. For more information, see Instance purchasing options in the Amazon Elastic Compute Cloud User Guide. If you don't provide this option, it defaults to On-Demand."
+        "description": "Specifies how EC2 instances are purchased on your behalf. AWS PCS supports On-Demand, Spot, Capacity Block, and Interruptible Capacity Reservation instances. For more information, see Instance purchasing options in the Amazon Elastic Compute Cloud User Guide. If you don't provide this option, it defaults to On-Demand."
       },
       "ScalingConfiguration": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/47"
         },
         "flags": 1,
         "description": "Specifies the boundaries of the compute node group auto scaling."
       },
       "SlurmConfiguration": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Additional options related to the Slurm scheduler."
       },
       "SpotOptions": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "Additional configuration when you specify SPOT as the purchase option."
       },
       "Status": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 2,
         "description": "The provisioning status of the compute node group. The provisioning status doesn't indicate the overall health of the compute node group."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/52"
         },
         "flags": 1,
         "description": "The list of subnet IDs where instances are provisioned by the compute node group. The subnets must be in the same VPC as the cluster."
       },
       "Tags": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "1 or more tags added to the resource. Each tag consists of a tag key and tag value. The tag value is optional and can be an empty string."
@@ -634,21 +957,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/54"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -658,11 +981,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.PCS/ComputeNodeGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/37"
+      "$ref": "#/55"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -670,7 +993,7 @@
     "properties": {
       "ComputeNodeGroupId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The compute node group ID for the compute node group configuration."
@@ -683,17 +1006,37 @@
     "properties": {
       "Code": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The short-form error code."
       },
       "Message": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The detailed error information."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SlurmCustomSetting",
+    "properties": {
+      "ParameterName": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "AWS PCS supports configuration of the Slurm parameters for queues:."
+      },
+      "ParameterValue": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The value for the configured Slurm setting."
       }
     }
   },
@@ -704,13 +1047,32 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/57"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/40"
+      "$ref": "#/58"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/59"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Queue_SlurmConfiguration",
+    "properties": {
+      "SlurmCustomSettings": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0,
+        "description": "Custom Slurm parameters that directly map to Slurm configuration settings."
+      }
     }
   },
   {
@@ -724,56 +1086,63 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 18,
         "description": "The unique Amazon Resource Name (ARN) of the queue."
       },
       "ClusterId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "The ID of the cluster of the queue."
       },
       "ComputeNodeGroupConfigurations": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "The list of compute node group configurations associated with the queue. Queues assign jobs to associated compute node groups."
       },
       "ErrorInfo": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/62"
         },
         "flags": 2,
         "description": "The list of errors that occurred during queue provisioning."
       },
       "Id": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 2,
         "description": "The generated unique ID of the queue."
       },
       "Name": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The name that identifies the queue."
       },
+      "SlurmConfiguration": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 0,
+        "description": "The Slurm configuration for the queue."
+      },
       "Status": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 2,
         "description": "The provisioning status of the queue. The provisioning status doesn't indicate the overall health of the queue."
       },
       "Tags": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "1 or more tags added to the resource. Each tag consists of a tag key and tag value. The tag value is optional and can be an empty string."
@@ -786,21 +1155,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/66"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -810,10 +1179,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.PCS/Queue@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/46"
+      "$ref": "#/67"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

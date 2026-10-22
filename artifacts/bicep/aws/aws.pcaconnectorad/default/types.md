@@ -1,28 +1,32 @@
 # AWS.PCAConnectorAD @ default
 
 ## Resource AWS.PCAConnectorAD/Connector@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.PCAConnectorAD/ConnectorProperties](#awspcaconnectoradconnectorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.PCAConnectorAD/DirectoryRegistration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.PCAConnectorAD/DirectoryRegistrationProperties](#awspcaconnectoraddirectoryregistrationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.PCAConnectorAD/Template@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.PCAConnectorAD/TemplateProperties](#awspcaconnectoradtemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.PCAConnectorAD/TemplateGroupAccessControlEntry@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -51,8 +55,8 @@
 ### Properties
 * **AccessRights**: [AccessRights](#accessrights) (Required, WriteOnly)
 * **GroupDisplayName**: string (Required, WriteOnly)
-* **GroupSecurityIdentifier**: string (Identifier)
-* **TemplateArn**: string (Identifier)
+* **GroupSecurityIdentifier**: string (Required, Identifier)
+* **TemplateArn**: string (Required, Identifier)
 
 ## AWS.PCAConnectorAD/TemplateProperties
 ### Properties
@@ -77,5 +81,6 @@
 
 ## VpcInformation
 ### Properties
+* **IpAddressType**: string
 * **SecurityGroupIds**: string[] (Required)
 

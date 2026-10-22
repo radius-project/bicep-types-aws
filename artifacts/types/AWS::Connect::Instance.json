@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-Instance",
   "type": "AWS::Connect::Instance",
-  "time": "2025-01-22T23:19:32.125Z",
+  "time": "2026-10-21T21:57:24.008Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -13,6 +13,9 @@
       "Attributes": {
         "additionalProperties": false,
         "properties": {
+          "AutoMuteAgentOnHold": {
+            "$ref": "#/definitions/AutoMuteAgentOnHold"
+          },
           "AutoResolveBestVoices": {
             "$ref": "#/definitions/AutoResolveBestVoices"
           },
@@ -25,8 +28,26 @@
           "EarlyMedia": {
             "$ref": "#/definitions/EarlyMedia"
           },
+          "EnhancedChatMonitoring": {
+            "$ref": "#/definitions/EnhancedChatMonitoring"
+          },
+          "EnhancedContactMonitoring": {
+            "$ref": "#/definitions/EnhancedContactMonitoring"
+          },
+          "HighVolumeOutBound": {
+            "$ref": "#/definitions/HighVolumeOutBound"
+          },
           "InboundCalls": {
             "$ref": "#/definitions/InboundCalls"
+          },
+          "MessageStreaming": {
+            "$ref": "#/definitions/MessageStreaming"
+          },
+          "MultiPartyChatConference": {
+            "$ref": "#/definitions/MultiPartyChatConference"
+          },
+          "MultiPartyConference": {
+            "$ref": "#/definitions/MultiPartyConference"
           },
           "OutboundCalls": {
             "$ref": "#/definitions/OutboundCalls"
@@ -40,6 +61,10 @@
           "OutboundCalls"
         ],
         "type": "object"
+      },
+      "AutoMuteAgentOnHold": {
+        "description": "Boolean flag which enables AUTO_MUTE_AGENT_ON_HOLD on an instance.",
+        "type": "boolean"
       },
       "AutoResolveBestVoices": {
         "description": "Boolean flag which enables AUTO_RESOLVE_BEST_VOICES on an instance.",
@@ -57,8 +82,32 @@
         "description": "Boolean flag which enables EARLY_MEDIA on an instance.",
         "type": "boolean"
       },
+      "EnhancedChatMonitoring": {
+        "description": "Boolean flag which enables ENHANCED_CHAT_MONITORING on an instance.",
+        "type": "boolean"
+      },
+      "EnhancedContactMonitoring": {
+        "description": "Boolean flag which enables ENHANCED_CONTACT_MONITORING on an instance.",
+        "type": "boolean"
+      },
+      "HighVolumeOutBound": {
+        "description": "Boolean flag which enables HIGH_VOLUME_OUTBOUND on an instance.",
+        "type": "boolean"
+      },
       "InboundCalls": {
         "description": "Mandatory element which enables inbound calls on new instance.",
+        "type": "boolean"
+      },
+      "MessageStreaming": {
+        "description": "Boolean flag which enables MESSAGE_STREAMING on an instance.",
+        "type": "boolean"
+      },
+      "MultiPartyChatConference": {
+        "description": "Boolean flag which enables MULTI_PARTY_CHAT_CONFERENCE on an instance.",
+        "type": "boolean"
+      },
+      "MultiPartyConference": {
+        "description": "Boolean flag which enables MULTI_PARTY_CONFERENCE on an instance.",
         "type": "boolean"
       },
       "OutboundCalls": {
@@ -141,7 +190,10 @@
         "permissions": [
           "connect:ListInstanceAttributes",
           "connect:UpdateInstanceAttribute",
+          "ds:DescribeDirectories",
           "iam:CreateServiceLinkedRole",
+          "iam:DeleteRolePolicy",
+          "logs:CreateLogGroup",
           "iam:PutRolePolicy",
           "connect:TagResource",
           "connect:UntagResource"
@@ -188,7 +240,7 @@
       },
       "InstanceAlias": {
         "description": "Alias of the new directory created as part of new instance creation.",
-        "maxLength": 62,
+        "maxLength": 45,
         "minLength": 1,
         "pattern": "^(?!d-)([\\da-zA-Z]+)([-]*[\\da-zA-Z])*$",
         "type": "string"

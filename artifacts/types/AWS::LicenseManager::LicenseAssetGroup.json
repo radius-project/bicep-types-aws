@@ -1,0 +1,166 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-LicenseManager-LicenseAssetGroup",
+  "type": "AWS::LicenseManager::LicenseAssetGroup",
+  "time": "2026-10-21T22:39:37.604Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/LicenseAssetGroupConfigurations"
+    ],
+    "definitions": {
+      "LicenseAssetGroupConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "UsageDimension": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "LicenseAssetGroupProperty": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::LicenseManager::LicenseAssetGroup",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "license-manager:CreateLicenseAssetGroup",
+          "license-manager:GetLicenseAssetGroup",
+          "license-manager:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "license-manager:DeleteLicenseAssetGroup"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "license-manager:ListLicenseAssetGroups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "license-manager:GetLicenseAssetGroup",
+          "license-manager:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "license-manager:UpdateLicenseAssetGroup",
+          "license-manager:GetLicenseAssetGroup",
+          "license-manager:TagResource",
+          "license-manager:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/LicenseAssetGroupArn"
+    ],
+    "properties": {
+      "AssociatedLicenseAssetRulesetARNs": {
+        "description": "ARNs of associated license asset rulesets.",
+        "insertionOrder": false,
+        "items": {
+          "maxLength": 2048,
+          "pattern": "^arn:aws[a-zA-Z-]*:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}$",
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "Description": {
+        "description": "License asset group description.",
+        "maxLength": 1024,
+        "type": "string"
+      },
+      "LicenseAssetGroupArn": {
+        "description": "Amazon Resource Name (ARN) of the license asset group.",
+        "maxLength": 2048,
+        "pattern": "^arn:aws[a-zA-Z-]*:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}$",
+        "type": "string"
+      },
+      "LicenseAssetGroupConfigurations": {
+        "description": "License asset group configurations.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/LicenseAssetGroupConfiguration"
+        },
+        "type": "array"
+      },
+      "Name": {
+        "description": "License asset group name.",
+        "maxLength": 128,
+        "type": "string"
+      },
+      "Properties": {
+        "description": "License asset group properties.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/LicenseAssetGroupProperty"
+        },
+        "type": "array"
+      },
+      "Tags": {
+        "description": "Tags to add to the license asset group.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/LicenseAssetGroupArn"
+    ],
+    "required": [
+      "Name",
+      "AssociatedLicenseAssetRulesetARNs",
+      "LicenseAssetGroupConfigurations"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "license-manager:TagResource",
+        "license-manager:UntagResource",
+        "license-manager:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::LicenseManager::LicenseAssetGroup"
+  }
+}

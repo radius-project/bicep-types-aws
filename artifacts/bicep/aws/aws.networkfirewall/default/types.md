@@ -1,40 +1,61 @@
 # AWS.NetworkFirewall @ default
 
+## Resource AWS.NetworkFirewall/ContainerAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NetworkFirewall/ContainerAssociationProperties](#awsnetworkfirewallcontainerassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.NetworkFirewall/Firewall@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.NetworkFirewall/FirewallProperties](#awsnetworkfirewallfirewallproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkFirewall/FirewallPolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.NetworkFirewall/FirewallPolicyProperties](#awsnetworkfirewallfirewallpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkFirewall/LoggingConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.NetworkFirewall/LoggingConfigurationProperties](#awsnetworkfirewallloggingconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkFirewall/RuleGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.NetworkFirewall/RuleGroupProperties](#awsnetworkfirewallrulegroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkFirewall/TLSInspectionConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.NetworkFirewall/TLSInspectionConfigurationProperties](#awsnetworkfirewalltlsinspectionconfigurationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.NetworkFirewall/VpcEndpointAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NetworkFirewall/VpcEndpointAssociationProperties](#awsnetworkfirewallvpcendpointassociationproperties) (Required, Identifier): properties of the resource
+
 ## ActionDefinition
 ### Properties
 * **PublishMetricAction**: [PublishMetricAction](#publishmetricaction)
@@ -50,6 +71,21 @@
 ## Address
 ### Properties
 * **AddressDefinition**: string (Required)
+
+## AvailabilityZoneMapping
+### Properties
+* **AvailabilityZone**: string (Required): A AvailabilityZone
+
+## AWS.NetworkFirewall/ContainerAssociationProperties
+### Properties
+* **ContainerAssociationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the container association.
+* **ContainerAssociationName**: string (Required): The descriptive name of the container association. You can't change the name of a container association after you create it.
+* **ContainerMonitoringConfigurations**: [ContainerMonitoringConfiguration](#containermonitoringconfiguration)[] (Required): The monitoring configurations for the container association. Each configuration specifies an Amazon ECS or Amazon EKS cluster to monitor and optional attribute filters to narrow which containers are tracked.
+* **Description**: string: A description of the container association.
+* **ResolvedCidrCount**: int (ReadOnly): The number of CIDR blocks resolved from the monitored containers.
+* **Status**: string (ReadOnly): The current status of the container association.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **Type**: string (Required): The type of containers to monitor. You can't change the container type after creation.
 
 ## AWS.NetworkFirewall/FirewallPolicyProperties
 ### Properties
@@ -62,8 +98,11 @@
 
 ## AWS.NetworkFirewall/FirewallProperties
 ### Properties
+* **AvailabilityZoneChangeProtection**: bool
+* **AvailabilityZoneMappings**: [AvailabilityZoneMapping](#availabilityzonemapping)[]
 * **DeleteProtection**: bool
 * **Description**: string
+* **EnabledAnalysisTypes**: string[]: The types of analysis to enable for the firewall. Can be TLS_SNI, HTTP_HOST, or both.
 * **EndpointIds**: string[] (ReadOnly)
 * **FirewallArn**: string (ReadOnly, Identifier)
 * **FirewallId**: string (ReadOnly)
@@ -71,12 +110,15 @@
 * **FirewallPolicyArn**: string (Required)
 * **FirewallPolicyChangeProtection**: bool
 * **SubnetChangeProtection**: bool
-* **SubnetMappings**: [SubnetMapping](#subnetmapping)[] (Required)
+* **SubnetMappings**: [SubnetMapping](#subnetmapping)[]
 * **Tags**: [Tag](#tag)[]
-* **VpcId**: string (Required)
+* **TransitGatewayAttachmentId**: string (ReadOnly)
+* **TransitGatewayId**: string
+* **VpcId**: string
 
 ## AWS.NetworkFirewall/LoggingConfigurationProperties
 ### Properties
+* **EnableMonitoringDashboard**: bool
 * **FirewallArn**: string (Required, Identifier)
 * **FirewallName**: string
 * **LoggingConfiguration**: [LoggingConfiguration](#loggingconfiguration) (Required)
@@ -89,6 +131,7 @@
 * **RuleGroupArn**: string (ReadOnly, Identifier)
 * **RuleGroupId**: string (ReadOnly)
 * **RuleGroupName**: string (Required)
+* **SummaryConfiguration**: [RuleGroup_SummaryConfiguration](#rulegroupsummaryconfiguration)
 * **Tags**: [Tag](#tag)[]
 * **Type**: string (Required)
 
@@ -100,6 +143,27 @@
 * **TLSInspectionConfigurationArn**: string (ReadOnly, Identifier)
 * **TLSInspectionConfigurationId**: string (ReadOnly)
 * **TLSInspectionConfigurationName**: string (Required)
+
+## AWS.NetworkFirewall/VpcEndpointAssociationProperties
+### Properties
+* **Description**: string
+* **EndpointId**: string (ReadOnly)
+* **FirewallArn**: string (Required)
+* **SubnetMapping**: [SubnetMapping](#subnetmapping) (Required)
+* **Tags**: [Tag](#tag)[]
+* **VpcEndpointAssociationArn**: string (ReadOnly, Identifier)
+* **VpcEndpointAssociationId**: string (ReadOnly)
+* **VpcId**: string (Required)
+
+## ContainerAttribute
+### Properties
+* **Key**: string (Required): The attribute key to filter on.
+* **Value**: string (Required): The attribute value to match.
+
+## ContainerMonitoringConfiguration
+### Properties
+* **AttributeFilters**: [ContainerAttribute](#containerattribute)[]: Key-value pairs that filter which containers are tracked. For Amazon EKS, you can filter by namespace and Kubernetes labels. For Amazon ECS, you can filter by container instance attributes (EC2 launch type only).
+* **ClusterArn**: string (Required): The ARN of the Amazon ECS or Amazon EKS cluster to monitor. The cluster must be in the same Region and account as the container association.
 
 ## CustomAction
 ### Properties
@@ -121,6 +185,7 @@
 
 ## FirewallPolicy
 ### Properties
+* **EnableTLSSessionHolding**: bool
 * **PolicyVariables**: [FirewallPolicy_PolicyVariables](#firewallpolicypolicyvariables)
 * **StatefulDefaultActions**: string[]
 * **StatefulEngineOptions**: [StatefulEngineOptions](#statefulengineoptions)
@@ -213,6 +278,10 @@
 ## RuleGroup_PortSets
 ### Properties
 
+## RuleGroup_SummaryConfiguration
+### Properties
+* **RuleOptions**: string[]
+
 ## RuleOption
 ### Properties
 * **Keyword**: string (Required)
@@ -276,6 +345,7 @@
 
 ## StatefulRuleGroupReference
 ### Properties
+* **DeepThreatInspection**: bool
 * **Override**: [StatefulRuleGroupOverride](#statefulrulegroupoverride)
 * **Priority**: int
 * **ResourceArn**: string (Required)
@@ -303,6 +373,21 @@
 ### Properties
 * **IPAddressType**: string: A IPAddressType
 * **SubnetId**: string (Required): A SubnetId.
+
+## SubnetMapping
+### Properties
+* **IPAddressType**: string: A IPAddressType
+* **SubnetId**: string (Required): A SubnetId.
+
+## Tag
+### Properties
+* **Key**: string (Required): The part of the key:value pair that defines a tag. Tag keys are case-sensitive.
+* **Value**: string (Required): The part of the key:value pair that defines a tag. Tag values are case-sensitive.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

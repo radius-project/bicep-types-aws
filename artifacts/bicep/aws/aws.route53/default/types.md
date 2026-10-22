@@ -1,37 +1,63 @@
 # AWS.Route53 @ default
 
 ## Resource AWS.Route53/CidrCollection@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Route53/CidrCollectionProperties](#awsroute53cidrcollectionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Route53/HealthCheck@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Route53/HealthCheckProperties](#awsroute53healthcheckproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Route53/HostedZone@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Route53/HostedZoneProperties](#awsroute53hostedzoneproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Route53/KeySigningKey@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Route53/KeySigningKeyProperties](#awsroute53keysigningkeyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Route53/RecordSet@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53/RecordSetProperties](#awsroute53recordsetproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Route53/TrafficPolicy@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53/TrafficPolicyProperties](#awsroute53trafficpolicyproperties) (Required, Identifier): properties of the resource
+
 ## AlarmIdentifier
 ### Properties
 * **Name**: string (Required): The name of the CloudWatch alarm that you want Amazon Route 53 health checkers to use to determine whether this health check is healthy.
 * **Region**: string (Required): For the CloudWatch alarm that you want Route 53 health checkers to use to determine whether this health check is healthy, the region that the alarm was created in.
+
+## AliasTarget
+### Properties
+* **DNSName**: string (Required): The value that you specify depends on where you want to route queries.
+* **EvaluateTargetHealth**: bool: When EvaluateTargetHealth is true, an alias resource record set inherits the health of the referenced AWS resource, such as an ELB load balancer or another resource record set in the hosted zone.
+* **HostedZoneId**: string (Required, Identifier): The value used depends on where you want to route traffic.
 
 ## AWS.Route53/CidrCollectionProperties
 ### Properties
@@ -48,8 +74,10 @@
 
 ## AWS.Route53/HostedZoneProperties
 ### Properties
+* **DelegationSetId**: string
 * **HostedZoneConfig**: [HostedZoneConfig](#hostedzoneconfig): A complex type that contains an optional comment.
  If you don't want to specify a comment, omit the ``HostedZoneConfig`` and ``Comment`` elements.
+* **HostedZoneFeatures**: [HostedZoneFeatures](#hostedzonefeatures): The features configuration for the hosted zone, including accelerated recovery settings and status information.
 * **HostedZoneTags**: [HostedZoneTag](#hostedzonetag)[]: Adds, edits, or deletes tags for a health check or a hosted zone.
  For information about using tags for cost allocation, see [Using Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *User Guide*.
 * **Id**: string (ReadOnly, Identifier)
@@ -61,7 +89,7 @@
   +  Route 53 edge location that responded to the DNS query
   +  Domain or subdomain that was requested
   +  DNS record type, such as A or AAAA
-  +  DNS response code, such as ``NoError`` or ``ServFail`` 
+  +  DNS response code, such as ``NoError`` or ``ServFail``
   
   + Log Group and Resource Policy Before you create a query logging configuration, perform the following operations. If you create a query logging configuration using the Route 53 console, Route 53 performs these operations automatically. Create a CloudWatch Logs log group, and make note of the ARN, which you specify when you create a query logging configuration. Note the following: You must create the log group in the us-east-1 region. You must use the same to create the log group and the hosted zone that you want to configure query logging for. When you create log groups for query logging, we recommend that you use a consistent prefix, for example: /aws/route53/hosted zone name In the next step, you'll create a resource policy, which controls access to one or more log groups and the associated resources, such as Route 53 hosted zones. There's a limit on the number of resource policies that you can create, so we recommend that you use a consistent prefix so you can use the same resource policy for all the log groups that you create for query logging. Create a CloudWatch Logs resource policy, and give it the permissions that Route 53 needs to create log streams and to send query logs to log streams. You must create the CloudWatch Logs resource policy in the us-east-1 region. For the value of Resource, specify the ARN for the log group that you created in the previous step. To use the same resource policy for all the CloudWatch Logs log groups that you created for query logging configurations, replace the hosted zone name with *, for example: arn:aws:logs:us-east-1:123412341234:log-group:/aws/route53/* To avoid the confused deputy problem, a security issue where an entity without a permission for an action can coerce a more-privileged entity to perform it, you can optionally limit the permissions that a service has to a resource in a resource-based policy by supplying the following values: For aws:SourceArn, supply the hosted zone ARN used in creating the query logging configuration. For example, aws:SourceArn: arn:aws:route53:::hostedzone/hosted zone ID. For aws:SourceAccount, supply the account ID for the account that creates the query logging configuration. For example, aws:SourceAccount:111111111111. For more information, see The confused deputy problem in the IAM User Guide. You can't use the CloudWatch console to create or edit a resource policy. You must use the CloudWatch API, one of the SDKs, or the . + Log Streams and Edge Locations When Route 53 finishes creating the configuration for DNS query logging, it does the following: Creates a log stream for an edge location the first time that the edge location responds to DNS queries for the specified hosted zone. That log stream is used to log all queries that Route 53 responds to for that edge location. Begins to send query logs to the applicable log stream. The name of each log stream is in the following format: hosted zone ID/edge location code The edge location code is a three-letter code and an arbitrarily assigned number, for example, DFW3. The three-letter code typically corresponds with the International Air Transport Association airport code for an airport near the edge location. (These abbreviations might change in the future.) For a list of edge locations, see "The Route 53 Global Network" on the Route 53 Product Details page. + Queries That Are Logged Query logs contain only the queries that DNS resolvers forward to Route 53. If a DNS resolver has already cached the response to a query (such as the IP address for a load balancer for example.com), the resolver will continue to return the cached response. It doesn't forward another query to Route 53 until the TTL for the corresponding resource record set expires. Depending on how many DNS queries are submitted for a resource record set, and depending on the TTL for that resource record set, query logs might contain information about only one query out of every several thousand queries that are submitted to DNS. For more information about how DNS works, see Routing Internet Traffic to Your Website or Web Application in the Amazon Route 53 Developer Guide. + Log File Format For a list of the values in each query log and the format of each value, see Logging DNS Queries in the Amazon Route 53 Developer Guide. + Pricing For information about charges for query logs, see Amazon CloudWatch Pricing. + How to Stop Logging If you want Route 53 to stop sending query logs to CloudWatch Logs, delete the query logging configuration. For more information, see DeleteQueryLoggingConfig.
 * **VPCs**: [VPC](#vpc)[]: *Private hosted zones:* A complex type that contains information about the VPCs that are associated with the specified hosted zone.
@@ -73,6 +101,46 @@
 * **KeyManagementServiceArn**: string (Required): The Amazon resource name (ARN) for a customer managed key (CMK) in AWS Key Management Service (KMS). The KeyManagementServiceArn must be unique for each key signing key (KSK) in a single hosted zone.
 * **Name**: string (Required, Identifier): An alphanumeric string used to identify a key signing key (KSK). Name must be unique for each key signing key in the same hosted zone.
 * **Status**: string (Required): A string specifying the initial status of the key signing key (KSK). You can set the value to ACTIVE or INACTIVE.
+
+## AWS.Route53/RecordSetProperties
+### Properties
+* **AliasTarget**: [AliasTarget](#aliastarget): Alias resource record sets only: Information about the AWS resource, such as a CloudFront distribution or an Amazon S3 bucket, that you want to route traffic to.
+* **CidrRoutingConfig**: [CidrRoutingConfig](#cidrroutingconfig): The object that is specified in resource record set object when you are linking a resource record set to a CIDR location.
+* **Comment**: string (WriteOnly): Optional: Any comments you want to include about a change batch request.
+* **Failover**: string: To configure failover, you add the Failover element to two resource record sets. For one resource record set, you specify PRIMARY as the value for Failover; for the other resource record set, you specify SECONDARY. In addition, you include the HealthCheckId element and specify the health check that you want Amazon Route 53 to perform for each resource record set.
+* **GeoLocation**: [GeoLocation](#geolocation): A complex type that lets you control how Amazon Route 53 responds to DNS queries based on the geographic origin of the query.
+* **HealthCheckId**: string: If you want Amazon Route 53 to return this resource record set in response to a DNS query only when the status of a health check is healthy, include the HealthCheckId element and specify the ID of the applicable health check.
+* **HostedZoneId**: string (Identifier): The ID of the hosted zone that you want to create records in.
+* **HostedZoneName**: string (WriteOnly): The name of the hosted zone that you want to create records in. You must include a trailing dot (for example, www.example.com.) as part of the HostedZoneName.
+* **MultiValueAnswer**: bool: To route traffic approximately randomly to multiple resources, such as web servers, create one multivalue answer record for each resource and specify true for MultiValueAnswer.
+* **Name**: string (Required, Identifier): The name of the record that you want to create, update, or delete.
+* **Region**: string: The Amazon EC2 Region where you created the resource that this resource record set refers to.
+* **ResourceRecords**: string[]: One or more values that correspond with the value that you specified for the Type property.
+* **SetIdentifier**: string (Identifier): An identifier that differentiates among multiple resource record sets that have the same combination of name and type.
+* **TTL**: string: The resource record cache time to live (TTL), in seconds.
+* **Type**: string (Required, Identifier): The DNS record type.
+* **Weight**: int: Among resource record sets that have the same combination of DNS name and type, a value that determines the proportion of DNS queries that Amazon Route 53 responds to using the current resource record set. Route 53 calculates the sum of the weights for the resource record sets that have the same combination of DNS name and type. Route 53 then responds to queries based on the ratio of a resource's weight to the total.
+
+## AWS.Route53/TrafficPolicyProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the traffic policy.
+* **Comment**: string: Any comments to include about the traffic policy.
+* **Document**: string (Required): The definition of the traffic policy in JSON format.
+* **Id**: string (ReadOnly): The ID that Amazon Route 53 assigned to the traffic policy when it was created.
+* **Name**: string (Required): The name of the traffic policy.
+* **Type**: string (ReadOnly): The DNS type of the resource record sets that Amazon Route 53 creates when the traffic policy is used to create a traffic policy instance.
+* **Version**: int (ReadOnly): The version number that Amazon Route 53 assigned to the traffic policy.
+
+## CidrRoutingConfig
+### Properties
+* **CollectionId**: string (Required): The CIDR collection ID.
+* **LocationName**: string (Required): The CIDR collection location name.
+
+## GeoLocation
+### Properties
+* **ContinentCode**: string: For geolocation resource record sets, a two-letter abbreviation that identifies a continent.
+* **CountryCode**: string: For geolocation resource record sets, the two-letter code for a country.
+* **SubdivisionCode**: string: For geolocation resource record sets, the two-letter code for a state of the United States.
 
 ## HealthCheck_HealthCheckConfig
 ### Properties
@@ -103,16 +171,20 @@
 ### Properties
 * **Comment**: string: Any comments that you want to include about the hosted zone.
 
+## HostedZoneFeatures
+### Properties
+* **EnableAcceleratedRecovery**: bool
+
 ## HostedZoneTag
 ### Properties
 * **Key**: string (Required): The value of ``Key`` depends on the operation that you want to perform:
-  +   *Add a tag to a health check or hosted zone*: ``Key`` is the name that you want to give the new tag.
-  +   *Edit a tag*: ``Key`` is the name of the tag that you want to change the ``Value`` for.
-  +   *Delete a key*: ``Key`` is the name of the tag you want to remove.
-  +   *Give a name to a health check*: Edit the default ``Name`` tag. In the Amazon Route 53 console, the list of your health checks includes a *Name* column that lets you see the name that you've given to each health check.
+  +  *Add a tag to a health check or hosted zone*: ``Key`` is the name that you want to give the new tag.
+  +  *Edit a tag*: ``Key`` is the name of the tag that you want to change the ``Value`` for.
+  +  *Delete a key*: ``Key`` is the name of the tag you want to remove.
+  +  *Give a name to a health check*: Edit the default ``Name`` tag. In the Amazon Route 53 console, the list of your health checks includes a *Name* column that lets you see the name that you've given to each health check.
 * **Value**: string (Required): The value of ``Value`` depends on the operation that you want to perform:
-  +   *Add a tag to a health check or hosted zone*: ``Value`` is the value that you want to give the new tag.
-  +   *Edit a tag*: ``Value`` is the new value that you want to assign the tag.
+  +  *Add a tag to a health check or hosted zone*: ``Value`` is the value that you want to give the new tag.
+  +  *Edit a tag*: ``Value`` is the new value that you want to assign the tag.
 
 ## Location
 ### Properties

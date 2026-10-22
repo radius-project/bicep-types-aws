@@ -1,0 +1,168 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "DestinationConfig",
+    "properties": {
+      "Services": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "A list of service names that identify the target application."
+      },
+      "ThingName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The name of the IoT thing to which you want to connect."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TimeoutConfig",
+    "properties": {
+      "MaxLifetimeTimeoutMinutes": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The maximum amount of time (in minutes) a tunnel can remain open."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IoTSecureTunneling/TunnelProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoTSecureTunneling/TunnelProperties",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A short text description of the tunnel."
+      },
+      "DestinationConfig": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0,
+        "description": "The destination configuration for the tunnel."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The status of the tunnel. Valid values are OPEN and CLOSED."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "A collection of tag metadata."
+      },
+      "TimeoutConfig": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Timeout configuration for the tunnel."
+      },
+      "TunnelArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the tunnel."
+      },
+      "TunnelId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "A unique alpha-numeric tunnel ID."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoTSecureTunneling/Tunnel",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IoTSecureTunneling/Tunnel@default",
+    "body": {
+      "$ref": "#/9"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

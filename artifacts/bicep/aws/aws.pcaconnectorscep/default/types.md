@@ -1,14 +1,16 @@
 # AWS.PCAConnectorSCEP @ default
 
 ## Resource AWS.PCAConnectorSCEP/Challenge@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.PCAConnectorSCEP/ChallengeProperties](#awspcaconnectorscepchallengeproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.PCAConnectorSCEP/Connector@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -29,6 +31,7 @@
 * **OpenIdConfiguration**: [OpenIdConfiguration](#openidconfiguration) (ReadOnly)
 * **Tags**: [Tags](#tags)
 * **Type**: string (ReadOnly)
+* **VpcEndpointId**: string (WriteOnly)
 
 ## MobileDeviceManagement
 ### Properties

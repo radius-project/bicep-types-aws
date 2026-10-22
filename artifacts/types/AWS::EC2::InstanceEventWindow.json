@@ -1,0 +1,178 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-InstanceEventWindow",
+  "type": "AWS::EC2::InstanceEventWindow",
+  "time": "2026-10-21T18:16:45.305Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/InstanceEventWindowId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "TimeRange": {
+        "additionalProperties": false,
+        "description": "A time range during which an AWS-initiated maintenance event may occur.",
+        "properties": {
+          "EndHour": {
+            "description": "The hour when the time range ends.",
+            "maximum": 23,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "EndWeekDay": {
+            "description": "The day on which the time range ends.",
+            "enum": [
+              "sunday",
+              "monday",
+              "tuesday",
+              "wednesday",
+              "thursday",
+              "friday",
+              "saturday"
+            ],
+            "type": "string"
+          },
+          "StartHour": {
+            "description": "The hour when the time range begins.",
+            "maximum": 23,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "StartWeekDay": {
+            "description": "The day on which the time range begins.",
+            "enum": [
+              "sunday",
+              "monday",
+              "tuesday",
+              "wednesday",
+              "thursday",
+              "friday",
+              "saturday"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::EC2::InstanceEventWindow. An event window defines a recurring set of time ranges, or a cron expression, during which AWS-initiated maintenance events may be scheduled for the associated Amazon EC2 instances or Dedicated Hosts.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ec2:CreateInstanceEventWindow",
+          "ec2:CreateTags",
+          "ec2:DescribeInstanceEventWindows"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ec2:DeleteInstanceEventWindow",
+          "ec2:DescribeInstanceEventWindows"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ec2:DescribeInstanceEventWindows"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeInstanceEventWindows"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ec2:ModifyInstanceEventWindow",
+          "ec2:DescribeInstanceEventWindows",
+          "ec2:CreateTags",
+          "ec2:DeleteTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the event window.",
+        "type": "string"
+      },
+      "CronExpression": {
+        "description": "The cron expression defined for the event window. Exactly one of TimeRanges or CronExpression must be specified.",
+        "type": "string"
+      },
+      "InstanceEventWindowId": {
+        "description": "The ID of the event window.",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the event window.",
+        "type": "string"
+      },
+      "State": {
+        "description": "The current state of the event window. Observed values include creating, active, modifying, deleting and deleted.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags applied to the event window.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TimeRanges": {
+        "description": "The time ranges of the event window. Exactly one of TimeRanges or CronExpression must be specified.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/TimeRange"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/InstanceEventWindowId",
+      "/properties/State"
+    ],
+    "required": [],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags",
+        "ec2:DescribeInstanceEventWindows"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::InstanceEventWindow"
+  }
+}

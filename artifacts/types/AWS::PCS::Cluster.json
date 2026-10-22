@@ -1,17 +1,40 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-PCS-Cluster",
   "type": "AWS::PCS::Cluster",
-  "time": "2025-01-23T19:05:55.572Z",
+  "time": "2026-10-19T22:20:16.709Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name",
       "/properties/Networking",
-      "/properties/Scheduler",
-      "/properties/Size",
-      "/properties/SlurmConfiguration"
+      "/properties/Size"
     ],
     "definitions": {
+      "Accounting": {
+        "description": "The accounting configuration includes configurable settings for Slurm accounting.",
+        "properties": {
+          "DefaultPurgeTimeInDays": {
+            "default": -1,
+            "description": "The default value for all purge settings for `slurmdbd.conf`. For more information, see the [slurmdbd.conf documentation at SchedMD](https://slurm.schedmd.com/slurmdbd.conf.html). The default value is `-1`. A value of `-1` means there is no purge time and records persist as long as the cluster exists.",
+            "maximum": 10000,
+            "minimum": -1,
+            "type": "integer"
+          },
+          "Mode": {
+            "default": "NONE",
+            "description": "The default value is `NONE`. A value of `STANDARD` means that Slurm accounting is enabled.",
+            "enum": [
+              "STANDARD",
+              "NONE"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Mode"
+        ],
+        "type": "object"
+      },
       "AuthKey": {
         "additionalProperties": false,
         "description": "The shared Slurm key for authentication, also known as the cluster secret.",
@@ -31,10 +54,33 @@
         ],
         "type": "object"
       },
+      "CgroupCustomSetting": {
+        "additionalProperties": false,
+        "description": "Additional cgroup configuration settings.",
+        "properties": {
+          "ParameterName": {
+            "description": "The cgroup.conf parameter name.",
+            "type": "string"
+          },
+          "ParameterValue": {
+            "description": "The value for the cgroup.conf parameter.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ParameterName",
+          "ParameterValue"
+        ],
+        "type": "object"
+      },
       "Endpoint": {
         "additionalProperties": false,
         "description": "An endpoint available for interaction with the scheduler.",
         "properties": {
+          "Ipv6Address": {
+            "description": "The endpoint's IPv6 address.",
+            "type": "string"
+          },
           "Port": {
             "description": "The endpoint's connection port number.",
             "type": "string"
@@ -51,7 +97,8 @@
             "description": "Indicates the type of endpoint running at the specific IP address.",
             "enum": [
               "SLURMCTLD",
-              "SLURMDBD"
+              "SLURMDBD",
+              "SLURMRESTD"
             ],
             "type": "string"
           }
@@ -78,6 +125,35 @@
         },
         "type": "object"
       },
+      "JwtAuth": {
+        "additionalProperties": false,
+        "description": "JWT authentication configuration for Slurm.",
+        "properties": {
+          "JwtKey": {
+            "$ref": "#/definitions/JwtKey"
+          }
+        },
+        "type": "object"
+      },
+      "JwtKey": {
+        "additionalProperties": false,
+        "description": "JWT key configuration.",
+        "properties": {
+          "SecretArn": {
+            "description": "The Amazon Resource Name (ARN) of the JWT key secret.",
+            "type": "string"
+          },
+          "SecretVersion": {
+            "description": "The version of the JWT key secret.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "SecretArn",
+          "SecretVersion"
+        ],
+        "type": "object"
+      },
       "SecurityGroupId": {
         "description": "A VPC security group ID.",
         "type": "string"
@@ -92,6 +168,44 @@
           },
           "ParameterValue": {
             "description": "The value for the configured Slurm setting.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ParameterName",
+          "ParameterValue"
+        ],
+        "type": "object"
+      },
+      "SlurmRest": {
+        "additionalProperties": false,
+        "description": "The SlurmRest configuration includes configurable settings for Slurm Rest.",
+        "properties": {
+          "Mode": {
+            "default": "NONE",
+            "description": "The default value is `NONE`. A value of `STANDARD` means that Slurm Rest is enabled.",
+            "enum": [
+              "STANDARD",
+              "NONE"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Mode"
+        ],
+        "type": "object"
+      },
+      "SlurmdbdCustomSetting": {
+        "additionalProperties": false,
+        "description": "Additional slurmdbd configuration settings.",
+        "properties": {
+          "ParameterName": {
+            "description": "The slurmdbd.conf parameter name.",
+            "type": "string"
+          },
+          "ParameterValue": {
+            "description": "The value for the slurmdbd.conf parameter.",
             "type": "string"
           }
         },
@@ -145,14 +259,14 @@
           "pcs:ListTagsForResource",
           "pcs:TagResource"
         ],
-        "timeoutInMinutes": 60
+        "timeoutInMinutes": 130
       },
       "delete": {
         "permissions": [
           "pcs:DeleteCluster",
           "pcs:GetCluster"
         ],
-        "timeoutInMinutes": 60
+        "timeoutInMinutes": 130
       },
       "list": {
         "permissions": [
@@ -168,11 +282,12 @@
       "update": {
         "permissions": [
           "pcs:GetCluster",
+          "pcs:UpdateCluster",
           "pcs:ListTagsForResource",
           "pcs:TagResource",
           "pcs:UntagResource"
         ],
-        "timeoutInMinutes": 60
+        "timeoutInMinutes": 130
       }
     },
     "primaryIdentifier": [
@@ -212,6 +327,15 @@
         "additionalProperties": false,
         "description": "The networking configuration for the cluster's control plane.",
         "properties": {
+          "NetworkType": {
+            "description": "The IP of the cluster (IPV4 or IPV6)",
+            "enum": [
+              "IPV4",
+              "IPV6"
+            ],
+            "insertionOrder": false,
+            "type": "string"
+          },
           "SecurityGroupIds": {
             "description": "The list of security group IDs associated with the Elastic Network Interface (ENI) created in subnets.",
             "insertionOrder": false,
@@ -266,8 +390,22 @@
         "additionalProperties": false,
         "description": "Additional options related to the Slurm scheduler.",
         "properties": {
+          "Accounting": {
+            "$ref": "#/definitions/Accounting"
+          },
           "AuthKey": {
             "$ref": "#/definitions/AuthKey"
+          },
+          "CgroupCustomSettings": {
+            "description": "Additional cgroup-specific configuration that directly maps to cgroup.conf settings.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/CgroupCustomSetting"
+            },
+            "type": "array"
+          },
+          "JwtAuth": {
+            "$ref": "#/definitions/JwtAuth"
           },
           "ScaleDownIdleTimeInSeconds": {
             "description": "The time before an idle node is scaled down.",
@@ -279,6 +417,17 @@
             "insertionOrder": false,
             "items": {
               "$ref": "#/definitions/SlurmCustomSetting"
+            },
+            "type": "array"
+          },
+          "SlurmRest": {
+            "$ref": "#/definitions/SlurmRest"
+          },
+          "SlurmdbdCustomSettings": {
+            "description": "Additional slurmdbd-specific configuration that directly maps to slurmdbd.conf settings.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/SlurmdbdCustomSetting"
             },
             "type": "array"
           }

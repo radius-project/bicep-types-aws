@@ -1,0 +1,172 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-IpamExternalResourceVerificationToken",
+  "type": "AWS::EC2::IpamExternalResourceVerificationToken",
+  "time": "2026-10-21T20:06:07.955Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/IpamExternalResourceVerificationTokenId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/IpamId"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A verification token is an AWS-generated random value that you can use to prove ownership of an external resource. For example, you can use a verification token to validate that you control a public IP address range when you bring an IP address range to AWS (BYOIP).",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ec2:CreateIpamExternalResourceVerificationToken",
+          "ec2:DescribeIpamExternalResourceVerificationTokens",
+          "ec2:CreateTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ec2:DeleteIpamExternalResourceVerificationToken",
+          "ec2:DescribeIpamExternalResourceVerificationTokens",
+          "ec2:DeleteTags"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ec2:DescribeIpamExternalResourceVerificationTokens"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeIpamExternalResourceVerificationTokens"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ec2:CreateTags",
+          "ec2:DeleteTags",
+          "ec2:DescribeIpamExternalResourceVerificationTokens"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/IpamExternalResourceVerificationTokenArn"
+    ],
+    "properties": {
+      "IpamArn": {
+        "description": "The ARN of the IPAM that created the token.",
+        "maxLength": 1283,
+        "minLength": 1,
+        "type": "string"
+      },
+      "IpamExternalResourceVerificationTokenArn": {
+        "description": "The ARN of the IPAM external resource verification token.",
+        "maxLength": 1283,
+        "minLength": 1,
+        "type": "string"
+      },
+      "IpamExternalResourceVerificationTokenId": {
+        "description": "The ID of the token.",
+        "type": "string"
+      },
+      "IpamId": {
+        "description": "The ID of the IPAM that will create the token.",
+        "type": "string"
+      },
+      "IpamRegion": {
+        "description": "The Region of the IPAM that created the token.",
+        "type": "string"
+      },
+      "NotAfter": {
+        "description": "The token expiration.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "State": {
+        "description": "The token state.",
+        "enum": [
+          "create-in-progress",
+          "create-complete",
+          "create-failed",
+          "delete-in-progress",
+          "delete-complete",
+          "delete-failed"
+        ],
+        "type": "string"
+      },
+      "Status": {
+        "description": "The token status.",
+        "enum": [
+          "valid",
+          "expired"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the token.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TokenName": {
+        "description": "The token name.",
+        "type": "string"
+      },
+      "TokenValue": {
+        "description": "The token value.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/IpamExternalResourceVerificationTokenArn",
+      "/properties/IpamExternalResourceVerificationTokenId",
+      "/properties/IpamArn",
+      "/properties/IpamRegion",
+      "/properties/TokenValue",
+      "/properties/TokenName",
+      "/properties/NotAfter",
+      "/properties/Status",
+      "/properties/State"
+    ],
+    "required": [
+      "IpamId"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags",
+        "ec2:DescribeIpamExternalResourceVerificationTokens"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::IpamExternalResourceVerificationToken"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ServiceCatalog-CloudFormationProvisionedProduct",
   "type": "AWS::ServiceCatalog::CloudFormationProvisionedProduct",
-  "time": "2024-07-10T19:42:59.489Z",
+  "time": "2026-10-21T20:25:30.915Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -102,28 +102,50 @@
         "type": "object"
       }
     },
-    "description": "Resource Schema for AWS::ServiceCatalog::CloudFormationProvisionedProduct",
+    "description": "Resource Type definition for AWS::ServiceCatalog::CloudFormationProvisionedProduct",
     "documentationUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html",
     "handlers": {
       "create": {
         "permissions": [
-          "*"
+          "servicecatalog:provisionProduct",
+          "servicecatalog:TagResource",
+          "servicecatalog:describeProvisionedProduct",
+          "servicecatalog:describeRecord",
+          "cloudformation:CreateStack"
         ],
         "timeoutInMinutes": 720
       },
       "delete": {
         "permissions": [
-          "*"
+          "servicecatalog:terminateProvisionedProduct",
+          "servicecatalog:describeRecord",
+          "cloudformation:DeleteStack"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "servicecatalog:ScanProvisionedProducts"
         ]
       },
       "read": {
         "permissions": [
-          "*"
+          "servicecatalog:describeProvisionedProduct",
+          "servicecatalog:describeRecord",
+          "servicecatalog:DescribeProduct",
+          "servicecatalog:ListTagsForResource",
+          "cloudformation:ListStacks",
+          "cloudformation:DescribeStacks"
         ]
       },
       "update": {
         "permissions": [
-          "*"
+          "servicecatalog:updateProvisionedProduct",
+          "servicecatalog:TagResource",
+          "servicecatalog:UntagResource",
+          "servicecatalog:describeProvisionedProduct",
+          "servicecatalog:describeRecord",
+          "servicecatalog:DescribeProduct",
+          "cloudformation:UpdateStack"
         ],
         "timeoutInMinutes": 720
       }
@@ -147,6 +169,7 @@
       },
       "NotificationArns": {
         "items": {
+          "pattern": "^arn:aws[a-z\\-]*:sns:[a-z0-9\\-]+:[0-9]{12}:[a-zA-Z0-9\\-_]+$",
           "type": "string"
         },
         "maxItems": 5,
@@ -230,6 +253,18 @@
       "/properties/ProvisionedProductId"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "servicecatalog:TagResource",
+        "servicecatalog:UntagResource",
+        "servicecatalog:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::ServiceCatalog::CloudFormationProvisionedProduct"
   }
 }

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-ProvisioningTemplate",
   "type": "AWS::IoT::ProvisioningTemplate",
-  "time": "2024-11-22T17:34:31.802Z",
+  "time": "2026-09-22T16:04:28.341Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -47,13 +47,15 @@
           "iot:CreateProvisioningTemplate",
           "iot:DescribeProvisioningTemplate",
           "iot:TagResource",
-          "iot:ListTagsForResource"
+          "iot:ListTagsForResource",
+          "kms:Decrypt"
         ]
       },
       "delete": {
         "permissions": [
           "iot:DeleteProvisioningTemplate",
-          "iot:DescribeProvisioningTemplate"
+          "iot:DescribeProvisioningTemplate",
+          "kms:Decrypt"
         ]
       },
       "list": {
@@ -64,7 +66,8 @@
       "read": {
         "permissions": [
           "iot:DescribeProvisioningTemplate",
-          "iot:ListTagsForResource"
+          "iot:ListTagsForResource",
+          "kms:Decrypt"
         ]
       },
       "update": {
@@ -78,7 +81,8 @@
           "iot:DescribeProvisioningTemplate",
           "iot:TagResource",
           "iot:UntagResource",
-          "iot:ListTagsForResource"
+          "iot:ListTagsForResource",
+          "kms:Decrypt"
         ]
       }
     },
@@ -136,7 +140,12 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
-      "cloudFormationSystemTags": true,
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "iot:ListTagsForResource",
+        "iot:TagResource",
+        "iot:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-GlobalCluster",
   "type": "AWS::RDS::GlobalCluster",
-  "time": "2025-01-27T18:08:19.266Z",
+  "time": "2026-10-19T17:19:39.115Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -50,7 +50,9 @@
         "permissions": [
           "rds:CreateGlobalCluster",
           "rds:DescribeDBClusters",
-          "rds:DescribeGlobalClusters"
+          "rds:DescribeGlobalClusters",
+          "rds:AddTagsToResource",
+          "rds:ListTagsForResource"
         ]
       },
       "delete": {
@@ -68,7 +70,8 @@
       },
       "read": {
         "permissions": [
-          "rds:DescribeGlobalClusters"
+          "rds:DescribeGlobalClusters",
+          "rds:ListTagsForResource"
         ]
       },
       "update": {
@@ -76,6 +79,7 @@
           "rds:ModifyGlobalCluster",
           "rds:DescribeGlobalClusters",
           "rds:AddTagsToResource",
+          "rds:ListTagsForResource",
           "rds:RemoveTagsFromResource"
         ]
       }
@@ -157,6 +161,9 @@
     "propertyTransform": {
       "/properties/GlobalClusterIdentifier": "$lowercase(GlobalClusterIdentifier)"
     },
+    "readOnlyProperties": [
+      "/properties/GlobalEndpoint"
+    ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-rds",
     "tagging": {
       "cloudFormationSystemTags": true,

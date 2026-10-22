@@ -1,18 +1,40 @@
 # AWS.RAM @ default
 
 ## Resource AWS.RAM/Permission@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.RAM/PermissionProperties](#awsrampermissionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.RAM/PermissionAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.RAM/PermissionAssociationProperties](#awsrampermissionassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.RAM/ResourceShare@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.RAM/ResourceShareProperties](#awsramresourceshareproperties) (Required, Identifier): properties of the resource
+
+## AWS.RAM/PermissionAssociationProperties
+### Properties
+* **AssociationStatus**: string (ReadOnly): The current status of the association between the permission and the resource share.
+* **FeatureSet**: string (ReadOnly): The feature set of the resource share.
+* **IsDefault**: bool (ReadOnly): Indicates whether the associated resource share is using the default version of the permission.
+* **LastUpdatedTime**: string (ReadOnly): The date and time when the association between the permission and the resource share was last updated.
+* **PermissionArn**: string (Required, Identifier): Specifies the [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the AWS RAM permission to associate with the resource share.
+* **PermissionVersion**: string (ReadOnly): The version of the permission currently associated with the resource share.
+* **Replace**: bool (WriteOnly): Specifies whether to replace the existing permission on the resource share. Use `true` to replace the current permission. Use `false` to add the permission when no permission is currently associated. The default value is `false`. Updating an existing association also requires `true`, because AWS RAM applies the change by re-associating the permission.
+* **ResourceShareArn**: string (Required, Identifier): Specifies the [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the resource share.
+* **ResourceType**: string (ReadOnly): The resource type to which the permission applies.
 
 ## AWS.RAM/PermissionProperties
 ### Properties
@@ -29,7 +51,11 @@
 ### Properties
 * **AllowExternalPrincipals**: bool: Specifies whether principals outside your organization in AWS Organizations can be associated with a resource share. A value of `true` lets you share with individual AWS accounts that are not in your organization. A value of `false` only has meaning if your account is a member of an AWS Organization. The default value is `true`.
 * **Arn**: string (ReadOnly, Identifier)
+* **CreationTime**: string (ReadOnly): The date and time when the resource share was created.
+* **FeatureSet**: string (ReadOnly): The feature set of the resource share.
+* **LastUpdatedTime**: string (ReadOnly): The date and time when the resource share was last updated.
 * **Name**: string (Required): Specifies the name of the resource share.
+* **OwningAccountId**: string (ReadOnly): The ID of the AWS account that owns the resource share.
 * **PermissionArns**: string[] (WriteOnly): Specifies the [Amazon Resource Names (ARNs)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the AWS RAM permission to associate with the resource share. If you do not specify an ARN for the permission, AWS RAM automatically attaches the default version of the permission for each resource type. You can associate only one permission with each resource type included in the resource share.
 * **Principals**: string[] (WriteOnly): Specifies the principals to associate with the resource share. The possible values are:
 
@@ -43,11 +69,18 @@
 
 - An ARN of an IAM user
 * **ResourceArns**: string[] (WriteOnly): Specifies a list of one or more ARNs of the resources to associate with the resource share.
+* **ResourceShareConfiguration**: [ResourceShareConfiguration](#resourceshareconfiguration): Specifies the configuration for the resource share
 * **Sources**: string[] (WriteOnly): Specifies from which source accounts the service principal has access to the resources in this resource share.
+* **Status**: string (ReadOnly): The current status of the resource share.
 * **Tags**: [Tag](#tag)[]: Specifies one or more tags to attach to the resource share itself. It doesn't attach the tags to the resources associated with the resource share.
 
 ## Permission_PolicyTemplate
 ### Properties
+
+## ResourceShareConfiguration
+### Properties
+* **ExclusiveAccountAccess**: bool: The resource share restricts access to an account
+* **RetainSharingOnAccountLeaveOrganization**: bool: Specifies whether the consumer account retains access to the resource share after leaving the organization.
 
 ## Tag
 ### Properties

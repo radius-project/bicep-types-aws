@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-KinesisVideo-SignalingChannel",
   "type": "AWS::KinesisVideo::SignalingChannel",
-  "time": "2024-12-12T19:24:00.252Z",
+  "time": "2026-10-21T15:57:31.003Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -37,7 +37,8 @@
       "create": {
         "permissions": [
           "kinesisvideo:CreateSignalingChannel",
-          "kinesisvideo:DescribeSignalingChannel"
+          "kinesisvideo:DescribeSignalingChannel",
+          "kinesisvideo:TagResource"
         ]
       },
       "delete": {
@@ -46,15 +47,24 @@
           "kinesisvideo:DescribeSignalingChannel"
         ]
       },
+      "list": {
+        "permissions": [
+          "kinesisvideo:ListSignalingChannels"
+        ]
+      },
       "read": {
         "permissions": [
-          "kinesisvideo:DescribeSignalingChannel"
+          "kinesisvideo:DescribeSignalingChannel",
+          "kinesisvideo:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "kinesisvideo:UpdateSignalingChannel",
-          "kinesisvideo:DescribeSignalingChannel"
+          "kinesisvideo:DescribeSignalingChannel",
+          "kinesisvideo:TagResource",
+          "kinesisvideo:UntagResource",
+          "kinesisvideo:ListTagsForResource"
         ]
       }
     },
@@ -103,6 +113,17 @@
     ],
     "required": [],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-kinesisvideo.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "kinesisvideo:TagResource",
+        "kinesisvideo:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::KinesisVideo::SignalingChannel"
   }
 }

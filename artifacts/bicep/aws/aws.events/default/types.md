@@ -1,42 +1,56 @@
 # AWS.Events @ default
 
 ## Resource AWS.Events/ApiDestination@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Events/ApiDestinationProperties](#awseventsapidestinationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Events/Archive@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Events/ArchiveProperties](#awseventsarchiveproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Events/Connection@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Events/ConnectionProperties](#awseventsconnectionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Events/Endpoint@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Events/EndpointProperties](#awseventsendpointproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Events/EventBus@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Events/EventBusProperties](#awseventseventbusproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Events/EventBusPolicy@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Events/EventBusPolicyProperties](#awseventseventbuspolicyproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Events/Rule@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -65,6 +79,7 @@
 ## AWS.Events/ApiDestinationProperties
 ### Properties
 * **Arn**: string (ReadOnly): The arn of the api destination.
+* **ArnForPolicy**: string (ReadOnly): The arn of the api destination to be used in IAM policies.
 * **ConnectionArn**: string (Required): The arn of the connection.
 * **Description**: string
 * **HttpMethod**: string (Required)
@@ -78,16 +93,19 @@
 * **Arn**: string (ReadOnly)
 * **Description**: string
 * **EventPattern**: [Archive_EventPattern](#archiveeventpattern)
+* **KmsKeyIdentifier**: string
 * **RetentionDays**: int
 * **SourceArn**: string (Required)
 
 ## AWS.Events/ConnectionProperties
 ### Properties
 * **Arn**: string (ReadOnly): The arn of the connection resource.
+* **ArnForPolicy**: string (ReadOnly): The arn of the connection resource to be used in IAM policies.
 * **AuthorizationType**: string
 * **AuthParameters**: [AuthParameters](#authparameters)
 * **Description**: string: Description of the connection.
 * **InvocationConnectivityParameters**: [Connection_InvocationConnectivityParameters](#connectioninvocationconnectivityparameters): The private resource the HTTP request will be sent to.
+* **KmsKeyIdentifier**: string
 * **Name**: string (Identifier): Name of the connection.
 * **SecretArn**: string (ReadOnly): The arn of the secrets manager secret created in the customer account.
 
@@ -105,6 +123,15 @@
 * **State**: string (ReadOnly)
 * **StateReason**: string (ReadOnly)
 
+## AWS.Events/EventBusPolicyProperties
+### Properties
+* **Action**: string (WriteOnly): The action that you are enabling the other account to perform.
+* **Condition**: [Condition](#condition) (WriteOnly)
+* **EventBusName**: string (Identifier): The name of the event bus associated with the rule. If you omit this, the default event bus is used.
+* **Principal**: string (WriteOnly): The 12-digit AWS account ID that you are permitting to put events to your default event bus. Specify "*" to permit any account to put events to your default event bus.
+* **Statement**: [EventBusPolicy_Statement](#eventbuspolicystatement): A JSON string that describes the permission policy statement. You can include a Policy parameter in the request instead of using the StatementId, Action, Principal, or Condition parameters.
+* **StatementId**: string (Required, Identifier): An identifier string for the external account that you are granting permissions to
+
 ## AWS.Events/EventBusProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) for the event bus.
@@ -112,6 +139,7 @@
 * **Description**: string: The description of the event bus.
 * **EventSourceName**: string (WriteOnly): If you are creating a partner event bus, this specifies the partner event source that the new event bus will be matched with.
 * **KmsKeyIdentifier**: string: Kms Key Identifier used to encrypt events at rest in the event bus.
+* **LogConfig**: [EventBus_LogConfig](#eventbuslogconfig): The logging configuration settings for vended logs.
 * **Name**: string (Required, Identifier): The name of the event bus.
 * **Policy**: [EventBus_Policy](#eventbuspolicy) | string: A JSON string that describes the permission policy statement for the event bus.
 * **Tags**: [Tag](#tag)[]: Any tags assigned to the event bus.
@@ -124,8 +152,10 @@
 * **EventPattern**: [Rule_EventPattern](#ruleeventpattern) | string: The event pattern of the rule. For more information, see Events and Event Patterns in the Amazon EventBridge User Guide.
 * **Name**: string: The name of the rule.
 * **RoleArn**: string: The Amazon Resource Name (ARN) of the role that is used for target invocation.
+* **RuleName**: string (ReadOnly): The name of the rule, exposed as a read-only attribute for use with Fn::GetAtt.
 * **ScheduleExpression**: string: The scheduling expression. For example, "cron(0 20 * * ? *)", "rate(5 minutes)". For more information, see Creating an Amazon EventBridge rule that runs on a schedule.
 * **State**: string: The state of the rule.
+* **Tags**: [Tag](#tag)[]: Any tags assigned to the event rule.
 * **Targets**: [Target](#target)[]: Adds the specified targets to the specified rule, or updates the targets if they are already associated with the rule.
 Targets are the resources that are invoked when a rule is triggered.
 
@@ -165,6 +195,12 @@ Targets are the resources that are invoked when a rule is triggered.
 ### Properties
 * **ClientID**: string (Required)
 * **ClientSecret**: string (Required, WriteOnly)
+
+## Condition
+### Properties
+* **Key**: string: Specifies the value for the key. Currently, this must be the ID of the organization.
+* **Type**: string: Specifies the type of condition. Currently the only supported value is StringEquals.
+* **Value**: string: Specifies the key for the condition. Currently the only supported key is aws:PrincipalOrgID.
 
 ## Connection_InvocationConnectivityParameters
 ### Properties
@@ -208,6 +244,14 @@ Targets are the resources that are invoked when a rule is triggered.
 ## EventBus_DeadLetterConfig
 ### Properties
 * **Arn**: string
+
+## EventBus_LogConfig
+### Properties
+* **IncludeDetail**: string: Configures whether or not to include event detail, input transformer details, target properties, and target input in the applicable log messages.
+* **Level**: string: Configures the log level of the EventBus and determines which log messages are sent to Ingestion Hub for delivery.
+
+## EventBusPolicy_Statement
+### Properties
 
 ## FailoverConfig
 ### Properties

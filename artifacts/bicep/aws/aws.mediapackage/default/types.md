@@ -1,21 +1,24 @@
 # AWS.MediaPackage @ default
 
 ## Resource AWS.MediaPackage/Channel@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MediaPackage/ChannelProperties](#awsmediapackagechannelproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaPackage/OriginEndpoint@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MediaPackage/OriginEndpointProperties](#awsmediapackageoriginendpointproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaPackage/PackagingGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -155,10 +158,10 @@
 
 ## IngestEndpoint
 ### Properties
-* **Id**: string (Required, Identifier): The system generated unique identifier for the IngestEndpoint
-* **Password**: string (Required): The system generated password for ingest authentication.
-* **Url**: string (Required): The ingest URL to which the source stream should be sent.
-* **Username**: string (Required): The system generated username for ingest authentication.
+* **Id**: string (Identifier): The system generated unique identifier for the IngestEndpoint
+* **Password**: string: The system generated password for ingest authentication.
+* **Url**: string: The ingest URL to which the source stream should be sent.
+* **Username**: string: The system generated username for ingest authentication.
 
 ## LogConfiguration
 ### Properties

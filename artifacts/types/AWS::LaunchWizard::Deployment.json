@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-LaunchWizard-Deployment",
   "type": "AWS::LaunchWizard::Deployment",
-  "time": "2025-01-27T17:28:43.467Z",
+  "time": "2026-10-20T18:06:36.497Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -105,7 +105,8 @@
           "sqs:GetQueueAttributes",
           "sqs:ListQueueTags",
           "sqs:CreateQueue",
-          "sqs:SetQueueAttributes"
+          "sqs:SetQueueAttributes",
+          "ec2:DescribeInstances"
         ],
         "timeoutInMinutes": 370
       },
@@ -236,11 +237,15 @@
     "required": [
       "DeploymentPatternName",
       "Name",
-      "Specifications",
       "WorkloadName"
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "launchwizard:ListTagsForResource",
+        "launchwizard:TagResource",
+        "launchwizard:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

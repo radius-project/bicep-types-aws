@@ -1,0 +1,245 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WellArchitected-Workload",
+  "type": "AWS::WellArchitected::Workload",
+  "time": "2026-10-21T21:44:02.611Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/WorkloadId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Lenses"
+    ],
+    "description": "Definition of AWS::WellArchitected::Workload Resource Type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "wellarchitected:CreateWorkload",
+          "wellarchitected:GetWorkload",
+          "wellarchitected:TagResource",
+          "wellarchitected:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "wellarchitected:DeleteWorkload",
+          "wellarchitected:GetWorkload",
+          "wellarchitected:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "wellarchitected:ListWorkloads"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "wellarchitected:GetWorkload",
+          "wellarchitected:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "wellarchitected:UpdateWorkload",
+          "wellarchitected:GetWorkload",
+          "wellarchitected:TagResource",
+          "wellarchitected:UntagResource",
+          "wellarchitected:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/WorkloadArn"
+    ],
+    "properties": {
+      "AccountIds": {
+        "description": "The list of Amazon Web Services account IDs associated with the workload.",
+        "items": {
+          "maxLength": 12,
+          "minLength": 12,
+          "pattern": "^[0-9]{12}$",
+          "type": "string"
+        },
+        "maxItems": 100,
+        "minItems": 0,
+        "type": "array"
+      },
+      "ArchitecturalDesign": {
+        "description": "The URL of the architectural design for the workload.",
+        "maxLength": 2048,
+        "pattern": "^(|(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*)$",
+        "type": "string"
+      },
+      "AwsRegions": {
+        "description": "The list of Amazon Web Services Regions associated with the workload.",
+        "items": {
+          "maxLength": 100,
+          "type": "string"
+        },
+        "maxItems": 50,
+        "minItems": 0,
+        "type": "array"
+      },
+      "Description": {
+        "description": "The description for the workload.",
+        "maxLength": 250,
+        "minLength": 3,
+        "type": "string"
+      },
+      "DiscoveryConfig": {
+        "additionalProperties": false,
+        "description": "Discovery configuration associated to the workload.",
+        "properties": {
+          "TrustedAdvisorIntegrationStatus": {
+            "description": "Discovery integration status in respect to Trusted Advisor for the workload.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
+          "WorkloadResourceDefinition": {
+            "description": "The mode to use for identifying resources associated with the workload.",
+            "items": {
+              "enum": [
+                "WORKLOAD_METADATA",
+                "APP_REGISTRY"
+              ],
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "Environment": {
+        "description": "The environment for the workload.",
+        "enum": [
+          "PRODUCTION",
+          "PREPRODUCTION"
+        ],
+        "type": "string"
+      },
+      "ImprovementStatus": {
+        "description": "The improvement status for a workload.",
+        "enum": [
+          "NOT_APPLICABLE",
+          "NOT_STARTED",
+          "IN_PROGRESS",
+          "COMPLETE",
+          "RISK_ACKNOWLEDGED"
+        ],
+        "type": "string"
+      },
+      "Industry": {
+        "description": "The industry for the workload.",
+        "maxLength": 100,
+        "type": "string"
+      },
+      "IndustryType": {
+        "description": "The industry type for the workload.",
+        "maxLength": 100,
+        "type": "string"
+      },
+      "Lenses": {
+        "description": "The list of lenses associated with the workload.",
+        "items": {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "NonAwsRegions": {
+        "description": "The list of non-Amazon Web Services Regions associated with the workload.",
+        "items": {
+          "maxLength": 25,
+          "minLength": 3,
+          "type": "string"
+        },
+        "maxItems": 5,
+        "minItems": 0,
+        "type": "array"
+      },
+      "Notes": {
+        "description": "The notes associated with the workload.",
+        "maxLength": 2084,
+        "type": "string"
+      },
+      "ReviewOwner": {
+        "description": "The review owner of the workload.",
+        "maxLength": 255,
+        "minLength": 3,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the workload.",
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "WorkloadArn": {
+        "description": "The ARN for the workload.",
+        "type": "string"
+      },
+      "WorkloadId": {
+        "description": "The ID assigned to the workload.",
+        "maxLength": 32,
+        "minLength": 32,
+        "pattern": "^[0-9a-f]{32}$",
+        "type": "string"
+      },
+      "WorkloadName": {
+        "description": "The name of the workload.",
+        "maxLength": 100,
+        "minLength": 3,
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/WorkloadArn",
+      "/properties/WorkloadId",
+      "/properties/ImprovementStatus"
+    ],
+    "required": [
+      "WorkloadName",
+      "Description",
+      "Environment",
+      "Lenses"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "wellarchitected:TagResource",
+        "wellarchitected:UntagResource",
+        "wellarchitected:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::WellArchitected::Workload"
+  }
+}

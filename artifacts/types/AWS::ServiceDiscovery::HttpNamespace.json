@@ -1,0 +1,118 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ServiceDiscovery-HttpNamespace",
+  "type": "AWS::ServiceDiscovery::HttpNamespace",
+  "time": "2026-09-16T19:45:43.868Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::ServiceDiscovery::HttpNamespace",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "servicediscovery:CreateHttpNamespace",
+          "servicediscovery:TagResource",
+          "servicediscovery:GetNamespace",
+          "servicediscovery:GetOperation"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "servicediscovery:DeleteNamespace",
+          "servicediscovery:GetOperation"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "servicediscovery:ListNamespaces"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "servicediscovery:GetNamespace",
+          "servicediscovery:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "servicediscovery:UpdateHttpNamespace",
+          "servicediscovery:TagResource",
+          "servicediscovery:UntagResource",
+          "servicediscovery:GetOperation"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Id"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the namespace.",
+        "pattern": "^arn:(aws|aws-cn|aws-us-gov):servicediscovery:\\w+(?:-\\w+)+:[0-9]*:namespace\\/.*",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description for the namespace.",
+        "maxLength": 1024,
+        "type": "string"
+      },
+      "Id": {
+        "description": "The ID of the namespace.",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name that you want to assign to this namespace.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the namespace. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Id",
+      "/properties/Arn"
+    ],
+    "required": [
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "servicediscovery:TagResource",
+        "servicediscovery:UntagResource",
+        "servicediscovery:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::ServiceDiscovery::HttpNamespace"
+  }
+}

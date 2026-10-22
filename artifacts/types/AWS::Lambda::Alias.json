@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lambda-Alias",
   "type": "AWS::Lambda::Alias",
-  "time": "2025-01-15T00:40:37.504Z",
+  "time": "2026-09-16T14:23:26.98Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -146,7 +146,7 @@
       }
     },
     "propertyTransform": {
-      "/properties/FunctionName": "$split(FunctionName, \":\")[-1] $OR FunctionName"
+      "/properties/FunctionName": "$split(FunctionName, \":\")[-1] $OR FunctionName $OR $join([\"((arn:.*:lambda:.*:[0-9]{12}:function)|([0-9]{12}:function)):\", $split(FunctionName, \":\")[-1]])"
     },
     "readOnlyProperties": [
       "/properties/AliasArn"

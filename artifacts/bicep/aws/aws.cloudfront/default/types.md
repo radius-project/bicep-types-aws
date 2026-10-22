@@ -1,91 +1,144 @@
 # AWS.CloudFront @ default
 
+## Resource AWS.CloudFront/AnycastIpList@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFront/AnycastIpListProperties](#awscloudfrontanycastiplistproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudFront/CachePolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/CachePolicyProperties](#awscloudfrontcachepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFront/CloudFrontOriginAccessIdentity@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/CloudFrontOriginAccessIdentityProperties](#awscloudfrontcloudfrontoriginaccessidentityproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CloudFront/ConnectionFunction@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFront/ConnectionFunctionProperties](#awscloudfrontconnectionfunctionproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.CloudFront/ConnectionGroup@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFront/ConnectionGroupProperties](#awscloudfrontconnectiongroupproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudFront/ContinuousDeploymentPolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/ContinuousDeploymentPolicyProperties](#awscloudfrontcontinuousdeploymentpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFront/Distribution@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/DistributionProperties](#awscloudfrontdistributionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CloudFront/DistributionTenant@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFront/DistributionTenantProperties](#awscloudfrontdistributiontenantproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudFront/Function@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/FunctionProperties](#awscloudfrontfunctionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFront/KeyGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/KeyGroupProperties](#awscloudfrontkeygroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFront/KeyValueStore@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/KeyValueStoreProperties](#awscloudfrontkeyvaluestoreproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFront/OriginAccessControl@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/OriginAccessControlProperties](#awscloudfrontoriginaccesscontrolproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFront/OriginRequestPolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/OriginRequestPolicyProperties](#awscloudfrontoriginrequestpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFront/PublicKey@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/PublicKeyProperties](#awscloudfrontpublickeyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFront/RealtimeLogConfig@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/RealtimeLogConfigProperties](#awscloudfrontrealtimelogconfigproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFront/ResponseHeadersPolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/ResponseHeadersPolicyProperties](#awscloudfrontresponseheaderspolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CloudFront/TrustStore@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFront/TrustStoreProperties](#awscloudfronttruststoreproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudFront/VpcOrigin@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -107,7 +160,7 @@
   +   ``PUT`` 
   +   ``ALL`` 
   
-  ``ALL`` is a special value that includes all of the listed HTTP methods.
+ ``ALL`` is a special value that includes all of the listed HTTP methods.
 
 ## AccessControlAllowOrigins
 ### Properties
@@ -116,6 +169,30 @@
 ## AccessControlExposeHeaders
 ### Properties
 * **Items**: string[] (Required): The list of HTTP headers. You can specify ``*`` to expose all headers.
+
+## AnycastIpList
+### Properties
+* **AnycastIps**: string[] (Required): The static IP addresses that are allocated to the Anycast static IP list.
+* **Arn**: string (Required): The Amazon Resource Name (ARN) of the Anycast static IP list.
+* **Id**: string (Required, Identifier): The ID of the Anycast static IP list.
+* **IpAddressType**: string: The IP address type for the Anycast static IP list.
+* **IpamCidrConfigResults**: [IpamCidrConfigResult](#ipamcidrconfigresult)[]: The results for the IPAM CIDRs that defines a specific IP address range, IPAM pool, and associated Anycast IP address.
+* **IpCount**: int (Required): The number of IP addresses in the Anycast static IP list.
+* **LastModifiedTime**: string (Required): The last time the Anycast static IP list was modified.
+* **Name**: string (Required): The name of the Anycast static IP list.
+* **Status**: string (Required): The status of the Anycast static IP list. Valid values: ``Deployed``, ``Deploying``, or ``Failed``.
+
+## AWS.CloudFront/AnycastIpListProperties
+### Properties
+* **AnycastIpList**: [AnycastIpList](#anycastiplist) (ReadOnly)
+* **ETag**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
+* **IpAddressType**: string: The IP address type for the Anycast static IP list.
+* **IpamCidrConfigResults**: [IpamCidrConfigResult](#ipamcidrconfigresult)[] (ReadOnly)
+* **IpamCidrConfigs**: [IpamCidrConfig](#ipamcidrconfig)[] (WriteOnly): A list of IPAM CIDR configurations that define the IP address ranges, IPAM pools, and associated Anycast IP addresses.
+* **IpCount**: int (Required): The number of IP addresses in the Anycast static IP list.
+* **Name**: string (Required): The name of the Anycast static IP list.
+* **Tags**: [Tags](#tags): A complex type that contains zero or more ``Tag`` elements.
 
 ## AWS.CloudFront/CachePolicyProperties
 ### Properties
@@ -128,6 +205,37 @@
 * **CloudFrontOriginAccessIdentityConfig**: [CloudFrontOriginAccessIdentityConfig](#cloudfrontoriginaccessidentityconfig) (Required): The current configuration information for the identity.
 * **Id**: string (ReadOnly, Identifier)
 * **S3CanonicalUserId**: string (ReadOnly)
+
+## AWS.CloudFront/ConnectionFunctionProperties
+### Properties
+* **AutoPublish**: bool (WriteOnly): A flag that determines whether to automatically publish the function to the ``LIVE`` stage when it?s created. To automatically publish to the ``LIVE`` stage, set this property to ``true``.
+* **ConnectionFunctionArn**: string (ReadOnly)
+* **ConnectionFunctionCode**: string (Required): The code for the connection function.
+* **ConnectionFunctionConfig**: [ConnectionFunctionConfig](#connectionfunctionconfig) (Required): Contains configuration information about a CloudFront function.
+* **CreatedTime**: string (ReadOnly)
+* **ETag**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
+* **LastModifiedTime**: string (ReadOnly)
+* **Name**: string (Required): The connection function name.
+* **Stage**: string (ReadOnly)
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: A complex type that contains zero or more ``Tag`` elements.
+
+## AWS.CloudFront/ConnectionGroupProperties
+### Properties
+* **AnycastIpListId**: string: The ID of the Anycast static IP list.
+* **Arn**: string (ReadOnly)
+* **CreatedTime**: string (ReadOnly)
+* **Enabled**: bool: Whether the connection group is enabled.
+* **ETag**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
+* **Ipv6Enabled**: bool: IPv6 is enabled for the connection group.
+* **IsDefault**: bool (ReadOnly)
+* **LastModifiedTime**: string (ReadOnly)
+* **Name**: string (Required): The name of the connection group.
+* **RoutingEndpoint**: string (ReadOnly)
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: A complex type that contains zero or more ``Tag`` elements.
 
 ## AWS.CloudFront/ContinuousDeploymentPolicyProperties
 ### Properties
@@ -142,6 +250,25 @@
 * **Id**: string (ReadOnly, Identifier)
 * **Tags**: [Tag](#tag)[]: A complex type that contains zero or more ``Tag`` elements.
 
+## AWS.CloudFront/DistributionTenantProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **ConnectionGroupId**: string: The ID of the connection group for the distribution tenant. If you don't specify a connection group, CloudFront uses the default connection group.
+* **CreatedTime**: string (ReadOnly)
+* **Customizations**: [Customizations](#customizations): Customizations for the distribution tenant. For each distribution tenant, you can specify the geographic restrictions, and the Amazon Resource Names (ARNs) for the ACM certificate and WAF web ACL. These are specific values that you can override or disable from the multi-tenant distribution that was used to create the distribution tenant.
+* **DistributionId**: string (Required): The ID of the multi-tenant distribution.
+* **DomainResults**: [DomainResult](#domainresult)[] (ReadOnly)
+* **Domains**: string[] (Required): The domains associated with the distribution tenant.
+* **Enabled**: bool: Indicates whether the distribution tenant is in an enabled state. If disabled, the distribution tenant won't serve traffic.
+* **ETag**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
+* **LastModifiedTime**: string (ReadOnly)
+* **ManagedCertificateRequest**: [ManagedCertificateRequest](#managedcertificaterequest) (WriteOnly): An object that represents the request for the Amazon CloudFront managed ACM certificate.
+* **Name**: string (Required): The name of the distribution tenant.
+* **Parameters**: [Parameter](#parameter)[]: A list of parameter values to add to the resource. A parameter is specified as a key-value pair. A valid parameter value must exist for any parameter that is marked as required in the multi-tenant distribution.
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: A complex type that contains zero or more ``Tag`` elements.
+
 ## AWS.CloudFront/FunctionProperties
 ### Properties
 * **AutoPublish**: bool (WriteOnly): A flag that determines whether to automatically publish the function to the ``LIVE`` stage when it?s created. To automatically publish to the ``LIVE`` stage, set this property to ``true``.
@@ -151,6 +278,7 @@
 * **FunctionMetadata**: [FunctionMetadata](#functionmetadata): Contains metadata about a CloudFront function.
 * **Name**: string (Required): A name to identify the function.
 * **Stage**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: A complex type that contains zero or more ``Tag`` elements.
 
 ## AWS.CloudFront/KeyGroupProperties
 ### Properties
@@ -161,11 +289,12 @@
 ## AWS.CloudFront/KeyValueStoreProperties
 ### Properties
 * **Arn**: string (ReadOnly)
-* **Comment**: string: A comment for the key value store.
+* **Comment**: string: A comment to describe the Key Value Store. Omitting ``Comment`` from the template during updates will clear the existing comment (set to empty string). To preserve an existing comment, you must explicitly include it in the template.
 * **Id**: string (ReadOnly)
 * **ImportSource**: [ImportSource](#importsource) (WriteOnly): The import source for the key value store.
 * **Name**: string (Required, Identifier): The name of the key value store.
 * **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: A complex type that contains zero or more ``Tag`` elements.
 
 ## AWS.CloudFront/OriginAccessControlProperties
 ### Properties
@@ -199,15 +328,40 @@
 * **LastModifiedTime**: string (ReadOnly)
 * **ResponseHeadersPolicyConfig**: [ResponseHeadersPolicyConfig](#responseheaderspolicyconfig) (Required): A response headers policy configuration.
 
+## AWS.CloudFront/TrustStoreProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **CaCertificatesBundleSource**: [CaCertificatesBundleSource](#cacertificatesbundlesource) (WriteOnly): A CA certificates bundle source.
+* **ETag**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier)
+* **LastModifiedTime**: string (ReadOnly)
+* **Name**: string (Required): The trust store's name.
+* **NumberOfCaCertificates**: int (ReadOnly)
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: A complex type that contains zero or more ``Tag`` elements.
+* **UseClientCertificateOCSPEndpoint**: bool: A boolean. When true, performs real-time certificate revocation checks by querying the OCSP endpoint specified within the client certificate.
+
 ## AWS.CloudFront/VpcOriginProperties
 ### Properties
+* **AccountId**: string (ReadOnly)
 * **Arn**: string (ReadOnly)
 * **CreatedTime**: string (ReadOnly)
 * **Id**: string (ReadOnly, Identifier)
 * **LastModifiedTime**: string (ReadOnly)
 * **Status**: string (ReadOnly)
-* **Tags**: [Tag](#tag)[]
-* **VpcOriginEndpointConfig**: [VpcOriginEndpointConfig](#vpcoriginendpointconfig) (Required)
+* **Tags**: [Tag](#tag)[]: A complex type that contains zero or more ``Tag`` elements.
+* **VpcOriginEndpointConfig**: [VpcOriginEndpointConfig](#vpcoriginendpointconfig) (Required): The VPC origin endpoint configuration.
+
+## CaCertificatesBundleS3Location
+### Properties
+* **Bucket**: string (Required): The S3 bucket.
+* **Key**: string (Required): The location's key.
+* **Region**: string (Required): The location's Region.
+* **Version**: string: The location's version.
+
+## CaCertificatesBundleSource
+### Properties
+* **CaCertificatesBundleS3Location**: [CaCertificatesBundleS3Location](#cacertificatesbundles3location) (Required): The CA certificates bundle location in Amazon S3.
 
 ## CacheBehavior
 ### Properties
@@ -225,7 +379,8 @@
 * **CachePolicyId**: string: The unique identifier of the cache policy that is attached to this cache behavior. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
  A ``CacheBehavior`` must include either a ``CachePolicyId`` or ``ForwardedValues``. We recommend that you use a ``CachePolicyId``.
 * **Compress**: bool: Whether you want CloudFront to automatically compress certain files for this cache behavior. If so, specify true; if not, specify false. For more information, see [Serving Compressed Files](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/ServingCompressedFiles.html) in the *Amazon CloudFront Developer Guide*.
-* **DefaultTTL**: int: This field is deprecated. We recommend that you use the ``DefaultTTL`` field in a cache policy instead of this field. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
+* **DefaultTTL**: int: This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
+  This field is deprecated. We recommend that you use the ``DefaultTTL`` field in a cache policy instead of this field. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
  The default amount of time that you want objects to stay in CloudFront caches before CloudFront forwards another request to your origin to determine whether the object has been updated. The value that you specify applies only when your origin does not add HTTP headers such as ``Cache-Control max-age``, ``Cache-Control s-maxage``, and ``Expires`` to objects. For more information, see [Managing How Long Content Stays in an Edge Cache (Expiration)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html) in the *Amazon CloudFront Developer Guide*.
 * **FieldLevelEncryptionId**: string: The value of ``ID`` for the field-level encryption configuration that you want CloudFront to use for encrypting specific fields of data for this cache behavior.
 * **ForwardedValues**: [ForwardedValues](#forwardedvalues): This field is deprecated. We recommend that you use a cache policy or an origin request policy instead of this field. For more information, see [Working with policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/working-with-policies.html) in the *Amazon CloudFront Developer Guide*.
@@ -236,9 +391,11 @@
 * **FunctionAssociations**: [FunctionAssociation](#functionassociation)[]: A list of CloudFront functions that are associated with this cache behavior. CloudFront functions must be published to the ``LIVE`` stage to associate them with a cache behavior.
 * **GrpcConfig**: [GrpcConfig](#grpcconfig): The gRPC configuration for your cache behavior.
 * **LambdaFunctionAssociations**: [LambdaFunctionAssociation](#lambdafunctionassociation)[]: A complex type that contains zero or more Lambda@Edge function associations for a cache behavior.
-* **MaxTTL**: int: This field is deprecated. We recommend that you use the ``MaxTTL`` field in a cache policy instead of this field. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
+* **MaxTTL**: int: This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
+  This field is deprecated. We recommend that you use the ``MaxTTL`` field in a cache policy instead of this field. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
  The maximum amount of time that you want objects to stay in CloudFront caches before CloudFront forwards another request to your origin to determine whether the object has been updated. The value that you specify applies only when your origin adds HTTP headers such as ``Cache-Control max-age``, ``Cache-Control s-maxage``, and ``Expires`` to objects. For more information, see [Managing How Long Content Stays in an Edge Cache (Expiration)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html) in the *Amazon CloudFront Developer Guide*.
-* **MinTTL**: int: This field is deprecated. We recommend that you use the ``MinTTL`` field in a cache policy instead of this field. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
+* **MinTTL**: int: This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
+  This field is deprecated. We recommend that you use the ``MinTTL`` field in a cache policy instead of this field. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
  The minimum amount of time that you want objects to stay in CloudFront caches before CloudFront forwards another request to your origin to determine whether the object has been updated. For more information, see [Managing How Long Content Stays in an Edge Cache (Expiration)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html) in the *Amazon CloudFront Developer Guide*.
  You must specify ``0`` for ``MinTTL`` if you configure CloudFront to forward all headers to your origin (under ``Headers``, if you specify ``1`` for ``Quantity`` and ``*`` for ``Name``).
 * **OriginRequestPolicyId**: string: The unique identifier of the origin request policy that is attached to this cache behavior. For more information, see [Creating origin request policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy) or [Using the managed origin request policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html) in the *Amazon CloudFront Developer Guide*.
@@ -248,17 +405,19 @@
  For more information, see [Path Pattern](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesPathPattern) in the *Amazon CloudFront Developer Guide*.
 * **RealtimeLogConfigArn**: string: The Amazon Resource Name (ARN) of the real-time log configuration that is attached to this cache behavior. For more information, see [Real-time logs](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html) in the *Amazon CloudFront Developer Guide*.
 * **ResponseHeadersPolicyId**: string: The identifier for a response headers policy.
-* **SmoothStreaming**: bool: Indicates whether you want to distribute media files in the Microsoft Smooth Streaming format using the origin that is associated with this cache behavior. If so, specify ``true``; if not, specify ``false``. If you specify ``true`` for ``SmoothStreaming``, you can still distribute other content using this cache behavior if the content matches the value of ``PathPattern``.
+* **SmoothStreaming**: bool: This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
+  Indicates whether you want to distribute media files in the Microsoft Smooth Streaming format using the origin that is associated with this cache behavior. If so, specify ``true``; if not, specify ``false``. If you specify ``true`` for ``SmoothStreaming``, you can still distribute other content using this cache behavior if the content matches the value of ``PathPattern``.
 * **TargetOriginId**: string (Required): The value of ``ID`` for the origin that you want CloudFront to route requests to when they match this cache behavior.
 * **TrustedKeyGroups**: string[]: A list of key groups that CloudFront can use to validate signed URLs or signed cookies.
  When a cache behavior contains trusted key groups, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with a private key whose corresponding public key is in the key group. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see [Serving private content](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html) in the *Amazon CloudFront Developer Guide*.
 * **TrustedSigners**: string[]: We recommend using ``TrustedKeyGroups`` instead of ``TrustedSigners``.
+   This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
   A list of AWS-account IDs whose public keys CloudFront can use to validate signed URLs or signed cookies.
  When a cache behavior contains trusted signers, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with the private key of a CloudFront key pair in the trusted signer's AWS-account. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see [Serving private content](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html) in the *Amazon CloudFront Developer Guide*.
 * **ViewerProtocolPolicy**: string (Required): The protocol that viewers can use to access the files in the origin specified by ``TargetOriginId`` when a request matches the path pattern in ``PathPattern``. You can specify the following options:
-  +   ``allow-all``: Viewers can use HTTP or HTTPS.
-  +   ``redirect-to-https``: If a viewer submits an HTTP request, CloudFront returns an HTTP status code of 301 (Moved Permanently) to the viewer along with the HTTPS URL. The viewer then resubmits the request using the new URL.
-  +   ``https-only``: If a viewer sends an HTTP request, CloudFront returns an HTTP status code of 403 (Forbidden).
+  +  ``allow-all``: Viewers can use HTTP or HTTPS.
+  +  ``redirect-to-https``: If a viewer submits an HTTP request, CloudFront returns an HTTP status code of 301 (Moved Permanently) to the viewer along with the HTTPS URL. The viewer then resubmits the request using the new URL.
+  +  ``https-only``: If a viewer sends an HTTP request, CloudFront returns an HTTP status code of 403 (Forbidden).
   
  For more information about requiring the HTTPS protocol, see [Requiring HTTPS Between Viewers and CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-viewers-to-cloudfront.html) in the *Amazon CloudFront Developer Guide*.
   The only way to guarantee that viewers retrieve an object that was fetched from the origin using HTTPS is never to use any other protocol to fetch the object. If you have recently changed from HTTP to HTTPS, we recommend that you clear your objects' cache because cached objects are protocol agnostic. That means that an edge location will return an object from the cache regardless of whether the current request protocol matches the protocol used previously. For more information, see [Managing Cache Expiration](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html) in the *Amazon CloudFront Developer Guide*.
@@ -274,9 +433,27 @@
 * **Name**: string (Required): A unique name to identify the cache policy.
 * **ParametersInCacheKeyAndForwardedToOrigin**: [ParametersInCacheKeyAndForwardedToOrigin](#parametersincachekeyandforwardedtoorigin) (Required): The HTTP headers, cookies, and URL query strings to include in the cache key. The values included in the cache key are also included in requests that CloudFront sends to the origin.
 
+## CacheTagConfig
+### Properties
+* **HeaderName**: string (Required): The name of the HTTP header that your origin includes in responses. CloudFront uses this header to extract cache tags. The header value must contain comma-separated tag values (for example, ``product:electronics, category:tv, brand:example``).
+
+## Certificate
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the ACM certificate.
+
 ## CloudFrontOriginAccessIdentityConfig
 ### Properties
 * **Comment**: string (Required): A comment to describe the origin access identity. The comment cannot be longer than 128 characters.
+
+## ConnectionFunctionAssociation
+### Properties
+* **Id**: string (Required, Identifier): The association's ID.
+
+## ConnectionFunctionConfig
+### Properties
+* **Comment**: string (Required): A comment to describe the function. The comment cannot be longer than 128 characters.
+* **KeyValueStoreAssociations**: [KeyValueStoreAssociation](#keyvaluestoreassociation)[]: The configuration for the key value store associations.
+* **Runtime**: string (Required): The function's runtime environment version.
 
 ## ContentSecurityPolicy
 ### Properties
@@ -324,19 +501,19 @@
 ## CookiesConfig
 ### Properties
 * **CookieBehavior**: string (Required): Determines whether any cookies in viewer requests are included in the cache key and in requests that CloudFront sends to the origin. Valid values are:
-  +   ``none`` ? No cookies in viewer requests are included in the cache key or in requests that CloudFront sends to the origin. Even when this field is set to ``none``, any cookies that are listed in an ``OriginRequestPolicy`` *are* included in origin requests.
-  +   ``whitelist`` ? Only the cookies in viewer requests that are listed in the ``CookieNames`` type are included in the cache key and in requests that CloudFront sends to the origin.
-  +   ``allExcept`` ? All cookies in viewer requests are included in the cache key and in requests that CloudFront sends to the origin, *except* for those that are listed in the ``CookieNames`` type, which are not included.
-  +   ``all`` ? All cookies in viewer requests are included in the cache key and in requests that CloudFront sends to the origin.
+  +  ``none`` ? No cookies in viewer requests are included in the cache key or in requests that CloudFront sends to the origin. Even when this field is set to ``none``, any cookies that are listed in an ``OriginRequestPolicy``*are* included in origin requests.
+  +  ``whitelist`` ? Only the cookies in viewer requests that are listed in the ``CookieNames`` type are included in the cache key and in requests that CloudFront sends to the origin.
+  +  ``allExcept`` ? All cookies in viewer requests are included in the cache key and in requests that CloudFront sends to the origin, *except* for those that are listed in the ``CookieNames`` type, which are not included.
+  +  ``all`` ? All cookies in viewer requests are included in the cache key and in requests that CloudFront sends to the origin.
 * **Cookies**: string[]: Contains a list of cookie names.
 
 ## CookiesConfig
 ### Properties
 * **CookieBehavior**: string (Required): Determines whether cookies in viewer requests are included in requests that CloudFront sends to the origin. Valid values are:
-  +   ``none`` ? No cookies in viewer requests are included in requests that CloudFront sends to the origin. Even when this field is set to ``none``, any cookies that are listed in a ``CachePolicy`` *are* included in origin requests.
-  +   ``whitelist`` ? Only the cookies in viewer requests that are listed in the ``CookieNames`` type are included in requests that CloudFront sends to the origin.
-  +   ``all`` ? All cookies in viewer requests are included in requests that CloudFront sends to the origin.
-  +   ``allExcept`` ? All cookies in viewer requests are included in requests that CloudFront sends to the origin, *except* for those listed in the ``CookieNames`` type, which are not included.
+  +  ``none`` ? No cookies in viewer requests are included in requests that CloudFront sends to the origin. Even when this field is set to ``none``, any cookies that are listed in a ``CachePolicy``*are* included in origin requests.
+  +  ``whitelist`` ? Only the cookies in viewer requests that are listed in the ``CookieNames`` type are included in requests that CloudFront sends to the origin.
+  +  ``all`` ? All cookies in viewer requests are included in requests that CloudFront sends to the origin.
+  +  ``allExcept`` ? All cookies in viewer requests are included in requests that CloudFront sends to the origin, *except* for those listed in the ``CookieNames`` type, which are not included.
 * **Cookies**: string[]: Contains a list of cookie names.
 
 ## CorsConfig
@@ -383,20 +560,28 @@
 ### Properties
 * **Items**: [CustomHeader](#customheader)[] (Required): The list of HTTP response headers and their values.
 
+## Customizations
+### Properties
+* **Certificate**: [Certificate](#certificate): The ACMlong (ACM) certificate.
+* **GeoRestrictions**: [GeoRestrictionCustomization](#georestrictioncustomization): The geographic restrictions.
+* **WebAcl**: [WebAclCustomization](#webaclcustomization): The WAF web ACL.
+
 ## CustomOriginConfig
 ### Properties
 * **HTTPPort**: int: The HTTP port that CloudFront uses to connect to the origin. Specify the HTTP port that the origin listens on.
 * **HTTPSPort**: int: The HTTPS port that CloudFront uses to connect to the origin. Specify the HTTPS port that the origin listens on.
-* **OriginKeepaliveTimeout**: int: Specifies how long, in seconds, CloudFront persists its connection to the origin. The minimum timeout is 1 second, the maximum is 60 seconds, and the default (if you don't specify otherwise) is 5 seconds.
- For more information, see [Keep-alive timeout (custom origins only)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginKeepaliveTimeout) in the *Amazon CloudFront Developer Guide*.
+* **IpAddressType**: string: Specifies which IP protocol CloudFront uses when connecting to your origin. If your origin uses both IPv4 and IPv6 protocols, you can choose ``dualstack`` to help optimize reliability.
+* **OriginKeepaliveTimeout**: int: Specifies how long, in seconds, CloudFront persists its connection to the origin. The minimum timeout is 1 second, the maximum is 300 seconds, and the default (if you don't specify otherwise) is 5 seconds.
+ For more information, see [Keep-alive timeout (custom origins only)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistValuesOrigin.html#DownloadDistValuesOriginKeepaliveTimeout) in the *Amazon CloudFront Developer Guide*.
+* **OriginMtlsConfig**: [OriginMtlsConfig](#originmtlsconfig): Configures mutual TLS authentication between CloudFront and your origin server.
 * **OriginProtocolPolicy**: string (Required): Specifies the protocol (HTTP or HTTPS) that CloudFront uses to connect to the origin. Valid values are:
-  +   ``http-only`` ? CloudFront always uses HTTP to connect to the origin.
-  +   ``match-viewer`` ? CloudFront connects to the origin using the same protocol that the viewer used to connect to CloudFront.
-  +   ``https-only`` ? CloudFront always uses HTTPS to connect to the origin.
-* **OriginReadTimeout**: int: Specifies how long, in seconds, CloudFront waits for a response from the origin. This is also known as the *origin response timeout*. The minimum timeout is 1 second, the maximum is 60 seconds, and the default (if you don't specify otherwise) is 30 seconds.
- For more information, see [Response timeout (custom origins only)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginResponseTimeout) in the *Amazon CloudFront Developer Guide*.
+  +  ``http-only`` ? CloudFront always uses HTTP to connect to the origin.
+  +  ``match-viewer`` ? CloudFront connects to the origin using the same protocol that the viewer used to connect to CloudFront.
+  +  ``https-only`` ? CloudFront always uses HTTPS to connect to the origin.
+* **OriginReadTimeout**: int: Specifies how long, in seconds, CloudFront waits for a response from the origin. This is also known as the *origin response timeout*. The minimum timeout is 1 second, the maximum is 120 seconds, and the default (if you don't specify otherwise) is 30 seconds.
+ For more information, see [Response timeout](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistValuesOrigin.html#DownloadDistValuesOriginResponseTimeout) in the *Amazon CloudFront Developer Guide*.
 * **OriginSSLProtocols**: string[]: Specifies the minimum SSL/TLS protocol that CloudFront uses when connecting to your origin over HTTPS. Valid values include ``SSLv3``, ``TLSv1``, ``TLSv1.1``, and ``TLSv1.2``.
- For more information, see [Minimum Origin SSL Protocol](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginSSLProtocols) in the *Amazon CloudFront Developer Guide*.
+ For more information, see [Minimum Origin SSL Protocol](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistValuesOrigin.html#DownloadDistValuesOriginSSLProtocols) in the *Amazon CloudFront Developer Guide*.
 
 ## DefaultCacheBehavior
 ### Properties
@@ -414,7 +599,8 @@
 * **CachePolicyId**: string: The unique identifier of the cache policy that is attached to the default cache behavior. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
  A ``DefaultCacheBehavior`` must include either a ``CachePolicyId`` or ``ForwardedValues``. We recommend that you use a ``CachePolicyId``.
 * **Compress**: bool: Whether you want CloudFront to automatically compress certain files for this cache behavior. If so, specify ``true``; if not, specify ``false``. For more information, see [Serving Compressed Files](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/ServingCompressedFiles.html) in the *Amazon CloudFront Developer Guide*.
-* **DefaultTTL**: int: This field is deprecated. We recommend that you use the ``DefaultTTL`` field in a cache policy instead of this field. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
+* **DefaultTTL**: int: This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
+  This field is deprecated. We recommend that you use the ``DefaultTTL`` field in a cache policy instead of this field. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
  The default amount of time that you want objects to stay in CloudFront caches before CloudFront forwards another request to your origin to determine whether the object has been updated. The value that you specify applies only when your origin does not add HTTP headers such as ``Cache-Control max-age``, ``Cache-Control s-maxage``, and ``Expires`` to objects. For more information, see [Managing How Long Content Stays in an Edge Cache (Expiration)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html) in the *Amazon CloudFront Developer Guide*.
 * **FieldLevelEncryptionId**: string: The value of ``ID`` for the field-level encryption configuration that you want CloudFront to use for encrypting specific fields of data for the default cache behavior.
 * **ForwardedValues**: [ForwardedValues](#forwardedvalues): This field is deprecated. We recommend that you use a cache policy or an origin request policy instead of this field. For more information, see [Working with policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/working-with-policies.html) in the *Amazon CloudFront Developer Guide*.
@@ -425,38 +611,64 @@
 * **FunctionAssociations**: [FunctionAssociation](#functionassociation)[]: A list of CloudFront functions that are associated with this cache behavior. Your functions must be published to the ``LIVE`` stage to associate them with a cache behavior.
 * **GrpcConfig**: [GrpcConfig](#grpcconfig): The gRPC configuration for your cache behavior.
 * **LambdaFunctionAssociations**: [LambdaFunctionAssociation](#lambdafunctionassociation)[]: A complex type that contains zero or more Lambda@Edge function associations for a cache behavior.
-* **MaxTTL**: int: This field is deprecated. We recommend that you use the ``MaxTTL`` field in a cache policy instead of this field. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
+* **MaxTTL**: int: This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
+  This field is deprecated. We recommend that you use the ``MaxTTL`` field in a cache policy instead of this field. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
  The maximum amount of time that you want objects to stay in CloudFront caches before CloudFront forwards another request to your origin to determine whether the object has been updated. The value that you specify applies only when your origin adds HTTP headers such as ``Cache-Control max-age``, ``Cache-Control s-maxage``, and ``Expires`` to objects. For more information, see [Managing How Long Content Stays in an Edge Cache (Expiration)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html) in the *Amazon CloudFront Developer Guide*.
-* **MinTTL**: int: This field is deprecated. We recommend that you use the ``MinTTL`` field in a cache policy instead of this field. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
+* **MinTTL**: int: This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
+  This field is deprecated. We recommend that you use the ``MinTTL`` field in a cache policy instead of this field. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) or [Using the managed cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html) in the *Amazon CloudFront Developer Guide*.
  The minimum amount of time that you want objects to stay in CloudFront caches before CloudFront forwards another request to your origin to determine whether the object has been updated. For more information, see [Managing How Long Content Stays in an Edge Cache (Expiration)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html) in the *Amazon CloudFront Developer Guide*.
  You must specify ``0`` for ``MinTTL`` if you configure CloudFront to forward all headers to your origin (under ``Headers``, if you specify ``1`` for ``Quantity`` and ``*`` for ``Name``).
 * **OriginRequestPolicyId**: string: The unique identifier of the origin request policy that is attached to the default cache behavior. For more information, see [Creating origin request policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy) or [Using the managed origin request policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html) in the *Amazon CloudFront Developer Guide*.
 * **RealtimeLogConfigArn**: string: The Amazon Resource Name (ARN) of the real-time log configuration that is attached to this cache behavior. For more information, see [Real-time logs](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html) in the *Amazon CloudFront Developer Guide*.
 * **ResponseHeadersPolicyId**: string: The identifier for a response headers policy.
-* **SmoothStreaming**: bool: Indicates whether you want to distribute media files in the Microsoft Smooth Streaming format using the origin that is associated with this cache behavior. If so, specify ``true``; if not, specify ``false``. If you specify ``true`` for ``SmoothStreaming``, you can still distribute other content using this cache behavior if the content matches the value of ``PathPattern``.
+* **SmoothStreaming**: bool: This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
+  Indicates whether you want to distribute media files in the Microsoft Smooth Streaming format using the origin that is associated with this cache behavior. If so, specify ``true``; if not, specify ``false``. If you specify ``true`` for ``SmoothStreaming``, you can still distribute other content using this cache behavior if the content matches the value of ``PathPattern``.
 * **TargetOriginId**: string (Required): The value of ``ID`` for the origin that you want CloudFront to route requests to when they use the default cache behavior.
 * **TrustedKeyGroups**: string[]: A list of key groups that CloudFront can use to validate signed URLs or signed cookies.
  When a cache behavior contains trusted key groups, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with a private key whose corresponding public key is in the key group. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see [Serving private content](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html) in the *Amazon CloudFront Developer Guide*.
 * **TrustedSigners**: string[]: We recommend using ``TrustedKeyGroups`` instead of ``TrustedSigners``.
+   This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
   A list of AWS-account IDs whose public keys CloudFront can use to validate signed URLs or signed cookies.
  When a cache behavior contains trusted signers, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with the private key of a CloudFront key pair in a trusted signer's AWS-account. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see [Serving private content](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html) in the *Amazon CloudFront Developer Guide*.
 * **ViewerProtocolPolicy**: string (Required): The protocol that viewers can use to access the files in the origin specified by ``TargetOriginId`` when a request matches the path pattern in ``PathPattern``. You can specify the following options:
-  +   ``allow-all``: Viewers can use HTTP or HTTPS.
-  +   ``redirect-to-https``: If a viewer submits an HTTP request, CloudFront returns an HTTP status code of 301 (Moved Permanently) to the viewer along with the HTTPS URL. The viewer then resubmits the request using the new URL.
-  +   ``https-only``: If a viewer sends an HTTP request, CloudFront returns an HTTP status code of 403 (Forbidden).
+  +  ``allow-all``: Viewers can use HTTP or HTTPS.
+  +  ``redirect-to-https``: If a viewer submits an HTTP request, CloudFront returns an HTTP status code of 301 (Moved Permanently) to the viewer along with the HTTPS URL. The viewer then resubmits the request using the new URL.
+  +  ``https-only``: If a viewer sends an HTTP request, CloudFront returns an HTTP status code of 403 (Forbidden).
   
  For more information about requiring the HTTPS protocol, see [Requiring HTTPS Between Viewers and CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-viewers-to-cloudfront.html) in the *Amazon CloudFront Developer Guide*.
   The only way to guarantee that viewers retrieve an object that was fetched from the origin using HTTPS is never to use any other protocol to fetch the object. If you have recently changed from HTTP to HTTPS, we recommend that you clear your objects' cache because cached objects are protocol agnostic. That means that an edge location will return an object from the cache regardless of whether the current request protocol matches the protocol used previously. For more information, see [Managing Cache Expiration](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html) in the *Amazon CloudFront Developer Guide*.
 
+## Distribution_Definition
+### Properties
+* **StringSchema**: [Distribution_Definition_StringSchema](#distributiondefinitionstringschema)
+
+## Distribution_Definition_StringSchema
+### Properties
+* **Comment**: string
+* **DefaultValue**: string
+* **Required**: bool (Required)
+
+## Distribution_TenantConfig
+### Properties
+* **ParameterDefinitions**: [ParameterDefinition](#parameterdefinition)[]
+
 ## DistributionConfig
 ### Properties
-* **Aliases**: string[]: A complex type that contains information about CNAMEs (alternate domain names), if any, for this distribution.
-* **AnycastIpListId**: string
+* **Aliases**: string[]: This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
+  A complex type that contains information about CNAMEs (alternate domain names), if any, for this distribution.
+* **AnycastIpListId**: string: To use this field for a multi-tenant distribution, use a connection group instead. For more information, see [ConnectionGroup](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ConnectionGroup.html).
+  ID of the Anycast static IP list that is associated with the distribution.
 * **CacheBehaviors**: [CacheBehavior](#cachebehavior)[]: A complex type that contains zero or more ``CacheBehavior`` elements.
+* **CacheTagConfig**: [CacheTagConfig](#cachetagconfig): Configuration for cache tag extraction from origin responses. When specified, CloudFront reads the header named in ``HeaderName`` from origin responses and stores the comma-separated values as cache tags on the object.
+ Distributions without ``CacheTagConfig`` do not extract tags. When ``CacheTagConfig`` is removed from a distribution via ``UpdateDistribution``, CloudFront stops extracting tags from origin responses.
+  Changing the ``HeaderName`` on an existing distribution does not retroactively affect previously cached objects. Tag-based invalidations will not apply to objects already cached using a previous header. To ensure tag invalidations function after updating the header name, use path-based invalidations to recache all objects that use cache tags.
 * **CNAMEs**: string[]: An alias for the CF distribution's domain name.
   This property is legacy. We recommend that you use [Aliases](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-aliases) instead.
 * **Comment**: string: A comment to describe the distribution. The comment cannot be longer than 128 characters.
-* **ContinuousDeploymentPolicyId**: string: The identifier of a continuous deployment policy. For more information, see ``CreateContinuousDeploymentPolicy``.
+* **ConnectionFunctionAssociation**: [ConnectionFunctionAssociation](#connectionfunctionassociation): The distribution's connection function association.
+* **ConnectionMode**: string: This field specifies whether the connection mode is through a standard distribution (direct) or a multi-tenant distribution with distribution tenants (tenant-only).
+* **ContinuousDeploymentPolicyId**: string: This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
+  The identifier of a continuous deployment policy. For more information, see ``CreateContinuousDeploymentPolicy``.
 * **CustomErrorResponses**: [CustomErrorResponse](#customerrorresponse)[]: A complex type that controls the following:
   +  Whether CloudFront replaces HTTP status codes in the 4xx and 5xx range with custom error messages before returning the response to the viewer.
   +  How long CloudFront caches HTTP status codes in the 4xx and 5xx range.
@@ -475,7 +687,8 @@
 * **HttpVersion**: string: (Optional) Specify the HTTP version(s) that you want viewers to use to communicate with CF. The default value for new distributions is ``http1.1``.
  For viewers and CF to use HTTP/2, viewers must support TLSv1.2 or later, and must support Server Name Indication (SNI).
  For viewers and CF to use HTTP/3, viewers must support TLSv1.3 and Server Name Indication (SNI). CF supports HTTP/3 connection migration to allow the viewer to switch networks without losing connection. For more information about connection migration, see [Connection Migration](https://docs.aws.amazon.com/https://www.rfc-editor.org/rfc/rfc9000.html#name-connection-migration) at RFC 9000. For more information about supported TLSv1.3 ciphers, see [Supported protocols and ciphers between viewers and CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/secure-connections-supported-viewer-protocols-ciphers.html).
-* **IPV6Enabled**: bool: If you want CloudFront to respond to IPv6 DNS requests with an IPv6 address for your distribution, specify ``true``. If you specify ``false``, CloudFront responds to IPv6 DNS requests with the DNS response code ``NOERROR`` and with no IP addresses. This allows viewers to submit a second request, for an IPv4 address for your distribution.
+* **IPV6Enabled**: bool: To use this field for a multi-tenant distribution, use a connection group instead. For more information, see [ConnectionGroup](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ConnectionGroup.html).
+  If you want CloudFront to respond to IPv6 DNS requests with an IPv6 address for your distribution, specify ``true``. If you specify ``false``, CloudFront responds to IPv6 DNS requests with the DNS response code ``NOERROR`` and with no IP addresses. This allows viewers to submit a second request, for an IPv4 address for your distribution.
  In general, you should enable IPv6 if you have users on IPv6 networks who want to access your content. However, if you're using signed URLs or signed cookies to restrict access to your content, and if you're using a custom policy that includes the ``IpAddress`` parameter to restrict the IP addresses that can access your content, don't enable IPv6. If you want to restrict access to some content by IP address and not restrict access to other content (or restrict access but not by IP address), you can create two distributions. For more information, see [Creating a Signed URL Using a Custom Policy](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-creating-signed-url-custom-policy.html) in the *Amazon CloudFront Developer Guide*.
  If you're using an R53AWSIntlong alias resource record set to route traffic to your CloudFront distribution, you need to create a second alias resource record set when both of the following are true:
   +  You enable IPv6 for the distribution
@@ -489,20 +702,31 @@
  Specify a value for either the ``Origins`` or ``OriginGroups`` property.
 * **Origins**: [Origin](#origin)[]: A complex type that contains information about origins for this distribution.
  Specify a value for either the ``Origins`` or ``OriginGroups`` property.
-* **PriceClass**: string: The price class that corresponds with the maximum price that you want to pay for CloudFront service. If you specify ``PriceClass_All``, CloudFront responds to requests for your objects from all CloudFront edge locations.
+* **PriceClass**: string: This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
+  The price class that corresponds with the maximum price that you want to pay for CloudFront service. If you specify ``PriceClass_All``, CloudFront responds to requests for your objects from all CloudFront edge locations.
  If you specify a price class other than ``PriceClass_All``, CloudFront serves your objects from the CloudFront edge location that has the lowest latency among the edge locations in your price class. Viewers who are in or near regions that are excluded from your specified price class may encounter slower performance.
  For more information about price classes, see [Choosing the Price Class for a CloudFront Distribution](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PriceClass.html) in the *Amazon CloudFront Developer Guide*. For information about CloudFront pricing, including how price classes (such as Price Class 100) map to CloudFront regions, see [Amazon CloudFront Pricing](https://docs.aws.amazon.com/cloudfront/pricing/).
 * **Restrictions**: [Restrictions](#restrictions): A complex type that identifies ways in which you want to restrict distribution of your content.
 * **S3Origin**: [LegacyS3Origin](#legacys3origin): The origin as an S3 bucket.
   This property is legacy. We recommend that you use [Origin](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html) instead.
-* **Staging**: bool: A Boolean that indicates whether this is a staging distribution. When this value is ``true``, this is a staging distribution. When this value is ``false``, this is not a staging distribution.
+* **Staging**: bool: This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
+  A Boolean that indicates whether this is a staging distribution. When this value is ``true``, this is a staging distribution. When this value is ``false``, this is not a staging distribution.
+* **TenantConfig**: [Distribution_TenantConfig](#distributiontenantconfig): This field only supports multi-tenant distributions. You can't specify this field for standard distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
+  A distribution tenant configuration.
 * **ViewerCertificate**: [ViewerCertificate](#viewercertificate): A complex type that determines the distribution's SSL/TLS configuration for communicating with viewers.
-* **WebACLId**: string: A unique identifier that specifies the WAF web ACL, if any, to associate with this distribution. To specify a web ACL created using the latest version of WAF, use the ACL ARN, for example ``arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111``. To specify a web ACL created using WAF Classic, use the ACL ID, for example ``a1b2c3d4-5678-90ab-cdef-EXAMPLE11111``.
-  WAF is a web application firewall that lets you monitor the HTTP and HTTPS requests that are forwarded to CloudFront, and lets you control access to your content. Based on conditions that you specify, such as the IP addresses that requests originate from or the values of query strings, CloudFront responds to requests either with the requested content or with an HTTP 403 status code (Forbidden). You can also configure CloudFront to return a custom error page when a request is blocked. For more information about WAF, see the [Developer Guide](https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html).
+* **ViewerMtlsConfig**: [ViewerMtlsConfig](#viewermtlsconfig): The distribution's viewer mTLS configuration.
+* **WebACLId**: string: Multi-tenant distributions only support WAF V2 web ACLs.
+  A unique identifier that specifies the WAF web ACL, if any, to associate with this distribution. To specify a web ACL created using the latest version of WAF, use the ACL ARN, for example ``arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111``. To specify a web ACL created using WAF Classic, use the ACL ID, for example ``a1b2c3d4-5678-90ab-cdef-EXAMPLE11111``.
+ WAF is a web application firewall that lets you monitor the HTTP and HTTPS requests that are forwarded to CloudFront, and lets you control access to your content. Based on conditions that you specify, such as the IP addresses that requests originate from or the values of query strings, CloudFront responds to requests either with the requested content or with an HTTP 403 status code (Forbidden). You can also configure CloudFront to return a custom error page when a request is blocked. For more information about WAF, see the [Developer Guide](https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html).
+
+## DomainResult
+### Properties
+* **Domain**: string: The specified domain.
+* **Status**: string: Whether the domain is active or inactive.
 
 ## EndPoint
 ### Properties
-* **KinesisStreamConfig**: [KinesisStreamConfig](#kinesisstreamconfig) (Required): Contains information about the Amazon Kinesis data stream where you are sending real-time log data.
+* **KinesisStreamConfig**: [KinesisStreamConfig](#kinesisstreamconfig) (Required): Contains information about the Amazon Kinesis data stream where you are sending real-time log data in a real-time log configuration.
 * **StreamType**: string (Required): The type of data stream where you are sending real-time log data. The only valid value is ``Kinesis``.
 
 ## ForwardedValues
@@ -542,7 +766,7 @@
 
 ## FunctionConfig
 ### Properties
-* **Comment**: string (Required): A comment to describe the function.
+* **Comment**: string (Required): A comment to describe the function. The comment cannot be longer than 128 characters.
 * **KeyValueStoreAssociations**: [KeyValueStoreAssociation](#keyvaluestoreassociation)[]: The configuration for the key value store associations.
 * **Runtime**: string (Required): The function's runtime environment version.
 
@@ -556,9 +780,17 @@
  The ``Location`` element is a two-letter, uppercase country code for a country that you want to include in your ``blacklist`` or ``whitelist``. Include one ``Location`` element for each country.
  CloudFront and ``MaxMind`` both use ``ISO 3166`` country codes. For the current list of countries and the corresponding codes, see ``ISO 3166-1-alpha-2`` code on the *International Organization for Standardization* website. You can also refer to the country list on the CloudFront console, which includes both country names and codes.
 * **RestrictionType**: string (Required): The method that you want to use to restrict distribution of your content by country:
-  +   ``none``: No geo restriction is enabled, meaning access to content is not restricted by client geo location.
-  +   ``blacklist``: The ``Location`` elements specify the countries in which you don't want CloudFront to distribute your content.
-  +   ``whitelist``: The ``Location`` elements specify the countries in which you want CloudFront to distribute your content.
+  +  ``none``: No geo restriction is enabled, meaning access to content is not restricted by client geo location.
+  +  ``blacklist``: The ``Location`` elements specify the countries in which you don't want CloudFront to distribute your content.
+  +  ``whitelist``: The ``Location`` elements specify the countries in which you want CloudFront to distribute your content.
+
+## GeoRestrictionCustomization
+### Properties
+* **Locations**: string[]: The locations for geographic restrictions.
+* **RestrictionType**: string: The method that you want to use to restrict distribution of your content by country:
+  +  ``none``: No geographic restriction is enabled, meaning access to content is not restricted by client geo location.
+  +  ``blacklist``: The ``Location`` elements specify the countries in which you don't want CloudFront to distribute your content.
+  +  ``whitelist``: The ``Location`` elements specify the countries in which you want CloudFront to distribute your content.
 
 ## GrpcConfig
 ### Properties
@@ -567,18 +799,18 @@
 ## HeadersConfig
 ### Properties
 * **HeaderBehavior**: string (Required): Determines whether any HTTP headers are included in the cache key and in requests that CloudFront sends to the origin. Valid values are:
-  +   ``none`` ? No HTTP headers are included in the cache key or in requests that CloudFront sends to the origin. Even when this field is set to ``none``, any headers that are listed in an ``OriginRequestPolicy`` *are* included in origin requests.
-  +   ``whitelist`` ? Only the HTTP headers that are listed in the ``Headers`` type are included in the cache key and in requests that CloudFront sends to the origin.
+  +  ``none`` ? No HTTP headers are included in the cache key or in requests that CloudFront sends to the origin. Even when this field is set to ``none``, any headers that are listed in an ``OriginRequestPolicy``*are* included in origin requests.
+  +  ``whitelist`` ? Only the HTTP headers that are listed in the ``Headers`` type are included in the cache key and in requests that CloudFront sends to the origin.
 * **Headers**: string[]: Contains a list of HTTP header names.
 
 ## HeadersConfig
 ### Properties
 * **HeaderBehavior**: string (Required): Determines whether any HTTP headers are included in requests that CloudFront sends to the origin. Valid values are:
-  +   ``none`` ? No HTTP headers in viewer requests are included in requests that CloudFront sends to the origin. Even when this field is set to ``none``, any headers that are listed in a ``CachePolicy`` *are* included in origin requests.
-  +   ``whitelist`` ? Only the HTTP headers that are listed in the ``Headers`` type are included in requests that CloudFront sends to the origin.
-  +   ``allViewer`` ? All HTTP headers in viewer requests are included in requests that CloudFront sends to the origin.
-  +   ``allViewerAndWhitelistCloudFront`` ? All HTTP headers in viewer requests and the additional CloudFront headers that are listed in the ``Headers`` type are included in requests that CloudFront sends to the origin. The additional headers are added by CloudFront.
-  +   ``allExcept`` ? All HTTP headers in viewer requests are included in requests that CloudFront sends to the origin, *except* for those listed in the ``Headers`` type, which are not included.
+  +  ``none`` ? No HTTP headers in viewer requests are included in requests that CloudFront sends to the origin. Even when this field is set to ``none``, any headers that are listed in a ``CachePolicy``*are* included in origin requests.
+  +  ``whitelist`` ? Only the HTTP headers that are listed in the ``Headers`` type are included in requests that CloudFront sends to the origin.
+  +  ``allViewer`` ? All HTTP headers in viewer requests are included in requests that CloudFront sends to the origin.
+  +  ``allViewerAndWhitelistCloudFront`` ? All HTTP headers in viewer requests and the additional CloudFront headers that are listed in the ``Headers`` type are included in requests that CloudFront sends to the origin. The additional headers are added by CloudFront.
+  +  ``allExcept`` ? All HTTP headers in viewer requests are included in requests that CloudFront sends to the origin, *except* for those listed in the ``Headers`` type, which are not included.
 * **Headers**: string[]: Contains a list of HTTP header names.
 
 ## ImportSource
@@ -586,11 +818,27 @@
 * **SourceArn**: string (Required): The Amazon Resource Name (ARN) of the import source for the key value store.
 * **SourceType**: string (Required): The source type of the import source for the key value store.
 
+## IpamCidrConfig
+### Properties
+* **Cidr**: string (Required): The CIDR that specifies the IP address range for this IPAM configuration.
+* **IpamPoolArn**: string (Required): The Amazon Resource Name (ARN) of the IPAM pool that the CIDR block is assigned to.
+
+## IpamCidrConfigResult
+### Properties
+* **AnycastIp**: string: The specified Anycast IP address allocated from the IPAM pool for this CIDR configuration.
+* **Cidr**: string: The CIDR that specifies the IP address range for this IPAM configuration.
+* **IpamPoolArn**: string: The Amazon Resource Name (ARN) of the IPAM pool that the CIDR block is assigned to.
+* **Status**: string: The current status of the IPAM CIDR configuration.
+
 ## KeyGroupConfig
 ### Properties
 * **Comment**: string: A comment to describe the key group. The comment cannot be longer than 128 characters.
 * **Items**: string[] (Required): A list of the identifiers of the public keys in the key group.
 * **Name**: string (Required): A name to identify the key group.
+
+## KeyValueStoreAssociation
+### Properties
+* **KeyValueStoreARN**: string (Required): The Amazon Resource Name (ARN) of the key value store association.
 
 ## KeyValueStoreAssociation
 ### Properties
@@ -605,10 +853,10 @@
 ## LambdaFunctionAssociation
 ### Properties
 * **EventType**: string: Specifies the event type that triggers a Lambda@Edge function invocation. You can specify the following values:
-  +   ``viewer-request``: The function executes when CloudFront receives a request from a viewer and before it checks to see whether the requested object is in the edge cache.
-  +   ``origin-request``: The function executes only when CloudFront sends a request to your origin. When the requested object is in the edge cache, the function doesn't execute.
-  +   ``origin-response``: The function executes after CloudFront receives a response from the origin and before it caches the object in the response. When the requested object is in the edge cache, the function doesn't execute.
-  +   ``viewer-response``: The function executes before CloudFront returns the requested object to the viewer. The function executes regardless of whether the object was already in the edge cache.
+  +  ``viewer-request``: The function executes when CloudFront receives a request from a viewer and before it checks to see whether the requested object is in the edge cache.
+  +  ``origin-request``: The function executes only when CloudFront sends a request to your origin. When the requested object is in the edge cache, the function doesn't execute.
+  +  ``origin-response``: The function executes after CloudFront receives a response from the origin and before it caches the object in the response. When the requested object is in the edge cache, the function doesn't execute.
+  +  ``viewer-response``: The function executes before CloudFront returns the requested object to the viewer. The function executes regardless of whether the object was already in the edge cache.
  If the origin returns an HTTP status code other than HTTP 200 (OK), the function doesn't execute.
 * **IncludeBody**: bool: A flag that allows a Lambda@Edge function to have read access to the body content. For more information, see [Accessing the Request Body by Choosing the Include Body Option](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-include-body-access.html) in the Amazon CloudFront Developer Guide.
 * **LambdaFunctionARN**: string: The ARN of the Lambda@Edge function. You must specify the ARN of a function version; you can't specify an alias or $LATEST.
@@ -626,13 +874,21 @@
 ### Properties
 * **DNSName**: string (Required): The domain name assigned to your CF distribution.
 * **OriginAccessIdentity**: string: The CF origin access identity to associate with the distribution. Use an origin access identity to configure the distribution so that end users can only access objects in an S3 through CF.
-  This property is legacy. We recommend that you use [OriginAccessControl](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-originaccesscontrol.html) instead.
+  This property is legacy. We recommend that you use [OriginAccessControl](https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-cloudfront-originaccesscontrol.html) instead.
 
 ## Logging
 ### Properties
 * **Bucket**: string: The Amazon S3 bucket to store the access logs in, for example, ``amzn-s3-demo-bucket.s3.amazonaws.com``.
 * **IncludeCookies**: bool: Specifies whether you want CloudFront to include cookies in access logs, specify ``true`` for ``IncludeCookies``. If you choose to include cookies in logs, CloudFront logs all cookies regardless of how you configure the cache behaviors for this distribution. If you don't want to include cookies when you create a distribution or if you want to disable include cookies for an existing distribution, specify ``false`` for ``IncludeCookies``.
 * **Prefix**: string: An optional string that you want CloudFront to prefix to the access log ``filenames`` for this distribution, for example, ``myprefix/``. If you want to enable logging, but you don't want to specify a prefix, you still must include an empty ``Prefix`` element in the ``Logging`` element.
+
+## ManagedCertificateRequest
+### Properties
+* **CertificateTransparencyLoggingPreference**: string: You can opt out of certificate transparency logging by specifying the ``disabled`` option. Opt in by specifying ``enabled``. For more information, see [Certificate Transparency Logging](https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-transparency) in the *User Guide*.
+* **PrimaryDomainName**: string: The primary domain name associated with the CloudFront managed ACM certificate.
+* **ValidationTokenHost**: string: Specify how the HTTP validation token will be served when requesting the CloudFront managed ACM certificate.
+  +  For ``cloudfront``, CloudFront will automatically serve the validation token. Choose this mode if you can point the domain's DNS to CloudFront immediately.
+  +  For ``self-hosted``, you serve the validation token from your existing infrastructure. Choose this mode when you need to maintain current traffic flow while your certificate is being issued. You can place the validation token at the well-known path on your existing web server, wait for ACM to validate and issue the certificate, and then update your DNS to point to CloudFront.
 
 ## Origin
 ### Properties
@@ -654,7 +910,11 @@
  For more information, see [Origin Path](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginPath) in the *Amazon CloudFront Developer Guide*.
 * **OriginShield**: [OriginShield](#originshield): CloudFront Origin Shield. Using Origin Shield can help reduce the load on your origin.
  For more information, see [Using Origin Shield](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html) in the *Amazon CloudFront Developer Guide*.
+* **ResponseCompletionTimeout**: int: The time (in seconds) that a request from CloudFront to the origin can stay open and wait for a response. If the complete response isn't received from the origin by this time, CloudFront ends the connection.
+ The value for ``ResponseCompletionTimeout`` must be equal to or greater than the value for ``OriginReadTimeout``. If you don't set a value for ``ResponseCompletionTimeout``, CloudFront doesn't enforce a maximum value.
+ For more information, see [Response completion timeout](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistValuesOrigin.html#response-completion-timeout) in the *Amazon CloudFront Developer Guide*.
 * **S3OriginConfig**: [S3OriginConfig](#s3originconfig): Use this type to specify an origin that is an Amazon S3 bucket that is not configured with static website hosting. To specify any other type of origin, including an Amazon S3 bucket that is configured with static website hosting, use the ``CustomOriginConfig`` type instead.
+* **VpcOriginConfig**: [VpcOriginConfig](#vpcoriginconfig): The VPC origin configuration.
 
 ## OriginAccessControlConfig
 ### Properties
@@ -663,9 +923,9 @@
 * **OriginAccessControlOriginType**: string (Required): The type of origin that this origin access control is for.
 * **SigningBehavior**: string (Required): Specifies which requests CloudFront signs (adds authentication information to). Specify ``always`` for the most common use case. For more information, see [origin access control advanced settings](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-advanced-settings) in the *Amazon CloudFront Developer Guide*.
  This field can have one of the following values:
-  +   ``always`` ? CloudFront signs all origin requests, overwriting the ``Authorization`` header from the viewer request if one exists.
-  +   ``never`` ? CloudFront doesn't sign any origin requests. This value turns off origin access control for all origins in all distributions that use this origin access control.
-  +   ``no-override`` ? If the viewer request doesn't contain the ``Authorization`` header, then CloudFront signs the origin request. If the viewer request contains the ``Authorization`` header, then CloudFront doesn't sign the origin request and instead passes along the ``Authorization`` header from the viewer request. *WARNING: To pass along the Authorization header from the viewer request, you must add the Authorization header to a cache policy for all cache behaviors that use origins associated with this origin access control.*
+  +  ``always`` ? CloudFront signs all origin requests, overwriting the ``Authorization`` header from the viewer request if one exists.
+  +  ``never`` ? CloudFront doesn't sign any origin requests. This value turns off origin access control for all origins in all distributions that use this origin access control.
+  +  ``no-override`` ? If the viewer request doesn't contain the ``Authorization`` header, then CloudFront signs the origin request. If the viewer request contains the ``Authorization`` header, then CloudFront doesn't sign the origin request and instead passes along the ``Authorization`` header from the viewer request. *WARNING: To pass along the Authorization header from the viewer request, you must add the Authorization header to a cache policy for all cache behaviors that use origins associated with this origin access control.*
 * **SigningProtocol**: string (Required): The signing protocol of the origin access control, which determines how CloudFront signs (authenticates) requests. The only valid value is ``sigv4``.
 
 ## OriginCustomHeader
@@ -698,6 +958,10 @@
 * **Items**: [OriginGroup](#origingroup)[]: The items (origin groups) in a distribution.
 * **Quantity**: int (Required): The number of origin groups.
 
+## OriginMtlsConfig
+### Properties
+* **ClientCertificateArn**: string (Required): The Amazon Resource Name (ARN) of the client certificate stored in AWS Certificate Manager (ACM) that CloudFront uses to authenticate with your origin using Mutual TLS.
+
 ## OriginRequestPolicyConfig
 ### Properties
 * **Comment**: string: A comment to describe the origin request policy. The comment cannot be longer than 128 characters.
@@ -714,11 +978,21 @@
  Specify the AWS-Region that has the lowest latency to your origin. To specify a region, use the region code, not the region name. For example, specify the US East (Ohio) region as ``us-east-2``.
  When you enable CloudFront Origin Shield, you must specify the AWS-Region for Origin Shield. For the list of AWS-Regions that you can specify, and for help choosing the best Region for your origin, see [Choosing the for Origin Shield](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html#choose-origin-shield-region) in the *Amazon CloudFront Developer Guide*.
 
+## Parameter
+### Properties
+* **Name**: string: The parameter name.
+* **Value**: string: The parameter value.
+
+## ParameterDefinition
+### Properties
+* **Definition**: [Distribution_Definition](#distributiondefinition) (Required): The value that you assigned to the parameter.
+* **Name**: string (Required): The name of the parameter.
+
 ## ParametersInCacheKeyAndForwardedToOrigin
 ### Properties
 * **CookiesConfig**: [CookiesConfig](#cookiesconfig) (Required): An object that determines whether any cookies in viewer requests (and if so, which cookies) are included in the cache key and in requests that CloudFront sends to the origin.
 * **EnableAcceptEncodingBrotli**: bool: A flag that can affect whether the ``Accept-Encoding`` HTTP header is included in the cache key and included in requests that CloudFront sends to the origin.
- This field is related to the ``EnableAcceptEncodingGzip`` field. If one or both of these fields is ``true`` *and* the viewer request includes the ``Accept-Encoding`` header, then CloudFront does the following:
+ This field is related to the ``EnableAcceptEncodingGzip`` field. If one or both of these fields is ``true``*and* the viewer request includes the ``Accept-Encoding`` header, then CloudFront does the following:
   +  Normalizes the value of the viewer's ``Accept-Encoding`` header
   +  Includes the normalized header in the cache key
   +  Includes the normalized header in the request to the origin, if a request is necessary
@@ -727,7 +1001,7 @@
  If you set this value to ``true``, and this cache behavior also has an origin request policy attached, do not include the ``Accept-Encoding`` header in the origin request policy. CloudFront always includes the ``Accept-Encoding`` header in origin requests when the value of this field is ``true``, so including this header in an origin request policy has no effect.
  If both of these fields are ``false``, then CloudFront treats the ``Accept-Encoding`` header the same as any other HTTP header in the viewer request. By default, it's not included in the cache key and it's not included in origin requests. In this case, you can manually add ``Accept-Encoding`` to the headers whitelist like any other HTTP header.
 * **EnableAcceptEncodingGzip**: bool (Required): A flag that can affect whether the ``Accept-Encoding`` HTTP header is included in the cache key and included in requests that CloudFront sends to the origin.
- This field is related to the ``EnableAcceptEncodingBrotli`` field. If one or both of these fields is ``true`` *and* the viewer request includes the ``Accept-Encoding`` header, then CloudFront does the following:
+ This field is related to the ``EnableAcceptEncodingBrotli`` field. If one or both of these fields is ``true``*and* the viewer request includes the ``Accept-Encoding`` header, then CloudFront does the following:
   +  Normalizes the value of the viewer's ``Accept-Encoding`` header
   +  Includes the normalized header in the cache key
   +  Includes the normalized header in the request to the origin, if a request is necessary
@@ -748,19 +1022,19 @@
 ## QueryStringsConfig
 ### Properties
 * **QueryStringBehavior**: string (Required): Determines whether any URL query strings in viewer requests are included in the cache key and in requests that CloudFront sends to the origin. Valid values are:
-  +   ``none`` ? No query strings in viewer requests are included in the cache key or in requests that CloudFront sends to the origin. Even when this field is set to ``none``, any query strings that are listed in an ``OriginRequestPolicy`` *are* included in origin requests.
-  +   ``whitelist`` ? Only the query strings in viewer requests that are listed in the ``QueryStringNames`` type are included in the cache key and in requests that CloudFront sends to the origin.
-  +   ``allExcept`` ? All query strings in viewer requests are included in the cache key and in requests that CloudFront sends to the origin, *except* those that are listed in the ``QueryStringNames`` type, which are not included.
-  +   ``all`` ? All query strings in viewer requests are included in the cache key and in requests that CloudFront sends to the origin.
+  +  ``none`` ? No query strings in viewer requests are included in the cache key or in requests that CloudFront sends to the origin. Even when this field is set to ``none``, any query strings that are listed in an ``OriginRequestPolicy``*are* included in origin requests.
+  +  ``whitelist`` ? Only the query strings in viewer requests that are listed in the ``QueryStringNames`` type are included in the cache key and in requests that CloudFront sends to the origin.
+  +  ``allExcept`` ? All query strings in viewer requests are included in the cache key and in requests that CloudFront sends to the origin, *except* those that are listed in the ``QueryStringNames`` type, which are not included.
+  +  ``all`` ? All query strings in viewer requests are included in the cache key and in requests that CloudFront sends to the origin.
 * **QueryStrings**: string[]: Contains a list of query string names.
 
 ## QueryStringsConfig
 ### Properties
 * **QueryStringBehavior**: string (Required): Determines whether any URL query strings in viewer requests are included in requests that CloudFront sends to the origin. Valid values are:
-  +   ``none`` ? No query strings in viewer requests are included in requests that CloudFront sends to the origin. Even when this field is set to ``none``, any query strings that are listed in a ``CachePolicy`` *are* included in origin requests.
-  +   ``whitelist`` ? Only the query strings in viewer requests that are listed in the ``QueryStringNames`` type are included in requests that CloudFront sends to the origin.
-  +   ``all`` ? All query strings in viewer requests are included in requests that CloudFront sends to the origin.
-  +   ``allExcept`` ? All query strings in viewer requests are included in requests that CloudFront sends to the origin, *except* for those listed in the ``QueryStringNames`` type, which are not included.
+  +  ``none`` ? No query strings in viewer requests are included in requests that CloudFront sends to the origin. Even when this field is set to ``none``, any query strings that are listed in a ``CachePolicy``*are* included in origin requests.
+  +  ``whitelist`` ? Only the query strings in viewer requests that are listed in the ``QueryStringNames`` type are included in requests that CloudFront sends to the origin.
+  +  ``all`` ? All query strings in viewer requests are included in requests that CloudFront sends to the origin.
+  +  ``allExcept`` ? All query strings in viewer requests are included in requests that CloudFront sends to the origin, *except* for those listed in the ``QueryStringNames`` type, which are not included.
 * **QueryStrings**: string[]: Contains a list of query string names.
 
 ## ReferrerPolicy
@@ -803,6 +1077,8 @@
  To delete the origin access identity from an existing distribution, update the distribution configuration and include an empty ``OriginAccessIdentity`` element.
  To replace the origin access identity, update the distribution configuration and specify the new origin access identity.
  For more information about the origin access identity, see [Serving Private Content through CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html) in the *Amazon CloudFront Developer Guide*.
+* **OriginReadTimeout**: int: Specifies how long, in seconds, CloudFront waits for a response from the origin. This is also known as the *origin response timeout*. The minimum timeout is 1 second, the maximum is 120 seconds, and the default (if you don't specify otherwise) is 30 seconds.
+ For more information, see [Response timeout](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistValuesOrigin.html#DownloadDistValuesOriginResponseTimeout) in the *Amazon CloudFront Developer Guide*.
 
 ## SecurityHeadersConfig
 ### Properties
@@ -855,19 +1131,80 @@
 ### Properties
 * **Key**: string (Required): A string that contains ``Tag`` key.
  The string length should be between 1 and 128 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+* **Value**: string: A string that contains an optional ``Tag`` value.
+ The string length should be between 0 and 256 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+
+## Tag
+### Properties
+* **Key**: string (Required): A string that contains ``Tag`` key.
+ The string length should be between 1 and 128 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
 * **Value**: string (Required): A string that contains an optional ``Tag`` value.
  The string length should be between 0 and 256 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
 
 ## Tag
 ### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Key**: string (Required): A string that contains ``Tag`` key.
+ The string length should be between 1 and 128 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+* **Value**: string (Required): A string that contains an optional ``Tag`` value.
+ The string length should be between 0 and 256 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+
+## Tag
+### Properties
+* **Key**: string (Required): A string that contains ``Tag`` key.
+ The string length should be between 1 and 128 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+* **Value**: string (Required): A string that contains an optional ``Tag`` value.
+ The string length should be between 0 and 256 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+
+## Tag
+### Properties
+* **Key**: string (Required): A string that contains ``Tag`` key.
+ The string length should be between 1 and 128 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+* **Value**: string (Required): A string that contains an optional ``Tag`` value.
+ The string length should be between 0 and 256 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+
+## Tag
+### Properties
+* **Key**: string (Required): A string that contains ``Tag`` key.
+ The string length should be between 1 and 128 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+* **Value**: string (Required): A string that contains an optional ``Tag`` value.
+ The string length should be between 0 and 256 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+
+## Tag
+### Properties
+* **Key**: string (Required): A string that contains ``Tag`` key.
+ The string length should be between 1 and 128 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+* **Value**: string (Required): A string that contains an optional ``Tag`` value.
+ The string length should be between 0 and 256 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+
+## Tag
+### Properties
+* **Key**: string (Required): A string that contains ``Tag`` key.
+ The string length should be between 1 and 128 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+* **Value**: string (Required): A string that contains an optional ``Tag`` value.
+ The string length should be between 0 and 256 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+
+## Tag
+### Properties
+* **Key**: string (Required): A string that contains ``Tag`` key.
+ The string length should be between 1 and 128 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+* **Value**: string (Required): A string that contains an optional ``Tag`` value.
+ The string length should be between 0 and 256 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+
+## Tags
+### Properties
+* **Items**: [Tag](#tag)[]: A complex type that contains ``Tag`` elements.
 
 ## TrafficConfig
 ### Properties
 * **SingleHeaderConfig**: [SingleHeaderConfig](#singleheaderconfig): Determines which HTTP requests are sent to the staging distribution.
 * **SingleWeightConfig**: [SingleWeightConfig](#singleweightconfig): Contains the percentage of traffic to send to the staging distribution.
 * **Type**: string (Required): The type of traffic configuration.
+
+## TrustStoreConfig
+### Properties
+* **AdvertiseTrustStoreCaNames**: bool: The configuration to use to advertise trust store CA names.
+* **IgnoreCertificateExpiry**: bool: The configuration to use to ignore certificate expiration.
+* **TrustStoreId**: string (Required): The trust store ID.
 
 ## ViewerCertificate
 ### Properties
@@ -876,10 +1213,11 @@
  If you specify an ACM certificate ARN, you must also specify values for ``MinimumProtocolVersion`` and ``SSLSupportMethod``. (In CloudFormation, the field name is ``SslSupportMethod``. Note the different capitalization.)
 * **CloudFrontDefaultCertificate**: bool: If the distribution uses the CloudFront domain name such as ``d111111abcdef8.cloudfront.net``, set this field to ``true``.
  If the distribution uses ``Aliases`` (alternate domain names or CNAMEs), omit this field and specify values for the following fields:
-  +   ``AcmCertificateArn`` or ``IamCertificateId`` (specify a value for one, not both) 
+  +  ``AcmCertificateArn`` or ``IamCertificateId`` (specify a value for one, not both) 
   +   ``MinimumProtocolVersion`` 
   +   ``SslSupportMethod``
-* **IamCertificateId**: string: In CloudFormation, this field name is ``IamCertificateId``. Note the different capitalization.
+* **IamCertificateId**: string: This field only supports standard distributions. You can't specify this field for multi-tenant distributions. For more information, see [Unsupported features for SaaS Manager for Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-config-options.html#unsupported-saas) in the *Amazon CloudFront Developer Guide*.
+   In CloudFormation, this field name is ``IamCertificateId``. Note the different capitalization.
   If the distribution uses ``Aliases`` (alternate domain names or CNAMEs) and the SSL/TLS certificate is stored in [(IAM)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html), provide the ID of the IAM certificate.
  If you specify an IAM certificate ID, you must also specify values for ``MinimumProtocolVersion`` and ``SSLSupportMethod``. (In CloudFormation, the field name is ``SslSupportMethod``. Note the different capitalization.)
 * **MinimumProtocolVersion**: string: If the distribution uses ``Aliases`` (alternate domain names or CNAMEs), specify the security policy that you want CloudFront to use for HTTPS connections with viewers. The security policy determines two settings:
@@ -892,20 +1230,41 @@
  If the distribution uses the CloudFront domain name such as ``d111111abcdef8.cloudfront.net`` (you set ``CloudFrontDefaultCertificate`` to ``true``), CloudFront automatically sets the security policy to ``TLSv1`` regardless of the value that you set here.
 * **SslSupportMethod**: string: In CloudFormation, this field name is ``SslSupportMethod``. Note the different capitalization.
   If the distribution uses ``Aliases`` (alternate domain names or CNAMEs), specify which viewers the distribution accepts HTTPS connections from.
-  +   ``sni-only`` ? The distribution accepts HTTPS connections from only viewers that support [server name indication (SNI)](https://docs.aws.amazon.com/https://en.wikipedia.org/wiki/Server_Name_Indication). This is recommended. Most browsers and clients support SNI.
-  +   ``vip`` ? The distribution accepts HTTPS connections from all viewers including those that don't support SNI. This is not recommended, and results in additional monthly charges from CloudFront.
-  +   ``static-ip`` - Do not specify this value unless your distribution has been enabled for this feature by the CloudFront team. If you have a use case that requires static IP addresses for a distribution, contact CloudFront through the [Center](https://docs.aws.amazon.com/support/home).
+  +  ``sni-only`` ? The distribution accepts HTTPS connections from only viewers that support [server name indication (SNI)](https://docs.aws.amazon.com/https://en.wikipedia.org/wiki/Server_Name_Indication). This is recommended. Most browsers and clients support SNI.
+  +  ``vip`` ? The distribution accepts HTTPS connections from all viewers including those that don't support SNI. This is not recommended, and results in additional monthly charges from CloudFront.
+  +  ``static-ip`` - Do not specify this value unless your distribution has been enabled for this feature by the CloudFront team. If you have a use case that requires static IP addresses for a distribution, contact CloudFront through the [Center](https://docs.aws.amazon.com/support/home).
   
  If the distribution uses the CloudFront domain name such as ``d111111abcdef8.cloudfront.net``, don't set a value for this field.
 
+## ViewerMtlsConfig
+### Properties
+* **Mode**: string: The viewer mTLS mode.
+* **TrustStoreConfig**: [TrustStoreConfig](#truststoreconfig): The trust store configuration associated with the viewer mTLS configuration.
+
+## VpcOriginConfig
+### Properties
+* **OriginKeepaliveTimeout**: int: Specifies how long, in seconds, CloudFront persists its connection to the origin. The minimum timeout is 1 second, the maximum is 300 seconds, and the default (if you don't specify otherwise) is 5 seconds.
+ For more information, see [Keep-alive timeout (custom origins only)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistValuesOrigin.html#DownloadDistValuesOriginKeepaliveTimeout) in the *Amazon CloudFront Developer Guide*.
+* **OriginReadTimeout**: int: Specifies how long, in seconds, CloudFront waits for a response from the origin. This is also known as the *origin response timeout*. The minimum timeout is 1 second, the maximum is 120 seconds, and the default (if you don't specify otherwise) is 30 seconds.
+ For more information, see [Response timeout](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistValuesOrigin.html#DownloadDistValuesOriginResponseTimeout) in the *Amazon CloudFront Developer Guide*.
+* **OwnerAccountId**: string: The account ID of the AWS-account that owns the VPC origin.
+* **VpcOriginId**: string (Required): The VPC origin ID.
+
 ## VpcOriginEndpointConfig
 ### Properties
-* **Arn**: string (Required)
-* **HTTPPort**: int
-* **HTTPSPort**: int
-* **Name**: string (Required)
-* **OriginProtocolPolicy**: string
-* **OriginSSLProtocols**: string[]
+* **Arn**: string (Required): The ARN of the CloudFront VPC origin endpoint configuration.
+* **HTTPPort**: int: The HTTP port for the CloudFront VPC origin endpoint configuration. The default value is ``80``.
+* **HTTPSPort**: int: The HTTPS port of the CloudFront VPC origin endpoint configuration. The default value is ``443``.
+* **IpAddressType**: string
+* **Name**: string (Required): The name of the CloudFront VPC origin endpoint configuration.
+* **OriginProtocolPolicy**: string: The origin protocol policy for the CloudFront VPC origin endpoint configuration.
+* **OriginSSLProtocols**: string[]: Specifies the minimum SSL/TLS protocol that CloudFront uses when connecting to your origin over HTTPS. Valid values include ``SSLv3``, ``TLSv1``, ``TLSv1.1``, and ``TLSv1.2``.
+ For more information, see [Minimum Origin SSL Protocol](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistValuesOrigin.html#DownloadDistValuesOriginSSLProtocols) in the *Amazon CloudFront Developer Guide*.
+
+## WebAclCustomization
+### Properties
+* **Action**: string: The action for the WAF web ACL customization. You can specify ``override`` to specify a separate WAF web ACL for the distribution tenant. If you specify ``disable``, the distribution tenant won't have WAF web ACL protections and won't inherit from the multi-tenant distribution.
+* **Arn**: string: The Amazon Resource Name (ARN) of the WAF web ACL.
 
 ## XSSProtection
 ### Properties

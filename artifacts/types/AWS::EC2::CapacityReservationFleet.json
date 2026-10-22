@@ -1,13 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-CapacityReservationFleet",
   "type": "AWS::EC2::CapacityReservationFleet",
-  "time": "2024-12-26T19:06:24.282Z",
+  "time": "2026-10-19T18:40:53.445Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/InstanceTypeSpecifications",
       "/properties/AllocationStrategy",
-      "/properties/TagSpecifications",
       "/properties/EndDate",
       "/properties/Tenancy",
       "/properties/InstanceMatchCriteria"
@@ -129,6 +128,7 @@
           "ec2:DescribeCapacityReservations",
           "ec2:CancelCapacityReservation",
           "ec2:DescribeInstances",
+          "ec2:CreateTags",
           "ec2:DeleteTags"
         ]
       }
@@ -190,7 +190,21 @@
     "readOnlyProperties": [
       "/properties/CapacityReservationFleetId"
     ],
-    "taggable": true,
-    "typeName": "AWS::EC2::CapacityReservationFleet"
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/TagSpecifications/*/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::CapacityReservationFleet",
+    "writeOnlyProperties": [
+      "/properties/RemoveEndDate",
+      "/properties/NoRemoveEndDate"
+    ]
   }
 }

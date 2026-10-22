@@ -1,0 +1,154 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-StorageGateway-TapePool",
+  "type": "AWS::StorageGateway::TapePool",
+  "time": "2026-10-21T21:13:04.131Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/PoolId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/PoolName",
+      "/properties/StorageClass",
+      "/properties/RetentionLockType",
+      "/properties/RetentionLockTimeInDays"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates a custom tape pool for archiving virtual tapes with optional retention lock.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "storagegateway:CreateTapePool",
+          "storagegateway:AddTagsToResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "storagegateway:DeleteTapePool",
+          "storagegateway:ListTapePools",
+          "storagegateway:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "storagegateway:ListTapePools"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "storagegateway:ListTapePools",
+          "storagegateway:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "storagegateway:ListTapePools",
+          "storagegateway:AddTagsToResource",
+          "storagegateway:RemoveTagsFromResource",
+          "storagegateway:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/PoolARN"
+    ],
+    "properties": {
+      "PoolARN": {
+        "description": "The Amazon Resource Name (ARN) of the custom tape pool.",
+        "maxLength": 500,
+        "minLength": 50,
+        "type": "string"
+      },
+      "PoolId": {
+        "description": "The unique identifier of the custom tape pool, extracted from the ARN.",
+        "type": "string"
+      },
+      "PoolName": {
+        "description": "The name of the custom tape pool.",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^[ -\\.0-\\[\\]-~]*[!-\\.0-\\[\\]-~][ -\\.0-\\[\\]-~]*$",
+        "type": "string"
+      },
+      "RetentionLockTimeInDays": {
+        "description": "Tape retention lock time in days (up to 36,500 days / 100 years).",
+        "maximum": 36500,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "RetentionLockType": {
+        "description": "Tape retention lock type. Governance mode allows authorized removal; compliance mode prevents all removal.",
+        "enum": [
+          "COMPLIANCE",
+          "GOVERNANCE",
+          "NONE"
+        ],
+        "type": "string"
+      },
+      "StorageClass": {
+        "description": "The storage class associated with the custom pool (S3 Glacier or S3 Glacier Deep Archive).",
+        "enum": [
+          "DEEP_ARCHIVE",
+          "GLACIER"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of up to 50 tags for the tape pool.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/PoolARN",
+      "/properties/PoolId"
+    ],
+    "required": [
+      "PoolName",
+      "StorageClass"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "storagegateway:AddTagsToResource",
+        "storagegateway:RemoveTagsFromResource",
+        "storagegateway:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::StorageGateway::TapePool"
+  }
+}

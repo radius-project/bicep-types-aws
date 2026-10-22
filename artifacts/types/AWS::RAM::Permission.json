@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RAM-Permission",
   "type": "AWS::RAM::Permission",
-  "time": "2024-12-26T15:09:37.548Z",
+  "time": "2026-10-20T20:30:28.067Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -10,6 +10,34 @@
       "/properties/PolicyTemplate"
     ],
     "definitions": {
+      "PermissionTemplateParameterDeclaration": {
+        "additionalProperties": false,
+        "description": "A template parameter declared by a customer managed permission's policy template. The name is used as the placeholder in the policy template using the syntax @{parameterName}.",
+        "properties": {
+          "Description": {
+            "description": "A description of the template parameter that helps consumers understand what value to provide.",
+            "type": "string"
+          },
+          "Name": {
+            "description": "The name of the template parameter.",
+            "type": "string"
+          },
+          "Type": {
+            "description": "The type of the template parameter. STRING substitutes a single string value directly into the template; STRING_LIST expands one or more string values to an array in the rendered policy.",
+            "enum": [
+              "STRING",
+              "STRING_LIST"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "Type",
+          "Description"
+        ],
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "properties": {
@@ -124,8 +152,13 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ram",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ram:TagResource",
+        "ram:UntagResource"
+      ],
       "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
       "tagUpdatable": true,
       "taggable": true
     },

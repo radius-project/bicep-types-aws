@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DMS-DataMigration",
   "type": "AWS::DMS::DataMigration",
-  "time": "2025-01-23T04:20:13.188Z",
+  "time": "2026-10-21T20:29:13.323Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -14,7 +14,7 @@
         "additionalProperties": false,
         "properties": {
           "CloudwatchLogsEnabled": {
-            "description": "The property specifies whether to enable the Cloudwatch log.",
+            "description": "The property specifies whether to enable the CloudWatch log.",
             "type": "boolean"
           },
           "NumberOfJobs": {
@@ -80,6 +80,9 @@
         "type": "object"
       }
     },
+    "deprecatedProperties": [
+      "/properties/DataMigrationIdentifier"
+    ],
     "description": "Resource schema for AWS::DMS::DataMigration.",
     "handlers": {
       "create": {
@@ -136,7 +139,7 @@
         "type": "string"
       },
       "DataMigrationIdentifier": {
-        "description": "The property describes an ARN of the data migration.",
+        "description": "[DEPRECATED] This property is unused and will be ignored. Identity is managed via the resource ARN (primaryIdentifier) and Name (additionalIdentifier).",
         "maxLength": 300,
         "minLength": 1,
         "type": "string"
@@ -202,7 +205,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "dms:AddTagsToResource",
         "dms:RemoveTagsFromResource",
