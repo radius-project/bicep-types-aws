@@ -297,3 +297,183 @@ func TestLoadDir_MissingSchema(t *testing.T) {
 		t.Errorf("got error %v, want an error naming empty.json", err)
 	}
 }
+
+func TestCompare_RequiredUnderReadOnlyParentIsNotBreaking(t *testing.T) {
+	changes := compareOne(t,
+		`{
+			"properties": {"Config": {"type": "object", "properties": {"Name": {"type": "string"}}}},
+			"readOnlyProperties": ["/properties/Config"]
+		}`,
+		`{
+			"properties": {"Config": {"type": "object", "properties": {"Name": {"type": "string"}}, "required": ["Name"]}},
+			"readOnlyProperties": ["/properties/Config"]
+		}`,
+	)
+	assertChanges(t, changes)
+}
+
+func TestCompare_RecursiveReferenceRedirected(t *testing.T) {
+	changes := compareOne(t,
+		`{
+			"properties": {"Root": {"$ref": "#/definitions/Node"}},
+			"definitions": {"Node": {"type": "object", "properties": {"Name": {"type": "string"}, "Children": {"type": "array", "items": {"$ref": "#/definitions/Node"}}}}}
+		}`,
+		`{
+			"properties": {"Root": {"$ref": "#/definitions/Node"}},
+			"definitions": {
+				"Node": {"type": "object", "properties": {"Name": {"type": "string"}, "Children": {"type": "array", "items": {"$ref": "#/definitions/Leaf"}}}},
+				"Leaf": {"type": "object", "properties": {"Name": {"type": "integer"}}}
+			}
+		}`,
+	)
+	assertChanges(t, changes,
+		Change{Kind: PropertyRemoved, Property: "Root.Children[].Children"},
+		Change{Kind: PropertyType, Property: "Root.Children[].Name", OldType: "string", NewType: "integer"},
+	)
+}
+
+func TestCompare_AdditionalProperties(t *testing.T) {
+	tests := []struct {
+		name string
+		old  string
+		new  string
+		want []Change
+	}{
+		{
+			name: "any to typed",
+			old:  `true`,
+			new:  `{"type": "string"}`,
+			want: []Change{{Kind: PropertyType, Property: "Labels.*", OldType: "any", NewType: "string"}},
+		},
+		{
+			name: "typed to disallowed",
+			old:  `{"type": "string"}`,
+			new:  `false`,
+			want: []Change{{Kind: PropertyRemoved, Property: "Labels.*"}},
+		},
+		{
+			name: "any to missing",
+			old:  `true`,
+			new:  ``,
+			want: []Change{{Kind: PropertyRemoved, Property: "Labels.*"}},
+		},
+		{name: "missing to any", old: ``, new: `true`},
+		{name: "disallowed to typed", old: `false`, new: `{"type": "string"}`},
+		{name: "typed to any", old: `{"type": "string"}`, new: `true`},
+	}
+
+	schema := func(additional string) string {
+		if additional == "" {
+			return `{"properties": {"Labels": {"type": "object"}}}`
+		}
+		return `{"properties": {"Labels": {"type": "object", "additionalProperties": ` + additional + `}}}`
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			assertChanges(t, compareOne(t, schema(tt.old), schema(tt.new)), tt.want...)
+		})
+	}
+}
+
+func TestCompare_RootAdditionalPropertiesDisallowed(t *testing.T) {
+	changes := compareOne(t,
+		`{"properties": {}, "additionalProperties": true}`,
+		`{"properties": {}, "additionalProperties": false}`,
+	)
+	assertChanges(t, changes, Change{Kind: PropertyRemoved, Property: "*"})
+}
+
+func TestCompare_ArrayItemsNarrowed(t *testing.T) {
+	untyped := `{"properties": {"Values": {"type": "array"}}}`
+	typed := `{"properties": {"Values": {"type": "array", "items": {"type": "string"}}}}`
+
+	assertChanges(t, compareOne(t, untyped, typed),
+		Change{Kind: PropertyType, Property: "Values[]", OldType: "any", NewType: "string"})
+	assertChanges(t, compareOne(t, typed, untyped))
+}
+
+func TestCompare_OneOfBranchPropertyReplacesDefinitionProperty(t *testing.T) {
+	schema := func(branchType string) string {
+		return `{
+			"properties": {"Config": {"$ref": "#/definitions/Config"}},
+			"definitions": {"Config": {
+				"type": "object",
+				"properties": {"Value": {"type": ["string", "integer"]}},
+				"oneOf": [{"properties": {"Value": {"type": "` + branchType + `"}}}]
+			}}
+		}`
+	}
+	assertChanges(t, compareOne(t, schema("string"), schema("integer")),
+		Change{Kind: PropertyType, Property: "Config.Value", OldType: "string", NewType: "integer"})
+}
+
+func TestCompare_OneOfMergeStopsAtRequiredBranch(t *testing.T) {
+	changes := compareOne(t,
+		`{
+			"properties": {"Config": {"$ref": "#/definitions/Config"}},
+			"definitions": {"Config": {
+				"type": "object",
+				"properties": {"A": {"type": "string"}},
+				"oneOf": [{"required": ["A"]}, {"properties": {"B": {"type": "string"}}}]
+			}}
+		}`,
+		`{
+			"properties": {"Config": {"$ref": "#/definitions/Config"}},
+			"definitions": {"Config": {
+				"type": "object",
+				"properties": {"A": {"type": "string"}},
+				"oneOf": [{"required": ["A"]}]
+			}}
+		}`,
+	)
+	assertChanges(t, changes)
+}
+
+func TestCompare_OneOfRequiredBranchesIgnoredAfterMerge(t *testing.T) {
+	schema := func(required string) string {
+		return `{
+			"properties": {"Config": {"$ref": "#/definitions/Config"}},
+			"definitions": {"Config": {
+				"type": "object",
+				"required": [` + required + `],
+				"oneOf": [{"properties": {"A": {"type": "string"}}}, {"required": ["A"]}]
+			}}
+		}`
+	}
+	assertChanges(t, compareOne(t, schema(``), schema(`"A"`)),
+		Change{Kind: PropertyRequired, Property: "Config.A"})
+}
+
+func TestCompare_RootOneOfPropertiesAreNotMerged(t *testing.T) {
+	changes := compareOne(t,
+		`{"properties": {"Name": {"type": "string"}}, "oneOf": [{"properties": {"Extra": {"type": "string"}}}]}`,
+		`{"properties": {"Name": {"type": "string"}}}`,
+	)
+	assertChanges(t, changes)
+}
+
+func TestCompare_InlineOneOfIsIgnored(t *testing.T) {
+	schema := func(required string) string {
+		return `{"properties": {"Config": {
+			"type": "object",
+			"properties": {"A": {"type": "string"}, "B": {"type": "string"}},
+			"required": [` + required + `],
+			"oneOf": [{"required": ["A"]}, {"required": ["B"]}]
+		}}}`
+	}
+	assertChanges(t, compareOne(t, schema(``), schema(`"B"`)),
+		Change{Kind: PropertyRequired, Property: "Config.B"})
+}
+
+func TestCompare_DoesNotChangeInput(t *testing.T) {
+	schema := parse(t, `{
+		"properties": {"Config": {"$ref": "#/definitions/Config"}},
+		"definitions": {"Config": {"type": "object", "properties": {"A": {"type": "string"}}, "oneOf": [{"properties": {"B": {"type": "string"}}}]}}
+	}`)
+	Compare(map[string]*Schema{"AWS::Test::Thing": schema}, map[string]*Schema{"AWS::Test::Thing": schema})
+
+	if len(schema.Definitions["Config"].Properties) != 1 {
+		t.Errorf("Compare changed the definition properties: %v", schema.Definitions["Config"].Properties)
+	}
+}

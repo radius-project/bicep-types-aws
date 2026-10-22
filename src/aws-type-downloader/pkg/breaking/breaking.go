@@ -36,15 +36,47 @@ type Change struct {
 // Schema is the subset of a CloudFormation resource provider schema used by
 // the comparison.
 type Schema struct {
-	Type                 any                `json:"type,omitempty"`
-	Ref                  string             `json:"$ref,omitempty"`
-	Properties           map[string]*Schema `json:"properties,omitempty"`
-	Required             []string           `json:"required,omitempty"`
-	Items                *Schema            `json:"items,omitempty"`
-	AdditionalProperties any                `json:"additionalProperties,omitempty"`
-	OneOf                []*Schema          `json:"oneOf,omitempty"`
-	Definitions          map[string]*Schema `json:"definitions,omitempty"`
-	ReadOnlyProperties   []string           `json:"readOnlyProperties,omitempty"`
+	Type                 any                  `json:"type"`
+	Ref                  string               `json:"$ref"`
+	Properties           map[string]*Schema   `json:"properties"`
+	Required             []string             `json:"required"`
+	Items                *Schema              `json:"items"`
+	AdditionalProperties AdditionalProperties `json:"additionalProperties"`
+	OneOf                []*Schema            `json:"oneOf"`
+	Definitions          map[string]*Schema   `json:"definitions"`
+	ReadOnlyProperties   []string             `json:"readOnlyProperties"`
+
+	// requiredBranches holds the required lists of the oneOf branches that the
+	// type generator uses to decide which properties are required.
+	requiredBranches [][]string
+}
+
+// AdditionalProperties is the additionalProperties keyword of a schema. The
+// type generator treats true as any value, a schema as typed values, and false
+// or a missing keyword as no additional properties.
+type AdditionalProperties struct {
+	Any    bool
+	Schema *Schema
+	set    bool
+}
+
+func (a *AdditionalProperties) UnmarshalJSON(b []byte) error {
+	var allowed bool
+	if err := json.Unmarshal(b, &allowed); err == nil {
+		*a = AdditionalProperties{Any: allowed, set: true}
+		return nil
+	}
+
+	schema := &Schema{}
+	if err := json.Unmarshal(b, schema); err != nil {
+		return err
+	}
+	*a = AdditionalProperties{Schema: schema, set: true}
+	return nil
+}
+
+func (a AdditionalProperties) allowed() bool {
+	return a.Any || a.Schema != nil
 }
 
 type record struct {
@@ -88,7 +120,9 @@ func LoadDir(dir string) (map[string]*Schema, error) {
 }
 
 // Compare returns the changes between oldSchemas and newSchemas that can break
-// existing templates, sorted by resource type, kind, and property.
+// existing templates, sorted by resource type, kind, and property. It follows
+// the rules the type generator uses to build Bicep types from the schemas, so
+// the changes match what templates see.
 func Compare(oldSchemas, newSchemas map[string]*Schema) []Change {
 	changes := []Change{}
 	for typeName, oldSchema := range oldSchemas {
@@ -100,11 +134,13 @@ func Compare(oldSchemas, newSchemas map[string]*Schema) []Change {
 
 		c := comparer{
 			resourceType: typeName,
-			oldRoot:      oldSchema,
-			newRoot:      newSchema,
+			oldRoot:      normalize(oldSchema),
+			newRoot:      normalize(newSchema),
 			readOnly:     toSet(newSchema.ReadOnlyProperties),
+			seen:         map[schemaPair]bool{},
 		}
-		c.compareObject(oldSchema, newSchema, "", "/properties", map[string]bool{}, map[string]bool{})
+		c.compareObject(c.oldRoot, c.newRoot, "", "/properties")
+		c.compareAdditional(c.oldRoot, c.newRoot, "", "/properties")
 		changes = append(changes, c.changes...)
 	}
 
@@ -122,12 +158,81 @@ func Compare(oldSchemas, newSchemas map[string]*Schema) []Change {
 	return changes
 }
 
+// normalize returns a copy of a resource schema with oneOf handled the way the
+// type generator handles it. The schema passed in is not changed.
+func normalize(schema *Schema) *Schema {
+	root := *schema
+	root.requiredBranches = branchRequired(schema.OneOf)
+	root.Definitions = make(map[string]*Schema, len(schema.Definitions))
+	for name, definition := range schema.Definitions {
+		root.Definitions[name] = normalizeDefinition(definition)
+	}
+	return &root
+}
+
+// normalizeDefinition matches visitDefinitions in the type generator. The
+// properties of oneOf branches are merged into the definition, replacing
+// definition properties with the same name, until the first branch that lists
+// required properties. If no branch was merged before that one, the required
+// lists of the branches decide which properties are required.
+func normalizeDefinition(definition *Schema) *Schema {
+	if definition == nil {
+		return &Schema{}
+	}
+
+	result := *definition
+	merged := false
+	for _, branch := range definition.OneOf {
+		if branch == nil {
+			continue
+		}
+		if branch.Required != nil {
+			if !merged {
+				result.requiredBranches = branchRequired(definition.OneOf)
+			}
+			break
+		}
+		if branch.Properties != nil {
+			if !merged {
+				result.Properties = make(map[string]*Schema, len(definition.Properties))
+				for name, prop := range definition.Properties {
+					result.Properties[name] = prop
+				}
+				merged = true
+			}
+			for name, prop := range branch.Properties {
+				result.Properties[name] = prop
+			}
+		}
+	}
+	return &result
+}
+
+func branchRequired(branches []*Schema) [][]string {
+	var result [][]string
+	for _, branch := range branches {
+		if branch != nil && branch.Required != nil {
+			result = append(result, branch.Required)
+		}
+	}
+	return result
+}
+
+// schemaPair identifies an old and a new schema being compared, so the
+// comparison stops when a recursive definition brings it back to the same pair.
+type schemaPair struct {
+	old any
+	new any
+}
+
 type comparer struct {
 	resourceType string
 	oldRoot      *Schema
 	newRoot      *Schema
 	readOnly     map[string]bool
-	changes      []Change
+	// seen holds the schema pairs being compared on the current path.
+	seen    map[schemaPair]bool
+	changes []Change
 }
 
 func (c *comparer) add(change Change) {
@@ -135,37 +240,44 @@ func (c *comparer) add(change Change) {
 	c.changes = append(c.changes, change)
 }
 
+// isReadOnly reports whether the property at pointer, or any property that
+// contains it, is read-only. Templates cannot set read-only properties.
+func (c *comparer) isReadOnly(pointer string) bool {
+	for p := pointer; strings.Count(p, "/") >= 2; p = p[:strings.LastIndex(p, "/")] {
+		if c.readOnly[p] {
+			return true
+		}
+	}
+	return false
+}
+
 // compareObject compares the properties of two object schemas. path is the
 // dotted display path of the object, and pointer is its path in the form used
-// by readOnlyProperties, for example /properties/Foo/*/Bar. oldSeen and newSeen
-// hold the definitions already expanded on this path, so recursive definitions
-// stop instead of looping forever.
-func (c *comparer) compareObject(oldSchema, newSchema *Schema, path, pointer string, oldSeen, newSeen map[string]bool) {
-	oldProps := properties(oldSchema)
-	newProps := properties(newSchema)
+// by readOnlyProperties, for example /properties/Foo/*/Bar.
+func (c *comparer) compareObject(oldSchema, newSchema *Schema, path, pointer string) {
 	oldRequired := required(oldSchema)
 	newRequired := required(newSchema)
 
-	for _, name := range sortedKeys(newProps) {
-		if newRequired[name] && !oldRequired[name] && !c.readOnly[pointer+"/"+name] {
+	for _, name := range sortedKeys(newSchema.Properties) {
+		if newRequired[name] && !oldRequired[name] && !c.isReadOnly(pointer+"/"+name) {
 			c.add(Change{Kind: PropertyRequired, Property: join(path, name)})
 		}
 	}
 
-	for _, name := range sortedKeys(oldProps) {
-		newProp, ok := newProps[name]
+	for _, name := range sortedKeys(oldSchema.Properties) {
+		newProp, ok := newSchema.Properties[name]
 		if !ok {
 			c.add(Change{Kind: PropertyRemoved, Property: join(path, name)})
 			continue
 		}
 
-		c.compareSchema(oldProps[name], newProp, join(path, name), pointer+"/"+name, oldSeen, newSeen)
+		c.compareSchema(oldSchema.Properties[name], newProp, join(path, name), pointer+"/"+name)
 	}
 }
 
-func (c *comparer) compareSchema(oldSchema, newSchema *Schema, path, pointer string, oldSeen, newSeen map[string]bool) {
-	oldSchema, oldSeen, oldRecursive := resolve(c.oldRoot, oldSchema, oldSeen)
-	newSchema, newSeen, newRecursive := resolve(c.newRoot, newSchema, newSeen)
+func (c *comparer) compareSchema(oldSchema, newSchema *Schema, path, pointer string) {
+	oldSchema, oldKey := resolve(c.oldRoot, oldSchema)
+	newSchema, newKey := resolve(c.newRoot, newSchema)
 
 	oldTypes := typeSet(oldSchema)
 	newTypes := typeSet(newSchema)
@@ -174,51 +286,94 @@ func (c *comparer) compareSchema(oldSchema, newSchema *Schema, path, pointer str
 		return
 	}
 
-	if oldRecursive || newRecursive {
+	key := schemaPair{old: oldKey, new: newKey}
+	if c.seen[key] {
 		return
 	}
+	c.seen[key] = true
+	defer delete(c.seen, key)
 
 	if oldTypes["object"] {
-		c.compareObject(oldSchema, newSchema, path, pointer, oldSeen, newSeen)
-
-		oldAdditional, newAdditional := additionalSchema(oldSchema), additionalSchema(newSchema)
-		if oldAdditional != nil && newAdditional != nil {
-			c.compareSchema(oldAdditional, newAdditional, path+".*", pointer+"/*", oldSeen, newSeen)
-		}
+		c.compareObject(oldSchema, newSchema, path, pointer)
+		c.compareAdditional(oldSchema, newSchema, path, pointer)
 	}
 
-	if oldTypes["array"] && oldSchema.Items != nil && newSchema.Items != nil {
-		c.compareSchema(oldSchema.Items, newSchema.Items, path+"[]", pointer+"/*", oldSeen, newSeen)
+	if oldTypes["array"] {
+		c.compareItems(oldSchema, newSchema, path, pointer)
 	}
 }
 
-// resolve follows a $ref the same way the type generator does: the referenced
-// definition is merged with the fields set next to the $ref. It also reports
-// whether the definition was already expanded on the current path.
-func resolve(root, schema *Schema, seen map[string]bool) (*Schema, map[string]bool, bool) {
+// compareAdditional compares the values allowed for keys that are not listed
+// in the properties of two object schemas.
+func (c *comparer) compareAdditional(oldSchema, newSchema *Schema, path, pointer string) {
+	oldValues, newValues := oldSchema.AdditionalProperties, newSchema.AdditionalProperties
+	path, pointer = join(path, "*"), pointer+"/*"
+
+	switch {
+	case !oldValues.allowed() || newValues.Any:
+		return
+	case newValues.Schema == nil:
+		c.add(Change{Kind: PropertyRemoved, Property: path})
+	case oldValues.Any:
+		resolved, _ := resolve(c.newRoot, newValues.Schema)
+		c.add(Change{Kind: PropertyType, Property: path, OldType: "any", NewType: formatTypes(typeSet(resolved))})
+	default:
+		c.compareSchema(oldValues.Schema, newValues.Schema, path, pointer)
+	}
+}
+
+// compareItems compares the items of two array schemas. The type generator
+// turns an array without items into an array of any values.
+func (c *comparer) compareItems(oldSchema, newSchema *Schema, path, pointer string) {
+	path, pointer = path+"[]", pointer+"/*"
+
+	switch {
+	case newSchema.Items == nil:
+		return
+	case oldSchema.Items == nil:
+		resolved, _ := resolve(c.newRoot, newSchema.Items)
+		c.add(Change{Kind: PropertyType, Property: path, OldType: "any", NewType: formatTypes(typeSet(resolved))})
+	default:
+		c.compareSchema(oldSchema.Items, newSchema.Items, path, pointer)
+	}
+}
+
+// resolve follows a $ref the way the type generator does. A reference with no
+// keywords next to it uses the definition as it is, including its oneOf
+// handling. Otherwise the definition is merged with the keywords next to the
+// reference. The returned key identifies the resolved schema.
+func resolve(root, schema *Schema) (*Schema, any) {
 	if schema == nil {
-		return &Schema{}, seen, false
+		empty := &Schema{}
+		return empty, empty
 	}
 	if schema.Ref == "" {
-		return schema, seen, false
+		return schema, schema
 	}
 
 	parts := strings.FieldsFunc(strings.TrimPrefix(schema.Ref, "#"), func(r rune) bool { return r == '/' })
 	if len(parts) < 2 {
-		return schema, seen, false
+		return schema, schema
 	}
 	name := parts[1]
 
-	definition := root.Definitions[name]
+	definition, isDefinition := root.Definitions[name], true
 	if definition == nil {
-		definition = root.Properties[name]
+		definition, isDefinition = root.Properties[name], false
 	}
 	if definition == nil {
-		return schema, seen, false
+		return schema, schema
+	}
+
+	hasSiblings := schema.Type != nil || schema.Properties != nil || schema.Required != nil ||
+		schema.Items != nil || schema.AdditionalProperties.allowed()
+	if isDefinition && !hasSiblings && isObjectType(definition.Type) {
+		return definition, "#/definitions/" + name
 	}
 
 	merged := *definition
 	merged.Ref = ""
+	merged.requiredBranches = nil
 	if schema.Type != nil {
 		merged.Type = schema.Type
 	}
@@ -231,66 +386,24 @@ func resolve(root, schema *Schema, seen map[string]bool) (*Schema, map[string]bo
 	if schema.Items != nil {
 		merged.Items = schema.Items
 	}
-	if schema.AdditionalProperties != nil {
+	if schema.AdditionalProperties.set {
 		merged.AdditionalProperties = schema.AdditionalProperties
 	}
-	if schema.OneOf != nil {
-		merged.OneOf = schema.OneOf
-	}
-
-	if seen[name] {
-		return &merged, seen, true
-	}
-
-	next := make(map[string]bool, len(seen)+1)
-	for k := range seen {
-		next[k] = true
-	}
-	next[name] = true
-
-	return &merged, next, false
-}
-
-// properties returns the properties of an object schema, including properties
-// declared in oneOf branches, which the type generator merges into the object.
-func properties(schema *Schema) map[string]*Schema {
-	result := map[string]*Schema{}
-	for _, branch := range schema.OneOf {
-		if branch == nil {
-			continue
-		}
-		for name, prop := range branch.Properties {
-			result[name] = prop
-		}
-	}
-	for name, prop := range schema.Properties {
-		result[name] = prop
-	}
-	return result
+	return &merged, schema
 }
 
 // required returns the required properties of an object schema. Like the type
-// generator, a property named in a oneOf branch is only required when every
-// branch that lists required properties requires it.
+// generator, when oneOf branches list required properties, a property named in
+// a branch is only required when every such branch requires it.
 func required(schema *Schema) map[string]bool {
 	result := toSet(schema.Required)
+	if len(schema.requiredBranches) == 0 {
+		return result
+	}
 
-	var intersection map[string]bool
-	inBranch := map[string]bool{}
-	for _, branch := range schema.OneOf {
-		if branch == nil || branch.Required == nil {
-			continue
-		}
-
-		current := toSet(branch.Required)
-		for name := range current {
-			inBranch[name] = true
-		}
-
-		if intersection == nil {
-			intersection = current
-			continue
-		}
+	intersection := toSet(schema.requiredBranches[0])
+	for _, branch := range schema.requiredBranches[1:] {
+		current := toSet(branch)
 		for name := range intersection {
 			if !current[name] {
 				delete(intersection, name)
@@ -298,11 +411,13 @@ func required(schema *Schema) map[string]bool {
 		}
 	}
 
-	for name := range inBranch {
-		if intersection[name] {
-			result[name] = true
-		} else {
-			delete(result, name)
+	for _, branch := range schema.requiredBranches {
+		for _, name := range branch {
+			if intersection[name] {
+				result[name] = true
+			} else {
+				delete(result, name)
+			}
 		}
 	}
 
@@ -337,24 +452,8 @@ func normalizeType(t string) string {
 	return t
 }
 
-// additionalSchema returns the schema of map values when additionalProperties
-// is a schema, and nil when it is a boolean or not set.
-func additionalSchema(schema *Schema) *Schema {
-	m, ok := schema.AdditionalProperties.(map[string]any)
-	if !ok {
-		return nil
-	}
-
-	b, err := json.Marshal(m)
-	if err != nil {
-		return nil
-	}
-
-	result := &Schema{}
-	if err := json.Unmarshal(b, result); err != nil {
-		return nil
-	}
-	return result
+func isObjectType(t any) bool {
+	return t == nil || t == "object"
 }
 
 func isSubset(a, b map[string]bool) bool {
